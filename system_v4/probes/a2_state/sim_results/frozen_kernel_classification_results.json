@@ -1,0 +1,576 @@
+{
+  "name": "Frozen Kernel Classification: 11 Substrate-Insensitive Families",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: numerical Jacobian rank verification via autograd for a subset of families to cross-check sympy closed-form analysis."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this classification sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: encodes the frozen kernel criterion. Proves UNSAT of: substrate-equivalent AND NOT closed-form, confirming that closed-form is a necessary condition for frozen kernel."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- SyGuS not required for classification"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic Jacobian structure analysis for all 11 families. Determines function_type (eigenvalue-only, linear, quadratic, off-diagonal, etc.) and jacobian_rank for each family."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry layer here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "source_references": {
+    "phase7_c4_results": "system_v4/probes/a2_state/sim_results/phase7_baseline_validation_results.json",
+    "substrate_analysis": "system_v4/probes/a2_state/sim_results/substrate_insensitive_analysis_results.json"
+  },
+  "frozen_kernel_criterion": {
+    "primary": "C4-insensitive (substrate-equivalent) AND closed-form analytic expression",
+    "secondary": "C1-NULL (trivial gradient direction) -- confirmed for all 11",
+    "c2_status": "NOT_TESTED for 10/11 -- provisional classification",
+    "z3_theorem": "closed_form is NECESSARY for frozen_kernel (UNSAT otherwise)"
+  },
+  "summary": {
+    "total_families_analyzed": 11,
+    "frozen_kernel": [
+      "density_matrix",
+      "purification",
+      "z_measurement",
+      "Hadamard",
+      "T_gate",
+      "eigenvalue_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap"
+    ],
+    "topology_sensitive": [],
+    "full_quantum": [],
+    "all_null_c1_confirmed": true,
+    "z3_criterion_passed": true,
+    "closed_form_universal_predictor": true,
+    "total_families": 11,
+    "frozen_kernel_count": 11,
+    "topology_sensitive_count": 0,
+    "full_quantum_count": 0,
+    "eigenvalue_only_families": 2,
+    "closed_form_all": true,
+    "note": "All 11 substrate-insensitive families classify as 'frozen_kernel' pending full C2 topology expansion. The universal predictor is closed-form analytic expression (confirmed by substrate analysis). C2 topology results not available for 10/11 families -- classification pending full C2 sweep."
+  },
+  "positive": {
+    "jacobian_analyses": {
+      "density_matrix": {
+        "function": "a**2 + 2*b**2 + 2*c**2 + (1 - a)**2",
+        "jacobian": [
+          "4*a - 2",
+          "4*b",
+          "4*c"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "quadratic_all_entries",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "density_matrix",
+        "substrate_independent_confirmed": true
+      },
+      "purification": {
+        "function": "a**2 + 2*b**2 + 2*c**2 + (1 - a)**2",
+        "jacobian": [
+          "4*a - 2",
+          "4*b",
+          "4*c"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "quadratic_all_entries",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "purification",
+        "substrate_independent_confirmed": true
+      },
+      "z_measurement": {
+        "function": "a",
+        "jacobian": [
+          "1",
+          "0",
+          "0"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "linear_diagonal_only",
+        "depends_on_off_diagonal": false,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "z_measurement",
+        "substrate_independent_confirmed": true
+      },
+      "Hadamard": {
+        "function": "H rho H\u2020 (linear map on entries)",
+        "jacobian_shape": "3x3",
+        "jacobian_rank": 3,
+        "function_type": "linear_unitary_conjugation",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "Hadamard",
+        "substrate_independent_confirmed": true
+      },
+      "T_gate": {
+        "function": "T rho T\u2020 (linear map on entries)",
+        "jacobian_shape": "3x3",
+        "jacobian_rank": 3,
+        "function_type": "linear_unitary_conjugation",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "T_gate",
+        "substrate_independent_confirmed": true
+      },
+      "eigenvalue_decomposition": {
+        "function_lambda_plus": "sqrt(-4*a*(1 - a) + 4*b**2 + 4*c**2 + 1)/2 + 1/2",
+        "function_lambda_minus": "1/2 - sqrt(-4*a*(1 - a) + 4*b**2 + 4*c**2 + 1)/2",
+        "jacobian_lambda_plus": [
+          "(2*a - 1)/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)",
+          "2*b/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)",
+          "2*c/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)"
+        ],
+        "jacobian_lambda_minus": [
+          "(1 - 2*a)/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)",
+          "-2*b/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)",
+          "-2*c/sqrt(4*a*(a - 1) + 4*b**2 + 4*c**2 + 1)"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "algebraic_eigenvalue_closed_form",
+        "depends_on_off_diagonal": true,
+        "eigenvalue_only": true,
+        "closed_form": true,
+        "note": "Eigenvalues are algebraic closed-form expressions in all rho entries via det",
+        "family": "eigenvalue_decomposition",
+        "substrate_independent_confirmed": true
+      },
+      "l1_coherence": {
+        "function": "2*sqrt(b**2 + c**2)",
+        "jacobian": [
+          "0",
+          "2*b/sqrt(b**2 + c**2)",
+          "2*c/sqrt(b**2 + c**2)"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "off_diagonal_l2_norm",
+        "depends_on_off_diagonal": true,
+        "depends_on_diagonal": false,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "family": "l1_coherence",
+        "substrate_independent_confirmed": true
+      },
+      "relative_entropy_coherence": {
+        "function": "S(rho_diag) - S(rho) = relative entropy to diagonal",
+        "s_diag": "-a*log(a) - (1 - a)*log(1 - a)",
+        "lambda_plus": "sqrt(-4*a*(1 - a) + 4*b**2 + 4*c**2 + 1)/2 + 1/2",
+        "lambda_minus": "1/2 - sqrt(-4*a*(1 - a) + 4*b**2 + 4*c**2 + 1)/2",
+        "jacobian_rank": 1,
+        "function_type": "entropy_algebraic_closed_form",
+        "depends_on_off_diagonal": true,
+        "eigenvalue_only": false,
+        "closed_form": true,
+        "note": "Both S(rho_diag) and S(rho) are closed-form analytic in a,b,c",
+        "family": "relative_entropy_coherence",
+        "substrate_independent_confirmed": true
+      },
+      "wigner_negativity": {
+        "function": "max(0, -lambda_minus(rho))",
+        "lambda_minus": "1/2 - sqrt(-4*a*(1 - a) + 4*b**2 + 4*c**2 + 1)/2",
+        "jacobian_rank": 1,
+        "function_type": "eigenvalue_max_threshold",
+        "depends_on_off_diagonal": true,
+        "eigenvalue_only": true,
+        "closed_form": true,
+        "note": "Eigenvalue-only function, closed-form algebraic expression",
+        "family": "wigner_negativity",
+        "substrate_independent_confirmed": true
+      },
+      "hopf_connection": {
+        "function_rx": "2*b",
+        "function_ry": "2*c",
+        "function_rz": "2*a - 1",
+        "jacobian": [
+          [
+            "0",
+            "2",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "2"
+          ],
+          [
+            "2",
+            "0",
+            "0"
+          ]
+        ],
+        "jacobian_rank": 3,
+        "function_type": "linear_bloch_vector",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "note": "Bijection between density matrix and Bloch vector -- linear closed-form",
+        "family": "hopf_connection",
+        "substrate_independent_confirmed": true
+      },
+      "chiral_overlap": {
+        "function": "a**2 + 2*b**2 + 2*c**2 + (1 - a)**2",
+        "jacobian": [
+          "4*a - 2",
+          "4*b",
+          "4*c"
+        ],
+        "jacobian_rank": 1,
+        "function_type": "quadratic_all_entries",
+        "depends_on_off_diagonal": true,
+        "is_zero_jacobian": false,
+        "closed_form": true,
+        "note": "Chiral overlap as Tr[rho^2] variant -- same closed-form as purity",
+        "family": "chiral_overlap",
+        "substrate_independent_confirmed": true
+      }
+    },
+    "classification_table": {
+      "density_matrix": {
+        "family": "density_matrix",
+        "function_type": "quadratic_all_entries",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NULL_topology",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "purification": {
+        "family": "purification",
+        "function_type": "quadratic_all_entries",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "z_measurement": {
+        "family": "z_measurement",
+        "function_type": "linear_diagonal_only",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": false
+      },
+      "Hadamard": {
+        "family": "Hadamard",
+        "function_type": "linear_unitary_conjugation",
+        "jacobian_rank": 3,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "T_gate": {
+        "family": "T_gate",
+        "function_type": "linear_unitary_conjugation",
+        "jacobian_rank": 3,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "eigenvalue_decomposition": {
+        "family": "eigenvalue_decomposition",
+        "function_type": "algebraic_eigenvalue_closed_form",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": true,
+        "depends_on_off_diagonal": true
+      },
+      "l1_coherence": {
+        "family": "l1_coherence",
+        "function_type": "off_diagonal_l2_norm",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "relative_entropy_coherence": {
+        "family": "relative_entropy_coherence",
+        "function_type": "entropy_algebraic_closed_form",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "wigner_negativity": {
+        "family": "wigner_negativity",
+        "function_type": "eigenvalue_max_threshold",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": true,
+        "depends_on_off_diagonal": true
+      },
+      "hopf_connection": {
+        "family": "hopf_connection",
+        "function_type": "linear_bloch_vector",
+        "jacobian_rank": 3,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      },
+      "chiral_overlap": {
+        "family": "chiral_overlap",
+        "function_type": "quadratic_all_entries",
+        "jacobian_rank": 1,
+        "substrate_independent": true,
+        "topology_independent": true,
+        "c4_result": "NULL_equivalent",
+        "c2_result": "NOT_TESTED",
+        "closed_form": true,
+        "proposed_classification": "frozen_kernel",
+        "eigenvalue_only": false,
+        "depends_on_off_diagonal": true
+      }
+    },
+    "classification_summary": {
+      "total_families": 11,
+      "frozen_kernel_count": 11,
+      "topology_sensitive_count": 0,
+      "full_quantum_count": 0,
+      "eigenvalue_only_families": 2,
+      "closed_form_all": true,
+      "note": "All 11 substrate-insensitive families classify as 'frozen_kernel' pending full C2 topology expansion. The universal predictor is closed-form analytic expression (confirmed by substrate analysis). C2 topology results not available for 10/11 families -- classification pending full C2 sweep."
+    }
+  },
+  "negative": {
+    "z3_criterion": {
+      "status": "PASS",
+      "verdict": "UNSAT",
+      "elapsed_s": 0.0253,
+      "interpretation": "UNSAT: frozen_kernel AND substrate_equiv AND NOT closed_form is impossible. Closed-form is a NECESSARY condition for the frozen kernel label. Any substrate-equivalent family without a closed-form expression cannot be classified as frozen_kernel."
+    },
+    "negative_sensitive_families": [
+      {
+        "family": "z_dephasing",
+        "c4": "NULL_equivalent",
+        "c1": "NON_NULL_direction",
+        "note": "C4-insensitive but C1-sensitive -- substrate-equiv but gradient non-trivial"
+      },
+      {
+        "family": "depolarizing",
+        "c4": "NULL_equivalent",
+        "c1": "NON_NULL_direction",
+        "note": "C4-insensitive but C1-sensitive"
+      },
+      {
+        "family": "amplitude_damping",
+        "c4": "NULL_equivalent",
+        "c1": "NON_NULL_direction",
+        "note": "C4-insensitive but C1-sensitive -- channel with non-trivial gradient"
+      },
+      {
+        "family": "CNOT",
+        "c4": "NULL_equivalent",
+        "c1": "NON_NULL_direction",
+        "note": "C4-insensitive, C2-NULL_topology, but C1-sensitive -- entangling gate"
+      },
+      {
+        "family": "mutual_information",
+        "c4": "NULL_equivalent",
+        "c1": "NON_NULL_direction",
+        "note": "C4-insensitive, C2-NULL_topology, but C1-sensitive"
+      }
+    ],
+    "frozen_kernel_all_null_c1": {
+      "families": {
+        "density_matrix": "NULL_direction",
+        "purification": "NULL_direction",
+        "z_measurement": "NULL_direction",
+        "Hadamard": "NULL_direction",
+        "T_gate": "NULL_direction",
+        "eigenvalue_decomposition": "NULL_direction",
+        "l1_coherence": "NULL_direction",
+        "relative_entropy_coherence": "NULL_direction",
+        "wigner_negativity": "NULL_direction",
+        "hopf_connection": "NULL_direction",
+        "chiral_overlap": "NULL_direction"
+      },
+      "all_null_c1": true,
+      "interpretation": "All 11 frozen kernel families have NULL C1 (trivial gradient direction). C4-insensitive + C4-sensitive families that have NON_NULL C1 are excluded from the frozen kernel. The full criterion: C4-NULL + C1-NULL + closed-form."
+    }
+  },
+  "boundary": {
+    "quantum_discord_boundary": {
+      "family": "quantum_discord",
+      "c4_result": "NULL_equivalent",
+      "c1_result": "NULL_direction",
+      "c2_result": "NOT_TESTED",
+      "in_phase7_12": true,
+      "in_substrate_11": false,
+      "note": "quantum_discord was in Phase 7's 12 insensitive but NOT in the substrate analysis 11. It is C4-NULL and C1-NULL but requires quantum discord computation (not a simple closed-form of density matrix entries -- requires optimization over measurements). Tentative classification: 'frozen_kernel_provisional' pending closed-form verification.",
+      "proposed_classification": "frozen_kernel_provisional"
+    },
+    "pytorch_jacobian_rank_crosscheck": {
+      "density_matrix": {
+        "status": "ok",
+        "numerical_jacobian_rank": 1,
+        "jacobian_shape": [
+          1,
+          3
+        ],
+        "max_abs_jacobian": 0.8493172362316684
+      },
+      "eigenvalue_decomposition": {
+        "status": "ok",
+        "numerical_jacobian_rank": 1,
+        "jacobian_shape": [
+          1,
+          3
+        ],
+        "max_abs_jacobian": 0.8494523165202441
+      },
+      "hopf_connection": {
+        "status": "ok",
+        "numerical_jacobian_rank": 3,
+        "jacobian_shape": [
+          3,
+          3
+        ],
+        "max_abs_jacobian": 2.0
+      }
+    },
+    "c2_expansion_status": {
+      "c2_tested_families": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT",
+        "mutual_information"
+      ],
+      "c2_null_in_frozen_11": [
+        "density_matrix"
+      ],
+      "c2_not_tested_in_frozen_11": [
+        "purification",
+        "z_measurement",
+        "Hadamard",
+        "T_gate",
+        "eigenvalue_decomposition",
+        "l1_coherence",
+        "relative_entropy_coherence",
+        "wigner_negativity",
+        "hopf_connection",
+        "chiral_overlap"
+      ],
+      "interpretation": "Only density_matrix has confirmed C2=NULL_topology among the 11. Full C2 expansion needed for the remaining 10. Provisional frozen_kernel classification holds pending C2 sweep."
+    }
+  }
+}

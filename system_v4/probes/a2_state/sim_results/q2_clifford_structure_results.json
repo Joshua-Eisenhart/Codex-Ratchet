@@ -1,0 +1,1050 @@
+{
+  "name": "q2_clifford_structure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: gradient computation via autograd used as secondary cross-check for composition-path sensitivity; primary computation is numpy + clifford GA"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: Clifford GA rotors applied to qubit states to test Clifford-invariance; rotor sandwich rho\u2192R*rho*R\u2020 computed natively in Cl(3,0)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "invariance_table": {
+      "purification": {
+        "clifford_invariant": true,
+        "SU2_invariant": true,
+        "basis_dependent": false,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": -0.0,
+            "val_H": -0.0,
+            "val_S": -0.0,
+            "val_HS": -0.0,
+            "val_SH": -0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": -0.0,
+              "rotor_val": 5.178310144344069e-15
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": -0.0,
+            "val_H": -0.0,
+            "val_S": -0.0,
+            "val_HS": -0.0,
+            "val_SH": -0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": -0.0,
+              "rotor_val": 5.178310144344069e-15
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": -0.0,
+            "val_H": -0.0,
+            "val_S": -0.0,
+            "val_HS": -0.0,
+            "val_SH": -0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": -0.0,
+              "rotor_val": 6.272427376647173e-15
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.6931471805599453,
+            "val_H": 0.6931471805599453,
+            "val_S": 0.6931471805599453,
+            "val_HS": 0.6931471805599453,
+            "val_SH": 0.6931471805599453,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.6931471805599453,
+              "rotor_val": 0.6931471805599453
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.5678165311528042,
+            "val_H": 0.5678165311528043,
+            "val_S": 0.5678165311528042,
+            "val_HS": 0.5678165311528043,
+            "val_SH": 0.5678165311528043,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.5678165311528043,
+              "rotor_val": 0.5678165311528043
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": -0.0,
+            "val_H": -0.0,
+            "val_S": -0.0,
+            "val_HS": -0.0,
+            "val_SH": 4.5701746627175347e-32,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": -0.0,
+              "rotor_val": 5.1783101443440696e-15
+            }
+          }
+        },
+        "composition_path_sensitive": false
+      },
+      "z_measurement": {
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 1.0,
+            "val_H": 0.4999999999999999,
+            "val_S": 1.0,
+            "val_HS": 0.4999999999999999,
+            "val_SH": 0.4999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999999,
+              "rotor_val": 0.5
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.4999999999999999,
+            "val_S": 0.0,
+            "val_HS": 0.4999999999999999,
+            "val_SH": 0.4999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999999,
+              "rotor_val": 0.5
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 0.9999999999999997,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.9999999999999997,
+            "val_SH": 0.49999999999999983,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.9999999999999997,
+              "rotor_val": 0.9999999999999998
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.5,
+            "val_H": 0.4999999999999999,
+            "val_S": 0.5,
+            "val_HS": 0.4999999999999999,
+            "val_SH": 0.4999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999999,
+              "rotor_val": 0.5
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.7,
+            "val_H": 0.5999999999999999,
+            "val_S": 0.7,
+            "val_HS": 0.5999999999999999,
+            "val_SH": 0.5999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.5999999999999999,
+              "rotor_val": 0.6
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 0.49999999999999983,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.49999999999999983,
+            "val_SH": 5.9779208748350985e-34,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.49999999999999983,
+              "rotor_val": 0.5
+            }
+          }
+        },
+        "composition_path_sensitive": true
+      },
+      "Hadamard": {
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 0.9999999999999997,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.49999999999999983,
+            "val_SH": 0.9999999999999997,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.9999999999999997,
+              "rotor_val": 0.9999999999999998
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 5.9779208748350985e-34,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.49999999999999983,
+            "val_SH": 5.9779208748350985e-34,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 5.9779208748350985e-34,
+              "rotor_val": 9.476346269835219e-17
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": false,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.9999999999999997,
+            "val_H": 0.4999999999999998,
+            "val_S": 0.49999999999999983,
+            "val_HS": 0.4999999999999998,
+            "val_SH": 0.4999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999998,
+              "rotor_val": 0.4999999999999999
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.4999999999999999,
+            "val_H": 0.4999999999999998,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.49999999999999983,
+            "val_SH": 0.4999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999998,
+              "rotor_val": 0.4999999999999999
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.5999999999999999,
+            "val_H": 0.6999999999999996,
+            "val_S": 0.5999999999999999,
+            "val_HS": 0.39999999999999986,
+            "val_SH": 0.6999999999999996,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.6999999999999996,
+              "rotor_val": 0.6999999999999997
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": false,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.49999999999999983,
+            "val_H": 0.4999999999999998,
+            "val_S": 5.9779208748350985e-34,
+            "val_HS": 0.9999999999999996,
+            "val_SH": 0.4999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999998,
+              "rotor_val": 0.49999999999999983
+            }
+          }
+        },
+        "composition_path_sensitive": true
+      },
+      "eigenvalue_decomposition": {
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.4999999999999999,
+            "val_S": 0.0,
+            "val_HS": 0.4999999999999999,
+            "val_SH": 0.4999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999999,
+              "rotor_val": 0.4999999999999999
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.4999999999999999,
+            "val_S": 0.0,
+            "val_HS": 0.4999999999999999,
+            "val_SH": 0.4999999999999999,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999999,
+              "rotor_val": 0.4999999999999999
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 6.223285321735373e-19,
+            "val_S": 0.4999999999999999,
+            "val_HS": 6.223285321735373e-19,
+            "val_SH": 0.49999999999999983,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 6.223285321735373e-19,
+              "rotor_val": 4.329780281177465e-17
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 1.1185571585378691e-17,
+            "val_S": 0.0,
+            "val_HS": 1.1185571585378691e-17,
+            "val_SH": 1.1185571585378691e-17,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 1.1185571585378691e-17,
+              "rotor_val": 0.0
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.14142135623730953,
+            "val_H": 0.22360679774997888,
+            "val_S": 0.14142135623730953,
+            "val_HS": 0.22360679774997888,
+            "val_SH": 0.22360679774997888,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.22360679774997888,
+              "rotor_val": 0.22360679774997894
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.4999999999999999,
+            "val_H": 0.49999999999999983,
+            "val_S": 0.4999999999999999,
+            "val_HS": 0.49999999999999983,
+            "val_SH": 3.251767952832689e-17,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.49999999999999983,
+              "rotor_val": 0.49999999999999983
+            }
+          }
+        },
+        "composition_path_sensitive": true
+      },
+      "l1_coherence": {
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.9999999999999998,
+            "val_S": 0.0,
+            "val_HS": 0.9999999999999998,
+            "val_SH": 0.9999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.9999999999999998,
+              "rotor_val": 0.9999999999999998
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.9999999999999998,
+            "val_S": 0.0,
+            "val_HS": 0.9999999999999998,
+            "val_SH": 0.9999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.9999999999999998,
+              "rotor_val": 0.9999999999999998
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.9999999999999998,
+            "val_H": 3.3140008060500427e-17,
+            "val_S": 0.9999999999999998,
+            "val_HS": 3.3140008060500427e-17,
+            "val_SH": 0.9999999999999997,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 3.3140008060500427e-17,
+              "rotor_val": 8.65956056235493e-17
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 2.2371143170757382e-17,
+            "val_S": 0.0,
+            "val_HS": 2.2371143170757382e-17,
+            "val_SH": 2.2371143170757382e-17,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 2.2371143170757382e-17,
+              "rotor_val": 0.0
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.28284271247461906,
+            "val_H": 0.4472135954999578,
+            "val_S": 0.28284271247461906,
+            "val_HS": 0.4472135954999578,
+            "val_SH": 0.4472135954999578,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4472135954999578,
+              "rotor_val": 0.44721359549995787
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.9999999999999998,
+            "val_H": 0.9999999999999997,
+            "val_S": 0.9999999999999998,
+            "val_HS": 0.9999999999999997,
+            "val_SH": 3.3140008060500427e-17,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.9999999999999997,
+              "rotor_val": 0.9999999999999997
+            }
+          }
+        },
+        "composition_path_sensitive": true
+      },
+      "relative_entropy_coherence": {
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.6931471805599096,
+            "val_S": 0.0,
+            "val_HS": 0.6931471805599096,
+            "val_SH": 0.6931471805599096,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.6931471805599096,
+              "rotor_val": 0.6931471805599098
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.6931471805599096,
+            "val_S": 0.0,
+            "val_HS": 0.6931471805599096,
+            "val_SH": 0.6931471805599096,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.6931471805599096,
+              "rotor_val": 0.6931471805599098
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.6931471805599096,
+            "val_H": 0.0,
+            "val_S": 0.6931471805599096,
+            "val_HS": 0.0,
+            "val_SH": 0.6931471805599098,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.0,
+              "rotor_val": 0.0
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.0,
+            "val_S": 0.0,
+            "val_HS": 0.0,
+            "val_SH": 0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.0,
+              "rotor_val": 0.0
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": false,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": false,
+            "su2_invariant": false,
+            "composition_path_sensitive": false,
+            "val_orig": 0.04304777090208933,
+            "val_H": 0.10519513585645224,
+            "val_S": 0.04304777090208933,
+            "val_HS": 0.10519513585645224,
+            "val_SH": 0.10519513585645224,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.10519513585645224,
+              "rotor_val": 0.10519513585645224
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": false,
+            "composition_path_sensitive": true,
+            "val_orig": 0.6931471805599096,
+            "val_H": 0.6931471805599098,
+            "val_S": 0.6931471805599096,
+            "val_HS": 0.6931471805599098,
+            "val_SH": 0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.6931471805599098,
+              "rotor_val": 0.6931471805599096
+            }
+          }
+        },
+        "composition_path_sensitive": true
+      },
+      "chiral_overlap": {
+        "clifford_invariant": true,
+        "SU2_invariant": true,
+        "basis_dependent": false,
+        "per_state": {
+          "ket_0": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.0,
+            "val_S": 0.0,
+            "val_HS": 0.0,
+            "val_SH": 0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.0,
+              "rotor_val": 2.220446049250313e-16
+            }
+          },
+          "ket_1": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.0,
+            "val_S": 0.0,
+            "val_HS": 0.0,
+            "val_SH": 0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.0,
+              "rotor_val": 2.220446049250313e-16
+            }
+          },
+          "ket_plus": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 1.155110815425913e-33,
+            "val_S": 0.0,
+            "val_HS": 1.155110815425913e-33,
+            "val_SH": 0.0,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 1.155110815425913e-33,
+              "rotor_val": 3.3306690738754686e-16
+            }
+          },
+          "mixed_max": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.5,
+            "val_H": 0.4999999999999998,
+            "val_S": 0.5,
+            "val_HS": 0.4999999999999998,
+            "val_SH": 0.4999999999999998,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.4999999999999998,
+              "rotor_val": 0.5
+            }
+          },
+          "mixed_partial": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.37999999999999995,
+            "val_H": 0.37999999999999984,
+            "val_S": 0.37999999999999995,
+            "val_HS": 0.37999999999999984,
+            "val_SH": 0.37999999999999984,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.37999999999999984,
+              "rotor_val": 0.38
+            }
+          },
+          "ket_y": {
+            "clifford_invariant_H": true,
+            "clifford_invariant_S": true,
+            "clifford_invariant_both": true,
+            "su2_invariant": true,
+            "composition_path_sensitive": false,
+            "val_orig": 0.0,
+            "val_H": 0.0,
+            "val_S": 0.0,
+            "val_HS": 0.0,
+            "val_SH": 1.155110815425913e-33,
+            "rotor_crosscheck": {
+              "rotor_matches_matrix": true,
+              "matrix_val": 0.0,
+              "rotor_val": 2.7755575615628914e-16
+            }
+          }
+        },
+        "composition_path_sensitive": false
+      }
+    },
+    "summary_table": [
+      {
+        "family": "purification",
+        "clifford_invariant": true,
+        "SU2_invariant": true,
+        "basis_dependent": false,
+        "composition_path_sensitive": false
+      },
+      {
+        "family": "z_measurement",
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "composition_path_sensitive": true
+      },
+      {
+        "family": "Hadamard",
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "composition_path_sensitive": true
+      },
+      {
+        "family": "eigenvalue_decomposition",
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "composition_path_sensitive": true
+      },
+      {
+        "family": "l1_coherence",
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "composition_path_sensitive": true
+      },
+      {
+        "family": "relative_entropy_coherence",
+        "clifford_invariant": false,
+        "SU2_invariant": false,
+        "basis_dependent": true,
+        "composition_path_sensitive": true
+      },
+      {
+        "family": "chiral_overlap",
+        "clifford_invariant": true,
+        "SU2_invariant": true,
+        "basis_dependent": false,
+        "composition_path_sensitive": false
+      }
+    ],
+    "clifford_invariant_families": [
+      "purification",
+      "chiral_overlap"
+    ],
+    "clifford_noninvariant_families": [
+      "z_measurement",
+      "Hadamard",
+      "eigenvalue_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence"
+    ],
+    "status": "PASS"
+  },
+  "negative": {
+    "purity_su2_invariant": {
+      "description": "Purity (Q4 archetype) should be SU(2)-invariant",
+      "su2_breaks_purity": false,
+      "expected": false,
+      "status": "PASS"
+    },
+    "l1_coherence_basis_dependent": {
+      "description": "l1_coherence of |0> vs H|0>|+ should differ",
+      "c_ket0": 0.0,
+      "c_ket_plus": 0.9999999999999998,
+      "basis_dependent": true,
+      "expected": true,
+      "status": "PASS"
+    },
+    "eigenvalues_su2_invariant": {
+      "description": "Eigenvalues must be SU(2)-invariant (but eigenvectors change)",
+      "su2_breaks_eigenvalues": false,
+      "expected_invariant": true,
+      "status": "PASS",
+      "note": "l1_coherence uses OFF-DIAGONAL elements which ARE basis-dependent, even though eigenvalues are not. This is the Q2 split: eigenvalue_decomposition tracks topology via eigenvectors, not eigenvalues."
+    },
+    "chiral_overlap_is_2det_su2_invariant": {
+      "description": "chiral_overlap = Tr(rho*sigma_y*rho^T*sigma_y) = 2*det(rho), which is SU(2)-invariant. chiral_overlap is Q2 (topology-sensitive) because topology tracks the ORIENTATION of the chiral direction, not because the scalar diverges under SU(2) rotation.",
+      "chiral_val": 0.21999999999999997,
+      "2_det_rho": 0.22000000000000003,
+      "chiral_equals_2det": true,
+      "su2_invariant": true,
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "maximally_mixed_values": {
+      "description": "Maximally mixed state: basis-dependent quantities should be 0 or minimal",
+      "values": {
+        "purification": 0.6931471805599453,
+        "z_measurement": 0.5,
+        "Hadamard": 0.4999999999999999,
+        "eigenvalue_decomposition": 0.0,
+        "l1_coherence": 0.0,
+        "relative_entropy_coherence": 0.0,
+        "chiral_overlap": 0.5
+      }
+    },
+    "pure_state_ket0_values": {
+      "description": "Pure |0> state values",
+      "values": {
+        "purification": -0.0,
+        "z_measurement": 1.0,
+        "Hadamard": 0.4999999999999999,
+        "eigenvalue_decomposition": 0.0,
+        "l1_coherence": 0.0,
+        "relative_entropy_coherence": 0.0,
+        "chiral_overlap": 0.0
+      }
+    },
+    "h4_cycle_returns_to_identity": {
+      "description": "H^4 = I: applying H four times should restore original state and function values",
+      "per_family": {
+        "purification": {
+          "original": 0.5004024235381879,
+          "after_H4": 0.500402423538188,
+          "returned_to_original": true
+        },
+        "z_measurement": {
+          "original": 0.7,
+          "after_H4": 0.6999999999999993,
+          "returned_to_original": true
+        },
+        "Hadamard": {
+          "original": 0.6999999999999998,
+          "after_H4": 0.6999999999999993,
+          "returned_to_original": true
+        },
+        "eigenvalue_decomposition": {
+          "original": 0.223606797749979,
+          "after_H4": 0.22360679774997888,
+          "returned_to_original": true
+        },
+        "l1_coherence": {
+          "original": 0.447213595499958,
+          "after_H4": 0.44721359549995765,
+          "returned_to_original": true
+        },
+        "relative_entropy_coherence": {
+          "original": 0.11046187851670564,
+          "after_H4": 0.11046187851670553,
+          "returned_to_original": true
+        },
+        "chiral_overlap": {
+          "original": 0.31999999999999995,
+          "after_H4": 0.3199999999999994,
+          "returned_to_original": true
+        }
+      },
+      "all_returned": true
+    },
+    "ga_rotor_vs_matrix_crosscheck": {
+      "description": "Cl(3) rotor sandwich vs matrix multiply for H on |0>",
+      "bivector_formula": "B_H = (e23+e12)/sqrt(2) = e123*(e1+e3)/sqrt(2)",
+      "matrix_rho_H": [
+        [
+          "(0.4999999999999999+0j)",
+          "(0.4999999999999999+0j)"
+        ],
+        [
+          "(0.4999999999999999+0j)",
+          "(0.4999999999999999+0j)"
+        ]
+      ],
+      "ga_rho_H": [
+        [
+          "(0.5+0j)",
+          "(0.4999999999999999+4.329780281177466e-17j)"
+        ],
+        [
+          "(0.4999999999999999-4.329780281177466e-17j)",
+          "(0.5+0j)"
+        ]
+      ],
+      "max_diff": 1.1102230246251565e-16,
+      "agree": true,
+      "status": "PASS"
+    }
+  },
+  "hypothesis_result": {
+    "composition_path_hypothesis": "Q2 families are topology-sensitive because their gradient depends on the COMPOSITION PATH (which operations come first), not because the function value itself is path-sensitive at the scalar level.",
+    "composition_path_sensitive_count": 5,
+    "clifford_invariant_count": 2,
+    "su2_invariant_count": 2,
+    "n_families": 7,
+    "key_finding": "Families with basis_dependent=True are sensitive to the choice of measurement basis, which is exactly what topology tracks. Clifford-invariant families are insensitive to the Clifford group but still topology-sensitive because topology cares about the graph STRUCTURE of operations, not their algebraic equivalence class."
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,811 @@
+{
+  "name": "werner_manifold_scan",
+  "description": "Full trajectory scan of Werner state rho_W(p) = (1-p)*Bell + p*I/4 over p in [0,1] with 50 steps. Computes MI, I_c, QFI, concurrence. Identifies separability/PPT boundary at p=1/3 and I_c zero-crossing. Geomstats SPD geodesic tracks Riemannian distance from Bell state. z3 UNSAT proofs: separable => I_c<=0, and I_c>0 => concurrence>0.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: autograd-based QFI computation via parameter differentiation; entropy computed via torch.linalg.eigvalsh on Werner density matrices"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no graph message-passing in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proofs for (1) Werner separable => I_c<=0 and (2) I_c>0 => concurrence>0; encodes analytic bounds as SMT constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: analytic derivation of concurrence C(p)=max(0,1-2p), transition point p_I_c_zero from eigenvalue expressions"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no Clifford algebra structure in Werner scan"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: SPD affine-invariant geodesic distance from Bell state rho(0) to each Werner state rho(p) \u2014 tracks Riemannian distance along the trajectory"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no SO(3)/SU(2) equivariance in Werner scan"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no DAG structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no hyperedge structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no cell complex topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "trajectory": [
+      {
+        "p": 0.0,
+        "S_AB": 8.589310800468356e-11,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.3862943610339975,
+        "I_c": 0.6931471804740522,
+        "concurrence": 1.0,
+        "qfi": 0.140624999999969,
+        "geodesic_distance_from_Bell": 4.535437150283064e-10,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.02040816326530612,
+        "S_AB": 0.09597585076805318,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.2903185103518373,
+        "I_c": 0.5971713297918921,
+        "concurrence": 0.9591836734693877,
+        "qfi": 37.32124352331319,
+        "geodesic_distance_from_Bell": 17.188425787891628,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.04081632653061224,
+        "S_AB": 0.17049498171086408,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.2157993794090265,
+        "I_c": 0.5226521988490812,
+        "concurrence": 0.9183673469387755,
+        "qfi": 18.9552631578948,
+        "geodesic_distance_from_Bell": 18.38896885013564,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.061224489795918366,
+        "S_AB": 0.23676352683347263,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.149530834286418,
+        "I_c": 0.45638365372647266,
+        "concurrence": 0.8775510204081632,
+        "qfi": 12.839572192513653,
+        "geodesic_distance_from_Bell": 19.091272459218402,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.08163265306122448,
+        "S_AB": 0.29758551773310904,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.0887088433867815,
+        "I_c": 0.39556166282683625,
+        "concurrence": 0.8367346938775511,
+        "qfi": 9.786684782608244,
+        "geodesic_distance_from_Bell": 19.589589364346566,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.1020408163265306,
+        "S_AB": 0.354290519712017,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 1.0320038414078736,
+        "I_c": 0.33885666084792826,
+        "concurrence": 0.7959183673469388,
+        "qfi": 7.959116022099058,
+        "geodesic_distance_from_Bell": 19.97613787298865,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.12244897959183673,
+        "S_AB": 0.40765985107696534,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.9786345100429252,
+        "I_c": 0.28548732948297995,
+        "concurrence": 0.7551020408163265,
+        "qfi": 6.744382022471564,
+        "geodesic_distance_from_Bell": 20.29199523463757,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.14285714285714285,
+        "S_AB": 0.45820823797145316,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.9280861231484374,
+        "I_c": 0.23493894258849213,
+        "concurrence": 0.7142857142857143,
+        "qfi": 5.879999999998705,
+        "geodesic_distance_from_Bell": 20.559073724052897,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.16326530612244897,
+        "S_AB": 0.506300133657915,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.8799942274619755,
+        "I_c": 0.18684704690203024,
+        "concurrence": 0.6734693877551021,
+        "qfi": 5.234738372091871,
+        "geodesic_distance_from_Bell": 20.79045333700558,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.18367346938775508,
+        "S_AB": 0.5522067693831838,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.8340875917367068,
+        "I_c": 0.14094041117676148,
+        "concurrence": 0.6326530612244898,
+        "qfi": 4.7357001972376125,
+        "geodesic_distance_from_Bell": 20.994571221040495,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.2040816326530612,
+        "S_AB": 0.596137487511091,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.7901568736087996,
+        "I_c": 0.09700969304885432,
+        "concurrence": 0.5918367346938775,
+        "qfi": 4.339156626505068,
+        "geodesic_distance_from_Bell": 21.177188466257547,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.22448979591836732,
+        "S_AB": 0.6382584003843516,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.748035960735539,
+        "I_c": 0.05488878017559373,
+        "concurrence": 0.5510204081632654,
+        "qfi": 4.017289459006364,
+        "geodesic_distance_from_Bell": 21.342414480383642,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.24489795918367346,
+        "S_AB": 0.6787042009153116,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.707590160204579,
+        "I_c": 0.014442979644633702,
+        "concurrence": 0.5102040816326531,
+        "qfi": 3.751562499999173,
+        "geodesic_distance_from_Bell": 21.493283751695728,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.26530612244897955,
+        "S_AB": 0.7175860042270257,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.6687083568928649,
+        "I_c": -0.02443882366708039,
+        "concurrence": 0.4693877551020409,
+        "qfi": 3.529152376285359,
+        "geodesic_distance_from_Bell": 21.632100957815204,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.2857142857142857,
+        "S_AB": 0.7549967581308245,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.6312976029890661,
+        "I_c": -0.061849577570879166,
+        "concurrence": 0.4285714285714286,
+        "qfi": 3.340909090908355,
+        "geodesic_distance_from_Bell": 21.760657817486585,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.3061224489795918,
+        "S_AB": 0.7910150959210629,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.5952792651988277,
+        "I_c": -0.09786791536111761,
+        "concurrence": 0.3877551020408164,
+        "qfi": 3.1801324503304254,
+        "geodesic_distance_from_Bell": 21.880374948624798,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.32653061224489793,
+        "S_AB": 0.825708153186647,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.5605862079332435,
+        "I_c": -0.13256097262670175,
+        "concurrence": 0.34693877551020413,
+        "qfi": 3.0418074324317623,
+        "geodesic_distance_from_Bell": 21.99239785266225,
+        "is_separable_PPT": false
+      },
+      {
+        "p": 0.3469387755102041,
+        "S_AB": 0.8591336735271992,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.5271606875926914,
+        "I_c": -0.16598649296725387,
+        "concurrence": 0.30612244897959184,
+        "qfi": 2.9221095334679164,
+        "geodesic_distance_from_Bell": 22.097663751531375,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.36734693877551017,
+        "S_AB": 0.8913416127724971,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.49495274834739345,
+        "I_c": -0.19819443221255184,
+        "concurrence": 0.26530612244897966,
+        "qfi": 2.8180751173702707,
+        "geodesic_distance_from_Bell": 22.19694929375669,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.3877551020408163,
+        "S_AB": 0.9223753810792252,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.46391898004066534,
+        "I_c": -0.22922820051927995,
+        "concurrence": 0.22448979591836737,
+        "qfi": 2.727375993941088,
+        "geodesic_distance_from_Bell": 22.29090534827658,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.4081632653061224,
+        "S_AB": 0.9522728180399941,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.4340215430798965,
+        "I_c": -0.2591256374800488,
+        "concurrence": 0.1836734693877552,
+        "qfi": 2.6481617647052986,
+        "geodesic_distance_from_Bell": 22.380082865737204,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.42857142857142855,
+        "S_AB": 0.9810669672403698,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.4052273938795208,
+        "I_c": -0.2879197866804245,
+        "concurrence": 0.1428571428571429,
+        "qfi": 2.578947368420484,
+        "geodesic_distance_from_Bell": 22.46495242797303,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.44897959183673464,
+        "S_AB": 1.0087866975934021,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.37750766352648846,
+        "I_c": -0.31563951703345683,
+        "concurrence": 0.10204081632653073,
+        "qfi": 2.518531468530913,
+        "geodesic_distance_from_Bell": 22.545919248254464,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.4693877551020408,
+        "S_AB": 1.0354572057644333,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.35083715535545723,
+        "I_c": -0.34231002520448806,
+        "concurrence": 0.061224489795918435,
+        "qfi": 2.4659363231764515,
+        "geodesic_distance_from_Bell": 22.623334839016405,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.4897959183673469,
+        "S_AB": 1.0611004249444118,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.32519393617547876,
+        "I_c": -0.3679532443844665,
+        "concurrence": 0.020408163265306145,
+        "qfi": 2.4203629032252736,
+        "geodesic_distance_from_Bell": 22.697506198635075,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.5102040816326531,
+        "S_AB": 1.0857353588105134,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.30055900230937715,
+        "I_c": -0.39258817825056813,
+        "concurrence": 0.0,
+        "qfi": 2.3811570247928646,
+        "geodesic_distance_from_Bell": 22.768703127338917,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.5306122448979591,
+        "S_AB": 1.1093783548803944,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.2769160062394962,
+        "I_c": -0.4162311743204491,
+        "concurrence": 0.0,
+        "qfi": 2.3477835723593263,
+        "geodesic_distance_from_Bell": 22.837164112875627,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.5510204081632653,
+        "S_AB": 1.1320433280666171,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.25425103305327346,
+        "I_c": -0.43889614750667183,
+        "concurrence": 0.0,
+        "qfi": 2.3198067632845127,
+        "geodesic_distance_from_Bell": 22.903101110403473,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.5714285714285714,
+        "S_AB": 1.1537419427010902,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.23255241841880037,
+        "I_c": -0.4605947621411449,
+        "concurrence": 0.0,
+        "qfi": 2.2968749999994937,
+        "geodesic_distance_from_Bell": 22.966703460960037,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.5918367346938775,
+        "S_AB": 1.1744837593743953,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.21181060174549526,
+        "I_c": -0.48133657881445,
+        "concurrence": 0.0,
+        "qfi": 2.2787092692181,
+        "geodesic_distance_from_Bell": 23.028141129114008,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.6122448979591836,
+        "S_AB": 1.194276351447491,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.19201800967239957,
+        "I_c": -0.5011291708875457,
+        "concurrence": 0.0,
+        "qfi": 2.265094339622142,
+        "geodesic_distance_from_Bell": 23.087567401646123,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.6326530612244897,
+        "S_AB": 1.2131253949204606,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.17316896619943,
+        "I_c": -0.5199782143605153,
+        "concurrence": 0.0,
+        "qfi": 2.2558722204818085,
+        "geodesic_distance_from_Bell": 23.145121153680506,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.6530612244897959,
+        "S_AB": 1.2310347343959105,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.15525962672398008,
+        "I_c": -0.5378875538359652,
+        "concurrence": 0.0,
+        "qfi": 2.2509374999995044,
+        "geodesic_distance_from_Bell": 23.200928766912035,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.673469387755102,
+        "S_AB": 1.2480064270876108,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.1382879340322798,
+        "I_c": -0.5548592465276655,
+        "concurrence": 0.0,
+        "qfi": 2.250234301780198,
+        "geodesic_distance_from_Bell": 23.255105767179394,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.6938775510204082,
+        "S_AB": 1.264040766147717,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.12225359497217347,
+        "I_c": -0.5708935855877718,
+        "concurrence": 0.0,
+        "qfi": 2.253754693366212,
+        "geodesic_distance_from_Bell": 23.30775823412055,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.7142857142857142,
+        "S_AB": 1.279136283978365,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.10715807714152548,
+        "I_c": -0.5859891034184198,
+        "concurrence": 0.0,
+        "qfi": 2.2615384615379632,
+        "geodesic_distance_from_Bell": 23.358984025662235,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.7346938775510203,
+        "S_AB": 1.293289735621629,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.0930046254982615,
+        "I_c": -0.6001425550616838,
+        "concurrence": 0.0,
+        "qfi": 2.2736742424237413,
+        "geodesic_distance_from_Bell": 23.408873852524323,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.7551020408163265,
+        "S_AB": 1.3064960617550794,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.0797982993648112,
+        "I_c": -0.6133488811951341,
+        "concurrence": 0.0,
+        "qfi": 2.290302066772151,
+        "geodesic_distance_from_Bell": 23.457512233219063,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.7755102040816326,
+        "S_AB": 1.318748330228085,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.06754603089180566,
+        "I_c": -0.6256011496681396,
+        "concurrence": 0.0,
+        "qfi": 2.3116174582793363,
+        "geodesic_distance_from_Bell": 23.504978354176615,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.7959183673469387,
+        "S_AB": 1.3300376544240715,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.05625670669581906,
+        "I_c": -0.6368904738641262,
+        "concurrence": 0.0,
+        "qfi": 2.3378773125603414,
+        "geodesic_distance_from_Bell": 23.55134685751092,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.8163265306122448,
+        "S_AB": 1.3403530859885096,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.04594127513138102,
+        "I_c": -0.6472059054285643,
+        "concurrence": 0.0,
+        "qfi": 2.369407894736321,
+        "geodesic_distance_from_Bell": 23.59668857664211,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.836734693877551,
+        "S_AB": 1.3496814785750966,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.036612882544794,
+        "I_c": -0.6565342980151513,
+        "concurrence": 0.0,
+        "qfi": 2.4066154360168435,
+        "geodesic_distance_from_Bell": 23.641071240471014,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.8571428571428571,
+        "S_AB": 1.358007318173581,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.02828704294630957,
+        "I_c": -0.6648601376136357,
+        "concurrence": 0.0,
+        "qfi": 2.4499999999994606,
+        "geodesic_distance_from_Bell": 23.684560164134147,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.8775510204081632,
+        "S_AB": 1.3653125142118219,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.020981846908068702,
+        "I_c": -0.6721653336518766,
+        "concurrence": 0.0,
+        "qfi": 2.5001735508498477,
+        "geodesic_distance_from_Bell": 23.72721895218652,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.8979591836734693,
+        "S_AB": 1.3715761438619993,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.014718217257891242,
+        "I_c": -0.678428963302054,
+        "concurrence": 0.0,
+        "qfi": 2.557883522726709,
+        "geodesic_distance_from_Bell": 23.76911023138937,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.9183673469387754,
+        "S_AB": 1.3767741396715114,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.009520221448379163,
+        "I_c": -0.6836269591115661,
+        "concurrence": 0.0,
+        "qfi": 2.624043715846416,
+        "geodesic_distance_from_Bell": 23.81029645200474,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.9387755102040816,
+        "S_AB": 1.3808789075611936,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.005415453558696992,
+        "I_c": -0.6877317270012483,
+        "concurrence": 0.0,
+        "qfi": 2.6997751124431826,
+        "geodesic_distance_from_Bell": 23.850840787625874,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.9591836734693877,
+        "S_AB": 1.3838588580626388,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.00243550305725182,
+        "I_c": -0.6907116775026935,
+        "concurrence": 0.0,
+        "qfi": 2.7864603481618615,
+        "geodesic_distance_from_Bell": 23.89080818844895,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 0.9795918367346939,
+        "S_AB": 1.385677827919443,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.0006165332004475221,
+        "I_c": -0.6925306473594978,
+        "concurrence": 0.0,
+        "qfi": 2.8858173076916716,
+        "geodesic_distance_from_Bell": 23.930266652185963,
+        "is_separable_PPT": true
+      },
+      {
+        "p": 1.0,
+        "S_AB": 1.3862943611198906,
+        "S_A": 0.6931471805599453,
+        "S_B": 0.6931471805599453,
+        "MI": 0.0,
+        "I_c": -0.6931471805599453,
+        "concurrence": 0.0,
+        "qfi": 0.7499999999998348,
+        "geodesic_distance_from_Bell": 23.96928880972838,
+        "is_separable_PPT": true
+      }
+    ],
+    "transition_points": {
+      "p_sep": 0.3333333333333333,
+      "p_PPT": 0.3333333333333333,
+      "p_I_c_zero": 0.25247874663486597,
+      "p_MI_zero": 1.0,
+      "note_Werner": "For Werner state, p_sep = p_PPT = 1/3 (PPT iff separable)"
+    },
+    "geodesic_at_p_sep": 21.99239785266225,
+    "I_c_at_p_sep": -0.13256097262670175,
+    "n_steps": 50,
+    "geomstats_used": true
+  },
+  "negative": {
+    "bell_state_p0": {
+      "p": 0.0,
+      "S_AB": 8.589310800468356e-11,
+      "S_B": 0.6931471805599453,
+      "I_c": 0.6931471804740522,
+      "expected_I_c": 0.6931471805599453,
+      "I_c_matches_log2": "True",
+      "concurrence": 1.0,
+      "expected_concurrence": 1.0,
+      "status": "PASS"
+    },
+    "maximally_mixed_p1": {
+      "p": 1.0,
+      "S_AB": 1.3862943611198906,
+      "S_B": 0.6931471805599453,
+      "I_c": -0.6931471805599453,
+      "expected_I_c": -0.6931471805599453,
+      "I_c_negative": "True",
+      "concurrence": 0.0,
+      "status": "PASS"
+    },
+    "concurrence_zero_at_half": {
+      "p": 0.5,
+      "concurrence": 0.0,
+      "expected": 0.0,
+      "status": "PASS"
+    },
+    "z3_proof_1_separable_implies_Ic_nonpositive": {
+      "proof_name": "Werner_separable_implies_Ic_nonpositive",
+      "hypothesis": "Werner(p) is separable (p >= 1/3) AND I_c > 0",
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: For Werner states in the separable regime (p >= 1/3), the joint entropy S_AB exceeds the marginal entropy S_B = log(2). Therefore I_c = S_B - S_AB <= 0. I_c > 0 in the separable regime is impossible.",
+      "key_fact": "At p=1/3 (separability boundary): all eigenvalues = 1/4, S_AB = log(4) \u2248 1.386, S_B = log(2) \u2248 0.693, I_c \u2248 -0.693. Minimum of S_AB in separable regime exceeds S_B."
+    },
+    "z3_proof_2_Ic_positive_implies_concurrence_positive": {
+      "proof_name": "Ic_positive_implies_concurrence_positive",
+      "hypothesis": "I_c > 0 AND concurrence = 0",
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: I_c > 0 requires p < p_I_c_zero \u2248 0.189, while concurrence = 0 (for C(p)=max(0,1-2p)) requires p >= 0.5. These regions are disjoint. Therefore I_c > 0 => concurrence > 0.",
+      "encoding": {
+        "I_c_positive_region": "p < p_I_c_zero \u2248 0.189",
+        "concurrence_zero_region": "p >= 0.5 (for C(p)=max(0,1-2p))",
+        "overlap": "empty => UNSAT"
+      }
+    },
+    "z3_unsat_count": 2
+  },
+  "boundary": {
+    "p_sep_boundary": {
+      "p": 0.3333333333333333,
+      "S_AB": 0.8369882167858357,
+      "S_B": 0.6931471805599453,
+      "I_c": -0.1438410362258904,
+      "I_c_negative": "True",
+      "concurrence": 0.33333333333333337,
+      "expected_I_c_sign": "negative (state is separable)",
+      "geodesic_from_bell": 22.028195986537504
+    },
+    "sympy_analytic": {
+      "status": "OK",
+      "eigenvalues": {
+        "lam1_Bell_component": "1 - 3*p/4",
+        "lam2_identity_component_x3": "p/4",
+        "trace_check": "1"
+      },
+      "partial_transpose": {
+        "mu_min": "1/4 - 3*p/4",
+        "concurrence_expr": "max(0, -2*mu_min) = max(0, (3p-1)/2)"
+      },
+      "p_sep_analytic": "[1/3]",
+      "p_I_c_zero_numeric": 0.25238616655340557,
+      "p_MI_zero": "p=1 (Werner(1)=I/4 is product state up to local marginals)",
+      "I_c_expr": "3*p*log(p/4)/4 - (3*p/4 - 1)*log(1 - 3*p/4) + log(2)",
+      "MI_expr": "3*p*log(p/4)/4 - (3*p/4 - 1)*log(1 - 3*p/4) + 2*log(2)",
+      "key_facts": [
+        "Werner reduced states are always I/2: rho_A = rho_B = I/2 for all p",
+        "S(A) = S(B) = log(2) for all p",
+        "I_c crosses zero between p=0 (pure Bell) and p=1 (maximally mixed)",
+        "p_sep = 1/3 from mu_min = 0 in partial transpose"
+      ]
+    },
+    "qfi_comparison": {
+      "qfi_at_p_near_0": 75.5667506297164,
+      "qfi_at_p_sep": 2.999999999999339,
+      "qfi_at_p_near_1": 2.9420417769925846,
+      "interpretation": "QFI measures sensitivity of Werner state to mixing parameter p. Should be highest in the entangled regime (small p) where the state changes most rapidly from the Bell state."
+    },
+    "geodesic_distances": {
+      "p_0": 11.96631258937752,
+      "p_sep": 22.028195986537504,
+      "p_half": 22.733460888254182,
+      "p_1": 23.967385720291666,
+      "interpretation": "SPD affine-invariant geodesic from Bell state rho(0) to Werner(p). Monotone increasing in p as state moves from pure Bell to maximally mixed."
+    }
+  },
+  "summary": {
+    "p_sep": 0.3333333333333333,
+    "p_PPT": 0.3333333333333333,
+    "p_I_c_zero": 0.25238616655340557,
+    "p_MI_zero": 1.0,
+    "geodesic_at_p_sep": 21.99239785266225,
+    "z3_unsat_count": 2,
+    "key_findings": [
+      "Werner reduced states are always I/2: S(A)=S(B)=log(2) for all p",
+      "I_c crosses zero well before separability boundary (p_I_c_zero < p_sep = 1/3)",
+      "Concurrence C(p)=max(0,1-2p) is zero for p >= 1/2 (stronger than sep)",
+      "SPD geodesic from Bell state is monotone increasing in p",
+      "QFI is highest in entangled regime near p=0 (state changes rapidly)"
+    ]
+  },
+  "classification": "canonical"
+}

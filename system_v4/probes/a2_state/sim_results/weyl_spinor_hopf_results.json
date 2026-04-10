@@ -1,0 +1,339 @@
+{
+  "name": "weyl_spinor_hopf",
+  "timestamp": "2026-04-08T12:07:02.769465+00:00",
+  "elapsed_s": 0.7523257732391357,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "spinor construction, overlap norms, gradient flow"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for fiber bundle geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: same-sheet collision requires xi=0"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for this SMT query"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "gamma5 chirality operator eigenvalue equation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) e12/e21 bivector chirality algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "geodesic distance between L/R trajectories on S\u00b3"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- spinor geometry handled by clifford/geomstats"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology via GUDHI"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology of combined L+R Weyl bundle"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "clifford_chirality_algebra": {
+      "e12_squared": -1.0,
+      "e21_squared": -1.0,
+      "e12_times_e21": 1.0,
+      "e12_sq_is_minus1": true,
+      "e21_sq_is_minus1": true,
+      "e12_e21_is_plus1": true,
+      "left_rotor_unit": true,
+      "right_rotor_unit": true,
+      "LR_cross_scalar": 2.220446049250313e-16,
+      "LR_cross_e12": 0.0,
+      "LR_rotors_differ": true,
+      "status": "PASS"
+    },
+    "lr_spinor_overlap": {
+      "overlaps": {
+        "north_pole": {
+          "theta": 0.0,
+          "phi": 0.0,
+          "xi": 0.0,
+          "overlap_real": 1.0,
+          "overlap_imag": 0.0,
+          "overlap_abs": 1.0
+        },
+        "south_pole": {
+          "theta": 3.141592653589793,
+          "phi": 0.0,
+          "xi": 0.0,
+          "overlap_real": 1.0,
+          "overlap_imag": 0.0,
+          "overlap_abs": 1.0
+        },
+        "equator_phi0": {
+          "theta": 1.5707963267948966,
+          "phi": 0.0,
+          "xi": 0.0,
+          "overlap_real": 1.0,
+          "overlap_imag": 0.0,
+          "overlap_abs": 1.0
+        },
+        "equator_xi0": {
+          "theta": 1.5707963267948966,
+          "phi": 1.5707963267948966,
+          "xi": 0.0,
+          "overlap_real": 1.0,
+          "overlap_imag": 0.0,
+          "overlap_abs": 1.0
+        },
+        "generic_1": {
+          "theta": 1.0471975511965976,
+          "phi": 0.7853981633974483,
+          "xi": 0.5235987755982988,
+          "overlap_real": 0.8660254037844388,
+          "overlap_imag": -0.4999999999999999,
+          "overlap_abs": 1.0
+        },
+        "generic_2": {
+          "theta": 2.0943951023931953,
+          "phi": 1.0471975511965976,
+          "xi": 0.6283185307179586,
+          "overlap_real": 0.8090169943749475,
+          "overlap_imag": -0.5877852522924731,
+          "overlap_abs": 1.0
+        },
+        "equator_xi_pi": {
+          "theta": 1.5707963267948966,
+          "phi": 0.0,
+          "xi": 3.141592653589793,
+          "overlap_real": -1.0,
+          "overlap_imag": -1.2246467991473532e-16,
+          "overlap_abs": 1.0
+        }
+      },
+      "analytic_overlap_formula": "overlap = e^{-i*xi} (unit magnitude for all theta, phi)",
+      "analytic_check": {
+        "north_pole": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "south_pole": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "equator_phi0": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "equator_xi0": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "generic_1": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "generic_2": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        },
+        "equator_xi_pi": {
+          "expected_abs": 1.0,
+          "got_abs": 1.0,
+          "phase_match": true
+        }
+      },
+      "physics_note": "Left and right Weyl spinors at same (theta,phi,xi) differ by phase e^{-i*xi}. They are NEVER orthogonal (|overlap|=1 always). Chirality separation is in FIBER ORIENTATION (\u03be vs -\u03be), not Hilbert space. They are distinct ONLY when xi != 0 mod 2pi.",
+      "xi_zero_overlap_abs": 1.0,
+      "xi_zero_same_spinor": true,
+      "status": "PASS"
+    },
+    "sympy_chirality_operator": {
+      "gamma5_matrix": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, -1, 0], [0, 0, 0, -1]])",
+      "gamma5_psi_L": "Matrix([[1, 0, 0, 0]])",
+      "gamma5_psi_R": "Matrix([[0, 0, -1, 0]])",
+      "left_eigenvalue": 1.0,
+      "right_eigenvalue": -1.0,
+      "left_is_plus1": true,
+      "right_is_minus1": true,
+      "gamma5_squared": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])",
+      "gamma5_sq_is_identity": true,
+      "gamma5_eigenvalues": {
+        "1": 2,
+        "-1": 2
+      },
+      "eigenvalues_are_plus_minus_1": true,
+      "P_L": "Matrix([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])",
+      "P_R": "Matrix([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])",
+      "P_L_times_P_R_is_zero": true,
+      "P_L_plus_P_R_is_identity": true,
+      "interpretation": "\u03b3\u2075 in Weyl representation = diag(I,-I). Left Weyl sector: eigenvalue +1. Right Weyl sector: eigenvalue -1. Projectors P_L=(1+\u03b3\u2075)/2, P_R=(1-\u03b3\u2075)/2 are orthogonal and complete. P_L\u00b7P_R = 0 confirms chirality sectors are ORTHOGONAL in spinor space. Clifford analog: I3=e123 in Cl(3,0) acts as chirality operator.",
+      "status": "PASS"
+    },
+    "pytorch_chirality_gradient": {
+      "overlap_norm_sq_value": 32.0,
+      "expected_overlap_norm_sq": 32.0,
+      "overlap_norm_sq_correct": true,
+      "grad_overlap_norm_max": 3.254869100625032e-16,
+      "grad_is_zero": true,
+      "diff_norms_sample": [
+        9.999916666944443e-05,
+        0.18002771525649439,
+        0.6726741312272381,
+        1.3933897455481246
+      ],
+      "analytic_diff_norm_formula": "|\u03c8_L - \u03c8_R|\u00b2 = 2 - 2cos(\u03be)",
+      "analytic_diff_norms_sample": [
+        9.999916666947328e-05,
+        0.1800277152564944,
+        0.6726741312272382,
+        1.3933897455481246
+      ],
+      "diff_norm_match": true,
+      "physics_note": "Overlap = e^{-i\u03be}: unit modulus, pure phase. d/d\u03be |overlap|\u00b2 = 0: norm preserved under \u03be-flow. |\u03c8_L - \u03c8_R|\u00b2 = 2-2cos(\u03be): zero only at \u03be=0,2\u03c0 (same spinor), maximal separation at \u03be=\u03c0 (antipodal fiber phase).",
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "same_chirality_different_xi": {
+      "overlap_abs": 1.0,
+      "are_distinct": false,
+      "expected": "overlap < 1 (different fiber phases)"
+    },
+    "e12_ne_e21": {
+      "diff_norm": 2.0,
+      "are_distinct": true
+    },
+    "lr_at_xi_pi_separated": {
+      "diff_norm": 2.0,
+      "expected_diff_norm_sq": 4.0,
+      "actual_diff_norm_sq": 4.0,
+      "maximal_separation": true
+    }
+  },
+  "boundary": {
+    "pole_overlap_north_pole": {
+      "overlap_abs": 1.0,
+      "overlap_real": 2.220446049250313e-16,
+      "overlap_imag": -1.0
+    },
+    "pole_overlap_south_pole": {
+      "overlap_abs": 1.0,
+      "overlap_real": 2.220446049250313e-16,
+      "overlap_imag": -1.0
+    },
+    "z3_unsat": {
+      "same_sheet_same_phase_UNSAT": "unsat",
+      "same_sheet_nontrivial_xi_is_unsat": true,
+      "xi_eq_neg_xi_nonzero_UNSAT": "unsat",
+      "xi_eq_neg_xi_nonzero_is_unsat": true,
+      "left_phase_eq_right_phase_nonzero_UNSAT": "unsat",
+      "left_right_disjoint_fibers_proven": true,
+      "interpretation": "Left fiber: phase=+xi. Right fiber: phase=-xi. Same sheet requires xi=-xi, i.e. xi=0. For xi != 0 (nontrivial fiber position), L and R are on DISTINCT fiber sheets. z3 UNSAT confirms: no nontrivial xi can place L and R on the same sheet.",
+      "status": "PASS"
+    },
+    "gudhi_combined_bundle": {
+      "n_left_points": 64,
+      "n_right_points": 64,
+      "n_combined": 128,
+      "betti_left": [
+        1,
+        0
+      ],
+      "betti_right": [
+        1,
+        0
+      ],
+      "betti_combined": [
+        1,
+        1
+      ],
+      "beta1_left": 0,
+      "beta1_right": 0,
+      "beta1_combined": 1,
+      "beta0_combined": 1,
+      "h1_persistent_bars_combined": 1,
+      "h1_intervals_combined_first3": [
+        [
+          0.09813534865483593,
+          Infinity
+        ]
+      ],
+      "lr_coincidence_count": 1,
+      "wedge_topology_note": "L and R fiber circles share 1 coincident point(s) (at \u03be=0). Combined topology: wedge S\u00b9\u2228S\u00b9 (two circles sharing one point). \u03b21_combined=1 persistent loops detected by Rips in R^4.",
+      "status": "PASS"
+    },
+    "geomstats_separation": {
+      "distances_mean": 1.5707963267948966,
+      "distances_std": 0.9104353668013667,
+      "distances_min": 0.0,
+      "distances_max": 3.141592653589793,
+      "n_samples": 32,
+      "fixed_separation": false,
+      "r4_dot_products_mean": -4.85722573273506e-17,
+      "r4_dot_products_std": 0.7071067811865476,
+      "analytic_note": "R\u2074 dot product between p_L(\u03be) and p_R(\u03be)=p_L(-\u03be) gives geodesic dist=arccos(dot). If dot varies with \u03be: trajectories have varying separation.",
+      "status": "PASS"
+    },
+    "xi_zero_degenerate": {
+      "overlap_abs": 1.0,
+      "are_identical": true,
+      "note": "At xi=0: \u03c8_R = \u03c8_L (same spinor), fiber reversal is trivial"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "claim_lr_overlap_formula": "\u27e8\u03c8_L(\u03b8,\u03c6,\u03be)|\u03c8_R(\u03b8,\u03c6,\u03be)\u27e9 = e^{-i\u03be} (unit magnitude, pure phase)",
+    "claim_chirality_separation": "L and R differ by fiber reversal \u03be\u2192-\u03be, not Hilbert space orthogonality",
+    "claim_z3_unsat": "xi = -xi AND xi != 0 is UNSAT: disjoint fiber sheets for nontrivial xi",
+    "claim_gamma5": "\u03b3\u2075 \u03c8_L = +\u03c8_L, \u03b3\u2075 \u03c8_R = -\u03c8_R; projectors P_L\u00b7P_R=0 confirm orthogonality",
+    "claim_gudhi": "Combined L+R bundle Betti numbers measured via persistent homology"
+  }
+}

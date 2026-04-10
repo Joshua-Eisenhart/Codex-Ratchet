@@ -1,0 +1,155 @@
+{
+  "name": "z3_dephasing_symmetry_guard",
+  "timestamp": "2026-04-08T10:32:49.553474+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: SMT encoding of dephasing symmetry, negativity boundary, and relay disconnection -- all three proofs use z3 for UNSAT verification"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "proof1_symmetry": {
+      "proof": "dephasing_symmetry_p_vs_1mp",
+      "claim": "|off_diag(p)| = |off_diag(1-p)| for Z-dephasing channel",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "status": "PASS",
+      "elapsed_s": 0.0249,
+      "interpretation": "UNSAT: no p exists where suppression magnitudes differ -> symmetry proven"
+    },
+    "proof2_negativity_boundary": {
+      "proof": "negativity_boundary_lower_bound",
+      "claim": "I_c >= -log(2) for Z-dephasing on 2-qubit state with 1-qubit env",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "status": "PASS",
+      "elapsed_s": 0.0075,
+      "log2_nats": 0.6931471805599453,
+      "interpretation": "UNSAT: no configuration achieves I_c < -log(2) -> lower bound proven"
+    },
+    "proof3_relay_load_bearing": {
+      "proof": "relay_load_bearing_disconnected",
+      "claim": "XX_23=0 implies I_c(AB->C) cannot exceed I_c(A->BC)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "status": "PASS",
+      "elapsed_s": 0.0008,
+      "interpretation": "UNSAT: disconnected relay cannot create partition advantage -> relay is load-bearing"
+    }
+  },
+  "negative": {
+    "neg1_symmetry_equality_sat": {
+      "assertion": "|off_diag(p)| = |off_diag(1-p)| (equality, not negation)",
+      "z3_result": "sat",
+      "expected": "sat",
+      "status": "PASS"
+    },
+    "neg2_valid_ic_range_sat": {
+      "assertion": "I_c in [-log(2), log(2)] is achievable",
+      "z3_result": "sat",
+      "expected": "sat",
+      "status": "PASS"
+    },
+    "neg3_active_relay_advantage_sat": {
+      "assertion": "relay > 0: I_c(A->BC) > I_c(AB->C) is achievable",
+      "z3_result": "sat",
+      "expected": "sat",
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "boundary_p_half_max_dephasing": {
+      "assertion": "at p=0.5, |1-2p|=0 -> off_diag suppression = 0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "status": "PASS",
+      "note": "Maximum dephasing completely kills coherences"
+    },
+    "boundary_p0_p1_identity": {
+      "assertion": "I_c(p=0) = I_c(p=1) -- endpoints are identical (full symmetry)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "status": "PASS",
+      "note": "p=0 and p=1 are identical channels (Z^2=I), so off_diag same"
+    }
+  },
+  "summary": {
+    "all_proofs_unsat": true,
+    "proof1_symmetry": "PASS",
+    "proof2_negativity_boundary": "PASS",
+    "proof3_relay_load_bearing": "PASS",
+    "z3_load_bearing": true,
+    "total_elapsed_s": 0.0437
+  },
+  "classification": "canonical"
+}

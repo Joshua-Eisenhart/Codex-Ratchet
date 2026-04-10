@@ -1,0 +1,199 @@
+{
+  "name": "sim_lego_entropy_shell_history_weighted",
+  "timestamp": "2026-04-08T08:40:32.244556+00:00",
+  "classification": "classical_baseline",
+  "schema": {
+    "version": 1,
+    "surface": "pure_lego_entropy",
+    "sections": [
+      "positive",
+      "negative",
+      "boundary",
+      "tool_manifest",
+      "summary"
+    ],
+    "caveats": [
+      "Entropy response is not a metric.",
+      "Order sensitivity is channel- and state-dependent, not universal.",
+      "Weighted shell entropy is a weighted average over state entropies, not a geometric shell metric."
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure numpy lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph layer"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; closed-form proofs not required here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no DAG layer"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell complex layer"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistence layer"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_weighted_shell_entropy": {
+      "test": "weighted shell entropy is a weighted average over a finite family of states",
+      "weighted_shell_entropy": 0.6479257317850552,
+      "shell_spread": 0.14450863799516178,
+      "min_entropy": -0.0,
+      "max_entropy": 0.854366643206715,
+      "bounded_by_family": true,
+      "weights_change_result": true,
+      "pass": true
+    },
+    "P2_history_window_entropy": {
+      "test": "sliding history windows expose changes along a short state path",
+      "windows": [
+        {
+          "start": 0,
+          "end": 2,
+          "mean_entropy": 0.31077970422975343
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "mean_entropy": 0.524381188078986
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "mean_entropy": 0.7097975646830367
+        }
+      ],
+      "window_means": [
+        0.31077970422975343,
+        0.524381188078986,
+        0.7097975646830367
+      ],
+      "nontrivial_variation": true,
+      "pass": true
+    },
+    "P3_transport_weighted_entropy_change": {
+      "test": "weighted transport changes should capture entropy increase under dissipative channels",
+      "step_deltas": [
+        0.0,
+        0.09055586976262475,
+        0.17806886383657272,
+        0.013625891084135366
+      ],
+      "weighted_entropy_change": 0.07698218953715091,
+      "abs_weighted_change": 0.07698218953715091,
+      "entropy_change_nonzero": true,
+      "pass": true
+    },
+    "P4_operator_order_entropy_response": {
+      "test": "noncommuting channel order changes entropy response",
+      "entropy_ab": 0.7821695233791863,
+      "entropy_ba": 0.828459388345264,
+      "entropy_gap": 0.046289864966077676,
+      "order_matters": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_uniform_weights_match_equal_weights": {
+      "test": "equal weights should reproduce the uniform weighted shell entropy",
+      "equal_weight_entropy": 0.48550204148873455,
+      "uniform_entropy": 0.48550204148873455,
+      "pass": true
+    },
+    "N2_identity_transport_has_zero_entropy_change": {
+      "test": "identity transport should not change entropy",
+      "weighted_entropy_change": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_single_state_shell": {
+      "test": "single-state shell has entropy equal to that state",
+      "weighted_shell_entropy": 0.0,
+      "state_entropy": -0.0,
+      "pass": true
+    },
+    "B2_pure_history_window": {
+      "test": "a pure-state path yields zero window entropy throughout",
+      "window_means": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "B3_commuting_same_basis_channels": {
+      "test": "same-basis dephasing channels commute at the level of entropy response",
+      "entropy_gap": 0.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "all_pass": true
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

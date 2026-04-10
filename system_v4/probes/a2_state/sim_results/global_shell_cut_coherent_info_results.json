@@ -1,0 +1,182 @@
+{
+  "name": "PURE LEGO: Global Shell-Cut Coherent Information",
+  "probe": "global_shell_cut_coherent_info",
+  "purpose": "Compare local coherent information against weighted shell sums on simple shell-indexed bipartite families",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded pure-math shell sim"
+    }
+  },
+  "positive": {
+    "weighting_sharpens_shell_placement_with_same_uniform_average": {
+      "front_uniform": -0.3597200314488055,
+      "back_uniform": -0.3597200314488055,
+      "front_weighted": -0.616404933286717,
+      "back_weighted": -0.10303512961089395,
+      "uniform_equal": true,
+      "weighted_distinguishes": true,
+      "pass": true
+    },
+    "weighted_sum_matches_manual_normalized_definition": {
+      "shell_ic": [
+        0.49681626831941617,
+        -0.12580939167527427,
+        -0.8303011919214174,
+        -0.9795858105179465
+      ],
+      "weighted_value": -0.616404933286717,
+      "manual_value": -0.616404933286717,
+      "equal": true,
+      "pass": true
+    },
+    "uniform_weights_are_shell_permutation_blind": {
+      "profile_a_uniform": -0.3597200314488055,
+      "profile_b_uniform": -0.3597200314488055,
+      "equal": true,
+      "pass": true
+    },
+    "weighted_global_prefers_late_strong_shells": {
+      "uniform_mean": -0.07957692888173115,
+      "weighted_sum": 0.24377279837697596,
+      "weighted_larger": true,
+      "pass": true
+    },
+    "global_weighting_tracks_positive_shell_tail_better_than_first_shell_only": {
+      "first_shell_ic": -0.9219280948873623,
+      "last_shell_ic": 0.9999999998804102,
+      "weighted_sum": 0.24377279837697596,
+      "weighted_between_extremes": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "constant_shell_profile_adds_no_weighting_signal": {
+      "uniform_mean": -0.12580939167527427,
+      "weighted_sum": -0.12580939167527427,
+      "equal": true,
+      "pass": true
+    },
+    "weighting_cannot_manufacture_positive_signal_from_uniformly_weak_shells": {
+      "shell_ic": [
+        -0.9795858105179465,
+        -0.9219280948873623,
+        -0.9219280948873623,
+        -0.9795858105179465
+      ],
+      "uniform_mean": -0.9507569527026544,
+      "weighted_sum": -0.9507569527026545,
+      "all_nonpositive": true,
+      "weighted_nonpositive": true,
+      "pass": true
+    },
+    "normalized_weighting_is_scale_invariant_not_extra_signal": {
+      "weighted_sum": -0.9507569527026545,
+      "scaled_weighted_sum": -0.9507569527026545,
+      "equal": true,
+      "pass": true
+    },
+    "single_local_shell_cannot_recover_global_placement_discrimination": {
+      "front_first_shell": 0.49681626831941617,
+      "back_first_shell": -0.9795858105179465,
+      "front_weighted": -0.616404933286717,
+      "back_weighted": -0.10303512961089395,
+      "global_and_local_differ": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_shell_reduces_to_local_coherent_information": {
+      "local_ic": 0.15241532017542614,
+      "weighted_single_shell": 0.15241532017542614,
+      "equal": true,
+      "pass": true
+    },
+    "one_hot_weight_selects_target_shell": {
+      "target_shell_ic": 0.15241532017542614,
+      "one_hot_value": 0.15241532017542614,
+      "equal": true,
+      "pass": true
+    },
+    "uniform_weights_reduce_to_arithmetic_mean": {
+      "uniform_value": -0.07957692888173115,
+      "mean_value": -0.07957692888173115,
+      "equal": true,
+      "pass": true
+    }
+  },
+  "taxonomy_summary": {
+    "local_shell_ic": "local cut-state signed quantity per shell",
+    "uniform_shell_average": "placement-blind shell summary",
+    "weighted_shell_sum": "global shell-cut candidate that can sharpen shell placement differences",
+    "caveat": "weighting is not doctrine by itself; constant-profile and weak-shell counterfeits must collapse"
+  },
+  "classification": "classical_baseline",
+  "caveat": "Pre-final-canon only. Weighting may sharpen shell placement effects, but it is not promoted here beyond candidate status.",
+  "summary": {
+    "positive_pass": 5,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,947 @@
+{
+  "name": "sim_werner_qwci_gap",
+  "description": "Zoom scan of Werner QWCI gap [p_Ic_zero, p_sep]: entangled states with zero quantum capacity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.linalg.eigvalsh for entropy on Werner density matrices; autograd for I_c gradient; torch minimize for quantum discord optimization"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no graph message-passing structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proofs for (1) I_c>0 requires concurrence>0, (2) SAT proof that EoF>0 with I_c<=0 exists (the gap), (3) discord=0 implies no entanglement, (4) Q>0 UNSAT for gap states"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: analytic EoF(C) = h((1+sqrt(1-C^2))/2) formula derivation; exact gap boundary p_I_c_zero from eigenvalue equations; symbolic confirmation that gap is non-empty"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no Clifford algebra structure"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SPD affine-invariant geodesic distance rate computed near p_I_c_zero and p_sep to detect inflection/curvature anomalies on Werner manifold"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no SO(3)/SU(2) equivariance"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no DAG structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no hyperedge structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no cell complex topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "sympy_analysis": {
+    "eigenvalue_lam1": "1 - 3*p/4",
+    "eigenvalue_lam3": "p/4",
+    "S_AB_formula": "((3*p - 4)*log(1 - 3*p/4) - log((p/4)**(3*p)))/(4*log(2))",
+    "I_c_formula": "(-(3*p - 4)*log(1 - 3*p/4) + log(16*(p/4)**(3*p)))/(4*log(2))",
+    "EoF_formula": "((sqrt(1 - C**2) - 1)*log(1/2 - sqrt(1 - C**2)/2) - (sqrt(1 - C**2) + 1)*log(sqrt(1 - C**2)/2 + 1/2))/(2*log(2))",
+    "p_I_c_zero_symbolic": [
+      "solve_error: multiple generators [p, log(1 - 3*p/4), log(p)]\nNo algorithms are implemented to solve equation 3*p*log(p/4)/(4*log(2)) - (3*p/4 - 1)*log(1 - 3*p/4)/log(2) + 1"
+    ],
+    "p_I_c_zero_numerical": 0.2523861665536424,
+    "p_sep": 0.3333333333333333,
+    "gap_nonempty": true,
+    "gap_lower_bound": 0.2523861665536424,
+    "gap_upper_bound": 0.3333333333333333
+  },
+  "pytorch_scan": {
+    "scan": [
+      {
+        "p": 0.2,
+        "I_c": 0.15241532017542625,
+        "MI": 1.1524153201754261,
+        "concurrence": 0.6,
+        "EoF": 0.4689955935892811,
+        "quantum_discord": 0.6214109137647068,
+        "in_gap": false
+      },
+      {
+        "p": 0.20408163265306123,
+        "I_c": 0.13995540307974264,
+        "MI": 1.1399554030797425,
+        "concurrence": 0.5918367346938775,
+        "EoF": 0.4593199039176949,
+        "quantum_discord": 0.6153870493484628,
+        "in_gap": false
+      },
+      {
+        "p": 0.20816326530612245,
+        "I_c": 0.12759978311608555,
+        "MI": 1.1275997831160856,
+        "concurrence": 0.5836734693877551,
+        "EoF": 0.4497010515919864,
+        "quantum_discord": 0.6094019010848425,
+        "in_gap": false
+      },
+      {
+        "p": 0.2122448979591837,
+        "I_c": 0.11534678592496261,
+        "MI": 1.1153467859249626,
+        "concurrence": 0.5755102040816327,
+        "EoF": 0.4401398182645313,
+        "quantum_discord": 0.6034549342160008,
+        "in_gap": false
+      },
+      {
+        "p": 0.2163265306122449,
+        "I_c": 0.1031948042067421,
+        "MI": 1.103194804206742,
+        "concurrence": 0.5673469387755101,
+        "EoF": 0.4306370030312391,
+        "quantum_discord": 0.5975456365488816,
+        "in_gap": false
+      },
+      {
+        "p": 0.22040816326530613,
+        "I_c": 0.0911422939533808,
+        "MI": 1.0911422939533808,
+        "concurrence": 0.5591836734693878,
+        "EoF": 0.4211934229985266,
+        "quantum_discord": 0.5916735172017322,
+        "in_gap": false
+      },
+      {
+        "p": 0.22448979591836737,
+        "I_c": 0.07918777095977347,
+        "MI": 1.0791877709597735,
+        "concurrence": 0.5510204081632653,
+        "EoF": 0.4118099138755271,
+        "quantum_discord": 0.5858381054438626,
+        "in_gap": false
+      },
+      {
+        "p": 0.2285714285714286,
+        "I_c": 0.0673298075893074,
+        "MI": 1.0673298075893074,
+        "concurrence": 0.5428571428571428,
+        "EoF": 0.40248733059301545,
+        "quantum_discord": 0.5800389496201841,
+        "in_gap": false
+      },
+      {
+        "p": 0.2326530612244898,
+        "I_c": 0.055567029770922094,
+        "MI": 1.055567029770922,
+        "concurrence": 0.5346938775510204,
+        "EoF": 0.39322654795061257,
+        "quantum_discord": 0.5742756161529572,
+        "in_gap": false
+      },
+      {
+        "p": 0.23673469387755103,
+        "I_c": 0.043898114207367556,
+        "MI": 1.0438981142073676,
+        "concurrence": 0.5265306122448979,
+        "EoF": 0.38402846129398127,
+        "quantum_discord": 0.5685476886139835,
+        "in_gap": false
+      },
+      {
+        "p": 0.24081632653061225,
+        "I_c": 0.03232178577645939,
+        "MI": 1.0323217857764595,
+        "concurrence": 0.5183673469387755,
+        "EoF": 0.37489398722382783,
+        "quantum_discord": 0.5628547668611726,
+        "in_gap": false
+      },
+      {
+        "p": 0.2448979591836735,
+        "I_c": 0.020836815108973283,
+        "MI": 1.0208368151089733,
+        "concurrence": 0.510204081632653,
+        "EoF": 0.3658240643386785,
+        "quantum_discord": 0.5571964662340352,
+        "in_gap": false
+      },
+      {
+        "p": 0.2489795918367347,
+        "I_c": 0.009442016328464309,
+        "MI": 1.0094420163284643,
+        "concurrence": 0.5020408163265306,
+        "EoF": 0.35681965401354937,
+        "quantum_discord": 0.5515724168031957,
+        "in_gap": false
+      },
+      {
+        "p": 0.25306122448979596,
+        "I_c": -0.001863755060257155,
+        "MI": 0.9981362449397428,
+        "concurrence": 0.4938775510204081,
+        "EoF": 0.34788174121679477,
+        "quantum_discord": 0.5459822626695028,
+        "in_gap": true
+      },
+      {
+        "p": 0.2571428571428572,
+        "I_c": -0.013081604145976033,
+        "MI": 0.986918395854024,
+        "concurrence": 0.48571428571428565,
+        "EoF": 0.33901133536760797,
+        "quantum_discord": 0.540425661308749,
+        "in_gap": true
+      },
+      {
+        "p": 0.2612244897959184,
+        "I_c": -0.024212598460096713,
+        "MI": 0.9757874015399033,
+        "concurrence": 0.4775510204081632,
+        "EoF": 0.3302094712368423,
+        "quantum_discord": 0.5349022829583774,
+        "in_gap": true
+      },
+      {
+        "p": 0.2653061224489796,
+        "I_c": -0.035257769709656994,
+        "MI": 0.964742230290343,
+        "concurrence": 0.4693877551020408,
+        "EoF": 0.3214772098940598,
+        "quantum_discord": 0.5294118100429096,
+        "in_gap": true
+      },
+      {
+        "p": 0.2693877551020408,
+        "I_c": -0.04621811540326126,
+        "MI": 0.9537818845967387,
+        "concurrence": 0.46122448979591835,
+        "EoF": 0.31281563970393717,
+        "quantum_discord": 0.5239539366351162,
+        "in_gap": true
+      },
+      {
+        "p": 0.27346938775510204,
+        "I_c": -0.05709460037802705,
+        "MI": 0.942905399621973,
+        "concurrence": 0.4530612244897959,
+        "EoF": 0.304225877375454,
+        "quantum_discord": 0.5185283679502379,
+        "in_gap": true
+      },
+      {
+        "p": 0.27755102040816326,
+        "I_c": -0.06788815823493777,
+        "MI": 0.9321118417650622,
+        "concurrence": 0.4448979591836735,
+        "EoF": 0.2957090690675737,
+        "quantum_discord": 0.513134819870785,
+        "in_gap": true
+      },
+      {
+        "p": 0.28163265306122454,
+        "I_c": -0.07859969268931755,
+        "MI": 0.9214003073106825,
+        "concurrence": 0.43673469387755093,
+        "EoF": 0.28726639155545886,
+        "quantum_discord": 0.5077730184996886,
+        "in_gap": true
+      },
+      {
+        "p": 0.2857142857142857,
+        "I_c": -0.08923007884258483,
+        "MI": 0.9107699211574152,
+        "concurrence": 0.4285714285714286,
+        "EoF": 0.2788990534616491,
+        "quantum_discord": 0.5024426997397423,
+        "in_gap": true
+      },
+      {
+        "p": 0.28979591836734697,
+        "I_c": -0.09978016438088977,
+        "MI": 0.9002198356191102,
+        "concurrence": 0.42040816326530606,
+        "EoF": 0.2706082965570125,
+        "quantum_discord": 0.497143608897475,
+        "in_gap": true
+      },
+      {
+        "p": 0.2938775510204082,
+        "I_c": -0.11025077070578337,
+        "MI": 0.8897492292942166,
+        "concurrence": 0.4122448979591836,
+        "EoF": 0.2623953971367673,
+        "quantum_discord": 0.49187550030973504,
+        "in_gap": true
+      },
+      {
+        "p": 0.2979591836734694,
+        "I_c": -0.12064269400163008,
+        "MI": 0.8793573059983699,
+        "concurrence": 0.4040816326530612,
+        "EoF": 0.25426166747735923,
+        "quantum_discord": 0.4866381369914179,
+        "in_gap": true
+      },
+      {
+        "p": 0.3020408163265306,
+        "I_c": -0.13095670624408662,
+        "MI": 0.8690432937559134,
+        "concurrence": 0.39591836734693875,
+        "EoF": 0.24620845738056624,
+        "quantum_discord": 0.48143129030289866,
+        "in_gap": true
+      },
+      {
+        "p": 0.30612244897959184,
+        "I_c": -0.14119355615362528,
+        "MI": 0.8588064438463747,
+        "concurrence": 0.3877551020408163,
+        "EoF": 0.23823715581183025,
+        "quantum_discord": 0.4762547396358424,
+        "in_gap": true
+      },
+      {
+        "p": 0.3102040816326531,
+        "I_c": -0.15135397009775375,
+        "MI": 0.8486460299022462,
+        "concurrence": 0.37959183673469377,
+        "EoF": 0.2303491926405447,
+        "quantum_discord": 0.4711082721161777,
+        "in_gap": true
+      },
+      {
+        "p": 0.3142857142857143,
+        "I_c": -0.16143865294529824,
+        "MI": 0.8385613470547018,
+        "concurrence": 0.37142857142857144,
+        "EoF": 0.22254604049083573,
+        "quantum_discord": 0.46599168232311183,
+        "in_gap": true
+      },
+      {
+        "p": 0.31836734693877555,
+        "I_c": -0.17144828887586305,
+        "MI": 0.828551711124137,
+        "concurrence": 0.3632653061224489,
+        "EoF": 0.21482921671228644,
+        "quantum_discord": 0.4609047720231534,
+        "in_gap": true
+      },
+      {
+        "p": 0.32244897959183677,
+        "I_c": -0.18138354214731534,
+        "MI": 0.8186164578526847,
+        "concurrence": 0.35510204081632646,
+        "EoF": 0.20720028548109068,
+        "quantum_discord": 0.45584734991818787,
+        "in_gap": true
+      },
+      {
+        "p": 0.326530612244898,
+        "I_c": -0.19124505782396062,
+        "MI": 0.8087549421760394,
+        "concurrence": 0.346938775510204,
+        "EoF": 0.1996608600433114,
+        "quantum_discord": 0.4508192314067283,
+        "in_gap": true
+      },
+      {
+        "p": 0.3306122448979592,
+        "I_c": -0.2010334624678458,
+        "MI": 0.7989665375321542,
+        "concurrence": 0.3387755102040816,
+        "EoF": 0.1922126051132381,
+        "quantum_discord": 0.4458202383575207,
+        "in_gap": true
+      },
+      {
+        "p": 0.3346938775510204,
+        "I_c": -0.2107493647954617,
+        "MI": 0.7892506352045383,
+        "concurrence": 0.33061224489795915,
+        "EoF": 0.18485723944138807,
+        "quantum_discord": 0.4408501988947555,
+        "in_gap": true
+      },
+      {
+        "p": 0.33877551020408164,
+        "I_c": -0.2203933563019418,
+        "MI": 0.7796066436980582,
+        "concurrence": 0.3224489795918367,
+        "EoF": 0.17759653856843552,
+        "quantum_discord": 0.43590894719418505,
+        "in_gap": true
+      },
+      {
+        "p": 0.34285714285714286,
+        "I_c": -0.22996601185471488,
+        "MI": 0.7700339881452851,
+        "concurrence": 0.3142857142857143,
+        "EoF": 0.17043233778337502,
+        "quantum_discord": 0.4309963232894932,
+        "in_gap": true
+      },
+      {
+        "p": 0.34693877551020413,
+        "I_c": -0.23946789025840842,
+        "MI": 0.7605321097415916,
+        "concurrence": 0.30612244897959173,
+        "EoF": 0.1633665353065373,
+        "quantum_discord": 0.42611217288832637,
+        "in_gap": true
+      },
+      {
+        "p": 0.3510204081632653,
+        "I_c": -0.24889953479269433,
+        "MI": 0.7511004652073057,
+        "concurrence": 0.2979591836734694,
+        "EoF": 0.1564010957207708,
+        "quantum_discord": 0.42125634719741567,
+        "in_gap": true
+      },
+      {
+        "p": 0.35510204081632657,
+        "I_c": -0.2582614737246387,
+        "MI": 0.7417385262753613,
+        "concurrence": 0.28979591836734686,
+        "EoF": 0.14953805367722306,
+        "quantum_discord": 0.41642870275627797,
+        "in_gap": true
+      },
+      {
+        "p": 0.3591836734693878,
+        "I_c": -0.2675542207970052,
+        "MI": 0.7324457792029948,
+        "concurrence": 0.2816326530612244,
+        "EoF": 0.1427795179057746,
+        "quantum_discord": 0.41162910127901076,
+        "in_gap": true
+      },
+      {
+        "p": 0.363265306122449,
+        "I_c": -0.27677827569387636,
+        "MI": 0.7232217243061236,
+        "concurrence": 0.273469387755102,
+        "EoF": 0.13612767556446004,
+        "quantum_discord": 0.40685740950373006,
+        "in_gap": true
+      },
+      {
+        "p": 0.3673469387755102,
+        "I_c": -0.28593412448485256,
+        "MI": 0.7140658755151474,
+        "concurrence": 0.26530612244897955,
+        "EoF": 0.12958479696719868,
+        "quantum_discord": 0.402113499049227,
+        "in_gap": true
+      },
+      {
+        "p": 0.37142857142857144,
+        "I_c": -0.29502224004901034,
+        "MI": 0.7049777599509897,
+        "concurrence": 0.2571428571428571,
+        "EoF": 0.12315324073507491,
+        "quantum_discord": 0.3973972462784634,
+        "in_gap": true
+      },
+      {
+        "p": 0.3755102040816327,
+        "I_c": -0.3040430824797209,
+        "MI": 0.6959569175202791,
+        "concurrence": 0.24897959183673457,
+        "EoF": 0.11683545942341189,
+        "quantum_discord": 0.3927085321685282,
+        "in_gap": true
+      },
+      {
+        "p": 0.3795918367346939,
+        "I_c": -0.3129970994713587,
+        "MI": 0.6870029005286413,
+        "concurrence": 0.24081632653061225,
+        "EoF": 0.11063400568528246,
+        "quantum_discord": 0.3880472421867194,
+        "in_gap": true
+      },
+      {
+        "p": 0.38367346938775515,
+        "I_c": -0.3218847266888656,
+        "MI": 0.6781152733111344,
+        "concurrence": 0.2326530612244897,
+        "EoF": 0.1045515390420974,
+        "quantum_discord": 0.3834132661724323,
+        "in_gap": true
+      },
+      {
+        "p": 0.38775510204081637,
+        "I_c": -0.3307063881210661,
+        "MI": 0.6692936118789339,
+        "concurrence": 0.22448979591836726,
+        "EoF": 0.09859083334404796,
+        "quantum_discord": 0.3788064982245578,
+        "in_gap": true
+      },
+      {
+        "p": 0.3918367346938776,
+        "I_c": -0.3394624964185846,
+        "MI": 0.6605375035814154,
+        "concurrence": 0.21632653061224483,
+        "EoF": 0.09275478501787776,
+        "quantum_discord": 0.3742268365941013,
+        "in_gap": true
+      },
+      {
+        "p": 0.3959183673469388,
+        "I_c": -0.3481534532171515,
+        "MI": 0.6518465467828485,
+        "concurrence": 0.2081632653061224,
+        "EoF": 0.08704642221741024,
+        "quantum_discord": 0.3696741835817785,
+        "in_gap": true
+      },
+      {
+        "p": 0.4,
+        "I_c": -0.35677964944703966,
+        "MI": 0.6432203505529603,
+        "concurrence": 0.19999999999999996,
+        "EoF": 0.08146891501435435,
+        "quantum_discord": 0.36514844544032266,
+        "in_gap": true
+      }
+    ],
+    "p_I_c_zero_from_scan": 0.2523883678354643,
+    "p_sep": 0.3333333333333333,
+    "gap_points_count": 37,
+    "discord_positive_in_gap": true,
+    "discord_min_in_gap": 0.36514844544032266,
+    "discord_max_in_gap": 0.5459822626695028
+  },
+  "geomstats_analysis": {
+    "geo_distances": [
+      {
+        "p": 0.2,
+        "geo_dist": 18.741145031114478
+      },
+      {
+        "p": 0.20408163265306123,
+        "geo_dist": 18.776166716064314
+      },
+      {
+        "p": 0.20816326530612245,
+        "geo_dist": 18.810496194733034
+      },
+      {
+        "p": 0.2122448979591837,
+        "geo_dist": 18.844160385869152
+      },
+      {
+        "p": 0.2163265306122449,
+        "geo_dist": 18.877184670351674
+      },
+      {
+        "p": 0.22040816326530613,
+        "geo_dist": 18.909593006171974
+      },
+      {
+        "p": 0.22448979591836737,
+        "geo_dist": 18.94140803290764
+      },
+      {
+        "p": 0.2285714285714286,
+        "geo_dist": 18.972651166733346
+      },
+      {
+        "p": 0.2326530612244898,
+        "geo_dist": 19.003342687074632
+      },
+      {
+        "p": 0.23673469387755103,
+        "geo_dist": 19.03350181569776
+      },
+      {
+        "p": 0.24081632653061225,
+        "geo_dist": 19.063146789056702
+      },
+      {
+        "p": 0.2448979591836735,
+        "geo_dist": 19.09229492452294
+      },
+      {
+        "p": 0.2489795918367347,
+        "geo_dist": 19.120962681182814
+      },
+      {
+        "p": 0.25306122448979596,
+        "geo_dist": 19.14916571567878
+      },
+      {
+        "p": 0.2571428571428572,
+        "geo_dist": 19.176918933585476
+      },
+      {
+        "p": 0.2612244897959184,
+        "geo_dist": 19.204236536710315
+      },
+      {
+        "p": 0.2653061224489796,
+        "geo_dist": 19.231132066746312
+      },
+      {
+        "p": 0.2693877551020408,
+        "geo_dist": 19.25761844564949
+      },
+      {
+        "p": 0.27346938775510204,
+        "geo_dist": 19.283708012872868
+      },
+      {
+        "p": 0.27755102040816326,
+        "geo_dist": 19.309412559933296
+      },
+      {
+        "p": 0.28163265306122454,
+        "geo_dist": 19.334743362391063
+      },
+      {
+        "p": 0.2857142857142857,
+        "geo_dist": 19.35971120956359
+      },
+      {
+        "p": 0.28979591836734697,
+        "geo_dist": 19.38432643215343
+      },
+      {
+        "p": 0.2938775510204082,
+        "geo_dist": 19.4085989278665
+      },
+      {
+        "p": 0.2979591836734694,
+        "geo_dist": 19.432538185383784
+      },
+      {
+        "p": 0.3020408163265306,
+        "geo_dist": 19.456153306558292
+      },
+      {
+        "p": 0.30612244897959184,
+        "geo_dist": 19.479453027192438
+      },
+      {
+        "p": 0.3102040816326531,
+        "geo_dist": 19.502445736563303
+      },
+      {
+        "p": 0.3142857142857143,
+        "geo_dist": 19.525139495395692
+      },
+      {
+        "p": 0.31836734693877555,
+        "geo_dist": 19.547542052917045
+      },
+      {
+        "p": 0.32244897959183677,
+        "geo_dist": 19.56966086269691
+      },
+      {
+        "p": 0.326530612244898,
+        "geo_dist": 19.591503097674682
+      },
+      {
+        "p": 0.3306122448979592,
+        "geo_dist": 19.613075663837154
+      },
+      {
+        "p": 0.3346938775510204,
+        "geo_dist": 19.634385213631546
+      },
+      {
+        "p": 0.33877551020408164,
+        "geo_dist": 19.655438158011762
+      },
+      {
+        "p": 0.34285714285714286,
+        "geo_dist": 19.67624067830779
+      },
+      {
+        "p": 0.34693877551020413,
+        "geo_dist": 19.69679873672296
+      },
+      {
+        "p": 0.3510204081632653,
+        "geo_dist": 19.717118086992347
+      },
+      {
+        "p": 0.35510204081632657,
+        "geo_dist": 19.73720428378158
+      },
+      {
+        "p": 0.3591836734693878,
+        "geo_dist": 19.757062691835028
+      },
+      {
+        "p": 0.363265306122449,
+        "geo_dist": 19.776698494669247
+      },
+      {
+        "p": 0.3673469387755102,
+        "geo_dist": 19.796116702641452
+      },
+      {
+        "p": 0.37142857142857144,
+        "geo_dist": 19.815322160490037
+      },
+      {
+        "p": 0.3755102040816327,
+        "geo_dist": 19.834319554758235
+      },
+      {
+        "p": 0.3795918367346939,
+        "geo_dist": 19.853113420623036
+      },
+      {
+        "p": 0.38367346938775515,
+        "geo_dist": 19.871708148250953
+      },
+      {
+        "p": 0.38775510204081637,
+        "geo_dist": 19.8901079890778
+      },
+      {
+        "p": 0.3918367346938776,
+        "geo_dist": 19.90831706160566
+      },
+      {
+        "p": 0.3959183673469388,
+        "geo_dist": 19.926339356932992
+      },
+      {
+        "p": 0.4,
+        "geo_dist": 19.944178743856774
+      }
+    ],
+    "curvature_inflections": [],
+    "d2_geo_at_p_Ic_zero": -24.568037933166902,
+    "d2_geo_at_p_sep": -14.331443736534256,
+    "n_inflections": 0,
+    "anomaly_at_Ic_zero": true,
+    "anomaly_at_sep": true
+  },
+  "z3_proofs": {
+    "proof1_Ic_positive_requires_entanglement": {
+      "claim": "UNSAT: I_c > 0 AND concurrence = 0 for Werner states",
+      "z3_status": "unsat",
+      "is_unsat": true,
+      "interpretation": "Confirmed: positive coherent information requires entanglement (C>0). No Werner state with I_c>0 and C=0 exists."
+    },
+    "proof2_gap_nonempty_SAT": {
+      "claim": "SAT: there exist Werner states with EoF>0 and I_c<=0 (the QWCI gap)",
+      "z3_status": "sat",
+      "is_sat": true,
+      "witness_p": "315482708192053/1250000000000000",
+      "interpretation": "Confirmed: gap is non-empty. Witness p=315482708192053/1250000000000000 satisfies EoF>0, I_c<=0."
+    },
+    "proof3_discord_positive_when_entangled": {
+      "claim": "UNSAT: discord=0 AND concurrence>0 for Werner states",
+      "z3_status": "unsat",
+      "is_unsat": true,
+      "interpretation": "Confirmed: quantum discord > 0 whenever Werner state is entangled. Discord persists through the QWCI gap."
+    },
+    "proof4_Q_zero_in_gap": {
+      "claim": "UNSAT: Q>0 for any Werner state in gap [p_Ic_zero, 1/3]",
+      "z3_status": "unsat",
+      "is_unsat": true,
+      "interpretation": "Confirmed: quantum capacity Q=0 for all Werner states in the QWCI gap. No quantum error correction is possible in this regime."
+    }
+  },
+  "positive": {
+    "Ic_positive_below_gap": {
+      "p": 0.22,
+      "I_c": 0.09234311151626295,
+      "expected_positive": true,
+      "pass": true
+    },
+    "Ic_nonpositive_in_gap": {
+      "p": 0.3,
+      "I_c": -0.12580939167527427,
+      "concurrence": 0.4,
+      "EoF": 0.25022491161107085,
+      "expected_Ic_le_0": true,
+      "expected_EoF_gt_0": true,
+      "pass_Ic": true,
+      "pass_EoF": true,
+      "pass": true
+    },
+    "separable_above_p_sep": {
+      "p": 0.36,
+      "concurrence": 0.28,
+      "I_c": -0.2694045114028878,
+      "I_c_at_sep": -0.20751874963942196,
+      "note": "C=0 only at p=0.5; separability (PPT) at p=1/3 does not mean C=0 for Werner",
+      "expected_Ic_le_0": true,
+      "expected_Ic_more_negative_than_sep": true,
+      "pass": true
+    },
+    "discord_positive_in_gap": {
+      "p": 0.3,
+      "quantum_discord": 0.4840309130411258,
+      "expected_positive": true,
+      "pass": true
+    },
+    "sympy_gap_nonempty": {
+      "gap_nonempty": true,
+      "p_lower": 0.2523861665536424,
+      "p_upper": 0.3333333333333333,
+      "pass": true
+    }
+  },
+  "negative": {
+    "Ic_not_positive_at_p030": {
+      "p": 0.3,
+      "I_c": -0.12580939167527427,
+      "claimed_false": "I_c > 0",
+      "pass": true
+    },
+    "concurrence_not_zero_at_p030": {
+      "p": 0.3,
+      "concurrence": 0.4,
+      "claimed_false": "C = 0",
+      "pass": true
+    },
+    "Q_not_positive_in_gap": {
+      "gap_points": [
+        0.26,
+        0.28,
+        0.3,
+        0.32
+      ],
+      "Q_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "claimed_false": "Q > 0",
+      "pass": true
+    },
+    "EoF_not_zero_in_gap": {
+      "gap_points": [
+        0.26,
+        0.28,
+        0.3,
+        0.32
+      ],
+      "EoF_values": [
+        0.33284277098075077,
+        0.29063449024116805,
+        0.25022491161107085,
+        0.21176700789654404
+      ],
+      "claimed_false": "EoF = 0",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "Ic_continuity_at_boundary": {
+      "p_Ic_zero_approx": 0.252,
+      "I_c_left": 0.0013437407377026034,
+      "I_c_right": 0.0007907990052239411,
+      "sign_change": false,
+      "pass": true
+    },
+    "concurrence_at_psep": {
+      "p_sep": 0.3333333333333333,
+      "C_at_sep": 0.33333333333333337,
+      "C_left": 0.33353333333333335,
+      "C_right": 0.3331333333333334,
+      "note": "C is nonzero at p_sep=1/3 (C=1/3); C=0 only at p=0.5; p_sep is PPT boundary not concurrence zero",
+      "pass": true
+    },
+    "EoF_vanishes_at_p_half": {
+      "EoF_at_p_sep": 0.18729859856877246,
+      "EoF_at_p_0p5": 0.0,
+      "EoF_above_p_0p5": 0.0,
+      "note": "EoF = 0 at p=0.5 (C=0 there), not at p_sep=1/3",
+      "pass": true
+    },
+    "MI_positive_in_gap": {
+      "gap_points": [
+        0.252,
+        0.261037037037037,
+        0.2700740740740741,
+        0.2791111111111111,
+        0.28814814814814815,
+        0.29718518518518516,
+        0.30622222222222223,
+        0.31525925925925924,
+        0.3242962962962963,
+        0.3333333333333333
+      ],
+      "MI_values": [
+        1.0010672433996053,
+        0.9762967147666592,
+        0.9519471846143408,
+        0.9280080194548155,
+        0.9044693321462067,
+        0.8813219130646255,
+        0.8585571697037819,
+        0.8361670734595374,
+        0.8141441125708195,
+        0.792481250360578
+      ],
+      "all_positive": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "gap_lower_bound_p_Ic_zero": 0.2523861665536424,
+    "gap_upper_bound_p_sep": 0.3333333333333333,
+    "gap_width": 0.08094716677969094,
+    "discord_positive_in_gap": true,
+    "discord_min_in_gap": 0.36514844544032266,
+    "discord_max_in_gap": 0.5459822626695028,
+    "n_geodesic_inflections": 0,
+    "anomaly_at_Ic_zero": true,
+    "anomaly_at_sep": true,
+    "z3_proof1_Ic_requires_entanglement": true,
+    "z3_proof2_gap_nonempty_SAT": true,
+    "z3_proof3_discord_positive": true,
+    "z3_proof4_Q_zero_in_gap": true
+  },
+  "classification": "canonical"
+}

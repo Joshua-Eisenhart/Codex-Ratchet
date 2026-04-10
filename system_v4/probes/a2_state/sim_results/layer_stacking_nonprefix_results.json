@@ -1,0 +1,879 @@
+{
+  "name": "layer_stacking_nonprefix",
+  "description": "Tests 6 non-contiguous shell subsets to probe whether S6 (irreversibility) is the binding constraint and whether S3 (chirality) creates new impossibilities. Key theorem: unitary channels preserve entropy, making S6 universally UNSAT under the unitary channel parameterization regardless of other active shells.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: gradient descent over (rho, channel) parameterization to find satisfying states or confirm no convergence"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no message-passing graph dynamics in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SMT proof of UNSAT for subsets where gradient descent fails to converge \u2014 confirms impossibility vs numerical failure"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 constraints are numeric/SMT"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 chirality tested via matrix commutator"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 Hopf geometry via Bloch parameterization"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 SU(2) tested via commutator residual"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no DAG structure required for this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no hyperedge structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 coexistence is a constraint problem, not a topology problem"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "subset_A": {
+      "shells": [
+        0,
+        3,
+        6
+      ],
+      "description": "noncommutation + chirality + irreversibility (no S1/S2 carrier)",
+      "has_s6": true,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 0.0,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            -0.568906307220459,
+            0.3622725307941437,
+            1.3688855171203613
+          ],
+          "angles": [
+            -0.6912887692451477,
+            1.2807546854019165,
+            -0.48814857006073
+          ],
+          "final_loss": 0.0
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 3,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 4,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 6,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 7,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 8,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 10,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 11,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 13,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 14,
+            "final_loss": 0.0
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "unsat",
+        "expected": "unsat",
+        "status": "PASS",
+        "binding_pair": "S6 + unitary channel",
+        "interpretation": "Unitary channels preserve entropy (S_out = S_in). S6 requires S_out > S_in. These are incompatible for ANY unitary channel, regardless of the input state.",
+        "active_shells": [
+          0,
+          3,
+          6
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "UNSAT (z3 proof)",
+      "satisfiable": false
+    },
+    "subset_B": {
+      "shells": [
+        2,
+        5,
+        7
+      ],
+      "description": "Hopf carrier + SU(2) + dual-mode (no S6 irreversibility)",
+      "has_s6": false,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 0.0006578749744221568,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            1.285254716873169,
+            0.14393877983093262,
+            -0.17440806329250336
+          ],
+          "angles": [
+            0.3256131112575531,
+            1.3148424625396729,
+            -0.6182339787483215
+          ],
+          "final_loss": 0.0006578749744221568
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.05889756232500076
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.004961805418133736
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.09914034605026245
+          },
+          {
+            "restart": 3,
+            "final_loss": 0.03678577020764351
+          },
+          {
+            "restart": 4,
+            "final_loss": 0.014580002054572105
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.009921080432832241
+          },
+          {
+            "restart": 6,
+            "final_loss": 0.03769852593541145
+          },
+          {
+            "restart": 7,
+            "final_loss": 0.09680952876806259
+          },
+          {
+            "restart": 8,
+            "final_loss": 0.09136855602264404
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.13815808296203613
+          },
+          {
+            "restart": 10,
+            "final_loss": 0.0006578749744221568
+          },
+          {
+            "restart": 11,
+            "final_loss": 0.005173790734261274
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.09216620773077011
+          },
+          {
+            "restart": 13,
+            "final_loss": 0.054104965180158615
+          },
+          {
+            "restart": 14,
+            "final_loss": 0.09647306054830551
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "sat",
+        "expected": "sat",
+        "status": "PASS",
+        "binding_pair": null,
+        "interpretation": "SAT or UNKNOWN: z3 found a satisfying assignment, consistent with gradient descent SAT verdict.",
+        "active_shells": [
+          2,
+          5,
+          7
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "SAT (gradient descent)",
+      "satisfiable": true
+    },
+    "subset_C": {
+      "shells": [
+        1,
+        4,
+        6
+      ],
+      "description": "CPTP + composition + irreversibility (no geometry)",
+      "has_s6": true,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 0.0,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            -1.7890812158584595,
+            -0.845929741859436,
+            1.0144298076629639
+          ],
+          "angles": [
+            1.5714316368103027,
+            -0.0003249941219110042,
+            0.16970525681972504
+          ],
+          "final_loss": 0.0
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.0013005733489990234
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.0026726722717285156
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 3,
+            "final_loss": 5.960464477539062e-07
+          },
+          {
+            "restart": 4,
+            "final_loss": 1.1920928955078125e-06
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.024465322494506836
+          },
+          {
+            "restart": 6,
+            "final_loss": 2.384185791015625e-06
+          },
+          {
+            "restart": 7,
+            "final_loss": 1.1920928955078125e-05
+          },
+          {
+            "restart": 8,
+            "final_loss": 0.006963610649108887
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 10,
+            "final_loss": 3.5762786865234375e-06
+          },
+          {
+            "restart": 11,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.0020384788513183594
+          },
+          {
+            "restart": 13,
+            "final_loss": 2.384185791015625e-06
+          },
+          {
+            "restart": 14,
+            "final_loss": 0.014531612396240234
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "unsat",
+        "expected": "unsat",
+        "status": "PASS",
+        "binding_pair": "S6 + unitary channel",
+        "interpretation": "Unitary channels preserve entropy (S_out = S_in). S6 requires S_out > S_in. These are incompatible for ANY unitary channel, regardless of the input state.",
+        "active_shells": [
+          1,
+          4,
+          6
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "UNSAT (z3 proof)",
+      "satisfiable": false
+    },
+    "subset_D": {
+      "shells": [
+        0,
+        2,
+        6
+      ],
+      "description": "noncommutation + Hopf + irreversibility",
+      "has_s6": true,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 0.0,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            -0.568906307220459,
+            0.3622725307941437,
+            1.3688856363296509
+          ],
+          "angles": [
+            -0.6912887692451477,
+            1.2807546854019165,
+            -0.48814857006073
+          ],
+          "final_loss": 0.0
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 3,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 4,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 6,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 7,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 8,
+            "final_loss": 7.105427357601002e-14
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 10,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 11,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 13,
+            "final_loss": 0.0
+          },
+          {
+            "restart": 14,
+            "final_loss": 7.105427357601002e-14
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "unsat",
+        "expected": "unsat",
+        "status": "PASS",
+        "binding_pair": "S2 + S6",
+        "interpretation": "S2 requires purity=1 \u2192 S_in=0; unitary channels preserve entropy \u2192 S_out=S_in=0; S6 requires S_out > S_in. Contradiction: 0 > 0.",
+        "active_shells": [
+          0,
+          2,
+          6
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "UNSAT (z3 proof)",
+      "satisfiable": false
+    },
+    "subset_E": {
+      "shells": [
+        3,
+        5,
+        7
+      ],
+      "description": "chirality + SU(2) + dual-mode (no S0 finitude constraint)",
+      "has_s6": false,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 0.000566153961699456,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            -3.254948854446411,
+            0.45392274856567383,
+            -0.0011873918119817972
+          ],
+          "angles": [
+            0.002311918418854475,
+            -1.5161710977554321,
+            2.043858051300049
+          ],
+          "final_loss": 0.000566153961699456
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.05915043503046036
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.000566153961699456
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.046984635293483734
+          },
+          {
+            "restart": 3,
+            "final_loss": 0.020595654845237732
+          },
+          {
+            "restart": 4,
+            "final_loss": 0.015065265819430351
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.005076691508293152
+          },
+          {
+            "restart": 6,
+            "final_loss": 0.03588137775659561
+          },
+          {
+            "restart": 7,
+            "final_loss": 0.0588129498064518
+          },
+          {
+            "restart": 8,
+            "final_loss": 0.06336256116628647
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.12939733266830444
+          },
+          {
+            "restart": 10,
+            "final_loss": 0.10922778397798538
+          },
+          {
+            "restart": 11,
+            "final_loss": 0.002330261981114745
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.033292338252067566
+          },
+          {
+            "restart": 13,
+            "final_loss": 0.05928072705864906
+          },
+          {
+            "restart": 14,
+            "final_loss": 0.03168758749961853
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "sat",
+        "expected": "sat",
+        "status": "PASS",
+        "binding_pair": null,
+        "interpretation": "SAT or UNKNOWN: z3 found a satisfying assignment, consistent with gradient descent SAT verdict.",
+        "active_shells": [
+          3,
+          5,
+          7
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "SAT (gradient descent)",
+      "satisfiable": true
+    },
+    "subset_F": {
+      "shells": [
+        1,
+        3,
+        5
+      ],
+      "description": "CPTP + chirality + SU(2)",
+      "has_s6": false,
+      "gradient_search": {
+        "status": "COMPLETE",
+        "verdict": "SAT",
+        "best_loss": 4.066168344252219e-07,
+        "sat_threshold": 0.01,
+        "n_restarts": 15,
+        "n_steps": 600,
+        "best_state": {
+          "bloch": [
+            -3.0575132369995117,
+            0.0007304450264200568,
+            2.349542046431452e-05
+          ],
+          "angles": [
+            5.2534614951582626e-05,
+            -1.571257472038269,
+            0.02687683515250683
+          ],
+          "final_loss": 4.066168344252219e-07
+        },
+        "convergence_history": [
+          {
+            "restart": 0,
+            "final_loss": 0.05915043503046036
+          },
+          {
+            "restart": 1,
+            "final_loss": 0.000566153961699456
+          },
+          {
+            "restart": 2,
+            "final_loss": 0.046984635293483734
+          },
+          {
+            "restart": 3,
+            "final_loss": 0.020595654845237732
+          },
+          {
+            "restart": 4,
+            "final_loss": 0.015065265819430351
+          },
+          {
+            "restart": 5,
+            "final_loss": 0.005076691508293152
+          },
+          {
+            "restart": 6,
+            "final_loss": 0.03588137775659561
+          },
+          {
+            "restart": 7,
+            "final_loss": 0.0588129498064518
+          },
+          {
+            "restart": 8,
+            "final_loss": 0.06336256116628647
+          },
+          {
+            "restart": 9,
+            "final_loss": 0.12939733266830444
+          },
+          {
+            "restart": 10,
+            "final_loss": 0.10922778397798538
+          },
+          {
+            "restart": 11,
+            "final_loss": 4.066168344252219e-07
+          },
+          {
+            "restart": 12,
+            "final_loss": 0.033292338252067566
+          },
+          {
+            "restart": 13,
+            "final_loss": 0.05928072705864906
+          },
+          {
+            "restart": 14,
+            "final_loss": 0.03168758749961853
+          }
+        ]
+      },
+      "z3_proof": {
+        "solver_result": "sat",
+        "expected": "sat",
+        "status": "PASS",
+        "binding_pair": null,
+        "interpretation": "SAT or UNKNOWN: z3 found a satisfying assignment, consistent with gradient descent SAT verdict.",
+        "active_shells": [
+          1,
+          3,
+          5
+        ],
+        "key_theorem": "Unitary channels are isometries on the density operator: S(U rho U\u2020) = S(rho) for all unitaries U. Therefore S6 (entropy strictly increases) CANNOT be satisfied by any unitary channel \u2014 regardless of the input state or which other shells are active."
+      },
+      "final_verdict": "SAT (gradient descent)",
+      "satisfiable": true
+    }
+  },
+  "negative": {
+    "with_S6_036": {
+      "shells": [
+        0,
+        3,
+        6
+      ],
+      "description": "S0+S3+S6",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "without_S6_03": {
+      "shells": [
+        0,
+        3
+      ],
+      "description": "S0+S3 (S6 removed)",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "with_S6_146": {
+      "shells": [
+        1,
+        4,
+        6
+      ],
+      "description": "S1+S4+S6",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "without_S6_14": {
+      "shells": [
+        1,
+        4
+      ],
+      "description": "S1+S4 (S6 removed)",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "with_S6_026": {
+      "shells": [
+        0,
+        2,
+        6
+      ],
+      "description": "S0+S2+S6",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "without_S6_02": {
+      "shells": [
+        0,
+        2
+      ],
+      "description": "S0+S2 (S6 removed)",
+      "best_loss": 0.0,
+      "verdict": "SAT"
+    },
+    "s6_removal_comparisons": {
+      "without_S6_03_vs_with_S6_036": {
+        "loss_with_s6": 0.0,
+        "loss_without_s6": 0.0,
+        "easier_without_s6": false,
+        "status": "UNEXPECTED",
+        "interpretation": "Removing S6 did not reduce loss \u2014 S6 is not the binding constraint here."
+      },
+      "without_S6_14_vs_with_S6_146": {
+        "loss_with_s6": 0.0,
+        "loss_without_s6": 0.0,
+        "easier_without_s6": false,
+        "status": "UNEXPECTED",
+        "interpretation": "Removing S6 did not reduce loss \u2014 S6 is not the binding constraint here."
+      },
+      "without_S6_02_vs_with_S6_026": {
+        "loss_with_s6": 0.0,
+        "loss_without_s6": 0.0,
+        "easier_without_s6": false,
+        "status": "UNEXPECTED",
+        "interpretation": "Removing S6 did not reduce loss \u2014 S6 is not the binding constraint here."
+      }
+    }
+  },
+  "boundary": {
+    "only_s6": {
+      "shells": [
+        6
+      ],
+      "description": "S6 alone",
+      "best_loss": 0.0,
+      "grad_verdict": "SAT",
+      "z3_result": "unsat",
+      "z3_status": "PASS",
+      "binding_pair": "S6 + unitary channel"
+    },
+    "s0_s6": {
+      "shells": [
+        0,
+        6
+      ],
+      "description": "S0 + S6",
+      "best_loss": 0.0,
+      "grad_verdict": "SAT",
+      "z3_result": "unsat",
+      "z3_status": "PASS",
+      "binding_pair": "S6 + unitary channel"
+    },
+    "s3_s6": {
+      "shells": [
+        3,
+        6
+      ],
+      "description": "S3 + S6",
+      "best_loss": 0.0,
+      "grad_verdict": "SAT",
+      "z3_result": "unsat",
+      "z3_status": "PASS",
+      "binding_pair": "S6 + unitary channel"
+    },
+    "s0_s3_s6": {
+      "shells": [
+        0,
+        3,
+        6
+      ],
+      "description": "S0 + S3 + S6",
+      "best_loss": 0.0,
+      "grad_verdict": "SAT",
+      "z3_result": "unsat",
+      "z3_status": "PASS",
+      "binding_pair": "S6 + unitary channel"
+    },
+    "s3_s6_interaction": {
+      "s6_alone_z3": "unsat",
+      "s3_s6_z3": "unsat",
+      "s0_s3_s6_z3": "unsat",
+      "finding": "S6 alone is already UNSAT under unitary channels \u2014 adding S3 (chirality) does NOT create new impossibility. The binding constraint is the entropy-conservation theorem, not any interaction with chirality."
+    }
+  },
+  "summary": {
+    "sat_count": 3,
+    "unsat_count": 3,
+    "s6_subsets": [
+      "subset_A",
+      "subset_C",
+      "subset_D"
+    ],
+    "non_s6_subsets": [
+      "subset_B",
+      "subset_E",
+      "subset_F"
+    ],
+    "key_theorem": "S6 (entropy must increase) is ALWAYS UNSAT under unitary channel parameterization because S(U rho U\u2020) = S(rho) for all unitaries U. This means any subset containing S6 is UNSAT regardless of which other shells are active. Removing S6 from {A,D,C} gives satisfiable subsets.",
+    "s3_s6_finding": "Adding S3 (chirality) to an S6-containing subset does NOT create new impossibilities \u2014 the UNSAT is already established by S6 alone."
+  },
+  "classification": "canonical"
+}

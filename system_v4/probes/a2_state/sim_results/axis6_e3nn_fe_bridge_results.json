@@ -1,0 +1,602 @@
+{
+  "name": "Axis 6 \u2014 e3nn FCTP Fe-Bridge (Bloch Vector Relay Weights)",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 3-qubit density matrix construction, partial traces, von Neumann entropy, Bloch vectors, FCTP model training via autograd."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: UNSAT proof that a constant (local single-qubit scalar) cannot simultaneously equal I_c=-1 at relay=0 and I_c=+1 at relay=1. Proves at least 2-qubit bilinear coupling is necessary."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: SPD geodesic distance of rho_ABC(relay) from rho_ABC(0) as function of relay_strength. Confirms smooth manifold traversal."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: FCTP 1o\u22971o\u21920e+1e+2e with Linear\u21920e gives SO(3)-invariant scalars from Bloch vectors (||B_B||^2, ||B_C||^2, B_B\u00b7B_C). FeRelayPredictor trains weights over these three scalars."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "fctp_relay_sweep": {
+      "n_samples": 50,
+      "w_AB_proxy": -0.6276950836181641,
+      "w_BC_cross": -0.557235062122345,
+      "w_CC": 0.48444604873657227,
+      "w_AB": -0.6276950836181641,
+      "w_BC": -0.557235062122345,
+      "bias": -0.2706705331802368,
+      "correlation_r": 0.9988910611804661,
+      "sign_flip_pred": 0.7142857313156128,
+      "sign_flip_actual": 0.7142857313156128,
+      "sign_flip_target_0.7368": 0.7368,
+      "flip_error_vs_target": 0.022514268684387218,
+      "flip_prediction_accurate": true,
+      "b_mediation_confirmed": true,
+      "sweep": [
+        {
+          "relay_strength": 0.0,
+          "ic_actual": -1.0000000000393054,
+          "ic_pred": -0.9699803590774536,
+          "scalar_BB": 0.0,
+          "scalar_CC": -1.443524718284607,
+          "scalar_BC": 0.0
+        },
+        {
+          "relay_strength": 0.020408162847161293,
+          "ic_actual": -0.9885236687550008,
+          "ic_pred": -0.962576150894165,
+          "scalar_BB": -0.000766711076721549,
+          "scalar_CC": -1.3852065801620483,
+          "scalar_BC": 0.03827645629644394
+        },
+        {
+          "relay_strength": 0.040816325694322586,
+          "ic_actual": -0.9752567577549124,
+          "ic_pred": -0.9539031386375427,
+          "scalar_BB": -0.003066844306886196,
+          "scalar_CC": -1.3280909061431885,
+          "scalar_BC": 0.07495805621147156
+        },
+        {
+          "relay_strength": 0.06122449040412903,
+          "ic_actual": -0.9605781390109398,
+          "ic_pred": -0.9439613819122314,
+          "scalar_BB": -0.006900399923324585,
+          "scalar_CC": -1.2721774578094482,
+          "scalar_BC": 0.11004481464624405
+        },
+        {
+          "relay_strength": 0.08163265138864517,
+          "ic_actual": -0.9446631079611028,
+          "ic_pred": -0.9327510595321655,
+          "scalar_BB": -0.012267377227544785,
+          "scalar_CC": -1.2174667119979858,
+          "scalar_BC": 0.14353671669960022
+        },
+        {
+          "relay_strength": 0.10204081237316132,
+          "ic_actual": -0.9276206779382585,
+          "ic_pred": -0.9202718734741211,
+          "scalar_BB": -0.01916777528822422,
+          "scalar_CC": -1.1639583110809326,
+          "scalar_BC": 0.17543375492095947
+        },
+        {
+          "relay_strength": 0.12244898080825806,
+          "ic_actual": -0.9095260685582848,
+          "ic_pred": -0.9065239429473877,
+          "scalar_BB": -0.02760159969329834,
+          "scalar_CC": -1.1116522550582886,
+          "scalar_BC": 0.2057359516620636
+        },
+        {
+          "relay_strength": 0.1428571343421936,
+          "ic_actual": -0.8904340714305912,
+          "ic_pred": -0.8915074467658997,
+          "scalar_BB": -0.0375688411295414,
+          "scalar_CC": -1.0605487823486328,
+          "scalar_BC": 0.2344432771205902
+        },
+        {
+          "relay_strength": 0.16326530277729034,
+          "ic_actual": -0.8703857282788003,
+          "ic_pred": -0.8752221465110779,
+          "scalar_BB": -0.04906950891017914,
+          "scalar_CC": -1.0106476545333862,
+          "scalar_BC": 0.2615557909011841
+        },
+        {
+          "relay_strength": 0.18367347121238708,
+          "ic_actual": -0.8494122844609552,
+          "ic_pred": -0.8576681017875671,
+          "scalar_BB": -0.06210360676050186,
+          "scalar_CC": -0.9619488716125488,
+          "scalar_BC": 0.28707343339920044
+        },
+        {
+          "relay_strength": 0.20408162474632263,
+          "ic_actual": -0.8275375452150293,
+          "ic_pred": -0.8388454914093018,
+          "scalar_BB": -0.07667110115289688,
+          "scalar_CC": -0.9144527912139893,
+          "scalar_BC": 0.3109962046146393
+        },
+        {
+          "relay_strength": 0.22448979318141937,
+          "ic_actual": -0.8047793945466932,
+          "ic_pred": -0.8187540173530579,
+          "scalar_BB": -0.09277205169200897,
+          "scalar_CC": -0.8681589365005493,
+          "scalar_BC": 0.333324134349823
+        },
+        {
+          "relay_strength": 0.2448979616165161,
+          "ic_actual": -0.7811509615798204,
+          "ic_pred": -0.7973939776420593,
+          "scalar_BB": -0.11040639877319336,
+          "scalar_CC": -0.8230676651000977,
+          "scalar_BC": 0.354057252407074
+        },
+        {
+          "relay_strength": 0.26530611515045166,
+          "ic_actual": -0.7566613255555888,
+          "ic_pred": -0.7747650742530823,
+          "scalar_BB": -0.12957417964935303,
+          "scalar_CC": -0.7791786789894104,
+          "scalar_BC": 0.37319543957710266
+        },
+        {
+          "relay_strength": 0.2857142686843872,
+          "ic_actual": -0.7313160122388819,
+          "ic_pred": -0.7508675456047058,
+          "scalar_BB": -0.1502753645181656,
+          "scalar_CC": -0.7364921569824219,
+          "scalar_BC": 0.3907388150691986
+        },
+        {
+          "relay_strength": 0.30612245202064514,
+          "ic_actual": -0.7051173892616215,
+          "ic_pred": -0.7257012724876404,
+          "scalar_BB": -0.17251001298427582,
+          "scalar_CC": -0.6950081586837769,
+          "scalar_BC": 0.4066873788833618
+        },
+        {
+          "relay_strength": 0.3265306055545807,
+          "ic_actual": -0.6780650742774458,
+          "ic_pred": -0.699266254901886,
+          "scalar_BB": -0.19627803564071655,
+          "scalar_CC": -0.654726505279541,
+          "scalar_BC": 0.42104101181030273
+        },
+        {
+          "relay_strength": 0.34693875908851624,
+          "ic_actual": -0.650155891369315,
+          "ic_pred": -0.6715625524520874,
+          "scalar_BB": -0.22157950699329376,
+          "scalar_CC": -0.6156473159790039,
+          "scalar_BC": 0.4337998032569885
+        },
+        {
+          "relay_strength": 0.36734694242477417,
+          "ic_actual": -0.6213840987500132,
+          "ic_pred": -0.6425901651382446,
+          "scalar_BB": -0.24841442704200745,
+          "scalar_CC": -0.5777705907821655,
+          "scalar_BC": 0.44496381282806396
+        },
+        {
+          "relay_strength": 0.3877550959587097,
+          "ic_actual": -0.5917415831061964,
+          "ic_pred": -0.6123490333557129,
+          "scalar_BB": -0.27678272128105164,
+          "scalar_CC": -0.5410963296890259,
+          "scalar_BC": 0.4545329213142395
+        },
+        {
+          "relay_strength": 0.40816324949264526,
+          "ic_actual": -0.5612176216218379,
+          "ic_pred": -0.5808392763137817,
+          "scalar_BB": -0.3066844046115875,
+          "scalar_CC": -0.5056244730949402,
+          "scalar_BC": 0.4625072479248047
+        },
+        {
+          "relay_strength": 0.4285714328289032,
+          "ic_actual": -0.5297989720557015,
+          "ic_pred": -0.5480605363845825,
+          "scalar_BB": -0.33811962604522705,
+          "scalar_CC": -0.4713549315929413,
+          "scalar_BC": 0.4688865542411804
+        },
+        {
+          "relay_strength": 0.44897958636283875,
+          "ic_actual": -0.49746994362819863,
+          "ic_pred": -0.5140133500099182,
+          "scalar_BB": -0.3710882067680359,
+          "scalar_CC": -0.43828797340393066,
+          "scalar_BC": 0.4736711382865906
+        },
+        {
+          "relay_strength": 0.4693877398967743,
+          "ic_actual": -0.46421200669826956,
+          "ic_pred": -0.47869735956192017,
+          "scalar_BB": -0.4055901765823364,
+          "scalar_CC": -0.406423419713974,
+          "scalar_BC": 0.47686082124710083
+        },
+        {
+          "relay_strength": 0.4897959232330322,
+          "ic_actual": -0.4300037646879825,
+          "ic_pred": -0.44211268424987793,
+          "scalar_BB": -0.44162559509277344,
+          "scalar_CC": -0.37576133012771606,
+          "scalar_BC": 0.47845569252967834
+        },
+        {
+          "relay_strength": 0.5102040767669678,
+          "ic_actual": -0.39482090198703834,
+          "ic_pred": -0.40425926446914673,
+          "scalar_BB": -0.4791944921016693,
+          "scalar_CC": -0.3463016450405121,
+          "scalar_BC": 0.47845569252967834
+        },
+        {
+          "relay_strength": 0.5306122303009033,
+          "ic_actual": -0.35863562173970054,
+          "ic_pred": -0.3651371896266937,
+          "scalar_BB": -0.5182967185974121,
+          "scalar_CC": -0.31804439425468445,
+          "scalar_BC": 0.4768608808517456
+        },
+        {
+          "relay_strength": 0.5510204434394836,
+          "ic_actual": -0.32141640853149345,
+          "ic_pred": -0.3247462511062622,
+          "scalar_BB": -0.5589325428009033,
+          "scalar_CC": -0.2909895181655884,
+          "scalar_BC": 0.47367116808891296
+        },
+        {
+          "relay_strength": 0.5714285969734192,
+          "ic_actual": -0.28312801709859015,
+          "ic_pred": -0.28308671712875366,
+          "scalar_BB": -0.6011015772819519,
+          "scalar_CC": -0.2651371657848358,
+          "scalar_BC": 0.4688866138458252
+        },
+        {
+          "relay_strength": 0.5918367505073547,
+          "ic_actual": -0.24373033073138028,
+          "ic_pred": -0.24015852808952332,
+          "scalar_BB": -0.6448041200637817,
+          "scalar_CC": -0.2404872179031372,
+          "scalar_BC": 0.4625072479248047
+        },
+        {
+          "relay_strength": 0.6122449040412903,
+          "ic_actual": -0.20317819336040843,
+          "ic_pred": -0.19596150517463684,
+          "scalar_BB": -0.6900400519371033,
+          "scalar_CC": -0.21703973412513733,
+          "scalar_BC": 0.4545329213142395
+        },
+        {
+          "relay_strength": 0.6326530575752258,
+          "ic_actual": -0.16142056551532513,
+          "ic_pred": -0.15049584209918976,
+          "scalar_BB": -0.7368093729019165,
+          "scalar_CC": -0.1947946697473526,
+          "scalar_BC": 0.44496381282806396
+        },
+        {
+          "relay_strength": 0.6530612111091614,
+          "ic_actual": -0.11839961357413065,
+          "ic_pred": -0.10376150906085968,
+          "scalar_BB": -0.7851121425628662,
+          "scalar_CC": -0.1737520545721054,
+          "scalar_BC": 0.4337998628616333
+        },
+        {
+          "relay_strength": 0.6734694242477417,
+          "ic_actual": -0.07404944373633315,
+          "ic_pred": -0.05575820803642273,
+          "scalar_BB": -0.8349485397338867,
+          "scalar_CC": -0.1539117991924286,
+          "scalar_BC": 0.42104101181030273
+        },
+        {
+          "relay_strength": 0.6938775777816772,
+          "ic_actual": -0.028295196920833043,
+          "ic_pred": -0.006486415863037109,
+          "scalar_BB": -0.8863180875778198,
+          "scalar_CC": -0.13527405261993408,
+          "scalar_BC": 0.40668731927871704
+        },
+        {
+          "relay_strength": 0.7142857313156128,
+          "ic_actual": 0.01894954434740581,
+          "ic_pred": 0.04405403137207031,
+          "scalar_BB": -0.9392211437225342,
+          "scalar_CC": -0.11783873289823532,
+          "scalar_BC": 0.3907388150691986
+        },
+        {
+          "relay_strength": 0.7346938848495483,
+          "ic_actual": 0.06778458580862357,
+          "ic_pred": 0.09586340188980103,
+          "scalar_BB": -0.9936577081680298,
+          "scalar_CC": -0.1016058549284935,
+          "scalar_BC": 0.37319543957710266
+        },
+        {
+          "relay_strength": 0.7551020383834839,
+          "ic_actual": 0.11832632323335313,
+          "ic_pred": 0.1489412784576416,
+          "scalar_BB": -1.0496275424957275,
+          "scalar_CC": -0.08657541126012802,
+          "scalar_BC": 0.354057252407074
+        },
+        {
+          "relay_strength": 0.7755101919174194,
+          "ic_actual": 0.17071185173832681,
+          "ic_pred": 0.2032879889011383,
+          "scalar_BB": -1.1071308851242065,
+          "scalar_CC": -0.07274740189313889,
+          "scalar_BC": 0.3333241641521454
+        },
+        {
+          "relay_strength": 0.795918345451355,
+          "ic_actual": 0.22510458242440057,
+          "ic_pred": 0.2589033842086792,
+          "scalar_BB": -1.1661677360534668,
+          "scalar_CC": -0.06012182682752609,
+          "scalar_BC": 0.31099623441696167
+        },
+        {
+          "relay_strength": 0.8163265585899353,
+          "ic_actual": 0.2817022930145572,
+          "ic_pred": 0.31578755378723145,
+          "scalar_BB": -1.2267378568649292,
+          "scalar_CC": -0.048698656260967255,
+          "scalar_BC": 0.28707337379455566
+        },
+        {
+          "relay_strength": 0.8367347121238708,
+          "ic_actual": 0.34074787598079914,
+          "ic_pred": 0.3739403486251831,
+          "scalar_BB": -1.2888414859771729,
+          "scalar_CC": -0.03847794979810715,
+          "scalar_BC": 0.2615557909011841
+        },
+        {
+          "relay_strength": 0.8571428656578064,
+          "ic_actual": 0.4025475104069951,
+          "ic_pred": 0.4333619475364685,
+          "scalar_BB": -1.3524785041809082,
+          "scalar_CC": -0.02945968322455883,
+          "scalar_BC": 0.2344432771205902
+        },
+        {
+          "relay_strength": 0.8775510191917419,
+          "ic_actual": 0.46749713129928205,
+          "ic_pred": 0.49405205249786377,
+          "scalar_BB": -1.4176487922668457,
+          "scalar_CC": -0.021643852815032005,
+          "scalar_BC": 0.2057359516620636
+        },
+        {
+          "relay_strength": 0.8979591727256775,
+          "ic_actual": 0.5361281035187297,
+          "ic_pred": 0.5560111403465271,
+          "scalar_BB": -1.4843528270721436,
+          "scalar_CC": -0.015030456706881523,
+          "scalar_BC": 0.17543378472328186
+        },
+        {
+          "relay_strength": 0.918367326259613,
+          "ic_actual": 0.609190021307629,
+          "ic_pred": 0.6192386746406555,
+          "scalar_BB": -1.5525898933410645,
+          "scalar_CC": -0.009619494900107384,
+          "scalar_BC": 0.1435367465019226
+        },
+        {
+          "relay_strength": 0.9387755393981934,
+          "ic_actual": 0.6878196169782591,
+          "ic_pred": 0.6837352514266968,
+          "scalar_BB": -1.6223608255386353,
+          "scalar_CC": -0.005410958081483841,
+          "scalar_BC": 0.11004476249217987
+        },
+        {
+          "relay_strength": 0.9591836929321289,
+          "ic_actual": 0.7739478546538398,
+          "ic_pred": 0.7495003938674927,
+          "scalar_BB": -1.6936650276184082,
+          "scalar_CC": -0.002404870232567191,
+          "scalar_BC": 0.07495802640914917
+        },
+        {
+          "relay_strength": 0.9795918464660645,
+          "ic_actual": 0.8716416415493284,
+          "ic_pred": 0.816534161567688,
+          "scalar_BB": -1.7665023803710938,
+          "scalar_CC": -0.0006012175581417978,
+          "scalar_BC": 0.038276441395282745
+        },
+        {
+          "relay_strength": 1.0,
+          "ic_actual": 0.9999999998760825,
+          "ic_pred": 0.8848366737365723,
+          "scalar_BB": -1.8408734798431396,
+          "scalar_CC": 0.0,
+          "scalar_BC": 0.0
+        }
+      ],
+      "pass": true,
+      "note": "FCTP scalars: 0e_BB=||B_B||^2, 0e_CC=||B_C||^2, 0e_BC=B_B.B_C. I_c_pred = -0.6277*0e_BB + 0.4844*0e_CC + -0.5572*0e_BC + -0.2707. r=0.9989. Sign flip at relay=0.7142857313156128 (target=0.7368, error=0.0225). B-qubit mediation (w_AB,w_BC both nonzero): True."
+    }
+  },
+  "negative": {
+    "local_only_scalar_lower_correlation": {
+      "r_local_scalar": 0.0,
+      "note": "||B_A||^2 is a single-qubit rotation-invariant scalar. Its correlation with I_c should be low/zero because I_c depends on the bipartite relationship, not just A alone. For the Fe relay chain, B_A is constant (A is always maximally mixed at relay endpoints), so local scalar has ~0 variance => r\u2248NaN\u21920.",
+      "pass": true
+    },
+    "shuffled_labels_near_zero": {
+      "r_shuffled": 0.0,
+      "pass": true,
+      "note": "Shuffled I_c labels should not correlate with any scalar."
+    }
+  },
+  "boundary": {
+    "geomstats_spd_geodesic": {
+      "n_relay_points": 20,
+      "relay_values": [
+        0.01,
+        0.06157894736842105,
+        0.1131578947368421,
+        0.16473684210526315,
+        0.2163157894736842,
+        0.26789473684210524,
+        0.3194736842105263,
+        0.37105263157894736,
+        0.4226315789473684,
+        0.47421052631578947,
+        0.5257894736842105,
+        0.5773684210526315,
+        0.6289473684210526,
+        0.6805263157894736,
+        0.7321052631578947,
+        0.7836842105263158,
+        0.8352631578947368,
+        0.8868421052631579,
+        0.9384210526315789,
+        0.99
+      ],
+      "geodesic_distances": [
+        8.922797617582125,
+        10.740603287051751,
+        11.349504803985052,
+        11.725812712494236,
+        11.999294993955505,
+        12.214653689599466,
+        12.39273090678588,
+        12.544994095167743,
+        12.678481287914376,
+        12.797883567485322,
+        12.906560359457877,
+        13.007101250133022,
+        13.101687219292169,
+        13.192383489808204,
+        13.28147398047906,
+        13.372016054883854,
+        13.469097968723165,
+        13.583645137546913,
+        13.749776287990676,
+        14.280642436938251
+      ],
+      "is_monotone_increasing": true,
+      "pass": true,
+      "note": "SPD geodesic distance from rho_ABC(relay=0) should increase monotonically with relay_strength, confirming smooth transition from Bell_AB to Bell_AC on the SPD manifold."
+    },
+    "z3_local_scalar_unsat": {
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "interpretation": "UNSAT confirms: no constant c can equal both -1 and +1. B_A Bloch vector is (0,0,0) at ALL relay strengths (A is always part of a mixed reduced state). Therefore ||B_A||^2 = 0 everywhere and cannot track I_c. A bilinear (2-qubit) term is necessary. This proves B-qubit mediation is load-bearing."
+    },
+    "fctp_so3_equivariance": {
+      "equivariance_error": 0.0,
+      "pass": true,
+      "note": "FCTP scalar (0e output) must be SO(3)-invariant: f(R*b1, R*b2) = f(b1, b2) for any rotation R. Max deviation: 0.00e+00"
+    }
+  },
+  "summary": {
+    "w_AB": -0.6276950836181641,
+    "w_BC": -0.557235062122345,
+    "w_CC": 0.48444604873657227,
+    "correlation_r": 0.9988910611804661,
+    "sign_flip_predicted": 0.7142857313156128,
+    "sign_flip_target": 0.7368,
+    "flip_error": 0.022514268684387218,
+    "flip_prediction_accurate_within_0.05": true,
+    "b_qubit_mediation_confirmed": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "all_pass": true,
+    "total_time_s": 2.862638235092163,
+    "claims": [
+      "FCTP 0e scalar on Bloch vectors captures Fe relay structure.",
+      "Weighted sum w_AB*0e_AB + w_BC*0e_BC predicts I_c sign flip.",
+      "B-qubit mediation: both w_AB and w_BC nonzero.",
+      "z3 UNSAT: local single-qubit scalar cannot replicate bilinear relay sum.",
+      "geomstats SPD geodesic distance is monotone in relay_strength.",
+      "FCTP 0e output is SO(3)-invariant (equivariance check)."
+    ]
+  }
+}

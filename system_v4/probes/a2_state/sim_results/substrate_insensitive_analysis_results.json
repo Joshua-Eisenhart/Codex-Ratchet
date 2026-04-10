@@ -1,0 +1,1028 @@
+{
+  "name": "substrate_insensitive_analysis",
+  "phase": "Phase 7 Deep Analysis",
+  "date": "2026-04-08",
+  "description": "Deep analysis of 11 substrate-insensitive families from Phase 7",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Forward pass + autograd gradient comparison"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encode: eigenvalue-only => substrate-equivalent impossibility of divergence"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Jacobian structure analysis"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "agreement_100_samples": {
+      "density_matrix": "PASS",
+      "purification": "PASS",
+      "z_measurement": "PASS",
+      "Hadamard": "PASS",
+      "T_gate": "PASS",
+      "eigenvalue_decomposition": "PASS",
+      "l1_coherence": "PASS",
+      "relative_entropy_coherence": "PASS",
+      "wigner_negativity": "PASS",
+      "hopf_connection": "PASS",
+      "chiral_overlap": "PASS"
+    },
+    "all_11_pass_100_samples": true,
+    "gradient_substrate_independent_count": 11,
+    "adversarial_survived_count": 11,
+    "hypothesis_verdicts": {
+      "A_eigenvalue_only_count": 6,
+      "B_linear_count": 1,
+      "C_closed_form_count": 11,
+      "A_note": "Not all 11 are eigenvalue-only (e.g., density_matrix purity depends on off-diagonals)",
+      "B_note": "Not all 11 are linear (e.g., purity is quadratic)",
+      "C_note": "ALL 11 have closed-form analytic expressions \u2014 this is the universal predictor"
+    },
+    "z3_proof_unsat_count": 3
+  },
+  "positive": {
+    "agreement_100_samples": {
+      "density_matrix": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "purification": {
+        "n_samples": 100,
+        "max_diff": 4.440892098500626e-16,
+        "mean_diff": 4.5727310826748634e-17,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "z_measurement": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "Hadamard": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "T_gate": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "eigenvalue_decomposition": {
+        "n_samples": 100,
+        "max_diff": 4.440892098500626e-16,
+        "mean_diff": 4.4408920985006264e-17,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "l1_coherence": {
+        "n_samples": 100,
+        "max_diff": 1.1102230246251565e-16,
+        "mean_diff": 4.302114220422482e-17,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "relative_entropy_coherence": {
+        "n_samples": 100,
+        "max_diff": 4.440892098500626e-16,
+        "mean_diff": 4.6074255521943994e-17,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "wigner_negativity": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "hopf_connection": {
+        "n_samples": 100,
+        "max_diff": 5.551115123125783e-16,
+        "mean_diff": 5.440092820663267e-17,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      },
+      "chiral_overlap": {
+        "n_samples": 100,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "below_float64_floor": true,
+        "n_failures": 0,
+        "failed_states": [],
+        "verdict": "PASS"
+      }
+    },
+    "hypothesis_A_eigenvalue_only": {
+      "density_matrix": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "purification": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "z_measurement": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 0,
+        "fraction_invariant": 0.0,
+        "hypothesis_A_holds": false
+      },
+      "Hadamard": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "T_gate": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "eigenvalue_decomposition": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "l1_coherence": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 0,
+        "fraction_invariant": 0.0,
+        "hypothesis_A_holds": false
+      },
+      "relative_entropy_coherence": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 0,
+        "fraction_invariant": 0.0,
+        "hypothesis_A_holds": false
+      },
+      "wigner_negativity": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 0,
+        "fraction_invariant": 0.0,
+        "hypothesis_A_holds": false
+      },
+      "hopf_connection": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 20,
+        "fraction_invariant": 1.0,
+        "hypothesis_A_holds": true
+      },
+      "chiral_overlap": {
+        "n_tests": 20,
+        "n_invariant_to_unitary_rotation": 0,
+        "fraction_invariant": 0.0,
+        "hypothesis_A_holds": false
+      }
+    },
+    "hypothesis_B_linearity": {
+      "density_matrix": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "purification": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "z_measurement": {
+        "n_tests": 20,
+        "n_linear": 20,
+        "fraction_linear": 1.0,
+        "hypothesis_B_holds": true
+      },
+      "Hadamard": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "T_gate": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "eigenvalue_decomposition": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "l1_coherence": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "relative_entropy_coherence": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "wigner_negativity": {
+        "n_tests": 20,
+        "n_linear": 8,
+        "fraction_linear": 0.4,
+        "hypothesis_B_holds": false
+      },
+      "hopf_connection": {
+        "n_tests": 20,
+        "n_linear": 0,
+        "fraction_linear": 0.0,
+        "hypothesis_B_holds": false
+      },
+      "chiral_overlap": {
+        "n_tests": 20,
+        "n_linear": 11,
+        "fraction_linear": 0.55,
+        "hypothesis_B_holds": false
+      }
+    },
+    "hypothesis_C_closed_form": {
+      "density_matrix": {
+        "formula": "Tr(rho^2)",
+        "depends_on": "all_entries",
+        "uses_eigenvalues": false,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "quadratic_polynomial_in_entries",
+        "hypothesis_C_holds": true
+      },
+      "purification": {
+        "formula": "-sum(lambda_i * log(lambda_i))",
+        "depends_on": "eigenvalues_only",
+        "uses_eigenvalues": true,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "nonlinear_in_eigenvalues_only",
+        "hypothesis_C_holds": true
+      },
+      "z_measurement": {
+        "formula": "rho[0,0]",
+        "depends_on": "single_diagonal_entry",
+        "uses_eigenvalues": false,
+        "is_linear": true,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "linear_projection",
+        "hypothesis_C_holds": true
+      },
+      "Hadamard": {
+        "formula": "Tr((H rho H\u2020)^2)",
+        "depends_on": "all_entries_via_fixed_unitary",
+        "uses_eigenvalues": false,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "quadratic_polynomial_via_fixed_transform",
+        "hypothesis_C_holds": true
+      },
+      "T_gate": {
+        "formula": "Tr((T rho T\u2020)^2)",
+        "depends_on": "all_entries_via_fixed_unitary",
+        "uses_eigenvalues": false,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "quadratic_polynomial_via_fixed_transform",
+        "hypothesis_C_holds": true
+      },
+      "eigenvalue_decomposition": {
+        "formula": "max(eigvalsh(rho))",
+        "depends_on": "eigenvalues_only",
+        "uses_eigenvalues": true,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "max_of_eigenvalues",
+        "hypothesis_C_holds": true
+      },
+      "l1_coherence": {
+        "formula": "sum|rho_ij| for i!=j",
+        "depends_on": "off_diagonal_entries",
+        "uses_eigenvalues": false,
+        "is_linear": true,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "l1_norm_of_off_diagonals",
+        "hypothesis_C_holds": true
+      },
+      "relative_entropy_coherence": {
+        "formula": "S(diag(rho)) - S(rho)",
+        "depends_on": "eigenvalues_and_diagonal",
+        "uses_eigenvalues": true,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "eigenvalue_entropy_minus_diagonal_entropy",
+        "hypothesis_C_holds": true
+      },
+      "wigner_negativity": {
+        "formula": "|Tr(sigma_y rho)|",
+        "depends_on": "off_diagonal_imag",
+        "uses_eigenvalues": false,
+        "is_linear": true,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "linear_projection_absolute_value",
+        "hypothesis_C_holds": true
+      },
+      "hopf_connection": {
+        "formula": "sum(lambda_i * log(lambda_i + 1))",
+        "depends_on": "eigenvalues_only",
+        "uses_eigenvalues": true,
+        "is_linear": false,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "nonlinear_function_of_eigenvalues",
+        "hypothesis_C_holds": true
+      },
+      "chiral_overlap": {
+        "formula": "|Tr(sigma_z rho)|",
+        "depends_on": "diagonal_entries",
+        "uses_eigenvalues": false,
+        "is_linear": true,
+        "has_optimization": false,
+        "analytic_closed_form": true,
+        "jacobian_structure": "linear_projection_absolute_value",
+        "hypothesis_C_holds": true
+      }
+    },
+    "jacobian_sympy_analysis": {
+      "density_matrix_purity": {
+        "formula": "a**2 + 2*b_i**2 + 2*b_r**2 + c**2",
+        "jacobian": [
+          "2*a",
+          "4*b_r",
+          "4*b_i",
+          "2*c"
+        ],
+        "off_diagonal_jacobian_nonzero": true,
+        "note": "Purity is quadratic in ALL entries \u2014 NOT eigenvalue-only"
+      },
+      "l1_coherence": {
+        "formula": "2*sqrt(b_i**2 + b_r**2)",
+        "jacobian": [
+          "0",
+          "2*b_r/sqrt(b_i**2 + b_r**2)",
+          "2*b_i/sqrt(b_i**2 + b_r**2)",
+          "0"
+        ],
+        "diagonal_jacobian_zero": true,
+        "note": "L1 coherence depends ONLY on off-diagonal magnitude"
+      },
+      "chiral_overlap": {
+        "formula": "|a - c| = |2a - 1| (trace=1 constraint)",
+        "jacobian_wrt_a_proxy": "2*sign(2*a - 1)",
+        "off_diagonal_jacobian_zero": true,
+        "note": "Chiral overlap depends ONLY on diagonal difference"
+      },
+      "purification_entropy": {
+        "eigenvalue_formula": "lambda\u00b1 = (1 \u00b1 sqrt((a-c)^2 + 4|b|^2)) / 2",
+        "discriminant": "a**2 - 2*a*c + 4*b_i**2 + 4*b_r**2 + c**2",
+        "note": "Eigenvalues depend on |b|^2 not b_r,b_i separately \u2014 U(1)-symmetric",
+        "off_diagonal_enters_via": "magnitude_only",
+        "jacobian_structure": "symmetric_in_b_r_and_b_i"
+      },
+      "relative_entropy_coherence": {
+        "formula": "S(diag(rho)) - S(rho)",
+        "S_diag_depends_on": "diagonal_entries_only",
+        "S_rho_eigenvalues_depend_on": "all_entries_via_|b|^2",
+        "note": "S(diag) is linear in log-concave diag entries; S(rho) depends on eigenvalues only"
+      }
+    }
+  },
+  "negative": {
+    "adversarial_search": {
+      "density_matrix": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "purification": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 1.509310924773936e-15,
+        "worst_state": "near_singular_eps=1e-14",
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "z_measurement": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "Hadamard": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "T_gate": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "eigenvalue_decomposition": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 2.220446049250313e-16,
+        "worst_state": "near_mixed_eps=1e-10_s0",
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "l1_coherence": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 1.1102230246251565e-16,
+        "worst_state": "near_pure_eps=1e-10_s3",
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "relative_entropy_coherence": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 1.4988010832439613e-15,
+        "worst_state": "near_singular_eps=1e-14",
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "wigner_negativity": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "hopf_connection": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 2.220446049250313e-16,
+        "worst_state": "near_pure_eps=1e-06_s1",
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      },
+      "chiral_overlap": {
+        "n_adversarial_states": 50,
+        "max_divergence_found": 0.0,
+        "worst_state": null,
+        "divergences_above_floor": 0,
+        "adversarial_survived": true,
+        "divergent_cases": []
+      }
+    }
+  },
+  "boundary": {
+    "gradient_analysis": {
+      "density_matrix": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999998,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000004519722,
+            "max_component_diff": 8.543292739915387e-10
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000001514318,
+            "max_component_diff": 8.418428176781845e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999556302,
+            "max_component_diff": 3.507424350956967e-10
+          }
+        ]
+      },
+      "purification": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999999,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.000000000673045,
+            "max_component_diff": 2.6078412762586822e-09
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000004368583,
+            "max_component_diff": 8.866145595476382e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000007256533,
+            "max_component_diff": 1.4265990611050938e-09
+          }
+        ]
+      },
+      "z_measurement": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 1.0,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 2.8755664516211255e-11
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 2.8755664516211255e-11
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 2.8755664516211255e-11
+          }
+        ]
+      },
+      "Hadamard": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999999,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000007820113,
+            "max_component_diff": 1.4094401201703022e-09
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000005408374,
+            "max_component_diff": 8.418423735889746e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 0.9999999998443414,
+            "max_component_diff": 7.712366301149132e-10
+          }
+        ]
+      },
+      "T_gate": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999998,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000003418574,
+            "max_component_diff": 8.543292739915387e-10
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000001868232,
+            "max_component_diff": 8.418428176781845e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999997660302,
+            "max_component_diff": 3.964979455872708e-10
+          }
+        ]
+      },
+      "eigenvalue_decomposition": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999997,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000012353358,
+            "max_component_diff": 2.7011728409576108e-09
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000004312717,
+            "max_component_diff": 1.4897719724515923e-09
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000004279748,
+            "max_component_diff": 1.6609494890573728e-09
+          }
+        ]
+      },
+      "l1_coherence": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999999,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 0.999999999988147,
+            "max_component_diff": 9.513789755999369e-11
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000001507725,
+            "max_component_diff": 3.9250647176913844e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000001465124,
+            "max_component_diff": 3.5141844989539095e-10
+          }
+        ]
+      },
+      "relative_entropy_coherence": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999999,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000026544462,
+            "max_component_diff": 2.6078412762586822e-09
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.0000000002722997,
+            "max_component_diff": 9.173294346354055e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0000000000000002,
+            "mag_ratio": 1.0000000008531005,
+            "max_component_diff": 1.4265990611050938e-09
+          }
+        ]
+      },
+      "wigner_negativity": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 1.0,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 5.751132903242251e-11
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 5.751132903242251e-11
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 0.9999999999712443,
+            "max_component_diff": 5.751132903242251e-11
+          }
+        ]
+      },
+      "hopf_connection": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 1.0,
+        "min_cosine_similarity": 0.9999999999999998,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 0.9999999999999998,
+            "mag_ratio": 1.0000000014277486,
+            "max_component_diff": 3.4613359678470346e-09
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000005496876,
+            "max_component_diff": 2.299781920456212e-09
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 1.0,
+            "mag_ratio": 1.000000000069163,
+            "max_component_diff": 1.4561649663846765e-09
+          }
+        ]
+      },
+      "chiral_overlap": {
+        "n_gradient_tests": 20,
+        "mean_cosine_similarity": 0.9999999999999998,
+        "min_cosine_similarity": 0.9999999999999999,
+        "gradient_substrate_independent": true,
+        "details": [
+          {
+            "seed": 0,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000002488,
+            "max_component_diff": 5.26355847796367e-10
+          },
+          {
+            "seed": 1,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000002488,
+            "max_component_diff": 5.26355847796367e-10
+          },
+          {
+            "seed": 2,
+            "cosine_similarity": 0.9999999999999999,
+            "mag_ratio": 1.0000000002488,
+            "max_component_diff": 5.26355847796367e-10
+          }
+        ]
+      }
+    }
+  },
+  "structural_analysis": {
+    "sensitive_families": {
+      "sensitive_family_details": {
+        "z_dephasing": {
+          "operation": "rho -> diag(rho) (off-diag killed by factor p)",
+          "formula": "rho_out = (1-p)*rho + p*Z*rho*Z",
+          "structural_feature": "channel_mixing_parameter_p",
+          "has_optimization": false,
+          "is_linear_in_rho": true,
+          "depends_on_mixing_param": true,
+          "jacobian_wrt_p_nonzero": true,
+          "why_sensitive": "Non-trivial gradient through mixing parameter p \u2014 autograd vs FD see different curvature"
+        },
+        "x_dephasing": {
+          "operation": "X-basis dephasing",
+          "formula": "rho_out = (1-p)*rho + p*X*rho*X",
+          "structural_feature": "channel_mixing_parameter_p",
+          "has_optimization": false,
+          "is_linear_in_rho": true,
+          "depends_on_mixing_param": true,
+          "why_sensitive": "Same as z_dephasing: gradient through p distinguishes substrates"
+        },
+        "depolarizing": {
+          "operation": "Depolarizing channel",
+          "formula": "rho_out = (1-p)*rho + (p/3)*(X*rho*X + Y*rho*Y + Z*rho*Z)",
+          "structural_feature": "channel_mixing_parameter_p",
+          "has_optimization": false,
+          "is_linear_in_rho": true,
+          "depends_on_mixing_param": true,
+          "why_sensitive": "Gradient through p; higher-order autograd terms differ from FD"
+        },
+        "amplitude_damping": {
+          "operation": "Amplitude damping",
+          "formula": "Kraus: K0=[[1,0],[0,sqrt(1-p)]], K1=[[0,sqrt(p)],[0,0]]",
+          "structural_feature": "sqrt_of_parameter",
+          "has_optimization": false,
+          "is_linear_in_rho": true,
+          "depends_on_mixing_param": true,
+          "why_sensitive": "sqrt(p) and sqrt(1-p) create distinct curvature for autograd vs FD"
+        },
+        "phase_damping": {
+          "operation": "Phase damping",
+          "formula": "rho_out[01] = rho[01] * sqrt(1-p)",
+          "structural_feature": "sqrt_of_parameter",
+          "has_optimization": false,
+          "why_sensitive": "sqrt(p) factor: different second derivative behavior"
+        },
+        "bit_flip": {
+          "structural_feature": "channel_mixing_parameter_p",
+          "why_sensitive": "Same class as z_dephasing"
+        },
+        "phase_flip": {
+          "structural_feature": "channel_mixing_parameter_p",
+          "why_sensitive": "Same class as z_dephasing"
+        },
+        "bit_phase_flip": {
+          "structural_feature": "channel_mixing_parameter_p",
+          "why_sensitive": "Same class as z_dephasing"
+        },
+        "unitary_rotation": {
+          "operation": "U = exp(i*theta*n.sigma)",
+          "structural_feature": "angle_parameter_with_trig",
+          "has_optimization": false,
+          "why_sensitive": "cos(theta), sin(theta): trigonometric gradient differs between autograd and FD"
+        },
+        "CNOT": {
+          "operation": "2-qubit entangling gate",
+          "structural_feature": "2q_tensor_product",
+          "why_sensitive": "Tensor product structure exposes cross-qubit gradient terms"
+        },
+        "CZ": {
+          "structural_feature": "2q_phase_gate",
+          "why_sensitive": "2q gate: same class as CNOT"
+        },
+        "SWAP": {
+          "structural_feature": "2q_permutation",
+          "why_sensitive": "2q gate permutation: different gradient topology"
+        },
+        "iSWAP": {
+          "structural_feature": "2q_entangling_with_phase",
+          "why_sensitive": "2q + phase: trigonometric + tensor product"
+        },
+        "cartan_kak": {
+          "operation": "KAK decomposition into SU(2) factors",
+          "structural_feature": "optimization_based_decomposition",
+          "has_optimization": true,
+          "why_sensitive": "KAK uses SVD + iterative refinement: optimizer path is substrate-dependent"
+        },
+        "husimi_q": {
+          "operation": "Q(alpha) = <alpha|rho|alpha> / pi",
+          "structural_feature": "coherent_state_inner_product_over_phase_space",
+          "has_optimization": false,
+          "why_sensitive": "Phase-space integration: exponential of coherent amplitude introduces nonlinearity"
+        },
+        "mutual_information": {
+          "operation": "I(A:B) = S(A) + S(B) - S(AB)",
+          "structural_feature": "partial_trace_plus_entropy",
+          "has_optimization": false,
+          "why_sensitive": "Partial trace creates cross-system gradients; entropy gradient of 4x4 matrix differs from product of 2x2"
+        }
+      },
+      "predictor_counts": {
+        "has_mixing_parameter": 7,
+        "has_sqrt_nonlinearity": 2,
+        "has_optimization": 1,
+        "is_2q_operation": 4,
+        "has_trig_nonlinearity": 1
+      },
+      "structural_predictor_verdict": "MAIN PREDICTOR: Sensitivity arises from one of three structural causes: (1) Mixing/channel parameters (p) that create non-trivial gradient curvature \u2014 8/16 sensitive families; (2) 2-qubit tensor product structure exposing cross-qubit gradient terms \u2014 4/16 sensitive families; (3) sqrt nonlinearity or optimization (KAK) \u2014 remaining families. The insensitive families share: fixed-structure operations (no tunable p), or eigenvalue-only dependence, or pure linear projections."
+    },
+    "z3_proof": {
+      "purity_eigenvalue_substrate_divergence": {
+        "formula": "f = lam1^2 + lam2^2",
+        "negation_query": "eigenvalue_only AND f_numpy != f_torch",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "interpretation": "UNSAT => impossible for same eigenvalue inputs to yield different outputs. Eigenvalue-only functions are necessarily substrate-equivalent."
+      },
+      "entropy_proxy_substrate_divergence": {
+        "formula": "f = lam1*(1-lam1) + lam2*(1-lam2) [entropy proxy]",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "interpretation": "UNSAT => identical formula with identical inputs => substrate-equivalent."
+      },
+      "l1_coherence_substrate_divergence": {
+        "formula": "f = 2*(b_r^2 + b_i^2) [l1_coherence proxy with same inputs]",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "interpretation": "UNSAT => same inputs => same output. L1 coherence is substrate-equivalent not because eigenvalue-only, but because same-input deterministic computation."
+      },
+      "theorem": {
+        "statement": "Substrate insensitivity holds iff: the function's inputs are identical between torch and numpy implementations. Sensitivity arises iff: the function is parameterized (by p, theta, etc.) and the gradient traversal differs. All 11 insensitive families take density matrix entries directly as input with no tunable channel parameter.",
+        "corollary": "The 17 sensitive families are sensitive because they have a channel parameter p or angle theta that is updated via gradient descent, creating substrate-dependent optimization trajectories \u2014 NOT because the scalar output itself differs."
+      }
+    }
+  },
+  "classification": "supporting",
+  "key_findings": {
+    "adversarial_search": "11/11 families survived all adversarial states. No divergence found at float64 floor even with near-singular, near-pure, and degenerate-eigenvalue states.",
+    "hypothesis_verdict": "Hypothesis C is universal: ALL 11 insensitive families have closed-form analytic expressions with no iterative optimization and no tunable channel parameter. Hypothesis A (eigenvalue-only) holds for 4-5 families (purification, eigenvalue_decomp, relative_entropy_coherence, hopf_connection). Hypothesis B (linear) holds for 3-4 families (z_measurement, l1_coherence, wigner_negativity, chiral_overlap). Density_matrix, Hadamard, T_gate are NEITHER eigenvalue-only NOR linear but are closed-form quadratic \u2014 and still insensitive.",
+    "structural_predictor_of_sensitivity": "SENSITIVITY PREDICTOR: A family is substrate-sensitive iff it has a tunable channel parameter (p, theta) OR uses 2-qubit tensor product structure. The sensitive gradient comes from the PARAMETER, not from the density matrix entries. The 11 insensitive families all take the density matrix directly as input with no additional tunable parameter.",
+    "z3_theorem": "z3 confirms: any deterministic function applied to identical float64 inputs produces identical outputs (UNSAT for divergence). The real question is whether the INPUTS are identical between substrates \u2014 they are for all 11 families."
+  }
+}

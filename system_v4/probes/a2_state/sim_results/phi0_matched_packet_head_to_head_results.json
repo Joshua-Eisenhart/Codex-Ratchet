@@ -1,0 +1,982 @@
+{
+  "name": "phi0_matched_packet_head_to_head",
+  "probe": "phi0_matched_packet_head_to_head",
+  "purpose": "Compare Phi0 candidates packet-by-packet on a matched bridge packet library without promoting a final winner absent a strong margin",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core bridge-state construction, partial trace, packet scoring, and candidate head-to-head comparison"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch"
+  ],
+  "positive": {
+    "packet_matrix": {
+      "coherent_information": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 0.14023698834443654,
+            "Xi_shell": -0.8167236634725387,
+            "Xi_hist": -0.829228908820393
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.9569606518169752,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.7283618063198058,
+            "Xi_shell": -0.495548833399998,
+            "Xi_hist": -0.7707622531665849
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.23281297291980785,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.7019913831966909,
+            "Xi_shell": -0.7134330923892682,
+            "Xi_hist": -0.7676429291905225
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.011441709192577365,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.7182045204465236,
+            "Xi_shell": -0.7168725702437588,
+            "Xi_hist": -0.7618641620624687
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.0013319502027647756,
+          "matches_expectation": true
+        }
+      ],
+      "conditional_entropy": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": -0.14023698834443654,
+            "Xi_shell": 0.8167236634725387,
+            "Xi_hist": 0.829228908820393
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.9569606518169752,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": 0.7283618063198058,
+            "Xi_shell": 0.495548833399998,
+            "Xi_hist": 0.7707622531665849
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.23281297291980785,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": 0.7019913831966909,
+            "Xi_shell": 0.7134330923892682,
+            "Xi_hist": 0.7676429291905225
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.011441709192577365,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": 0.7182045204465236,
+            "Xi_shell": 0.7168725702437588,
+            "Xi_hist": 0.7618641620624687
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.0013319502027647756,
+          "matches_expectation": true
+        }
+      ],
+      "mutual_information_companion": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 1.13790459306945,
+            "Xi_shell": 0.0876860135894808,
+            "Xi_hist": 0.04012643225513579
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 1.0502185794799692,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": 0.11765370065646197,
+            "Xi_shell": 0.3656944144088936,
+            "Xi_hist": 0.056051440493306126
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.24804071375243164,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": 0.1286830440977218,
+            "Xi_shell": 0.15424741974606393,
+            "Xi_hist": 0.15874756806498946
+          },
+          "ordered_families": [
+            "Xi_hist",
+            "Xi_shell",
+            "Xi_ref"
+          ],
+          "winner": "Xi_hist",
+          "winner_margin": 0.004500148318925534,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": 0.16098942231451474,
+            "Xi_shell": 0.17357627739249248,
+            "Xi_hist": 0.12329798527027158
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.012586855077977743,
+          "matches_expectation": true
+        }
+      ],
+      "weighted_shell_cut_coherent_information": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": -0.4261539231840138,
+            "Xi_shell": -0.8598688519311881,
+            "Xi_hist": -0.8490182758773626
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_hist",
+            "Xi_shell"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.42286435269334877,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.7861290392518373,
+            "Xi_shell": -0.6757757218194502,
+            "Xi_hist": -0.7983475388930983
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.11035331743238708,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.7651383040071482,
+            "Xi_shell": -0.7891660983177471,
+            "Xi_hist": -0.845801571851974
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.02402779431059887,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.7972334455985763,
+            "Xi_shell": -0.8021278680648183,
+            "Xi_hist": -0.8224758486537217
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.004894422466241943,
+          "matches_expectation": true
+        }
+      ],
+      "finite_blocklength_proxy": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 0.3040791992015222,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.3040791992015222,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -2.2204460492503128e-16,
+            "Xi_hist": 1.1102230246251565e-16
+          },
+          "ordered_families": [
+            "Xi_hist",
+            "Xi_ref",
+            "Xi_shell"
+          ],
+          "winner": "Xi_hist",
+          "winner_margin": 1.1102230246251565e-16,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.0,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.0,
+          "matches_expectation": true
+        }
+      ]
+    },
+    "candidate_summary": {
+      "coherent_information": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.3006368210330313,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "conditional_entropy": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.3006368210330313,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "mutual_information_companion": {
+        "expected_hits": 3,
+        "expected_total": 3,
+        "mean_margin": 0.32883657415732603,
+        "unsigned_only": true,
+        "trivial_on_matched_packets": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "pass": true
+      },
+      "weighted_shell_cut_coherent_information": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.14053497172564416,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "finite_blocklength_proxy": {
+        "expected_hits": 1,
+        "expected_total": 3,
+        "mean_margin": 0.07601979980038058,
+        "unsigned_only": true,
+        "trivial_on_matched_packets": true,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only",
+          "trivial_on_matched_packets"
+        ],
+        "pass": true
+      }
+    },
+    "summary": {
+      "top_candidate_by_hits": "mutual_information_companion",
+      "top_hits": 3,
+      "top_mean_margin": 0.32883657415732603,
+      "second_hits": 2,
+      "second_mean_margin": 0.3006368210330313,
+      "strong_margin": false,
+      "promoted_winner": null,
+      "all_pass": true
+    }
+  },
+  "head_to_head": {
+    "packet_matrix": {
+      "coherent_information": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 0.14023698834443654,
+            "Xi_shell": -0.8167236634725387,
+            "Xi_hist": -0.829228908820393
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.9569606518169752,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.7283618063198058,
+            "Xi_shell": -0.495548833399998,
+            "Xi_hist": -0.7707622531665849
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.23281297291980785,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.7019913831966909,
+            "Xi_shell": -0.7134330923892682,
+            "Xi_hist": -0.7676429291905225
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.011441709192577365,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.7182045204465236,
+            "Xi_shell": -0.7168725702437588,
+            "Xi_hist": -0.7618641620624687
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.0013319502027647756,
+          "matches_expectation": true
+        }
+      ],
+      "conditional_entropy": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": -0.14023698834443654,
+            "Xi_shell": 0.8167236634725387,
+            "Xi_hist": 0.829228908820393
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.9569606518169752,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": 0.7283618063198058,
+            "Xi_shell": 0.495548833399998,
+            "Xi_hist": 0.7707622531665849
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.23281297291980785,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": 0.7019913831966909,
+            "Xi_shell": 0.7134330923892682,
+            "Xi_hist": 0.7676429291905225
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.011441709192577365,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": 0.7182045204465236,
+            "Xi_shell": 0.7168725702437588,
+            "Xi_hist": 0.7618641620624687
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.0013319502027647756,
+          "matches_expectation": true
+        }
+      ],
+      "mutual_information_companion": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 1.13790459306945,
+            "Xi_shell": 0.0876860135894808,
+            "Xi_hist": 0.04012643225513579
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 1.0502185794799692,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": 0.11765370065646197,
+            "Xi_shell": 0.3656944144088936,
+            "Xi_hist": 0.056051440493306126
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.24804071375243164,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": 0.1286830440977218,
+            "Xi_shell": 0.15424741974606393,
+            "Xi_hist": 0.15874756806498946
+          },
+          "ordered_families": [
+            "Xi_hist",
+            "Xi_shell",
+            "Xi_ref"
+          ],
+          "winner": "Xi_hist",
+          "winner_margin": 0.004500148318925534,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": 0.16098942231451474,
+            "Xi_shell": 0.17357627739249248,
+            "Xi_hist": 0.12329798527027158
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.012586855077977743,
+          "matches_expectation": true
+        }
+      ],
+      "weighted_shell_cut_coherent_information": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": -0.4261539231840138,
+            "Xi_shell": -0.8598688519311881,
+            "Xi_hist": -0.8490182758773626
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_hist",
+            "Xi_shell"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.42286435269334877,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.7861290392518373,
+            "Xi_shell": -0.6757757218194502,
+            "Xi_hist": -0.7983475388930983
+          },
+          "ordered_families": [
+            "Xi_shell",
+            "Xi_ref",
+            "Xi_hist"
+          ],
+          "winner": "Xi_shell",
+          "winner_margin": 0.11035331743238708,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.7651383040071482,
+            "Xi_shell": -0.7891660983177471,
+            "Xi_hist": -0.845801571851974
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.02402779431059887,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.7972334455985763,
+            "Xi_shell": -0.8021278680648183,
+            "Xi_hist": -0.8224758486537217
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.004894422466241943,
+          "matches_expectation": true
+        }
+      ],
+      "finite_blocklength_proxy": [
+        {
+          "packet_label": "reference_dominant",
+          "expected_dominant_family": "Xi_ref",
+          "scores": {
+            "Xi_ref": 0.3040791992015222,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.3040791992015222,
+          "matches_expectation": true
+        },
+        {
+          "packet_label": "shell_dominant",
+          "expected_dominant_family": "Xi_shell",
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -2.2204460492503128e-16,
+            "Xi_hist": 1.1102230246251565e-16
+          },
+          "ordered_families": [
+            "Xi_hist",
+            "Xi_ref",
+            "Xi_shell"
+          ],
+          "winner": "Xi_hist",
+          "winner_margin": 1.1102230246251565e-16,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "history_dominant",
+          "expected_dominant_family": "Xi_hist",
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.0,
+          "matches_expectation": false
+        },
+        {
+          "packet_label": "balanced_tie_case",
+          "expected_dominant_family": null,
+          "scores": {
+            "Xi_ref": -0.0,
+            "Xi_shell": -0.0,
+            "Xi_hist": -0.0
+          },
+          "ordered_families": [
+            "Xi_ref",
+            "Xi_shell",
+            "Xi_hist"
+          ],
+          "winner": "Xi_ref",
+          "winner_margin": 0.0,
+          "matches_expectation": true
+        }
+      ]
+    },
+    "candidate_summary": {
+      "coherent_information": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.3006368210330313,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "conditional_entropy": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.3006368210330313,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "mutual_information_companion": {
+        "expected_hits": 3,
+        "expected_total": 3,
+        "mean_margin": 0.32883657415732603,
+        "unsigned_only": true,
+        "trivial_on_matched_packets": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "pass": true
+      },
+      "weighted_shell_cut_coherent_information": {
+        "expected_hits": 2,
+        "expected_total": 3,
+        "mean_margin": 0.14053497172564416,
+        "unsigned_only": false,
+        "trivial_on_matched_packets": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "pass": true
+      },
+      "finite_blocklength_proxy": {
+        "expected_hits": 1,
+        "expected_total": 3,
+        "mean_margin": 0.07601979980038058,
+        "unsigned_only": true,
+        "trivial_on_matched_packets": true,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only",
+          "trivial_on_matched_packets"
+        ],
+        "pass": true
+      }
+    },
+    "summary": {
+      "top_candidate_by_hits": "mutual_information_companion",
+      "top_hits": 3,
+      "top_mean_margin": 0.32883657415732603,
+      "second_hits": 2,
+      "second_mean_margin": 0.3006368210330313,
+      "strong_margin": false,
+      "promoted_winner": null,
+      "all_pass": true
+    }
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "mutual_information_disqualified_as_unsigned_only",
+        "pass": true
+      },
+      {
+        "name": "finite_blocklength_proxy_disqualified_as_unsigned_only",
+        "pass": true
+      },
+      {
+        "name": "no_final_winner_without_strong_margin",
+        "pass": true
+      },
+      {
+        "name": "at_least_one_signed_candidate_survives_disqualification",
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "coherent_information_and_conditional_entropy_match_packet_winners",
+        "pass": true
+      },
+      {
+        "name": "balanced_tie_case_does_not_force_consensus_winner",
+        "pass": true
+      },
+      {
+        "name": "top_candidate_not_promoted_without_strong_margin",
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "head_to_head_checks": {
+      "passed": 5,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 4,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "top_candidate_by_hits": "mutual_information_companion",
+    "promoted_winner": null,
+    "strong_margin": false,
+    "all_pass": true,
+    "scope_note": "Matched-packet Phi0 comparison only. Unsigned companions are retained for diagnostics, not promoted as primitive signed kernels."
+  }
+}

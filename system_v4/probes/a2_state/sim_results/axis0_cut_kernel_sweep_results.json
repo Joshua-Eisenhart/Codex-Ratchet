@@ -1,0 +1,678 @@
+{
+  "name": "axis0_cut_kernel_sweep",
+  "schema": "axis0_cut_kernel_sweep/v1",
+  "description": "Pure-math sweep of bipartite cut kernels derived from rho_AB: mutual information, conditional entropy, coherent information, entanglement entropy where applicable, and a weighted cut functional.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this cut-kernel sweep"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "battery_rows": [
+      {
+        "label": "product_00",
+        "class": "product",
+        "family": "product",
+        "purity": 1.0,
+        "mutual_information": 0.0,
+        "conditional_entropy_a_given_b": 0.0,
+        "conditional_entropy_b_given_a": 0.0,
+        "coherent_information_a_to_b": 0.0,
+        "coherent_information_b_to_a": 0.0,
+        "entanglement_entropy_if_pure": -0.0,
+        "negativity": 0.0,
+        "log_negativity": 0.0,
+        "weighted_cut_functional": 0.0,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "product_+-",
+        "class": "product",
+        "family": "product",
+        "purity": 0.9999999999999998,
+        "mutual_information": -3.2034265038149176e-16,
+        "conditional_entropy_a_given_b": 3.2034265038149176e-16,
+        "conditional_entropy_b_given_a": 0.0,
+        "coherent_information_a_to_b": 0.0,
+        "coherent_information_b_to_a": 0.0,
+        "entanglement_entropy_if_pure": -0.0,
+        "negativity": 1.1102230246251565e-16,
+        "log_negativity": 3.203426503814917e-16,
+        "weighted_cut_functional": -8.991546714101898e-17,
+        "fake_constant": 1.0,
+        "fake_trace": 0.9999999999999999
+      },
+      {
+        "label": "classical_corr_70_30",
+        "class": "classically_correlated",
+        "family": "classically_correlated",
+        "purity": 0.5349999999999999,
+        "mutual_information": 0.03838971020210824,
+        "conditional_entropy_a_given_b": 0.5714505945142923,
+        "conditional_entropy_b_given_a": 0.5714505945142923,
+        "coherent_information_a_to_b": -0.5714505945142923,
+        "coherent_information_b_to_a": -0.5714505945142923,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.0,
+        "log_negativity": 0.0,
+        "weighted_cut_functional": 0.013436398570737883,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "classical_corr_55_45",
+        "class": "classically_correlated",
+        "family": "classically_correlated",
+        "purity": 0.40375,
+        "mutual_information": 0.0956112040382191,
+        "conditional_entropy_a_given_b": 0.6735816249747946,
+        "conditional_entropy_b_given_a": 0.6735816249747946,
+        "coherent_information_a_to_b": -0.6735816249747946,
+        "coherent_information_b_to_a": -0.6735816249747946,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.0,
+        "log_negativity": 0.0,
+        "weighted_cut_functional": 0.03346392141337668,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "bell_phi_plus",
+        "class": "bell_like",
+        "family": "bell_like",
+        "purity": 1.0,
+        "mutual_information": 2.0,
+        "conditional_entropy_a_given_b": -1.0,
+        "conditional_entropy_b_given_a": -1.0,
+        "coherent_information_a_to_b": 1.0,
+        "coherent_information_b_to_a": 1.0,
+        "entanglement_entropy_if_pure": 1.0,
+        "negativity": 0.5,
+        "log_negativity": 1.0,
+        "weighted_cut_functional": 1.25,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "bell_psi_minus",
+        "class": "bell_like",
+        "family": "bell_like",
+        "purity": 1.0,
+        "mutual_information": 2.0,
+        "conditional_entropy_a_given_b": -1.0,
+        "conditional_entropy_b_given_a": -1.0,
+        "coherent_information_a_to_b": 1.0,
+        "coherent_information_b_to_a": 1.0,
+        "entanglement_entropy_if_pure": 1.0,
+        "negativity": 0.5,
+        "log_negativity": 1.0,
+        "weighted_cut_functional": 1.25,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "werner_0p2",
+        "class": "werner_like",
+        "family": "werner_like",
+        "purity": 0.27999999999999997,
+        "mutual_information": 0.07807190511263751,
+        "conditional_entropy_a_given_b": 0.9219280948873625,
+        "conditional_entropy_b_given_a": 0.9219280948873623,
+        "coherent_information_a_to_b": -0.9219280948873623,
+        "coherent_information_b_to_a": -0.9219280948873623,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.0,
+        "log_negativity": 0.0,
+        "weighted_cut_functional": 0.027325166789423126,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "werner_0p4",
+        "class": "werner_like",
+        "family": "werner_like",
+        "purity": 0.37,
+        "mutual_information": 0.2939924206876712,
+        "conditional_entropy_a_given_b": 0.7060075793123288,
+        "conditional_entropy_b_given_a": 0.7060075793123288,
+        "coherent_information_a_to_b": -0.7060075793123288,
+        "coherent_information_b_to_a": -0.7060075793123288,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.04999999999999993,
+        "log_negativity": 0.13750352374993474,
+        "weighted_cut_functional": 0.1128973472406849,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "werner_0p7",
+        "class": "werner_like",
+        "family": "werner_like",
+        "purity": 0.6174999999999999,
+        "mutual_information": 0.8741906083247257,
+        "conditional_entropy_a_given_b": 0.12580939167527427,
+        "conditional_entropy_b_given_a": 0.12580939167527427,
+        "coherent_information_a_to_b": -0.12580939167527427,
+        "coherent_information_b_to_a": -0.12580939167527427,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.2749999999999999,
+        "log_negativity": 0.6322682154995127,
+        "weighted_cut_functional": 0.36096671291365395,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0000000000000002
+      },
+      {
+        "label": "history_cnot_bell",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 1.0,
+        "mutual_information": 2.0,
+        "conditional_entropy_a_given_b": -1.0,
+        "conditional_entropy_b_given_a": -1.0,
+        "coherent_information_a_to_b": 1.0,
+        "coherent_information_b_to_a": 1.0,
+        "entanglement_entropy_if_pure": 1.0,
+        "negativity": 0.5,
+        "log_negativity": 1.0,
+        "weighted_cut_functional": 1.25,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "history_dephased_bell",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 0.545,
+        "mutual_information": 1.065931944624509,
+        "conditional_entropy_a_given_b": -0.06593194462450902,
+        "conditional_entropy_b_given_a": -0.06593194462450902,
+        "coherent_information_a_to_b": 0.06593194462450902,
+        "coherent_information_b_to_a": 0.06593194462450902,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.15000000000000002,
+        "log_negativity": 0.37851162325372983,
+        "weighted_cut_functional": 0.4261523612371563,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "history_mixed",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 0.5673999999999999,
+        "mutual_information": 0.8532923859785908,
+        "conditional_entropy_a_given_b": 0.11465814971504851,
+        "conditional_entropy_b_given_a": 0.11465814971504851,
+        "coherent_information_a_to_b": -0.11465814971504851,
+        "coherent_information_b_to_a": -0.11465814971504851,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.23654062715876123,
+        "log_negativity": 0.5588370107999968,
+        "weighted_cut_functional": 0.345960460524259,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      }
+    ],
+    "kernel_sweep": {
+      "mutual_information": {
+        "class_means": {
+          "product": -1.6017132519074588e-16,
+          "classically_correlated": 0.06700045712016367,
+          "bell_like": 2.0,
+          "werner_like": 0.41541831137501145,
+          "history_derived": 1.3064081102010334
+        },
+        "class_ranges": {
+          "product": 3.2034265038149176e-16,
+          "classically_correlated": 0.05722149383611086,
+          "bell_like": 0.0,
+          "werner_like": 0.7961187032120882,
+          "history_derived": 1.1467076140214092
+        },
+        "spread": 2.0000000000000004,
+        "product_bell_gap": 2.0,
+        "history_product_gap": 1.3064081102010336
+      },
+      "conditional_entropy_a_given_b": {
+        "class_means": {
+          "product": 1.6017132519074588e-16,
+          "classically_correlated": 0.6225161097445434,
+          "bell_like": -1.0,
+          "werner_like": 0.5845816886249885,
+          "history_derived": -0.31709126496982015
+        },
+        "class_ranges": {
+          "product": 3.2034265038149176e-16,
+          "classically_correlated": 0.10213103046050231,
+          "bell_like": 0.0,
+          "werner_like": 0.7961187032120882,
+          "history_derived": 1.1146581497150485
+        },
+        "spread": 1.9219280948873625,
+        "product_bell_gap": 1.0000000000000002,
+        "history_product_gap": 0.3170912649698203
+      },
+      "coherent_information_a_to_b": {
+        "class_means": {
+          "product": 0.0,
+          "classically_correlated": -0.6225161097445434,
+          "bell_like": 1.0,
+          "werner_like": -0.5845816886249885,
+          "history_derived": 0.31709126496982015
+        },
+        "class_ranges": {
+          "product": 0.0,
+          "classically_correlated": 0.10213103046050231,
+          "bell_like": 0.0,
+          "werner_like": 0.796118703212088,
+          "history_derived": 1.1146581497150485
+        },
+        "spread": 1.9219280948873623,
+        "product_bell_gap": 1.0,
+        "history_product_gap": 0.31709126496982015
+      },
+      "entanglement_entropy_if_pure": {
+        "class_means": {
+          "product": 0.0,
+          "bell_like": 1.0,
+          "history_derived": 1.0
+        },
+        "class_ranges": {
+          "product": 0.0,
+          "bell_like": 0.0,
+          "history_derived": 0.0
+        },
+        "spread": 1.0,
+        "product_bell_gap": 1.0,
+        "history_product_gap": 1.0
+      },
+      "weighted_cut_functional": {
+        "class_means": {
+          "product": -4.495773357050949e-17,
+          "classically_correlated": 0.023450159992057282,
+          "bell_like": 1.25,
+          "werner_like": 0.16706307564792067,
+          "history_derived": 0.6740376072538051
+        },
+        "class_ranges": {
+          "product": 8.991546714101898e-17,
+          "classically_correlated": 0.020027522842638798,
+          "bell_like": 0.0,
+          "werner_like": 0.3336415461242308,
+          "history_derived": 0.904039539475741
+        },
+        "spread": 1.25,
+        "product_bell_gap": 1.25,
+        "history_product_gap": 0.6740376072538051
+      }
+    },
+    "werner_trace": [
+      {
+        "label": "werner_0p2",
+        "negativity": 0.0,
+        "coherent_information": -0.9219280948873623,
+        "weighted_cut_functional": 0.027325166789423126
+      },
+      {
+        "label": "werner_0p4",
+        "negativity": 0.04999999999999993,
+        "coherent_information": -0.7060075793123288,
+        "weighted_cut_functional": 0.1128973472406849
+      },
+      {
+        "label": "werner_0p7",
+        "negativity": 0.2749999999999999,
+        "coherent_information": -0.12580939167527427,
+        "weighted_cut_functional": 0.36096671291365395
+      }
+    ],
+    "history_candidates": [
+      {
+        "label": "history_cnot_bell",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 1.0,
+        "mutual_information": 2.0,
+        "conditional_entropy_a_given_b": -1.0,
+        "conditional_entropy_b_given_a": -1.0,
+        "coherent_information_a_to_b": 1.0,
+        "coherent_information_b_to_a": 1.0,
+        "entanglement_entropy_if_pure": 1.0,
+        "negativity": 0.5,
+        "log_negativity": 1.0,
+        "weighted_cut_functional": 1.25,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "history_dephased_bell",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 0.545,
+        "mutual_information": 1.065931944624509,
+        "conditional_entropy_a_given_b": -0.06593194462450902,
+        "conditional_entropy_b_given_a": -0.06593194462450902,
+        "coherent_information_a_to_b": 0.06593194462450902,
+        "coherent_information_b_to_a": 0.06593194462450902,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.15000000000000002,
+        "log_negativity": 0.37851162325372983,
+        "weighted_cut_functional": 0.4261523612371563,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      {
+        "label": "history_mixed",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 0.5673999999999999,
+        "mutual_information": 0.8532923859785908,
+        "conditional_entropy_a_given_b": 0.11465814971504851,
+        "conditional_entropy_b_given_a": 0.11465814971504851,
+        "coherent_information_a_to_b": -0.11465814971504851,
+        "coherent_information_b_to_a": -0.11465814971504851,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.23654062715876123,
+        "log_negativity": 0.5588370107999968,
+        "weighted_cut_functional": 0.345960460524259,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      }
+    ],
+    "discrimination_scores": {
+      "mutual_information": {
+        "class_means": {
+          "product": -1.6017132519074588e-16,
+          "classically_correlated": 0.06700045712016367,
+          "bell_like": 2.0,
+          "werner_like": 0.41541831137501145,
+          "history_derived": 1.3064081102010334
+        },
+        "class_ranges": {
+          "product": 3.2034265038149176e-16,
+          "classically_correlated": 0.05722149383611086,
+          "bell_like": 0.0,
+          "werner_like": 0.7961187032120882,
+          "history_derived": 1.1467076140214092
+        },
+        "spread": 2.0000000000000004,
+        "product_bell_gap": 2.0,
+        "history_product_gap": 1.3064081102010336
+      },
+      "conditional_entropy_a_given_b": {
+        "class_means": {
+          "product": 1.6017132519074588e-16,
+          "classically_correlated": 0.6225161097445434,
+          "bell_like": -1.0,
+          "werner_like": 0.5845816886249885,
+          "history_derived": -0.31709126496982015
+        },
+        "class_ranges": {
+          "product": 3.2034265038149176e-16,
+          "classically_correlated": 0.10213103046050231,
+          "bell_like": 0.0,
+          "werner_like": 0.7961187032120882,
+          "history_derived": 1.1146581497150485
+        },
+        "spread": 1.9219280948873625,
+        "product_bell_gap": 1.0000000000000002,
+        "history_product_gap": 0.3170912649698203
+      },
+      "coherent_information_a_to_b": {
+        "class_means": {
+          "product": 0.0,
+          "classically_correlated": -0.6225161097445434,
+          "bell_like": 1.0,
+          "werner_like": -0.5845816886249885,
+          "history_derived": 0.31709126496982015
+        },
+        "class_ranges": {
+          "product": 0.0,
+          "classically_correlated": 0.10213103046050231,
+          "bell_like": 0.0,
+          "werner_like": 0.796118703212088,
+          "history_derived": 1.1146581497150485
+        },
+        "spread": 1.9219280948873623,
+        "product_bell_gap": 1.0,
+        "history_product_gap": 0.31709126496982015
+      },
+      "entanglement_entropy_if_pure": {
+        "class_means": {
+          "product": 0.0,
+          "bell_like": 1.0,
+          "history_derived": 1.0
+        },
+        "class_ranges": {
+          "product": 0.0,
+          "bell_like": 0.0,
+          "history_derived": 0.0
+        },
+        "spread": 1.0,
+        "product_bell_gap": 1.0,
+        "history_product_gap": 1.0
+      },
+      "weighted_cut_functional": {
+        "class_means": {
+          "product": -4.495773357050949e-17,
+          "classically_correlated": 0.023450159992057282,
+          "bell_like": 1.25,
+          "werner_like": 0.16706307564792067,
+          "history_derived": 0.6740376072538051
+        },
+        "class_ranges": {
+          "product": 8.991546714101898e-17,
+          "classically_correlated": 0.020027522842638798,
+          "bell_like": 0.0,
+          "werner_like": 0.3336415461242308,
+          "history_derived": 0.904039539475741
+        },
+        "spread": 1.25,
+        "product_bell_gap": 1.25,
+        "history_product_gap": 0.6740376072538051
+      }
+    },
+    "werner_ordering": [
+      [
+        "werner_0p2",
+        0.027325166789423126,
+        0.0,
+        -0.9219280948873623
+      ],
+      [
+        "werner_0p4",
+        0.1128973472406849,
+        0.04999999999999993,
+        -0.7060075793123288
+      ],
+      [
+        "werner_0p7",
+        0.36096671291365395,
+        0.2749999999999999,
+        -0.12580939167527427
+      ]
+    ]
+  },
+  "negative": {
+    "fake_constant_kernel_adds_no_signal": {
+      "claim": "A constant kernel distinguishes product and Bell states.",
+      "product_value": 1.0,
+      "bell_value": 1.0,
+      "claim_holds": false,
+      "pass": true
+    },
+    "fake_trace_kernel_adds_no_signal": {
+      "claim": "The trace-only kernel separates Werner p=0.2 from p=0.7.",
+      "werner_0p2": 1.0,
+      "werner_0p7": 1.0000000000000002,
+      "claim_holds": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "product_boundary": {
+      "row": {
+        "label": "product_00",
+        "class": "product",
+        "family": "product",
+        "purity": 1.0,
+        "mutual_information": 0.0,
+        "conditional_entropy_a_given_b": 0.0,
+        "conditional_entropy_b_given_a": 0.0,
+        "coherent_information_a_to_b": 0.0,
+        "coherent_information_b_to_a": 0.0,
+        "entanglement_entropy_if_pure": -0.0,
+        "negativity": 0.0,
+        "log_negativity": 0.0,
+        "weighted_cut_functional": 0.0,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      "pass": true
+    },
+    "bell_boundary": {
+      "row": {
+        "label": "bell_phi_plus",
+        "class": "bell_like",
+        "family": "bell_like",
+        "purity": 1.0,
+        "mutual_information": 2.0,
+        "conditional_entropy_a_given_b": -1.0,
+        "conditional_entropy_b_given_a": -1.0,
+        "coherent_information_a_to_b": 1.0,
+        "coherent_information_b_to_a": 1.0,
+        "entanglement_entropy_if_pure": 1.0,
+        "negativity": 0.5,
+        "log_negativity": 1.0,
+        "weighted_cut_functional": 1.25,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      "pass": true
+    },
+    "werner_threshold_p_one_third": {
+      "row": {
+        "label": "werner_0p4",
+        "class": "werner_like",
+        "family": "werner_like",
+        "purity": 0.37,
+        "mutual_information": 0.2939924206876712,
+        "conditional_entropy_a_given_b": 0.7060075793123288,
+        "conditional_entropy_b_given_a": 0.7060075793123288,
+        "coherent_information_a_to_b": -0.7060075793123288,
+        "coherent_information_b_to_a": -0.7060075793123288,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.04999999999999993,
+        "log_negativity": 0.13750352374993474,
+        "weighted_cut_functional": 0.1128973472406849,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      "threshold_p": 0.3333333333333333,
+      "negativity_at_threshold": 0.0,
+      "pass": true
+    },
+    "history_candidate_boundary": {
+      "row": {
+        "label": "history_dephased_bell",
+        "class": "history_derived",
+        "family": "history_derived",
+        "purity": 0.545,
+        "mutual_information": 1.065931944624509,
+        "conditional_entropy_a_given_b": -0.06593194462450902,
+        "conditional_entropy_b_given_a": -0.06593194462450902,
+        "coherent_information_a_to_b": 0.06593194462450902,
+        "coherent_information_b_to_a": 0.06593194462450902,
+        "entanglement_entropy_if_pure": null,
+        "negativity": 0.15000000000000002,
+        "log_negativity": 0.37851162325372983,
+        "weighted_cut_functional": 0.4261523612371563,
+        "fake_constant": 1.0,
+        "fake_trace": 1.0
+      },
+      "pass": true
+    },
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "all_pass": true,
+    "elapsed_s": 0.006826877593994141
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

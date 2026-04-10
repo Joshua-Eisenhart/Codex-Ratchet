@@ -1,0 +1,214 @@
+{
+  "name": "3q_ambiguity_expansion",
+  "probe": "pure_math_3q_ambiguity_expansion",
+  "purpose": "Lift only 2-qubit ambiguous bridge packets into 3-qubit form and test whether multipartite structure resolves the ambiguity.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy ambiguity expansion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph layer is needed for this focused expansion"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic satisfiability claim is required here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check is required here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "all calculations are numerical and finite-dimensional"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "the probe uses only explicit density matrices"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold numerics are needed for this bounded probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant learning is outside scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph kernel is needed here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer is needed here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "this probe uses direct packet arrays, not complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation is needed here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ambiguous_packets": [
+      {
+        "label": "balanced_tie_case",
+        "features": {
+          "reference_offset": 0.11736460999851243,
+          "shell_dispersion": 0.19618585292749552,
+          "history_turning": 0.0799999999999999,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.5
+        },
+        "scores_2q": {
+          "Xi_ref": 0.06117598047951543,
+          "Xi_shell": 0.06595898540914735,
+          "Xi_hist": 0.04685323440270333
+        },
+        "scores_3q": {
+          "Xi_ref": 0.06931387398268324,
+          "Xi_shell": 0.17426445756846343,
+          "Xi_hist": 0.1161213770813313
+        },
+        "gap_2q": 0.0047830049296319205,
+        "gap_3q": 0.058143080487132126,
+        "winner_3q": "Xi_shell",
+        "runner_up_3q": "Xi_hist",
+        "tripartite_mutual_information": {
+          "Xi_ref": -0.04860846254424911,
+          "Xi_shell": -0.2355412554415004,
+          "Xi_hist": -0.088562324628775
+        },
+        "partition_spread": {
+          "Xi_ref": 0.21289609791673048,
+          "Xi_shell": 0.2235838353781907,
+          "Xi_hist": 0.3370604926775247
+        },
+        "pass": true
+      },
+      {
+        "label": "shell_history_tie_case",
+        "features": {
+          "reference_offset": 0.1312543475593764,
+          "shell_dispersion": 0.09797958971132714,
+          "history_turning": 0.07,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.5709505944546684
+        },
+        "scores_2q": {
+          "Xi_ref": 0.07311198380877898,
+          "Xi_shell": 0.05395300373667819,
+          "Xi_hist": 0.03982477054243704
+        },
+        "scores_3q": {
+          "Xi_ref": 0.06267458659759215,
+          "Xi_shell": 0.17276038934913443,
+          "Xi_hist": 0.11499740751208833
+        },
+        "gap_2q": 0.01915898007210079,
+        "gap_3q": 0.057762981837046104,
+        "winner_3q": "Xi_shell",
+        "runner_up_3q": "Xi_hist",
+        "tripartite_mutual_information": {
+          "Xi_ref": -0.04480763059389514,
+          "Xi_shell": -0.22907034964934958,
+          "Xi_hist": -0.0817888398700164
+        },
+        "partition_spread": {
+          "Xi_ref": 0.19015194885474895,
+          "Xi_shell": 0.23385848520996033,
+          "Xi_hist": 0.35006772791789653
+        },
+        "pass": true
+      }
+    ],
+    "selected_count": 2,
+    "exact_checks": {
+      "all_selected_packets_are_2q_ambiguous": true,
+      "3q_gap_exceeds_2q_gap_for_each_selected_packet": true,
+      "tripartite_signal_is_nontrivial": true,
+      "3q_scores_have_distinct_top_two_candidates": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "plain_ancilla_lift_does_not_outperform_companion_lift": {
+      "plain_score": 0.1433745140487519,
+      "companion_score": 0.17426445756846343,
+      "pass": true
+    },
+    "bridge_blind_local_summary_is_not_an_expansion_resolver": {
+      "local_only": 1.7808976952725026,
+      "tripartite_mi": 4.440892098500626e-16,
+      "pass": true
+    },
+    "clear_case_is_excluded_from_expansion": {
+      "clear_case_gap": 0.10346359296857066,
+      "selected": false,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "boundary_packet_stays_within_2q_ambiguity_band": {
+      "gap_2q": 0.0047830049296319205,
+      "pass": true
+    },
+    "multipartite_lift_reorders_candidates": {
+      "scores_3q": {
+        "Xi_ref": 0.06931387398268324,
+        "Xi_shell": 0.17426445756846343,
+        "Xi_hist": 0.1161213770813313
+      },
+      "pass": true
+    },
+    "plain_lift_is_weaker_than_companion_lift": {
+      "plain_score": 0.15237283241249397,
+      "hist_score": 0.1161213770813313,
+      "ref_score": 0.06931387398268324,
+      "shell_score": 0.17426445756846343,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "caveat": "Targeted expansion only. Clear 2q cases are excluded, and the 3q lift is used only to resolve ambiguity rather than expand breadth.",
+  "summary": {
+    "tests_total": 6,
+    "tests_passed": 6,
+    "tests_failed": 0,
+    "all_pass": true,
+    "elapsed_s": 0.09839224815368652,
+    "selected_ambiguous_packets": 2,
+    "ambiguity_threshold": 0.08
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

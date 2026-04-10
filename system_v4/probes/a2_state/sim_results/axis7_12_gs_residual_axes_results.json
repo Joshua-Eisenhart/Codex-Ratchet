@@ -1,0 +1,703 @@
+{
+  "name": "axis7_12_gs_residual_axes",
+  "timestamp": "2026-04-08T10:42:56.943180+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Matrix construction, commutators, GS projection, SVD-based independence"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Sanity check: two corrected axes with nonzero inner product \u2192 UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify [A1,A2] = c * A7_corrected + (base component) exactly"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "findings": {
+    "nonzero_residual_pairs": [
+      "[A1,A2]",
+      "[A1,A3]",
+      "[A1,A4]",
+      "[A1,A5]",
+      "[A1,A6]",
+      "[A2,A3]",
+      "[A2,A4]",
+      "[A2,A5]",
+      "[A2,A6]",
+      "[A3,A4]",
+      "[A3,A5]",
+      "[A3,A6]",
+      "[A4,A5]",
+      "[A4,A6]",
+      "[A5,A6]"
+    ],
+    "zero_residual_pairs": [],
+    "n_nonzero_residuals": 15,
+    "n_zero_residuals": 0,
+    "svd_rank": 15,
+    "maximally_independent_set": [
+      "[A1,A2]",
+      "[A1,A3]",
+      "[A1,A4]",
+      "[A1,A5]",
+      "[A1,A6]",
+      "[A2,A3]",
+      "[A2,A4]",
+      "[A2,A5]",
+      "[A2,A6]",
+      "[A3,A4]",
+      "[A3,A5]",
+      "[A3,A6]",
+      "[A4,A5]",
+      "[A4,A6]",
+      "[A5,A6]"
+    ],
+    "redundant_residuals": [],
+    "corrected_axes_rank": 10,
+    "corrected_axes_orthogonal_to_base": true,
+    "corrected_axes_mutually_orthogonal": true,
+    "gs_svd_span_same_subspace": false
+  },
+  "positive": {
+    "all_15_residuals": [
+      {
+        "label": "[A1,A2]",
+        "comm_norm": 1.61051234,
+        "base_component_norm": 0.57977767,
+        "residual_norm": 1.50253381,
+        "nonzero_residual": true,
+        "base_fraction": 0.359996,
+        "residual_fraction": 0.932954
+      },
+      {
+        "label": "[A1,A3]",
+        "comm_norm": 0.42426407,
+        "base_component_norm": 0.27386128,
+        "residual_norm": 0.32403703,
+        "nonzero_residual": true,
+        "base_fraction": 0.645497,
+        "residual_fraction": 0.763763
+      },
+      {
+        "label": "[A1,A4]",
+        "comm_norm": 0.53298609,
+        "base_component_norm": 0.38580812,
+        "residual_norm": 0.36773124,
+        "nonzero_residual": true,
+        "base_fraction": 0.723862,
+        "residual_fraction": 0.689945
+      },
+      {
+        "label": "[A1,A5]",
+        "comm_norm": 0.25,
+        "base_component_norm": 0.17626824,
+        "residual_norm": 0.1772837,
+        "nonzero_residual": true,
+        "base_fraction": 0.705073,
+        "residual_fraction": 0.709135
+      },
+      {
+        "label": "[A1,A6]",
+        "comm_norm": 0.46022338,
+        "base_component_norm": 0.22821773,
+        "residual_norm": 0.39965263,
+        "nonzero_residual": true,
+        "base_fraction": 0.495885,
+        "residual_fraction": 0.868388
+      },
+      {
+        "label": "[A2,A3]",
+        "comm_norm": 0.9663074,
+        "base_component_norm": 0.3478666,
+        "residual_norm": 0.90152029,
+        "nonzero_residual": true,
+        "base_fraction": 0.359996,
+        "residual_fraction": 0.932954
+      },
+      {
+        "label": "[A2,A4]",
+        "comm_norm": 1.79408751,
+        "base_component_norm": 0.90290244,
+        "residual_norm": 1.55032809,
+        "nonzero_residual": true,
+        "base_fraction": 0.503266,
+        "residual_fraction": 0.864132
+      },
+      {
+        "label": "[A2,A5]",
+        "comm_norm": 0.25,
+        "base_component_norm": 0.0,
+        "residual_norm": 0.25,
+        "nonzero_residual": true,
+        "base_fraction": 0.0,
+        "residual_fraction": 1.0
+      },
+      {
+        "label": "[A2,A6]",
+        "comm_norm": 1.2041955,
+        "base_component_norm": 0.40665044,
+        "residual_norm": 1.13345588,
+        "nonzero_residual": true,
+        "base_fraction": 0.337695,
+        "residual_fraction": 0.941256
+      },
+      {
+        "label": "[A3,A4]",
+        "comm_norm": 0.31979165,
+        "base_component_norm": 0.23148487,
+        "residual_norm": 0.22063875,
+        "nonzero_residual": true,
+        "base_fraction": 0.723862,
+        "residual_fraction": 0.689945
+      },
+      {
+        "label": "[A3,A5]",
+        "comm_norm": 0.15,
+        "base_component_norm": 0.10576094,
+        "residual_norm": 0.10637022,
+        "nonzero_residual": true,
+        "base_fraction": 0.705073,
+        "residual_fraction": 0.709135
+      },
+      {
+        "label": "[A3,A6]",
+        "comm_norm": 0.27613403,
+        "base_component_norm": 0.13693064,
+        "residual_norm": 0.23979158,
+        "nonzero_residual": true,
+        "base_fraction": 0.495885,
+        "residual_fraction": 0.868388
+      },
+      {
+        "label": "[A4,A5]",
+        "comm_norm": 0.28150813,
+        "base_component_norm": 0.05283122,
+        "residual_norm": 0.27650622,
+        "nonzero_residual": true,
+        "base_fraction": 0.187672,
+        "residual_fraction": 0.982232
+      },
+      {
+        "label": "[A4,A6]",
+        "comm_norm": 0.67493278,
+        "base_component_norm": 0.37882797,
+        "residual_norm": 0.55859076,
+        "nonzero_residual": true,
+        "base_fraction": 0.561283,
+        "residual_fraction": 0.827624
+      },
+      {
+        "label": "[A5,A6]",
+        "comm_norm": 0.25853487,
+        "base_component_norm": 0.17626824,
+        "residual_norm": 0.18912902,
+        "nonzero_residual": true,
+        "base_fraction": 0.681797,
+        "residual_fraction": 0.731542
+      }
+    ],
+    "n_nonzero_residuals": 15,
+    "n_zero_residuals": 0,
+    "nonzero_pairs": [
+      "[A1,A2]",
+      "[A1,A3]",
+      "[A1,A4]",
+      "[A1,A5]",
+      "[A1,A6]",
+      "[A2,A3]",
+      "[A2,A4]",
+      "[A2,A5]",
+      "[A2,A6]",
+      "[A3,A4]",
+      "[A3,A5]",
+      "[A3,A6]",
+      "[A4,A5]",
+      "[A4,A6]",
+      "[A5,A6]"
+    ],
+    "zero_pairs": [],
+    "svd_rank_of_residuals": 15,
+    "singular_values": [
+      2.08117697,
+      1.58695513,
+      1.44596352,
+      1.19060519,
+      1.16354316,
+      1.0561212,
+      0.90516287,
+      0.89712756,
+      0.41822222,
+      0.38868226,
+      0.29031879,
+      0.24467283,
+      0.22492946,
+      0.14178615,
+      0.08781883
+    ],
+    "maximally_independent_set": [
+      "[A1,A2]",
+      "[A1,A3]",
+      "[A1,A4]",
+      "[A1,A5]",
+      "[A1,A6]",
+      "[A2,A3]",
+      "[A2,A4]",
+      "[A2,A5]",
+      "[A2,A6]",
+      "[A3,A4]",
+      "[A3,A5]",
+      "[A3,A6]",
+      "[A4,A5]",
+      "[A4,A6]",
+      "[A5,A6]"
+    ],
+    "redundant_residuals": [],
+    "n_independent_axes": 15,
+    "gs_vs_svd_subspace_comparison": {
+      "gs_basis_rank": 10,
+      "svd_basis_rank": 15,
+      "ranks_agree": false,
+      "ip_matrix": [
+        [
+          -0.405459,
+          0.0,
+          -0.79449,
+          0.0,
+          0.413648,
+          0.030882,
+          -0.150256,
+          0.0,
+          0.0,
+          0.021114
+        ],
+        [
+          -0.0,
+          -0.896744,
+          -0.0,
+          -0.354913,
+          0.0,
+          0.0,
+          0.0,
+          0.12366,
+          0.110388,
+          0.0
+        ],
+        [
+          -0.194147,
+          0.0,
+          0.205897,
+          0.0,
+          0.218615,
+          0.015244,
+          -0.166452,
+          0.0,
+          0.0,
+          0.528892
+        ],
+        [
+          0.644648,
+          0.0,
+          0.052077,
+          0.0,
+          0.597573,
+          -0.196069,
+          -0.394288,
+          0.0,
+          -0.0,
+          -0.032535
+        ],
+        [
+          0.256698,
+          0.0,
+          -0.065087,
+          0.0,
+          -0.038236,
+          0.74187,
+          -0.104859,
+          0.0,
+          0.0,
+          0.461626
+        ],
+        [
+          -0.0,
+          -0.075417,
+          0.0,
+          0.50947,
+          -0.0,
+          0.0,
+          0.0,
+          0.856596,
+          0.01287,
+          0.0
+        ],
+        [
+          0.020443,
+          -0.0,
+          -0.017662,
+          -0.0,
+          -0.047517,
+          0.583082,
+          -0.243472,
+          0.0,
+          -0.0,
+          -0.597384
+        ],
+        [
+          -0.002281,
+          -0.0,
+          0.076661,
+          -0.0,
+          0.020642,
+          0.065806,
+          0.147427,
+          -0.0,
+          0.0,
+          0.076918
+        ],
+        [
+          0.057195,
+          0.0,
+          0.059219,
+          0.0,
+          0.116187,
+          -0.037613,
+          -0.032505,
+          0.0,
+          -0.0,
+          -0.344979
+        ],
+        [
+          0.031102,
+          0.0,
+          -0.034837,
+          0.0,
+          -0.016272,
+          -0.033929,
+          0.008404,
+          0.0,
+          0.0,
+          -0.087512
+        ]
+      ],
+      "ip_singular_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.999987,
+        0.978154,
+        0.40734,
+        0.164933,
+        0.0,
+        0.0
+      ],
+      "bases_span_same_subspace": false,
+      "interpretation": "WARNING: GS and SVD bases do NOT span the same subspace"
+    },
+    "corrected_axes_rank": 10,
+    "corrected_axes_max_off_diagonal_ip": 0.0,
+    "corrected_axes_mutually_orthogonal": true,
+    "corrected_axes_max_cross_with_base": 0.0,
+    "corrected_axes_orthogonal_to_base": true,
+    "dimension_scaling": {
+      "d=4": {
+        "d": 4,
+        "d_squared": 16,
+        "n_commutator_pairs": 15,
+        "n_nonzero_residuals": 15,
+        "nonzero_residual_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ],
+        "residual_subspace_rank": 15,
+        "complement_dim_expected": 10,
+        "rank_matches_d2_minus_6": false,
+        "rank_le_d2_minus_6": false
+      },
+      "d=8": {
+        "d": 8,
+        "d_squared": 64,
+        "n_commutator_pairs": 15,
+        "n_nonzero_residuals": 15,
+        "nonzero_residual_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ],
+        "residual_subspace_rank": 15,
+        "complement_dim_expected": 58,
+        "rank_matches_d2_minus_6": false,
+        "rank_le_d2_minus_6": true
+      },
+      "d=16": {
+        "d": 16,
+        "d_squared": 256,
+        "n_commutator_pairs": 15,
+        "n_nonzero_residuals": 15,
+        "nonzero_residual_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ],
+        "residual_subspace_rank": 15,
+        "complement_dim_expected": 250,
+        "rank_matches_d2_minus_6": false,
+        "rank_le_d2_minus_6": true
+      }
+    }
+  },
+  "negative": {
+    "raw_commutators_max_cross_with_base": 0.70507295,
+    "raw_commutators_fail_orthogonality": true,
+    "interpretation_raw": "Raw commutators should have nonzero projection on base (structure constants) \u2014 this is the bug the GS residual approach fixes",
+    "linear_combo_in_base_has_zero_residual": true,
+    "linear_combo_residual_norm": 0.0,
+    "pre_gs_ip_first_two_residuals": 0.0,
+    "post_gs_ip_first_two_residuals": 0.0,
+    "gs_orthogonalizes_residuals": true
+  },
+  "boundary": {
+    "commuting_pairs_zero_comm": [],
+    "near_commuting_pairs": [],
+    "n_commuting_pairs": 0,
+    "tolerance_sensitivity": {
+      "tol=1e-6": {
+        "n_nonzero": 15,
+        "nonzero_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ]
+      },
+      "tol=1e-8": {
+        "n_nonzero": 15,
+        "nonzero_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ]
+      },
+      "tol=1e-10": {
+        "n_nonzero": 15,
+        "nonzero_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ]
+      },
+      "tol=1e-12": {
+        "n_nonzero": 15,
+        "nonzero_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ]
+      },
+      "tol=1e-14": {
+        "n_nonzero": 15,
+        "nonzero_labels": [
+          "[A1,A2]",
+          "[A1,A3]",
+          "[A1,A4]",
+          "[A1,A5]",
+          "[A1,A6]",
+          "[A2,A3]",
+          "[A2,A4]",
+          "[A2,A5]",
+          "[A2,A6]",
+          "[A3,A4]",
+          "[A3,A5]",
+          "[A3,A6]",
+          "[A4,A5]",
+          "[A4,A6]",
+          "[A5,A6]"
+        ]
+      }
+    },
+    "d2_edge_case": {
+      "d": 2,
+      "operator_space_dim": 4,
+      "base_axes_gs_rank": 3,
+      "n_nonzero_residuals": 6,
+      "interpretation": "d=2: op space is 4-dim, base 6 axes can have rank \u22644, complement dim \u2264 0"
+    }
+  },
+  "sympy_verification": {
+    "commutator_A1_A3_norm": 0.42426407,
+    "A1_A3_residual_norm": 0.32403703,
+    "A1_A3_base_proj_norm": 0.27386128,
+    "structure_constant_c": 0.32403703,
+    "structure_constant_c_complex": "(0.32403703492039304+0j)",
+    "reconstruction_error": 0.0,
+    "reconstruction_correct": true,
+    "interpretation": "[A1,A3] = 0.324037 * A7_corrected + (base component). Reconstruction error: 8.44e-17",
+    "A7_corrected_norm": 1.0,
+    "A7_corrected_max_ip_with_base": 0.0,
+    "A7_corrected_orthogonal_to_base": true,
+    "sympy_comm_A1_A3_d2": "Matrix([[-3*I/10, 0], [0, 3*I/10]])",
+    "sympy_comm_A1_A3_d2_is_diagonal": true,
+    "sympy_ratio_to_A2_d2_00": "3*I/5",
+    "sympy_ratio_to_A2_d2_11": "3*I/10",
+    "sympy_comm_lies_in_A2_span": false
+  },
+  "z3_sanity": {
+    "z3_claim": "After GS, two output vectors have nonzero inner product (ip > 1e-6) \u2192 UNSAT?",
+    "z3_result": "unsat",
+    "z3_verdict": "PROVED (UNSAT): GS construction guarantees orthogonality \u2014 the corrected axes cannot have nonzero inner product",
+    "z3_orthogonal_pair_exists": "sat",
+    "z3_orthogonal_pair_verdict": "SAT confirmed: orthogonal unit vectors exist (expected)",
+    "numerical_max_off_diagonal_ip": 0.0,
+    "numerical_orthogonality_confirmed": true
+  },
+  "classification": "canonical",
+  "verdict": "GS_RESIDUAL_AXES_CONSTRUCTED"
+}

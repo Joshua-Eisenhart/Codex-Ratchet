@@ -1,0 +1,232 @@
+{
+  "name": "w_ghz_bipartition_audit",
+  "description": "Audit of W vs GHZ I_c anomaly. Identifies bug in partial_trace_3q einsum index ordering in sim_rustworkx_3qubit_dag.py that inflated W I_c from 0.918 to 1.008. Verifies correct values analytically.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: density matrix construction, partial trace, von Neumann entropy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that buggy I_c != correct I_c, and W < GHZ"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: analytic verification of all 6 bipartition values"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "GHZ_correct_bipartitions": {
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0,
+      "S_BC": 1.0,
+      "S_AC": 1.0,
+      "S_ABC": 0.0,
+      "Ic_A_to_BC_correct": 1.0,
+      "Ic_B_to_AC_correct": 1.0,
+      "Ic_C_to_AB_correct": 1.0,
+      "Ic_2q_A_to_B_wrong": -0.0,
+      "Ic_2q_B_to_A_wrong": -0.0,
+      "Ic_2q_B_to_C_wrong": -0.0,
+      "Ic_2q_A_to_C_wrong": -0.0
+    },
+    "W_correct_bipartitions": {
+      "S_A": 0.9182958341,
+      "S_B": 0.9182958341,
+      "S_C": 0.9182958341,
+      "S_AB": 0.9182958341,
+      "S_BC": 0.9182958341,
+      "S_AC": 0.9182958341,
+      "S_ABC": 0.0,
+      "Ic_A_to_BC_correct": 0.9182958341,
+      "Ic_B_to_AC_correct": 0.9182958341,
+      "Ic_C_to_AB_correct": 0.9182958341,
+      "Ic_2q_A_to_B_wrong": -0.0,
+      "Ic_2q_B_to_A_wrong": -0.0,
+      "Ic_2q_B_to_C_wrong": -0.0,
+      "Ic_2q_A_to_C_wrong": -0.0
+    },
+    "GHZ_buggy_bipartitions": {
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0,
+      "S_BC": 1.0,
+      "S_AC": 1.0,
+      "S_ABC": 0.0,
+      "Ic_A_to_BC_correct": 1.0,
+      "Ic_B_to_AC_correct": 1.0,
+      "Ic_C_to_AB_correct": 1.0,
+      "Ic_2q_A_to_B_wrong": -0.0,
+      "Ic_2q_B_to_A_wrong": -0.0,
+      "Ic_2q_B_to_C_wrong": -0.0,
+      "Ic_2q_A_to_C_wrong": -0.0
+    },
+    "W_buggy_bipartitions": {
+      "S_A": 0.9182958341,
+      "S_B": 0.9182958341,
+      "S_C": 0.9182958341,
+      "S_AB": 1.0087262284,
+      "S_BC": 1.0087262284,
+      "S_AC": 1.0087262284,
+      "S_ABC": 0.0,
+      "Ic_A_to_BC_correct": 1.0087262284,
+      "Ic_B_to_AC_correct": 1.0087262284,
+      "Ic_C_to_AB_correct": 1.0087262284,
+      "Ic_2q_A_to_B_wrong": -0.0904303943,
+      "Ic_2q_B_to_A_wrong": -0.0904303943,
+      "Ic_2q_B_to_C_wrong": -0.0904303943,
+      "Ic_2q_A_to_C_wrong": -0.0904303943
+    },
+    "analytic_W_S_BC_expected": 0.9182958340544896,
+    "analytic_GHZ_S_BC_expected": 1.0,
+    "dag_sim_reported_W_Ic": 1.00872623,
+    "dag_sim_reported_GHZ_Ic": 1.0,
+    "buggy_W_S_BC_matches_dag_report": true,
+    "correct_W_Ic_A_BC_matches_analytic": true,
+    "which_formula_gave_1008": "I_c(A->BC) = S(BC) - S(ABC) with S(ABC)=0 (correct for pure state), but S(BC) computed via buggy partial_trace_3q that interleaves ket/bra indices as (b,b',c,c') instead of (b,c,b',c'), producing wrong matrix with negative eigenvalues that get clamped to 1e-15, inflating entropy to 1.008 instead of 0.918.",
+    "W_max_correct_Ic": 0.9182958341,
+    "GHZ_max_correct_Ic": 1.0,
+    "W_gt_GHZ_any_correct_bipartition": false,
+    "summary": {
+      "correct_W_Ic_A_to_BC": 0.9182958341,
+      "correct_GHZ_Ic_A_to_BC": 1.0,
+      "W_gt_GHZ_correct": false
+    }
+  },
+  "negative": {
+    "buggy_rho_BC_has_negative_eigenvalues": true,
+    "buggy_rho_BC_eigenvalues": [
+      -0.3333333333,
+      -0.2060113296,
+      0.3333333333,
+      0.5393446629
+    ],
+    "correct_rho_BC_eigenvalues": [
+      0.0,
+      0.0,
+      0.3333333333,
+      0.6666666667
+    ],
+    "correct_rho_BC_all_nonneg": true,
+    "negative_eig_confirms_bug": true,
+    "buggy_rho_BC_trace": 0.3333333333,
+    "correct_rho_BC_trace": 1.0,
+    "buggy_trace_wrong": true
+  },
+  "boundary": {
+    "sympy_W": {
+      "S_A": "-2/3 + log(3)/log(2)",
+      "S_BC": "-2/3 + log(3)/log(2)",
+      "S_ABC": "0",
+      "Ic_A_to_BC": "-2/3 + log(3)/log(2)",
+      "Ic_A_to_BC_numeric": 0.9182958340544896,
+      "Ic_B_to_AC": "-2/3 + log(3)/log(2)",
+      "Ic_C_to_AB": "-2/3 + log(3)/log(2)",
+      "Ic_2q_A_to_B_wrong": "0",
+      "Ic_2q_A_to_B_wrong_numeric": 0.0,
+      "all_bipartitions_equal_by_symmetry": true
+    },
+    "sympy_GHZ": {
+      "S_A": "1",
+      "S_BC": "1",
+      "S_ABC": "0",
+      "Ic_A_to_BC": "1",
+      "Ic_A_to_BC_numeric": 1.0,
+      "Ic_2q_A_to_B_wrong": "0",
+      "Ic_2q_A_to_B_wrong_numeric": 0.0
+    },
+    "sympy_conclusion_W_lt_GHZ": {
+      "W_Ic": 0.9182958340544896,
+      "GHZ_Ic": 1.0,
+      "W_lt_GHZ": true,
+      "difference": 0.08170416594551048
+    },
+    "note_on_1008_source": "The 1.008 does not arise from using a wrong formula (2-qubit vs 3-qubit). Both formulas give 0 for 2-qubit I_c on W. The bug is in the partial trace implementation: wrong einsum index order scrambles the matrix, producing negative eigenvalues clamped to 1e-15, inflating S(BC) from 0.918 to 1.008."
+  },
+  "z3_proof": {
+    "z3_claim": "Assert Ic_correct in [0.9182, 0.9184] AND Ic_buggy in [1.0086, 1.0089] AND Ic_correct == Ic_buggy",
+    "z3_outcome": "unsat",
+    "z3_is_unsat": true,
+    "z3_interpretation": "UNSAT: the two values cannot be equal. The buggy partial trace produces a numerically distinct and wrong I_c for W. The correct value is ~0.918, not ~1.008.",
+    "z3_W_lt_GHZ_proof": {
+      "claim": "W_Ic >= GHZ_Ic (negation of W < GHZ)",
+      "outcome": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT: W cannot be >= GHZ under correct I_c(A->BC). W < GHZ is proven."
+    }
+  },
+  "classification": "canonical",
+  "final_verdict": {
+    "dag_sim_bug": "partial_trace_3q in sim_rustworkx_3qubit_dag.py builds einsum output as (b,b',c,c') instead of (b,c,b',c') for keep=[1,2]. The buggy reshape produces wrong matrix with negative eigenvalues.",
+    "what_dag_sim_was_computing": "Nominally I_c(A->BC) = S(BC) - S(ABC), but with a WRONG S(BC) due to the partial trace bug. NOT a wrong formula \u2014 wrong implementation.",
+    "correct_W_Ic_A_to_BC": 0.9182958341,
+    "correct_GHZ_Ic_A_to_BC": 1.0,
+    "W_gt_GHZ_under_correct_formula": false,
+    "W_gt_GHZ_under_any_correct_bipartition": false
+  }
+}

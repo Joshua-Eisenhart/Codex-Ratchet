@@ -1,0 +1,455 @@
+{
+  "name": "phi0_packet_robustness_audit",
+  "probe": "pure_math_phi0_packet_robustness_audit",
+  "purpose": "Perturb packet ingredients directly and audit which Phi0 candidates track the bridge versus which metrics stay stable only because they ignore it.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy audit"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph layer is needed for this packet audit"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic satisfiability claim is required here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check is required here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "all calculations are numerical and finite-dimensional"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "the probe uses only explicit density matrices"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold numerics are needed for this bounded probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant learning is outside scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph kernel is needed here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer is needed here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "this probe uses direct packet arrays, not complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation is needed here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "base_candidates": {
+      "Phi0_ref_Ic": -0.8386688783155772,
+      "Phi0_shell_weighted_Ic": -0.6199980052042011,
+      "Phi0_hist_Ic": -0.7836086200000129,
+      "Phi0_blend_weighted_cut": 0.032246203793825715,
+      "Phi0_ref_MI": 0.010750996192687268,
+      "Phi0_blend_MI": 0.09213201083950184
+    },
+    "packet_features": {
+      "reference_offset": 0.3944397110687088,
+      "shell_dispersion": 0.24115462996914566,
+      "history_turning": 0.125,
+      "history_order_signature": 4.5,
+      "shell_weight_entropy": 1.4873638732958807
+    },
+    "perturbation_rows": [
+      {
+        "label": "shell_tilt_small",
+        "kind": "packet",
+        "packet_features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4718347220576535
+        },
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.0,
+          "Phi0_shell_weighted_Ic": 0.007503444584033403,
+          "Phi0_hist_Ic": 0.0,
+          "Phi0_blend_weighted_cut": 0.00012556078855060354,
+          "Phi0_ref_MI": 0.0,
+          "Phi0_blend_MI": 0.00035874511014477584
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "shell_tilt_large",
+        "kind": "packet",
+        "packet_features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4351267185737488
+        },
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.0,
+          "Phi0_shell_weighted_Ic": 0.020161077148192375,
+          "Phi0_hist_Ic": 0.0,
+          "Phi0_blend_weighted_cut": 0.00033548772678636957,
+          "Phi0_ref_MI": 0.0,
+          "Phi0_blend_MI": 0.0009585363622468535
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "history_scramble",
+        "kind": "packet",
+        "packet_features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 3.2649999999999997,
+          "history_order_signature": -1.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.0,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 1.5113980640595317,
+          "Phi0_blend_weighted_cut": 0.12380899084150752,
+          "Phi0_ref_MI": 0.0,
+          "Phi0_blend_MI": 0.29503352407157335
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.7849999999999999,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "reference_shift_small",
+        "kind": "packet",
+        "packet_features": {
+          "reference_offset": 0.37224058012657324,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.0006547490830760561,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.0,
+          "Phi0_blend_weighted_cut": 0.00011096369959135571,
+          "Phi0_ref_MI": 0.0004598287892536579,
+          "Phi0_blend_MI": 0.00031703914168978997
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.009323634995696883,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "reference_shift_large",
+        "kind": "packet",
+        "packet_features": {
+          "reference_offset": 0.3276713996601062,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.008702208599322137,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.0,
+          "Phi0_blend_weighted_cut": 0.0001108679481482619,
+          "Phi0_ref_MI": 0.0015871825093218828,
+          "Phi0_blend_MI": 0.00031676556613779994
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.028042690791613034,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "local_dephase_A_small",
+        "kind": "channel",
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.0011233468944856773,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.05618360521005006,
+          "Phi0_blend_weighted_cut": 0.028876526539455463,
+          "Phi0_ref_MI": 0.0011233468944866765,
+          "Phi0_blend_MI": 0.08250436154130125
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "local_dephase_B_small",
+        "kind": "channel",
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.018656642145005287,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.036403616170559094,
+          "Phi0_blend_weighted_cut": 0.007641956762974557,
+          "Phi0_ref_MI": 0.10321517682674197,
+          "Phi0_blend_MI": 0.021834162179927397
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "local_depolarize_A_small",
+        "kind": "channel",
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.1356927014082293,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.08063244309266493,
+          "Phi0_blend_weighted_cut": 0.034644918799763294,
+          "Phi0_ref_MI": 0.17804005432893888,
+          "Phi0_blend_MI": 0.0966590396821243
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      },
+      {
+        "label": "local_depolarize_B_small",
+        "kind": "channel",
+        "candidate_delta": {
+          "Phi0_ref_Ic": 0.01604360681357908,
+          "Phi0_shell_weighted_Ic": 0.0,
+          "Phi0_hist_Ic": 0.0390166515019853,
+          "Phi0_blend_weighted_cut": 0.00386264889577052,
+          "Phi0_ref_MI": 0.07034487494461317,
+          "Phi0_blend_MI": 0.011036139702201408
+        },
+        "blind_delta": {
+          "fake_constant": 0.0,
+          "fake_packet_score": 0.0,
+          "fake_shell_mean_radius": 0.0,
+          "fake_history_mean_phase": 0.0
+        }
+      }
+    ],
+    "sensitivity_scores": {
+      "packet": {
+        "Phi0_ref_Ic": {
+          "mean_abs_delta": 0.0018713915364796385,
+          "max_abs_delta": 0.008702208599322137,
+          "min_abs_delta": 0.0,
+          "stability_index": 0.9981321040282329
+        },
+        "Phi0_shell_weighted_Ic": {
+          "mean_abs_delta": 0.0055329043464451555,
+          "max_abs_delta": 0.020161077148192375,
+          "min_abs_delta": 0.0,
+          "stability_index": 0.9944975402370931
+        },
+        "Phi0_hist_Ic": {
+          "mean_abs_delta": 0.30227961281190635,
+          "max_abs_delta": 1.5113980640595317,
+          "min_abs_delta": 0.0,
+          "stability_index": 0.7678842471017276
+        },
+        "Phi0_blend_weighted_cut": {
+          "mean_abs_delta": 0.024898374200916822,
+          "max_abs_delta": 0.12380899084150752,
+          "min_abs_delta": 0.0001108679481482619,
+          "stability_index": 0.9757064945874957
+        },
+        "Phi0_ref_MI": {
+          "mean_abs_delta": 0.00040940225971510815,
+          "max_abs_delta": 0.0015871825093218828,
+          "min_abs_delta": 0.0,
+          "stability_index": 0.9995907652819032
+        },
+        "Phi0_blend_MI": {
+          "mean_abs_delta": 0.059396922050358514,
+          "max_abs_delta": 0.29503352407157335,
+          "min_abs_delta": 0.00031676556613779994,
+          "stability_index": 0.9439332691892274
+        }
+      },
+      "channel": {
+        "Phi0_ref_Ic": {
+          "mean_abs_delta": 0.04287907431532484,
+          "max_abs_delta": 0.1356927014082293,
+          "min_abs_delta": 0.0011233468944856773,
+          "stability_index": 0.9588839441011164
+        },
+        "Phi0_shell_weighted_Ic": {
+          "mean_abs_delta": 0.0,
+          "max_abs_delta": 0.0,
+          "min_abs_delta": 0.0,
+          "stability_index": 1.0
+        },
+        "Phi0_hist_Ic": {
+          "mean_abs_delta": 0.053059078993814845,
+          "max_abs_delta": 0.08063244309266493,
+          "min_abs_delta": 0.036403616170559094,
+          "stability_index": 0.9496143378351458
+        },
+        "Phi0_blend_weighted_cut": {
+          "mean_abs_delta": 0.01875651274949096,
+          "max_abs_delta": 0.034644918799763294,
+          "min_abs_delta": 0.00386264889577052,
+          "stability_index": 0.9815888168421427
+        },
+        "Phi0_ref_MI": {
+          "mean_abs_delta": 0.08818086324869517,
+          "max_abs_delta": 0.17804005432893888,
+          "min_abs_delta": 0.0011233468944866765,
+          "stability_index": 0.9189648832957449
+        },
+        "Phi0_blend_MI": {
+          "mean_abs_delta": 0.05300842577638859,
+          "max_abs_delta": 0.0966590396821243,
+          "min_abs_delta": 0.011036139702201408,
+          "stability_index": 0.9496600174520872
+        }
+      }
+    },
+    "bridge_blind_metrics": {
+      "fake_constant": 1.0,
+      "fake_packet_score": 0.2764957065386757,
+      "fake_shell_mean_radius": 0.5233333333333333,
+      "fake_history_mean_phase": 0.47250000000000003
+    },
+    "exact_checks": {
+      "shell_weight_tilt_changes_shell_candidate": true,
+      "history_scramble_changes_history_candidate": true,
+      "reference_shift_changes_reference_candidate": true,
+      "local_noise_changes_bridge_candidates_more_than_blind_score": true,
+      "bridge_blind_scores_exist": true,
+      "bridge_sensitive_candidates_have_nonzero_spread": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "fake_constant_kernel_adds_no_bridge_signal": {
+      "base_value": 1.0,
+      "pass": true
+    },
+    "fake_packet_score_ignores_local_channel_noise": {
+      "base_value": 0.2764957065386757,
+      "noise_small_delta": 0.0,
+      "noise_large_delta": 0.0,
+      "pass": true
+    },
+    "fake_shell_mean_radius_ignores_history_order": {
+      "base_value": 0.5233333333333333,
+      "history_scramble_delta": 0.0,
+      "pass": true
+    },
+    "fake_history_mean_phase_ignores_reference_shift": {
+      "base_value": 0.47250000000000003,
+      "reference_shift_delta": 0.0,
+      "pass": true
+    },
+    "counterfeit_scores_do_not_track_bridge_candidates": {
+      "note": "bridge-blind scores remain stable while bridge-aware candidates move",
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "identity_packet_change_is_zero": {
+      "ref_gap": 0.0,
+      "shell_gap": 0.0,
+      "hist_gap": 0.0,
+      "cut_gap": 0.0,
+      "pass": true
+    },
+    "tiny_shell_perturbation_is_smaller_than_identity_gap": {
+      "shell_gap": 0.0009490730046890494,
+      "ref_gap": 0.0,
+      "pass": true
+    },
+    "tiny_reference_shift_is_smaller_than_large_channel_noise": {
+      "tiny_ref_gap": 4.6277914573233936e-05,
+      "tiny_noise_gap": 0.0002029369147446003,
+      "strong_noise_gap": 0.018733618701628277,
+      "pass": true
+    },
+    "boundary_noise_changes_bridge_more_than_blind_score": {
+      "noise_gap": 0.0002029369147446003,
+      "fake_gap": 0.0,
+      "pass": true
+    },
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "caveat": "Pre-final-canon only. Bridge-blind metrics are intentionally included as counterexamples, not as candidate promotions.",
+  "summary": {
+    "tests_total": 9,
+    "tests_passed": 9,
+    "tests_failed": 0,
+    "all_pass": true,
+    "elapsed_s": 0.06782102584838867,
+    "most_bridge_sensitive_candidate": "Phi0_shell_weighted_Ic",
+    "most_bridge_blind_metric": "fake_packet_score"
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

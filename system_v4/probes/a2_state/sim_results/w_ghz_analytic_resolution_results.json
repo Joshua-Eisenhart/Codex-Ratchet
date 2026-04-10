@@ -1,0 +1,415 @@
+{
+  "name": "w_ghz_analytic_resolution",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Reproduced exact numerical pipeline from sim_rustworkx_3qubit_dag; diagnosed source of 1.008; computed all 3 bipartitions with careful entropy."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: h(1/3,2/3) > 1 is unsatisfiable; W I_c > GHZ I_c is unsatisfiable given analytic bounds."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-checked z3 UNSAT claims via QF_NRA solver."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Constructed W/GHZ 8x8 density matrices symbolically; computed partial traces and von Neumann entropy for all 3 bipartitions; confirmed W I_c = h(1/3,2/3) \u2248 0.918 < 1.0 = GHZ I_c analytically."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "supportive",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "normalization": {
+      "W_trace": "1",
+      "GHZ_trace": "1",
+      "pass": true
+    },
+    "bipartition_A_qubit0_vs_12": {
+      "description": "A=qubit0, B=qubits(1,2). I_c(A\u2192BC) = S(BC) for pure state.",
+      "W_rho_BC_eigenvalues": {
+        "1/3": 1,
+        "2/3": 1,
+        "0": 2
+      },
+      "GHZ_rho_BC_eigenvalues": {
+        "1/2": 2,
+        "0": 2
+      },
+      "W_S_BC_symbolic": "-2/3 + log(3)/log(2)",
+      "GHZ_S_BC_symbolic": "1",
+      "W_Ic_numeric": 0.9182958340544896,
+      "GHZ_Ic_numeric": 1.0,
+      "binary_entropy_1_3_numeric": 0.9182958340544896,
+      "W_Ic_equals_h_1_3": true,
+      "GHZ_Ic_equals_1": true,
+      "W_gt_GHZ": false,
+      "note": "Correct bipartition: W I_c \u2248 0.918, GHZ I_c = 1.0 \u2192 GHZ > W"
+    },
+    "bipartition_B_qubit1_vs_02": {
+      "description": "A=qubit1, B=qubits(0,2). I_c(B\u2192AC) = S(AC) for pure state.",
+      "W_rho_AC_eigenvalues": {
+        "1/3": 1,
+        "2/3": 1,
+        "0": 2
+      },
+      "GHZ_rho_AC_eigenvalues": {
+        "1/2": 2,
+        "0": 2
+      },
+      "W_Ic_numeric": 0.9182958340544896,
+      "GHZ_Ic_numeric": 1.0,
+      "W_gt_GHZ": false,
+      "note": "By symmetry of W state: all single-qubit marginals identical \u2192 same I_c"
+    },
+    "bipartition_C_qubit2_vs_01": {
+      "description": "A=qubit2, B=qubits(0,1). I_c(C\u2192AB) = S(AB) for pure state.",
+      "W_rho_AB_eigenvalues": {
+        "1/3": 1,
+        "2/3": 1,
+        "0": 2
+      },
+      "GHZ_rho_AB_eigenvalues": {
+        "1/2": 2,
+        "0": 2
+      },
+      "W_Ic_numeric": 0.9182958340544896,
+      "GHZ_Ic_numeric": 1.0,
+      "W_gt_GHZ": false,
+      "note": "For GHZ all bipartitions are symmetric \u2192 I_c = 1.0 for all cuts"
+    },
+    "bipartition_summary": {
+      "W_Ic_by_bipartition": {
+        "A_vs_BC": 0.9182958340544896,
+        "B_vs_AC": 0.9182958340544896,
+        "C_vs_AB": 0.9182958340544896
+      },
+      "GHZ_Ic_by_bipartition": {
+        "A_vs_BC": 1.0,
+        "B_vs_AC": 1.0,
+        "C_vs_AB": 1.0
+      },
+      "max_W_Ic": 0.9182958340544896,
+      "max_GHZ_Ic": 1.0,
+      "W_exceeds_1_in_any_bipartition": false,
+      "GHZ_exceeds_1_in_any_bipartition": false,
+      "W_gt_GHZ_in_any_bipartition": false,
+      "conclusion": "Under ALL 3 bipartitions, W I_c < 1 < GHZ I_c. W never exceeds GHZ analytically. The numerical 1.008 cannot come from any legitimate single-qubit bipartition."
+    }
+  },
+  "negative": {
+    "original_formula_reproduction": {
+      "description": "Exact replica of sim_rustworkx_3qubit_dag.py I_c = S(BC) - S(ABC)",
+      "W_S_BC": 1.0087262283710694,
+      "W_S_ABC": 3.4848210731279153e-13,
+      "W_Ic": 1.008726228370721,
+      "GHZ_S_BC": 1.0000000000000997,
+      "GHZ_S_ABC": 3.4912279261355454e-13,
+      "GHZ_Ic": 0.9999999999997505,
+      "W_S_BC_eigenvalues": [
+        -0.3333333333333334,
+        -0.20601132958329835,
+        0.3333333333333334,
+        0.5393446629166317
+      ],
+      "GHZ_S_BC_eigenvalues": [
+        0.0,
+        0.0,
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "W_Ic_matches_1008": true,
+      "note": "If W I_c deviates from 0.918, it indicates numerical error in entropy calc."
+    },
+    "W_BC_eigenvalue_diagnosis": {
+      "raw_eigenvalues": [
+        -0.3333333333333334,
+        -0.20601132958329835,
+        0.3333333333333334,
+        0.5393446629166317
+      ],
+      "min_eigenvalue": -0.3333333333333334,
+      "negative_eigenvalues": 2,
+      "near_zero_eigenvalues": 0,
+      "sum_eigenvalues": 0.33333333333333337,
+      "note": "rho_BC is 4x4 but W state has rank <=2 in BC sector. Near-zero eigenvalues clamped to 1e-15 can inflate entropy via -eps*log2(eps)."
+    },
+    "corrected_entropy_careful": {
+      "description": "Entropy with threshold (>1e-10) instead of clamp, same formula",
+      "W_S_BC_careful": 1.0087262283709695,
+      "GHZ_S_BC_careful": 1.0,
+      "W_Ic_careful": 1.0087262283709697,
+      "GHZ_Ic_careful": 0.9999999999999997,
+      "W_Ic_close_to_0918": false,
+      "GHZ_Ic_equals_1": true,
+      "W_gt_GHZ_careful": true
+    },
+    "all_bipartitions_careful": {
+      "W": {
+        "A0_vs_BC12": {
+          "S_B": 1.0087262283709695,
+          "S_full": -3.2034265038149176e-16,
+          "Ic": 1.0087262283709697,
+          "exceeds_1": true
+        },
+        "A1_vs_AC02": {
+          "S_B": 1.0087262283709695,
+          "S_full": -3.2034265038149176e-16,
+          "Ic": 1.0087262283709697,
+          "exceeds_1": true
+        },
+        "A2_vs_AB01": {
+          "S_B": 1.0087262283709695,
+          "S_full": -3.2034265038149176e-16,
+          "Ic": 1.0087262283709697,
+          "exceeds_1": true
+        }
+      },
+      "GHZ": {
+        "A0_vs_BC12": {
+          "S_B": 1.0,
+          "S_full": 3.2034265038149176e-16,
+          "Ic": 0.9999999999999997,
+          "exceeds_1": false
+        },
+        "A1_vs_AC02": {
+          "S_B": 1.0,
+          "S_full": 3.2034265038149176e-16,
+          "Ic": 0.9999999999999997,
+          "exceeds_1": false
+        },
+        "A2_vs_AB01": {
+          "S_B": 1.0,
+          "S_full": 3.2034265038149176e-16,
+          "Ic": 0.9999999999999997,
+          "exceeds_1": false
+        }
+      }
+    },
+    "W_rho_BC_matrix": {
+      "description": "Full 4x4 rho_BC matrix for W state (A=qubit0 traced out)",
+      "matrix": [
+        [
+          0.3333333333333334,
+          0.0,
+          0.0,
+          0.3333333333333334
+        ],
+        [
+          0.0,
+          0.0,
+          0.3333333333333334,
+          0.0
+        ],
+        [
+          0.0,
+          0.3333333333333334,
+          0.0,
+          0.0
+        ],
+        [
+          0.3333333333333334,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "trace": 0.3333333333333334,
+      "rank": 2
+    },
+    "float32_precision_test": {
+      "W_S_BC_float32_with_clamp": 1.0087262392044067,
+      "W_Ic_float32": 1.0087262392044067,
+      "matches_1008": true
+    },
+    "full_metrics_W": {
+      "S_A": 0.9182958340544893,
+      "S_B": 0.9182958340544893,
+      "S_C": 0.9182958340544893,
+      "S_AB": 1.0087262283709695,
+      "S_BC": 1.0087262283709695,
+      "S_AC": 1.0087262283709695,
+      "S_ABC": -3.2034265038149176e-16,
+      "I_c_A_to_BC": 1.0087262283709697,
+      "tripartite_MI": -0.27129118294944055
+    },
+    "full_metrics_GHZ": {
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0,
+      "S_BC": 1.0,
+      "S_AC": 1.0,
+      "S_ABC": 3.2034265038149176e-16,
+      "I_c_A_to_BC": 0.9999999999999997,
+      "tripartite_MI": 3.2034265038149176e-16
+    },
+    "stored_results_check": {
+      "torch_graph_integrated_pipeline_results.json": "found"
+    },
+    "einsum_bug_diagnosis": {
+      "description": "The partial_trace_3q function builds out_labels by interleaving ket/bra indices per qubit: [b, b', c, c']. The correct order groups all ket then all bra: [b, c, b', c']. This bug produces a non-PSD matrix for W but happens to give the correct result for GHZ (due to GHZ's symmetric structure).",
+      "W_buggy_eigenvalues": [
+        -0.3333333333333334,
+        -0.20601132958329835,
+        0.3333333333333334,
+        0.5393446629166317
+      ],
+      "W_correct_eigenvalues": [
+        0.0,
+        0.0,
+        0.3333333333333334,
+        0.6666666666666669
+      ],
+      "GHZ_buggy_eigenvalues": [
+        0.0,
+        0.0,
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "GHZ_correct_eigenvalues": [
+        0.0,
+        0.0,
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "W_buggy_trace": 0.3333333333333334,
+      "W_correct_trace": 1.0000000000000002,
+      "GHZ_buggy_trace": 0.9999999999999998,
+      "GHZ_correct_trace": 0.9999999999999998,
+      "W_Ic_buggy": 1.008726228370721,
+      "W_Ic_correct_num": 0.9182958340544897,
+      "GHZ_Ic_buggy": 0.9999999999997505,
+      "GHZ_Ic_correct_num": 0.9999999999999997,
+      "bug_confirmed": true,
+      "why_GHZ_unaffected": "GHZ rho_BC = I/2 (maximally mixed 2-qubit... wait, no: GHZ rho_BC has eigenvalues {1/2, 1/2, 0, 0}. Due to GHZ's tensor product structure in the BC sector, the interleaved vs grouped output happens to give the same S(BC)=1."
+    },
+    "root_cause_diagnosis": {
+      "W_Ic_correct_analytic": 0.9182958340544896,
+      "W_Ic_from_exact_numerical_buggy": 1.008726228370721,
+      "W_Ic_from_correct_numerical": 0.9182958340544897,
+      "GHZ_Ic_correct": 1.0,
+      "root_cause": "BUG IN partial_trace_3q einsum output label ordering. Original code interleaves ket/bra per qubit: out_labels=[b,b',c,c']. Correct order groups all ket then all bra: out_labels=[b,c,b',c']. For W state: buggy rho_BC has negative eigenvalues (non-physical), trace=1/3. For GHZ state: bug is masked because the output entropy coincidentally matches the correct value due to GHZ's symmetric structure in the BC subspace.",
+      "consequence": "The 1.008 value for W I_c in sim_rustworkx_3qubit_dag.py is not a physical coherent information \u2014 it comes from entropy of a non-PSD matrix. The correct value is h(1/3,2/3) \u2248 0.9183. W < GHZ under all legitimate bipartitions and formulas."
+    }
+  },
+  "boundary": {
+    "z3_proofs": {
+      "Z1_W_state_hBC_not_gt_1": {
+        "result": "unsat",
+        "pass": true,
+        "claim_refuted": "h(1/3,2/3) > 1",
+        "interpretation": "UNSAT confirms W state S(BC) < 1"
+      },
+      "Z2_general_h_not_gt_1": {
+        "result": "unsat",
+        "pass": true,
+        "claim_refuted": "h(p,1-p) > 1 for p < 1/2 with known bounds",
+        "interpretation": "UNSAT confirms binary entropy bounded by 1"
+      },
+      "Z3_W_Ic_not_gt_GHZ_Ic": {
+        "result": "unsat",
+        "pass": true,
+        "claim_refuted": "I_c(W) > I_c(GHZ) given analytic values",
+        "interpretation": "UNSAT confirms GHZ > W under correct formula"
+      }
+    },
+    "cvc5_cross_check": {
+      "C1_W_Ic_not_gt_1": {
+        "result": "unsat",
+        "pass": true
+      },
+      "C2_W_Ic_not_gt_GHZ_Ic": {
+        "result": "unsat",
+        "pass": true
+      },
+      "agrees_with_z3": true
+    },
+    "analytic_resolution_report": {
+      "correct_W_Ic_A_vs_BC": 0.9182958340544896,
+      "correct_GHZ_Ic_A_vs_BC": 1.0,
+      "correct_W_Ic_B_vs_AC": 0.9182958340544896,
+      "correct_W_Ic_C_vs_AB": 0.9182958340544896,
+      "correct_GHZ_Ic_B_vs_AC": 1.0,
+      "correct_GHZ_Ic_C_vs_AB": 1.0,
+      "W_gt_GHZ_under_any_bipartition": false,
+      "source_of_1008": "CONFIRMED BUG: partial_trace_3q in sim_rustworkx_3qubit_dag.py has an einsum output label ordering error. It produces out_labels=[b,b',c,c'] (interleaved ket/bra per qubit) instead of the correct [b,c,b',c'] (all ket then all bra). For the W state this yields a non-PSD matrix with negative eigenvalues and trace=1/3, whose 'entropy' computes to ~1.008. For GHZ the bug is masked: the interleaved vs grouped output happens to produce the same entropy value = 1.0 due to GHZ's symmetric BC structure. The correct analytic value h(1/3,2/3) \u2248 0.9183 is confirmed by sympy.",
+      "qubit_index_check": {
+        "description": "W state uses |001>=1, |010>=2, |100>=4. Qubit 0 is MSB. |100>=4 has qubit0=1, qubits12=00. |010>=2 has qubit0=0, qubits12=10. |001>=1 has qubit0=0, qubits12=01. After tracing out qubit0:   A=0 sector (weight 2/3): reduced state on qubits12 is (|10>+|01>)/\u221a2   A=1 sector (weight 1/3): reduced state on qubits12 is |00> rho_BC = (2/3)|\u03a6'><\u03a6'| + (1/3)|00><00| where |\u03a6'> = (|10>+|01>)/\u221a2. Eigenvalues: {2/3, 1/3}. S(BC) = h(1/3,2/3) \u2248 0.918.",
+        "expected_eigenvalues": [
+          0.0,
+          0.0,
+          "1/3",
+          "2/3"
+        ],
+        "confirms": "S(BC) = h(1/3,2/3) < 1 < S(BC)_GHZ = h(1/2,1/2) = 1"
+      },
+      "verdict": "W < GHZ under ALL legitimate bipartitions. 1.008 is a numerical error."
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "W_Ic_correct": 0.9182958340544896,
+    "GHZ_Ic_correct": 1.0,
+    "numerical_1008_is_error": true,
+    "W_gt_GHZ_defensible": false,
+    "source_of_1008": "numerical artifact in sim_rustworkx_3qubit_dag.py"
+  }
+}

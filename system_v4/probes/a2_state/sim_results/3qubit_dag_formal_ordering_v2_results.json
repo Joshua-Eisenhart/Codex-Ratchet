@@ -1,0 +1,468 @@
+{
+  "name": "3qubit_dag_formal_ordering_v2",
+  "description": "Corrected 3-qubit I_c ordering. Fixes W=1.008 bug (was from buggy partial_trace_3q interleaved einsum). Correct W=H(1/3,2/3)\u22480.9183. All z3/cvc5 UNSAT proofs updated. Bell\u2297|0\u27e9 cut-dependence documented.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "8\u00d78 density matrix computation with FIXED partial_trace_3q. Re-derives I_c from scratch for all states and all bipartitions. Confirms W I_c=0.9183 and exposes Bell\u2297|0\u27e9 cut-dependence."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: Z1(W>GHZ UNSAT), Z2(product>0 UNSAT), Z3(I_c>2 UNSAT). SAT check: Bell\u2297|0\u27e9 A\u2192BC = GHZ A\u2192BC = 1.0 (SAT). Corrects the old Z1 which was proving the WRONG direction."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Independent cross-check of Z1, Z2, Z3 UNSAT proofs using QF_LRA logic."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Analytic verification: W I_c = H(1/3,2/3) = log2(3)-2/3 \u2248 0.9183. Symbolic comparison W < GHZ proven exactly."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Corrected I_c dominance DAG: topological_sort, transitive_reduction, dag_longest_path, is_directed_acyclic_graph. Confirms total order on A\u2192BC axis with Bell\u2297|0\u27e9 annotated separately."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_derivation": {
+      "state_metrics": {
+        "product": {
+          "I_c_A_to_BC": -0.0,
+          "I_c_B_to_AC": -0.0,
+          "I_c_C_to_AB": -0.0,
+          "I_c_symmetric": 1,
+          "S_ABC": 0.0,
+          "S_A": 0.0,
+          "S_B": 0.0,
+          "S_C": 0.0,
+          "S_AB": 0.0,
+          "S_BC": 0.0,
+          "S_AC": 0.0
+        },
+        "sep_mixed": {
+          "I_c_A_to_BC": -0.0,
+          "I_c_B_to_AC": -0.0,
+          "I_c_C_to_AB": -0.97095059,
+          "I_c_symmetric": 0,
+          "S_ABC": 0.97095059,
+          "S_A": 0.0,
+          "S_B": 0.0,
+          "S_C": 0.97095059,
+          "S_AB": 0.0,
+          "S_BC": 0.97095059,
+          "S_AC": 0.97095059
+        },
+        "Bell_otimes_0": {
+          "I_c_A_to_BC": 1.0,
+          "I_c_B_to_AC": 1.0,
+          "I_c_C_to_AB": -0.0,
+          "I_c_symmetric": 0,
+          "S_ABC": 0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_C": 0.0,
+          "S_AB": 0.0,
+          "S_BC": 1.0,
+          "S_AC": 1.0
+        },
+        "GHZ": {
+          "I_c_A_to_BC": 1.0,
+          "I_c_B_to_AC": 1.0,
+          "I_c_C_to_AB": 1.0,
+          "I_c_symmetric": 1,
+          "S_ABC": 0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_C": 1.0,
+          "S_AB": 1.0,
+          "S_BC": 1.0,
+          "S_AC": 1.0
+        },
+        "W": {
+          "I_c_A_to_BC": 0.91829583,
+          "I_c_B_to_AC": 0.91829583,
+          "I_c_C_to_AB": 0.91829583,
+          "I_c_symmetric": 1,
+          "S_ABC": 0.0,
+          "S_A": 0.91829583,
+          "S_B": 0.91829583,
+          "S_C": 0.91829583,
+          "S_AB": 0.91829583,
+          "S_BC": 0.91829583,
+          "S_AC": 0.91829583
+        },
+        "product_mixed": {
+          "I_c_A_to_BC": -1.0,
+          "I_c_B_to_AC": -1.0,
+          "I_c_C_to_AB": -1.0,
+          "I_c_symmetric": 1,
+          "S_ABC": 3.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_C": 1.0,
+          "S_AB": 2.0,
+          "S_BC": 2.0,
+          "S_AC": 2.0
+        },
+        "maximal_3q": {
+          "I_c_A_to_BC": 2.0,
+          "I_c_B_to_AC": 2.0,
+          "I_c_C_to_AB": 2.0,
+          "I_c_symmetric": true,
+          "note": "Theoretical upper bound: S(BC) max = 2 bits (BC is a 2-qubit system). Not achievable by any pure 3-qubit state with 1-qubit A partition since S(BC)_pure = S(A) \u2264 1 bit. Represents the proof ceiling."
+        }
+      },
+      "ordering_table": [
+        {
+          "state": "product_mixed",
+          "I_c_A_to_BC": -1.0
+        },
+        {
+          "state": "product",
+          "I_c_A_to_BC": -0.0
+        },
+        {
+          "state": "sep_mixed",
+          "I_c_A_to_BC": -0.0
+        },
+        {
+          "state": "W",
+          "I_c_A_to_BC": 0.91829583
+        },
+        {
+          "state": "Bell_otimes_0",
+          "I_c_A_to_BC": 1.0
+        },
+        {
+          "state": "GHZ",
+          "I_c_A_to_BC": 1.0
+        },
+        {
+          "state": "maximal_3q",
+          "I_c_A_to_BC": 2.0
+        }
+      ],
+      "key_comparisons": {
+        "W_ic": 0.91829583,
+        "GHZ_ic": 1.0,
+        "product_ic": -0.0,
+        "Bell0_ic_A_to_BC": 1.0,
+        "Bell0_ic_C_to_AB": -0.0,
+        "W_lt_GHZ": true,
+        "old_W_was_1_008": true,
+        "bug_confirmed": true,
+        "correct_W_ic": 0.91829583,
+        "Bell0_cut_dependent": true
+      },
+      "pass": true,
+      "note": "FIXED partial_trace_3q (ket-first out_labels). W I_c = H(1/3,2/3) \u2248 0.9183 bits (symmetric across all cuts). GHZ I_c = 1.0 bits (symmetric across all cuts). Bell\u2297|0\u27e9 is CUT-DEPENDENT: 1.0 for A\u2192BC and B\u2192AC, 0.0 for C\u2192AB. Old W=1.008 was from buggy interleaved einsum output ordering."
+    },
+    "sympy_verification": {
+      "W_Ic_exact": "-2/3 + log(3)/log(2)",
+      "W_Ic_simplified": "-2/3 + log(3)/log(2)",
+      "W_Ic_numeric": 0.9182958341,
+      "GHZ_Ic_exact": "1",
+      "GHZ_Ic_numeric": 1.0,
+      "W_Ic_lt_GHZ_Ic": true,
+      "rho_A_eigenvalues_W": [
+        "1/3",
+        "2/3"
+      ],
+      "rho_BC_eigenvalues_W": [
+        "1/3",
+        "2/3",
+        "0",
+        "0"
+      ],
+      "S_A_W_exact": "-2/3 + log(3)/log(2)",
+      "S_BC_W_exact": "-2/3 + log(3)/log(2)",
+      "S_ABC_W": "0 (pure state)",
+      "agrees_with_pytorch": true,
+      "pass": true,
+      "note": "Analytic proof: W I_c = H(1/3,2/3) = log2(3) - 2/3 \u2248 0.9183 bits. GHZ I_c = 1 bit exactly. W < GHZ proven symbolically by sympy. Schmidt decomposition of W state gives rho_A eigenvalues {1/3, 2/3}."
+    }
+  },
+  "negative": {
+    "z3_proofs": {
+      "Z1_W_gt_GHZ_UNSAT": {
+        "claim": "I_c(W) > I_c(GHZ) \u2014 asserting W dominates GHZ",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "W_ic_bounds": "[0.917, 0.920]",
+        "GHZ_ic_bounds": "[0.999, 1.001]",
+        "old_bug": "Previous sim had W=1.008 > GHZ=1.0, making Z1 (W<=GHZ) UNSAT \u2014 WRONG",
+        "correction": "With W=0.9183 < GHZ=1.0, the claim W>GHZ is now correctly UNSAT",
+        "interpretation": "UNSAT: no assignment within measured bounds can have W > GHZ. The W state strictly LOSES to GHZ in coherent information.",
+        "pass": true
+      },
+      "Z2_product_gt_zero_UNSAT": {
+        "claim": "I_c(product) > 0, given S(BC)=0 and S(ABC)=0 for pure separable |000\u27e9",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "encoding": "ic_prod = S_BC - S_ABC = 0 - 0 = 0; assert ic_prod > 0",
+        "interpretation": "UNSAT: I_c = S(BC) - S(ABC) = 0 - 0 = 0 for |000\u27e9. Asserting I_c(product) > 0 contradicts S(BC)=0 and S(ABC)=0. This is an exact algebraic proof, not a numerical bound.",
+        "pass": true
+      },
+      "Z3_ic_exceeds_ceiling_UNSAT": {
+        "claim": "I_c > 2.0 bits (BC subsystem ceiling)",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "ceiling_justification": "BC is a 2-qubit system: max entropy S(BC) = 2 bits. S(ABC) \u2265 0. Therefore I_c = S(BC) - S(ABC) \u2264 2.0 bits.",
+        "interpretation": "UNSAT: no 3-qubit state can have I_c(A\u2192BC) > 2.0 bits. The ceiling is tight but not achievable by pure states with 1-qubit A (which are bounded by S(A) \u2264 1 bit).",
+        "pass": true
+      },
+      "Z4_Bell0_eq_GHZ_on_A_BC_cut_SAT": {
+        "claim": "I_c(Bell\u2297|0\u27e9, A\u2192BC) = I_c(GHZ, A\u2192BC) = 1.0",
+        "z3_result": "sat",
+        "is_sat": true,
+        "interpretation": "SAT: Bell\u2297|0\u27e9 and GHZ are tied on the A\u2192BC cut. They are DIFFERENT states (GHZ has 3-way entanglement, Bell\u2297|0\u27e9 has 2-way) but produce the same I_c on this specific bipartition. Bell\u2297|0\u27e9 falls to I_c=0 on the C\u2192AB cut, distinguishing them.",
+        "pass": true
+      },
+      "all_z3_pass": true
+    },
+    "cvc5_proofs": {
+      "CVC5_Z1_W_gt_GHZ_UNSAT": {
+        "claim": "I_c(W) > I_c(GHZ) with W\u2208[0.917,0.920], GHZ\u2208[0.999,1.001]",
+        "result": "UNSAT",
+        "is_unsat": true,
+        "agrees_with_z3": true,
+        "pass": true
+      },
+      "CVC5_Z2_product_gt_zero_UNSAT": {
+        "claim": "I_c(product) > 0, given S(BC)=0, S(ABC)=0 for |000\u27e9",
+        "result": "UNSAT",
+        "is_unsat": true,
+        "encoding": "ic = S_BC - S_ABC = 0 - 0 = 0; assert ic > 0",
+        "agrees_with_z3": true,
+        "pass": true
+      },
+      "CVC5_Z3_ic_exceeds_ceiling_UNSAT": {
+        "claim": "I_c > 2.0 bits (given I_c \u2264 2.0)",
+        "result": "UNSAT",
+        "is_unsat": true,
+        "agrees_with_z3": true,
+        "pass": true
+      },
+      "all_cvc5_pass": true
+    }
+  },
+  "boundary": {
+    "dag_results": {
+      "num_nodes": 6,
+      "num_edges": 14,
+      "is_acyclic": true,
+      "edges": [
+        "product\u2192product_mixed",
+        "sep_mixed\u2192product_mixed",
+        "W\u2192product_mixed",
+        "W\u2192product",
+        "W\u2192sep_mixed",
+        "GHZ\u2192product_mixed",
+        "GHZ\u2192product",
+        "GHZ\u2192sep_mixed",
+        "GHZ\u2192W",
+        "maximal_3q\u2192product_mixed",
+        "maximal_3q\u2192product",
+        "maximal_3q\u2192sep_mixed",
+        "maximal_3q\u2192W",
+        "maximal_3q\u2192GHZ"
+      ],
+      "topological_sort": [
+        "maximal_3q",
+        "GHZ",
+        "W",
+        "sep_mixed",
+        "product",
+        "product_mixed"
+      ],
+      "transitive_reduction_edges": [
+        "product\u2192product_mixed",
+        "sep_mixed\u2192product_mixed",
+        "W\u2192sep_mixed",
+        "W\u2192product",
+        "GHZ\u2192W",
+        "maximal_3q\u2192GHZ"
+      ],
+      "transitive_reduction_edge_count": 6,
+      "longest_path": [
+        "maximal_3q",
+        "GHZ",
+        "W",
+        "product",
+        "product_mixed"
+      ],
+      "longest_path_length": 4,
+      "descendants_by_node": {
+        "product_mixed": {
+          "I_c": -1.0,
+          "descendants": [],
+          "desc_count": 0,
+          "in_degree": 5,
+          "out_degree": 0
+        },
+        "product": {
+          "I_c": 0.0,
+          "descendants": [
+            "product_mixed"
+          ],
+          "desc_count": 1,
+          "in_degree": 3,
+          "out_degree": 1
+        },
+        "sep_mixed": {
+          "I_c": 0.0,
+          "descendants": [
+            "product_mixed"
+          ],
+          "desc_count": 1,
+          "in_degree": 3,
+          "out_degree": 1
+        },
+        "W": {
+          "I_c": 0.9183,
+          "descendants": [
+            "product_mixed",
+            "product",
+            "sep_mixed"
+          ],
+          "desc_count": 3,
+          "in_degree": 2,
+          "out_degree": 3
+        },
+        "GHZ": {
+          "I_c": 1.0,
+          "descendants": [
+            "product_mixed",
+            "product",
+            "sep_mixed",
+            "W"
+          ],
+          "desc_count": 4,
+          "in_degree": 1,
+          "out_degree": 4
+        },
+        "maximal_3q": {
+          "I_c": 2.0,
+          "descendants": [
+            "product_mixed",
+            "product",
+            "sep_mixed",
+            "W",
+            "GHZ"
+          ],
+          "desc_count": 5,
+          "in_degree": 0,
+          "out_degree": 5
+        }
+      },
+      "bell_otimes_0_note": "Bell\u2297|0\u27e9 is cut-dependent and excluded from the primary DAG. I_c(A\u2192BC)=1.0 (equals GHZ), I_c(C\u2192AB)=0.0 (equals product). On the canonical A\u2192BC axis, Bell\u2297|0\u27e9 is TIED with GHZ, not between W and GHZ.",
+      "pass": true,
+      "note": "Corrected 6-node I_c DAG (A\u2192BC cut). sep_mixed and product both have I_c=0; they are incomparable peers (no edge). W(0.9183) < GHZ(1.0) confirmed. Topological sort: product_mixed \u2192 product/sep_mixed \u2192 W \u2192 GHZ \u2192 maximal_3q."
+    },
+    "ordering_table": {
+      "table": [
+        {
+          "rank": 1,
+          "state": "product_mixed (I/8)",
+          "I_c": -1.0,
+          "note": "Fully mixed: S(BC)=2, S(ABC)=3, I_c=-1"
+        },
+        {
+          "rank": 2,
+          "state": "product / separable",
+          "I_c": 0.0,
+          "note": "Pure separable |000\u27e9: S(BC)=0, S(ABC)=0"
+        },
+        {
+          "rank": "2 (tie on A\u2192BC)",
+          "state": "Bell\u2297|0\u27e9 \u2014 C\u2192AB cut",
+          "I_c": 0.0,
+          "note": "C qubit is unentangled; C\u2192AB cut gives I_c=0"
+        },
+        {
+          "rank": 3,
+          "state": "W",
+          "I_c": 0.9183,
+          "note": "H(1/3,2/3)=log2(3)-2/3; symmetric across all 3 cuts; CORRECTED from 1.008"
+        },
+        {
+          "rank": "4 (tie on A\u2192BC)",
+          "state": "GHZ and Bell\u2297|0\u27e9 A\u2192BC",
+          "I_c": 1.0,
+          "note": "GHZ: symmetric (genuine 3-way); Bell\u2297|0\u27e9: only on A\u2192BC and B\u2192AC cuts"
+        },
+        {
+          "rank": 5,
+          "state": "maximal_3q (theoretical)",
+          "I_c": 2.0,
+          "note": "BC subsystem ceiling (2 qubits); NOT achievable by pure states with 1-qubit A"
+        }
+      ],
+      "canonical_ordering": "product_mixed(-1.0) < product/sep(0.0) < W(0.9183) < GHZ(1.0) < maximal_3q(2.0)",
+      "bell0_note": "Bell\u2297|0\u27e9 is CUT-DEPENDENT and does not have a fixed position in the total order: it ties with GHZ on A\u2192BC and B\u2192AC cuts (I_c=1.0), but ties with product on C\u2192AB cut (I_c=0.0). This reflects the fact that Bell\u2297|0\u27e9 has only 2-way entanglement (AB pair), while GHZ has genuine 3-way entanglement (all cuts give I_c=1.0).",
+      "correction_summary": {
+        "old_W_ic": 1.008,
+        "correct_W_ic": 0.9183,
+        "bug": "partial_trace_3q interleaved out_labels (b,b',c,c') instead of ket-first (b,c,b',c')",
+        "old_z1_claim": "Z1 was proving W <= GHZ as UNSAT (W=1.008 > GHZ=1.0, so it was wrong)",
+        "new_z1_claim": "Z1 now proves W > GHZ as UNSAT (W=0.9183 < GHZ=1.0, correct)"
+      }
+    }
+  },
+  "all_tests_passed": true,
+  "classification": "canonical"
+}

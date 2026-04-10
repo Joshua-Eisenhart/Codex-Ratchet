@@ -1,0 +1,179 @@
+{
+  "name": "sim_lego_entropy_relative_js",
+  "timestamp": "2026-04-08T08:36:53.823813+00:00",
+  "classification": "classical_baseline",
+  "schema": {
+    "version": 1,
+    "surface": "pure_lego_entropy",
+    "sections": [
+      "positive",
+      "negative",
+      "boundary",
+      "tool_manifest",
+      "summary"
+    ],
+    "non_metric_caveats": [
+      "Relative entropy is asymmetric and can be infinite on support mismatch.",
+      "Raw quantum Jensen-Shannon divergence is treated as a bounded divergence here; triangle inequality is not claimed."
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; pure numpy lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric divergence check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric divergence check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; analytic identities are numeric here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell-complex structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_relative_entropy_axioms": {
+      "test": "relative entropy is nonnegative, zero on identical states, asymmetric on generic pairs",
+      "D_rho_sigma_bits": 0.3075187496394221,
+      "D_sigma_rho_bits": 0.3509775004326933,
+      "D_self_bits": 0.0,
+      "nonnegative": true,
+      "identity_of_indiscernibles": true,
+      "asymmetry_detected": true,
+      "pass": true
+    },
+    "P2_relative_entropy_to_maximally_mixed": {
+      "test": "D(rho || I/2) = 1 - S(rho) in bits for qubits",
+      "D_rho_mm_bits": 0.2780719051126379,
+      "entropy_rho_bits": 0.7219280948873623,
+      "expected_bits": 0.2780719051126377,
+      "abs_error": 2.220446049250313e-16,
+      "pass": true
+    },
+    "P3_jensen_shannon_divergence": {
+      "test": "quantum Jensen-Shannon divergence is symmetric and bounded on qubits",
+      "JS_rho_sigma_bits": 0.080172819254401,
+      "JS_sigma_rho_bits": 0.080172819254401,
+      "JS_self_bits": 0.0,
+      "symmetric": true,
+      "bounded": true,
+      "zero_on_identity": true,
+      "pass": true
+    },
+    "P4_commuting_reduction": {
+      "test": "diagonal states reduce exactly to classical KL and JS divergences",
+      "quantum_relative_entropy_bits": 0.2651484454403226,
+      "classical_kl_bits": 0.26514844544032273,
+      "relative_entropy_error": 1.1102230246251565e-16,
+      "quantum_js_bits": 0.06665370714512756,
+      "classical_js_bits": 0.06665370714512762,
+      "js_error": 6.938893903907228e-17,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_relative_entropy_not_symmetric": {
+      "test": "relative entropy should fail symmetry for a generic noncommuting pair",
+      "D_rho_sigma_bits": 0.7637873290142524,
+      "D_sigma_rho_bits": 0.7120877901709616,
+      "symmetry_gap": 0.051699538843290815,
+      "pass": true
+    },
+    "N2_support_mismatch_produces_infinite_divergence": {
+      "test": "support mismatch should trigger infinite relative entropy",
+      "D_0_to_1": Infinity,
+      "D_1_to_0": Infinity,
+      "support_mismatch_detected": "True",
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "B1_orthogonal_pure_states": {
+      "test": "orthogonal pure states give infinite relative entropy and maximal JS on qubits",
+      "D_0_to_1": Infinity,
+      "D_1_to_0": Infinity,
+      "JS_0_1_bits": 1.0,
+      "D_0_to_mm_bits": 1.0,
+      "relative_entropy_infinite": "True",
+      "js_maximal": true,
+      "mm_identity": true,
+      "pass": true
+    },
+    "B2_maximally_mixed_fixed_point": {
+      "test": "maximally mixed state is a zero point for both divergences against itself",
+      "D_mm_mm_bits": 0.0,
+      "JS_mm_mm_bits": 0.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "all_pass": true,
+    "all_divergence_family_checks_pass": true
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

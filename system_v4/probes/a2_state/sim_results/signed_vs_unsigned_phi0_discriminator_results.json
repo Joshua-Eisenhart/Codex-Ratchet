@@ -1,0 +1,225 @@
+{
+  "name": "signed_vs_unsigned_phi0_discriminator",
+  "probe": "primitive_vs_companion_phi0_battery",
+  "purpose": "Discriminate primitive-eligible signed Phi0 candidates from unsigned companion metrics using separability anchors, Bell/Werner behavior, and packet reversals.",
+  "classification": "candidate_discriminator",
+  "tools_used": [
+    "numpy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph-learning layer needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim in this bounded discriminator"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "explicit density matrices are sufficient"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold layer needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant learning layer needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph algorithm needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex layer needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent topology needed"
+    }
+  },
+  "positive": {
+    "case_values": {
+      "product": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information": 0.0,
+        "weighted_shell_coherent_information": 0.0,
+        "d_max_proxy": 0.0,
+        "negativity_companion": 0.0
+      },
+      "separable": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information": 1.0,
+        "weighted_shell_coherent_information": -0.5350090070311345,
+        "d_max_proxy": 0.6931471805599453,
+        "negativity_companion": 0.0
+      },
+      "bell": {
+        "coherent_information": 0.9999999999999997,
+        "conditional_entropy": -0.9999999999999997,
+        "mutual_information": 1.9999999999999998,
+        "weighted_shell_coherent_information": -0.031007766294187222,
+        "d_max_proxy": 1.3862943611198904,
+        "negativity_companion": 0.5000000000000002
+      },
+      "bell_reversed": {
+        "coherent_information": -0.970893955448993,
+        "conditional_entropy": 0.970893955448993,
+        "mutual_information": 0.02910604455100696,
+        "weighted_shell_coherent_information": -0.985293347260987,
+        "d_max_proxy": 0.3074846997479604,
+        "negativity_companion": 1.1102230246251565e-16
+      },
+      "werner_threshold": {
+        "coherent_information": -0.7924812503605785,
+        "conditional_entropy": 0.7924812503605785,
+        "mutual_information": 0.20751874963942152,
+        "weighted_shell_coherent_information": -0.8944708930638683,
+        "d_max_proxy": 0.6931471805599448,
+        "negativity_companion": 1.1102230246251565e-16
+      },
+      "werner_entangled": {
+        "coherent_information": 0.15241532017542636,
+        "conditional_entropy": -0.15241532017542636,
+        "mutual_information": 1.1524153201754264,
+        "weighted_shell_coherent_information": -0.4208202185892195,
+        "d_max_proxy": 1.2237754316221157,
+        "negativity_companion": 0.35
+      },
+      "packet_forward": {
+        "coherent_information": 0.4157611883571444,
+        "conditional_entropy": -0.4157611883571444,
+        "mutual_information": 1.4157611883571444,
+        "weighted_shell_coherent_information": -0.3140100516208355,
+        "d_max_proxy": 1.235471471385307,
+        "negativity_companion": 0.3600000000000001
+      },
+      "packet_reverse": {
+        "coherent_information": -0.8929646485093539,
+        "conditional_entropy": 0.8929646485093539,
+        "mutual_information": 0.10703535149064614,
+        "weighted_shell_coherent_information": -0.9464222299272604,
+        "d_max_proxy": 0.43126280092930463,
+        "negativity_companion": 1.1102230246251565e-16
+      }
+    },
+    "signed_candidates_show_negative_capacity": {
+      "coherent_information_packet_reverse": -0.8929646485093539,
+      "conditional_entropy_packet_reverse": 0.8929646485093539,
+      "pass": true
+    },
+    "unsigned_companions_remain_nonnegative": {
+      "mutual_information_packet_reverse": 0.10703535149064614,
+      "d_max_proxy_packet_reverse": 0.43126280092930463,
+      "negativity_packet_reverse": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "mi_style_companion_not_primitive": {
+      "product": 0.0,
+      "separable": 1.0,
+      "bell": 1.9999999999999998,
+      "packet_forward": 1.4157611883571444,
+      "packet_reverse": 0.10703535149064614,
+      "disqualified_as_primitive": true
+    },
+    "dmax_style_companion_not_primitive": {
+      "packet_forward": 1.235471471385307,
+      "packet_reverse": 0.43126280092930463,
+      "disqualified_as_primitive": true
+    },
+    "separability_anchor_test": {
+      "coherent_information_product": -0.0,
+      "coherent_information_separable": -0.0,
+      "mi_product": 0.0,
+      "mi_separable": 1.0,
+      "primitive_anchor_pass": true,
+      "companion_anchor_useful_not_primitive": true
+    },
+    "bell_werner_behavior_test": {
+      "coherent_information_bell": 0.9999999999999997,
+      "coherent_information_werner_threshold": -0.7924812503605785,
+      "coherent_information_werner_entangled": 0.15241532017542636,
+      "mi_bell": 1.9999999999999998,
+      "mi_werner_threshold": 0.20751874963942152,
+      "mi_werner_entangled": 1.1524153201754264,
+      "primitive_tracks_signed_transition": true,
+      "companion_does_not_define_signed_transition": true
+    },
+    "packet_reversal_test": {
+      "coherent_information_forward": 0.4157611883571444,
+      "coherent_information_reverse": -0.8929646485093539,
+      "conditional_entropy_forward": -0.4157611883571444,
+      "conditional_entropy_reverse": 0.8929646485093539,
+      "mi_forward": 1.4157611883571444,
+      "mi_reverse": 0.10703535149064614,
+      "primitive_sign_reversal": true,
+      "unsigned_companion_no_sign_reversal": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "werner_threshold_boundary": {
+      "coherent_information": -0.7924812503605785,
+      "mutual_information": 0.20751874963942152,
+      "negativity": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "pure_bell_boundary": {
+      "coherent_information": 0.9999999999999997,
+      "conditional_entropy": -0.9999999999999997,
+      "mutual_information": 1.9999999999999998,
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "tests_total": 3,
+    "tests_passed": 3,
+    "all_pass": true,
+    "primitive_eligible_candidates": [
+      "coherent_information",
+      "conditional_entropy"
+    ],
+    "companion_only_candidates": [
+      "mutual_information",
+      "d_max_proxy",
+      "negativity_companion"
+    ],
+    "note": "Signed primitives survive reversal and signed-threshold tests; unsigned companions remain useful but not primitive."
+  }
+}

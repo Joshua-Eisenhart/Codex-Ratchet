@@ -1,0 +1,218 @@
+{
+  "name": "PURE LEGO: Hopf Torus Geometry with Geomstats",
+  "probe": "foundation_hopf_torus_geomstats_clifford",
+  "purpose": "Foundational geometry lego for normalized spinors, Hopf map, and nested torus structure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact verification of torus metric and area formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "runtime unavailable: RuntimeError"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing manifold layer: S^3/S^2 membership, geodesic distance, torus as S^1 x S^1, and Fr\u00e9chet mean"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this geometry lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "normalized_spinors_land_on_s3_and_hopf_images_land_on_s2": {
+      "s3_membership": true,
+      "s2_membership": true,
+      "pass": true
+    },
+    "hopf_map_is_invariant_under_global_phase": {
+      "hopf_base": [
+        0.5911862109178392,
+        -0.7449881617905629,
+        0.3090169943749474
+      ],
+      "hopf_phase_shifted": [
+        0.5911862109178391,
+        -0.7449881617905629,
+        0.3090169943749478
+      ],
+      "equal": true,
+      "pass": true
+    },
+    "clifford_torus_is_balanced_at_eta_pi_over_4": {
+      "r_major": 0.7071067811865476,
+      "r_minor": 0.7071067811865475,
+      "equal": true,
+      "pass": true
+    },
+    "geomstats_torus_frechet_mean_matches_componentwise_circular_mean": {
+      "mean_delta": 6.169293209379652e-05,
+      "frechet_mean": [
+        [
+          0.9977227398442284,
+          0.06744875386340367
+        ],
+        [
+          0.9942274373117206,
+          0.10729307012369821
+        ]
+      ],
+      "expected_mean": [
+        [
+          0.997720331349746,
+          0.06748437160819552
+        ],
+        [
+          0.9942220376087472,
+          0.10734309448264862
+        ]
+      ],
+      "pass": true
+    },
+    "induced_torus_metric_and_area_match_exact_formulas": {
+      "metric": {
+        "g11": 0.5000000000000001,
+        "g22": 0.4999999999999999,
+        "g12": 0.0,
+        "area": 19.739208802178716
+      },
+      "sympy_check": {
+        "available": true,
+        "metric_diagonal": true,
+        "area_formula_residual": "2*pi**2*(-sin(2*eta) + Abs(sin(2*eta)))",
+        "numeric_area_residual": 0.0,
+        "pass": true
+      },
+      "pass": true
+    },
+    "s3_geodesic_distance_is_nontrivial_for_distinct_spinors": {
+      "distance": 0.7059105604591763,
+      "positive": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "probability_only_projection_is_phase_blind_counterfeit": {
+      "probabilities_match_under_global_phase": true,
+      "true_hopf_same_under_global_phase": true,
+      "true_hopf_distinguishes_relative_phase": true,
+      "pass": true
+    },
+    "naive_angle_average_fails_near_periodic_boundary": {
+      "naive_error_to_zero": 2.0943951023931953,
+      "circular_error_to_zero": 5.002376053318731e-06,
+      "naive_worse": true,
+      "pass": true
+    },
+    "unit_norm_projection_cannot_distinguish_nested_torus_levels": {
+      "norm_inner": 1.0,
+      "norm_outer": 1.0,
+      "same_unit_norm": true,
+      "pass": true
+    },
+    "clifford_runtime_is_honestly_reported_when_blocked": {
+      "clifford_status": "blocked: RuntimeError",
+      "reported_block": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "small_eta_torus_approaches_single_circle_limit": {
+      "r_major": 0.9999995000000417,
+      "r_minor": 0.0009999998333333417,
+      "degenerate_minor": true,
+      "pass": true
+    },
+    "large_eta_torus_approaches_complementary_circle_limit": {
+      "r_major": 0.0009999998333332927,
+      "r_minor": 0.9999995000000417,
+      "degenerate_major": true,
+      "pass": true
+    },
+    "phase_shift_by_pi_preserves_hopf_image": {
+      "hopf_base": [
+        0.6623727640744222,
+        -0.5579088827150986,
+        0.5
+      ],
+      "hopf_minus_base": [
+        0.6623727640744222,
+        -0.5579088827150986,
+        0.5
+      ],
+      "equal": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "caveat": "Geomstats is load-bearing in this artifact. The clifford layer was attempted but is runtime-blocked in the current Python 3.13 environment and is reported honestly.",
+  "summary": {
+    "positive_pass": 6,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

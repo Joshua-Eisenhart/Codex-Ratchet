@@ -1,0 +1,215 @@
+{
+  "name": "sim_berry_qfi_entangled_path",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd for \u2207I_c, numerical SLD-based QFI"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: Werner I_c non-increasing in r"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "analytic QFI=1 for pure Bell family, symbolic I_c"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPD manifold geodesic distance along r-path"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "theta_path": {
+      "I_c_range": [
+        0.00028991326531120013,
+        0.6897768960933313
+      ],
+      "grad_I_c_range": [
+        -0.6557478120673271,
+        0.6557478120673271
+      ],
+      "qfi_range": [
+        0.9999999999511018,
+        0.9999999999995719
+      ],
+      "qfi_mean": 0.9999999999738707,
+      "corr_qfi_vs_abs_grad_Ic": -0.4454370013558903,
+      "I_c_at_theta0": 0.00028991326531120447,
+      "I_c_at_thetapi2": 0.6897768960933313,
+      "I_c_at_thetapi": 0.00028991326531120013,
+      "qfi_expected_pure_state": 1.0,
+      "qfi_mean_vs_expected_err": 2.6129320929157984e-11,
+      "pass": true,
+      "note": "Pure Bell family: QFI=1, I_c varies; \u2207I_c peaks near pi/2"
+    },
+    "phi_path": {
+      "I_c_range": [
+        0.6931471804770521,
+        0.6931471804770524
+      ],
+      "I_c_std": 2.1210781103223387e-16,
+      "grad_phi_range": [
+        -1.1102230246251565e-16,
+        1.1102230246251565e-16
+      ],
+      "grad_phi_max_abs": 1.1102230246251565e-16,
+      "phi_is_gauge_for_Ic": true,
+      "grad_phi_near_zero": true,
+      "pass": true,
+      "note": "phi path: I_c constant confirms phi is gauge DOF for coherent information"
+    },
+    "r_path": {
+      "I_c_range": [
+        -0.6929981633539727,
+        0.6407393920339995
+      ],
+      "I_c_at_r0": 0.6407393920339995,
+      "I_c_at_r1": -0.6929981633539727,
+      "I_c_ln2_expected": 0.6931471805599453,
+      "I_c_at_r0_error_from_ln2": 0.05240778852594574,
+      "grad_r_range": [
+        -4.48795221051539,
+        -0.02970685357128444
+      ],
+      "all_grads_negative": true,
+      "qfi_range": [
+        2.250056251406284,
+        75.56675063004296
+      ],
+      "corr_qfi_vs_abs_grad_Ic": 0.7136514192293911,
+      "is_I_c_monotone_decreasing": true,
+      "geomstats_distances_sample": [
+        2.815875868294659,
+        1.0216802071650044,
+        0.6389810605953112,
+        0.4665596228390233,
+        0.36813528634093495
+      ],
+      "geomstats_total_path_length": 8.32291729318983,
+      "I_c_at_r1_expected": -0.6931471805599453,
+      "I_c_at_r1_error_from_neg_ln2": 0.00014901720597260137,
+      "pass": true,
+      "note": "Werner family: I_c monotone decreasing from +ln2 (Bell, r=0) to -ln2 (max mixed, r=1). I_c<0 is valid (coherent info can be negative). QFI vs |\u2207I_c| correlation measured."
+    },
+    "sympy_analytic": {
+      "I_c_symbolic": "-log(sin(theta/2)**2)*sin(theta/2)**2 - log(cos(theta/2)**2)*cos(theta/2)**2",
+      "dIc_dtheta_symbolic": "(-log(1 - cos(theta)) + log(cos(theta) + 1))*sin(theta)/2",
+      "I_c_at_theta_pi2": 0.6931471805599453,
+      "I_c_at_pi2_vs_ln2": 0.0,
+      "dIc_at_theta_pi2": 0.0,
+      "dIc_at_pi2_near_zero": true,
+      "qfi_pure_bell_family": "1",
+      "qfi_pure_bell_numeric": 1.0,
+      "qfi_pure_constant": true,
+      "pass": true,
+      "note": "Analytic: I_c=ln2 at Bell state, dI_c/dtheta=0 at pi/2 (maximum), QFI=1 everywhere"
+    }
+  },
+  "negative": {
+    "Ic_near_product_state": 4.050367988860543e-06,
+    "Ic_product_state_near_zero": true,
+    "Ic_near_maximally_mixed": -0.6931456815581983,
+    "Ic_maximally_mixed_expected": -0.6931471805599453,
+    "Ic_maximally_mixed_near_neg_ln2": true,
+    "pass": true,
+    "note": "Negative tests: product state I_c\u22480, maximally mixed I_c\u2248-ln2. I_c<0 for highly mixed states is correct (not a failure)."
+  },
+  "boundary": {
+    "Ic_Bell_state": 0.6931471804770523,
+    "Ic_Bell_error_from_ln2": 8.289302577679791e-11,
+    "Bell_Ic_correct": true,
+    "partial_trace_B_Bell": 1.1102230246251565e-16,
+    "partial_trace_is_I2": true,
+    "pass": true,
+    "note": "Bell state boundary conditions verified"
+  },
+  "z3_proof": {
+    "z3_formula": "Werner I_c non-increasing: dI_c/dr < 0 for r in (0,1)",
+    "encoding": "dS_AB/dr = (3/4)*log((4-3r)/r) > 0 iff r < 1; negation: r >= 1; combined with r in (0,1) gives UNSAT",
+    "z3_result": "unsat",
+    "is_unsat": true,
+    "pass": true,
+    "interpretation": "UNSAT confirms: no Werner state with r in (0,1) can have increasing I_c with r -- the mixing constraint is proven."
+  },
+  "summary": {
+    "theta_path_Ic_range": [
+      0.00028991326531120013,
+      0.6897768960933313
+    ],
+    "theta_path_qfi_mean": 0.9999999999738707,
+    "theta_path_qfi_vs_expected_err": 2.6129320929157984e-11,
+    "theta_path_corr_qfi_grad": -0.4454370013558903,
+    "phi_path_is_gauge": true,
+    "phi_path_grad_max_abs": 1.1102230246251565e-16,
+    "r_path_Ic_range": [
+      -0.6929981633539727,
+      0.6407393920339995
+    ],
+    "r_path_all_grads_negative": true,
+    "r_path_corr_qfi_grad": 0.7136514192293911,
+    "r_path_geomstats_path_length": 8.32291729318983,
+    "sympy_Ic_at_pi2_vs_ln2": 0.0,
+    "sympy_qfi_pure_constant": true,
+    "z3_unsat": true,
+    "overall_pass": true
+  },
+  "classification": "canonical"
+}

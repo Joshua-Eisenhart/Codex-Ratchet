@@ -1,0 +1,262 @@
+{
+  "name": "z3_s6_unitary_impossibility",
+  "description": "Formal z3 proof that S6 (entropy increase) is impossible under unitary evolution. Four proofs: (1) entropy conservation under unitary, (2) S6 AND unitary = UNSAT, (3) S0+S6+unitary = UNSAT, (4) S6 for amplitude damping = SAT (negative control). Sympy derives the spectral theorem proving eigenvalue invariance under unitary conjugation.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: numerical verification that amplitude damping channel increases entropy, confirming the SAT negative control is physically correct"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no graph structure in this proof sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: four formal SAT/UNSAT proofs encoding entropy conservation under unitaries, S6 impossibility, S0+S6+unitary triplet, and amplitude damping SAT control"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 z3 proofs are sufficient here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: analytic proof that von Neumann entropy is unitarily invariant: S(U rho U\u2020) = S(rho). Derives from spectral theorem: eigenvalues invariant under unitary conjugation."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no Clifford algebra structure in S6 proof"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no Riemannian geometry in S6 proof"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no SO(3) equivariance in S6 proof"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no DAG structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no hyperedge structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no cell complex topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "proof_1_entropy_conservation": {
+      "proof_name": "entropy_conservation_under_unitary",
+      "hypothesis": "S(U rho U\u2020) > S(rho) for unitary U",
+      "key_constraint": "Implies(is_unitary, S_out == S_in)",
+      "added_claims": [
+        "is_unitary = True",
+        "S_out > S_in"
+      ],
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: The entropy conservation law (S_out == S_in for unitary channels) directly contradicts S_out > S_in. No unitary channel can increase entropy.",
+      "theorem_source": "Spectral theorem: eigenvalues of rho are invariant under unitary conjugation. S(rho) depends only on eigenvalues. Therefore S(U rho U\u2020) = S(rho)."
+    },
+    "proof_2_s6_unitary": {
+      "proof_name": "S6_AND_unitary_channel",
+      "hypothesis": "S6 (S_out > S_in + eps) AND unitary_channel (S_out == S_in)",
+      "s6_threshold": "0.00001",
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: S6 requires S_out > S_in + epsilon. Unitary evolution requires S_out = S_in exactly. These constraints have empty intersection. S6 is strictly impossible for any unitary channel, for any input state.",
+      "physical_meaning": "S6 is a filter on dissipative channels only. It cannot be satisfied by any unitary (time-reversible) evolution. This is the formal reason why S6 is always UNSAT in sim_layer_stacking_nonprefix."
+    },
+    "proof_3_s0_s6_unitary": {
+      "proof_name": "S0_AND_S6_AND_unitary",
+      "hypothesis": "S0 (off_diag > eps) AND S6 (S_out > S_in) AND unitary (S_out == S_in)",
+      "shells_tested": [
+        "S0 (non-commutation)",
+        "S6 (irreversibility)",
+        "unitary evolution"
+      ],
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: S0 can be satisfied (non-commuting states exist). But the {S6, unitary} pair is still internally contradictory. Adding S0 does not change the UNSAT status \u2014 the binding pair is S6+unitary, and S0 is orthogonal to this constraint.",
+      "note_on_dimension": "S0 (finite dimension, N01 non-commutation) constrains the state space. S6 requires open-system dissipation. Unitary evolution is a closed system. The three cannot coexist: S0+S6 requires a dissipative finite-dimensional system, but unitary evolution is non-dissipative. UNSAT."
+    },
+    "proof_4_s6_ad_sat": {
+      "proof_name": "S6_SAT_amplitude_damping",
+      "hypothesis": "S6 satisfiable for amplitude damping (NOT unitary)",
+      "expected": "sat",
+      "solver_result": "sat",
+      "status": "PASS",
+      "model": {
+        "S_in": "0",
+        "S_out": "1003/4000",
+        "gamma": "1003/4000",
+        "is_unitary": "False"
+      },
+      "interpretation": "SAT: S6 IS satisfiable when the channel is NOT unitary. The amplitude damping channel maps pure |1><1| (S=0) to mixed I/2 (S=log2), strictly increasing entropy. This confirms S6 is a meaningful filter: it selects dissipative channels and rejects unitary ones.",
+      "physical_example": {
+        "channel": "amplitude damping, gamma=0.5",
+        "input_state": "|1><1| (pure, S=0)",
+        "output_state": "diag(0.5, 0.5) = I/2 (mixed, S=log(2)\u22480.693)",
+        "S_in": 0.0,
+        "S_out": 0.6931471805599453,
+        "entropy_increase": 0.6931471805599453,
+        "s6_satisfied": true
+      }
+    },
+    "summary": {
+      "z3_unsat_count": 3,
+      "z3_sat_count": 1,
+      "all_pass": true,
+      "total_proofs": 4
+    }
+  },
+  "negative": {
+    "sat_s6_alone": {
+      "hypothesis": "S6 alone (no unitary constraint)",
+      "expected": "sat",
+      "solver_result": "sat",
+      "status": "PASS",
+      "interpretation": "SAT: S6 is satisfiable in general (for dissipative channels)"
+    },
+    "sat_unitary_alone": {
+      "hypothesis": "unitary channel alone (no S6 constraint)",
+      "expected": "sat",
+      "solver_result": "sat",
+      "status": "PASS",
+      "interpretation": "SAT: unitary channels are satisfiable \u2014 they preserve entropy"
+    },
+    "pytorch_amplitude_damping": {
+      "gamma": 0.5,
+      "channel": "amplitude_damping",
+      "is_unitary": false,
+      "is_trace_preserving": true,
+      "test_maximally_mixed": {
+        "S_in": 0.6931471805599453,
+        "S_out": 0.5623351446188083,
+        "entropy_increased": false,
+        "note": "Maximally mixed: entropy may decrease as state is pumped toward |0>"
+      },
+      "test_excited_state": {
+        "S_in": 2.8631110016483758e-11,
+        "S_out": 0.6931471805599453,
+        "entropy_increased": true,
+        "note": "|1> is pure (S=0); damping mixes it toward |0>, increasing entropy"
+      },
+      "test_plus_state": {
+        "S_in": 2.8631110016483758e-11,
+        "S_out": 0.24577536666847116,
+        "entropy_increased": true,
+        "note": "|+> is pure (S=0); amplitude damping increases entropy"
+      },
+      "s6_satisfiable_for_ad": true
+    },
+    "sympy_entropy_conservation": {
+      "status": "OK",
+      "theorem": {
+        "statement": "S(U rho U\u2020) = S(rho) for any unitary U and density matrix rho",
+        "proof_steps": [
+          "1. S(rho) = -Tr(rho log rho) = -sum_i lambda_i * log(lambda_i)",
+          "2. rho = sum_i lambda_i |i><i| (spectral decomposition)",
+          "3. U rho U\u2020 = sum_i lambda_i (U|i>)(U<i|) = sum_i lambda_i |fi><fi|",
+          "4. {|fi>} = {U|i>} is orthonormal: <fi|fj> = <i|U\u2020U|j> = delta_ij",
+          "5. Therefore U rho U\u2020 has eigenvalues {lambda_i} = same as rho",
+          "6. S(U rho U\u2020) = -sum_i lambda_i log(lambda_i) = S(rho). QED."
+        ],
+        "implication_for_S6": "S6 requires S(rho_out) > S(rho_in). Under unitary evolution rho_out = U rho_in U\u2020, step 5 gives S(rho_out) = S(rho_in). Therefore S(rho_out) > S(rho_in) is FALSE. S6 is STRICTLY IMPOSSIBLE for any unitary channel."
+      },
+      "symbolic_verification": {
+        "trace_preserved": true,
+        "hermitian_preserved": true,
+        "unitary_verified": true
+      },
+      "numerical_eigenvalue_check": {
+        "p_val": "1/3",
+        "theta_val": "1/4",
+        "eigenvalues_original": [
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        "eigenvalues_rotated": [
+          0.3333333333333333,
+          0.6666666666666666
+        ],
+        "eigenvalues_match": true,
+        "status": "PASS"
+      },
+      "entropy_conservation": {
+        "S_original_expr": "-p*log(p) - (1 - p)*log(1 - p)",
+        "S_rotated_expr": "-p*log(p) - (1 - p)*log(1 - p)",
+        "are_equal": true
+      },
+      "conclusion": "PROVED: von Neumann entropy is invariant under unitary conjugation. Eigenvalues are invariant because unitary transformation is an isometry on the Hilbert space. Therefore S6 (entropy strictly increasing) is impossible for any unitary channel."
+    }
+  },
+  "boundary": {
+    "weak_s6_unitary": {
+      "hypothesis": "weak S6 (S_out >= S_in) AND unitary (S_out == S_in)",
+      "expected": "sat",
+      "solver_result": "sat",
+      "status": "PASS",
+      "interpretation": "SAT: weak S6 (S_out >= S_in) is compatible with unitary evolution (S_out == S_in satisfies both). The UNSAT requires STRICT increase. This confirms the threshold epsilon in S6 is essential."
+    },
+    "s6_zero_eps_unitary": {
+      "hypothesis": "strict S6 (S_out > S_in, eps=0) AND unitary",
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT even with eps=0: strict inequality S_out > S_in contradicts equality S_out == S_in from unitary conservation."
+    },
+    "s6_large_gap_unitary": {
+      "hypothesis": "S6 with large gap (0.5) AND unitary",
+      "expected": "unsat",
+      "solver_result": "unsat",
+      "status": "PASS",
+      "interpretation": "UNSAT: unitary entropy conservation contradicts ANY positive gap, whether tiny (1e-5) or large (0.5). The impossibility is absolute."
+    }
+  },
+  "summary": {
+    "z3_unsat_count": 3,
+    "z3_sat_count": 1,
+    "all_pass": true,
+    "key_theorem": "S(U rho U\u2020) = S(rho) for ALL unitaries U and ALL density matrices rho. Proof: eigenvalues are invariant under unitary conjugation (spectral theorem). Therefore S6 (entropy strictly increases) is IMPOSSIBLE for any unitary channel.",
+    "s6_filter_meaning": "S6 is a DISSIPATION FILTER: it selects open-system channels where entropy increases (amplitude damping, dephasing, thermalization). It strictly excludes all unitary (closed-system, time-reversible) evolution.",
+    "corollary": "Any shell subset containing S6 is UNSAT under unitary channel parameterization. This is why sim_layer_stacking_nonprefix found every S6 subset UNSAT."
+  },
+  "classification": "canonical"
+}

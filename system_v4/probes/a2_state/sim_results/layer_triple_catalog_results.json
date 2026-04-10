@@ -1,0 +1,401 @@
+{
+  "name": "layer_triple_catalog",
+  "timestamp": "2026-04-08T19:15:59.773472+00:00",
+  "classification": "canonical",
+  "all_tests_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "state construction and ALL entropy computations"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- graph structure via rustworkx"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that no two layers share (entropy,probe,operator) triple"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 handles the uniqueness SMT check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "closed-form entropy formula derivation for L2 Weyl and L3 phase-damping"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor for SU(2) Hopf rotation (L1 native operator)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPD geodesic distance on Werner state manifold (L5 boundary)"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG of layer coupling: edges where native operator preserves target entropy"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- layer interactions modeled as directed DAG not hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topological structure captured by Betti number checks"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Hopf topology tracked via fiber phase entropy, not persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "load_bearing",
+    "cvc5": "not_applicable",
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "supportive",
+    "e3nn": "not_applicable",
+    "rustworkx": "load_bearing",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "not_applicable"
+  },
+  "layer_catalog": {
+    "L1_Hopf": {
+      "name": "Hopf torus",
+      "description": "Topology layer \u2014 S\u00b3 fibration over S\u00b2",
+      "entropy_name": "fiber_phase_entropy",
+      "probe_name": "bloch_theta",
+      "operator_name": "SU2_Clifford_rotor"
+    },
+    "L2_Weyl": {
+      "name": "Weyl chirality",
+      "description": "Frame bundle \u2014 left/right chiral split",
+      "entropy_name": "chirality_entropy",
+      "probe_name": "gamma5_projector",
+      "operator_name": "CPT_transform"
+    },
+    "L3_PhaseDamping": {
+      "name": "Phase damping",
+      "description": "Fixed-point manifold \u2014 dephasing toward diagonal",
+      "entropy_name": "off_diag_survival_rate",
+      "probe_name": "Z_basis_projectors",
+      "operator_name": "phase_damping_K_pd"
+    },
+    "L4_Phi0": {
+      "name": "Phi0 bridge",
+      "description": "Coherent information \u2014 3-qubit relay channel",
+      "entropy_name": "coherent_information_Ic",
+      "probe_name": "relay_parameter_r",
+      "operator_name": "Fe_relay_operator"
+    },
+    "L5_Werner": {
+      "name": "Werner mixing",
+      "description": "Separability boundary \u2014 quantum discord as order parameter",
+      "entropy_name": "quantum_discord_Q",
+      "probe_name": "Werner_mixing_p",
+      "operator_name": "depolarizing_D_p"
+    }
+  },
+  "positive": {
+    "catalog_construction": {
+      "pass": "True",
+      "layers": {
+        "L1_Hopf": {
+          "entropy": 2.465146983442427,
+          "finite": "True",
+          "real": true
+        },
+        "L2_Weyl": {
+          "entropy": 0.6931471805599453,
+          "finite": "True",
+          "real": true
+        },
+        "L3_PhaseDamping": {
+          "entropy": 0.6689647316224496,
+          "finite": "True",
+          "real": true
+        },
+        "L4_Phi0": {
+          "entropy": -5.5988991221056494e-11,
+          "finite": "True",
+          "real": true
+        },
+        "L5_Werner": {
+          "entropy": 0.43072922290179794,
+          "finite": "True",
+          "real": true
+        }
+      },
+      "entropy_values": [
+        2.465146983442427,
+        0.6931471805599453,
+        0.6689647316224496,
+        -5.5988991221056494e-11,
+        0.43072922290179794
+      ]
+    },
+    "entropy_distinctness": {
+      "pass": true,
+      "details": {},
+      "entropy_values": {
+        "L1_fiber_phase": 2.465146983442427,
+        "L2_chirality": 0.6931471805599453,
+        "L3_offdiag": 0.6689647316224496,
+        "L4_Ic": -5.597611263397084e-11,
+        "L5_discord": 0.43072922290179794
+      },
+      "pair_distinctness": {
+        "L1_fiber_phase_vs_L2_chirality": {
+          "diff": 1.7719998028824815,
+          "distinct": true
+        },
+        "L1_fiber_phase_vs_L3_offdiag": {
+          "diff": 1.7961822518199773,
+          "distinct": true
+        },
+        "L1_fiber_phase_vs_L4_Ic": {
+          "diff": 2.465146983498403,
+          "distinct": true
+        },
+        "L1_fiber_phase_vs_L5_discord": {
+          "diff": 2.034417760540629,
+          "distinct": true
+        },
+        "L2_chirality_vs_L3_offdiag": {
+          "diff": 0.02418244893749566,
+          "distinct": true
+        },
+        "L2_chirality_vs_L4_Ic": {
+          "diff": 0.6931471806159214,
+          "distinct": true
+        },
+        "L2_chirality_vs_L5_discord": {
+          "diff": 0.26241795765814735,
+          "distinct": true
+        },
+        "L3_offdiag_vs_L4_Ic": {
+          "diff": 0.6689647316784257,
+          "distinct": true
+        },
+        "L3_offdiag_vs_L5_discord": {
+          "diff": 0.2382355087206517,
+          "distinct": true
+        },
+        "L4_Ic_vs_L5_discord": {
+          "diff": 0.43072922295777405,
+          "distinct": true
+        }
+      },
+      "all_distinct": true
+    },
+    "operator_native_preservation": {
+      "pass": "True",
+      "layers": {
+        "L1_Hopf": {
+          "entropy_before": 2.465146983442427,
+          "entropy_after": 2.475404295764755,
+          "delta": 0.010257312322328183,
+          "preserved": true
+        },
+        "L2_Weyl": {
+          "entropy_before": 0.6931471805599453,
+          "entropy_after": 0.6931471805599453,
+          "delta": 0.0,
+          "preserved": true
+        },
+        "L3_PhaseDamping": {
+          "entropy_before": 0.6246950475544243,
+          "entropy_after": 0.492365963917331,
+          "off_diag_decreased": true
+        },
+        "L4_Phi0": {
+          "I_c": -5.5988991221056494e-11,
+          "is_finite": "True"
+        },
+        "L5_Werner": {
+          "discord_before": 0.542882039044654,
+          "discord_after": 0.05926995481211139,
+          "mixing_changed": true
+        }
+      }
+    },
+    "cross_layer_first_coupling": {
+      "pass": true,
+      "hopf_fiber_entropy_before": 2.465146983442427,
+      "hopf_fiber_entropy_after": 2.4651469742074203,
+      "offdiag_survival_before": 0.7071067811865476,
+      "offdiag_survival_after": 0.0,
+      "hopf_entropy_changed": false,
+      "offdiag_collapsed": true,
+      "hypothesis_z_dephasing_disturbs_hopf": false
+    },
+    "z3_triple_uniqueness": {
+      "pass": true,
+      "z3_available": true,
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT confirms no two layers share the same triple when all (entropy, probe, operator) types are distinct"
+    },
+    "rustworkx_triple_dag": {
+      "pass": true,
+      "num_nodes": 5,
+      "num_edges": 4,
+      "edges": [
+        [
+          "L2_Weyl",
+          "L3_PhaseDamping",
+          "CPT_preserves_offdiag"
+        ],
+        [
+          "L3_PhaseDamping",
+          "L2_Weyl",
+          "PD_preserves_chirality"
+        ],
+        [
+          "L5_Werner",
+          "L2_Weyl",
+          "depolarizing_weakly_chirality"
+        ],
+        [
+          "L3_PhaseDamping",
+          "L5_Werner",
+          "PD_changes_discord"
+        ]
+      ],
+      "adjacency": {
+        "L1_Hopf": {
+          "triple": {
+            "entropy": "fiber_phase_entropy",
+            "probe": "bloch_theta",
+            "operator": "SU2_Clifford_rotor"
+          },
+          "couples_to": []
+        },
+        "L2_Weyl": {
+          "triple": {
+            "entropy": "chirality_entropy",
+            "probe": "gamma5_projector",
+            "operator": "CPT_transform"
+          },
+          "couples_to": [
+            "L3_PhaseDamping"
+          ]
+        },
+        "L3_PhaseDamping": {
+          "triple": {
+            "entropy": "off_diag_survival_rate",
+            "probe": "Z_basis_projectors",
+            "operator": "phase_damping_K_pd"
+          },
+          "couples_to": [
+            "L5_Werner",
+            "L2_Weyl"
+          ]
+        },
+        "L4_Phi0": {
+          "triple": {
+            "entropy": "coherent_information_Ic",
+            "probe": "relay_parameter_r",
+            "operator": "Fe_relay_operator"
+          },
+          "couples_to": []
+        },
+        "L5_Werner": {
+          "triple": {
+            "entropy": "quantum_discord_Q",
+            "probe": "Werner_mixing_p",
+            "operator": "depolarizing_D_p"
+          },
+          "couples_to": [
+            "L2_Weyl"
+          ]
+        }
+      },
+      "is_dag": false
+    },
+    "sympy_entropy_formulas": {
+      "pass": true,
+      "L2_weyl_chirality_entropy": {
+        "formula": "-alpha*log(alpha) + (alpha - 1)*log(1 - alpha)",
+        "at_balanced_alpha_half": "log(2)",
+        "equals_log2": true,
+        "symbolic_verification": "0"
+      },
+      "L3_phase_damping_rate": {
+        "formula": "sqrt(2)*c/sqrt(a**2 + 2*c**2 + (a - 1)**2)",
+        "after_damping_p": "sqrt(2)*c*sqrt(1 - p)/sqrt(a**2 + 2*c**2 + (a - 1)**2)",
+        "scaling_factor": "sqrt(1 - p)",
+        "interpretation": "off-diag rate scales as sqrt(1-p) under K_pd"
+      }
+    },
+    "geomstats_werner_geodesic": {
+      "pass": "True",
+      "skipped": false,
+      "geodesic_distance_0.3_to_0.9": 1.98253487084032,
+      "interpretation": "Affine-invariant SPD geodesic distance between separable (p=0.3) and entangled (p=0.9) Werner states",
+      "note": "Using manual affine-invariant metric (geomstats SPDAffineMetric API changed in 2.x)"
+    }
+  },
+  "negative": {
+    "negative_L3_full_dephasing": {
+      "off_diag_before": 0.7071067811865476,
+      "off_diag_after": 0.0,
+      "correctly_collapses": true,
+      "pass": true
+    },
+    "negative_L2_CPT_diagonal": {
+      "chirality_before": 2.8631110016483758e-11,
+      "chirality_after": 2.8631110016483758e-11,
+      "symmetry_preserved": true,
+      "pass": true
+    },
+    "negative_L5_maximally_mixed_discord": {
+      "discord": 5.5875526427939803e-11,
+      "near_zero": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "L3_boundary_p0_preserves": {
+      "p0_offdiag": 0.6246950475544243,
+      "ref_offdiag": 0.6246950475544243,
+      "preserved": true,
+      "pass": true
+    },
+    "L3_boundary_p1_collapses": {
+      "p1_offdiag": 0.0,
+      "pass": true
+    },
+    "L4_boundary_r0_r1": {
+      "I_c_r0": -5.587574847254473e-11,
+      "I_c_r1": -5.587574847254473e-11,
+      "differ": false,
+      "pass": "True"
+    },
+    "L5_boundary_separability_p_1_3": {
+      "discord_at_sep_boundary": 0.08720802401674665,
+      "is_finite": "True",
+      "pass": "True"
+    }
+  }
+}

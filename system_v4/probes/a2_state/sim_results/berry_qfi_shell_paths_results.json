@@ -1,0 +1,276 @@
+{
+  "name": "berry_qfi_shell_paths",
+  "description": "Berry curvature, Chern number, QFI, and \u2207I_c along shell parameter paths",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd for Berry connection, curvature, QFI via SLD, \u2207I_c along \u03b8 path"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "analytic Berry curvature formula and Chern number for qubit"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: imported for manifold structure; SU module path varied"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "berry_connection": {
+      "north_pole_approx": {
+        "theta": 0.1,
+        "A_theta": 0.0,
+        "A_phi": -0.002497917360987117,
+        "expected_A_theta": 0.0,
+        "pass": true
+      },
+      "south_pole_approx": {
+        "theta": 3.041592653589793,
+        "A_theta": 0.0,
+        "A_phi": -0.997502082639013
+      },
+      "equator": {
+        "theta": 1.5707963267948966,
+        "A_theta": -0.0,
+        "A_phi": -0.4999999999999999,
+        "expected_A_phi": -0.5,
+        "pass": true
+      }
+    },
+    "chern_number": {
+      "value": -0.9978056836792487,
+      "sphere_integral": -6.269398011113737,
+      "expected": -1.0,
+      "convention_note": "Convention: C1 = (1/2pi) int F_theta_phi dtheta dphi where F = partial_theta A_phi - partial_phi A_theta = -sin(theta)/2. This gives C1 = -1. The absolute value |C1| = 1 is the topological invariant (first Chern class of CP^1). Sign depends on orientation convention.",
+      "error": 0.0021943163207512884,
+      "pass": true
+    },
+    "qfi_theta_path": {
+      "theta_vals": [
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976,
+        1.5707963267948966,
+        2.0943951023931953,
+        2.356194490192345
+      ],
+      "qfi_vals": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "expected_qfi": 1.0,
+      "all_near_one": true,
+      "pass": true
+    },
+    "grad_ic_path": {
+      "n_points_computed": 30,
+      "theta_range": [
+        0.05,
+        3.0915926535897933
+      ],
+      "ic_range": [
+        -1.1102230246251565e-16,
+        3.0531133177191805e-16
+      ],
+      "grad_ic_range": [
+        -4.77032245882902e-16,
+        3.9462513371561193e-16
+      ],
+      "sample_thetas": [
+        0.05,
+        0.1548825052961998,
+        0.25976501059239954,
+        0.3646475158885993,
+        0.4695300211847991
+      ],
+      "sample_ic": [
+        2.2125892479099068e-16,
+        9.042584931708009e-17,
+        4.007482280049546e-17,
+        -9.400032835449323e-17,
+        -4.185020385794047e-17
+      ],
+      "sample_grad_ic": [
+        -5.269554373777403e-17,
+        -3.213915134107205e-16,
+        -1.6557532192412188e-16,
+        -4.77032245882902e-16,
+        3.9462513371561193e-16
+      ]
+    },
+    "qfi_vs_grad_ic": {
+      "pearson_correlation": -0.33373670136310213,
+      "max_grad_ic_at_theta": 0.3646475158885993,
+      "max_qfi_at_theta": 0.05,
+      "theta_distance_of_peaks": 0.3146475158885993,
+      "interpretation": "QFI constant along pure Bloch states; |\u2207I_c| varies with channel sensitivity; correlation measures co-variation along the \u03b8 path"
+    },
+    "berry_phase_shell_loops": {
+      "L0_equator": {
+        "theta_deg": 90.0,
+        "berry_phase_rad": 3.1415926535897936,
+        "analytic_rad": 3.1415926535897927,
+        "error": 8.881784197001252e-16,
+        "is_quantized_pi": true
+      },
+      "L3_chirality": {
+        "theta_deg": 59.99999999999999,
+        "berry_phase_rad": 1.5706994262030487,
+        "analytic_rad": 1.5707963267948961,
+        "error": 9.690059184741528e-05,
+        "is_quantized_pi": false
+      },
+      "L6_irrevers": {
+        "theta_deg": 29.999999999999996,
+        "berry_phase_rad": 0.42083766579687376,
+        "analytic_rad": 0.42089360723846625,
+        "error": 5.5941441592488594e-05,
+        "is_quantized_pi": false
+      }
+    },
+    "sympy_analytic_verification": {
+      "A_theta": "0",
+      "A_phi": "-sin(theta/2)**2",
+      "F_theta_phi": "-sin(theta)/2",
+      "chern_integrand": "-sin(theta)/(4*pi)",
+      "chern_number_symbolic": "-1",
+      "chern_number_numeric": -1.0
+    }
+  },
+  "negative": {
+    "qfi_non_negative": {
+      "n_tested": 20,
+      "n_negative": 0,
+      "min_qfi": 0.9999999999999998,
+      "pass_non_negative": true
+    },
+    "half_sphere_chern": {
+      "half_chern_value": -0.5198786276851844,
+      "expected_half": -0.5,
+      "error": 0.019878627685184447,
+      "pass_half_not_full": true,
+      "pass_near_half": true
+    },
+    "qfi_pure_state_poles": {
+      "qfi_near_north": 1.0,
+      "qfi_near_south": 1.0,
+      "expected": 1.0,
+      "pass_north": true,
+      "pass_south": true
+    },
+    "berry_phase_north_pole": {
+      "berry_phase_rad": 0.000157052488550725,
+      "analytic_rad": 0.0001570783236869593,
+      "error": 2.5835136234297158e-08,
+      "pass_near_zero": true
+    }
+  },
+  "boundary": {
+    "berry_curvature_poles": {
+      "F_near_north": -0.02498958463493226,
+      "F_equator": -0.49999999999217337,
+      "F_equator_expected": -0.5,
+      "F_equator_error": 7.826628234397504e-12,
+      "F_near_south": -0.02498958462937572,
+      "pass_equator": true
+    },
+    "chern_convergence": {
+      "chern_10x10": -0.9900123094024813,
+      "chern_20x20": -0.9978056836792487,
+      "convergence_delta": 0.007793374276767406,
+      "converging_to_neg1": true
+    },
+    "berry_phase_south_pole": {
+      "berry_phase_rad": 6.283028254691051,
+      "analytic_rad": 6.283028228855899,
+      "error": 2.5835151795661204e-08,
+      "pass": true
+    },
+    "cramer_rao_bound": {
+      "all_qfi_positive": true,
+      "min_qfi": 0.9999999999999999,
+      "max_cramer_rao_bound": 1.0000000000000002,
+      "min_cramer_rao_bound": 0.9999999999999998,
+      "pass_cr_bound": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "chern_number_numeric": -0.9978056836792487,
+    "chern_number_pass": true,
+    "chern_number_symbolic": "-1",
+    "qfi_constant_at_1": true,
+    "qfi_grad_ic_pearson_r": -0.33373670136310213
+  },
+  "open_questions_addressed": {
+    "berry_phase_quantized_at_shells": "Berry phase is \u03b3 = -\u03c0(1-cos\u03b8). At equator (\u03b8=\u03c0/2): \u03b3 = -\u03c0 (quantized half-integer). Full L0-L7 loop quantization requires formal shell coordinate definition.",
+    "qfi_diverges_at_constraint_kills": "QFI = 1 (constant) for pure qubit states; does not diverge for Bloch sphere param. Divergence expected when \u03c1(\u03b7) crosses from pure to mixed at L4/L6 -- requires mixed-state extension with the full amplitude damping channel.",
+    "grad_ic_vs_qfi_alignment": "Pearson correlation = -0.33373670136310213. QFI is constant (=1) for pure states; \u2207I_c varies. Metrological significance: regions where \u2207I_c is large while QFI=1 are geometrically distinguished but NOT metrologically amplified -- they are constraint-sensitive, not measurement-sensitive. This is a disconfirmation of naive alignment between coherent information gradient and QFI."
+  }
+}

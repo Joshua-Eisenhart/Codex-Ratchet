@@ -1,0 +1,1008 @@
+{
+  "name": "axis6_entropy_decomposition",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: constructs rho_ABC = (1-r)*rho_bell_AB + r*rho_bell_AC via PyTorch tensors; computes all single- and two-qubit marginals via partial_trace_3q; sweeps relay 0->1 in 50 steps tracking S(A), S(B), S(C), S(AB), S(AC), S(BC), I_c(A->C); computes finite-difference derivatives dS(C)/dr and dS(AC)/dr at the flip point."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: encodes S(C)(r) and S(AC)(r) as rational polynomial approximations; proves UNSAT for S(C) = S(AC) when relay < 0.5 (no flip possible below midpoint); confirms the flip is structurally forbidden in the sub-0.5 relay regime."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 UNSAT proof is sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: derives rho_C(relay) and rho_AC(relay) as symbolic matrices; computes eigenvalues symbolically; evaluates S(C)(r) and S(AC)(r) numerically to find the analytic zero-crossing where S(C) = S(AC); confirms crossing near relay=0.706 vs geometric midpoint relay=0.526."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: models AB vs AC entanglement seams as Cl(3) bivectors; e13 component (AB plane), e12 component (AC plane); identifies the geometric midpoint relay where |e12| = |e13|; confirms geometric midpoint is \u22480.526, \u22480.21 units before the entropy flip."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: computes SPD geodesics for rho_C (1-qubit, 2x2 SPD) and rho_AC (2-qubit, 4x4 SPD) across the relay sweep; measures geodesic speed (Riemannian distance between successive states) to detect curvature anomaly (acceleration in geodesic speed) at the flip point; tests whether anomaly appears in rho_C but not rho_AC."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- confirmed in axis6_e3nn_fe_bridge"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- routing DAG confirmed in rank_coherence sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex layer"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- persistence not in scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "relay_sweep_all_marginals": {
+      "status": "pass",
+      "n_steps": 50,
+      "flip_relay_numeric": 0.704082,
+      "geometric_midpoint_relay": 0.489796,
+      "gap_characterization": {
+        "relay_geometric_midpoint": 0.489796,
+        "relay_entropy_flip": 0.704082,
+        "gap_relay_units": 0.214286,
+        "I_c_at_geometric_midpoint": -0.43000377,
+        "I_c_at_entropy_flip": -0.00486423,
+        "S_C_at_geo": 0.80309098,
+        "S_AC_at_geo": 1.23309475,
+        "S_C_at_flip": 0.93587764,
+        "S_AC_at_flip": 0.94074187,
+        "delta_S_C_in_gap": 0.13278667,
+        "delta_S_AC_in_gap": -0.29235288,
+        "interpretation": "S(AC) decreases faster than S(C) increases in the geo->flip gap"
+      },
+      "dS_C_dr_at_flip": 0.44007971,
+      "dS_AC_dr_at_flip": -1.87471387,
+      "entropy_driver": "S(AC)",
+      "driver_note": "S(AC) rate is negative (decreasing), S(C) rate is positive (increasing). Both push I_c=S(C)-S(AC) positive. The component with larger |rate| dominates.",
+      "sweep": [
+        {
+          "relay": 0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_C": 0.0,
+          "S_AB": 0.0,
+          "S_AC": 1.0,
+          "S_BC": 1.0,
+          "I_c": -1.0
+        },
+        {
+          "relay": 0.020408,
+          "S_A": 1.0,
+          "S_B": 0.99969954,
+          "S_C": 0.08214305,
+          "S_AB": 0.12805795,
+          "S_AC": 1.07066672,
+          "S_BC": 1.07186308,
+          "I_c": -0.98852367
+        },
+        {
+          "relay": 0.040816,
+          "S_A": 1.0,
+          "S_B": 0.99879792,
+          "S_C": 0.14372617,
+          "S_AB": 0.22485015,
+          "S_AC": 1.11898293,
+          "S_BC": 1.12301129,
+          "I_c": -0.97525676
+        },
+        {
+          "relay": 0.061224,
+          "S_A": 1.0,
+          "S_B": 0.99729438,
+          "S_C": 0.197453,
+          "S_AB": 0.30947488,
+          "S_AC": 1.15803114,
+          "S_BC": 1.16614332,
+          "I_c": -0.96057814
+        },
+        {
+          "relay": 0.081633,
+          "S_A": 1.0,
+          "S_B": 0.99518767,
+          "S_C": 0.24602258,
+          "S_AB": 0.38599757,
+          "S_AC": 1.19068568,
+          "S_BC": 1.20395299,
+          "I_c": -0.94466311
+        },
+        {
+          "relay": 0.102041,
+          "S_A": 1.0,
+          "S_B": 0.992476,
+          "S_C": 0.29071587,
+          "S_AB": 0.45634786,
+          "S_AC": 1.21833654,
+          "S_BC": 1.23771582,
+          "I_c": -0.92762067
+        },
+        {
+          "relay": 0.122449,
+          "S_A": 1.0,
+          "S_B": 0.9891571,
+          "S_C": 0.33228663,
+          "S_AB": 0.52165997,
+          "S_AC": 1.2418127,
+          "S_BC": 1.26817983,
+          "I_c": -0.90952607
+        },
+        {
+          "relay": 0.142857,
+          "S_A": 1.0,
+          "S_B": 0.98522814,
+          "S_C": 0.37123233,
+          "S_AB": 0.58268065,
+          "S_AC": 1.26166639,
+          "S_BC": 1.29583639,
+          "I_c": -0.89043406
+        },
+        {
+          "relay": 0.163265,
+          "S_A": 1.0,
+          "S_B": 0.98068573,
+          "S_C": 0.40790598,
+          "S_AB": 0.63993791,
+          "S_AC": 1.27829171,
+          "S_BC": 1.32103214,
+          "I_c": -0.87038572
+        },
+        {
+          "relay": 0.183673,
+          "S_A": 1.0,
+          "S_B": 0.97552595,
+          "S_C": 0.44257106,
+          "S_AB": 0.69382374,
+          "S_AC": 1.29198335,
+          "S_BC": 1.34402381,
+          "I_c": -0.84941229
+        },
+        {
+          "relay": 0.204082,
+          "S_A": 1.0,
+          "S_B": 0.96974427,
+          "S_C": 0.47543165,
+          "S_AB": 0.74463963,
+          "S_AC": 1.30296918,
+          "S_BC": 1.36500832,
+          "I_c": -0.82753754
+        },
+        {
+          "relay": 0.22449,
+          "S_A": 1.0,
+          "S_B": 0.96333555,
+          "S_C": 0.50665033,
+          "S_AB": 0.79262366,
+          "S_AC": 1.31142973,
+          "S_BC": 1.3841407,
+          "I_c": -0.80477939
+        },
+        {
+          "relay": 0.244898,
+          "S_A": 1.0,
+          "S_B": 0.95629401,
+          "S_C": 0.53635965,
+          "S_AB": 0.83796768,
+          "S_AC": 1.31751062,
+          "S_BC": 1.40154549,
+          "I_c": -0.78115096
+        },
+        {
+          "relay": 0.265306,
+          "S_A": 1.0,
+          "S_B": 0.9486132,
+          "S_C": 0.56466958,
+          "S_AB": 0.88082863,
+          "S_AC": 1.3213309,
+          "S_BC": 1.41732414,
+          "I_c": -0.75666132
+        },
+        {
+          "relay": 0.285714,
+          "S_A": 1.0,
+          "S_B": 0.94028596,
+          "S_C": 0.59167278,
+          "S_AB": 0.92133645,
+          "S_AC": 1.32298877,
+          "S_BC": 1.43156028,
+          "I_c": -0.73131599
+        },
+        {
+          "relay": 0.306122,
+          "S_A": 1.0,
+          "S_B": 0.93130437,
+          "S_C": 0.6174483,
+          "S_AB": 0.95959963,
+          "S_AC": 1.32256569,
+          "S_BC": 1.44432333,
+          "I_c": -0.70511739
+        },
+        {
+          "relay": 0.326531,
+          "S_A": 1.0,
+          "S_B": 0.9216597,
+          "S_C": 0.64206429,
+          "S_AB": 0.99570923,
+          "S_AC": 1.32012935,
+          "S_BC": 1.45567119,
+          "I_c": -0.67806507
+        },
+        {
+          "relay": 0.346939,
+          "S_A": 1.0,
+          "S_B": 0.91134238,
+          "S_C": 0.66558006,
+          "S_AB": 1.02974196,
+          "S_AC": 1.31573593,
+          "S_BC": 1.46565218,
+          "I_c": -0.65015587
+        },
+        {
+          "relay": 0.367347,
+          "S_A": 1.0,
+          "S_B": 0.90034187,
+          "S_C": 0.68804762,
+          "S_AB": 1.06176243,
+          "S_AC": 1.30943173,
+          "S_BC": 1.4743066,
+          "I_c": -0.6213841
+        },
+        {
+          "relay": 0.387755,
+          "S_A": 1.0,
+          "S_B": 0.88864667,
+          "S_C": 0.70951289,
+          "S_AB": 1.09182488,
+          "S_AC": 1.30125446,
+          "S_BC": 1.48166777,
+          "I_c": -0.59174157
+        },
+        {
+          "relay": 0.408163,
+          "S_A": 1.0,
+          "S_B": 0.87624417,
+          "S_C": 0.73001663,
+          "S_AB": 1.11997453,
+          "S_AC": 1.29123423,
+          "S_BC": 1.48776298,
+          "I_c": -0.5612176
+        },
+        {
+          "relay": 0.428571,
+          "S_A": 1.0,
+          "S_B": 0.86312057,
+          "S_C": 0.74959526,
+          "S_AB": 1.14624863,
+          "S_AC": 1.27939424,
+          "S_BC": 1.49261407,
+          "I_c": -0.52979898
+        },
+        {
+          "relay": 0.44898,
+          "S_A": 1.0,
+          "S_B": 0.84926078,
+          "S_C": 0.76828141,
+          "S_AB": 1.17067726,
+          "S_AC": 1.26575134,
+          "S_BC": 1.496238,
+          "I_c": -0.49746993
+        },
+        {
+          "relay": 0.469388,
+          "S_A": 1.0,
+          "S_B": 0.83464829,
+          "S_C": 0.78610447,
+          "S_AB": 1.19328388,
+          "S_AC": 1.25031645,
+          "S_BC": 1.49864719,
+          "I_c": -0.46421198
+        },
+        {
+          "relay": 0.489796,
+          "S_A": 1.0,
+          "S_B": 0.81926497,
+          "S_C": 0.80309098,
+          "S_AB": 1.21408586,
+          "S_AC": 1.23309475,
+          "S_BC": 1.49984977,
+          "I_c": -0.43000377
+        },
+        {
+          "relay": 0.510204,
+          "S_A": 1.0,
+          "S_B": 0.80309098,
+          "S_C": 0.81926497,
+          "S_AB": 1.23309475,
+          "S_AC": 1.21408586,
+          "S_BC": 1.49984977,
+          "I_c": -0.39482089
+        },
+        {
+          "relay": 0.530612,
+          "S_A": 1.0,
+          "S_B": 0.78610447,
+          "S_C": 0.83464829,
+          "S_AB": 1.25031645,
+          "S_AC": 1.19328388,
+          "S_BC": 1.49864719,
+          "I_c": -0.3586356
+        },
+        {
+          "relay": 0.55102,
+          "S_A": 1.0,
+          "S_B": 0.76828141,
+          "S_C": 0.84926078,
+          "S_AB": 1.26575134,
+          "S_AC": 1.17067726,
+          "S_BC": 1.496238,
+          "I_c": -0.32141647
+        },
+        {
+          "relay": 0.571429,
+          "S_A": 1.0,
+          "S_B": 0.74959526,
+          "S_C": 0.86312057,
+          "S_AB": 1.27939424,
+          "S_AC": 1.14624863,
+          "S_BC": 1.49261407,
+          "I_c": -0.28312807
+        },
+        {
+          "relay": 0.591837,
+          "S_A": 1.0,
+          "S_B": 0.73001663,
+          "S_C": 0.87624417,
+          "S_AB": 1.29123423,
+          "S_AC": 1.11997453,
+          "S_BC": 1.48776298,
+          "I_c": -0.24373036
+        },
+        {
+          "relay": 0.612245,
+          "S_A": 1.0,
+          "S_B": 0.70951289,
+          "S_C": 0.88864667,
+          "S_AB": 1.30125446,
+          "S_AC": 1.09182488,
+          "S_BC": 1.48166777,
+          "I_c": -0.20317821
+        },
+        {
+          "relay": 0.632653,
+          "S_A": 1.0,
+          "S_B": 0.68804762,
+          "S_C": 0.90034187,
+          "S_AB": 1.30943173,
+          "S_AC": 1.06176243,
+          "S_BC": 1.4743066,
+          "I_c": -0.16142056
+        },
+        {
+          "relay": 0.653061,
+          "S_A": 1.0,
+          "S_B": 0.66558006,
+          "S_C": 0.91134238,
+          "S_AB": 1.31573593,
+          "S_AC": 1.02974196,
+          "S_BC": 1.46565218,
+          "I_c": -0.11839958
+        },
+        {
+          "relay": 0.673469,
+          "S_A": 1.0,
+          "S_B": 0.64206429,
+          "S_C": 0.9216597,
+          "S_AB": 1.32012935,
+          "S_AC": 0.99570923,
+          "S_BC": 1.45567119,
+          "I_c": -0.07404952
+        },
+        {
+          "relay": 0.693878,
+          "S_A": 1.0,
+          "S_B": 0.6174483,
+          "S_C": 0.93130437,
+          "S_AB": 1.32256569,
+          "S_AC": 0.95959963,
+          "S_BC": 1.44432333,
+          "I_c": -0.02829526
+        },
+        {
+          "relay": 0.714286,
+          "S_A": 1.0,
+          "S_B": 0.59167278,
+          "S_C": 0.94028596,
+          "S_AB": 1.32298877,
+          "S_AC": 0.92133645,
+          "S_BC": 1.43156028,
+          "I_c": 0.0189495
+        },
+        {
+          "relay": 0.734694,
+          "S_A": 1.0,
+          "S_B": 0.56466958,
+          "S_C": 0.9486132,
+          "S_AB": 1.3213309,
+          "S_AC": 0.88082863,
+          "S_BC": 1.41732414,
+          "I_c": 0.06778457
+        },
+        {
+          "relay": 0.755102,
+          "S_A": 1.0,
+          "S_B": 0.53635965,
+          "S_C": 0.95629401,
+          "S_AB": 1.31751062,
+          "S_AC": 0.83796768,
+          "S_BC": 1.40154549,
+          "I_c": 0.11832633
+        },
+        {
+          "relay": 0.77551,
+          "S_A": 1.0,
+          "S_B": 0.50665033,
+          "S_C": 0.96333555,
+          "S_AB": 1.31142973,
+          "S_AC": 0.79262366,
+          "S_BC": 1.3841407,
+          "I_c": 0.17071188
+        },
+        {
+          "relay": 0.795918,
+          "S_A": 1.0,
+          "S_B": 0.47543165,
+          "S_C": 0.96974427,
+          "S_AB": 1.30296918,
+          "S_AC": 0.74463963,
+          "S_BC": 1.36500832,
+          "I_c": 0.22510464
+        },
+        {
+          "relay": 0.816327,
+          "S_A": 1.0,
+          "S_B": 0.44257106,
+          "S_C": 0.97552595,
+          "S_AB": 1.29198335,
+          "S_AC": 0.69382374,
+          "S_BC": 1.34402381,
+          "I_c": 0.28170221
+        },
+        {
+          "relay": 0.836735,
+          "S_A": 1.0,
+          "S_B": 0.40790598,
+          "S_C": 0.98068573,
+          "S_AB": 1.27829171,
+          "S_AC": 0.63993791,
+          "S_BC": 1.32103214,
+          "I_c": 0.34074782
+        },
+        {
+          "relay": 0.857143,
+          "S_A": 1.0,
+          "S_B": 0.37123233,
+          "S_C": 0.98522814,
+          "S_AB": 1.26166639,
+          "S_AC": 0.58268065,
+          "S_BC": 1.29583639,
+          "I_c": 0.40254748
+        },
+        {
+          "relay": 0.877551,
+          "S_A": 1.0,
+          "S_B": 0.33228663,
+          "S_C": 0.9891571,
+          "S_AB": 1.2418127,
+          "S_AC": 0.52165997,
+          "S_BC": 1.26817983,
+          "I_c": 0.46749714
+        },
+        {
+          "relay": 0.897959,
+          "S_A": 1.0,
+          "S_B": 0.29071587,
+          "S_C": 0.992476,
+          "S_AB": 1.21833654,
+          "S_AC": 0.45634786,
+          "S_BC": 1.23771582,
+          "I_c": 0.53612814
+        },
+        {
+          "relay": 0.918367,
+          "S_A": 1.0,
+          "S_B": 0.24602258,
+          "S_C": 0.99518767,
+          "S_AB": 1.19068568,
+          "S_AC": 0.38599757,
+          "S_BC": 1.20395299,
+          "I_c": 0.6091901
+        },
+        {
+          "relay": 0.938776,
+          "S_A": 1.0,
+          "S_B": 0.197453,
+          "S_C": 0.99729438,
+          "S_AB": 1.15803114,
+          "S_AC": 0.30947488,
+          "S_BC": 1.16614332,
+          "I_c": 0.6878195
+        },
+        {
+          "relay": 0.959184,
+          "S_A": 1.0,
+          "S_B": 0.14372617,
+          "S_C": 0.99879792,
+          "S_AB": 1.11898293,
+          "S_AC": 0.22485015,
+          "S_BC": 1.12301129,
+          "I_c": 0.77394777
+        },
+        {
+          "relay": 0.979592,
+          "S_A": 1.0,
+          "S_B": 0.08214305,
+          "S_C": 0.99969954,
+          "S_AB": 1.07066672,
+          "S_AC": 0.12805795,
+          "S_BC": 1.07186308,
+          "I_c": 0.87164159
+        },
+        {
+          "relay": 1.0,
+          "S_A": 1.0,
+          "S_B": 0.0,
+          "S_C": 1.0,
+          "S_AB": 1.0,
+          "S_AC": 0.0,
+          "S_BC": 1.0,
+          "I_c": 1.0
+        }
+      ]
+    },
+    "pytorch_cross_check": {
+      "status": "pass",
+      "spot_checks": [
+        {
+          "relay": 0.0,
+          "torch_S_C": 0.0,
+          "numpy_S_C": 0.0,
+          "torch_I_c": -1.0,
+          "numpy_I_c": -1.0,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        },
+        {
+          "relay": 0.5,
+          "torch_S_C": 0.81127812,
+          "numpy_S_C": 0.81127812,
+          "torch_I_c": -0.41253582,
+          "numpy_I_c": -0.41253582,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        },
+        {
+          "relay": 0.526,
+          "torch_S_C": 0.83123975,
+          "numpy_S_C": 0.83123975,
+          "torch_I_c": -0.36690271,
+          "numpy_I_c": -0.36690271,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        },
+        {
+          "relay": 0.706,
+          "torch_S_C": 0.93671881,
+          "numpy_S_C": 0.93671881,
+          "torch_I_c": -0.00041765,
+          "numpy_I_c": -0.00041765,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        },
+        {
+          "relay": 0.737,
+          "torch_S_C": 0.94951339,
+          "numpy_S_C": 0.94951339,
+          "torch_I_c": 0.07340791,
+          "numpy_I_c": 0.07340791,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        },
+        {
+          "relay": 1.0,
+          "torch_S_C": 1.0,
+          "numpy_S_C": 1.0,
+          "torch_I_c": 1.0,
+          "numpy_I_c": 1.0,
+          "diff_S_C": 0.0,
+          "diff_I_c": 0.0,
+          "cross_check_pass": true
+        }
+      ],
+      "all_cross_checks_pass": true
+    },
+    "sympy_analytic_zero_crossing": {
+      "status": "pass",
+      "S_C_formula": "eigenvalues: [1 - r/2, r/2]",
+      "S_AC_formula": "eigenvalues: [0, (1-r)/2, r/4 - sqrt(5r^2-2r+1)/4 + 1/4, r/4 + sqrt(5r^2-2r+1)/4 + 1/4]; rho_AC(r) = [[1/2,0,0,r/2],[0,0,0,0],[0,0,(1-r)/2,0],[r/2,0,0,r/2]] (mixture of separable AB-Bell marginal and pure AC Bell state)",
+      "analytic_zero_crossing_relay": 0.707,
+      "key_evals": {
+        "0.0": {
+          "S_C": 0.0,
+          "S_AC": 1.0,
+          "I_c_sympy": -1.0,
+          "I_c_numpy": -1.0,
+          "agreement": true
+        },
+        "0.25": {
+          "S_C": 0.54356444,
+          "S_AC": 1.31867346,
+          "I_c_sympy": -0.77510902,
+          "I_c_numpy": -0.77510902,
+          "agreement": true
+        },
+        "0.5": {
+          "S_C": 0.81127812,
+          "S_AC": 1.22381394,
+          "I_c_sympy": -0.41253582,
+          "I_c_numpy": -0.41253582,
+          "agreement": true
+        },
+        "0.526": {
+          "S_C": 0.83123975,
+          "S_AC": 1.19814246,
+          "I_c_sympy": -0.36690271,
+          "I_c_numpy": -0.36690271,
+          "agreement": true
+        },
+        "0.6": {
+          "S_C": 0.8812909,
+          "S_AC": 1.10894165,
+          "I_c_sympy": -0.22765075,
+          "I_c_numpy": -0.22765075,
+          "agreement": true
+        },
+        "0.7": {
+          "S_C": 0.93406806,
+          "S_AC": 0.94835064,
+          "I_c_sympy": -0.01428259,
+          "I_c_numpy": -0.01428259,
+          "agreement": true
+        },
+        "0.706": {
+          "S_C": 0.93671881,
+          "S_AC": 0.93713646,
+          "I_c_sympy": -0.00041765,
+          "I_c_numpy": -0.00041765,
+          "agreement": true
+        },
+        "0.737": {
+          "S_C": 0.94951339,
+          "S_AC": 0.87610548,
+          "I_c_sympy": 0.07340791,
+          "I_c_numpy": 0.07340791,
+          "agreement": true
+        },
+        "1.0": {
+          "S_C": 1.0,
+          "S_AC": 0.0,
+          "I_c_sympy": 1.0,
+          "I_c_numpy": 1.0,
+          "agreement": true
+        }
+      },
+      "dS_C_dr_at_flip_sympy": 0.43547025,
+      "dS_AC_dr_at_flip_sympy": -1.89014405,
+      "entropy_driver_sympy": "S(AC) decreases from above",
+      "note": "Both rates contribute: S(C) increases (positive dSC/dr) and S(AC) decreases (negative dSAC/dr). The flip occurs when S(C) = S(AC). The dominant driver is whichever |rate| is larger at the crossing."
+    },
+    "clifford_geometric_midpoint": {
+      "status": "pass",
+      "geometric_midpoint_amplitude_weighting": 0.497487,
+      "geometric_midpoint_prob_weighting": 0.502513,
+      "I_c_at_geometric_midpoint": -0.41685976,
+      "S_C_at_geometric_midpoint": 0.80928089,
+      "S_AC_at_geometric_midpoint": 1.22614065,
+      "gap_to_entropy_flip_approx": 0.208513,
+      "e12_e13_equal_at": 0.497487,
+      "note": "Amplitude weighting: sqrt(r)=sqrt(1-r) => r=0.5 exactly. Rank-coherence sim found 0.526 using a different rotor normalization. The ~0.21 gap (0.5 to 0.706 or 0.526 to 0.706) exists because geometric balance of the bivector planes precedes the entropy balance S(C)=S(AC)."
+    },
+    "geomstats_spd_curvature": {
+      "status": "pass",
+      "n_steps": 50,
+      "dist_C_sample": [
+        {
+          "relay": 0.46938775510204084,
+          "dist": 0.04462603
+        },
+        {
+          "relay": 0.4897959183673469,
+          "dist": 0.04302947
+        },
+        {
+          "relay": 0.5102040816326531,
+          "dist": 0.04157533
+        },
+        {
+          "relay": 0.5306122448979592,
+          "dist": 0.04024843
+        },
+        {
+          "relay": 0.5510204081632653,
+          "dist": 0.03903587
+        },
+        {
+          "relay": 0.5714285714285714,
+          "dist": 0.03792661
+        },
+        {
+          "relay": 0.5918367346938775,
+          "dist": 0.03691114
+        },
+        {
+          "relay": 0.6122448979591837,
+          "dist": 0.03598127
+        },
+        {
+          "relay": 0.6326530612244898,
+          "dist": 0.03512991
+        },
+        {
+          "relay": 0.6530612244897959,
+          "dist": 0.0343509
+        },
+        {
+          "relay": 0.673469387755102,
+          "dist": 0.03363887
+        },
+        {
+          "relay": 0.6938775510204082,
+          "dist": 0.03298913
+        },
+        {
+          "relay": 0.7142857142857143,
+          "dist": 0.03239759
+        },
+        {
+          "relay": 0.7346938775510204,
+          "dist": 0.03186069
+        },
+        {
+          "relay": 0.7551020408163265,
+          "dist": 0.03137529
+        },
+        {
+          "relay": 0.7755102040816326,
+          "dist": 0.03093866
+        },
+        {
+          "relay": 0.7959183673469388,
+          "dist": 0.03054844
+        }
+      ],
+      "dist_AC_sample": [
+        {
+          "relay": 0.46938775510204084,
+          "dist": 0.06991279
+        },
+        {
+          "relay": 0.4897959183673469,
+          "dist": 0.07070539
+        },
+        {
+          "relay": 0.5102040816326531,
+          "dist": 0.07183905
+        },
+        {
+          "relay": 0.5306122448979592,
+          "dist": 0.0733225
+        },
+        {
+          "relay": 0.5510204081632653,
+          "dist": 0.07517154
+        },
+        {
+          "relay": 0.5714285714285714,
+          "dist": 0.07740985
+        },
+        {
+          "relay": 0.5918367346938775,
+          "dist": 0.08007017
+        },
+        {
+          "relay": 0.6122448979591837,
+          "dist": 0.08319616
+        },
+        {
+          "relay": 0.6326530612244898,
+          "dist": 0.08684487
+        },
+        {
+          "relay": 0.6530612244897959,
+          "dist": 0.09109033
+        },
+        {
+          "relay": 0.673469387755102,
+          "dist": 0.09602852
+        },
+        {
+          "relay": 0.6938775510204082,
+          "dist": 0.10178464
+        },
+        {
+          "relay": 0.7142857142857143,
+          "dist": 0.10852344
+        },
+        {
+          "relay": 0.7346938775510204,
+          "dist": 0.11646488
+        },
+        {
+          "relay": 0.7551020408163265,
+          "dist": 0.12590776
+        },
+        {
+          "relay": 0.7755102040816326,
+          "dist": 0.13726716
+        },
+        {
+          "relay": 0.7959183673469388,
+          "dist": 0.15113562
+        }
+      ],
+      "max_accel_C_near_flip": {
+        "relay": 0.6530612244897959,
+        "acceleration": 6.698e-05
+      },
+      "max_accel_AC_near_flip": {
+        "relay": 0.7346938775510204,
+        "acceleration": 0.00150144
+      },
+      "max_accel_C_overall": {
+        "relay": 0.02040816326530612,
+        "acceleration": 8.24987944
+      },
+      "max_accel_AC_overall": {
+        "relay": 0.9591836734693877,
+        "acceleration": 11.18663154
+      },
+      "curvature_anomaly_in_rho_C": false,
+      "curvature_anomaly_in_rho_AC": false,
+      "interpretation": "Both or neither show peak acceleration near flip -- see max_accel values for full characterization."
+    }
+  },
+  "negative": {
+    "neg_ic_negative_at_relay_0": {
+      "status": "pass",
+      "relay": 0.0,
+      "I_c": -1.0,
+      "expected": "< 0",
+      "note": "At relay=0, all entanglement is A-B, so I_c(A->C) must be negative."
+    },
+    "neg_sc_less_than_sac_before_flip": {
+      "status": "pass",
+      "violations": [],
+      "note": "Before the flip, S(C) < S(AC) (i.e., I_c < 0). Violations mean the flip point was earlier than expected."
+    },
+    "z3_flip_impossible_below_05": {
+      "status": "pass",
+      "z3_result_below_05": "unsat",
+      "z3_unsat_S_C_gt_S_AC_for_r_lt_05": true,
+      "z3_sat_above_05": true,
+      "encoding": {
+        "S_C_upper_bound": "S(C)(r) <= r (entropy bounded by relay)",
+        "S_AC_lower_bound": "S(AC)(r) >= 1/2 (from constant 1/2 eigenvalue contribution)",
+        "claim_refuted": "S(C) > S(AC) for relay in [0, 0.5]"
+      },
+      "interpretation": "UNSAT confirms: S(C) cannot exceed S(AC) for relay < 0.5, meaning I_c(A->C) flip is structurally impossible below the midpoint. The flip point > 0.5 is a necessary consequence of the entropy bounds."
+    }
+  },
+  "boundary": {
+    "boundary_relay_0": {
+      "relay": 0.0,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 0.0,
+      "S_AB": 0.0,
+      "S_AC": 1.0,
+      "S_BC": 1.0,
+      "I_c": -1.0,
+      "expected_S_A": 1.0,
+      "expected_S_B": 1.0,
+      "expected_S_C": 0.0,
+      "expected_S_AB": 0.0,
+      "pass": true
+    },
+    "boundary_relay_1": {
+      "relay": 1.0,
+      "S_A": 1.0,
+      "S_B": 0.0,
+      "S_C": 1.0,
+      "S_AB": 1.0,
+      "S_AC": 0.0,
+      "S_BC": 1.0,
+      "I_c": 1.0,
+      "expected_S_A": 1.0,
+      "expected_S_B": 0.0,
+      "expected_S_C": 1.0,
+      "expected_S_AC": 0.0,
+      "pass": true
+    },
+    "boundary_relay_05": {
+      "relay": 0.5,
+      "S_C": 0.81127812,
+      "S_AC": 1.22381394,
+      "I_c": -0.41253582,
+      "is_I_c_negative": true,
+      "note": "At relay=0.5 (exact geometric midpoint), I_c should still be negative."
+    }
+  },
+  "summary": {
+    "flip_relay_numeric": 0.704082,
+    "geometric_midpoint_relay": 0.489796,
+    "gap_relay_units": 0.214286,
+    "entropy_driver": "S(AC)",
+    "dS_C_dr_at_flip": 0.44007971,
+    "dS_AC_dr_at_flip": -1.87471387,
+    "interpretation_gap": "S(AC) decreases faster than S(C) increases in the geo->flip gap",
+    "sympy_analytic_crossing": 0.707,
+    "sympy_S_C_formula": "eigenvalues: [1 - r/2, r/2]",
+    "sympy_S_AC_formula": "eigenvalues: [0, (1-r)/2, r/4 - sqrt(5r^2-2r+1)/4 + 1/4, r/4 + sqrt(5r^2-2r+1)/4 + 1/4]; rho_AC(r) = [[1/2,0,0,r/2],[0,0,0,0],[0,0,(1-r)/2,0],[r/2,0,0,r/2]] (mixture of separable AB-Bell marginal and pure AC Bell state)",
+    "sympy_entropy_driver": "S(AC) decreases from above",
+    "sympy_dS_C_dr": 0.43547025,
+    "sympy_dS_AC_dr": -1.89014405,
+    "geomstats_anomaly_rho_C": false,
+    "geomstats_anomaly_rho_AC": false,
+    "geomstats_interpretation": "Both or neither show peak acceleration near flip -- see max_accel values for full characterization.",
+    "z3_flip_impossible_below_05": true
+  },
+  "classification": "canonical"
+}

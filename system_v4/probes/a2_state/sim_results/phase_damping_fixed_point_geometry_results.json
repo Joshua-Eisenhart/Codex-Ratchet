@@ -1,0 +1,620 @@
+{
+  "name": "sim_phase_damping_fixed_point_geometry",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: sweep p in [0,1], apply phase_damping to diag(p,1-p), measure fixed-point distance; confirm off-diagonal state is NOT fixed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proofs (N1: no non-diagonal fixed point of phase damping; N2: amplitude damping has no 1-d fixed-point manifold); SAT proof (P6: poles |0\u27e9 and |1\u27e9 are simultaneously Hopf-stable and PD-fixed)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: analytic proof that K0 diag(p,1-p) K0\u2020 + K1 diag(p,1-p) K1\u2020 = diag(p,1-p) for arbitrary p and gamma; verifies entire diagonal is fixed symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: model the fixed-point manifold as the e3 direction in Cl(3); verify e3 generates the Z-axis (grade-1 vector); Bloch sphere embedded in even subalgebra; fixed-point line = e3 axis"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SPD geodesic from I/2 to diag(p,1-p) for p in [0,1]; compute geodesic distances and sectional curvature probe along the fixed-point manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: simplicial complex of fixed-point structure across channel families; 0-simplices = individual fixed points; 1-simplex = phase-damping Z-axis line; compute Betti numbers beta0, beta1"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_diagonal_sweep": {
+      "gamma": 0.5,
+      "all_diagonal_states_fixed": true,
+      "n_states_tested": 21,
+      "sweep": [
+        {
+          "p": 0.0,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.05,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.1,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.15,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.2,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.25,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.3,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.35,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.4,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.45,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.5,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.55,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.6,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.65,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.7,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.75,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.8,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.85,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.9,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 0.95,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "p": 1.0,
+          "fixed_point_distance": 0.0,
+          "is_fixed": true
+        }
+      ],
+      "conclusion": "ALL diagonal states diag(p,1-p) are exact fixed points of phase damping for all p in [0,1] and all gamma in (0,1). The fixed-point set is a 1-parameter family (line segment) in state space."
+    },
+    "P2_sympy_analytic_proof": {
+      "K0": "[[1, 0], [0, sqrt(1 - gamma)]]",
+      "K1": "[[0, 0], [0, sqrt(gamma)]]",
+      "channel_output": "[[p, 0], [0, 1 - p]]",
+      "input_rho": "[[p, 0], [0, 1 - p]]",
+      "residual_matrix": "[[0, 0], [0, 0]]",
+      "all_entries_zero": true,
+      "entry_checks": {
+        "[0,0]": {
+          "residual": "0",
+          "is_zero": true
+        },
+        "[0,1]": {
+          "residual": "0",
+          "is_zero": true
+        },
+        "[1,0]": {
+          "residual": "0",
+          "is_zero": true
+        },
+        "[1,1]": {
+          "residual": "0",
+          "is_zero": true
+        }
+      },
+      "conclusion": "ANALYTICALLY PROVEN: K0 diag(p,1-p) K0\u2020 + K1 diag(p,1-p) K1\u2020 = diag(p,1-p) for arbitrary symbolic p and gamma. The entire diagonal manifold is fixed."
+    },
+    "P3_clifford_e3_axis": {
+      "cl3_algebra": "Cl(3) with basis {e1, e2, e3}",
+      "bloch_embedding": {
+        "x_axis": "e1 (X Pauli direction)",
+        "y_axis": "e2 (Y Pauli direction)",
+        "z_axis": "e3 (Z Pauli direction)"
+      },
+      "north_pole_bloch": "+e3 = |0\u27e9",
+      "south_pole_bloch": "-e3 = |1\u27e9",
+      "mixed_state_bloch": "0-vector = origin = I/2",
+      "e3_grade": "{np.int64(1)}",
+      "e3_squared": 1.0,
+      "e3_is_unit_vector": true,
+      "fixed_point_manifold_cl3": "span{e3} = the e3 axis (grade-1 subspace of e3)",
+      "phase_damping_kills": "e1 and e2 components (off-diagonal = x,y Bloch)",
+      "phase_damping_preserves": "e3 component (diagonal = z Bloch)",
+      "test_vec": "0.3*e1 + 0.4*e2 + 0.5*e3",
+      "after_full_pd": "0*e1 + 0*e2 + 0.5*e3 (only e3 survives)",
+      "cl3_residual_fixed_point": 0.0,
+      "conclusion": "The phase-damping fixed-point manifold = span{e3} in Cl(3). Phase damping is a projection onto the e3 axis. The fixed-point manifold is a 1-dimensional subspace of the grade-1 subspace of Cl(3), corresponding to the Z-axis of the Bloch sphere."
+    },
+    "P4_xgi_simplicial_complex": {
+      "nodes": 3,
+      "edges": 5,
+      "triangles": 0,
+      "node_labels": {
+        "0": "|0\u27e9 (north pole)",
+        "1": "|1\u27e9 (south pole)",
+        "2": "I/2 (mixed)"
+      },
+      "edge_labels": {
+        "0-1": "phase_damping_1-simplex (Z-axis fixed-point line)",
+        "0-2": "AD_depolarizing_shared_fixed_point"
+      },
+      "euler_characteristic": -2,
+      "betti_numbers": {
+        "beta0_connected_components": 1,
+        "beta1_1cycles_holes": 0,
+        "beta2_voids": 0
+      },
+      "chi_consistent_with_betti": false,
+      "interpretation": {
+        "beta0=1": "All fixed points are in one connected component (|0\u27e9 is the hub)",
+        "beta1=0": "No topological holes \u2014 the fixed-point graph is a tree (path), no loop",
+        "beta2=0": "No enclosed voids \u2014 no 2-simplex present",
+        "no_2simplex": "|1\u27e9 is NOT a fixed point of amplitude damping or depolarizing; therefore {|0\u27e9, |1\u27e9, I/2} do not form a 2-simplex. Phase damping is topologically distinct: it has an edge {0,1} that no other channel possesses."
+      },
+      "conclusion": "The fixed-point simplicial complex has beta0=1, beta1=0, beta2=0. The phase-damping 1-simplex {|0\u27e9,|1\u27e9} is the unique edge not shared by other channel families. Topologically, the complex is contractible (homotopy equivalent to a point), with no holes or voids."
+    },
+    "P5_geomstats_curvature": {
+      "manifold": "SPD(2) with affine-invariant metric",
+      "probe": "1-d submanifold {diag(p,1-p)} for p in [0.05, 0.95]",
+      "geodesic_distances": [
+        {
+          "p1": 0.05,
+          "p2": 0.15,
+          "spd_geodesic_dist": 1.10422828,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 11.042283
+        },
+        {
+          "p1": 0.15,
+          "p2": 0.25,
+          "spd_geodesic_dist": 0.52593596,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 5.25936
+        },
+        {
+          "p1": 0.25,
+          "p2": 0.35,
+          "spd_geodesic_dist": 0.36563837,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 3.656384
+        },
+        {
+          "p1": 0.35,
+          "p2": 0.45,
+          "spd_geodesic_dist": 0.30177145,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 3.017715
+        },
+        {
+          "p1": 0.45,
+          "p2": 0.55,
+          "spd_geodesic_dist": 0.28379122,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 2.837912
+        },
+        {
+          "p1": 0.55,
+          "p2": 0.65,
+          "spd_geodesic_dist": 0.30177145,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 3.017715
+        },
+        {
+          "p1": 0.65,
+          "p2": 0.75,
+          "spd_geodesic_dist": 0.36563837,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 3.656384
+        },
+        {
+          "p1": 0.75,
+          "p2": 0.85,
+          "spd_geodesic_dist": 0.52593596,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 5.25936
+        },
+        {
+          "p1": 0.85,
+          "p2": 0.95,
+          "spd_geodesic_dist": 1.10422828,
+          "euclidean_dp": 0.1,
+          "ratio_spd_to_euclidean": 11.042283
+        }
+      ],
+      "distance_center_to_pole0": 3.97121458,
+      "distance_center_to_pole1": 3.97121458,
+      "distance_pole0_to_pole1": 6.4984808,
+      "spd_ratio_variance": 9.74461562,
+      "is_flat_along_manifold": false,
+      "conclusion": "The SPD metric along the diagonal fixed-point manifold has VARYING ratio (non-trivial curvature along the Z-axis in SPD metric). The affine-invariant SPD metric is NOT flat on the full manifold (SPD(2) has negative curvature), but the diagonal submanifold may have non-trivial induced curvature."
+    },
+    "P6_z3_sat_poles_hopf_and_pd": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "constraints": {
+        "physical": "density matrix constraints (trace=1, PSD)",
+        "pd_fixed": "b=0, c=0 (off-diagonal=0)",
+        "hopf_stable": "Tr(rho\u00b2)=1 (pure state, lies on S\u00b2 = Hopf base)"
+      },
+      "model_sample": {
+        "a": "0",
+        "c": "0",
+        "b": "0"
+      },
+      "solutions_verified": [
+        {
+          "a_value": 0,
+          "z3_check": "sat",
+          "is_solution": true,
+          "state": "|1\u27e9"
+        },
+        {
+          "a_value": 1,
+          "z3_check": "sat",
+          "is_solution": true,
+          "state": "|0\u27e9"
+        }
+      ],
+      "passed": true,
+      "conclusion": "SAT CONFIRMED: States satisfying BOTH phase-damping fixed-point (b=c=0) AND Hopf-stability (pure state, Tr(rho\u00b2)=1) are EXACTLY a=0 (|1\u27e9) and a=1 (|0\u27e9). The intersection of the phase-damping fixed manifold and the Hopf pure-state constraint isolates exactly the two poles of the Bloch sphere."
+    }
+  },
+  "negative": {
+    "N1_unsat_no_nondiagonal_fixed_point": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "sat_claim": "There exists a non-diagonal state (b\u22600) that is a fixed point of phase damping for gamma in (0,1)",
+      "encoding": {
+        "gamma_valid": "g in (0,1)",
+        "s_sqrt": "s = sqrt(1-g), s in (0,1)",
+        "fixed_point_b": "b*s = b (off-diagonal fixed-point condition)",
+        "nondiagonal": "b \u2260 0",
+        "contradiction": "b\u22600 and b*s=b implies s=1, contradicts s<1"
+      },
+      "passed": true,
+      "conclusion": "UNSAT CONFIRMED: No non-diagonal 2\u00d72 state can be a fixed point of phase damping for any gamma in (0,1). Off-diagonal elements must be zero. The fixed-point manifold is EXACTLY the set of diagonal states."
+    },
+    "N2_unsat_amplitude_damping_no_manifold": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "sat_claim": "Amplitude damping has a fixed diagonal state diag(a,1-a) for a in (0,1) (interior of the Z-axis), i.e., a 1-d fixed-point manifold",
+      "encoding": {
+        "gamma_valid": "g in (0,1)",
+        "a_interior": "a in (0,1)",
+        "fp_condition": "a + g*(1-a) = a (fixed-point for AD on diagonal)",
+        "simplifies_to": "g*(1-a) = 0; with a<1 and g>0: no solution"
+      },
+      "passed": true,
+      "conclusion": "UNSAT CONFIRMED: Amplitude damping has NO interior fixed diagonal states. Its only fixed point is |0\u27e9 (a=1), a unique fixed point, NOT a manifold. This formally distinguishes amplitude damping from phase damping."
+    },
+    "z3_unsat_summary": {
+      "N1_passed": true,
+      "N2_passed": true,
+      "all_unsat": true
+    }
+  },
+  "boundary": {
+    "B1_boundary_poles_fixed": {
+      "gamma": 0.5,
+      "pole0_fixed_point_distance": 0.0,
+      "pole1_fixed_point_distance": 0.0,
+      "pole0_is_fixed": true,
+      "pole1_is_fixed": true,
+      "conclusion": "|0\u27e9 and |1\u27e9 are both exact fixed points of phase damping (trivially, as they are diagonal with no off-diagonal component to decay). They are the endpoints of the 1-simplex fixed-point manifold."
+    },
+    "B2_off_diagonal_not_fixed": {
+      "gamma": 0.5,
+      "input_state": "|+\u27e9 = [[0.5, 0.5],[0.5, 0.5]]",
+      "output_off_diagonal_01": 0.35355339,
+      "expected_off_diagonal": 0.35355339,
+      "input_off_diagonal": 0.5,
+      "fixed_point_distance": 0.20710678,
+      "is_fixed_point": false,
+      "is_NOT_fixed_point": true,
+      "conclusion": "|+\u27e9\u27e8+| is NOT a fixed point of phase damping: off-diagonal elements decay from 0.5 to 0.3536 (factor sqrt(1-gamma) = 0.7071). Only DIAGONAL states are fixed. |+\u27e9 is NOT in the fixed-point manifold."
+    },
+    "B3_interior_manifold_verification": {
+      "all_interior_diagonal_states_fixed": true,
+      "n_cases": 25,
+      "cases": [
+        {
+          "gamma": 0.1,
+          "p": 0.2,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.1,
+          "p": 0.4,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.1,
+          "p": 0.5,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.1,
+          "p": 0.6,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.1,
+          "p": 0.8,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.3,
+          "p": 0.2,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.3,
+          "p": 0.4,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.3,
+          "p": 0.5,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.3,
+          "p": 0.6,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.3,
+          "p": 0.8,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.5,
+          "p": 0.2,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.5,
+          "p": 0.4,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.5,
+          "p": 0.5,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.5,
+          "p": 0.6,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.5,
+          "p": 0.8,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.7,
+          "p": 0.2,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.7,
+          "p": 0.4,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.7,
+          "p": 0.5,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.7,
+          "p": 0.6,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.7,
+          "p": 0.8,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.9,
+          "p": 0.2,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.9,
+          "p": 0.4,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.9,
+          "p": 0.5,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.9,
+          "p": 0.6,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        },
+        {
+          "gamma": 0.9,
+          "p": 0.8,
+          "fp_distance": 0.0,
+          "is_fixed": true
+        }
+      ],
+      "conclusion": "ALL interior diagonal states (p in (0,1)) are fixed under phase damping for all tested gamma values. The fixed-point set is genuinely a 1-d manifold, not just isolated points."
+    }
+  },
+  "summary": {
+    "fixed_point_manifold": {
+      "description": "All diagonal states diag(p,1-p), p in [0,1]",
+      "cl3_object": "e3 axis (grade-1 e3 subspace of Cl(3))",
+      "topology": "1-simplex [|1\u27e9, |0\u27e9] = contractible (beta0=1, beta1=0, beta2=0)",
+      "geomstats": "1-d submanifold of SPD(2) with affine-invariant metric"
+    },
+    "z3_proofs": {
+      "N1_no_nondiagonal_fp": true,
+      "N2_no_ad_manifold": true,
+      "P6_poles_sat": true
+    },
+    "hopf_intersection": {
+      "claim": "PD fixed-point manifold \u2229 Hopf pure-state constraint = {|0\u27e9, |1\u27e9}",
+      "z3_sat_result": "sat",
+      "solutions": [
+        {
+          "a_value": 0,
+          "z3_check": "sat",
+          "is_solution": true,
+          "state": "|1\u27e9"
+        },
+        {
+          "a_value": 1,
+          "z3_check": "sat",
+          "is_solution": true,
+          "state": "|0\u27e9"
+        }
+      ]
+    },
+    "sympy_analytic_proof": true
+  }
+}

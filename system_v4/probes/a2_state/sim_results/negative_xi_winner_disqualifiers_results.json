@@ -1,0 +1,230 @@
+{
+  "name": "negative_xi_winner_disqualifiers",
+  "probe": "xi_winner_claim_negative_battery",
+  "purpose": "Disqualify weak Xi winner claims under matched packets, counterfeit packet classes, controlled ablations, and small balance changes.",
+  "classification": "classical_baseline",
+  "tools_used": [
+    "numpy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph-learning layer needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim in this negative battery"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no synthesis or SMT cross-check needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Bloch-vector density matrices are sufficient"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold statistics needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant learning layer needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph algorithm needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph layer needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex layer needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent topology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "base_non_counterfeit_aggregate": {
+      "Xi_ref": 0.813360600505365,
+      "Xi_shell": 0.3693010437145958,
+      "Xi_hist": 0.17020054173766727
+    },
+    "base_non_counterfeit_winner": "Xi_ref",
+    "pass": true
+  },
+  "negative": {
+    "winner_by_average_only": {
+      "aggregate_scores": {
+        "Xi_ref": 0.813360600505365,
+        "Xi_shell": 0.3693010437145958,
+        "Xi_hist": 0.17020054173766727
+      },
+      "aggregate_winner": "Xi_ref",
+      "packet_winners": {
+        "reference_dominant": "Xi_ref",
+        "shell_dominant": "Xi_shell",
+        "history_dominant": "Xi_hist",
+        "balanced_tie_case": "Xi_shell"
+      },
+      "disqualified": true
+    },
+    "counterfeit_packet_class_driver": {
+      "non_counterfeit_scores": {
+        "Xi_ref": 0.813360600505365,
+        "Xi_shell": 0.3693010437145958,
+        "Xi_hist": 0.17020054173766727
+      },
+      "counterfeit_only_scores": {
+        "Xi_ref": 0.5687411810475145,
+        "Xi_shell": 0.0393213802905239,
+        "Xi_hist": 0.01786200348855932
+      },
+      "full_scores": {
+        "Xi_ref": 1.3821017815528793,
+        "Xi_shell": 0.4086224240051197,
+        "Xi_hist": 0.1880625452262266
+      },
+      "non_counterfeit_winner": "Xi_ref",
+      "full_winner": "Xi_ref",
+      "disqualified": false
+    },
+    "reference_freeze_blind_winner": {
+      "before": {
+        "Xi_ref": 0.6300638253244507,
+        "Xi_shell": 0.03945870611526636,
+        "Xi_hist": 0.018056894514811708
+      },
+      "after": {
+        "Xi_ref": 0.012898593329513985,
+        "Xi_shell": 0.03945870611526636,
+        "Xi_hist": 0.018056894514811708
+      },
+      "disqualified": false
+    },
+    "shell_ablation_blind_winner": {
+      "before": {
+        "Xi_ref": 0.05294416529540789,
+        "Xi_shell": 0.18232167388697865,
+        "Xi_hist": 0.025223148221988203
+      },
+      "after": {
+        "Xi_ref": 0.05294416529540789,
+        "Xi_shell": 0.04494645563712681,
+        "Xi_hist": 0.025223148221988203
+      },
+      "disqualified": false
+    },
+    "history_scramble_blind_winner": {
+      "before": {
+        "Xi_ref": 0.05790736984397475,
+        "Xi_shell": 0.06941133888572887,
+        "Xi_hist": 0.0714364056292452
+      },
+      "after": {
+        "Xi_ref": 0.05790736984397475,
+        "Xi_shell": 0.06941133888572887,
+        "Xi_hist": 1.1223244361370504
+      },
+      "disqualified": false
+    },
+    "small_balance_change_collapse": {
+      "before": {
+        "Xi_ref": 0.07244524004153163,
+        "Xi_shell": 0.07810932482662192,
+        "Xi_hist": 0.055484093371622155
+      },
+      "after": {
+        "Xi_ref": 0.07244524004153163,
+        "Xi_shell": 0.07652762142984743,
+        "Xi_hist": 0.055484093371622155
+      },
+      "before_winner": "Xi_shell",
+      "after_winner": "Xi_shell",
+      "disqualified": false
+    },
+    "pass": true
+  },
+  "boundary": {
+    "balanced_case_shift_series": {
+      "delta_0.01": {
+        "scores": {
+          "Xi_ref": 0.07244524004153163,
+          "Xi_shell": 0.0777154224463908,
+          "Xi_hist": 0.055484093371622155
+        },
+        "winner": "Xi_shell"
+      },
+      "delta_0.02": {
+        "scores": {
+          "Xi_ref": 0.07244524004153163,
+          "Xi_shell": 0.07732044416032406,
+          "Xi_hist": 0.055484093371622155
+        },
+        "winner": "Xi_shell"
+      },
+      "delta_0.03": {
+        "scores": {
+          "Xi_ref": 0.07244524004153163,
+          "Xi_shell": 0.0769244800346045,
+          "Xi_hist": 0.055484093371622155
+        },
+        "winner": "Xi_shell"
+      }
+    },
+    "pass": true
+  },
+  "summary": {
+    "tests_total": 3,
+    "tests_passed": 3,
+    "all_pass": true,
+    "disqualified_claims": {
+      "winner_by_average_only": true,
+      "counterfeit_packet_class_driver": false,
+      "reference_freeze_blind_winner": false,
+      "shell_ablation_blind_winner": false,
+      "history_scramble_blind_winner": false,
+      "small_balance_change_collapse": false
+    },
+    "base_non_counterfeit_winner": "Xi_ref"
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

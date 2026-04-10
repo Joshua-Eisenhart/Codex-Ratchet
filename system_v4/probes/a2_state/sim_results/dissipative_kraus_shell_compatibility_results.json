@@ -1,0 +1,1463 @@
+{
+  "name": "sim_dissipative_kraus_shell_compatibility",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Kraus channel application via sum(K rho K\u2020), von Neumann entropy via eigenvalues, coherent information I_c = S(out) - S(AB), unitality check, fixed-point iteration for S7; all channels \u00d7 all gamma values"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: three formal UNSAT proofs: (P1) amplitude_damping AND unital, (P2) completely_depolarizing AND NOT S6, (P3) identity_channel AND S6"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: analytic unitality conditions for each channel type \u2014 derive channel(I/2) symbolically; confirm amplitude damping is non-unital analytically; fixed-point equations for depolarizing channel solved symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SPD geodesic distance from maximally mixed state I/2 at each channel step; confirms S6 channels move off-center faster than unitary baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "shell_matrix": {
+      "amplitude_damping": {
+        "gamma_0.1": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 1.1102230246251565e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": false,
+            "unitality_error": 0.07071067811865482,
+            "channel_of_half_I_diag": [
+              0.55,
+              0.44999999999999996
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.32508297,
+              -0.00500837,
+              0.1096094
+            ],
+            "max_entropy_gain": 0.32508297,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_1",
+            "max_entropy_gain": 0.32508297,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 3.75635e-05,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.3": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 0.0,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": false,
+            "unitality_error": 0.21213203435596417,
+            "channel_of_half_I_diag": [
+              0.6499999999999999,
+              0.35000000000000003
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.6108643,
+              -0.04570054,
+              0.21465752
+            ],
+            "max_entropy_gain": 0.6108643,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_1",
+            "max_entropy_gain": 0.6108643,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.5": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 2.220446049250313e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": false,
+            "unitality_error": 0.35355339059327373,
+            "channel_of_half_I_diag": [
+              0.75,
+              0.25000000000000006
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.69314718,
+              -0.13081204,
+              0.24577537
+            ],
+            "max_entropy_gain": 0.69314718,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_1",
+            "max_entropy_gain": 0.69314718,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.7": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 2.220446049250313e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": false,
+            "unitality_error": 0.49497474683058335,
+            "channel_of_half_I_diag": [
+              0.8500000000000001,
+              0.15000000000000005
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.6108643,
+              -0.27043809,
+              0.21465752
+            ],
+            "max_entropy_gain": 0.6108643,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_1",
+            "max_entropy_gain": 0.6108643,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.9": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 1.1102230246251565e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": false,
+            "unitality_error": 0.6363961030678927,
+            "channel_of_half_I_diag": [
+              0.95,
+              0.04999999999999998
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.32508297,
+              -0.49463194,
+              0.1096094
+            ],
+            "max_entropy_gain": 0.32508297,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_1",
+            "max_entropy_gain": 0.32508297,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        }
+      },
+      "phase_damping": {
+        "gamma_0.1": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 1.1102230246251565e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 5.551115123125783e-17,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.49999999999999994
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.0,
+              0.0,
+              0.11930994
+            ],
+            "max_entropy_gain": 0.11930994,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_plus",
+            "max_entropy_gain": 0.11930994,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 1.4142135624,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.3": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 0.0,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 0.0,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.5
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.0,
+              0.0,
+              0.28282923
+            ],
+            "max_entropy_gain": 0.28282923,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_plus",
+            "max_entropy_gain": 0.28282923,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 1.4142135624,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.5": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 2.220446049250313e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 1.1102230246251565e-16,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.5000000000000001
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0000000000000002,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              -0.0,
+              -0.0,
+              0.41649553
+            ],
+            "max_entropy_gain": 0.41649553,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_plus",
+            "max_entropy_gain": 0.41649553,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 1.4142135624,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.7": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 2.220446049250313e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 1.1102230246251565e-16,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.5000000000000001
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0000000000000002,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              -0.0,
+              -0.0,
+              0.53456845
+            ],
+            "max_entropy_gain": 0.53456845,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_plus",
+            "max_entropy_gain": 0.53456845,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 1.4142135624,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.9": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 1.1102230246251565e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 5.551115123125783e-17,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.49999999999999994
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.0,
+              0.0,
+              0.0,
+              0.64227861
+            ],
+            "max_entropy_gain": 0.64227861,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_plus",
+            "max_entropy_gain": 0.64227861,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 1.4142135624,
+            "fixed_point_rho_diag": [
+              1.0,
+              0.0
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        }
+      },
+      "depolarizing": {
+        "gamma_0.1": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 0.0,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 0.0,
+            "channel_of_half_I_diag": [
+              0.5,
+              0.5
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.19851524,
+              0.19851524,
+              0.0,
+              0.19851524
+            ],
+            "max_entropy_gain": 0.19851524,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_0",
+            "max_entropy_gain": 0.19851524,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": false,
+            "fixed_point_distance_from_two_starts": 3.75635e-05,
+            "fixed_point_rho_diag": [
+              0.5000132806994485,
+              0.499986719300561
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.3": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 1.5700924586837752e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 7.850462293418876e-17,
+            "channel_of_half_I_diag": [
+              0.49999999999999994,
+              0.49999999999999994
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 0.9999999999999999,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.42270909,
+              0.42270909,
+              0.0,
+              0.42270909
+            ],
+            "max_entropy_gain": 0.42270909,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_0",
+            "max_entropy_gain": 0.42270909,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              0.49999999999999883,
+              0.4999999999999985
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.5": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 3.1401849173675503e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 1.5700924586837752e-16,
+            "channel_of_half_I_diag": [
+              0.5000000000000001,
+              0.5000000000000001
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.56233514,
+              0.56233514,
+              -0.0,
+              0.56233514
+            ],
+            "max_entropy_gain": 0.56233514,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_0",
+            "max_entropy_gain": 0.56233514,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              0.5000000000000004,
+              0.5000000000000004
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.7": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 3.1401849173675503e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 1.5700924586837752e-16,
+            "channel_of_half_I_diag": [
+              0.5000000000000001,
+              0.5000000000000001
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0000000000000002,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.64744664,
+              0.64744664,
+              -0.0,
+              0.64744664
+            ],
+            "max_entropy_gain": 0.64744664,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_0",
+            "max_entropy_gain": 0.64744664,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              0.5000000000000021,
+              0.5000000000000021
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        },
+        "gamma_0.9": {
+          "S0_trace_preservation": {
+            "sat": true,
+            "note": "Tr(channel(rho))=1 for all test states"
+          },
+          "S1_positivity": {
+            "sat": true,
+            "note": "channel(rho) >= 0 for all test states"
+          },
+          "S2_complete_positivity": {
+            "sat": true,
+            "kraus_completeness_error": 3.1401849173675503e-16,
+            "note": "sum(K\u2020K)=I verifies CP via Kraus representation theorem"
+          },
+          "S3_unitality": {
+            "sat": true,
+            "unitality_error": 1.5700924586837752e-16,
+            "channel_of_half_I_diag": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "note": "S3 SAT iff channel(I/2)=I/2; only depolarizing/phase are unital"
+          },
+          "S4_lindblad_form": {
+            "sat": true,
+            "superop_spectral_radius": 1.0,
+            "note": "Proxy: CPTP superoperator spectral radius <=1; necessary for Lindblad generator"
+          },
+          "S5_DPI": {
+            "sat": false,
+            "entropy_gains_per_state": [
+              0.68813881,
+              0.68813881,
+              0.0,
+              0.68813881
+            ],
+            "max_entropy_gain": 0.68813881,
+            "note": "S5 strict: entropy never increases. Mixed states give S5=SAT for damping; pure excited state |1> can give gain for amplitude damping."
+          },
+          "S6_entropy_increase": {
+            "sat": true,
+            "witnessing_state": "rho_pure_0",
+            "max_entropy_gain": 0.68813881,
+            "note": "S6 SAT iff there exists an input rho where entropy strictly increases"
+          },
+          "S7_fixed_point": {
+            "sat": true,
+            "fixed_point_distance_from_two_starts": 0.0,
+            "fixed_point_rho_diag": [
+              0.4999999999999982,
+              0.4999999999999982
+            ],
+            "note": "S7 SAT iff channel converges to unique steady state from |0> and |1>"
+          }
+        }
+      }
+    },
+    "shell_summary": {
+      "amplitude_damping": {
+        "S0_trace_preservation": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S1_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S2_complete_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S3_unitality": {
+          "all_gamma_sat": false,
+          "sat_counts": "0/5",
+          "pattern": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "S4_lindblad_form": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S5_DPI": {
+          "all_gamma_sat": false,
+          "sat_counts": "0/5",
+          "pattern": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "S6_entropy_increase": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S7_fixed_point": {
+          "all_gamma_sat": false,
+          "sat_counts": "4/5",
+          "pattern": [
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "phase_damping": {
+        "S0_trace_preservation": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S1_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S2_complete_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S3_unitality": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S4_lindblad_form": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S5_DPI": {
+          "all_gamma_sat": false,
+          "sat_counts": "0/5",
+          "pattern": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "S6_entropy_increase": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S7_fixed_point": {
+          "all_gamma_sat": false,
+          "sat_counts": "0/5",
+          "pattern": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        }
+      },
+      "depolarizing": {
+        "S0_trace_preservation": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S1_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S2_complete_positivity": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S3_unitality": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S4_lindblad_form": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S5_DPI": {
+          "all_gamma_sat": false,
+          "sat_counts": "0/5",
+          "pattern": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        "S6_entropy_increase": {
+          "all_gamma_sat": true,
+          "sat_counts": "5/5",
+          "pattern": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "S7_fixed_point": {
+          "all_gamma_sat": false,
+          "sat_counts": "4/5",
+          "pattern": [
+            false,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      }
+    },
+    "s3_s7_comparison": {
+      "amplitude_damping": {
+        "S3_unital": false,
+        "S7_fixed_point": false,
+        "S6_entropy": true
+      },
+      "phase_damping": {
+        "S3_unital": true,
+        "S7_fixed_point": false,
+        "S6_entropy": true
+      },
+      "depolarizing": {
+        "S3_unital": true,
+        "S7_fixed_point": false,
+        "S6_entropy": true
+      }
+    }
+  },
+  "negative": {
+    "P1_amplitude_damping_AND_S3_unital": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "sat_claim": "amplitude_damping IS unital for some gamma in (0,1)",
+      "interpretation": "UNSAT confirms amplitude damping is NEVER unital for gamma>0. channel(I/2) has diagonal [1/2+gamma/2, 1/2-gamma/2] != I/2 for all gamma>0.",
+      "passed": true
+    },
+    "P2_completely_depolarizing_AND_NOT_S6": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "sat_claim": "completely_depolarizing satisfies NOT_S6 (entropy never increases)",
+      "interpretation": "UNSAT confirms: completely depolarizing channel maps pure states (S=0) to I/2 (S=log2>0), so S6 (entropy increase) MUST hold. NOT S6 is impossible.",
+      "passed": true
+    },
+    "P3_S6_AND_identity_channel": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "sat_claim": "identity channel satisfies S6 (entropy increase for some input)",
+      "interpretation": "UNSAT confirms: identity channel has S(out)=S(in) for ALL inputs, making S6 (strict entropy increase) formally impossible.",
+      "passed": true
+    },
+    "z3_summary": {
+      "all_unsat": true,
+      "proofs_run": 3
+    }
+  },
+  "boundary": {
+    "sympy_amplitude_damping_unitality": {
+      "channel_I2_diag_00": "gamma/2 + 1/2",
+      "channel_I2_diag_11": "1/2 - gamma/2",
+      "unital_requires_gamma": "[]",
+      "conclusion": "amplitude_damping unital only at gamma=0 (trivial identity)"
+    },
+    "sympy_phase_damping_unitality": {
+      "channel_I2_diag_00": "1/2",
+      "channel_I2_diag_11": "1/2",
+      "unital_residual": "0",
+      "conclusion": "phase_damping IS unital for all gamma (maps I/2 -> I/2)"
+    },
+    "sympy_depolarizing_fixed_point": {
+      "fixed_point": "I/2 for all gamma in (0,1]",
+      "derivation": "channel(rho) = (1-3p/4)*rho + (p/4)*(X rho X + Y rho Y + Z rho Z). For rho=I/2: X(I/2)X = I/2, Y(I/2)Y = I/2, Z(I/2)Z = I/2, so channel(I/2) = (1-3p/4+3p/4)*I/2 = I/2. Fixed point confirmed analytically."
+    },
+    "geomstats_geodesic": {
+      "amplitude_damping": {
+        "gamma": 0.5,
+        "initial_dist": 1.71341284,
+        "final_dist": 5.12186614,
+        "channel_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 2.39037121
+          },
+          {
+            "step": 2,
+            "dist_from_center": 3.0692683
+          },
+          {
+            "step": 3,
+            "dist_from_center": 3.75113382
+          },
+          {
+            "step": 4,
+            "dist_from_center": 4.43553357
+          },
+          {
+            "step": 5,
+            "dist_from_center": 5.12186614
+          }
+        ],
+        "unitary_baseline_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 2,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 3,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 4,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 5,
+            "dist_from_center": 1.71341284
+          }
+        ],
+        "converges_toward_center": false,
+        "moves_off_center_faster_than_unitary": true,
+        "note": "Unitary preserves geodesic distance from I/2 (isometry). Depolarizing converges toward I/2 (fixed point = I/2). Amplitude damping converges toward |0><0| (fixed point), moving AWAY from I/2. Phase damping preserves diagonal (I/2 is fixed: distance unchanged)."
+      },
+      "phase_damping": {
+        "gamma": 0.5,
+        "initial_dist": 1.71341284,
+        "final_dist": 1.71341284,
+        "channel_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 2,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 3,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 4,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 5,
+            "dist_from_center": 1.71341284
+          }
+        ],
+        "unitary_baseline_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 2,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 3,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 4,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 5,
+            "dist_from_center": 1.71341284
+          }
+        ],
+        "converges_toward_center": false,
+        "moves_off_center_faster_than_unitary": false,
+        "note": "Unitary preserves geodesic distance from I/2 (isometry). Depolarizing converges toward I/2 (fixed point = I/2). Amplitude damping converges toward |0><0| (fixed point), moving AWAY from I/2. Phase damping preserves diagonal (I/2 is fixed: distance unchanged)."
+      },
+      "depolarizing": {
+        "gamma": 0.5,
+        "initial_dist": 1.71341284,
+        "final_dist": 0.03536547,
+        "channel_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 0.61168324
+          },
+          {
+            "step": 2,
+            "dist_from_center": 0.28815655
+          },
+          {
+            "step": 3,
+            "dist_from_center": 0.14207346
+          },
+          {
+            "step": 4,
+            "dist_from_center": 0.07079182
+          },
+          {
+            "step": 5,
+            "dist_from_center": 0.03536547
+          }
+        ],
+        "unitary_baseline_trajectory": [
+          {
+            "step": 0,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 1,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 2,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 3,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 4,
+            "dist_from_center": 1.71341284
+          },
+          {
+            "step": 5,
+            "dist_from_center": 1.71341284
+          }
+        ],
+        "converges_toward_center": true,
+        "moves_off_center_faster_than_unitary": false,
+        "note": "Unitary preserves geodesic distance from I/2 (isometry). Depolarizing converges toward I/2 (fixed point = I/2). Amplitude damping converges toward |0><0| (fixed point), moving AWAY from I/2. Phase damping preserves diagonal (I/2 is fixed: distance unchanged)."
+      }
+    }
+  },
+  "shell_matrix_report": {
+    "amplitude_damping": {
+      "S0_trace_preservation": "5/5",
+      "S1_positivity": "5/5",
+      "S2_complete_positivity": "5/5",
+      "S3_unitality": "0/5",
+      "S4_lindblad_form": "5/5",
+      "S5_DPI": "0/5",
+      "S6_entropy_increase": "5/5",
+      "S7_fixed_point": "4/5"
+    },
+    "phase_damping": {
+      "S0_trace_preservation": "5/5",
+      "S1_positivity": "5/5",
+      "S2_complete_positivity": "5/5",
+      "S3_unitality": "5/5",
+      "S4_lindblad_form": "5/5",
+      "S5_DPI": "0/5",
+      "S6_entropy_increase": "5/5",
+      "S7_fixed_point": "0/5"
+    },
+    "depolarizing": {
+      "S0_trace_preservation": "5/5",
+      "S1_positivity": "5/5",
+      "S2_complete_positivity": "5/5",
+      "S3_unitality": "5/5",
+      "S4_lindblad_form": "5/5",
+      "S5_DPI": "0/5",
+      "S6_entropy_increase": "5/5",
+      "S7_fixed_point": "4/5"
+    }
+  }
+}

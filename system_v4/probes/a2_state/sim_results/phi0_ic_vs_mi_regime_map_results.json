@@ -1,0 +1,449 @@
+{
+  "name": "phi0_ic_vs_mi_regime_map",
+  "probe": "phi0_ic_vs_mi_regime_map",
+  "purpose": "Map where mutual information wins as an unsigned packet discriminator while coherent information remains the stronger signed primitive",
+  "classification": "supporting",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core bridge-state construction, partial traces, entropy evaluation, and regime sweeps"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch"
+  ],
+  "regime_map": {
+    "packet_rows": [
+      {
+        "packet_label": "reference_dominant",
+        "expected_dominant_family": "Xi_ref",
+        "mi_winner": "Xi_ref",
+        "ic_winner": "Xi_ref",
+        "regime": "ic_signed_orientation_dominant",
+        "family_scores": {
+          "Xi_ref": {
+            "mutual_information": 1.13790459306945,
+            "coherent_information": 0.14023698834443654,
+            "conditional_entropy": -0.14023698834443654,
+            "weighted_shell_cut_coherent_information": -0.4261539231840138,
+            "finite_blocklength_proxy": 0.3040791992015222,
+            "finite_proxy_subset": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 0.7378024307731939,
+            "negativity": 0.34461906261322006,
+            "signed_eligible": true,
+            "unsigned_discrimination": 1.13790459306945
+          },
+          "Xi_shell": {
+            "mutual_information": 0.0876860135894808,
+            "coherent_information": -0.8167236634725387,
+            "conditional_entropy": 0.8167236634725387,
+            "weighted_shell_cut_coherent_information": -0.8598688519311881,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 1.1102230246251565e-16,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.0876860135894808
+          },
+          "Xi_hist": {
+            "mutual_information": 0.04012643225513579,
+            "coherent_information": -0.829228908820393,
+            "conditional_entropy": 0.829228908820393,
+            "weighted_shell_cut_coherent_information": -0.8490182758773626,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.04012643225513579
+          }
+        }
+      },
+      {
+        "packet_label": "shell_dominant",
+        "expected_dominant_family": "Xi_shell",
+        "mi_winner": "Xi_shell",
+        "ic_winner": "Xi_shell",
+        "regime": "mixed_regime",
+        "family_scores": {
+          "Xi_ref": {
+            "mutual_information": 0.11765370065646197,
+            "coherent_information": -0.7283618063198058,
+            "conditional_entropy": 0.7283618063198058,
+            "weighted_shell_cut_coherent_information": -0.7861290392518373,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.11765370065646197
+          },
+          "Xi_shell": {
+            "mutual_information": 0.3656944144088936,
+            "coherent_information": -0.495548833399998,
+            "conditional_entropy": 0.495548833399998,
+            "weighted_shell_cut_coherent_information": -0.6757757218194502,
+            "finite_blocklength_proxy": -2.2204460492503128e-16,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0000000000000002,
+            "negativity": 0.08879593701488275,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.3656944144088936
+          },
+          "Xi_hist": {
+            "mutual_information": 0.056051440493306126,
+            "coherent_information": -0.7707622531665849,
+            "conditional_entropy": 0.7707622531665849,
+            "weighted_shell_cut_coherent_information": -0.7983475388930983,
+            "finite_blocklength_proxy": 1.1102230246251565e-16,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 0.9999999999999999,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.056051440493306126
+          }
+        }
+      },
+      {
+        "packet_label": "history_dominant",
+        "expected_dominant_family": "Xi_hist",
+        "mi_winner": "Xi_hist",
+        "ic_winner": "Xi_ref",
+        "regime": "mixed_regime",
+        "family_scores": {
+          "Xi_ref": {
+            "mutual_information": 0.1286830440977218,
+            "coherent_information": -0.7019913831966909,
+            "conditional_entropy": 0.7019913831966909,
+            "weighted_shell_cut_coherent_information": -0.7651383040071482,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.1286830440977218
+          },
+          "Xi_shell": {
+            "mutual_information": 0.15424741974606393,
+            "coherent_information": -0.7134330923892682,
+            "conditional_entropy": 0.7134330923892682,
+            "weighted_shell_cut_coherent_information": -0.7891660983177471,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.15424741974606393
+          },
+          "Xi_hist": {
+            "mutual_information": 0.15874756806498946,
+            "coherent_information": -0.7676429291905225,
+            "conditional_entropy": 0.7676429291905225,
+            "weighted_shell_cut_coherent_information": -0.845801571851974,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.15874756806498946
+          }
+        }
+      },
+      {
+        "packet_label": "balanced_tie_case",
+        "expected_dominant_family": null,
+        "mi_winner": "Xi_shell",
+        "ic_winner": "Xi_shell",
+        "regime": "mixed_regime",
+        "family_scores": {
+          "Xi_ref": {
+            "mutual_information": 0.16098942231451474,
+            "coherent_information": -0.7182045204465236,
+            "conditional_entropy": 0.7182045204465236,
+            "weighted_shell_cut_coherent_information": -0.7972334455985763,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.16098942231451474
+          },
+          "Xi_shell": {
+            "mutual_information": 0.17357627739249248,
+            "coherent_information": -0.7168725702437588,
+            "conditional_entropy": 0.7168725702437588,
+            "weighted_shell_cut_coherent_information": -0.8021278680648183,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.17357627739249248
+          },
+          "Xi_hist": {
+            "mutual_information": 0.12329798527027158,
+            "coherent_information": -0.7618641620624687,
+            "conditional_entropy": 0.7618641620624687,
+            "weighted_shell_cut_coherent_information": -0.8224758486537217,
+            "finite_blocklength_proxy": -0.0,
+            "finite_proxy_subset": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "finite_proxy_beta": 1.0,
+            "negativity": 0.0,
+            "signed_eligible": true,
+            "unsigned_discrimination": 0.12329798527027158
+          }
+        }
+      }
+    ],
+    "sweep_rows": [
+      {
+        "coupling": 0.0,
+        "mutual_information": 0.0,
+        "coherent_information": -0.7219280948873623,
+        "conditional_entropy": 0.7219280948873623,
+        "finite_blocklength_proxy": 0.08338160893905101,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.1,
+        "mutual_information": 0.02661464179253148,
+        "coherent_information": -0.7513966617540062,
+        "conditional_entropy": 0.7513966617540062,
+        "finite_blocklength_proxy": -0.0,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.2,
+        "mutual_information": 0.09577023730626344,
+        "coherent_information": -0.7309761351863545,
+        "conditional_entropy": 0.7309761351863545,
+        "finite_blocklength_proxy": 0.16346054915303607,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.35,
+        "mutual_information": 0.26206340268657957,
+        "coherent_information": -0.6252538535886271,
+        "conditional_entropy": 0.6252538535886271,
+        "finite_blocklength_proxy": 0.1891347137272009,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.5,
+        "mutual_information": 0.4957592835787492,
+        "coherent_information": -0.43830877179674177,
+        "conditional_entropy": 0.43830877179674177,
+        "finite_blocklength_proxy": 0.21381222388532517,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.7,
+        "mutual_information": 0.9179834223159,
+        "coherent_information": -0.05851704644192379,
+        "conditional_entropy": 0.05851704644192379,
+        "finite_blocklength_proxy": 0.3247610806932018,
+        "signed_eligible": true
+      },
+      {
+        "coupling": 0.9,
+        "mutual_information": 1.519409476570579,
+        "coherent_information": 0.5220078880028396,
+        "conditional_entropy": -0.5220078880028396,
+        "finite_blocklength_proxy": 0.6919478999844632,
+        "signed_eligible": true
+      }
+    ],
+    "summary": {
+      "mi_hit_count": 3,
+      "mi_expected_total": 3,
+      "ic_signed_packet_count": 4,
+      "mi_wins_on_hit_count": true,
+      "ic_remains_signed_primitive": true,
+      "winner_by_hits": "mutual_information",
+      "primitive_signed_candidate": "coherent_information",
+      "promoted_final_winner": null,
+      "all_pass": true
+    }
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "mi_not_treated_as_signed_primitive",
+        "pass": true
+      },
+      {
+        "name": "no_final_winner_promoted_from_hit_count_alone",
+        "pass": true
+      },
+      {
+        "name": "conditional_entropy_is_not_independent_of_ic",
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "zero_coupling_product_has_zero_mi_and_nonpositive_ic",
+        "pass": true
+      },
+      {
+        "name": "high_coupling_keeps_mi_positive_while_ic_becomes_signed",
+        "pass": true
+      },
+      {
+        "name": "regime_map_separates_unsigned_and_signed_roles",
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "regime_checks": {
+      "passed": 1,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 3,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "winner_by_hits": "mutual_information",
+    "primitive_signed_candidate": "coherent_information",
+    "promoted_final_winner": null,
+    "all_pass": true,
+    "scope_note": "Pure-math regime map only. Packet hit-count and signed-primitive eligibility are kept separate."
+  }
+}

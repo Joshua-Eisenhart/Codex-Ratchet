@@ -1,0 +1,236 @@
+{
+  "name": "hopf_torus_lego",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd through Hopf parametrization; verifies S\u00b3 constraint and invariants"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: Hopf torus contractibility is refuted by \u03b21=2 and \u03b22=1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor sandwich computes Hopf map h(q)=q\u00b7e3\u00b7q\u2020"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S\u00b3 Riemannian metric for geodesic distances on Hopf torus"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Alpha complex persistent homology of Hopf torus in S\u00b3\u2282R\u2074"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "hopf_points_on_S3": {
+      "name": "hopf_points_on_S3",
+      "pass": "True",
+      "details": {
+        "max_norm_error": 1.1102230246251565e-16,
+        "n_points_checked": 512
+      }
+    },
+    "hopf_torus_sample": {
+      "name": "hopf_torus_sample",
+      "pass": true,
+      "details": {
+        "n_torus_points": 196,
+        "max_norm_deviation": 2.220446049250313e-16,
+        "theta0": 0.7853981633974483
+      }
+    },
+    "clifford_hopf_map": {
+      "name": "clifford_hopf_map",
+      "pass": "True",
+      "details": {
+        "max_err_z": 1.1102230246251565e-16,
+        "max_err_r": 1.1102230246251565e-16,
+        "max_err_norm": 2.220446049250313e-16,
+        "n_test_cases": 4,
+        "note": "Rotor sandwich q\u00b7e3\u00b7q\u2020 maps to S\u00b2; z=cos(\u03b8) and r=sin(\u03b8) match exactly. Sign of e2 follows orientation convention (phi -> -phi variant of Hopf map)."
+      }
+    },
+    "gudhi_hopf_torus_homology": {
+      "name": "gudhi_hopf_torus_homology",
+      "pass": true,
+      "details": {
+        "n_points": 900,
+        "betti_numbers_long_lived": [
+          900,
+          2,
+          26
+        ],
+        "betti_at_alpha_sq_0.05": [
+          1,
+          2
+        ],
+        "h1_top2_generators": [
+          [
+            0.00932609474312913,
+            0.8535533905932737,
+            0.8442272958501446
+          ],
+          [
+            0.0016001048899681064,
+            0.1464466094067262,
+            0.1448465045167581
+          ]
+        ],
+        "beta1_equals_2": true,
+        "interpretation": "\u03b21=2 confirms two independent loops of the Hopf torus. This is non-trivial topology absent in the phase-damping fixed-point manifold (\u03b21=0)."
+      }
+    },
+    "geomstats_s3_geodesics": {
+      "name": "geomstats_s3_geodesics",
+      "pass": true,
+      "details": {
+        "all_on_S3": true,
+        "total_phi_loop_length": 2.827433388230813,
+        "total_xi_loop_length": 2.827433388230813,
+        "symmetry_ratio": 0.0,
+        "symmetry_ok": true,
+        "note": "At \u03b8=\u03c0/4: cos(\u03b8/2)=sin(\u03b8/2)=1/\u221a2, so both torus loops have equal S\u00b3 length. Geodesic distances measured in the round S\u00b3 metric."
+      }
+    },
+    "pytorch_hopf_autograd": {
+      "name": "pytorch_hopf_autograd",
+      "pass": true,
+      "details": {
+        "norm_sq_value": 1.0000000000000002,
+        "grad_phi_for_norm": 5.551115123125783e-17,
+        "grad_xi_for_norm": 5.551115123125783e-17,
+        "z_bloch_value": 0.7071067811865477,
+        "z_bloch_expected": 0.7071067811865476,
+        "grad_phi_for_z": 5.56842996020639e-17,
+        "grad_xi_for_z": 5.834329076574182e-17
+      }
+    }
+  },
+  "negative": {
+    "z3_unsat_contractibility": {
+      "name": "z3_unsat_contractibility",
+      "pass": true,
+      "details": {
+        "z3_result": "unsat",
+        "interpretation": "UNSAT: assuming the Hopf torus is contractible contradicts \u03b21=2. The torus has non-trivial topology \u2014 it cannot be continuously contracted to a point.",
+        "z3_full_betti_result": "unsat",
+        "note": "Both \u03b21=2 and \u03b22=1 independently refute contractibility."
+      }
+    },
+    "non_unit_quaternion_fails": {
+      "name": "non_unit_quaternion_fails",
+      "pass": "True",
+      "details": {
+        "rotor_norm_sq": 5.34,
+        "output_vector_norm": 5.34,
+        "note": "Non-unit rotor gives |h(q)| = |q|\u00b2 \u2260 1; confirms unit constraint is necessary."
+      }
+    },
+    "random_s3_not_a_torus": {
+      "name": "random_s3_not_a_torus",
+      "pass": true,
+      "details": {
+        "random_betti": [
+          1,
+          134,
+          36
+        ],
+        "random_beta1": 134,
+        "note": "Random S\u00b3 points do not show torus topology (\u03b21\u22602). The \u03b21=2 is specific to the Hopf torus fiber structure."
+      }
+    }
+  },
+  "boundary": {
+    "degenerate_poles": {
+      "name": "degenerate_poles",
+      "pass": true,
+      "details": {
+        "all_unit_norm": true,
+        "note": "Even at pole approximations, Hopf parametrization maintains S\u00b3 unit norm."
+      }
+    },
+    "equatorial_torus_clifford": {
+      "name": "equatorial_torus_clifford",
+      "pass": "True",
+      "details": {
+        "max_z_error_at_equator": 2.220446049250313e-16,
+        "note": "Equatorial torus (\u03b8=\u03c0/2) maps to z=0 equator of Bloch sphere."
+      }
+    },
+    "geomstats_zero_self_distance": {
+      "name": "geomstats_zero_self_distance",
+      "pass": true,
+      "details": {
+        "self_distance": 0.0
+      }
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "tests_passed": 12,
+    "tests_total": 12,
+    "gudhi_betti_numbers": [
+      1,
+      2
+    ],
+    "beta1_equals_2": true,
+    "clifford_hopf_map_exact": "True",
+    "z3_unsat_contractibility": true,
+    "interpretation": "Hopf torus (pre-image of \u03b8=\u03c0/4 latitude on S\u00b2) has \u03b21=2 as measured by GUDHI. This non-trivial topology (two independent loops) is absent in the phase-damping fixed-point manifold (\u03b21=0, contractible). The non-trivial topology lives in the Hopf S\u00b3 layer. Clifford Cl(3) rotor sandwich q\u00b7e3\u00b7q\u2020 reproduces the Hopf map exactly (|h(q)|=1, z=cos(\u03b8), r=sin(\u03b8)). z3 proves contractibility UNSAT."
+  }
+}

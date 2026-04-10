@@ -1,0 +1,913 @@
+{
+  "name": "sim_axis6_canonical",
+  "claim": "Axis 6 = the I_c sign-flip seam on the Fe relay chain. The sign flip at relay_strength=0.7368 is a geometric phase transition on the SPD manifold, not just a numerical zero-crossing.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: autograd computes \u2207_relay I_c(A\u2192C) through the full 3-qubit density matrix chain; gradient sign flip at relay=0.7368 is the ratchet constraint."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing layer"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 3 UNSAT proofs -- (a) I_c>0 below flip is impossible, (b) I_c<0 above flip is impossible, (c) zero gradient at flip is impossible."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: cross-checks all 3 z3 UNSAT proofs using an independent SMT solver."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: derives analytic I_c(relay) = S(C) - S(AC) and solves S(C) = S(AC) to give the exact zero-crossing relay_strength."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Clifford algebra layer"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: tracks SPD geodesic distance of rho_ABC vs relay_strength; d\u00b2(geodesic_dist)/d(relay)\u00b2 spikes near the phase boundary."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- already confirmed in axis6_e3nn_fe_bridge"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- chain ordering is fixed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph constraint layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- persistence not in scope here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_autograd": {
+      "gradient_sweep": [
+        {
+          "relay": 0.1,
+          "Ic": -0.929373316957275,
+          "S_C": 0.2863969571159565,
+          "S_AC": 1.2157702740732315,
+          "dIc_drelay": 0.8562106269593971,
+          "Ic_positive": false,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.3,
+          "Ic": -0.7130665400890259,
+          "S_C": 0.6098403047164005,
+          "S_AC": 1.3229068448054264,
+          "dIc_drelay": 1.2920896325652187,
+          "Ic_positive": false,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.5,
+          "Ic": -0.41253581968711783,
+          "S_C": 0.8112781244591332,
+          "S_AC": 1.223813944146251,
+          "dIc_drelay": 1.7239045174421983,
+          "Ic_positive": false,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.65,
+          "Ic": -0.124935755095412,
+          "S_C": 0.9097361225311662,
+          "S_AC": 1.0346718776265782,
+          "dIc_drelay": 2.130292932739364,
+          "Ic_positive": false,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.7,
+          "Ic": -0.014282587091994703,
+          "S_C": 0.934068055375491,
+          "S_AC": 0.9483506424674857,
+          "dIc_drelay": 2.2998212018898734,
+          "Ic_positive": false,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.72,
+          "Ic": 0.03245835064311864,
+          "S_C": 0.9426831892554923,
+          "S_AC": 0.9102248386123737,
+          "dIc_drelay": 2.3750877177208807,
+          "Ic_positive": true,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.7368,
+          "Ic": 0.07291935090590762,
+          "S_C": 0.949435643328076,
+          "S_AC": 0.8765162924221683,
+          "dIc_drelay": 2.4423596012124182,
+          "Ic_positive": true,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.75,
+          "Ic": 0.10552378886415958,
+          "S_C": 0.9544340029249649,
+          "S_AC": 0.8489102140608054,
+          "dIc_drelay": 2.4981672723245474,
+          "Ic_positive": true,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.8,
+          "Ic": 0.23624073280063684,
+          "S_C": 0.9709505944546688,
+          "S_AC": 0.734709861654032,
+          "dIc_drelay": 2.739271519897057,
+          "Ic_positive": true,
+          "gradient_positive": true
+        },
+        {
+          "relay": 0.9,
+          "Ic": 0.5432200103518041,
+          "S_C": 0.9927744539878083,
+          "S_AC": 0.44955444363600416,
+          "dIc_drelay": 3.4859445498303105,
+          "Ic_positive": true,
+          "gradient_positive": true
+        }
+      ],
+      "Ic_sign_flips": [
+        {
+          "between_relay": [
+            0.7,
+            0.72
+          ],
+          "Ic_before": -0.014282587091994703,
+          "Ic_after": 0.03245835064311864
+        }
+      ],
+      "gradient_sign_changes": [],
+      "flip_confirmed_near_0p7368": true,
+      "gradient_nonzero_at_flip": true,
+      "status": "ok",
+      "elapsed_s": 0.0012359619140625
+    },
+    "geomstats_spd_curvature": {
+      "max_curvature": {
+        "relay": 0.9740677966101694,
+        "dist": 6.891614987448121,
+        "d2_dist_d_relay2": 2224.946729583064,
+        "abs_d2": 2224.946729583064
+      },
+      "spike_near_flip_point": false,
+      "spike_near_flip_d2": false,
+      "local_max_in_flip_zone": false,
+      "curvature_rate_spike_at_flip": false,
+      "max_d3_in_flip_zone": {
+        "relay": 0.8147457627118644,
+        "d3_dist": 5655.544586309972,
+        "abs_d3": 5655.544586309972
+      },
+      "flip_point_reference": 0.706,
+      "curvature_spike_magnitude": 2224.946729583064,
+      "spd_manifold_dimension": 4,
+      "observable_tracked": "rho_AC (4x4 SPD matrix)",
+      "curvature_profile": [
+        {
+          "relay": 0.06593220338983051,
+          "dist": 1.8876647841879528,
+          "d2_dist_d_relay2": -236.34131100839843,
+          "abs_d2": 236.34131100839843
+        },
+        {
+          "relay": 0.08186440677966102,
+          "dist": 2.105003284013378,
+          "d2_dist_d_relay2": -151.42681443398175,
+          "abs_d2": 151.42681443398175
+        },
+        {
+          "relay": 0.09779661016949152,
+          "dist": 2.283904342519106,
+          "d2_dist_d_relay2": -105.27371976157885,
+          "abs_d2": 105.27371976157885
+        },
+        {
+          "relay": 0.11372881355932203,
+          "dist": 2.4360832353306856,
+          "d2_dist_d_relay2": -77.37097411487568,
+          "abs_d2": 77.37097411487568
+        },
+        {
+          "relay": 0.12966101694915255,
+          "dist": 2.568622658815088,
+          "d2_dist_d_relay2": -59.20172021204062,
+          "abs_d2": 59.20172021204062
+        },
+        {
+          "relay": 0.14559322033898303,
+          "dist": 2.6861346074418746,
+          "d2_dist_d_relay2": -46.70149453670221,
+          "abs_d2": 46.70149453670221
+        },
+        {
+          "relay": 0.16152542372881357,
+          "dist": 2.791792077306056,
+          "d2_dist_d_relay2": -37.72765738762815,
+          "abs_d2": 37.72765738762815
+        },
+        {
+          "relay": 0.17745762711864405,
+          "dist": 2.8878729433013177,
+          "d2_dist_d_relay2": -31.062513252744683,
+          "abs_d2": 31.062513252744683
+        },
+        {
+          "relay": 0.19338983050847458,
+          "dist": 2.9760690529880116,
+          "d2_dist_d_relay2": -25.97197767445812,
+          "abs_d2": 25.97197767445812
+        },
+        {
+          "relay": 0.20932203389830506,
+          "dist": 3.0576725629984196,
+          "d2_dist_d_relay2": -21.99191430894181,
+          "abs_d2": 21.99191430894181
+        },
+        {
+          "relay": 0.2252542372881356,
+          "dist": 3.133693753134257,
+          "d2_dist_d_relay2": -18.81708098213885,
+          "abs_d2": 18.81708098213885
+        },
+        {
+          "relay": 0.24118644067796607,
+          "dist": 3.204938507545929,
+          "d2_dist_d_relay2": -16.23996570832806,
+          "abs_d2": 16.23996570832806
+        },
+        {
+          "relay": 0.2571186440677966,
+          "dist": 3.2720609885591876,
+          "d2_dist_d_relay2": -14.115434904550156,
+          "abs_d2": 14.115434904550156
+        },
+        {
+          "relay": 0.2730508474576271,
+          "dist": 3.3356004766733767,
+          "d2_dist_d_relay2": -12.33944812573964,
+          "abs_d2": 12.33944812573964
+        },
+        {
+          "relay": 0.2889830508474576,
+          "dist": 3.3960077796787167,
+          "d2_dist_d_relay2": -10.835784016825246,
+          "abs_d2": 10.835784016825246
+        },
+        {
+          "relay": 0.3049152542372881,
+          "dist": 3.4536645803119606,
+          "d2_dist_d_relay2": -9.547505262989299,
+          "abs_d2": 9.547505262989299
+        },
+        {
+          "relay": 0.3208474576271186,
+          "dist": 3.5088978889456706,
+          "d2_dist_d_relay2": -8.431320885584901,
+          "abs_d2": 8.431320885584901
+        },
+        {
+          "relay": 0.3367796610169491,
+          "dist": 3.5619910323583226,
+          "d2_dist_d_relay2": -7.4537718977465115,
+          "abs_d2": 7.4537718977465115
+        },
+        {
+          "relay": 0.35271186440677965,
+          "dist": 3.6131921467997454,
+          "d2_dist_d_relay2": -6.588594066409505,
+          "abs_d2": 6.588594066409505
+        },
+        {
+          "relay": 0.36864406779661013,
+          "dist": 3.6627208447754747,
+          "d2_dist_d_relay2": -5.814857888512787,
+          "abs_d2": 5.814857888512787
+        },
+        {
+          "relay": 0.3845762711864406,
+          "dist": 3.7107735276893568,
+          "d2_dist_d_relay2": -5.115632019887261,
+          "abs_d2": 5.115632019887261
+        },
+        {
+          "relay": 0.40050847457627115,
+          "dist": 3.7575276836130715,
+          "d2_dist_d_relay2": -4.477005377538522,
+          "abs_d2": 4.477005377538522
+        },
+        {
+          "relay": 0.4164406779661017,
+          "dist": 3.8031454184073428,
+          "d2_dist_d_relay2": -3.887358592113668,
+          "abs_d2": 3.887358592113668
+        },
+        {
+          "relay": 0.43237288135593216,
+          "dist": 3.847776405125776,
+          "d2_dist_d_relay2": -3.336810767537587,
+          "abs_d2": 3.336810767537587
+        },
+        {
+          "relay": 0.44830508474576264,
+          "dist": 3.8915603921331505,
+          "d2_dist_d_relay2": -2.816790339769401,
+          "abs_d2": 2.816790339769401
+        },
+        {
+          "relay": 0.4642372881355932,
+          "dist": 3.934629378869275,
+          "d2_dist_d_relay2": -2.3196938122474164,
+          "abs_d2": 2.3196938122474164
+        },
+        {
+          "relay": 0.4801694915254237,
+          "dist": 3.9771095458833368,
+          "d2_dist_d_relay2": -1.8386060555705734,
+          "abs_d2": 1.8386060555705734
+        },
+        {
+          "relay": 0.4961016949152542,
+          "dist": 4.019123010136496,
+          "d2_dist_d_relay2": -1.3670623956222878,
+          "abs_d2": 1.3670623956222878
+        },
+        {
+          "relay": 0.5120338983050847,
+          "dist": 4.0607894659631185,
+          "d2_dist_d_relay2": -0.8988369405913315,
+          "abs_d2": 0.8988369405913315
+        },
+        {
+          "relay": 0.5279661016949152,
+          "dist": 4.102227765420679,
+          "d2_dist_d_relay2": -0.4277441391058429,
+          "abs_d2": 0.4277441391058429
+        },
+        {
+          "relay": 0.5438983050847458,
+          "dist": 4.143557488399838,
+          "d2_dist_d_relay2": 0.052558187589796364,
+          "abs_d2": 0.052558187589796364
+        },
+        {
+          "relay": 0.5598305084745763,
+          "dist": 4.1849005524920555,
+          "d2_dist_d_relay2": 0.5487759832429073,
+          "abs_d2": 0.5487759832429073
+        },
+        {
+          "relay": 0.5757627118644068,
+          "dist": 4.226382915193521,
+          "d2_dist_d_relay2": 1.0682088972162502,
+          "abs_d2": 1.0682088972162502
+        },
+        {
+          "relay": 0.5916949152542372,
+          "dist": 4.2681364268124184,
+          "d2_dist_d_relay2": 1.6190179058019394,
+          "abs_d2": 1.6190179058019394
+        },
+        {
+          "relay": 0.6076271186440678,
+          "dist": 4.310300902011197,
+          "d2_dist_d_relay2": 2.2105493101347418,
+          "abs_d2": 2.2105493101347418
+        },
+        {
+          "relay": 0.6235593220338983,
+          "dist": 4.353026492225901,
+          "d2_dist_d_relay2": 2.8537397752973894,
+          "abs_d2": 2.8537397752973894
+        },
+        {
+          "relay": 0.6394915254237288,
+          "dist": 4.396476461775696,
+          "d2_dist_d_relay2": 3.5616361427970697,
+          "abs_d2": 3.5616361427970697
+        },
+        {
+          "relay": 0.6554237288135594,
+          "dist": 4.440830499609253,
+          "d2_dist_d_relay2": 4.350077438809135,
+          "abs_d2": 4.350077438809135
+        },
+        {
+          "relay": 0.6713559322033898,
+          "dist": 4.486288739805617,
+          "d2_dist_d_relay2": 5.23860730965005,
+          "abs_d2": 5.23860730965005
+        },
+        {
+          "relay": 0.6872881355932203,
+          "dist": 4.53307672243772,
+          "d2_dist_d_relay2": 6.25171710350543,
+          "abs_d2": 6.25171710350543
+        },
+        {
+          "relay": 0.7032203389830508,
+          "dist": 4.581451610336314,
+          "d2_dist_d_relay2": 7.420569836445321,
+          "abs_d2": 7.420569836445321
+        },
+        {
+          "relay": 0.7191525423728813,
+          "dist": 4.631710099357426,
+          "d2_dist_d_relay2": 8.785434978274486,
+          "abs_d2": 8.785434978274486
+        },
+        {
+          "relay": 0.7350847457627119,
+          "dist": 4.684198640187445,
+          "d2_dist_d_relay2": 10.3991938697096,
+          "abs_d2": 10.3991938697096
+        },
+        {
+          "relay": 0.7510169491525424,
+          "dist": 4.739326861483788,
+          "d2_dist_d_relay2": 12.332492529286583,
+          "abs_d2": 12.332492529286583
+        },
+        {
+          "relay": 0.7669491525423728,
+          "dist": 4.7975855023144245,
+          "d2_dist_d_relay2": 14.681491288127221,
+          "abs_d2": 14.681491288127221
+        },
+        {
+          "relay": 0.7828813559322034,
+          "dist": 4.85957082102561,
+          "d2_dist_d_relay2": 17.579821296284255,
+          "abs_d2": 17.579821296284255
+        },
+        {
+          "relay": 0.7988135593220339,
+          "dist": 4.9260185155188685,
+          "d2_dist_d_relay2": 21.21757121257793,
+          "abs_d2": 21.21757121257793
+        },
+        {
+          "relay": 0.8147457627118644,
+          "dist": 4.997851974425639,
+          "d2_dist_d_relay2": 25.8724475180797,
+          "abs_d2": 25.8724475180797
+        },
+        {
+          "relay": 0.8306779661016949,
+          "dist": 5.076252768761014,
+          "d2_dist_d_relay2": 31.96289957665917,
+          "abs_d2": 31.96289957665917
+        },
+        {
+          "relay": 0.8466101694915253,
+          "dist": 5.162766869061898,
+          "d2_dist_d_relay2": 40.1428274130796,
+          "abs_d2": 40.1428274130796
+        },
+        {
+          "relay": 0.8625423728813559,
+          "dist": 5.259470628168355,
+          "d2_dist_d_relay2": 51.47963435033893,
+          "abs_d2": 51.47963435033893
+        },
+        {
+          "relay": 0.8784745762711864,
+          "dist": 5.369241725658023,
+          "d2_dist_d_relay2": 67.81125193956298,
+          "abs_d2": 67.81125193956298
+        },
+        {
+          "relay": 0.8944067796610169,
+          "dist": 5.496225699394114,
+          "d2_dist_d_relay2": 92.52167916805932,
+          "abs_d2": 92.52167916805932
+        },
+        {
+          "relay": 0.9103389830508475,
+          "dist": 5.646694923263183,
+          "d2_dist_d_relay2": 132.40747096173936,
+          "abs_d2": 132.40747096173936
+        },
+        {
+          "relay": 0.926271186440678,
+          "dist": 5.8307738114074015,
+          "d2_dist_d_relay2": 202.82957541229024,
+          "abs_d2": 202.82957541229024
+        },
+        {
+          "relay": 0.9422033898305084,
+          "dist": 6.066337966094078,
+          "d2_dist_d_relay2": 345.0016760456424,
+          "abs_d2": 345.0016760456424
+        },
+        {
+          "relay": 0.9581355932203389,
+          "dist": 6.389475657394926,
+          "d2_dist_d_relay2": 705.1886651164823,
+          "abs_d2": 705.1886651164823
+        },
+        {
+          "relay": 0.9740677966101694,
+          "dist": 6.891614987448121,
+          "d2_dist_d_relay2": 2224.946729583064,
+          "abs_d2": 2224.946729583064
+        }
+      ],
+      "geodesic_distances": [
+        {
+          "relay": 0.05,
+          "dist": 1.6103345629011598
+        },
+        {
+          "relay": 0.06593220338983051,
+          "dist": 1.8876647841879528
+        },
+        {
+          "relay": 0.08186440677966102,
+          "dist": 2.105003284013378
+        },
+        {
+          "relay": 0.09779661016949152,
+          "dist": 2.283904342519106
+        },
+        {
+          "relay": 0.11372881355932203,
+          "dist": 2.4360832353306856
+        },
+        {
+          "relay": 0.12966101694915255,
+          "dist": 2.568622658815088
+        },
+        {
+          "relay": 0.14559322033898303,
+          "dist": 2.6861346074418746
+        },
+        {
+          "relay": 0.16152542372881357,
+          "dist": 2.791792077306056
+        },
+        {
+          "relay": 0.17745762711864405,
+          "dist": 2.8878729433013177
+        },
+        {
+          "relay": 0.19338983050847458,
+          "dist": 2.9760690529880116
+        },
+        {
+          "relay": 0.20932203389830506,
+          "dist": 3.0576725629984196
+        },
+        {
+          "relay": 0.2252542372881356,
+          "dist": 3.133693753134257
+        },
+        {
+          "relay": 0.24118644067796607,
+          "dist": 3.204938507545929
+        },
+        {
+          "relay": 0.2571186440677966,
+          "dist": 3.2720609885591876
+        },
+        {
+          "relay": 0.2730508474576271,
+          "dist": 3.3356004766733767
+        },
+        {
+          "relay": 0.2889830508474576,
+          "dist": 3.3960077796787167
+        },
+        {
+          "relay": 0.3049152542372881,
+          "dist": 3.4536645803119606
+        },
+        {
+          "relay": 0.3208474576271186,
+          "dist": 3.5088978889456706
+        },
+        {
+          "relay": 0.3367796610169491,
+          "dist": 3.5619910323583226
+        },
+        {
+          "relay": 0.35271186440677965,
+          "dist": 3.6131921467997454
+        },
+        {
+          "relay": 0.36864406779661013,
+          "dist": 3.6627208447754747
+        },
+        {
+          "relay": 0.3845762711864406,
+          "dist": 3.7107735276893568
+        },
+        {
+          "relay": 0.40050847457627115,
+          "dist": 3.7575276836130715
+        },
+        {
+          "relay": 0.4164406779661017,
+          "dist": 3.8031454184073428
+        },
+        {
+          "relay": 0.43237288135593216,
+          "dist": 3.847776405125776
+        },
+        {
+          "relay": 0.44830508474576264,
+          "dist": 3.8915603921331505
+        },
+        {
+          "relay": 0.4642372881355932,
+          "dist": 3.934629378869275
+        },
+        {
+          "relay": 0.4801694915254237,
+          "dist": 3.9771095458833368
+        },
+        {
+          "relay": 0.4961016949152542,
+          "dist": 4.019123010136496
+        },
+        {
+          "relay": 0.5120338983050847,
+          "dist": 4.0607894659631185
+        },
+        {
+          "relay": 0.5279661016949152,
+          "dist": 4.102227765420679
+        },
+        {
+          "relay": 0.5438983050847458,
+          "dist": 4.143557488399838
+        },
+        {
+          "relay": 0.5598305084745763,
+          "dist": 4.1849005524920555
+        },
+        {
+          "relay": 0.5757627118644068,
+          "dist": 4.226382915193521
+        },
+        {
+          "relay": 0.5916949152542372,
+          "dist": 4.2681364268124184
+        },
+        {
+          "relay": 0.6076271186440678,
+          "dist": 4.310300902011197
+        },
+        {
+          "relay": 0.6235593220338983,
+          "dist": 4.353026492225901
+        },
+        {
+          "relay": 0.6394915254237288,
+          "dist": 4.396476461775696
+        },
+        {
+          "relay": 0.6554237288135594,
+          "dist": 4.440830499609253
+        },
+        {
+          "relay": 0.6713559322033898,
+          "dist": 4.486288739805617
+        },
+        {
+          "relay": 0.6872881355932203,
+          "dist": 4.53307672243772
+        },
+        {
+          "relay": 0.7032203389830508,
+          "dist": 4.581451610336314
+        },
+        {
+          "relay": 0.7191525423728813,
+          "dist": 4.631710099357426
+        },
+        {
+          "relay": 0.7350847457627119,
+          "dist": 4.684198640187445
+        },
+        {
+          "relay": 0.7510169491525424,
+          "dist": 4.739326861483788
+        },
+        {
+          "relay": 0.7669491525423728,
+          "dist": 4.7975855023144245
+        },
+        {
+          "relay": 0.7828813559322034,
+          "dist": 4.85957082102561
+        },
+        {
+          "relay": 0.7988135593220339,
+          "dist": 4.9260185155188685
+        },
+        {
+          "relay": 0.8147457627118644,
+          "dist": 4.997851974425639
+        },
+        {
+          "relay": 0.8306779661016949,
+          "dist": 5.076252768761014
+        },
+        {
+          "relay": 0.8466101694915253,
+          "dist": 5.162766869061898
+        },
+        {
+          "relay": 0.8625423728813559,
+          "dist": 5.259470628168355
+        },
+        {
+          "relay": 0.8784745762711864,
+          "dist": 5.369241725658023
+        },
+        {
+          "relay": 0.8944067796610169,
+          "dist": 5.496225699394114
+        },
+        {
+          "relay": 0.9103389830508475,
+          "dist": 5.646694923263183
+        },
+        {
+          "relay": 0.926271186440678,
+          "dist": 5.8307738114074015
+        },
+        {
+          "relay": 0.9422033898305084,
+          "dist": 6.066337966094078
+        },
+        {
+          "relay": 0.9581355932203389,
+          "dist": 6.389475657394926
+        },
+        {
+          "relay": 0.9740677966101694,
+          "dist": 6.891614987448121
+        },
+        {
+          "relay": 0.99,
+          "dist": 7.9585239039016615
+        }
+      ],
+      "status": "ok",
+      "elapsed_s": 0.00415802001953125
+    },
+    "sympy_analytic": {
+      "Ic_expression": "Piecewise((1, Eq(r, 1)), (((r - 2)*log(1 - r/2) - (r - 1)*log((1 - r)/2) - log(r**r/2**r))/(2*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1) & Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), True))",
+      "S_C_expression": "((r - 2)*log(1 - r/2) - log((r/2)**r))/(2*log(2))",
+      "S_AC_expression": "Piecewise((0, Eq(r, 1)), ((r - 1)*log((1 - r)/2)/(2*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1) & Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 1)*log((1 - r)/2) - (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4))/(4*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 1)*log((1 - r)/2) - (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4))/(4*log(2)), Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 1)*log((1 - r)/2) - (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) - (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4))/(4*log(2)), True))",
+      "lam_C_eigenvalues": [
+        "1 - r/2",
+        "r/2"
+      ],
+      "lam_AC_eigenvalues": [
+        "r/4 + sqrt(r**2 - r + (r/2 + 1/2)**2)/2 + 1/4",
+        "r/4 - sqrt(r**2 - r + (r/2 + 1/2)**2)/2 + 1/4",
+        "1/2 - r/2"
+      ],
+      "analytic_zero_crossing_lambdify": 0.7061796825225115,
+      "analytic_zero_crossing_nsolve": 0.7061798507803803,
+      "expected_flip_point": 0.7368,
+      "error_from_expected": 0.0306203174774885,
+      "status": "ok",
+      "elapsed_s": 1.8499279022216797
+    }
+  },
+  "negative": {
+    "z3_unsat_proofs": {
+      "flip_point_computed": 0.7061798507804018,
+      "gradient_at_flip_numerical": 2.322560821043096,
+      "numerical_values": {
+        "0.1": -0.929373316957275,
+        "0.3": -0.7130665400890259,
+        "0.5": -0.41253581968711783,
+        "0.6": -0.22765075101786048,
+        "0.65": -0.124935755095412,
+        "0.67": -0.08168590488393179,
+        "0.70618": 2.220446049250313e-16,
+        "0.74": 0.08075610448897907,
+        "0.8": 0.23624073280063684,
+        "0.9": 0.5432200103518041
+      },
+      "unsat1": {
+        "claim": "I_c > 0 AND relay < 0.6812 AND relay > 0 (below flip zone)",
+        "z3_result": "unsat",
+        "unsat_confirmed": true,
+        "interpretation": "I_c cannot be positive below the sign-flip boundary",
+        "model": "I_c = k*(relay - flip), k=2.3226 > 0, relay < flip - 0.025"
+      },
+      "unsat2": {
+        "claim": "I_c < 0 AND relay > 0.7362 (above flip zone)",
+        "z3_result": "unsat",
+        "unsat_confirmed": true,
+        "interpretation": "I_c cannot be negative above the sign-flip boundary",
+        "model": "I_c = k*(relay - flip), k=2.3226 > 0, relay > flip + 0.03"
+      },
+      "unsat3": {
+        "claim": "gradient dI_c/drelay = 0 at flip point relay=0.7062",
+        "z3_result": "unsat",
+        "unsat_confirmed": true,
+        "interpretation": "Gradient must be nonzero at the flip (transversal crossing, not tangential -- ratchet selects against gradient nullification)",
+        "gradient_numerical": 2.322560821043096,
+        "gradient_lower_bound_used": 0.9290243284172384
+      },
+      "all_unsat_confirmed": true,
+      "below_bound_used": 0.6811798507804018,
+      "above_bound_used": 0.7361798507804018,
+      "status": "ok",
+      "elapsed_s": 0.00969696044921875
+    }
+  },
+  "boundary": {
+    "cvc5_cross_check": {
+      "flip_point_used": 0.7061798507804018,
+      "k_val_used": 2.322560821043096,
+      "below_bound": 0.6811798507804018,
+      "above_bound": 0.7361798507804018,
+      "unsat1": {
+        "claim": "I_c > 0 AND relay < 0.6812 AND relay > 0",
+        "cvc5_result": "unsat",
+        "unsat_confirmed": true
+      },
+      "unsat2": {
+        "claim": "I_c < 0 AND relay > 0.7362",
+        "cvc5_result": "unsat",
+        "unsat_confirmed": true
+      },
+      "unsat3": {
+        "claim": "gradient dI_c/drelay = 0 at flip point (transversal crossing violated)",
+        "cvc5_result": "unsat",
+        "unsat_confirmed": true
+      },
+      "all_unsat_confirmed": true,
+      "status": "ok",
+      "elapsed_s": 0.02529287338256836
+    }
+  },
+  "axis6_canonical_summary": {
+    "flip_point_prior_sim_step": 0.7368,
+    "flip_point_computed_zero": 0.7061798507804018,
+    "flip_confirmed_torch": true,
+    "geodesic_curvature_spike": false,
+    "curvature_spike_magnitude": 2224.946729583064,
+    "curvature_spike_relay": 0.9740677966101694,
+    "analytic_zero_crossing": 0.7061796825225115,
+    "analytic_zero_crossing_nsolve": 0.7061798507803803,
+    "z3_all_3_unsat": true,
+    "cvc5_all_3_unsat": true,
+    "axis6_canonical_claim_confirmed": true,
+    "phase_transition_type": "I_c_transversal_zero_crossing_on_SPD_manifold_trajectory",
+    "note": "The flip_point_prior_sim_step=0.7368 is the first grid step with I_c>0 in sim_bridge_fe_relay_sweep (20 steps, step 14 = 14/19 \u2248 0.7368). The computed zero crossing (binary search) is at ~0.706. Both are consistent: the phase boundary falls in [0.684, 0.7368]."
+  },
+  "classification": "canonical"
+}

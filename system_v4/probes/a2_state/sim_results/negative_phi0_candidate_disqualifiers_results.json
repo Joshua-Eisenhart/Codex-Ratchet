@@ -1,0 +1,331 @@
+{
+  "name": "Phi0 Candidate Disqualification Battery",
+  "schema_version": "1.0",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this disqualification battery"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this battery is exact numeric and constructive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation beyond exact matrix formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry or statistics here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant learning layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph or lattice graph computation here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex or filtration layer here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology or filtration computation here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "signed_primitives_have_correct_sign_structure": {
+      "pass": true,
+      "details": {
+        "product": 0.0,
+        "bell": 1.0,
+        "mixed": -1.0,
+        "I_product": 0.0,
+        "I_correlated": 1.0,
+        "I_bell": 2.0
+      }
+    },
+    "bridge_states_are_valid_density_matrices": {
+      "pass": true,
+      "details": {
+        "product": {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": -0.0,
+          "S_A": -0.0,
+          "S_B": -0.0,
+          "I_AB": 0.0,
+          "Ic_A_to_B": 0.0
+        },
+        "correlated": {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": 1.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 1.0,
+          "Ic_A_to_B": 0.0
+        },
+        "bell": {
+          "trace": 0.9999999999999998,
+          "trace_error": 2.220446049250313e-16,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 1.1102230246251565e-16,
+          "rho_b_max_error": 1.1102230246251565e-16,
+          "marginals_consistent": true,
+          "S_AB": -0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 2.0,
+          "Ic_A_to_B": 1.0
+        },
+        "mixed": {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.25,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": 2.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.0,
+          "Ic_A_to_B": -1.0
+        }
+      }
+    },
+    "werner_sweep_obeys_basic_bounds": {
+      "pass": true,
+      "details": [
+        {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.25,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": 2.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.0,
+          "Ic_A_to_B": -1.0
+        },
+        {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.1875,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": 1.8802408149441479,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.11975918505585215,
+          "Ic_A_to_B": -0.8802408149441479
+        },
+        {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.16666666666666669,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "marginals_consistent": true,
+          "S_AB": 1.792481250360578,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.20751874963942196,
+          "Ic_A_to_B": -0.792481250360578
+        },
+        {
+          "trace": 0.9999999999999998,
+          "trace_error": 2.220446049250313e-16,
+          "min_eigenvalue": 0.09999999999999996,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 1.1102230246251565e-16,
+          "rho_b_max_error": 1.1102230246251565e-16,
+          "marginals_consistent": true,
+          "S_AB": 1.3567796494470394,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.6432203505529606,
+          "Ic_A_to_B": -0.35677964944703944
+        },
+        {
+          "trace": 0.9999999999999998,
+          "trace_error": 2.220446049250313e-16,
+          "min_eigenvalue": 0.0,
+          "psd": true,
+          "hermitian": true,
+          "valid": true,
+          "rho_a_max_error": 1.1102230246251565e-16,
+          "rho_b_max_error": 1.1102230246251565e-16,
+          "marginals_consistent": true,
+          "S_AB": -0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 2.0,
+          "Ic_A_to_B": 1.0
+        }
+      ]
+    }
+  },
+  "negative": {
+    "unsigned_only_signed_primitive_disqualified": {
+      "pass": true,
+      "unsigned_bell": 1.0,
+      "unsigned_mixed": 1.0,
+      "signed_bell": 1.0,
+      "signed_mixed": -1.0,
+      "note": "Absolute-value kernel loses the sign information and is therefore disqualified."
+    },
+    "local_entropy_only_kernel_disqualified": {
+      "pass": true,
+      "bell_local_sum": 2.0,
+      "correlated_local_sum": 2.0,
+      "note": "Local-entropy-only kernel cannot separate Bell from classically correlated bridge states with the same marginals."
+    },
+    "joint_entropy_only_kernel_disqualified": {
+      "pass": true,
+      "product_joint": -0.0,
+      "bell_joint": -0.0,
+      "note": "Joint entropy alone cannot separate product from entangled pure bridge states."
+    },
+    "normalization_artifact_disqualified": {
+      "pass": true,
+      "artifact_score": 0.6319259215440222,
+      "invalid_valid": false,
+      "note": "A kernel that normalizes invalid packets instead of rejecting them is disqualified."
+    },
+    "shell_weight_affine_gain_disqualified": {
+      "pass": true,
+      "gain": 3.2,
+      "gain_scaled": 25.7,
+      "note": "Affine gain makes the score depend on arbitrary weight scaling."
+    },
+    "counterfeit_bridge_not_accepted_as_trusted": {
+      "pass": true,
+      "details": {
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "min_eigenvalue": -0.12355339059327378,
+        "psd": false,
+        "hermitian": true,
+        "valid": false,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 5.551115123125783e-17,
+        "marginals_consistent": true,
+        "S_AB": null,
+        "S_A": null,
+        "S_B": null,
+        "I_AB": null,
+        "Ic_A_to_B": null
+      },
+      "note": "Counterfeit coupling fails positivity or marginal consistency and must be rejected."
+    }
+  },
+  "boundary": {
+    "product_joint_entropy_zero_boundary": {
+      "pass": true,
+      "S_AB": -0.0
+    },
+    "bell_signed_coherent_info_boundary": {
+      "pass": true,
+      "Ic_A_to_B": 1.0
+    },
+    "maximally_mixed_signed_lower_boundary": {
+      "pass": true,
+      "Ic_A_to_B": -1.0
+    },
+    "correlated_bridge_same_marginals_boundary": {
+      "pass": true,
+      "S_A_corr": 1.0,
+      "S_A_bell": 1.0,
+      "S_B_corr": 1.0,
+      "S_B_bell": 1.0
+    }
+  },
+  "summary": {
+    "positive": "3/3",
+    "negative": "6/6",
+    "boundary": "4/4",
+    "all_pass": true,
+    "total_time_s": 0.0
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

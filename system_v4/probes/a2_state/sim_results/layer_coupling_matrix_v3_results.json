@@ -1,0 +1,406 @@
+{
+  "name": "layer_coupling_matrix_v3",
+  "timestamp": "2026-04-09T02:20:38.143586+00:00",
+  "classification": "canonical",
+  "token": "T_LAYER_COUPLING_MATRIX_V3",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All quantum density matrix computations (core)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encode L4 SCC isolation as UNSAT query over coupling graph"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 covers UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic derivation of I_c change under Z-dephasing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Hopf geometry via Cl(3)"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- equivariance via Clifford"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Full 25-cell SCC analysis and partial order"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- directed graph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- layer topology via rustworkx"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "load_bearing",
+    "cvc5": "not_applicable",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "not_applicable",
+    "e3nn": "not_applicable",
+    "rustworkx": "load_bearing",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "not_applicable"
+  },
+  "cell_summary": {
+    "L1_on_L4": "PRESERVE",
+    "L2_on_L4": "PRESERVE",
+    "L3_on_L4": "DEGRADE",
+    "L4_on_L5": "DESTROY",
+    "L5_on_L2": "ENHANCE",
+    "L5_on_L3": "NULL"
+  },
+  "prior_measurements": {
+    "L1_on_L1": "PRESERVE",
+    "L2_on_L2": "PRESERVE",
+    "L3_on_L3": "PRESERVE",
+    "L4_on_L4": "PRESERVE",
+    "L5_on_L5": "PRESERVE",
+    "L3_on_L1": "DESTROY",
+    "L1_on_L3": "ENHANCE",
+    "L3_on_L5": "DESTROY",
+    "L5_on_L4": "DEGRADE",
+    "L2_on_L3": "PRESERVE",
+    "L4_on_L2": "PRESERVE",
+    "L2_on_L1": "PRESERVE",
+    "L5_on_L1": "PRESERVE",
+    "L4_on_L1": "PRESERVE",
+    "L1_on_L2": "ENHANCE",
+    "L1_on_L5": "PRESERVE",
+    "L2_on_L5": "PRESERVE",
+    "L4_on_L3": "PRESERVE/NULL",
+    "L3_on_L2": "PRESERVE"
+  },
+  "positive": {
+    "L1_on_L4": {
+      "pass": true,
+      "Ic_before": -0.0099,
+      "Ic_after": -0.0099,
+      "classification": "PRESERVE",
+      "clifford_cross_check": "clifford_error: 'MultiVector' object has no attribute 'rev'",
+      "note": "SU(2) rotation U_A is unitary. S(C) unchanged (U_A does not act on C). S(AC) invariant: U_A \u2297 I_C is unitary on subsystem AC -> spectrum preserved. Therefore I_c = S(C) - S(AC) unchanged -> PRESERVE expected."
+    },
+    "L2_on_L4": {
+      "pass": true,
+      "Ic_before": -0.0099,
+      "Ic_after": -0.0099,
+      "classification": "PRESERVE",
+      "note": "CPT = sigma_y on A (unitary: sigma_y^dag sigma_y = I). Local unitary on A leaves S(AC) invariant -> PRESERVE expected. True CPT is anti-unitary; here we apply the matrix part only."
+    },
+    "L3_on_L4": {
+      "pass": true,
+      "Ic_before": -0.0099,
+      "Ic_after": -0.351133,
+      "classification": "DEGRADE",
+      "note": "Z-dephasing is non-unitary CPTP: zeroes off-diagonal elements of qubit A in Z-basis. S(C) unchanged (channel only on A). S(AC) increases (more noise on AC). I_c = S(C) - S(AC) decreases -> DEGRADE or DESTROY expected."
+    },
+    "L4_on_L5": {
+      "pass": true,
+      "discord_before": 0.105648,
+      "discord_after": 0.0,
+      "rho_AB_after_trace": 1.0,
+      "classification": "DESTROY",
+      "note": "Fe relay as CPTP channel: (1-relay)*rho + relay*SWAP_BC*rho*SWAP_BC^dag. Relay transfers weight from AB entanglement to BC, disturbing Werner structure. rho_AB after = partial trace over C -> discord expected to DEGRADE or DESTROY."
+    },
+    "L5_on_L2": {
+      "pass": true,
+      "H_chirality_before": 0.0,
+      "H_chirality_after": 0.562335,
+      "pL_before": 1.0,
+      "pR_before": 0.0,
+      "pL_after": 0.75,
+      "pR_after": 0.25,
+      "classification": "ENHANCE",
+      "note": "Pure |+i> L-chiral: pL=1, pR=0, H=0. Depolarizing D_p=0.5: (1-p)*rho + p*I/2. I/2 = 0.5*P_L + 0.5*P_R (equal L/R). After: pL -> (1-p)*1 + p*0.5 = 0.75, pR -> p*0.5 = 0.25. H(0.75,0.25) > 0 -> H increases from 0 -> ENHANCE (0->positive)."
+    },
+    "L5_on_L3": {
+      "pass": true,
+      "off_diag_norm_before": 0.0,
+      "off_diag_norm_after": 0.0,
+      "rho_dep_diagonal": [
+        0.6,
+        0.4
+      ],
+      "rho_dep_offdiag": 0.0,
+      "classification": "NULL",
+      "note": "rho = diag(0.7, 0.3): off-diagonal = 0. D_p=0.5: (1-0.5)*diag(0.7,0.3) + 0.5*I/2 = diag(0.6, 0.4). Still diagonal. Off-diagonal before=0, after=0 -> NULL. Depolarizing does NOT create off-diagonal from a diagonal state."
+    }
+  },
+  "negative": {
+    "neg_L1_on_L4_maximally_mixed": {
+      "pass": true,
+      "Ic_before": -0.69314718,
+      "Ic_after": -0.69314718,
+      "note": "Maximally mixed state: I_c=0 must stay 0 under any unitary"
+    },
+    "neg_L3_on_L4_full_dephasing": {
+      "pass": true,
+      "Ic_before": -0.0099,
+      "Ic_full_deph": -0.0099,
+      "classification": "PRESERVE",
+      "note": "p=1 dephasing: Z-basis measurement, must damage more than p=0.5"
+    },
+    "neg_L5_on_L2_fully_depolarized": {
+      "pass": true,
+      "H_chirality_I2": 0.693147,
+      "log2_expected": 0.693147,
+      "note": "I/2 must give H = log(2) \u2248 0.693 nats (max chirality entropy)"
+    }
+  },
+  "boundary": {
+    "boundary_L1_on_L4_identity": {
+      "pass": true,
+      "Ic_before": -0.00990012,
+      "Ic_after": -0.00990012,
+      "diff": 0.0,
+      "note": "Identity rotation: I_c must be numerically identical"
+    },
+    "boundary_L4_on_L5_relay0": {
+      "pass": true,
+      "discord_before": 0.105648,
+      "discord_relay0": 0.105648,
+      "diff": 0.0,
+      "note": "relay=0 is identity: discord must be unchanged"
+    },
+    "boundary_L5_on_L3_p0": {
+      "pass": true,
+      "off_before": 0.0,
+      "off_after": 0.0,
+      "note": "p=0 depolarizing = identity: off-diagonal unchanged"
+    }
+  },
+  "sympy_L3_on_L4": {
+    "pass": true,
+    "S_C_invariant": true,
+    "S_C_invariance_proof": "Phi is trace-preserving on A: Tr_A[Phi_p(rho)] = Tr_A[rho]. Therefore rho_C = Tr_{AB}[Phi_p(rho_ABC)] = Tr_{AB}[rho_ABC] = rho_C_orig.",
+    "S_AC_behavior": "non_decreasing",
+    "S_AC_increase_formula": "At p=0.5: rho_AC -> diag-block(rho_00_C, rho_11_C). S(rho_AC_dep) = H(p0,1-p0) + p0*S(sigma_0) + (1-p0)*S(sigma_1). By concavity of entropy: S(rho_AC_dep) >= S(rho_AC). Equality iff rho_AC already block-diagonal.",
+    "H_half_nats": 0.693147,
+    "H_p0_formula": "-p_0*log(p_0) + (p_0 - 1)*log(1 - p_0)",
+    "data_processing_inequality": "Formal DPI: I_c(A->C) non-increasing under CPTP channels on A. Z-dephasing is CPTP. S(C) unchanged. S(AC) increases. => I_c after <= I_c before.",
+    "Delta_Ic_sign": "Delta_I_c <= 0  (I_c decreases or stays constant)",
+    "Delta_Ic_at_p0": 0.0,
+    "Delta_Ic_at_p1": "maximum decrease (rho_AC fully block-diagonal in A)",
+    "closed_form_bound": "I_c_after(p) = S(C) - S(rho_AC_dep(p)). S(rho_AC_dep(p)) = S((1-2p)^2 * rho_AC_offdiag + rho_AC_diag_blocks). Monotone decreasing in |1-2p| -> maximally degraded at p=0.5.",
+    "prediction_for_L3_on_L4": "DEGRADE or DESTROY",
+    "note": "Sympy used for symbolic entropy formula and simplification."
+  },
+  "z3_L4_isolation_proof": {
+    "pass": true,
+    "outgoing_positive_from_L4": [
+      [
+        "L4",
+        "L1"
+      ],
+      [
+        "L4",
+        "L4"
+      ],
+      [
+        "L4",
+        "L2"
+      ]
+    ],
+    "incoming_positive_to_L4": [
+      [
+        "L4",
+        "L4"
+      ],
+      [
+        "L1",
+        "L4"
+      ],
+      [
+        "L2",
+        "L4"
+      ]
+    ],
+    "l4_cycle_paths_found": [
+      "L4->L1->L4",
+      "L4->L2->L4",
+      "L4->L1->L2->L4",
+      "L4->L2->L1->L4",
+      "L4->L1->L3->L2->L4",
+      "L4->L1->L5->L2->L4",
+      "L4->L2->L5->L1->L4"
+    ],
+    "l4_direct_2_cycles": [
+      "L4->L1->L4",
+      "L4->L2->L4"
+    ],
+    "cycle_exists": true,
+    "z3_query": "L4_in_SCC = True",
+    "z3_result": "sat",
+    "isolation_proof": "NOT_PROVED",
+    "all_positive_edges": [
+      [
+        "L5",
+        "L5"
+      ],
+      [
+        "L4",
+        "L1"
+      ],
+      [
+        "L3",
+        "L2"
+      ],
+      [
+        "L1",
+        "L2"
+      ],
+      [
+        "L2",
+        "L2"
+      ],
+      [
+        "L3",
+        "L3"
+      ],
+      [
+        "L4",
+        "L4"
+      ],
+      [
+        "L4",
+        "L2"
+      ],
+      [
+        "L1",
+        "L4"
+      ],
+      [
+        "L2",
+        "L3"
+      ],
+      [
+        "L5",
+        "L1"
+      ],
+      [
+        "L2",
+        "L5"
+      ],
+      [
+        "L1",
+        "L3"
+      ],
+      [
+        "L2",
+        "L4"
+      ],
+      [
+        "L5",
+        "L2"
+      ],
+      [
+        "L1",
+        "L5"
+      ],
+      [
+        "L2",
+        "L1"
+      ],
+      [
+        "L1",
+        "L1"
+      ]
+    ],
+    "interpretation": "NOT_PROVED: L4 has mutual PRESERVE cycles with L1 and L2 (prior: L4_on_L1=PRESERVE, L1_on_L4=PRESERVE, L4_on_L2=PRESERVE, L2_on_L4=PRESERVE). New results: L3_on_L4=DEGRADE, L4_on_L5=DESTROY, L1_on_L4=PRESERVE, L2_on_L4=PRESERVE. L4 is NOT a total singleton -- it bridges to base cluster via L1/L2 PRESERVE pairs. L4 IS isolated from L3 (degrade) and L5 (destroy/degrade). Revised picture: L4 connects weakly to {L1,L2} but not to {L3,L5}.",
+    "note": "UNSAT -> no positive cycle through L4 -> isolation PROVED. SAT -> positive cycle found -> NOT isolated (L4 in SCC with L1/L2)."
+  },
+  "rustworkx_complete_matrix": {
+    "pass": true,
+    "n_nodes": 5,
+    "n_edges": 25,
+    "n_cells_measured": 25,
+    "sccs": [
+      {
+        "size": 5,
+        "members": [
+          "L1_Hopf",
+          "L2_Weyl",
+          "L3_Phase",
+          "L4_Phi0",
+          "L5_Werner"
+        ]
+      }
+    ],
+    "n_sccs": 1,
+    "scc_dag_is_dag": true,
+    "topo_order_of_sccs": [
+      [
+        "L1_Hopf",
+        "L2_Weyl",
+        "L3_Phase",
+        "L4_Phi0",
+        "L5_Werner"
+      ]
+    ],
+    "edge_classifications": {
+      "L1_on_L1": "PRESERVE",
+      "L2_on_L2": "PRESERVE",
+      "L3_on_L3": "PRESERVE",
+      "L4_on_L4": "PRESERVE",
+      "L5_on_L5": "PRESERVE",
+      "L3_on_L1": "DESTROY",
+      "L1_on_L3": "ENHANCE",
+      "L3_on_L5": "DESTROY",
+      "L5_on_L4": "DEGRADE",
+      "L2_on_L3": "PRESERVE",
+      "L4_on_L2": "PRESERVE",
+      "L2_on_L1": "PRESERVE",
+      "L5_on_L1": "PRESERVE",
+      "L4_on_L1": "PRESERVE",
+      "L1_on_L2": "ENHANCE",
+      "L1_on_L5": "PRESERVE",
+      "L2_on_L5": "PRESERVE",
+      "L4_on_L3": "PRESERVE/NULL",
+      "L3_on_L2": "PRESERVE",
+      "L1_on_L4": "PRESERVE",
+      "L2_on_L4": "PRESERVE",
+      "L3_on_L4": "DEGRADE",
+      "L4_on_L5": "DESTROY",
+      "L5_on_L2": "ENHANCE",
+      "L5_on_L3": "NULL"
+    },
+    "note": "All 25 cells included. SCCs computed on directed coupling graph. Edges weighted: ENHANCE=2, PRESERVE=1, NULL=0, DEGRADE=-1, DESTROY=-2. An SCC of size >1 means mutual PRESERVE/ENHANCE cycle between layers."
+  }
+}

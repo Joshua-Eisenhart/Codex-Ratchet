@@ -1,0 +1,173 @@
+{
+  "name": "PURE LEGO: Pre-Bridge Entropy Transport/History Taxonomy",
+  "probe": "entropy_transport_history_taxonomy",
+  "purpose": "Separate shell-weighted, history-window, transport-weighted, and operator-order-sensitive entropy-like functionals on simple trajectories",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded taxonomy sim"
+    }
+  },
+  "positive": {
+    "shell_uniform_invariant_under_state_permutation": {
+      "shell_uniform": 0.4670340293487095,
+      "shell_uniform_permuted": 0.4670340293487095,
+      "equal": true,
+      "pass": true
+    },
+    "history_window_detects_temporal_reordering": {
+      "history_base": 0.5343612979179923,
+      "history_permuted": 0.6690158350565576,
+      "different": true,
+      "pass": true
+    },
+    "transport_collapses_under_identity_transport": {
+      "transport_base": 0.16346191027204832,
+      "transport_constant": 0.0,
+      "constant_zero": true,
+      "base_positive": true,
+      "pass": true
+    },
+    "operator_order_detects_noncommuting_sequence": {
+      "forward": 0.3985027028230324,
+      "reverse": 0.39573725425046447,
+      "different": true,
+      "pass": true
+    },
+    "operator_order_is_stable_for_commuting_control": {
+      "forward": 0.934068055375491,
+      "reverse": 0.934068055375491,
+      "equal": true,
+      "pass": true
+    },
+    "shell_reindexing_is_bookkeeping_not_transport": {
+      "shell_uniform_permuted": 0.4670340293487095,
+      "shell_reindexed": 0.5604408345540658,
+      "transport_permuted": 0.49038573081614495,
+      "reindex_changes_shell": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "counterfeit_transport_from_repetition_fails": {
+      "transport_constant": 0.0,
+      "fake_signal_absent": true,
+      "pass": true
+    },
+    "history_window_one_step_collapses_to_shell_mean": {
+      "history_w1": 3.3219280948873626e-09,
+      "shell_uniform": 3.3219280948873626e-09,
+      "equal": true,
+      "pass": true
+    },
+    "commuting_order_cannot_fake_operator_signal": {
+      "forward": 0.7219280948873623,
+      "reverse": 0.7219280948873623,
+      "equal": true,
+      "pass": true
+    },
+    "diagonal_shannon_is_basis_dependent_counterfeit": {
+      "diag_shannon_before": 3.4661976105881914e-09,
+      "diag_shannon_after_basis_change": 0.8112781244591327,
+      "von_neumann_before": 3.3219280948873626e-09,
+      "von_neumann_after_basis_change": 3.3219280948873626e-09,
+      "shannon_changes": true,
+      "vn_invariant": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "two_state_minimal_history_transport": {
+      "history_w2": 0.8112781244591328,
+      "entropy_global_average": 0.8112781244591328,
+      "transport": 0.250000000830482,
+      "history_matches_average": true,
+      "pass": true
+    },
+    "full_window_history_equals_global_average_entropy": {
+      "history_full_window": 0.5435644431995964,
+      "global_average_entropy": 0.5435644431995964,
+      "equal": true,
+      "pass": true
+    },
+    "identity_operator_insertion_keeps_transport_zero": {
+      "transport_identity_only": 0.0,
+      "zero": true,
+      "pass": true
+    }
+  },
+  "taxonomy_summary": {
+    "shell_weighted": "shell-index bookkeeping candidate",
+    "history_window": "order/grouping-sensitive candidate",
+    "transport_weighted": "geometry/trajectory-sensitive candidate",
+    "operator_order_sensitive": "final-state order-sensitive candidate, pre-bridge only"
+  },
+  "caveat": "Pre-bridge candidate taxonomy only. No shell/transport/history family here is promoted to final doctrine.",
+  "classification": "classical_baseline",
+  "summary": {
+    "positive_pass": 6,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

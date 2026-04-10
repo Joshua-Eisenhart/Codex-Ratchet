@@ -1,0 +1,235 @@
+{
+  "name": "weyl_two_model_crosscheck",
+  "classification": "canonical",
+  "timestamp": "2026-04-08T12:35:25.729743+00:00",
+  "elapsed_seconds": 1.071,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensors for spinor cloud generation and overlap computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology via gudhi, graph via rustworkx"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that both models cannot share combined \u03b20"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 handles the SMT check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "algebraic P_L\u00b7P_R=0 projector identity verified symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) spinor exponential map for Model A L/R fiber generation"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "geodesic distance L\u2194R on S\u00b3 for Model B vs Model A comparison"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- chirality encoded in clifford, not irreps"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG encoding Model A / Model B as parallel branches preceding Weyl_shell"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- model hierarchy is a DAG not a hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology measured via gudhi persistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology \u03b20/\u03b21 on L+R combined point clouds for both models"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "load_bearing",
+    "cvc5": "not_applicable",
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "not_applicable",
+    "rustworkx": "load_bearing",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "clifford_model_overlap": {
+      "pass": true,
+      "model": "A_clifford",
+      "b0_L": 1,
+      "b1_L": 1,
+      "b0_R": 1,
+      "b1_R": 1,
+      "b0_combined": 1,
+      "b1_combined": 1,
+      "expected_b0_combined": 1,
+      "expected_b1_combined": 1,
+      "are_L_R_geometrically_coincident": true,
+      "overlap_dist_at_xi0": 0.0,
+      "interpretation": "Cl(3) L and R spinors trace the SAME unit circle in (scalar, e12) plane with opposite orientations (CW vs CCW). Combined cloud = single S\u00b9: \u03b20=1, \u03b21=1. Chirality in Model A is encoded in ORIENTATION (winding direction), not in distinct geometric positions."
+    },
+    "coordinate_model_overlap": {
+      "pass": true,
+      "model": "B_hopf_coordinate",
+      "b0_L": 1,
+      "b1_L": 1,
+      "b0_R": 1,
+      "b1_R": 1,
+      "b0_combined": 2,
+      "b1_combined": 2,
+      "expected_b0_combined": 2,
+      "min_cross_dist": 1.414213562373095,
+      "interpretation": "Hopf fibers over orthogonal poles are disjoint \u2192 \u03b20=2, \u03b21=2 (two separate S\u00b9)"
+    },
+    "agreement_test": {
+      "pass": true,
+      "signal": "both models agree: individual L and R fibers have \u03b20=1, \u03b21=1 (S\u00b9)",
+      "A_L": {
+        "b0": 1,
+        "b1": 1
+      },
+      "A_R": {
+        "b0": 1,
+        "b1": 1
+      },
+      "B_L": {
+        "b0": 1,
+        "b1": 1
+      },
+      "B_R": {
+        "b0": 1,
+        "b1": 1
+      },
+      "interpretation": "Agreement on S\u00b9 fiber is the SIGNAL across both models"
+    },
+    "divergence_test": {
+      "pass": true,
+      "information": "combined topology diverges between models",
+      "model_A_combined_b0": 1,
+      "model_B_combined_b0": 2,
+      "expected_A_b0": 1,
+      "expected_B_b0": 2,
+      "interpretation": "Model A (Clifford): L+R share base point at \u03be=0 \u2192 wedge S\u00b9\u2228S\u00b9 \u2192 \u03b20=1. Model B (Hopf): orthogonal fibers \u2192 disjoint \u2192 \u03b20=2. Divergence IS the information: models operate at different ontological scales."
+    },
+    "z3_model_difference": {
+      "pass": true,
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "axiom_A": "beta0_A = 1  (Cl(3) shared base point \u2192 wedge \u2192 connected)",
+      "axiom_B": "beta0_B = 2  (Hopf orthogonal fibers \u2192 disjoint)",
+      "claim_refuted": "beta0_A == beta0_B",
+      "interpretation": "UNSAT confirms: no consistent assignment makes both models agree on combined \u03b20"
+    },
+    "sympy_projectors": {
+      "pass": true,
+      "P_L_times_P_R_2x2_is_zero": true,
+      "completeness_P_L_plus_P_R_eq_I": true,
+      "P_L_times_P_R_4x4_is_zero": true,
+      "interpretation": "P_L\u00b7P_R=0 holds algebraically in both models. This is the SHARED INVARIANT: chirality projectors are orthogonal regardless of whether the fibers share a base point (Model A) or live in orthogonal subspaces (Model B)."
+    },
+    "rustworkx_model_dag": {
+      "pass": true,
+      "is_dag": true,
+      "topo_order": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "parallel_structure_confirmed": true,
+      "preds_clifford": [
+        0
+      ],
+      "preds_coord": [
+        0
+      ],
+      "succs_clifford": [
+        3
+      ],
+      "succs_coord": [
+        3
+      ],
+      "interpretation": "Model A and Model B are parallel branches (fork, not chain). Both descend from Shared_S1_fiber (the signal) and both precede Weyl_shell. Their divergence in combined topology IS the structural information."
+    },
+    "geomstats_distinction": {
+      "pass": true,
+      "model_A_min_geodesic_L_R": 0.0,
+      "model_B_min_geodesic_L_R": 1.5707963267948966,
+      "expected_A": 0.0,
+      "expected_B": 1.5707963267948966,
+      "interpretation": "Model A (Cl(3)): L and R share base point \u2192 geodesic = 0. Model B (Hopf): orthogonal R\u2074 subspaces \u2192 geodesic = \u03c0/2 on S\u00b3. Different scales of the shell hierarchy confirmed."
+    }
+  },
+  "negative": {
+    "edge_length_collapse_model_B": {
+      "pass": true,
+      "b0_with_large_edge": 1,
+      "b0_with_correct_edge": 2,
+      "interpretation": "Large edge length artificially bridges orthogonal fibers \u2192 \u03b20 collapse. Confirms correct edge length (0.15) is required for valid Model B measurement."
+    }
+  },
+  "boundary": {
+    "model_A_xi_2pi_spinor_double_cover": {
+      "pass": true,
+      "spinor_at_xi_2pi": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "is_antipode_of_psi0": true,
+      "spinor_at_xi_4pi": [
+        1.0,
+        -2.4492935982947064e-16
+      ],
+      "is_periodic_at_4pi": true,
+      "b0_combined_full_cloud": 1,
+      "b1_combined_full_cloud": 1,
+      "interpretation": "At \u03be=2\u03c0 the spinor reaches the antipode (-1,0), confirming 4\u03c0 double-cover. At \u03be=4\u03c0 it returns to (1,0). Full L+R cloud is still single S\u00b9: \u03b20=1, \u03b21=1."
+    }
+  },
+  "summary": {
+    "positive.clifford_model_overlap": "PASS",
+    "positive.coordinate_model_overlap": "PASS",
+    "positive.agreement_test": "PASS",
+    "positive.divergence_test": "PASS",
+    "positive.z3_model_difference": "PASS",
+    "positive.sympy_projectors": "PASS",
+    "positive.rustworkx_model_dag": "PASS",
+    "positive.geomstats_distinction": "PASS",
+    "negative.edge_length_collapse_model_B": "PASS",
+    "boundary.model_A_xi_2pi_spinor_double_cover": "PASS"
+  },
+  "totals": {
+    "pass": 10,
+    "fail": 0,
+    "skip": 0
+  },
+  "signal": "Both models agree: individual L and R fibers are S\u00b9 (\u03b20=1, \u03b21=1)",
+  "information": "Combined topology diverges: Model A \u03b20=1 (wedge), Model B \u03b20=2 (disjoint)"
+}

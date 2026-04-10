@@ -1,0 +1,386 @@
+{
+  "name": "Shell / global companion audit",
+  "schema_version": "1.0",
+  "probe": "shell_global_companion_audit",
+  "purpose": "Audit when shell/global forms behave like stronger global companions, when they approximate signed primitive behavior, and when they collapse to weighted bookkeeping.",
+  "classification": "supporting",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- there is no graph layer in this audit"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this audit is numerical and constructive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all formulas are explicit finite matrix formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer is required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold statistics are required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant learning layer is required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph algorithms are needed here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial layer is needed here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this audit uses direct packet arrays, not complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence computation is needed here"
+    }
+  },
+  "positive": {
+    "rows": [
+      {
+        "label": "baseline",
+        "features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8386688783155772,
+          "shell_Ic": -0.6773429424386062,
+          "hist_Ic": -0.7836086200000129,
+          "blend_MI": 0.09213201083950184,
+          "blend_weighted_cut": 0.04145940487777585,
+          "shell_global_cut": 0.10049303915542238,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.6199980052042011,
+          "uniform_shell_Ic": -0.620298947500497
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5769000000000001,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0000000000000004,
+          "trace_error": 4.440892098500626e-16,
+          "min_eigenvalue": 0.12150631412667293,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      },
+      {
+        "label": "flattened_shells",
+        "features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.0,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8386688783155772,
+          "shell_Ic": -0.731998059099035,
+          "hist_Ic": -0.7836086200000129,
+          "blend_MI": 0.06423373194053372,
+          "blend_weighted_cut": 0.02890517937324022,
+          "shell_global_cut": 0.04412251362880517,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.7319980590990351,
+          "uniform_shell_Ic": -0.731998059099035
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5800000000000001,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0000000000000004,
+          "trace_error": 4.440892098500626e-16,
+          "min_eigenvalue": 0.11348417140624795,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      },
+      {
+        "label": "uniform_shell_weights",
+        "features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.584962500721156
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8386688783155772,
+          "shell_Ic": -0.6792587641495507,
+          "hist_Ic": -0.7836086200000129,
+          "blend_MI": 0.09884873697709118,
+          "blend_weighted_cut": 0.04448193163969103,
+          "shell_global_cut": 0.11430096076470514,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.620298947500497,
+          "uniform_shell_Ic": -0.620298947500497
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5233333333333333,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0000000000000002,
+          "trace_error": 2.220446049250313e-16,
+          "min_eigenvalue": 0.12617672844563724,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      },
+      {
+        "label": "scrambled_history",
+        "features": {
+          "reference_offset": 0.3944397110687088,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 3.2649999999999997,
+          "history_order_signature": -1.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8386688783155772,
+          "shell_Ic": -0.6773429424386062,
+          "hist_Ic": 0.7277894440595187,
+          "blend_MI": 0.3871655349110752,
+          "blend_weighted_cut": 0.19477174812644085,
+          "shell_global_cut": 0.10049303915542238,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.6199980052042011,
+          "uniform_shell_Ic": -0.620298947500497
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5769000000000001,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "min_eigenvalue": 0.09963222222338915,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      },
+      {
+        "label": "reference_shift_small",
+        "features": {
+          "reference_offset": 0.3750775139844637,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8382920192590351,
+          "shell_Ic": -0.6773429424386062,
+          "hist_Ic": -0.7836086200000129,
+          "blend_MI": 0.09233343365389568,
+          "blend_weighted_cut": 0.041550045144253096,
+          "shell_global_cut": 0.10049303915542238,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.6199980052042011,
+          "uniform_shell_Ic": -0.620298947500497
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5769000000000001,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0000000000000004,
+          "trace_error": 4.440892098500626e-16,
+          "min_eigenvalue": 0.12139208174726668,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      },
+      {
+        "label": "reference_shift_large",
+        "features": {
+          "reference_offset": 0.32036489002952295,
+          "shell_dispersion": 0.24115462996914566,
+          "history_turning": 0.125,
+          "history_order_signature": 4.5,
+          "shell_weight_entropy": 1.4873638732958807
+        },
+        "candidates": {
+          "primitive_ref_Ic": -0.8285173843682709,
+          "shell_Ic": -0.6773429424386062,
+          "hist_Ic": -0.7836086200000129,
+          "blend_MI": 0.09184245644614908,
+          "blend_weighted_cut": 0.041329105400767174,
+          "shell_global_cut": 0.10049303915542238,
+          "local_only_cut": 1.482965479862548,
+          "weighted_shell_Ic": -0.6199980052042011,
+          "uniform_shell_Ic": -0.620298947500497
+        },
+        "counterfeits": {
+          "fake_constant": 1.0,
+          "fake_local_only": 1.482965479862548,
+          "fake_shell_mean": 0.5769000000000001,
+          "fake_history_mean": 0.47250000000000003
+        },
+        "validity": {
+          "trace": 1.0000000000000009,
+          "trace_error": 8.881784197001252e-16,
+          "min_eigenvalue": 0.121801004808842,
+          "hermitian_error": 0.0,
+          "psd": true,
+          "valid": true
+        }
+      }
+    ],
+    "family_consistency": {
+      "companion_shift": {
+        "flattened_shells": 0.056370525526617206,
+        "uniform_shell_weights": 0.013807921609282764,
+        "scrambled_history": 0.153312343248665,
+        "reference_shift_small": 0.000376859056542167,
+        "reference_shift_large": 0.0101514939473063
+      },
+      "local_shift": {
+        "flattened_shells": 0.0,
+        "uniform_shell_weights": 0.0,
+        "scrambled_history": 0.0,
+        "reference_shift_small": 0.0,
+        "reference_shift_large": 0.0
+      },
+      "better_than_local_count": 5,
+      "sign_matches_primitive": true,
+      "stronger_global_companion": true,
+      "pass": true
+    },
+    "primitive_audit": {
+      "shell_profile": [
+        -0.7138790138864628,
+        -0.7503628557448169,
+        -0.3966549728702111
+      ],
+      "primitive": -0.8386688783155772,
+      "weighted_shell": -0.6199980052042011,
+      "uniform_shell": -0.620298947500497,
+      "blend_weighted_cut": 0.04145940487777585,
+      "pass": true,
+      "sign_checks": {
+        "primitive_and_shell_same_sign": true,
+        "primitive_and_weighted_shell_same_sign": true,
+        "weighted_shell_between_shell_extremes": true,
+        "uniform_shell_between_shell_extremes": true,
+        "pass": true
+      }
+    },
+    "sign_dual_check": true,
+    "pass": true
+  },
+  "negative": {
+    "fake_constant_is_bookkeeping_only": {
+      "base": 1.0,
+      "flattened": 1.0,
+      "pass": true
+    },
+    "fake_shell_mean_is_history_blind_bookkeeping": {
+      "base": 0.5769000000000001,
+      "scrambled": 0.5769000000000001,
+      "pass": true
+    },
+    "fake_history_mean_is_shell_blind_bookkeeping": {
+      "base": 0.47250000000000003,
+      "uniformized": 0.47250000000000003,
+      "pass": true
+    },
+    "local_only_summary_does_not_outperform_shell_global_cut": {
+      "local_shift": 0.0,
+      "global_shift": 0.056370525526617206,
+      "pass": true
+    },
+    "bookkeeping_candidates_do_not_all_track_primitive_sign": {
+      "primitive": -0.8386688783155772,
+      "weighted_shell": -0.6199980052042011,
+      "uniform_shell": -0.620298947500497,
+      "blend_weighted_cut": 0.04145940487777585,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "identity_packet_is_fixed_point": {
+      "primitive_gap": 0.0,
+      "global_gap": 0.0,
+      "pass": true
+    },
+    "flattening_is_detected": {
+      "shell_gap": 0.05465511666042888,
+      "global_gap": 0.056370525526617206,
+      "pass": true
+    },
+    "uniformization_is_detected": {
+      "shell_gap": 0.0019158217109445097,
+      "global_gap": 0.013807921609282764,
+      "pass": true
+    },
+    "small_reference_shift_is_smaller_than_large_shift": {
+      "tiny_gap": 4.6277914573233936e-05,
+      "large_gap": 0.00979900455217364,
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "positive": "2/2",
+    "negative": "5/5",
+    "boundary": "4/4",
+    "all_pass": true,
+    "shared_packet_count": 6,
+    "note": "Audit only. Shell/global forms can act as stronger companions on this packet set, but local-only and bookkeeping forms remain bounded counterexamples.",
+    "elapsed_s": 0.14676666259765625
+  }
+}

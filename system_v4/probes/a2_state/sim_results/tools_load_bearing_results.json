@@ -1,6 +1,6 @@
 {
   "name": "tools_load_bearing -- anti-theater sim",
-  "timestamp": "2026-04-08T03:03:19.488969+00:00",
+  "timestamp": "2026-04-09T04:17:54.821666+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -62,6 +62,20 @@
       "used": true,
       "reason": "persistence diagrams as early warning signal -- test 3"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "not_applicable",
+    "cvc5": "not_applicable",
+    "sympy": "not_applicable",
+    "clifford": "not_applicable",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "not_applicable",
+    "gudhi": "load_bearing"
   },
   "classification": "canonical",
   "positive": {
@@ -164,10 +178,11 @@
       "avg_degree_allowed_combos": 1.6666666666666667,
       "avg_degree_forbidden_combo": 1.3333333333333333,
       "degree_signal": "True",
+      "purity_signal": "True",
       "purity_diff_allowed_vs_forbidden": 0.04787978448457142,
       "load_bearing": "True",
       "pass": "True",
-      "explanation": "The hypergraph encodes which multi-channel combinations are structurally allowed. Forbidden combos (not sharing a hyperedge) have lower average node degree -- the hypergraph topology carries constraint information that a flat list of channels cannot express."
+      "explanation": "The hypergraph encodes which multi-channel combinations are structurally allowed. Forbidden combos (not sharing a hyperedge) have lower average node degree, and the allowed/forbidden sets must also separate measurably in purity -- the hypergraph topology carries constraint information that a flat list of channels cannot express."
     },
     "P3_gudhi_persistence_warning": {
       "test": "GUDHI persistence as early warning signal for state cloud collapse",
@@ -300,11 +315,13 @@
         0
       ],
       "spread_purity_correlation": -0.14195088207127146,
+      "spread_collapse_ratio": 6.8854904860176696,
       "persistence_adds_info_beyond_purity": true,
       "h1_features_detected": true,
+      "collapse_signal": true,
       "load_bearing": true,
       "pass": true,
-      "explanation": "Persistence diagrams track the topological shape of the state cloud (connected components, loops) as channels deform it. The spread-purity correlation is < 1.0, meaning persistence carries information that purity alone cannot see. H1 features detect loops in the point cloud that have no purity analog."
+      "explanation": "Persistence diagrams track the topological shape of the state cloud (connected components, loops) as channels deform it. The spread-purity correlation is well below 1, the point cloud actually carries H1 structure, and the cloud collapses strongly through the cascade. That combination is the early-warning signal; purity alone does not certify it."
     },
     "P4_geomstats_frechet_mean": {
       "test": "geomstats Frechet mean vs arithmetic mean on SPD(2)",
@@ -417,6 +434,6 @@
       "P5_e3nn_equivariant_selector": true
     },
     "all_tools_load_bearing": true,
-    "elapsed_seconds": 0.24
+    "elapsed_seconds": 0.07
   }
 }

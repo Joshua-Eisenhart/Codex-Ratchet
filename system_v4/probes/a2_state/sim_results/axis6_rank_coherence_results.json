@@ -1,0 +1,1273 @@
+{
+  "name": "axis6_rank_coherence",
+  "description": "Axis 6 rho_AC rank structure and off-diagonal coherence sweep. State model: rho_ABC = (1-r)*rho_bell_AB + r*rho_bell_AC (exact axis6_canonical model). I_c(A\u2192C) = S(C) - S(AC): sign flip at relay\u22480.7368. Tests rank change, coherence peak, concurrence/log-negativity, Cl(3) rotor transition, sympy analytic eigenvalues, z3 UNSAT proofs, and rustworkx routing equalization.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: constructs rho_ABC = (1-r)*rho_bell_AB + r*rho_bell_AC via PyTorch tensors; computes rho_AC = Tr_B(rho_ABC); measures rank, L1 coherence, concurrence, log-negativity across 20-step relay sweep. All density matrix arithmetic is torch-native."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing layer"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 3 UNSAT proofs -- (1) rho_AC cannot be simultaneously pure and separable when I_c(A\u2192C) > 0 (PPT violation); (2) coherent information and classical capacity cannot both be positive above the flip (monogamy); (3) the routing flip relay cannot lie outside the unit interval."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 UNSAT is sufficient here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: derives rho_AC(relay) as a symbolic 4x4 matrix from the Bell-interpolation model; computes eigenvalues analytically; evaluates numerically to find where the smallest eigenvalue crosses zero (rank-drop / separability boundary)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: models the AC entanglement seam as a Cl(3) rotor; e12 bivector component (AC plane) is computed at each relay value; tracks when the AC-plane rotor dominates over the AB-plane (e13) at the flip."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- SPD geodesic confirmed clean in axis6_canonical"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- confirmed in axis6_e3nn_fe_bridge"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: models the A\u2192B vs A\u2192C entanglement routing as a DAG with relay-dependent edge weights; finds the exact relay value where edge weights equalize (routing flip point); confirms this matches the axis6_canonical flip at relay\u22480.7368."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph constraint layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- persistence not in scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "relay_sweep": [
+      {
+        "relay_strength": 0.0,
+        "rank_rho_AC": 2,
+        "rank_rho_AC_torch": 2,
+        "coherence_L1_rho_AC_numpy": 0.0,
+        "coherence_L1_rho_AC_torch": 0.0,
+        "concurrence_AC": 0.0,
+        "log_negativity_AC": -3.203426503814918e-16,
+        "coherent_info_Ic_AC": -1.0000000000000495,
+        "mutual_info_IAB": 1.9999999999998501,
+        "mutual_info_IAC": -4.951594689828198e-14,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.0,
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.05263157894736842,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.052631578947368404,
+        "coherence_L1_rho_AC_torch": 0.052631578947368404,
+        "concurrence_AC": 0.052631578947368404,
+        "log_negativity_AC": 0.004199348936063801,
+        "coherent_info_Ic_AC": -0.9669173311305663,
+        "mutual_info_IAB": 1.7230113658931747,
+        "mutual_info_IAC": 0.03308266886943367,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.02485828583848903,
+          0.4736842105263157,
+          0.501457503635195
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.10526315789473684,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.10526315789473681,
+        "coherence_L1_rho_AC_torch": 0.10526315789473681,
+        "concurrence_AC": 0.1052631578947368,
+        "log_negativity_AC": 0.017518729358202176,
+        "coherent_info_Ic_AC": -0.9248319794109208,
+        "mutual_info_IAB": 1.525019718761389,
+        "mutual_info_IAC": 0.07516802058907923,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.04652303688719761,
+          0.44736842105263147,
+          0.5061085420601706
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.15789473684210525,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.15789473684210523,
+        "coherence_L1_rho_AC_torch": 0.15789473684210523,
+        "concurrence_AC": 0.15789473684210523,
+        "log_negativity_AC": 0.04072662663264904,
+        "coherent_info_Ic_AC": -0.8757524221200055,
+        "mutual_info_IAB": 1.3567295858631443,
+        "mutual_info_IAC": 0.12424757787999452,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.06463148038638075,
+          0.42105263157894723,
+          0.5143158880346717
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.21052631578947367,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.21052631578947362,
+        "coherence_L1_rho_AC_torch": 0.21052631578947362,
+        "concurrence_AC": 0.21052631578947367,
+        "log_negativity_AC": 0.07400058144377647,
+        "coherent_info_Ic_AC": -0.8204454807493404,
+        "mutual_info_IAB": 1.2076999378473696,
+        "mutual_info_IAC": 0.17955451925065957,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.07894736842105261,
+          0.39473684210526305,
+          0.5263157894736841
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.2631578947368421,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.26315789473684204,
+        "coherence_L1_rho_AC_torch": 0.26315789473684204,
+        "concurrence_AC": 0.2631578947368419,
+        "log_negativity_AC": 0.1168077568092529,
+        "coherent_info_Ic_AC": -0.7592795386354295,
+        "mutual_info_IAB": 1.0730221907563775,
+        "mutual_info_IAC": 0.24072046136457037,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.08941249297256244,
+          0.3684210526315789,
+          0.5421664543958585
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.3157894736842105,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.31578947368421045,
+        "coherence_L1_rho_AC_torch": 0.31578947368421045,
+        "concurrence_AC": 0.3157894736842104,
+        "log_negativity_AC": 0.16795977637461953,
+        "coherent_info_Ic_AC": -0.6924096844982698,
+        "mutual_info_IAB": 0.9498514422991027,
+        "mutual_info_IAC": 0.3075903155017303,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.09616044719797193,
+          0.3421052631578947,
+          0.5617342896441332
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.3684210526315789,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.36842105263157887,
+        "coherence_L1_rho_AC_torch": 0.36842105263157887,
+        "concurrence_AC": 0.3684210526315789,
+        "log_negativity_AC": 0.22582982049564926,
+        "coherent_info_Ic_AC": -0.6198457624545104,
+        "mutual_info_IAB": 0.836350712996196,
+        "mutual_info_IAC": 0.3801542375454896,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.09948567217650293,
+          0.31578947368421045,
+          0.5847248541392864
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.42105263157894735,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.42105263157894723,
+        "coherence_L1_rho_AC_torch": 0.42105263157894723,
+        "concurrence_AC": 0.42105263157894735,
+        "log_negativity_AC": 0.2886379449484936,
+        "coherent_info_Ic_AC": -0.5414792866599069,
+        "mutual_info_IAB": 0.7312555404374974,
+        "mutual_info_IAC": 0.45852071334009326,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.09978305475068949,
+          0.28947368421052627,
+          0.610743261038784
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.47368421052631576,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.47368421052631565,
+        "coherence_L1_rho_AC_torch": 0.47368421052631565,
+        "concurrence_AC": 0.4736842105263155,
+        "log_negativity_AC": 0.3546974326883348,
+        "coherent_info_Ic_AC": -0.45708999309252263,
+        "mutual_info_IAB": 0.6336616448089833,
+        "mutual_info_IAC": 0.5429100069074773,
+        "routing_dominant": "A\u2192B",
+        "eigenvalues_rho_AC": [
+          -3.674019704031762e-31,
+          0.09748341734244732,
+          0.263157894736842,
+          0.6393586879207103
+        ],
+        "min_eigenvalue_rho_AC": -3.674019704031762e-31
+      },
+      {
+        "relay_strength": 0.5263157894736842,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.5263157894736841,
+        "coherence_L1_rho_AC_torch": 0.5263157894736841,
+        "concurrence_AC": 0.5263157894736843,
+        "log_negativity_AC": 0.4225647993693988,
+        "coherent_info_Ic_AC": -0.3663383551910169,
+        "mutual_info_IAB": 0.5429100069074777,
+        "mutual_info_IAC": 0.6336616448089831,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.09300378684919328,
+          0.23684210526315785,
+          0.6701541078876487
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.5789473684210527,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.5789473684210525,
+        "coherence_L1_rho_AC_torch": 0.5789473684210525,
+        "concurrence_AC": 0.5789473684210524,
+        "log_negativity_AC": 0.4910942537378892,
+        "coherent_info_Ic_AC": -0.2687444595625026,
+        "mutual_info_IAB": 0.45852071334009326,
+        "mutual_info_IAC": 0.7312555404374974,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.08671842340211511,
+          0.21052631578947362,
+          0.7027552608084111
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.631578947368421,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.6315789473684209,
+        "coherence_L1_rho_AC_torch": 0.6315789473684209,
+        "concurrence_AC": 0.6315789473684214,
+        "log_negativity_AC": 0.5594274086140181,
+        "coherent_info_Ic_AC": -0.1636492870038042,
+        "mutual_info_IAB": 0.3801542375454896,
+        "mutual_info_IAC": 0.8363507129961958,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.07894736842105263,
+          0.18421052631578946,
+          0.7368421052631577
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.6842105263157895,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.6842105263157894,
+        "coherence_L1_rho_AC_torch": 0.6842105263157894,
+        "concurrence_AC": 0.6842105263157894,
+        "log_negativity_AC": 0.6269512748471918,
+        "coherent_info_Ic_AC": -0.05014855770089721,
+        "mutual_info_IAB": 0.3075903155017303,
+        "mutual_info_IAC": 0.9498514422991027,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.06995620883878065,
+          0.15789473684210523,
+          0.772149054319114
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.7368421052631579,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.7368421052631577,
+        "coherence_L1_rho_AC_torch": 0.7368421052631577,
+        "concurrence_AC": 0.7368421052631577,
+        "log_negativity_AC": 0.6932474860597894,
+        "coherent_info_Ic_AC": 0.0730221907563775,
+        "mutual_info_IAB": 0.2407204613645706,
+        "mutual_info_IAC": 1.0730221907563775,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.05996150912295021,
+          0.13157894736842105,
+          0.8084595435086286
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.7894736842105263,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.7894736842105261,
+        "coherence_L1_rho_AC_torch": 0.7894736842105261,
+        "concurrence_AC": 0.7894736842105258,
+        "log_negativity_AC": 0.7580448551189611,
+        "coherent_info_Ic_AC": 0.20769993784736962,
+        "mutual_info_IAB": 0.17955451925065957,
+        "mutual_info_IAC": 1.2076999378473696,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.049138264462590626,
+          0.10526315789473681,
+          0.8455985776426724
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.8421052631578947,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.8421052631578945,
+        "coherence_L1_rho_AC_torch": 0.8421052631578945,
+        "concurrence_AC": 0.8421052631578946,
+        "log_negativity_AC": 0.8211799378504344,
+        "coherent_info_Ic_AC": 0.3567295858631443,
+        "mutual_info_IAB": 0.12424757787999452,
+        "mutual_info_IAC": 1.3567295858631443,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.037627403158205314,
+          0.07894736842105264,
+          0.8834252284207418
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.8947368421052632,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.8947368421052629,
+        "coherence_L1_rho_AC_torch": 0.8947368421052629,
+        "concurrence_AC": 0.8947368421052627,
+        "log_negativity_AC": 0.882566297114756,
+        "coherent_info_Ic_AC": 0.5250197187613889,
+        "mutual_info_IAB": 0.07516802058907923,
+        "mutual_info_IAC": 1.525019718761389,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.0255424640545684,
+          0.052631578947368404,
+          0.921825956998063
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      },
+      {
+        "relay_strength": 0.9473684210526315,
+        "rank_rho_AC": 3,
+        "rank_rho_AC_torch": 3,
+        "coherence_L1_rho_AC_numpy": 0.9473684210526313,
+        "coherence_L1_rho_AC_torch": 0.9473684210526313,
+        "concurrence_AC": 0.9473684210526286,
+        "log_negativity_AC": 0.9421714517678982,
+        "coherent_info_Ic_AC": 0.7230113658931747,
+        "mutual_info_IAB": 0.03308266886943412,
+        "mutual_info_IAC": 1.7230113658931747,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          -2.8009911655701437e-29,
+          0.012975181437655034,
+          0.026315789473684223,
+          0.9607090290886604
+        ],
+        "min_eigenvalue_rho_AC": -2.8009911655701437e-29
+      },
+      {
+        "relay_strength": 1.0,
+        "rank_rho_AC": 1,
+        "rank_rho_AC_torch": 1,
+        "coherence_L1_rho_AC_numpy": 0.9999999999999998,
+        "coherence_L1_rho_AC_torch": 0.9999999999999998,
+        "concurrence_AC": 0.9999999999999994,
+        "log_negativity_AC": 0.9999999999999997,
+        "coherent_info_Ic_AC": 0.9999999999998502,
+        "mutual_info_IAB": -4.951594689828198e-14,
+        "mutual_info_IAC": 1.9999999999998501,
+        "routing_dominant": "A\u2192C",
+        "eigenvalues_rho_AC": [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999999999998
+        ],
+        "min_eigenvalue_rho_AC": 0.0
+      }
+    ],
+    "summary": {
+      "rank_changes": true,
+      "rank_values_seen": [
+        1,
+        2,
+        3
+      ],
+      "coherent_info_flip_relay": 0.7368421052631579,
+      "routing_flip_relay": 0.5263157894736842,
+      "max_coherence_relay": 1.0,
+      "max_coherence_value": 0.9999999999999998,
+      "coherence_peaks_near_flip": false,
+      "max_concurrence": 0.9999999999999994,
+      "max_log_negativity": 0.9999999999999997,
+      "numpy_torch_coherence_consistent": true,
+      "numpy_torch_max_coherence_diff": 0.0
+    }
+  },
+  "negative": {
+    "relay_0_Ic_negative": {
+      "relay": 0.0,
+      "Ic_AC": -1.0000000000000495,
+      "pass": true,
+      "description": "At relay=0, A entangled with B only: I_c(A\u2192C) < 0 expected"
+    },
+    "relay_1_Ic_positive": {
+      "relay": 1.0,
+      "Ic_AC": 0.9999999999998502,
+      "pass": true,
+      "description": "At relay=1, A entangled with C only: I_c(A\u2192C) > 0 expected"
+    },
+    "relay_0_routing_AB_dominant": {
+      "relay": 0.0,
+      "IAB": 1.9999999999998501,
+      "IAC": -4.951594689828198e-14,
+      "pass": true,
+      "description": "At relay=0, A\u2192B routing dominates"
+    },
+    "relay_1_routing_AC_dominant": {
+      "relay": 1.0,
+      "IAB": -4.951594689828198e-14,
+      "IAC": 1.9999999999998501,
+      "pass": true,
+      "description": "At relay=1, A\u2192C routing dominates"
+    },
+    "relay_0_lower_AC_coherence_than_relay_1": {
+      "coherence_relay_0": 0.0,
+      "coherence_relay_1": 0.9999999999999998,
+      "pass": true,
+      "description": "AC coherence increases with relay (routing toward C builds AC entanglement)"
+    }
+  },
+  "boundary": {
+    "flip_region_sweep": [
+      {
+        "relay": 0.68,
+        "rank_AC": 3,
+        "coherence_AC": 0.6799999999999999,
+        "Ic_AC": -0.05956482347956982,
+        "IAB": 0.313185165084795,
+        "IAC": 0.9404351765204302,
+        "routing": "A\u2192C",
+        "min_eigenvalue": 0.0
+      },
+      {
+        "relay": 0.7,
+        "rank_AC": 3,
+        "coherence_AC": 0.6999999999999998,
+        "Ic_AC": -0.014282587091994703,
+        "IAB": 0.2869334599109741,
+        "IAC": 0.9857174129080053,
+        "routing": "A\u2192C",
+        "min_eigenvalue": 0.0
+      },
+      {
+        "relay": 0.72,
+        "rank_AC": 3,
+        "coherence_AC": 0.7199999999999999,
+        "Ic_AC": 0.03245835064311864,
+        "IAB": 0.2615012596876203,
+        "IAC": 1.0324583506431186,
+        "routing": "A\u2192C",
+        "min_eigenvalue": -1.0576106723177917e-31
+      },
+      {
+        "relay": 0.737,
+        "rank_AC": 3,
+        "coherence_AC": 0.7369999999999999,
+        "Ic_AC": 0.0734079053472314,
+        "IAB": 0.24052839610342724,
+        "IAC": 1.0734079053472314,
+        "routing": "A\u2192C",
+        "min_eigenvalue": 0.0
+      },
+      {
+        "relay": 0.74,
+        "rank_AC": 3,
+        "coherence_AC": 0.7399999999999999,
+        "Ic_AC": 0.08075610448897907,
+        "IAB": 0.2368888924831436,
+        "IAC": 1.080756104488979,
+        "routing": "A\u2192C",
+        "min_eigenvalue": 0.0
+      },
+      {
+        "relay": 0.76,
+        "rank_AC": 3,
+        "coherence_AC": 0.7599999999999998,
+        "Ic_AC": 0.13072503433397287,
+        "IAB": 0.21309938993694422,
+        "IAC": 1.130725034333973,
+        "routing": "A\u2192C",
+        "min_eigenvalue": 0.0
+      }
+    ],
+    "min_eigenvalue_fine_scan": [
+      {
+        "relay": 0.7,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.705,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.71,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.715,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.72,
+        "min_eigenvalue": -1.0576106723177917e-31,
+        "rank": 3
+      },
+      {
+        "relay": 0.725,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.73,
+        "min_eigenvalue": -3.905700848106892e-30,
+        "rank": 3
+      },
+      {
+        "relay": 0.735,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.74,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.745,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.75,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.755,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.76,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7649999999999999,
+        "min_eigenvalue": -1.214873716408915e-31,
+        "rank": 3
+      },
+      {
+        "relay": 0.77,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7749999999999999,
+        "min_eigenvalue": -5.066913417031413e-30,
+        "rank": 3
+      },
+      {
+        "relay": 0.7799999999999999,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7849999999999999,
+        "min_eigenvalue": -5.391534303871685e-30,
+        "rank": 3
+      },
+      {
+        "relay": 0.7899999999999999,
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7949999999999999,
+        "min_eigenvalue": -5.7480180108358136e-30,
+        "rank": 3
+      }
+    ]
+  },
+  "clifford": {
+    "rotor_sweep": [
+      {
+        "relay": 0.0,
+        "e12_component": 0.0,
+        "e13_component": -0.7071067811865475,
+        "scalar_component": 0.7071067811865476,
+        "e12_activation_ratio": 0.0,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.05263157894736842,
+        "e12_component": -0.030403771662803312,
+        "e13_component": -0.6767030095237442,
+        "scalar_component": 0.735095424693177,
+        "e12_activation_ratio": 0.002014572532975745,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.10526315789473684,
+        "e12_component": -0.06301498289230463,
+        "e13_component": -0.6440917982942429,
+        "scalar_component": 0.7604777492283713,
+        "e12_activation_ratio": 0.009481016679514434,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.15789473684210525,
+        "e12_component": -0.09761086604847324,
+        "e13_component": -0.6094959151380742,
+        "scalar_component": 0.7830803677782163,
+        "e12_activation_ratio": 0.02500669892155438,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.21052631578947367,
+        "e12_component": -0.1339550961695886,
+        "e13_component": -0.5731516850169589,
+        "scalar_component": 0.8027488815392633,
+        "e12_activation_ratio": 0.05179429181986823,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.2631578947368421,
+        "e12_component": -0.17179940531135882,
+        "e13_component": -0.5353073758751887,
+        "scalar_component": 0.8193489346189132,
+        "e12_activation_ratio": 0.09338161471060034,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.3157894736842105,
+        "e12_component": -0.2108852784687211,
+        "e13_component": -0.4962215027178264,
+        "scalar_component": 0.8327671318224,
+        "e12_activation_ratio": 0.15298011226363822,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.3684210526315789,
+        "e12_component": -0.2509457194954566,
+        "e13_component": -0.4561610616910909,
+        "scalar_component": 0.842911813256951,
+        "e12_activation_ratio": 0.23232689503501092,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.42105263157894735,
+        "e12_component": -0.29170707495859993,
+        "e13_component": -0.41539970622794753,
+        "scalar_component": 0.8497136804617963,
+        "e12_activation_ratio": 0.3302660180034278,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.47368421052631576,
+        "e12_component": -0.3328909034688671,
+        "e13_component": -0.3742158777176804,
+        "scalar_component": 0.8531262697869243,
+        "e12_activation_ratio": 0.44175659172090204,
+        "e12_dominates": false
+      },
+      {
+        "relay": 0.5263157894736842,
+        "e12_component": -0.37421587771768033,
+        "e13_component": -0.3328909034688671,
+        "scalar_component": 0.8531262697869243,
+        "e12_activation_ratio": 0.558243408279098,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.5789473684210527,
+        "e12_component": -0.41539970622794753,
+        "e13_component": -0.29170707495859993,
+        "scalar_component": 0.8497136804617963,
+        "e12_activation_ratio": 0.6697339819965722,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.631578947368421,
+        "e12_component": -0.4561610616910909,
+        "e13_component": -0.25094571949545663,
+        "scalar_component": 0.842911813256951,
+        "e12_activation_ratio": 0.767673104964989,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.6842105263157895,
+        "e12_component": -0.4962215027178264,
+        "e13_component": -0.2108852784687211,
+        "scalar_component": 0.8327671318224,
+        "e12_activation_ratio": 0.8470198877363618,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.7368421052631579,
+        "e12_component": -0.5353073758751886,
+        "e13_component": -0.17179940531135884,
+        "scalar_component": 0.8193489346189132,
+        "e12_activation_ratio": 0.9066183852893996,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.7894736842105263,
+        "e12_component": -0.5731516850169589,
+        "e13_component": -0.1339550961695886,
+        "scalar_component": 0.8027488815392633,
+        "e12_activation_ratio": 0.9482057081801317,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.8421052631578947,
+        "e12_component": -0.6094959151380742,
+        "e13_component": -0.09761086604847327,
+        "scalar_component": 0.7830803677782163,
+        "e12_activation_ratio": 0.9749933010784456,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.8947368421052632,
+        "e12_component": -0.6440917982942429,
+        "e13_component": -0.06301498289230463,
+        "scalar_component": 0.7604777492283713,
+        "e12_activation_ratio": 0.9905189833204856,
+        "e12_dominates": true
+      },
+      {
+        "relay": 0.9473684210526315,
+        "e12_component": -0.6767030095237442,
+        "e13_component": -0.030403771662803343,
+        "scalar_component": 0.735095424693177,
+        "e12_activation_ratio": 0.9979854274670242,
+        "e12_dominates": true
+      },
+      {
+        "relay": 1.0,
+        "e12_component": -0.7071067811865475,
+        "e13_component": 0.0,
+        "scalar_component": 0.7071067811865476,
+        "e12_activation_ratio": 1.0,
+        "e12_dominates": true
+      }
+    ],
+    "e12_dominates_from_relay": 0.5263157894736842,
+    "e12_activation_crossover_relay": 0.5263157894736842,
+    "e12_activates_near_flip": false
+  },
+  "sympy": {
+    "rho_AC_symbolic": "Matrix([[1/2, 0, 0, r/2], [0, 0, 0, 0], [0, 0, 1/2 - r/2, 0], [r/2, 0, 0, r/2]])",
+    "eigenvalues_symbolic": [
+      {
+        "eigenvalue_expr": "r/4 - sqrt(5*r**2 - 2*r + 1)/4 + 1/4",
+        "multiplicity": 1
+      },
+      {
+        "eigenvalue_expr": "r/4 + sqrt(5*r**2 - 2*r + 1)/4 + 1/4",
+        "multiplicity": 1
+      },
+      {
+        "eigenvalue_expr": "0",
+        "multiplicity": 1
+      },
+      {
+        "eigenvalue_expr": "-(r - 1)/2",
+        "multiplicity": 1
+      }
+    ],
+    "numeric_eigenvalues_at_key_relays": [
+      {
+        "relay": 0.0,
+        "eigenvalues": [
+          0.0,
+          0.0,
+          0.5,
+          0.5
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 2
+      },
+      {
+        "relay": 0.1,
+        "eigenvalues": [
+          0.0,
+          0.044511388567677806,
+          0.45,
+          0.5054886114323223
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.2,
+        "eigenvalues": [
+          0.0,
+          0.07639320225002103,
+          0.4,
+          0.523606797749979
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.3,
+        "eigenvalues": [
+          0.0,
+          0.09451138856767781,
+          0.35,
+          0.5554886114323222
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.4,
+        "eigenvalues": [
+          0.0,
+          0.1,
+          0.3,
+          0.6
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.5,
+        "eigenvalues": [
+          0.0,
+          0.09549150281252629,
+          0.25,
+          0.6545084971874737
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.6,
+        "eigenvalues": [
+          0.0,
+          0.08377223398316207,
+          0.2,
+          0.7162277660168379
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7,
+        "eigenvalues": [
+          0.0,
+          0.06705447341809119,
+          0.15000000000000002,
+          0.7829455265819087
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.706,
+        "eigenvalues": [
+          0.0,
+          0.06592927184808804,
+          0.14700000000000002,
+          0.7870707281519119
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.7368,
+        "eigenvalues": [
+          0.0,
+          0.05996985690620803,
+          0.1316,
+          0.808430143093792
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.75,
+        "eigenvalues": [
+          0.0,
+          0.05732734185636128,
+          0.125,
+          0.8176726581436387
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.8,
+        "eigenvalues": [
+          0.0,
+          0.046887112585072534,
+          0.09999999999999998,
+          0.8531128874149274
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 0.9,
+        "eigenvalues": [
+          0.0,
+          0.02430609056700131,
+          0.04999999999999999,
+          0.9256939094329986
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 3
+      },
+      {
+        "relay": 1.0,
+        "eigenvalues": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "min_eigenvalue": 0.0,
+        "rank": 1
+      }
+    ],
+    "rank_drop_relay_approx": 0.1,
+    "rank_drop_min_eigenvalue": 0.0,
+    "eigenvalues_list_simplified": [
+      "r/4 - sqrt(5*r**2 - 2*r + 1)/4 + 1/4",
+      "r/4 + sqrt(5*r**2 - 2*r + 1)/4 + 1/4",
+      "0",
+      "1/2 - r/2"
+    ],
+    "analytic_2x2_block_eigenvalues": [
+      "r/4 - sqrt(5*r**2 - 2*r + 1)/4 + 1/4",
+      "r/4 + sqrt(5*r**2 - 2*r + 1)/4 + 1/4"
+    ],
+    "zero_crossing_relay_for_r/4 - sqrt(5*r**2 - 2*r + 1)/4": [
+      "0",
+      "1"
+    ],
+    "zero_crossing_relay_for_r/4 + sqrt(5*r**2 - 2*r + 1)/4": []
+  },
+  "z3": {
+    "proof_1_pure_sep_Ic_positive": {
+      "claim": "rho_AC cannot be pure AND separable when I_c(A\u2192C) > 0 (PPT violation)",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT: axioms (sep=>PPT) and (pure+Ic>0 => NOT PPT) contradict the assumption pure+sep+Ic>0. rho_AC must be entangled at the flip."
+    },
+    "proof_2_monogamy_both_high": {
+      "claim": "I_c(A\u2192B) > 0.6 AND I_c(A\u2192C) > 0.6 cannot hold simultaneously (monogamy, S_A<=1)",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT: monogamy bound prevents both coherent informations from being simultaneously high."
+    },
+    "proof_3_flip_in_unit_interval": {
+      "claim": "Flip relay cannot lie outside [0,1] given the mixture constraint",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT: relay in [0,1] AND relay outside [0,1] is contradictory by construction."
+    },
+    "all_proofs_unsat": true
+  },
+  "rustworkx": {
+    "equalization_relay_mutual_info": 0.5025125628140703,
+    "equalization_relay_coherent_info": 0.7085427135678392,
+    "equalization_near_canonical_flip": false,
+    "coherent_info_flip_near_canonical": true,
+    "routing_sample": [
+      {
+        "relay": 0.0,
+        "weight_AB": 1.9999999999998501,
+        "weight_AC": -4.951594689828198e-14,
+        "weight_diff_AB_minus_AC": 1.9999999999998996,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.05025125628140704,
+        "weight_AB": 1.7330186181755907,
+        "weight_AC": 0.03136668444185009,
+        "weight_diff_AB_minus_AC": 1.7016519337337406,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.10050251256281408,
+        "weight_AB": 1.5414696386226263,
+        "weight_AC": 0.07105725987968703,
+        "weight_diff_AB_minus_AC": 1.4704123787429393,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.1507537688442211,
+        "weight_AB": 1.3782855489061039,
+        "weight_AC": 0.11721180524724129,
+        "weight_diff_AB_minus_AC": 1.2610737436588626,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.20100502512562815,
+        "weight_AB": 1.233490414353298,
+        "weight_AC": 0.16910783218211511,
+        "weight_diff_AB_minus_AC": 1.064382582171183,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.25125628140703515,
+        "weight_AB": 1.1023888026476791,
+        "weight_AC": 0.2263869401699754,
+        "weight_diff_AB_minus_AC": 0.8760018624777037,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.3015075376884422,
+        "weight_AB": 0.9822544801258273,
+        "weight_AC": 0.2888836612881369,
+        "weight_diff_AB_minus_AC": 0.6933708188376904,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.35175879396984927,
+        "weight_AB": 0.8713223853917602,
+        "weight_AC": 0.3565614054672903,
+        "weight_diff_AB_minus_AC": 0.5147609799244699,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.4020100502512563,
+        "weight_AB": 0.7683726446721828,
+        "weight_AC": 0.429485639421485,
+        "weight_diff_AB_minus_AC": 0.3388870052506978,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.45226130653266333,
+        "weight_AB": 0.6725273715048237,
+        "weight_AC": 0.5078148794605999,
+        "weight_diff_AB_minus_AC": 0.16471249204422378,
+        "dominant_route": "A\u2192B",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.5025125628140703,
+        "weight_AB": 0.5831402397544745,
+        "weight_AC": 0.591803093760356,
+        "weight_diff_AB_minus_AC": -0.008662854005881515,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.5527638190954773,
+        "weight_AB": 0.49973228015346893,
+        "weight_AC": 0.6818120907671044,
+        "weight_diff_AB_minus_AC": -0.18207981061363543,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.6030150753768844,
+        "weight_AB": 0.4219533307123391,
+        "weight_AC": 0.7783355171351247,
+        "weight_diff_AB_minus_AC": -0.35638218642278563,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.6532663316582915,
+        "weight_AB": 0.34955935772531266,
+        "weight_AC": 0.8820394151627657,
+        "weight_diff_AB_minus_AC": -0.5324800574374531,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.7035175879396985,
+        "weight_AB": 0.28240109209745556,
+        "weight_AC": 0.9938298636168719,
+        "weight_diff_AB_minus_AC": -0.7114287715194163,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.7537688442211056,
+        "weight_AB": 0.22042264673503542,
+        "weight_AC": 1.114969926326606,
+        "weight_diff_AB_minus_AC": -0.8945472795915705,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.8040201005025126,
+        "weight_AB": 0.16367189885793443,
+        "weight_AC": 1.2472967347777222,
+        "weight_diff_AB_minus_AC": -1.0836248359197878,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.8542713567839196,
+        "weight_AB": 0.11232980505767776,
+        "weight_AC": 1.393671912495016,
+        "weight_diff_AB_minus_AC": -1.2813421074373383,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.9045226130653267,
+        "weight_AB": 0.06678044581964881,
+        "weight_AC": 1.5590975801324576,
+        "weight_diff_AB_minus_AC": -1.4923171343128088,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      },
+      {
+        "relay": 0.9547738693467337,
+        "weight_AB": 0.027802962590180114,
+        "weight_AC": 1.754553334984632,
+        "weight_diff_AB_minus_AC": -1.726750372394452,
+        "dominant_route": "A\u2192C",
+        "num_nodes": 3,
+        "num_edges": 2
+      }
+    ],
+    "total_relay_points": 200
+  }
+}

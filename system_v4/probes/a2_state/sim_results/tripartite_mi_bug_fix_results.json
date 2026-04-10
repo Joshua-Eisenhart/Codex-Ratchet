@@ -1,0 +1,221 @@
+{
+  "name": "tripartite_mi_bug_fix",
+  "description": "Investigates the claim that tMI=0 for GHZ and W states is a bug. Finding: both formulas (I3 and I(A:B)+I(A:C)-I(A:BC)) are algebraically identical and correctly return 0 for pure 3-qubit states. The negative quantity is S(A|BC) = -ln(2), not tMI.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "8x8 density matrix construction, partial_trace_3q (ket-first einsum), von Neumann entropy for all marginals of GHZ and W states."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that tMI(GHZ) > 0 is unsatisfiable given GHZ entropy constraints. Also proves tMI < 0 UNSAT. Confirms tMI(GHZ) = 0 is the only SAT assignment."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Algebraic proof that Formula A and Formula B are identical (difference = 0). Symbolic evaluation of tMI and S(A|BC) for GHZ using exact ln(2) values."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "tMI_GHZ_correct_nats": 0.0,
+    "tMI_W_correct_nats": 0.0,
+    "tMI_GHZ_correct_bits": 0.0,
+    "tMI_W_correct_bits": 0.0,
+    "GHZ_S_A_given_BC_nats": -0.69314718,
+    "W_S_A_given_BC_nats": -0.63651417,
+    "GHZ_S_A_given_BC_bits": -1.0,
+    "W_symmetry_passes": true,
+    "W_singles_equal": true,
+    "W_pairs_equal": true,
+    "compute_3q_metrics_is_buggy": false,
+    "bug_diagnosis": "NO BUG in compute_3q_metrics. The formula I3 = S(A)+S(B)+S(C)-S(AB)-S(BC)-S(AC)+S(ABC) is algebraically identical to I(A:B)+I(A:C)-I(A:BC). Both correctly return 0 for pure 3-qubit states (GHZ and W). The problem statement error was claiming I(A:B)=0 for GHZ when actually I(A:B)=ln(2) (GHZ has classical AB correlations). The genuine negative quantum signature is S(A|BC) = -ln(2) for GHZ, reported as -I_c in the existing code."
+  },
+  "positive": {
+    "GHZ": {
+      "marginals": {
+        "S_A": 0.69314718,
+        "S_B": 0.69314718,
+        "S_C": 0.69314718,
+        "S_AB": 0.69314718,
+        "S_BC": 0.69314718,
+        "S_AC": 0.69314718,
+        "S_ABC": 0.0
+      },
+      "tMI_formula_A": 0.0,
+      "tMI_formula_B_I_AB_plus_I_AC_minus_I_A_BC": 0.0,
+      "formulas_agree": true,
+      "both_are_zero": true,
+      "I_AB": 0.69314718,
+      "I_AC": 0.69314718,
+      "I_A_BC": 1.38629436,
+      "S_A_given_BC": -0.69314718,
+      "I_c_A_to_BC": 0.69314718,
+      "pass": true,
+      "note": "Both tMI formulas are algebraically identical and correctly return 0 for this pure state. The negative quantity is S(A|BC) = S(ABC)-S(BC)."
+    },
+    "W": {
+      "marginals": {
+        "S_A": 0.63651417,
+        "S_B": 0.63651417,
+        "S_C": 0.63651417,
+        "S_AB": 0.63651417,
+        "S_BC": 0.63651417,
+        "S_AC": 0.63651417,
+        "S_ABC": 0.0
+      },
+      "tMI_formula_A": 0.0,
+      "tMI_formula_B_I_AB_plus_I_AC_minus_I_A_BC": 0.0,
+      "formulas_agree": true,
+      "both_are_zero": true,
+      "I_AB": 0.63651417,
+      "I_AC": 0.63651417,
+      "I_A_BC": 1.27302834,
+      "S_A_given_BC": -0.63651417,
+      "I_c_A_to_BC": 0.63651417,
+      "pass": true,
+      "note": "Both tMI formulas are algebraically identical and correctly return 0 for this pure state. The negative quantity is S(A|BC) = S(ABC)-S(BC)."
+    },
+    "W_symmetry_diagnostic": {
+      "S_A": 0.63651417,
+      "S_B": 0.63651417,
+      "S_C": 0.63651417,
+      "S_AB": 0.63651417,
+      "S_BC": 0.63651417,
+      "S_AC": 0.63651417,
+      "singles_all_equal": true,
+      "pairs_all_equal": true,
+      "pass": true,
+      "note": "W is permutation-symmetric: all single-qubit and two-qubit entropies must be equal."
+    },
+    "P4_GHZ_conditional_entropy_negative": {
+      "S_A_given_BC_computed": -0.69314718,
+      "S_A_given_BC_theoretical_nats": -0.69314718,
+      "matches_theory": true,
+      "is_negative": true,
+      "pass": true,
+      "note": "GHZ S(A|BC) = S(ABC)-S(BC) = 0 - ln(2) = -ln(2). This is the correct negative quantity \u2014 NOT tMI. Equals -I_c(A->BC) by definition."
+    }
+  },
+  "negative": {
+    "N1_sympy_formulas_identical": {
+      "formula_A": "S_A - S_AB + S_ABC - S_AC + S_B - S_BC + S_C",
+      "formula_B_expanded": "S_A - S_AB + S_ABC - S_AC + S_B - S_BC + S_C",
+      "difference": "0",
+      "formulas_are_identical": true,
+      "tMI_GHZ_symbolic": "0",
+      "tMI_GHZ_equals_zero": true,
+      "S_A_given_BC_GHZ_symbolic": "-log(2)",
+      "S_A_given_BC_GHZ_equals_minus_ln2": true,
+      "pass": true,
+      "note": "sympy proves both tMI formulas are algebraically identical. For GHZ, both = 0 symbolically. S(A|BC) = -ln(2) symbolically for GHZ."
+    },
+    "N2_z3_ghz_tmi_proof": {
+      "tMI_gt_0_result": "unsat",
+      "tMI_gt_0_is_UNSAT": true,
+      "tMI_eq_0_result": "sat",
+      "tMI_eq_0_is_SAT": true,
+      "tMI_lt_0_result": "unsat",
+      "tMI_lt_0_is_UNSAT": true,
+      "pass": true,
+      "note": "z3 proves: tMI(GHZ) > 0 is UNSAT, tMI(GHZ) < 0 is UNSAT. tMI(GHZ) = 0 is the only consistent assignment given GHZ entropy values. The problem statement claim of negative tMI is refuted. The 'monogamous entanglement' signature lives in S(A|BC) = -ln(2), not tMI."
+    },
+    "N3_problem_statement_manual_calc_error": {
+      "claimed_I_AB_in_problem": 0.0,
+      "actual_I_AB_GHZ": 0.69314718,
+      "ln2": 0.69314718,
+      "problem_statement_error": true,
+      "explanation": "Problem statement claims I(A:B)=0 for GHZ because 'A and B are uncorrelated when C is not measured'. This is WRONG: rho_AB = (|00><00|+|11><11|)/2 is a classically correlated mixture with I(A:B) = ln(2) = 1 bit. The problem statement's tMI = 0+0-2*ln(2) = -2*ln(2) is wrong; the correct tMI = ln(2)+ln(2) - (ln(2)+ln(2)-0) = 0.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_compute_3q_metrics_audit": {
+      "function": "compute_3q_metrics in sim_rustworkx_3qubit_dag.py",
+      "formula_used": "I3 = S(A)+S(B)+S(C) - S(AB)-S(BC)-S(AC) + S(ABC)",
+      "returns_zero_for_ghz_and_w": true,
+      "is_this_a_bug": false,
+      "reason": "Formula I3 = S(A)+S(B)+S(C)-S(AB)-S(BC)-S(AC)+S(ABC) is ALGEBRAICALLY IDENTICAL to I(A:B)+I(A:C)-I(A:BC). Both equal 0 for any pure 3-qubit state where S(AB)=S(AC)=S(BC)=S(single) and S(ABC)=0. This is correct. The partial_trace_3q implementation uses CORRECT ket-first einsum ordering.",
+      "what_problem_statement_confused": "The problem confused I3 (= 0 for GHZ/W) with S(A|BC) = S(ABC)-S(BC) = -ln(2) for GHZ. The negative quantum quantity is the CONDITIONAL ENTROPY S(A|BC), which equals -I_c(A->BC). This IS reported correctly by compute_3q_metrics as the I_c field.",
+      "pass": true
+    },
+    "B2_I_c_distinguishes_GHZ_W": {
+      "GHZ_I_c_nats": 0.69314718,
+      "GHZ_I_c_bits": 1.0,
+      "W_I_c_nats": 0.63651417,
+      "W_I_c_bits": 0.91829583,
+      "GHZ_equals_1_bit": true,
+      "GHZ_gt_W": true,
+      "pass": true,
+      "note": "I_c(A->BC) = S(BC)-S(ABC) DOES distinguish GHZ from W. GHZ = 1 bit (maximum), W < 1 bit. This is the load-bearing separator, not tMI. compute_3q_metrics correctly reports I_c."
+    },
+    "B3_werner_mixed_tMI_nonzero": {
+      "Werner3_tMI_nats": -0.15035554,
+      "is_nonzero": true,
+      "pass": true,
+      "note": "For MIXED states, tMI can be non-zero. Werner3 demonstrates this. The zero result for pure GHZ/W is a pure-state property, not a bug."
+    }
+  },
+  "all_tests_passed": true,
+  "classification": "canonical"
+}

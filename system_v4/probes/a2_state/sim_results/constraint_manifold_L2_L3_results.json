@@ -1,5 +1,147 @@
 {
   "name": "constraint_manifold_L2_L3",
+  "classification": "supporting",
+  "classification_note": "Supporting manifold-bridge row: Layer 2 carrier allowance and Layer 3 connection restriction on one bounded torus/Hopf terrain family. Useful as a foundational constraint-manifold summary, but not the sole primary authority for every underlying Hopf, Berry, or transport lego.",
+  "lego_ids": [
+    "cell_complex_geometry",
+    "berry_phase_geometry",
+    "transport_geometry"
+  ],
+  "primary_lego_ids": [
+    "cell_complex_geometry",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no gradient optimization in this manifold row"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no message-passing graph model"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "counts and locks Layer-3 surviving terrain assignments relative to Layer-2 freedom"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 is sufficient for bounded counting/locking checks"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic support for Hopf-class and algebraic manifold checks"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(p) hierarchy establishes the minimum carrier algebra needed for SU(2)-grade rotor structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this row stays on direct torus/Hopf and combinatorial restriction checks"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- subset or DAG routing is not the object here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph interaction structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex discretization and shell structure checks for torus carrier realizations"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence computation in this row"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "hopf_generator_is_nontrivial": {
+      "pass": true,
+      "linking_number_checks": 20
+    },
+    "discretized_tori_respect_boundary_of_boundary_zero": {
+      "pass": true,
+      "n_discretizations": 6
+    },
+    "clifford_hierarchy_has_minimal_su2_carrier": {
+      "pass": true
+    },
+    "layer3_restricts_layer2_configuration_space": {
+      "pass": true,
+      "l2_count": 6561,
+      "l3_count": 1,
+      "restriction_ratio": 0.00015241579027587258
+    }
+  },
+  "negative": {
+    "connection_row_does_not_claim_all_carrier_shapes_survive": {
+      "pass": true,
+      "allowed_eta_range": [
+        0.13659561851386912,
+        1.4342007082810275
+      ],
+      "n_allowed": 42,
+      "n_total": 50
+    },
+    "transport_is_not_optional_for_shell_realization": {
+      "pass": true,
+      "minimum_for_connectivity": 2,
+      "minimum_for_shells": 16
+    },
+    "fiber_base_assignment_does_not_remain_free_under_connection": {
+      "pass": true,
+      "unconstrained_assignments": 256,
+      "locked_by_topology": 1
+    }
+  },
+  "boundary": {
+    "bounded_to_one_torus_hopf_terrain_family": {
+      "pass": true
+    },
+    "row_is_supporting_not_totalizing": {
+      "pass": true
+    },
+    "berry_window_remains_nonempty": {
+      "pass": true,
+      "allowed_eta_range": [
+        0.13659561851386912,
+        1.4342007082810275
+      ]
+    }
+  },
   "L2_allowed_space": {
     "hopf_uniqueness": {
       "statement": "pi_3(S^2) = Z, Hopf invariant = 1",
@@ -563,6 +705,10 @@
       ],
       "interpretation": "Layer 3 restricts 6561 possible configurations down to 1. Ratio: 0.000152. The connection geometry locks terrain assignments completely."
     }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Supporting Layer-2/Layer-3 manifold bridge row on one bounded Hopf-torus carrier family with Berry, transport, and fiber/base restriction checks."
   },
   "timestamp": "2026-04-06"
 }

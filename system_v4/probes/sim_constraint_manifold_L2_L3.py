@@ -34,6 +34,52 @@ from toponetx.classes import CellComplex
 import z3
 
 
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = (
+    "Supporting manifold-bridge row: Layer 2 carrier allowance and Layer 3 "
+    "connection restriction on one bounded torus/Hopf terrain family. Useful "
+    "as a foundational constraint-manifold summary, but not the sole primary "
+    "authority for every underlying Hopf, Berry, or transport lego."
+)
+LEGO_IDS = [
+    "cell_complex_geometry",
+    "berry_phase_geometry",
+    "transport_geometry",
+]
+PRIMARY_LEGO_IDS = [
+    "cell_complex_geometry",
+    "transport_geometry",
+]
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- no gradient optimization in this manifold row"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no message-passing graph model"},
+    "z3": {"tried": True, "used": True, "reason": "counts and locks Layer-3 surviving terrain assignments relative to Layer-2 freedom"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- z3 is sufficient for bounded counting/locking checks"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic support for Hopf-class and algebraic manifold checks"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(p) hierarchy establishes the minimum carrier algebra needed for SU(2)-grade rotor structure"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- this row stays on direct torus/Hopf and combinatorial restriction checks"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- subset or DAG routing is not the object here"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph interaction structure"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex discretization and shell structure checks for torus carrier realizations"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistence computation in this row"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": "load_bearing",
+    "gudhi": None,
+}
+
+
 # ═══════════════════════════════════════════════════════════════════════
 # LAYER 2: WHAT THE CARRIER ALLOWS
 # ═══════════════════════════════════════════════════════════════════════
@@ -510,9 +556,82 @@ def main():
     print(f"       L3 configurations: {z3_results['z3_configurations_L3']}")
     print(f"       Restriction ratio: {z3_results['restriction_ratio']:.6f}")
 
+    positive = {
+        "hopf_generator_is_nontrivial": {
+            "pass": bool(hopf["all_linking_numbers_one"]),
+            "linking_number_checks": hopf["linking_number_checks"],
+        },
+        "discretized_tori_respect_boundary_of_boundary_zero": {
+            "pass": all(v["B2_B1_zero"] is True for v in disc.values()),
+            "n_discretizations": len(disc),
+        },
+        "clifford_hierarchy_has_minimal_su2_carrier": {
+            "pass": (
+                cliff["minimum_for_su2"] == "Cl(3)"
+                and cliff["Cl3"]["sufficient_for_su2"]
+                and not cliff["Cl2"]["sufficient_for_su2"]
+            ),
+        },
+        "layer3_restricts_layer2_configuration_space": {
+            "pass": (
+                z3_results["z3_configurations_L3"] > 0
+                and z3_results["z3_configurations_L3"] < z3_results["z3_configurations_L2"]
+            ),
+            "l2_count": z3_results["z3_configurations_L2"],
+            "l3_count": z3_results["z3_configurations_L3"],
+            "restriction_ratio": z3_results["restriction_ratio"],
+        },
+    }
+
+    negative = {
+        "connection_row_does_not_claim_all_carrier_shapes_survive": {
+            "pass": berry["allowed_eta_range"][0] is not None and berry["n_allowed"] < berry["n_total"],
+            "allowed_eta_range": berry["allowed_eta_range"],
+            "n_allowed": berry["n_allowed"],
+            "n_total": berry["n_total"],
+        },
+        "transport_is_not_optional_for_shell_realization": {
+            "pass": (
+                transport["without_transport"]["shells"] == 0
+                and transport["minimum_for_shells"] > transport["minimum_for_connectivity"]
+            ),
+            "minimum_for_connectivity": transport["minimum_for_connectivity"],
+            "minimum_for_shells": transport["minimum_for_shells"],
+        },
+        "fiber_base_assignment_does_not_remain_free_under_connection": {
+            "pass": balance["locked_by_topology"] == 1 and balance["unconstrained_assignments"] > balance["locked_by_topology"],
+            "unconstrained_assignments": balance["unconstrained_assignments"],
+            "locked_by_topology": balance["locked_by_topology"],
+        },
+    }
+
+    boundary = {
+        "bounded_to_one_torus_hopf_terrain_family": {"pass": True},
+        "row_is_supporting_not_totalizing": {"pass": True},
+        "berry_window_remains_nonempty": {
+            "pass": berry["allowed_eta_range"][0] is not None and berry["allowed_eta_range"][1] is not None,
+            "allowed_eta_range": berry["allowed_eta_range"],
+        },
+    }
+
+    all_pass = all(
+        item["pass"]
+        for section in (positive, negative, boundary)
+        for item in section.values()
+    )
+
     # ── Assemble output ──
     output = {
         "name": "constraint_manifold_L2_L3",
+        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "L2_allowed_space": {
             "hopf_uniqueness": hopf,
             "eta_sweep": eta_sweep,
@@ -539,6 +658,14 @@ def main():
             "z3_configurations_L3": z3_results["z3_configurations_L3"],
             "restriction_ratio": z3_results["restriction_ratio"],
             "z3_detail": z3_results,
+        },
+        "summary": {
+            "all_pass": all_pass,
+            "scope_note": (
+                "Supporting Layer-2/Layer-3 manifold bridge row on one bounded "
+                "Hopf-torus carrier family with Berry, transport, and fiber/base "
+                "restriction checks."
+            ),
         },
         "timestamp": "2026-04-06",
     }

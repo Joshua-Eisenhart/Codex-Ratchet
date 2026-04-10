@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-10T04:30:18.955812+00:00",
-  "lane_id": "source_dirty__build_contract__build_contract",
+  "generated_at": "2026-04-10T04:32:08.345261+00:00",
+  "lane_id": "source_dirty__docs_and_specs__docs_and_specs",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "default_prefer_probe_source_skip_docs",
+  "selection_mode": "default_docs_blocked_requires_opt_in",
   "allow_docs": false,
-  "docs_opt_in_required": false,
+  "docs_opt_in_required": true,
   "code_only_fallback": {
     "group_id": "probe_source__sim_family_local",
     "file_count": 1,
@@ -16,32 +16,33 @@
   },
   "code_only_fallback_group_id": "probe_source__sim_family_local",
   "active_actionable_lane": {
-    "group_id": "build_contract__build_contract",
+    "group_id": "probe_source__sim_family_local",
     "file_count": 1,
-    "safe_next_action": "checkpoint",
-    "selection_mode": "default_prefer_probe_source_skip_docs",
-    "source_path": "Makefile",
-    "result_path": null
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required",
+    "source_path": "system_v4/probes/sim_local_operator_action.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
   },
-  "selected_group_id": "build_contract__build_contract",
-  "file_count": 1,
+  "selected_group_id": "docs_and_specs__docs_and_specs",
+  "file_count": 3,
   "safe_next_action": "checkpoint",
   "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
   "summary": {
-    "selected_group_id": "build_contract__build_contract",
-    "file_count": 1,
+    "selected_group_id": "docs_and_specs__docs_and_specs",
+    "file_count": 3,
     "safe_next_action": "checkpoint",
-    "docs_opt_in_required": false,
+    "docs_opt_in_required": true,
     "code_only_fallback_group_id": "probe_source__sim_family_local",
-    "active_actionable_lane_group_id": "build_contract__build_contract",
-    "executable_lane_group_id": "build_contract__build_contract",
+    "active_actionable_lane_group_id": "probe_source__sim_family_local",
+    "executable_lane_group_id": "probe_source__sim_family_local",
     "ok": true
   },
   "lane": {
-    "group_id": "build_contract__build_contract",
-    "display_name": "Build and dependency contract",
-    "bucket": "build_contract",
-    "notes": "Core build/runtime contract files should be checkpointed together.",
+    "group_id": "docs_and_specs__docs_and_specs",
+    "display_name": "Docs and specs",
+    "bucket": "docs_and_specs",
+    "notes": "Docs/specs are bounded and can be checkpointed separately.",
     "blocking_reason": "bounded_human_checkpoint",
     "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
     "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
@@ -51,9 +52,11 @@
     ],
     "result_companions": [],
     "required_git_paths_clean": [
-      "Makefile"
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
     ],
-    "docs_opt_in_required": false,
+    "docs_opt_in_required": true,
     "code_only_fallback": {
       "group_id": "probe_source__sim_family_local",
       "file_count": 1,
@@ -64,25 +67,31 @@
       "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
     },
     "active_actionable_lane": {
-      "group_id": "build_contract__build_contract",
+      "group_id": "probe_source__sim_family_local",
       "file_count": 1,
-      "safe_next_action": "checkpoint",
-      "selection_mode": "default_prefer_probe_source_skip_docs",
-      "source_path": "Makefile",
-      "result_path": null
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_local_operator_action.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
     },
     "files": [
-      "Makefile"
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
     ]
   },
   "executable_lane": {
-    "group_id": "build_contract__build_contract",
+    "group_id": "probe_source__sim_family_local",
     "files": [
-      "Makefile"
+      "system_v4/probes/sim_local_operator_action.py"
     ],
-    "result_companions": [],
+    "result_companions": [
+      "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
+    ],
     "required_git_paths_clean": [
-      "Makefile"
+      "system_v4/probes/sim_local_operator_action.py",
+      "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
     ],
     "goal": "Execute the currently actionable bounded lane without widening scope.",
     "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."

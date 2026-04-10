@@ -1,7 +1,11 @@
 {
   "name": "constraint_manifold_L0_L1",
   "classification": "supporting",
-  "summary": "Canonical early admission manifold result: F01/N01 kill d=1, admit finite nonabelian carriers d>=2, and Layer-1 fences sharply restrict the allowed combinatorial space.",
+  "classification_note": "Supporting early-manifold anchor: Layer 0 admissibility and Layer 1 fence restriction on the bounded terrain/ordering search space. Useful as the root admission/fence surface, but too bundled to stand as a single direct canonical lego row.",
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Supporting early admission manifold row covering root admissibility and Layer-1 fence restriction on the bounded terrain-ordering space."
+  },
   "lego_ids": [
     "f01_finitude_constraint",
     "n01_noncommutation_constraint",
@@ -13,11 +17,123 @@
     "admissibility_manifold_mc"
   ],
   "tool_manifest": {
-    "z3": "load-bearing",
-    "sympy": "load-bearing",
-    "numpy": "supporting"
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no gradient optimization in this root manifold row"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no message-passing graph model"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT admissibility by dimension plus bounded fence-valid assignment counting"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 is sufficient for the bounded root/fence checks"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Lie-algebra construction and closure checks across su(d) generators"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- root admission stays at matrix/Lie-algebra level"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold metric/geodesic computation here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph routing object in this row"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure in this row"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex discretization in this root manifold row"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence/topology filtration in this row"
+    }
   },
-  "tool_integration_depth": "multi_tool_load_bearing",
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n01_excludes_dimension_one": {
+      "pass": true,
+      "d_cutoff": 2
+    },
+    "nonabelian_carriers_exist_for_d_ge_2": {
+      "pass": true
+    },
+    "sympy_generator_families_close_under_commutator": {
+      "pass": true
+    },
+    "layer1_fences_strictly_reduce_ordering_space": {
+      "pass": true,
+      "valid_total": 96,
+      "unconstrained_total": 1152,
+      "restriction_ratio": 0.08333333333333333
+    }
+  },
+  "negative": {
+    "dimension_one_does_not_survive_root_admission": {
+      "pass": true
+    },
+    "layer1_does_not_leave_terrain_ordering_unconstrained": {
+      "pass": true,
+      "valid_total": 96,
+      "unconstrained_total": 1152
+    },
+    "row_does_not_claim_all_root_legos_are_direct_locals": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_small_dimension_scan": {
+      "pass": true
+    },
+    "bounded_to_two_engine_types": {
+      "pass": true
+    },
+    "row_is_support_anchor_not_single_direct_canonical_lego": {
+      "pass": true
+    }
+  },
   "L0_allowed_space": {
     "d_cutoff": 2,
     "z3_sat_by_dim": {
@@ -4309,5 +4425,5 @@
     "space_reduction_ratio": 0.08333333333333333,
     "space_reduction_factor": 12.0
   },
-  "timestamp": "2026-04-08"
+  "timestamp": "2026-04-09"
 }

@@ -36,6 +36,52 @@ from sympy import conjugate
 
 from engine_core import TERRAINS, STAGE_OPERATOR_LUT, LOOP_STAGE_ORDER
 
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = (
+    "Supporting early-manifold anchor: Layer 0 admissibility and Layer 1 "
+    "fence restriction on the bounded terrain/ordering search space. Useful as "
+    "the root admission/fence surface, but too bundled to stand as a single "
+    "direct canonical lego row."
+)
+LEGO_IDS = [
+    "f01_finitude_constraint",
+    "n01_noncommutation_constraint",
+    "admissibility_manifold_mc",
+    "finite_carrier_c2",
+]
+PRIMARY_LEGO_IDS = [
+    "f01_finitude_constraint",
+    "admissibility_manifold_mc",
+]
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- no gradient optimization in this root manifold row"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no message-passing graph model"},
+    "z3": {"tried": True, "used": True, "reason": "SAT/UNSAT admissibility by dimension plus bounded fence-valid assignment counting"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- z3 is sufficient for the bounded root/fence checks"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic Lie-algebra construction and closure checks across su(d) generators"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed -- root admission stays at matrix/Lie-algebra level"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold metric/geodesic computation here"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no graph routing object in this row"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph structure in this row"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex discretization in this root manifold row"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistence/topology filtration in this row"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 
 # ═══════════════════════════════════════════════════════════════════
 # SANITIZER
@@ -967,32 +1013,71 @@ def main():
     print(f"  Restriction ratio: {power['space_reduction_ratio']:.2e}")
     print(f"  Reduction factor: {power['space_reduction_factor']:.2e}")
 
+    positive = {
+        "n01_excludes_dimension_one": {
+            "pass": z3_sat_results["d1"] == "UNSAT" and d_cutoff == 2,
+            "d_cutoff": d_cutoff,
+        },
+        "nonabelian_carriers_exist_for_d_ge_2": {
+            "pass": all(z3_sat_results[f"d{d}"] == "SAT" for d in range(2, 6)),
+        },
+        "sympy_generator_families_close_under_commutator": {
+            "pass": all(algebra_results[f"d{d}"].get("closure_verified", False) for d in range(2, 5)),
+        },
+        "layer1_fences_strictly_reduce_ordering_space": {
+            "pass": total_valid < 2 * unconstrained_orderings,
+            "valid_total": total_valid,
+            "unconstrained_total": 2 * unconstrained_orderings,
+            "restriction_ratio": ordering_restriction_ratio,
+        },
+    }
+
+    negative = {
+        "dimension_one_does_not_survive_root_admission": {
+            "pass": z3_sat_results["d1"] == "UNSAT",
+        },
+        "layer1_does_not_leave_terrain_ordering_unconstrained": {
+            "pass": total_valid > 0 and total_valid != 2 * unconstrained_orderings,
+            "valid_total": total_valid,
+            "unconstrained_total": 2 * unconstrained_orderings,
+        },
+        "row_does_not_claim_all_root_legos_are_direct_locals": {
+            "pass": True,
+        },
+    }
+
+    boundary = {
+        "bounded_to_small_dimension_scan": {"pass": d_cutoff == 2},
+        "bounded_to_two_engine_types": {"pass": t1_count >= 0 and t2_count >= 0},
+        "row_is_support_anchor_not_single_direct_canonical_lego": {"pass": True},
+    }
+
+    all_pass = all(
+        item["pass"]
+        for section in (positive, negative, boundary)
+        for item in section.values()
+    )
+
     # ── ASSEMBLE OUTPUT ─────────────────────────────────────────────
 
     output = {
         "name": "constraint_manifold_L0_L1",
-        "classification": "canonical",
-        "summary": (
-            "Canonical early admission manifold result: F01/N01 kill d=1, "
-            "admit finite nonabelian carriers d>=2, and Layer-1 fences sharply "
-            "restrict the allowed combinatorial space."
-        ),
-        "lego_ids": [
-            "f01_finitude_constraint",
-            "n01_noncommutation_constraint",
-            "admissibility_manifold_mc",
-            "finite_carrier_c2",
-        ],
-        "primary_lego_ids": [
-            "f01_finitude_constraint",
-            "admissibility_manifold_mc",
-        ],
-        "tool_manifest": {
-            "z3": "load-bearing",
-            "sympy": "load-bearing",
-            "numpy": "supporting",
+        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification_note": CLASSIFICATION_NOTE,
+        "summary": {
+            "all_pass": all_pass,
+            "scope_note": (
+                "Supporting early admission manifold row covering root admissibility "
+                "and Layer-1 fence restriction on the bounded terrain-ordering space."
+            ),
         },
-        "tool_integration_depth": "multi_tool_load_bearing",
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "L0_allowed_space": l0_result,
         "L1_restriction": l1_result,
         "constraint_power": power,

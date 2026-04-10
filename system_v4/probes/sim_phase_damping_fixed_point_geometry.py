@@ -39,6 +39,7 @@ Tools:
 import json
 import math
 import os
+from datetime import UTC, datetime
 import numpy as np
 
 # =====================================================================
@@ -47,17 +48,17 @@ import numpy as np
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
-    "pyg":       {"tried": False, "used": False, "reason": ""},
+    "pyg":       {"tried": False, "used": False, "reason": "not attempted; not applicable to this sim family"},
     "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
+    "cvc5":      {"tried": False, "used": False, "reason": "not attempted; z3 is sufficient for the required SAT/UNSAT checks"},
     "sympy":     {"tried": False, "used": False, "reason": ""},
     "clifford":  {"tried": False, "used": False, "reason": ""},
     "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "e3nn":      {"tried": False, "used": False, "reason": "not attempted; no equivariant network layer is part of this fixed-point geometry row"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not attempted; no graph-routing or DAG structure is needed here"},
     "xgi":       {"tried": False, "used": False, "reason": ""},
-    "toponetx":  {"tried": False, "used": False, "reason": ""},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "toponetx":  {"tried": False, "used": False, "reason": "not attempted; no cell-complex object is needed for this row"},
+    "gudhi":     {"tried": False, "used": False, "reason": "not attempted; no persistent-homology computation is part of this row"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -74,6 +75,20 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx":  None,
     "gudhi":     None,
 }
+
+CLASSIFICATION_NOTE = (
+    "Canonical bounded coupling row for the phase-damping fixed-point manifold: "
+    "it ties a dissipative channel family to a geometric fixed set and isolates "
+    "its Hopf-compatible pure-state intersection without broadening into general "
+    "carrier or channel taxonomy claims."
+)
+LEGO_IDS = [
+    "transport_geometry",
+    "channel_cptp_map",
+]
+PRIMARY_LEGO_IDS = [
+    "transport_geometry",
+]
 
 # --- Tool imports ---
 
@@ -907,12 +922,16 @@ if __name__ == "__main__":
     results = {
         "name": "sim_phase_damping_fixed_point_geometry",
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
         "summary": summary,
+        "timestamp": datetime.now(UTC).isoformat(),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

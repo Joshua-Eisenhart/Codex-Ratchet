@@ -1,6 +1,14 @@
 {
   "name": "sim_phase_damping_fixed_point_geometry",
   "classification": "canonical",
+  "classification_note": "Canonical bounded coupling row for the phase-damping fixed-point manifold: it ties a dissipative channel family to a geometric fixed set and isolates its Hopf-compatible pure-state intersection without broadening into general carrier or channel taxonomy claims.",
+  "lego_ids": [
+    "transport_geometry",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "transport_geometry"
+  ],
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -20,7 +28,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not attempted; z3 is sufficient for the required SAT/UNSAT checks"
     },
     "sympy": {
       "tried": true,
@@ -40,12 +48,12 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not attempted; no equivariant network layer is part of this fixed-point geometry row"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not attempted; no graph-routing or DAG structure is needed here"
     },
     "xgi": {
       "tried": true,
@@ -55,12 +63,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not attempted; no cell-complex object is needed for this row"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not attempted; no persistent-homology computation is part of this row"
     }
   },
   "tool_integration_depth": {
@@ -616,5 +624,6 @@
       ]
     },
     "sympy_analytic_proof": true
-  }
+  },
+  "timestamp": "2026-04-10T06:01:32.376511+00:00"
 }

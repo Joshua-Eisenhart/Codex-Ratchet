@@ -1,0 +1,151 @@
+{
+  "name": "hilbert_schmidt_flatness_rejection",
+  "classification": "canonical",
+  "classification_note": "Canonical local falsifier showing that Hilbert-Schmidt distance can flatten distinct state-pair geometry that Bures distance still separates, so Hilbert-Schmidt should not be the sole geometry.",
+  "lego_ids": [
+    "hilbert_schmidt_flatness_rejection"
+  ],
+  "primary_lego_ids": [
+    "hilbert_schmidt_flatness_rejection"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "hilbert_schmidt_is_zero_on_identical_pair": {
+      "value": 0.0,
+      "pass": true
+    },
+    "hilbert_schmidt_can_flatten_distinct_pair_geometry": {
+      "witness": {
+        "pair_a": [
+          "zero",
+          "diag_82"
+        ],
+        "pair_b": [
+          "diag_64",
+          "diag_82"
+        ],
+        "hs_a": 0.282842712474619,
+        "hs_b": 0.28284271247461906,
+        "bures_a": 0.4595058410947224,
+        "bures_b": 0.22062168750070768,
+        "hs_gap": 5.551115123125783e-17,
+        "bures_gap": 0.23888415359401474
+      },
+      "pass": true
+    },
+    "bures_still_separates_the_flattened_pairs": {
+      "witness": {
+        "pair_a": [
+          "zero",
+          "diag_82"
+        ],
+        "pair_b": [
+          "diag_64",
+          "diag_82"
+        ],
+        "hs_a": 0.282842712474619,
+        "hs_b": 0.28284271247461906,
+        "bures_a": 0.4595058410947224,
+        "bures_b": 0.22062168750070768,
+        "hs_gap": 5.551115123125783e-17,
+        "bures_gap": 0.23888415359401474
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "row_does_not_claim_hilbert_schmidt_is_useless_everywhere": {
+      "pass": true
+    },
+    "row_does_not_collapse_to_bures_geometry_itself": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "comparison_uses_one_bounded_local_state_family": {
+      "pass": true
+    },
+    "all_reported_distances_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local falsifier showing that near-equal Hilbert-Schmidt separation can still hide distinct Bures geometry on the same bounded state family."
+  }
+}

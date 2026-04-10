@@ -1,12 +1,11 @@
 {
-  "generated_at": "2026-04-10T05:16:55.511966+00:00",
+  "generated_at": "2026-04-10T05:22:00.449502+00:00",
   "blocker_count": 0,
-  "advisory_count": 2,
-  "repair_candidate_count": 2,
+  "advisory_count": 0,
+  "repair_candidate_count": 0,
   "agent_state_surface": {
     "present_dirs": [
-      ".agent",
-      ".agents"
+      ".agent"
     ],
     "roles": {
       ".agent": {
@@ -90,35 +89,15 @@
           ".agent/templates/CLAUDE_HANDOFF_TEMPLATE.md",
           ".agent/templates/CLAUDE_REVIEW_TEMPLATE.md"
         ]
-      },
-      ".agents": {
-        "role": "agent_skill_bundle",
-        "file_count": 135,
-        "sample_entries": [
-          ".agents/.DS_Store",
-          ".agents/skills",
-          ".agents/skills/.DS_Store",
-          ".agents/skills/codex-autoresearch",
-          ".agents/skills/codex-autoresearch.pre-upgrade-20260329-201345"
-        ]
       }
     },
-    "ok": false
+    "ok": true
   },
   "codex_runtime_surface": {
     "present_dirs": [
-      ".codex_bg_home",
       ".codex_runtime_home"
     ],
     "roles": {
-      ".codex_bg_home": {
-        "role": "background_bootstrap_home",
-        "file_count": 1241,
-        "latest_session": ".codex_bg_home/sessions/2026/03/29/rollout-2026-03-29T14-49-23-019d3b92-b2f6-76f1-aed0-f17819159eb0.jsonl",
-        "has_automations": false,
-        "has_auth": true,
-        "has_config": true
-      },
       ".codex_runtime_home": {
         "role": "active_runtime_home",
         "file_count": 1246,
@@ -129,72 +108,18 @@
       }
     },
     "sqlite_comparison": {
-      "logs_equal": false,
-      "state_equal": false
+      "logs_equal": null,
+      "state_equal": null
     },
-    "ok": false
+    "ok": true
   },
   "git_status": [],
   "summary": {
     "blocker_count": 0,
-    "advisory_count": 2,
-    "repair_candidate_count": 2,
-    "ok": false
+    "advisory_count": 0,
+    "repair_candidate_count": 0,
+    "ok": true
   },
-  "advisories": [
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "severity": "advisory",
-      "present_dirs": [
-        ".agent",
-        ".agents"
-      ],
-      "role_map": {
-        ".agent": "repo_local_agent_state",
-        ".agents": "agent_skill_bundle"
-      }
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "severity": "advisory",
-      "present_dirs": [
-        ".codex_bg_home",
-        ".codex_runtime_home"
-      ],
-      "role_map": {
-        ".codex_bg_home": "background_bootstrap_home",
-        ".codex_runtime_home": "active_runtime_home"
-      },
-      "sqlite_comparison": {
-        "logs_equal": false,
-        "state_equal": false
-      }
-    }
-  ],
-  "repair_candidates": [
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Keep .agent as repo-local handoff/state surface and .agents as skill bundle unless you explicitly consolidate them.",
-      "owner_map": {
-        ".agent": "repo_local_agent_state",
-        ".agents": "agent_skill_bundle"
-      }
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Treat .codex_runtime_home as the active runtime home and .codex_bg_home as older background/bootstrap state unless you deliberately merge histories.",
-      "owner_map": {
-        ".codex_bg_home": "background_bootstrap_home",
-        ".codex_runtime_home": "active_runtime_home"
-      },
-      "sqlite_comparison": {
-        "logs_equal": false,
-        "state_equal": false
-      }
-    }
-  ]
+  "advisories": [],
+  "repair_candidates": []
 }

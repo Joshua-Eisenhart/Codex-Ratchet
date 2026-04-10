@@ -1,48 +1,39 @@
 {
-  "generated_at": "2026-04-10T05:16:51.350432+00:00",
+  "generated_at": "2026-04-10T05:21:55.673026+00:00",
   "strict": false,
-  "blocker_count": 1,
-  "advisory_count": 8,
-  "repair_candidate_count": 3,
-  "source_dirty_count": 1,
-  "generated_dirty_count": 15,
-  "dirty_worktree_count": 16,
+  "blocker_count": 0,
+  "advisory_count": 6,
+  "repair_candidate_count": 0,
+  "source_dirty_count": 0,
+  "generated_dirty_count": 14,
+  "dirty_worktree_count": 14,
   "git": {
     "ok": true,
-    "tracked_dirty_count": 16,
+    "tracked_dirty_count": 14,
     "untracked_count": 0,
-    "source_dirty_count": 1,
-    "generated_dirty_count": 15,
-    "total_dirty_count": 16,
+    "source_dirty_count": 0,
+    "generated_dirty_count": 14,
+    "total_dirty_count": 14,
     "status_class_counts": {
-      "modified": 16
+      "modified": 14
     },
-    "dirty_source_buckets": [
-      {
-        "label": "probe_source",
-        "count": 1
-      }
-    ],
+    "dirty_source_buckets": [],
     "dirty_generated_buckets": [
       {
         "label": "generated_artifacts",
-        "count": 15
+        "count": 14
       }
     ],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 15
-      },
-      {
-        "prefix": "obsidian_vault",
-        "count": 1
+        "count": 14
       }
     ]
   },
   "branch_divergence": {
     "behind_count": 0,
-    "ahead_count": 16
+    "ahead_count": 17
   },
   "recent_checkpoint_scope_findings": [
     {
@@ -74,11 +65,9 @@
   "primary_result_dir": "system_v4/probes/a2_state/sim_results",
   "secondary_result_dir": "system_v4/probes/sim_results",
   "agent_state_dirs": [
-    ".agent",
-    ".agents"
+    ".agent"
   ],
   "codex_runtime_dirs": [
-    ".codex_bg_home",
     ".codex_runtime_home"
   ],
   "path_class_counts": {
@@ -104,49 +93,27 @@
     }
   },
   "summary": {
-    "blocker_count": 1,
-    "advisory_count": 8,
-    "repair_candidate_count": 3,
+    "blocker_count": 0,
+    "advisory_count": 6,
+    "repair_candidate_count": 0,
     "primary_result_count": 765,
     "secondary_result_count": 0,
     "secondary_unique_result_count": 0,
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 1,
-    "generated_dirty_count": 15,
-    "dirty_worktree_count": 16,
-    "dirty_source_bucket_count": 1,
-    "ok": false
+    "source_dirty_count": 0,
+    "generated_dirty_count": 14,
+    "dirty_worktree_count": 14,
+    "dirty_source_bucket_count": 0,
+    "ok": true
   },
-  "blockers": [
-    {
-      "kind": "dirty_source_pressure",
-      "severity": "medium",
-      "source_dirty_count": 1,
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 1
-        }
-      ],
-      "top_dirty_prefixes": [
-        {
-          "prefix": "system_v4",
-          "count": 15
-        },
-        {
-          "prefix": "obsidian_vault",
-          "count": 1
-        }
-      ]
-    }
-  ],
+  "blockers": [],
   "advisories": [
     {
       "kind": "local_commit_stack_depth",
       "severity": "advisory",
-      "ahead_count": 16,
+      "ahead_count": 17,
       "recommended_push_threshold": 5
     },
     {
@@ -169,22 +136,6 @@
         "system_v4/probes/a2_state/sim_results/foundation_pauli_bloch_backprop_results.json",
         "system_v4/probes/a2_state/sim_results/gnn_cascade_integrated_results.json",
         "system_v4/probes/a2_state/sim_results/layer_stacking_coexistence_results.json"
-      ]
-    },
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "severity": "advisory",
-      "present_dirs": [
-        ".agent",
-        ".agents"
-      ]
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "severity": "advisory",
-      "present_dirs": [
-        ".codex_bg_home",
-        ".codex_runtime_home"
       ]
     },
     {
@@ -217,30 +168,5 @@
       "threshold": 500
     }
   ],
-  "repair_candidates": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Audit .agent vs .agents ownership before any consolidation."
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Audit .codex_bg_home vs .codex_runtime_home before cleanup or automation."
-    }
-  ]
+  "repair_candidates": []
 }

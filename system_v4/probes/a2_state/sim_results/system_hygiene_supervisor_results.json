@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T05:16:55.775048+00:00",
-  "strict": false,
-  "overall_green": false,
-  "repair_queue_count": 3,
+  "generated_at": "2026-04-10T05:22:00.993469+00:00",
+  "strict": true,
+  "overall_green": true,
+  "repair_queue_count": 0,
   "safe_auto_repair_count": 0,
-  "manual_repair_count": 3,
+  "manual_repair_count": 0,
   "truth_green": true,
   "controller_green": true,
   "migration_green": true,
-  "repo_hygiene_green": false,
+  "repo_hygiene_green": true,
   "runtime_hygiene_green": true,
-  "state_dir_ownership_green": false,
+  "state_dir_ownership_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 3,
+    "repair_queue_count": 0,
     "safe_auto_repair_count": 0,
-    "manual_repair_count": 3,
+    "manual_repair_count": 0,
     "truth_green": true,
     "controller_green": true,
     "migration_green": true,
-    "repo_hygiene_green": false,
+    "repo_hygiene_green": true,
     "runtime_hygiene_green": true,
-    "state_dir_ownership_green": false,
+    "state_dir_ownership_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": false
+    "overall_green": true
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -62,76 +62,40 @@
     "path": "system_v4/probes/a2_state/sim_results/state_dir_ownership_audit_results.json",
     "status": "current",
     "blocker_count": 0,
-    "advisory_count": 2,
-    "ok": false
+    "advisory_count": 0,
+    "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 1,
-    "dirty_source_bucket_count": 1,
-    "dirty_source_buckets": [
-      {
-        "label": "probe_source",
-        "count": 1
-      }
-    ],
+    "source_dirty_count": 0,
+    "dirty_source_bucket_count": 0,
+    "dirty_source_buckets": [],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 15
-      },
-      {
-        "prefix": "obsidian_vault",
-        "count": 1
+        "count": 14
       }
     ],
-    "checkpoint_recommended": true
+    "checkpoint_recommended": false
   },
   "source_dirty_checkpoint": {
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
-    "dirty_source_checkpoint_required": true,
-    "plan_group_count": 2,
-    "largest_group_id": "other_source__other_source",
-    "next_code_only_manual": {
-      "group_id": "other_source__other_source",
-      "file_count": 1,
-      "untracked_count": 0,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": "obsidian_vault/.obsidian/workspace.json",
-      "result_path": null
-    },
-    "recommended_code_only_order": [
-      {
-        "group_id": "other_source__other_source",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "obsidian_vault/.obsidian/workspace.json",
-        "result_path": null
-      },
-      {
-        "group_id": "probe_source__probe_misc",
-        "file_count": 1,
-        "untracked_count": 0,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/repo_hygiene_audit.py",
-        "result_path": null
-      }
-    ]
+    "dirty_source_checkpoint_required": false,
+    "plan_group_count": 0,
+    "largest_group_id": null,
+    "next_code_only_manual": null,
+    "recommended_code_only_order": []
   },
   "source_dirty_lane_manifest": {
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
-    "required": true,
+    "required": false,
     "selected_group_id": null,
     "file_count": 0,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": "other_source__other_source",
+    "code_only_fallback_group_id": null,
     "active_actionable_lane_group_id": null
   },
   "maintenance_lanes": [
@@ -157,89 +121,9 @@
     }
   ],
   "missing_surfaces": [],
-  "repair_queue": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 1
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Keep .agent as repo-local handoff/state surface and .agents as skill bundle unless you explicitly consolidate them.",
-      "owner_map": {
-        ".agent": "repo_local_agent_state",
-        ".agents": "agent_skill_bundle"
-      },
-      "source_surface": "state_dir_ownership"
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Treat .codex_runtime_home as the active runtime home and .codex_bg_home as older background/bootstrap state unless you deliberately merge histories.",
-      "owner_map": {
-        ".codex_bg_home": "background_bootstrap_home",
-        ".codex_runtime_home": "active_runtime_home"
-      },
-      "sqlite_comparison": {
-        "logs_equal": false,
-        "state_equal": false
-      },
-      "source_surface": "state_dir_ownership"
-    }
-  ],
+  "repair_queue": [],
   "safe_auto_queue": [],
-  "manual_queue": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 1
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
-    {
-      "kind": "duplicate_agent_state_dirs",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Keep .agent as repo-local handoff/state surface and .agents as skill bundle unless you explicitly consolidate them.",
-      "owner_map": {
-        ".agent": "repo_local_agent_state",
-        ".agents": "agent_skill_bundle"
-      },
-      "source_surface": "state_dir_ownership"
-    },
-    {
-      "kind": "multiple_codex_runtime_homes",
-      "action_class": "manual_state_audit",
-      "safe_auto": false,
-      "recommendation": "Treat .codex_runtime_home as the active runtime home and .codex_bg_home as older background/bootstrap state unless you deliberately merge histories.",
-      "owner_map": {
-        ".codex_bg_home": "background_bootstrap_home",
-        ".codex_runtime_home": "active_runtime_home"
-      },
-      "sqlite_comparison": {
-        "logs_equal": false,
-        "state_equal": false
-      },
-      "source_surface": "state_dir_ownership"
-    }
-  ],
+  "manual_queue": [],
   "surface_status": {
     "truth": {
       "hard_finding_count": 0,
@@ -265,20 +149,20 @@
       "ok": true
     },
     "repo_hygiene": {
-      "blocker_count": 1,
-      "advisory_count": 8,
-      "repair_candidate_count": 3,
+      "blocker_count": 0,
+      "advisory_count": 6,
+      "repair_candidate_count": 0,
       "primary_result_count": 765,
       "secondary_result_count": 0,
       "secondary_unique_result_count": 0,
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 1,
-      "generated_dirty_count": 15,
-      "dirty_worktree_count": 16,
-      "dirty_source_bucket_count": 1,
-      "ok": false
+      "source_dirty_count": 0,
+      "generated_dirty_count": 14,
+      "dirty_worktree_count": 14,
+      "dirty_source_bucket_count": 0,
+      "ok": true
     },
     "runtime_hygiene": {
       "blocker_count": 0,
@@ -289,9 +173,9 @@
     },
     "state_dir_ownership": {
       "blocker_count": 0,
-      "advisory_count": 2,
-      "repair_candidate_count": 2,
-      "ok": false
+      "advisory_count": 0,
+      "repair_candidate_count": 0,
+      "ok": true
     },
     "lego_tool_reporting": {
       "registry_row_count": 150,
@@ -305,16 +189,16 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 1,
-      "plan_group_count": 2,
+      "dirty_source_count": 0,
+      "plan_group_count": 0,
       "checkpoint_candidate_count": 0,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 2,
-      "code_only_manual_count": 2,
-      "largest_group_id": "other_source__other_source",
-      "next_code_only_manual_group_id": "other_source__other_source",
-      "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "obsidian_vault/.obsidian/workspace.json",
+      "manual_only_count": 0,
+      "code_only_manual_count": 0,
+      "largest_group_id": null,
+      "next_code_only_manual_group_id": null,
+      "next_code_only_manual_file_count": 0,
+      "next_code_only_manual_source_path": null,
       "next_code_only_manual_result_path": null,
       "ok": true
     },
@@ -323,7 +207,7 @@
       "file_count": 0,
       "safe_next_action": null,
       "docs_opt_in_required": false,
-      "code_only_fallback_group_id": "other_source__other_source",
+      "code_only_fallback_group_id": null,
       "active_actionable_lane_group_id": null,
       "executable_lane_group_id": null,
       "ok": true,

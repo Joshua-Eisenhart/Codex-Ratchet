@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-10T05:44:17.996556+00:00",
+  "generated_at": "2026-04-10T06:02:15.484531+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "sys_executable": "/opt/homebrew/opt/python@3.13/bin/python3.13",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.11.0",
+      "installed_version": "2.8.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "sympy": {
       "distribution": "sympy",
@@ -30,11 +30,11 @@
     "z3-solver": {
       "distribution": "z3-solver",
       "import_name": "z3",
-      "installed_version": "4.16.0.0",
+      "installed_version": null,
       "import_ok": true,
       "import_error": null,
       "required_floor": "4.16.0.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "cvc5": {
       "distribution": "cvc5",
@@ -129,20 +129,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "3.0.2",
+      "installed_version": "2.2.3",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.6.1",
+      "installed_version": "3.5",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": true
+      "meets_floor": false
     }
   },
   "known_env_risks": {
@@ -228,7 +228,7 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 324,
+    "files_with_manifest_or_depth": 326,
     "per_tool": {
       "pytorch": {
         "tried_count": 182,
@@ -399,10 +399,10 @@
         ]
       },
       "z3": {
-        "tried_count": 139,
-        "used_count": 98,
-        "load_bearing_count": 60,
-        "depth_present_count": 99,
+        "tried_count": 141,
+        "used_count": 100,
+        "load_bearing_count": 62,
+        "depth_present_count": 101,
         "anchor_stage_coverage": [
           "boundary",
           "lego",
@@ -425,6 +425,8 @@
           "bridge_kernel_z3_proof_results.json",
           "bridge_phi0_proof_integration_results.json",
           "bridge_z3_kernel_ordering_results.json",
+          "constraint_manifold_L0_L1_results.json",
+          "constraint_manifold_L2_L3_results.json",
           "cvc5_shells_crosscheck_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "distinguishability_relation_results.json",
@@ -496,10 +498,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 137,
-        "used_count": 89,
-        "load_bearing_count": 40,
-        "depth_present_count": 92,
+        "tried_count": 139,
+        "used_count": 91,
+        "load_bearing_count": 41,
+        "depth_present_count": 94,
         "anchor_stage_coverage": [
           "lego",
           "coupling",
@@ -516,6 +518,7 @@
           "berry_qfi_entangled_path_results.json",
           "berry_qfi_shell_paths_results.json",
           "bridge_phi0_proof_integration_results.json",
+          "constraint_manifold_L0_L1_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "foundation_channel_constraints_hardway_results.json",
           "foundation_pauli_bloch_backprop_results.json",
@@ -550,10 +553,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 83,
-        "used_count": 24,
-        "load_bearing_count": 15,
-        "depth_present_count": 32,
+        "tried_count": 84,
+        "used_count": 25,
+        "load_bearing_count": 16,
+        "depth_present_count": 33,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -561,6 +564,7 @@
           "axis6_entropy_decomposition_results.json",
           "axis6_rank_coherence_results.json",
           "compound_operator_geometry_results.json",
+          "constraint_manifold_L2_L3_results.json",
           "geom_su2_so3_quaternions_results.json",
           "hopf_torus_lego_results.json",
           "layer_coupling_matrix_results.json",
@@ -698,16 +702,17 @@
         ]
       },
       "toponetx": {
-        "tried_count": 88,
-        "used_count": 10,
-        "load_bearing_count": 10,
-        "depth_present_count": 23,
+        "tried_count": 89,
+        "used_count": 11,
+        "load_bearing_count": 11,
+        "depth_present_count": 24,
         "anchor_stage_coverage": [
           "topology",
           "assembly"
         ],
         "anchor_result_files": [
           "cell_complex_geometry_results.json",
+          "constraint_manifold_L2_L3_results.json",
           "hypergraph_geometry_results.json",
           "state_class_binding_geometry_results.json",
           "toponetx_bridge_seam_results.json",

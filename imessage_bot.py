@@ -399,7 +399,7 @@ def handle_log(args):
     log_path = "/tmp/imessage_bot.log"
     if not os.path.exists(log_path):
         return "log not found at /tmp/imessage_bot.log"
-    r = subprocess.run(["tail", "-30", log_path], capture_output=True, text=True, env=_base_env())
+    r = subprocess.run(["tail", "-30", log_path], capture_output=True, text=True, env=_base_env(), timeout=10)
     return r.stdout.strip() or "(empty log)"
 
 

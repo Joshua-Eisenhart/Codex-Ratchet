@@ -263,7 +263,7 @@ def handle_log(args):
     log_path = "/tmp/telegram_bot.log"
     if not os.path.exists(log_path):
         return "log not found"
-    r = subprocess.run(["tail", "-40", log_path], capture_output=True, text=True)
+    r = subprocess.run(["tail", "-40", log_path], capture_output=True, text=True, timeout=10)
     return r.stdout.strip() or "(empty)"
 
 

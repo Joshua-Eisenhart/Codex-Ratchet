@@ -1,0 +1,581 @@
+{
+  "name": "sim_pure_lego_cptp_axioms_hardway",
+  "lego_ids": [
+    "cptp_trace_preservation",
+    "cptp_complete_positivity",
+    "cptp_kraus_representation",
+    "cptp_choi_kraus_equivalence",
+    "cptp_composition",
+    "cptp_negative_transpose_family"
+  ],
+  "classification": "canonical",
+  "overall_pass": true,
+  "positive_ok": true,
+  "negative_ok": true,
+  "boundary_ok": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure numpy probe; torch not needed for matrix axiom checks"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in channel axioms"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that alpha=0.9 contradicts Kraus completeness alpha\u00b2=1; structural impossibility is more fundamental than a floating-point check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers the algebraic UNSAT proof; no separate cvc5 run needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolically proves depolarizing completeness \u03a3 K\u2020K = I for all p via scalar identity (1-3p/4)+3(p/4)=1 and Pauli unitarity P\u2020P=I; numpy can only check at fixed p values"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford algebra structure in CPTP axioms"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian geometry needed here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance structure in channel axioms"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph representation needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_depolarizing_completeness": {
+      "ok": true,
+      "proved_for_all_p": true,
+      "scalar_identity_ok": true,
+      "pauli_unitarity_ok": true,
+      "error_scalar_zero": true
+    },
+    "z3_scaling_breaks_completeness": {
+      "ok": true,
+      "sat_result": "sat",
+      "unsat_result": "unsat",
+      "interpretation": "alpha=0.9 is structurally excluded from the CPTP family"
+    },
+    "kraus_completeness": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "max_error": 0.0
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "max_error": 0.0
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "max_error": 0.0
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "max_error": 2.220446049250313e-16
+        }
+      }
+    },
+    "tp_direct": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "states": [
+            {
+              "state_idx": 0,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 1,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 2,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 3,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 4,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            }
+          ]
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "states": [
+            {
+              "state_idx": 0,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 1,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 2,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 3,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 4,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            }
+          ]
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "states": [
+            {
+              "state_idx": 0,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 1,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 2,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 3,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            },
+            {
+              "state_idx": 4,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            }
+          ]
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "states": [
+            {
+              "state_idx": 0,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0000000000000002,
+              "error": 2.220446049250313e-16
+            },
+            {
+              "state_idx": 1,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0000000000000002,
+              "error": 2.220446049250313e-16
+            },
+            {
+              "state_idx": 2,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0000000000000002,
+              "error": 2.220446049250313e-16
+            },
+            {
+              "state_idx": 3,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0000000000000002,
+              "error": 2.220446049250313e-16
+            },
+            {
+              "state_idx": 4,
+              "ok": true,
+              "trace_in": 1.0,
+              "trace_out": 1.0,
+              "error": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "tp_choi_side": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "max_error": 0.0,
+          "partial_trace_diag": [
+            1.0,
+            1.0
+          ]
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "max_error": 0.0,
+          "partial_trace_diag": [
+            1.0,
+            1.0
+          ]
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "max_error": 0.0,
+          "partial_trace_diag": [
+            1.0,
+            1.0
+          ]
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "max_error": 2.220446049250313e-16,
+          "partial_trace_diag": [
+            1.0000000000000002,
+            1.0000000000000002
+          ]
+        }
+      }
+    },
+    "choi_psd": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "min_eigenvalue": 0.0,
+          "eigenvalues": [
+            0.0,
+            0.0,
+            0.0,
+            2.0
+          ]
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "min_eigenvalue": 0.0,
+          "eigenvalues": [
+            0.0,
+            0.0,
+            0.2999999999999999,
+            1.7000000000000002
+          ]
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "min_eigenvalue": 0.0,
+          "eigenvalues": [
+            0.0,
+            5.551115123125783e-17,
+            0.4,
+            1.6
+          ]
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "min_eigenvalue": 0.09999999999999998,
+          "eigenvalues": [
+            0.09999999999999998,
+            0.10000000000000002,
+            0.10000000000000017,
+            1.7000000000000002
+          ]
+        }
+      }
+    },
+    "choi_kraus_equivalence": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "max_error": 0.0
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "max_error": 2.220446049250313e-16
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "max_error": 1.1102230246251565e-16
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "max_error": 2.220446049250313e-16
+        }
+      }
+    },
+    "ancilla_cp_check": {
+      "ok": true,
+      "channels": {
+        "identity": {
+          "ok": true,
+          "min_eigenvalue": 0.0
+        },
+        "dephasing_p03": {
+          "ok": true,
+          "min_eigenvalue": 0.0
+        },
+        "amplitude_damping_g04": {
+          "ok": true,
+          "min_eigenvalue": -6.245004513516506e-17
+        },
+        "depolarizing_p02": {
+          "ok": true,
+          "min_eigenvalue": 0.04999999999999999
+        }
+      }
+    },
+    "composition_cptp": {
+      "ok": true,
+      "tp": {
+        "ok": true,
+        "max_error": 2.220446049250313e-16,
+        "partial_trace_diag": [
+          1.0,
+          1.0000000000000002
+        ]
+      },
+      "cp": {
+        "ok": true,
+        "min_eigenvalue": 0.0,
+        "eigenvalues": [
+          0.0,
+          0.2220726689280044,
+          0.4000000000000001,
+          1.3779273310719957
+        ]
+      }
+    },
+    "composition_commutes": {
+      "ok": true,
+      "max_error": 1.1102230246251565e-16,
+      "note": "Dephasing and amplitude damping commute: Z acts only on off-diagonals, AD on (0,0)/(1,1) block separately"
+    }
+  },
+  "negative": {
+    "transpose_cp_failure": {
+      "ok": true,
+      "is_not_cp": true,
+      "min_eigenvalue": -1.0,
+      "expected_min_eigenvalue": -1.0,
+      "choi_matrix_matches_exact": true,
+      "eigenvalues": [
+        -1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "transpose_is_positive": {
+      "ok": true,
+      "states": [
+        {
+          "state_idx": 0,
+          "is_psd": true,
+          "min_eigenvalue": 0.0
+        },
+        {
+          "state_idx": 1,
+          "is_psd": true,
+          "min_eigenvalue": 0.0
+        },
+        {
+          "state_idx": 2,
+          "is_psd": true,
+          "min_eigenvalue": 0.0
+        },
+        {
+          "state_idx": 3,
+          "is_psd": true,
+          "min_eigenvalue": 0.0
+        },
+        {
+          "state_idx": 4,
+          "is_psd": true,
+          "min_eigenvalue": 0.25505102572168215
+        }
+      ],
+      "note": "T is positive: maps PSD\u2192PSD on single qubit, but fails on extended system"
+    },
+    "transpose_is_tp": {
+      "ok": true,
+      "max_error": 0.0,
+      "note": "T preserves trace, so it fails ONLY the CP condition"
+    },
+    "transpose_ancilla_witness": {
+      "ok": true,
+      "min_eigenvalue": -0.5,
+      "expected_min_eigenvalue": -0.5,
+      "eigenvalues": [
+        -0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "note": "(T\u2297I)(Bell) has eigenvalue -0.5, certifying T is not CP"
+    },
+    "trace_defective_failure": {
+      "ok": true,
+      "is_not_complete": true,
+      "max_error": 0.18999999999999995,
+      "expected_completeness_error_gt": 0.1,
+      "failure_confirmed": true
+    },
+    "trace_defective_choi_tp_failure": {
+      "ok": true,
+      "is_not_tp": true,
+      "max_error": 0.18999999999999995
+    }
+  },
+  "boundary": {
+    "near_unitary_dephasing": {
+      "ok": true,
+      "completeness_ok": true,
+      "tp_ok": true,
+      "cp_ok": true,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        0.0009999999999999454,
+        1.9990000000000006
+      ],
+      "note": "p=0.001 dephasing is near-unitary; Choi spectrum close to {0,0,0,2}"
+    },
+    "max_depolarizing": {
+      "ok": true,
+      "completeness_ok": true,
+      "tp_ok": true,
+      "cp_ok": true,
+      "choi_eigenvalues": [
+        0.3749999999999999,
+        0.37499999999999994,
+        0.3750000000000001,
+        0.875
+      ],
+      "note": "p=3/4 completely depolarizing channel: E(rho) = I/2 for all rho"
+    },
+    "dephasing_degenerate": {
+      "ok": true,
+      "completeness_ok": true,
+      "tp_ok": true,
+      "cp_ok": true,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        0.5,
+        1.4999999999999998
+      ],
+      "note": "p=0.5 dephasing: off-diagonal Choi elements half-suppressed"
+    },
+    "random_unitary": {
+      "ok": true,
+      "completeness_ok": true,
+      "tp_ok": true,
+      "cp_ok": true,
+      "choi_eigenvalues": [
+        -5.2710121543067275e-17,
+        1.0117799980910959e-17,
+        9.221124640736504e-17,
+        1.9999999999999998
+      ],
+      "note": "QR-derived random unitary: single Kraus op K=U, J has one nonzero eigenvalue=2"
+    }
+  },
+  "summary": {
+    "total_positive_checks": 10,
+    "total_negative_checks": 6,
+    "total_boundary_checks": 4,
+    "sympy_load_bearing": true,
+    "z3_load_bearing": true,
+    "choi_convention": "J = sum_ij kron(|i><j|, E(|i><j|)); TP: Tr_output(J)=I",
+    "transpose_excluded": "Choi min eigenvalue -1; ancilla witness min -0.5"
+  }
+}

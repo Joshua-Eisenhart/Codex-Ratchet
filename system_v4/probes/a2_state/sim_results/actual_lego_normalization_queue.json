@@ -1,6 +1,6 @@
 {
   "name": "actual_lego_normalization_queue",
-  "generated_at": "2026-04-09T08:58:28.743433+00:00",
+  "generated_at": "2026-04-10T10:03:02.362852+00:00",
   "rows": [
     {
       "lego_id": "admissibility_manifold_mc",
@@ -10,7 +10,7 @@
       "priority": 0.75,
       "reusable_probe": "sim_constraint_manifold_L0_L1.py",
       "existing_result_json": "constraint_manifold_L0_L1_results.json",
-      "existing_result_classification": "canonical",
+      "existing_result_classification": "supporting",
       "existing_result_all_pass": null,
       "result_truth_warning": null,
       "mapping_confidence": "high",
@@ -61,7 +61,7 @@
       "priority": 0.75,
       "reusable_probe": "sim_constraint_manifold_L0_L1.py",
       "existing_result_json": "constraint_manifold_L0_L1_results.json",
-      "existing_result_classification": "canonical",
+      "existing_result_classification": "supporting",
       "existing_result_all_pass": null,
       "result_truth_warning": null,
       "mapping_confidence": "high",
@@ -683,44 +683,6 @@
       "note": "Registry already points to a plausible existing probe."
     },
     {
-      "lego_id": "operator_parameter_tuple",
-      "lego_name": "Operator parameter tuple",
-      "section": "Loop, Connection, And Placement Legos",
-      "current_coverage": "not_normalized_yet",
-      "priority": 2.65,
-      "reusable_probe": "sim_dissipative_kraus_shell_compatibility.py",
-      "existing_result_json": "dissipative_kraus_shell_compatibility_results.json",
-      "existing_result_classification": "canonical",
-      "existing_result_all_pass": null,
-      "result_truth_warning": null,
-      "mapping_confidence": "medium",
-      "needs_new_probe": false,
-      "tool_pressure": [
-        "cvc5"
-      ],
-      "stop_rule": "Stop if the reused probe still cannot isolate this lego cleanly or remains exploratory.",
-      "note": "Best current parameterized operator/channel surface."
-    },
-    {
-      "lego_id": "povm_measurement_family",
-      "lego_name": "POVM measurement family",
-      "section": "Operator And Channel Legos",
-      "current_coverage": "not_normalized_yet",
-      "priority": 2.65,
-      "reusable_probe": "sim_lego_povm_measurement.py",
-      "existing_result_json": "lego_povm_measurement_results.json",
-      "existing_result_classification": "canonical",
-      "existing_result_all_pass": null,
-      "result_truth_warning": null,
-      "mapping_confidence": "high",
-      "needs_new_probe": false,
-      "tool_pressure": [
-        "cvc5"
-      ],
-      "stop_rule": "Stop if the reused probe still cannot isolate this lego cleanly or remains exploratory.",
-      "note": "Direct existing POVM lego."
-    },
-    {
       "lego_id": "blackwell_style_comparison",
       "lego_name": "Blackwell-style comparison",
       "section": "Operator And Channel Legos",
@@ -806,6 +768,23 @@
       "note": "Direct local instrument lego for outcome probabilities, post-states, and induced CPTP channel consistency."
     },
     {
+      "lego_id": "operator_parameter_tuple",
+      "lego_name": "Operator parameter tuple",
+      "section": "Loop, Connection, And Placement Legos",
+      "current_coverage": "not_normalized_yet",
+      "priority": 2.75,
+      "reusable_probe": "sim_dissipative_kraus_shell_compatibility.py",
+      "existing_result_json": "dissipative_kraus_shell_compatibility_results.json",
+      "existing_result_classification": "canonical",
+      "existing_result_all_pass": null,
+      "result_truth_warning": null,
+      "mapping_confidence": "medium",
+      "needs_new_probe": false,
+      "tool_pressure": [],
+      "stop_rule": "Stop if the reused probe still cannot isolate this lego cleanly or remains exploratory.",
+      "note": "Best current parameterized operator/channel surface."
+    },
+    {
       "lego_id": "placement_law",
       "lego_name": "Placement law",
       "section": "Loop, Connection, And Placement Legos",
@@ -821,6 +800,23 @@
       "tool_pressure": [],
       "stop_rule": "Stop if the reused probe still cannot isolate this lego cleanly or remains exploratory.",
       "note": "Direct placement-table surface."
+    },
+    {
+      "lego_id": "povm_measurement_family",
+      "lego_name": "POVM measurement family",
+      "section": "Operator And Channel Legos",
+      "current_coverage": "not_normalized_yet",
+      "priority": 2.75,
+      "reusable_probe": "sim_lego_povm_measurement.py",
+      "existing_result_json": "lego_povm_measurement_results.json",
+      "existing_result_classification": "canonical",
+      "existing_result_all_pass": null,
+      "result_truth_warning": null,
+      "mapping_confidence": "high",
+      "needs_new_probe": false,
+      "tool_pressure": [],
+      "stop_rule": "Stop if the reused probe still cannot isolate this lego cleanly or remains exploratory.",
+      "note": "Direct existing POVM lego."
     },
     {
       "lego_id": "signed_operator_variant",
@@ -1814,7 +1810,7 @@
     "existing_probe_count": 106,
     "new_probe_needed_count": 0,
     "high_confidence_count": 104,
-    "tool_pressure_task_count": 2,
+    "tool_pressure_task_count": 0,
     "exploratory_probe_count": 0
   }
 }

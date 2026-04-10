@@ -1,0 +1,164 @@
+{
+  "name": "qit_moloch_coordination_trap",
+  "classification": "canonical",
+  "classification_note": "Canonical bounded resource-longevity row on one finite shared-bath carrier. It compares greedy local extraction against a scheduled repair/lose stroke without making controller, policy-universality, or real-engine totality claims.",
+  "lego_ids": [
+    "qit_moloch_coordination_trap"
+  ],
+  "primary_lego_ids": [
+    "qit_moloch_coordination_trap"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "greedy_local_extraction_depletes_shared_resource_faster_than_scheduled_repair": {
+      "greedy_first_below_threshold": 2,
+      "scheduled_first_below_threshold": 4,
+      "pass": true
+    },
+    "scheduled_repair_keeps_bath_usable_at_the_greedy_failure_round": {
+      "greedy_failure_round": 2,
+      "scheduled_bath_negentropy_at_greedy_failure": 0.14493207280487908,
+      "threshold": 0.085,
+      "pass": true
+    },
+    "scheduled_repair_retains_more_residual_bath_resource_at_horizon": {
+      "greedy_final_bath_negentropy": 5.1938270129170405e-08,
+      "scheduled_final_bath_negentropy": 0.005351053690044072,
+      "pass": true
+    },
+    "scheduled_repair_preserves_nonzero_collective_output_while_extending_resource_life": {
+      "scheduled_final_avg_agent_negentropy": 0.03934956592084127,
+      "greedy_final_avg_agent_negentropy": 0.09335310065574898,
+      "pass": true
+    }
+  },
+  "negative": {
+    "repair_free_policy_is_not_resource_superior": {
+      "greedy_final_bath_negentropy": 5.1938270129170405e-08,
+      "scheduled_final_bath_negentropy": 0.005351053690044072,
+      "pass": true
+    },
+    "overrepair_is_not_the_same_as_balanced_coordination": {
+      "overrepair_first_below_threshold": 3,
+      "scheduled_first_below_threshold": 4,
+      "pass": true
+    },
+    "row_does_not_claim_universal_engine_optimality": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_terminal_outputs_remain_valid_density_operators": {
+      "greedy_valid": true,
+      "scheduled_valid": true,
+      "overrepair_valid": true,
+      "pass": true
+    },
+    "zero_initial_shared_gradient_does_not_create_resource_from_nothing": {
+      "zero_gradient_final_bath_negentropy": 0.0,
+      "zero_gradient_peak_bath_trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "comparison_uses_one_finite_shared_bath_only": {
+      "agent_count": 3,
+      "carrier_dimension": 2,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Finite shared-bath resource-longevity row: greedy local extraction depletes usable athermality faster, while scheduled repair/lose strokes keep the shared gradient above threshold longer without claiming a universal optimum.",
+    "policy_snapshots": {
+      "greedy": {
+        "first_below_usable_threshold": 2,
+        "final_bath_negentropy": 5.1938270129170405e-08,
+        "final_avg_agent_negentropy": 0.09335310065574898
+      },
+      "scheduled_repair": {
+        "first_below_usable_threshold": 4,
+        "final_bath_negentropy": 0.005351053690044072,
+        "final_avg_agent_negentropy": 0.03934956592084127
+      },
+      "overrepair": {
+        "first_below_usable_threshold": 3,
+        "final_bath_negentropy": 0.0001318209530116743,
+        "final_avg_agent_negentropy": 0.09738057679993894
+      }
+    }
+  }
+}

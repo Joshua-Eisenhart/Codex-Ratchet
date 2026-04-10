@@ -1,0 +1,128 @@
+{
+  "name": "SA12 Wilczek-Zee Curvature Sympy Cross-Check",
+  "probe": "SA12_wilczek_zee_curvature_sympy",
+  "purpose": "Symbolic proof that Tr([A,B])=0 and [A,B]\u2020=-[A,B] for anti-Hermitian A,B",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical ground-truth for connection A_\u03b8, A_\u03c6 and Tr(F) cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 algebraic identity, not constraint sat"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic proof of Tr([A,B])=0 and anti-Hermitian commutator inheritance"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "sympy": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "S1_trace_commutator_zero": {
+      "pass": true,
+      "tr_commutator_simplified": "0",
+      "interpretation": "Tr([A,B])=0 \u27f9 Tr(F_\u03b8\u03c6)=\u2202_\u03b8Tr(A_\u03c6)-\u2202_\u03c6Tr(A_\u03b8) (abelian curvature = full trace)"
+    },
+    "S2_antiherm_inheritance": {
+      "pass": true,
+      "residual_matrix": "Matrix([[0, 0], [0, 0]])",
+      "interpretation": "[A,B]\u2020=-[A,B] confirmed: F_\u03b8\u03c6 \u2208 u(2) when A_\u03b8,A_\u03c6 \u2208 u(2)"
+    },
+    "elapsed_s": 0.020812034606933594
+  },
+  "negative": {
+    "N1_tr_AB_not_identically_zero": {
+      "pass": true,
+      "tr_AB": "a11*b11 + a12*b21 + a21*b12 + a22*b22",
+      "note": "Confirms Tr(AB)\u22600 in general, so Tr([A,B])=0 is non-trivial"
+    },
+    "N2_noantiherm_no_inheritance": {
+      "pass": true,
+      "residual_sample": "-2*b + 2*conjugate(c)",
+      "note": "General A does not guarantee [A,B]\u2020 = -[A,B]"
+    },
+    "elapsed_s": 0.07802224159240723
+  },
+  "boundary": {
+    "B1_numerical_trace_curvature": {
+      "pass": true,
+      "tr_F_numerical": 0.0,
+      "abelian_deriv": 0.0,
+      "error": 0.0,
+      "tolerance": 1e-08
+    },
+    "B2_su2_projection_traceless": {
+      "pass": true,
+      "tr_F_su2": 0.0
+    },
+    "elapsed_s": 0.02639007568359375
+  },
+  "classification": "canonical",
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "failed_tests": []
+  }
+}

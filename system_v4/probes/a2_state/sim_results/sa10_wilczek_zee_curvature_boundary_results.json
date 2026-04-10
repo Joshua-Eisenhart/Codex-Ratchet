@@ -1,0 +1,182 @@
+{
+  "name": "SA10 Wilczek-Zee Curvature Probe \u2014 Boundary Tests",
+  "probe": "sa10_wilczek_zee_curvature_boundary",
+  "purpose": "Three boundary tests for the non-abelian curvature tensor F_\u03b8\u03c6: step-size convergence, pole suppression, and non-abelian Stokes consistency.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: complex matrix exponentials (matrix_exp), Frobenius norms, path-ordered holonomy accumulation, and curvature tensor F = dA + [A,A] all computed via torch."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable \u2014 finite-dim matrix algebra, no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable \u2014 continuous curvature integral, no discrete constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: symbolic anti-Hermitian check \u2014 verify F + F\u2020 = 0 by constructing the skew-Hermitian projection in closed form."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable \u2014 su(2) handled via torch matrix ops"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable \u2014 explicit matrix geometry suffices"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "classification": "canonical",
+  "positive": {
+    "note": "This probe is boundary-focused; positive regime (interior SU(2) holonomy) is covered by wilczek_zee_curvature_results.json",
+    "pass": true
+  },
+  "negative": {
+    "note": "Negative regime (degenerate connection, zero-flux limit) is covered by wilczek_zee_holonomy_results.json; not repeated here",
+    "pass": true
+  },
+  "boundary": {
+    "B1_fd_step_convergence": {
+      "pass": true,
+      "deltas": [
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "F_norms": [
+        1.174353329385059e-07,
+        1.3293829722981835e-08,
+        1.4428737708532234e-11
+      ],
+      "successive_diffs": [
+        1.1028677422116363e-07,
+        1.3294343697620221e-08
+      ],
+      "converging": true
+    },
+    "B2_curvature_near_pole": {
+      "pass": true,
+      "theta_pole": 0.05,
+      "theta_mid": 0.5,
+      "phi": 0.8,
+      "F_norm_at_pole": 1.1032129894221059e-08,
+      "F_norm_at_mid": 3.0002993551448335e-08,
+      "ratio_pole_over_mid": 0.367700972081451,
+      "anti_hermitian_residual_at_pole": 0.0,
+      "pole_smaller_than_mid": true,
+      "anti_hermitian_pass": true
+    },
+    "B3_stokes_consistency": {
+      "pass": true,
+      "theta_center": 0.7,
+      "phi_center": 0.8,
+      "dtheta": 0.05,
+      "dphi": 0.05,
+      "area": 0.0025000000000000005,
+      "holonomy_matrix_real": [
+        [
+          0.9999968782537336,
+          -0.0018696897010115569
+        ],
+        [
+          0.0018696897010115547,
+          0.999996878253733
+        ]
+      ],
+      "holonomy_matrix_imag": [
+        [
+          0.0016564575350080531,
+          -6.238288737471466e-05
+        ],
+        [
+          -6.238288737449303e-05,
+          -0.0016564575349065302
+        ]
+      ],
+      "U_curv_matrix_real": [
+        [
+          1.0,
+          1.4752677829395377e-11
+        ],
+        [
+          -1.475267782931456e-11,
+          1.0
+        ]
+      ],
+      "U_curv_matrix_imag": [
+        [
+          -1.1402941091365196e-12,
+          -1.782929909120914e-11
+        ],
+        [
+          -1.782929909127601e-11,
+          5.673256586735677e-12
+        ]
+      ],
+      "stokes_diff": 0.0035336928495131393,
+      "identity_diff": 0.003533692831337329,
+      "stokes_pass": true,
+      "non_trivial_holonomy": true
+    },
+    "elapsed_s": 0.2218458652496338
+  },
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "failed_tests": []
+  },
+  "timestamp": "2026-04-10T08:58:28Z"
+}

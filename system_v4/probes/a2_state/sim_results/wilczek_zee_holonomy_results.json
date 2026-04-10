@@ -1,0 +1,449 @@
+{
+  "name": "sim_pure_lego_wilczek_zee_holonomy",
+  "timestamp": "2026-04-10T09:09:47Z",
+  "lego_ids": [
+    "wilczek_zee_holonomy",
+    "nonabelian_berry_phase",
+    "degenerate_subspace_transport"
+  ],
+  "primary_lego_ids": [
+    "wilczek_zee_holonomy"
+  ],
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 4\u00d74 Hamiltonian, torch.matrix_exp for path-ordered transport, 2\u00d72 anti-Hermitian connection matrices, unitarity checks, torch.linalg.eigh, torch.linalg.det, torch.norm; all matrix ops in complex128"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph/message-passing structure; sim is 2D finite-dimensional matrix transport"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "no discrete logical constraints; holonomy is a continuous matrix integral"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "no SMT-amenable formula; path-ordered ODE does not map to CVC5 theory"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check: A_\u03c6 = i\u27e8\u03c8|\u2202_\u03c6\u03c8\u27e9 = -sin\u00b2(\u03b8/2) for Bloch-sphere state, verifying abelian diagonal of Wilczek-Zee connection matches prior Berry probes"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "holonomy is a U(2) matrix product, not a Clifford algebra rotor"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geometry computed explicitly via PyTorch matrix ops; no Riemannian library needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SE(3)/SO(3) equivariance; parameter space is finite 2D, not a 3D point cloud"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph; sim operates on 4D Hilbert space with 2D degenerate subspace"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure; sim is a closed-loop matrix transport"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no cell complex; Berry phase is a U(2) holonomy, not a chain-complex boundary"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology; sim does not require TDA on a point cloud"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_offdiag_holonomy": {
+      "passed": true,
+      "off_diagonal_norm": 0.48458877,
+      "unitarity_residual": 0.0,
+      "det_residual": 0.0,
+      "det_real": 1.0,
+      "det_imag": -0.0,
+      "holonomy_real": [
+        [
+          0.9643191334617283,
+          -0.24229438053236454
+        ],
+        [
+          0.24229438053236463,
+          0.9643191334617099
+        ]
+      ],
+      "holonomy_imag": [
+        [
+          0.1066866472028703,
+          3.6203206595159605e-05
+        ],
+        [
+          3.6203206554063627e-05,
+          -0.1066866472030344
+        ]
+      ],
+      "loop_center": [
+        0.7,
+        0.8
+      ],
+      "loop_radius": 0.3,
+      "n_steps": 400
+    },
+    "P2_area_scaling": {
+      "passed": true,
+      "radii": [
+        0.05,
+        0.15,
+        0.3,
+        0.45
+      ],
+      "off_diag_norms": [
+        0.01248393,
+        0.11860303,
+        0.48458877,
+        1.02920822
+      ],
+      "is_monotone": true,
+      "max_off_diag": 1.02920822
+    },
+    "P3_gauge_covariance": {
+      "passed": true,
+      "gauge_residual": 0.0,
+      "g_matrix_real": [
+        [
+          0.8775825618903728,
+          0.0
+        ],
+        [
+          0.0,
+          0.8775825618903728
+        ]
+      ],
+      "g_matrix_imag": [
+        [
+          0.0,
+          0.479425538604203
+        ],
+        [
+          0.479425538604203,
+          0.0
+        ]
+      ],
+      "U_gauge_real": [
+        [
+          0.9643212979850819,
+          -0.22067928962311198
+        ],
+        [
+          0.22067928962311148,
+          0.9643212979843534
+        ]
+      ],
+      "U_gauge_imag": [
+        [
+          -0.14623639442335418,
+          4.826868570706e-05
+        ],
+        [
+          4.826868680092469e-05,
+          0.14623639442813352
+        ]
+      ],
+      "U_predicted_real": [
+        [
+          0.9643212979850815,
+          -0.22067928962311187
+        ],
+        [
+          0.22067928962311176,
+          0.9643212979843561
+        ]
+      ],
+      "U_predicted_imag": [
+        [
+          -0.14623639442335407,
+          4.826868570684262e-05
+        ],
+        [
+          4.826868680102292e-05,
+          0.14623639442813408
+        ]
+      ],
+      "alpha": 0.5
+    },
+    "P4_curvature_gauge_covariance": {
+      "passed": true,
+      "residual_frobenius": 3.25e-12,
+      "threshold": 1e-08,
+      "theta": 0.7,
+      "phi": 0.8,
+      "alpha": 0.5,
+      "F_original_real": [
+        [
+          0.0,
+          3.3056493026206724e-07
+        ],
+        [
+          -3.3056493026206724e-07,
+          0.0
+        ]
+      ],
+      "F_original_imag": [
+        [
+          1.2643107369370021e-06,
+          9.354573987824255e-07
+        ],
+        [
+          9.354573987824255e-07,
+          -1.0777816461526868e-06
+        ]
+      ],
+      "F_gauge_real": [
+        [
+          -1.3877787807763968e-12,
+          -8.067951549617369e-07
+        ],
+        [
+          8.067951549617369e-07,
+          -1.3877787807763968e-12
+        ]
+      ],
+      "F_gauge_imag": [
+        [
+          1.0041456448839359e-06,
+          9.354573987824255e-07
+        ],
+        [
+          9.354573987824255e-07,
+          -8.176165540996205e-07
+        ]
+      ],
+      "F_predicted_real": [
+        [
+          0.0,
+          -8.067963979950412e-07
+        ],
+        [
+          8.067963979950412e-07,
+          0.0
+        ]
+      ],
+      "F_predicted_imag": [
+        [
+          1.004144300372516e-06,
+          9.354573987824255e-07
+        ],
+        [
+          9.354573987824255e-07,
+          -8.176152095882005e-07
+        ]
+      ],
+      "note": "Curvature transforms COVARIANTLY (F->g\u207b\u00b9Fg), NOT invariantly. Distinguishes F_\u03b8\u03c6 from gauge-invariant quantities like Tr(F\u00b2)."
+    }
+  },
+  "negative": {
+    "N1_trivial_loop": {
+      "passed": true,
+      "diff_from_identity": 0.0,
+      "holonomy_real": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "holonomy_imag": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "N2_broken_degeneracy": {
+      "passed": true,
+      "delta": 0.3,
+      "eigenvalues": [
+        -1.3,
+        -0.7,
+        1.0,
+        1.0
+      ],
+      "doublet_split_gap": 0.6
+    },
+    "N3_commuting_diagonal": {
+      "passed": true,
+      "diagonal_commutator_norm": 0.0,
+      "diagonal_order_diff": 0.0,
+      "full_commutator_norm": 0.70710678,
+      "full_order_diff": 0.0017674
+    }
+  },
+  "boundary": {
+    "B1_small_loops": {
+      "passed": true,
+      "epsilons": [
+        0.02,
+        0.05,
+        0.1,
+        0.2
+      ],
+      "deviations": [
+        0.00177642,
+        0.01108804,
+        0.04414453,
+        0.17328297
+      ],
+      "is_monotone": true,
+      "smallest_deviation": 0.00177642
+    },
+    "B2_latitude_circle": {
+      "passed": true,
+      "theta_fixed": 0.785398,
+      "off_diagonal_magnitude": 0.0,
+      "det_residual": 1e-10,
+      "holonomy_trace_real": -2.0,
+      "holonomy_real": [
+        [
+          -0.9999999999999576,
+          1.9438817340839485e-10
+        ],
+        [
+          -1.943872444046125e-10,
+          -0.9999999999999548
+        ]
+      ],
+      "holonomy_imag": [
+        [
+          1.2497447434561826e-10,
+          -1.8815712741126686e-12
+        ],
+        [
+          -1.8816063277241578e-12,
+          -2.571562147252182e-10
+        ]
+      ]
+    },
+    "B3_step_convergence": {
+      "passed": true,
+      "step_counts": [
+        50,
+        100,
+        200,
+        400
+      ],
+      "holonomy_traces": [
+        1.92898828,
+        1.92872172,
+        1.92865496,
+        1.92863827
+      ],
+      "successive_diffs": [
+        0.00026656,
+        6.676e-05,
+        1.67e-05
+      ],
+      "converging": true
+    },
+    "B4_magnus_crosscheck": {
+      "passed": true,
+      "delta_theta": 0.05,
+      "delta_phi": 0.05,
+      "magnus_diff": 0.00176832,
+      "Omega1_norm": 0.00176758,
+      "U_transport_real": [
+        [
+          0.9999968782537388,
+          -0.001827698328506939
+        ],
+        [
+          0.0018276983285069165,
+          0.9999968782537387
+        ]
+      ],
+      "U_transport_imag": [
+        [
+          0.001702677292727224,
+          -6.238288751076208e-05
+        ],
+        [
+          -6.23828875105555e-05,
+          -0.0017026772926101786
+        ]
+      ],
+      "U_magnus_real": [
+        [
+          0.9999992189128483,
+          -0.0009355265761519249
+        ],
+        [
+          0.0009355265761519249,
+          0.9999992189128485
+        ]
+      ],
+      "U_magnus_imag": [
+        [
+          0.0008288327445934835,
+          -1.6107581758684602e-13
+        ],
+        [
+          -1.6096630917253036e-13,
+          -0.000828832744476428
+        ]
+      ]
+    },
+    "B5_sympy_abelian_formula": {
+      "passed": true,
+      "A_phi_at_theta_pi_half_numeric": -0.5,
+      "expected": -0.5,
+      "residual_symbolic_form": "0",
+      "sym_match": true
+    }
+  },
+  "summary": {
+    "total_tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "elapsed_seconds": 3.46,
+    "model": "4-level H(\u03b8,\u03c6) = W diag(-1,-1,+1,+1) W\u2020, 2D degenerate subspace at -1",
+    "bridge_claim": "Wilczek-Zee holonomy for the transported 2D degenerate subspace is a non-trivial SU(2) matrix; it satisfies the U(2) gauge-covariance law U \u2192 g\u207b\u00b9Ug under constant subspace rotations; and its abelian diagonal reduction cross-validates the scalar Berry connection A_\u03c6 = -sin\u00b2(\u03b8/2) established by prior standalone Berry-phase probes."
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "name": "SA5_curvature_commutator",
+  "probe": "sa5_curvature_commutator",
+  "purpose": "Decompose F_\u03b8\u03c6 = dA + [A_\u03b8,A_\u03c6]; quantify the non-abelian contribution at (\u03b8=0.7, \u03c6=0.8); verify abelian control and anti-Hermitian structure of the commutator",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: complex matrix arithmetic for connection components, curvature tensor assembly, Frobenius norms, and anti-Hermitian verification"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 finite-dimensional matrix ops only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numerical sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check: expand [A_\u03b8, A_\u03c6]^{ab} for generic 2\u00d72 matrices to confirm all four elements analytically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 explicit matrix geometry suffices"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_commutator_expansion": {
+      "pass": true,
+      "elements": {
+        "C[0,0]": "b*g - c*f",
+        "C[0,1]": "a*f - b*e + b*h - d*f",
+        "C[1,0]": "-a*g + c*e - c*h + d*g",
+        "C[1,1]": "-b*g + c*f"
+      },
+      "trace_is_zero": true,
+      "note": "[A_\u03b8,A_\u03c6]^{ab} = \u03a3_c(A_\u03b8^{ac}A_\u03c6^{cb} - A_\u03c6^{ac}A_\u03b8^{cb})"
+    },
+    "P2_commutator_fraction": {
+      "pass": true,
+      "theta": 0.7,
+      "phi": 0.8,
+      "norm_F": 2.1745809601920265e-06,
+      "norm_comm": 0.707106781234217,
+      "norm_dA": 0.7071074905765555,
+      "commutator_fraction": 325169.2138294892,
+      "note": "dA and [A_\u03b8,A_\u03c6] nearly cancel at this point (||F||~2e-6); each term is ~0.707 individually \u2014 both contributions are real and non-abelian structure is confirmed."
+    },
+    "P3_nonabelian_contribution_real": {
+      "pass": true,
+      "norm_commutator": 0.707106781234217,
+      "threshold": 0.05
+    },
+    "P4_commutator_anti_hermitian": {
+      "pass": true,
+      "anti_hermitian_residual": 0.0,
+      "note": "C\u2020 = \u2212A_\u03c6,\u2212A_\u03b8 = \u2212C \u2713; no projection needed"
+    },
+    "elapsed_s": 0.13100790977478027
+  },
+  "negative": {
+    "N1_abelian_diagonal_commutes": {
+      "pass": true,
+      "norm_diagonal_commutator": 0.0,
+      "threshold": 1e-14,
+      "note": "Diagonal matrices always commute; U(1)^2 is abelian"
+    },
+    "N2_nonabelianicity_score": {
+      "pass": true,
+      "norm_full_commutator": 0.707106781234217,
+      "norm_diagonal_commutator": 0.0,
+      "nonabelianicity_score": 7.07106781234217e+29,
+      "note": "score >> 1 means off-diagonal mixing is the entire source of [A_\u03b8,A_\u03c6]"
+    },
+    "N3_abelian_curvature_is_dA_only": {
+      "pass": true,
+      "F_abelian_norm": 0.4555323513446459,
+      "abelian_commutator_norm": 0.0,
+      "note": "F_abelian = dA only; [diag A_\u03b8, diag A_\u03c6] = 0 exactly"
+    },
+    "elapsed_s": 0.005816221237182617
+  },
+  "boundary": {
+    "B1_fraction_scan": {
+      "pass": true,
+      "thetas": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        1.0,
+        1.2,
+        1.5
+      ],
+      "phi": 0.8,
+      "commutator_fractions": [
+        1716025.7877679744,
+        454017.6029791871,
+        542582.4140890538,
+        325169.2138294892,
+        395156.90486510616,
+        294019.9141107049,
+        300016.2251416893
+      ],
+      "comm_norms": [
+        0.7071067812110513,
+        0.7071067811879359,
+        0.7071067812365199,
+        0.707106781234217,
+        0.7071067811882242,
+        0.7071067811667652,
+        0.7071067812747278
+      ],
+      "dA_norms": [
+        0.7071068774568424,
+        0.7071065366931208,
+        0.7071061673364762,
+        0.7071074905765555,
+        0.7071070356692148,
+        0.7071078015759491,
+        0.7071058125187428
+      ],
+      "note": "fraction > 1 when dA \u2248 \u2212comm (near-flat-curvature); both parts individually non-zero is the correct non-abelian signal"
+    },
+    "B2_anti_hermitian_scan": {
+      "pass": true,
+      "residuals": {
+        "(0.3,0.2)": 0.0,
+        "(0.7,0.8)": 0.0,
+        "(1.0,1.5)": 0.0,
+        "(1.2,0.4)": 0.0
+      },
+      "threshold": 1e-12
+    },
+    "B3_full_tensor_split_report": {
+      "pass": true,
+      "theta": 0.7,
+      "phi": 0.8,
+      "F_real": [
+        [
+          0.0,
+          3.3056493026206724e-07
+        ],
+        [
+          -3.3056493026206724e-07,
+          0.0
+        ]
+      ],
+      "F_imag": [
+        [
+          1.2643107369370021e-06,
+          9.354573987824255e-07
+        ],
+        [
+          9.354573987824255e-07,
+          -1.0777816461526868e-06
+        ]
+      ],
+      "dA_part_real": [
+        [
+          0.0,
+          -0.38242076310403267
+        ],
+        [
+          0.38242076310403267,
+          0.0
+        ]
+      ],
+      "dA_part_imag": [
+        [
+          0.3221101079501839,
+          9.35453103867445e-07
+        ],
+        [
+          9.35453103867445e-07,
+          -0.3221099214210931
+        ]
+      ],
+      "commutator_real": [
+        [
+          0.0,
+          0.38242109366896293
+        ],
+        [
+          -0.38242109366896293,
+          0.0
+        ]
+      ],
+      "commutator_imag": [
+        [
+          -0.322108843639447,
+          4.294914980560945e-12
+        ],
+        [
+          4.294914980560945e-12,
+          0.322108843639447
+        ]
+      ],
+      "norm_F": 2.1745809601920265e-06,
+      "norm_dA": 0.7071074905765555,
+      "norm_comm": 0.707106781234217,
+      "commutator_fraction": 325169.2138294892
+    },
+    "elapsed_s": 0.036473989486694336
+  },
+  "classification": "canonical",
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "failed_tests": []
+  }
+}

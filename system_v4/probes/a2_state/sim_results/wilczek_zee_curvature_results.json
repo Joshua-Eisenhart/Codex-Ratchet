@@ -1,0 +1,323 @@
+{
+  "name": "sim_pure_lego_wilczek_zee_curvature",
+  "timestamp": "2026-04-10T09:09:45Z",
+  "lego_ids": [
+    "wilczek_zee_curvature",
+    "nonabelian_field_strength",
+    "degenerate_subspace_curvature"
+  ],
+  "primary_lego_ids": [
+    "wilczek_zee_curvature"
+  ],
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 4\u00d74/2\u00d72 complex128 tensors, torch.matrix_exp for W(\u03b8,\u03c6) and exp(F\u00d7area), torch.linalg.norm (Frobenius), torch.trace for Tr(F\u00b2) invariance, central finite-difference curvature: F = \u2202_\u03b8A_\u03c6 \u2212 \u2202_\u03c6A_\u03b8 + [A_\u03b8,A_\u03c6]"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph structure; curvature is a pointwise matrix-valued 2-form"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "no discrete logical constraints in this computation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "no SMT-amenable formula; curvature is a continuous differential form"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proofs: Tr([A,B])=0 for any A,B (commutator trace vanishes); [A,B]\u2020=\u2212[A,B] for anti-Hermitian A,B (curvature anti-Hermitian inheritance)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "curvature is a u(2)-valued form, not a Clifford multivector"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geometry computed explicitly; no Riemannian manifold library needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SE(3) equivariance; 2D parameter space with explicit matrix algebra"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph; sim is a pointwise curvature computation"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph; curvature is a 2-form on a 2D parameter space"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no cell complex; curvature is not a chain-map object"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology; sim does not require TDA"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_decomposition_structure": {
+      "passed": true,
+      "theta": 0.7,
+      "phi": 0.8,
+      "dA_norm": 0.70710684,
+      "comm_norm": 0.70710678,
+      "F_norm": 2.669e-07,
+      "decomp_residual": 0.0,
+      "anti_hermitian_residual_after_projection": 0.0,
+      "anti_hermitian_residual_before_projection": 0.0,
+      "F_real": [
+        [
+          0.0,
+          8.12672296679473e-08
+        ],
+        [
+          -8.12672296679473e-08,
+          0.0
+        ]
+      ],
+      "F_imag": [
+        [
+          1.1709499442291715e-07,
+          -2.5687653653626344e-08
+        ],
+        [
+          -2.5687653653626344e-08,
+          -2.0734318534332274e-07
+        ]
+      ]
+    },
+    "P2_abelian_diagonal_curvature": {
+      "passed": true,
+      "theta": 1.570796,
+      "phi": 1.570796,
+      "F_diag_norm": 0.70710688,
+      "F_diag_off_diagonal": 0.0,
+      "comm_diag_norm": 0.0,
+      "F_diag_real": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "F_diag_imag": [
+        [
+          0.5000001138898147,
+          0.0
+        ],
+        [
+          0.0,
+          -0.5000000316836284
+        ]
+      ],
+      "F_diag_11_imag": 0.50000011,
+      "F_diag_22_imag": -0.50000003
+    },
+    "P3_gauge_covariance": {
+      "passed": true,
+      "gauge_residual": 1e-12,
+      "alpha": 0.5,
+      "F_gauge_real": [
+        [
+          0.0,
+          -9.259373007219907e-08
+        ],
+        [
+          9.259373007219907e-08,
+          0.0
+        ]
+      ],
+      "F_gauge_imag": [
+        [
+          1.1090723744944242e-07,
+          -2.5687098542114032e-08
+        ],
+        [
+          -2.5687098542114032e-08,
+          -2.0115542831433686e-07
+        ]
+      ],
+      "F_predicted_real": [
+        [
+          0.0,
+          -9.2593785737482e-08
+        ],
+        [
+          9.259378573748201e-08,
+          0.0
+        ]
+      ],
+      "F_predicted_imag": [
+        [
+          1.1090726864077506e-07,
+          -2.568765365362635e-08
+        ],
+        [
+          -2.568765365362635e-08,
+          -2.0115545956118066e-07
+        ]
+      ]
+    }
+  },
+  "negative": {
+    "N1_diagonal_commutator_zero": {
+      "passed": true,
+      "comm_diag_norm": 0.0,
+      "full_comm_norm": 0.70710678
+    },
+    "N2_antisymmetry": {
+      "passed": true,
+      "antisymmetry_residual": 0.0,
+      "F_theta_phi_norm": 2.669e-07,
+      "F_phi_theta_norm": 2.669e-07
+    },
+    "N3_trace_F_sq_invariant": {
+      "passed": true,
+      "trace_F_sq_original": "(-7.12308705634816e-14+0j)",
+      "trace_F_sq_gauge": "(-7.123087056348159e-14-3.944304526105059e-31j)",
+      "invariance_residual": 0.0
+    }
+  },
+  "boundary": {
+    "B1_fd_convergence": {
+      "passed": true,
+      "deltas": [
+        0.001,
+        0.0001,
+        1e-05
+      ],
+      "F_diag_norms": [
+        0.4555306168,
+        0.4555309246,
+        0.4555323513
+      ],
+      "F_diag_relative_spread": 2.3132e-06,
+      "diag_stable_within_0.1pct": true,
+      "dA_norms": [
+        0.70710666,
+        0.70710684,
+        0.70710749
+      ],
+      "dA_stable_within_5pct": true
+    },
+    "B2_analytic_connection_crosscheck": {
+      "passed": true,
+      "test_points": [
+        [
+          0.7,
+          0.8
+        ],
+        [
+          1.0472,
+          0.7854
+        ],
+        [
+          1.5708,
+          1.5708
+        ]
+      ],
+      "A_phi_fd_vs_analytic_residuals": [
+        7.6e-11,
+        4.6e-11,
+        8e-11
+      ],
+      "max_residual": 8e-11
+    },
+    "B3_abelian_stokes": {
+      "passed": true,
+      "theta_center": 1.570796,
+      "phi_center": 1.570796,
+      "area": 0.0025000000000000005,
+      "stokes_diff": 7.4e-07,
+      "identity_diff": 0.00176703,
+      "U_diag_real": [
+        [
+          0.999999219400925,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999992194009263
+        ]
+      ],
+      "U_diag_imag": [
+        [
+          0.0012494789064499572,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0012494789061926605
+        ]
+      ],
+      "U_curv_real": [
+        [
+          0.9999992187497457,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999992187500027
+        ]
+      ],
+      "U_curv_imag": [
+        [
+          0.001249999959203504,
+          0.0
+        ],
+        [
+          0.0,
+          -0.001249999753688199
+        ]
+      ]
+    },
+    "B4_sympy": {
+      "passed": true,
+      "trace_commutator_zero_symbolic": true,
+      "anti_hermitian_inheritance_symbolic": true
+    }
+  },
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "elapsed_seconds": 0.27,
+    "model": "4-level H(\u03b8,\u03c6) = W diag(-1,-1,+1,+1) W\u2020, pure-gauge connection (F\u22480)",
+    "bridge_claim": "The Wilczek-Zee connection for this 4-level model is pure gauge: ||dA||_F \u2248 ||[A,A]||_F \u2248 0.7 at generic points, canceling to give ||F||_F \u2248 1e-6. The abelian (diagonal) curvature F_diag = dA_diag is non-zero, cross-validating the scalar Berry curvature from the Stokes probe. All structural properties (gauge-covariance F\u2192g\u207b\u00b9Fg, antisymmetry, Tr(F\u00b2) invariance) hold. Sympy confirms Tr([A,B])=0 and [A,B]\u2020=\u2212[A,B]."
+  }
+}

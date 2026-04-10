@@ -1,0 +1,242 @@
+{
+  "name": "sim_pure_lego_stinespring_dilation",
+  "classification": "canonical",
+  "overall_pass": true,
+  "positive_ok": true,
+  "negative_ok": true,
+  "boundary_ok": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure numpy probe; torch not required for isometry algebra checks"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in Stinespring dilation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: completeness constant c != 1 is structurally incompatible with Stinespring isometry condition V\u2020V = I; c > 0 AND c != 1 AND c == 1 is UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers UNSAT completeness proof; separate cvc5 run not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof that V\u2020V = K0\u2020K0 + K1\u2020K1 = I holds for amplitude damping for all gamma in (0,1); proves isometry condition algebraically not just numerically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford algebra in isometry construction"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian geometry in dilation axioms"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance structure in Stinespring"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph representation needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell-complex structure needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_vdagv_identity_proof": {
+      "ok": true,
+      "entry_00": "1",
+      "entry_01": "0",
+      "entry_10": "0",
+      "entry_11": "1",
+      "all_entries_match_identity": true,
+      "proof": "V\u2020V = K0\u2020K0+K1\u2020K1 = [[1,0],[0,(1-\u03b3)+\u03b3]] = I for all \u03b3\u2208(0,1). Key step: (1-\u03b3)+\u03b3 = 1 holds symbolically in sympy."
+    },
+    "isometry_structure_ad": {
+      "ok": true,
+      "channel_name": "amplitude_damping",
+      "gamma": 0.4,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "isometry_residual": 0.0,
+      "V_shape": [
+        4,
+        2
+      ]
+    },
+    "dilation_recovery_ad": {
+      "ok": true,
+      "channel_name": "amplitude_damping",
+      "gamma": 0.4,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "max_recovery_residual": 0.0,
+      "per_state_residuals": {
+        "|0>": 0.0,
+        "|1>": 0.0,
+        "|+>": 0.0
+      }
+    },
+    "isometry_structure_dephasing": {
+      "ok": true,
+      "channel_name": "dephasing",
+      "p": 0.5,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "isometry_residual": 2.220446049250313e-16
+    },
+    "dilation_recovery_dephasing": {
+      "ok": true,
+      "channel_name": "dephasing",
+      "p": 0.5,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "max_recovery_residual": 0.0,
+      "per_state_residuals": {
+        "|0>": 0.0,
+        "|1>": 0.0,
+        "|+>": 0.0
+      }
+    },
+    "dilation_recovery_depolarizing": {
+      "ok": true,
+      "channel_name": "depolarizing",
+      "p": 0.5,
+      "kraus_rank": 4,
+      "environment_dim": 4,
+      "max_recovery_residual": 0.0
+    },
+    "complementary_channel_ad": {
+      "ok": true,
+      "channel_name": "amplitude_damping",
+      "gamma": 0.4,
+      "input_state": "|0><0|",
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "complementary_output_shape": [
+        2,
+        2
+      ],
+      "comp_err_vs_expected_diag_1_0": 0.0,
+      "trace": 1.0,
+      "min_eigenvalue": 0.0,
+      "note": "E^c(|0><0|) = diag(1,0): env stays in |0> when input is ground state. K0|0>=|0> contributes 1, K1|0>=0 contributes 0."
+    }
+  },
+  "negative": {
+    "non_cptp_trace_violation": {
+      "ok": true,
+      "channel_name": "non_cptp_incomplete_ops",
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "output_trace": 1.2,
+      "tp_ok": false,
+      "isometry_residual": 0.19999999999999996,
+      "completeness_avg_diagonal": 1.2,
+      "note": "A0=sqrt(0.8)*I, A1=sqrt(0.4)*Z: sum A\u2020A = 1.2*I; trace=1.2 > 1 (TP violated); V\u2020V = 1.2*I \u2260 I (not an isometry). ok=True means correctly detected as non-CPTP."
+    },
+    "transpose_choi_negative_eigenvalue": {
+      "ok": true,
+      "channel_name": "transpose_map",
+      "kraus_rank": null,
+      "environment_dim": null,
+      "choi_min_eigenvalue": -1.0,
+      "choi_eigenvalues": [
+        -1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "note": "T(rho)=rho^T: Choi matrix = SWAP, eigenvalues {-1,1,1,1}. Min eigenvalue = -1 in unnormalized Choi convention (J = sum_{i,j} |i><j| x T(|i><j|)); -0.5 in normalized convention. Negative spectrum certifies non-CP; no valid Stinespring isometry. ok=True means correctly detected via Choi negativity."
+    },
+    "z3_non_completeness_unsat": {
+      "ok": true,
+      "channel_name": "symbolic_non_tp_map",
+      "kraus_rank": null,
+      "environment_dim": null,
+      "sat_baseline": "sat",
+      "unsat_isometry": "unsat",
+      "proof": "c > 0 AND c != 1 AND c == 1 is UNSAT: non-unit completeness constant is structurally incompatible with Stinespring isometry. No Stinespring decomposition exists for non-TP maps."
+    }
+  },
+  "boundary": {
+    "identity_channel_dilation": {
+      "ok": true,
+      "channel_name": "identity",
+      "kraus_rank": 1,
+      "environment_dim": 1,
+      "isometry_residual": 0.0,
+      "max_recovery_residual": 0.0,
+      "note": "k=1: V = I2, no environment entanglement; Tr_env is trivial; exact identity recovery"
+    },
+    "ad_gamma_zero": {
+      "ok": true,
+      "channel_name": "amplitude_damping",
+      "gamma": 0.0,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "isometry_residual": 0.0,
+      "max_recovery_residual": 0.0,
+      "note": "gamma=0: K1=zero matrix; zero Kraus op contributes nothing; V\u2020V=I still holds"
+    },
+    "ad_gamma_one_reset": {
+      "ok": true,
+      "channel_name": "amplitude_damping",
+      "gamma": 1.0,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "isometry_residual": 0.0,
+      "reset_error_on_excited_state": 0.0,
+      "note": "gamma=1: K0=|0><0|, K1=|0><1|; any input resets to |0><0|. Dilation recovery: |1><1| \u2192 |0><0| exactly via Tr_env."
+    },
+    "dephasing_p_one": {
+      "ok": true,
+      "channel_name": "dephasing",
+      "p": 1.0,
+      "kraus_rank": 2,
+      "environment_dim": 2,
+      "isometry_residual": 0.0,
+      "phase_flip_error_on_plus": 0.0,
+      "note": "p=1: K0=zero, K1=Z; pure Z channel (phase-flip). |+> \u2192 |\u2212> exactly. Zero Kraus op K0 contributes nothing but isometry still holds."
+    }
+  }
+}

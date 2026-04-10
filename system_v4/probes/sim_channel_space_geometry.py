@@ -7,6 +7,7 @@ Direct local geometry lego on a bounded qubit channel family.
 
 import json
 import pathlib
+from datetime import datetime, timezone
 
 import numpy as np
 
@@ -186,6 +187,7 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

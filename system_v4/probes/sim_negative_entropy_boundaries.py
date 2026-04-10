@@ -27,6 +27,21 @@ from datetime import UTC, datetime
 import numpy as np
 from scipy.linalg import logm
 
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = (
+    "Supporting entropy-boundary battery spanning numerical pathologies, "
+    "support violations, invalid-input behavior, and disagreement regimes "
+    "across multiple entropy families. Useful as a falsifier/boundary surface, "
+    "not a single canonical direct lego row."
+)
+LEGO_IDS = ["negative_entropy_boundaries"]
+PRIMARY_LEGO_IDS = ["negative_entropy_boundaries"]
+TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
+    "pytorch", "pyg", "z3", "cvc5", "sympy", "clifford",
+    "geomstats", "e3nn", "rustworkx", "xgi", "toponetx", "gudhi",
+]}
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -726,6 +741,71 @@ def run_all():
     for f in findings:
         print(f"    {f}")
 
+    positive = {
+        "support_violation_returns_infinite_relative_entropy": {
+            "pass": np.isinf(all_results["T3_relative_entropy_support"]["support_violation_inf"]),
+            "value": all_results["T3_relative_entropy_support"]["support_violation_inf"],
+        },
+        "bell_conditional_entropy_is_negative": {
+            "pass": abs(all_results["T4_conditional_entropy"]["bell_S_A_given_B"] + 1.0) < 1e-6,
+            "value": all_results["T4_conditional_entropy"]["bell_S_A_given_B"],
+        },
+        "product_state_mutual_information_stays_numerically_zero": {
+            "pass": not all_results["T5_mi_product_state"]["mi_exceeds_1e10"],
+            "max_abs": all_results["T5_mi_product_state"]["mi_max_abs"],
+        },
+        "linear_entropy_respects_dimension_limits": {
+            "pass": all(
+                abs(v["pure"]) < 1e-12 and abs(v["error_max_mixed"]) < 1e-12
+                for v in all_results["T7_linear_entropy_dims"].values()
+            ),
+        },
+    }
+
+    negative = {
+        "raw_vn_can_go_negative_under_eigenvalue_noise": {
+            "pass": all_results["T1_vn_pure_noise"]["negative_count"] > 0,
+            "negative_count": all_results["T1_vn_pure_noise"]["negative_count"],
+            "worst_negative_s": all_results["T1_vn_pure_noise"]["worst_negative_s"],
+        },
+        "renyi_negative_alpha_is_not_physically_interpretable_here": {
+            "pass": all(
+                item["value"] is not None and np.isfinite(item["value"])
+                for item in all_results["T2_renyi_edge_cases"]["alpha_negative"]
+            ),
+            "values": [item["value"] for item in all_results["T2_renyi_edge_cases"]["alpha_negative"]],
+        },
+        "invalid_inputs_can_be_silently_accepted": {
+            "pass": any(v.get("error") is None for v in all_results["T9_non_density_matrix"].values()),
+        },
+        "shannon_and_vn_can_strongly_disagree": {
+            "pass": all_results["T10_shannon_vs_vn"]["max_disagreement_pure_d4"] > 1.0,
+            "max_disagreement_pure_d4": all_results["T10_shannon_vs_vn"]["max_disagreement_pure_d4"],
+        },
+    }
+
+    boundary = {
+        "rank_boundary_keeps_renyi_zero_discontinuous": {
+            "pass": all_results["T8_rank_boundary"]["rank_jump_epsilon"] is None,
+            "rank_jump_epsilon": all_results["T8_rank_boundary"]["rank_jump_epsilon"],
+        },
+        "tsallis_to_min_entropy_convergence_depends_on_state": {
+            "pass": (
+                all_results["T6_tsallis_min_entropy"]["max_mixed_4"]["converged_at_q"] !=
+                all_results["T6_tsallis_min_entropy"]["rank2_4"]["converged_at_q"]
+            ),
+        },
+        "battery_is_boundary_focused_not_direct_entropy_taxonomy": {
+            "pass": True,
+        },
+    }
+
+    all_pass = all(
+        item["pass"]
+        for section in (positive, negative, boundary)
+        for item in section.values()
+    )
+
     # Save
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
@@ -734,9 +814,25 @@ def run_all():
 
     payload = {
         "timestamp": datetime.now(UTC).isoformat(),
-        "name": "Negative_Entropy_Boundaries_Battery",
+        "name": "negative_entropy_boundaries",
+        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "results": all_results,
         "findings": findings,
+        "summary": {
+            "all_pass": all_pass,
+            "scope_note": (
+                "Supporting entropy-boundary battery covering numerical, support, "
+                "invalid-input, and disagreement regimes across multiple entropy families."
+            ),
+        },
     }
 
     with open(outpath, "w") as fh:

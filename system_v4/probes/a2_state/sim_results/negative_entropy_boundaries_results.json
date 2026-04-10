@@ -1,6 +1,142 @@
 {
-  "timestamp": "2026-04-08T08:36:34.050001+00:00",
-  "name": "Negative_Entropy_Boundaries_Battery",
+  "timestamp": "2026-04-10T05:55:52.495462+00:00",
+  "name": "negative_entropy_boundaries",
+  "classification": "supporting",
+  "classification_note": "Supporting entropy-boundary battery spanning numerical pathologies, support violations, invalid-input behavior, and disagreement regimes across multiple entropy families. Useful as a falsifier/boundary surface, not a single canonical direct lego row.",
+  "lego_ids": [
+    "negative_entropy_boundaries"
+  ],
+  "primary_lego_ids": [
+    "negative_entropy_boundaries"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "support_violation_returns_infinite_relative_entropy": {
+      "pass": "True",
+      "value": Infinity
+    },
+    "bell_conditional_entropy_is_negative": {
+      "pass": true,
+      "value": -0.9999999999999997
+    },
+    "product_state_mutual_information_stays_numerically_zero": {
+      "pass": true,
+      "max_abs": 1.7763568394002505e-15
+    },
+    "linear_entropy_respects_dimension_limits": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "raw_vn_can_go_negative_under_eigenvalue_noise": {
+      "pass": true,
+      "negative_count": 38,
+      "worst_negative_s": -1.4426957621175576e-06
+    },
+    "renyi_negative_alpha_is_not_physically_interpretable_here": {
+      "pass": true,
+      "values": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "invalid_inputs_can_be_silently_accepted": {
+      "pass": true
+    },
+    "shannon_and_vn_can_strongly_disagree": {
+      "pass": true,
+      "max_disagreement_pure_d4": 1.9883528713336354
+    }
+  },
+  "boundary": {
+    "rank_boundary_keeps_renyi_zero_discontinuous": {
+      "pass": true,
+      "rank_jump_epsilon": null
+    },
+    "tsallis_to_min_entropy_convergence_depends_on_state": {
+      "pass": true
+    },
+    "battery_is_boundary_focused_not_direct_entropy_taxonomy": {
+      "pass": true
+    }
+  },
   "results": {
     "T1_vn_pure_noise": {
       "s_exact_pure": -0.0,
@@ -1052,5 +1188,9 @@
     "T8: Renyi-0 rank jump at eps ~ None (None = no transition in sweep)",
     "T9: Non-density-matrix inputs silently accepted by eigvalsh",
     "T10: Shannon vs vN max disagreement (pure d=4) = 1.9884 bits"
-  ]
+  ],
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Supporting entropy-boundary battery covering numerical, support, invalid-input, and disagreement regimes across multiple entropy families."
+  }
 }

@@ -1,0 +1,129 @@
+{
+  "name": "fubini_study_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for Fubini-Study geometry on bounded pure-state rays, kept separate from Bures and trace-distance rows.",
+  "lego_ids": [
+    "fubini_study_geometry"
+  ],
+  "primary_lego_ids": [
+    "fubini_study_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for the smallest direct pure-state metric row"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "same_ray_has_zero_distance": {
+      "value": 0.0,
+      "pass": true
+    },
+    "global_phase_invariance_holds": {
+      "value": 1.4901161193847656e-08,
+      "pass": true
+    },
+    "symmetry_holds": {
+      "lhs": 0.7853981633974484,
+      "rhs": 0.7853981633974484,
+      "pass": true
+    }
+  },
+  "negative": {
+    "orthogonal_states_are_not_zero_distance": {
+      "value": 1.5707963267948966,
+      "pass": true
+    },
+    "superposition_case_is_intermediate": {
+      "plus": 0.7853981633974484,
+      "orth": 1.5707963267948966,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "ray_not_vector_rule_depends_only_on_overlap_magnitude": {
+      "mid": 0.3500000000000001,
+      "phase_mid": 0.3500000000000001,
+      "pass": true
+    },
+    "triangle_inequality_spot_check": {
+      "lhs": 0.3500000000000001,
+      "rhs": 1.220796326794897,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Fubini-Study metric lego on bounded pure-state rays."
+  }
+}

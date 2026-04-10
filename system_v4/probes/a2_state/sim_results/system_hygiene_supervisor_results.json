@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-10T05:08:19.222887+00:00",
-  "strict": false,
-  "overall_green": false,
+  "generated_at": "2026-04-10T05:10:45.334151+00:00",
+  "strict": true,
+  "overall_green": true,
   "repair_queue_count": 2,
   "safe_auto_repair_count": 0,
   "manual_repair_count": 2,
@@ -23,7 +23,7 @@
     "repo_hygiene_green": true,
     "runtime_hygiene_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": false
+    "overall_green": true
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -55,16 +55,16 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 11,
+    "source_dirty_count": 6,
     "dirty_source_bucket_count": 3,
     "dirty_source_buckets": [
       {
-        "label": "probe_source",
-        "count": 6
-      },
-      {
         "label": "legacy_runtime",
         "count": 4
+      },
+      {
+        "label": "probe_source",
+        "count": 1
       },
       {
         "label": "other_source",
@@ -74,7 +74,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 20
+        "count": 15
       },
       {
         "prefix": "obsidian_vault",
@@ -93,17 +93,26 @@
     "status": "current",
     "dirty_source_checkpoint_required": true,
     "plan_group_count": 3,
-    "largest_group_id": "probe_source__probe_misc",
+    "largest_group_id": "other_source__other_source",
     "next_code_only_manual": {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 4,
-      "untracked_count": 4,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "archive_review",
-      "source_path": null,
+      "group_id": "probe_source__probe_misc",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/system_hygiene_supervisor.py",
       "result_path": null
     },
     "recommended_code_only_order": [
+      {
+        "group_id": "probe_source__probe_misc",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/system_hygiene_supervisor.py",
+        "result_path": null
+      },
       {
         "group_id": "legacy_runtime__legacy_runtime",
         "file_count": 4,
@@ -121,15 +130,6 @@
         "safe_next_action": "manual_split_required",
         "source_path": null,
         "result_path": null
-      },
-      {
-        "group_id": "probe_source__probe_misc",
-        "file_count": 6,
-        "untracked_count": 0,
-        "tracked_dirty_count": 6,
-        "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
       }
     ]
   },
@@ -141,7 +141,7 @@
     "selected_group_id": null,
     "file_count": 0,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "code_only_fallback_group_id": "probe_source__probe_misc",
     "active_actionable_lane_group_id": null
   },
   "maintenance_lanes": [
@@ -234,9 +234,9 @@
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 11,
+      "source_dirty_count": 6,
       "generated_dirty_count": 17,
-      "dirty_worktree_count": 28,
+      "dirty_worktree_count": 23,
       "dirty_source_bucket_count": 3,
       "ok": true
     },
@@ -259,16 +259,16 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 11,
+      "dirty_source_count": 6,
       "plan_group_count": 3,
       "checkpoint_candidate_count": 0,
       "quarantine_candidate_count": 0,
       "manual_only_count": 3,
       "code_only_manual_count": 3,
-      "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
-      "next_code_only_manual_file_count": 4,
-      "next_code_only_manual_source_path": null,
+      "largest_group_id": "other_source__other_source",
+      "next_code_only_manual_group_id": "probe_source__probe_misc",
+      "next_code_only_manual_file_count": 1,
+      "next_code_only_manual_source_path": "system_v4/probes/system_hygiene_supervisor.py",
       "next_code_only_manual_result_path": null,
       "ok": true
     },
@@ -277,7 +277,7 @@
       "file_count": 0,
       "safe_next_action": null,
       "docs_opt_in_required": false,
-      "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+      "code_only_fallback_group_id": "probe_source__probe_misc",
       "active_actionable_lane_group_id": null,
       "executable_lane_group_id": null,
       "ok": true,

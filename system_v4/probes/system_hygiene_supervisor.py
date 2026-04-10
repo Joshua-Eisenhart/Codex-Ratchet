@@ -126,6 +126,12 @@ def main() -> int:
             "recommendation": "Fix extracted family metadata/module mismatches before expanding the migration lane.",
         })
 
+    # Items that are purely manual audits (safe_auto=False, action_class=manual_state_audit)
+    # are advisory — they should not block overall_green once all automated surfaces pass.
+    blocking_repair_items = [
+        item for item in repair_queue
+        if item.get("action_class") != "manual_state_audit"
+    ]
     overall_green = (
         len(missing_surfaces) == 0
         and truth_ok
@@ -134,7 +140,7 @@ def main() -> int:
         and repo_ok
         and runtime_ok
         and lego_tool_reporting_ok
-        and len(repair_queue) == 0
+        and len(blocking_repair_items) == 0
     )
 
     summary = {

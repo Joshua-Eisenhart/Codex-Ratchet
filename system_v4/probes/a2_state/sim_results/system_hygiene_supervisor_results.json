@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T09:12:32.093784+00:00",
+  "generated_at": "2026-04-10T18:10:35.644708+00:00",
   "strict": false,
-  "overall_green": false,
-  "repair_queue_count": 3,
-  "safe_auto_repair_count": 1,
-  "manual_repair_count": 2,
+  "overall_green": true,
+  "repair_queue_count": 0,
+  "safe_auto_repair_count": 0,
+  "manual_repair_count": 0,
   "truth_green": true,
   "controller_green": true,
   "migration_green": true,
-  "repo_hygiene_green": false,
-  "runtime_hygiene_green": false,
+  "repo_hygiene_green": true,
+  "runtime_hygiene_green": true,
   "state_dir_ownership_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 3,
-    "safe_auto_repair_count": 1,
-    "manual_repair_count": 2,
+    "repair_queue_count": 0,
+    "safe_auto_repair_count": 0,
+    "manual_repair_count": 0,
     "truth_green": true,
     "controller_green": true,
     "migration_green": true,
-    "repo_hygiene_green": false,
-    "runtime_hygiene_green": false,
+    "repo_hygiene_green": true,
+    "runtime_hygiene_green": true,
     "state_dir_ownership_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": false
+    "overall_green": true
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -66,27 +66,22 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 20,
-    "dirty_source_bucket_count": 1,
-    "dirty_source_buckets": [
-      {
-        "label": "probe_source",
-        "count": 20
-      }
-    ],
+    "source_dirty_count": 0,
+    "dirty_source_bucket_count": 0,
+    "dirty_source_buckets": [],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 49
+        "count": 15
       }
     ],
-    "checkpoint_recommended": true
+    "checkpoint_recommended": false
   },
   "source_dirty_checkpoint": {
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
-    "dirty_source_checkpoint_required": true,
+    "dirty_source_checkpoint_required": false,
     "plan_group_count": 0,
     "largest_group_id": null,
     "next_code_only_manual": null,
@@ -96,7 +91,7 @@
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
-    "required": true,
+    "required": false,
     "selected_group_id": null,
     "file_count": 0,
     "docs_opt_in_required": false,
@@ -126,86 +121,13 @@
     }
   ],
   "missing_surfaces": [],
-  "repair_queue": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 20
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
-    {
-      "kind": "secondary_result_directory_populated",
-      "action_class": "quarantine_secondary_unique_results",
-      "safe_auto": true,
-      "opt_in_only": true,
-      "recommendation": "Only the unique legacy results are candidates for bounded quarantine; duplicate basenames still require manual routing.",
-      "path": "system_v4/probes/sim_results",
-      "safe_unique_files": [
-        "SA12_wilczek_zee_curvature_sympy_results.json",
-        "sa5_curvature_commutator_results.json"
-      ],
-      "blocked_duplicate_files": [],
-      "suggested_quarantine_root": "work/hygiene_quarantine/secondary_unique_results",
-      "source_surface": "repo_hygiene"
-    },
-    {
-      "kind": "runtime_alignment_required",
-      "action_class": "manual_env_repair",
-      "safe_auto": false,
-      "recommendation": "Repair interpreter or dependency floors before relying on unattended hygiene automation.",
-      "source_surface": "runtime_hygiene"
-    }
-  ],
-  "safe_auto_queue": [
-    {
-      "kind": "secondary_result_directory_populated",
-      "action_class": "quarantine_secondary_unique_results",
-      "safe_auto": true,
-      "opt_in_only": true,
-      "recommendation": "Only the unique legacy results are candidates for bounded quarantine; duplicate basenames still require manual routing.",
-      "path": "system_v4/probes/sim_results",
-      "safe_unique_files": [
-        "SA12_wilczek_zee_curvature_sympy_results.json",
-        "sa5_curvature_commutator_results.json"
-      ],
-      "blocked_duplicate_files": [],
-      "suggested_quarantine_root": "work/hygiene_quarantine/secondary_unique_results",
-      "source_surface": "repo_hygiene"
-    }
-  ],
-  "manual_queue": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 20
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
-    {
-      "kind": "runtime_alignment_required",
-      "action_class": "manual_env_repair",
-      "safe_auto": false,
-      "recommendation": "Repair interpreter or dependency floors before relying on unattended hygiene automation.",
-      "source_surface": "runtime_hygiene"
-    }
-  ],
+  "repair_queue": [],
+  "safe_auto_queue": [],
+  "manual_queue": [],
   "surface_status": {
     "truth": {
       "hard_finding_count": 0,
-      "warning_finding_count": 1,
+      "warning_finding_count": 0,
       "ok": true
     },
     "controller": {
@@ -227,27 +149,27 @@
       "ok": true
     },
     "repo_hygiene": {
-      "blocker_count": 2,
+      "blocker_count": 0,
       "advisory_count": 5,
-      "repair_candidate_count": 2,
-      "primary_result_count": 789,
-      "secondary_result_count": 2,
-      "secondary_unique_result_count": 2,
+      "repair_candidate_count": 0,
+      "primary_result_count": 796,
+      "secondary_result_count": 0,
+      "secondary_unique_result_count": 0,
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 20,
-      "generated_dirty_count": 29,
-      "dirty_worktree_count": 49,
-      "dirty_source_bucket_count": 1,
-      "ok": false
+      "source_dirty_count": 0,
+      "generated_dirty_count": 15,
+      "dirty_worktree_count": 15,
+      "dirty_source_bucket_count": 0,
+      "ok": true
     },
     "runtime_hygiene": {
-      "blocker_count": 5,
+      "blocker_count": 0,
       "advisory_count": 0,
-      "repair_candidate_count": 1,
+      "repair_candidate_count": 0,
       "requirements_package_count": 19,
-      "ok": false
+      "ok": true
     },
     "state_dir_ownership": {
       "blocker_count": 0,
@@ -292,6 +214,5 @@
       "status": "no_actionable_lanes",
       "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
     }
-  },
-  "classification": "supporting"
+  }
 }

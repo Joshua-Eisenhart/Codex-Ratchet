@@ -1,0 +1,164 @@
+{
+  "name": "qit_attractor_basin_recovery",
+  "classification": "canonical",
+  "classification_note": "Canonical finite-channel row for QIT-aligned attractor-basin recovery: bounded perturbations of nearby density states return under one ordered noncommuting schedule to the same persistent equivalence class, while the swapped order is weaker and a commuting control loses the order effect.",
+  "lego_ids": [
+    "channel_cptp_map",
+    "viability_vs_attractor"
+  ],
+  "primary_lego_ids": [
+    "channel_cptp_map"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nearby_perturbations_return_to_the_same_recovery_class": {
+      "state_a_entry_round": 7,
+      "state_b_entry_round": 2,
+      "state_a_terminal_metrics": {
+        "excited_population": 0.15469594470491216,
+        "coherence_magnitude": 0.014405999999999983,
+        "z_bias": 0.6906081105901731
+      },
+      "state_b_terminal_metrics": {
+        "excited_population": 0.15577645036384377,
+        "coherence_magnitude": 0.006338639999999942,
+        "z_bias": 0.6884470992723102
+      },
+      "terminal_trace_gap": 0.008139397388540678,
+      "pass": true
+    },
+    "chosen_order_beats_the_swapped_order_on_class_return": {
+      "chosen_mean_distance_to_pole": 0.15563531595218794,
+      "swapped_mean_distance_to_pole": 0.2215499247918271,
+      "one_cycle_order_gap": 0.02906613377552167,
+      "chosen_class_hits": 2,
+      "swapped_class_hits": 0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "commuting_control_schedule_loses_the_order_effect": {
+      "commuting_order_gap": 3.925231146709437e-17,
+      "pass": true
+    },
+    "mismatched_schedule_does_not_recover_the_same_class": {
+      "state_a_terminal_metrics": {
+        "excited_population": 0.31977599999999895,
+        "coherence_magnitude": 0.03959550606676075,
+        "z_bias": 0.360447999999999
+      },
+      "state_b_terminal_metrics": {
+        "excited_population": 0.3627839999999989,
+        "coherence_magnitude": 0.017422022669374808,
+        "z_bias": 0.27443199999999945
+      },
+      "class_hits": 0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "claim_is_equivalence_class_recovery_not_exact_point_identity": {
+      "target_class_rule": {
+        "excited_population_lt": 0.2,
+        "coherence_magnitude_lt": 0.02,
+        "z_bias_gt": 0.6
+      },
+      "terminal_gap": 0.008139397388540678,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "chosen_schedule": [
+      "x_dephasing(0.35)",
+      "amplitude_damping(0.30)"
+    ],
+    "swapped_schedule": [
+      "amplitude_damping(0.30)",
+      "x_dephasing(0.35)"
+    ],
+    "mismatched_schedule": [
+      "x_dephasing(0.20)",
+      "z_rotation(pi/3)"
+    ],
+    "scope_note": "Finite qubit row showing recovery to a persistent class under an ordered noncommuting schedule; no engine-runtime or universal basin taxonomy claims."
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "name": "pure_lego_contact_symplectic_kahler_coexistence",
+  "timestamp": "2026-04-10T09:07:54.005892+00:00",
+  "classification": "canonical",
+  "classification_note": "Three-shell coexistence probe: S\u00b3 contact shell, S\u00b2 symplectic shell, CP\u00b9/S\u00b2 K\u00e4hler shell. Coupling Program step 3. Key novelty: verifies complex structure J_q(v)=q\u00d7v on S\u00b2, its J\u00b2=-Id property, g-compatibility g(Ju,Jv)=g(u,v), and K\u00e4hler positivity \u03c9_K(v,Jv)>0. Standard round K\u00e4hler: \u03c9_K=\u03c9_S\u00b2 (c\u2081\u2083=-2, c\u2082\u2083=1). Fubini-Study K\u00e4hler: \u03c9_FS=(1/4)\u03c9_S\u00b2 (c\u2081\u2083=-1/2, c\u2082\u2083=1/4). Distinct from: sim_geom_symplectic_kahler_contact.py (spherical-coordinate survey), sim_geom_cp1_u1_projective.py (Berry/Fubini-Study lego), sim_pure_lego_contact_symplectic_coupling.py (pairwise). Uses pytorch (load_bearing) + z3 UNSAT + sympy vector algebra.",
+  "lego_ids": [
+    "contact_symplectic_kahler_coexistence",
+    "contact_S3",
+    "symplectic_S2",
+    "kahler_CP1"
+  ],
+  "primary_lego_ids": [
+    "contact_symplectic_kahler_coexistence"
+  ],
+  "shell_triple": [
+    "contact_S3",
+    "symplectic_S2",
+    "kahler_CP1"
+  ],
+  "bridge_constants": {
+    "contact_symplectic": -2.0,
+    "contact_kahler_round": -2.0,
+    "contact_kahler_fs": -0.5
+  },
+  "kahler_symplectic_identity": true,
+  "coexistence_verdict": "compatible",
+  "coexistence_judgment": {
+    "shell_triple": [
+      "contact_structure_s3",
+      "symplectic_s2",
+      "kahler_cp1_fubini_study"
+    ],
+    "coupling_constants": {
+      "c_12": {
+        "value": -2.0,
+        "status": "exact",
+        "source": "sim_pure_lego_hopf_contact_symplectic_bridge.py (z3 proven)",
+        "formula": "\u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082)"
+      },
+      "c_13": {
+        "value": -0.5,
+        "status": "exact",
+        "source": "derived: c\u2081\u2083 = c\u2082\u2083\u00b7c\u2081\u2082 = (1/4)\u00b7(\u22122) = \u22121/2; z3 proven unique (FS3)",
+        "formula": "\u03c9_FS(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u2212(1/2)\u00b7d\u03b1(h\u2081,h\u2082)"
+      },
+      "c_23": {
+        "value": 0.25,
+        "status": "exact",
+        "source": "Fubini-Study definition: \u03c9_FS = (1/4)\u00b7\u03c9_S\u00b2",
+        "formula": "\u03c9_FS = (1/4)\u00b7\u03c9_S\u00b2"
+      }
+    },
+    "consistency_chain": "c\u2081\u2083 = c\u2082\u2083\u00b7c\u2081\u2082  \u2192  \u22121/2 = (1/4)\u00b7(\u22122)  [exact, algebraic]",
+    "coexistence_verdict": "compatible",
+    "compatibility_residuals": {
+      "c12_ground_truth_j_sq_residual": 0.0,
+      "c13_max_residual_from_minus_half": 4.440892098500626e-16,
+      "c23_max_residual_from_quarter": 0.0
+    },
+    "kappa_note": "Two K\u00e4hler structures on S\u00b2: (1) standard round \u03c9_K=\u03c9_S\u00b2 [c\u2081\u2083=-2, c\u2082\u2083=1.0, tested in P1-P5/N1-N4/B1-B3]; (2) Fubini-Study \u03c9_FS=(1/4)\u03c9_S\u00b2 [c\u2081\u2083=-1/2, c\u2082\u2083=1/4, tested in FS1-FS3]. This judgment uses (2). The standard round K\u00e4hler is also compatible but has c\u2081\u2083=c\u2081\u2082=-2 (no new information from K\u00e4hler shell).",
+    "sign_convention_note": "Hopf map: X=2(x\u2080x\u2082+x\u2081x\u2083), Y=2(x\u2081x\u2082\u2212x\u2080x\u2083), Z=x\u2080\u00b2+x\u2081\u00b2\u2212x\u2082\u00b2\u2212x\u2083\u00b2. Jacobian row 1: [\u22122x\u2083, 2x\u2082, 2x\u2081, \u22122x\u2080]. \u03c9_S\u00b2(q;u,v)=q\u00b7(u\u00d7v) [NO 1/2 factor]. \u03c9_FS=(1/4)\u00b7\u03c9_S\u00b2 [CP\u00b9 Fubini-Study normalization]. J(v)=q\u00d7v; g_FS(u,v)=\u03c9_FS(u,Jv). c\u2081\u2082=\u22122 (locked, active convention)."
+  },
+  "sign_convention": "omega_S2(dpi(h1),dpi(h2)) = -2 * dalpha(h1,h2)",
+  "positive_diagnosis": "J\u00b2=-Id holds (max rel residual <1e-12 at 50 pts); K\u00e4hler positivity \u03c9_K(d\u03c0h,J(d\u03c0h))>0 holds (min=4 at north pole); g-compatibility holds (<1e-12); \u03c9_K=\u03c9_S\u00b2 (scalar triple product identity, sympy). North pole ground truth: J(2,0,0)=(0,2,0), J\u00b2=(-2,0,0)=-d\u03c0h\u2081, positivity=4.",
+  "negative_diagnosis": "Anti-J (J'=-J): positivity=-4<0 (incompatible, z3 UNSAT confirms). Degenerate J (J'=0): J'\u00b2\u2260-Id (residual=2), positivity=0 (incompatible). Rescaled K\u00e4hler (\u03c9_K=2\u00b7\u03c9_S\u00b2): identity residual=4, implied c=-4\u2260-2 (incompatible).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary engine: all three shell geometry computations \u2014 contact form \u03b1, Hopf map \u03c0, Jacobian d\u03c0, horizontal basis, area form \u03c9_S\u00b2, and the new K\u00e4hler shell checks: complex structure J_q(v)=q\u00d7v via torch.linalg.cross, J\u00b2=-Id residual, g-compatibility, K\u00e4hler positivity \u03c9_K(v,Jv)>0 at 50 random S\u00b3 points and explicit ground truth cases."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof N4: assuming anti-J structure (J'=-J) satisfies K\u00e4hler positivity \u03c9_K(v,J'v)>0 contradicts the algebraic fact that J'=-J flips the positivity sign. Encodes: omega_base>0 (standard J valid), omega_antiJ=-omega_base (sign flip), omega_antiJ>0 (positivity axiom). System is UNSAT \u2014 orientation-reversed complex structure is structurally incompatible with K\u00e4hler coexistence."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic checks: (1) J\u00b2=-Id via BAC-CAB vector identity q\u00d7(q\u00d7v)=q(q\u00b7v)-v|q|\u00b2, proved as polynomial identity then reduced under constraints |q|=1, v\u00b7q=0 to -v; (2) \u03c9_K=\u03c9_S\u00b2 via scalar triple product identity (q\u00d7u)\u00b7v = q\u00b7(u\u00d7v), algebraically exact with no constraints needed."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to three-shell geometric coexistence probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_complex_structure_j_squared": {
+      "pass": true,
+      "kahler_residual": 6.473657049138938e-16,
+      "threshold": 1e-12,
+      "n_points": 50,
+      "verdict": "compatible",
+      "description": "J\u00b2=-Id: relative residual |J(J(d\u03c0h))+d\u03c0h|/|d\u03c0h| < 1e-12 at 50 S\u00b3 points"
+    },
+    "P2_kahler_positivity": {
+      "pass": true,
+      "kahler_residual": -3.9999999999999973,
+      "min_positivity_value": 3.9999999999999973,
+      "threshold": 0.1,
+      "n_points": 50,
+      "verdict": "compatible",
+      "description": "K\u00e4hler positivity: \u03c9_K(d\u03c0h, J(d\u03c0h)) > 0.1 at 50 S\u00b3 points"
+    },
+    "P3_g_compatibility": {
+      "pass": true,
+      "kahler_residual": 6.661338147750939e-16,
+      "threshold": 1e-12,
+      "n_points": 50,
+      "verdict": "compatible",
+      "description": "g-compatibility: |g(J_q u, J_q v) - g(u,v)| < 1e-12 at 50 S\u00b3 points"
+    },
+    "P4_north_pole_ground_truth": {
+      "pass": true,
+      "kahler_residual": 0.0,
+      "j_squared_residual": 0.0,
+      "kahler_positivity": 4.0,
+      "g_compatibility_residual": 0.0,
+      "bridge_coupling_constant": -2.0,
+      "dph1": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "j_dph1": [
+        0.0,
+        2.0,
+        0.0
+      ],
+      "jj_dph1": [
+        -2.0,
+        0.0,
+        0.0
+      ],
+      "verdict": "compatible",
+      "description": "North pole p=(1,0,0,0): J\u00b2=-Id, positivity=4, g-compat=0, bridge c=-2 (explicit)"
+    },
+    "P5_sympy_kahler_identities": {
+      "pass": true,
+      "bac_cab_vector_identity": true,
+      "j_sq_under_constraints": true,
+      "omega_K_equals_omega_S2": true,
+      "verdict": "compatible",
+      "description": "Sympy: J\u00b2=-Id via BAC-CAB q\u00d7(q\u00d7v)=q(q\u00b7v)-v|q|\u00b2, reduced to -v under |q|=1,v\u00b7q=0; and \u03c9_K=\u03c9_S\u00b2 as scalar triple product identity"
+    }
+  },
+  "negative": {
+    "N1_anti_j_positivity_fails": {
+      "pass": true,
+      "kahler_residual": 4.0,
+      "positivity_standard_j": 4.0,
+      "positivity_anti_j": -4.0,
+      "j_sq_anti_residual": 0.0,
+      "verdict": "incompatible",
+      "description": "J'=-J: J'\u00b2 = -Id still holds (algebraically valid) BUT \u03c9_K(v,J'v)=-4<0 \u2014 K\u00e4hler positivity fails; orientation-reversed J breaks three-way coexistence"
+    },
+    "N2_degenerate_j_fails": {
+      "pass": true,
+      "kahler_residual": 2.0,
+      "j_sq_degenerate_residual": 2.0,
+      "positivity_degenerate": 0.0,
+      "verdict": "incompatible",
+      "description": "J'=0: J'\u00b2(v)=0\u2260-v (residual=|v|=2) AND positivity \u03c9_K(v,0)=0 \u2014 zero map is not a complex structure; both axioms fail simultaneously"
+    },
+    "N3_rescaled_kahler_identity_fails": {
+      "pass": true,
+      "kahler_residual": 4.0,
+      "omega_s2_value": -4.0,
+      "omega_K_rescaled": -8.0,
+      "rescaling_k": 2.0,
+      "implied_coupling_constant": -4.0,
+      "expected_coupling_constant": -2.0,
+      "verdict": "incompatible",
+      "description": "\u03c9_K=2\u00b7\u03c9_S\u00b2: identity \u03c9_K=\u03c9_S\u00b2 fails (residual=4.0); K\u00e4hler coupling constant becomes -4\u2260-2; symplectic and K\u00e4hler shells disagree"
+    },
+    "N4_z3_antij_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "encoding": {
+        "A1": "omega_base > 0  (standard J satisfies K\u00e4hler positivity)",
+        "A2": "omega_sign = -1  (J'=-J flips sign)",
+        "A3": "omega_antiJ = omega_sign * omega_base  (anti-J positivity value)",
+        "A4": "omega_antiJ > 0  (K\u00e4hler positivity for J')"
+      },
+      "verdict": "incompatible",
+      "description": "z3 UNSAT: assuming anti-J (J'=-J) satisfies K\u00e4hler positivity while standard J does contradicts the sign-flip relation \u2014 structurally impossible; orientation-reversed complex structure is excluded from three-shell coexistence"
+    }
+  },
+  "boundary": {
+    "B1_antipodal_fiber_coexistence": {
+      "pass": true,
+      "kahler_residual": -3.9999999999999964,
+      "base_point_diff": 0.0,
+      "min_positivity_p": 3.9999999999999964,
+      "min_positivity_neg_p": 3.9999999999999964,
+      "verdict": "compatible",
+      "description": "Antipodal pair (p,-p): \u03c0(p)=\u03c0(-p) confirmed, same J_q acts on both, K\u00e4hler positivity \u03c9_K(d\u03c0h,J(d\u03c0h))>0 holds at both antipodal preimages"
+    },
+    "B2_near_pole_stability": {
+      "pass": true,
+      "kahler_residual": 0.0,
+      "j_squared_rel_residual": 0.0,
+      "positivity": 4.0,
+      "g_compat_residual": 8.673617379884035e-19,
+      "point": [
+        0.9999984969988825,
+        0.0010009994964953778,
+        0.0010009994964953778,
+        0.0010009994964953778
+      ],
+      "verdict": "compatible",
+      "description": "Near-pole p=(1-\u03b5,\u03b5,\u03b5,\u03b5)/|...|: \u03b1-projection basis stable, J\u00b2=-Id and K\u00e4hler positivity hold at near-degenerate geometry"
+    },
+    "B3_equatorial_fiber_stability": {
+      "pass": true,
+      "kahler_residual": 3.140184917367551e-16,
+      "j_squared_rel_residual": 3.140184917367551e-16,
+      "positivity": 3.999999999999998,
+      "hopf_base_point": [
+        0.0,
+        0.0,
+        -0.9999999999999998
+      ],
+      "verdict": "compatible",
+      "description": "Equatorial p=(0,0,1/\u221a2,1/\u221a2): x\u2080=x\u2081=0, \u03b1-projection provides stable horizontal basis, J\u00b2=-Id and K\u00e4hler positivity hold at equatorial fiber"
+    }
+  },
+  "fubini_study_coupling": {
+    "FS1_c13_minus_half_batch": {
+      "pass": true,
+      "n_valid": 100,
+      "c13_mean": -0.5,
+      "c13_std": 1.4354617731295115e-16,
+      "max_residual_from_minus_half": 4.440892098500626e-16,
+      "threshold": 1e-08,
+      "formula": "\u03c9_FS(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u2212(1/2)\u00b7d\u03b1(h\u2081,h\u2082)",
+      "derivation": "c\u2081\u2083 = (1/4)\u00b7c\u2081\u2082 = (1/4)\u00b7(\u22122) = \u22121/2  [\u03c9_FS=(1/4)\u03c9_S\u00b2]",
+      "verdict": "compatible"
+    },
+    "FS2_c23_quarter_global": {
+      "pass": true,
+      "n_valid": 200,
+      "c23_mean": 0.25,
+      "c23_std": 0.0,
+      "max_residual_from_quarter": 0.0,
+      "threshold": 1e-14,
+      "formula": "\u03c9_FS = (1/4)\u00b7\u03c9_S\u00b2  [exact, definitional]",
+      "verdict": "compatible"
+    },
+    "FS3_z3_c13_uniqueness_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "ground_truth": "p=(1,0,0,0): \u03c9_FS=-1, d\u03b1=2  \u2192  c=-1/2 unique",
+      "encoding": "c\u2260\u22121/2 \u2227 c\u00b7d\u03b1=\u03c9_FS  \u2192  UNSAT (c=\u22121/2 is the unique solution)",
+      "geometric_meaning": "Contact-K\u00e4hler (Fubini-Study) coupling constant c\u2081\u2083=\u22121/2 is structurally unique; no alternative c is algebraically consistent.",
+      "verdict": "excluded"
+    }
+  },
+  "tests_passed": 15,
+  "tests_total": 15,
+  "summary": {
+    "complex_structure": "J_q(v) = q \u00d7 v  (cross product with unit normal)",
+    "j_squared_identity": "J\u00b2(v) = q\u00d7(q\u00d7v) = -v  (BAC-CAB, constraints |q|=1, v\u22a5q)",
+    "kahler_symplectic_identity": "omega_K = omega_S2  (same form, proven by scalar triple product identity)",
+    "bridge_inheritance": "omega_K(d_pi(h1),d_pi(h2)) = -2*dalpha(h1,h2)  (c=-2 inherited)",
+    "fubini_study_c13": "omega_FS(d_pi(h1),d_pi(h2)) = -(1/2)*dalpha(h1,h2)  [c13=-1/2]",
+    "fubini_study_c23": "omega_FS/omega_S2 = 1/4  [exact, definitional]",
+    "consistency_chain": "c13 = c23*c12 = (1/4)*(-2) = -1/2  [algebraic]",
+    "three_way_coexistence": "compatible \u2014 all criteria satisfied",
+    "coexistence_verdict": "compatible",
+    "incompatible_cases": [
+      "anti-J (positivity fails)",
+      "zero-J (J\u00b2\u2260-Id)",
+      "rescaled-omega (identity fails)"
+    ]
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "name": "pairwise_shell_coupling_cp1",
+  "classification": "canonical",
+  "classification_note": "Canonical pairwise shell coupling probe for CP^1/S\u00b2 geometry. Three coupling functionals (Jacobi-curvature, Gauss-Bonnet area, conjugate-point) each tested on compatible, incompatible, and boundary ingredient pairs. PyTorch float64 is load-bearing: all coupling residuals computed as torch.float64 operations (Jacobi ODE residuals at 4 test points, GB area integrals via torch.trapezoid on 2000-point grids, conjugate-point identity via torch scalar arithmetic). Sympy is load-bearing: symbolic verification that d\u00b2J/ds\u00b2+4J=0 for J=sin(2s)/2 (residual simplifies to 0), that d\u00b2J/ds\u00b2+4J=4s for J=s (incompatible), that \u222bsin(\u03b8)/4 d\u03b8d\u03c6=\u03c0 (exact), and that K\u00b7(\u03c0/\u221aK)\u00b2=\u03c0\u00b2 for all K>0 (symbolic identity). Anchored to riemannian_curvature (K=4), geodesic_deviation (J_curved), and gauss_bonnet_cp1 (area=\u03c0, \u222bK dA=4\u03c0).",
+  "lego_ids": [
+    "pairwise_coupling_jacobi_curvature_cp1",
+    "pairwise_coupling_gauss_bonnet_area_cp1",
+    "pairwise_coupling_conjugate_point_cp1"
+  ],
+  "primary_lego_ids": [
+    "pairwise_coupling_jacobi_curvature_cp1"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: torch.float64 tensors carry all coupling residuals. Jacobi ODE residuals |J''(s)+K\u00b7J(s)| computed as torch operations at 4 test points s\u2208{\u03c0/6, \u03c0/4, \u03c0/3, \u03c0/2}. Gauss-Bonnet area integrals computed via torch.trapezoid on 2000-point float64 linspace grids. Conjugate-point residuals |K\u00b7(s*)\u00b2\u2212\u03c0\u00b2| computed as torch scalar arithmetic. Removing torch breaks all numerical coupling computations."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; pairwise geometric coupling has no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "tried conceptually; not used \u2014 coupling residuals involve \u03c0 (transcendental), incompatible with z3 LIRA rational arithmetic; sympy handles the symbolic layer"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; transcendental values preclude SMT verification here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: sp.simplify(d\u00b2J/ds\u00b2+4\u00b7J) = 0 confirmed for J=sin(2s)/2 (Jacobi ODE residual exactly zero \u2014 provides analytic ground truth). sp.simplify(d\u00b2J/ds\u00b2+4\u00b7J\u22124s) = 0 confirmed for J=s (incompatible case). sp.integrate(sin(\u03b8)/4, \u03b8\u2208[0,\u03c0])\u00d72\u03c0 = \u03c0 confirmed (Fubini-Study area). sp.simplify(K\u00b7(\u03c0/\u221aK)\u00b2\u2212\u03c0\u00b2) = 0 confirmed for all symbolic K>0 (conjugate-point universal identity). All sympy results are the analytic ground truth that torch numerical values are calibrated against."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no spinor structure in scalar curvature-Jacobi coupling"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling functionals computed directly from analytic formulas"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant structure in CP^1 scalar coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph structure in pairwise geometric coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Euler characteristic \u03c7=2 used as known S\u00b2 fact, no complex construction"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "sympy_checks": {
+    "jacobi_curved_ode_residual": {
+      "J_sym": "sin(2*s)/2",
+      "Jpp_sym": "-2*sin(2*s)",
+      "Jpp_plus_4J": "0",
+      "is_zero": true,
+      "pass": true
+    },
+    "jacobi_flat_ode_residual_K4": {
+      "J_sym": "s",
+      "Jpp_sym": "0",
+      "Jpp_plus_4J": "4*s",
+      "equals_4s": true,
+      "pass": true
+    },
+    "area_fubini_study": {
+      "area_exact": "pi",
+      "area_float": 3.141592653589793,
+      "equals_pi": true,
+      "pass": true
+    },
+    "area_sphere_r1": {
+      "area_exact": "4*pi",
+      "area_float": 12.566370614359172,
+      "equals_4pi": true,
+      "pass": true
+    },
+    "conjugate_point_universal_identity": {
+      "K_times_s_star_sq_minus_pi_sq": "0",
+      "is_zero_for_all_K": true,
+      "pass": true
+    },
+    "K4_spot_checks": {
+      "jacobi_curved_residual_at_pi_over_4": 0.0,
+      "jacobi_flat_residual_at_pi_over_2": 6.283185307179586,
+      "area_FS_times_4": 12.566370614359172,
+      "conjugate_identity_at_K4": 0.0
+    },
+    "all_pass": true
+  },
+  "positive": {
+    "P1_jacobi_curved_compatible": {
+      "description": "Jacobi field sin(2s)/2 satisfies ODE d\u00b2J/ds\u00b2+4J=0 for K=4 (compatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study, riemannian_curvature probe)",
+        "J_curved=sin(2s)/2 (geodesic_deviation probe)"
+      ],
+      "coupling_type": "jacobi_curvature",
+      "coupling_functional": "max_s |J''(s) + K\u00b7J(s)|",
+      "coupling_value": 0.0,
+      "diagnosis": "compatible",
+      "residual": 0.0,
+      "tolerance": 1e-10,
+      "point_residuals": {
+        "s_0.523599": {
+          "s": 0.5235987755982988,
+          "J": 0.4330127018922193,
+          "Jpp": -1.7320508075688772,
+          "Jpp_plus_KJ": 0.0,
+          "residual": 0.0
+        },
+        "s_0.785398": {
+          "s": 0.7853981633974483,
+          "J": 0.5,
+          "Jpp": -2.0,
+          "Jpp_plus_KJ": 0.0,
+          "residual": 0.0
+        },
+        "s_1.047198": {
+          "s": 1.0471975511965976,
+          "J": 0.43301270189221935,
+          "Jpp": -1.7320508075688774,
+          "Jpp_plus_KJ": 0.0,
+          "residual": 0.0
+        },
+        "s_1.570796": {
+          "s": 1.5707963267948966,
+          "J": 6.123233995736766e-17,
+          "Jpp": -2.4492935982947064e-16,
+          "Jpp_plus_KJ": 0.0,
+          "residual": 0.0
+        }
+      },
+      "pass": true
+    },
+    "P2_gauss_bonnet_fubini_study_compatible": {
+      "description": "Fubini-Study area element sin(\u03b8)/4\u00b7d\u03b8d\u03c6 gives K\u00b7area=4\u03c0 (compatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study, riemannian_curvature probe)",
+        "dA_FS=sin(\u03b8)/4\u00b7d\u03b8d\u03c6 (gauss_bonnet_cp1 probe)"
+      ],
+      "coupling_type": "gauss_bonnet_area",
+      "coupling_functional": "|K \u00b7 \u222b\u2080^\u03c0\u222b\u2080^{2\u03c0} f(\u03b8)d\u03b8d\u03c6 \u2212 4\u03c0|",
+      "coupling_value": 2.5864422923405073e-06,
+      "area_numerical": 3.14159200697922,
+      "K_times_area": 12.56636802791688,
+      "diagnosis": "compatible",
+      "residual": 2.5864422923405073e-06,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "P3_conjugate_point_pi_half_compatible": {
+      "description": "Conjugate point s*=\u03c0/2 satisfies K\u00b7(s*)\u00b2=\u03c0\u00b2 for K=4 (compatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study, riemannian_curvature probe)",
+        "s*=\u03c0/2 (geodesic_deviation probe, first conjugate point)"
+      ],
+      "coupling_type": "conjugate_point",
+      "coupling_functional": "|K \u00b7 (s*)\u00b2 \u2212 \u03c0\u00b2|",
+      "coupling_value": 0.0,
+      "K_times_s_star_sq": 9.869604401089358,
+      "pi_sq": 9.869604401089358,
+      "diagnosis": "compatible",
+      "residual": 0.0,
+      "tolerance": 1e-10,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "N1_jacobi_flat_incompatible": {
+      "description": "Flat Jacobi field J=s fails ODE d\u00b2J/ds\u00b2+4J=4s\u22600 for K=4 (incompatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study)",
+        "J_flat=s (flat R\u00b2 Jacobi field, wrong geometry)"
+      ],
+      "coupling_type": "jacobi_curvature",
+      "coupling_functional": "max_s |J''(s) + K\u00b7J(s)|",
+      "coupling_value": 6.283185307179586,
+      "expected_value": 6.283185307179586,
+      "diagnosis": "incompatible",
+      "residual": 6.283185307179586,
+      "threshold": 1.0,
+      "point_residuals": {
+        "s_0.523599": {
+          "s": 0.5235987755982988,
+          "J": 0.5235987755982988,
+          "Jpp": 0.0,
+          "Jpp_plus_KJ": 2.0943951023931953,
+          "residual": 2.0943951023931953
+        },
+        "s_0.785398": {
+          "s": 0.7853981633974483,
+          "J": 0.7853981633974483,
+          "Jpp": 0.0,
+          "Jpp_plus_KJ": 3.141592653589793,
+          "residual": 3.141592653589793
+        },
+        "s_1.047198": {
+          "s": 1.0471975511965976,
+          "J": 1.0471975511965976,
+          "Jpp": 0.0,
+          "Jpp_plus_KJ": 4.1887902047863905,
+          "residual": 4.1887902047863905
+        },
+        "s_1.570796": {
+          "s": 1.5707963267948966,
+          "J": 1.5707963267948966,
+          "Jpp": 0.0,
+          "Jpp_plus_KJ": 6.283185307179586,
+          "residual": 6.283185307179586
+        }
+      },
+      "pass": true
+    },
+    "N2_gauss_bonnet_sphere_r1_incompatible": {
+      "description": "Unit-sphere area sin(\u03b8)d\u03b8d\u03c6 gives K\u00b7area=16\u03c0\u22604\u03c0 for K=4 (incompatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study)",
+        "dA_sphere=sin(\u03b8)d\u03b8d\u03c6 (unit-sphere area element, wrong for CP^1)"
+      ],
+      "coupling_type": "gauss_bonnet_area",
+      "coupling_functional": "|K \u00b7 \u222b\u2080^\u03c0\u222b\u2080^{2\u03c0} f(\u03b8)d\u03b8d\u03c6 \u2212 4\u03c0|",
+      "coupling_value": 37.69910149730835,
+      "area_numerical": 12.56636802791688,
+      "K_times_area": 50.26547211166752,
+      "expected_value": 37.69911184307752,
+      "diagnosis": "incompatible",
+      "residual": 37.69910149730835,
+      "threshold": 5.0,
+      "pass": true
+    },
+    "N3_conjugate_point_pi_quarter_incompatible": {
+      "description": "Wrong conjugate point s*=\u03c0/4 gives K\u00b7(s*)\u00b2=\u03c0\u00b2/4\u2260\u03c0\u00b2 for K=4 (incompatible)",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study)",
+        "s*=\u03c0/4 (wrong \u2014 correct is \u03c0/2 for K=4)"
+      ],
+      "coupling_type": "conjugate_point",
+      "coupling_functional": "|K \u00b7 (s*)\u00b2 \u2212 \u03c0\u00b2|",
+      "coupling_value": 7.4022033008170185,
+      "K_times_s_star_sq": 2.4674011002723395,
+      "pi_sq": 9.869604401089358,
+      "expected_value": 7.4022033008170185,
+      "diagnosis": "incompatible",
+      "residual": 7.4022033008170185,
+      "threshold": 1.0,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_flat_limit_jacobi": {
+      "description": "K=0, J_flat=s: flat-limit Jacobi ODE residual=0 (self-consistent), boundary of K>0 CP^1 regime \u2014 coupling_value=0 but K=0 is degenerate",
+      "ingredient_pair": [
+        "K=0 (flat R\u00b2, degenerate limit)",
+        "J_flat=s"
+      ],
+      "coupling_type": "jacobi_curvature",
+      "coupling_functional": "max_s |J''(s) + 0\u00b7J(s)|",
+      "coupling_value": 0.0,
+      "diagnosis": "compatible_boundary",
+      "residual": 0.0,
+      "note": "K=0 flat case is self-consistent (J=s solves J''=0) but is NOT a CP^1 shell ingredient \u2014 it is the flat degenerate limit. coupling_value=0 here confirms the functional is well-behaved at K\u21920, not that J_flat\u2208CP^1 shell.",
+      "pass": true
+    },
+    "B2_hemisphere_gauss_bonnet_boundary": {
+      "description": "K=4, hemisphere dA (\u03b8\u2208[0,\u03c0/2]): K\u00b7area=2\u03c0, GB deficit=2\u03c0 \u2014 open manifold with \u2202M\u2260\u2205, boundary term missing",
+      "ingredient_pair": [
+        "K=4 (Fubini-Study)",
+        "dA_hemisphere (upper half-sphere, area=\u03c0/2)"
+      ],
+      "coupling_type": "gauss_bonnet_area",
+      "coupling_functional": "|K \u00b7 \u222b_{\u03b8\u2208[0,\u03c0/2]} f(\u03b8)d\u03b8d\u03c6 \u2212 4\u03c0|",
+      "coupling_value": 6.283186600400732,
+      "area_numerical": 1.57079600348961,
+      "K_times_area": 6.28318401395844,
+      "expected_coupling_value": 6.283185307179586,
+      "diagnosis": "boundary",
+      "residual": 6.283186600400732,
+      "note": "Hemisphere has boundary \u2202M (equator at \u03b8=\u03c0/2); Gauss-Bonnet with boundary requires \u222e_{\u2202M} \u03ba_g ds term. coupling_value=2\u03c0 is the GB deficit from the missing boundary contribution. Neither zero (compatible) nor large (incompatible).",
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "coupling_program_step": "pairwise",
+    "geometry": "CP^1 \u2245 S\u00b2 with Fubini-Study metric (K=4, area=\u03c0)",
+    "coupling_types": {
+      "jacobi_curvature": "C_J(K,J) = max_s |J''(s) + K\u00b7J(s)|",
+      "gauss_bonnet_area": "C_GB(K,f) = |K\u00b7\u222b\u2080^\u03c0\u222b\u2080^{2\u03c0}f(\u03b8)d\u03b8d\u03c6 \u2212 4\u03c0|",
+      "conjugate_point": "C_CP(K,s*) = |K\u00b7(s*)\u00b2 \u2212 \u03c0\u00b2|"
+    },
+    "compatible_pairs": [
+      "(K=4, J_curved=sin(2s)/2): C_J=0 \u2014 ODE d\u00b2J/ds\u00b2+4J=0 satisfied",
+      "(K=4, dA_FS=sin(\u03b8)/4\u00b7d\u03b8d\u03c6): C_GB=0 \u2014 Gauss-Bonnet \u222bK dA=4\u03c0 satisfied",
+      "(K=4, s*=\u03c0/2): C_CP=0 \u2014 conjugate-point identity K\u00b7(s*)\u00b2=\u03c0\u00b2 satisfied"
+    ],
+    "incompatible_pairs": [
+      "(K=4, J_flat=s): C_J=6.2832 \u2014 ODE residual 4s (flat field, wrong K)",
+      "(K=4, dA_sphere=sin(\u03b8)d\u03b8d\u03c6): C_GB=37.6991 \u2014 area=4\u03c0 gives K\u00b7area=16\u03c0\u22604\u03c0",
+      "(K=4, s*=\u03c0/4): C_CP=7.4022 \u2014 K\u00b7(\u03c0/4)\u00b2=\u03c0\u00b2/4\u2260\u03c0\u00b2"
+    ],
+    "boundary_pairs": [
+      "(K=0, J_flat=s): flat degenerate limit \u2014 compatible at K=0, not CP^1 shell",
+      "(K=4, dA_hemisphere): C_GB=2\u03c0 \u2014 open manifold, boundary term absent"
+    ],
+    "anchor_probes": [
+      "riemannian_curvature_results.json: K=4 (Fubini-Study, canonical)",
+      "geodesic_deviation_results.json: J_curved=sin(2s)/2, s*=\u03c0/2 (canonical)",
+      "gauss_bonnet_cp1_results.json: area=\u03c0, \u222bK dA=4\u03c0 (canonical)"
+    ],
+    "scope_note": "First pairwise shell coupling probe: step 2 of coupling program. Tests explicit pairwise compatibility of CP^1 shell-local ingredients via bounded, falsifiable coupling functionals. Out of scope: multi-shell coexistence (step 3), bridge claims (step 6), full N\u00d7N layer coupling matrix, Berry phase, QFI/killpoint, Axis 6."
+  },
+  "timestamp": "2026-04-10T08:47:11.284983+00:00"
+}

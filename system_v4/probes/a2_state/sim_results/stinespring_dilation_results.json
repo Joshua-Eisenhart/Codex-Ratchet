@@ -1,70 +1,74 @@
 {
-  "name": "sim_pure_lego_stinespring_dilation",
+  "name": "stinespring_dilation",
+  "timestamp": "2026-04-10T09:36:04.348089+00:00",
   "classification": "canonical",
-  "overall_pass": true,
-  "positive_ok": true,
-  "negative_ok": true,
-  "boundary_ok": true,
+  "classification_note": "Standalone pure-geometry lego for Stinespring dilation of qubit CPTP channels. Distinct from sim_lego_stinespring_complementary.py which focuses on complementary channels and quantum capacity. This probe verifies: isometry V\u2020V=I, Tr_env[V\u03c1V\u2020]=E_kraus(\u03c1), unitary extension equivalence, symbolic isometry proof (sympy), complementary channel validity, and z3 UNSAT for non-isometric completeness.",
+  "lego_ids": [
+    "stinespring_dilation"
+  ],
+  "primary_lego_ids": [
+    "stinespring_dilation"
+  ],
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "pure numpy probe; torch not required for isometry algebra checks"
+      "reason": "not needed; numpy handles all qubit-channel numerics"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph structure in Stinespring dilation"
+      "reason": "not relevant to channel dilation"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "UNSAT proof: completeness constant c != 1 is structurally incompatible with Stinespring isometry condition V\u2020V = I; c > 0 AND c != 1 AND c == 1 is UNSAT"
+      "reason": "UNSAT proof: sum K_i\u2020K_i = c*I with c>0, c!=1, AND c=1 is structurally contradictory. Isometry requires c=1 exactly; no non-isometric map can be a valid Stinespring dilation. z3 encodes and returns unsat."
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers UNSAT completeness proof; separate cvc5 run not needed"
+      "reason": "not used; z3 handles the completeness UNSAT proof"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "Symbolic proof that V\u2020V = K0\u2020K0 + K1\u2020K1 = I holds for amplitude damping for all gamma in (0,1); proves isometry condition algebraically not just numerically"
+      "reason": "Symbolic proof V\u2020V = I_2 for amplitude damping (gamma symbolic, gamma>0, real): K0^T K0 + K1^T K1 = diag(1,1-gamma) + diag(0,gamma) = I for all gamma. Kraus ops are real so K\u2020=K^T. sp.simplify confirms identity matrix."
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford algebra in isometry construction"
+      "reason": "not relevant to channel dilation"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian geometry in dilation axioms"
+      "reason": "not relevant to channel dilation"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariance structure in Stinespring"
+      "reason": "not relevant to channel dilation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph representation needed"
+      "reason": "not relevant to channel dilation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure needed"
+      "reason": "not relevant to channel dilation"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no cell-complex structure needed"
+      "reason": "not relevant to channel dilation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology needed"
+      "reason": "not relevant to channel dilation"
     }
   },
   "tool_integration_depth": {
@@ -82,161 +86,505 @@
     "gudhi": null
   },
   "positive": {
-    "sympy_vdagv_identity_proof": {
-      "ok": true,
-      "entry_00": "1",
-      "entry_01": "0",
-      "entry_10": "0",
-      "entry_11": "1",
-      "all_entries_match_identity": true,
-      "proof": "V\u2020V = K0\u2020K0+K1\u2020K1 = [[1,0],[0,(1-\u03b3)+\u03b3]] = I for all \u03b3\u2208(0,1). Key step: (1-\u03b3)+\u03b3 = 1 holds symbolically in sympy."
+    "P1_isometry_condition": {
+      "pass": true,
+      "channels": {
+        "identity": {
+          "VdagV_max_error": 0.0,
+          "k": 1,
+          "V_shape": [
+            2,
+            2
+          ],
+          "ok": true
+        },
+        "amplitude_damping": {
+          "VdagV_max_error": 0.0,
+          "k": 2,
+          "V_shape": [
+            4,
+            2
+          ],
+          "ok": true
+        },
+        "dephasing": {
+          "VdagV_max_error": 2.220446049250313e-16,
+          "k": 2,
+          "V_shape": [
+            4,
+            2
+          ],
+          "ok": true
+        },
+        "depolarizing": {
+          "VdagV_max_error": 2.220446049250313e-16,
+          "k": 4,
+          "V_shape": [
+            8,
+            2
+          ],
+          "ok": true
+        }
+      },
+      "threshold": 1e-12,
+      "note": "V\u2020V = I_d for all four channel families; algebraically exact from CPTP completeness"
     },
-    "isometry_structure_ad": {
-      "ok": true,
-      "channel_name": "amplitude_damping",
-      "gamma": 0.4,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "isometry_residual": 0.0,
-      "V_shape": [
-        4,
-        2
-      ]
+    "P2_recovery_equivalence": {
+      "pass": true,
+      "channels": {
+        "identity": {
+          "rho_0": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          }
+        },
+        "amplitude_damping": {
+          "rho_0": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          }
+        },
+        "dephasing": {
+          "rho_0": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          }
+        },
+        "depolarizing": {
+          "rho_0": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "recovery_max_error": 0.0,
+            "ok": true
+          }
+        }
+      },
+      "threshold": 1e-12,
+      "note": "Tr_env[V rho V\u2020] = sum_i K_i rho K_i\u2020 exactly for all channel/state pairs"
     },
-    "dilation_recovery_ad": {
-      "ok": true,
-      "channel_name": "amplitude_damping",
-      "gamma": 0.4,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "max_recovery_residual": 0.0,
-      "per_state_residuals": {
-        "|0>": 0.0,
-        "|1>": 0.0,
-        "|+>": 0.0
-      }
+    "P3_output_density_matrix": {
+      "pass": true,
+      "channels": {
+        "identity": {
+          "rho_0": {
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          }
+        },
+        "amplitude_damping": {
+          "rho_0": {
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.29999999999999993,
+            "ok": true
+          },
+          "rho_plus": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.05559027913422053,
+            "ok": true
+          }
+        },
+        "dephasing": {
+          "rho_0": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.5000000000000001,
+            "ok": true
+          }
+        },
+        "depolarizing": {
+          "rho_0": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.25000000000000006,
+            "ok": true
+          },
+          "rho_1": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.25000000000000006,
+            "ok": true
+          },
+          "rho_plus": {
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.25,
+            "ok": true
+          }
+        }
+      },
+      "note": "E(rho) satisfies Hermitian + PSD + Tr=1 for all 4 channels x 3 states"
     },
-    "isometry_structure_dephasing": {
-      "ok": true,
-      "channel_name": "dephasing",
-      "p": 0.5,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "isometry_residual": 2.220446049250313e-16
+    "P4_unitary_extension": {
+      "pass": true,
+      "channels": {
+        "identity": {
+          "unitary_isometry_error": 0.0,
+          "V_column_match_error": 0.0,
+          "states": {
+            "rho_0": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_1": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_plus": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            }
+          }
+        },
+        "amplitude_damping": {
+          "unitary_isometry_error": 1.795819508129106e-17,
+          "V_column_match_error": 0.0,
+          "states": {
+            "rho_0": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_1": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_plus": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            }
+          }
+        },
+        "dephasing": {
+          "unitary_isometry_error": 2.220446049250313e-16,
+          "V_column_match_error": 0.0,
+          "states": {
+            "rho_0": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_1": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_plus": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            }
+          }
+        },
+        "depolarizing": {
+          "unitary_isometry_error": 2.220446049250313e-16,
+          "V_column_match_error": 0.0,
+          "states": {
+            "rho_0": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_1": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            },
+            "rho_plus": {
+              "unitary_recovery_error": 0.0,
+              "ok": true
+            }
+          }
+        }
+      },
+      "threshold": 1e-12,
+      "note": "U extends V via SVD null-space: U[:,0:d]=V, U\u2020U=I. Tr_env[U(rho x|0><0|)U\u2020] = E_kraus(rho) for all channels/states."
     },
-    "dilation_recovery_dephasing": {
-      "ok": true,
-      "channel_name": "dephasing",
-      "p": 0.5,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "max_recovery_residual": 0.0,
-      "per_state_residuals": {
-        "|0>": 0.0,
-        "|1>": 0.0,
-        "|+>": 0.0
-      }
+    "P5_sympy_isometry_symbolic": {
+      "pass": true,
+      "completeness_matrix": "[[1, 0], [0, 1]]",
+      "residual_from_identity": "[[0, 0], [0, 0]]",
+      "is_identity": true,
+      "channel": "amplitude_damping",
+      "note": "Symbolic gamma: sum K_i\u2020K_i = I proven for entire parameter family (0,1)"
     },
-    "dilation_recovery_depolarizing": {
-      "ok": true,
-      "channel_name": "depolarizing",
-      "p": 0.5,
-      "kraus_rank": 4,
-      "environment_dim": 4,
-      "max_recovery_residual": 0.0
-    },
-    "complementary_channel_ad": {
-      "ok": true,
-      "channel_name": "amplitude_damping",
-      "gamma": 0.4,
-      "input_state": "|0><0|",
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "complementary_output_shape": [
-        2,
-        2
-      ],
-      "comp_err_vs_expected_diag_1_0": 0.0,
-      "trace": 1.0,
-      "min_eigenvalue": 0.0,
-      "note": "E^c(|0><0|) = diag(1,0): env stays in |0> when input is ground state. K0|0>=|0> contributes 1, K1|0>=0 contributes 0."
+    "P6_complementary_channel_valid": {
+      "pass": true,
+      "channels": {
+        "identity": {
+          "rho_0": {
+            "ec_shape": [
+              1,
+              1
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 1.0,
+            "ok": true
+          },
+          "rho_1": {
+            "ec_shape": [
+              1,
+              1
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 1.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "ec_shape": [
+              1,
+              1
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 1.0000000000000002,
+            "ok": true
+          }
+        },
+        "amplitude_damping": {
+          "rho_0": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.29999999999999993,
+            "ok": true
+          },
+          "rho_plus": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.055590279134220585,
+            "ok": true
+          }
+        },
+        "dephasing": {
+          "rho_0": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "ec_shape": [
+              2,
+              2
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.5000000000000001,
+            "ok": true
+          }
+        },
+        "depolarizing": {
+          "rho_0": {
+            "ec_shape": [
+              4,
+              4
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_1": {
+            "ec_shape": [
+              4,
+              4
+            ],
+            "hermiticity_error": 0.0,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": 0.0,
+            "ok": true
+          },
+          "rho_plus": {
+            "ec_shape": [
+              4,
+              4
+            ],
+            "hermiticity_error": 5.551115123125783e-17,
+            "trace_error": 2.220446049250313e-16,
+            "min_eigenvalue": -4.6259292692714846e-18,
+            "ok": true
+          }
+        }
+      },
+      "note": "E^c(rho)[i,j]=Tr(K_i rho K_j\u2020)=Tr_sys[V rho V\u2020]: valid k x k density matrix. Identity: (1,1)=[[1]]. AD/dephasing: (2,2). Depolarizing: (4,4)."
     }
   },
   "negative": {
-    "non_cptp_trace_violation": {
-      "ok": true,
-      "channel_name": "non_cptp_incomplete_ops",
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "output_trace": 1.2,
-      "tp_ok": false,
-      "isometry_residual": 0.19999999999999996,
-      "completeness_avg_diagonal": 1.2,
-      "note": "A0=sqrt(0.8)*I, A1=sqrt(0.4)*Z: sum A\u2020A = 1.2*I; trace=1.2 > 1 (TP violated); V\u2020V = 1.2*I \u2260 I (not an isometry). ok=True means correctly detected as non-CPTP."
-    },
-    "transpose_choi_negative_eigenvalue": {
-      "ok": true,
-      "channel_name": "transpose_map",
-      "kraus_rank": null,
-      "environment_dim": null,
-      "choi_min_eigenvalue": -1.0,
-      "choi_eigenvalues": [
-        -1.0,
-        1.0,
-        1.0,
-        1.0
+    "N1_non_isometry_detected": {
+      "pass": true,
+      "VdagV_max_error": 0.19999999999999996,
+      "VdagV_diag": [
+        1.2,
+        1.2
       ],
-      "note": "T(rho)=rho^T: Choi matrix = SWAP, eigenvalues {-1,1,1,1}. Min eigenvalue = -1 in unnormalized Choi convention (J = sum_{i,j} |i><j| x T(|i><j|)); -0.5 in normalized convention. Negative spectrum certifies non-CP; no valid Stinespring isometry. ok=True means correctly detected via Choi negativity."
+      "threshold": 0.1,
+      "note": "A0=sqrt(0.8)*I, A1=sqrt(0.4)*Z: sum A\u2020A = 1.2I != I, error=0.2 > 0.1"
     },
-    "z3_non_completeness_unsat": {
-      "ok": true,
-      "channel_name": "symbolic_non_tp_map",
-      "kraus_rank": null,
-      "environment_dim": null,
-      "sat_baseline": "sat",
-      "unsat_isometry": "unsat",
-      "proof": "c > 0 AND c != 1 AND c == 1 is UNSAT: non-unit completeness constant is structurally incompatible with Stinespring isometry. No Stinespring decomposition exists for non-TP maps."
+    "N2_transpose_not_cp": {
+      "pass": true,
+      "choi_min_eigenvalue": -0.5,
+      "choi_eigenvalues": [
+        -0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "threshold": -0.1,
+      "note": "T(rho)=rho^T: Choi min eigenvalue \u2248 -0.5 < 0 (not CP). No Stinespring isometry exists for non-CP maps."
+    },
+    "N3_z3_completeness_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "encoding": "c>0 (positive), c!=1 (non-isometry), c=1 (isometry) -> UNSAT",
+      "geometric_meaning": "V is an isometry iff V\u2020V = I (c=1). c != 1 is algebraically incompatible with c=1. No non-isometric V can serve as a Stinespring dilation."
+    },
+    "N4_incomplete_trace_violation": {
+      "pass": true,
+      "output_trace": 1.2,
+      "trace_error_from_1": 0.19999999999999996,
+      "threshold": 0.1,
+      "input_state": "rho_0 = |0><0|",
+      "note": "Incomplete Kraus (A0=sqrt(0.8)*I, A1=sqrt(0.4)*Z): Tr(E(rho_0)) = 1.2 != 1 (TP violated)"
     }
   },
   "boundary": {
-    "identity_channel_dilation": {
-      "ok": true,
-      "channel_name": "identity",
-      "kraus_rank": 1,
-      "environment_dim": 1,
-      "isometry_residual": 0.0,
-      "max_recovery_residual": 0.0,
-      "note": "k=1: V = I2, no environment entanglement; Tr_env is trivial; exact identity recovery"
+    "B1_amplitude_damping_limits": {
+      "pass": true,
+      "gamma_0_identity": {
+        "isometry_error": 0.0,
+        "channel_is_identity": true
+      },
+      "gamma_1_full_reset": {
+        "isometry_error": 0.0,
+        "channel_resets_to_ground": true
+      },
+      "note": "gamma=0 -> E=identity; gamma=1 -> E(rho)=|0><0| for all rho"
     },
-    "ad_gamma_zero": {
-      "ok": true,
-      "channel_name": "amplitude_damping",
-      "gamma": 0.0,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "isometry_residual": 0.0,
-      "max_recovery_residual": 0.0,
-      "note": "gamma=0: K1=zero matrix; zero Kraus op contributes nothing; V\u2020V=I still holds"
+    "B2_dephasing_full": {
+      "pass": true,
+      "isometry_error": 0.0,
+      "plus_to_minus_error": 0.0,
+      "note": "p=1: K0=0, K1=Z. E(|+><+|)=|-><-|. Isometry holds (K0\u2020K0+K1\u2020K1=0+Z\u2020Z=I)."
     },
-    "ad_gamma_one_reset": {
-      "ok": true,
-      "channel_name": "amplitude_damping",
-      "gamma": 1.0,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "isometry_residual": 0.0,
-      "reset_error_on_excited_state": 0.0,
-      "note": "gamma=1: K0=|0><0|, K1=|0><1|; any input resets to |0><0|. Dilation recovery: |1><1| \u2192 |0><0| exactly via Tr_env."
-    },
-    "dephasing_p_one": {
-      "ok": true,
-      "channel_name": "dephasing",
-      "p": 1.0,
-      "kraus_rank": 2,
-      "environment_dim": 2,
-      "isometry_residual": 0.0,
-      "phase_flip_error_on_plus": 0.0,
-      "note": "p=1: K0=zero, K1=Z; pure Z channel (phase-flip). |+> \u2192 |\u2212> exactly. Zero Kraus op K0 contributes nothing but isometry still holds."
+    "B3_maximally_mixed": {
+      "pass": true,
+      "depolarizing_preserves_I2": {
+        "max_error": 1.1102230246251565e-16,
+        "ok": true
+      },
+      "amplitude_damping_does_not_preserve": {
+        "max_error": 0.14999999999999997,
+        "ok": true
+      },
+      "AD_output_diag": [
+        0.6499999999999999,
+        0.35000000000000003
+      ],
+      "note": "Depolarizing preserves I/2 (symmetric Pauli noise, invariant state). AD does not: maps I/2 -> diag([\u22480.65, \u22480.35]) biased toward |0>."
     }
+  },
+  "tests_passed": 13,
+  "tests_total": 13,
+  "summary": {
+    "tests_passed": 13,
+    "tests_total": 13,
+    "all_pass": true,
+    "dilation_theorem": "Every qubit CPTP channel E(rho)=sum_i K_i rho K_i\u2020 admits isometry V: C^2 -> C^{2k} with E(rho)=Tr_env[V rho V\u2020]. V\u2020V=I iff sum K_i\u2020K_i=I (CPTP completeness).",
+    "channels_tested": "identity(k=1), amplitude_damping(k=2), dephasing(k=2), depolarizing(k=4)",
+    "z3_unsat": "c!=1 AND c=1 -> UNSAT: no non-isometric completeness constant is compatible with isometry",
+    "sympy_proof": "V\u2020V=I for amplitude damping proven symbolically for all gamma in (0,1)",
+    "complementary": "E^c(rho)=Tr_sys[V rho V\u2020] is a valid k x k density matrix for all 4 channels",
+    "unitary_extension": "U from SVD null-space completion: U[:,0:d]=V, U unitary, Tr_env[U(rho x|0><0|)U\u2020]=E(rho)"
   }
 }

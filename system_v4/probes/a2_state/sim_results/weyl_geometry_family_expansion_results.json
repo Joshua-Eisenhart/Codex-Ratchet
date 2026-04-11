@@ -1,0 +1,297 @@
+{
+  "name": "weyl_geometry_family_expansion",
+  "classification": "canonical",
+  "classification_note": "Controller-facing expansion row that widens the Weyl/Hopf carrier core into additional geometry families already present in the repo.",
+  "lego_ids": [
+    "weyl_geometry_family_expansion",
+    "weyl_geometry_carrier_array",
+    "weyl_geometry_carrier_compare",
+    "hopf_torus_lego",
+    "torch_hopf_connection",
+    "hopf_contact_symplectic_bridge",
+    "graph_shell_geometry",
+    "toponetx_hopf_crosscheck",
+    "geometry_families_L0"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_carrier_array",
+    "weyl_geometry_carrier_compare",
+    "hopf_torus_lego",
+    "torch_hopf_connection",
+    "hopf_contact_symplectic_bridge",
+    "graph_shell_geometry",
+    "toponetx_hopf_crosscheck",
+    "geometry_families_L0"
+  ],
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "core numeric glue for family normalization and bounded sanity checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": null,
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "family_count": 7,
+    "source_result_count": 10,
+    "family_order": [
+      "carrier_core",
+      "carrier_compare",
+      "hopf_bundle_family",
+      "contact_symplectic_family",
+      "graph_shell_family",
+      "hypergraph_topology_family",
+      "geometry_metric_family"
+    ],
+    "family_kind_counts": {
+      "carrier_core": 1,
+      "carrier_compare": 1,
+      "hopf_bundle_family": 1,
+      "contact_symplectic_family": 1,
+      "graph_shell_family": 1,
+      "hypergraph_topology_family": 1,
+      "geometry_metric_family": 1
+    },
+    "carrier_core_count": 5,
+    "carrier_core_passed_carriers": 5,
+    "carrier_core_failed_carriers": 0,
+    "carrier_compare_carrier_count": 4,
+    "carrier_compare_result_count": 96,
+    "expanded_scope_note": "The live Weyl/Hopf carrier set is widened into geometry families already present in the repo: carrier array, carrier compare, Hopf bundle, contact/symplectic bridge, graph shell, hypergraph topology, and the L0 geometry metric family."
+  },
+  "families": [
+    {
+      "kind": "carrier_core",
+      "source_files": [
+        "weyl_geometry_carrier_array_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "sample_count": 12,
+        "max_left_right_overlap_abs": 5.567448302367146e-17,
+        "max_hopf_roundtrip_gap": 1.1102230246251565e-16,
+        "max_radius_identity_gap": 0.0,
+        "transport_roundtrip_error": 0.0
+      },
+      "notes": "Fresh direct sanity on the live Weyl/Hopf carrier core."
+    },
+    {
+      "kind": "carrier_compare",
+      "source_files": [
+        "lego_weyl_geometry_carrier_compare_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "carrier_count": 4,
+        "result_count": 96,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963
+      },
+      "notes": "Current compare-pattern carrier set, used as the widen/compare anchor."
+    },
+    {
+      "kind": "hopf_bundle_family",
+      "source_files": [
+        "hopf_torus_lego_results.json",
+        "torch_hopf_connection_results.json",
+        "foundation_hopf_torus_geomstats_clifford_results.json",
+        "hopf_torus_meta_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "hopf_torus_tests_passed": 12,
+        "hopf_torus_tests_total": 12,
+        "torch_hopf_all_pass": true,
+        "foundation_all_pass": true,
+        "meta_pass_status": [
+          "PASS"
+        ]
+      },
+      "notes": "Legacy Hopf bundle family: torus topology, connection, geomstats/clifford, and meta evidence."
+    },
+    {
+      "kind": "contact_symplectic_family",
+      "source_files": [
+        "hopf_contact_symplectic_bridge_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "tests_passed": 14,
+        "tests_total": 14,
+        "bridge_identity": "omega_S2(d_pi(h1), d_pi(h2)) = -2 * dalpha(h1, h2)",
+        "coupling_constant": -2,
+        "reeb_vertical": "J * R = 0 algebraically and confirmed by z3 UNSAT"
+      },
+      "notes": "Hopf-contact-symplectic bridge identity, with the load-bearing ratio fixed at -2."
+    },
+    {
+      "kind": "graph_shell_family",
+      "source_files": [
+        "graph_shell_geometry_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "nested_chain": {
+          "num_nodes": 4,
+          "num_edges": 3,
+          "num_components": 1,
+          "cycle_rank": 0,
+          "laplacian_zero_modes": 1,
+          "degree_sequence": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "diameter": 3,
+          "pass": true
+        },
+        "pairwise_cycle": {
+          "num_nodes": 4,
+          "num_edges": 4,
+          "num_components": 1,
+          "cycle_rank": 1,
+          "laplacian_zero_modes": 1,
+          "degree_sequence": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "diameter": 2,
+          "pass": true
+        },
+        "summary_pass": true
+      },
+      "notes": "Binary shell graph family; keeps the graph carrier separate from the Weyl transport core."
+    },
+    {
+      "kind": "hypergraph_topology_family",
+      "source_files": [
+        "toponetx_hopf_crosscheck_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "beta0": 1,
+        "beta1": 2,
+        "beta2": 1,
+        "chi": 0,
+        "beta1_matches_gudhi": true,
+        "tests_passed": 8,
+        "tests_total": 8
+      },
+      "notes": "Multiway torus topology family with xgi/toponetx witnesses and z3/sympy cross-checks."
+    },
+    {
+      "kind": "geometry_metric_family",
+      "source_files": [
+        "geometry_families_L0_results.json"
+      ],
+      "pass": true,
+      "witness": {
+        "metric_survivors": [
+          "trace_distance",
+          "bures_distance",
+          "hilbert_schmidt_distance"
+        ],
+        "metric_kills": [
+          "one_minus_fidelity",
+          "sqrt_relative_entropy"
+        ],
+        "trace_distance_is_metric": true,
+        "bures_distance_is_metric": true,
+        "hilbert_schmidt_distance_is_metric": true,
+        "Ti_Fi_noncommuting": true,
+        "Te_Fe_noncommuting": true
+      },
+      "notes": "L0 geometry-family discriminator: the surviving metrics stay metric, and the intentionally bad ones are still killed."
+    }
+  ],
+  "carrier_array_anchor": {
+    "carrier_count": 5,
+    "all_pass": true,
+    "comparison_spread": {}
+  },
+  "carrier_compare_anchor": {
+    "carrier_count": 4,
+    "result_count": 96,
+    "mean_left_entropy_spread": 0.19439185783157628,
+    "mean_step_bloch_jump_spread": 0.5706616935506963
+  }
+}

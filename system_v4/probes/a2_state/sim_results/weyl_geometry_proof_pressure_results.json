@@ -1,0 +1,279 @@
+{
+  "name": "weyl_geometry_proof_pressure",
+  "classification": "research_support",
+  "classification_note": "Proof-pressure row for the Weyl/Hopf/Pauli geometry lane. It composes the protocol DAG, graph/proof bridge, composed stack, carrier array, carrier compare, and ladder audit into one solver-checked pressure surface.",
+  "lego_ids": [
+    "nested_hopf_tori",
+    "weyl_pauli_transport",
+    "weyl_geometry_protocol_dag",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_carrier_array",
+    "weyl_geometry_carrier_compare",
+    "weyl_geometry_ladder_audit"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_protocol_dag",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_hopf_pauli_composed_stack"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing solver pressure for ordering, chirality, and illegal transition checks"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing proof-pressure schedule graph over the geometry lane"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "transport_ordering_matches_the_ledger": {
+      "pass": true,
+      "forward_order_sat": true,
+      "reverse_order_unsat": true,
+      "stage_count": 8
+    },
+    "chirality_signs_remain_separated": {
+      "pass": true,
+      "verdict": "unsat",
+      "claim": "Left and right Weyl chirality signs cannot be identified as the same sign."
+    },
+    "illegal_shortcuts_stay_unsat": {
+      "pass": true,
+      "protocol_before_base_unsat": true,
+      "graph_before_protocol_unsat": true,
+      "composed_before_graph_unsat": true,
+      "compare_before_array_unsat": true,
+      "ladder_before_compare_unsat": true
+    },
+    "graph_pressure_row_is_a_single_valid_dependency_chain": {
+      "pass": true,
+      "node_count": 8,
+      "edge_count": 7,
+      "longest_path_length": 7,
+      "source_count": 1,
+      "sink_count": 1,
+      "topological_order": [
+        "nested_hopf_tori_base",
+        "weyl_pauli_transport_base",
+        "weyl_geometry_protocol_dag",
+        "weyl_geometry_graph_proof_alignment",
+        "weyl_hopf_pauli_composed_stack",
+        "weyl_geometry_carrier_array",
+        "weyl_geometry_carrier_compare",
+        "weyl_geometry_ladder_audit"
+      ]
+    },
+    "base_rows_remain_bounded_and_reusable": {
+      "pass": true,
+      "nested_hopf_tori_max_transport_error": 2.7755575615628914e-16,
+      "weyl_pauli_transport_max_left_right_overlap_abs": 5.704004013523115e-17,
+      "weyl_pauli_transport_max_chiral_z_gap": 1.4142135623730951,
+      "weyl_pauli_transport_roundtrip_error": 5.551115123125783e-17,
+      "ladder_guardrail_pass": true
+    }
+  },
+  "negative": {
+    "reverse_chain_is_unsat": {
+      "pass": true,
+      "reverse_order_verdict": "unsat"
+    },
+    "shortcuts_do_not_reorder_the_lane": {
+      "pass": true,
+      "back_edge_to_base_unsat": true
+    },
+    "chirality_collapse_is_rejected": {
+      "pass": true,
+      "verdict": "unsat"
+    }
+  },
+  "boundary": {
+    "existing_rows_stay_the_source_of_truth": {
+      "pass": true,
+      "source_rows": [
+        "lego_nested_hopf_tori_results.json",
+        "lego_weyl_pauli_transport_results.json",
+        "lego_weyl_geometry_protocol_dag_results.json",
+        "weyl_geometry_graph_proof_alignment_results.json",
+        "weyl_hopf_pauli_composed_stack_results.json",
+        "weyl_geometry_carrier_array_results.json",
+        "lego_weyl_geometry_carrier_compare_results.json",
+        "weyl_geometry_ladder_audit_results.json"
+      ]
+    },
+    "proof_pressure_stays_controller_facing": {
+      "pass": true,
+      "scope_note": "This row increases proof pressure over existing geometry rows. It does not claim a new runtime or a new carrier law."
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 8,
+    "graph_path_length": 7,
+    "base_row_count": 2,
+    "bridge_row_count": 3,
+    "comparison_row_count": 1,
+    "audit_row_count": 1,
+    "sidecar_row_count": 1,
+    "transport_chain_labels": [
+      "nested_hopf_tori_base",
+      "weyl_pauli_transport_base",
+      "weyl_geometry_protocol_dag",
+      "weyl_geometry_graph_proof_alignment",
+      "weyl_hopf_pauli_composed_stack",
+      "weyl_geometry_carrier_array",
+      "weyl_geometry_carrier_compare",
+      "weyl_geometry_ladder_audit"
+    ],
+    "max_left_right_overlap_abs": 5.704004013523115e-17,
+    "max_chiral_z_gap": 1.4142135623730951,
+    "max_transport_roundtrip_error": 5.551115123125783e-17,
+    "max_stack_error": 1.129514239719272e-16,
+    "max_hopf_transport_error": 2.7755575615628914e-16,
+    "carrier_count": 5,
+    "compare_carrier_count": 4
+  },
+  "graph": {
+    "node_count": 8,
+    "edge_count": 7,
+    "is_dag": true,
+    "topological_order": [
+      "nested_hopf_tori_base",
+      "weyl_pauli_transport_base",
+      "weyl_geometry_protocol_dag",
+      "weyl_geometry_graph_proof_alignment",
+      "weyl_hopf_pauli_composed_stack",
+      "weyl_geometry_carrier_array",
+      "weyl_geometry_carrier_compare",
+      "weyl_geometry_ladder_audit"
+    ],
+    "longest_path": [
+      "nested_hopf_tori_base",
+      "weyl_pauli_transport_base",
+      "weyl_geometry_protocol_dag",
+      "weyl_geometry_graph_proof_alignment",
+      "weyl_hopf_pauli_composed_stack",
+      "weyl_geometry_carrier_array",
+      "weyl_geometry_carrier_compare",
+      "weyl_geometry_ladder_audit"
+    ],
+    "longest_path_length": 7,
+    "source_count": 1,
+    "sink_count": 1,
+    "sources": [
+      "nested_hopf_tori_base"
+    ],
+    "sinks": [
+      "weyl_geometry_ladder_audit"
+    ]
+  },
+  "proofs": {
+    "ordering": {
+      "forward_order_verdict": "sat",
+      "forward_order_sat": true,
+      "reverse_order_verdict": "unsat",
+      "reverse_order_unsat": true,
+      "stage_count": 8
+    },
+    "illegal_shortcuts": {
+      "protocol_before_base_verdict": "unsat",
+      "protocol_before_base_unsat": true,
+      "graph_before_protocol_verdict": "unsat",
+      "graph_before_protocol_unsat": true,
+      "composed_before_graph_verdict": "unsat",
+      "composed_before_graph_unsat": true,
+      "compare_before_array_verdict": "unsat",
+      "compare_before_array_unsat": true,
+      "ladder_before_compare_verdict": "unsat",
+      "ladder_before_compare_unsat": true,
+      "back_edge_to_base_verdict": "unsat",
+      "back_edge_to_base_unsat": true
+    },
+    "chirality": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Left and right Weyl chirality signs cannot be identified as the same sign."
+    }
+  },
+  "evidence": {
+    "nested_hopf_tori_max_transport_error": 2.7755575615628914e-16,
+    "weyl_pauli_transport_max_left_right_overlap_abs": 5.704004013523115e-17,
+    "weyl_pauli_transport_max_chiral_z_gap": 1.4142135623730951,
+    "weyl_pauli_transport_roundtrip_error": 5.551115123125783e-17,
+    "protocol_dag_graph_path_length": 5,
+    "graph_bridge_forward_order_sat": true,
+    "graph_bridge_reverse_order_unsat": true,
+    "graph_bridge_chirality_unsat": true,
+    "composed_stack_error": 1.129514239719272e-16,
+    "carrier_count": 5,
+    "compare_carrier_count": 4,
+    "ladder_guardrail_pass": true
+  }
+}

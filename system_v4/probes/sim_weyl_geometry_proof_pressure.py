@@ -259,6 +259,7 @@ def main() -> None:
     chirality = prove_chirality()
 
     nested_summary = sources["nested"]["summary"]
+    transport_positive = sources["transport"]["positive"]
     transport_summary = sources["transport"]["summary"]
     protocol_summary = sources["protocol"]["summary"]
     graph_bridge = sources["graph_bridge"]
@@ -269,7 +270,9 @@ def main() -> None:
 
     base_metrics = {
         "nested_hopf_tori_max_transport_error": nested_summary.get("max_transport_error"),
-        "weyl_pauli_transport_max_left_right_overlap_abs": transport_summary.get("max_left_right_overlap_abs"),
+        "weyl_pauli_transport_max_left_right_overlap_abs": transport_positive.get("max_left_right_overlap_abs"),
+        "weyl_pauli_transport_max_chiral_z_gap": transport_positive.get("max_chiral_z_gap"),
+        "weyl_pauli_transport_roundtrip_error": transport_positive.get("transport_roundtrip_error"),
         "protocol_dag_graph_path_length": protocol_summary.get("graph_path_length"),
         "graph_bridge_forward_order_sat": graph_bridge["positive"]["z3_forces_the_geometry_stack_ordering"]["forward_order_sat"],
         "graph_bridge_reverse_order_unsat": graph_bridge["positive"]["z3_forces_the_geometry_stack_ordering"]["reverse_order_unsat"],
@@ -323,6 +326,8 @@ def main() -> None:
             ),
             "nested_hopf_tori_max_transport_error": base_metrics["nested_hopf_tori_max_transport_error"],
             "weyl_pauli_transport_max_left_right_overlap_abs": base_metrics["weyl_pauli_transport_max_left_right_overlap_abs"],
+            "weyl_pauli_transport_max_chiral_z_gap": base_metrics["weyl_pauli_transport_max_chiral_z_gap"],
+            "weyl_pauli_transport_roundtrip_error": base_metrics["weyl_pauli_transport_roundtrip_error"],
             "ladder_guardrail_pass": base_metrics["ladder_guardrail_pass"],
         },
     }
@@ -389,6 +394,8 @@ def main() -> None:
         "sidecar_row_count": 1,
         "transport_chain_labels": graph["topological_order"],
         "max_left_right_overlap_abs": base_metrics["weyl_pauli_transport_max_left_right_overlap_abs"],
+        "max_chiral_z_gap": base_metrics["weyl_pauli_transport_max_chiral_z_gap"],
+        "max_transport_roundtrip_error": base_metrics["weyl_pauli_transport_roundtrip_error"],
         "max_stack_error": base_metrics["composed_stack_error"],
         "max_hopf_transport_error": base_metrics["nested_hopf_tori_max_transport_error"],
         "carrier_count": base_metrics["carrier_count"],

@@ -1,0 +1,1131 @@
+{
+  "name": "qit_weyl_geometry_companion",
+  "classification": "research_support",
+  "classification_note": "Strict finite-state companion/readout surface for the Weyl/Hopf/Pauli geometry stack. It keeps nested Hopf tori, Weyl spinors, Pauli readouts, transport, and geometry-preserving basis changes explicit. This is a bounded comparison surface, not a new physics claim.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "pauli_algebra_relations",
+    "transport_geometry",
+    "geometry_preserving_basis_change",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nested_tori_remain_unit_and_finite": {
+      "pass": true,
+      "sample_count": 24,
+      "carrier_count": 3
+    },
+    "weyl_frames_remain_normalized_orthogonal_and_opposite_on_the_bloch_sphere": {
+      "pass": true
+    },
+    "pauli_relations_remain_exact": {
+      "pass": true
+    },
+    "basis_change_is_geometry_preserving": {
+      "pass": true,
+      "rotation_angle": 1.0471975511965976
+    },
+    "transport_chain_remains_finite_and_round_trippable": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonunitary_drift_is_rejected": {
+      "pass": true,
+      "controlled_trace_error": 0.05,
+      "controlled_purity_error": 0.05,
+      "reason": "a small nonunitary perturbation would break trace/purity preservation and is not admitted as strict readout"
+    },
+    "left_and_right_are_not_identified": {
+      "pass": true,
+      "reason": "the strict companion keeps left and right Weyl frames distinct rather than collapsing them"
+    }
+  },
+  "boundary": {
+    "sample_grid_covers_three_nested_tori": {
+      "pass": true
+    },
+    "open_stack_reference_is_available": {
+      "pass": true,
+      "reference_file": "weyl_hopf_pauli_composed_stack_results.json"
+    },
+    "transport_reference_rows_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "sample_count": 24,
+    "transport_reference_count": 3,
+    "row_count": 27,
+    "carrier_count": 3,
+    "max_left_norm_error": 1.1102230246251565e-16,
+    "max_right_norm_error": 1.1102230246251565e-16,
+    "max_left_right_overlap_abs": 1.1102230246251565e-16,
+    "max_trace_error": 2.2408136244087373e-16,
+    "max_purity_error": 4.443843741175801e-16,
+    "max_left_hopf_alignment_error": 2.220446049250313e-16,
+    "max_right_antipode_error": 2.220446049250313e-16,
+    "max_basis_change_covariance_error": 2.220446049250313e-16,
+    "max_hopf_norm_gap": 2.220446049250313e-16,
+    "max_pauli_commutator_error": 0.0,
+    "max_pauli_anticommutator_error": 0.0,
+    "max_identity_neutral_error": 0.0,
+    "max_transport_error": 5.551115123125783e-17,
+    "max_transport_roundtrip_error": 5.551115123125783e-17,
+    "min_partial_transport_midpoint_separation": 0.39018064403225644,
+    "max_stack_error": 4.443843741175801e-16,
+    "stereographic_nonfinite_count": 0,
+    "open_stack_reference_file": "weyl_hopf_pauli_composed_stack_results.json",
+    "open_stack_reference_max_stack_error": 1.129514239719272e-16,
+    "open_stack_reference_max_transport_error": 2.7755575615628914e-16,
+    "stack_gap_to_open_reference": 3.314329501456529e-16,
+    "scope_note": "Strict finite-state companion/readout surface for the Weyl/Hopf/Pauli geometry stack. It keeps the carrier finite, the readouts exact, and the transport and basis-change checks explicit."
+  },
+  "rows": [
+    {
+      "sample_id": "inner_0",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 0.0,
+      "theta2": 0.0,
+      "q": [
+        0.9238795325112867,
+        0.0,
+        0.3826834323650898,
+        0.0
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.1634997285925725e-17,
+      "trace_error": 0.0,
+      "purity_error": 0.0,
+      "left_bloch": [
+        0.7071067811865476,
+        0.0,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.7071067811865476,
+        0.0,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.7071067811865476,
+        0.0,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_1",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 0.7853981633974483,
+      "theta2": 2.356194490192345,
+      "q": [
+        0.6532814824381883,
+        0.6532814824381882,
+        -0.27059805007309845,
+        0.2705980500730985
+      ],
+      "left_norm_error": 1.1102230246251565e-16,
+      "right_norm_error": 1.1102230246251565e-16,
+      "left_right_overlap_abs": 3.8264533776855674e-18,
+      "trace_error": 2.2408136244087373e-16,
+      "purity_error": 2.2655225135856697e-16,
+      "left_bloch": [
+        1.0048441984909643e-17,
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        -1.0048441984909643e-17,
+        -0.7071067811865475,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        1.0048441984909643e-17,
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 0.0,
+      "hopf_norm_gap": 1.1102230246251565e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_2",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 1.5707963267948966,
+      "theta2": 4.71238898038469,
+      "q": [
+        5.657130561438501e-17,
+        0.9238795325112867,
+        -7.029780607989448e-17,
+        -0.3826834323650898
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.1634997285925725e-17,
+      "trace_error": 1.2200462312010104e-33,
+      "purity_error": 6.162975822039155e-33,
+      "left_bloch": [
+        -0.7071067811865476,
+        8.659560562354933e-17,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        0.7071067811865476,
+        -8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -0.7071067811865476,
+        8.659560562354934e-17,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 1.232595164407831e-32,
+      "right_antipode_error": 1.232595164407831e-32,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_3",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 2.356194490192345,
+      "theta2": 0.7853981633974483,
+      "q": [
+        -0.6532814824381882,
+        0.6532814824381883,
+        0.2705980500730985,
+        0.27059805007309845
+      ],
+      "left_norm_error": 1.1102230246251565e-16,
+      "right_norm_error": 1.1102230246251565e-16,
+      "left_right_overlap_abs": 3.8264533776855674e-18,
+      "trace_error": 3.0143828838503386e-17,
+      "purity_error": 4.496794435286176e-17,
+      "left_bloch": [
+        -2.3955352295385083e-18,
+        -0.7071067811865475,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        2.3955352295385083e-18,
+        0.7071067811865475,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -2.3955352295385083e-18,
+        -0.7071067811865475,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 2.220446049250313e-16,
+      "hopf_norm_gap": 1.1102230246251565e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_4",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 3.141592653589793,
+      "theta2": 3.141592653589793,
+      "q": [
+        -0.9238795325112867,
+        1.1314261122877003e-16,
+        -0.3826834323650898,
+        4.6865204053262986e-17
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.1634997285925725e-17,
+      "trace_error": 2.2482790144963556e-33,
+      "purity_error": 1.516615126918355e-33,
+      "left_bloch": [
+        0.7071067811865476,
+        -1.197060585437666e-32,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.7071067811865476,
+        1.197060585437666e-32,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.7071067811865476,
+        -6.948244673259281e-33,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 5.0223611811173784e-33,
+      "right_antipode_error": 5.0223611811173784e-33,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_5",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 3.9269908169872414,
+      "theta2": 5.497787143782137,
+      "q": [
+        -0.6532814824381884,
+        -0.6532814824381882,
+        0.27059805007309823,
+        -0.27059805007309884
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.2277522942805642e-17,
+      "trace_error": 1.541300867870157e-17,
+      "purity_error": 2.226632608884129e-16,
+      "left_bloch": [
+        6.841680720586599e-16,
+        0.7071067811865477,
+        0.7071067811865476
+      ],
+      "right_bloch": [
+        -6.841680720586599e-16,
+        -0.7071067811865477,
+        -0.7071067811865476
+      ],
+      "hopf_bloch": [
+        6.841680720586599e-16,
+        0.7071067811865477,
+        0.7071067811865477
+      ],
+      "left_hopf_alignment_error": 1.1102230246251565e-16,
+      "right_antipode_error": 1.1102230246251565e-16,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 2.220446049250313e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_6",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 4.71238898038469,
+      "theta2": 1.5707963267948966,
+      "q": [
+        -1.6971391684315505e-16,
+        -0.9238795325112867,
+        2.3432602026631493e-17,
+        0.3826834323650898
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.1634997285925725e-17,
+      "trace_error": 7.321996047859838e-33,
+      "purity_error": 6.162975822039155e-33,
+      "left_bloch": [
+        -0.7071067811865476,
+        -8.659560562354933e-17,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        0.7071067811865476,
+        8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -0.7071067811865476,
+        -8.659560562354933e-17,
+        0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "inner_7",
+      "level_name": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 5.497787143782138,
+      "theta2": 3.9269908169872423,
+      "q": [
+        0.6532814824381881,
+        -0.6532814824381884,
+        -0.2705980500730983,
+        -0.2705980500730987
+      ],
+      "left_norm_error": 1.1102230246251565e-16,
+      "right_norm_error": 1.1102230246251565e-16,
+      "left_right_overlap_abs": 3.8264533776855e-18,
+      "trace_error": 2.2408136244087373e-16,
+      "purity_error": 2.2655225135856697e-16,
+      "left_bloch": [
+        6.80871466625626e-16,
+        -0.7071067811865475,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        -6.80871466625626e-16,
+        0.7071067811865475,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        6.80871466625626e-16,
+        -0.7071067811865475,
+        0.7071067811865472
+      ],
+      "left_hopf_alignment_error": 2.220446049250313e-16,
+      "right_antipode_error": 2.220446049250313e-16,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 2.220446049250313e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_0",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 0.0,
+      "theta2": 0.0,
+      "q": [
+        0.7071067811865476,
+        0.0,
+        0.7071067811865475,
+        0.0
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.0146536357569526e-17,
+      "trace_error": 0.0,
+      "purity_error": 0.0,
+      "left_bloch": [
+        1.0,
+        0.0,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        -1.0,
+        0.0,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        1.0,
+        0.0,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_1",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 0.7853981633974483,
+      "theta2": 2.356194490192345,
+      "q": [
+        0.5000000000000001,
+        0.5,
+        -0.4999999999999999,
+        0.5
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.232595164407831e-32,
+      "trace_error": 0.0,
+      "purity_error": 0.0,
+      "left_bloch": [
+        2.465190328815662e-32,
+        1.0,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        -2.465190328815662e-32,
+        -1.0,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        2.465190328815662e-32,
+        1.0,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_2",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 1.5707963267948966,
+      "theta2": 4.71238898038469,
+      "q": [
+        4.329780281177467e-17,
+        0.7071067811865476,
+        -1.2989340843532398e-16,
+        -0.7071067811865475
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.0146536357569526e-17,
+      "trace_error": 3.644093109311693e-35,
+      "purity_error": 1.232595164407831e-32,
+      "left_bloch": [
+        -1.0,
+        1.224646799147353e-16,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        1.0,
+        -1.224646799147353e-16,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        -1.0,
+        1.224646799147353e-16,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_3",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 2.356194490192345,
+      "theta2": 0.7853981633974483,
+      "q": [
+        -0.5,
+        0.5000000000000001,
+        0.5,
+        0.4999999999999999
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.232595164407831e-32,
+      "trace_error": 0.0,
+      "purity_error": 0.0,
+      "left_bloch": [
+        0.0,
+        -1.0,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        0.0,
+        1.0,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        0.0,
+        -1.0,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_4",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 3.141592653589793,
+      "theta2": 3.141592653589793,
+      "q": [
+        -0.7071067811865476,
+        8.659560562354934e-17,
+        -0.7071067811865475,
+        8.659560562354932e-17
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.0146536357569526e-17,
+      "trace_error": 3.197488819387595e-33,
+      "purity_error": 6.394977638775193e-33,
+      "left_bloch": [
+        1.0,
+        7.817484464748079e-33,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        -1.0,
+        -7.817484464748079e-33,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        1.0,
+        1.1014973284135676e-32,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 3.197488819387598e-33,
+      "right_antipode_error": 3.197488819387598e-33,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_5",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 3.9269908169872414,
+      "theta2": 5.497787143782137,
+      "q": [
+        -0.5000000000000001,
+        -0.5,
+        0.49999999999999944,
+        -0.5000000000000006
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.1102230246251565e-16,
+      "trace_error": 3.0814879110195774e-31,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        9.99200722162641e-16,
+        1.0,
+        1.1102230246251565e-16
+      ],
+      "right_bloch": [
+        -9.99200722162641e-16,
+        -1.0,
+        -1.1102230246251565e-16
+      ],
+      "hopf_bloch": [
+        9.99200722162641e-16,
+        1.0000000000000002,
+        0.0
+      ],
+      "left_hopf_alignment_error": 2.220446049250313e-16,
+      "right_antipode_error": 2.220446049250313e-16,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 2.220446049250313e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_6",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 4.71238898038469,
+      "theta2": 1.5707963267948966,
+      "q": [
+        -1.29893408435324e-16,
+        -0.7071067811865476,
+        4.329780281177466e-17,
+        0.7071067811865475
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.0146536357569526e-17,
+      "trace_error": 6.358536707682074e-33,
+      "purity_error": 0.0,
+      "left_bloch": [
+        -1.0,
+        -1.2246467991473532e-16,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        1.0,
+        1.2246467991473532e-16,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        -1.0,
+        -1.2246467991473532e-16,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "clifford_7",
+      "level_name": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 5.497787143782138,
+      "theta2": 3.9269908169872423,
+      "q": [
+        0.4999999999999999,
+        -0.5000000000000001,
+        -0.4999999999999996,
+        -0.5000000000000003
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 8.011868568650901e-32,
+      "trace_error": 1.1709654061874394e-31,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        9.43689570931383e-16,
+        -0.9999999999999999,
+        5.551115123125783e-17
+      ],
+      "right_bloch": [
+        -9.43689570931383e-16,
+        0.9999999999999999,
+        -5.551115123125783e-17
+      ],
+      "hopf_bloch": [
+        9.43689570931383e-16,
+        -0.9999999999999999,
+        2.220446049250313e-16
+      ],
+      "left_hopf_alignment_error": 1.6653345369377348e-16,
+      "right_antipode_error": 1.6653345369377348e-16,
+      "basis_change_covariance_error": 2.220446049250313e-16,
+      "hopf_norm_gap": 1.1102230246251565e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_0",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 0.0,
+      "theta2": 0.0,
+      "q": [
+        0.38268343236508984,
+        0.0,
+        0.9238795325112867,
+        0.0
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.5860532068485732e-17,
+      "trace_error": 0.0,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        0.7071067811865477,
+        0.0,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.7071067811865477,
+        0.0,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.7071067811865477,
+        0.0,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_1",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 0.7853981633974483,
+      "theta2": 2.356194490192345,
+      "q": [
+        0.27059805007309856,
+        0.2705980500730985,
+        -0.6532814824381882,
+        0.6532814824381883
+      ],
+      "left_norm_error": 1.1102230246251565e-16,
+      "right_norm_error": 1.1102230246251565e-16,
+      "left_right_overlap_abs": 1.3191209727469748e-17,
+      "trace_error": 3.243067178385697e-17,
+      "purity_error": 4.563774514404721e-17,
+      "left_bloch": [
+        -1.9413198334693818e-17,
+        0.7071067811865476,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        1.9413198334693818e-17,
+        -0.7071067811865476,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -1.9413198334693818e-17,
+        0.7071067811865476,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_2",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 1.5707963267948966,
+      "theta2": 4.71238898038469,
+      "q": [
+        2.3432602026631496e-17,
+        0.38268343236508984,
+        -1.6971391684315505e-16,
+        -0.9238795325112867
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.5860532068485732e-17,
+      "trace_error": 6.720513222262983e-33,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        -0.7071067811865477,
+        8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        0.7071067811865477,
+        -8.659560562354933e-17,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -0.7071067811865477,
+        8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_3",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 2.356194490192345,
+      "theta2": 0.7853981633974483,
+      "q": [
+        -0.2705980500730985,
+        0.27059805007309856,
+        0.6532814824381883,
+        0.6532814824381882
+      ],
+      "left_norm_error": 1.1102230246251565e-16,
+      "right_norm_error": 1.1102230246251565e-16,
+      "left_right_overlap_abs": 1.3191209727469748e-17,
+      "trace_error": 1.1566200809440654e-16,
+      "purity_error": 2.2668614946252505e-16,
+      "left_bloch": [
+        -6.969221120245678e-18,
+        -0.7071067811865476,
+        -0.7071067811865474
+      ],
+      "right_bloch": [
+        6.969221120245678e-18,
+        0.7071067811865476,
+        0.7071067811865474
+      ],
+      "hopf_bloch": [
+        -6.969221120245678e-18,
+        -0.7071067811865476,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 1.1102230246251565e-16,
+      "right_antipode_error": 1.1102230246251565e-16,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_4",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 3.141592653589793,
+      "theta2": 3.141592653589793,
+      "q": [
+        -0.38268343236508984,
+        4.686520405326299e-17,
+        -0.9238795325112867,
+        1.1314261122877003e-16
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.5860532068485732e-17,
+      "trace_error": 1.0453133633026446e-33,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        0.7071067811865477,
+        5.220800651061739e-33,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.7071067811865477,
+        -5.220800651061739e-33,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.7071067811865477,
+        4.431613830254712e-33,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 7.891868208070271e-34,
+      "right_antipode_error": 7.891868208070271e-34,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_5",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 3.9269908169872414,
+      "theta2": 5.497787143782137,
+      "q": [
+        -0.2705980500730986,
+        -0.2705980500730985,
+        0.6532814824381876,
+        -0.6532814824381891
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.4818484448744025e-18,
+      "trace_error": 2.2250711020710007e-16,
+      "purity_error": 4.443843741175801e-16,
+      "left_bloch": [
+        6.525713827887808e-16,
+        0.7071067811865478,
+        -0.7071067811865477
+      ],
+      "right_bloch": [
+        -6.525713827887808e-16,
+        -0.7071067811865478,
+        0.7071067811865477
+      ],
+      "hopf_bloch": [
+        6.525713827887808e-16,
+        0.7071067811865478,
+        -0.7071067811865477
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 2.220446049250313e-16,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_6",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 4.71238898038469,
+      "theta2": 1.5707963267948966,
+      "q": [
+        -7.029780607989448e-17,
+        -0.38268343236508984,
+        5.657130561438501e-17,
+        0.9238795325112867
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 2.5860532068485732e-17,
+      "trace_error": 1.0406174463114862e-33,
+      "purity_error": 2.220446049250313e-16,
+      "left_bloch": [
+        -0.7071067811865477,
+        -8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        0.7071067811865477,
+        8.659560562354933e-17,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        -0.7071067811865477,
+        -8.659560562354933e-17,
+        -0.7071067811865475
+      ],
+      "left_hopf_alignment_error": 0.0,
+      "right_antipode_error": 0.0,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 0.0,
+      "stereographic_finite": true
+    },
+    {
+      "sample_id": "outer_7",
+      "level_name": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 5.497787143782138,
+      "theta2": 3.9269908169872423,
+      "q": [
+        0.27059805007309845,
+        -0.2705980500730986,
+        -0.6532814824381877,
+        -0.6532814824381887
+      ],
+      "left_norm_error": 0.0,
+      "right_norm_error": 0.0,
+      "left_right_overlap_abs": 1.3191209727469834e-17,
+      "trace_error": 1.1566200809440662e-16,
+      "purity_error": 2.266861494625251e-16,
+      "left_bloch": [
+        7.545618374447971e-16,
+        -0.7071067811865476,
+        -0.7071067811865474
+      ],
+      "right_bloch": [
+        -7.545618374447971e-16,
+        0.7071067811865476,
+        0.7071067811865474
+      ],
+      "hopf_bloch": [
+        7.545618374447971e-16,
+        -0.7071067811865476,
+        -0.7071067811865472
+      ],
+      "left_hopf_alignment_error": 1.1102230246251565e-16,
+      "right_antipode_error": 1.1102230246251565e-16,
+      "basis_change_covariance_error": 1.1102230246251565e-16,
+      "hopf_norm_gap": 1.1102230246251565e-16,
+      "stereographic_finite": true
+    }
+  ],
+  "transport_rows": [
+    {
+      "transport_id": "inner_to_clifford",
+      "from_level": "inner",
+      "to_level": "clifford",
+      "fraction": 0.5,
+      "transport_error": 0.0,
+      "roundtrip_error": 0.0,
+      "midpoint_separation": 0.39018064403225644,
+      "finite": true
+    },
+    {
+      "transport_id": "inner_to_outer",
+      "from_level": "inner",
+      "to_level": "outer",
+      "fraction": 1.0,
+      "transport_error": 2.7755575615628914e-17,
+      "roundtrip_error": 5.551115123125783e-17,
+      "midpoint_separation": 0.39018064403225644,
+      "finite": true
+    },
+    {
+      "transport_id": "outer_to_inner",
+      "from_level": "outer",
+      "to_level": "inner",
+      "fraction": 1.0,
+      "transport_error": 5.551115123125783e-17,
+      "roundtrip_error": 0.0,
+      "midpoint_separation": 0.3901806440322565,
+      "finite": true
+    }
+  ],
+  "open_stack_reference": {
+    "all_pass": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "sample_count": 192,
+    "torus_levels": [
+      "inner",
+      "clifford",
+      "outer"
+    ],
+    "total_stages": 4,
+    "max_spinor_norm_error": 1.1102230246251565e-16,
+    "max_bloch_alignment_error": 2.2207757275727963e-16,
+    "max_transport_error": 2.7755575615628914e-16,
+    "max_stack_error": 1.129514239719272e-16,
+    "scope_note": "Bounded composed geometry stack for nested Hopf tori, Weyl spinors, Pauli/Bloch consistency, and transport closures."
+  }
+}

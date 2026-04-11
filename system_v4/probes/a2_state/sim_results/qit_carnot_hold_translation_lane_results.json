@@ -1,0 +1,144 @@
+{
+  "name": "qit_carnot_hold_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Carnot hold-translation lane built from the open adaptive-hold sweep and the strict hold-policy companion. It is a translation-ready comparison surface, not a canonical engine theorem.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "open_all_pass": true,
+      "pass": true
+    },
+    "strict_lane_is_clean": {
+      "qit_all_pass": true,
+      "pass": true
+    },
+    "both_lanes_gain_closure_from_hold_policy": {
+      "open_closure_gain": 0.09564620909886312,
+      "qit_closure_gain": 0.03982554200387932,
+      "pass": true
+    },
+    "translation_gap_stays_bounded": {
+      "closure_gap": 0.0011364356185041558,
+      "efficiency_gap": 0.04189425110844586,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_lane_does_not_match_strict_best_closure_exactly": {
+      "closure_gap": 0.0011364356185041558,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_baseline_closure_defect": 0.09712606157817827,
+    "open_best_closure_defect": 0.0014798524793151469,
+    "qit_baseline_closure_defect": 0.04016895886469031,
+    "qit_best_closure_defect": 0.0003434168608109911,
+    "open_best_efficiency": 0.4230213121224605,
+    "qit_best_efficiency": 0.4649155632309064,
+    "closure_gain_open": 0.09564620909886312,
+    "closure_gain_qit": 0.03982554200387932,
+    "closure_gap": 0.0011364356185041558,
+    "efficiency_gap": 0.04189425110844586,
+    "open_best_setting": {
+      "strategy": "fixed_full_chain_800",
+      "base_hot_steps": 520,
+      "base_cold_steps": 520,
+      "hold_steps_used": 2000
+    },
+    "qit_best_policy": "fixed_full_chain_2000",
+    "scope_note": "Promoted QIT-aligned Carnot hold-translation lane. It compares the open adaptive-hold sweep against the strict hold-policy companion and keeps the closure/efficiency translation gap explicit."
+  }
+}

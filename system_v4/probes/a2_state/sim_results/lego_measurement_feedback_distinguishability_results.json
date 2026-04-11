@@ -1,0 +1,618 @@
+{
+  "name": "lego_measurement_feedback_distinguishability",
+  "classification": "research_support",
+  "classification_note": "Finite measurement/feedback distinguishability lego for Szilard-like protocols. It combines a protocol DAG, Helstrom-style distinguishability, and bounded control-degradation sweeps without turning the result into a reservoir-runtime claim.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "helstrom_guess_bound",
+    "state_distinguishability",
+    "measurement_feedback"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics",
+    "helstrom_guess_bound"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing protocol DAG construction and topological legality checks"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "protocol_graph_is_a_valid_branching_dag": {
+      "node_count": 5,
+      "edge_count": 4,
+      "source_count": 1,
+      "sink_count": 2,
+      "is_dag": true,
+      "topological_order": [
+        "initial_blank_memory",
+        "wrong_order_branch",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path": [
+        "initial_blank_memory",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path_length": 3,
+      "pass": true
+    },
+    "ideal_blank_vs_measured_record_is_operationally_distinguishable": {
+      "blank_vs_measured_guess_probability": 0.75,
+      "pass": true
+    },
+    "ideal_feedback_state_is_more_distinguishable_from_wrong_order_than_blank_reset_is": {
+      "feedback_vs_wrong_order_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.5,
+      "pass": true
+    },
+    "degraded_control_is_weaker_than_ideal_control": {
+      "ideal_feedback_vs_wrong_order": 0.75,
+      "degraded_feedback_vs_wrong_order": 0.62,
+      "ideal_reset_collapse_trace_distance": 0.0,
+      "degraded_reset_collapse_trace_distance": 0.32499999999999996,
+      "pass": true
+    }
+  },
+  "negative": {
+    "reset_collapse_has_near_zero_distinguishability_at_ideal_strength": {
+      "reset_collapse_trace_distance": 0.0,
+      "pass": true
+    },
+    "wrong_order_is_not_as_good_as_post_feedback_state": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "measurement_error_axis_degrades_monotonically": {
+      "profile": [
+        {
+          "measurement_error": 0.0,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.75,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        },
+        {
+          "measurement_error": 0.1,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.7,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        },
+        {
+          "measurement_error": 0.2,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.65,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.024999999999999967,
+          "n": 1
+        }
+      ],
+      "pass": true
+    },
+    "feedback_error_axis_degrades_monotonically": {
+      "profile": [
+        {
+          "feedback_error": 0.0,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.75,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        },
+        {
+          "feedback_error": 0.1,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.725,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        },
+        {
+          "feedback_error": 0.2,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.7,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        }
+      ],
+      "pass": true
+    },
+    "reset_strength_axis_collapses_monotonically": {
+      "profile": [
+        {
+          "reset_strength": 0.35,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.75,
+          "mean_blank_vs_erased_guess_probability": 0.6625,
+          "mean_reset_collapse_trace_distance": 0.32499999999999996,
+          "n": 1
+        },
+        {
+          "reset_strength": 0.65,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.75,
+          "mean_blank_vs_erased_guess_probability": 0.5875,
+          "mean_reset_collapse_trace_distance": 0.17500000000000002,
+          "n": 1
+        },
+        {
+          "reset_strength": 0.95,
+          "mean_blank_vs_measured_guess_probability": 0.75,
+          "mean_feedback_vs_wrong_order_guess_probability": 0.75,
+          "mean_blank_vs_erased_guess_probability": 0.5125,
+          "mean_reset_collapse_trace_distance": 0.025000000000000022,
+          "n": 1
+        }
+      ],
+      "pass": true
+    }
+  },
+  "graph_summary": {
+    "node_count": 5,
+    "edge_count": 4,
+    "source_count": 1,
+    "sink_count": 2,
+    "is_dag": true,
+    "topological_order": [
+      "initial_blank_memory",
+      "wrong_order_branch",
+      "measurement_record_written",
+      "feedback_applied",
+      "memory_erased"
+    ],
+    "longest_path": [
+      "initial_blank_memory",
+      "measurement_record_written",
+      "feedback_applied",
+      "memory_erased"
+    ],
+    "longest_path_length": 3
+  },
+  "rows": [
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.32499999999999996,
+      "system_entropy_after_feedback": -0.0,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 0.6305810283860147,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17500000000000002,
+      "system_entropy_after_feedback": -0.0,
+      "memory_entropy_after_erasure": 0.4637264398194103,
+      "final_joint_entropy": 0.4637264398194103,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.025000000000000022,
+      "system_entropy_after_feedback": -0.0,
+      "memory_entropy_after_erasure": 0.11690684913753112,
+      "final_joint_entropy": 0.11690684913753112,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.1,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.725,
+      "blank_vs_erased_guess_probability": 0.6625000000000001,
+      "reset_collapse_trace_distance": 0.32500000000000007,
+      "system_entropy_after_feedback": 0.1985152433458726,
+      "memory_entropy_after_erasure": 0.6305810283860148,
+      "final_joint_entropy": 0.8174231132967904,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.1,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.725,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17500000000000002,
+      "system_entropy_after_feedback": 0.1985152433458726,
+      "memory_entropy_after_erasure": 0.4637264398194103,
+      "final_joint_entropy": 0.6575768901776029,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.1,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.725,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.025000000000000022,
+      "system_entropy_after_feedback": 0.1985152433458726,
+      "memory_entropy_after_erasure": 0.11690684913753112,
+      "final_joint_entropy": 0.3148887295391151,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.2,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.32499999999999996,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 0.9308660673563747,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.2,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17500000000000002,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.4637264398194103,
+      "final_joint_entropy": 0.7788309758284023,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.2,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.025000000000000022,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.11690684913753112,
+      "final_joint_entropy": 0.4408438606712535,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.0,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.325,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 0.9556640017774631,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.0,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17499999999999996,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.46372643981941025,
+      "final_joint_entropy": 0.7888094132108585,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.0,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.7,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.025000000000000022,
+      "system_entropy_after_feedback": 0.3250829733914482,
+      "memory_entropy_after_erasure": 0.11690684913753112,
+      "final_joint_entropy": 0.4419898225289794,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.1,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.6799999999999999,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.32499999999999996,
+      "system_entropy_after_feedback": 0.4049634850639384,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 1.032452745249627,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.1,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.6799999999999999,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17499999999999996,
+      "system_entropy_after_feedback": 0.4049634850639384,
+      "memory_entropy_after_erasure": 0.46372643981941025,
+      "final_joint_entropy": 0.8673571858012183,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.1,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.6799999999999999,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.024999999999999967,
+      "system_entropy_after_feedback": 0.4049634850639384,
+      "memory_entropy_after_erasure": 0.11690684913753101,
+      "final_joint_entropy": 0.521711526230836,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.2,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.66,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.325,
+      "system_entropy_after_feedback": 0.47139348681009413,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 1.0919840345768077,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.2,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.66,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17500000000000002,
+      "system_entropy_after_feedback": 0.47139348681009413,
+      "memory_entropy_after_erasure": 0.4637264398194103,
+      "final_joint_entropy": 0.930856580019912,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.2,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.66,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.024999999999999967,
+      "system_entropy_after_feedback": 0.47139348681009413,
+      "memory_entropy_after_erasure": 0.11690684913753102,
+      "final_joint_entropy": 0.5877952876973275,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.0,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.65,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.32499999999999996,
+      "system_entropy_after_feedback": 0.5004024235381879,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 1.1309834519242026,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.0,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.65,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17499999999999996,
+      "system_entropy_after_feedback": 0.5004024235381879,
+      "memory_entropy_after_erasure": 0.46372643981941025,
+      "final_joint_entropy": 0.9641288633575982,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.0,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.65,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.024999999999999967,
+      "system_entropy_after_feedback": 0.5004024235381879,
+      "memory_entropy_after_erasure": 0.11690684913753101,
+      "final_joint_entropy": 0.617309272675719,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.1,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.635,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.325,
+      "system_entropy_after_feedback": 0.5392763414970504,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 1.1686513613012504,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.1,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.635,
+      "blank_vs_erased_guess_probability": 0.5875,
+      "reset_collapse_trace_distance": 0.17499999999999996,
+      "system_entropy_after_feedback": 0.5392763414970504,
+      "memory_entropy_after_erasure": 0.46372643981941025,
+      "final_joint_entropy": 1.00247580581514,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.1,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.635,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.025000000000000022,
+      "system_entropy_after_feedback": 0.5392763414970504,
+      "memory_entropy_after_erasure": 0.11690684913753113,
+      "final_joint_entropy": 0.6561198415391714,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.2,
+      "reset_strength": 0.35,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.62,
+      "blank_vs_erased_guess_probability": 0.6625,
+      "reset_collapse_trace_distance": 0.32499999999999996,
+      "system_entropy_after_feedback": 0.5730569171314203,
+      "memory_entropy_after_erasure": 0.6305810283860147,
+      "final_joint_entropy": 1.199229015941987,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.2,
+      "reset_strength": 0.65,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.62,
+      "blank_vs_erased_guess_probability": 0.5874999999999999,
+      "reset_collapse_trace_distance": 0.17499999999999988,
+      "system_entropy_after_feedback": 0.5730569171314203,
+      "memory_entropy_after_erasure": 0.4637264398194101,
+      "final_joint_entropy": 1.0348668079957861,
+      "valid_density": true
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.2,
+      "reset_strength": 0.95,
+      "blank_vs_measured_guess_probability": 0.75,
+      "feedback_vs_wrong_order_guess_probability": 0.62,
+      "blank_vs_erased_guess_probability": 0.5125,
+      "reset_collapse_trace_distance": 0.02499999999999986,
+      "system_entropy_after_feedback": 0.5730569171314203,
+      "memory_entropy_after_erasure": 0.1169068491375308,
+      "final_joint_entropy": 0.6897341221260771,
+      "valid_density": true
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "row_count": 27,
+    "ideal_blank_vs_measured_guess_probability": 0.75,
+    "ideal_feedback_vs_wrong_order_guess_probability": 0.75,
+    "ideal_blank_vs_erased_guess_probability": 0.5,
+    "ideal_reset_collapse_trace_distance": 0.0,
+    "best_blank_vs_measured_guess_probability": 0.75,
+    "worst_blank_vs_measured_guess_probability": 0.75,
+    "best_feedback_vs_wrong_order_guess_probability": 0.75,
+    "worst_feedback_vs_wrong_order_guess_probability": 0.62,
+    "best_reset_collapse_trace_distance": 0.02499999999999986,
+    "worst_reset_collapse_trace_distance": 0.32500000000000007,
+    "scope_note": "Finite measurement/feedback distinguishability lego for Szilard-like control. It is a reusable operational-control row, not a reservoir-runtime theorem."
+  }
+}

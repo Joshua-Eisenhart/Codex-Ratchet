@@ -1,0 +1,384 @@
+{
+  "name": "qit_carnot_hold_policy_companion",
+  "classification": "research_support",
+  "classification_note": "QIT-aligned Carnot companion row with finite partial-thermalization hold policies. It compares baseline closure defect, fixed holds, and adaptive hold-stop rules on a qubit working substance. This is a bounded comparison surface, not a canonical engine theorem.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "stochastic_thermodynamics"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "baseline_has_nonzero_return_defect": {
+      "baseline_trace_distance": 0.04016895886469031,
+      "pass": true
+    },
+    "fixed_return_hold_reduces_return_defect_vs_baseline": {
+      "baseline_trace_distance": 0.04016895886469031,
+      "fixed_return_trace_distance": 0.005979474124465853,
+      "pass": true
+    },
+    "adaptive_return_hold_uses_fewer_steps_than_fixed_return_hold": {
+      "fixed_steps_used": 800,
+      "adaptive_steps_used": 640,
+      "pass": true
+    },
+    "fixed_full_chain_has_the_best_closure": {
+      "best_closure_policy": "fixed_full_chain_2000",
+      "best_closure_trace_distance": 0.0003434168608109911,
+      "pass": true
+    }
+  },
+  "negative": {
+    "adaptive_hold_does_not_always_match_the_best_fixed_closure": {
+      "best_fixed_closure": 0.0003434168608109911,
+      "best_adaptive_closure": 0.008752024158318092,
+      "pass": true
+    },
+    "adaptive_hold_policies_do_not_match_the_best_efficiency_while_saving_budget": {
+      "best_efficiency_policy": "fixed_full_chain_2000",
+      "adaptive_return_efficiency": 0.2856843891320772,
+      "adaptive_cold_return_efficiency": 0.4401465808529163,
+      "pass": true
+    },
+    "adaptive_policies_save_budget_relative_to_their_fixed_companions": {
+      "fixed_return_steps_used": 800,
+      "adaptive_return_steps_used": 640,
+      "fixed_full_chain_steps_used": 2000,
+      "adaptive_full_chain_steps_used": 640,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_are_valid_density_operators": {
+      "pass": true
+    },
+    "all_rows_have_finite_statistics": {
+      "pass": true
+    },
+    "policy_grid_has_baseline_fixed_and_adaptive_rows": {
+      "row_count": 5,
+      "pass": true
+    }
+  },
+  "baseline": {
+    "policy": "baseline_no_extra_hold",
+    "hold_modes": {
+      "cold_hold": null,
+      "return_hold": null
+    },
+    "hold_steps_used": 0,
+    "hold_steps_requested": 0,
+    "work_by_system": 0.08716043421370234,
+    "positive_heat_absorbed": 0.3050934441272759,
+    "efficiency": 0.2856843891320772,
+    "efficiency_distance_to_carnot": 0.21431561086792278,
+    "final_trace_distance_to_initial": 0.04016895886469031,
+    "final_probability_mismatch_abs": 0.040168958864690324,
+    "final_free_energy_mismatch": 0.010265699105800219,
+    "final_internal_energy_mismatch": 0.120506876594071,
+    "stages": {
+      "hot_iso": {
+        "steps": 520,
+        "heat_into_system": 0.3050934441272759,
+        "work_by_system": 0.5314002419179377
+      },
+      "cold_iso": {
+        "steps": 520,
+        "heat_into_system": -0.09742613331950256,
+        "work_by_system": -0.27083297051186894
+      },
+      "cold_hold": null,
+      "return_hold": null
+    }
+  },
+  "rows": [
+    {
+      "policy": "baseline_no_extra_hold",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": null
+      },
+      "hold_steps_used": 0,
+      "hold_steps_requested": 0,
+      "work_by_system": 0.08716043421370234,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "efficiency": 0.2856843891320772,
+      "efficiency_distance_to_carnot": 0.21431561086792278,
+      "final_trace_distance_to_initial": 0.04016895886469031,
+      "final_probability_mismatch_abs": 0.040168958864690324,
+      "final_free_energy_mismatch": 0.010265699105800219,
+      "final_internal_energy_mismatch": 0.120506876594071,
+      "stages": {
+        "hot_iso": {
+          "steps": 520,
+          "heat_into_system": 0.3050934441272759,
+          "work_by_system": 0.5314002419179377
+        },
+        "cold_iso": {
+          "steps": 520,
+          "heat_into_system": -0.09742613331950256,
+          "work_by_system": -0.27083297051186894
+        },
+        "cold_hold": null,
+        "return_hold": null
+      }
+    },
+    {
+      "policy": "fixed_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "fixed"
+      },
+      "hold_steps_used": 800,
+      "hold_steps_requested": 800,
+      "work_by_system": 0.08716043421370234,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "efficiency": 0.2856843891320772,
+      "efficiency_distance_to_carnot": 0.21431561086792278,
+      "final_trace_distance_to_initial": 0.005979474124465853,
+      "final_probability_mismatch_abs": 0.005979474124465839,
+      "final_free_energy_mismatch": 0.0002377248807620136,
+      "final_internal_energy_mismatch": 0.01793842237339749,
+      "stages": {
+        "hot_iso": {
+          "steps": 520,
+          "heat_into_system": 0.3050934441272759,
+          "work_by_system": 0.5314002419179377
+        },
+        "cold_iso": {
+          "steps": 520,
+          "heat_into_system": -0.09742613331950256,
+          "work_by_system": -0.27083297051186894
+        },
+        "cold_hold": null,
+        "return_hold": {
+          "steps_used": 800,
+          "stop_reason": null,
+          "heat_into_system": -0.10256845422067351,
+          "trace_distance_to_target": 0.005979474124465853
+        }
+      }
+    },
+    {
+      "policy": "adaptive_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "adaptive"
+      },
+      "hold_steps_used": 640,
+      "hold_steps_requested": 800,
+      "work_by_system": 0.08716043421370234,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "efficiency": 0.2856843891320772,
+      "efficiency_distance_to_carnot": 0.21431561086792278,
+      "final_trace_distance_to_initial": 0.008752024158318092,
+      "final_probability_mismatch_abs": 0.008752024158318078,
+      "final_free_energy_mismatch": 0.0005073531454660163,
+      "final_internal_energy_mismatch": 0.026256072474954206,
+      "stages": {
+        "hot_iso": {
+          "steps": 520,
+          "heat_into_system": 0.3050934441272759,
+          "work_by_system": 0.5314002419179377
+        },
+        "cold_iso": {
+          "steps": 520,
+          "heat_into_system": -0.09742613331950256,
+          "work_by_system": -0.27083297051186894
+        },
+        "cold_hold": null,
+        "return_hold": {
+          "steps_used": 640,
+          "stop_reason": "within_tolerance",
+          "heat_into_system": -0.0942508041191168,
+          "trace_distance_to_target": 0.008752024158318092
+        }
+      }
+    },
+    {
+      "policy": "fixed_full_chain_2000",
+      "hold_modes": {
+        "cold_hold": "fixed",
+        "return_hold": "fixed"
+      },
+      "hold_steps_used": 2000,
+      "hold_steps_requested": 2000,
+      "work_by_system": 0.14184269041448955,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "efficiency": 0.4649155632309064,
+      "efficiency_distance_to_carnot": 0.03508443676909362,
+      "final_trace_distance_to_initial": 0.0003434168608109911,
+      "final_probability_mismatch_abs": 0.00034341686081101885,
+      "final_free_energy_mismatch": 7.903487098115392e-07,
+      "final_internal_energy_mismatch": 0.001030250582433112,
+      "stages": {
+        "hot_iso": {
+          "steps": 520,
+          "heat_into_system": 0.3050934441272759,
+          "work_by_system": 0.5314002419179377
+        },
+        "cold_iso": {
+          "steps": 520,
+          "heat_into_system": -0.09742613331950256,
+          "work_by_system": -0.27083297051186894
+        },
+        "cold_hold": {
+          "steps_used": 1000,
+          "stop_reason": null,
+          "heat_into_system": -0.054682256200787205,
+          "trace_distance_to_target": 0.00371412139749884
+        },
+        "return_hold": {
+          "steps_used": 1000,
+          "stop_reason": null,
+          "heat_into_system": -0.010112113610063478,
+          "trace_distance_to_target": 0.0003434168608109911
+        }
+      }
+    },
+    {
+      "policy": "adaptive_cold_return_800",
+      "hold_modes": {
+        "cold_hold": "adaptive",
+        "return_hold": "adaptive"
+      },
+      "hold_steps_used": 640,
+      "hold_steps_requested": 1600,
+      "work_by_system": 0.13428583627326074,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "efficiency": 0.4401465808529163,
+      "efficiency_distance_to_carnot": 0.0598534191470837,
+      "final_trace_distance_to_initial": 0.008752024158318092,
+      "final_probability_mismatch_abs": 0.008752024158318078,
+      "final_free_energy_mismatch": 0.0005073531454660163,
+      "final_internal_energy_mismatch": 0.026256072474954206,
+      "stages": {
+        "hot_iso": {
+          "steps": 520,
+          "heat_into_system": 0.3050934441272759,
+          "work_by_system": 0.5314002419179377
+        },
+        "cold_iso": {
+          "steps": 520,
+          "heat_into_system": -0.09742613331950256,
+          "work_by_system": -0.27083297051186894
+        },
+        "cold_hold": {
+          "steps_used": 640,
+          "stop_reason": "within_tolerance",
+          "heat_into_system": -0.0471254020595584,
+          "trace_distance_to_target": 0.008752024158318092
+        },
+        "return_hold": {
+          "steps_used": 0,
+          "stop_reason": "within_tolerance",
+          "heat_into_system": 0.0,
+          "trace_distance_to_target": 0.008752024158318092
+        }
+      }
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "temperature_pair": {
+      "t_hot": 2.0,
+      "t_cold": 1.0
+    },
+    "gap_pair": {
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0
+    },
+    "baseline_final_trace_distance_to_initial": 0.04016895886469031,
+    "baseline_efficiency": 0.2856843891320772,
+    "fixed_return_trace_distance_to_initial": 0.005979474124465853,
+    "adaptive_return_trace_distance_to_initial": 0.008752024158318092,
+    "fixed_full_chain_trace_distance_to_initial": 0.0003434168608109911,
+    "adaptive_cold_return_trace_distance_to_initial": 0.008752024158318092,
+    "best_closure_policy": "fixed_full_chain_2000",
+    "best_closure_trace_distance_to_initial": 0.0003434168608109911,
+    "best_efficiency_policy": "fixed_full_chain_2000",
+    "best_efficiency": 0.4649155632309064,
+    "adaptive_return_saved_steps_vs_fixed": true,
+    "adaptive_cold_return_saved_steps_vs_fixed": true,
+    "scope_note": "Finite-state QIT Carnot hold-policy companion. It compares baseline closure defect, fixed-hold policies, and adaptive hold-stop rules on a qubit two-bath working substance. Use it as a strict companion surface for the exploratory hold-policy lane."
+  }
+}

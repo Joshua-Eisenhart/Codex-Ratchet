@@ -1,0 +1,189 @@
+{
+  "name": "szilard_topology_entropy_array",
+  "classification": "exploratory",
+  "classification_note": "Topology and entropy/readout array for a Szilard-style stochastic memory lane. It compares ordered versus scrambled control across several memory landscapes and several entropy/readout families.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure",
+    "measurement_feedback"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "some_topology_has_positive_ordering_margin": {
+      "best_topology": "asymmetric_double_well",
+      "best_margin": 0.0195816888383884,
+      "pass": true
+    },
+    "measurement_information_is_present_in_all_ordered_rows": {
+      "min_measurement_mi": 0.2911055135398785,
+      "pass": true
+    },
+    "topology_changes_nonlogical_entropy_proxy": {
+      "spread_entropy_range": 0.378558175664806,
+      "pass": true
+    }
+  },
+  "negative": {
+    "not_all_topologies_give_the_same_ordering_margin": {
+      "margin_range": 0.013033246108250185,
+      "pass": true
+    },
+    "at_least_one_topology_remains_weak_for_ordering": {
+      "worst_margin": 0.006548442730138215,
+      "pass": false
+    }
+  },
+  "boundary": {
+    "all_rows_have_closed_bookkeeping": {
+      "max_closure_error": 2.220446049250313e-16,
+      "pass": true
+    },
+    "all_rows_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "topologies": [
+      "standard_double_well",
+      "steep_double_well",
+      "wide_double_well",
+      "asymmetric_double_well"
+    ],
+    "best_topology": "asymmetric_double_well",
+    "best_margin": 0.0195816888383884,
+    "scope_note": "Topology and entropy/readout array for the Szilard-style stochastic lane. It compares logical entropy, information, spread proxy, and free-energy-gap proxy across memory landscapes."
+  },
+  "rows": [
+    {
+      "topology": "standard_double_well",
+      "ordered_logical_entropy": 0.6578826606351565,
+      "ordered_spread_entropy_proxy": 1.2962403606614001,
+      "ordered_measurement_accuracy": 0.8728,
+      "ordered_measurement_mi": 0.3121111983133768,
+      "ordered_free_energy_gap_proxy": 0.5487247674629185,
+      "feedback_first_logical_entropy": 0.6711872372687033,
+      "measurement_reset_feedback_logical_entropy": 0.6736550802082211,
+      "best_scrambled_logical_entropy": 0.6711872372687033,
+      "ordering_margin": 0.013304576633546783,
+      "closure_error_max": 2.220446049250313e-16
+    },
+    {
+      "topology": "steep_double_well",
+      "ordered_logical_entropy": 0.6642596063417339,
+      "ordered_spread_entropy_proxy": 1.3095987128440705,
+      "ordered_measurement_accuracy": 0.8776,
+      "ordered_measurement_mi": 0.32146061494526323,
+      "ordered_free_energy_gap_proxy": 0.7011287562000521,
+      "feedback_first_logical_entropy": 0.6767126298360455,
+      "measurement_reset_feedback_logical_entropy": 0.6775782136857396,
+      "best_scrambled_logical_entropy": 0.6767126298360455,
+      "ordering_margin": 0.012453023494311655,
+      "closure_error_max": 2.220446049250313e-16
+    },
+    {
+      "topology": "wide_double_well",
+      "ordered_logical_entropy": 0.6747554288178177,
+      "ordered_spread_entropy_proxy": 1.652150243851966,
+      "ordered_measurement_accuracy": 0.8616,
+      "ordered_measurement_mi": 0.2911055135398785,
+      "ordered_free_energy_gap_proxy": 0.6384030577281509,
+      "feedback_first_logical_entropy": 0.6847254319284575,
+      "measurement_reset_feedback_logical_entropy": 0.6813038715479559,
+      "best_scrambled_logical_entropy": 0.6813038715479559,
+      "ordering_margin": 0.006548442730138215,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "topology": "asymmetric_double_well",
+      "ordered_logical_entropy": 0.6391607618677406,
+      "ordered_spread_entropy_proxy": 1.27359206818716,
+      "ordered_measurement_accuracy": 0.8708,
+      "ordered_measurement_mi": 0.30828998270388197,
+      "ordered_free_energy_gap_proxy": 0.6397786928372663,
+      "feedback_first_logical_entropy": 0.658742450706129,
+      "measurement_reset_feedback_logical_entropy": 0.6669251684863668,
+      "best_scrambled_logical_entropy": 0.658742450706129,
+      "ordering_margin": 0.0195816888383884,
+      "closure_error_max": 2.220446049250313e-16
+    }
+  ]
+}

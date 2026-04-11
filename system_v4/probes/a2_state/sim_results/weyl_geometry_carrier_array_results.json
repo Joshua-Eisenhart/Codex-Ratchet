@@ -1,0 +1,512 @@
+{
+  "name": "weyl_geometry_carrier_array",
+  "classification": "canonical",
+  "classification_note": "Carrier-array lego for the Weyl/Hopf stack. The same spinor core is tested on nested Hopf tori, Bloch-sphere projection, graph and hypergraph carriers, and a CP^3/S^7 product lift. The array stays bounded and keeps negative controls explicit.",
+  "lego_ids": [
+    "weyl_geometry_carrier_array",
+    "nested_hopf_torus",
+    "bloch_sphere_projection",
+    "graph_torus_grid",
+    "hypergraph_multiway_carrier",
+    "cp3_s7_product_lift"
+  ],
+  "primary_lego_ids": [
+    "nested_hopf_torus",
+    "bloch_sphere_projection",
+    "graph_torus_grid",
+    "hypergraph_multiway_carrier",
+    "cp3_s7_product_lift"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numpy-first carrier array"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "used for graph carrier comparison"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "used for hypergraph carrier comparison"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "used for cell-complex lift witness"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nested_hopf_torus_core": {
+      "lr_orthogonality_on_nested_tori": {
+        "max_|<L|R>|": 2.5860532068485732e-17,
+        "pass": true
+      },
+      "bloch_antipodality_on_nested_tori": {
+        "max_|b_L + b_R|": 0.0,
+        "pass": true
+      },
+      "hopf_map_matches_pauli_projection": {
+        "max_|hopf(q) - pauli(L)|": 2.5111805905586892e-33,
+        "pass": true
+      },
+      "fiber_phase_leaves_bloch_vector_invariant": {
+        "max_bloch_phase_gap": 2.491368853386483e-16,
+        "pass": true
+      },
+      "transport_roundtrip_is_stable": {
+        "roundtrip_error": 0.0,
+        "pass": true
+      }
+    },
+    "bloch_sphere_projection": {
+      "pure_spinor_states_embed_on_unit_sphere": {
+        "max_bloch_norm_gap": 0.0,
+        "pass": true
+      },
+      "orthogonal_pairs_map_to_antipodes": {
+        "max_antipodal_gap": 0.0,
+        "pass": true
+      },
+      "opposite_pairs_remain_geodesic_antipodes": {
+        "max_geodesic_gap": 0.0,
+        "pass": true
+      },
+      "global_phase_is_sphere_blind": {
+        "max_phase_gap": 2.2204890883632567e-16,
+        "pass": true
+      }
+    },
+    "graph_torus_grid_carrier": {
+      "torus_grid_is_connected_and_cyclic": {
+        "num_nodes": 12,
+        "num_edges": 17,
+        "num_components": 1,
+        "component_sizes": [
+          12
+        ],
+        "cycle_rank": 6,
+        "degree_sequence": [
+          4,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2
+        ],
+        "repo_check": {
+          "num_nodes": 12,
+          "num_edges": 17,
+          "num_components": 1,
+          "cycle_rank": 6,
+          "laplacian_zero_modes": 1,
+          "laplacian_eigenvalues": [
+            -9.086033836203024e-16,
+            0.5857864376269053,
+            1.0000000000000002,
+            1.5857864376269053,
+            2.000000000000001,
+            2.999999999999999,
+            3.0000000000000004,
+            3.414213562373095,
+            3.5857864376269046,
+            4.414213562373097,
+            4.999999999999998,
+            6.414213562373096
+          ],
+          "degree_sequence": [
+            4,
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "mean_edge_geodesic": 1.1703972631020798,
+        "mean_nonedge_geodesic": 1.581482016092821,
+        "pass": true
+      },
+      "edge_lengths_are_tighter_than_nonedge_lengths": {
+        "mean_edge_geodesic": 1.1703972631020798,
+        "mean_nonedge_geodesic": 1.581482016092821,
+        "pass": true
+      }
+    },
+    "hypergraph_multiway_carrier": {
+      "multiway_rows_and_columns_exist": {
+        "num_nodes": 12,
+        "num_hyperedges": 7,
+        "edge_sizes": [
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4
+        ],
+        "pass": true
+      },
+      "shadow_graph_preserves_connectivity": {
+        "shadow_component_count": 1,
+        "pass": true
+      },
+      "cell_complex_boundary_composes_to_zero": {
+        "cell_complex_shape": [
+          4,
+          4,
+          1
+        ],
+        "pass": true
+      }
+    },
+    "cp3_s7_product_lift": {
+      "product_lift_is_unit_norm": {
+        "max_norm_gap": 0.0,
+        "pass": true
+      },
+      "product_lift_stays_on_segre": {
+        "max_concurrence": 5.551115123125783e-17,
+        "max_segre_distance": 0.0,
+        "pass": true
+      },
+      "global_phase_is_cp3_blind": {
+        "max_fs_phase_gap": 0.0,
+        "pass": true
+      },
+      "quaternionic_hopf_hits_s4": {
+        "max_s4_norm_gap": 1.1102230246251565e-16,
+        "pass": true
+      }
+    },
+    "cross_carrier_consistency": {
+      "direct_core_carriers": [
+        "nested_hopf_torus",
+        "bloch_sphere_projection",
+        "cp3_s7_product_lift"
+      ],
+      "structural_carriers": [
+        "graph_torus_grid",
+        "hypergraph_multiway_carrier"
+      ],
+      "best_direct_match": "nested_hopf_torus",
+      "richer_alt_geometry": "cp3_s7_product_lift",
+      "graph_family_bridge": "graph_torus_grid",
+      "hypergraph_family_bridge": "hypergraph_multiway_carrier",
+      "pass": true
+    }
+  },
+  "negative": {
+    "nested_hopf_torus_core": {
+      "nonnormalized_spinor_breaks_bloch_unit_norm": {
+        "max_bloch_norm": 4.0,
+        "pass": true
+      },
+      "left_right_chiral_sum_is_not_large_only_when_core_is_valid": {
+        "max_|J_L + J_R|": 0.0,
+        "pass": true
+      }
+    },
+    "bloch_sphere_projection": {
+      "distinct_states_do_not_collapse_on_sphere": {
+        "pass": true
+      },
+      "sphere_projection_drops_global_phase": {
+        "pass": true
+      }
+    },
+    "graph_torus_grid_carrier": {
+      "ring_only_torus_loses_vertical_connectivity": {
+        "num_nodes": 12,
+        "num_edges": 9,
+        "num_components": 3,
+        "component_sizes": [
+          4,
+          4,
+          4
+        ],
+        "cycle_rank": 0,
+        "degree_sequence": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "pass": true
+      },
+      "graph_carrier_is_not_a_single_cycle_only": {
+        "pass": true
+      }
+    },
+    "hypergraph_multiway_carrier": {
+      "pairwise_shadow_does_not_equal_multiway_relation": {
+        "shadow_edge_count": 30,
+        "hyperedge_count": 7,
+        "pass": true
+      },
+      "collapse_to_pairs_loses_multiway_identity": {
+        "pass": true
+      }
+    },
+    "cp3_s7_product_lift": {
+      "bell_like_state_is_not_on_segre": {
+        "concurrence": 0.9999999999999998,
+        "pass": true
+      },
+      "phase_shift_changes_S7_not_CP3": {
+        "fs_distance": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "nested_hopf_torus_core": {
+      "clifford_torus_has_equal_radii": {
+        "etas": [
+          0.39269908169872414,
+          0.7853981633974483,
+          1.1780972450961724
+        ],
+        "radii": [
+          [
+            0.9238795325112867,
+            0.3826834323650898
+          ],
+          [
+            0.7071067811865476,
+            0.7071067811865475
+          ],
+          [
+            0.38268343236508984,
+            0.9238795325112867
+          ]
+        ],
+        "pass": true
+      },
+      "torus_radii_stay_on_unit_circle": {
+        "max_|R_major^2 + R_minor^2 - 1|": 0.0,
+        "pass": true
+      },
+      "hopf_projection_is_s2_bounded": {
+        "max_bloch_norm": 1.0,
+        "pass": true
+      }
+    },
+    "bloch_sphere_projection": {
+      "north_south_poles_are_antipodes": {
+        "pass": true
+      },
+      "bloch_vectors_remain_real_three_vectors": {
+        "pass": true
+      }
+    },
+    "graph_torus_grid_carrier": {
+      "graph_node_count_matches_sample_grid": {
+        "pass": true
+      },
+      "graph_degree_sequence_is_nontrivial": {
+        "degree_sequence": [
+          4,
+          4,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2
+        ],
+        "pass": true
+      }
+    },
+    "hypergraph_multiway_carrier": {
+      "every_sample_label_is_retained": {
+        "pass": true
+      },
+      "shadow_graph_is_not_empty": {
+        "shadow_edge_count": 30,
+        "pass": true
+      }
+    },
+    "cp3_s7_product_lift": {
+      "two_qubit_product_lift_matches_reduced_spinor_core": {
+        "pass": true
+      },
+      "segre_and_quaternionic_hopf_are_distinct_levels": {
+        "pass": true,
+        "note": "Segre product lift lives in CP^3, quaternionic Hopf maps the lifted 2-qubit carrier to S^4."
+      }
+    }
+  },
+  "carrier_summaries": {
+    "nested_hopf_torus": {
+      "all_pass": true,
+      "sample_count": 12,
+      "eta_levels": [
+        0.39269908169872414,
+        0.7853981633974483,
+        1.1780972450961724
+      ],
+      "max_lr_overlap": 2.5860532068485732e-17,
+      "max_bloch_antipodal_gap": 0.0,
+      "max_hopf_vs_pauli_gap": 2.5111805905586892e-33,
+      "max_roundtrip_error": 0.0
+    },
+    "bloch_sphere_projection": {
+      "all_pass": true,
+      "sample_count": 24,
+      "max_bloch_norm_gap": 0.0,
+      "max_antipodal_gap": 0.0,
+      "max_phase_gap": 2.2204890883632567e-16
+    },
+    "graph_torus_grid": {
+      "all_pass": true,
+      "sample_count": 12,
+      "edge_count": 17,
+      "component_count": 1,
+      "cycle_rank": 6,
+      "mean_edge_geodesic": 1.1703972631020798,
+      "mean_nonedge_geodesic": 1.581482016092821
+    },
+    "hypergraph_multiway_carrier": {
+      "all_pass": true,
+      "sample_count": 12,
+      "hyperedge_count": 7,
+      "shadow_edge_count": 30,
+      "shadow_components": 1
+    },
+    "cp3_s7_product_lift": {
+      "all_pass": true,
+      "sample_count": 12,
+      "max_norm_gap": 0.0,
+      "max_concurrence": 5.551115123125783e-17,
+      "max_segre_distance": 0.0,
+      "max_fs_phase_gap": 0.0,
+      "max_s4_norm_gap": 1.1102230246251565e-16
+    }
+  },
+  "comparison": {
+    "carrier_order": [
+      "nested_hopf_torus",
+      "bloch_sphere_projection",
+      "graph_torus_grid",
+      "hypergraph_multiway_carrier",
+      "cp3_s7_product_lift"
+    ],
+    "direct_core_carriers": [
+      "nested_hopf_torus",
+      "bloch_sphere_projection",
+      "cp3_s7_product_lift"
+    ],
+    "structural_carriers": [
+      "graph_torus_grid",
+      "hypergraph_multiway_carrier"
+    ],
+    "best_direct_match": "nested_hopf_torus",
+    "richer_alt_geometry": "cp3_s7_product_lift",
+    "graph_bridge": "graph_torus_grid",
+    "hypergraph_bridge": "hypergraph_multiway_carrier",
+    "carrier_alignment": {
+      "nested_vs_sphere_max_gap": 2.5111805905586892e-33,
+      "graph_cycle_rank": 6,
+      "hypergraph_shadow_components": 1,
+      "cp3_max_concurrence": 5.551115123125783e-17
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "total_tests": 35,
+    "passed": 35,
+    "failed": 0,
+    "carrier_count": 5,
+    "passed_carriers": 5,
+    "failed_carriers": 0,
+    "max_nested_lr_overlap": 2.5860532068485732e-17,
+    "max_nested_bloch_gap": 0.0,
+    "max_graph_cycle_rank": 6,
+    "max_hypergraph_shadow_components": 1,
+    "max_cp3_concurrence": 5.551115123125783e-17,
+    "scope_note": "Nested Hopf tori stay the direct Weyl carrier, while sphere, graph, hypergraph, and CP3/S7 rows test the same spinor/Pauli core on alternate geometry carriers."
+  }
+}

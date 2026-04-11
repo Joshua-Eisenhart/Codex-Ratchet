@@ -1,0 +1,434 @@
+{
+  "name": "qit_szilard_bidirectional_protocol",
+  "classification": "exploratory_signal",
+  "classification_note": "Deep operational Szilard/Landauer probe on a finite two-qubit carrier. It expands the narrow canonical row into explicit forward and reverse substep bookkeeping, plus inductive sweeps over measurement, feedback, and erasure/randomization imperfections. It is still a bounded information-thermodynamics lane, not a reservoir-runtime or universal demon claim.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_measurement_creates_one_bit_of_correlation_in_the_ideal_limit": {
+      "mutual_information": 0.6931471805599453,
+      "pass": true
+    },
+    "forward_feedback_purifies_the_system_in_the_ideal_limit": {
+      "system_entropy_after_feedback": -0.0,
+      "system_free_energy_gain": 0.6931471805599453,
+      "pass": true
+    },
+    "reverse_protocol_restores_the_initial_mixed_system_in_the_ideal_limit": {
+      "restoration_trace_distance": 0.0,
+      "restored_system_entropy": 0.6931471805599453,
+      "pass": true
+    },
+    "forward_and_reverse_bookkeeping_close_at_the_same_kT_ln2_scale_in_the_ideal_limit": {
+      "forward_erasure_cost": 0.6931471805599453,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "pass": true
+    }
+  },
+  "negative": {
+    "forward_wrong_order_does_not_recover_the_same_gain": {
+      "wrong_order_system_entropy": 0.6931471805599453,
+      "pass": true
+    },
+    "reverse_without_randomization_does_not_restore_the_initial_state": {
+      "no_randomization_trace_distance": 0.5,
+      "pass": true
+    },
+    "noise_degrades_forward_gain_and_reverse_restoration": {
+      "ideal_forward_gain": 0.6931471805599453,
+      "noisy_forward_gain": 0.07206080600470022,
+      "ideal_reverse_trace_distance": 0.0,
+      "noisy_reverse_trace_distance": 0.3125,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_ideal_forward_and_reverse_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "parameter_sweep_covers_bidirectional_noise_grid": {
+      "n_points": 16,
+      "measurement_error_values": [
+        0.0,
+        0.1,
+        0.2,
+        0.3
+      ],
+      "feedback_error_values": [
+        0.0,
+        0.1,
+        0.2,
+        0.3
+      ],
+      "pass": true
+    }
+  },
+  "ideal_forward": {
+    "temperature": 1.0,
+    "parameters": {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "erasure_strength": 1.0
+    },
+    "states": {
+      "initial": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "measured": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "feedback": {
+        "system_entropy": -0.0,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "erased": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "wrong_order": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      }
+    },
+    "metrics": {
+      "system_free_energy_gain": 0.6931471805599453,
+      "erasure_cost": 0.6931471805599453,
+      "net_after_erasure": 0.0,
+      "reconstruction_trace_distance_from_ground": 0.0
+    }
+  },
+  "ideal_reverse": {
+    "temperature": 1.0,
+    "parameters": {
+      "randomization_strength": 1.0,
+      "anti_feedback_error": 0.0,
+      "anti_measurement_error": 0.0
+    },
+    "states": {
+      "start_ground": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "randomized": {
+        "system_entropy": -0.0,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "after_anti_feedback": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "restored_initial": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "no_randomization_control": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "target_initial_state": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      }
+    },
+    "metrics": {
+      "randomization_cost": -0.6931471805599453,
+      "system_free_energy_drop": -0.6931471805599453,
+      "restoration_trace_distance": 0.0,
+      "no_randomization_trace_distance": 0.5
+    }
+  },
+  "error_sweep": [
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "forward_information_gain": 0.6931471805599453,
+      "forward_system_gain": 0.6931471805599453,
+      "forward_net_after_erasure": 0.0,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.0
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.1,
+      "forward_information_gain": 0.6931471805599453,
+      "forward_system_gain": 0.4946319372140727,
+      "forward_net_after_erasure": -0.19851524334587256,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.049999999999999996
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.2,
+      "forward_information_gain": 0.6931471805599453,
+      "forward_system_gain": 0.3680642071684971,
+      "forward_net_after_erasure": -0.3250829733914482,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.09999999999999999
+    },
+    {
+      "measurement_error": 0.0,
+      "feedback_error": 0.3,
+      "forward_information_gain": 0.6931471805599453,
+      "forward_system_gain": 0.2704380927539544,
+      "forward_net_after_erasure": -0.42270908780599087,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.15000000000000002
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.0,
+      "forward_information_gain": 0.36806420716849697,
+      "forward_system_gain": 0.3680642071684971,
+      "forward_net_after_erasure": -0.3250829733914482,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.09999999999999998
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.1,
+      "forward_information_gain": 0.36806420716849697,
+      "forward_system_gain": 0.28818369549600686,
+      "forward_net_after_erasure": -0.4049634850639384,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.13999999999999999
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.2,
+      "forward_information_gain": 0.36806420716849697,
+      "forward_system_gain": 0.22175369374985116,
+      "forward_net_after_erasure": -0.471393486810094,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.18
+    },
+    {
+      "measurement_error": 0.1,
+      "feedback_error": 0.3,
+      "forward_information_gain": 0.36806420716849697,
+      "forward_system_gain": 0.16623921912856499,
+      "forward_net_after_erasure": -0.5269079614313803,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.21999999999999997
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.0,
+      "forward_information_gain": 0.1927447570217573,
+      "forward_system_gain": 0.19274475702175742,
+      "forward_net_after_erasure": -0.5004024235381879,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.19999999999999996
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.1,
+      "forward_information_gain": 0.1927447570217573,
+      "forward_system_gain": 0.1538708390628949,
+      "forward_net_after_erasure": -0.5392763414970504,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.22999999999999998
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.2,
+      "forward_information_gain": 0.1927447570217573,
+      "forward_system_gain": 0.12009026342852502,
+      "forward_net_after_erasure": -0.5730569171314204,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.25999999999999995
+    },
+    {
+      "measurement_error": 0.2,
+      "feedback_error": 0.3,
+      "forward_information_gain": 0.1927447570217573,
+      "forward_system_gain": 0.09099549796726525,
+      "forward_net_after_erasure": -0.60215168259268,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.29
+    },
+    {
+      "measurement_error": 0.3,
+      "feedback_error": 0.0,
+      "forward_information_gain": 0.08228287850505178,
+      "forward_system_gain": 0.08228287850505178,
+      "forward_net_after_erasure": -0.6108643020548935,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.30000000000000004
+    },
+    {
+      "measurement_error": 0.3,
+      "feedback_error": 0.1,
+      "forward_information_gain": 0.08228287850505178,
+      "forward_system_gain": 0.06627772298751888,
+      "forward_net_after_erasure": -0.6268694575724264,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.32
+    },
+    {
+      "measurement_error": 0.3,
+      "feedback_error": 0.2,
+      "forward_information_gain": 0.08228287850505178,
+      "forward_system_gain": 0.05211170267878962,
+      "forward_net_after_erasure": -0.6410354778811556,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.33999999999999997
+    },
+    {
+      "measurement_error": 0.3,
+      "feedback_error": 0.3,
+      "forward_information_gain": 0.08228287850505178,
+      "forward_system_gain": 0.039728985766243397,
+      "forward_net_after_erasure": -0.6534181947937018,
+      "reverse_randomization_cost": -0.6931471805599453,
+      "reverse_restoration_trace_distance": 0.36
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "ideal_forward_information_gain": 0.6931471805599453,
+    "ideal_forward_system_gain": 0.6931471805599453,
+    "ideal_forward_erasure_cost": 0.6931471805599453,
+    "ideal_reverse_randomization_cost": -0.6931471805599453,
+    "ideal_reverse_restoration_trace_distance": 0.0,
+    "scope_note": "Finite two-qubit forward/reverse Szilard bookkeeping lane with explicit substep mechanics and noise sweeps; still no reservoir-runtime or universal demon claim."
+  }
+}

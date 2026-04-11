@@ -1,0 +1,132 @@
+{
+  "name": "qit_szilard_substep_promotion_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promotion-style translation lane for the stochastic Szilard substep carrier after expanding the high-strength low-noise edge.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ordering_gap_is_below_0_30": {
+      "ordering_margin_gap": 0.34481818680043214,
+      "pass": false
+    },
+    "measurement_gap_is_below_0_03": {
+      "measurement_mutual_information_gap": -0.003335649169161514,
+      "pass": true
+    },
+    "reset_gap_is_below_0_03": {
+      "reset_signal_gap": -0.0267332522073519,
+      "pass": true
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_metrics_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "ordering_margin_gap": 0.34481818680043214,
+    "measurement_mutual_information_gap": -0.003335649169161514,
+    "measurement_accuracy_gap": -0.02300000000000002,
+    "reset_signal_gap": -0.0267332522073519,
+    "best_setting": {
+      "measurement_flip_prob": 0.02,
+      "feedback_strong_tilt": 4.0,
+      "feedback_weak_ratio": 0.45,
+      "feedback_steps": 540,
+      "reset_tilt": 2.8,
+      "reset_steps": 420
+    },
+    "best_promotion_score": 0.6777646230311858,
+    "best_ordering_margin": 0.19022267377181262,
+    "best_reset_signal": 0.5404074314558356,
+    "scope_note": "Promotion-style translation lane for the stochastic Szilard substep carrier."
+  }
+}

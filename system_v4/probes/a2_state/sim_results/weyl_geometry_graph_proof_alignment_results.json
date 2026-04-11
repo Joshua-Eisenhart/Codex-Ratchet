@@ -1,0 +1,315 @@
+{
+  "name": "weyl_geometry_graph_proof_alignment",
+  "classification": "research_support",
+  "classification_note": "Graph/proof alignment bridge for the Weyl/Hopf/Pauli geometry stack. It adds an explicit stage-order graph and z3 proof surfaces around the composed torus transport, spinor frame, and Pauli projection layers.",
+  "lego_ids": [
+    "hopf_torus_lego",
+    "pauli_algebra_relations",
+    "graph_shell_geometry",
+    "weyl_nested_shell"
+  ],
+  "primary_lego_ids": [
+    "hopf_torus_lego",
+    "pauli_algebra_relations"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing proof surfaces for stage ordering and chirality-sign separation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing geometry schedule graph and transport-order checks"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geometry_graph_is_a_single_valid_dependency_chain": {
+      "node_count": 6,
+      "edge_count": 5,
+      "topological_order": [
+        "nested_hopf_torus_input",
+        "left_weyl_spinor_frame",
+        "pauli_bloch_projection",
+        "transport_to_clifford_torus",
+        "alternate_geometry_crosscheck",
+        "right_weyl_spinor_frame"
+      ],
+      "longest_path": [
+        "nested_hopf_torus_input",
+        "left_weyl_spinor_frame",
+        "pauli_bloch_projection",
+        "transport_to_clifford_torus",
+        "alternate_geometry_crosscheck",
+        "right_weyl_spinor_frame"
+      ],
+      "longest_path_length": 5,
+      "is_dag": true,
+      "source_count": 1,
+      "sink_count": 1,
+      "pass": true
+    },
+    "z3_forces_the_geometry_stack_ordering": {
+      "forward_order_verdict": "sat",
+      "forward_order_sat": true,
+      "reverse_order_verdict": "unsat",
+      "reverse_order_unsat": true,
+      "claim": "The geometry stack must be sampled before the left spinor frame, then projected through Pauli/Bloch, then transported, then cross-checked.",
+      "pass": true
+    },
+    "z3_separates_left_and_right_chirality_signs": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Left and right Weyl fiber orientations cannot be identified as the same sign."
+    },
+    "pauli_products_match_the_qubit_algebra": {
+      "pass": true
+    },
+    "hopf_and_torus_carriers_stay_unit_and_finite": {
+      "max_unit_norm_error": 1.1102230246251565e-16,
+      "max_hopf_image_norm_gap": 2.220446049250313e-16,
+      "all_stereographic_finite": true,
+      "pass": true
+    },
+    "left_and_right_spinors_stay_operationally_distinct_on_each_carrier": {
+      "max_left_right_overlap_abs": 5.704004013523115e-17,
+      "max_bloch_antipodal_gap": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "reverse_geometry_order_is_unsat": {
+      "pass": true,
+      "reverse_order_verdict": "unsat"
+    },
+    "same_sign_chirality_claim_is_unsat": {
+      "pass": true,
+      "verdict": "unsat"
+    },
+    "graph_alignment_row_is_not_a_runtime_sim_claim": {
+      "scope_note": "This row adds a schedule graph and z3 alignment surfaces around the existing Weyl/Hopf/Pauli geometry stack. It does not claim a new runtime engine.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "transport_fraction_grows_with_larger_torus_span": {
+      "inner_to_clifford": 0.5,
+      "inner_to_outer": 1.0,
+      "clifford_to_outer": 0.5,
+      "pass": true
+    },
+    "graph_topological_order_matches_the_geometry_stack": {
+      "topological_order": [
+        "nested_hopf_torus_input",
+        "left_weyl_spinor_frame",
+        "pauli_bloch_projection",
+        "transport_to_clifford_torus",
+        "alternate_geometry_crosscheck",
+        "right_weyl_spinor_frame"
+      ],
+      "pass": true
+    }
+  },
+  "graph_summary": {
+    "node_count": 6,
+    "edge_count": 5,
+    "topological_order": [
+      "nested_hopf_torus_input",
+      "left_weyl_spinor_frame",
+      "pauli_bloch_projection",
+      "transport_to_clifford_torus",
+      "alternate_geometry_crosscheck",
+      "right_weyl_spinor_frame"
+    ],
+    "longest_path": [
+      "nested_hopf_torus_input",
+      "left_weyl_spinor_frame",
+      "pauli_bloch_projection",
+      "transport_to_clifford_torus",
+      "alternate_geometry_crosscheck",
+      "right_weyl_spinor_frame"
+    ],
+    "longest_path_length": 5,
+    "is_dag": true,
+    "source_count": 1,
+    "sink_count": 1
+  },
+  "geometry_samples": {
+    "torus_radii": {
+      "inner": [
+        0.9238795325112867,
+        0.3826834323650898
+      ],
+      "clifford": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "outer": [
+        0.38268343236508984,
+        0.9238795325112867
+      ]
+    },
+    "transport_fractions": {
+      "inner_to_clifford": 0.5,
+      "inner_to_outer": 1.0,
+      "clifford_to_outer": 0.5
+    },
+    "records": [
+      {
+        "label": "inner",
+        "q_norm": 0.9999999999999999,
+        "left_spinor_norm": 0.9999999999999999,
+        "right_spinor_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 1.1526695496660389e-17,
+        "bloch_antipodal_gap": 0.0,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.4179714645148047,
+        "transport_fraction_from_inner": 0.0
+      },
+      {
+        "label": "clifford",
+        "q_norm": 1.0,
+        "left_spinor_norm": 1.0,
+        "right_spinor_norm": 1.0,
+        "left_right_overlap_abs": 5.704004013523115e-17,
+        "bloch_antipodal_gap": 0.0,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 2.0656624947831808,
+        "transport_fraction_from_inner": 0.5
+      },
+      {
+        "label": "outer",
+        "q_norm": 1.0,
+        "left_spinor_norm": 1.0,
+        "right_spinor_norm": 1.0,
+        "left_right_overlap_abs": 7.065033649957157e-18,
+        "bloch_antipodal_gap": 0.0,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 3.0903168961980594,
+        "transport_fraction_from_inner": 1.0
+      },
+      {
+        "label": "partial_mid",
+        "q_norm": 1.0,
+        "left_spinor_norm": 1.0,
+        "right_spinor_norm": 1.0,
+        "left_right_overlap_abs": 5.704004013523115e-17,
+        "bloch_antipodal_gap": 0.0,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 2.0656624947831808,
+        "transport_fraction_from_inner": 0.5
+      }
+    ],
+    "pauli_products_ok": true,
+    "max_left_right_overlap_abs": 5.704004013523115e-17,
+    "max_bloch_antipodal_gap": 0.0,
+    "max_hopf_image_norm_gap": 2.220446049250313e-16,
+    "all_stereographic_finite": true,
+    "max_unit_norm_error": 1.1102230246251565e-16,
+    "transport_chain_labels": [
+      "inner",
+      "partial_mid",
+      "outer"
+    ]
+  },
+  "summary": {
+    "all_pass": true,
+    "graph_path_length": 5,
+    "schedule_valid": true,
+    "ordering_unsat": true,
+    "chirality_unsat": true,
+    "pauli_products_ok": true,
+    "max_left_right_overlap_abs": 5.704004013523115e-17,
+    "max_bloch_antipodal_gap": 0.0,
+    "max_hopf_image_norm_gap": 2.220446049250313e-16,
+    "transport_chain_labels": [
+      "inner",
+      "partial_mid",
+      "outer"
+    ],
+    "torus_radii": {
+      "inner": [
+        0.9238795325112867,
+        0.3826834323650898
+      ],
+      "clifford": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "outer": [
+        0.38268343236508984,
+        0.9238795325112867
+      ]
+    },
+    "scope_note": "Graph/proof bridge around the nested Hopf torus, left/right Weyl frames, Pauli projection, and torus transport. Useful as a pre-constraint alignment row."
+  }
+}

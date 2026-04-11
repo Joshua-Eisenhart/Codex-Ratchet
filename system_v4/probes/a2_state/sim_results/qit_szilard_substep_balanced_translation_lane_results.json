@@ -1,0 +1,132 @@
+{
+  "name": "qit_szilard_substep_balanced_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Balanced refinement translation lane for the stochastic Szilard substep carrier, anchored to the low-noise high-reset region.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ordering_gap_is_below_0_46": {
+      "ordering_margin_gap": 0.3785888695274924,
+      "pass": true
+    },
+    "measurement_gap_is_below_0_03": {
+      "measurement_mutual_information_gap": -0.020999439576926016,
+      "pass": true
+    },
+    "reset_gap_is_below_0_35": {
+      "reset_signal_gap": 0.13960289138837545,
+      "pass": true
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_metrics_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "ordering_margin_gap": 0.3785888695274924,
+    "measurement_mutual_information_gap": -0.020999439576926016,
+    "measurement_accuracy_gap": -0.030000000000000027,
+    "reset_signal_gap": 0.13960289138837545,
+    "best_setting": {
+      "measurement_flip_prob": 0.02,
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.35,
+      "feedback_steps": 360,
+      "reset_tilt": 2.6,
+      "reset_steps": 360
+    },
+    "best_balanced_score": 0.6136417751005354,
+    "best_ordering_margin": 0.15645199104475238,
+    "best_reset_signal": 0.37407128786010824,
+    "scope_note": "Balanced translation lane for the stochastic Szilard substep carrier. It favors low-noise settings with stronger reset alignment."
+  }
+}

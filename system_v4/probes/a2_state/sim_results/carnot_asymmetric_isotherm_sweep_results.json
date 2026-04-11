@@ -1,0 +1,434 @@
+{
+  "name": "carnot_asymmetric_isotherm_sweep",
+  "classification": "exploratory",
+  "classification_note": "Asymmetric hot/cold isotherm sweep for the stochastic harmonic Carnot lane. It asks whether forward closure and Carnot proximity improve more by lengthening the hot leg, the cold leg, or both.",
+  "parent_scope_note": "Operational finite-time stochastic Carnot sidecar on a 1D harmonic working substance. It exposes explicit hot/cold isothermal legs, adiabatic jumps, forward and reverse modes, and fast-vs-slow dissipation without claiming a runtime-engine realization.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "some_asymmetric_setting_improves_closure_over_the_balanced_baseline": {
+      "best_closure_setting": {
+        "hot_steps": 520,
+        "cold_steps": 2500
+      },
+      "best_closure_variance_mismatch_abs": 0.00044977673628832093,
+      "best_balanced_variance_mismatch_abs": 0.0021393088120044146,
+      "pass": true
+    },
+    "some_high_budget_setting_moves_close_to_carnot": {
+      "best_efficiency_setting": {
+        "hot_steps": 5000,
+        "cold_steps": 2500
+      },
+      "best_efficiency_distance_to_carnot": 0.013511707719928767,
+      "pass": true
+    },
+    "hot_heavy_budget_beats_cold_heavy_budget_on_average_for_closure": {
+      "hot_heavy_mean_variance_mismatch": 0.04489199700634758,
+      "cold_heavy_mean_variance_mismatch": 0.009774097049211802,
+      "pass": false
+    }
+  },
+  "negative": {
+    "even_the_best_asymmetric_row_still_has_nonzero_cycle_return_error": {
+      "cycle_delta_u": 0.02665463398771778,
+      "pass": true
+    },
+    "cold_leg_budget_alone_is_not_sufficient_to_close_the_cycle": {
+      "best_cold_heavy_variance_mismatch_abs": 0.00044977673628832093,
+      "best_hot_heavy_variance_mismatch_abs": 0.005883953332590286,
+      "pass": false
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite": {
+      "pass": true
+    },
+    "all_rows_operate_on_the_same_temperature_pair": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "hot_step_grid": [
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "cold_step_grid": [
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "best_closure_setting": {
+      "hot_steps": 520,
+      "cold_steps": 2500
+    },
+    "best_closure_variance_mismatch_abs": 0.00044977673628832093,
+    "best_efficiency_setting": {
+      "hot_steps": 5000,
+      "cold_steps": 2500
+    },
+    "best_efficiency_distance_to_carnot": 0.013511707719928767,
+    "scope_note": "Asymmetric hot/cold isotherm sweep for the stochastic Carnot lane. It maps whether closure improves more by lengthening one thermal leg than the other."
+  },
+  "rows": [
+    {
+      "hot_steps": 520,
+      "cold_steps": 520,
+      "q_hot": 0.6844700993751807,
+      "q_cold": -0.3821369477009777,
+      "work_by_system": 0.1673401633177023,
+      "efficiency": 0.2444813344957785,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.25551866550422153,
+      "initial_variance": 0.5046296169463453,
+      "final_variance": 0.5711447015654695,
+      "variance_mismatch_abs": 0.07114470156546948,
+      "initial_internal_energy": 1.0093803682143332,
+      "final_internal_energy": 1.144373356570834,
+      "internal_energy_mismatch_abs": 0.14437335657083405,
+      "cycle_delta_u": 0.13499298835650086
+    },
+    {
+      "hot_steps": 520,
+      "cold_steps": 1000,
+      "q_hot": 0.7382048499089722,
+      "q_cold": -0.39502437183530364,
+      "work_by_system": 0.24603328078009534,
+      "efficiency": 0.33328591760191445,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.16671408239808555,
+      "initial_variance": 0.48278264077390803,
+      "final_variance": 0.5313364697070372,
+      "variance_mismatch_abs": 0.031336469707037184,
+      "initial_internal_energy": 0.9656038654100447,
+      "final_internal_energy": 1.0627510627036176,
+      "internal_energy_mismatch_abs": 0.06275106270361763,
+      "cycle_delta_u": 0.09714719729357307
+    },
+    {
+      "hot_steps": 520,
+      "cold_steps": 2500,
+      "q_hot": 0.7137369207071127,
+      "q_cold": -0.4192759062112748,
+      "work_by_system": 0.26780638050811995,
+      "efficiency": 0.3752172162297546,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.12478278377024538,
+      "initial_variance": 0.4860999006738065,
+      "final_variance": 0.4995502232637117,
+      "variance_mismatch_abs": 0.00044977673628832093,
+      "initial_internal_energy": 0.972512844043266,
+      "final_internal_energy": 0.9991674780309839,
+      "internal_energy_mismatch_abs": 0.0008325219690160646,
+      "cycle_delta_u": 0.02665463398771778
+    },
+    {
+      "hot_steps": 520,
+      "cold_steps": 5000,
+      "q_hot": 0.6758856074197882,
+      "q_cold": -0.4018331984391964,
+      "work_by_system": 0.28433458285005037,
+      "efficiency": 0.42068447637982026,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.07931552362017974,
+      "initial_variance": 0.500841359707488,
+      "final_variance": 0.4957302667566935,
+      "variance_mismatch_abs": 0.004269733243306484,
+      "initial_internal_energy": 1.0017551371234505,
+      "final_internal_energy": 0.9914729632539919,
+      "internal_energy_mismatch_abs": 0.008527036746008076,
+      "cycle_delta_u": -0.010282173869458788
+    },
+    {
+      "hot_steps": 1000,
+      "cold_steps": 520,
+      "q_hot": 0.8293509497896708,
+      "q_cold": -0.44335770200008295,
+      "work_by_system": 0.2230098579464609,
+      "efficiency": 0.2688968500042325,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.23110314999576748,
+      "initial_variance": 0.48570145604185955,
+      "final_variance": 0.5673833697957212,
+      "variance_mismatch_abs": 0.06738336979572124,
+      "initial_internal_energy": 0.9718669619186847,
+      "final_internal_energy": 1.1348503517618116,
+      "internal_energy_mismatch_abs": 0.1348503517618116,
+      "cycle_delta_u": 0.16298338984312694
+    },
+    {
+      "hot_steps": 1000,
+      "cold_steps": 1000,
+      "q_hot": 0.7576112925161742,
+      "q_cold": -0.43017925959553066,
+      "work_by_system": 0.24581900614584395,
+      "efficiency": 0.3244658686771039,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.17553413132289608,
+      "initial_variance": 0.4893434613086495,
+      "final_variance": 0.530313180888118,
+      "variance_mismatch_abs": 0.030313180888117963,
+      "initial_internal_energy": 0.9790791252805938,
+      "final_internal_energy": 1.0606921520553931,
+      "internal_energy_mismatch_abs": 0.060692152055393134,
+      "cycle_delta_u": 0.08161302677479931
+    },
+    {
+      "hot_steps": 1000,
+      "cold_steps": 2500,
+      "q_hot": 0.8188819495513521,
+      "q_cold": -0.4410880328118223,
+      "work_by_system": 0.3318925209410144,
+      "efficiency": 0.4052995930889077,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.09470040691109233,
+      "initial_variance": 0.4815527152497427,
+      "final_variance": 0.5047099048535235,
+      "variance_mismatch_abs": 0.004709904853523517,
+      "initial_internal_energy": 0.9637909525455416,
+      "final_internal_energy": 1.0096923483440572,
+      "internal_energy_mismatch_abs": 0.009692348344057189,
+      "cycle_delta_u": 0.04590139579851554
+    },
+    {
+      "hot_steps": 1000,
+      "cold_steps": 5000,
+      "q_hot": 0.8202439140008712,
+      "q_cold": -0.43522817795779845,
+      "work_by_system": 0.3575736445405886,
+      "efficiency": 0.4359357484244727,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.06406425157552731,
+      "initial_variance": 0.49778095214414136,
+      "final_variance": 0.5109626326311477,
+      "variance_mismatch_abs": 0.010962632631147717,
+      "initial_internal_energy": 0.9956356526524371,
+      "final_internal_energy": 1.0230777441549213,
+      "internal_energy_mismatch_abs": 0.023077744154921254,
+      "cycle_delta_u": 0.027442091502484
+    },
+    {
+      "hot_steps": 2500,
+      "cold_steps": 520,
+      "q_hot": 0.9059260376929407,
+      "q_cold": -0.4775597605350135,
+      "work_by_system": 0.26596211842303763,
+      "efficiency": 0.29358038885861476,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.20641961114138524,
+      "initial_variance": 0.48480186206336995,
+      "final_variance": 0.5660712762227468,
+      "variance_mismatch_abs": 0.06607127622274678,
+      "initial_internal_energy": 0.9702509906097083,
+      "final_internal_energy": 1.1326551493445978,
+      "internal_energy_mismatch_abs": 0.13265514934459777,
+      "cycle_delta_u": 0.16240415873488956
+    },
+    {
+      "hot_steps": 2500,
+      "cold_steps": 1000,
+      "q_hot": 0.8756450431448931,
+      "q_cold": -0.46101754385878224,
+      "work_by_system": 0.32909261385289035,
+      "efficiency": 0.37582878636638994,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.12417121363361006,
+      "initial_variance": 0.4961429470870658,
+      "final_variance": 0.538793130196903,
+      "variance_mismatch_abs": 0.038793130196903,
+      "initial_internal_energy": 0.9922956844220946,
+      "final_internal_energy": 1.077830569855315,
+      "internal_energy_mismatch_abs": 0.077830569855315,
+      "cycle_delta_u": 0.08553488543322046
+    },
+    {
+      "hot_steps": 2500,
+      "cold_steps": 2500,
+      "q_hot": 0.8749967535040821,
+      "q_cold": -0.47374171307073926,
+      "work_by_system": 0.4048330785547336,
+      "efficiency": 0.4626680921197783,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.037331907880221726,
+      "initial_variance": 0.49950652769566334,
+      "final_variance": 0.4978606911879956,
+      "variance_mismatch_abs": 0.0021393088120044146,
+      "initial_internal_energy": 0.9993239858217479,
+      "final_internal_energy": 0.9957459477003572,
+      "internal_energy_mismatch_abs": 0.004254052299642819,
+      "cycle_delta_u": -0.003578038121390681
+    },
+    {
+      "hot_steps": 2500,
+      "cold_steps": 5000,
+      "q_hot": 0.8854365674363189,
+      "q_cold": -0.45570683954515906,
+      "work_by_system": 0.4026314685567377,
+      "efficiency": 0.4547264969217517,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.04527350307824829,
+      "initial_variance": 0.49337471630155316,
+      "final_variance": 0.5069160651239676,
+      "variance_mismatch_abs": 0.006916065123967585,
+      "initial_internal_energy": 0.9867622492638666,
+      "final_internal_energy": 1.0138605085982886,
+      "internal_energy_mismatch_abs": 0.013860508598288579,
+      "cycle_delta_u": 0.027098259334422115
+    },
+    {
+      "hot_steps": 5000,
+      "cold_steps": 520,
+      "q_hot": 0.9146664289873656,
+      "q_cold": -0.4885522383946392,
+      "work_by_system": 0.2906508811677856,
+      "efficiency": 0.3177670809341581,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.18223291906584188,
+      "initial_variance": 0.5085210800022134,
+      "final_variance": 0.5768135778384366,
+      "variance_mismatch_abs": 0.07681357783843656,
+      "initial_internal_energy": 1.0183126024466573,
+      "final_internal_energy": 1.153775911871598,
+      "internal_energy_mismatch_abs": 0.153775911871598,
+      "cycle_delta_u": 0.13546330942494078
+    },
+    {
+      "hot_steps": 5000,
+      "cold_steps": 1000,
+      "q_hot": 0.955717603839303,
+      "q_cold": -0.5256881345064275,
+      "work_by_system": 0.40710243384403466,
+      "efficiency": 0.4259651932836909,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.07403480671630908,
+      "initial_variance": 0.49433400365452096,
+      "final_variance": 0.5058839533325903,
+      "variance_mismatch_abs": 0.005883953332590286,
+      "initial_internal_energy": 0.9888812042159846,
+      "final_internal_energy": 1.0118082397048256,
+      "internal_energy_mismatch_abs": 0.011808239704825585,
+      "cycle_delta_u": 0.022927035488840786
+    },
+    {
+      "hot_steps": 5000,
+      "cold_steps": 2500,
+      "q_hot": 0.9258060114365578,
+      "q_cold": -0.5301419013044021,
+      "work_by_system": 0.45039378548639514,
+      "efficiency": 0.48648829228007123,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.013511707719928767,
+      "initial_variance": 0.5128397555529834,
+      "final_variance": 0.4855933253483124,
+      "variance_mismatch_abs": 0.014406674651687601,
+      "initial_internal_energy": 1.0259320728398043,
+      "final_internal_energy": 0.9712023974855647,
+      "internal_energy_mismatch_abs": 0.028797602514435305,
+      "cycle_delta_u": -0.054729675354239615
+    },
+    {
+      "hot_steps": 5000,
+      "cold_steps": 5000,
+      "q_hot": 0.9670549467801222,
+      "q_cold": -0.4882856714943809,
+      "work_by_system": 0.45013535573962415,
+      "efficiency": 0.4654702995299095,
+      "carnot_bound": 0.5,
+      "efficiency_distance_to_carnot": 0.03452970047009052,
+      "initial_variance": 0.49009425784155547,
+      "final_variance": 0.5045434961480629,
+      "variance_mismatch_abs": 0.004543496148062931,
+      "initial_internal_energy": 0.9808598710027028,
+      "final_internal_energy": 1.0094937905488202,
+      "internal_energy_mismatch_abs": 0.009493790548820158,
+      "cycle_delta_u": 0.02863391954611727
+    }
+  ]
+}

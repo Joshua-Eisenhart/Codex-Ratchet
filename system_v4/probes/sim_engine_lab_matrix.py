@@ -71,6 +71,16 @@ ROW_SPECS = [
         "scope_hint": "narrow_qit_owner_row",
     },
     {
+        "id": "szilard_graph_proof_alignment",
+        "engine_family": "szilard",
+        "level": "graph_proof_alignment",
+        "geometry_topology": "finite_two_qubit_protocol_with_stage_graph_z3_and_helstrom_surface",
+        "entropy_family": ["information_gain", "graph_schedule", "proof_identity", "operational_distinguishability"],
+        "direction_modes": ["forward", "reverse", "graph_proof_alignment"],
+        "result_file": RESULT_DIR / "szilard_graph_proof_alignment_results.json",
+        "scope_hint": "graph_proof_bridge",
+    },
+    {
         "id": "szilard_substeps",
         "engine_family": "szilard",
         "level": "stochastic_submechanics",
@@ -321,6 +331,16 @@ ROW_SPECS = [
         "scope_hint": "exact_reference_row",
     },
     {
+        "id": "carnot_graph_proof_alignment",
+        "engine_family": "carnot",
+        "level": "graph_proof_alignment",
+        "geometry_topology": "exact_two_bath_cycle_with_stage_graph_and_z3_identity_surface",
+        "entropy_family": ["heat_work_bookkeeping", "graph_schedule", "proof_identity"],
+        "direction_modes": ["forward_engine", "reverse_refrigerator", "graph_proof_alignment"],
+        "result_file": RESULT_DIR / "carnot_graph_proof_alignment_results.json",
+        "scope_hint": "graph_proof_bridge",
+    },
+    {
         "id": "carnot_stochastic_finite_time",
         "engine_family": "carnot",
         "level": "stochastic_operational",
@@ -562,6 +582,8 @@ def likely_constraint_relation(scope_hint: str, result: dict) -> str:
         return "likely_allowed_qit_core"
     if scope_hint == "exact_reference_row":
         return "allowed_as_reference_not_runtime"
+    if scope_hint == "graph_proof_bridge":
+        return "graph_proof_bridge_surface"
     if scope_hint == "repair_companion":
         return "qit_aligned_repair_surface"
     if scope_hint in {"stochastic_sidecar", "parameter_map", "diagnostic", "budget_map", "topology_map"}:
@@ -612,6 +634,16 @@ def extract_headline_metrics(row_id: str, result: dict) -> dict:
         "best_reverse_cop",
         "baseline_forward_closure_defect",
         "baseline_forward_efficiency",
+        "graph_path_length",
+        "cycle_schedule_valid",
+        "protocol_schedule_valid",
+        "efficiency_identity_unsat",
+        "cop_identity_unsat",
+        "ktln2_balance_unsat",
+        "ordering_precedence_unsat",
+        "helstrom_measurement_guess_probability",
+        "helstrom_erased_guess_probability",
+        "wrong_order_vs_feedback_guess_probability",
     ]:
         if key in summary:
             metrics[key] = summary[key]

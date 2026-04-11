@@ -1,0 +1,278 @@
+{
+  "name": "weyl_geometry_alignment_overlay",
+  "classification": "exploratory",
+  "classification_note": "Controller overlay for the Weyl/Hopf geometry lane. It compares base legos, composed numeric rows, graph/proof bridge rows, and alternate-carrier rows when available.",
+  "lego_ids": [
+    "nested_hopf_tori",
+    "weyl_pauli_transport",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_geometry_ladder_audit",
+    "weyl_geometry_carrier_compare"
+  ],
+  "primary_lego_ids": [
+    "nested_hopf_tori",
+    "weyl_hopf_pauli_composed_stack"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 6,
+    "available_row_count": 6,
+    "category_counts": {
+      "base_lego": 2,
+      "composed_numeric": 1,
+      "graph_proof": 1,
+      "bridge_audit": 1,
+      "alternate_carrier": 1
+    },
+    "has_base_legos": true,
+    "has_composed_numeric_row": true,
+    "has_graph_proof_row": true,
+    "has_bridge_audit_row": true,
+    "has_alternate_carrier_row": true,
+    "source_files": {
+      "nested_hopf_tori": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_nested_hopf_tori_results.json",
+      "weyl_pauli_transport": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_pauli_transport_results.json",
+      "weyl_hopf_pauli_composed_stack": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hopf_pauli_composed_stack_results.json",
+      "weyl_geometry_graph_proof_alignment": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_graph_proof_alignment_results.json",
+      "weyl_geometry_ladder_audit": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_ladder_audit_results.json",
+      "weyl_geometry_carrier_compare": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_carrier_compare_results.json"
+    },
+    "scope_note": "Controller-facing overlay for the Weyl/Hopf geometry lane. It should be used to compare rows and route follow-on work, not to claim a proof or a runtime engine."
+  },
+  "rows": [
+    {
+      "category": "base_lego",
+      "role": "base_geometry_carrier",
+      "row_id": "nested_hopf_tori",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_nested_hopf_tori_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "total_tests": 10,
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0,
+        "inner_radius_identity": true,
+        "clifford_radius_identity": true,
+        "outer_radius_identity": true,
+        "all_pass": true,
+        "spinor_pass": true,
+        "transport_pass": true,
+        "combined_pass": true
+      },
+      "note": "Layered Hopf-torus base lego with Weyl spinors, Pauli/Bloch checks, and transport closure."
+    },
+    {
+      "category": "base_lego",
+      "role": "spinor_transport_base",
+      "row_id": "weyl_pauli_transport",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_pauli_transport_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 18,
+        "transport_count": 3,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_bloch_antipodal_gap": 0.0,
+        "pauli_readout_gap": 0.0,
+        "transport_roundtrip_error": 5.551115123125783e-17,
+        "transport_partial_midpoint_separation": 0.19603428065912115,
+        "radii_monotone": true,
+        "all_pass": true,
+        "first_sample_chiral_z_gap": 1.4142135623730947
+      },
+      "note": "Reusable Weyl/Hopf/Pauli transport lego with left/right readouts and bounded transport checks."
+    },
+    {
+      "category": "composed_numeric",
+      "role": "composed_geometry_anchor",
+      "row_id": "weyl_hopf_pauli_composed_stack",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hopf_pauli_composed_stack_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16,
+        "all_pass": true,
+        "spinor_pass": true,
+        "density_pass": true,
+        "transport_pass": true,
+        "combined_pass": true
+      },
+      "note": "Canonical composed stack: nested Hopf tori, left/right Weyl spinors, Pauli/Bloch checks, and transport consistency."
+    },
+    {
+      "category": "graph_proof",
+      "role": "schedule_and_proof_bridge",
+      "row_id": "weyl_geometry_graph_proof_alignment",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_graph_proof_alignment_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "node_count": 6,
+        "edge_count": 5,
+        "longest_path_length": 5,
+        "source_count": 1,
+        "sink_count": 1,
+        "forward_order_sat": true,
+        "reverse_order_unsat": true,
+        "chirality_unsat": true,
+        "pauli_products_ok": true,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_bloch_antipodal_gap": 0.0,
+        "max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "transport_fraction_inner_to_outer": 1.0,
+        "all_pass": true,
+        "negative_reverse_order_unsat": true,
+        "negative_same_sign_unsat": true,
+        "boundary_pass": true
+      },
+      "note": "Graph/proof bridge over the Weyl/Hopf/Pauli schedule, with rustworkx ordering and z3 legality checks."
+    },
+    {
+      "category": "bridge_audit",
+      "role": "ambient_witness_audit",
+      "row_id": "weyl_geometry_ladder_audit",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_ladder_audit_results.json",
+      "classification": null,
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "ambient_nontrivial_count": 2,
+        "clifford_neutral": true,
+        "engine_nontrivial": true,
+        "engine_type2_nontrivial": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true,
+        "type2_witness_separable": true,
+        "guardrail_pass": true,
+        "verdict": "PASS",
+        "all_pass": true,
+        "ambient_torus_count": 3,
+        "engine_torus_count": 3
+      },
+      "note": "Independent witness audit for the Weyl-ambient rung before folding it into engine dynamics or bridge language."
+    },
+    {
+      "category": "alternate_carrier",
+      "role": "carrier_comparison",
+      "row_id": "weyl_geometry_carrier_compare",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_carrier_compare_results.json",
+      "classification": null,
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "carrier_count": 4,
+        "carrier_order": [
+          "hopf_torus",
+          "sphere_section",
+          "graph_carrier",
+          "hypergraph_carrier"
+        ],
+        "result_count": 96,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "all_pass": true,
+        "carrier_checks_passed": true
+      },
+      "note": "Alternate-carrier comparison across Hopf torus, sphere section, graph carrier, and hypergraph carrier."
+    }
+  ]
+}

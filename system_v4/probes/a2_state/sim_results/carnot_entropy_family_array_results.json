@@ -1,0 +1,210 @@
+{
+  "name": "carnot_entropy_family_array",
+  "classification": "exploratory",
+  "classification_note": "Readout-family comparison over exact and stochastic Carnot rows. It compares performance, bath-entropy proxies, closure proxies, and return-mismatch proxies on the same family.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "exact_rows_minimize_performance_distance": {
+      "best_exact_distance": 1.1102230246251565e-16,
+      "best_open_distance": 0.013511707719928767,
+      "pass": true
+    },
+    "some_open_rows_approach_the_exact_rows_closely_in_performance": {
+      "best_open_distance": 0.013511707719928767,
+      "pass": true
+    },
+    "readout_families_separate_performance_from_closure": {
+      "best_open_performance_distance": 0.013511707719928767,
+      "best_open_closure_proxy": 0.0003123623353137872,
+      "pass": true
+    }
+  },
+  "negative": {
+    "best_engine_performance_row_is_not_the_best_closure_row": {
+      "best_performance_row": "exact_qit_forward",
+      "best_closure_row": "exact_qit_forward",
+      "pass": false
+    },
+    "best_refrigerator_performance_row_is_not_the_best_closure_row": {
+      "best_performance_row": "exact_qit_reverse",
+      "best_closure_row": "exact_qit_reverse",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "row_count": 8,
+    "best_open_performance_distance": 0.013511707719928767,
+    "best_open_closure_proxy": 0.0003123623353137872,
+    "scope_note": "Carnot readout-family comparison across exact and stochastic rows. Use this to see where performance, bath-entropy, and closure proxies agree or split."
+  },
+  "rows": [
+    {
+      "row_id": "exact_qit_forward",
+      "mode": "forward_engine",
+      "carrier": "qubit_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 1.1102230246251565e-16,
+      "bath_entropy_proxy": 0.0,
+      "closure_proxy": 0.0,
+      "return_proxy": 0.0
+    },
+    {
+      "row_id": "stochastic_harmonic_forward_quasistatic",
+      "mode": "forward_engine",
+      "carrier": "harmonic_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.028140172811348174,
+      "bath_entropy_proxy": 0.06508021771148453,
+      "closure_proxy": 0.0909770219252376,
+      "return_proxy": 0.04507499009112792
+    },
+    {
+      "row_id": "best_forward_asymmetric",
+      "mode": "forward_engine",
+      "carrier": "harmonic_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.013511707719928767,
+      "bath_entropy_proxy": 0.06723889558612317,
+      "closure_proxy": 0.054729675354239615,
+      "return_proxy": 0.014406674651687601
+    },
+    {
+      "row_id": "quartic_topology_best_engine",
+      "mode": "forward_engine",
+      "carrier": "quartic_single_well",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.032392500088283205,
+      "bath_entropy_proxy": -0.3197270983277697,
+      "closure_proxy": 0.13743905136865575,
+      "return_proxy": 0.21174131621649017
+    },
+    {
+      "row_id": "exact_qit_reverse",
+      "mode": "reverse_refrigerator",
+      "carrier": "qubit_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 1.1102230246251565e-16,
+      "bath_entropy_proxy": -0.1877957548868926,
+      "closure_proxy": 0.0,
+      "return_proxy": 0.0
+    },
+    {
+      "row_id": "stochastic_harmonic_reverse_quasistatic",
+      "mode": "reverse_refrigerator",
+      "carrier": "harmonic_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.09981755218349053,
+      "bath_entropy_proxy": 0.02484111775810177,
+      "closure_proxy": 0.0003123623353137872,
+      "return_proxy": 0.00014987885398398682
+    },
+    {
+      "row_id": "best_reverse_asymmetric",
+      "mode": "reverse_refrigerator",
+      "carrier": "harmonic_working_substance",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.09570592873213313,
+      "bath_entropy_proxy": -0.011900993437236052,
+      "closure_proxy": 0.07303491199112075,
+      "return_proxy": 0.0302488459667154
+    },
+    {
+      "row_id": "soft_double_well_topology_best_refrigerator",
+      "mode": "reverse_refrigerator",
+      "carrier": "soft_double_well",
+      "readout_family": "performance+closure+bath_entropy",
+      "performance_distance": 0.06195891768417683,
+      "bath_entropy_proxy": 0.005058917234898763,
+      "closure_proxy": 0.03827913043596408,
+      "return_proxy": 0.060251288836287276
+    }
+  ]
+}

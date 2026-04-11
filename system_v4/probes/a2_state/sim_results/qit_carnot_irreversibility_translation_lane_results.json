@@ -1,0 +1,143 @@
+{
+  "name": "qit_carnot_irreversibility_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Carnot irreversibility translation lane built from the open duration sweep and the strict irreversibility companion. It keeps duration-driven translation gaps explicit.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "open_all_pass": true,
+      "pass": true
+    },
+    "strict_lane_is_clean": {
+      "qit_all_pass": true,
+      "pass": true
+    },
+    "both_lanes_improve_toward_high_step_regime": {
+      "open_best_forward_steps": 5000,
+      "qit_best_forward_steps": 5000,
+      "open_best_reverse_steps": 5000,
+      "qit_best_reverse_steps": 5000,
+      "pass": true
+    },
+    "translation_gap_stays_bounded": {
+      "forward_distance_gap": 0.061766886970411994,
+      "reverse_distance_gap": 0.09300782119217321,
+      "forward_efficiency_gap": 0.061766886970411994,
+      "reverse_cop_gap": 0.09300782119217321,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_lane_does_not_match_strict_high_budget_limit_exactly": {
+      "forward_distance_gap": 0.061766886970411994,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_best_forward_distance_to_carnot": 0.06177215312907158,
+    "qit_best_forward_distance_to_carnot": 5.266158659589237e-06,
+    "open_best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+    "qit_best_reverse_distance_to_carnot_cop": 6.207656610968115e-11,
+    "open_best_forward_efficiency": 0.4382278468709284,
+    "qit_best_forward_efficiency": 0.4999947338413404,
+    "open_best_reverse_cop": 0.9069921787457502,
+    "qit_best_reverse_cop": 0.9999999999379234,
+    "forward_distance_gap": 0.061766886970411994,
+    "reverse_distance_gap": 0.09300782119217321,
+    "forward_efficiency_gap": 0.061766886970411994,
+    "reverse_cop_gap": 0.09300782119217321,
+    "scope_note": "Promoted QIT-aligned Carnot irreversibility translation lane. It compares the open duration sweep against the strict irreversibility companion and keeps high-budget translation gaps explicit."
+  }
+}

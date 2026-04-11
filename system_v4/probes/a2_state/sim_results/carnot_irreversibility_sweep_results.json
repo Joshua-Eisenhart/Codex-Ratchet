@@ -1,0 +1,288 @@
+{
+  "name": "carnot_irreversibility_sweep",
+  "classification": "exploratory",
+  "classification_note": "Inductive duration sweep over the stochastic harmonic Carnot sidecar. It tracks where forward engine behavior, reverse refrigerator behavior, and state-return defects appear across protocol durations.",
+  "parent_scope_note": "Operational finite-time stochastic Carnot sidecar on a 1D harmonic working substance. It exposes explicit hot/cold isothermal legs, adiabatic jumps, forward and reverse modes, and fast-vs-slow dissipation without claiming a runtime-engine realization.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_engine_window_opens_in_the_higher_step_regime": {
+      "first_steps_efficiency": -0.840172584719404,
+      "last_steps_efficiency": 0.4382278468709284,
+      "engine_rows": 4,
+      "pass": true
+    },
+    "reverse_refrigerator_cop_improves_with_duration": {
+      "first_steps_cop": 0.2693109157681329,
+      "last_steps_cop": 0.9069921787457502,
+      "pass": true
+    },
+    "closest_forward_point_to_carnot_is_in_the_high_step_regime": {
+      "closest_steps": 5000,
+      "distance_to_carnot": 0.06177215312907158,
+      "pass": true
+    },
+    "closest_reverse_point_to_carnot_cop_is_in_the_high_step_regime": {
+      "closest_steps": 5000,
+      "distance_to_carnot_cop": 0.09300782125424978,
+      "pass": true
+    }
+  },
+  "negative": {
+    "fast_rows_do_not_behave_like_the_reversible_limit": {
+      "first_steps_efficiency": -0.840172584719404,
+      "first_steps_cop": 0.2693109157681329,
+      "pass": true
+    },
+    "highest_step_forward_row_still_has_nonzero_cycle_return_error": {
+      "steps": 5000,
+      "forward_cycle_delta_u": 0.060682025876964696,
+      "pass": true
+    },
+    "highest_step_forward_row_still_does_not_hit_the_carnot_bound": {
+      "steps": 5000,
+      "forward_efficiency": 0.4382278468709284,
+      "carnot_bound": 0.5,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite": {
+      "pass": true
+    },
+    "all_rows_stay_in_the_same_temperature_pair": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "pass": true
+    },
+    "sweep_contains_both_engine_and_refrigerator_regimes": {
+      "engine_rows": 4,
+      "refrigerator_rows": 8,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "step_grid": [
+      60,
+      90,
+      150,
+      260,
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "best_forward_steps": 5000,
+    "best_forward_efficiency": 0.4382278468709284,
+    "best_forward_distance_to_carnot": 0.06177215312907158,
+    "best_reverse_steps": 5000,
+    "best_reverse_cop": 0.9069921787457502,
+    "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+    "max_steps_forward_cycle_delta_u": 0.060682025876964696,
+    "scope_note": "Duration sweep over finite-time forward/reverse Carnot mechanics on the stochastic harmonic sidecar. It maps regime changes and remaining closure defects rather than claiming a closed engine theorem."
+  },
+  "rows": [
+    {
+      "steps": 60,
+      "forward_efficiency": -0.840172584719404,
+      "forward_work_by_system": -0.20139625812179196,
+      "forward_q_hot": 0.23970820017776837,
+      "forward_q_cold": -0.01628150491629113,
+      "forward_cycle_delta_u": 0.4248229533832692,
+      "forward_distance_to_carnot": 1.340172584719404,
+      "reverse_cop": 0.2693109157681329,
+      "reverse_work_input": 0.2766530419987101,
+      "reverse_q_cold_absorbed": 0.07450568409071234,
+      "reverse_q_hot_released": -0.017299475532786608,
+      "reverse_cycle_delta_u": 0.3338592505566358,
+      "reverse_distance_to_carnot_cop": 0.7306890842318672
+    },
+    {
+      "steps": 90,
+      "forward_efficiency": -0.4957278316426134,
+      "forward_work_by_system": -0.16516676948590847,
+      "forward_q_hot": 0.3331803440178494,
+      "forward_q_cold": -0.06043774948011606,
+      "forward_cycle_delta_u": 0.43790936402364156,
+      "forward_distance_to_carnot": 0.9957278316426135,
+      "reverse_cop": 0.23324273471049753,
+      "reverse_work_input": 0.3035487872181406,
+      "reverse_q_cold_absorbed": 0.07080054924881403,
+      "reverse_q_hot_released": -0.06638836275384295,
+      "reverse_cycle_delta_u": 0.3079609737131116,
+      "reverse_distance_to_carnot_cop": 0.7667572652895025
+    },
+    {
+      "steps": 150,
+      "forward_efficiency": -0.40138892385667485,
+      "forward_work_by_system": -0.15187643789598837,
+      "forward_q_hot": 0.3783772517604879,
+      "forward_q_cold": -0.11522479890925898,
+      "forward_cycle_delta_u": 0.4150288907472174,
+      "forward_distance_to_carnot": 0.9013889238566748,
+      "reverse_cop": 0.3171523251632636,
+      "reverse_work_input": 0.35775497150958024,
+      "reverse_q_cold_absorbed": 0.11346282105298049,
+      "reverse_q_hot_released": -0.2262383474223642,
+      "reverse_cycle_delta_u": 0.24497944514019637,
+      "reverse_distance_to_carnot_cop": 0.6828476748367365
+    },
+    {
+      "steps": 260,
+      "forward_efficiency": -0.10563777627645345,
+      "forward_work_by_system": -0.05796482860561614,
+      "forward_q_hot": 0.5487130707288131,
+      "forward_q_cold": -0.25316722969823585,
+      "forward_cycle_delta_u": 0.3535106696361933,
+      "forward_distance_to_carnot": 0.6056377762764534,
+      "reverse_cop": 0.4223929905141356,
+      "reverse_work_input": 0.4564601084958644,
+      "reverse_q_cold_absorbed": 0.19280555027797494,
+      "reverse_q_hot_released": -0.5002872902132629,
+      "reverse_cycle_delta_u": 0.14897836856057667,
+      "reverse_distance_to_carnot_cop": 0.5776070094858644
+    },
+    {
+      "steps": 520,
+      "forward_efficiency": 0.2265892366775802,
+      "forward_work_by_system": 0.15387807254074592,
+      "forward_q_hot": 0.6791058339620213,
+      "forward_q_cold": -0.3635070629472569,
+      "forward_cycle_delta_u": 0.1617206984740187,
+      "forward_distance_to_carnot": 0.27341076332241976,
+      "reverse_cop": 0.6106608586291836,
+      "reverse_work_input": 0.49880497701045146,
+      "reverse_q_cold_absorbed": 0.3046006755497125,
+      "reverse_q_hot_released": -0.69747972850791,
+      "reverse_cycle_delta_u": 0.10592592405225387,
+      "reverse_distance_to_carnot_cop": 0.3893391413708164
+    },
+    {
+      "steps": 1000,
+      "forward_efficiency": 0.3549942376051811,
+      "forward_work_by_system": 0.2804310899834366,
+      "forward_q_hot": 0.7899595550486865,
+      "forward_q_cold": -0.4402871944753072,
+      "forward_cycle_delta_u": 0.06924127058994284,
+      "forward_distance_to_carnot": 0.14500576239481888,
+      "reverse_cop": 0.6879828636537263,
+      "reverse_work_input": 0.4861144946636411,
+      "reverse_q_cold_absorbed": 0.33443844210227586,
+      "reverse_q_hot_released": -0.7752125139365273,
+      "reverse_cycle_delta_u": 0.04534042282938955,
+      "reverse_distance_to_carnot_cop": 0.3120171363462737
+    },
+    {
+      "steps": 2500,
+      "forward_efficiency": 0.4162816974777203,
+      "forward_work_by_system": 0.3825081777409838,
+      "forward_q_hot": 0.9188685932113455,
+      "forward_q_cold": -0.45996838328516415,
+      "forward_cycle_delta_u": 0.07639203218519774,
+      "forward_distance_to_carnot": 0.08371830252227969,
+      "reverse_cop": 0.8265329492578668,
+      "reverse_work_input": 0.4872540629462295,
+      "reverse_q_cold_absorbed": 0.4027315376848254,
+      "reverse_q_hot_released": -0.9086898318757306,
+      "reverse_cycle_delta_u": -0.018704231244675698,
+      "reverse_distance_to_carnot_cop": 0.1734670507421332
+    },
+    {
+      "steps": 5000,
+      "forward_efficiency": 0.4382278468709284,
+      "forward_work_by_system": 0.39300208772903733,
+      "forward_q_hot": 0.8967985273760765,
+      "forward_q_cold": -0.4431144137700743,
+      "forward_cycle_delta_u": 0.060682025876964696,
+      "forward_distance_to_carnot": 0.06177215312907158,
+      "reverse_cop": 0.9069921787457502,
+      "reverse_work_input": 0.5006924659615917,
+      "reverse_q_cold_absorbed": 0.4541241505840864,
+      "reverse_q_hot_released": -0.9780467016251317,
+      "reverse_cycle_delta_u": -0.023230085079453622,
+      "reverse_distance_to_carnot_cop": 0.09300782125424978
+    }
+  ]
+}

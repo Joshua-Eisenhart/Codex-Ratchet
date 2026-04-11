@@ -1,0 +1,149 @@
+{
+  "name": "qit_szilard_substep_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Szilard substep translation lane built from the open stochastic substep row and the strict finite two-qubit companion. It keeps measurement, ordering, and reset-translation gaps explicit.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "open_all_pass": true,
+      "pass": true
+    },
+    "strict_lane_is_clean": {
+      "qit_all_pass": true,
+      "pass": true
+    },
+    "both_lanes_remain_measurement_informative": {
+      "open_measurement_accuracy": 0.8746666666666667,
+      "open_measurement_mutual_information": 0.3152387664274231,
+      "qit_mean_measurement_accuracy": 0.9,
+      "qit_mean_measurement_mutual_information": 0.41798538158339976,
+      "pass": true
+    },
+    "both_lanes_preserve_ordering_advantage": {
+      "open_ordering_margin": 0.008953989804524887,
+      "qit_best_ordering_margin": 0.5350408605722448,
+      "pass": true
+    },
+    "translation_gap_stays_bounded": {
+      "ordering_margin_gap": 0.5260868707677199,
+      "measurement_mutual_information_gap": 0.10274661515597666,
+      "feedback_gain_gap": -0.460863903932713,
+      "reset_signal_gap": 0.4870755566533206,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_lane_and_strict_lane_do_not_share_identical_entropy_carriers": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_ordering_margin": 0.008953989804524887,
+    "qit_best_ordering_margin": 0.5350408605722448,
+    "open_measurement_accuracy": 0.8746666666666667,
+    "qit_mean_measurement_accuracy": 0.9,
+    "open_measurement_mutual_information": 0.3152387664274231,
+    "qit_mean_measurement_mutual_information": 0.41798538158339976,
+    "open_feedback_signal": 0.7495573524765898,
+    "qit_mean_feedback_system_free_energy_gain": 0.28869344854387685,
+    "open_reset_signal": 0.0265986225951631,
+    "qit_reset_signal": 0.5136741792484837,
+    "ordering_margin_gap": 0.5260868707677199,
+    "measurement_mutual_information_gap": 0.10274661515597666,
+    "feedback_gain_gap": -0.460863903932713,
+    "reset_signal_gap": 0.4870755566533206,
+    "scope_note": "Promoted QIT-aligned Szilard substep translation lane. It compares the open stochastic substep row against the strict finite two-qubit companion and keeps measurement, ordering, and reset gaps explicit."
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "name": "nested_hopf_tori",
+  "classification": "canonical",
+  "classification_note": "Reusable base lego for layered Hopf tori, Weyl spinors, Pauli/Bloch readouts, and inter-torus transport.",
+  "lego_ids": [
+    "nested_hopf_tori"
+  ],
+  "primary_lego_ids": [
+    "nested_hopf_tori"
+  ],
+  "dependencies": [
+    "hopf_manifold"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numpy geometry lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "spinor_construction": {
+      "pass": true,
+      "sample_count": 192,
+      "level_counts": {
+        "inner": 64,
+        "clifford": 64,
+        "outer": 64
+      },
+      "ordered_radii": [
+        [
+          "inner",
+          0.9238795325112867,
+          0.3826834323650898
+        ],
+        [
+          "clifford",
+          0.7071067811865476,
+          0.7071067811865475
+        ],
+        [
+          "outer",
+          0.38268343236508984,
+          0.9238795325112867
+        ]
+      ],
+      "max_point_norm_error": 1.1102230246251565e-16,
+      "max_hopf_norm_error": 2.220446049250313e-16,
+      "max_radius_identity_error": 0.0,
+      "description": "Stage 1: layered torus geometry stays on S^3 and preserves torus radius identities."
+    },
+    "density_bloch_pauli": {
+      "pass": true,
+      "max_left_norm_error": 1.1102230246251565e-16,
+      "max_right_norm_error": 1.1102230246251565e-16,
+      "max_left_right_overlap": 1.1102230246251565e-16,
+      "max_trace_error": 2.220446049250313e-16,
+      "max_purity_error": 4.440892098500626e-16,
+      "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+      "max_right_antipode_error": 2.2207757275727963e-16,
+      "max_pauli_commutator_error": 0.0,
+      "max_pauli_anticommutator_error": 0.0,
+      "max_identity_neutral_error": 0.0,
+      "description": "Stage 2: left/right Weyl spinors stay normalized, orthogonal, and Pauli-consistent on each nested torus."
+    },
+    "nested_transport": {
+      "pass": true,
+      "transport_pairs": 576,
+      "max_direct_transport_error": 2.7755575615628914e-16,
+      "max_cycle_error": 2.603703785810335e-16,
+      "max_partial_alpha0_error": 1.7554167342883506e-16,
+      "max_partial_alpha1_error": 2.7755575615628914e-16,
+      "min_partial_midpoint_separation": 0.0,
+      "min_nontrivial_midpoint_separation": 0.1960342806591211,
+      "nonfinite_stereographic_count": 0,
+      "description": "Stage 3: transport between nested tori preserves torus angles and returns cleanly under round trip."
+    },
+    "combined_consistency": {
+      "pass": true,
+      "checked_samples": 576,
+      "max_hopf_bloch_error": 2.2207757275727963e-16,
+      "max_right_antipode_error": 2.2207757275727963e-16,
+      "max_transport_then_bloch_error": 2.7755575615628914e-16,
+      "max_stack_embedding_error": 0.0,
+      "description": "Stage 4: composition remains consistent after transport, spinor reconstruction, and Bloch readout."
+    }
+  },
+  "negative": {
+    "transport_not_identity": {
+      "pass": true
+    },
+    "wrong_pauli_sign_rejected": {
+      "pass": true
+    },
+    "left_right_density_distinct": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "inner_radius_identity": {
+      "pass": true,
+      "r_major": 0.9238795325112867,
+      "r_minor": 0.3826834323650898
+    },
+    "clifford_radius_identity": {
+      "pass": true,
+      "r_major": 0.7071067811865476,
+      "r_minor": 0.7071067811865475
+    },
+    "outer_radius_identity": {
+      "pass": true,
+      "r_major": 0.38268343236508984,
+      "r_minor": 0.9238795325112867
+    }
+  },
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "all_pass": true,
+    "sample_count": 192,
+    "torus_levels": [
+      "inner",
+      "clifford",
+      "outer"
+    ],
+    "scope_note": "Nested Hopf tori lego with explicit layered geometry, left/right Weyl carriers, Pauli/Bloch checks, and inter-torus transport closures.",
+    "max_point_norm_error": 1.1102230246251565e-16,
+    "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+    "max_transport_error": 2.7755575615628914e-16,
+    "max_stack_error": 0.0
+  }
+}

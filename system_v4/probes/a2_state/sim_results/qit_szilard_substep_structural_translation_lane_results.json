@@ -1,0 +1,132 @@
+{
+  "name": "qit_szilard_substep_structural_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Structural translation lane for the stochastic Szilard substep carrier after adding an explicit record-wait stage.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ordering_gap_beats_push_lane": {
+      "ordering_margin_gap": 0.36629078136246473,
+      "pass": false
+    },
+    "measurement_gap_stays_small": {
+      "measurement_mutual_information_gap": -0.023143384039879644,
+      "pass": true
+    },
+    "reset_gap_stays_small": {
+      "reset_signal_gap": 0.11012037399489083,
+      "pass": false
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_metrics_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "ordering_margin_gap": 0.36629078136246473,
+    "measurement_mutual_information_gap": -0.023143384039879644,
+    "reset_signal_gap": 0.11012037399489083,
+    "best_setting": {
+      "measurement_flip_prob": 0.02,
+      "reset_tilt": 2.8,
+      "reset_steps": 420,
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.35,
+      "feedback_steps": 360,
+      "record_wait_steps": 120
+    },
+    "best_structural_score": 0.6034477371534941,
+    "best_ordering_margin": 0.16875007920978002,
+    "best_reset_signal": 0.40355380525359286,
+    "scope_note": "Structural translation lane for the stochastic Szilard substep carrier."
+  }
+}

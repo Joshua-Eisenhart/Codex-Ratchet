@@ -1,0 +1,309 @@
+{
+  "name": "qit_szilard_reverse_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Szilard reverse/recovery lane built from the strict bidirectional base and the strict reverse/recovery companion. It is a translation-ready lane, not a canonical owner row.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "strict_bidirectional_base_is_clean": {
+      "bidirectional_all_pass": true,
+      "pass": true
+    },
+    "strict_reverse_recovery_companion_is_clean": {
+      "reverse_companion_all_pass": true,
+      "pass": true
+    },
+    "promoted_lane_preserves_recovery_over_naive_reverse": {
+      "mean_recovery_fraction": 0.6529585259948255,
+      "mean_naive_fraction": 0.3941883238150193,
+      "mean_gap": 0.2587702021798062,
+      "pass": true
+    },
+    "translation_gap_to_open_lane_stays_bounded": {
+      "recovery_fraction_delta_vs_open": 0.1178777499710223,
+      "gap_delta_vs_open": 0.03307775684666647,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "promoted_lane_is_not_claimed_as_runtime_reservoir_realization": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_referenced_inputs_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "ideal_forward_information_gain": 0.6931471805599453,
+    "ideal_forward_system_gain": 0.6931471805599453,
+    "ideal_forward_erasure_cost": 0.6931471805599453,
+    "ideal_reverse_restoration_trace_distance": 0.0,
+    "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+    "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193,
+    "mean_recovery_vs_naive_gap": 0.2587702021798062,
+    "mean_erase_system_free_energy_gain": 0.28818369549600686,
+    "recovery_fraction_delta_vs_open": 0.1178777499710223,
+    "gap_delta_vs_open": 0.03307775684666647,
+    "best_setting": {
+      "steps": 420,
+      "recovery_randomization_strength": 0.6321196224949164,
+      "naive_randomization_strength": 0.28445383012271236
+    },
+    "scope_note": "Promoted QIT-aligned reverse/recovery lane for Szilard. It combines the strict bidirectional base with the strict reverse/recovery companion and keeps translation to the open lane explicit."
+  },
+  "ideal_forward": {
+    "temperature": 1.0,
+    "parameters": {
+      "measurement_error": 0.0,
+      "feedback_error": 0.0,
+      "erasure_strength": 1.0
+    },
+    "states": {
+      "initial": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "measured": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "feedback": {
+        "system_entropy": -0.0,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "erased": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "wrong_order": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      }
+    },
+    "metrics": {
+      "system_free_energy_gain": 0.6931471805599453,
+      "erasure_cost": 0.6931471805599453,
+      "net_after_erasure": 0.0,
+      "reconstruction_trace_distance_from_ground": 0.0
+    }
+  },
+  "ideal_reverse": {
+    "temperature": 1.0,
+    "parameters": {
+      "randomization_strength": 1.0,
+      "anti_feedback_error": 0.0,
+      "anti_measurement_error": 0.0
+    },
+    "states": {
+      "start_ground": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "randomized": {
+        "system_entropy": -0.0,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "after_anti_feedback": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": 0.6931471805599453,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.6931471805599453,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": -0.6931471805599453,
+        "valid_density": true
+      },
+      "restored_initial": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "no_randomization_control": {
+        "system_entropy": -0.0,
+        "memory_entropy": -0.0,
+        "joint_entropy": -0.0,
+        "mutual_information": 0.0,
+        "system_free_energy": 0.0,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      },
+      "target_initial_state": {
+        "system_entropy": 0.6931471805599453,
+        "memory_entropy": -0.0,
+        "joint_entropy": 0.6931471805599453,
+        "mutual_information": 0.0,
+        "system_free_energy": -0.6931471805599453,
+        "memory_free_energy": 0.0,
+        "valid_density": true
+      }
+    },
+    "metrics": {
+      "randomization_cost": -0.6931471805599453,
+      "system_free_energy_drop": -0.6931471805599453,
+      "restoration_trace_distance": 0.0,
+      "no_randomization_trace_distance": 0.5
+    }
+  },
+  "reverse_recovery_summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "protocol_steps": [
+      60,
+      120,
+      240,
+      420
+    ],
+    "erase_measurement_error": 0.1,
+    "erase_feedback_error": 0.1,
+    "erase_strength": 1.0,
+    "anti_measurement_error": 0.15,
+    "anti_feedback_error": 0.15,
+    "recovery_randomization_scale": 0.7,
+    "naive_randomization_ratio": 0.45,
+    "best_recovery_vs_naive_gap": 0.30760002644478024,
+    "best_recovery_entropy_restoration_fraction": 0.8395220071838909,
+    "best_recovery_trace_distance_to_initial": 0.2716467863737114,
+    "best_setting": {
+      "steps": 420,
+      "recovery_randomization_strength": 0.6321196224949164,
+      "naive_randomization_strength": 0.28445383012271236
+    },
+    "mean_recovery_vs_naive_gap": 0.2587702021798062,
+    "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+    "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193,
+    "mean_recovery_trace_distance_to_initial": 0.3476755304528599,
+    "mean_naive_reverse_trace_distance_to_initial": 0.43145398870378693,
+    "mean_no_randomization_control_trace_distance_to_initial": 0.5,
+    "mean_erase_measurement_mutual_information": 0.36806420716849697,
+    "mean_erase_system_free_energy_gain": 0.28818369549600686,
+    "mean_erase_erasure_cost": 0.6931471805599453,
+    "max_recovery_final_system_entropy": 0.5819123122975401,
+    "scope_note": "Finite two-qubit reverse-recovery companion for the Szilard lane. It keeps erase, naive reverse, and designed recovery in exact density-operator bookkeeping and preserves the open-row signal without promoting the row to canonical status."
+  }
+}

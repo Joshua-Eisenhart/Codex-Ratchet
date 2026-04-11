@@ -1,124 +1,4 @@
 {
-  "name": "pure_lego_density_matrices",
-  "classification": "canonical",
-  "classification_note": "Canonical local lego evidence for density-matrix validity, local spectral structure, basic entropy/distance identities, bipartite reductions, correlation measures, and elementary CPTP channel behavior. This is a broad local probe, not a closure-grade coexistence or topology result.",
-  "lego_ids": [
-    "density_matrix_object",
-    "density_matrix_representability",
-    "positivity_constraint",
-    "trace_constraint",
-    "pauli_algebra_relations",
-    "spectral_decomposition",
-    "von_neumann_entropy",
-    "renyi_entropy",
-    "tsallis_entropy",
-    "min_entropy",
-    "max_entropy",
-    "relative_entropy",
-    "partial_trace_operator",
-    "reduced_state_object",
-    "joint_density_matrix",
-    "conditional_entropy",
-    "mutual_information_measure",
-    "concurrence_measure",
-    "negativity_measure",
-    "logarithmic_negativity",
-    "channel_cptp_map",
-    "kraus_operator_sum"
-  ],
-  "primary_lego_ids": [
-    "density_matrix_object",
-    "density_matrix_representability",
-    "positivity_constraint",
-    "trace_constraint",
-    "spectral_decomposition",
-    "partial_trace_operator",
-    "channel_cptp_map"
-  ],
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- pure numpy/scipy local lego probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no graph-native computation"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no SMT proof layer in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no solver cross-check layer here"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no symbolic derivation in this probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no geometric algebra in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no manifold-statistics layer"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no equivariant network layer"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no dependency DAG or routing graph"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no hypergraph structure"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no cell-complex topology"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no persistent homology"
-    }
-  },
-  "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
-  },
-  "positive": {
-    "note": "Tests organized in 8 numbered sections; positive regime (valid density matrices, trace=1, positivity) covered in sections 1_construction, 2_pauli_decomposition, 3_spectral_decomposition",
-    "pass": true
-  },
-  "negative": {
-    "note": "Negative/failure regime covered in sections 5_distances (trace-distance bounds) and 6_two_qubit (separability checks); boundary cases in 7_correlations and 8_cptp_channels",
-    "pass": true
-  },
   "1_construction": {
     "count": 20,
     "all_valid": true,
@@ -1345,6 +1225,118 @@
         "output_purity": 0.8499999999999996
       }
     }
+  },
+  "name": "pure_lego_density_matrices",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego evidence for density-matrix validity, local spectral structure, basic entropy/distance identities, bipartite reductions, correlation measures, and elementary CPTP channel behavior. This is a broad local probe, not a closure-grade coexistence or topology result.",
+  "lego_ids": [
+    "density_matrix_object",
+    "density_matrix_representability",
+    "positivity_constraint",
+    "trace_constraint",
+    "pauli_algebra_relations",
+    "spectral_decomposition",
+    "von_neumann_entropy",
+    "renyi_entropy",
+    "tsallis_entropy",
+    "min_entropy",
+    "max_entropy",
+    "relative_entropy",
+    "partial_trace_operator",
+    "reduced_state_object",
+    "joint_density_matrix",
+    "conditional_entropy",
+    "mutual_information_measure",
+    "concurrence_measure",
+    "negativity_measure",
+    "logarithmic_negativity",
+    "channel_cptp_map",
+    "kraus_operator_sum"
+  ],
+  "primary_lego_ids": [
+    "density_matrix_object",
+    "density_matrix_representability",
+    "positivity_constraint",
+    "trace_constraint",
+    "spectral_decomposition",
+    "partial_trace_operator",
+    "channel_cptp_map"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy/scipy local lego probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer in this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no solver cross-check layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation in this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG or routing graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "summary": {
     "1_construction": true,

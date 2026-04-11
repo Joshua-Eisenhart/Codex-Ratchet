@@ -1,0 +1,270 @@
+{
+  "name": "weyl_geometry_protocol_dag",
+  "classification": "canonical",
+  "classification_note": "Canonical protocol-DAG lego for nested Weyl/Hopf geometry schedules. It keeps the graph/proof layer reusable and separate from any runtime carrier or engine claim.",
+  "lego_ids": [
+    "weyl_geometry_protocol_dag",
+    "nested_hopf_torus_schedule"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_protocol_dag"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing precedence impossibility proofs for nested geometry schedules"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite protocol DAG construction, source/sink checks, and topological ordering"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "rows": [
+    {
+      "family": "weyl_hopf_pauli_nested_schedule",
+      "stages": [
+        "nested_hopf_torus_input",
+        "left_weyl_spinor_frame",
+        "pauli_bloch_projection",
+        "transport_to_clifford_torus",
+        "transport_to_outer_torus",
+        "right_weyl_spinor_frame"
+      ],
+      "edges": [
+        "nested_hopf_torus_input->left_weyl_spinor_frame",
+        "left_weyl_spinor_frame->pauli_bloch_projection",
+        "pauli_bloch_projection->transport_to_clifford_torus",
+        "transport_to_clifford_torus->transport_to_outer_torus",
+        "transport_to_outer_torus->right_weyl_spinor_frame"
+      ],
+      "negative_control": "closed_geometry_back_edge",
+      "graph": {
+        "node_count": 6,
+        "edge_count": 5,
+        "is_dag": true,
+        "topological_order": [
+          "nested_hopf_torus_input",
+          "left_weyl_spinor_frame",
+          "pauli_bloch_projection",
+          "transport_to_clifford_torus",
+          "transport_to_outer_torus",
+          "right_weyl_spinor_frame"
+        ],
+        "longest_path": [
+          "nested_hopf_torus_input",
+          "left_weyl_spinor_frame",
+          "pauli_bloch_projection",
+          "transport_to_clifford_torus",
+          "transport_to_outer_torus",
+          "right_weyl_spinor_frame"
+        ],
+        "longest_path_length": 5,
+        "sources": [
+          "nested_hopf_torus_input"
+        ],
+        "sinks": [
+          "right_weyl_spinor_frame"
+        ]
+      },
+      "proofs": {
+        "order_constraints": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true
+        },
+        "cycle_control": {
+          "cycle_edge": "right_weyl_spinor_frame->nested_hopf_torus_input",
+          "z3_verdict": "unsat",
+          "z3_unsat": true,
+          "graph_is_dag": false,
+          "graph_topological_order": null
+        }
+      },
+      "positive": {
+        "geometry_graph_is_a_single_valid_dependency_chain": {
+          "node_count": 6,
+          "edge_count": 5,
+          "is_dag": true,
+          "topological_order": [
+            "nested_hopf_torus_input",
+            "left_weyl_spinor_frame",
+            "pauli_bloch_projection",
+            "transport_to_clifford_torus",
+            "transport_to_outer_torus",
+            "right_weyl_spinor_frame"
+          ],
+          "longest_path": [
+            "nested_hopf_torus_input",
+            "left_weyl_spinor_frame",
+            "pauli_bloch_projection",
+            "transport_to_clifford_torus",
+            "transport_to_outer_torus",
+            "right_weyl_spinor_frame"
+          ],
+          "longest_path_length": 5,
+          "sources": [
+            "nested_hopf_torus_input"
+          ],
+          "sinks": [
+            "right_weyl_spinor_frame"
+          ],
+          "pass": true
+        },
+        "z3_forces_the_geometry_stack_ordering": {
+          "correct_order_verdict": "sat",
+          "correct_order_sat": true,
+          "reverse_order_verdict": "unsat",
+          "reverse_order_unsat": true,
+          "pass": true
+        },
+        "pauli_products_match_the_qubit_algebra": {
+          "pass": true
+        },
+        "hopf_and_torus_carriers_stay_unit_and_finite": {
+          "max_unit_norm_error": 1.1102230246251565e-16,
+          "max_hopf_image_norm_gap": 2.220446049250313e-16,
+          "all_stereographic_finite": true,
+          "pass": true
+        },
+        "left_and_right_spinors_stay_operationally_distinct_on_each_carrier": {
+          "max_left_right_overlap_abs": 2.864397083632884e-17,
+          "max_bloch_antipodal_gap": 0.0,
+          "pass": true
+        }
+      },
+      "negative": {
+        "reverse_geometry_order_is_unsat": {
+          "pass": true,
+          "reverse_order_verdict": "unsat"
+        },
+        "back_edge_cycle_control_is_unsat": {
+          "cycle_edge": "right_weyl_spinor_frame->nested_hopf_torus_input",
+          "pass": true,
+          "z3_verdict": "unsat",
+          "graph_is_dag": false
+        },
+        "graph_alignment_row_is_not_a_runtime_sim_claim": {
+          "scope_note": "This row adds a schedule graph and z3 alignment surfaces around the nested Weyl/Hopf/Pauli geometry stack. It does not claim a new runtime engine.",
+          "pass": true
+        }
+      },
+      "boundary": {
+        "transport_fraction_grows_with_larger_torus_span": {
+          "inner_to_clifford": 0.5,
+          "inner_to_outer": 1.0,
+          "clifford_to_outer": 0.5,
+          "pass": true
+        },
+        "topological_order_matches_the_geometry_stack": {
+          "topological_order": [
+            "nested_hopf_torus_input",
+            "left_weyl_spinor_frame",
+            "pauli_bloch_projection",
+            "transport_to_clifford_torus",
+            "transport_to_outer_torus",
+            "right_weyl_spinor_frame"
+          ],
+          "pass": true
+        }
+      }
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "graph_path_length": 5,
+    "schedule_valid": true,
+    "ordering_unsat": true,
+    "cycle_control_unsat": true,
+    "pauli_products_ok": true,
+    "max_left_right_overlap_abs": 2.864397083632884e-17,
+    "max_bloch_antipodal_gap": 0.0,
+    "max_hopf_image_norm_gap": 2.220446049250313e-16,
+    "transport_chain_labels": [
+      "inner",
+      "partial_mid",
+      "outer"
+    ],
+    "torus_radii": {
+      "inner": [
+        0.9238795325112867,
+        0.3826834323650898
+      ],
+      "clifford": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "outer": [
+        0.38268343236508984,
+        0.9238795325112867
+      ]
+    },
+    "scope_note": "Reusable graph/proof lego for the nested Weyl/Hopf/Pauli geometry schedule. Useful as a pre-constraint alignment row."
+  }
+}

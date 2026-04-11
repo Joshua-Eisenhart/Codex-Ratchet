@@ -1,0 +1,552 @@
+{
+  "name": "qit_repair_comparison_surface",
+  "classification": "research_support",
+  "classification_note": "Direct comparison surface between open-lab repair rows and their QIT-aligned repair companions. It keeps the lanes paired so closure, ordering, reset, and budget tradeoffs can be compared without pretending the models are numerically identical.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "szilard_substep_pair_preserves_the_ordering_signal": {
+      "open_ordering_margin": 0.008953989804524887,
+      "qit_best_ordering_margin": 0.5350408605722448,
+      "pass": true
+    },
+    "szilard_reverse_recovery_pair_preserves_the_restoration_gap": {
+      "open_gap": 0.2256924453331397,
+      "qit_gap": 0.2587702021798062,
+      "pass": true
+    },
+    "szilard_pair_preserves_the_ordering_signal": {
+      "open_best_ordering_margin": 0.026232612370151065,
+      "qit_best_ordering_margin": 0.18365253678100868,
+      "pass": true
+    },
+    "szilard_pair_preserves_the_reset_entropy_effect": {
+      "open_reset_drop": 0.009571470105786184,
+      "qit_reset_drop": 0.33978255865044,
+      "pass": true
+    },
+    "szilard_repair_pair_closes_measurement_and_survival_gaps": {
+      "measurement_mi_delta": 0.0025942080328780204,
+      "record_survival_delta": -0.1196621691166101,
+      "pass": true
+    },
+    "carnot_finite_time_pair_preserves_the_budget_signal": {
+      "open_best_closure": 0.04507499009112792,
+      "qit_best_closure": 1.3186078058335937e-06,
+      "pass": true
+    },
+    "carnot_irreversibility_pair_preserves_the_duration_signal": {
+      "open_best_forward_distance": 0.06177215312907158,
+      "qit_best_forward_distance": 5.266158659589237e-06,
+      "pass": true
+    },
+    "carnot_closure_pair_preserves_the_closure_signal": {
+      "open_best_closure": 0.0013759122873349683,
+      "qit_best_closure": 1.1273186190097206e-08,
+      "pass": true
+    },
+    "carnot_pair_preserves_the_hold_policy_tradeoff": {
+      "open_best_closure": 0.0014798524793151469,
+      "qit_best_closure": 0.0003434168608109911,
+      "pass": true
+    }
+  },
+  "negative": {
+    "open_and_qit_pairs_are_not_numerically_identical": {
+      "szilard_substep_ordering_delta": 0.5260868707677199,
+      "carnot_finite_time_best_closure_delta": -0.045073671483322086,
+      "pass": true
+    },
+    "the_qit_pairs_do_not_erase_the_need_for_model_translation": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_pair_metrics_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "pair_count": 14,
+    "scope_note": "Direct comparison surface between open-lab repair rows and their finite-state QIT repair companions. Use it to see what survives translation into the stricter carrier."
+  },
+  "rows": [
+    {
+      "pair_id": "szilard_substep_pair",
+      "open_row_id": "szilard_substeps",
+      "qit_row_id": "qit_szilard_substep_companion",
+      "matched_axes": [
+        "ordered_vs_scrambled",
+        "measurement_error",
+        "reset_strength"
+      ],
+      "open_metrics": {
+        "ordering_margin": 0.008953989804524887,
+        "measurement_mutual_information": 0.3152387664274231,
+        "reset_penalty": 0.0265986225951631,
+        "ordered_final_entropy": 0.6562408706276686
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "reset_memory_entropy_drop": 0.5136741792484837,
+        "low_blindness_mean_margin": 0.08702939682152891
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.5260868707677199,
+        "measurement_mutual_information_delta_qit_minus_open": 0.10274661515597666,
+        "reset_effect_delta_qit_minus_open": 0.4870755566533206
+      }
+    },
+    {
+      "pair_id": "szilard_substep_refinement_pair",
+      "open_row_id": "szilard_substep_refinement_sweep",
+      "qit_row_id": "qit_szilard_substep_companion",
+      "matched_axes": [
+        "ordered_vs_scrambled",
+        "feedback_strength",
+        "feedback_duration",
+        "reset_strength"
+      ],
+      "open_metrics": {
+        "ordering_margin": 0.07699436415307148,
+        "measurement_mutual_information": 0.30732557875898103,
+        "measurement_accuracy": 0.8706666666666667,
+        "reset_signal": 0.13495979690776605
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_measurement_accuracy": 0.9,
+        "reset_memory_entropy_drop": 0.5136741792484837
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.4580464964191733,
+        "measurement_mutual_information_delta_qit_minus_open": 0.11065980282441873,
+        "measurement_accuracy_delta_qit_minus_open": 0.029333333333333322,
+        "reset_effect_delta_qit_minus_open": 0.37871438234071764
+      }
+    },
+    {
+      "pair_id": "szilard_substep_balanced_pair",
+      "open_row_id": "szilard_substep_balanced_refinement_sweep",
+      "qit_row_id": "qit_szilard_substep_companion",
+      "matched_axes": [
+        "ordered_vs_scrambled",
+        "balanced_substep_search",
+        "feedback_strength",
+        "reset_strength"
+      ],
+      "open_metrics": {
+        "balanced_score": 0.6136417751005354,
+        "ordering_margin": 0.15645199104475238,
+        "measurement_mutual_information": 0.4389848211603258,
+        "measurement_accuracy": 0.93,
+        "reset_signal": 0.37407128786010824
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_measurement_accuracy": 0.9,
+        "reset_memory_entropy_drop": 0.5136741792484837
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.3785888695274924,
+        "measurement_mutual_information_delta_qit_minus_open": -0.020999439576926016,
+        "measurement_accuracy_delta_qit_minus_open": -0.030000000000000027,
+        "reset_effect_delta_qit_minus_open": 0.13960289138837545
+      }
+    },
+    {
+      "pair_id": "szilard_substep_ordering_push_pair",
+      "open_row_id": "szilard_substep_ordering_push_sweep",
+      "qit_row_id": "qit_szilard_substep_companion",
+      "matched_axes": [
+        "ordered_vs_scrambled",
+        "ordering_push_search",
+        "feedback_strength",
+        "reset_strength"
+      ],
+      "open_metrics": {
+        "push_score": 0.6279929733082442,
+        "ordering_margin": 0.189932047460173,
+        "measurement_mutual_information": 0.44301403957326924,
+        "measurement_accuracy": 0.9316666666666666,
+        "reset_signal": 0.4782319756184976
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_measurement_accuracy": 0.9,
+        "reset_memory_entropy_drop": 0.5136741792484837
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.34510881311207176,
+        "measurement_mutual_information_delta_qit_minus_open": -0.025028657989869474,
+        "measurement_accuracy_delta_qit_minus_open": -0.03166666666666662,
+        "reset_effect_delta_qit_minus_open": 0.03544220362998607
+      }
+    },
+    {
+      "pair_id": "szilard_reverse_recovery_pair",
+      "open_row_id": "szilard_reverse_recovery",
+      "qit_row_id": "qit_szilard_reverse_recovery_companion",
+      "matched_axes": [
+        "erase",
+        "naive_reverse",
+        "recovery",
+        "protocol_duration"
+      ],
+      "open_metrics": {
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635,
+        "mean_recovery_vs_naive_gap": 0.2256924453331397
+      },
+      "qit_metrics": {
+        "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193,
+        "mean_recovery_vs_naive_gap": 0.2587702021798062
+      },
+      "delta": {
+        "recovery_fraction_delta_qit_minus_open": 0.1178777499710223,
+        "naive_fraction_delta_qit_minus_open": 0.08479999312435577,
+        "gap_delta_qit_minus_open": 0.03307775684666647
+      }
+    },
+    {
+      "pair_id": "szilard_record_reset_pair",
+      "open_row_id": "szilard_record_reset_sweep",
+      "qit_row_id": "qit_szilard_record_companion",
+      "matched_axes": [
+        "record_lifetime",
+        "measurement_error_or_flip",
+        "reset_strength"
+      ],
+      "open_metrics": {
+        "best_ordering_margin": 0.026232612370151065,
+        "long_minus_short_margin": 0.0035144962398308,
+        "reset_entropy_drop": 0.009571470105786184,
+        "mean_measurement_mutual_information": 0.3080933271995161
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "long_minus_short_margin": 0.0301558301874993,
+        "reset_entropy_drop": 0.33978255865044,
+        "mean_measurement_mutual_information": 0.41798538158339976
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.15741992441085761,
+        "lifetime_effect_delta_qit_minus_open": 0.0266413339476685,
+        "reset_drop_delta_qit_minus_open": 0.3302110885446538
+      }
+    },
+    {
+      "pair_id": "szilard_record_reset_repair_pair",
+      "open_row_id": "szilard_record_reset_repair_sweep",
+      "qit_row_id": "qit_szilard_record_companion",
+      "matched_axes": [
+        "record_lifetime",
+        "measurement_error_or_flip",
+        "reset_axis_repair",
+        "feedback_strength"
+      ],
+      "open_metrics": {
+        "best_ordering_margin": 0.05294270341938878,
+        "mean_measurement_mutual_information": 0.41539117355052174,
+        "mean_record_survival_fraction": 0.8875,
+        "reset_entropy_drop": 0.017223392618928912,
+        "best_repair_score": 0.6072588884025969
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_record_survival_fraction": 0.7678378308833899,
+        "reset_entropy_drop": 0.33978255865044
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.1307098333616199,
+        "measurement_mutual_information_delta_qit_minus_open": 0.0025942080328780204,
+        "record_survival_delta_qit_minus_open": -0.1196621691166101,
+        "reset_drop_delta_qit_minus_open": 0.3225591660315111
+      }
+    },
+    {
+      "pair_id": "szilard_record_hard_reset_pair",
+      "open_row_id": "szilard_record_hard_reset_repair_sweep",
+      "qit_row_id": "qit_szilard_record_companion",
+      "matched_axes": [
+        "record_lifetime",
+        "measurement_error_or_flip",
+        "hard_reset_mechanics"
+      ],
+      "open_metrics": {
+        "best_ordering_margin": 0.03790279143585795,
+        "mean_measurement_mutual_information": 0.48966461914823095,
+        "mean_record_survival_fraction": 0.7829166666666667,
+        "residual_reset_entropy": 0.3791954263899265,
+        "best_repair_score": 0.7391084770970207
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_record_survival_fraction": 0.7678378308833899,
+        "residual_reset_entropy": 0.06235938445692577
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.14574974534515073,
+        "measurement_mutual_information_delta_qit_minus_open": -0.07167923756483119,
+        "record_survival_delta_qit_minus_open": -0.015078835783276845,
+        "residual_reset_entropy_delta_open_minus_qit": 0.3168360419330007
+      }
+    },
+    {
+      "pair_id": "szilard_record_ordering_pair",
+      "open_row_id": "szilard_record_ordering_amplification_sweep",
+      "qit_row_id": "qit_szilard_record_companion",
+      "matched_axes": [
+        "ordering_amplification",
+        "feedback_asymmetry",
+        "record_wait"
+      ],
+      "open_metrics": {
+        "best_ordering_margin": 0.08247997532188,
+        "mean_measurement_mutual_information": 0.45709848092351457,
+        "mean_record_survival_fraction": 0.94125,
+        "residual_reset_entropy": 0.35684301838834565
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_record_survival_fraction": 0.7678378308833899,
+        "residual_reset_entropy": 0.06235938445692577
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.10117256145912867,
+        "measurement_mutual_information_delta_qit_minus_open": -0.03911309934011481,
+        "record_survival_delta_qit_minus_open": -0.17341216911661017,
+        "residual_reset_entropy_delta_open_minus_qit": 0.29448363393141985
+      }
+    },
+    {
+      "pair_id": "szilard_record_ordering_refinement_pair",
+      "open_row_id": "szilard_record_ordering_refinement_sweep",
+      "qit_row_id": "qit_szilard_record_companion",
+      "matched_axes": [
+        "ordering_refinement",
+        "feedback_asymmetry",
+        "record_wait",
+        "feedback_duration",
+        "feedback_barrier"
+      ],
+      "open_metrics": {
+        "best_ordering_margin": 0.1606231880599962,
+        "mean_measurement_mutual_information": 0.43920926071588573,
+        "mean_record_survival_fraction": 0.8995833333333333,
+        "residual_reset_entropy": 0.25471540316896224
+      },
+      "qit_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_record_survival_fraction": 0.7678378308833899,
+        "residual_reset_entropy": 0.06235938445692577
+      },
+      "delta": {
+        "ordering_margin_delta_qit_minus_open": 0.023029348721012477,
+        "measurement_mutual_information_delta_qit_minus_open": -0.021223879132485968,
+        "record_survival_delta_qit_minus_open": -0.13174550244994343,
+        "residual_reset_entropy_delta_open_minus_qit": 0.19235601871203648
+      }
+    },
+    {
+      "pair_id": "carnot_finite_time_pair",
+      "open_row_id": "carnot_stochastic_finite_time",
+      "qit_row_id": "qit_carnot_finite_time_companion",
+      "matched_axes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "fast_slow_quasistatic_budget"
+      ],
+      "open_metrics": {
+        "baseline_closure": 0.21374951952423066,
+        "best_closure": 0.04507499009112792,
+        "best_forward_efficiency": 0.5281401728113482,
+        "best_reverse_cop": 0.9001824478165095
+      },
+      "qit_metrics": {
+        "baseline_closure": 0.03037527006891637,
+        "best_closure": 1.3186078058335937e-06,
+        "best_forward_efficiency": 0.4999947338413404,
+        "best_reverse_cop": 0.9999999999379234
+      },
+      "delta": {
+        "baseline_closure_delta_qit_minus_open": -0.18337424945531428,
+        "best_closure_delta_qit_minus_open": -0.045073671483322086,
+        "best_forward_efficiency_delta_qit_minus_open": -0.028145438970007763,
+        "best_reverse_cop_delta_qit_minus_open": 0.09981755212141397
+      }
+    },
+    {
+      "pair_id": "carnot_irreversibility_pair",
+      "open_row_id": "carnot_irreversibility_sweep",
+      "qit_row_id": "qit_carnot_irreversibility_companion",
+      "matched_axes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "duration_sweep"
+      ],
+      "open_metrics": {
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "best_forward_efficiency": 0.4382278468709284,
+        "best_reverse_cop": 0.9069921787457502
+      },
+      "qit_metrics": {
+        "best_forward_distance_to_carnot": 5.266158659589237e-06,
+        "best_reverse_distance_to_carnot_cop": 6.207656610968115e-11,
+        "best_forward_efficiency": 0.4999947338413404,
+        "best_reverse_cop": 0.9999999999379234
+      },
+      "delta": {
+        "forward_distance_delta_qit_minus_open": -0.061766886970411994,
+        "reverse_distance_delta_qit_minus_open": -0.09300782119217321,
+        "best_forward_efficiency_delta_qit_minus_open": 0.061766886970411994,
+        "best_reverse_cop_delta_qit_minus_open": 0.09300782119217321
+      }
+    },
+    {
+      "pair_id": "carnot_closure_pair",
+      "open_row_id": "carnot_closure_diagnostic",
+      "qit_row_id": "qit_carnot_closure_companion",
+      "matched_axes": [
+        "forward_engine",
+        "closure_defect",
+        "hold_policy"
+      ],
+      "open_metrics": {
+        "best_closure_defect": 0.0013759122873349683,
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      },
+      "qit_metrics": {
+        "baseline_closure_defect": 0.03037527006891637,
+        "best_closure_defect": 1.1273186190097206e-08,
+        "best_closure_policy": "fixed_full_chain_2000",
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      },
+      "delta": {
+        "best_closure_defect_delta_qit_minus_open": -0.0013759010141487782,
+        "dominant_leg_matches": 1.0
+      }
+    },
+    {
+      "pair_id": "carnot_hold_policy_pair",
+      "open_row_id": "carnot_adaptive_hold_sweep",
+      "qit_row_id": "qit_carnot_hold_policy_companion",
+      "matched_axes": [
+        "baseline_vs_fixed_vs_adaptive",
+        "closure",
+        "efficiency",
+        "hold_budget"
+      ],
+      "open_metrics": {
+        "baseline_closure": 0.07393919458012965,
+        "best_closure": 0.0014798524793151469,
+        "best_efficiency": 0.4230213121224605,
+        "best_closure_strategy": "fixed_full_chain_800"
+      },
+      "qit_metrics": {
+        "baseline_closure": 0.04016895886469031,
+        "best_closure": 0.0003434168608109911,
+        "best_efficiency": 0.4649155632309064,
+        "best_closure_policy": "fixed_full_chain_2000"
+      },
+      "delta": {
+        "baseline_closure_delta_qit_minus_open": -0.03377023571543934,
+        "best_closure_delta_qit_minus_open": -0.0011364356185041558,
+        "best_efficiency_delta_qit_minus_open": 0.04189425110844586
+      }
+    }
+  ]
+}

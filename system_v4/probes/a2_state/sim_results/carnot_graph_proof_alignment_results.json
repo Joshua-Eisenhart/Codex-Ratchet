@@ -1,0 +1,195 @@
+{
+  "name": "carnot_graph_proof_alignment",
+  "classification": "research_support",
+  "classification_note": "Graph/proof alignment bridge for the bounded Carnot engine family. It adds explicit stage-order graph structure and z3 proof surfaces around the reversible Carnot identities without claiming a runtime-geometry engine.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "carnot_cycle",
+    "graph_shell_geometry"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics",
+    "carnot_cycle"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing algebraic proof surface for reversible Carnot efficiency and reverse COP identities"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing stage-order graph construction, topological order, and path-length checks"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_cycle_graph_is_a_single_valid_leg_chain": {
+      "node_count": 5,
+      "edge_count": 4,
+      "topological_order": [
+        "A_hot_high_gap_start",
+        "B_hot_isotherm_low_gap",
+        "C_adiabatic_expand_cold_low_gap",
+        "D_cold_isotherm_high_gap",
+        "A_return_hot_high_gap"
+      ],
+      "longest_path": [
+        "A_hot_high_gap_start",
+        "B_hot_isotherm_low_gap",
+        "C_adiabatic_expand_cold_low_gap",
+        "D_cold_isotherm_high_gap",
+        "A_return_hot_high_gap"
+      ],
+      "longest_path_length": 4,
+      "is_dag": true,
+      "source_count": 1,
+      "sink_count": 1,
+      "pass": true
+    },
+    "z3_forces_the_reversible_carnot_efficiency_identity": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Under reversible heat-ratio closure, Carnot efficiency identity is forced."
+    },
+    "z3_forces_the_reversible_refrigerator_cop_identity": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Under reversible refrigerator bookkeeping, Carnot COP identity is forced."
+    },
+    "measured_exact_row_matches_the_reversible_identities": {
+      "forward_efficiency": 0.5000000000000001,
+      "forward_carnot_bound": 0.5,
+      "reverse_cop": 0.9999999999999999,
+      "reverse_cop_carnot": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "sweep_does_not_break_the_reversible_bound_identity": {
+      "max_efficiency_gap_abs": 1.2212453270876722e-15,
+      "max_cop_gap_abs": 7.771561172376096e-16,
+      "pass": true
+    },
+    "graph_alignment_row_is_not_a_runtime_geometry_claim": {
+      "scope_note": "This row adds graph/proof structure around the exact Carnot cycle; it does not claim that the stochastic runtime rows already inherit graph-native mechanics.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "forward_graph_topological_order_matches_cycle_leg_order": {
+      "topological_order": [
+        "A_hot_high_gap_start",
+        "B_hot_isotherm_low_gap",
+        "C_adiabatic_expand_cold_low_gap",
+        "D_cold_isotherm_high_gap",
+        "A_return_hot_high_gap"
+      ],
+      "pass": true
+    },
+    "heat_work_signs_stay_engine_consistent": {
+      "q_hot": 0.3755915097737852,
+      "q_cold": -0.1877957548868926,
+      "work_net": 0.18779575488689262,
+      "pass": true
+    }
+  },
+  "graph_summary": {
+    "node_count": 5,
+    "edge_count": 4,
+    "topological_order": [
+      "A_hot_high_gap_start",
+      "B_hot_isotherm_low_gap",
+      "C_adiabatic_expand_cold_low_gap",
+      "D_cold_isotherm_high_gap",
+      "A_return_hot_high_gap"
+    ],
+    "longest_path": [
+      "A_hot_high_gap_start",
+      "B_hot_isotherm_low_gap",
+      "C_adiabatic_expand_cold_low_gap",
+      "D_cold_isotherm_high_gap",
+      "A_return_hot_high_gap"
+    ],
+    "longest_path_length": 4,
+    "is_dag": true,
+    "source_count": 1,
+    "sink_count": 1
+  },
+  "summary": {
+    "all_pass": true,
+    "graph_path_length": 4,
+    "cycle_schedule_valid": true,
+    "efficiency_identity_unsat": true,
+    "cop_identity_unsat": true,
+    "forward_efficiency": 0.5000000000000001,
+    "forward_carnot_bound": 0.5,
+    "reverse_cop": 0.9999999999999999,
+    "reverse_cop_carnot": 1.0,
+    "scope_note": "Graph/proof bridge around the exact Carnot row. Useful as a pre-constraint alignment surface before attempting graph-native runtime carriers."
+  }
+}

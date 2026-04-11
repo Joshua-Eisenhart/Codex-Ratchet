@@ -1,0 +1,214 @@
+{
+  "name": "szilard_reset_axis_reconciliation",
+  "classification": "research_support",
+  "classification_note": "Calibration surface that maps open stochastic reset tilt and strict QIT reset strength onto a shared residual-reset-effect score under a high-quality-record regime.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "shared_reset_effect_scale_is_finite": {
+      "open_points": 4,
+      "qit_points": 3,
+      "pass": true
+    },
+    "some_open_reset_setting_maps_cleanly_to_strict_reset_strength": {
+      "best_reset_effect_gap": 0.17767270494994092,
+      "best_open_tilt": 2.75,
+      "best_qit_strength": 0.35,
+      "pass": false
+    }
+  },
+  "negative": {
+    "the_strongest_open_reset_setting_still_does_not_reach_the_strict_strongest_effect": {
+      "open_strongest_effect": 0.05617419276272395,
+      "qit_strongest_effect": 0.8741002520049092,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_curve_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "best_reset_effect_gap": 0.17767270494994092,
+    "best_open_tilt": 2.75,
+    "best_matched_qit_strength": 0.35,
+    "max_open_reset_effect": 0.05617419276272395,
+    "max_qit_reset_effect": 0.8741002520049092,
+    "scope_note": "Reset-axis calibration between open stochastic reset tilt and strict QIT reset strength using a shared residual-reset-effect scale."
+  },
+  "open_curve": [
+    {
+      "reset_tilt": 1.55,
+      "mean_residual_entropy": 0.669794974485879,
+      "reset_effect": 0.03369011189687254,
+      "mean_record_survival_fraction": 0.8300694444444444,
+      "mean_measurement_mutual_information": 0.46372311125279414
+    },
+    {
+      "reset_tilt": 1.95,
+      "mean_residual_entropy": 0.6629132273218341,
+      "reset_effect": 0.0436183744030918,
+      "mean_record_survival_fraction": 0.8300000000000001,
+      "mean_measurement_mutual_information": 0.46228484614938625
+    },
+    {
+      "reset_tilt": 2.35,
+      "mean_residual_entropy": 0.6572235878363956,
+      "reset_effect": 0.05182678907318006,
+      "mean_record_survival_fraction": 0.8301041666666666,
+      "mean_measurement_mutual_information": 0.4555058669356212
+    },
+    {
+      "reset_tilt": 2.75,
+      "mean_residual_entropy": 0.6542101972262323,
+      "reset_effect": 0.05617419276272395,
+      "mean_record_survival_fraction": 0.830486111111111,
+      "mean_measurement_mutual_information": 0.4565843796198518
+    }
+  ],
+  "qit_curve": [
+    {
+      "reset_strength": 0.35,
+      "mean_residual_entropy": 0.5310568627277217,
+      "reset_effect": 0.23384689771266487,
+      "mean_record_survival_fraction": 0.8463328606960097,
+      "mean_measurement_mutual_information": 0.6931471805599453
+    },
+    {
+      "reset_strength": 0.65,
+      "mean_residual_entropy": 0.3682728577195407,
+      "reset_effect": 0.46869457447401175,
+      "mean_record_survival_fraction": 0.8463328606960097,
+      "mean_measurement_mutual_information": 0.6931471805599453
+    },
+    {
+      "reset_strength": 0.95,
+      "mean_residual_entropy": 0.08726705535600487,
+      "reset_effect": 0.8741002520049092,
+      "mean_record_survival_fraction": 0.8463328606960097,
+      "mean_measurement_mutual_information": 0.6931471805599453
+    }
+  ],
+  "mappings": [
+    {
+      "reset_tilt": 1.55,
+      "matched_reset_strength": 0.35,
+      "open_reset_effect": 0.03369011189687254,
+      "matched_qit_reset_effect": 0.23384689771266487,
+      "reset_effect_gap": 0.20015678581579233,
+      "open_residual_entropy": 0.669794974485879,
+      "matched_qit_residual_entropy": 0.5310568627277217
+    },
+    {
+      "reset_tilt": 1.95,
+      "matched_reset_strength": 0.35,
+      "open_reset_effect": 0.0436183744030918,
+      "matched_qit_reset_effect": 0.23384689771266487,
+      "reset_effect_gap": 0.19022852330957307,
+      "open_residual_entropy": 0.6629132273218341,
+      "matched_qit_residual_entropy": 0.5310568627277217
+    },
+    {
+      "reset_tilt": 2.35,
+      "matched_reset_strength": 0.35,
+      "open_reset_effect": 0.05182678907318006,
+      "matched_qit_reset_effect": 0.23384689771266487,
+      "reset_effect_gap": 0.1820201086394848,
+      "open_residual_entropy": 0.6572235878363956,
+      "matched_qit_residual_entropy": 0.5310568627277217
+    },
+    {
+      "reset_tilt": 2.75,
+      "matched_reset_strength": 0.35,
+      "open_reset_effect": 0.05617419276272395,
+      "matched_qit_reset_effect": 0.23384689771266487,
+      "reset_effect_gap": 0.17767270494994092,
+      "open_residual_entropy": 0.6542101972262323,
+      "matched_qit_residual_entropy": 0.5310568627277217
+    }
+  ]
+}

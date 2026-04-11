@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-10T19:02:46.881839+00:00",
+  "generated_at": "2026-04-11T07:26:05.130865+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "sys_executable": "/usr/local/bin/python3",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.11.0",
+      "installed_version": "2.8.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "sympy": {
       "distribution": "sympy",
@@ -39,11 +39,11 @@
     "cvc5": {
       "distribution": "cvc5",
       "import_name": "cvc5",
-      "installed_version": "1.3.3",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'cvc5'",
       "required_floor": "1.3.3",
-      "meets_floor": true
+      "meets_floor": null
     },
     "clifford": {
       "distribution": "clifford",
@@ -57,38 +57,38 @@
     "geomstats": {
       "distribution": "geomstats",
       "import_name": "geomstats",
-      "installed_version": "2.8.0",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'geomstats'",
       "required_floor": "2.8.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "e3nn": {
       "distribution": "e3nn",
       "import_name": "e3nn",
-      "installed_version": "0.6.0",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'e3nn'",
       "required_floor": "0.6.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "rustworkx": {
       "distribution": "rustworkx",
       "import_name": "rustworkx",
-      "installed_version": "0.17.1",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'rustworkx'",
       "required_floor": "0.17.1",
-      "meets_floor": true
+      "meets_floor": null
     },
     "xgi": {
       "distribution": "xgi",
       "import_name": "xgi",
-      "installed_version": "0.10.1",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'xgi'",
       "required_floor": "0.10.1",
-      "meets_floor": true
+      "meets_floor": null
     },
     "TopoNetX": {
       "distribution": "TopoNetX",
@@ -129,20 +129,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "3.0.2",
+      "installed_version": "2.3.1",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.6.1",
+      "installed_version": "3.5",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": true
+      "meets_floor": false
     }
   },
   "known_env_risks": {
@@ -228,13 +228,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 358,
+    "files_with_manifest_or_depth": 405,
     "per_tool": {
       "pytorch": {
         "tried_count": 203,
         "used_count": 189,
-        "load_bearing_count": 148,
-        "depth_present_count": 177,
+        "load_bearing_count": 147,
+        "depth_present_count": 176,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -312,7 +312,6 @@
           "layer_triple_catalog_results.json",
           "lego_choi_state_duality_results.json",
           "lego_clifford_hierarchy_results.json",
-          "lego_entanglement_distillation_results.json",
           "lego_entropy_bipartite_cut_results.json",
           "lego_entropy_finite_blocklength_results.json",
           "lego_entropy_smooth_one_shot_results.json",
@@ -418,7 +417,7 @@
         "tried_count": 161,
         "used_count": 113,
         "load_bearing_count": 72,
-        "depth_present_count": 114,
+        "depth_present_count": 112,
         "anchor_stage_coverage": [
           "boundary",
           "lego",
@@ -527,7 +526,7 @@
         "tried_count": 166,
         "used_count": 118,
         "load_bearing_count": 56,
-        "depth_present_count": 118,
+        "depth_present_count": 117,
         "anchor_stage_coverage": [
           "lego",
           "coupling",
@@ -594,8 +593,8 @@
         ]
       },
       "clifford": {
-        "tried_count": 95,
-        "used_count": 27,
+        "tried_count": 96,
+        "used_count": 28,
         "load_bearing_count": 18,
         "depth_present_count": 35,
         "anchor_stage_coverage": [
@@ -626,7 +625,7 @@
         "tried_count": 110,
         "used_count": 30,
         "load_bearing_count": 20,
-        "depth_present_count": 40,
+        "depth_present_count": 39,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -677,8 +676,8 @@
       "rustworkx": {
         "tried_count": 120,
         "used_count": 37,
-        "load_bearing_count": 26,
-        "depth_present_count": 42,
+        "load_bearing_count": 25,
+        "depth_present_count": 41,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -704,7 +703,6 @@
           "pyg_dynamic_edge_werner_results.json",
           "rustworkx_3qubit_dag_results.json",
           "rustworkx_bridge_dag_results.json",
-          "rustworkx_cascade_dag_results.json",
           "rustworkx_dag_reduction_results.json",
           "rustworkx_family_dag_results.json",
           "tools_load_bearing_results.json",

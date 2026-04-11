@@ -1,0 +1,524 @@
+{
+  "name": "carnot_topology_array",
+  "classification": "exploratory",
+  "classification_note": "Exploratory topology array for stochastic Carnot-like cycles across multiple 1D working-substance geometries. The array is meant to expose where simple harmonic assumptions hold, break, or need QIT-aligned repair.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "all_topologies_produce_finite_rows": {
+      "pass": true
+    },
+    "at_least_one_topology_behaves_engine_like": {
+      "best_topology": "quartic_single_well",
+      "best_forward_efficiency": 0.5323925000882832,
+      "pass": true
+    },
+    "at_least_one_topology_behaves_refrigerator_like": {
+      "best_topology": "soft_double_well",
+      "best_reverse_cop": 0.9380410823158232,
+      "pass": true
+    },
+    "nonharmonic_topologies_show_a_distinct_closure_profile": {
+      "harmonic_best_return_proxy": 0.04881663698522096,
+      "best_nonharmonic_return_proxy": 0.04409718810942509,
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_topology_hits_carnot_exactly_at_this_bounded_grid": {
+      "best_forward_distance_to_carnot": 0.004211866079605553,
+      "best_reverse_distance_to_carnot_cop": 0.06195891768417683,
+      "pass": true
+    },
+    "closure_is_not_exact_for_every_topology": {
+      "max_return_proxy": 0.5106554763745067,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_have_closed_bookkeeping": {
+      "pass": true
+    },
+    "all_rows_have_finite_statistics": {
+      "pass": true
+    },
+    "same_bath_pair_across_the_array": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "step_grid": [
+      120,
+      520,
+      2500
+    ],
+    "topologies": {
+      "harmonic": {
+        "label": "harmonic_well",
+        "note": "Baseline Gaussian working substance.",
+        "steps": [
+          120,
+          520,
+          2500
+        ],
+        "best_forward": {
+          "topology": "harmonic",
+          "label": "harmonic_well",
+          "steps": 2500,
+          "forward_efficiency": 0.41981132448221353,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.07368475037527022,
+          "forward_cycle_delta_u": 0.049085769888639365,
+          "forward_work_by_system": 0.4120905589274015,
+          "forward_q_hot": 0.9816089631113818,
+          "reverse_cop": 0.7790882368836858,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.02394852359517169,
+          "reverse_cycle_delta_u": 0.015620156761824502,
+          "reverse_work_input": 0.5329405980732185,
+          "reverse_q_cold_absorbed": 0.41520775091660084,
+          "return_proxy": 0.04881663698522096,
+          "closure_error_max": 1.457167719820518e-16
+        },
+        "best_reverse": {
+          "topology": "harmonic",
+          "label": "harmonic_well",
+          "steps": 2500,
+          "forward_efficiency": 0.41981132448221353,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.07368475037527022,
+          "forward_cycle_delta_u": 0.049085769888639365,
+          "forward_work_by_system": 0.4120905589274015,
+          "forward_q_hot": 0.9816089631113818,
+          "reverse_cop": 0.7790882368836858,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.02394852359517169,
+          "reverse_cycle_delta_u": 0.015620156761824502,
+          "reverse_work_input": 0.5329405980732185,
+          "reverse_q_cold_absorbed": 0.41520775091660084,
+          "return_proxy": 0.04881663698522096,
+          "closure_error_max": 1.457167719820518e-16
+        },
+        "best_closure": {
+          "topology": "harmonic",
+          "label": "harmonic_well",
+          "steps": 2500,
+          "forward_efficiency": 0.41981132448221353,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.07368475037527022,
+          "forward_cycle_delta_u": 0.049085769888639365,
+          "forward_work_by_system": 0.4120905589274015,
+          "forward_q_hot": 0.9816089631113818,
+          "reverse_cop": 0.7790882368836858,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.02394852359517169,
+          "reverse_cycle_delta_u": 0.015620156761824502,
+          "reverse_work_input": 0.5329405980732185,
+          "reverse_q_cold_absorbed": 0.41520775091660084,
+          "return_proxy": 0.04881663698522096,
+          "closure_error_max": 1.457167719820518e-16
+        },
+        "regime_note": "both",
+        "topology_breaks_harmonic_assumption": false
+      },
+      "quartic": {
+        "label": "quartic_single_well",
+        "note": "Single-well geometry with stronger tails than the harmonic baseline.",
+        "steps": [
+          120,
+          520,
+          2500
+        ],
+        "best_forward": {
+          "topology": "quartic",
+          "label": "quartic_single_well",
+          "steps": 2500,
+          "forward_efficiency": 0.5323925000882832,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.21174131621649017,
+          "forward_cycle_delta_u": -0.13743905136865575,
+          "forward_work_by_system": 0.34044061844938733,
+          "forward_q_hot": 0.6394541966555394,
+          "reverse_cop": 0.8080772929558375,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.06556230551279374,
+          "reverse_cycle_delta_u": -0.04502017500707592,
+          "reverse_work_input": 0.24113359352809044,
+          "reverse_q_cold_absorbed": 0.1948545814988926,
+          "return_proxy": 0.13865181086464196,
+          "closure_error_max": 2.7755575615628914e-16
+        },
+        "best_reverse": {
+          "topology": "quartic",
+          "label": "quartic_single_well",
+          "steps": 2500,
+          "forward_efficiency": 0.5323925000882832,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.21174131621649017,
+          "forward_cycle_delta_u": -0.13743905136865575,
+          "forward_work_by_system": 0.34044061844938733,
+          "forward_q_hot": 0.6394541966555394,
+          "reverse_cop": 0.8080772929558375,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.06556230551279374,
+          "reverse_cycle_delta_u": -0.04502017500707592,
+          "reverse_work_input": 0.24113359352809044,
+          "reverse_q_cold_absorbed": 0.1948545814988926,
+          "return_proxy": 0.13865181086464196,
+          "closure_error_max": 2.7755575615628914e-16
+        },
+        "best_closure": {
+          "topology": "quartic",
+          "label": "quartic_single_well",
+          "steps": 520,
+          "forward_efficiency": 0.37233849630412874,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.004076838310802189,
+          "forward_cycle_delta_u": 0.0017586378338371768,
+          "forward_work_by_system": 0.22455857511233102,
+          "forward_q_hot": 0.603103298050895,
+          "reverse_cop": 0.44315033504390255,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.1898522410909217,
+          "reverse_cycle_delta_u": 0.12311863623246133,
+          "reverse_work_input": 0.24156867503275098,
+          "reverse_q_cold_absorbed": 0.10705123927687521,
+          "return_proxy": 0.09696453970086194,
+          "closure_error_max": 1.1449174941446927e-16
+        },
+        "regime_note": "both",
+        "topology_breaks_harmonic_assumption": true
+      },
+      "soft_double_well": {
+        "label": "soft_double_well",
+        "note": "Double-well geometry with a soft quadratic floor.",
+        "steps": [
+          120,
+          520,
+          2500
+        ],
+        "best_forward": {
+          "topology": "soft_double_well",
+          "label": "soft_double_well",
+          "steps": 520,
+          "forward_efficiency": 0.49578813392039445,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.09756681701736947,
+          "forward_cycle_delta_u": -0.03775692988132896,
+          "forward_work_by_system": 0.16785412369222044,
+          "forward_q_hot": 0.3385601877256137,
+          "reverse_cop": 0.7630433001307534,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.06666121609164988,
+          "reverse_cycle_delta_u": -0.035152198588263045,
+          "reverse_work_input": 0.14773052782561058,
+          "reverse_q_cold_absorbed": 0.112724789482112,
+          "return_proxy": 0.08211401655450967,
+          "closure_error_max": 8.326672684688674e-17
+        },
+        "best_reverse": {
+          "topology": "soft_double_well",
+          "label": "soft_double_well",
+          "steps": 2500,
+          "forward_efficiency": 0.49119366284407673,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.027943087382562903,
+          "forward_cycle_delta_u": 0.008206215395132416,
+          "forward_work_by_system": 0.1691433633865977,
+          "forward_q_hot": 0.34435168077543,
+          "reverse_cop": 0.9380410823158232,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.060251288836287276,
+          "reverse_cycle_delta_u": 0.03827913043596408,
+          "reverse_work_input": 0.1632990834567375,
+          "reverse_q_cold_absorbed": 0.15318124898693997,
+          "return_proxy": 0.04409718810942509,
+          "closure_error_max": 2.636779683484747e-16
+        },
+        "best_closure": {
+          "topology": "soft_double_well",
+          "label": "soft_double_well",
+          "steps": 2500,
+          "forward_efficiency": 0.49119366284407673,
+          "forward_carnot_bound": 0.5,
+          "forward_return_proxy": 0.027943087382562903,
+          "forward_cycle_delta_u": 0.008206215395132416,
+          "forward_work_by_system": 0.1691433633865977,
+          "forward_q_hot": 0.34435168077543,
+          "reverse_cop": 0.9380410823158232,
+          "reverse_cop_carnot": 1.0,
+          "reverse_return_proxy": 0.060251288836287276,
+          "reverse_cycle_delta_u": 0.03827913043596408,
+          "reverse_work_input": 0.1632990834567375,
+          "reverse_q_cold_absorbed": 0.15318124898693997,
+          "return_proxy": 0.04409718810942509,
+          "closure_error_max": 2.636779683484747e-16
+        },
+        "regime_note": "both",
+        "topology_breaks_harmonic_assumption": false
+      }
+    },
+    "best_engine_topology": "quartic_single_well",
+    "best_refrigerator_topology": "soft_double_well",
+    "best_closure_topology": "soft_double_well",
+    "harmonic_best_closure_return_proxy": 0.04881663698522096,
+    "scope_note": "Comparative stochastic Carnot array across multiple 1D working-substance geometries. Use this as the lab matrix for later QIT-aligned topology repair."
+  },
+  "rows": [
+    {
+      "topology": "harmonic",
+      "label": "harmonic_well",
+      "steps": 120,
+      "forward_efficiency": -0.4759861753807959,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.7481484493069996,
+      "forward_cycle_delta_u": 0.49859088256883527,
+      "forward_work_by_system": -0.19262216696941753,
+      "forward_q_hot": 0.4046801712577408,
+      "reverse_cop": 0.24494469679718764,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.27316250344201376,
+      "reverse_cycle_delta_u": 0.1820831847521407,
+      "reverse_work_input": 0.32875426821236603,
+      "reverse_q_cold_absorbed": 0.0805266145480593,
+      "return_proxy": 0.5106554763745067,
+      "closure_error_max": 2.220446049250313e-16
+    },
+    {
+      "topology": "harmonic",
+      "label": "harmonic_well",
+      "steps": 520,
+      "forward_efficiency": 0.11674680792163208,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.4599485909031025,
+      "forward_cycle_delta_u": 0.3066335223148713,
+      "forward_work_by_system": 0.08720425956698924,
+      "forward_q_hot": 0.746951981980752,
+      "reverse_cop": 0.4896433517316795,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.04981385490643325,
+      "reverse_cycle_delta_u": 0.03324538389650447,
+      "reverse_work_input": 0.5389442065516648,
+      "reverse_q_cold_absorbed": 0.2638904476923277,
+      "return_proxy": 0.2548812229047679,
+      "closure_error_max": 3.0531133177191805e-16
+    },
+    {
+      "topology": "harmonic",
+      "label": "harmonic_well",
+      "steps": 2500,
+      "forward_efficiency": 0.41981132448221353,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.07368475037527022,
+      "forward_cycle_delta_u": 0.049085769888639365,
+      "forward_work_by_system": 0.4120905589274015,
+      "forward_q_hot": 0.9816089631113818,
+      "reverse_cop": 0.7790882368836858,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.02394852359517169,
+      "reverse_cycle_delta_u": 0.015620156761824502,
+      "reverse_work_input": 0.5329405980732185,
+      "reverse_q_cold_absorbed": 0.41520775091660084,
+      "return_proxy": 0.04881663698522096,
+      "closure_error_max": 1.457167719820518e-16
+    },
+    {
+      "topology": "quartic",
+      "label": "quartic_single_well",
+      "steps": 120,
+      "forward_efficiency": 0.06270476388755516,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.17559953063612033,
+      "forward_cycle_delta_u": 0.11080156966366511,
+      "forward_work_by_system": 0.018475221531423863,
+      "forward_q_hot": 0.29463824414608136,
+      "reverse_cop": 0.3844991634604134,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.2419173699223317,
+      "reverse_cycle_delta_u": 0.15569851727459064,
+      "reverse_work_input": 0.1892187670334993,
+      "reverse_q_cold_absorbed": 0.07275445763539133,
+      "return_proxy": 0.20875845027922602,
+      "closure_error_max": 1.1102230246251565e-16
+    },
+    {
+      "topology": "quartic",
+      "label": "quartic_single_well",
+      "steps": 520,
+      "forward_efficiency": 0.37233849630412874,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.004076838310802189,
+      "forward_cycle_delta_u": 0.0017586378338371768,
+      "forward_work_by_system": 0.22455857511233102,
+      "forward_q_hot": 0.603103298050895,
+      "reverse_cop": 0.44315033504390255,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.1898522410909217,
+      "reverse_cycle_delta_u": 0.12311863623246133,
+      "reverse_work_input": 0.24156867503275098,
+      "reverse_q_cold_absorbed": 0.10705123927687521,
+      "return_proxy": 0.09696453970086194,
+      "closure_error_max": 1.1449174941446927e-16
+    },
+    {
+      "topology": "quartic",
+      "label": "quartic_single_well",
+      "steps": 2500,
+      "forward_efficiency": 0.5323925000882832,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.21174131621649017,
+      "forward_cycle_delta_u": -0.13743905136865575,
+      "forward_work_by_system": 0.34044061844938733,
+      "forward_q_hot": 0.6394541966555394,
+      "reverse_cop": 0.8080772929558375,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.06556230551279374,
+      "reverse_cycle_delta_u": -0.04502017500707592,
+      "reverse_work_input": 0.24113359352809044,
+      "reverse_q_cold_absorbed": 0.1948545814988926,
+      "return_proxy": 0.13865181086464196,
+      "closure_error_max": 2.7755575615628914e-16
+    },
+    {
+      "topology": "soft_double_well",
+      "label": "soft_double_well",
+      "steps": 120,
+      "forward_efficiency": 0.3870310955967029,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.0362667553568683,
+      "forward_cycle_delta_u": -0.026211737634443497,
+      "forward_work_by_system": 0.1011863829404602,
+      "forward_q_hot": 0.2614425148048032,
+      "reverse_cop": 0.6059623825870075,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.08209668695283168,
+      "reverse_cycle_delta_u": 0.013765459726996776,
+      "reverse_work_input": 0.17923105686753082,
+      "reverse_q_cold_absorbed": 0.10860727825303641,
+      "return_proxy": 0.05918172115484999,
+      "closure_error_max": 5.551115123125783e-17
+    },
+    {
+      "topology": "soft_double_well",
+      "label": "soft_double_well",
+      "steps": 520,
+      "forward_efficiency": 0.49578813392039445,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.09756681701736947,
+      "forward_cycle_delta_u": -0.03775692988132896,
+      "forward_work_by_system": 0.16785412369222044,
+      "forward_q_hot": 0.3385601877256137,
+      "reverse_cop": 0.7630433001307534,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.06666121609164988,
+      "reverse_cycle_delta_u": -0.035152198588263045,
+      "reverse_work_input": 0.14773052782561058,
+      "reverse_q_cold_absorbed": 0.112724789482112,
+      "return_proxy": 0.08211401655450967,
+      "closure_error_max": 8.326672684688674e-17
+    },
+    {
+      "topology": "soft_double_well",
+      "label": "soft_double_well",
+      "steps": 2500,
+      "forward_efficiency": 0.49119366284407673,
+      "forward_carnot_bound": 0.5,
+      "forward_return_proxy": 0.027943087382562903,
+      "forward_cycle_delta_u": 0.008206215395132416,
+      "forward_work_by_system": 0.1691433633865977,
+      "forward_q_hot": 0.34435168077543,
+      "reverse_cop": 0.9380410823158232,
+      "reverse_cop_carnot": 1.0,
+      "reverse_return_proxy": 0.060251288836287276,
+      "reverse_cycle_delta_u": 0.03827913043596408,
+      "reverse_work_input": 0.1632990834567375,
+      "reverse_q_cold_absorbed": 0.15318124898693997,
+      "return_proxy": 0.04409718810942509,
+      "closure_error_max": 2.636779683484747e-16
+    }
+  ]
+}

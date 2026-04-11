@@ -1,0 +1,648 @@
+{
+  "name": "carnot_closure_diagnostic",
+  "classification": "exploratory",
+  "classification_note": "Closure diagnostic for the stochastic harmonic Carnot sidecar. It compares per-leg variance and energy mismatches across several step counts to locate where the forward return defect is accumulated.",
+  "parent_scope_note": "Operational finite-time stochastic Carnot sidecar on a 1D harmonic working substance. It exposes explicit hot/cold isothermal legs, adiabatic jumps, forward and reverse modes, and fast-vs-slow dissipation without claiming a runtime-engine realization.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "higher_step_counts_reduce_forward_return_mismatch": {
+      "first_abs_variance_mismatch": 0.21558902053783024,
+      "last_abs_variance_mismatch": 0.0050720857292541055,
+      "pass": true
+    },
+    "quasistatic_row_is_closest_to_closure": {
+      "best_steps": 5000,
+      "best_abs_variance_mismatch": 0.0013759122873349683,
+      "pass": true
+    },
+    "final_energy_gap_tracks_variance_gap": {
+      "largest_energy_gap_steps": 90,
+      "largest_energy_gap": 0.4311820917571776,
+      "pass": true
+    }
+  },
+  "negative": {
+    "closure_defect_is_not_just_a_single_bad_adiabatic_jump": {
+      "dominant_leg": "hot_iso",
+      "distributed_residue": true,
+      "pass": true
+    },
+    "final_return_state_is_not_exactly_restored_even_at_high_steps": {
+      "final_variance_mismatch": -0.0050720857292541055,
+      "final_internal_energy_mismatch": -0.010128690502495541,
+      "pass": true
+    },
+    "nonzero_cycle_delta_u_persists_across_the_sweep": {
+      "max_cycle_delta_u": 0.4129041129763518,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_have_finite_statistics": {
+      "pass": true
+    },
+    "all_rows_respect_the_same_temperature_pair": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "pass": true
+    },
+    "initial_state_anchor_is_the_hot_equilibrium_point": {
+      "initial_variance": 0.5,
+      "initial_internal_energy": 1.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "step_grid": [
+      90,
+      260,
+      520,
+      1000,
+      2500,
+      5000,
+      8000
+    ],
+    "best_closure_steps": 5000,
+    "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+    "best_closure_abs_energy_mismatch": 0.002750347490189764,
+    "worst_closure_steps": 90,
+    "worst_closure_abs_variance_mismatch": 0.21558902053783024,
+    "dominant_closure_leg_at_best_row": "hot_iso",
+    "scope_note": "Diagnostic sweep that measures forward-cycle return mismatch at the level of leg-state summaries. It is exploratory and isolates where the residue is accumulated."
+  },
+  "rows": [
+    {
+      "steps": 90,
+      "carnot_bound": 0.5,
+      "efficiency": -0.6015136991845126,
+      "efficiency_distance_to_carnot": 1.1015136991845127,
+      "cycle_delta_u": 0.4129041129763518,
+      "initial_variance": 0.5091332139794204,
+      "final_variance": 0.7155890205378302,
+      "initial_internal_energy": 1.018277978780826,
+      "final_internal_energy": 1.4311820917571776,
+      "variance_mismatch": 0.21558902053783024,
+      "variance_mismatch_abs": 0.21558902053783024,
+      "internal_energy_mismatch": 0.4311820917571776,
+      "internal_energy_mismatch_abs": 0.4311820917571776,
+      "hot_iso": {
+        "final_variance": 0.7671832374033067,
+        "variance_mismatch": -0.5661500959300265,
+        "variance_mismatch_abs": 0.5661500959300265,
+        "internal_energy": 0.5755686736894102,
+        "internal_energy_mismatch": -0.4244313263105898,
+        "internal_energy_mismatch_abs": 0.4244313263105898,
+        "mean_delta_u": -0.4427093050914157,
+        "mean_work": -0.7397478700648819,
+        "mean_heat": 0.29703856497346615,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 0.7671832374033067,
+        "variance_mismatch": -0.5661500959300265,
+        "variance_mismatch_abs": 0.5661500959300265,
+        "internal_energy": 0.2877843368447051,
+        "internal_energy_mismatch": -0.7122156631552949,
+        "internal_energy_mismatch_abs": 0.7122156631552949,
+        "mean_delta_u": -0.2877843368447051,
+        "mean_work": -0.2877843368447051,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.7155890205378302,
+        "variance_mismatch": 0.21558902053783024,
+        "variance_mismatch_abs": 0.21558902053783024,
+        "internal_energy": 0.7155910458785888,
+        "internal_energy_mismatch": -0.2844089541214112,
+        "internal_energy_mismatch_abs": 0.2844089541214112,
+        "mean_delta_u": 0.4278067090338838,
+        "mean_work": 0.490613927048647,
+        "mean_heat": -0.0628072180147633,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.7155890205378302,
+        "variance_mismatch": 0.21558902053783024,
+        "variance_mismatch_abs": 0.21558902053783024,
+        "final_internal_energy": 1.4311820917571776,
+        "internal_energy_mismatch": 0.4311820917571776,
+        "internal_energy_mismatch_abs": 0.4311820917571776
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.3621093559243081,
+        "adiabatic_share": 0.3621093559243081,
+        "cold_share": 0.13789064407569196,
+        "final_share": 0.13789064407569196,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 260,
+      "carnot_bound": 0.5,
+      "efficiency": -0.022336658657286148,
+      "efficiency_distance_to_carnot": 0.5223366586572862,
+      "cycle_delta_u": 0.33917030467794235,
+      "initial_variance": 0.4944719306469255,
+      "final_variance": 0.6640920097868465,
+      "initial_internal_energy": 0.9890220161339144,
+      "final_internal_energy": 1.328192320811857,
+      "variance_mismatch": 0.16409200978684646,
+      "variance_mismatch_abs": 0.16409200978684646,
+      "internal_energy_mismatch": 0.3281923208118569,
+      "internal_energy_mismatch_abs": 0.3281923208118569,
+      "hot_iso": {
+        "final_variance": 0.9673559042799819,
+        "variance_mismatch": -0.3659774290533514,
+        "variance_mismatch_abs": 0.3659774290533514,
+        "internal_energy": 0.7255199611145269,
+        "internal_energy_mismatch": -0.2744800388854731,
+        "internal_energy_mismatch_abs": 0.2744800388854731,
+        "mean_delta_u": -0.2635020550193875,
+        "mean_work": -0.8399378664128164,
+        "mean_heat": 0.576435811393429,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 0.9673559042799819,
+        "variance_mismatch": -0.3659774290533514,
+        "variance_mismatch_abs": 0.3659774290533514,
+        "internal_energy": 0.36275998055726344,
+        "internal_energy_mismatch": -0.6372400194427366,
+        "internal_energy_mismatch_abs": 0.6372400194427366,
+        "mean_delta_u": -0.36275998055726344,
+        "mean_work": -0.36275998055726344,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.6640920097868465,
+        "variance_mismatch": 0.16409200978684646,
+        "variance_mismatch_abs": 0.16409200978684646,
+        "internal_energy": 0.6640961604059284,
+        "internal_energy_mismatch": -0.33590383959407155,
+        "internal_energy_mismatch_abs": 0.33590383959407155,
+        "mean_delta_u": 0.30133617984866484,
+        "mean_work": 0.5514773365210823,
+        "mean_heat": -0.2501411566724175,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.6640920097868465,
+        "variance_mismatch": 0.16409200978684646,
+        "variance_mismatch_abs": 0.16409200978684646,
+        "final_internal_energy": 1.328192320811857,
+        "internal_energy_mismatch": 0.3281923208118569,
+        "internal_energy_mismatch_abs": 0.3281923208118569
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.34521649640292135,
+        "adiabatic_share": 0.34521649640292135,
+        "cold_share": 0.15478350359707865,
+        "final_share": 0.15478350359707865,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 520,
+      "carnot_bound": 0.5,
+      "efficiency": 0.22298427683779834,
+      "efficiency_distance_to_carnot": 0.2770157231622017,
+      "cycle_delta_u": 0.1538463169846065,
+      "initial_variance": 0.5006081907355031,
+      "final_variance": 0.5773826627000059,
+      "initial_internal_energy": 1.0013384993251055,
+      "final_internal_energy": 1.155184816309712,
+      "variance_mismatch": 0.07738266270000593,
+      "variance_mismatch_abs": 0.07738266270000593,
+      "internal_energy_mismatch": 0.15518481630971204,
+      "internal_energy_mismatch_abs": 0.15518481630971204,
+      "hot_iso": {
+        "final_variance": 1.081104937867435,
+        "variance_mismatch": -0.25222839546589837,
+        "variance_mismatch_abs": 0.25222839546589837,
+        "internal_energy": 0.8110134920020153,
+        "internal_energy_mismatch": -0.18898650799798467,
+        "internal_energy_mismatch_abs": 0.18898650799798467,
+        "mean_delta_u": -0.19032500732309018,
+        "mean_work": -0.8864094766539132,
+        "mean_heat": 0.6960844693308232,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 1.081104937867435,
+        "variance_mismatch": -0.25222839546589837,
+        "variance_mismatch_abs": 0.25222839546589837,
+        "internal_energy": 0.40550674600100767,
+        "internal_energy_mismatch": -0.5944932539989923,
+        "internal_energy_mismatch_abs": 0.5944932539989923,
+        "mean_delta_u": -0.40550674600100767,
+        "mean_work": -0.40550674600100767,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.5773826627000059,
+        "variance_mismatch": 0.07738266270000593,
+        "variance_mismatch_abs": 0.07738266270000593,
+        "internal_energy": 0.577592408154856,
+        "internal_energy_mismatch": -0.422407591845144,
+        "internal_energy_mismatch_abs": 0.422407591845144,
+        "mean_delta_u": 0.17208566215384832,
+        "mean_work": 0.5591079224883085,
+        "mean_heat": -0.38702226033446024,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.5773826627000059,
+        "variance_mismatch": 0.07738266270000593,
+        "variance_mismatch_abs": 0.07738266270000593,
+        "final_internal_energy": 1.155184816309712,
+        "internal_energy_mismatch": 0.15518481630971204,
+        "internal_energy_mismatch_abs": 0.15518481630971204
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.3826151902630393,
+        "adiabatic_share": 0.3826151902630393,
+        "cold_share": 0.11738480973696071,
+        "final_share": 0.11738480973696071,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 1000,
+      "carnot_bound": 0.5,
+      "efficiency": 0.33692973765782835,
+      "efficiency_distance_to_carnot": 0.16307026234217165,
+      "cycle_delta_u": 0.09778755735010825,
+      "initial_variance": 0.48870466097554077,
+      "final_variance": 0.5375929137916923,
+      "initial_internal_energy": 0.9774096842252166,
+      "final_internal_energy": 1.0751972415753248,
+      "variance_mismatch": 0.03759291379169227,
+      "variance_mismatch_abs": 0.03759291379169227,
+      "internal_energy_mismatch": 0.07519724157532481,
+      "internal_energy_mismatch_abs": 0.07519724157532481,
+      "hot_iso": {
+        "final_variance": 1.136897798244823,
+        "variance_mismatch": -0.1964355350885103,
+        "variance_mismatch_abs": 0.1964355350885103,
+        "internal_energy": 0.8526750415883261,
+        "internal_energy_mismatch": -0.14732495841167392,
+        "internal_energy_mismatch_abs": 0.14732495841167392,
+        "mean_delta_u": -0.12473464263689055,
+        "mean_work": -0.9088387174502738,
+        "mean_heat": 0.7841040748133834,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 1.136897798244823,
+        "variance_mismatch": -0.1964355350885103,
+        "variance_mismatch_abs": 0.1964355350885103,
+        "internal_energy": 0.42633752079416304,
+        "internal_energy_mismatch": -0.5736624792058369,
+        "internal_energy_mismatch_abs": 0.5736624792058369,
+        "mean_delta_u": -0.42633752079416304,
+        "mean_work": -0.42633752079416304,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.5375929137916923,
+        "variance_mismatch": 0.03759291379169227,
+        "variance_mismatch_abs": 0.03759291379169227,
+        "internal_energy": 0.5375986207876624,
+        "internal_energy_mismatch": -0.4624013792123376,
+        "internal_energy_mismatch_abs": 0.4624013792123376,
+        "mean_delta_u": 0.1112610999934994,
+        "mean_work": 0.5333896372334669,
+        "mean_heat": -0.4221285372399675,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.5375929137916923,
+        "variance_mismatch": 0.03759291379169227,
+        "variance_mismatch_abs": 0.03759291379169227,
+        "final_internal_energy": 1.0751972415753248,
+        "internal_energy_mismatch": 0.07519724157532481,
+        "internal_energy_mismatch_abs": 0.07519724157532481
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.4196830257783407,
+        "adiabatic_share": 0.4196830257783407,
+        "cold_share": 0.08031697422165927,
+        "final_share": 0.08031697422165927,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 2500,
+      "carnot_bound": 0.5,
+      "efficiency": 0.473379285760259,
+      "efficiency_distance_to_carnot": 0.026620714239740995,
+      "cycle_delta_u": -0.020259644071826954,
+      "initial_variance": 0.504206239833861,
+      "final_variance": 0.4942747967788068,
+      "initial_internal_energy": 1.0088858584607516,
+      "final_internal_energy": 0.9886262143889247,
+      "variance_mismatch": -0.005725203221193187,
+      "variance_mismatch_abs": 0.005725203221193187,
+      "internal_energy_mismatch": -0.011373785611075271,
+      "internal_energy_mismatch_abs": 0.011373785611075271,
+      "hot_iso": {
+        "final_variance": 1.2956627769418896,
+        "variance_mismatch": -0.03767055639144368,
+        "variance_mismatch_abs": 0.03767055639144368,
+        "internal_energy": 0.9718152048767281,
+        "internal_energy_mismatch": -0.028184795123271877,
+        "internal_energy_mismatch_abs": 0.028184795123271877,
+        "mean_delta_u": -0.037070653584023644,
+        "mean_work": -0.9596544104224908,
+        "mean_heat": 0.9225837568384672,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 1.2956627769418896,
+        "variance_mismatch": -0.03767055639144368,
+        "variance_mismatch_abs": 0.03767055639144368,
+        "internal_energy": 0.48590760243836406,
+        "internal_energy_mismatch": -0.5140923975616359,
+        "internal_energy_mismatch_abs": 0.5140923975616359,
+        "mean_delta_u": -0.48590760243836406,
+        "mean_work": -0.48590760243836406,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.4942747967788068,
+        "variance_mismatch": -0.005725203221193187,
+        "variance_mismatch_abs": 0.005725203221193187,
+        "internal_energy": 0.49431310719446236,
+        "internal_energy_mismatch": -0.5056868928055376,
+        "internal_energy_mismatch_abs": 0.5056868928055376,
+        "mean_delta_u": 0.008405504756098343,
+        "mean_work": 0.5145168658001824,
+        "mean_heat": -0.506111361044084,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.4942747967788068,
+        "variance_mismatch": -0.005725203221193187,
+        "variance_mismatch_abs": 0.005725203221193187,
+        "final_internal_energy": 0.9886262143889247,
+        "internal_energy_mismatch": -0.011373785611075271,
+        "internal_energy_mismatch_abs": 0.011373785611075271
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.43403499244744176,
+        "adiabatic_share": 0.43403499244744176,
+        "cold_share": 0.06596500755255826,
+        "final_share": 0.06596500755255826,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 5000,
+      "carnot_bound": 0.5,
+      "efficiency": 0.5022150795754161,
+      "efficiency_distance_to_carnot": 0.0022150795754161123,
+      "cycle_delta_u": -0.046778851887716466,
+      "initial_variance": 0.5219812318930689,
+      "final_variance": 0.49862408771266503,
+      "initial_internal_energy": 1.0440285043975266,
+      "final_internal_energy": 0.9972496525098102,
+      "variance_mismatch": -0.0013759122873349683,
+      "variance_mismatch_abs": 0.0013759122873349683,
+      "internal_energy_mismatch": -0.002750347490189764,
+      "internal_energy_mismatch_abs": 0.002750347490189764,
+      "hot_iso": {
+        "final_variance": 1.2794426510503742,
+        "variance_mismatch": -0.05389068228295901,
+        "variance_mismatch_abs": 0.05389068228295901,
+        "internal_energy": 0.9608775396438254,
+        "internal_energy_mismatch": -0.039122460356174615,
+        "internal_energy_mismatch_abs": 0.039122460356174615,
+        "mean_delta_u": -0.08315096475370126,
+        "mean_work": -0.9676957659597605,
+        "mean_heat": 0.8845448012060592,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 1.2794426510503742,
+        "variance_mismatch": -0.05389068228295901,
+        "variance_mismatch_abs": 0.05389068228295901,
+        "internal_energy": 0.4804387698219127,
+        "internal_energy_mismatch": -0.5195612301780873,
+        "internal_energy_mismatch_abs": 0.5195612301780873,
+        "mean_delta_u": -0.4804387698219127,
+        "mean_work": -0.4804387698219127,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.49862408771266503,
+        "variance_mismatch": -0.0013759122873349683,
+        "variance_mismatch_abs": 0.0013759122873349683,
+        "internal_energy": 0.4986248262549051,
+        "internal_energy_mismatch": -0.5013751737450949,
+        "internal_energy_mismatch_abs": 0.5013751737450949,
+        "mean_delta_u": 0.018186056432992457,
+        "mean_work": 0.5052779718010465,
+        "mean_heat": -0.48709191536805396,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.49862408771266503,
+        "variance_mismatch": -0.0013759122873349683,
+        "variance_mismatch_abs": 0.0013759122873349683,
+        "final_internal_energy": 0.9972496525098102,
+        "internal_energy_mismatch": -0.002750347490189764,
+        "internal_energy_mismatch_abs": 0.002750347490189764
+      },
+      "concentration": {
+        "dominant_leg": "hot_iso",
+        "hot_share": 0.4875520438880585,
+        "adiabatic_share": 0.4875520438880585,
+        "cold_share": 0.012447956111941504,
+        "final_share": 0.012447956111941504,
+        "distributed_residue": true
+      }
+    },
+    {
+      "steps": 8000,
+      "carnot_bound": 0.5,
+      "efficiency": 0.5031096776394212,
+      "efficiency_distance_to_carnot": 0.00310967763942116,
+      "cycle_delta_u": -0.02446454234244355,
+      "initial_variance": 0.5070922922231372,
+      "final_variance": 0.4949279142707459,
+      "initial_internal_energy": 1.0143358518399481,
+      "final_internal_energy": 0.9898713094975045,
+      "variance_mismatch": -0.0050720857292541055,
+      "variance_mismatch_abs": 0.0050720857292541055,
+      "internal_energy_mismatch": -0.010128690502495541,
+      "internal_energy_mismatch_abs": 0.010128690502495541,
+      "hot_iso": {
+        "final_variance": 1.3368056015092005,
+        "variance_mismatch": 0.0034722681758672103,
+        "variance_mismatch_abs": 0.0034722681758672103,
+        "internal_energy": 1.0027207455294496,
+        "internal_energy_mismatch": 0.002720745529449564,
+        "internal_energy_mismatch_abs": 0.002720745529449564,
+        "mean_delta_u": -0.011615106310498386,
+        "mean_work": -0.9767460461168637,
+        "mean_heat": 0.965130939806365,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "adiabatic_expand": {
+        "final_variance": 1.3368056015092005,
+        "variance_mismatch": 0.0034722681758672103,
+        "variance_mismatch_abs": 0.0034722681758672103,
+        "internal_energy": 0.5013603727647248,
+        "internal_energy_mismatch": -0.4986396272352752,
+        "internal_energy_mismatch_abs": 0.4986396272352752,
+        "mean_delta_u": -0.5013603727647248,
+        "mean_work": -0.5013603727647248,
+        "mean_heat": 0.0,
+        "target_variance": 1.3333333333333333,
+        "target_internal_energy": 1.0
+      },
+      "cold_iso": {
+        "final_variance": 0.4949279142707459,
+        "variance_mismatch": -0.0050720857292541055,
+        "variance_mismatch_abs": 0.0050720857292541055,
+        "internal_energy": 0.49493565474875223,
+        "internal_energy_mismatch": -0.5050643452512478,
+        "internal_energy_mismatch_abs": 0.5050643452512478,
+        "mean_delta_u": -0.006424718015972643,
+        "mean_work": 0.49760404812702425,
+        "mean_heat": -0.5040287661429969,
+        "target_variance": 0.5,
+        "target_internal_energy": 1.0
+      },
+      "final_return": {
+        "final_variance": 0.4949279142707459,
+        "variance_mismatch": -0.0050720857292541055,
+        "variance_mismatch_abs": 0.0050720857292541055,
+        "final_internal_energy": 0.9898713094975045,
+        "internal_energy_mismatch": -0.010128690502495541,
+        "internal_energy_mismatch_abs": 0.010128690502495541
+      },
+      "concentration": {
+        "dominant_leg": "cold_iso",
+        "hot_share": 0.20319079794822179,
+        "adiabatic_share": 0.20319079794822179,
+        "cold_share": 0.2968092020517782,
+        "final_share": 0.2968092020517782,
+        "distributed_residue": true
+      }
+    }
+  ]
+}

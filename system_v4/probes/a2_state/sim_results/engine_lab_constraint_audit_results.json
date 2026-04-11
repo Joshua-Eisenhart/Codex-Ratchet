@@ -1,0 +1,739 @@
+{
+  "name": "engine_lab_constraint_audit",
+  "classification": "exploratory",
+  "classification_note": "Constraint audit over the engine lab. It compares open-lab rows against strict QIT anchors and companion readout surfaces to identify repairable rows, topology-only rows, and rows that are still too open.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "audited_rows": 22,
+    "clean_rows": 16,
+    "repair_toward_qit_alignment_count": 12,
+    "topology_lab_only_count": 2,
+    "not_ready_count": 5,
+    "route_counts": {
+      "keep_as_open_lab_sidecar": 3,
+      "open_probe_not_ready_for_alignment": 5,
+      "repair_toward_qit_alignment": 12,
+      "topology_lab_only_until_reexpressed": 2
+    },
+    "scope_note": "Constraint audit over the open engine lab. A 'repair' route means the row is a good candidate for QIT-aligned redesign. A 'topology_lab_only' route means the row is informative but still outside the strict carrier/readout envelope."
+  },
+  "rows": [
+    {
+      "row_id": "szilard_graph_proof_alignment",
+      "family": "szilard",
+      "level": "graph_proof_alignment",
+      "closest_strict_anchor": "qit_szilard_landauer_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "same_family_open_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [
+        "information_gain"
+      ],
+      "strict_anchor_readouts": [
+        "information_gain",
+        "system_free_energy_gain",
+        "erasure_cost"
+      ],
+      "open_row_readouts": [
+        "information_gain",
+        "graph_schedule",
+        "proof_identity",
+        "operational_distinguishability"
+      ],
+      "likely_constraint_relation": "graph_proof_bridge_surface",
+      "route": "keep_as_open_lab_sidecar",
+      "headline_metrics": {
+        "all_pass": true,
+        "graph_path_length": 3,
+        "protocol_schedule_valid": true,
+        "ktln2_balance_unsat": true,
+        "ordering_precedence_unsat": true,
+        "helstrom_measurement_guess_probability": 0.75,
+        "helstrom_erased_guess_probability": 0.5,
+        "wrong_order_vs_feedback_guess_probability": 0.75
+      }
+    },
+    {
+      "row_id": "szilard_substeps",
+      "family": "szilard",
+      "level": "stochastic_submechanics",
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "logical_bit_entropy",
+        "measurement_mutual_information",
+        "work_heat_bookkeeping"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "ordered_final_entropy": 0.6562408706276686,
+        "ordered_measurement_mi": 0.3152387664274231
+      }
+    },
+    {
+      "row_id": "szilard_substep_refinement_sweep",
+      "family": "szilard",
+      "level": "stochastic_submechanics",
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal",
+        "blind_control_gap"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "open_probe_not_ready_for_alignment",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.07699436415307148,
+        "best_measurement_mutual_information": 0.30732557875898103,
+        "best_measurement_accuracy": 0.8706666666666667,
+        "best_reset_signal": 0.13495979690776605,
+        "best_blind_control_gap": 0.18498601346578858
+      }
+    },
+    {
+      "row_id": "szilard_substep_balanced_refinement_sweep",
+      "family": "szilard",
+      "level": "stochastic_submechanics",
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "balanced_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.15645199104475238,
+        "best_balanced_score": 0.6136417751005354,
+        "best_measurement_mutual_information": 0.4389848211603258,
+        "best_measurement_accuracy": 0.93,
+        "best_reset_signal": 0.37407128786010824
+      }
+    },
+    {
+      "row_id": "szilard_substep_ordering_push_sweep",
+      "family": "szilard",
+      "level": "stochastic_submechanics",
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "push_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.189932047460173,
+        "best_push_score": 0.6279929733082442,
+        "best_measurement_mutual_information": 0.44301403957326924,
+        "best_measurement_accuracy": 0.9316666666666666,
+        "best_reset_signal": 0.4782319756184976
+      }
+    },
+    {
+      "row_id": "szilard_reverse_recovery",
+      "family": "szilard",
+      "level": "stochastic_forward_reverse",
+      "closest_strict_anchor": "qit_szilard_reverse_recovery_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "logical_bit_entropy",
+        "landauer_gap",
+        "restoration_fraction"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635
+      }
+    },
+    {
+      "row_id": "szilard_ordering_sensitivity",
+      "family": "szilard",
+      "level": "parameter_array",
+      "closest_strict_anchor": "qit_attractor_basin_recovery",
+      "strict_anchor_role": "strict_qit_control_family",
+      "geometry_relation": "same_family_open_variant",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [
+        "equivalence_class_recovery",
+        "order_effect",
+        "valid_density_operators"
+      ],
+      "open_row_readouts": [
+        "logical_bit_entropy",
+        "measurement_mutual_information",
+        "ordering_margin"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "open_probe_not_ready_for_alignment",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_margin": 0.014425363812428649
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_sweep",
+      "family": "szilard",
+      "level": "record_reset_array",
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_stage_entropy"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.026232612370151065
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_repair_sweep",
+      "family": "szilard",
+      "level": "record_reset_array",
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_swing",
+        "repair_score"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.05294270341938878,
+        "best_repair_score": 0.6072588884025969,
+        "best_measurement_mutual_information": 0.41539117355052174,
+        "best_record_survival_fraction": 0.8875,
+        "open_reset_swing": 0.017223392618928912
+      }
+    },
+    {
+      "row_id": "szilard_record_hard_reset_repair_sweep",
+      "family": "szilard",
+      "level": "record_reset_array",
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy",
+        "repair_score"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.03790279143585795,
+        "best_repair_score": 0.7391084770970207,
+        "best_measurement_mutual_information": 0.48966461914823095,
+        "best_record_survival_fraction": 0.7829166666666667,
+        "best_reset_stage_entropy": 0.3791954263899265
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_amplification_sweep",
+      "family": "szilard",
+      "level": "record_reset_array",
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.08247997532188,
+        "best_measurement_mutual_information": 0.45709848092351457,
+        "best_record_survival_fraction": 0.94125,
+        "best_reset_stage_entropy": 0.35684301838834565
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_refinement_sweep",
+      "family": "szilard",
+      "level": "record_reset_array",
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_submechanics_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.1606231880599962,
+        "best_measurement_mutual_information": 0.43920926071588573,
+        "best_record_survival_fraction": 0.8995833333333333,
+        "best_reset_stage_entropy": 0.25471540316896224
+      }
+    },
+    {
+      "row_id": "carnot_graph_proof_alignment",
+      "family": "carnot",
+      "level": "graph_proof_alignment",
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "same_family_open_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "open_row_readouts": [
+        "heat_work_bookkeeping",
+        "graph_schedule",
+        "proof_identity"
+      ],
+      "likely_constraint_relation": "graph_proof_bridge_surface",
+      "route": "keep_as_open_lab_sidecar",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0,
+        "graph_path_length": 4,
+        "cycle_schedule_valid": true,
+        "efficiency_identity_unsat": true,
+        "cop_identity_unsat": true
+      }
+    },
+    {
+      "row_id": "carnot_stochastic_finite_time",
+      "family": "carnot",
+      "level": "stochastic_operational",
+      "closest_strict_anchor": "qit_carnot_finite_time_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_open_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "heat_work_bookkeeping",
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "keep_as_open_lab_sidecar",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_slow_efficiency": 0.17162168374974454,
+        "forward_quasistatic_efficiency": 0.5281401728113482,
+        "reverse_slow_cop": 0.5559504780783574,
+        "reverse_quasistatic_cop": 0.9001824478165095
+      }
+    },
+    {
+      "row_id": "carnot_irreversibility_sweep",
+      "family": "carnot",
+      "level": "duration_array",
+      "closest_strict_anchor": "qit_carnot_irreversibility_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_runtime_schedule_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "best_reverse_cop": 0.9069921787457502
+      }
+    },
+    {
+      "row_id": "carnot_closure_diagnostic",
+      "family": "carnot",
+      "level": "diagnostic_array",
+      "closest_strict_anchor": "qit_carnot_closure_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_diagnostic_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "internal_energy_gap",
+        "variance_mismatch",
+        "cycle_delta_u"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      }
+    },
+    {
+      "row_id": "carnot_forward_asymmetric",
+      "family": "carnot",
+      "level": "topology_budget_array",
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "same_family_runtime_schedule_variant",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [
+        "efficiency"
+      ],
+      "strict_anchor_readouts": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "open_row_readouts": [
+        "efficiency",
+        "cycle_delta_u",
+        "variance_mismatch"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "open_probe_not_ready_for_alignment",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_closure_variance_mismatch_abs": 0.00044977673628832093,
+        "best_efficiency_distance_to_carnot": 0.013511707719928767
+      }
+    },
+    {
+      "row_id": "carnot_reverse_asymmetric",
+      "family": "carnot",
+      "level": "topology_budget_array",
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "same_family_runtime_schedule_variant",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [
+        "cop"
+      ],
+      "strict_anchor_readouts": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "open_row_readouts": [
+        "cop",
+        "cycle_delta_u",
+        "variance_mismatch"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "open_probe_not_ready_for_alignment",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_closure_variance_mismatch_abs": 0.0044596912592960725,
+        "best_cop_distance_to_carnot": 0.09570592873213313
+      }
+    },
+    {
+      "row_id": "carnot_topology_array",
+      "family": "carnot",
+      "level": "topology_array",
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "varied_geometry_outside_strict_core",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [
+        "cop",
+        "efficiency"
+      ],
+      "strict_anchor_readouts": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "open_row_readouts": [
+        "efficiency",
+        "cop",
+        "closure_metrics"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "topology_lab_only_until_reexpressed",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "row_id": "carnot_adaptive_hold_sweep",
+      "family": "carnot",
+      "level": "adaptive_hold_array",
+      "closest_strict_anchor": "qit_carnot_hold_policy_companion",
+      "strict_anchor_role": null,
+      "geometry_relation": "same_family_runtime_schedule_variant",
+      "clean_run": true,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [],
+      "open_row_readouts": [
+        "efficiency",
+        "cycle_delta_u",
+        "variance_mismatch",
+        "hold_budget"
+      ],
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "route": "repair_toward_qit_alignment",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_mismatch_abs": 0.0014798524793151469,
+        "baseline_final_variance_mismatch_abs": 0.09712606157817827,
+        "best_efficiency": 0.4230213121224605,
+        "best_closure_defect": 0.0014798524793151469,
+        "dominant_closure_leg_at_best_row": "hot_hold"
+      }
+    },
+    {
+      "row_id": "carnot_entropy_family_array",
+      "family": "carnot",
+      "level": "entropy_family_array",
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "same_family_open_variant",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "open_row_readouts": [
+        "performance",
+        "bath_entropy_proxy",
+        "closure_proxy",
+        "return_proxy"
+      ],
+      "likely_constraint_relation": "controller_readout_surface",
+      "route": "open_probe_not_ready_for_alignment",
+      "headline_metrics": {
+        "all_pass": false
+      }
+    },
+    {
+      "row_id": "szilard_topology_entropy_array",
+      "family": "szilard",
+      "level": "topology_entropy_array",
+      "closest_strict_anchor": "qit_szilard_landauer_cycle",
+      "strict_anchor_role": "strict_qit_engine_core",
+      "geometry_relation": "varied_geometry_outside_strict_core",
+      "clean_run": false,
+      "has_explicit_order_or_direction": true,
+      "has_strict_entropy_anchor": true,
+      "readout_overlap": [],
+      "strict_anchor_readouts": [
+        "information_gain",
+        "system_free_energy_gain",
+        "erasure_cost"
+      ],
+      "open_row_readouts": [
+        "logical_entropy",
+        "information_metrics",
+        "thermo_readouts"
+      ],
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "route": "topology_lab_only_until_reexpressed",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_margin": 0.0195816888383884
+      }
+    }
+  ]
+}

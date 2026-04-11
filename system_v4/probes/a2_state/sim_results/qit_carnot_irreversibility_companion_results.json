@@ -1,0 +1,1127 @@
+{
+  "name": "qit_carnot_irreversibility_companion",
+  "classification": "research_support",
+  "classification_note": "Strict finite-carrier QIT companion for the finite-time Carnot irreversibility sweep. It preserves the duration signal in a bounded two-bath qubit model with explicit forward engine and reverse refrigerator modes. It is a comparison surface, not a canonical engine theorem.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "stochastic_thermodynamics"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "budgeted_forward_rows_close_the_bookkeeping": {
+      "max_bookkeeping_closure_error": 0.0,
+      "pass": true
+    },
+    "budgeted_reverse_rows_close_the_bookkeeping": {
+      "max_bookkeeping_closure_error": 0.0,
+      "pass": true
+    },
+    "forward_slow_improves_on_fast_in_the_expected_direction": {
+      "fast_efficiency": 0.018405507203144923,
+      "slow_efficiency": 0.2856843891320772,
+      "fast_distance_to_carnot": 0.48159449279685507,
+      "slow_distance_to_carnot": 0.21431561086792278,
+      "pass": true
+    },
+    "reverse_slow_improves_on_fast_in_the_expected_direction": {
+      "fast_cop": 0.9177210977496257,
+      "slow_cop": 0.9369476908944389,
+      "fast_distance_to_carnot": 0.08227890225037426,
+      "slow_distance_to_carnot": 0.06305230910556114,
+      "pass": true
+    },
+    "quasistatic_rows_are_closest_to_their_carnot_references_on_average": {
+      "forward_quasistatic_distance": 5.266158659589237e-06,
+      "reverse_quasistatic_distance": 6.207656610968115e-11,
+      "best_forward_distance": 5.266158659589237e-06,
+      "best_reverse_distance": 6.207656610968115e-11,
+      "pass": true
+    }
+  },
+  "negative": {
+    "fast_forward_does_not_saturate_the_carnot_bound": {
+      "fast_distance_to_carnot": 0.48159449279685507,
+      "pass": true
+    },
+    "fast_reverse_does_not_saturate_the_carnot_cop": {
+      "fast_distance_to_carnot": 0.08227890225037426,
+      "pass": true
+    },
+    "budget_signal_is_not_flat_across_the_companion_rows": {
+      "forward_primary_spread": 0.4815892266381955,
+      "reverse_primary_spread": 0.12156181582099157,
+      "forward_closure_spread": 0.04848890373678075,
+      "reverse_closure_spread": 0.04848890373678075,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite_and_valid": {
+      "pass": true
+    },
+    "row_count_matches_the_forward_reverse_budget_grid": {
+      "expected_rows": 16,
+      "actual_rows": 16,
+      "pass": true
+    },
+    "budget_axis_covers_the_open_duration_grid": {
+      "budget_labels": [
+        60,
+        90,
+        150,
+        260,
+        520,
+        1000,
+        2500,
+        5000
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "step_grid": [
+      60,
+      90,
+      150,
+      260,
+      520,
+      1000,
+      2500,
+      5000
+    ],
+    "baseline_forward_steps": 60,
+    "baseline_forward_closure_defect": 0.0225164061035127,
+    "baseline_forward_efficiency": 0.018405507203144923,
+    "best_closure_steps": 5000,
+    "best_closure_defect": 1.3186078058335937e-06,
+    "best_forward_steps": 5000,
+    "best_forward_efficiency": 0.4999947338413404,
+    "best_forward_distance_to_carnot": 5.266158659589237e-06,
+    "best_reverse_steps": 5000,
+    "best_reverse_cop": 0.9999999999379234,
+    "best_reverse_distance_to_carnot_cop": 6.207656610968115e-11,
+    "forward_efficiency_spread": 0.4815892266381955,
+    "reverse_cop_spread": 0.12156181582099157,
+    "forward_closure_spread": 0.04848890373678075,
+    "reverse_closure_spread": 0.04848890373678075,
+    "scope_note": "Strict finite-carrier companion for the finite-time harmonic Carnot irreversibility sweep. It keeps the open duration signal explicit while comparing forward engine and reverse refrigerator behavior against Carnot references."
+  },
+  "rows": [
+    {
+      "steps": 60,
+      "budget_label": "steps_60",
+      "direction": "forward",
+      "closure_defect": 0.0225164061035127,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.018405507203144923,
+      "distance_to_carnot_reference": 0.48159449279685507,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.0013538003269381038,
+      "positive_heat_absorbed": 0.07355408965349142,
+      "total_heat_into_system": 0.06890301863747628,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.0225164061035127,
+      "final_probability_mismatch_abs": 0.022516406103512715,
+      "final_free_energy_mismatch": 0.0032972706890770365,
+      "final_internal_energy_mismatch": 0.06754921831053817,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 60,
+          "delta_u": -0.3388769097208578,
+          "work_by_system": 0.41243099937434924,
+          "heat_into_system": 0.07355408965349142,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.16914100709993435,
+          "trace_distance_to_target": 0.16914100709993438
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.10419983084910556,
+          "work_by_system": 0.10419983084910556,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 60,
+          "delta_u": 0.203213064015698,
+          "work_by_system": -0.20786413503171314,
+          "heat_into_system": -0.00465107101601514,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.022516406103512715,
+          "trace_distance_to_target": 0.0225164061035127
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.30741289486480355,
+          "work_by_system": -0.30741289486480355,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 60,
+      "budget_label": "steps_60",
+      "direction": "reverse",
+      "closure_defect": 0.0225164061035127,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.9177210977496257,
+      "distance_to_carnot_reference": 0.08227890225037426,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.040074315515822745,
+      "work_input": 0.040074315515822745,
+      "q_cold_absorbed": 0.03677704482674571,
+      "total_heat_into_system": 0.027474902794715428,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.0225164061035127,
+      "final_probability_mismatch_abs": 0.022516406103512715,
+      "final_free_energy_mismatch": 0.0032972706890770365,
+      "final_internal_energy_mismatch": 0.06754921831053817,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 60,
+          "delta_u": -0.1694384548604289,
+          "work_by_system": 0.20621549968717462,
+          "heat_into_system": 0.03677704482674571,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.16914100709993435,
+          "trace_distance_to_target": 0.16914100709993438
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.10419983084910556,
+          "work_by_system": -0.10419983084910556,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 60,
+          "delta_u": 0.406426128031396,
+          "work_by_system": -0.4157282700634263,
+          "heat_into_system": -0.00930214203203028,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.022516406103512715,
+          "trace_distance_to_target": 0.0225164061035127
+        }
+      }
+    },
+    {
+      "steps": 90,
+      "budget_label": "steps_90",
+      "direction": "forward",
+      "closure_defect": 0.03037527006891637,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.03272174278745777,
+      "distance_to_carnot_reference": 0.46727825721254224,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.003398613675023837,
+      "positive_heat_absorbed": 0.10386407891227983,
+      "total_heat_into_system": 0.09452442388177287,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.03037527006891637,
+      "final_probability_mismatch_abs": 0.030375270068916355,
+      "final_free_energy_mismatch": 0.005941041355483123,
+      "final_internal_energy_mismatch": 0.09112581020674904,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 90,
+          "delta_u": -0.32721679885332616,
+          "work_by_system": 0.431080877765606,
+          "heat_into_system": 0.10386407891227983,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.1574808962324027,
+          "trace_distance_to_target": 0.15748089623240275
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.11002988628287139,
+          "work_by_system": 0.11002988628287139,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 90,
+          "delta_u": 0.2091713045300376,
+          "work_by_system": -0.21851095956054456,
+          "heat_into_system": -0.00933965503050696,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.030375270068916355,
+          "trace_distance_to_target": 0.03037527006891637
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.319201190812909,
+          "work_by_system": -0.319201190812909,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 90,
+      "budget_label": "steps_90",
+      "direction": "reverse",
+      "closure_defect": 0.03037527006891637,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.8973436134353859,
+      "distance_to_carnot_reference": 0.10265638656461407,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.05787308081162304,
+      "work_input": 0.05787308081162304,
+      "q_cold_absorbed": 0.05193203945613992,
+      "total_heat_into_system": 0.033252729395125996,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.03037527006891637,
+      "final_probability_mismatch_abs": 0.030375270068916355,
+      "final_free_energy_mismatch": 0.005941041355483123,
+      "final_internal_energy_mismatch": 0.09112581020674904,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 90,
+          "delta_u": -0.16360839942666308,
+          "work_by_system": 0.215540438882803,
+          "heat_into_system": 0.05193203945613992,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.1574808962324027,
+          "trace_distance_to_target": 0.15748089623240275
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.11002988628287139,
+          "work_by_system": -0.11002988628287139,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 90,
+          "delta_u": 0.4183426090600752,
+          "work_by_system": -0.4370219191210891,
+          "heat_into_system": -0.01867931006101392,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.030375270068916355,
+          "trace_distance_to_target": 0.03037527006891637
+        }
+      }
+    },
+    {
+      "steps": 150,
+      "budget_label": "steps_150",
+      "direction": "forward",
+      "closure_defect": 0.04099971669274559,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.06712055905690037,
+      "distance_to_carnot_reference": 0.4328794409430996,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.010364191707113779,
+      "positive_heat_absorbed": 0.1544115819763614,
+      "total_heat_into_system": 0.13336334178535048,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04099971669274559,
+      "final_probability_mismatch_abs": 0.040999716692745575,
+      "final_free_energy_mismatch": 0.010684048483897146,
+      "final_internal_energy_mismatch": 0.1229991500782367,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 150,
+          "delta_u": -0.306252611197645,
+          "work_by_system": 0.4606641931740064,
+          "heat_into_system": 0.1544115819763614,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.13651670857672155,
+          "trace_distance_to_target": 0.13651670857672157
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.12051198011071196,
+          "work_by_system": 0.12051198011071196,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 150,
+          "delta_u": 0.21462588063794086,
+          "work_by_system": -0.23567412082895178,
+          "heat_into_system": -0.021048240191010925,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.040999716692745575,
+          "trace_distance_to_target": 0.04099971669274559
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.3351378607486528,
+          "work_by_system": -0.3351378607486528,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 150,
+      "budget_label": "steps_150",
+      "direction": "reverse",
+      "closure_defect": 0.04099971669274559,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.8784381841169319,
+      "distance_to_carnot_reference": 0.12156181588306814,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.08788983947207785,
+      "work_input": 0.08788983947207785,
+      "q_cold_absorbed": 0.0772057909881807,
+      "total_heat_into_system": 0.03510931060615885,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04099971669274559,
+      "final_probability_mismatch_abs": 0.040999716692745575,
+      "final_free_energy_mismatch": 0.010684048483897146,
+      "final_internal_energy_mismatch": 0.1229991500782367,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 150,
+          "delta_u": -0.1531263055988225,
+          "work_by_system": 0.2303320965870032,
+          "heat_into_system": 0.0772057909881807,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.13651670857672155,
+          "trace_distance_to_target": 0.13651670857672157
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.12051198011071196,
+          "work_by_system": -0.12051198011071196,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 150,
+          "delta_u": 0.4292517612758817,
+          "work_by_system": -0.47134824165790357,
+          "heat_into_system": -0.04209648038202185,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.040999716692745575,
+          "trace_distance_to_target": 0.04099971669274559
+        }
+      }
+    },
+    {
+      "steps": 260,
+      "budget_label": "steps_260",
+      "direction": "forward",
+      "closure_defect": 0.04849022234458658,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.13788519221157028,
+      "distance_to_carnot_reference": 0.36211480778842975,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.0305161791924643,
+      "positive_heat_absorbed": 0.2213158549007963,
+      "total_heat_into_system": 0.17598684622622418,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04849022234458658,
+      "final_probability_mismatch_abs": 0.04849022234458661,
+      "final_free_energy_mismatch": 0.014812829482107825,
+      "final_internal_energy_mismatch": 0.14547066703375988,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 260,
+          "delta_u": -0.2747970201352484,
+          "work_by_system": 0.49611287503604473,
+          "heat_into_system": 0.2213158549007963,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.10506111751432495,
+          "trace_distance_to_target": 0.10506111751432498
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.13623977564191025,
+          "work_by_system": 0.13623977564191025,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 260,
+          "delta_u": 0.21013384358450415,
+          "work_by_system": -0.2554628522590763,
+          "heat_into_system": -0.045329008674572124,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.04849022234458661,
+          "trace_distance_to_target": 0.04849022234458658
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.3463736192264144,
+          "work_by_system": -0.3463736192264144,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 260,
+      "budget_label": "steps_260",
+      "direction": "reverse",
+      "closure_defect": 0.04849022234458658,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.8819419772044889,
+      "distance_to_carnot_reference": 0.11805802279551114,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.12547075693250598,
+      "work_input": 0.12547075693250598,
+      "q_cold_absorbed": 0.11065792745039815,
+      "total_heat_into_system": 0.019999910101253904,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04849022234458658,
+      "final_probability_mismatch_abs": 0.04849022234458661,
+      "final_free_energy_mismatch": 0.014812829482107825,
+      "final_internal_energy_mismatch": 0.14547066703375988,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 260,
+          "delta_u": -0.1373985100676242,
+          "work_by_system": 0.24805643751802237,
+          "heat_into_system": 0.11065792745039815,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.10506111751432495,
+          "trace_distance_to_target": 0.10506111751432498
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.13623977564191025,
+          "work_by_system": -0.13623977564191025,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 260,
+          "delta_u": 0.4202676871690083,
+          "work_by_system": -0.5109257045181526,
+          "heat_into_system": -0.09065801734914425,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.04849022234458661,
+          "trace_distance_to_target": 0.04849022234458658
+        }
+      }
+    },
+    {
+      "steps": 520,
+      "budget_label": "steps_520",
+      "direction": "forward",
+      "closure_defect": 0.04016895886469031,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.2856843891320772,
+      "distance_to_carnot_reference": 0.21431561086792278,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.08716043421370234,
+      "positive_heat_absorbed": 0.3050934441272759,
+      "total_heat_into_system": 0.20766731080777334,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04016895886469031,
+      "final_probability_mismatch_abs": 0.040168958864690324,
+      "final_free_energy_mismatch": 0.010265699105800219,
+      "final_internal_energy_mismatch": 0.120506876594071,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 520,
+          "delta_u": -0.22630679779066176,
+          "work_by_system": 0.5314002419179377,
+          "heat_into_system": 0.3050934441272759,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.05657089516973829,
+          "trace_distance_to_target": 0.05657089516973832
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.1604848868142036,
+          "work_by_system": 0.1604848868142036,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 520,
+          "delta_u": 0.17340683719236638,
+          "work_by_system": -0.27083297051186894,
+          "heat_into_system": -0.09742613331950256,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.040168958864690324,
+          "trace_distance_to_target": 0.04016895886469031
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.33389172400656997,
+          "work_by_system": -0.33389172400656997,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 520,
+      "budget_label": "steps_520",
+      "direction": "reverse",
+      "closure_defect": 0.04016895886469031,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.9369476908944389,
+      "distance_to_carnot_reference": 0.06305230910556114,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.16281242116943817,
+      "work_input": 0.16281242116943817,
+      "q_cold_absorbed": 0.15254672206363795,
+      "total_heat_into_system": -0.04230554457536717,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.04016895886469031,
+      "final_probability_mismatch_abs": 0.040168958864690324,
+      "final_free_energy_mismatch": 0.010265699105800219,
+      "final_internal_energy_mismatch": 0.120506876594071,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 520,
+          "delta_u": -0.11315339889533088,
+          "work_by_system": 0.26570012095896883,
+          "heat_into_system": 0.15254672206363795,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.05657089516973829,
+          "trace_distance_to_target": 0.05657089516973832
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.1604848868142036,
+          "work_by_system": -0.1604848868142036,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 520,
+          "delta_u": 0.34681367438473276,
+          "work_by_system": -0.5416659410237379,
+          "heat_into_system": -0.19485226663900512,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.040168958864690324,
+          "trace_distance_to_target": 0.04016895886469031
+        }
+      }
+    },
+    {
+      "steps": 1000,
+      "budget_label": "steps_1000",
+      "direction": "forward",
+      "closure_defect": 0.016372729664607816,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.42857686324058425,
+      "distance_to_carnot_reference": 0.07142313675941575,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.1526404901227359,
+      "positive_heat_absorbed": 0.3561566272350316,
+      "total_heat_into_system": 0.20175867911655948,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.016372729664607816,
+      "final_probability_mismatch_abs": 0.016372729664607844,
+      "final_free_energy_mismatch": 0.0017574579957362335,
+      "final_internal_energy_mismatch": 0.049118188993823586,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 1000,
+          "delta_u": -0.18777673204423995,
+          "work_by_system": 0.5439333592792716,
+          "heat_into_system": 0.3561566272350316,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.018040829423316473,
+          "trace_distance_to_target": 0.0180408294233165
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.1797499196874145,
+          "work_by_system": 0.1797499196874145,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 1000,
+          "delta_u": 0.11844746051903177,
+          "work_by_system": -0.2728454086375039,
+          "heat_into_system": -0.15439794811847213,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.016372729664607844,
+          "trace_distance_to_target": 0.016372729664607816
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.29819738020644626,
+          "work_by_system": -0.29819738020644626,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 1000,
+      "budget_label": "steps_1000",
+      "direction": "reverse",
+      "closure_defect": 0.016372729664607816,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.9902274281697651,
+      "distance_to_carnot_reference": 0.009772571830234944,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.17983577161325204,
+      "work_input": 0.17983577161325204,
+      "q_cold_absorbed": 0.1780783136175158,
+      "total_heat_into_system": -0.13071758261942845,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.016372729664607816,
+      "final_probability_mismatch_abs": 0.016372729664607844,
+      "final_free_energy_mismatch": 0.0017574579957362335,
+      "final_internal_energy_mismatch": 0.049118188993823586,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 1000,
+          "delta_u": -0.09388836602211997,
+          "work_by_system": 0.2719666796396358,
+          "heat_into_system": 0.1780783136175158,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.018040829423316473,
+          "trace_distance_to_target": 0.0180408294233165
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.1797499196874145,
+          "work_by_system": -0.1797499196874145,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 1000,
+          "delta_u": 0.23689492103806353,
+          "work_by_system": -0.5456908172750078,
+          "heat_into_system": -0.30879589623694426,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.016372729664607844,
+          "trace_distance_to_target": 0.016372729664607816
+        }
+      }
+    },
+    {
+      "steps": 2500,
+      "budget_label": "steps_2500",
+      "direction": "forward",
+      "closure_defect": 0.0005059112049379394,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.4979745180298511,
+      "distance_to_carnot_reference": 0.0020254819701489013,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.18678186825098264,
+      "positive_heat_absorbed": 0.37508318495884563,
+      "total_heat_into_system": 0.18829960186579653,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.0005059112049379394,
+      "final_probability_mismatch_abs": 0.0005059112049379533,
+      "final_free_energy_mismatch": 1.714842066458111e-06,
+      "final_internal_energy_mismatch": 0.0015177336148138876,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 2500,
+          "delta_u": -0.17024313244257872,
+          "work_by_system": 0.5453263174014243,
+          "heat_into_system": 0.37508318495884563,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.0005072298216552418,
+          "trace_distance_to_target": 0.0005072298216552695
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.1885167194882451,
+          "work_by_system": 0.1885167194882451,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 2500,
+          "delta_u": 0.0858804330286963,
+          "work_by_system": -0.2726640161217454,
+          "heat_into_system": -0.1867835830930491,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.0005059112049379533,
+          "trace_distance_to_target": 0.0005059112049379394
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.2743971525169414,
+          "work_by_system": -0.2743971525169414,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 2500,
+      "budget_label": "steps_2500",
+      "direction": "reverse",
+      "closure_defect": 0.0005059112049379394,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.9999908562875905,
+      "distance_to_carnot_reference": 9.143712409453997e-06,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.18754330732148927,
+      "work_input": 0.18754330732148927,
+      "q_cold_absorbed": 0.18754159247942281,
+      "total_heat_into_system": -0.18602557370667538,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 0.0005059112049379394,
+      "final_probability_mismatch_abs": 0.0005059112049379533,
+      "final_free_energy_mismatch": 1.714842066458111e-06,
+      "final_internal_energy_mismatch": 0.0015177336148138876,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 2500,
+          "delta_u": -0.08512156622128936,
+          "work_by_system": 0.27266315870071217,
+          "heat_into_system": 0.18754159247942281,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.0005072298216552418,
+          "trace_distance_to_target": 0.0005072298216552695
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.1885167194882451,
+          "work_by_system": -0.1885167194882451,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 2500,
+          "delta_u": 0.1717608660573926,
+          "work_by_system": -0.5453280322434908,
+          "heat_into_system": -0.3735671661860982,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 0.0005059112049379533,
+          "trace_distance_to_target": 0.0005059112049379394
+        }
+      }
+    },
+    {
+      "steps": 5000,
+      "budget_label": "steps_5000",
+      "direction": "forward",
+      "closure_defect": 1.3186078058335937e-06,
+      "primary_metric_name": "efficiency",
+      "primary_metric_value": 0.4999947338413404,
+      "distance_to_carnot_reference": 5.266158659589237e-06,
+      "carnot_reference": 0.5,
+      "work_by_system": 0.18779311765729698,
+      "positive_heat_absorbed": 0.37559019114966913,
+      "total_heat_into_system": 0.18779707348071448,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 1.3186078058335937e-06,
+      "final_probability_mismatch_abs": 1.3186078058335937e-06,
+      "final_free_energy_mismatch": 1.1657674825471531e-11,
+      "final_internal_energy_mismatch": 3.955823417500781e-06,
+      "stages": {
+        "hot_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 5000,
+          "delta_u": -0.16973722123764073,
+          "work_by_system": 0.5453274123873099,
+          "heat_into_system": 0.37559019114966913,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 1.3186167172607455e-06,
+          "trace_distance_to_target": 1.3186167173162566e-06
+        },
+        "adiabatic_expand": {
+          "kind": "adiabatic",
+          "delta_u": -0.1887696750907141,
+          "work_by_system": 0.1887696750907141,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 5000,
+          "delta_u": 0.08487058853052912,
+          "work_by_system": -0.27266370619948377,
+          "heat_into_system": -0.18779311766895465,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 1.3186078058335937e-06,
+          "trace_distance_to_target": 1.3186078058335937e-06
+        },
+        "adiabatic_compress": {
+          "kind": "adiabatic",
+          "delta_u": 0.2736402636212432,
+          "work_by_system": -0.2736402636212432,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        }
+      }
+    },
+    {
+      "steps": 5000,
+      "budget_label": "steps_5000",
+      "direction": "reverse",
+      "closure_defect": 1.3186078058335937e-06,
+      "primary_metric_name": "cop",
+      "primary_metric_value": 0.9999999999379234,
+      "distance_to_carnot_reference": 6.207656610968115e-11,
+      "carnot_reference": 1.0,
+      "work_by_system": -0.18779509558649224,
+      "work_input": 0.18779509558649224,
+      "q_cold_absorbed": 0.18779509557483456,
+      "total_heat_into_system": -0.18779113976307474,
+      "bookkeeping_closure_error": 0.0,
+      "final_trace_distance_to_initial": 1.3186078058335937e-06,
+      "final_probability_mismatch_abs": 1.3186078058335937e-06,
+      "final_free_energy_mismatch": 1.1657674825471531e-11,
+      "final_internal_energy_mismatch": 3.955823417500781e-06,
+      "stages": {
+        "adiabatic_to_cold": {
+          "kind": "adiabatic",
+          "delta_u": -0.27363828570953447,
+          "work_by_system": 0.27363828570953447,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "cold_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 1.0,
+          "steps": 5000,
+          "delta_u": -0.08486861061882037,
+          "work_by_system": 0.27266370619365493,
+          "heat_into_system": 0.18779509557483456,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 1.3186167172607455e-06,
+          "trace_distance_to_target": 1.3186167173162566e-06
+        },
+        "adiabatic_to_hot": {
+          "kind": "adiabatic",
+          "delta_u": 0.1887696750907141,
+          "work_by_system": -0.1887696750907141,
+          "heat_into_system": 0.0,
+          "closure_error": 0.0,
+          "trace_distance_to_target": 0.0
+        },
+        "hot_iso_reverse": {
+          "kind": "isothermal",
+          "bath_temperature": 2.0,
+          "steps": 5000,
+          "delta_u": 0.16974117706105823,
+          "work_by_system": -0.5453274123989675,
+          "heat_into_system": -0.3755862353379093,
+          "closure_error": 0.0,
+          "probability_mismatch_abs": 1.3186078058335937e-06,
+          "trace_distance_to_target": 1.3186078058335937e-06
+        }
+      }
+    }
+  ]
+}

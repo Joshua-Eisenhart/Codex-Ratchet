@@ -1,0 +1,375 @@
+{
+  "name": "engine_lab_translation_targets",
+  "classification": "exploratory",
+  "classification_note": "Controller surface that converts the repair-priority queue into explicit translation targets. It is not a theorem surface.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "target_rows": 13,
+    "translate_now_count": 2,
+    "tighten_then_translate_count": 7,
+    "build_companion_count": 0,
+    "top_translate_now_row": "szilard_reverse_recovery",
+    "scope_note": "Action surface over repair-priority rows. It names which rows are ready to translate, which need tighter metrics first, and which still need a new strict companion."
+  },
+  "rows": [
+    {
+      "row_id": "szilard_reverse_recovery",
+      "family": "szilard",
+      "priority_bucket": "p0_translate_now",
+      "translation_closeness_score": 0.8319028567431039,
+      "pair_id": "szilard_reverse_recovery_pair",
+      "target_qit_row_id": "qit_szilard_reverse_recovery_companion",
+      "action_label": "translate_now",
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635
+      },
+      "delta_summary": {
+        "recovery_fraction_delta_qit_minus_open": 0.1178777499710223,
+        "naive_fraction_delta_qit_minus_open": 0.08479999312435577,
+        "gap_delta_qit_minus_open": 0.03307775684666647
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_refinement_sweep",
+      "family": "szilard",
+      "priority_bucket": "p0_translate_now",
+      "translation_closeness_score": 0.8302946408207019,
+      "pair_id": "szilard_record_ordering_refinement_pair",
+      "target_qit_row_id": "qit_szilard_record_companion",
+      "action_label": "translate_now",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.1606231880599962,
+        "best_measurement_mutual_information": 0.43920926071588573,
+        "best_record_survival_fraction": 0.8995833333333333,
+        "best_reset_stage_entropy": 0.25471540316896224
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.023029348721012477,
+        "measurement_mutual_information_delta_qit_minus_open": -0.021223879132485968,
+        "record_survival_delta_qit_minus_open": -0.13174550244994343,
+        "residual_reset_entropy_delta_open_minus_qit": 0.19235601871203648
+      }
+    },
+    {
+      "row_id": "szilard_substep_ordering_push_sweep",
+      "family": "szilard",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.6552936645593322,
+      "pair_id": "szilard_substep_ordering_push_pair",
+      "target_qit_row_id": "qit_szilard_substep_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.189932047460173,
+        "best_push_score": 0.6279929733082442,
+        "best_measurement_mutual_information": 0.44301403957326924,
+        "best_measurement_accuracy": 0.9316666666666666,
+        "best_reset_signal": 0.4782319756184976
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.34510881311207176,
+        "measurement_mutual_information_delta_qit_minus_open": -0.025028657989869474,
+        "measurement_accuracy_delta_qit_minus_open": -0.03166666666666662,
+        "reset_effect_delta_qit_minus_open": 0.03544220362998607
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_repair_sweep",
+      "family": "szilard",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.6425347425172301,
+      "pair_id": "szilard_record_reset_repair_pair",
+      "target_qit_row_id": "qit_szilard_record_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.05294270341938878,
+        "best_repair_score": 0.6072588884025969,
+        "best_measurement_mutual_information": 0.41539117355052174,
+        "best_record_survival_fraction": 0.8875,
+        "open_reset_swing": 0.017223392618928912
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.1307098333616199,
+        "measurement_mutual_information_delta_qit_minus_open": 0.0025942080328780204,
+        "record_survival_delta_qit_minus_open": -0.1196621691166101,
+        "reset_drop_delta_qit_minus_open": 0.3225591660315111
+      }
+    },
+    {
+      "row_id": "szilard_substep_balanced_refinement_sweep",
+      "family": "szilard",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.6239740493999696,
+      "pair_id": "szilard_substep_balanced_pair",
+      "target_qit_row_id": "qit_szilard_substep_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.15645199104475238,
+        "best_balanced_score": 0.6136417751005354,
+        "best_measurement_mutual_information": 0.4389848211603258,
+        "best_measurement_accuracy": 0.93,
+        "best_reset_signal": 0.37407128786010824
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.3785888695274924,
+        "measurement_mutual_information_delta_qit_minus_open": -0.020999439576926016,
+        "measurement_accuracy_delta_qit_minus_open": -0.030000000000000027,
+        "reset_effect_delta_qit_minus_open": 0.13960289138837545
+      }
+    },
+    {
+      "row_id": "carnot_adaptive_hold_sweep",
+      "family": "carnot",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.6170390853507259,
+      "pair_id": "carnot_hold_policy_pair",
+      "target_qit_row_id": "qit_carnot_hold_policy_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_mismatch_abs": 0.0014798524793151469,
+        "baseline_final_variance_mismatch_abs": 0.09712606157817827,
+        "best_efficiency": 0.4230213121224605,
+        "best_closure_defect": 0.0014798524793151469,
+        "dominant_closure_leg_at_best_row": "hot_hold"
+      },
+      "delta_summary": {
+        "baseline_closure_delta_qit_minus_open": -0.03377023571543934,
+        "best_closure_delta_qit_minus_open": -0.0011364356185041558,
+        "best_efficiency_delta_qit_minus_open": 0.04189425110844586
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_amplification_sweep",
+      "family": "szilard",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.6145941287151934,
+      "pair_id": "szilard_record_ordering_pair",
+      "target_qit_row_id": "qit_szilard_record_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.08247997532188,
+        "best_measurement_mutual_information": 0.45709848092351457,
+        "best_record_survival_fraction": 0.94125,
+        "best_reset_stage_entropy": 0.35684301838834565
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.10117256145912867,
+        "measurement_mutual_information_delta_qit_minus_open": -0.03911309934011481,
+        "record_survival_delta_qit_minus_open": -0.17341216911661017,
+        "residual_reset_entropy_delta_open_minus_qit": 0.29448363393141985
+      }
+    },
+    {
+      "row_id": "szilard_record_hard_reset_repair_sweep",
+      "family": "szilard",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.5927087500061142,
+      "pair_id": "szilard_record_hard_reset_pair",
+      "target_qit_row_id": "qit_szilard_record_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.03790279143585795,
+        "best_repair_score": 0.7391084770970207,
+        "best_measurement_mutual_information": 0.48966461914823095,
+        "best_record_survival_fraction": 0.7829166666666667,
+        "best_reset_stage_entropy": 0.3791954263899265
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.14574974534515073,
+        "measurement_mutual_information_delta_qit_minus_open": -0.07167923756483119,
+        "record_survival_delta_qit_minus_open": -0.015078835783276845,
+        "residual_reset_entropy_delta_open_minus_qit": 0.3168360419330007
+      }
+    },
+    {
+      "row_id": "carnot_stochastic_finite_time",
+      "family": "carnot",
+      "priority_bucket": "p1_good_candidate",
+      "translation_closeness_score": 0.4972567349394149,
+      "pair_id": "carnot_finite_time_pair",
+      "target_qit_row_id": "qit_carnot_finite_time_companion",
+      "action_label": "tighten_metrics_then_translate",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_slow_efficiency": 0.17162168374974454,
+        "forward_quasistatic_efficiency": 0.5281401728113482,
+        "reverse_slow_cop": 0.5559504780783574,
+        "reverse_quasistatic_cop": 0.9001824478165095
+      },
+      "delta_summary": {
+        "baseline_closure_delta_qit_minus_open": -0.18337424945531428,
+        "best_closure_delta_qit_minus_open": -0.045073671483322086,
+        "best_forward_efficiency_delta_qit_minus_open": -0.028145438970007763,
+        "best_reverse_cop_delta_qit_minus_open": 0.09981755212141397
+      }
+    },
+    {
+      "row_id": "carnot_irreversibility_sweep",
+      "family": "carnot",
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "translation_closeness_score": 0.38142401136181836,
+      "pair_id": "carnot_irreversibility_pair",
+      "target_qit_row_id": "qit_carnot_irreversibility_companion",
+      "action_label": "strengthen_open_row_or_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "best_reverse_cop": 0.9069921787457502
+      },
+      "delta_summary": {
+        "forward_distance_delta_qit_minus_open": -0.061766886970411994,
+        "reverse_distance_delta_qit_minus_open": -0.09300782119217321,
+        "best_forward_efficiency_delta_qit_minus_open": 0.061766886970411994,
+        "best_reverse_cop_delta_qit_minus_open": 0.09300782119217321
+      }
+    },
+    {
+      "row_id": "carnot_closure_diagnostic",
+      "family": "carnot",
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "translation_closeness_score": 0.30000573527135826,
+      "pair_id": "carnot_closure_pair",
+      "target_qit_row_id": "qit_carnot_closure_companion",
+      "action_label": "strengthen_open_row_or_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      },
+      "delta_summary": {
+        "best_closure_defect_delta_qit_minus_open": -0.0013759010141487782,
+        "dominant_leg_matches": 1.0
+      }
+    },
+    {
+      "row_id": "szilard_substeps",
+      "family": "szilard",
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "translation_closeness_score": 0.20985938083734834,
+      "pair_id": "szilard_substep_pair",
+      "target_qit_row_id": "qit_szilard_substep_companion",
+      "action_label": "strengthen_open_row_or_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "ordered_final_entropy": 0.6562408706276686,
+        "ordered_measurement_mi": 0.3152387664274231
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.5260868707677199,
+        "measurement_mutual_information_delta_qit_minus_open": 0.10274661515597666,
+        "reset_effect_delta_qit_minus_open": 0.4870755566533206
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_sweep",
+      "family": "szilard",
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "translation_closeness_score": 0.10054948204057523,
+      "pair_id": "szilard_record_reset_pair",
+      "target_qit_row_id": "qit_szilard_record_companion",
+      "action_label": "strengthen_open_row_or_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.026232612370151065
+      },
+      "delta_summary": {
+        "ordering_margin_delta_qit_minus_open": 0.15741992441085761,
+        "lifetime_effect_delta_qit_minus_open": 0.0266413339476685,
+        "reset_drop_delta_qit_minus_open": 0.3302110885446538
+      }
+    }
+  ]
+}

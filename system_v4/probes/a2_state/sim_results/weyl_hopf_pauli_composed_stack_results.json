@@ -1,0 +1,175 @@
+{
+  "name": "weyl_hopf_pauli_composed_stack",
+  "classification": "canonical",
+  "classification_note": "Canonical composed geometry lego: nested Hopf tori, left/right Weyl spinors, Pauli/Bloch density checks, and transport consistency across stacked carriers.",
+  "lego_ids": [
+    "weyl_hopf_pauli_composed_stack"
+  ],
+  "primary_lego_ids": [
+    "weyl_hopf_pauli_composed_stack"
+  ],
+  "dependencies": [
+    "hopf_manifold",
+    "sim_pauli_algebra_relations",
+    "sim_weyl_hopf_tori"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numpy stack"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "spinor_construction": {
+      "pass": true,
+      "sample_count": 192,
+      "level_counts": {
+        "inner": 64,
+        "clifford": 64,
+        "outer": 64
+      },
+      "max_left_norm_error": 1.1102230246251565e-16,
+      "max_right_norm_error": 1.1102230246251565e-16,
+      "max_left_right_overlap": 1.1102230246251565e-16,
+      "max_right_relation_error": 0.0,
+      "max_torus_radius_identity_error": 0.0,
+      "max_nested_cloud_norm_error": 0.0,
+      "description": "Stage 1: construct left/right Weyl spinors directly on nested Hopf tori."
+    },
+    "density_bloch_pauli": {
+      "pass": true,
+      "max_trace_error": 2.2408136244087373e-16,
+      "max_purity_error": 4.449557262054371e-16,
+      "max_left_bloch_norm_error": 2.220446049250313e-16,
+      "max_right_bloch_norm_error": 2.220446049250313e-16,
+      "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+      "max_right_antipode_error": 2.2207757275727963e-16,
+      "max_identity_neutral_error": 0.0,
+      "max_pauli_commutator_error": 0.0,
+      "max_pauli_anticommutator_error": 0.0,
+      "description": "Stage 2: map the spinors through density matrices, Bloch vectors, and Pauli algebra checks."
+    },
+    "nested_transport": {
+      "pass": true,
+      "transport_pairs": 192,
+      "max_direct_transport_error": 2.7755575615628914e-16,
+      "max_cycle_error": 2.603703785810335e-16,
+      "max_partial_alpha0_error": 1.7554167342883506e-16,
+      "max_partial_alpha1_error": 2.7755575615628914e-16,
+      "min_partial_midpoint_separation": 0.1960342806591211,
+      "nonfinite_stereographic_count": 0,
+      "description": "Stage 3: move between nested tori and keep the geometry on a stable S^3 path."
+    },
+    "combined_consistency": {
+      "pass": true,
+      "checked_samples": 192,
+      "max_hopf_bloch_error": 1.129514239719272e-16,
+      "max_right_antipode_error": 1.129514239719272e-16,
+      "max_transport_then_bloch_error": 6.664078821870894e-16,
+      "max_stack_embedding_error": 0.0,
+      "description": "Stage 4: verify the full composed stack after transport, reconstruction, and alternate embedding views."
+    }
+  },
+  "negative": {
+    "transport_not_identity": {
+      "pass": true
+    },
+    "wrong_pauli_sign_rejected": {
+      "pass": true
+    },
+    "left_right_density_distinct": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "inner_radius_identity": {
+      "pass": true,
+      "r_major": 0.9238795325112867,
+      "r_minor": 0.3826834323650898
+    },
+    "clifford_radius_identity": {
+      "pass": true,
+      "r_major": 0.7071067811865476,
+      "r_minor": 0.7071067811865475
+    },
+    "outer_radius_identity": {
+      "pass": true,
+      "r_major": 0.38268343236508984,
+      "r_minor": 0.9238795325112867
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "sample_count": 192,
+    "torus_levels": [
+      "inner",
+      "clifford",
+      "outer"
+    ],
+    "total_stages": 4,
+    "max_spinor_norm_error": 1.1102230246251565e-16,
+    "max_bloch_alignment_error": 2.2207757275727963e-16,
+    "max_transport_error": 2.7755575615628914e-16,
+    "max_stack_error": 1.129514239719272e-16,
+    "scope_note": "Bounded composed geometry stack for nested Hopf tori, Weyl spinors, Pauli/Bloch consistency, and transport closures."
+  }
+}

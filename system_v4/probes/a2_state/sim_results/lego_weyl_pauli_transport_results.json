@@ -1,0 +1,917 @@
+{
+  "name": "lego_weyl_pauli_transport",
+  "classification": "canonical",
+  "classification_note": "Reusable Weyl/Hopf/Pauli transport lego for nested torus geometry. It exposes left/right spinor readouts, Pauli projections, transport roundtrips, and bounded negative controls without making runtime engine claims.",
+  "lego_ids": [
+    "weyl_pauli_transport",
+    "hopf_torus_lego",
+    "pauli_algebra_relations"
+  ],
+  "primary_lego_ids": [
+    "hopf_torus_lego",
+    "pauli_algebra_relations"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sample_records": [
+      {
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 6.19384686373312e-18,
+        "left_bloch": [
+          0.6833409068096337,
+          0.18178340155412298,
+          0.7071067811865474
+        ],
+        "right_bloch": [
+          -0.6833409068096337,
+          -0.18178340155412298,
+          -0.7071067811865474
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730947,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.1494434714023845,
+        "pauli_left": {
+          "x": 0.6833409068096337,
+          "y": 0.18178340155412298,
+          "z": 0.7071067811865474
+        },
+        "pauli_right": {
+          "x": -0.6833409068096337,
+          "y": -0.18178340155412298,
+          "z": -0.7071067811865474
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 0.11,
+        "theta2": 0.37,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 1.1526695496660389e-17,
+        "left_bloch": [
+          0.5671673495609464,
+          0.4222809462810406,
+          0.7071067811865474
+        ],
+        "right_bloch": [
+          -0.5671673495609464,
+          -0.4222809462810406,
+          -0.7071067811865474
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730947,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.4179714645148047,
+        "pauli_left": {
+          "x": 0.5671673495609464,
+          "y": 0.4222809462810406,
+          "z": 0.7071067811865474
+        },
+        "pauli_right": {
+          "x": -0.5671673495609464,
+          "y": -0.4222809462810406,
+          "z": -0.7071067811865474
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 0.43,
+        "theta2": 1.07,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 8.864183389118083e-18,
+        "left_bloch": [
+          0.48240324194234485,
+          0.5169981742361528,
+          0.7071067811865475
+        ],
+        "right_bloch": [
+          -0.48240324194234485,
+          -0.5169981742361528,
+          -0.7071067811865475
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.414213562373095,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.4901398617916701,
+        "pauli_left": {
+          "x": 0.48240324194234485,
+          "y": 0.5169981742361528,
+          "z": 0.7071067811865475
+        },
+        "pauli_right": {
+          "x": -0.48240324194234485,
+          "y": -0.5169981742361528,
+          "z": -0.7071067811865475
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 0.89,
+        "theta2": 1.71,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 3.621168260343334e-18,
+        "left_bloch": [
+          0.40553987129784835,
+          0.5792559130364787,
+          0.7071067811865474
+        ],
+        "right_bloch": [
+          -0.40553987129784835,
+          -0.5792559130364787,
+          -0.7071067811865474
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730947,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.3803747184099848,
+        "pauli_left": {
+          "x": 0.40553987129784835,
+          "y": 0.5792559130364787,
+          "z": 0.7071067811865474
+        },
+        "pauli_right": {
+          "x": -0.40553987129784835,
+          "y": -0.5792559130364787,
+          "z": -0.7071067811865474
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 1.23,
+        "theta2": 2.19,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 5.564939133566565e-18,
+        "left_bloch": [
+          0.522176125570748,
+          0.4767935547843768,
+          0.7071067811865476
+        ],
+        "right_bloch": [
+          -0.522176125570748,
+          -0.4767935547843768,
+          -0.7071067811865476
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730951,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.2171043300318105,
+        "pauli_left": {
+          "x": 0.522176125570748,
+          "y": 0.4767935547843768,
+          "z": 0.7071067811865476
+        },
+        "pauli_right": {
+          "x": -0.522176125570748,
+          "y": -0.4767935547843768,
+          "z": -0.7071067811865476
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 1.87,
+        "theta2": 2.61,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 3.3986125810878874e-18,
+        "left_bloch": [
+          0.5125364584430994,
+          0.48714102554250654,
+          0.7071067811865474
+        ],
+        "right_bloch": [
+          -0.5125364584430994,
+          -0.48714102554250654,
+          -0.7071067811865474
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730947,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 0.9891888779511918,
+        "pauli_left": {
+          "x": 0.5125364584430994,
+          "y": 0.48714102554250654,
+          "z": 0.7071067811865474
+        },
+        "pauli_right": {
+          "x": -0.5125364584430994,
+          "y": -0.48714102554250654,
+          "z": -0.7071067811865474
+        },
+        "level": "inner",
+        "eta": 0.39269908169872414,
+        "theta1": 2.41,
+        "theta2": 3.17,
+        "major_radius": 0.9238795325112867,
+        "minor_radius": 0.3826834323650898
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 1.9012706883022148e-17,
+        "left_bloch": [
+          0.9663899781345132,
+          0.25708055189215506,
+          1.1102230246251565e-16
+        ],
+        "right_bloch": [
+          -0.9663899781345132,
+          -0.25708055189215506,
+          -1.1102230246251565e-16
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 2.220446049250313e-16,
+        "hopf_image_norm_gap": 1.1102230246251565e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.2988807311755277,
+        "pauli_left": {
+          "x": 0.9663899781345132,
+          "y": 0.25708055189215506,
+          "z": 1.1102230246251565e-16
+        },
+        "pauli_right": {
+          "x": -0.9663899781345132,
+          "y": -0.25708055189215506,
+          "z": -1.1102230246251565e-16
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 0.11,
+        "theta2": 0.37,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 5.704004013523115e-17,
+        "left_bloch": [
+          0.8020957578842925,
+          0.5971954413623921,
+          5.551115123125783e-17
+        ],
+        "right_bloch": [
+          -0.8020957578842925,
+          -0.5971954413623921,
+          -5.551115123125783e-17
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.1102230246251565e-16,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 2.0656624947831808,
+        "pauli_left": {
+          "x": 0.8020957578842925,
+          "y": 0.5971954413623921,
+          "z": 5.551115123125783e-17
+        },
+        "pauli_right": {
+          "x": -0.8020957578842925,
+          "y": -0.5971954413623921,
+          "z": -5.551115123125783e-17
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 0.43,
+        "theta2": 1.07,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "left_right_overlap_abs": 1.3569688632130786e-18,
+        "left_bloch": [
+          0.6822212072876136,
+          0.7311458297268958,
+          2.220446049250313e-16
+        ],
+        "right_bloch": [
+          -0.6822212072876136,
+          -0.7311458297268958,
+          -2.220446049250313e-16
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 4.440892098500626e-16,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 2.381722235380842,
+        "pauli_left": {
+          "x": 0.6822212072876136,
+          "y": 0.7311458297268958,
+          "z": 2.220446049250313e-16
+        },
+        "pauli_right": {
+          "x": -0.6822212072876136,
+          "y": -0.7311458297268958,
+          "z": -2.220446049250313e-16
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 0.89,
+        "theta2": 1.71,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 5.456710331657345e-18,
+        "left_bloch": [
+          0.5735199860724568,
+          0.8191915683009983,
+          1.1102230246251565e-16
+        ],
+        "right_bloch": [
+          -0.5735199860724568,
+          -0.8191915683009983,
+          -1.1102230246251565e-16
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 2.220446049250313e-16,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.9274454128798268,
+        "pauli_left": {
+          "x": 0.5735199860724568,
+          "y": 0.8191915683009983,
+          "z": 1.1102230246251565e-16
+        },
+        "pauli_right": {
+          "x": -0.5735199860724568,
+          "y": -0.8191915683009983,
+          "z": -1.1102230246251565e-16
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 1.23,
+        "theta2": 2.19,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 2.5162710876105264e-17,
+        "left_bloch": [
+          0.738468558729588,
+          0.6742879116281449,
+          2.220446049250313e-16
+        ],
+        "right_bloch": [
+          -0.738468558729588,
+          -0.6742879116281449,
+          -2.220446049250313e-16
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 4.440892098500626e-16,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.4551247650534578,
+        "pauli_left": {
+          "x": 0.738468558729588,
+          "y": 0.6742879116281449,
+          "z": 2.220446049250313e-16
+        },
+        "pauli_right": {
+          "x": -0.738468558729588,
+          "y": -0.6742879116281449,
+          "z": -2.220446049250313e-16
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 1.87,
+        "theta2": 2.61,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 5.563176645157114e-17,
+        "left_bloch": [
+          0.7248360107409053,
+          0.688921445110551,
+          1.6653345369377348e-16
+        ],
+        "right_bloch": [
+          -0.7248360107409053,
+          -0.688921445110551,
+          -1.6653345369377348e-16
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 3.3306690738754696e-16,
+        "hopf_image_norm_gap": 1.1102230246251565e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 0.9801133733125906,
+        "pauli_left": {
+          "x": 0.7248360107409053,
+          "y": 0.688921445110551,
+          "z": 1.6653345369377348e-16
+        },
+        "pauli_right": {
+          "x": -0.7248360107409053,
+          "y": -0.688921445110551,
+          "z": -1.6653345369377348e-16
+        },
+        "level": "clifford",
+        "eta": 0.7853981633974483,
+        "theta1": 2.41,
+        "theta2": 3.17,
+        "major_radius": 0.7071067811865476,
+        "minor_radius": 0.7071067811865475
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 1.4248392888933602e-17,
+        "left_bloch": [
+          0.6833409068096338,
+          0.18178340155412298,
+          -0.7071067811865476
+        ],
+        "right_bloch": [
+          -0.6833409068096338,
+          -0.18178340155412298,
+          0.7071067811865476
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730951,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.4154168265465659,
+        "pauli_left": {
+          "x": 0.6833409068096338,
+          "y": 0.18178340155412298,
+          "z": -0.7071067811865476
+        },
+        "pauli_right": {
+          "x": -0.6833409068096338,
+          "y": -0.18178340155412298,
+          "z": 0.7071067811865476
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 0.11,
+        "theta2": 0.37,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 3.0369723838035295e-17,
+        "left_bloch": [
+          0.5671673495609466,
+          0.42228094628104074,
+          -0.7071067811865476
+        ],
+        "right_bloch": [
+          -0.5671673495609466,
+          -0.42228094628104074,
+          0.7071067811865476
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730951,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 3.0903168961980594,
+        "pauli_left": {
+          "x": 0.5671673495609466,
+          "y": 0.42228094628104074,
+          "z": -0.7071067811865476
+        },
+        "pauli_right": {
+          "x": -0.5671673495609466,
+          "y": -0.42228094628104074,
+          "z": 0.7071067811865476
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 0.43,
+        "theta2": 1.07,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 2.070714515859e-17,
+        "left_bloch": [
+          0.4824032419423449,
+          0.5169981742361529,
+          -0.7071067811865475
+        ],
+        "right_bloch": [
+          -0.4824032419423449,
+          -0.5169981742361529,
+          0.7071067811865475
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.414213562373095,
+        "hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true,
+        "stereographic_norm": 4.744844691175731,
+        "pauli_left": {
+          "x": 0.4824032419423449,
+          "y": 0.5169981742361529,
+          "z": -0.7071067811865475
+        },
+        "pauli_right": {
+          "x": -0.4824032419423449,
+          "y": -0.5169981742361529,
+          "z": 0.7071067811865475
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 0.89,
+        "theta2": 1.71,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 1.519371897269509e-17,
+        "left_bloch": [
+          0.40553987129784846,
+          0.5792559130364788,
+          -0.7071067811865476
+        ],
+        "right_bloch": [
+          -0.40553987129784846,
+          -0.5792559130364788,
+          0.7071067811865476
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730951,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 2.6600766161842313,
+        "pauli_left": {
+          "x": 0.40553987129784846,
+          "y": 0.5792559130364788,
+          "z": -0.7071067811865476
+        },
+        "pauli_right": {
+          "x": -0.40553987129784846,
+          "y": -0.5792559130364788,
+          "z": 0.7071067811865476
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 1.23,
+        "theta2": 2.19,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 2.785435235180083e-17,
+        "left_bloch": [
+          0.522176125570748,
+          0.4767935547843769,
+          -0.7071067811865476
+        ],
+        "right_bloch": [
+          -0.522176125570748,
+          -0.4767935547843769,
+          0.7071067811865476
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730951,
+        "hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 1.6618264874265882,
+        "pauli_left": {
+          "x": 0.522176125570748,
+          "y": 0.4767935547843769,
+          "z": -0.7071067811865476
+        },
+        "pauli_right": {
+          "x": -0.522176125570748,
+          "y": -0.4767935547843769,
+          "z": 0.7071067811865476
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 1.87,
+        "theta2": 2.61,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      },
+      {
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "left_right_overlap_abs": 1.154387537465407e-18,
+        "left_bloch": [
+          0.5125364584430995,
+          0.48714102554250666,
+          -0.7071067811865474
+        ],
+        "right_bloch": [
+          -0.5125364584430995,
+          -0.48714102554250666,
+          0.7071067811865474
+        ],
+        "bloch_antipodal_gap": 0.0,
+        "chiral_z_gap": 1.4142135623730947,
+        "hopf_image_norm_gap": 1.1102230246251565e-16,
+        "stereographic_finite": true,
+        "stereographic_norm": 0.9740940084291677,
+        "pauli_left": {
+          "x": 0.5125364584430995,
+          "y": 0.48714102554250666,
+          "z": -0.7071067811865474
+        },
+        "pauli_right": {
+          "x": -0.5125364584430995,
+          "y": -0.48714102554250666,
+          "z": 0.7071067811865474
+        },
+        "level": "outer",
+        "eta": 1.1780972450961724,
+        "theta1": 2.41,
+        "theta2": 3.17,
+        "major_radius": 0.38268343236508984,
+        "minor_radius": 0.9238795325112867
+      }
+    ],
+    "transport_records": [
+      {
+        "label": "inner_to_clifford",
+        "eta_from": 0.39269908169872414,
+        "eta_to": 0.7853981633974483,
+        "source_norm": 0.9999999999999999,
+        "target_norm": 1.0,
+        "roundtrip_error": 0.0,
+        "partial_midpoint_separation": 0.19603428065912115,
+        "partial_midpoint_finite": true,
+        "source_bloch": [
+          0.5671673495609464,
+          0.4222809462810406,
+          0.7071067811865474
+        ],
+        "target_bloch": [
+          0.8020957578842925,
+          0.5971954413623921,
+          5.551115123125783e-17
+        ]
+      },
+      {
+        "label": "inner_to_outer",
+        "eta_from": 0.39269908169872414,
+        "eta_to": 1.1780972450961724,
+        "source_norm": 0.9999999999999999,
+        "target_norm": 1.0,
+        "roundtrip_error": 5.551115123125783e-17,
+        "partial_midpoint_separation": 0.39018064403225644,
+        "partial_midpoint_finite": true,
+        "source_bloch": [
+          0.5671673495609464,
+          0.4222809462810406,
+          0.7071067811865474
+        ],
+        "target_bloch": [
+          0.5671673495609466,
+          0.4222809462810407,
+          -0.7071067811865476
+        ]
+      },
+      {
+        "label": "clifford_to_outer",
+        "eta_from": 0.7853981633974483,
+        "eta_to": 1.1780972450961724,
+        "source_norm": 1.0,
+        "target_norm": 1.0,
+        "roundtrip_error": 0.0,
+        "partial_midpoint_separation": 0.19603428065912118,
+        "partial_midpoint_finite": true,
+        "source_bloch": [
+          0.8020957578842925,
+          0.5971954413623921,
+          5.551115123125783e-17
+        ],
+        "target_bloch": [
+          0.5671673495609466,
+          0.42228094628104074,
+          -0.7071067811865476
+        ]
+      }
+    ],
+    "max_q_norm_gap": 1.1102230246251565e-16,
+    "max_left_norm_gap": 1.1102230246251565e-16,
+    "max_right_norm_gap": 1.1102230246251565e-16,
+    "max_left_right_overlap_abs": 5.704004013523115e-17,
+    "max_bloch_antipodal_gap": 0.0,
+    "max_chiral_z_gap": 1.4142135623730951,
+    "max_hopf_image_norm_gap": 2.220446049250313e-16,
+    "all_stereographic_finite": true,
+    "pauli_readout_gap": 0.0,
+    "transport_roundtrip_error": 5.551115123125783e-17,
+    "transport_partial_midpoint_separation": 0.19603428065912115,
+    "transport_partial_finite": true,
+    "torus_major_radii": [
+      0.9238795325112867,
+      0.7071067811865476,
+      0.38268343236508984
+    ],
+    "torus_minor_radii": [
+      0.3826834323650898,
+      0.7071067811865475,
+      0.9238795325112867
+    ],
+    "radii_monotone": true,
+    "pauli_checks": {
+      "positive": {
+        "cyclic_multiplication_relations_hold": true,
+        "generator_squares_equal_identity": true,
+        "commutator_relations_match_pauli_algebra": true
+      },
+      "negative": {
+        "wrong_sign_relation_is_rejected": true,
+        "distinct_generators_anticommutator_vanishes": true
+      },
+      "boundary": {
+        "identity_is_two_sided_multiplicative_neutral": true,
+        "generator_products_close_in_pauli_set_up_to_phase": true
+      }
+    }
+  },
+  "negative": {
+    "wrong_chirality_identification_is_rejected": {
+      "pass": true,
+      "description": "Left and right Bloch readouts should stay antipodal, not identical."
+    },
+    "wrong_transport_identity_is_rejected": {
+      "pass": true,
+      "description": "Torus transport should roundtrip back to the source to machine precision."
+    },
+    "wrong_sign_relation_is_rejected": {
+      "pass": true,
+      "description": "The Pauli product X Y = -i Z should not be accepted."
+    }
+  },
+  "boundary": {
+    "cases": {
+      "eta_0_north_pole": {
+        "eta": 0.0,
+        "q_norm": 0.9999999999999999,
+        "left_norm": 0.9999999999999999,
+        "right_norm": 0.9999999999999999,
+        "max_bloch_antipodal_gap": 0.0,
+        "max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "stereographic_finite": true
+      },
+      "eta_pi4_clifford_torus": {
+        "eta": 0.7853981633974483,
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "max_bloch_antipodal_gap": 0.0,
+        "max_hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true
+      },
+      "eta_pi2_south_pole": {
+        "eta": 1.5707963267948966,
+        "q_norm": 1.0,
+        "left_norm": 1.0,
+        "right_norm": 1.0,
+        "max_bloch_antipodal_gap": 0.0,
+        "max_hopf_image_norm_gap": 0.0,
+        "stereographic_finite": true
+      }
+    },
+    "pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Reusable Weyl/Hopf/Pauli transport lego on nested torus geometry with bounded sample grids, transport roundtrips, and Pauli-algebra checks.",
+    "sample_count": 18,
+    "transport_count": 3,
+    "torus_levels": [
+      "inner",
+      "clifford",
+      "outer"
+    ]
+  }
+}

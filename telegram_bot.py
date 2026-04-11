@@ -26,8 +26,12 @@ import urllib.request
 from datetime import datetime
 
 # ── Config ────────────────────────────────────────────────────────────
-FILE_TELEGRAM_TOKEN   = ""
+FILE_TELEGRAM_TOKEN = ""
 FILE_TELEGRAM_CHAT_ID = ""
+CODEX_TELEGRAM_ENV_PATH = os.environ.get(
+    "CODEX_TELEGRAM_ENV_PATH",
+    os.path.expanduser("~/.codex/telegram_bot.env"),
+)
 
 def _clean_env_value(value):
     if value is None:
@@ -41,8 +45,39 @@ def _clean_env_value(value):
     )
 
 
-TELEGRAM_TOKEN   = _clean_env_value(os.environ.get("TELEGRAM_TOKEN", FILE_TELEGRAM_TOKEN)) or FILE_TELEGRAM_TOKEN
-TELEGRAM_CHAT_ID = _clean_env_value(os.environ.get("TELEGRAM_CHAT_ID", FILE_TELEGRAM_CHAT_ID))
+def _load_env_file(path):
+    loaded = {}
+    if not path or not os.path.exists(path):
+        return loaded
+    try:
+        with open(path, encoding="utf-8") as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                loaded[key] = _clean_env_value(value)
+    except Exception as e:
+        print(f"  [!] Failed to read env file {path}: {e}", file=sys.stderr)
+    return loaded
+
+
+def _config_value(*names, fallback=""):
+    for name in names:
+        value = _clean_env_value(os.environ.get(name, ""))
+        if value:
+            return value
+        value = _clean_env_value(FILE_ENV_VARS.get(name, ""))
+        if value:
+            return value
+    return _clean_env_value(fallback)
+
+
+FILE_ENV_VARS = _load_env_file(CODEX_TELEGRAM_ENV_PATH)
+TELEGRAM_TOKEN = _config_value("TELEGRAM_TOKEN", "TELEGRAM_BOT_TOKEN", fallback=FILE_TELEGRAM_TOKEN)
+TELEGRAM_CHAT_ID = _config_value("TELEGRAM_CHAT_ID", fallback=FILE_TELEGRAM_CHAT_ID)
 POLL_TIMEOUT     = 30
 SIM_TIMEOUT      = 300
 CODEX_TIMEOUT    = 600
@@ -84,7 +119,8 @@ def get_updates(offset=0):
     try:
         with urllib.request.urlopen(url, timeout=POLL_TIMEOUT + 10) as r:
             return json.loads(r.read()).get("result", [])
-    except Exception:
+    except Exception as e:
+        print(f"  [!] get_updates error: {e}", file=sys.stderr)
         return []
 
 
@@ -93,11 +129,27 @@ def send_message(text, chat_id=None):
     cid = chat_id or TELEGRAM_CHAT_ID
     if not cid:
         print("  [!] No chat_id — message a bot first to set it")
-        return
+        return {"ok": False, "attempted_count": 0, "sent_count": 0, "errors": ["missing chat_id"]}
+    attempted = 0
+    sent = 0
+    errors = []
     for chunk in _split(text):
-        _api("sendMessage", chat_id=cid, text=chunk)
+        attempted += 1
+        result = _api("sendMessage", chat_id=cid, text=chunk)
+        if result.get("ok"):
+            sent += 1
+        else:
+            errors.append(result.get("error", "unknown sendMessage error"))
         if len(text) > MAX_MSG_LEN:
             time.sleep(0.5)
+    if errors:
+        print(f"  [!] send_message error(s): {' | '.join(errors[:3])}", file=sys.stderr)
+    return {
+        "ok": not errors,
+        "attempted_count": attempted,
+        "sent_count": sent,
+        "errors": errors,
+    }
 
 
 def _split(text):
@@ -124,6 +176,18 @@ def _base_env():
     env["CODEX_HOME"] = CODEX_HOME_DIR
     os.makedirs(env["CODEX_HOME"], exist_ok=True)
     return env
+
+
+def resolve_incoming_chat(configured_chat_id, incoming_chat_id):
+    configured = str(configured_chat_id or "").strip()
+    incoming = str(incoming_chat_id or "").strip()
+    if not incoming:
+        return configured, False, "missing incoming chat_id"
+    if not configured:
+        return configured, False, f'unconfigured controller; refusing auto-bind from chat {incoming}. Set TELEGRAM_CHAT_ID="{incoming}" explicitly'
+    if incoming != configured:
+        return configured, False, f"Ignoring message from unknown chat {incoming}"
+    return configured, True, ""
 
 
 # ── Handlers ──────────────────────────────────────────────────────────
@@ -421,7 +485,8 @@ def main():
     offset = 0
 
     if not TELEGRAM_CHAT_ID:
-        print("  Waiting for first message to discover chat_id...")
+        print("  TELEGRAM_CHAT_ID is unset; the bot will not auto-bind.")
+        print("  Send any message to learn your chat_id from the log, then set TELEGRAM_CHAT_ID explicitly.")
 
     print("  Listening...\n")
 
@@ -437,15 +502,11 @@ def main():
                 if not text or not chat_id:
                     continue
 
-                # Auto-discover chat_id from first message
-                if not TELEGRAM_CHAT_ID:
-                    TELEGRAM_CHAT_ID = chat_id
-                    print(f"  chat_id set to {chat_id}")
-                    print(f"  Add to script: TELEGRAM_CHAT_ID = \"{chat_id}\"")
-
-                # Only respond to the configured chat
-                if TELEGRAM_CHAT_ID and chat_id != TELEGRAM_CHAT_ID:
-                    print(f"  [!] Ignoring message from unknown chat {chat_id}")
+                resolved_chat_id, should_process, notice = resolve_incoming_chat(TELEGRAM_CHAT_ID, chat_id)
+                if notice:
+                    level = "[!]" if should_process is False else "[i]"
+                    print(f"  {level} {notice}")
+                if not should_process:
                     continue
 
                 ts = datetime.now().strftime("%H:%M:%S")
@@ -455,8 +516,11 @@ def main():
 
                 preview = reply[:100].replace("\n", " ")
                 print(f"  [{ts}] OUT : {preview}{'...' if len(reply) > 100 else ''}")
-                send_message(reply, chat_id)
-                print(f"  [{ts}] SENT ({len(reply)} chars)\n")
+                send_result = send_message(reply, resolved_chat_id)
+                if send_result.get("ok"):
+                    print(f"  [{ts}] SENT ({len(reply)} chars)\n")
+                else:
+                    print(f"  [{ts}] SEND FAILED ({send_result.get('sent_count', 0)}/{send_result.get('attempted_count', 0)} chunks)\n")
 
         except KeyboardInterrupt:
             print("\n  Stopped.")

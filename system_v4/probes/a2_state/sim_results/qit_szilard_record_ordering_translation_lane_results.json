@@ -1,0 +1,127 @@
+{
+  "name": "qit_szilard_record_ordering_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted ordering-focused translation lane for the open Szilard hard-reset record carrier. It tracks the stronger open ordering signal against the strict QIT record/reset companion.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ordering_gap_is_materially_smaller_than_in_the_hard_reset_baseline": {
+      "ordering_margin_gap": 0.10117256145912867,
+      "pass": true
+    },
+    "measurement_information_stays_high": {
+      "measurement_mi_gap": -0.03911309934011481,
+      "pass": true
+    },
+    "record_survival_stays_high": {
+      "record_survival_gap": -0.17341216911661017,
+      "pass": true
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_metrics_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "ordering_margin_gap": 0.10117256145912867,
+    "measurement_mi_gap": -0.03911309934011481,
+    "record_survival_gap": -0.17341216911661017,
+    "residual_reset_entropy_gap": 0.29448363393141985,
+    "best_setting": {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.2,
+      "record_wait_steps": 60
+    },
+    "best_ordering_margin": 0.08247997532188,
+    "scope_note": "Ordering-focused translation lane for the open Szilard hard-reset carrier. It shows that stronger feedback asymmetry improves the open ordering signal materially."
+  }
+}

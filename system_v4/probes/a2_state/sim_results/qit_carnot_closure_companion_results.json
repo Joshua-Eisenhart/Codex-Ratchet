@@ -1,0 +1,580 @@
+{
+  "name": "qit_carnot_closure_companion",
+  "classification": "research_support",
+  "classification_note": "Strict finite-carrier QIT companion for the Carnot closure diagnostic lane. It sweeps a bounded budget/hold grid and keeps the forward-cycle return defect, closure concentration, and hold policy tradeoffs explicit. It is a comparison surface, not a canonical engine theorem.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "stochastic_thermodynamics"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "baseline_rows_are_nontrivial": {
+      "baseline_trace_distance": 0.03037527006891637,
+      "pass": true
+    },
+    "higher_budget_baseline_improves_closure": {
+      "first_budget_trace_distance": 0.03037527006891637,
+      "last_budget_trace_distance": 1.3186078058335937e-06,
+      "pass": true
+    },
+    "best_policy_beats_baseline_on_closure": {
+      "baseline_trace_distance": 0.03037527006891637,
+      "best_trace_distance": 1.1273186190097206e-08,
+      "pass": true
+    },
+    "best_row_has_a_real_dominant_closure_leg": {
+      "dominant_closure_leg": "hot_iso",
+      "pass": true
+    }
+  },
+  "negative": {
+    "best_row_is_not_exact_closure": {
+      "best_trace_distance": 1.1273186190097206e-08,
+      "pass": true
+    },
+    "baseline_is_not_exact_closure": {
+      "baseline_trace_distance": 0.03037527006891637,
+      "pass": true
+    },
+    "closure_residue_is_not_clearly_single_leg_only": {
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 1.3186167173162566e-06,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 1.3186078058335937e-06,
+        "adiabatic_compress": 0.0,
+        "cold_hold": 1.2192174268788047e-07,
+        "return_hold": 1.1273186190097206e-08
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_rows_are_finite": {
+      "pass": true
+    },
+    "all_final_states_are_valid_density_operators": {
+      "pass": true
+    },
+    "grid_size_matches_expectation": {
+      "expected_rows": 16,
+      "actual_rows": 16,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "baseline_closure_defect": 0.03037527006891637,
+    "best_closure_defect": 1.1273186190097206e-08,
+    "best_closure_steps": {
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000
+    },
+    "best_setting": {
+      "policy": "fixed_full_chain_2000",
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000,
+      "hold_steps_used": 2000
+    },
+    "best_closure_policy": "fixed_full_chain_2000",
+    "dominant_closure_leg_at_best_row": "hot_iso",
+    "scope_note": "Strict finite-carrier Carnot closure companion. It compares a bounded budget/hold grid and keeps the closure residue concentration explicit."
+  },
+  "rows": [
+    {
+      "budget_label": "budget_90",
+      "base_hot_steps": 90,
+      "base_cold_steps": 90,
+      "policy": "baseline_no_extra_hold",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": null
+      },
+      "hold_steps_requested": 0,
+      "hold_steps_used": 0,
+      "closure_defect": 0.03037527006891637,
+      "efficiency": 0.03272174278745777,
+      "efficiency_distance_to_carnot": 0.46727825721254224,
+      "final_probability_mismatch_abs": 0.030375270068916355,
+      "final_internal_energy_mismatch": 0.09112581020674904,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.15748089623240275,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.03037527006891637,
+        "adiabatic_compress": 0.0
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_90",
+      "base_hot_steps": 90,
+      "base_cold_steps": 90,
+      "policy": "fixed_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 800,
+      "closure_defect": 0.004521604406341778,
+      "efficiency": 0.03272174278745777,
+      "efficiency_distance_to_carnot": 0.46727825721254224,
+      "final_probability_mismatch_abs": 0.004521604406341806,
+      "final_internal_energy_mismatch": 0.013564813219025473,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.15748089623240275,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.03037527006891637,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.004521604406341778
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_90",
+      "base_hot_steps": 90,
+      "base_cold_steps": 90,
+      "policy": "adaptive_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "adaptive"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 480,
+      "closure_defect": 0.009686872805463986,
+      "efficiency": 0.03272174278745777,
+      "efficiency_distance_to_carnot": 0.46727825721254224,
+      "final_probability_mismatch_abs": 0.009686872805463986,
+      "final_internal_energy_mismatch": 0.02906061841639196,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.15748089623240275,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.03037527006891637,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.009686872805463986
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_90",
+      "base_hot_steps": 90,
+      "base_cold_steps": 90,
+      "policy": "fixed_full_chain_2000",
+      "hold_modes": {
+        "cold_hold": "fixed",
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 2000,
+      "hold_steps_used": 2000,
+      "closure_defect": 0.0002596875843481755,
+      "efficiency": 0.4308386520590408,
+      "efficiency_distance_to_carnot": 0.06916134794095918,
+      "final_probability_mismatch_abs": 0.00025968758434821715,
+      "final_internal_energy_mismatch": 0.0007790627530447347,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.15748089623240275,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.03037527006891637,
+        "adiabatic_compress": 0.0,
+        "cold_hold": 0.0028085726816519108,
+        "return_hold": 0.0002596875843481755
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_260",
+      "base_hot_steps": 260,
+      "base_cold_steps": 260,
+      "policy": "baseline_no_extra_hold",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": null
+      },
+      "hold_steps_requested": 0,
+      "hold_steps_used": 0,
+      "closure_defect": 0.04849022234458658,
+      "efficiency": 0.13788519221157028,
+      "efficiency_distance_to_carnot": 0.36211480778842975,
+      "final_probability_mismatch_abs": 0.04849022234458661,
+      "final_internal_energy_mismatch": 0.14547066703375988,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.10506111751432498,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.04849022234458658,
+        "adiabatic_compress": 0.0
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_260",
+      "base_hot_steps": 260,
+      "base_cold_steps": 260,
+      "policy": "fixed_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 800,
+      "closure_defect": 0.007218161435942033,
+      "efficiency": 0.13788519221157028,
+      "efficiency_distance_to_carnot": 0.36211480778842975,
+      "final_probability_mismatch_abs": 0.007218161435942061,
+      "final_internal_energy_mismatch": 0.02165448430782624,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.10506111751432498,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.04849022234458658,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.007218161435942033
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_260",
+      "base_hot_steps": 260,
+      "base_cold_steps": 260,
+      "policy": "adaptive_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "adaptive"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 720,
+      "closure_defect": 0.008732716258604944,
+      "efficiency": 0.13788519221157028,
+      "efficiency_distance_to_carnot": 0.36211480778842975,
+      "final_probability_mismatch_abs": 0.008732716258604944,
+      "final_internal_energy_mismatch": 0.026198148775814833,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.10506111751432498,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.04849022234458658,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.008732716258604944
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_260",
+      "base_hot_steps": 260,
+      "base_cold_steps": 260,
+      "policy": "fixed_full_chain_2000",
+      "hold_modes": {
+        "cold_hold": "fixed",
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 2000,
+      "hold_steps_used": 2000,
+      "closure_defect": 0.00041455791756263294,
+      "efficiency": 0.43614689837010817,
+      "efficiency_distance_to_carnot": 0.06385310162989183,
+      "final_probability_mismatch_abs": 0.0004145579175626468,
+      "final_internal_energy_mismatch": 0.0012436737526879682,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.10506111751432498,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.04849022234458658,
+        "adiabatic_compress": 0.0,
+        "cold_hold": 0.004483526022821996,
+        "return_hold": 0.00041455791756263294
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_1000",
+      "base_hot_steps": 1000,
+      "base_cold_steps": 1000,
+      "policy": "baseline_no_extra_hold",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": null
+      },
+      "hold_steps_requested": 0,
+      "hold_steps_used": 0,
+      "closure_defect": 0.016372729664607816,
+      "efficiency": 0.42857686324058425,
+      "efficiency_distance_to_carnot": 0.07142313675941575,
+      "final_probability_mismatch_abs": 0.016372729664607844,
+      "final_internal_energy_mismatch": 0.049118188993823586,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.0180408294233165,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.016372729664607816,
+        "adiabatic_compress": 0.0
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_1000",
+      "base_hot_steps": 1000,
+      "base_cold_steps": 1000,
+      "policy": "fixed_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 800,
+      "closure_defect": 0.0024372131153853477,
+      "efficiency": 0.42857686324058425,
+      "efficiency_distance_to_carnot": 0.07142313675941575,
+      "final_probability_mismatch_abs": 0.002437213115385334,
+      "final_internal_energy_mismatch": 0.007311639346155974,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.0180408294233165,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.016372729664607816,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.0024372131153853477
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_1000",
+      "base_hot_steps": 1000,
+      "base_cold_steps": 1000,
+      "policy": "adaptive_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "adaptive"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 240,
+      "closure_defect": 0.009245977148338094,
+      "efficiency": 0.42857686324058425,
+      "efficiency_distance_to_carnot": 0.07142313675941575,
+      "final_probability_mismatch_abs": 0.009245977148338108,
+      "final_internal_energy_mismatch": 0.027737931445014352,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.0180408294233165,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.016372729664607816,
+        "adiabatic_compress": 0.0,
+        "return_hold": 0.009245977148338094
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_1000",
+      "base_hot_steps": 1000,
+      "base_cold_steps": 1000,
+      "policy": "fixed_full_chain_2000",
+      "hold_modes": {
+        "cold_hold": "fixed",
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 2000,
+      "hold_steps_used": 2000,
+      "closure_defect": 0.00013997553292992293,
+      "efficiency": 0.4911569139977357,
+      "efficiency_distance_to_carnot": 0.0088430860022643,
+      "final_probability_mismatch_abs": 0.00013997553292996456,
+      "final_internal_energy_mismatch": 0.00041992659878997696,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 0.0180408294233165,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 0.016372729664607816,
+        "adiabatic_compress": 0.0,
+        "cold_hold": 0.001513863124698464,
+        "return_hold": 0.00013997553292992293
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_5000",
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000,
+      "policy": "baseline_no_extra_hold",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": null
+      },
+      "hold_steps_requested": 0,
+      "hold_steps_used": 0,
+      "closure_defect": 1.3186078058335937e-06,
+      "efficiency": 0.4999947338413404,
+      "efficiency_distance_to_carnot": 5.266158659589237e-06,
+      "final_probability_mismatch_abs": 1.3186078058335937e-06,
+      "final_internal_energy_mismatch": 3.955823417500781e-06,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 1.3186167173162566e-06,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 1.3186078058335937e-06,
+        "adiabatic_compress": 0.0
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_5000",
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000,
+      "policy": "fixed_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 800,
+      "closure_defect": 1.9628542727301301e-07,
+      "efficiency": 0.4999947338413404,
+      "efficiency_distance_to_carnot": 5.266158659589237e-06,
+      "final_probability_mismatch_abs": 1.962854273007686e-07,
+      "final_internal_energy_mismatch": 5.888562819578169e-07,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 1.3186167173162566e-06,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 1.3186078058335937e-06,
+        "adiabatic_compress": 0.0,
+        "return_hold": 1.9628542727301301e-07
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_5000",
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000,
+      "policy": "adaptive_return_hold_800",
+      "hold_modes": {
+        "cold_hold": null,
+        "return_hold": "adaptive"
+      },
+      "hold_steps_requested": 800,
+      "hold_steps_used": 0,
+      "closure_defect": 1.3186078058335937e-06,
+      "efficiency": 0.4999947338413404,
+      "efficiency_distance_to_carnot": 5.266158659589237e-06,
+      "final_probability_mismatch_abs": 1.3186078058335937e-06,
+      "final_internal_energy_mismatch": 3.955823417500781e-06,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 1.3186167173162566e-06,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 1.3186078058335937e-06,
+        "adiabatic_compress": 0.0,
+        "return_hold": 1.3186078058335937e-06
+      },
+      "valid_density_final": true
+    },
+    {
+      "budget_label": "budget_5000",
+      "base_hot_steps": 5000,
+      "base_cold_steps": 5000,
+      "policy": "fixed_full_chain_2000",
+      "hold_modes": {
+        "cold_hold": "fixed",
+        "return_hold": "fixed"
+      },
+      "hold_steps_requested": 2000,
+      "hold_steps_used": 2000,
+      "closure_defect": 1.1273186190097206e-08,
+      "efficiency": 0.4999995130638469,
+      "efficiency_distance_to_carnot": 4.869361531212313e-07,
+      "final_probability_mismatch_abs": 1.1273186217852782e-08,
+      "final_internal_energy_mismatch": 3.38195587090695e-08,
+      "dominant_closure_leg": "hot_iso",
+      "stage_trace_distances": {
+        "hot_iso": 1.3186167173162566e-06,
+        "adiabatic_expand": 0.0,
+        "cold_iso": 1.3186078058335937e-06,
+        "adiabatic_compress": 0.0,
+        "cold_hold": 1.2192174268788047e-07,
+        "return_hold": 1.1273186190097206e-08
+      },
+      "valid_density_final": true
+    }
+  ]
+}

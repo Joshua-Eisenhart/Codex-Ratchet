@@ -1,0 +1,1460 @@
+{
+  "name": "engine_lab_matrix",
+  "classification": "exploratory",
+  "classification_note": "Controller-facing engine-lab matrix over Carnot and Szilard rows. It organizes exact rows, stochastic rows, topology sweeps, and entropy/readout variants into one comparable surface.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure",
+    "carnot_cycle"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "available_rows": 51,
+    "missing_rows": 0,
+    "available_ids": [
+      "carnot_adaptive_hold_sweep",
+      "carnot_closure_diagnostic",
+      "carnot_entropy_family_array",
+      "carnot_forward_asymmetric",
+      "carnot_graph_proof_alignment",
+      "carnot_irreversibility_sweep",
+      "carnot_qit_exact",
+      "carnot_reverse_asymmetric",
+      "carnot_stochastic_finite_time",
+      "carnot_topology_array",
+      "engine_lab_constraint_audit",
+      "engine_lab_repair_priority",
+      "engine_lab_translation_targets",
+      "qit_carnot_closure_companion",
+      "qit_carnot_closure_translation_lane",
+      "qit_carnot_finite_time_companion",
+      "qit_carnot_finite_time_translation_lane",
+      "qit_carnot_hold_policy_companion",
+      "qit_carnot_hold_translation_lane",
+      "qit_carnot_irreversibility_companion",
+      "qit_carnot_irreversibility_translation_lane",
+      "qit_engine_companion_array",
+      "qit_entropy_companion_array",
+      "qit_repair_comparison_surface",
+      "qit_szilard_record_companion",
+      "qit_szilard_record_hard_reset_translation_lane",
+      "qit_szilard_record_ordering_refinement_translation_lane",
+      "qit_szilard_record_ordering_translation_lane",
+      "qit_szilard_record_repair_translation_lane",
+      "qit_szilard_record_translation_lane",
+      "qit_szilard_reverse_recovery_companion",
+      "qit_szilard_reverse_translation_lane",
+      "qit_szilard_substep_balanced_translation_lane",
+      "qit_szilard_substep_companion",
+      "qit_szilard_substep_ordering_push_translation_lane",
+      "qit_szilard_substep_refinement_translation_lane",
+      "qit_szilard_substep_translation_lane",
+      "szilard_graph_proof_alignment",
+      "szilard_ordering_sensitivity",
+      "szilard_qit_exact",
+      "szilard_record_hard_reset_repair_sweep",
+      "szilard_record_ordering_amplification_sweep",
+      "szilard_record_ordering_refinement_sweep",
+      "szilard_record_reset_repair_sweep",
+      "szilard_record_reset_sweep",
+      "szilard_reverse_recovery",
+      "szilard_substep_balanced_refinement_sweep",
+      "szilard_substep_ordering_push_sweep",
+      "szilard_substep_refinement_sweep",
+      "szilard_substeps",
+      "szilard_topology_entropy_array"
+    ],
+    "missing_ids": [],
+    "engine_families": [
+      "carnot",
+      "mixed",
+      "szilard"
+    ],
+    "levels": [
+      "adaptive_hold_array",
+      "constraint_audit_array",
+      "diagnostic_array",
+      "duration_array",
+      "entropy_family_array",
+      "exact_qit_bookkeeping",
+      "graph_proof_alignment",
+      "parameter_array",
+      "qit_companion_array",
+      "qit_entropy_companion_array",
+      "qit_repair_companion",
+      "qit_repair_comparison_surface",
+      "qit_translation_lane",
+      "record_reset_array",
+      "repair_priority_array",
+      "stochastic_forward_reverse",
+      "stochastic_operational",
+      "stochastic_submechanics",
+      "topology_array",
+      "topology_budget_array",
+      "topology_entropy_array",
+      "translation_target_array"
+    ],
+    "constraint_relation_counts": {
+      "allowed_as_reference_not_runtime": 1,
+      "controller_readout_surface": 1,
+      "graph_proof_bridge_surface": 2,
+      "likely_allowed_qit_core": 1,
+      "open_or_likely_outside_strict_qit_core": 6,
+      "qit_aligned_repair_surface": 21,
+      "qit_alignment_controller_surface": 6,
+      "runs_cleanly_but_still_open_against_repo_constraints": 13
+    },
+    "scope_note": "Open engine-lab matrix over exact, stochastic, parameter-sweep, and topology-sweep rows. This surface is for controller comparison, not canonical admission."
+  },
+  "rows": [
+    {
+      "id": "szilard_qit_exact",
+      "engine_family": "szilard",
+      "level": "exact_qit_bookkeeping",
+      "geometry_topology": "two_qubit_system_memory",
+      "entropy_family": [
+        "von_neumann",
+        "mutual_information",
+        "free_energy"
+      ],
+      "direction_modes": [
+        "forward"
+      ],
+      "classification": "canonical",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_landauer_cycle_results.json",
+      "likely_constraint_relation": "likely_allowed_qit_core",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_graph_proof_alignment",
+      "engine_family": "szilard",
+      "level": "graph_proof_alignment",
+      "geometry_topology": "finite_two_qubit_protocol_with_stage_graph_z3_and_helstrom_surface",
+      "entropy_family": [
+        "information_gain",
+        "graph_schedule",
+        "proof_identity",
+        "operational_distinguishability"
+      ],
+      "direction_modes": [
+        "forward",
+        "reverse",
+        "graph_proof_alignment"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_graph_proof_alignment_results.json",
+      "likely_constraint_relation": "graph_proof_bridge_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "graph_path_length": 3,
+        "protocol_schedule_valid": true,
+        "ktln2_balance_unsat": true,
+        "ordering_precedence_unsat": true,
+        "helstrom_measurement_guess_probability": 0.75,
+        "helstrom_erased_guess_probability": 0.5,
+        "wrong_order_vs_feedback_guess_probability": 0.75
+      }
+    },
+    {
+      "id": "szilard_substeps",
+      "engine_family": "szilard",
+      "level": "stochastic_submechanics",
+      "geometry_topology": "double_well_memory",
+      "entropy_family": [
+        "logical_bit_entropy",
+        "measurement_mutual_information",
+        "work_heat_bookkeeping"
+      ],
+      "direction_modes": [
+        "ordered",
+        "scrambled_controls"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_measurement_feedback_substeps_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "ordered_final_entropy": 0.6562408706276686,
+        "ordered_measurement_mi": 0.3152387664274231
+      }
+    },
+    {
+      "id": "szilard_substep_refinement_sweep",
+      "engine_family": "szilard",
+      "level": "stochastic_submechanics",
+      "geometry_topology": "double_well_memory_with_feedback_and_reset_refinement_axes",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal",
+        "blind_control_gap"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_strength",
+        "feedback_duration",
+        "reset_strength"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_refinement_sweep_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.07699436415307148,
+        "best_measurement_mutual_information": 0.30732557875898103,
+        "best_measurement_accuracy": 0.8706666666666667,
+        "best_reset_signal": 0.13495979690776605,
+        "best_blind_control_gap": 0.18498601346578858
+      }
+    },
+    {
+      "id": "szilard_substep_balanced_refinement_sweep",
+      "engine_family": "szilard",
+      "level": "stochastic_submechanics",
+      "geometry_topology": "double_well_memory_with_balanced_feedback_and_reset_refinement_axes",
+      "entropy_family": [
+        "balanced_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "balanced_substep_search"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_balanced_refinement_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.15645199104475238,
+        "best_balanced_score": 0.6136417751005354,
+        "best_measurement_mutual_information": 0.4389848211603258,
+        "best_measurement_accuracy": 0.93,
+        "best_reset_signal": 0.37407128786010824
+      }
+    },
+    {
+      "id": "szilard_substep_ordering_push_sweep",
+      "engine_family": "szilard",
+      "level": "stochastic_submechanics",
+      "geometry_topology": "double_well_memory_with_ordering_push_feedback_and_reset_axes",
+      "entropy_family": [
+        "push_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "ordering_push_search"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_ordering_push_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.189932047460173,
+        "best_push_score": 0.6279929733082442,
+        "best_measurement_mutual_information": 0.44301403957326924,
+        "best_measurement_accuracy": 0.9316666666666666,
+        "best_reset_signal": 0.4782319756184976
+      }
+    },
+    {
+      "id": "qit_szilard_substep_companion",
+      "engine_family": "szilard",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_two_qubit_memory_with_hold_decay",
+      "entropy_family": [
+        "final_joint_entropy",
+        "measurement_mutual_information",
+        "reset_memory_entropy",
+        "hold_decay"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "measurement_feedback_reset_hold"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_accuracy": 0.9,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_feedback_system_free_energy_gain": 0.28869344854387685
+      }
+    },
+    {
+      "id": "qit_szilard_substep_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_double_well_to_finite_substep_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "feedback_signal",
+        "reset_signal",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "measurement_feedback_reset_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "open_ordering_margin": 0.008953989804524887,
+        "qit_best_ordering_margin": 0.5350408605722448,
+        "measurement_mutual_information_gap": 0.10274661515597666,
+        "feedback_gain_gap": -0.460863903932713,
+        "reset_signal_gap": 0.4870755566533206
+      }
+    },
+    {
+      "id": "qit_szilard_substep_refinement_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "refined_open_double_well_to_finite_substep_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "measurement_accuracy",
+        "reset_signal",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "substep_refinement_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_refinement_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.07699436415307148,
+        "ordering_margin_gap": 0.4580464964191733,
+        "measurement_mutual_information_gap": 0.11065980282441873,
+        "measurement_accuracy_gap": 0.029333333333333322,
+        "reset_signal_gap": 0.37871438234071764
+      }
+    },
+    {
+      "id": "qit_szilard_substep_balanced_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "balanced_open_double_well_to_finite_substep_translation",
+      "entropy_family": [
+        "balanced_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "balanced_substep_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_balanced_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.15645199104475238,
+        "ordering_margin_gap": 0.3785888695274924,
+        "measurement_mutual_information_gap": -0.020999439576926016,
+        "measurement_accuracy_gap": -0.030000000000000027,
+        "reset_signal_gap": 0.13960289138837545,
+        "best_balanced_score": 0.6136417751005354
+      }
+    },
+    {
+      "id": "qit_szilard_substep_ordering_push_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "ordering_push_open_double_well_to_finite_substep_translation",
+      "entropy_family": [
+        "push_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordering_push_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_ordering_push_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.189932047460173,
+        "ordering_margin_gap": 0.34510881311207176,
+        "measurement_mutual_information_gap": -0.025028657989869474,
+        "measurement_accuracy_gap": -0.03166666666666662,
+        "reset_signal_gap": 0.03544220362998607,
+        "best_push_score": 0.6279929733082442
+      }
+    },
+    {
+      "id": "szilard_reverse_recovery",
+      "engine_family": "szilard",
+      "level": "stochastic_forward_reverse",
+      "geometry_topology": "double_well_memory",
+      "entropy_family": [
+        "logical_bit_entropy",
+        "landauer_gap",
+        "restoration_fraction"
+      ],
+      "direction_modes": [
+        "erase",
+        "naive_reverse",
+        "recovery"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_reverse_recovery_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635
+      }
+    },
+    {
+      "id": "qit_szilard_reverse_recovery_companion",
+      "engine_family": "szilard",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_two_qubit_memory_reverse_recovery_axis",
+      "entropy_family": [
+        "entropy_restoration_fraction",
+        "restoration_trace_distance",
+        "system_free_energy_gain"
+      ],
+      "direction_modes": [
+        "erase",
+        "naive_reverse",
+        "recovery"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_reverse_recovery_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_recovery_vs_naive_gap": 0.30760002644478024,
+        "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193
+      }
+    },
+    {
+      "id": "qit_szilard_reverse_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "finite_two_qubit_memory_bidirectional_reverse_translation",
+      "entropy_family": [
+        "information_gain",
+        "erasure_cost",
+        "entropy_restoration_fraction",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "forward",
+        "naive_reverse",
+        "recovery"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_reverse_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193
+      }
+    },
+    {
+      "id": "szilard_ordering_sensitivity",
+      "engine_family": "szilard",
+      "level": "parameter_array",
+      "geometry_topology": "double_well_memory_family",
+      "entropy_family": [
+        "logical_bit_entropy",
+        "measurement_mutual_information",
+        "ordering_margin"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_ordering_sensitivity_sweep_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_margin": 0.014425363812428649
+      }
+    },
+    {
+      "id": "szilard_record_reset_sweep",
+      "engine_family": "szilard",
+      "level": "record_reset_array",
+      "geometry_topology": "double_well_memory_with_record_lifetime_axis",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_strength"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_reset_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.026232612370151065
+      }
+    },
+    {
+      "id": "szilard_record_reset_repair_sweep",
+      "engine_family": "szilard",
+      "level": "record_reset_array",
+      "geometry_topology": "double_well_memory_with_expanded_record_reset_repair_axis",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_swing",
+        "repair_score"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_tilt",
+        "feedback_strength"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_reset_repair_sweep_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.05294270341938878,
+        "best_repair_score": 0.6072588884025969,
+        "best_measurement_mutual_information": 0.41539117355052174,
+        "best_record_survival_fraction": 0.8875,
+        "open_reset_swing": 0.017223392618928912
+      }
+    },
+    {
+      "id": "szilard_record_hard_reset_repair_sweep",
+      "engine_family": "szilard",
+      "level": "record_reset_array",
+      "geometry_topology": "double_well_memory_with_hard_reset_axes",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy",
+        "repair_score"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_tilt",
+        "reset_steps",
+        "reset_barrier"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_hard_reset_repair_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.03790279143585795,
+        "best_repair_score": 0.7391084770970207,
+        "best_measurement_mutual_information": 0.48966461914823095,
+        "best_record_survival_fraction": 0.7829166666666667,
+        "best_reset_stage_entropy": 0.3791954263899265
+      }
+    },
+    {
+      "id": "szilard_record_ordering_amplification_sweep",
+      "engine_family": "szilard",
+      "level": "record_reset_array",
+      "geometry_topology": "double_well_memory_with_hard_reset_and_feedback_asymmetry_axes",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_asymmetry",
+        "record_wait"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_amplification_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.08247997532188,
+        "best_measurement_mutual_information": 0.45709848092351457,
+        "best_record_survival_fraction": 0.94125,
+        "best_reset_stage_entropy": 0.35684301838834565
+      }
+    },
+    {
+      "id": "szilard_record_ordering_refinement_sweep",
+      "engine_family": "szilard",
+      "level": "record_reset_array",
+      "geometry_topology": "double_well_memory_with_hard_reset_feedback_asymmetry_duration_and_barrier_axes",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_asymmetry",
+        "record_wait",
+        "feedback_duration",
+        "feedback_barrier"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_refinement_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.1606231880599962,
+        "best_measurement_mutual_information": 0.43920926071588573,
+        "best_record_survival_fraction": 0.8995833333333333,
+        "best_reset_stage_entropy": 0.25471540316896224
+      }
+    },
+    {
+      "id": "qit_szilard_record_companion",
+      "engine_family": "szilard",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_two_qubit_memory_with_record_decay_axis",
+      "entropy_family": [
+        "final_joint_entropy",
+        "measurement_mutual_information",
+        "reset_memory_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_strength"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.18365253678100868,
+        "mean_measurement_accuracy": 0.8999999999999999,
+        "mean_measurement_mutual_information": 0.41798538158339976
+      }
+    },
+    {
+      "id": "qit_szilard_record_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_record_reset_to_finite_record_decay_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_swing",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime_translation",
+        "reset_axis_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": false,
+        "open_best_ordering_margin": 0.026232612370151065,
+        "qit_best_ordering_margin": 0.18365253678100868,
+        "measurement_mi_gap": 0.10989205438388361,
+        "record_survival_gap": 0.29622903458709354,
+        "reset_swing_gap": 0.3302110885446538
+      }
+    },
+    {
+      "id": "qit_szilard_record_repair_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "expanded_open_record_reset_to_finite_record_decay_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_swing",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "repair_translation",
+        "record_lifetime_translation",
+        "reset_axis_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_repair_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_repair_score": 0.6072588884025969,
+        "ordering_margin_gap": 0.1307098333616199,
+        "measurement_mi_gap": 0.0025942080328780204,
+        "record_survival_gap": -0.1196621691166101,
+        "reset_swing_gap": 0.3225591660315111
+      }
+    },
+    {
+      "id": "qit_szilard_record_hard_reset_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "hard_reset_open_record_to_finite_record_decay_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "residual_reset_entropy",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "hard_reset_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_hard_reset_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_repair_score": 0.7391084770970207,
+        "ordering_margin_gap": 0.14574974534515073,
+        "measurement_mi_gap": -0.07167923756483119,
+        "record_survival_gap": -0.015078835783276845,
+        "residual_reset_entropy_gap": 0.3168360419330007
+      }
+    },
+    {
+      "id": "qit_szilard_record_ordering_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "hard_reset_open_record_to_finite_record_decay_ordering_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "residual_reset_entropy",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordering_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_ordering_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.08247997532188,
+        "ordering_margin_gap": 0.10117256145912867,
+        "measurement_mi_gap": -0.03911309934011481,
+        "record_survival_gap": -0.17341216911661017,
+        "residual_reset_entropy_gap": 0.29448363393141985
+      }
+    },
+    {
+      "id": "qit_szilard_record_ordering_refinement_translation_lane",
+      "engine_family": "szilard",
+      "level": "qit_translation_lane",
+      "geometry_topology": "refined_hard_reset_open_record_to_finite_record_decay_ordering_translation",
+      "entropy_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "residual_reset_entropy",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "ordering_refinement_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_ordering_refinement_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.1606231880599962,
+        "ordering_margin_gap": 0.023029348721012477,
+        "measurement_mi_gap": -0.021223879132485968,
+        "record_survival_gap": -0.13174550244994343,
+        "residual_reset_entropy_gap": 0.19235601871203648
+      }
+    },
+    {
+      "id": "carnot_qit_exact",
+      "engine_family": "carnot",
+      "level": "exact_qit_bookkeeping",
+      "geometry_topology": "qubit_working_substance",
+      "entropy_family": [
+        "gibbs_entropy",
+        "free_energy",
+        "heat_work_bookkeeping"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "classification": "canonical",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_two_bath_cycle_results.json",
+      "likely_constraint_relation": "allowed_as_reference_not_runtime",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0
+      }
+    },
+    {
+      "id": "carnot_graph_proof_alignment",
+      "engine_family": "carnot",
+      "level": "graph_proof_alignment",
+      "geometry_topology": "exact_two_bath_cycle_with_stage_graph_and_z3_identity_surface",
+      "entropy_family": [
+        "heat_work_bookkeeping",
+        "graph_schedule",
+        "proof_identity"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "graph_proof_alignment"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_graph_proof_alignment_results.json",
+      "likely_constraint_relation": "graph_proof_bridge_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0,
+        "graph_path_length": 4,
+        "cycle_schedule_valid": true,
+        "efficiency_identity_unsat": true,
+        "cop_identity_unsat": true
+      }
+    },
+    {
+      "id": "carnot_stochastic_finite_time",
+      "engine_family": "carnot",
+      "level": "stochastic_operational",
+      "geometry_topology": "harmonic_working_substance",
+      "entropy_family": [
+        "heat_work_bookkeeping",
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "fast_slow_quasistatic"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/stoch_harmonic_carnot_finite_time_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_slow_efficiency": 0.17162168374974454,
+        "forward_quasistatic_efficiency": 0.5281401728113482,
+        "reverse_slow_cop": 0.5559504780783574,
+        "reverse_quasistatic_cop": 0.9001824478165095
+      }
+    },
+    {
+      "id": "qit_carnot_finite_time_companion",
+      "engine_family": "carnot",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_qubit_two_bath_with_budget_axis",
+      "entropy_family": [
+        "closure_defect",
+        "efficiency",
+        "cop",
+        "carnot_distance",
+        "budget_axis"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "fast_slow_quasistatic"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 5.266158659589237e-06,
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_reverse_cop": 0.9999999999379234,
+        "baseline_forward_closure_defect": 0.03037527006891637,
+        "baseline_forward_efficiency": 0.03272174278745777
+      }
+    },
+    {
+      "id": "qit_carnot_finite_time_translation_lane",
+      "engine_family": "carnot",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_stochastic_to_finite_budget_translation",
+      "entropy_family": [
+        "closure_defect",
+        "efficiency",
+        "cop",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "budget_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_irreversibility_sweep",
+      "engine_family": "carnot",
+      "level": "duration_array",
+      "geometry_topology": "harmonic_working_substance",
+      "entropy_family": [
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_irreversibility_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "best_reverse_cop": 0.9069921787457502
+      }
+    },
+    {
+      "id": "qit_carnot_irreversibility_companion",
+      "engine_family": "carnot",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_qubit_two_bath_duration_sweep",
+      "entropy_family": [
+        "closure_defect",
+        "efficiency",
+        "cop",
+        "carnot_distance",
+        "duration_sweep"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "duration_sweep"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_irreversibility_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 5.266158659589237e-06,
+        "best_reverse_distance_to_carnot_cop": 6.207656610968115e-11,
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_reverse_cop": 0.9999999999379234,
+        "baseline_forward_closure_defect": 0.0225164061035127,
+        "baseline_forward_efficiency": 0.018405507203144923
+      }
+    },
+    {
+      "id": "qit_carnot_irreversibility_translation_lane",
+      "engine_family": "carnot",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_duration_to_finite_duration_translation",
+      "entropy_family": [
+        "carnot_distance",
+        "efficiency",
+        "cop",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "duration_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_irreversibility_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_closure_diagnostic",
+      "engine_family": "carnot",
+      "level": "diagnostic_array",
+      "geometry_topology": "harmonic_working_substance",
+      "entropy_family": [
+        "internal_energy_gap",
+        "variance_mismatch",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_closure_diagnostic_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      }
+    },
+    {
+      "id": "qit_carnot_closure_companion",
+      "engine_family": "carnot",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_qubit_two_bath_closure_grid",
+      "entropy_family": [
+        "closure_defect",
+        "closure_leg_concentration",
+        "hold_policy_tradeoff"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "closure_diagnostic",
+        "hold_policy"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_closure_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_defect": 1.1273186190097206e-08,
+        "best_closure_policy": "fixed_full_chain_2000",
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      }
+    },
+    {
+      "id": "qit_carnot_closure_translation_lane",
+      "engine_family": "carnot",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_closure_to_finite_closure_translation",
+      "entropy_family": [
+        "closure_defect",
+        "closure_leg_concentration",
+        "translation_gap"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "closure_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_closure_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_forward_asymmetric",
+      "engine_family": "carnot",
+      "level": "topology_budget_array",
+      "geometry_topology": "harmonic_working_substance",
+      "entropy_family": [
+        "efficiency",
+        "cycle_delta_u",
+        "variance_mismatch"
+      ],
+      "direction_modes": [
+        "forward_engine"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_asymmetric_isotherm_sweep_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_closure_variance_mismatch_abs": 0.00044977673628832093,
+        "best_efficiency_distance_to_carnot": 0.013511707719928767
+      }
+    },
+    {
+      "id": "carnot_reverse_asymmetric",
+      "engine_family": "carnot",
+      "level": "topology_budget_array",
+      "geometry_topology": "harmonic_working_substance",
+      "entropy_family": [
+        "cop",
+        "cycle_delta_u",
+        "variance_mismatch"
+      ],
+      "direction_modes": [
+        "reverse_refrigerator"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_reverse_asymmetric_sweep_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_closure_variance_mismatch_abs": 0.0044596912592960725,
+        "best_cop_distance_to_carnot": 0.09570592873213313
+      }
+    },
+    {
+      "id": "carnot_topology_array",
+      "engine_family": "carnot",
+      "level": "topology_array",
+      "geometry_topology": "multi_potential_family",
+      "entropy_family": [
+        "efficiency",
+        "cop",
+        "closure_metrics"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_topology_array_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_adaptive_hold_sweep",
+      "engine_family": "carnot",
+      "level": "adaptive_hold_array",
+      "geometry_topology": "harmonic_working_substance_with_hold_policy_axis",
+      "entropy_family": [
+        "efficiency",
+        "cycle_delta_u",
+        "variance_mismatch",
+        "hold_budget"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "hold_policy_comparison"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_adaptive_hold_sweep_results.json",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_mismatch_abs": 0.0014798524793151469,
+        "baseline_final_variance_mismatch_abs": 0.09712606157817827,
+        "best_efficiency": 0.4230213121224605,
+        "best_closure_defect": 0.0014798524793151469,
+        "dominant_closure_leg_at_best_row": "hot_hold"
+      }
+    },
+    {
+      "id": "qit_carnot_hold_policy_companion",
+      "engine_family": "carnot",
+      "level": "qit_repair_companion",
+      "geometry_topology": "finite_qubit_two_bath_with_hold_policy_axis",
+      "entropy_family": [
+        "efficiency",
+        "trace_distance_closure",
+        "hold_budget"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "fixed_vs_adaptive_hold_policy"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_efficiency": 0.4649155632309064,
+        "best_closure_policy": "fixed_full_chain_2000"
+      }
+    },
+    {
+      "id": "qit_carnot_hold_translation_lane",
+      "engine_family": "carnot",
+      "level": "qit_translation_lane",
+      "geometry_topology": "open_stochastic_to_finite_hold_policy_translation",
+      "entropy_family": [
+        "closure_defect",
+        "efficiency",
+        "translation_gap",
+        "hold_policy"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "hold_policy_translation"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_translation_lane_results.json",
+      "likely_constraint_relation": "qit_aligned_repair_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_entropy_family_array",
+      "engine_family": "carnot",
+      "level": "entropy_family_array",
+      "geometry_topology": "cross_level_cross_topology",
+      "entropy_family": [
+        "performance",
+        "bath_entropy_proxy",
+        "closure_proxy",
+        "return_proxy"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_entropy_family_array_results.json",
+      "likely_constraint_relation": "controller_readout_surface",
+      "headline_metrics": {
+        "all_pass": false
+      }
+    },
+    {
+      "id": "szilard_topology_entropy_array",
+      "engine_family": "szilard",
+      "level": "topology_entropy_array",
+      "geometry_topology": "memory_landscape_family",
+      "entropy_family": [
+        "logical_entropy",
+        "information_metrics",
+        "thermo_readouts"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_topology_entropy_array_results.json",
+      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_margin": 0.0195816888383884
+      }
+    },
+    {
+      "id": "qit_engine_companion_array",
+      "engine_family": "mixed",
+      "level": "qit_companion_array",
+      "geometry_topology": "finite_qit_anchor_subset",
+      "entropy_family": [
+        "anchor_metrics",
+        "family_bridge_mapping"
+      ],
+      "direction_modes": [
+        "companion_mapping"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_engine_companion_array_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_entropy_companion_array",
+      "engine_family": "mixed",
+      "level": "qit_entropy_companion_array",
+      "geometry_topology": "finite_qit_anchor_subset",
+      "entropy_family": [
+        "strict_qit_readouts",
+        "anchor_entropy_families"
+      ],
+      "direction_modes": [
+        "companion_readouts"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_entropy_companion_array_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "engine_lab_constraint_audit",
+      "engine_family": "mixed",
+      "level": "constraint_audit_array",
+      "geometry_topology": "open_lab_vs_strict_anchor_overlay",
+      "entropy_family": [
+        "alignment_route",
+        "strict_anchor_overlap",
+        "repair_priority"
+      ],
+      "direction_modes": [
+        "constraint_audit"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_constraint_audit_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "engine_lab_repair_priority",
+      "engine_family": "mixed",
+      "level": "repair_priority_array",
+      "geometry_topology": "open_lab_translation_priority_overlay",
+      "entropy_family": [
+        "translation_closeness",
+        "priority_bucket",
+        "repair_queue"
+      ],
+      "direction_modes": [
+        "repair_priority"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_repair_priority_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "engine_lab_translation_targets",
+      "engine_family": "mixed",
+      "level": "translation_target_array",
+      "geometry_topology": "open_lab_to_qit_translation_overlay",
+      "entropy_family": [
+        "translation_action",
+        "priority_bucket",
+        "pair_delta_summary"
+      ],
+      "direction_modes": [
+        "translation_targeting"
+      ],
+      "classification": "exploratory",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_translation_targets_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_repair_comparison_surface",
+      "engine_family": "mixed",
+      "level": "qit_repair_comparison_surface",
+      "geometry_topology": "open_lab_vs_qit_repair_pairs",
+      "entropy_family": [
+        "pairwise_delta_metrics",
+        "repair_translation_gap"
+      ],
+      "direction_modes": [
+        "open_vs_qit_repair"
+      ],
+      "classification": "research_support",
+      "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_repair_comparison_surface_results.json",
+      "likely_constraint_relation": "qit_alignment_controller_surface",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    }
+  ],
+  "missing": []
+}

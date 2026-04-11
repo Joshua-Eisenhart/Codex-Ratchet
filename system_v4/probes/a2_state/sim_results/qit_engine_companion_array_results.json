@@ -1,0 +1,1065 @@
+{
+  "name": "qit_engine_companion_array",
+  "classification": "research_support",
+  "classification_note": "Companion array that keeps to tighter QIT-style carriers and readouts while pointing to the closest open-lab analogues for later repair.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "stochastic_thermodynamics"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "strict_qit_subset_criteria": [
+    "finite_qit_carrier_or_exact_bounded_bookkeeping",
+    "density_operator_validity_or_equivalent_exactness",
+    "explicit_direction_or_order_mode",
+    "tight_readout_family_instead_of_geometry_first_proxy"
+  ],
+  "strict_qit_subset": [
+    {
+      "id": "qit_szilard_landauer_cycle",
+      "family": "szilard",
+      "subset_role": "strict_qit_engine_core",
+      "carrier_geometry_class": "finite_two_qubit_system_memory",
+      "entropy_readout_family": [
+        "information_gain",
+        "system_free_energy_gain",
+        "erasure_cost"
+      ],
+      "direction_modes": [
+        "measurement_feedback_erasure"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_landauer_cycle_results.json",
+      "strictness_reason": "exact_finite_bookkeeping_row_with_valid_density_operators",
+      "classification": "canonical",
+      "headline_metrics": {
+        "temperature": 1.0,
+        "information_gain": 0.6931471805599453,
+        "system_free_energy_gain": 0.6931471805599453,
+        "erasure_cost": 0.6931471805599453,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_strong_coupling_landauer",
+      "family": "szilard",
+      "subset_role": "strict_qit_bridge",
+      "carrier_geometry_class": "finite_two_qubit_system_bath_pair",
+      "entropy_readout_family": [
+        "reduced_state_bookkeeping",
+        "joint_system_bath_bookkeeping",
+        "clausius_gap_proxy"
+      ],
+      "direction_modes": [
+        "strong_coupling_vs_weak_coupling"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_strong_coupling_landauer_results.json",
+      "strictness_reason": "exact_joint_bookkeeping_row_for_strong_coupling_corrections",
+      "classification": "canonical",
+      "headline_metrics": {
+        "beta": 1.0,
+        "temperature": 1.0,
+        "strong_coupling": 3.0,
+        "weak_coupling": 0.05,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_carnot_two_bath_cycle",
+      "family": "carnot",
+      "subset_role": "strict_qit_engine_core",
+      "carrier_geometry_class": "finite_qubit_working_substance_with_two_baths",
+      "entropy_readout_family": [
+        "efficiency",
+        "cop",
+        "work_heat_bookkeeping"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_two_bath_cycle_results.json",
+      "strictness_reason": "exact_reversible_two_bath_bookkeeping_row",
+      "classification": "canonical",
+      "headline_metrics": {
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_attractor_basin_recovery",
+      "family": "control_recovery",
+      "subset_role": "strict_qit_control_family",
+      "carrier_geometry_class": "finite_qubit_channel_schedule",
+      "entropy_readout_family": [
+        "equivalence_class_recovery",
+        "order_effect",
+        "valid_density_operators"
+      ],
+      "direction_modes": [
+        "ordered",
+        "swapped",
+        "mismatched"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_attractor_basin_recovery_results.json",
+      "strictness_reason": "finite_qit_recovery_and_order_control_row",
+      "classification": "canonical",
+      "headline_metrics": {
+        "chosen_schedule": [
+          "x_dephasing(0.35)",
+          "amplitude_damping(0.30)"
+        ],
+        "swapped_schedule": [
+          "amplitude_damping(0.30)",
+          "x_dephasing(0.35)"
+        ],
+        "mismatched_schedule": [
+          "x_dephasing(0.20)",
+          "z_rotation(pi/3)"
+        ],
+        "all_pass": true
+      }
+    }
+  ],
+  "qit_repair_rows": [
+    {
+      "id": "qit_szilard_substep_companion",
+      "family": "szilard",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_two_qubit_system_memory_with_hold_decay",
+      "entropy_readout_family": [
+        "final_joint_entropy",
+        "measurement_mutual_information",
+        "reset_memory_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "measurement_feedback_reset_hold"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json",
+      "strictness_reason": "finite two-qubit repair companion for ordered/scrambled substep translation",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_ordering_margin": 0.5350408605722448,
+        "best_setting": {
+          "measurement_error": 0.0,
+          "feedback_blindness": 0.0,
+          "reset_strength": 0.95
+        },
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "mean_feedback_system_free_energy_gain": 0.28869344854387685,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_szilard_record_companion",
+      "family": "szilard",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_two_qubit_system_memory_with_record_decay_axis",
+      "entropy_readout_family": [
+        "final_joint_entropy",
+        "measurement_mutual_information",
+        "reset_memory_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_strength"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json",
+      "strictness_reason": "finite two-qubit repair companion for record persistence and reset mechanics",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_ordering_margin": 0.18365253678100868,
+        "best_setting": {
+          "measurement_error": 0.0,
+          "record_lifetime_steps": 480,
+          "reset_strength": 0.95
+        },
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_szilard_reverse_recovery_companion",
+      "family": "szilard",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_two_qubit_system_memory_reverse_recovery_axis",
+      "entropy_readout_family": [
+        "entropy_restoration_fraction",
+        "restoration_trace_distance",
+        "system_free_energy_gain"
+      ],
+      "direction_modes": [
+        "erase",
+        "naive_reverse",
+        "recovery"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_reverse_recovery_companion_results.json",
+      "strictness_reason": "finite two-qubit repair companion for erase versus naive reverse versus designed recovery",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_recovery_vs_naive_gap": 0.30760002644478024,
+        "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_carnot_finite_time_companion",
+      "family": "carnot",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_qubit_two_bath_with_budget_axis",
+      "entropy_readout_family": [
+        "closure_defect",
+        "efficiency",
+        "cop",
+        "carnot_distance"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "fast_slow_quasistatic"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json",
+      "strictness_reason": "finite qubit repair companion for finite-time budget tradeoffs",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_forward_efficiency": 0.4999947338413404,
+        "best_reverse_cop": 0.9999999999379234,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_carnot_hold_policy_companion",
+      "family": "carnot",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_qubit_two_bath_with_partial_thermalization_holds",
+      "entropy_readout_family": [
+        "trace_distance_closure",
+        "efficiency",
+        "hold_budget"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "fixed_hold",
+        "adaptive_hold"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json",
+      "strictness_reason": "finite qubit repair companion for hold-policy closure and performance tradeoffs",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_closure_policy": "fixed_full_chain_2000",
+        "best_closure_trace_distance": 0.0003434168608109911,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_carnot_irreversibility_companion",
+      "family": "carnot",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_qubit_two_bath_duration_sweep",
+      "entropy_readout_family": [
+        "closure_defect",
+        "efficiency",
+        "cop",
+        "carnot_distance",
+        "duration_sweep"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "duration_sweep"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_irreversibility_companion_results.json",
+      "strictness_reason": "finite qubit repair companion for duration-driven irreversibility and Carnot-distance sweeps",
+      "classification": "research_support",
+      "headline_metrics": {
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_forward_distance_to_carnot": 5.266158659589237e-06,
+        "best_reverse_distance_to_carnot_cop": 6.207656610968115e-11,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_carnot_closure_companion",
+      "family": "carnot",
+      "subset_role": "qit_repair_companion",
+      "carrier_geometry_class": "finite_qubit_two_bath_closure_grid",
+      "entropy_readout_family": [
+        "closure_defect",
+        "closure_leg_concentration",
+        "hold_policy_tradeoff"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "closure_diagnostic",
+        "hold_policy"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_closure_companion_results.json",
+      "strictness_reason": "finite qubit repair companion for forward-cycle closure concentration and hold-policy closure repair",
+      "classification": "research_support",
+      "headline_metrics": {
+        "baseline_closure_defect": 0.03037527006891637,
+        "best_closure_defect": 1.1273186190097206e-08,
+        "best_closure_policy": "fixed_full_chain_2000",
+        "dominant_closure_leg_at_best_row": "hot_iso",
+        "all_pass": true
+      }
+    }
+  ],
+  "open_lab_companion_rows": [
+    {
+      "id": "szilard_measurement_feedback_substeps",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape",
+      "entropy_readout_family": [
+        "logical_bit_entropy",
+        "measurement_mutual_information",
+        "work_heat_bookkeeping"
+      ],
+      "direction_modes": [
+        "ordered",
+        "feedback_first",
+        "reset_first",
+        "measurement_reset_feedback"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_measurement_feedback_substeps_results.json",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "matched finite-state substep companion for ordered and scrambled protocol families",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "ordered_final_entropy": 0.6562408706276686,
+        "measurement_accuracy": 0.8746666666666667,
+        "measurement_mi": 0.3152387664274231,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_substep_refinement_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_feedback_and_reset_refinement_axes",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal",
+        "blind_control_gap"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_strength",
+        "feedback_duration",
+        "reset_strength"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_refinement_sweep_results.json",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "refined stochastic substep carrier with stronger feedback and reset mechanics",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": false
+      }
+    },
+    {
+      "id": "szilard_substep_balanced_refinement_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_balanced_feedback_and_reset_refinement_axes",
+      "entropy_readout_family": [
+        "balanced_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "balanced_substep_search"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_balanced_refinement_sweep_results.json",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "balanced local search over the refined stochastic substep carrier",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_substep_ordering_push_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_ordering_push_feedback_and_reset_axes",
+      "entropy_readout_family": [
+        "push_score",
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_signal"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "ordering_push_search"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_substep_ordering_push_sweep_results.json",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "ordering-focused push on the balanced stochastic substep carrier",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_reverse_recovery_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape",
+      "entropy_readout_family": [
+        "logical_entropy_restoration_fraction",
+        "landauer_gap",
+        "reverse_recovery"
+      ],
+      "direction_modes": [
+        "erase",
+        "naive_reverse",
+        "recovery"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_reverse_recovery_sweep_results.json",
+      "closest_companion_id": "qit_szilard_reverse_recovery_companion",
+      "bridge_reason": "matched finite-state reverse-recovery companion for erase, naive reverse, and designed recovery",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_ordering_sensitivity_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_family",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "logical_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_ordering_sensitivity_sweep_results.json",
+      "closest_companion_id": "qit_attractor_basin_recovery",
+      "bridge_reason": "order_effect_and_recovery_companion",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_margin": 0.014425363812428649,
+        "best_setting": {
+          "measurement_flip_prob": 0.08,
+          "feedback_strong_tilt": 2.35
+        },
+        "all_pass": false
+      }
+    },
+    {
+      "id": "szilard_record_reset_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_record_lifetime_axis",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_strength"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_reset_sweep_results.json",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "matched finite-state record-persistence and reset-strength companion",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_ordering_margin": 0.026232612370151065,
+        "best_setting": {
+          "measurement_flip_prob": 0.18,
+          "record_lifetime_steps": 120,
+          "reset_tilt": 1.95
+        },
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_record_reset_repair_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_expanded_record_lifetime_reset_feedback_axes",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_swing",
+        "repair_score"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_tilt",
+        "feedback_strength"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_reset_repair_sweep_results.json",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "expanded open repair sweep for record persistence and reset-strength translation",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": false
+      }
+    },
+    {
+      "id": "szilard_record_hard_reset_repair_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_hard_reset_axes",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy",
+        "repair_score"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "record_lifetime",
+        "reset_tilt",
+        "reset_steps",
+        "reset_barrier"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_hard_reset_repair_sweep_results.json",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "hard-reset repair sweep for stronger open record reset mechanics",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_record_ordering_amplification_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_feedback_asymmetry_and_hard_reset_axes",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_asymmetry",
+        "record_wait"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_amplification_sweep_results.json",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "ordering amplification sweep on top of the hard-reset record carrier",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_record_ordering_refinement_sweep",
+      "family": "szilard",
+      "carrier_geometry_class": "double_well_memory_landscape_with_feedback_asymmetry_duration_and_barrier_axes",
+      "entropy_readout_family": [
+        "ordering_margin",
+        "measurement_mutual_information",
+        "record_survival",
+        "reset_stage_entropy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled",
+        "feedback_asymmetry",
+        "record_wait",
+        "feedback_duration",
+        "feedback_barrier"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_refinement_sweep_results.json",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "local ordering refinement around the strongest hard-reset record carrier",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "szilard_topology_entropy_array",
+      "family": "szilard",
+      "carrier_geometry_class": "memory_landscape_family",
+      "entropy_readout_family": [
+        "logical_entropy",
+        "spread_entropy_proxy",
+        "free_energy_gap_proxy"
+      ],
+      "direction_modes": [
+        "ordered_vs_scrambled"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_topology_entropy_array_results.json",
+      "closest_companion_id": "qit_szilard_landauer_cycle",
+      "bridge_reason": "same_szilard_carrier_family_but_geometry_variants_are_still_open",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_topology": "asymmetric_double_well",
+        "best_margin": 0.0195816888383884,
+        "all_pass": false
+      }
+    },
+    {
+      "id": "carnot_stochastic_finite_time",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance",
+      "entropy_readout_family": [
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator",
+        "fast_slow_quasistatic"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/stoch_harmonic_carnot_finite_time_results.json",
+      "closest_companion_id": "qit_carnot_finite_time_companion",
+      "bridge_reason": "matched finite-state budget-axis companion for forward and reverse finite-time tradeoffs",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "forward_slow_efficiency": 0.17162168374974454,
+        "forward_quasistatic_efficiency": 0.5281401728113482,
+        "reverse_slow_cop": 0.5559504780783574,
+        "reverse_quasistatic_cop": 0.9001824478165095,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_irreversibility_sweep",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance",
+      "entropy_readout_family": [
+        "efficiency",
+        "cop",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_irreversibility_sweep_results.json",
+      "closest_companion_id": "qit_carnot_irreversibility_companion",
+      "bridge_reason": "matched finite-state duration-sweep companion for forward and reverse irreversibility trends",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_forward_efficiency": 0.4382278468709284,
+        "best_reverse_cop": 0.9069921787457502,
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_closure_diagnostic",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance",
+      "entropy_readout_family": [
+        "variance_mismatch",
+        "internal_energy_mismatch",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_closure_diagnostic_results.json",
+      "closest_companion_id": "qit_carnot_closure_companion",
+      "bridge_reason": "matched finite-state closure diagnostic companion for return-defect concentration and hold-policy repair",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+        "best_closure_abs_energy_mismatch": 0.002750347490189764,
+        "dominant_closure_leg_at_best_row": "hot_iso",
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_asymmetric_isotherm_sweep",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance",
+      "entropy_readout_family": [
+        "efficiency",
+        "variance_mismatch",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "forward_engine"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_asymmetric_isotherm_sweep_results.json",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_budget_split_sweep",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_closure_setting": {
+          "hot_steps": 520,
+          "cold_steps": 2500
+        },
+        "best_closure_variance_mismatch_abs": 0.00044977673628832093,
+        "best_efficiency_setting": {
+          "hot_steps": 5000,
+          "cold_steps": 2500
+        },
+        "best_efficiency_distance_to_carnot": 0.013511707719928767,
+        "all_pass": false
+      }
+    },
+    {
+      "id": "carnot_reverse_asymmetric_sweep",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance",
+      "entropy_readout_family": [
+        "cop",
+        "variance_mismatch",
+        "cycle_delta_u"
+      ],
+      "direction_modes": [
+        "reverse_refrigerator"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_reverse_asymmetric_sweep_results.json",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_reverse_budget_split_sweep",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_closure_setting": {
+          "cold_steps": 2500,
+          "hot_steps": 2500
+        },
+        "best_closure_variance_mismatch_abs": 0.0044596912592960725,
+        "best_cop_setting": {
+          "cold_steps": 5000,
+          "hot_steps": 5000
+        },
+        "best_cop_distance_to_carnot": 0.09570592873213313,
+        "all_pass": false
+      }
+    },
+    {
+      "id": "carnot_topology_array",
+      "family": "carnot",
+      "carrier_geometry_class": "multi_potential_working_substance_family",
+      "entropy_readout_family": [
+        "efficiency",
+        "cop",
+        "return_proxy"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "reverse_refrigerator"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_topology_array_results.json",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_geometry_family_sweep",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_engine_topology": "quartic_single_well",
+        "best_refrigerator_topology": "soft_double_well",
+        "best_closure_topology": "soft_double_well",
+        "all_pass": true
+      }
+    },
+    {
+      "id": "carnot_adaptive_hold_sweep",
+      "family": "carnot",
+      "carrier_geometry_class": "harmonic_working_substance_with_hold_policy_axis",
+      "entropy_readout_family": [
+        "efficiency",
+        "variance_mismatch",
+        "cycle_delta_u",
+        "hold_budget"
+      ],
+      "direction_modes": [
+        "forward_engine",
+        "hold_policy_comparison"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_adaptive_hold_sweep_results.json",
+      "closest_companion_id": "qit_carnot_hold_policy_companion",
+      "bridge_reason": "matched finite-state hold-policy companion for closure/performance tradeoffs",
+      "classification": "exploratory",
+      "headline_metrics": {
+        "best_closure_strategy": "fixed_full_chain_800",
+        "best_closure_mismatch_abs": 0.0014798524793151469,
+        "best_efficiency_strategy": "fixed_full_chain_800",
+        "best_efficiency": 0.4230213121224605,
+        "all_pass": true
+      }
+    }
+  ],
+  "closest_open_lab_matches": [
+    {
+      "open_lab_row_id": "szilard_measurement_feedback_substeps",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "matched finite-state substep companion for ordered and scrambled protocol families"
+    },
+    {
+      "open_lab_row_id": "szilard_substep_refinement_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "refined stochastic substep carrier with stronger feedback and reset mechanics"
+    },
+    {
+      "open_lab_row_id": "szilard_substep_balanced_refinement_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "balanced local search over the refined stochastic substep carrier"
+    },
+    {
+      "open_lab_row_id": "szilard_substep_ordering_push_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_substep_companion",
+      "bridge_reason": "ordering-focused push on the balanced stochastic substep carrier"
+    },
+    {
+      "open_lab_row_id": "szilard_reverse_recovery_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_reverse_recovery_companion",
+      "bridge_reason": "matched finite-state reverse-recovery companion for erase, naive reverse, and designed recovery"
+    },
+    {
+      "open_lab_row_id": "szilard_ordering_sensitivity_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_attractor_basin_recovery",
+      "bridge_reason": "order_effect_and_recovery_companion"
+    },
+    {
+      "open_lab_row_id": "szilard_record_reset_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "matched finite-state record-persistence and reset-strength companion"
+    },
+    {
+      "open_lab_row_id": "szilard_record_reset_repair_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "expanded open repair sweep for record persistence and reset-strength translation"
+    },
+    {
+      "open_lab_row_id": "szilard_record_hard_reset_repair_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "hard-reset repair sweep for stronger open record reset mechanics"
+    },
+    {
+      "open_lab_row_id": "szilard_record_ordering_amplification_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "ordering amplification sweep on top of the hard-reset record carrier"
+    },
+    {
+      "open_lab_row_id": "szilard_record_ordering_refinement_sweep",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_record_companion",
+      "bridge_reason": "local ordering refinement around the strongest hard-reset record carrier"
+    },
+    {
+      "open_lab_row_id": "szilard_topology_entropy_array",
+      "open_lab_family": "szilard",
+      "closest_companion_id": "qit_szilard_landauer_cycle",
+      "bridge_reason": "same_szilard_carrier_family_but_geometry_variants_are_still_open"
+    },
+    {
+      "open_lab_row_id": "carnot_stochastic_finite_time",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_finite_time_companion",
+      "bridge_reason": "matched finite-state budget-axis companion for forward and reverse finite-time tradeoffs"
+    },
+    {
+      "open_lab_row_id": "carnot_irreversibility_sweep",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_irreversibility_companion",
+      "bridge_reason": "matched finite-state duration-sweep companion for forward and reverse irreversibility trends"
+    },
+    {
+      "open_lab_row_id": "carnot_closure_diagnostic",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_closure_companion",
+      "bridge_reason": "matched finite-state closure diagnostic companion for return-defect concentration and hold-policy repair"
+    },
+    {
+      "open_lab_row_id": "carnot_asymmetric_isotherm_sweep",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_budget_split_sweep"
+    },
+    {
+      "open_lab_row_id": "carnot_reverse_asymmetric_sweep",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_reverse_budget_split_sweep"
+    },
+    {
+      "open_lab_row_id": "carnot_topology_array",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_two_bath_cycle",
+      "bridge_reason": "same_carnot_anchor_but_geometry_family_sweep"
+    },
+    {
+      "open_lab_row_id": "carnot_adaptive_hold_sweep",
+      "open_lab_family": "carnot",
+      "closest_companion_id": "qit_carnot_hold_policy_companion",
+      "bridge_reason": "matched finite-state hold-policy companion for closure/performance tradeoffs"
+    }
+  ],
+  "positive": {
+    "strict_subset_covers_both_carnot_and_szilard": {
+      "families": [
+        "carnot",
+        "control_recovery",
+        "szilard"
+      ],
+      "pass": true
+    },
+    "all_strict_subset_rows_are_loadable": {
+      "strict_count": 4,
+      "pass": true
+    },
+    "qit_repair_rows_exist_for_both_engine_families": {
+      "families": [
+        "carnot",
+        "szilard"
+      ],
+      "pass": true
+    },
+    "every_open_lab_row_has_a_companion_anchor": {
+      "open_count": 19,
+      "pass": true
+    }
+  },
+  "negative": {
+    "open_lab_rows_are_not_all_inside_the_strict_subset": {
+      "strict_ids": [
+        "qit_attractor_basin_recovery",
+        "qit_carnot_two_bath_cycle",
+        "qit_strong_coupling_landauer",
+        "qit_szilard_landauer_cycle"
+      ],
+      "pass": true
+    },
+    "repair_rows_are_not_being_promoted_to_canonical_anchors": {
+      "repair_ids": [
+        "qit_szilard_substep_companion",
+        "qit_szilard_record_companion",
+        "qit_szilard_reverse_recovery_companion",
+        "qit_carnot_finite_time_companion",
+        "qit_carnot_hold_policy_companion",
+        "qit_carnot_irreversibility_companion",
+        "qit_carnot_closure_companion"
+      ],
+      "pass": true
+    },
+    "the_companion_surface_is_not_a_unified_theory": {
+      "strict_rows": 4,
+      "open_rows": 19,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_referenced_files_exist": {
+      "pass": true
+    },
+    "all_rows_have_finite_headline_metrics": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "strict_qit_subset_count": 4,
+    "qit_repair_row_count": 7,
+    "open_lab_companion_count": 19,
+    "strict_subset_families": [
+      "carnot",
+      "control_recovery",
+      "szilard"
+    ],
+    "strict_subset_row_ids": [
+      "qit_szilard_landauer_cycle",
+      "qit_strong_coupling_landauer",
+      "qit_carnot_two_bath_cycle",
+      "qit_attractor_basin_recovery"
+    ],
+    "closest_open_lab_match_count": 19,
+    "scope_note": "QIT-aligned companion array that separates a strict finite-carrier subset from the current open-lab rows. Use it as the comparison surface for later constraint repair."
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "name": "engine_lab_repair_priority",
+  "classification": "exploratory",
+  "classification_note": "Controller ranking surface over repairable engine-lab rows. It combines route class, direct open-vs-QIT pair data, and clean-run status to produce the next strict-alignment queue.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "ranked_rows": 13,
+    "paired_rows": 13,
+    "priority_counts": {
+      "p0_translate_now": 2,
+      "p1_good_candidate": 7,
+      "p2_needs_new_companion_or_metric": 4
+    },
+    "top_row_id": "szilard_reverse_recovery",
+    "top_row_score": 0.8319028567431039,
+    "scope_note": "Priority ranking over repairable engine-lab rows. Higher score means the open row already translates more cleanly into a strict companion."
+  },
+  "rows": [
+    {
+      "row_id": "szilard_reverse_recovery",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_reverse_recovery_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_reverse_recovery_pair",
+      "translation_closeness_score": 0.8319028567431039,
+      "priority_bucket": "p0_translate_now",
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_recovery_entropy_restoration_fraction": 0.5350807760238032,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3093883306906635
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_refinement_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_record_ordering_refinement_pair",
+      "translation_closeness_score": 0.8302946408207019,
+      "priority_bucket": "p0_translate_now",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.1606231880599962,
+        "best_measurement_mutual_information": 0.43920926071588573,
+        "best_record_survival_fraction": 0.8995833333333333,
+        "best_reset_stage_entropy": 0.25471540316896224
+      }
+    },
+    {
+      "row_id": "szilard_substep_ordering_push_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_substep_ordering_push_pair",
+      "translation_closeness_score": 0.6552936645593322,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.189932047460173,
+        "best_push_score": 0.6279929733082442,
+        "best_measurement_mutual_information": 0.44301403957326924,
+        "best_measurement_accuracy": 0.9316666666666666,
+        "best_reset_signal": 0.4782319756184976
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_repair_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_record_reset_repair_pair",
+      "translation_closeness_score": 0.6425347425172301,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": false,
+        "best_ordering_margin": 0.05294270341938878,
+        "best_repair_score": 0.6072588884025969,
+        "best_measurement_mutual_information": 0.41539117355052174,
+        "best_record_survival_fraction": 0.8875,
+        "open_reset_swing": 0.017223392618928912
+      }
+    },
+    {
+      "row_id": "szilard_substep_balanced_refinement_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_substep_balanced_pair",
+      "translation_closeness_score": 0.6239740493999696,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.15645199104475238,
+        "best_balanced_score": 0.6136417751005354,
+        "best_measurement_mutual_information": 0.4389848211603258,
+        "best_measurement_accuracy": 0.93,
+        "best_reset_signal": 0.37407128786010824
+      }
+    },
+    {
+      "row_id": "carnot_adaptive_hold_sweep",
+      "family": "carnot",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_carnot_hold_policy_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "carnot_hold_policy_pair",
+      "translation_closeness_score": 0.6170390853507259,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_mismatch_abs": 0.0014798524793151469,
+        "baseline_final_variance_mismatch_abs": 0.09712606157817827,
+        "best_efficiency": 0.4230213121224605,
+        "best_closure_defect": 0.0014798524793151469,
+        "dominant_closure_leg_at_best_row": "hot_hold"
+      }
+    },
+    {
+      "row_id": "szilard_record_ordering_amplification_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_record_ordering_pair",
+      "translation_closeness_score": 0.6145941287151934,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.08247997532188,
+        "best_measurement_mutual_information": 0.45709848092351457,
+        "best_record_survival_fraction": 0.94125,
+        "best_reset_stage_entropy": 0.35684301838834565
+      }
+    },
+    {
+      "row_id": "szilard_record_hard_reset_repair_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_record_hard_reset_pair",
+      "translation_closeness_score": 0.5927087500061142,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.03790279143585795,
+        "best_repair_score": 0.7391084770970207,
+        "best_measurement_mutual_information": 0.48966461914823095,
+        "best_record_survival_fraction": 0.7829166666666667,
+        "best_reset_stage_entropy": 0.3791954263899265
+      }
+    },
+    {
+      "row_id": "carnot_stochastic_finite_time",
+      "family": "carnot",
+      "route": "keep_as_open_lab_sidecar",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_carnot_finite_time_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "carnot_finite_time_pair",
+      "translation_closeness_score": 0.4972567349394149,
+      "priority_bucket": "p1_good_candidate",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_slow_efficiency": 0.17162168374974454,
+        "forward_quasistatic_efficiency": 0.5281401728113482,
+        "reverse_slow_cop": 0.5559504780783574,
+        "reverse_quasistatic_cop": 0.9001824478165095
+      }
+    },
+    {
+      "row_id": "carnot_irreversibility_sweep",
+      "family": "carnot",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_carnot_irreversibility_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "carnot_irreversibility_pair",
+      "translation_closeness_score": 0.38142401136181836,
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_forward_distance_to_carnot": 0.06177215312907158,
+        "best_reverse_distance_to_carnot_cop": 0.09300782125424978,
+        "best_reverse_cop": 0.9069921787457502
+      }
+    },
+    {
+      "row_id": "carnot_closure_diagnostic",
+      "family": "carnot",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_carnot_closure_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "carnot_closure_pair",
+      "translation_closeness_score": 0.30000573527135826,
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_closure_abs_variance_mismatch": 0.0013759122873349683,
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      }
+    },
+    {
+      "row_id": "szilard_substeps",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_substep_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_substep_pair",
+      "translation_closeness_score": 0.20985938083734834,
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "headline_metrics": {
+        "all_pass": true,
+        "ordered_final_entropy": 0.6562408706276686,
+        "ordered_measurement_mi": 0.3152387664274231
+      }
+    },
+    {
+      "row_id": "szilard_record_reset_sweep",
+      "family": "szilard",
+      "route": "repair_toward_qit_alignment",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_record_companion",
+      "has_direct_qit_pair": true,
+      "pair_id": "szilard_record_reset_pair",
+      "translation_closeness_score": 0.10054948204057523,
+      "priority_bucket": "p2_needs_new_companion_or_metric",
+      "headline_metrics": {
+        "all_pass": true,
+        "best_ordering_margin": 0.026232612370151065
+      }
+    }
+  ]
+}

@@ -1,0 +1,526 @@
+{
+  "name": "szilard_record_ordering_amplification_sweep",
+  "classification": "exploratory",
+  "classification_note": "Ordering-amplification sweep on top of the hard-reset Szilard record carrier. It varies feedback asymmetry and record-wait duration while holding the stronger reset mechanic fixed.",
+  "lego_ids": [
+    "stochastic_thermodynamics",
+    "measurement_feedback",
+    "landauer_erasure"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "some_feedback_setting_improves_ordering_materially_over_hard_reset_baseline": {
+      "best_ordering_margin": 0.08247997532188,
+      "pass": true
+    },
+    "measurement_information_stays_high": {
+      "best_measurement_mutual_information": 0.45709848092351457,
+      "pass": true
+    },
+    "record_survival_stays_usable": {
+      "best_record_survival_fraction": 0.94125,
+      "pass": true
+    }
+  },
+  "negative": {
+    "not_every_feedback_setting_helps": {
+      "worst_ordering_margin": -0.0055752196495577055,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bookkeeping_stays_closed": {
+      "max_closure_error": 1.3322676295501878e-15,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "best_setting": {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.2,
+      "record_wait_steps": 60
+    },
+    "best_ordering_margin": 0.08247997532188,
+    "best_measurement_mutual_information": 0.45709848092351457,
+    "best_record_survival_fraction": 0.94125,
+    "best_reset_stage_entropy": 0.35684301838834565,
+    "scope_note": "Ordering-amplification sweep on top of the hard-reset Szilard carrier. It tests whether feedback asymmetry can close the remaining ordering gap."
+  },
+  "rows": [
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.11750000000000001,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.06974901894742791,
+      "measurement_mutual_information": 0.43356553209227816,
+      "record_survival_fraction": 0.9375,
+      "reset_stage_entropy": 0.3743306101997123,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.11750000000000001,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.041789228994788596,
+      "measurement_mutual_information": 0.4133490564004553,
+      "record_survival_fraction": 0.8845833333333334,
+      "reset_stage_entropy": 0.37269624521293654,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.11750000000000001,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.031073502501118344,
+      "measurement_mutual_information": 0.4175012465855918,
+      "record_survival_fraction": 0.7791666666666667,
+      "reset_stage_entropy": 0.3942313028472618,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.23500000000000001,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.04705120499587295,
+      "measurement_mutual_information": 0.4674309642751814,
+      "record_survival_fraction": 0.9333333333333333,
+      "reset_stage_entropy": 0.4019264276028539,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.23500000000000001,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.048209699624522206,
+      "measurement_mutual_information": 0.44492540130324576,
+      "record_survival_fraction": 0.8791666666666667,
+      "reset_stage_entropy": 0.38559387192795047,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.23500000000000001,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.00282061348111462,
+      "measurement_mutual_information": 0.4491792666301756,
+      "record_survival_fraction": 0.7845833333333333,
+      "reset_stage_entropy": 0.3911116219584254,
+      "closure_error": 1.3322676295501878e-15
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.47000000000000003,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.005551542423032685,
+      "measurement_mutual_information": 0.4028139183473982,
+      "record_survival_fraction": 0.9429166666666666,
+      "reset_stage_entropy": 0.3950074769228691,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.47000000000000003,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.03495318658234137,
+      "measurement_mutual_information": 0.43638438489738945,
+      "record_survival_fraction": 0.88875,
+      "reset_stage_entropy": 0.3702326080742622,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.35,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.47000000000000003,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.052601230165307156,
+      "measurement_mutual_information": 0.4505857354886029,
+      "record_survival_fraction": 0.7808333333333334,
+      "reset_stage_entropy": 0.39267446722755217,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1375,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.0,
+      "measurement_mutual_information": 0.44201887275815066,
+      "record_survival_fraction": 0.9466666666666667,
+      "reset_stage_entropy": 0.3775801642556535,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1375,
+      "record_wait_steps": 120,
+      "ordering_margin": -0.00436907501741296,
+      "measurement_mutual_information": 0.434673103539114,
+      "record_survival_fraction": 0.8841666666666667,
+      "reset_stage_entropy": 0.4263058837374185,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1375,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.010167316491456135,
+      "measurement_mutual_information": 0.45143464891980734,
+      "record_survival_fraction": 0.795,
+      "reset_stage_entropy": 0.41022295617184945,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.275,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.04646674086720587,
+      "measurement_mutual_information": 0.42475159630745185,
+      "record_survival_fraction": 0.9366666666666666,
+      "reset_stage_entropy": 0.41022295617184945,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.275,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.01746966563968111,
+      "measurement_mutual_information": 0.4374552129045565,
+      "record_survival_fraction": 0.875,
+      "reset_stage_entropy": 0.37105543869960905,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.275,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.06046762959138413,
+      "measurement_mutual_information": 0.44922925943817704,
+      "record_survival_fraction": 0.7804166666666666,
+      "reset_stage_entropy": 0.39267446722755217,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.55,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.020059780175091635,
+      "measurement_mutual_information": 0.450742859675577,
+      "record_survival_fraction": 0.9345833333333333,
+      "reset_stage_entropy": 0.41096861201321877,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.55,
+      "record_wait_steps": 120,
+      "ordering_margin": -0.0055752196495577055,
+      "measurement_mutual_information": 0.45257475338624864,
+      "record_survival_fraction": 0.8904166666666666,
+      "reset_stage_entropy": 0.4094758829967651,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 2.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.55,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.05781311255254484,
+      "measurement_mutual_information": 0.44512122193578185,
+      "record_survival_fraction": 0.77125,
+      "reset_stage_entropy": 0.38559387192795047,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1625,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.02800512679996159,
+      "measurement_mutual_information": 0.4376674475099829,
+      "record_survival_fraction": 0.9454166666666667,
+      "reset_stage_entropy": 0.39886606560601146,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1625,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.03853418866876429,
+      "measurement_mutual_information": 0.41650223477379383,
+      "record_survival_fraction": 0.8775,
+      "reset_stage_entropy": 0.39655535715411117,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1625,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.04039312459513272,
+      "measurement_mutual_information": 0.43722937867148703,
+      "record_survival_fraction": 0.7820833333333334,
+      "reset_stage_entropy": 0.37269624521293654,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.325,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.04846617091448796,
+      "measurement_mutual_information": 0.4378226335596304,
+      "record_survival_fraction": 0.9295833333333333,
+      "reset_stage_entropy": 0.3918937977887376,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.325,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.04117511016636638,
+      "measurement_mutual_information": 0.4285174447935647,
+      "record_survival_fraction": 0.8816666666666667,
+      "reset_stage_entropy": 0.37269624521293654,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.325,
+      "record_wait_steps": 240,
+      "ordering_margin": -0.005302270738238468,
+      "measurement_mutual_information": 0.42579273208628804,
+      "record_survival_fraction": 0.7825,
+      "reset_stage_entropy": 0.40872738903441297,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.65,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.08247997532188,
+      "measurement_mutual_information": 0.45709848092351457,
+      "record_survival_fraction": 0.94125,
+      "reset_stage_entropy": 0.35684301838834565,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.65,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.014013597876181283,
+      "measurement_mutual_information": 0.4406511795828156,
+      "record_survival_fraction": 0.8845833333333334,
+      "reset_stage_entropy": 0.3847994983433037,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.25,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.65,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.0639176966985226,
+      "measurement_mutual_information": 0.43224768370667754,
+      "record_survival_fraction": 0.7775,
+      "reset_stage_entropy": 0.3759585709530533,
+      "closure_error": 1.3322676295501878e-15
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1875,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.034804294314153605,
+      "measurement_mutual_information": 0.453541374246771,
+      "record_survival_fraction": 0.9383333333333334,
+      "reset_stage_entropy": 0.3652613381160851,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1875,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.03663950191112314,
+      "measurement_mutual_information": 0.45110641789154904,
+      "record_survival_fraction": 0.8758333333333334,
+      "reset_stage_entropy": 0.3791954263899265,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.05,
+      "feedback_weak_tilt": 0.1875,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.034654859997465426,
+      "measurement_mutual_information": 0.42324070866031904,
+      "record_survival_fraction": 0.79375,
+      "reset_stage_entropy": 0.37105543869960905,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.375,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.04232115665055525,
+      "measurement_mutual_information": 0.4232582715638408,
+      "record_survival_fraction": 0.9395833333333333,
+      "reset_stage_entropy": 0.37677016125643675,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.375,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.04740957053554862,
+      "measurement_mutual_information": 0.4526165913123036,
+      "record_survival_fraction": 0.8775,
+      "reset_stage_entropy": 0.3627534409087263,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.1,
+      "feedback_weak_tilt": 0.375,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.04941695262181095,
+      "measurement_mutual_information": 0.4021695432925112,
+      "record_survival_fraction": 0.7816666666666666,
+      "reset_stage_entropy": 0.3783885844704506,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.75,
+      "record_wait_steps": 60,
+      "ordering_margin": 0.06535224410326479,
+      "measurement_mutual_information": 0.41960319151689973,
+      "record_survival_fraction": 0.93875,
+      "reset_stage_entropy": 0.37514538879480075,
+      "closure_error": 4.440892098500626e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.75,
+      "record_wait_steps": 120,
+      "ordering_margin": 0.06903726128432047,
+      "measurement_mutual_information": 0.44488021737766126,
+      "record_survival_fraction": 0.8829166666666667,
+      "reset_stage_entropy": 0.3403735537868924,
+      "closure_error": 8.881784197001252e-16
+    },
+    {
+      "feedback_strong_tilt": 3.75,
+      "feedback_weak_ratio": 0.2,
+      "feedback_weak_tilt": 0.75,
+      "record_wait_steps": 240,
+      "ordering_margin": 0.045325451842891495,
+      "measurement_mutual_information": 0.4166672914244913,
+      "record_survival_fraction": 0.79375,
+      "reset_stage_entropy": 0.37677016125643675,
+      "closure_error": 8.881784197001252e-16
+    }
+  ]
+}

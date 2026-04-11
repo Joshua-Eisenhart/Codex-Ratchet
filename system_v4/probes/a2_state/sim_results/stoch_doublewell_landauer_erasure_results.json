@@ -1,0 +1,463 @@
+{
+  "name": "stoch_doublewell_landauer_erasure",
+  "classification": "exploratory",
+  "classification_note": "Operational stochastic-thermodynamics sidecar for Landauer/Szilard-style erasure on a finite double-well carrier. It explores forward and reverse protocol mechanics, work / heat / closure bookkeeping, fast-vs-slow scaling, and a broken no-tilt control without promoting a full physical engine theorem.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "landauer_erasure"
+  ],
+  "primary_lego_ids": [
+    "stochastic_thermodynamics",
+    "landauer_erasure"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "slow_protocol_erases_more_reliably_than_fast_protocol": {
+      "fast_success": 0.5333333333333333,
+      "slow_success": 0.6853333333333333,
+      "pass": true
+    },
+    "slow_protocol_moves_toward_the_landauer_floor": {
+      "fast_gap": 0.43925271562215956,
+      "slow_gap": 0.3762629715274918,
+      "pass": true
+    },
+    "successful_forward_erasure_respects_logical_landauer_floor": {
+      "mean_work": 0.3762629715274918,
+      "logical_floor": 0.0,
+      "pass": true
+    },
+    "recovery_protocol_restores_logical_uncertainty_relative_to_forward_erasure": {
+      "forward_final_entropy": 0.6227837872903577,
+      "recovery_final_entropy": 0.4590433371392282,
+      "pass": false
+    }
+  },
+  "negative": {
+    "no_tilt_control_fails_to_erase_as_well_as_slow_protocol": {
+      "control_success": 0.495,
+      "slow_success": 0.6853333333333333,
+      "pass": true
+    },
+    "reverse_protocol_is_not_itself_a_good_erasure_protocol": {
+      "recovery_success": 0.828,
+      "pass": false
+    }
+  },
+  "boundary": {
+    "work_heat_bookkeeping_closes_for_all_protocols": {
+      "forward_fast_closure_error": 2.7755575615628914e-17,
+      "forward_slow_closure_error": 8.326672684688674e-17,
+      "control_closure_error": 5.551115123125783e-17,
+      "reverse_closure_error": 2.220446049250313e-16,
+      "pass": true
+    },
+    "all_protocols_produce_finite_summary_statistics": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "temperature": 1.0,
+    "n_trajectories": 3000,
+    "fast_steps": 80,
+    "slow_steps": 420,
+    "forward_fast": {
+      "erase_success": 0.5333333333333333,
+      "mean_work": 0.43925271562215956,
+      "landauer_gap": 0.43925271562215956
+    },
+    "forward_slow": {
+      "erase_success": 0.6853333333333333,
+      "mean_work": 0.3762629715274918,
+      "landauer_gap": 0.3762629715274918
+    },
+    "recovery_slow": {
+      "erase_success": 0.828,
+      "logical_entropy_final": 0.4590433371392282
+    },
+    "naive_reverse": {
+      "erase_success": 0.684,
+      "logical_entropy_final": 0.6238175238348482
+    },
+    "scope_note": "Operational stochastic sidecar with forward / reverse protocol mechanics, not yet a canonical physical engine row."
+  },
+  "protocols": {
+    "forward_fast": {
+      "reverse": false,
+      "use_tilt": true,
+      "protocol_steps": 80,
+      "mean_work": 0.43925271562215956,
+      "mean_heat": -0.2822811119048146,
+      "mean_delta_u": 0.156971603717345,
+      "closure_error": 2.7755575615628914e-17,
+      "p_left_init": 0.5053333333333333,
+      "p_left_final": 0.5333333333333333,
+      "logical_entropy_init": 0.6930902905922254,
+      "logical_entropy_final": 0.6909233093138181,
+      "info_erased": 0.0021669812784073095,
+      "equilibrium_delta_f": -0.6486765545070005,
+      "landauer_floor": 0.0,
+      "landauer_gap": 0.43925271562215956,
+      "erase_success": 0.5333333333333333,
+      "stage_logs": [
+        {
+          "name": "lower_barrier",
+          "temperature": 1.0,
+          "steps": 20,
+          "mean_work": -0.32040763293560354,
+          "mean_heat": 0.18510053642897992,
+          "mean_delta_u": -0.13530709650662365,
+          "mean_barrier_work": -0.32040763293560354,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "tilt_left",
+          "temperature": 1.0,
+          "steps": 20,
+          "mean_work": -0.0379901091681976,
+          "mean_heat": 0.03003149430663557,
+          "mean_delta_u": -0.007958614861562035,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.0379901091681976
+        },
+        {
+          "name": "raise_barrier",
+          "temperature": 1.0,
+          "steps": 20,
+          "mean_work": 0.7976504577259609,
+          "mean_heat": -0.31521721754637283,
+          "mean_delta_u": 0.48243324017958783,
+          "mean_barrier_work": 0.7976504577259609,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "left_lock_hold",
+          "temperature": 1.0,
+          "steps": 20,
+          "mean_work": 0.0,
+          "mean_heat": -0.18219592509405722,
+          "mean_delta_u": -0.18219592509405722,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        }
+      ]
+    },
+    "forward_slow": {
+      "reverse": false,
+      "use_tilt": true,
+      "protocol_steps": 420,
+      "mean_work": 0.3762629715274918,
+      "mean_heat": -0.5863102886412125,
+      "mean_delta_u": -0.21004731711372063,
+      "closure_error": 8.326672684688674e-17,
+      "p_left_init": 0.49233333333333335,
+      "p_left_final": 0.6853333333333333,
+      "logical_entropy_init": 0.6930296203975203,
+      "logical_entropy_final": 0.6227837872903577,
+      "info_erased": 0.07024583310716259,
+      "equilibrium_delta_f": -0.6486765545070005,
+      "landauer_floor": 0.0,
+      "landauer_gap": 0.3762629715274918,
+      "erase_success": 0.6853333333333333,
+      "stage_logs": [
+        {
+          "name": "lower_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.5149471899856823,
+          "mean_heat": 0.44540105780981065,
+          "mean_delta_u": -0.06954613217587181,
+          "mean_barrier_work": -0.5149471899856823,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "tilt_left",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.041949273187123305,
+          "mean_heat": -0.045283654758018516,
+          "mean_delta_u": -0.0872329279451418,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.041949273187123305
+        },
+        {
+          "name": "raise_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.9331594347002974,
+          "mean_heat": -0.7687814210326378,
+          "mean_delta_u": 0.16437801366765978,
+          "mean_barrier_work": 0.9331594347002974,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "left_lock_hold",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.0,
+          "mean_heat": -0.2176462706603668,
+          "mean_delta_u": -0.2176462706603668,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        }
+      ]
+    },
+    "control_no_tilt": {
+      "reverse": false,
+      "use_tilt": false,
+      "protocol_steps": 420,
+      "mean_work": 0.3636467127589254,
+      "mean_heat": -0.03423215658465956,
+      "mean_delta_u": 0.3294145561742659,
+      "closure_error": 5.551115123125783e-17,
+      "p_left_init": 0.48733333333333334,
+      "p_left_final": 0.495,
+      "logical_entropy_init": 0.6928262573390158,
+      "logical_entropy_final": 0.6930971797265786,
+      "info_erased": -0.00027092238756276643,
+      "equilibrium_delta_f": 0.0,
+      "landauer_floor": 0.0,
+      "landauer_gap": 0.3636467127589254,
+      "erase_success": 0.495,
+      "stage_logs": [
+        {
+          "name": "lower_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.5129230549547728,
+          "mean_heat": 0.44960423122984167,
+          "mean_delta_u": -0.0633188237249311,
+          "mean_barrier_work": -0.5129230549547728,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "tilt_left",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.0,
+          "mean_heat": 0.08237584150554553,
+          "mean_delta_u": 0.08237584150554553,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "raise_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.876569767713698,
+          "mean_heat": -0.5263526762342375,
+          "mean_delta_u": 0.35021709147946056,
+          "mean_barrier_work": 0.876569767713698,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "left_lock_hold",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.0,
+          "mean_heat": -0.03985955308580917,
+          "mean_delta_u": -0.03985955308580917,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        }
+      ]
+    },
+    "reverse_slow": {
+      "reverse": true,
+      "use_tilt": true,
+      "protocol_steps": 420,
+      "mean_work": 1.8081886126836895,
+      "mean_heat": -0.1451639822668007,
+      "mean_delta_u": 1.6630246304168885,
+      "closure_error": 2.220446049250313e-16,
+      "p_left_init": 1.0,
+      "p_left_final": 0.828,
+      "logical_entropy_init": 3.551116999690106e-14,
+      "logical_entropy_final": 0.4590433371392282,
+      "info_erased": -0.45904333713919265,
+      "equilibrium_delta_f": 0.6486765545070005,
+      "landauer_floor": 0.6486765545070005,
+      "landauer_gap": 1.1595120581766891,
+      "erase_success": 0.828,
+      "stage_logs": [
+        {
+          "name": "release_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.6282709000484518,
+          "mean_heat": 0.5328279722586025,
+          "mean_delta_u": -0.09544292778984936,
+          "mean_barrier_work": -0.6282709000484518,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "untilt_low_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 1.4502060224470117,
+          "mean_heat": 0.10157181466076781,
+          "mean_delta_u": 1.5517778371077795,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 1.4502060224470117
+        },
+        {
+          "name": "raise_barrier_symmetric",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.9862534902851293,
+          "mean_heat": -0.7588828629757375,
+          "mean_delta_u": 0.22737062730939195,
+          "mean_barrier_work": 0.9862534902851293,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "symmetric_hold",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.0,
+          "mean_heat": -0.020680906210433555,
+          "mean_delta_u": -0.020680906210433555,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        }
+      ]
+    },
+    "naive_reverse": {
+      "reverse": false,
+      "use_tilt": true,
+      "protocol_steps": 420,
+      "mean_work": 0.357386354295918,
+      "mean_heat": -0.5752739911631265,
+      "mean_delta_u": -0.21788763686720866,
+      "closure_error": 1.3877787807814457e-16,
+      "p_left_init": 0.49433333333333335,
+      "p_left_final": 0.684,
+      "logical_entropy_init": 0.6930829569628212,
+      "logical_entropy_final": 0.6238175238348482,
+      "info_erased": 0.06926543312797295,
+      "equilibrium_delta_f": -0.6486765545070005,
+      "landauer_floor": 0.0,
+      "landauer_gap": 0.357386354295918,
+      "erase_success": 0.684,
+      "stage_logs": [
+        {
+          "name": "lower_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.5177709272685993,
+          "mean_heat": 0.4503162195011106,
+          "mean_delta_u": -0.06745470776748864,
+          "mean_barrier_work": -0.5177709272685993,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "tilt_left",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": -0.055854070669684744,
+          "mean_heat": -0.04084436845973981,
+          "mean_delta_u": -0.09669843912942454,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": -0.055854070669684744
+        },
+        {
+          "name": "raise_barrier",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.931011352234202,
+          "mean_heat": -0.7719009281247214,
+          "mean_delta_u": 0.15911042410948045,
+          "mean_barrier_work": 0.931011352234202,
+          "mean_tilt_work": 0.0
+        },
+        {
+          "name": "left_lock_hold",
+          "temperature": 1.0,
+          "steps": 105,
+          "mean_work": 0.0,
+          "mean_heat": -0.21284491407977588,
+          "mean_delta_u": -0.21284491407977588,
+          "mean_barrier_work": 0.0,
+          "mean_tilt_work": 0.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3710 @@
+{
+  "metadata": {
+    "name": "weyl_geometry_carrier_compare",
+    "timestamp": "2026-04-11T08:33:10.286537+00:00",
+    "results_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_carrier_compare_results.json"
+  },
+  "summary": {
+    "classification": "canonical",
+    "carrier_count": 4,
+    "carrier_order": [
+      "hopf_torus",
+      "sphere_section",
+      "graph_carrier",
+      "hypergraph_carrier"
+    ],
+    "all_pass": true,
+    "result_count": 96,
+    "tool_manifest": {
+      "numpy": {
+        "tried": true,
+        "used": true,
+        "reason": "core numeric carrier/readout layer"
+      },
+      "rustworkx": {
+        "tried": true,
+        "used": true,
+        "reason": "graph carrier stats and DAG order"
+      },
+      "xgi": {
+        "tried": true,
+        "used": true,
+        "reason": "hypergraph carrier stats"
+      }
+    },
+    "checks": {
+      "hopf_torus": {
+        "passed": true,
+        "core_invariants_ok": true
+      },
+      "sphere_section": {
+        "passed": true,
+        "core_invariants_ok": true
+      },
+      "graph_carrier": {
+        "passed": true,
+        "core_invariants_ok": true
+      },
+      "hypergraph_carrier": {
+        "passed": true,
+        "core_invariants_ok": true
+      },
+      "comparison_spread": {
+        "passed": true,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963
+      }
+    },
+    "comparison_rows": 3
+  },
+  "carriers": {
+    "hopf_torus": {
+      "samples": [
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_0",
+          "q": [
+            0.9238795325112867,
+            0.0,
+            0.3826834323650898,
+            0.0
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            0.7071067811865476,
+            0.0,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            -0.7071067811865476,
+            0.0,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            0.7071067811865476,
+            0.0,
+            0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.1634997285925725e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_1",
+          "q": [
+            0.6532814824381883,
+            0.6532814824381882,
+            -0.27059805007309845,
+            0.2705980500730985
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.7853981633974483,
+          "theta2": 2.356194490192345,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            1.0048441984909643e-17,
+            0.7071067811865475,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            -1.0048441984909643e-17,
+            -0.7071067811865475,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            1.0048441984909643e-17,
+            0.7071067811865475,
+            0.7071067811865475
+          ],
+          "left_entropy": 1.6017132519074586e-16,
+          "right_entropy": 1.6017132519074586e-16,
+          "left_right_overlap_abs": 3.8264533776855674e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 0.9999999999999998,
+          "right_trace": 0.9999999999999998
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_2",
+          "q": [
+            5.657130561438501e-17,
+            0.9238795325112867,
+            -7.029780607989448e-17,
+            -0.3826834323650898
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 1.5707963267948966,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -0.7071067811865476,
+            8.659560562354933e-17,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            0.7071067811865476,
+            -8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -0.7071067811865476,
+            8.659560562354934e-17,
+            0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.1634997285925725e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.232595164407831e-32,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_3",
+          "q": [
+            -0.6532814824381882,
+            0.6532814824381883,
+            0.2705980500730985,
+            0.27059805007309845
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 2.356194490192345,
+          "theta2": 0.7853981633974483,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -2.3955352295385083e-18,
+            -0.7071067811865475,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            2.3955352295385083e-18,
+            0.7071067811865475,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -2.3955352295385083e-18,
+            -0.7071067811865475,
+            0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 3.8264533776855674e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_4",
+          "q": [
+            -0.9238795325112867,
+            1.1314261122877003e-16,
+            -0.3826834323650898,
+            4.6865204053262986e-17
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 3.141592653589793,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            0.7071067811865476,
+            -1.197060585437666e-32,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            -0.7071067811865476,
+            1.197060585437666e-32,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            0.7071067811865476,
+            -6.948244673259281e-33,
+            0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.1634997285925725e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.0223611811173784e-33,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_5",
+          "q": [
+            -0.6532814824381884,
+            -0.6532814824381882,
+            0.27059805007309845,
+            -0.27059805007309856
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 3.9269908169872414,
+          "theta2": 5.497787143782138,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            5.4747560942024854e-18,
+            0.7071067811865476,
+            0.7071067811865476
+          ],
+          "right_bloch": [
+            -5.4747560942024854e-18,
+            -0.7071067811865476,
+            -0.7071067811865476
+          ],
+          "hopf_bloch": [
+            5.4747560942024854e-18,
+            0.7071067811865476,
+            0.7071067811865477
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 6.969221120245666e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_6",
+          "q": [
+            -1.6971391684315505e-16,
+            -0.9238795325112867,
+            2.3432602026631493e-17,
+            0.3826834323650898
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 4.71238898038469,
+          "theta2": 1.5707963267948966,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -0.7071067811865476,
+            -8.659560562354933e-17,
+            0.7071067811865475
+          ],
+          "right_bloch": [
+            0.7071067811865476,
+            8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -0.7071067811865476,
+            -8.659560562354933e-17,
+            0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.1634997285925725e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_0_7",
+          "q": [
+            0.6532814824381881,
+            -0.6532814824381884,
+            -0.27059805007309856,
+            -0.27059805007309845
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 5.497787143782138,
+          "theta2": 3.9269908169872414,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            4.067163878727119e-17,
+            -0.7071067811865476,
+            0.7071067811865474
+          ],
+          "right_bloch": [
+            -4.067163878727119e-17,
+            0.7071067811865476,
+            -0.7071067811865474
+          ],
+          "hopf_bloch": [
+            4.067163878727119e-17,
+            -0.7071067811865476,
+            0.7071067811865472
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 4.682378174892075e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_0",
+          "q": [
+            0.7071067811865476,
+            0.0,
+            0.7071067811865475,
+            0.0
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            1.0,
+            0.0,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            -1.0,
+            0.0,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            1.0,
+            0.0,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.0146536357569526e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_1",
+          "q": [
+            0.5000000000000001,
+            0.5,
+            -0.4999999999999999,
+            0.5
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 0.7853981633974483,
+          "theta2": 2.356194490192345,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            2.465190328815662e-32,
+            1.0,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            -2.465190328815662e-32,
+            -1.0,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            2.465190328815662e-32,
+            1.0,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.232595164407831e-32,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_2",
+          "q": [
+            4.329780281177467e-17,
+            0.7071067811865476,
+            -1.2989340843532398e-16,
+            -0.7071067811865475
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 1.5707963267948966,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -1.0,
+            1.224646799147353e-16,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            1.0,
+            -1.224646799147353e-16,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            -1.0,
+            1.224646799147353e-16,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.0146536357569526e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_3",
+          "q": [
+            -0.5,
+            0.5000000000000001,
+            0.5,
+            0.4999999999999999
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 2.356194490192345,
+          "theta2": 0.7853981633974483,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            0.0,
+            -1.0,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            0.0,
+            1.0,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            0.0,
+            -1.0,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.232595164407831e-32,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_4",
+          "q": [
+            -0.7071067811865476,
+            8.659560562354934e-17,
+            -0.7071067811865475,
+            8.659560562354932e-17
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            1.0,
+            7.817484464748079e-33,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            -1.0,
+            -7.817484464748079e-33,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            1.0,
+            1.1014973284135676e-32,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.0146536357569526e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 3.197488819387598e-33,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_5",
+          "q": [
+            -0.5000000000000001,
+            -0.5,
+            0.49999999999999983,
+            -0.5000000000000001
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.9269908169872414,
+          "theta2": 5.497787143782138,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            1.6653345369377353e-16,
+            1.0,
+            1.6653345369377348e-16
+          ],
+          "right_bloch": [
+            -1.6653345369377353e-16,
+            -1.0,
+            -1.6653345369377348e-16
+          ],
+          "hopf_bloch": [
+            1.6653345369377353e-16,
+            1.0,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.8488927466117464e-32,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_6",
+          "q": [
+            -1.29893408435324e-16,
+            -0.7071067811865476,
+            4.329780281177466e-17,
+            0.7071067811865475
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 4.71238898038469,
+          "theta2": 1.5707963267948966,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -1.0,
+            -1.2246467991473532e-16,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            1.0,
+            1.2246467991473532e-16,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            -1.0,
+            -1.2246467991473532e-16,
+            2.220446049250313e-16
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.0146536357569526e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_1_7",
+          "q": [
+            0.4999999999999999,
+            -0.5000000000000001,
+            -0.5000000000000001,
+            -0.4999999999999999
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 5.497787143782138,
+          "theta2": 3.9269908169872414,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            2.465190328815662e-32,
+            -1.0,
+            0.0
+          ],
+          "right_bloch": [
+            -2.465190328815662e-32,
+            1.0,
+            0.0
+          ],
+          "hopf_bloch": [
+            2.465190328815662e-32,
+            -1.0,
+            0.0
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.465190328815662e-32,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_0",
+          "q": [
+            0.38268343236508984,
+            0.0,
+            0.9238795325112867,
+            0.0
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            0.7071067811865477,
+            0.0,
+            -0.7071067811865475
+          ],
+          "right_bloch": [
+            -0.7071067811865477,
+            0.0,
+            0.7071067811865475
+          ],
+          "hopf_bloch": [
+            0.7071067811865477,
+            0.0,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.5860532068485732e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_1",
+          "q": [
+            0.27059805007309856,
+            0.2705980500730985,
+            -0.6532814824381882,
+            0.6532814824381883
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 0.7853981633974483,
+          "theta2": 2.356194490192345,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -1.9413198334693818e-17,
+            0.7071067811865476,
+            -0.7071067811865475
+          ],
+          "right_bloch": [
+            1.9413198334693818e-17,
+            -0.7071067811865476,
+            0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -1.9413198334693818e-17,
+            0.7071067811865476,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.3191209727469748e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_2",
+          "q": [
+            2.3432602026631496e-17,
+            0.38268343236508984,
+            -1.6971391684315505e-16,
+            -0.9238795325112867
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 1.5707963267948966,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -0.7071067811865477,
+            8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "right_bloch": [
+            0.7071067811865477,
+            -8.659560562354933e-17,
+            0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -0.7071067811865477,
+            8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.5860532068485732e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_3",
+          "q": [
+            -0.2705980500730985,
+            0.27059805007309856,
+            0.6532814824381883,
+            0.6532814824381882
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 2.356194490192345,
+          "theta2": 0.7853981633974483,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -6.969221120245678e-18,
+            -0.7071067811865476,
+            -0.7071067811865474
+          ],
+          "right_bloch": [
+            6.969221120245678e-18,
+            0.7071067811865476,
+            0.7071067811865474
+          ],
+          "hopf_bloch": [
+            -6.969221120245678e-18,
+            -0.7071067811865476,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 1.3191209727469748e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_4",
+          "q": [
+            -0.38268343236508984,
+            4.686520405326299e-17,
+            -0.9238795325112867,
+            1.1314261122877003e-16
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            0.7071067811865477,
+            5.220800651061739e-33,
+            -0.7071067811865475
+          ],
+          "right_bloch": [
+            -0.7071067811865477,
+            -5.220800651061739e-33,
+            0.7071067811865475
+          ],
+          "hopf_bloch": [
+            0.7071067811865477,
+            4.431613830254712e-33,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.5860532068485732e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 7.891868208070271e-34,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_5",
+          "q": [
+            -0.2705980500730986,
+            -0.2705980500730985,
+            0.6532814824381881,
+            -0.6532814824381884
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.9269908169872414,
+          "theta2": 5.497787143782138,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            2.3653975682115895e-17,
+            0.7071067811865477,
+            -0.7071067811865474
+          ],
+          "right_bloch": [
+            -2.3653975682115895e-17,
+            -0.7071067811865477,
+            0.7071067811865474
+          ],
+          "hopf_bloch": [
+            2.3653975682115895e-17,
+            0.7071067811865477,
+            -0.7071067811865472
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 6.055534335581523e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_6",
+          "q": [
+            -7.029780607989448e-17,
+            -0.38268343236508984,
+            5.657130561438501e-17,
+            0.9238795325112867
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 4.71238898038469,
+          "theta2": 1.5707963267948966,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            -0.7071067811865477,
+            -8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "right_bloch": [
+            0.7071067811865477,
+            8.659560562354933e-17,
+            0.7071067811865475
+          ],
+          "hopf_bloch": [
+            -0.7071067811865477,
+            -8.659560562354933e-17,
+            -0.7071067811865475
+          ],
+          "left_entropy": -0.0,
+          "right_entropy": -0.0,
+          "left_right_overlap_abs": 2.5860532068485732e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hopf_torus",
+          "sample_id": "torus_2_7",
+          "q": [
+            0.27059805007309845,
+            -0.2705980500730986,
+            -0.6532814824381884,
+            -0.6532814824381882
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 5.497787143782138,
+          "theta2": 3.9269908169872414,
+          "mix_strength": 0.0,
+          "left_bloch": [
+            1.1649705855671814e-16,
+            -0.7071067811865477,
+            -0.7071067811865476
+          ],
+          "right_bloch": [
+            -1.1649705855671814e-16,
+            0.7071067811865477,
+            0.7071067811865476
+          ],
+          "hopf_bloch": [
+            1.1649705855671814e-16,
+            -0.7071067811865477,
+            -0.7071067811865477
+          ],
+          "left_entropy": -3.2034265038149176e-16,
+          "right_entropy": -3.2034265038149176e-16,
+          "left_right_overlap_abs": 1.2277522942805593e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0000000000000002,
+          "right_trace": 1.0000000000000002
+        }
+      ],
+      "summary": {
+        "sample_count": 24,
+        "max_left_norm_error": 2.220446049250313e-16,
+        "max_right_norm_error": 2.220446049250313e-16,
+        "max_left_right_overlap_abs": 2.5860532068485732e-17,
+        "max_left_right_bloch_antipodal_gap": 0.0,
+        "mean_left_right_bloch_antipodal_gap": 0.0,
+        "max_hopf_roundtrip_gap": 1.1102230246251565e-16,
+        "mean_hopf_roundtrip_gap": 2.544261098099317e-17,
+        "mean_left_entropy": -6.67380521628108e-18,
+        "mean_right_entropy": -6.67380521628108e-18,
+        "mean_left_trace": 1.0,
+        "mean_right_trace": 1.0,
+        "mean_step_bloch_jump": 1.1620835678851242,
+        "max_step_bloch_jump": 1.4142135623730954,
+        "carrier_kind": "hopf_torus",
+        "torus_levels": [
+          0.39269908169872414,
+          0.7853981633974483,
+          1.1780972450961724
+        ],
+        "torus_radii": [
+          [
+            0.9238795325112867,
+            0.3826834323650898
+          ],
+          [
+            0.7071067811865476,
+            0.7071067811865475
+          ],
+          [
+            0.38268343236508984,
+            0.9238795325112867
+          ]
+        ],
+        "torus_level_count": 3,
+        "phase_count": 8
+      }
+    },
+    "sphere_section": {
+      "samples": [
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_0",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            0.25881904510252074,
+            0.0
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.48999999999999994,
+            0.0,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            -0.48999999999999994,
+            0.0,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            0.49999999999999994,
+            0.0,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591121,
+          "right_entropy": 0.08079313589591121,
+          "left_right_overlap_abs": 1.2253002782949126e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_1",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            0.18301270189221933,
+            0.1830127018922193
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 0.7853981633974483,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.3464823227814083,
+            0.3464823227814082,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            -0.3464823227814083,
+            -0.3464823227814082,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            0.3535533905932738,
+            0.35355339059327373,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591126,
+          "right_entropy": 0.08079313589591126,
+          "left_right_overlap_abs": 4.846926641709329e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_2",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            1.5848095757158825e-17,
+            0.25881904510252074
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            3.0003846579110155e-17,
+            0.48999999999999994,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            -3.0003846579110155e-17,
+            -0.48999999999999994,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            3.061616997868383e-17,
+            0.49999999999999994,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591121,
+          "right_entropy": 0.08079313589591121,
+          "left_right_overlap_abs": 3.702695481138912e-34,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_3",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            -0.1830127018922193,
+            0.18301270189221933
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 2.356194490192345,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.3464823227814082,
+            0.3464823227814083,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            0.3464823227814082,
+            -0.3464823227814083,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            -0.35355339059327373,
+            0.3535533905932738,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591121,
+          "right_entropy": 0.08079313589591121,
+          "left_right_overlap_abs": 3.90117833673549e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_4",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            -0.25881904510252074,
+            3.169619151431765e-17
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 3.141592653589793,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.48999999999999994,
+            6.000769315822031e-17,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            0.48999999999999994,
+            -6.000769315822031e-17,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            -0.49999999999999994,
+            6.123233995736766e-17,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591121,
+          "right_entropy": 0.08079313589591121,
+          "left_right_overlap_abs": 1.2253002782949126e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_5",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            -0.18301270189221935,
+            -0.1830127018922193
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 3.9269908169872414,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.34648232278140834,
+            -0.3464823227814082,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            0.34648232278140834,
+            0.3464823227814082,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            -0.35355339059327384,
+            -0.35355339059327373,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591108,
+          "right_entropy": 0.08079313589591108,
+          "left_right_overlap_abs": 5.7926749466831685e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_6",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            -4.7544287271476465e-17,
+            -0.25881904510252074
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 4.71238898038469,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -9.001153973733045e-17,
+            -0.48999999999999994,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            9.001153973733045e-17,
+            0.48999999999999994,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            -9.184850993605147e-17,
+            -0.49999999999999994,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591121,
+          "right_entropy": 0.08079313589591121,
+          "left_right_overlap_abs": 1.4258061074463248e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_0_7",
+          "q": [
+            0.9659258262890683,
+            0.0,
+            0.18301270189221927,
+            -0.18301270189221935
+          ],
+          "eta": 0.2617993877991494,
+          "theta1": 5.497787143782138,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.34648232278140817,
+            -0.34648232278140834,
+            0.84870489570875
+          ],
+          "right_bloch": [
+            -0.34648232278140817,
+            0.34648232278140834,
+            -0.84870489570875
+          ],
+          "hopf_bloch": [
+            0.3535533905932737,
+            -0.35355339059327384,
+            0.8660254037844387
+          ],
+          "left_entropy": 0.08079313589591126,
+          "right_entropy": 0.08079313589591083,
+          "left_right_overlap_abs": 2.9554300317616506e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_0",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            0.49999999999999994,
+            0.0
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.8487048957087499,
+            0.0,
+            0.49000000000000016
+          ],
+          "right_bloch": [
+            -0.8487048957087499,
+            0.0,
+            -0.49000000000000016
+          ],
+          "hopf_bloch": [
+            0.8660254037844386,
+            0.0,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591111,
+          "right_entropy": 0.08079313589591111,
+          "left_right_overlap_abs": 7.437084071668725e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_1",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            0.35355339059327373,
+            0.3535533905932737
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 0.7853981633974483,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.6001249869818785,
+            0.6001249869818785,
+            0.4900000000000002
+          ],
+          "right_bloch": [
+            -0.6001249869818785,
+            -0.6001249869818785,
+            -0.4900000000000002
+          ],
+          "hopf_bloch": [
+            0.6123724356957945,
+            0.6123724356957945,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591135,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 2.1476564514465538e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_2",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            3.0616169978683824e-17,
+            0.49999999999999994
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            5.196818669752043e-17,
+            0.8487048957087499,
+            0.49000000000000016
+          ],
+          "right_bloch": [
+            -5.196818669752043e-17,
+            -0.8487048957087499,
+            -0.49000000000000016
+          ],
+          "hopf_bloch": [
+            5.302876193624534e-17,
+            0.8660254037844386,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591111,
+          "right_entropy": 0.08079313589591111,
+          "left_right_overlap_abs": 8.75745541545256e-34,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_3",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            -0.3535533905932737,
+            0.35355339059327373
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 2.356194490192345,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.6001249869818785,
+            0.6001249869818785,
+            0.4900000000000002
+          ],
+          "right_bloch": [
+            0.6001249869818785,
+            -0.6001249869818785,
+            -0.4900000000000002
+          ],
+          "hopf_bloch": [
+            -0.6123724356957945,
+            0.6123724356957945,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591135,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 2.6597502645123564e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_4",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            -0.49999999999999994,
+            6.123233995736765e-17
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 3.141592653589793,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.8487048957087499,
+            1.0393637339504086e-16,
+            0.49000000000000016
+          ],
+          "right_bloch": [
+            0.8487048957087499,
+            -1.0393637339504086e-16,
+            -0.49000000000000016
+          ],
+          "hopf_bloch": [
+            -0.8660254037844386,
+            1.0605752387249068e-16,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591111,
+          "right_entropy": 0.08079313589591111,
+          "left_right_overlap_abs": 7.437084071668725e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_5",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            -0.3535533905932738,
+            -0.3535533905932737
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 3.9269908169872414,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.6001249869818787,
+            -0.6001249869818785,
+            0.49000000000000016
+          ],
+          "right_bloch": [
+            0.6001249869818787,
+            0.6001249869818785,
+            -0.49000000000000016
+          ],
+          "hopf_bloch": [
+            -0.6123724356957946,
+            -0.6123724356957945,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591111,
+          "right_entropy": 0.08079313589591111,
+          "left_right_overlap_abs": 1.4039480442796812e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_6",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            -9.184850993605147e-17,
+            -0.49999999999999994
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 4.71238898038469,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -1.559045600925613e-16,
+            -0.8487048957087499,
+            0.49000000000000016
+          ],
+          "right_bloch": [
+            1.559045600925613e-16,
+            0.8487048957087499,
+            -0.49000000000000016
+          ],
+          "hopf_bloch": [
+            -1.5908628580873602e-16,
+            -0.8660254037844386,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591111,
+          "right_entropy": 0.08079313589591111,
+          "left_right_overlap_abs": 5.7087245356553456e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_1_7",
+          "q": [
+            0.8660254037844387,
+            0.0,
+            0.3535533905932736,
+            -0.3535533905932738
+          ],
+          "eta": 0.5235987755982988,
+          "theta1": 5.497787143782138,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.6001249869818784,
+            -0.6001249869818787,
+            0.4900000000000002
+          ],
+          "right_bloch": [
+            -0.6001249869818784,
+            0.6001249869818787,
+            -0.4900000000000002
+          ],
+          "hopf_bloch": [
+            0.6123724356957944,
+            -0.6123724356957946,
+            0.5000000000000002
+          ],
+          "left_entropy": 0.08079313589591047,
+          "right_entropy": 0.08079313589591078,
+          "left_right_overlap_abs": 1.9160418573454838e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_0",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            0.8660254037844386,
+            0.0
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 0.0,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.8487048957087501,
+            0.0,
+            -0.48999999999999977
+          ],
+          "right_bloch": [
+            -0.8487048957087501,
+            0.0,
+            0.48999999999999977
+          ],
+          "hopf_bloch": [
+            0.8660254037844388,
+            0.0,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.0807931358959109,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 1.4874168143337463e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_1",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            0.6123724356957946,
+            0.6123724356957945
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 0.7853981633974483,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.6001249869818788,
+            0.6001249869818787,
+            -0.4899999999999999
+          ],
+          "right_bloch": [
+            -0.6001249869818788,
+            -0.6001249869818787,
+            0.4899999999999999
+          ],
+          "hopf_bloch": [
+            0.6123724356957947,
+            0.6123724356957946,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.08079313589591144,
+          "right_entropy": 0.08079313589591144,
+          "left_right_overlap_abs": 1.2475846544268097e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_2",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            5.302876193624534e-17,
+            0.8660254037844386
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            5.1968186697520443e-17,
+            0.8487048957087501,
+            -0.48999999999999977
+          ],
+          "right_bloch": [
+            -5.1968186697520443e-17,
+            -0.8487048957087501,
+            0.48999999999999977
+          ],
+          "hopf_bloch": [
+            5.302876193624535e-17,
+            0.8660254037844388,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.0807931358959109,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 2.756005751405874e-34,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_3",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            -0.6123724356957945,
+            0.6123724356957946
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 2.356194490192345,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.6001249869818787,
+            0.6001249869818788,
+            -0.4899999999999999
+          ],
+          "right_bloch": [
+            0.6001249869818787,
+            -0.6001249869818788,
+            0.4899999999999999
+          ],
+          "hopf_bloch": [
+            -0.6123724356957946,
+            0.6123724356957947,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.08079313589591149,
+          "right_entropy": 0.08079313589591149,
+          "left_right_overlap_abs": 1.2475846544268084e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_4",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            -0.8660254037844386,
+            1.0605752387249068e-16
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 3.141592653589793,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.8487048957087501,
+            1.0393637339504089e-16,
+            -0.48999999999999977
+          ],
+          "right_bloch": [
+            0.8487048957087501,
+            -1.0393637339504089e-16,
+            0.48999999999999977
+          ],
+          "hopf_bloch": [
+            -0.8660254037844388,
+            1.060575238724907e-16,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.0807931358959109,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 1.4874168143337463e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_5",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            -0.6123724356957946,
+            -0.6123724356957945
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 3.9269908169872414,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -0.6001249869818788,
+            -0.6001249869818787,
+            -0.4899999999999999
+          ],
+          "right_bloch": [
+            0.6001249869818788,
+            0.6001249869818787,
+            0.4899999999999999
+          ],
+          "hopf_bloch": [
+            -0.6123724356957947,
+            -0.6123724356957946,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.08079313589591144,
+          "right_entropy": 0.08079313589591144,
+          "left_right_overlap_abs": 1.2475846544268097e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_6",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            -1.5908628580873602e-16,
+            -0.8660254037844386
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 4.71238898038469,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            -1.5590456009256134e-16,
+            -0.8487048957087501,
+            -0.48999999999999977
+          ],
+          "right_bloch": [
+            1.5590456009256134e-16,
+            0.8487048957087501,
+            0.48999999999999977
+          ],
+          "hopf_bloch": [
+            -1.5908628580873605e-16,
+            -0.8660254037844388,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.0807931358959109,
+          "right_entropy": 0.0807931358959109,
+          "left_right_overlap_abs": 5.336174096617393e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "sphere_section",
+          "sample_id": "sphere_2_7",
+          "q": [
+            0.5000000000000001,
+            0.0,
+            0.6123724356957944,
+            -0.6123724356957946
+          ],
+          "eta": 1.0471975511965976,
+          "theta1": 5.497787143782138,
+          "theta2": 0.0,
+          "mix_strength": 0.02,
+          "left_bloch": [
+            0.6001249869818785,
+            -0.6001249869818788,
+            -0.48999999999999977
+          ],
+          "right_bloch": [
+            -0.6001249869818785,
+            0.6001249869818788,
+            0.48999999999999977
+          ],
+          "hopf_bloch": [
+            0.6123724356957945,
+            -0.6123724356957947,
+            -0.4999999999999998
+          ],
+          "left_entropy": 0.08079313589591135,
+          "right_entropy": 0.08079313589591135,
+          "left_right_overlap_abs": 1.2475846544268072e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        }
+      ],
+      "summary": {
+        "sample_count": 24,
+        "max_left_norm_error": 1.1102230246251565e-16,
+        "max_right_norm_error": 1.1102230246251565e-16,
+        "max_left_right_overlap_abs": 2.6597502645123564e-17,
+        "max_left_right_bloch_antipodal_gap": 0.0,
+        "mean_left_right_bloch_antipodal_gap": 0.0,
+        "max_hopf_roundtrip_gap": 1.1102230246251565e-16,
+        "mean_hopf_roundtrip_gap": 1.850371707708594e-17,
+        "mean_left_entropy": 0.08079313589591115,
+        "mean_right_entropy": 0.08079313589591113,
+        "mean_left_trace": 1.0,
+        "mean_right_trace": 1.0,
+        "mean_step_bloch_jump": 0.5914218743344279,
+        "max_step_bloch_jump": 1.1757303989532037,
+        "carrier_kind": "sphere_section",
+        "theta_levels": [
+          0.5235987755982988,
+          1.0471975511965976,
+          2.0943951023931953
+        ],
+        "level_count": 3,
+        "phase_count": 8,
+        "north_section_used": true
+      }
+    },
+    "graph_carrier": {
+      "samples": [
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_0_phase_0",
+          "q": [
+            0.9238795325112867,
+            0.0,
+            -7.029780607989448e-17,
+            -0.3826834323650898
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -1.2469767209791105e-16,
+            -0.6788225099390857,
+            0.6788225099390855
+          ],
+          "right_bloch": [
+            1.2469767209791105e-16,
+            0.6788225099390857,
+            -0.6788225099390855
+          ],
+          "hopf_bloch": [
+            -1.29893408435324e-16,
+            -0.7071067811865476,
+            0.7071067811865475
+          ],
+          "left_entropy": 0.1414405425418205,
+          "right_entropy": 0.1414405425418205,
+          "left_right_overlap_abs": 3.7987159277666425e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_0_phase_1",
+          "q": [
+            0.8923991008325228,
+            0.23911761839433449,
+            0.3826834323650898,
+            -9.373040810652597e-17
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.2617993877991494,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.6556921938165305,
+            -0.17569219381653067,
+            0.6788225099390857
+          ],
+          "right_bloch": [
+            -0.6556921938165305,
+            0.17569219381653067,
+            -0.6788225099390857
+          ],
+          "hopf_bloch": [
+            0.6830127018922193,
+            -0.18301270189221946,
+            0.7071067811865477
+          ],
+          "left_entropy": 0.14144054254182062,
+          "right_entropy": 0.14144054254182062,
+          "left_right_overlap_abs": 1.8205555951861e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_0_phase_2",
+          "q": [
+            0.8001031451912656,
+            0.4619397662556433,
+            1.1716301013315747e-16,
+            0.3826834323650898
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.5235987755982988,
+          "theta2": 7.853981633974483,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.33941125496954294,
+            0.5878775382679626,
+            0.6788225099390855
+          ],
+          "right_bloch": [
+            -0.33941125496954294,
+            -0.5878775382679626,
+            -0.6788225099390855
+          ],
+          "hopf_bloch": [
+            0.3535533905932739,
+            0.6123724356957945,
+            0.7071067811865475
+          ],
+          "left_entropy": 0.14144054254182062,
+          "right_entropy": 0.14144054254182062,
+          "left_right_overlap_abs": 4.305120915049268e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_0_phase_3",
+          "q": [
+            0.6532814824381883,
+            0.6532814824381882,
+            -0.3826834323650898,
+            1.4059561215978895e-16
+          ],
+          "eta": 0.39269908169872414,
+          "theta1": 0.7853981633974483,
+          "theta2": 9.42477796076938,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.4799999999999998,
+            0.4800000000000001,
+            0.6788225099390854
+          ],
+          "right_bloch": [
+            0.4799999999999998,
+            -0.4800000000000001,
+            -0.6788225099390854
+          ],
+          "hopf_bloch": [
+            -0.49999999999999983,
+            0.5000000000000001,
+            0.7071067811865475
+          ],
+          "left_entropy": 0.14144054254182098,
+          "right_entropy": 0.14144054254182098,
+          "left_right_overlap_abs": 1.5734481136114187e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 0.9999999999999998,
+          "right_trace": 0.9999999999999998
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_1_phase_0",
+          "q": [
+            0.41573480615127273,
+            0.7200738067288024,
+            -0.5555702330196022,
+            6.80377307569005e-17
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 1.0471975511965976,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.4434621756054176,
+            0.7680990193836148,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            0.4434621756054176,
+            -0.7680990193836148,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            -0.46193976625564337,
+            0.8001031451912656,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182084,
+          "right_entropy": 0.14144054254182084,
+          "left_right_overlap_abs": 5.629953591411339e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_1_phase_1",
+          "q": [
+            0.2152001710879079,
+            0.8031379722975873,
+            -1.0205659613535074e-16,
+            -0.5555702330196022
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 1.3089969389957472,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.8567031367992218,
+            -0.22955291365856093,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            0.8567031367992218,
+            0.22955291365856093,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            -0.8923991008325227,
+            -0.23911761839433432,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182106,
+          "right_entropy": 0.14144054254182106,
+          "left_right_overlap_abs": 2.766327914399593e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_1_phase_2",
+          "q": [
+            5.091282996473014e-17,
+            0.8314696123025452,
+            0.5555702330196022,
+            -1.36075461513801e-16
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 1.5707963267948966,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -1.6292536016942882e-16,
+            -0.8869243512108351,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            1.6292536016942882e-16,
+            0.8869243512108351,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            -1.6971391684315503e-16,
+            -0.9238795325112866,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182106,
+          "right_entropy": 0.14144054254182106,
+          "left_right_overlap_abs": 9.157939236716087e-34,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_1_phase_3",
+          "q": [
+            -0.21520017108790798,
+            0.8031379722975873,
+            1.7009432689225126e-16,
+            0.5555702330196022
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 1.8325957145940461,
+          "theta2": 7.853981633974483,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.8567031367992217,
+            -0.22955291365856145,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            -0.8567031367992217,
+            0.22955291365856145,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            0.8923991008325226,
+            -0.23911761839433485,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.1414405425418202,
+          "right_entropy": 0.14144054254182056,
+          "left_right_overlap_abs": 3.094915196636838e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 2.7755575615628914e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_2_phase_0",
+          "q": [
+            -0.4157348061512725,
+            0.7200738067288024,
+            -0.5555702330196022,
+            6.80377307569005e-17
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 2.0943951023931953,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.44346217560541756,
+            0.7680990193836147,
+            0.367376095070486
+          ],
+          "right_bloch": [
+            -0.44346217560541756,
+            -0.7680990193836147,
+            -0.367376095070486
+          ],
+          "hopf_bloch": [
+            0.4619397662556433,
+            0.8001031451912654,
+            0.3826834323650896
+          ],
+          "left_entropy": 0.14144054254182098,
+          "right_entropy": 0.14144054254182098,
+          "left_right_overlap_abs": 6.0276909236629306e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 0.9999999999999998,
+          "right_trace": 0.9999999999999998
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_2_phase_1",
+          "q": [
+            -0.5879378012096793,
+            0.5879378012096794,
+            -1.0205659613535074e-16,
+            -0.5555702330196022
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 2.356194490192345,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.6271502231406606,
+            0.6271502231406607,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            0.6271502231406606,
+            -0.6271502231406607,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            -0.6532814824381882,
+            0.6532814824381883,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182106,
+          "right_entropy": 0.14144054254182106,
+          "left_right_overlap_abs": 4.049458371916156e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_2_phase_2",
+          "q": [
+            -0.7200738067288024,
+            0.41573480615127256,
+            0.5555702330196022,
+            -1.36075461513801e-16
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 2.6179938779914944,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.7680990193836149,
+            -0.44346217560541734,
+            0.36737609507048613
+          ],
+          "right_bloch": [
+            0.7680990193836149,
+            0.44346217560541734,
+            -0.36737609507048613
+          ],
+          "hopf_bloch": [
+            -0.8001031451912656,
+            -0.46193976625564304,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182067,
+          "right_entropy": 0.14144054254182092,
+          "left_right_overlap_abs": 2.8259129301037583e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_2_phase_3",
+          "q": [
+            -0.8031379722975872,
+            0.21520017108790812,
+            1.7009432689225126e-16,
+            0.5555702330196022
+          ],
+          "eta": 0.5890486225480862,
+          "theta1": 2.8797932657906435,
+          "theta2": 7.853981633974483,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.22955291365856106,
+            -0.8567031367992218,
+            0.36737609507048624
+          ],
+          "right_bloch": [
+            -0.22955291365856106,
+            0.8567031367992218,
+            -0.36737609507048624
+          ],
+          "hopf_bloch": [
+            0.23911761839433446,
+            -0.8923991008325227,
+            0.38268343236508984
+          ],
+          "left_entropy": 0.14144054254182137,
+          "right_entropy": 0.14144054254182106,
+          "left_right_overlap_abs": 2.4184445288982256e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_3_phase_0",
+          "q": [
+            -0.7071067811865476,
+            8.659560562354934e-17,
+            -0.7071067811865475,
+            8.659560562354932e-17
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.96,
+            7.504785086158154e-33,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            -0.96,
+            -7.504785086158154e-33,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            1.0,
+            1.1014973284135676e-32,
+            2.220446049250313e-16
+          ],
+          "left_entropy": 0.14144054254182076,
+          "right_entropy": 0.14144054254182076,
+          "left_right_overlap_abs": 1.0146536357569526e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 3.197488819387598e-33,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_3_phase_1",
+          "q": [
+            -0.6830127018922195,
+            -0.18301270189221905,
+            -1.2989340843532398e-16,
+            -0.7071067811865475
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.4033920413889422,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.2484662832984197,
+            0.9272887932375058,
+            3.3306690738754696e-16
+          ],
+          "right_bloch": [
+            -0.2484662832984197,
+            -0.9272887932375058,
+            -3.3306690738754696e-16
+          ],
+          "hopf_bloch": [
+            0.2588190451025205,
+            0.9659258262890684,
+            2.220446049250313e-16
+          ],
+          "left_entropy": 0.14144054254182048,
+          "right_entropy": 0.14144054254182076,
+          "left_right_overlap_abs": 5.551128555644892e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_3_phase_2",
+          "q": [
+            -0.6123724356957946,
+            -0.35355339059327384,
+            0.7071067811865475,
+            -1.7319121124709863e-16
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.6651914291880923,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.8313843876330609,
+            0.4800000000000003,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            0.8313843876330609,
+            -0.4800000000000003,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            -0.8660254037844385,
+            0.5000000000000003,
+            2.220446049250313e-16
+          ],
+          "left_entropy": 0.14144054254182098,
+          "right_entropy": 0.14144054254182098,
+          "left_right_overlap_abs": 2.6869169334305117e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_3_phase_3",
+          "q": [
+            -0.5000000000000001,
+            -0.5,
+            2.164890140588733e-16,
+            0.7071067811865475
+          ],
+          "eta": 0.7853981633974483,
+          "theta1": 3.9269908169872414,
+          "theta2": 7.853981633974483,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.6788225099390858,
+            -0.6788225099390854,
+            2.220446049250313e-16
+          ],
+          "right_bloch": [
+            0.6788225099390858,
+            0.6788225099390854,
+            -2.220446049250313e-16
+          ],
+          "hopf_bloch": [
+            -0.7071067811865477,
+            -0.7071067811865474,
+            2.220446049250313e-16
+          ],
+          "left_entropy": 0.14144054254182092,
+          "right_entropy": 0.14144054254182117,
+          "left_right_overlap_abs": 6.167944895005827e-34,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_4_phase_0",
+          "q": [
+            -0.27778511650980137,
+            -0.4811379353814156,
+            -0.8314696123025452,
+            1.0182565992946028e-16
+          ],
+          "eta": 0.9817477042468103,
+          "theta1": 4.1887902047863905,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.44346217560541795,
+            -0.7680990193836148,
+            -0.3673760950704862
+          ],
+          "right_bloch": [
+            -0.44346217560541795,
+            0.7680990193836148,
+            0.3673760950704862
+          ],
+          "hopf_bloch": [
+            0.4619397662556437,
+            -0.8001031451912655,
+            -0.3826834323650897
+          ],
+          "left_entropy": 0.14144054254182115,
+          "right_entropy": 0.14144054254182098,
+          "left_right_overlap_abs": 6.823777435173034e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_4_phase_1",
+          "q": [
+            -0.14379215719751834,
+            -0.5366396363910696,
+            -1.527384898941904e-16,
+            -0.8314696123025452
+          ],
+          "eta": 0.9817477042468103,
+          "theta1": 4.4505895925855405,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.8567031367992219,
+            0.2295529136585609,
+            -0.36737609507048613
+          ],
+          "right_bloch": [
+            -0.8567031367992219,
+            -0.2295529136585609,
+            0.36737609507048613
+          ],
+          "hopf_bloch": [
+            0.8923991008325229,
+            0.23911761839433426,
+            -0.3826834323650897
+          ],
+          "left_entropy": 0.14144054254182112,
+          "right_entropy": 0.14144054254182142,
+          "left_right_overlap_abs": 1.2917455907938816e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0000000000000002,
+          "right_trace": 1.0000000000000002
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_4_phase_2",
+          "q": [
+            -1.0205659613535076e-16,
+            -0.5555702330196023,
+            0.8314696123025452,
+            -2.0365131985892056e-16
+          ],
+          "eta": 0.9817477042468103,
+          "theta1": 4.71238898038469,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            5.430845338980963e-17,
+            0.8869243512108353,
+            -0.36737609507048613
+          ],
+          "right_bloch": [
+            -5.430845338980963e-17,
+            -0.8869243512108353,
+            0.36737609507048613
+          ],
+          "hopf_bloch": [
+            5.657130561438504e-17,
+            0.9238795325112868,
+            -0.3826834323650897
+          ],
+          "left_entropy": 0.14144054254182054,
+          "right_entropy": 0.14144054254182054,
+          "left_right_overlap_abs": 5.179415383319695e-35,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0000000000000002,
+          "right_trace": 1.0000000000000002
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_4_phase_3",
+          "q": [
+            0.14379215719751814,
+            -0.5366396363910696,
+            2.545641498236507e-16,
+            0.8314696123025452
+          ],
+          "eta": 0.9817477042468103,
+          "theta1": 4.974188368183839,
+          "theta2": 7.853981633974483,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.8567031367992218,
+            0.22955291365856098,
+            -0.3673760950704862
+          ],
+          "right_bloch": [
+            0.8567031367992218,
+            -0.22955291365856098,
+            0.3673760950704862
+          ],
+          "hopf_bloch": [
+            -0.8923991008325228,
+            0.23911761839433437,
+            -0.3826834323650897
+          ],
+          "left_entropy": 0.14144054254182123,
+          "right_entropy": 0.14144054254182123,
+          "left_right_overlap_abs": 1.2917455907938818e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_5_phase_0",
+          "q": [
+            0.19134171618254497,
+            -0.33141357403559185,
+            5.657130561438501e-17,
+            0.9238795325112867
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 5.235987755982989,
+          "theta2": 1.5707963267948966,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.5878775382679627,
+            0.339411254969543,
+            -0.6788225099390854
+          ],
+          "right_bloch": [
+            0.5878775382679627,
+            -0.339411254969543,
+            0.6788225099390854
+          ],
+          "hopf_bloch": [
+            -0.6123724356957946,
+            0.35355339059327395,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.14144054254182098,
+          "right_entropy": 0.1414405425418207,
+          "left_right_overlap_abs": 2.5649896879438145e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_5_phase_1",
+          "q": [
+            0.27059805007309845,
+            -0.2705980500730986,
+            -0.9238795325112867,
+            1.1314261122877003e-16
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 5.497787143782138,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            -0.48,
+            -0.4800000000000001,
+            -0.6788225099390854
+          ],
+          "right_bloch": [
+            0.48,
+            0.4800000000000001,
+            0.6788225099390854
+          ],
+          "hopf_bloch": [
+            -0.5,
+            -0.5000000000000001,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.1414405425418207,
+          "right_entropy": 0.1414405425418207,
+          "left_right_overlap_abs": 1.2299827156639028e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_5_phase_2",
+          "q": [
+            0.33141357403559174,
+            -0.19134171618254509,
+            -1.6971391684315505e-16,
+            -0.9238795325112867
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 5.759586531581287,
+          "theta2": 4.71238898038469,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.33941125496954305,
+            -0.5878775382679626,
+            -0.6788225099390854
+          ],
+          "right_bloch": [
+            -0.33941125496954305,
+            0.5878775382679626,
+            0.6788225099390854
+          ],
+          "hopf_bloch": [
+            0.353553390593274,
+            -0.6123724356957945,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.1414405425418204,
+          "right_entropy": 0.14144054254182103,
+          "left_right_overlap_abs": 5.555272131228976e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "graph_carrier",
+          "sample_id": "node_5_phase_3",
+          "q": [
+            0.36964381061438617,
+            -0.09904576054128761,
+            0.9238795325112867,
+            -2.2628522245754005e-16
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 6.021385919380437,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.04,
+          "left_bloch": [
+            0.6556921938165307,
+            0.17569219381653037,
+            -0.6788225099390855
+          ],
+          "right_bloch": [
+            -0.6556921938165307,
+            -0.17569219381653037,
+            0.6788225099390855
+          ],
+          "hopf_bloch": [
+            0.6830127018922194,
+            0.18301270189221913,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.14144054254182029,
+          "right_entropy": 0.14144054254182103,
+          "left_right_overlap_abs": 1.0210665215698365e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        }
+      ],
+      "summary": {
+        "sample_count": 24,
+        "max_left_norm_error": 2.220446049250313e-16,
+        "max_right_norm_error": 2.220446049250313e-16,
+        "max_left_right_overlap_abs": 5.629953591411339e-17,
+        "max_left_right_bloch_antipodal_gap": 0.0,
+        "mean_left_right_bloch_antipodal_gap": 0.0,
+        "max_hopf_roundtrip_gap": 1.1102230246251565e-16,
+        "mean_hopf_roundtrip_gap": 2.891205793294679e-17,
+        "mean_left_entropy": 0.1414405425418208,
+        "mean_right_entropy": 0.1414405425418209,
+        "mean_left_trace": 1.0,
+        "mean_right_trace": 1.0,
+        "mean_step_bloch_jump": 0.9775670255168605,
+        "max_step_bloch_jump": 1.1842543670071746,
+        "carrier_kind": "graph_carrier",
+        "node_count": 6,
+        "edge_count": 6,
+        "topological_depth": 4,
+        "acyclic": true,
+        "depth_vector": [
+          0,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "in_degree_vector": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "out_degree_vector": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "phase_count": 4
+      }
+    },
+    "hypergraph_carrier": {
+      "samples": [
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_0_phase_0",
+          "q": [
+            0.7933533402912353,
+            0.0,
+            -0.492498341588033,
+            -0.3578209901358172
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 0.0,
+          "theta2": 3.7699111843077517,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.7345633842471083,
+            -0.5336915381710673,
+            0.24328990239636994
+          ],
+          "right_bloch": [
+            0.7345633842471083,
+            0.5336915381710673,
+            -0.24328990239636994
+          ],
+          "hopf_bloch": [
+            -0.7814504087735196,
+            -0.5677569555011355,
+            0.2588190451025211
+          ],
+          "left_entropy": 0.19439185783157645,
+          "right_entropy": 0.19439185783157645,
+          "left_right_overlap_abs": 5.316727232763024e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_0_phase_1",
+          "q": [
+            0.7663204807600038,
+            0.20533495396307272,
+            0.18811762708367263,
+            -0.5789665239278933
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 0.2617993877991494,
+          "theta2": 5.026548245743669,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.04751949267187821,
+            -0.9067259350036108,
+            0.24328990239636983
+          ],
+          "right_bloch": [
+            -0.04751949267187821,
+            0.9067259350036108,
+            -0.24328990239636983
+          ],
+          "hopf_bloch": [
+            0.05055265177859384,
+            -0.9646020585144797,
+            0.2588190451025211
+          ],
+          "left_entropy": 0.19439185783157653,
+          "right_entropy": 0.19439185783157642,
+          "left_right_overlap_abs": 5.630750477532588e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_0_phase_2",
+          "q": [
+            0.6870641468694503,
+            0.3966766701456176,
+            0.6087614290087205,
+            -1.4910354709597966e-16
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 0.5235987755982988,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.7863253255135393,
+            -0.4539851383558622,
+            0.24328990239636983
+          ],
+          "right_bloch": [
+            -0.7863253255135393,
+            0.4539851383558622,
+            -0.24328990239636983
+          ],
+          "hopf_bloch": [
+            0.8365163037378078,
+            -0.48296291314453427,
+            0.2588190451025212
+          ],
+          "left_entropy": 0.1943918578315759,
+          "right_entropy": 0.19439185783157606,
+          "left_right_overlap_abs": 2.641346573841723e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_0_phase_3",
+          "q": [
+            0.5609855267969311,
+            0.560985526796931,
+            0.18811762708367294,
+            0.5789665239278932
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 0.7853981633974483,
+          "theta2": 7.5398223686155035,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.8090074403192641,
+            0.41220987967301004,
+            0.24328990239636983
+          ],
+          "right_bloch": [
+            -0.8090074403192641,
+            -0.41220987967301004,
+            -0.24328990239636983
+          ],
+          "hopf_bloch": [
+            0.8606462131056001,
+            0.4385211485883086,
+            0.25881904510252096
+          ],
+          "left_entropy": 0.19439185783157642,
+          "right_entropy": 0.19439185783157642,
+          "left_right_overlap_abs": 1.2468042737242226e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_1_phase_0",
+          "q": [
+            0.3043807145043604,
+            0.5272028623656692,
+            -0.64183633483974,
+            -0.46632139328015987
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 1.0471975511965976,
+          "theta2": 3.7699111843077517,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.829472121964491,
+            0.3693047823623321,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            0.829472121964491,
+            -0.3693047823623321,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            -0.8824171510260543,
+            0.39287742804503417,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.19439185783157653,
+          "right_entropy": 0.19439185783157653,
+          "left_right_overlap_abs": 4.333632009660344e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_1_phase_1",
+          "q": [
+            0.15755905175128304,
+            0.5880183863281625,
+            0.2451596646941222,
+            -0.7545238640085057
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 1.3089969389957472,
+          "theta2": 5.026548245743669,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.7614879476473857,
+            -0.49451605533060033,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            0.7614879476473857,
+            0.49451605533060033,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            -0.8100935613270062,
+            -0.5260809099261706,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.19439185783157648,
+          "right_entropy": 0.1943918578315769,
+          "left_right_overlap_abs": 1.4004094001971894e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_1_phase_2",
+          "q": [
+            3.727588677399492e-17,
+            0.6087614290087207,
+            0.7933533402912352,
+            -1.943155257561044e-16
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 1.5707963267948966,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -1.6679143396439246e-16,
+            -0.9079702767117241,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            1.6679143396439246e-16,
+            0.9079702767117241,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            -1.774376957068005e-16,
+            -0.9659258262890683,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.1943918578315764,
+          "right_entropy": 0.1943918578315764,
+          "left_right_overlap_abs": 3.3493710157994256e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_1_phase_3",
+          "q": [
+            -0.15755905175128312,
+            0.5880183863281625,
+            0.24515966469412262,
+            0.7545238640085056
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 1.8325957145940461,
+          "theta2": 7.5398223686155035,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.7614879476473855,
+            -0.494516055330601,
+            -0.2432899023963696
+          ],
+          "right_bloch": [
+            -0.7614879476473855,
+            0.494516055330601,
+            0.2432899023963696
+          ],
+          "hopf_bloch": [
+            0.8100935613270058,
+            -0.5260809099261713,
+            -0.25881904510252096
+          ],
+          "left_entropy": 0.19439185783157598,
+          "right_entropy": 0.19439185783157611,
+          "left_right_overlap_abs": 2.797094320585094e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.6653345369377348e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_2_phase_0",
+          "q": [
+            -0.3043807145043602,
+            0.5272028623656693,
+            -0.7933533402912352,
+            9.71577628780522e-17
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 2.0943951023931953,
+          "theta2": 3.141592653589793,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.453985138355862,
+            0.7863253255135394,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            -0.453985138355862,
+            -0.7863253255135394,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            0.4829629131445341,
+            0.8365163037378079,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.19439185783157634,
+          "right_entropy": 0.1943918578315764,
+          "left_right_overlap_abs": 4.492663820956673e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_2_phase_1",
+          "q": [
+            -0.4304593345768794,
+            0.43045933457687946,
+            -0.24515966469412248,
+            -0.7545238640085056
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 2.356194490192345,
+          "theta2": 4.39822971502571,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.41220987967301015,
+            0.809007440319264,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            0.41220987967301015,
+            -0.809007440319264,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            -0.4385211485883087,
+            0.8606462131056001,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.19439185783157617,
+          "right_entropy": 0.19439185783157598,
+          "left_right_overlap_abs": 5.553897544047534e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_2_phase_2",
+          "q": [
+            -0.5272028623656693,
+            0.3043807145043603,
+            0.6418363348397399,
+            -0.46632139328016015
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 2.6179938779914944,
+          "theta2": 5.654866776461628,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.9029963205333996,
+            0.09490873771738295,
+            -0.2432899023963696
+          ],
+          "right_bloch": [
+            0.9029963205333996,
+            -0.09490873771738295,
+            0.2432899023963696
+          ],
+          "hopf_bloch": [
+            -0.9606343835461698,
+            0.10096674225253507,
+            -0.25881904510252096
+          ],
+          "left_entropy": 0.1943918578315763,
+          "right_entropy": 0.1943918578315758,
+          "left_right_overlap_abs": 1.8306765946459992e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.6653345369377348e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_2_phase_3",
+          "q": [
+            -0.5880183863281624,
+            0.1575590517512832,
+            0.6418363348397396,
+            0.4663213932801603
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 2.8797932657906435,
+          "theta2": 6.911503837897546,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.5714042096018506,
+            -0.7056254336694852,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            0.5714042096018506,
+            0.7056254336694852,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            -0.607876818725373,
+            -0.7506653549675374,
+            -0.25881904510252063
+          ],
+          "left_entropy": 0.19439185783157661,
+          "right_entropy": 0.19439185783157661,
+          "left_right_overlap_abs": 5.880024721068006e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.2412670766236366e-16,
+          "left_trace": 0.9999999999999998,
+          "right_trace": 0.9999999999999998
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_3_phase_0",
+          "q": [
+            -0.38268343236508984,
+            4.686520405326299e-17,
+            -0.9036905480929851,
+            -0.19208535571634244
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 3.3510321638291125,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.6501555133914121,
+            0.13819482047728648,
+            -0.6646803743153545
+          ],
+          "right_bloch": [
+            -0.6501555133914121,
+            -0.13819482047728648,
+            0.6646803743153545
+          ],
+          "hopf_bloch": [
+            0.6916548014802256,
+            0.1470157664651984,
+            -0.7071067811865472
+          ],
+          "left_entropy": 0.19439185783157606,
+          "right_entropy": 0.19439185783157573,
+          "left_right_overlap_abs": 1.7728437889826492e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 0.9999999999999999,
+          "right_trace": 0.9999999999999999
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_3_phase_1",
+          "q": [
+            -0.3696438106143862,
+            -0.09904576054128748,
+            -0.0965717077778436,
+            -0.9188184237650792
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.4033920413889422,
+          "theta2": 4.607669225265029,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.2382001428463966,
+            0.6205325873376485,
+            -0.6646803743153546
+          ],
+          "right_bloch": [
+            -0.2382001428463966,
+            -0.6205325873376485,
+            0.6646803743153546
+          ],
+          "hopf_bloch": [
+            0.25340440728340063,
+            0.6601410503592006,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.1943918578315762,
+          "right_entropy": 0.19439185783157636,
+          "left_right_overlap_abs": 8.556116524817656e-19,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_3_phase_2",
+          "q": [
+            -0.33141357403559185,
+            -0.19134171618254497,
+            0.8440059503346553,
+            -0.3757756596600811
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.6651914291880923,
+          "theta2": 5.864306286700947,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.39068932151080576,
+            0.5377377186486237,
+            -0.6646803743153546
+          ],
+          "right_bloch": [
+            0.39068932151080576,
+            -0.5377377186486237,
+            0.6646803743153546
+          ],
+          "hopf_bloch": [
+            -0.41562693777745296,
+            0.5720614028176848,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.1943918578315763,
+          "right_entropy": 0.1943918578315763,
+          "left_right_overlap_abs": 2.416081840343437e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_3_phase_3",
+          "q": [
+            -0.2705980500730986,
+            -0.2705980500730985,
+            0.6181960717918163,
+            0.6865762939502362
+          ],
+          "eta": 1.1780972450961724,
+          "theta1": 3.9269908169872414,
+          "theta2": 7.120943348136864,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.6637694529630388,
+            -0.034786682985711505,
+            -0.6646803743153546
+          ],
+          "right_bloch": [
+            0.6637694529630388,
+            0.034786682985711505,
+            0.6646803743153546
+          ],
+          "hopf_bloch": [
+            -0.7061377159181265,
+            -0.037007109559267545,
+            -0.7071067811865475
+          ],
+          "left_entropy": 0.1943918578315762,
+          "right_entropy": 0.1943918578315762,
+          "left_right_overlap_abs": 1.557402723388988e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.3877787807814457e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_4_phase_0",
+          "q": [
+            -0.3043807145043606,
+            -0.527202862365669,
+            -0.64183633483974,
+            -0.46632139328015987
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 4.1887902047863905,
+          "theta2": 3.7699111843077517,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.8294721219644912,
+            -0.3693047823623318,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            -0.8294721219644912,
+            0.3693047823623318,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            0.8824171510260544,
+            -0.39287742804503384,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.19439185783157584,
+          "right_entropy": 0.19439185783157564,
+          "left_right_overlap_abs": 2.3422602749859162e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_4_phase_1",
+          "q": [
+            -0.15755905175128299,
+            -0.5880183863281625,
+            0.2451596646941222,
+            -0.7545238640085057
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 4.4505895925855405,
+          "theta2": 5.026548245743669,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.7614879476473857,
+            0.4945160553306003,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            -0.7614879476473857,
+            -0.4945160553306003,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            0.8100935613270062,
+            0.5260809099261706,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.1943918578315764,
+          "right_entropy": 0.1943918578315769,
+          "left_right_overlap_abs": 5.71852180471504e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_4_phase_2",
+          "q": [
+            -1.1182766032198476e-16,
+            -0.6087614290087207,
+            0.7933533402912352,
+            -1.943155257561044e-16
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 4.71238898038469,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            5.559714465479749e-17,
+            0.9079702767117241,
+            -0.2432899023963695
+          ],
+          "right_bloch": [
+            -5.559714465479749e-17,
+            -0.9079702767117241,
+            0.2432899023963695
+          ],
+          "hopf_bloch": [
+            5.91458985689335e-17,
+            0.9659258262890683,
+            -0.25881904510252074
+          ],
+          "left_entropy": 0.1943918578315764,
+          "right_entropy": 0.1943918578315764,
+          "left_right_overlap_abs": 4.195398595194749e-33,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_4_phase_3",
+          "q": [
+            0.1575590517512828,
+            -0.5880183863281626,
+            0.24515966469412262,
+            0.7545238640085056
+          ],
+          "eta": 0.916297857297023,
+          "theta1": 4.974188368183839,
+          "theta2": 7.5398223686155035,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            -0.7614879476473857,
+            0.4945160553306005,
+            -0.2432899023963696
+          ],
+          "right_bloch": [
+            0.7614879476473857,
+            -0.4945160553306005,
+            0.2432899023963696
+          ],
+          "hopf_bloch": [
+            -0.8100935613270062,
+            0.5260809099261708,
+            -0.25881904510252096
+          ],
+          "left_entropy": 0.19439185783157636,
+          "right_entropy": 0.19439185783157642,
+          "left_right_overlap_abs": 5.554362479419267e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 2.0014830212433605e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_5_phase_0",
+          "q": [
+            0.39667667014561775,
+            -0.6870641468694502,
+            -0.492498341588033,
+            -0.3578209901358172
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 5.235987755982989,
+          "theta2": 3.7699111843077517,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.09490873771738241,
+            -0.9029963205333995,
+            0.24328990239636994
+          ],
+          "right_bloch": [
+            -0.09490873771738241,
+            0.9029963205333995,
+            -0.24328990239636994
+          ],
+          "hopf_bloch": [
+            0.10096674225253449,
+            -0.9606343835461697,
+            0.2588190451025211
+          ],
+          "left_entropy": 0.19439185783157617,
+          "right_entropy": 0.19439185783157617,
+          "left_right_overlap_abs": 6.235764478464296e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_5_phase_1",
+          "q": [
+            0.5609855267969309,
+            -0.5609855267969313,
+            0.18811762708367263,
+            -0.5789665239278933
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 5.497787143782138,
+          "theta2": 5.026548245743669,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.809007440319264,
+            -0.41220987967301015,
+            0.24328990239636983
+          ],
+          "right_bloch": [
+            -0.809007440319264,
+            0.41220987967301015,
+            -0.24328990239636983
+          ],
+          "hopf_bloch": [
+            0.8606462131056,
+            -0.4385211485883087,
+            0.2588190451025211
+          ],
+          "left_entropy": 0.194391857831576,
+          "right_entropy": 0.194391857831576,
+          "left_right_overlap_abs": 2.790028450854949e-17,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 0.0,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_5_phase_2",
+          "q": [
+            0.6870641468694499,
+            -0.39667667014561797,
+            0.6087614290087205,
+            -1.4910354709597966e-16
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 5.759586531581287,
+          "theta2": 6.283185307179586,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.7863253255135392,
+            0.45398513835586224,
+            0.24328990239636972
+          ],
+          "right_bloch": [
+            -0.7863253255135392,
+            -0.45398513835586224,
+            -0.24328990239636972
+          ],
+          "hopf_bloch": [
+            0.8365163037378077,
+            0.4829629131445343,
+            0.2588190451025211
+          ],
+          "left_entropy": 0.19439185783157636,
+          "right_entropy": 0.19439185783157636,
+          "left_right_overlap_abs": 7.12714731014419e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 1.1102230246251565e-16,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        },
+        {
+          "carrier": "hypergraph_carrier",
+          "sample_id": "node_5_phase_3",
+          "q": [
+            0.7663204807600038,
+            -0.20533495396307266,
+            0.18811762708367294,
+            0.5789665239278932
+          ],
+          "eta": 0.6544984694978735,
+          "theta1": 6.021385919380437,
+          "theta2": 7.5398223686155035,
+          "mix_strength": 0.06,
+          "left_bloch": [
+            0.04751949267187876,
+            0.9067259350036108,
+            0.24328990239636972
+          ],
+          "right_bloch": [
+            -0.04751949267187876,
+            -0.9067259350036108,
+            -0.24328990239636972
+          ],
+          "hopf_bloch": [
+            0.05055265177859442,
+            0.9646020585144796,
+            0.25881904510252096
+          ],
+          "left_entropy": 0.19439185783157584,
+          "right_entropy": 0.19439185783157584,
+          "left_right_overlap_abs": 3.0605337236383456e-18,
+          "left_right_bloch_antipodal_gap": 0.0,
+          "hopf_roundtrip_gap": 5.551115123125783e-17,
+          "left_trace": 1.0,
+          "right_trace": 1.0
+        }
+      ],
+      "summary": {
+        "sample_count": 24,
+        "max_left_norm_error": 2.220446049250313e-16,
+        "max_right_norm_error": 2.220446049250313e-16,
+        "max_left_right_overlap_abs": 5.880024721068006e-17,
+        "max_left_right_bloch_antipodal_gap": 0.0,
+        "mean_left_right_bloch_antipodal_gap": 0.0,
+        "max_hopf_roundtrip_gap": 2.0014830212433605e-16,
+        "mean_hopf_roundtrip_gap": 6.728788649639351e-17,
+        "mean_left_entropy": 0.19439185783157628,
+        "mean_right_entropy": 0.19439185783157628,
+        "mean_left_trace": 1.0,
+        "mean_right_trace": 1.0,
+        "mean_step_bloch_jump": 0.9898943968110995,
+        "max_step_bloch_jump": 1.7097415096525397,
+        "carrier_kind": "hypergraph_carrier",
+        "node_count": 6,
+        "hyperedge_count": 4,
+        "max_hyperedge_size": 3,
+        "connected_components": 1,
+        "membership_vector": [
+          1,
+          2,
+          2,
+          3,
+          2,
+          1
+        ],
+        "incident_edge_size_means": [
+          3.0,
+          3.0,
+          2.5,
+          2.6666666666666665,
+          3.0,
+          3.0
+        ],
+        "phase_count": 4
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "carrier": "sphere_section",
+      "reference": "hopf_torus",
+      "mean_left_entropy_gap_vs_reference": 0.08079313589591115,
+      "mean_right_entropy_gap_vs_reference": 0.08079313589591113,
+      "mean_step_bloch_jump_gap_vs_reference": -0.5706616935506963,
+      "mean_hopf_roundtrip_gap_gap_vs_reference": -6.938893903907228e-18,
+      "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+    },
+    {
+      "carrier": "graph_carrier",
+      "reference": "hopf_torus",
+      "mean_left_entropy_gap_vs_reference": 0.1414405425418208,
+      "mean_right_entropy_gap_vs_reference": 0.1414405425418209,
+      "mean_step_bloch_jump_gap_vs_reference": -0.18451654236826376,
+      "mean_hopf_roundtrip_gap_gap_vs_reference": 3.469446951953617e-18,
+      "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+    },
+    {
+      "carrier": "hypergraph_carrier",
+      "reference": "hopf_torus",
+      "mean_left_entropy_gap_vs_reference": 0.19439185783157628,
+      "mean_right_entropy_gap_vs_reference": 0.19439185783157628,
+      "mean_step_bloch_jump_gap_vs_reference": -0.17218917107402476,
+      "mean_hopf_roundtrip_gap_gap_vs_reference": 4.184527551540034e-17,
+      "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+    }
+  ]
+}

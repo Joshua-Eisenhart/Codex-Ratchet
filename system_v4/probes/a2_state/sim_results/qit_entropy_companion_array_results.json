@@ -1,0 +1,322 @@
+{
+  "name": "qit_entropy_companion_array",
+  "classification": "research_support",
+  "classification_note": "Strict QIT entropy/readout companion surface over the finite-carrier anchor rows. Use it to compare open-lab rows against matched strict readouts.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "landauer_erasure",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "all_strict_rows_offer_distinct_qit_readout_families": {
+      "distinct_family_count": 11,
+      "pass": true
+    },
+    "strict_rows_include_both_entropy_balance_and_order_sensitive_readouts": {
+      "families": [
+        "szilard",
+        "strong_coupling_landauer",
+        "carnot",
+        "control_recovery",
+        "szilard_repair_substeps",
+        "szilard_repair",
+        "szilard_repair_reverse_recovery",
+        "carnot_repair_finite_time",
+        "carnot_repair_irreversibility",
+        "carnot_repair_closure",
+        "carnot_repair"
+      ],
+      "pass": true
+    },
+    "strict_rows_include_a_reversible_reference_readout": {
+      "forward_distance_to_carnot": 1.1102230246251565e-16,
+      "reverse_distance_to_carnot_cop": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "repair_rows_add_nontrivial_readout_axes": {
+      "szilard_substep_best_ordering_margin": 0.5350408605722448,
+      "szilard_record_best_ordering_margin": 0.18365253678100868,
+      "szilard_reverse_best_gap": 0.30760002644478024,
+      "carnot_finite_time_best_closure_defect": 1.3186078058335937e-06,
+      "carnot_irreversibility_best_closure_defect": 1.3186078058335937e-06,
+      "carnot_closure_best_defect": 1.1273186190097206e-08,
+      "carnot_hold_best_closure_trace_distance": 0.0003434168608109911,
+      "pass": true
+    }
+  },
+  "negative": {
+    "not_all_strict_rows_share_one_universal_entropy_language": {
+      "pass": true
+    },
+    "strong_coupling_row_explicitly_shows_local_readout_failure": {
+      "local_clausius_gap_strong": 0.060492001392897926,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_referenced_strict_rows_exist_and_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "strict_row_count": 11,
+    "scope_note": "Strict QIT readout-family companion array over the finite-carrier anchors. Use it to compare open-lab rows against matched exact readout families."
+  },
+  "rows": [
+    {
+      "row_id": "qit_szilard_landauer_cycle",
+      "family": "szilard",
+      "carrier": "finite_two_qubit_system_memory",
+      "readout_families": [
+        "mutual_information",
+        "free_energy_gain",
+        "erasure_cost"
+      ],
+      "headline_readouts": {
+        "mutual_information": 0.6931471805599453,
+        "free_energy_gain": 0.6931471805599453,
+        "erasure_cost": 0.6931471805599453,
+        "net_after_erasure": 0.0
+      }
+    },
+    {
+      "row_id": "qit_strong_coupling_landauer",
+      "family": "strong_coupling_landauer",
+      "carrier": "finite_two_qubit_system_bath",
+      "readout_families": [
+        "local_clausius_gap",
+        "joint_clausius_gap",
+        "system_bath_mutual_information"
+      ],
+      "headline_readouts": {
+        "local_clausius_gap_strong": 0.060492001392897926,
+        "joint_clausius_gap_complete": 1.3322676295501878e-15,
+        "initial_system_bath_mutual_information": 0.602864723653471
+      }
+    },
+    {
+      "row_id": "qit_carnot_two_bath_cycle",
+      "family": "carnot",
+      "carrier": "finite_qubit_working_substance",
+      "readout_families": [
+        "efficiency",
+        "cop",
+        "exact_carnot_distance"
+      ],
+      "headline_readouts": {
+        "forward_efficiency": 0.5000000000000001,
+        "forward_distance_to_carnot": 1.1102230246251565e-16,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_distance_to_carnot_cop": 1.1102230246251565e-16
+      }
+    },
+    {
+      "row_id": "qit_attractor_basin_recovery",
+      "family": "control_recovery",
+      "carrier": "finite_qubit_process_class",
+      "readout_families": [
+        "class_return_gap",
+        "order_gap",
+        "terminal_trace_gap"
+      ],
+      "headline_readouts": {
+        "chosen_order_gap": 0.02906613377552167,
+        "terminal_trace_gap": 0.008139397388540678,
+        "commuting_order_gap": 3.925231146709437e-17
+      }
+    },
+    {
+      "row_id": "qit_szilard_substep_companion",
+      "family": "szilard_repair_substeps",
+      "carrier": "finite_two_qubit_system_memory_with_hold_decay_axis",
+      "readout_families": [
+        "final_joint_entropy_order_gap",
+        "measurement_accuracy",
+        "memory_blank_trace_distance"
+      ],
+      "headline_readouts": {
+        "best_ordering_margin": 0.5350408605722448,
+        "mean_measurement_accuracy": 0.9,
+        "mean_measurement_mutual_information": 0.41798538158339976,
+        "reset_memory_entropy_drop": 0.5136741792484837,
+        "mean_feedback_system_free_energy_gain": 0.28869344854387685
+      }
+    },
+    {
+      "row_id": "qit_szilard_record_companion",
+      "family": "szilard_repair",
+      "carrier": "finite_two_qubit_system_memory_with_record_decay_axis",
+      "readout_families": [
+        "final_joint_entropy_order_gap",
+        "measurement_mutual_information",
+        "reset_memory_entropy"
+      ],
+      "headline_readouts": {
+        "best_ordering_margin": 0.18365253678100868,
+        "long_minus_short_margin": 0.0301558301874993,
+        "reset_memory_entropy_drop": 0.33978255865044,
+        "mean_measurement_mutual_information": 0.41798538158339976
+      }
+    },
+    {
+      "row_id": "qit_szilard_reverse_recovery_companion",
+      "family": "szilard_repair_reverse_recovery",
+      "carrier": "finite_two_qubit_system_memory_reverse_recovery_axis",
+      "readout_families": [
+        "entropy_restoration_fraction",
+        "restoration_trace_distance",
+        "erase_information_gain"
+      ],
+      "headline_readouts": {
+        "best_recovery_vs_naive_gap": 0.30760002644478024,
+        "mean_recovery_entropy_restoration_fraction": 0.6529585259948255,
+        "mean_naive_reverse_entropy_restoration_fraction": 0.3941883238150193,
+        "mean_erase_system_free_energy_gain": 0.28818369549600686
+      }
+    },
+    {
+      "row_id": "qit_carnot_finite_time_companion",
+      "family": "carnot_repair_finite_time",
+      "carrier": "finite_qubit_two_bath_with_budget_axis",
+      "readout_families": [
+        "budgeted_efficiency",
+        "budgeted_cop",
+        "carnot_distance"
+      ],
+      "headline_readouts": {
+        "baseline_closure_defect": 0.03037527006891637,
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_forward_efficiency": 0.4999947338413404,
+        "best_reverse_cop": 0.9999999999379234
+      }
+    },
+    {
+      "row_id": "qit_carnot_irreversibility_companion",
+      "family": "carnot_repair_irreversibility",
+      "carrier": "finite_qubit_two_bath_duration_sweep",
+      "readout_families": [
+        "closure_defect",
+        "duration_distance_to_carnot",
+        "budgeted_efficiency"
+      ],
+      "headline_readouts": {
+        "baseline_forward_closure_defect": 0.0225164061035127,
+        "best_closure_defect": 1.3186078058335937e-06,
+        "best_forward_distance_to_carnot": 5.266158659589237e-06,
+        "best_reverse_distance_to_carnot_cop": 6.207656610968115e-11
+      }
+    },
+    {
+      "row_id": "qit_carnot_closure_companion",
+      "family": "carnot_repair_closure",
+      "carrier": "finite_qubit_two_bath_closure_grid",
+      "readout_families": [
+        "closure_defect",
+        "closure_leg_concentration",
+        "hold_policy_tradeoff"
+      ],
+      "headline_readouts": {
+        "baseline_closure_defect": 0.03037527006891637,
+        "best_closure_defect": 1.1273186190097206e-08,
+        "best_closure_policy": "fixed_full_chain_2000",
+        "dominant_closure_leg_at_best_row": "hot_iso"
+      }
+    },
+    {
+      "row_id": "qit_carnot_hold_policy_companion",
+      "family": "carnot_repair",
+      "carrier": "finite_qubit_two_bath_with_partial_thermalization_holds",
+      "readout_families": [
+        "trace_distance_closure",
+        "efficiency",
+        "hold_budget"
+      ],
+      "headline_readouts": {
+        "baseline_trace_distance": 0.04016895886469031,
+        "best_closure_trace_distance": 0.0003434168608109911,
+        "best_efficiency": 0.4649155632309064,
+        "adaptive_budget_saved_steps": 1360
+      }
+    }
+  ]
+}

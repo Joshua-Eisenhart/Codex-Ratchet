@@ -1,0 +1,626 @@
+{
+  "name": "weyl_geometry_lab_matrix",
+  "classification": "exploratory",
+  "classification_note": "Controller-facing Weyl/Hopf geometry matrix over reusable legos, composed rows, bridge rows, and directly relevant legacy geometry anchors.",
+  "lego_ids": [
+    "weyl_geometry_lab_matrix",
+    "nested_hopf_tori",
+    "weyl_pauli_transport",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_protocol_dag",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_geometry_carrier_array",
+    "weyl_geometry_carrier_compare",
+    "weyl_geometry_ladder_audit"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_lab_matrix"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 15,
+    "pass_count": 15,
+    "fail_count": 0,
+    "source_kind_counts": {
+      "new_lego": 2,
+      "new_composed_row": 1,
+      "new_bridge_row": 5,
+      "legacy_geometry": 7
+    },
+    "role_counts": {
+      "base_lego": 2,
+      "composed_row": 1,
+      "graph_proof_lego": 1,
+      "graph_proof_bridge": 1,
+      "carrier_array": 1,
+      "carrier_compare": 1,
+      "ladder_audit": 1,
+      "legacy_anchor": 7
+    },
+    "controller_route_counts": {
+      "foundation": 2,
+      "stack_anchor": 1,
+      "graph_proof_bridge": 2,
+      "carrier_compare": 2,
+      "ladder_audit": 1,
+      "legacy_anchor": 7
+    },
+    "used_tool_counts": {
+      "clifford": 3,
+      "e3nn": 1,
+      "geomstats": 3,
+      "gudhi": 2,
+      "pytorch": 4,
+      "rustworkx": 5,
+      "sympy": 3,
+      "toponetx": 2,
+      "xgi": 2,
+      "z3": 5
+    },
+    "new_lego_count": 2,
+    "new_composed_row_count": 1,
+    "new_bridge_row_count": 5,
+    "legacy_anchor_count": 7,
+    "scope_note": "Controller-facing matrix for the Weyl/Hopf lane. New legos and bridge rows appear first; older directly relevant geometry anchors are kept at the bottom as reference surfaces."
+  },
+  "rows": [
+    {
+      "id": "nested_hopf_tori",
+      "label": "Nested Hopf tori base lego",
+      "role": "base_lego",
+      "source_kind": "new_lego",
+      "level": "nested_torus_geometry",
+      "geometry_topology": "layered_hopf_tori",
+      "scope_hint": "base_lego",
+      "result_file": "lego_nested_hopf_tori_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "foundation",
+      "lane_order": 0,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_hopf_norm_error": null,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0
+      },
+      "result_summary": {
+        "all_pass": true,
+        "passed": 10,
+        "failed": 0,
+        "sample_count": 192,
+        "total_tests": 10,
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0
+      }
+    },
+    {
+      "id": "weyl_pauli_transport",
+      "label": "Weyl / Pauli transport lego",
+      "role": "base_lego",
+      "source_kind": "new_lego",
+      "level": "weyl_transport",
+      "geometry_topology": "left_right_weyl_spinors_on_nested_tori",
+      "scope_hint": "base_lego",
+      "result_file": "lego_weyl_pauli_transport_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "foundation",
+      "lane_order": 0,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "sample_count": 18,
+        "transport_count": 3,
+        "max_left_right_overlap_abs": 6.19384686373312e-18,
+        "max_bloch_antipodal_gap": 0.0,
+        "transport_roundtrip_error": null,
+        "radii_monotone": null
+      },
+      "result_summary": {
+        "all_pass": true,
+        "sample_count": 18
+      }
+    },
+    {
+      "id": "weyl_hopf_pauli_composed_stack",
+      "label": "Composed Weyl / Hopf / Pauli stack",
+      "role": "composed_row",
+      "source_kind": "new_composed_row",
+      "level": "stacked_geometry",
+      "geometry_topology": "nested_hopf_tori_plus_pauli_transport",
+      "scope_hint": "composed_stack",
+      "result_file": "weyl_hopf_pauli_composed_stack_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "stack_anchor",
+      "lane_order": 1,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16
+      },
+      "result_summary": {
+        "all_pass": true,
+        "sample_count": 192,
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16
+      }
+    },
+    {
+      "id": "weyl_geometry_protocol_dag",
+      "label": "Weyl geometry protocol DAG",
+      "role": "graph_proof_lego",
+      "source_kind": "new_bridge_row",
+      "level": "graph_proof_alignment",
+      "geometry_topology": "nested_hopf_tori_schedule_graph",
+      "scope_hint": "graph_proof_bridge",
+      "result_file": "lego_weyl_geometry_protocol_dag_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "graph_proof_bridge",
+      "lane_order": 2,
+      "used_tools": [
+        "rustworkx",
+        "z3"
+      ],
+      "tool_manifest_used_count": 2,
+      "headline_metrics": {
+        "node_count": null,
+        "edge_count": null,
+        "longest_path_length": null,
+        "correct_order_sat": null,
+        "reverse_order_unsat": null,
+        "back_edge_unsat": null
+      },
+      "result_summary": {
+        "all_pass": true,
+        "graph_path_length": 5,
+        "max_left_right_overlap_abs": 2.864397083632884e-17
+      }
+    },
+    {
+      "id": "weyl_geometry_graph_proof_alignment",
+      "label": "Weyl geometry graph / proof alignment",
+      "role": "graph_proof_bridge",
+      "source_kind": "new_bridge_row",
+      "level": "graph_proof_alignment",
+      "geometry_topology": "nested_hopf_tori_transport_graph_alignment",
+      "scope_hint": "graph_proof_bridge",
+      "result_file": "weyl_geometry_graph_proof_alignment_results.json",
+      "result_exists": true,
+      "classification": "research_support",
+      "all_pass": true,
+      "controller_route": "graph_proof_bridge",
+      "lane_order": 3,
+      "used_tools": [
+        "rustworkx",
+        "z3"
+      ],
+      "tool_manifest_used_count": 2,
+      "headline_metrics": {
+        "node_count": 6,
+        "edge_count": 5,
+        "graph_path_length": 5,
+        "ordering_unsat": true,
+        "chirality_unsat": "unsat",
+        "pauli_products_ok": true,
+        "max_left_right_overlap_abs": 5.704004013523115e-17
+      },
+      "result_summary": {
+        "all_pass": true,
+        "graph_path_length": 5,
+        "max_left_right_overlap_abs": 5.704004013523115e-17
+      }
+    },
+    {
+      "id": "weyl_geometry_carrier_array",
+      "label": "Weyl geometry carrier array",
+      "role": "carrier_array",
+      "source_kind": "new_bridge_row",
+      "level": "carrier_array",
+      "geometry_topology": "multi_carrier_geometry_array",
+      "scope_hint": "carrier_compare",
+      "result_file": "weyl_geometry_carrier_array_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "carrier_compare",
+      "lane_order": 4,
+      "used_tools": [
+        "rustworkx",
+        "toponetx",
+        "xgi"
+      ],
+      "tool_manifest_used_count": 3,
+      "headline_metrics": {
+        "carrier_count": 5,
+        "total_tests": 35,
+        "passed_carriers": 5,
+        "comparison_spread_pass": null,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_nested_bloch_gap": 0.0
+      },
+      "result_summary": {
+        "all_pass": true,
+        "passed": 35,
+        "failed": 0,
+        "carrier_count": 5,
+        "total_tests": 35
+      }
+    },
+    {
+      "id": "weyl_geometry_carrier_compare",
+      "label": "Weyl geometry carrier compare",
+      "role": "carrier_compare",
+      "source_kind": "new_bridge_row",
+      "level": "carrier_compare",
+      "geometry_topology": "compare_across_hopf_sphere_graph_hypergraph",
+      "scope_hint": "carrier_compare",
+      "result_file": "lego_weyl_geometry_carrier_compare_results.json",
+      "result_exists": true,
+      "classification": null,
+      "all_pass": true,
+      "controller_route": "carrier_compare",
+      "lane_order": 5,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "carrier_count": 4,
+        "result_count": 96,
+        "comparison_rows": 3,
+        "comparison_spread_pass": true,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963
+      },
+      "result_summary": {
+        "all_pass": true,
+        "result_count": 96,
+        "carrier_count": 4
+      }
+    },
+    {
+      "id": "weyl_geometry_ladder_audit",
+      "label": "Weyl geometry ladder audit",
+      "role": "ladder_audit",
+      "source_kind": "new_bridge_row",
+      "level": "ladder_audit",
+      "geometry_topology": "ambient_vs_engine_bridge_ladder",
+      "scope_hint": "ladder_audit",
+      "result_file": "weyl_geometry_ladder_audit_results.json",
+      "result_exists": true,
+      "classification": null,
+      "all_pass": true,
+      "controller_route": "ladder_audit",
+      "lane_order": 6,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "ambient_nontrivial_count": 2,
+        "engine_nontrivial": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true,
+        "guardrail_pass": true
+      },
+      "result_summary": {
+        "ambient_nontrivial_count": 2,
+        "engine_nontrivial": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true
+      }
+    },
+    {
+      "id": "foundation_hopf_torus_geomstats_clifford",
+      "label": "Foundation Hopf torus / geomstats / clifford",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "hopf_torus_with_geomstats_and_clifford",
+      "scope_hint": "legacy_geometry",
+      "result_file": "foundation_hopf_torus_geomstats_clifford_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "clifford",
+        "geomstats",
+        "sympy"
+      ],
+      "tool_manifest_used_count": 3,
+      "headline_metrics": {
+        "all_pass": true,
+        "mean_delta": 6.169293209379652e-05,
+        "metric_g11": 0.5000000000000001,
+        "area": 19.739208802178716,
+        "geodesic_distance": 0.7059105604591763
+      },
+      "result_summary": {
+        "all_pass": true,
+        "total_fail": 0
+      }
+    },
+    {
+      "id": "graph_shell_geometry",
+      "label": "Legacy graph shell geometry",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "graph_shell",
+      "scope_hint": "legacy_geometry",
+      "result_file": "graph_shell_geometry_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "rustworkx"
+      ],
+      "tool_manifest_used_count": 1,
+      "headline_metrics": {
+        "all_pass": true,
+        "cycle_rank": 0,
+        "diameter": 3,
+        "zero_modes": 1
+      },
+      "result_summary": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "hopf_torus_lego",
+      "label": "Legacy Hopf torus anchor",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "hopf_torus",
+      "scope_hint": "legacy_geometry",
+      "result_file": "hopf_torus_lego_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "clifford",
+        "geomstats",
+        "gudhi",
+        "pytorch",
+        "z3"
+      ],
+      "tool_manifest_used_count": 5,
+      "headline_metrics": {
+        "all_pass": null,
+        "n_points_checked": 512,
+        "betti_vector": [
+          900,
+          2,
+          26
+        ],
+        "z3_unsat_contractibility": "unsat"
+      },
+      "result_summary": {}
+    },
+    {
+      "id": "nested_torus_geometry",
+      "label": "Legacy nested torus geometry",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "nested_torus",
+      "scope_hint": "legacy_geometry",
+      "result_file": "nested_torus_geometry_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [],
+      "tool_manifest_used_count": 0,
+      "headline_metrics": {
+        "all_pass": true,
+        "outer_xy_min": 2.5,
+        "inner_xy_max": 2.4,
+        "single_area": 63.16546816697189
+      },
+      "result_summary": {
+        "all_pass": true
+      }
+    },
+    {
+      "id": "toponetx_hopf_crosscheck",
+      "label": "Legacy TopoNetX Hopf cross-check",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "hopf_torus_topology_crosscheck",
+      "scope_hint": "legacy_geometry",
+      "result_file": "toponetx_hopf_crosscheck_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "pytorch",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ],
+      "tool_manifest_used_count": 5,
+      "headline_metrics": {
+        "all_pass": null,
+        "beta0": 1,
+        "beta1": 2,
+        "chi": 0,
+        "z3_unsat": "unsat"
+      },
+      "result_summary": {}
+    },
+    {
+      "id": "torch_hopf_connection",
+      "label": "Torch Hopf connection",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "hopf_connection_form",
+      "scope_hint": "legacy_geometry",
+      "result_file": "torch_hopf_connection_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "e3nn",
+        "pytorch"
+      ],
+      "tool_manifest_used_count": 2,
+      "headline_metrics": {
+        "all_pass": true,
+        "P1_pass": true,
+        "P2_pass": true,
+        "max_bloch_diff": 7.170626192820606e-08,
+        "e3nn_used": true
+      },
+      "result_summary": {
+        "all_pass": true,
+        "total_tests": 45
+      }
+    },
+    {
+      "id": "weyl_nested_shell",
+      "label": "Legacy Weyl nested shell",
+      "role": "legacy_anchor",
+      "source_kind": "legacy_geometry",
+      "level": "legacy_anchor",
+      "geometry_topology": "weyl_nested_shell",
+      "scope_hint": "legacy_geometry",
+      "result_file": "weyl_nested_shell_results.json",
+      "result_exists": true,
+      "classification": "canonical",
+      "all_pass": true,
+      "controller_route": "legacy_anchor",
+      "lane_order": 7,
+      "used_tools": [
+        "clifford",
+        "geomstats",
+        "gudhi",
+        "pytorch",
+        "rustworkx",
+        "sympy",
+        "z3"
+      ],
+      "tool_manifest_used_count": 7,
+      "headline_metrics": {
+        "all_pass": null,
+        "beta0": 1,
+        "beta1": 1,
+        "z3_chirality_unsat": "unsat",
+        "shell_dag_nodes": 3
+      },
+      "result_summary": {}
+    }
+  ]
+}

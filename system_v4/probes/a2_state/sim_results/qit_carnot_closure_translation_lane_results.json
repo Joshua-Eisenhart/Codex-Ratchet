@@ -1,0 +1,135 @@
+{
+  "name": "qit_carnot_closure_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Carnot closure translation lane built from the open closure diagnostic row and the strict closure companion. It keeps closure defect and dominant-leg translation gaps explicit.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "open_all_pass": true,
+      "pass": true
+    },
+    "strict_lane_is_clean": {
+      "qit_all_pass": true,
+      "pass": true
+    },
+    "both_lanes_improve_from_baseline_or_worst_to_best": {
+      "open_improvement": 0.21421310825049528,
+      "qit_improvement": 0.03037525879573018,
+      "pass": true
+    },
+    "translation_gap_stays_bounded": {
+      "best_closure_gap": 0.0013759010141487782,
+      "dominant_leg_matches": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_lane_does_not_match_strict_best_closure_exactly": {
+      "best_closure_gap": 0.0013759010141487782,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_best_closure_defect": 0.0013759122873349683,
+    "qit_best_closure_defect": 1.1273186190097206e-08,
+    "open_worst_closure_defect": 0.21558902053783024,
+    "qit_baseline_closure_defect": 0.03037527006891637,
+    "best_closure_gap": 0.0013759010141487782,
+    "dominant_leg_matches": true,
+    "open_dominant_closure_leg": "hot_iso",
+    "qit_dominant_closure_leg": "hot_iso",
+    "scope_note": "Promoted QIT-aligned Carnot closure translation lane. It compares the open closure diagnostic row against the strict closure companion and keeps closure defect plus dominant-leg agreement explicit."
+  }
+}

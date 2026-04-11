@@ -1,0 +1,284 @@
+{
+  "name": "weyl_geometry_constraint_audit",
+  "classification": "exploratory",
+  "classification_note": "Controller audit over the Weyl/Hopf geometry lane. It routes rows by the properties they actually expose: stacked torus composition, graph/proof alignment, carrier comparison, reusable base geometry, and open sidecar diagnostics.",
+  "lego_ids": [
+    "hopf_torus_lego",
+    "spinor_geometry",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_graph_proof_alignment"
+  ],
+  "primary_lego_ids": [
+    "hopf_torus_lego",
+    "spinor_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 8,
+    "registry_matched_rows": 2,
+    "route_counts": {
+      "reusable base lego": 4,
+      "composed stack": 1,
+      "graph/proof bridge": 1,
+      "carrier comparison": 1,
+      "open geometry sidecar": 1
+    },
+    "reusable_base_lego_count": 4,
+    "graph_proof_bridge_count": 1,
+    "carrier_comparison_count": 1,
+    "composed_stack_count": 1,
+    "open_geometry_sidecar_count": 1,
+    "scope_note": "Controller audit for the Weyl/Hopf lane. Base legos stay reusable, bridges stay bridge-only, carrier arrays stay comparison surfaces, composed stacks stay composed-stack surfaces, and the ladder audit stays a sidecar diagnostic."
+  },
+  "rows": [
+    {
+      "row_id": "nested_hopf_tori",
+      "result_file": "lego_nested_hopf_tori_results.json",
+      "route": "reusable base lego",
+      "route_reason": "The row is a canonical base geometry lego with bounded unit-norm, transport, and readout checks but no controller bridge claim.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0
+      }
+    },
+    {
+      "row_id": "hopf_torus_lego",
+      "result_file": "hopf_torus_lego_results.json",
+      "route": "reusable base lego",
+      "route_reason": "The row is a canonical base geometry lego with bounded unit-norm, transport, and readout checks but no controller bridge claim.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": {
+        "lego_id": "pure_state_ray",
+        "section": "State Representation Legos",
+        "machine_current_coverage": "covered",
+        "machine_result_classification": "canonical",
+        "useful_if_rejected": "yes"
+      },
+      "salient_metrics": {
+        "all_pass": true,
+        "beta1_equals_2": true,
+        "z3_unsat_contractibility": "unsat",
+        "max_norm_error": 1.1102230246251565e-16,
+        "total_phi_loop_length": 2.827433388230813,
+        "symmetry_ok": true
+      }
+    },
+    {
+      "row_id": "weyl_spinor_hopf",
+      "result_file": "weyl_spinor_hopf_results.json",
+      "route": "reusable base lego",
+      "route_reason": "The row is a canonical base geometry lego with bounded unit-norm, transport, and readout checks but no controller bridge claim.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": {
+        "lego_id": "spinor_geometry",
+        "section": "Geometry Legos",
+        "machine_current_coverage": "covered",
+        "machine_result_classification": "canonical",
+        "useful_if_rejected": "yes"
+      },
+      "salient_metrics": {
+        "all_pass": true,
+        "xi_zero_overlap_abs": 1.0,
+        "gamma5_left_eigenvalue": 1.0,
+        "gamma5_right_eigenvalue": -1.0,
+        "max_left_right_overlap_abs": 1.0
+      }
+    },
+    {
+      "row_id": "lego_weyl_pauli_transport",
+      "result_file": "lego_weyl_pauli_transport_results.json",
+      "route": "reusable base lego",
+      "route_reason": "The row is a canonical base geometry lego with bounded unit-norm, transport, and readout checks but no controller bridge claim.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "sample_count": 18,
+        "transport_count": 3,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_bloch_antipodal_gap": 0.0,
+        "pauli_readout_gap": 0.0,
+        "transport_roundtrip_error": 5.551115123125783e-17
+      }
+    },
+    {
+      "row_id": "weyl_hopf_pauli_composed_stack",
+      "result_file": "weyl_hopf_pauli_composed_stack_results.json",
+      "route": "composed stack",
+      "route_reason": "The row stages a four-layer composed geometry stack and verifies the full stack error budget.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "total_stages": 4,
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16
+      }
+    },
+    {
+      "row_id": "weyl_geometry_graph_proof_alignment",
+      "result_file": "weyl_geometry_graph_proof_alignment_results.json",
+      "route": "graph/proof bridge",
+      "route_reason": "The row carries load-bearing graph order and solver checks around the geometry stack.",
+      "source_classification": "research_support",
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "node_count": 6,
+        "edge_count": 5,
+        "graph_path_length": 5,
+        "forward_order_sat": true,
+        "reverse_order_unsat": true,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "transport_fraction": {
+          "inner_to_clifford": 0.5,
+          "inner_to_outer": 1.0,
+          "clifford_to_outer": 0.5
+        }
+      }
+    },
+    {
+      "row_id": "weyl_geometry_carrier_array",
+      "result_file": "weyl_geometry_carrier_array_results.json",
+      "route": "carrier comparison",
+      "route_reason": "The row compares the same Weyl-style core across multiple carriers and reports a spread check.",
+      "source_classification": "canonical",
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "total_tests": 35,
+        "passed": 35,
+        "failed": 0,
+        "carrier_count": 5,
+        "passed_carriers": 5,
+        "failed_carriers": 0,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_nested_bloch_gap": 0.0,
+        "max_graph_cycle_rank": 6,
+        "max_hypergraph_shadow_components": 1,
+        "max_cp3_concurrence": 5.551115123125783e-17
+      }
+    },
+    {
+      "row_id": "weyl_geometry_ladder_audit",
+      "result_file": "weyl_geometry_ladder_audit_results.json",
+      "route": "open geometry sidecar",
+      "route_reason": "The row is a diagnostic sidecar that checks Weyl-ambient witnesses against engine response without claiming a new core lego.",
+      "source_classification": null,
+      "all_pass": true,
+      "registry_hint": null,
+      "salient_metrics": {
+        "all_pass": true,
+        "ambient_nontrivial_count": 2,
+        "clifford_neutral": true,
+        "engine_nontrivial": true,
+        "witness_separable": true,
+        "type2_witness_separable": true,
+        "guardrail_pass": true
+      }
+    }
+  ]
+}

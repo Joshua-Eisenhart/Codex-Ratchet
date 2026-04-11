@@ -1,0 +1,1016 @@
+{
+  "name": "qit_carnot_two_bath_cycle",
+  "classification": "canonical",
+  "classification_note": "Canonical bounded two-bath Carnot row on a qubit working substance. It makes the cycle mechanics explicit: hot isotherm, adiabatic expansion, cold isotherm, adiabatic compression, plus the reversed refrigerator mode. This is a thermodynamic working-substance row, not a claim that the repo's runtime engine already realizes a Carnot machine.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_cycle_hits_the_carnot_efficiency_in_the_reversible_limit": {
+      "efficiency": 0.5000000000000001,
+      "carnot_bound": 0.5,
+      "pass": true
+    },
+    "reverse_cycle_hits_the_carnot_refrigerator_cop_in_the_reversible_limit": {
+      "cop": 0.9999999999999999,
+      "cop_carnot": 1.0,
+      "pass": true
+    },
+    "forward_cycle_has_positive_work_and_heat_flow_from_hot_to_cold": {
+      "q_hot": 0.3755915097737852,
+      "q_cold": -0.1877957548868926,
+      "work_net": 0.18779575488689262,
+      "pass": true
+    },
+    "reverse_cycle_has_positive_cold_heat_absorption_and_requires_work_input": {
+      "q_cold_absorbed": 0.1877957548868926,
+      "work_input": 0.18779575488689262,
+      "pass": true
+    }
+  },
+  "negative": {
+    "carnot_efficiency_is_not_a_gap_dependent_runtime_ratio": {
+      "max_sweep_gap_error": 1.2212453270876722e-15,
+      "pass": true
+    },
+    "refrigerator_cop_is_not_a_gap_dependent_runtime_ratio": {
+      "max_sweep_gap_error": 7.771561172376096e-16,
+      "pass": true
+    },
+    "current_runtime_gradient_probe_is_not_the_same_as_a_two_bath_carnot_cycle": {
+      "scope_note": "This row is a bounded two-bath working-substance cycle. It does not promote the existing runtime gradient probe into a realized Carnot engine.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_sweep_efficiencies_respect_carnot_bound_exactly_in_the_reversible_model": {
+      "n_points": 54,
+      "pass": true
+    },
+    "all_sweep_refrigerator_cops_respect_carnot_cop_exactly_in_the_reversible_model": {
+      "n_points": 54,
+      "pass": true
+    }
+  },
+  "forward_cycle": {
+    "parameters": {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "gap_cold_low": 0.5,
+      "gap_cold_high": 1.5
+    },
+    "steps": [
+      {
+        "kind": "isothermal",
+        "bath_temperature": 2.0,
+        "before": {
+          "label": "A_hot_gibbs_high_gap",
+          "gap": 3.0,
+          "temperature": 2.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.5472765714190689,
+          "free_energy": -0.40282655596550476
+        },
+        "after": {
+          "label": "B_hot_gibbs_low_gap",
+          "gap": 1.0,
+          "temperature": 2.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.37754066879814546,
+          "free_energy": -0.9481539683602134
+        },
+        "delta_u": -0.16973590262092347,
+        "heat_into_system": 0.3755915097737852,
+        "work_by_system": 0.5453274123947087
+      },
+      {
+        "kind": "adiabatic",
+        "before": {
+          "label": "B_hot_gibbs_low_gap",
+          "gap": 1.0,
+          "temperature": 2.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.37754066879814546,
+          "free_energy": -0.9481539683602134
+        },
+        "after": {
+          "label": "C_cold_ready_low_gap",
+          "gap": 0.5,
+          "temperature": 1.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.18877033439907273,
+          "free_energy": -0.4740769841801067
+        },
+        "delta_u": -0.18877033439907273,
+        "heat_into_system": 0.0,
+        "work_by_system": 0.18877033439907273
+      },
+      {
+        "kind": "isothermal",
+        "bath_temperature": 1.0,
+        "before": {
+          "label": "C_cold_ready_low_gap",
+          "gap": 0.5,
+          "temperature": 1.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.18877033439907273,
+          "free_energy": -0.4740769841801067
+        },
+        "after": {
+          "label": "D_cold_gibbs_high_gap",
+          "gap": 1.5,
+          "temperature": 1.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.27363828570953447,
+          "free_energy": -0.20141327798275238
+        },
+        "delta_u": 0.08486795131046174,
+        "heat_into_system": -0.1877957548868926,
+        "work_by_system": -0.27266370619735436
+      },
+      {
+        "kind": "adiabatic",
+        "before": {
+          "label": "D_cold_gibbs_high_gap",
+          "gap": 1.5,
+          "temperature": 1.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.27363828570953447,
+          "free_energy": -0.20141327798275238
+        },
+        "after": {
+          "label": "A_hot_gibbs_high_gap_return",
+          "gap": 3.0,
+          "temperature": 2.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.5472765714190689,
+          "free_energy": -0.40282655596550476
+        },
+        "delta_u": 0.27363828570953447,
+        "heat_into_system": 0.0,
+        "work_by_system": -0.27363828570953447
+      }
+    ],
+    "summary": {
+      "q_hot": 0.3755915097737852,
+      "q_cold": -0.1877957548868926,
+      "work_net": 0.18779575488689262,
+      "efficiency": 0.5000000000000001,
+      "carnot_bound": 0.5
+    }
+  },
+  "reverse_cycle": {
+    "steps": [
+      {
+        "kind": "adiabatic_reverse",
+        "before": {
+          "label": "A_hot_gibbs_high_gap_return",
+          "gap": 3.0,
+          "temperature": 2.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.5472765714190689,
+          "free_energy": -0.40282655596550476
+        },
+        "after": {
+          "label": "D_cold_gibbs_high_gap",
+          "gap": 1.5,
+          "temperature": 1.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.27363828570953447,
+          "free_energy": -0.20141327798275238
+        },
+        "delta_u": -0.27363828570953447,
+        "heat_into_system": 0.0,
+        "work_by_system": 0.27363828570953447
+      },
+      {
+        "kind": "cold_isotherm_reverse",
+        "before": {
+          "label": "D_cold_gibbs_high_gap",
+          "gap": 1.5,
+          "temperature": 1.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.27363828570953447,
+          "free_energy": -0.20141327798275238
+        },
+        "after": {
+          "label": "C_cold_ready_low_gap",
+          "gap": 0.5,
+          "temperature": 1.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.18877033439907273,
+          "free_energy": -0.4740769841801067
+        },
+        "delta_u": -0.08486795131046174,
+        "heat_into_system": 0.1877957548868926,
+        "work_by_system": 0.27266370619735436
+      },
+      {
+        "kind": "adiabatic_reverse",
+        "before": {
+          "label": "C_cold_ready_low_gap",
+          "gap": 0.5,
+          "temperature": 1.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.18877033439907273,
+          "free_energy": -0.4740769841801067
+        },
+        "after": {
+          "label": "B_hot_gibbs_low_gap",
+          "gap": 1.0,
+          "temperature": 2.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.37754066879814546,
+          "free_energy": -0.9481539683602134
+        },
+        "delta_u": 0.18877033439907273,
+        "heat_into_system": 0.0,
+        "work_by_system": -0.18877033439907273
+      },
+      {
+        "kind": "hot_isotherm_reverse",
+        "before": {
+          "label": "B_hot_gibbs_low_gap",
+          "gap": 1.0,
+          "temperature": 2.0,
+          "p_excited": 0.37754066879814546,
+          "entropy": 0.6628473185791794,
+          "internal_energy": 0.37754066879814546,
+          "free_energy": -0.9481539683602134
+        },
+        "after": {
+          "label": "A_hot_gibbs_high_gap",
+          "gap": 3.0,
+          "temperature": 2.0,
+          "p_excited": 0.18242552380635632,
+          "entropy": 0.47505156369228685,
+          "internal_energy": 0.5472765714190689,
+          "free_energy": -0.40282655596550476
+        },
+        "delta_u": 0.16973590262092347,
+        "heat_into_system": -0.3755915097737852,
+        "work_by_system": -0.5453274123947087
+      }
+    ],
+    "summary": {
+      "q_cold_absorbed": 0.1877957548868926,
+      "work_input": 0.18779575488689262,
+      "cop": 0.9999999999999999,
+      "cop_carnot": 1.0
+    }
+  },
+  "operating_point_sweep": [
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.75,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333333,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.140505270403269,
+      "reverse_work_input": 0.140505270403269
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.7499999999999999,
+      "carnot_bound": 0.75,
+      "cop": 0.33333333333333337,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.12096631453644228,
+      "reverse_work_input": 0.12096631453644228
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.7499999999999999,
+      "carnot_bound": 0.75,
+      "cop": 0.33333333333333337,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.09660116845802517,
+      "reverse_work_input": 0.09660116845802517
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.75,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333333,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.3012325881971656,
+      "reverse_work_input": 0.3012325881971656
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.7500000000000001,
+      "carnot_bound": 0.75,
+      "cop": 0.33333333333333326,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.28169363233033895,
+      "reverse_work_input": 0.28169363233033895
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.75,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333333,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.2573284862519218,
+      "reverse_work_input": 0.2573284862519218
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6249999999999999,
+      "carnot_bound": 0.625,
+      "cop": 0.6000000000000001,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.11708772533605746,
+      "reverse_work_input": 0.11708772533605746
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6249999999999998,
+      "carnot_bound": 0.625,
+      "cop": 0.6000000000000002,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.10080526211370189,
+      "reverse_work_input": 0.10080526211370189
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6249999999999996,
+      "carnot_bound": 0.625,
+      "cop": 0.6000000000000004,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.08050097371502093,
+      "reverse_work_input": 0.08050097371502093
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.625,
+      "carnot_bound": 0.625,
+      "cop": 0.6,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.2510271568309713,
+      "reverse_work_input": 0.2510271568309713
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6250000000000001,
+      "carnot_bound": 0.625,
+      "cop": 0.6,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.23474469360861577,
+      "reverse_work_input": 0.23474469360861577
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6249999999999999,
+      "carnot_bound": 0.625,
+      "cop": 0.6000000000000002,
+      "cop_carnot": 0.6,
+      "forward_work_net": 0.21444040520993476,
+      "reverse_work_input": 0.21444040520993476
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.5,
+      "carnot_bound": 0.5,
+      "cop": 1.0,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.09367018026884599,
+      "reverse_work_input": 0.09367018026884599
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.5,
+      "carnot_bound": 0.5,
+      "cop": 1.0,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.08064420969096153,
+      "reverse_work_input": 0.08064420969096153
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.5,
+      "carnot_bound": 0.5,
+      "cop": 1.0,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.06440077897201679,
+      "reverse_work_input": 0.06440077897201679
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.5,
+      "carnot_bound": 0.5,
+      "cop": 1.0,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.20082172546477706,
+      "reverse_work_input": 0.20082172546477706
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.5000000000000001,
+      "carnot_bound": 0.5,
+      "cop": 0.9999999999999999,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.18779575488689262,
+      "reverse_work_input": 0.18779575488689262
+    },
+    {
+      "t_hot": 2.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.5,
+      "carnot_bound": 0.5,
+      "cop": 1.0,
+      "cop_carnot": 1.0,
+      "forward_work_net": 0.17155232416794786,
+      "reverse_work_input": 0.17155232416794786
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.7999999999999998,
+      "carnot_bound": 0.8,
+      "cop": 0.25000000000000006,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.12580281675868352,
+      "reverse_work_input": 0.12580281675868352
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.8000000000000002,
+      "carnot_bound": 0.8,
+      "cop": 0.24999999999999994,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.10883821461856827,
+      "reverse_work_input": 0.10883821461856827
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.7999999999999998,
+      "carnot_bound": 0.8,
+      "cop": 0.25000000000000006,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.08745247506698338,
+      "reverse_work_input": 0.08745247506698338
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.8000000000000002,
+      "carnot_bound": 0.8,
+      "cop": 0.24999999999999994,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.28193952457163923,
+      "reverse_work_input": 0.28193952457163923
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.8000000000000004,
+      "carnot_bound": 0.8,
+      "cop": 0.2499999999999999,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.264974922431524,
+      "reverse_work_input": 0.264974922431524
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.8,
+      "carnot_bound": 0.8,
+      "cop": 0.25,
+      "cop_carnot": 0.25,
+      "forward_work_net": 0.24358918287993903,
+      "reverse_work_input": 0.24358918287993903
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.699999999999999,
+      "carnot_bound": 0.7,
+      "cop": 0.4285714285714292,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.11007746466384793,
+      "reverse_work_input": 0.11007746466384793
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6999999999999987,
+      "carnot_bound": 0.7,
+      "cop": 0.4285714285714293,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.09523343779124704,
+      "reverse_work_input": 0.09523343779124704
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.699999999999999,
+      "carnot_bound": 0.7,
+      "cop": 0.4285714285714292,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.07652091568361036,
+      "reverse_work_input": 0.07652091568361036
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6999999999999994,
+      "carnot_bound": 0.7,
+      "cop": 0.42857142857142855,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.24669708400018409,
+      "reverse_work_input": 0.24669708400018409
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6999999999999993,
+      "carnot_bound": 0.7,
+      "cop": 0.4285714285714286,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.23185305712758317,
+      "reverse_work_input": 0.23185305712758317
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6999999999999993,
+      "carnot_bound": 0.7,
+      "cop": 0.4285714285714286,
+      "cop_carnot": 0.42857142857142855,
+      "forward_work_net": 0.21314053501994643,
+      "reverse_work_input": 0.21314053501994643
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666666,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.09435211256901266,
+      "reverse_work_input": 0.09435211256901266
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666666,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.08162866096392618,
+      "reverse_work_input": 0.08162866096392618
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6000000000000002,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666664,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.06558935630023757,
+      "reverse_work_input": 0.06558935630023757
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6000000000000002,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666665,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.21145464342872944,
+      "reverse_work_input": 0.21145464342872944
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6000000000000002,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666665,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.19873119182364296,
+      "reverse_work_input": 0.19873119182364296
+    },
+    {
+      "t_hot": 2.5,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6000000000000001,
+      "carnot_bound": 0.6,
+      "cop": 0.6666666666666665,
+      "cop_carnot": 0.6666666666666666,
+      "forward_work_net": 0.1826918871599543,
+      "reverse_work_input": 0.1826918871599543
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.8333333333333336,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.19999999999999996,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.11215696745633333,
+      "reverse_work_input": 0.11215696745633333
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.8333333333333336,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.19999999999999996,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.09729082881777376,
+      "reverse_work_input": 0.09729082881777376
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.8333333333333338,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.1999999999999999,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.07843828546615976,
+      "reverse_work_input": 0.07843828546615976
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.8333333333333329,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.2000000000000001,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.25798046442294015,
+      "reverse_work_input": 0.25798046442294015
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.8333333333333329,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.2000000000000001,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.24311432578438058,
+      "reverse_work_input": 0.24311432578438058
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.5,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.8333333333333331,
+      "carnot_bound": 0.8333333333333334,
+      "cop": 0.20000000000000004,
+      "cop_carnot": 0.2,
+      "forward_work_net": 0.22426178243276662,
+      "reverse_work_input": 0.22426178243276662
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.7500000000000001,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333333,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.10094127071069998,
+      "reverse_work_input": 0.10094127071069998
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.7500000000000001,
+      "carnot_bound": 0.75,
+      "cop": 0.33333333333333326,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.08756174593599637,
+      "reverse_work_input": 0.08756174593599637
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.7500000000000003,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333332,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.07059445691954377,
+      "reverse_work_input": 0.07059445691954377
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.7499999999999998,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333334,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.23218241798064615,
+      "reverse_work_input": 0.23218241798064615
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.7499999999999997,
+      "carnot_bound": 0.75,
+      "cop": 0.3333333333333335,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.21880289320594254,
+      "reverse_work_input": 0.21880289320594254
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 0.75,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.7499999999999999,
+      "carnot_bound": 0.75,
+      "cop": 0.33333333333333337,
+      "cop_carnot": 0.3333333333333333,
+      "forward_work_net": 0.20183560418948998,
+      "reverse_work_input": 0.20183560418948998
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6666666666666666,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.5,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.08972557396506664,
+      "reverse_work_input": 0.08972557396506664
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6666666666666666,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.5,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.07783266305421899,
+      "reverse_work_input": 0.07783266305421899
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 2.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.666666666666667,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.4999999999999998,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.0627506283729278,
+      "reverse_work_input": 0.0627506283729278
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 0.75,
+      "efficiency": 0.6666666666666665,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.5000000000000001,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.20638437153835215,
+      "reverse_work_input": 0.20638437153835215
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.0,
+      "efficiency": 0.6666666666666665,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.5000000000000001,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.1944914606275045,
+      "reverse_work_input": 0.1944914606275045
+    },
+    {
+      "t_hot": 3.0,
+      "t_cold": 1.0,
+      "gap_high": 3.0,
+      "gap_hot_low": 1.25,
+      "efficiency": 0.6666666666666667,
+      "carnot_bound": 0.6666666666666667,
+      "cop": 0.49999999999999994,
+      "cop_carnot": 0.5,
+      "forward_work_net": 0.17940942594621337,
+      "reverse_work_input": 0.17940942594621337
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "forward_efficiency": 0.5000000000000001,
+    "forward_carnot_bound": 0.5,
+    "reverse_cop": 0.9999999999999999,
+    "reverse_cop_carnot": 1.0,
+    "scope_note": "Explicit two-bath forward/reverse Carnot bookkeeping row on a qubit working substance; not yet a claim about the repo's runtime engine mechanics."
+  }
+}

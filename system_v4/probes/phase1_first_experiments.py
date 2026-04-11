@@ -6,6 +6,8 @@ import json, sys, time
 from pathlib import Path
 import networkx as nx
 
+from system_v4.skills.graph_store import load_graph_json
+
 GRAPH_DIR = Path("system_v4/a2_state/graphs")
 RESULTS = {}
 
@@ -15,8 +17,12 @@ def record(name, status, detail=""):
 
 def load_project_graph(path):
     """Load the project's custom graph JSON into NetworkX."""
-    with open(path) as f:
-        data = json.load(f)
+    path = Path(path)
+    data = load_graph_json(
+        Path.cwd(),
+        str(path),
+        default={},
+    )
     G = nx.Graph()
     for node_id, attrs in data.get("nodes", {}).items():
         G.add_node(node_id, **attrs)
@@ -35,8 +41,11 @@ def load_project_graph(path):
 
 # First, figure out edge endpoint format
 print("=== Inspecting edge structure ===")
-with open(GRAPH_DIR / "a2_low_control_graph_v1.json") as f:
-    raw = json.load(f)
+raw = load_graph_json(
+    Path.cwd(),
+    str(GRAPH_DIR / "a2_low_control_graph_v1.json"),
+    default={},
+)
 sample_edges = raw["edges"][:3]
 for e in sample_edges:
     print(f"  Keys: {list(e.keys())}")

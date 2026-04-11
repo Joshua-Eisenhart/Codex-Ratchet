@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional, Set, Tuple
 from pydantic import BaseModel, Field
 
+from system_v4.skills.graph_store import load_graph_json
+
 # --- Pydantic Definitions for the System Graph Nodes --- #
 
 class GraphNode(BaseModel):
@@ -164,11 +166,19 @@ class SystemGraphBuilder:
         their authority_class and repo fingerprints, ensuring they do not overwrite canon.
         """
         path = Path(json_path)
-        if not path.exists():
+        try:
+            prov_graph = load_graph_json(
+                self.workspace_root,
+                str(path.relative_to(self.workspace_root)),
+                default={},
+            )
+        except ValueError:
+            if not path.exists():
+                return False
+            with path.open("r", encoding="utf-8") as f:
+                prov_graph = json.load(f)
+        if not prov_graph:
             return False
-        
-        with path.open("r", encoding="utf-8") as f:
-            prov_graph = json.load(f)
             
         for n_id, n_data in prov_graph.get("nodes", {}).items():
             provenance = n_data.get("provenance", {})

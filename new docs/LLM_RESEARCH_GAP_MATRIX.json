@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "execution_ladder": ["A_local", "B_pairwise_coupling", "C_multi_shell_coexistence", "D_topology_variant", "E_emergence"],
+  "status_terms": ["exists", "runs locally", "passes local rerun", "proof-backed", "canonical by process"],
+  "claim_tool_map": {
+    "impossibility_forced": {"required": "z3", "cross_check": "cvc5"},
+    "shell_metrics": {"required": "geomstats", "cross_check": "numpy"},
+    "multi_way_interaction": {"required": "XGI", "cross_check": "rustworkx"},
+    "cell_complex": {"required": "TopoNetX", "cross_check": "GUDHI"},
+    "dag_ordering": {"required": "rustworkx", "cross_check": "topological_sort"},
+    "persistence": {"required": "GUDHI", "cross_check": "Betti_check"},
+    "geometric_algebra": {"required": "clifford", "cross_check": "numpy_roundtrip"},
+    "gradient_flow": {"required": "PyTorch", "cross_check": "finite_difference"}
+  },
+  "families": [
+    {
+      "family": "density_matrices",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "quantum_channels",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "distinguishability_metrics",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "information_geometry",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "fiber_bundle_spin_geometry",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "process_philosophy_support",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    },
+    {
+      "family": "llm_controller_enforcement",
+      "cells": {"A_local": "GAP", "B_pairwise_coupling": "GAP", "C_multi_shell_coexistence": "GAP", "D_topology_variant": "GAP", "E_emergence": "GAP"},
+      "evidence": []
+    }
+  ],
+  "notes": [
+    "Initial matrix seeded from llm-research-enforcement; all cells start GAP.",
+    "No claim should be promoted without a result file and fresh rerun flag.",
+    "Decorative tool use is disallowed; load_bearing_tools must be used: true in worker outputs."
+  ]
+}

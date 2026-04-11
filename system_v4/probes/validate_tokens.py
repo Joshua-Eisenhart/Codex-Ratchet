@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from system_v4.skills.graph_store import load_graph_json
+
 def validate_tokens():
     print("Loading Unified Evidence Report...")
     with open("a2_state/sim_results/unified_evidence_report.json") as f:
@@ -12,8 +14,7 @@ def validate_tokens():
 
     print("Loading Master Graph (system_graph_a2_refinery.json)...")
     _repo_root = Path(__file__).resolve().parent.parent.parent
-    with open(str(_repo_root / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json")) as f:
-        graph = json.load(f)
+    graph = load_graph_json(_repo_root, "system_v4/a2_state/graphs/system_graph_a2_refinery.json")
     
     nodes = graph.get("nodes", {})
     if isinstance(nodes, list):

@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Dict, Any, Optional, List
 from collections import Counter
 
+from system_v4.skills.graph_store import load_graph_json
+
 
 class A2Mode(str, Enum):
     """
@@ -109,12 +111,11 @@ class A2PersistentBrain:
         if self._system_graph is not None:
             return self._system_graph
 
-        if not self.system_graph_path.exists():
-            self._system_graph = {"nodes": {}, "edges": [], "stats": {}}
-            return self._system_graph
-
-        with self.system_graph_path.open() as f:
-            self._system_graph = json.load(f)
+        self._system_graph = load_graph_json(
+            self.workspace_root,
+            "system_v4/a2_state/graphs/system_architecture_v1.json",
+            default={"nodes": {}, "edges": [], "stats": {}},
+        )
         return self._system_graph
 
     def get_system_topology_summary(self) -> Dict[str, Any]:
@@ -414,11 +415,11 @@ class A2PersistentBrain:
     # ── 8. NESTED GRAPH ACCESS ──────────────────────────────────────────────
     def load_nested_graph(self) -> Dict[str, Any]:
         """Load the nested system graph (L0-L3 layers)."""
-        path = self.a2_state_dir / "graphs" / "nested_system_graph_v1.json"
-        if not path.exists():
-            return {"layers": {}}
-        with path.open() as f:
-            return json.load(f)
+        return load_graph_json(
+            self.workspace_root,
+            "system_v4/a2_state/graphs/nested_system_graph_v1.json",
+            default={"layers": {}},
+        )
 
     def get_system_core(self) -> Dict[str, Any]:
         """Return L0: the lowest-entropy system spine."""
@@ -427,11 +428,11 @@ class A2PersistentBrain:
 
     def get_skill_clusters(self) -> Dict[str, Any]:
         """Return L1: skill clusters with cross-cluster dependencies."""
-        path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
-        if not path.exists():
-            return {}
-        with path.open() as f:
-            full_graph = json.load(f)
+        full_graph = load_graph_json(
+            self.workspace_root,
+            "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+            default={},
+        )
             
         clusters = {}
         for nid, node in full_graph.get("nodes", {}).items():
@@ -441,11 +442,11 @@ class A2PersistentBrain:
 
     def get_cluster_for_skill(self, skill_name: str) -> Optional[str]:
         """Find which cluster a skill belongs to via MEMBER_OF edges."""
-        path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
-        if not path.exists():
-            return None
-        with path.open() as f:
-            full_graph = json.load(f)
+        full_graph = load_graph_json(
+            self.workspace_root,
+            "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+            default={},
+        )
             
         target_id = f"SKILL::{skill_name}"
         clusters = self.get_skill_clusters().get("nodes", {})
@@ -519,10 +520,10 @@ class A2PersistentBrain:
             if not fpath.exists():
                 return 0
             try:
-                data = json.loads(fpath.read_text())
+                data = load_graph_json(self.workspace_root, path, default={})
                 nodes = data.get("nodes", {})
                 return len(nodes) if isinstance(nodes, dict) else 0
-            except (json.JSONDecodeError, OSError):
+            except (json.JSONDecodeError, OSError, FileNotFoundError):
                 return 0
 
         layer_counts = {}
@@ -680,16 +681,18 @@ class A2PersistentBrain:
         boot = self.generate_boot_state_report()
 
         # Load refinery graph too
-        refinery_path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
         refinery_nodes = 0
         refinery_edges = 0
-        if refinery_path.exists():
-            try:
-                rg = json.loads(refinery_path.read_text())
-                refinery_nodes = len(rg.get("nodes", {}))
-                refinery_edges = len(rg.get("edges", []))
-            except (json.JSONDecodeError, OSError):
-                pass
+        try:
+            rg = load_graph_json(
+                self.workspace_root,
+                "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+                default={},
+            )
+            refinery_nodes = len(rg.get("nodes", {}))
+            refinery_edges = len(rg.get("edges", []))
+        except (json.JSONDecodeError, OSError, FileNotFoundError):
+            pass
 
         return {
             "summary": f"Rehydrated: arch={len(graph.get('nodes', {}))}n/{len(graph.get('edges', []))}e, "
@@ -751,17 +754,19 @@ class A2PersistentBrain:
                           if isinstance(n, dict) and n.get("node_type") == "V4_SKILL")
 
         # Check refinery layer counts
-        refinery_path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
         layer_counts = {}
-        if refinery_path.exists():
-            try:
-                rg = json.loads(refinery_path.read_text())
-                for n in rg.get("nodes", {}).values():
-                    if isinstance(n, dict):
-                        tz = n.get("trust_zone", "UNKNOWN")
-                        layer_counts[tz] = layer_counts.get(tz, 0) + 1
-            except (json.JSONDecodeError, OSError):
-                pass
+        try:
+            rg = load_graph_json(
+                self.workspace_root,
+                "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+                default={},
+            )
+            for n in rg.get("nodes", {}).values():
+                if isinstance(n, dict):
+                    tz = n.get("trust_zone", "UNKNOWN")
+                    layer_counts[tz] = layer_counts.get(tz, 0) + 1
+        except (json.JSONDecodeError, OSError, FileNotFoundError):
+            pass
 
         return {
             "summary": f"Mapped: {len(nodes)}n/{len(edges)}e, "

@@ -27,6 +27,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 from system_v4.skills.a2_graph_refinery import A2GraphRefinery
+from system_v4.skills.graph_store import load_graph_json
 
 
 # ── Similarity Thresholds ────────────────────────────────────────────
@@ -175,8 +176,10 @@ def run_contradiction_scan(workspace: Path = Path(".")) -> dict:
     r = A2GraphRefinery(str(workspace))
     sid = r.start_session("CONTRADICTION_SCAN_SESSION")
 
-    gpath = workspace / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
-    data = json.loads(gpath.read_text(encoding="utf-8"))
+    data = load_graph_json(
+        workspace,
+        "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    )
     nodes = data["nodes"]
     edges = data["edges"]
 

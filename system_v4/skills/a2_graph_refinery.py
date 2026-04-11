@@ -44,6 +44,7 @@ from system_v4.skills.v4_graph_builder import (
     GraphNode,
     SystemGraphBuilder,
 )
+from system_v4.skills.graph_store import load_graph_json
 
 
 # ── Layer Definitions ──────────────────────────────────────────────────
@@ -1321,11 +1322,13 @@ class A2GraphRefinery:
 
     def graph_audit(self) -> dict:
         """Run an integrity audit on the graph. Returns audit report dict."""
-        graph_path = self.workspace_root / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
-        if not graph_path.exists():
+        data = load_graph_json(
+            self.workspace_root,
+            "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+            default={},
+        )
+        if not data:
             return {"error": "Graph file not found"}
-
-        data = json.loads(graph_path.read_text(encoding="utf-8"))
         nodes = data.get("nodes", {})
         edges = data.get("edges", [])
 

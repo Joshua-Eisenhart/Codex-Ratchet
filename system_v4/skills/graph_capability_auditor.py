@@ -20,6 +20,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from system_v4.skills.a2_graph_refinery import A2GraphRefinery
+from system_v4.skills.graph_store import load_graph_json
 
 
 AUTHORITATIVE_GRAPH = "system_v4/a2_state/graphs/system_graph_a2_refinery.json"
@@ -52,12 +53,15 @@ def _utc_iso() -> str:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return {}
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return {}
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except (ValueError, json.JSONDecodeError):
+        if not path.exists():
+            return {}
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return {}
 
 
 def _extract_next_required_lane(output_paths: list[Path]) -> str:

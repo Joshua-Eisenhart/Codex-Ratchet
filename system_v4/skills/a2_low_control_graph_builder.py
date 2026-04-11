@@ -19,6 +19,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from system_v4.skills.graph_store import load_graph_json
+
 
 MASTER_GRAPH = "system_v4/a2_state/graphs/system_graph_a2_refinery.json"
 IDENTITY_REGISTRY = "system_v4/a2_state/graphs/identity_registry_v1.json"
@@ -38,9 +40,12 @@ def _resolve(root: Path, raw_path: str) -> Path:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except ValueError:
+        if not path.exists():
+            return {}
+        return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _clean_str(value: Any) -> str:

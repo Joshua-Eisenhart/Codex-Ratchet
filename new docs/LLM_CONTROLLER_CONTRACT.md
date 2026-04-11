@@ -76,6 +76,8 @@ Do not skip to step 6. Do not make bridge claims before shell-local and coupling
 ## Hard Stop Rules
 
 1. **No registry/doc status edits** until the corresponding code/result gate is explicitly satisfied and the result file path is cited.
+2. Use the controller-side validator before accepting any worker closeout: `system_v4/skills/llm_research_enforcement_validator.py`.
+3. Keep the gap matrix current in `new docs/LLM_RESEARCH_GAP_MATRIX.json`; do not promote cells without evidence paths.
 
 2. **Phase 7 completion** requires C2_graph_topology tested for all 28 families — not a subset.
 

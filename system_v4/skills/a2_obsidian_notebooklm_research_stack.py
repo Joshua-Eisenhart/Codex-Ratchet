@@ -14,6 +14,7 @@ import re
 from pathlib import Path
 from typing import Dict, Any, List
 from system_v4.skills.a2_graph_refinery import A2GraphRefinery
+from system_v4.skills.graph_store import load_graph_json
 
 class ObsidianNotebookLMStack:
     def __init__(self, workspace_root: str):
@@ -35,12 +36,11 @@ class ObsidianNotebookLMStack:
         Nodes -> .md files
         Edges -> [[WikiLinks]]
         """
-        graph_data = {}
-        target_path = self.root / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
-        
-        if target_path.exists():
-            with open(target_path, "r", encoding="utf-8") as f:
-                graph_data = json.load(f)
+        graph_data = load_graph_json(
+            self.root,
+            "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+            default={},
+        )
                 
         nodes = graph_data.get("nodes", {})
         edges = graph_data.get("edges", [])

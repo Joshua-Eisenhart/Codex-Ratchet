@@ -22,6 +22,8 @@ import time
 from pathlib import Path
 from typing import Any
 
+from system_v4.skills.graph_store import load_graph_json
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 AUDIT_DIR = REPO_ROOT / "system_v4" / "a2_state" / "audit_logs"
@@ -116,6 +118,12 @@ def _git_status_porcelain(paths: list[Path] | None = None) -> list[str]:
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
+    try:
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except ValueError:
+        pass
+    except (FileNotFoundError, json.JSONDecodeError, UnicodeDecodeError):
+        return None
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError, UnicodeDecodeError):

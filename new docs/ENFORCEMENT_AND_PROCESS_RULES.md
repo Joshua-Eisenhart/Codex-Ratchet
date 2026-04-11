@@ -58,6 +58,7 @@ If a sim batch violates that order, it is off-plan even if it produces passing o
 - Axes: 6, 5, 3, 4 verified. Axes 1, 2 open. Axis 0 unsolved.
 - The bridge / `Phi0` seam is now separated much better than before (`Xi`, `rho_AB`, cut kernels, `Phi0` bakeoffs), but it is still mostly numpy-first and underintegrated with proof/graph tooling.
 - The basic plan is still only partially done: foundations and bridge separation are much better covered now, but the deep graph/proof integration pass has still not actually been completed.
+- Controller-side enforcement now has a dedicated gap matrix (`new docs/LLM_RESEARCH_GAP_MATRIX.json`) and validator (`system_v4/skills/llm_research_enforcement_validator.py`), but these are process tools, not automatic gates.
 
 ## TARGET BUILD REGIME (what we are building toward)
 All 13 rules below describe the target regime. They are the standard new work should meet. Legacy work is not retroactively invalid, but it is not promoted to canonical status without meeting these rules. No automated enforcement machinery exists yet — these are design constraints, not runtime checks.

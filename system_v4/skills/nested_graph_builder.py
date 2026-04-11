@@ -27,6 +27,8 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
+from system_v4.skills.graph_store import load_graph_json
+
 # The 5 layer graphs that form the nested structure
 LAYER_GRAPHS = {
     "A2_HIGH_INTAKE": {
@@ -99,12 +101,15 @@ def _utc_iso() -> str:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    if not path.exists():
-        return {}
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError:
-        return {}
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except (ValueError, json.JSONDecodeError):
+        if not path.exists():
+            return {}
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return {}
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:

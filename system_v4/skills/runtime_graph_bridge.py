@@ -18,6 +18,8 @@ from pathlib import Path
 from collections import Counter
 from typing import Dict, List, Any, Optional
 
+from system_v4.skills.graph_store import load_graph_json
+
 
 # ═══════════════════════════════════════════════════════════
 # Layer Constants (match v4_graph_builder.py)
@@ -346,13 +348,15 @@ def bridge_runtime_to_graph(repo_root: str, clean: bool = True) -> dict:
     b_path = repo / "system_v4" / "runtime_state" / "b_kernel_state.json"
     sim_path = repo / "system_v4" / "runtime_state" / "sim_state.json"
     witness_path = repo / "system_v4" / "a2_state" / "witness_corpus_v1.json"
-    graph_path = repo / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
-
     brain_state = json.loads(brain_path.read_text()) if brain_path.exists() else {}
     b_state = json.loads(b_path.read_text()) if b_path.exists() else {}
     sim_state = json.loads(sim_path.read_text()) if sim_path.exists() else {}
     witness_corpus = json.loads(witness_path.read_text()) if witness_path.exists() else []
-    graph = json.loads(graph_path.read_text()) if graph_path.exists() else {"nodes": {}, "edges": []}
+    graph = load_graph_json(
+        repo,
+        "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+        default={"nodes": {}, "edges": []},
+    )
 
     # ─── Guard rail: refuse clean if runtime state is missing ───
     state_present = b_path.exists() and sim_path.exists()
@@ -928,8 +932,10 @@ def main():
     print(f"  Total edges:        {stats['total_edges']}")
 
     # Verify
-    graph_path = Path(repo) / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
-    graph = json.loads(graph_path.read_text())
+    graph = load_graph_json(
+        Path(repo),
+        "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    )
     nodes = graph["nodes"]
 
     type_counts = Counter(n.get("node_type", "") for n in nodes.values())

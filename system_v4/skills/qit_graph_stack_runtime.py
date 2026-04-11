@@ -33,6 +33,7 @@ from graph_tool_integration import (
     build_pyg_tensors,
     build_toponetx_complex,
 )
+from system_v4.skills.graph_store import load_graph_json
 from qit_engine_graph_builder import OUT_FILE as QIT_GRAPH_JSON
 from qit_engine_graph_builder import write_qit_engine_graph
 from qit_owner_schemas import (
@@ -88,7 +89,10 @@ def _write_text(path: Path, text: str) -> None:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except (ValueError, json.JSONDecodeError):
+        return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _sha256_bytes(raw: bytes) -> str:

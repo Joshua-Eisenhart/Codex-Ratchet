@@ -17,6 +17,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+from system_v4.skills.graph_store import load_graph_json
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -35,6 +37,13 @@ def _resolve(root: Path, raw_path: str) -> Path:
 
 
 def _load_json(path: Path) -> dict[str, Any]:
+    try:
+        path.relative_to(REPO_ROOT / "system_v4" / "a2_state" / "graphs")
+        return load_graph_json(REPO_ROOT, str(path.relative_to(REPO_ROOT)), default={})
+    except ValueError:
+        pass
+    except FileNotFoundError:
+        return {}
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))

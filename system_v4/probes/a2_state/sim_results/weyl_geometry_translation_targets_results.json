@@ -1,0 +1,810 @@
+{
+  "name": "weyl_geometry_translation_targets",
+  "classification": "exploratory",
+  "classification_note": "Controller-facing translation-target surface for the Weyl/Hopf geometry lane. It ranks foundation rows, companion-ready rows, graph/proof bridges, and sidecars using the matrix, overlay, registry supplement, and audit surfaces.",
+  "lego_ids": [
+    "weyl_geometry_translation_targets",
+    "nested_hopf_tori",
+    "weyl_pauli_transport",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_protocol_dag",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_geometry_carrier_array",
+    "weyl_geometry_carrier_compare",
+    "weyl_geometry_ladder_audit"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_translation_targets"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 16,
+    "foundation_count": 4,
+    "companion_ready_count": 3,
+    "graph_proof_bridge_count": 2,
+    "sidecar_count": 7,
+    "top_foundation_row": "nested_hopf_tori",
+    "top_companion_row": "weyl_hopf_pauli_composed_stack",
+    "top_bridge_row": "weyl_geometry_graph_proof_alignment",
+    "top_sidecar_row": "weyl_geometry_ladder_audit",
+    "matrix_row_count": 15,
+    "overlay_row_count": 6,
+    "audit_row_count": 8,
+    "supplement_row_count": 8,
+    "registry_gap_concept_count": 5,
+    "registry_new_concept_count": 8,
+    "scope_note": "Translation-target surface for the Weyl/Hopf lane. Foundation rows stay reusable, companion-ready rows are the next strict-companion targets, graph/proof rows stay bridge-only, and sidecars stay diagnostic or legacy."
+  },
+  "rows": [
+    {
+      "row_id": "nested_hopf_tori",
+      "label": "Nested Hopf tori base lego",
+      "bucket": "foundation",
+      "priority_rank": 0,
+      "action_label": "keep_as_foundation",
+      "controller_route": "foundation",
+      "matrix_role": "base_lego",
+      "overlay_category": "base_lego",
+      "audit_route": "reusable base lego",
+      "registry_signal": {
+        "current_coverage": "partial",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 4,
+        "partial_registry_concepts_count": 2,
+        "not_normalized_registry_concepts_count": 0,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "nested_hopf_tori_geometry",
+        "registry_section": "Geometry Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "lego_nested_hopf_tori_results.json",
+      "all_pass": true,
+      "metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_hopf_norm_error": null,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0,
+        "result_all_pass": true,
+        "result_passed": 10,
+        "result_failed": 0,
+        "result_total_tests": 10,
+        "overlay_total_tests": 10,
+        "overlay_sample_count": 192,
+        "overlay_torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "overlay_max_point_norm_error": 1.1102230246251565e-16,
+        "overlay_max_left_hopf_alignment_error": 2.2207757275727963e-16,
+        "overlay_max_transport_error": 2.7755575615628914e-16,
+        "overlay_max_stack_error": 0.0,
+        "overlay_inner_radius_identity": true,
+        "overlay_clifford_radius_identity": true,
+        "overlay_outer_radius_identity": true,
+        "overlay_all_pass": true,
+        "overlay_spinor_pass": true,
+        "overlay_transport_pass": true,
+        "overlay_combined_pass": true,
+        "audit_all_pass": true,
+        "audit_sample_count": 192,
+        "audit_torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "audit_max_point_norm_error": 1.1102230246251565e-16,
+        "audit_max_left_hopf_alignment_error": 2.2207757275727963e-16,
+        "audit_max_transport_error": 2.7755575615628914e-16,
+        "audit_max_stack_error": 0.0
+      },
+      "note": "Foundation geometry: reusable base lego already supports the composed stack and bridge rows."
+    },
+    {
+      "row_id": "weyl_pauli_transport",
+      "label": "Weyl / Pauli transport lego",
+      "bucket": "foundation",
+      "priority_rank": 1,
+      "action_label": "keep_as_foundation",
+      "controller_route": "foundation",
+      "matrix_role": "base_lego",
+      "overlay_category": "base_lego",
+      "audit_route": "reusable base lego",
+      "registry_signal": {
+        "current_coverage": "partial",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 5,
+        "partial_registry_concepts_count": 5,
+        "not_normalized_registry_concepts_count": 0,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_pauli_transport_geometry",
+        "registry_section": "Loop, Connection, And Placement Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "lego_weyl_pauli_transport_results.json",
+      "all_pass": true,
+      "metrics": {
+        "sample_count": 18,
+        "transport_count": 3,
+        "max_left_right_overlap_abs": 6.19384686373312e-18,
+        "max_bloch_antipodal_gap": 0.0,
+        "transport_roundtrip_error": null,
+        "radii_monotone": null,
+        "result_all_pass": true,
+        "overlay_sample_count": 18,
+        "overlay_transport_count": 3,
+        "overlay_max_left_right_overlap_abs": 5.704004013523115e-17,
+        "overlay_max_bloch_antipodal_gap": 0.0,
+        "overlay_pauli_readout_gap": 0.0,
+        "overlay_transport_roundtrip_error": 5.551115123125783e-17,
+        "overlay_transport_partial_midpoint_separation": 0.19603428065912115,
+        "overlay_radii_monotone": true,
+        "overlay_all_pass": true,
+        "overlay_first_sample_chiral_z_gap": 1.4142135623730947,
+        "audit_all_pass": true,
+        "audit_sample_count": 18,
+        "audit_transport_count": 3,
+        "audit_max_left_right_overlap_abs": 5.704004013523115e-17,
+        "audit_max_bloch_antipodal_gap": 0.0,
+        "audit_pauli_readout_gap": 0.0,
+        "audit_transport_roundtrip_error": 5.551115123125783e-17
+      },
+      "note": "Foundation geometry: reusable base lego already supports the composed stack and bridge rows."
+    },
+    {
+      "row_id": "hopf_torus_lego",
+      "label": "Legacy Hopf torus anchor",
+      "bucket": "foundation",
+      "priority_rank": 2,
+      "action_label": "keep_as_foundation",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": "reusable base lego",
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix",
+        "constraint_audit"
+      ],
+      "result_file": "hopf_torus_lego_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": null,
+        "n_points_checked": 512,
+        "betti_vector": [
+          900,
+          2,
+          26
+        ],
+        "z3_unsat_contractibility": "unsat",
+        "audit_all_pass": true,
+        "audit_beta1_equals_2": true,
+        "audit_z3_unsat_contractibility": "unsat",
+        "audit_max_norm_error": 1.1102230246251565e-16,
+        "audit_total_phi_loop_length": 2.827433388230813,
+        "audit_symmetry_ok": true
+      },
+      "note": "Legacy Hopf torus anchor is still a reusable base lego under the controller audit."
+    },
+    {
+      "row_id": "weyl_spinor_hopf",
+      "label": "Weyl Spinor Hopf",
+      "bucket": "foundation",
+      "priority_rank": 3,
+      "action_label": "keep_as_foundation",
+      "controller_route": null,
+      "matrix_role": null,
+      "overlay_category": null,
+      "audit_route": "reusable base lego",
+      "registry_signal": {
+        "registry_lego_id": "spinor_geometry",
+        "current_coverage": "partial",
+        "machine_current_coverage": "covered",
+        "best_existing_result": "weyl_spinor_hopf_results.json",
+        "notes": "should be separated from generic Clifford geometry"
+      },
+      "source_surfaces": [
+        "constraint_audit",
+        "actual_registry"
+      ],
+      "result_file": "weyl_spinor_hopf_results.json",
+      "all_pass": true,
+      "metrics": {
+        "audit_all_pass": true,
+        "audit_xi_zero_overlap_abs": 1.0,
+        "audit_gamma5_left_eigenvalue": 1.0,
+        "audit_gamma5_right_eigenvalue": -1.0,
+        "audit_max_left_right_overlap_abs": 1.0
+      },
+      "note": "Spinor geometry is a reusable base lego and should stay in the foundation lane."
+    },
+    {
+      "row_id": "weyl_hopf_pauli_composed_stack",
+      "label": "Composed Weyl / Hopf / Pauli stack",
+      "bucket": "ready_for_stricter_companion_work",
+      "priority_rank": 200,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "stack_anchor",
+      "matrix_role": "composed_row",
+      "overlay_category": "composed_numeric",
+      "audit_route": "composed stack",
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 4,
+        "partial_registry_concepts_count": 4,
+        "not_normalized_registry_concepts_count": 1,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_hopf_pauli_composed_stack",
+        "registry_section": "Geometry Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "weyl_hopf_pauli_composed_stack_results.json",
+      "all_pass": true,
+      "metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16,
+        "result_all_pass": true,
+        "overlay_sample_count": 192,
+        "overlay_torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "overlay_max_spinor_norm_error": 1.1102230246251565e-16,
+        "overlay_max_bloch_alignment_error": 2.2207757275727963e-16,
+        "overlay_max_transport_error": 2.7755575615628914e-16,
+        "overlay_max_stack_error": 1.129514239719272e-16,
+        "overlay_all_pass": true,
+        "overlay_spinor_pass": true,
+        "overlay_density_pass": true,
+        "overlay_transport_pass": true,
+        "overlay_combined_pass": true,
+        "audit_all_pass": true,
+        "audit_sample_count": 192,
+        "audit_torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "audit_total_stages": 4,
+        "audit_max_spinor_norm_error": 1.1102230246251565e-16,
+        "audit_max_bloch_alignment_error": 2.2207757275727963e-16,
+        "audit_max_transport_error": 2.7755575615628914e-16,
+        "audit_max_stack_error": 1.129514239719272e-16
+      },
+      "note": "Strong composed stack with a small remaining registry gap; best candidate for stricter companionization."
+    },
+    {
+      "row_id": "weyl_geometry_carrier_array",
+      "label": "Weyl geometry carrier array",
+      "bucket": "ready_for_stricter_companion_work",
+      "priority_rank": 201,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "carrier_compare",
+      "matrix_role": "carrier_array",
+      "overlay_category": null,
+      "audit_route": "carrier comparison",
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 3,
+        "partial_registry_concepts_count": 2,
+        "not_normalized_registry_concepts_count": 2,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_geometry_carrier_array",
+        "registry_section": "Geometry Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "weyl_geometry_carrier_array_results.json",
+      "all_pass": true,
+      "metrics": {
+        "carrier_count": 5,
+        "total_tests": 35,
+        "passed_carriers": 5,
+        "comparison_spread_pass": null,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_nested_bloch_gap": 0.0,
+        "result_all_pass": true,
+        "result_passed": 35,
+        "result_failed": 0,
+        "audit_all_pass": true,
+        "audit_total_tests": 35,
+        "audit_passed": 35,
+        "audit_failed": 0,
+        "audit_carrier_count": 5,
+        "audit_passed_carriers": 5,
+        "audit_failed_carriers": 0,
+        "audit_max_nested_lr_overlap": 2.5860532068485732e-17,
+        "audit_max_nested_bloch_gap": 0.0,
+        "audit_max_graph_cycle_rank": 6,
+        "audit_max_hypergraph_shadow_components": 1,
+        "audit_max_cp3_concurrence": 5.551115123125783e-17
+      },
+      "note": "Carrier array is informative and clean, but still needs a stricter companion surface."
+    },
+    {
+      "row_id": "weyl_geometry_carrier_compare",
+      "label": "Weyl geometry carrier compare",
+      "bucket": "ready_for_stricter_companion_work",
+      "priority_rank": 202,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "carrier_compare",
+      "matrix_role": "carrier_compare",
+      "overlay_category": "alternate_carrier",
+      "audit_route": null,
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 3,
+        "partial_registry_concepts_count": 2,
+        "not_normalized_registry_concepts_count": 2,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_geometry_carrier_compare",
+        "registry_section": "Graph / Topology Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "registry_supplement"
+      ],
+      "result_file": "lego_weyl_geometry_carrier_compare_results.json",
+      "all_pass": true,
+      "metrics": {
+        "carrier_count": 4,
+        "result_count": 96,
+        "comparison_rows": 3,
+        "comparison_spread_pass": true,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "result_all_pass": true,
+        "overlay_carrier_count": 4,
+        "overlay_carrier_order": [
+          "hopf_torus",
+          "sphere_section",
+          "graph_carrier",
+          "hypergraph_carrier"
+        ],
+        "overlay_result_count": 96,
+        "overlay_comparison_rows": 3,
+        "overlay_mean_left_entropy_spread": 0.19439185783157628,
+        "overlay_mean_step_bloch_jump_spread": 0.5706616935506963,
+        "overlay_all_pass": true,
+        "overlay_carrier_checks_passed": true
+      },
+      "note": "Carrier comparison is clean and reusable, but should be tightened before companion promotion."
+    },
+    {
+      "row_id": "weyl_geometry_graph_proof_alignment",
+      "label": "Weyl geometry graph / proof alignment",
+      "bucket": "graph_proof_bridge",
+      "priority_rank": 400,
+      "action_label": "keep_as_graph_bridge",
+      "controller_route": "graph_proof_bridge",
+      "matrix_role": "graph_proof_bridge",
+      "overlay_category": "graph_proof",
+      "audit_route": "graph/proof bridge",
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 1,
+        "partial_registry_concepts_count": 1,
+        "not_normalized_registry_concepts_count": 3,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_geometry_graph_proof_alignment",
+        "registry_section": "Graph / Topology Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "weyl_geometry_graph_proof_alignment_results.json",
+      "all_pass": true,
+      "metrics": {
+        "node_count": 6,
+        "edge_count": 5,
+        "graph_path_length": 5,
+        "ordering_unsat": true,
+        "chirality_unsat": "unsat",
+        "pauli_products_ok": true,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "result_all_pass": true,
+        "overlay_node_count": 6,
+        "overlay_edge_count": 5,
+        "overlay_longest_path_length": 5,
+        "overlay_source_count": 1,
+        "overlay_sink_count": 1,
+        "overlay_forward_order_sat": true,
+        "overlay_reverse_order_unsat": true,
+        "overlay_chirality_unsat": true,
+        "overlay_pauli_products_ok": true,
+        "overlay_max_left_right_overlap_abs": 5.704004013523115e-17,
+        "overlay_max_bloch_antipodal_gap": 0.0,
+        "overlay_max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "overlay_transport_fraction_inner_to_outer": 1.0,
+        "overlay_all_pass": true,
+        "overlay_negative_reverse_order_unsat": true,
+        "overlay_negative_same_sign_unsat": true,
+        "overlay_boundary_pass": true,
+        "audit_all_pass": true,
+        "audit_node_count": 6,
+        "audit_edge_count": 5,
+        "audit_graph_path_length": 5,
+        "audit_forward_order_sat": true,
+        "audit_reverse_order_unsat": true,
+        "audit_max_left_right_overlap_abs": 5.704004013523115e-17,
+        "audit_max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "audit_transport_fraction": {
+          "inner_to_clifford": 0.5,
+          "inner_to_outer": 1.0,
+          "clifford_to_outer": 0.5
+        }
+      },
+      "note": "Direct graph/proof bridge with solver-backed ordering and chirality checks."
+    },
+    {
+      "row_id": "weyl_geometry_protocol_dag",
+      "label": "Weyl geometry protocol DAG",
+      "bucket": "graph_proof_bridge",
+      "priority_rank": 401,
+      "action_label": "keep_as_graph_bridge",
+      "controller_route": "graph_proof_bridge",
+      "matrix_role": "graph_proof_lego",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 2,
+        "partial_registry_concepts_count": 2,
+        "not_normalized_registry_concepts_count": 2,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_geometry_protocol_dag",
+        "registry_section": "Graph / Topology Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "registry_supplement"
+      ],
+      "result_file": "lego_weyl_geometry_protocol_dag_results.json",
+      "all_pass": true,
+      "metrics": {
+        "node_count": null,
+        "edge_count": null,
+        "longest_path_length": null,
+        "correct_order_sat": null,
+        "reverse_order_unsat": null,
+        "back_edge_unsat": null,
+        "result_all_pass": true,
+        "result_graph_path_length": 5,
+        "result_max_left_right_overlap_abs": 2.864397083632884e-17
+      },
+      "note": "Protocol DAG lego that validates layered geometry order and illegal back-edges."
+    },
+    {
+      "row_id": "weyl_geometry_ladder_audit",
+      "label": "Weyl geometry ladder audit",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 600,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "ladder_audit",
+      "matrix_role": "ladder_audit",
+      "overlay_category": "bridge_audit",
+      "audit_route": "open geometry sidecar",
+      "registry_signal": {
+        "current_coverage": "not_normalized_yet",
+        "result_all_pass": true,
+        "new_concept_normalized_in_actual_registry": false,
+        "normalized_registry_concepts_count": 3,
+        "partial_registry_concepts_count": 2,
+        "not_normalized_registry_concepts_count": 2,
+        "covered_registry_concepts_count": 0,
+        "registry_lego_id": "weyl_geometry_ladder_audit",
+        "registry_section": "Loop, Connection, And Placement Legos"
+      },
+      "source_surfaces": [
+        "matrix",
+        "overlay",
+        "constraint_audit",
+        "registry_supplement"
+      ],
+      "result_file": "weyl_geometry_ladder_audit_results.json",
+      "all_pass": true,
+      "metrics": {
+        "ambient_nontrivial_count": 2,
+        "engine_nontrivial": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true,
+        "guardrail_pass": true,
+        "overlay_ambient_nontrivial_count": 2,
+        "overlay_clifford_neutral": true,
+        "overlay_engine_nontrivial": true,
+        "overlay_engine_type2_nontrivial": true,
+        "overlay_overlay_nontrivial": true,
+        "overlay_witness_separable": true,
+        "overlay_type2_witness_separable": true,
+        "overlay_guardrail_pass": true,
+        "overlay_verdict": "PASS",
+        "overlay_all_pass": true,
+        "overlay_ambient_torus_count": 3,
+        "overlay_engine_torus_count": 3,
+        "audit_all_pass": true,
+        "audit_ambient_nontrivial_count": 2,
+        "audit_clifford_neutral": true,
+        "audit_engine_nontrivial": true,
+        "audit_witness_separable": true,
+        "audit_type2_witness_separable": true,
+        "audit_guardrail_pass": true
+      },
+      "note": "Independent witness audit for the Weyl ambient rung; keep it as a sidecar diagnostic."
+    },
+    {
+      "row_id": "nested_torus_geometry",
+      "label": "Legacy nested torus geometry",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 601,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "nested_torus_geometry_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": true,
+        "outer_xy_min": 2.5,
+        "inner_xy_max": 2.4,
+        "single_area": 63.16546816697189
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    },
+    {
+      "row_id": "foundation_hopf_torus_geomstats_clifford",
+      "label": "Foundation Hopf torus / geomstats / clifford",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 602,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "foundation_hopf_torus_geomstats_clifford_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": true,
+        "mean_delta": 6.169293209379652e-05,
+        "metric_g11": 0.5000000000000001,
+        "area": 19.739208802178716,
+        "geodesic_distance": 0.7059105604591763,
+        "result_total_fail": 0
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    },
+    {
+      "row_id": "torch_hopf_connection",
+      "label": "Torch Hopf connection",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 603,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "torch_hopf_connection_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": true,
+        "P1_pass": true,
+        "P2_pass": true,
+        "max_bloch_diff": 7.170626192820606e-08,
+        "e3nn_used": true,
+        "result_total_tests": 45
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    },
+    {
+      "row_id": "weyl_nested_shell",
+      "label": "Legacy Weyl nested shell",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 604,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "weyl_nested_shell_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": null,
+        "beta0": 1,
+        "beta1": 1,
+        "z3_chirality_unsat": "unsat",
+        "shell_dag_nodes": 3
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    },
+    {
+      "row_id": "graph_shell_geometry",
+      "label": "Legacy graph shell geometry",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 605,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "graph_shell_geometry_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": true,
+        "cycle_rank": 0,
+        "diameter": 3,
+        "zero_modes": 1
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    },
+    {
+      "row_id": "toponetx_hopf_crosscheck",
+      "label": "Legacy TopoNetX Hopf cross-check",
+      "bucket": "keep_as_sidecar",
+      "priority_rank": 606,
+      "action_label": "keep_as_sidecar",
+      "controller_route": "legacy_anchor",
+      "matrix_role": "legacy_anchor",
+      "overlay_category": null,
+      "audit_route": null,
+      "registry_signal": {},
+      "source_surfaces": [
+        "matrix"
+      ],
+      "result_file": "toponetx_hopf_crosscheck_results.json",
+      "all_pass": true,
+      "metrics": {
+        "all_pass": null,
+        "beta0": 1,
+        "beta1": 2,
+        "chi": 0,
+        "z3_unsat": "unsat"
+      },
+      "note": "Legacy geometry sidecar; keep separate from foundation and bridge rows."
+    }
+  ]
+}

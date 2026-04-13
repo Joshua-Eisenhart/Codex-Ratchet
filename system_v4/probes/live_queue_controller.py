@@ -205,6 +205,66 @@ QUEUE = [
 ]
 
 
+def enumerate_all_sims() -> list[Path]:
+    return sorted(PROBES.glob("sim_*.py"))
+
+
+def result_path_for(sim: Path) -> Path:
+    return RESULTS / f"{sim.stem[4:]}_results.json"
+
+
+def is_fresh_and_green(sim: Path) -> bool:
+    r = result_path_for(sim)
+    if not r.exists():
+        return False
+    if r.stat().st_mtime < sim.stat().st_mtime:
+        return False
+    try:
+        data = json.loads(r.read_text())
+    except Exception:
+        return False
+    summary = data.get("summary") if isinstance(data, dict) else None
+    if not isinstance(summary, dict):
+        return False
+    return summary.get("all_pass") is True
+
+
+def audit_sim_inventory() -> dict:
+    fresh: list[Path] = []
+    stale: list[Path] = []
+    missing: list[Path] = []
+    for sim in enumerate_all_sims():
+        r = result_path_for(sim)
+        if not r.exists():
+            missing.append(sim)
+        elif is_fresh_and_green(sim):
+            fresh.append(sim)
+        else:
+            stale.append(sim)
+    return {"fresh": fresh, "stale": stale, "missing": missing,
+            "total": len(fresh) + len(stale) + len(missing)}
+
+
+def choose_audit_targets(max_sims: int = 20) -> tuple[str, list[Step]]:
+    inv = audit_sim_inventory()
+    emit(f"AUDIT-INVENTORY total={inv['total']} fresh={len(inv['fresh'])} "
+         f"stale={len(inv['stale'])} missing={len(inv['missing'])}")
+    targets = inv["missing"] + inv["stale"]
+    if not targets:
+        return "audit_all_fresh", [
+            Step("truth_audit", [PYTHON, str(PROBES / "probe_truth_audit.py")]),
+            Step("controller_alignment", [PYTHON, str(PROBES / "controller_alignment_audit.py")]),
+        ]
+    chosen = targets[:max_sims]
+    steps = [
+        Step(sim.stem[4:], [PYTHON, str(sim)], result_json=result_path_for(sim).name)
+        for sim in chosen
+    ]
+    steps.append(Step("truth_audit", [PYTHON, str(PROBES / "probe_truth_audit.py")]))
+    steps.append(Step("controller_alignment", [PYTHON, str(PROBES / "controller_alignment_audit.py")]))
+    return f"audit_wave[{len(chosen)}]", steps
+
+
 def choose_batch(previous: str | None = None) -> tuple[str, list[Step]]:
     truth_ok, controller_ok = audit_green()
     if not (truth_ok and controller_ok):
@@ -224,6 +284,9 @@ def choose_batch(previous: str | None = None) -> tuple[str, list[Step]]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--minutes", type=int, default=60)
+    parser.add_argument("--audit-first", action="store_true",
+                        help="Use full-inventory audit-driven target selection instead of fixed batch rotation")
+    parser.add_argument("--max-sims-per-wave", type=int, default=20)
     args = parser.parse_args()
     os.makedirs(MPLCONFIGDIR, exist_ok=True)
     os.makedirs(NUMBA_CACHE_DIR, exist_ok=True)
@@ -232,7 +295,10 @@ def main() -> int:
     failures = []
     ran_batches = []
     while time.time() < deadline:
-        batch_name, steps = choose_batch(previous_batch)
+        if args.audit_first:
+            batch_name, steps = choose_audit_targets(max_sims=args.max_sims_per_wave)
+        else:
+            batch_name, steps = choose_batch(previous_batch)
         previous_batch = batch_name
         ran_batches.append(batch_name)
         set_status(batch_name)

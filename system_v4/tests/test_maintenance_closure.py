@@ -130,6 +130,21 @@ def test_validate_cli_args_rejects_dry_run_and_write_together():
         )
 
 
+
+def test_validate_cli_args_accepts_preserve_notes_with_truth_target():
+    mc = load_module()
+
+    mc.validate_cli_args(
+        result_json="system_v4/probes/a2_state/sim_results/g_structure_tower_results.json",
+        truth_row="g-structure support-manifold anchor",
+        backlog_row=None,
+        registry_row=None,
+        tool_row=None,
+        dry_run=True,
+        write=False,
+    )
+
+
 def test_replace_markdown_table_row_updates_only_targeted_row():
     mc = load_module()
 
@@ -312,4 +327,142 @@ def test_execute_truth_surface_update_dry_run_returns_plan_without_writing(tmp_p
     assert report["changed"] is False
     assert "stale note" in report["old_row"]
     assert "g_structure_tower_results.json" in report["new_row"]
+    assert surface_path.read_text(encoding="utf-8") == original
+
+
+
+def test_update_truth_row_preserve_notes_keeps_existing_note_text():
+    mc = load_module()
+
+    existing = (
+        "| g-structure support-manifold anchor | `system_v4/probes/a2_state/sim_results/g_structure_tower_results.json` "
+        "| yes | yes, fresh local rerun | no | no | detailed old note |"
+    )
+
+    updated = mc.update_truth_row(
+        existing,
+        truth_label="passes local rerun",
+        canonical_note="no — baseline artifact remains below canonical",
+        notes_note=None,
+        preserve_notes=True,
+    )
+
+    assert updated.endswith("detailed old note |")
+
+
+
+def test_execute_truth_surface_update_preserve_notes_dry_run_keeps_existing_note_text(tmp_path):
+    mc = load_module()
+
+    surface_path = tmp_path / "sim_truth_audit.md"
+    original = (
+        "| g-structure support-manifold anchor | `g.json` | yes | yes, fresh local rerun | no | no | detailed old note |\n"
+    )
+    surface_path.write_text(original, encoding="utf-8")
+
+    report = mc.execute_truth_surface_update(
+        surface_path=surface_path,
+        row_match_fragment="g-structure support-manifold anchor",
+        truth_label="passes local rerun",
+        reason="bounded packet passes locally but does not satisfy every canonical process gate",
+        result_json_name="g_structure_tower_results.json",
+        write=False,
+        notes_note=None,
+        preserve_notes=True,
+    )
+
+    assert report["changed"] is False
+    assert report["new_row"].endswith("detailed old note |")
+    assert surface_path.read_text(encoding="utf-8") == original
+
+
+
+def test_update_backlog_row_sets_current_state_and_preserves_existing_next_move_when_not_overridden():
+    mc = load_module()
+
+    existing = (
+        "| B4 | `hopf_map_s3_to_s2` | partial | keep old move | pytorch, sympy |"
+    )
+
+    updated = mc.update_backlog_row(
+        existing,
+        current_state="canonical by process",
+        next_move=None,
+    )
+
+    assert updated == "| B4 | `hopf_map_s3_to_s2` | canonical by process | keep old move | pytorch, sympy |"
+
+
+
+def test_update_registry_row_sets_current_coverage_and_notes():
+    mc = load_module()
+
+    existing = (
+        "| `hopf_map_s3_to_s2` | Hopf map S³ -> S² | geometry/connection | Hopf map from spinor carrier to Bloch sphere | "
+        "compute Hopf map on one small spinor family and compare projected density data | `CD`, `LFA` | "
+        "`sim_density_hopf_geometry.py` | `old_results.json` | covered | yes | stale note |"
+    )
+
+    updated = mc.update_registry_row(
+        existing,
+        current_coverage="canonical by process",
+        result_json_name="density_hopf_geometry_results.json",
+        notes_note="fresh rerun keeps the claim local to the Hopf-map packet",
+    )
+
+    assert "| `density_hopf_geometry_results.json` | canonical by process | yes | fresh rerun keeps the claim local to the Hopf-map packet |" in updated
+
+
+
+def test_execute_backlog_surface_update_dry_run_returns_plan_without_writing(tmp_path):
+    mc = load_module()
+
+    surface_path = tmp_path / "sim_backlog_matrix.md"
+    original = "".join(
+        [
+            "| B3 | `geometry_crosschecks_same_carrier` | covered | keep anchor | geomstats, clifford, pytorch |\n",
+            "| B4 | `hopf_map_s3_to_s2` | partial | old next move | pytorch, sympy |\n",
+        ]
+    )
+    surface_path.write_text(original, encoding="utf-8")
+
+    report = mc.execute_backlog_surface_update(
+        surface_path=surface_path,
+        row_match_fragment="| B4 |",
+        current_state="canonical by process",
+        next_move="keep `sim_density_hopf_geometry.py` as the explicit local Hopf-map anchor",
+        write=False,
+    )
+
+    assert report["changed"] is False
+    assert "old next move" in report["old_row"]
+    assert "canonical by process" in report["new_row"]
+    assert surface_path.read_text(encoding="utf-8") == original
+
+
+
+def test_execute_registry_surface_update_dry_run_returns_plan_without_writing(tmp_path):
+    mc = load_module()
+
+    surface_path = tmp_path / "17_actual_lego_registry.md"
+    original = "".join(
+        [
+            "| `hopf_geometry` | Hopf geometry | geometry | Hopf-fibration geometry | local Hopf geometry on one admitted carrier | `07`, `08` | `sim_hopf_torus_lego.py` | `hopf_torus_lego_results.json` | covered | yes | note |\n",
+            "| `hopf_map_s3_to_s2` | Hopf map S³ -> S² | geometry/connection | Hopf map from spinor carrier to Bloch sphere | compute Hopf map on one small spinor family and compare projected density data | `CD`, `LFA` | `sim_density_hopf_geometry.py` | `old_results.json` | covered | yes | stale note |\n",
+        ]
+    )
+    surface_path.write_text(original, encoding="utf-8")
+
+    report = mc.execute_registry_surface_update(
+        surface_path=surface_path,
+        row_match_fragment="`hopf_map_s3_to_s2`",
+        current_coverage="canonical by process",
+        result_json_name="density_hopf_geometry_results.json",
+        notes_note="fresh rerun keeps the claim local to the Hopf-map packet",
+        write=False,
+    )
+
+    assert report["changed"] is False
+    assert "stale note" in report["old_row"]
+    assert "canonical by process" in report["new_row"]
     assert surface_path.read_text(encoding="utf-8") == original

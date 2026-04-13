@@ -170,7 +170,8 @@ def update_truth_row(
     *,
     truth_label: str,
     canonical_note: str,
-    notes_note: str,
+    notes_note: str | None,
+    preserve_notes: bool = False,
 ) -> str:
     cells = parse_markdown_row(existing_row)
     if len(cells) != 7:
@@ -188,12 +189,14 @@ def update_truth_row(
         cells[4] = "no"
 
     cells[5] = canonical_note
-    cells[6] = notes_note
+    if not (preserve_notes and notes_note is None):
+        cells[6] = notes_note or cells[6]
     return format_markdown_row(cells)
 
 
 
 def find_markdown_table_row(markdown: str, row_match_fragment: str) -> str:
+
     matches = [line for line in markdown.splitlines() if row_match_fragment in line]
     if not matches:
         raise ValueError(f"target row not found for fragment: {row_match_fragment}")
@@ -209,7 +212,8 @@ def prepare_truth_surface_update(
     row_match_fragment: str,
     truth_label: str,
     canonical_note: str,
-    notes_note: str,
+    notes_note: str | None = None,
+    preserve_notes: bool = False,
 ) -> dict[str, str]:
     old_row = find_markdown_table_row(markdown, row_match_fragment)
     new_row = update_truth_row(
@@ -217,6 +221,7 @@ def prepare_truth_surface_update(
         truth_label=truth_label,
         canonical_note=canonical_note,
         notes_note=notes_note,
+        preserve_notes=preserve_notes,
     )
     updated_text = replace_markdown_table_row(markdown, row_match_fragment, new_row)
     return {
@@ -227,11 +232,27 @@ def prepare_truth_surface_update(
 
 
 
+def summarize_artifact_evidence(payload: dict[str, Any]) -> str:
+    summary = payload.get("summary", {}) if isinstance(payload.get("summary"), dict) else {}
+    passed = summary.get("tests_passed") or summary.get("total_pass") or summary.get("passed")
+    total = summary.get("total_tests") or summary.get("tests_total")
+    classification = payload.get("classification") or "unclassified"
+    depth = payload.get("tool_integration_depth") or {}
+    load_bearing = [t for t, d in depth.items() if isinstance(d, str) and "load" in d.lower()]
+    parts: list[str] = [f"classification: `{classification}`"]
+    if isinstance(passed, int) and isinstance(total, int):
+        parts.append(f"{passed}/{total} tests passing")
+    if load_bearing:
+        parts.append("load-bearing: " + ", ".join(f"`{t}`" for t in load_bearing))
+    return "; ".join(parts)
+
+
 def build_truth_notes(
     *,
     truth_label: str,
     reason: str,
     result_json_name: str,
+    payload: dict[str, Any] | None = None,
 ) -> tuple[str, str]:
     if truth_label == "canonical by process":
         canonical_note = "`canonical by process` — fresh artifact and fresh audits support process promotion"
@@ -242,6 +263,10 @@ def build_truth_notes(
     else:
         canonical_note = "no — file exists but stronger rerun/process evidence is not yet recorded"
     notes_note = f"{result_json_name}: {reason}"
+    if payload is not None:
+        evidence = summarize_artifact_evidence(payload)
+        if evidence:
+            notes_note = f"{notes_note}; {evidence}"
     return canonical_note, notes_note
 
 
@@ -254,25 +279,110 @@ def execute_truth_surface_update(
     reason: str,
     result_json_name: str,
     write: bool,
+    payload: dict[str, Any] | None = None,
+    notes_note: str | None = None,
+    preserve_notes: bool = False,
 ) -> dict[str, Any]:
     markdown = surface_path.read_text(encoding="utf-8")
-    canonical_note, notes_note = build_truth_notes(
+    canonical_note, auto_notes = build_truth_notes(
         truth_label=truth_label,
         reason=reason,
         result_json_name=result_json_name,
+        payload=payload,
     )
+    # Priority: explicit override > preserve existing > auto-generated
+    notes_note = notes_note if notes_note is not None else (None if preserve_notes else auto_notes)
     plan = prepare_truth_surface_update(
         markdown,
         row_match_fragment=row_match_fragment,
         truth_label=truth_label,
         canonical_note=canonical_note,
         notes_note=notes_note,
+        preserve_notes=preserve_notes,
     )
     changed = apply_surface_update(surface_path, plan["updated_text"], write=write)
     return {
         "surface_path": str(surface_path),
         "old_row": plan["old_row"],
         "new_row": plan["new_row"],
+        "changed": changed,
+    }
+
+
+
+def update_backlog_row(existing_row: str, *, current_state: str, next_move: str | None) -> str:
+    cells = parse_markdown_row(existing_row)
+    if len(cells) != 5:
+        raise ValueError(f"backlog row must have 5 columns, got {len(cells)}")
+    cells[2] = current_state
+    if next_move is not None:
+        cells[3] = next_move
+    return format_markdown_row(cells)
+
+
+
+def update_registry_row(
+    existing_row: str,
+    *,
+    current_coverage: str,
+    result_json_name: str,
+    notes_note: str,
+) -> str:
+    cells = parse_markdown_row(existing_row)
+    if len(cells) != 11:
+        raise ValueError(f"registry row must have 11 columns, got {len(cells)}")
+    cells[7] = f"`{result_json_name}`"
+    cells[8] = current_coverage
+    cells[10] = notes_note
+    return format_markdown_row(cells)
+
+
+
+def execute_backlog_surface_update(
+    *,
+    surface_path: Path,
+    row_match_fragment: str,
+    current_state: str,
+    next_move: str | None,
+    write: bool,
+) -> dict[str, Any]:
+    markdown = surface_path.read_text(encoding="utf-8")
+    old_row = find_markdown_table_row(markdown, row_match_fragment)
+    new_row = update_backlog_row(old_row, current_state=current_state, next_move=next_move)
+    updated_text = replace_markdown_table_row(markdown, row_match_fragment, new_row)
+    changed = apply_surface_update(surface_path, updated_text, write=write)
+    return {
+        "surface_path": str(surface_path),
+        "old_row": old_row,
+        "new_row": new_row,
+        "changed": changed,
+    }
+
+
+
+def execute_registry_surface_update(
+    *,
+    surface_path: Path,
+    row_match_fragment: str,
+    current_coverage: str,
+    result_json_name: str,
+    notes_note: str,
+    write: bool,
+) -> dict[str, Any]:
+    markdown = surface_path.read_text(encoding="utf-8")
+    old_row = find_markdown_table_row(markdown, row_match_fragment)
+    new_row = update_registry_row(
+        old_row,
+        current_coverage=current_coverage,
+        result_json_name=result_json_name,
+        notes_note=notes_note,
+    )
+    updated_text = replace_markdown_table_row(markdown, row_match_fragment, new_row)
+    changed = apply_surface_update(surface_path, updated_text, write=write)
+    return {
+        "surface_path": str(surface_path),
+        "old_row": old_row,
+        "new_row": new_row,
         "changed": changed,
     }
 
@@ -306,6 +416,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--allow-noop", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--write", action="store_true")
+    parser.add_argument(
+        "--preserve-notes",
+        action="store_true",
+        help="keep existing Notes column text unless --notes-fragment is supplied",
+    )
     return parser
 
 
@@ -351,31 +466,70 @@ def main() -> int:
     if args.truth_row and not decision["blocked"]:
         truth_surface_path = PROJECT_DIR / "system_v5" / "new docs" / "plans" / "sim_truth_audit.md"
         if truth_surface_path.exists():
-            truth_md = truth_surface_path.read_text(encoding="utf-8")
-            canonical_note = (
-                f"`{truth_label}` for bounded packet"
-                if truth_label == "canonical by process"
-                else "no — baseline artifact does not satisfy canonical process gates"
-                if payload.get("classification") == "classical_baseline"
-                else f"no — does not satisfy every canonical process gate"
-            )
-            notes_fragment = args.notes_fragment or f"fresh closure pass {args.lego_id or result_path.stem}"
             try:
-                plan = prepare_truth_surface_update(
-                    truth_md,
+                report = execute_truth_surface_update(
+                    surface_path=truth_surface_path,
                     row_match_fragment=args.truth_row,
                     truth_label=truth_label,
-                    canonical_note=canonical_note,
-                    notes_note=notes_fragment,
+                    reason=decision["reason"],
+                    result_json_name=result_path.name,
+                    write=args.write,
+                    payload=payload,
+                    notes_note=args.notes_fragment,
+                    preserve_notes=args.preserve_notes,
                 )
                 row_proposals["truth_row"] = {
-                    "surface": str(truth_surface_path),
-                    "old_row": plan["old_row"][:120] + ("..." if len(plan["old_row"]) > 120 else ""),
-                    "new_row": plan["new_row"][:120] + ("..." if len(plan["new_row"]) > 120 else ""),
+                    "surface": report["surface_path"],
+                    "old_row": report["old_row"][:120] + ("..." if len(report["old_row"]) > 120 else ""),
+                    "new_row": report["new_row"][:120] + ("..." if len(report["new_row"]) > 120 else ""),
                 }
-                if args.write:
-                    apply_surface_update(truth_surface_path, plan["updated_text"], write=True)
-                    surfaces_touched.append(str(truth_surface_path))
+                if report["changed"]:
+                    surfaces_touched.append(report["surface_path"])
+            except ValueError as exc:
+                blocked_reason = str(exc)
+
+    # Backlog surface
+    if args.backlog_row and not decision["blocked"]:
+        backlog_surface_path = PROJECT_DIR / "system_v5" / "new docs" / "plans" / "sim_backlog_matrix.md"
+        if backlog_surface_path.exists():
+            try:
+                report = execute_backlog_surface_update(
+                    surface_path=backlog_surface_path,
+                    row_match_fragment=f"| {args.backlog_row} |",
+                    current_state=truth_label,
+                    next_move=args.notes_fragment,
+                    write=args.write,
+                )
+                row_proposals["backlog_row"] = {
+                    "surface": report["surface_path"],
+                    "old_row": report["old_row"][:120] + ("..." if len(report["old_row"]) > 120 else ""),
+                    "new_row": report["new_row"][:120] + ("..." if len(report["new_row"]) > 120 else ""),
+                }
+                if report["changed"]:
+                    surfaces_touched.append(report["surface_path"])
+            except ValueError as exc:
+                blocked_reason = str(exc)
+
+    # Registry surface
+    if args.registry_row and not decision["blocked"]:
+        registry_surface_path = PROJECT_DIR / "system_v5" / "new docs" / "17_actual_lego_registry.md"
+        if registry_surface_path.exists():
+            try:
+                report = execute_registry_surface_update(
+                    surface_path=registry_surface_path,
+                    row_match_fragment=f"`{args.registry_row}`",
+                    current_coverage=truth_label,
+                    result_json_name=result_path.name,
+                    notes_note=args.notes_fragment or f"{result_path.name}: {decision['reason']}",
+                    write=args.write,
+                )
+                row_proposals["registry_row"] = {
+                    "surface": report["surface_path"],
+                    "old_row": report["old_row"][:120] + ("..." if len(report["old_row"]) > 120 else ""),
+                    "new_row": report["new_row"][:120] + ("..." if len(report["new_row"]) > 120 else ""),
+                }
+                if report["changed"]:
+                    surfaces_touched.append(report["surface_path"])
             except ValueError as exc:
                 blocked_reason = str(exc)
 

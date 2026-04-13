@@ -1,5 +1,20 @@
 # Codex Ratchet — Claude Session Instructions
 
+## Operating Principles (Karpathy)
+
+1. **Think before coding.** State ambiguity explicitly; present multiple interpretations rather than silently picking one. Push back if a simpler approach exists. Ask, don't guess.
+2. **Simplicity first.** No features beyond what was asked. No abstractions for single-use code. No error handling for impossible scenarios. If a senior engineer would say "overcomplicated," rewrite.
+3. **Surgical changes.** Don't "improve" adjacent code. Match existing style. Mention unrelated dead code, don't delete it. Every changed line must trace to the request.
+4. **Goal-driven execution.** Turn tasks into success criteria (write the failing test first, then make it pass). Don't report "done" without checking the criterion.
+
+### Verification discipline (session-learned)
+
+After any multi-step action chain — especially when another agent (Hermes, Codex) reports completion — verify state directly before trusting the claim:
+- `ps aux | grep <process>` before trusting "I killed it"
+- `git status` / `git log` before trusting "I committed it"
+- Read the actual file before trusting "I fixed it"
+- Runtime shape tests (not just string-presence) for load-bearing loops (overnight runner, queue controllers)
+
 ## Read First (every session)
 Before any work: read `new docs/ENFORCEMENT_AND_PROCESS_RULES.md` and `new docs/LLM_CONTROLLER_CONTRACT.md`.
 

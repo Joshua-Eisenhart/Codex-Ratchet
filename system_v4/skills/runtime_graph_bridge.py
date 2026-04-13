@@ -352,6 +352,7 @@ def bridge_runtime_to_graph(repo_root: str, clean: bool = True) -> dict:
     b_state = json.loads(b_path.read_text()) if b_path.exists() else {}
     sim_state = json.loads(sim_path.read_text()) if sim_path.exists() else {}
     witness_corpus = json.loads(witness_path.read_text()) if witness_path.exists() else []
+    graph_path = repo / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json"
     graph = load_graph_json(
         repo,
         "system_v4/a2_state/graphs/system_graph_a2_refinery.json",

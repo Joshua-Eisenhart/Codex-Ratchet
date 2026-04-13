@@ -93,6 +93,7 @@ MPLCONFIGDIR    = "/tmp/codex-mpl"
 NUMBA_CACHE_DIR = "/tmp/codex-numba"
 CODEX_BIN       = os.environ.get("CODEX_BIN", "/usr/local/bin/codex")
 CODEX_HOME_DIR  = os.environ.get("CODEX_HOME", "/tmp/codex-telegram-home")
+LIVE_QUEUE_CONTROLLER = os.path.join(PROJECT_DIR, "system_v4/probes/live_queue_controller.py")
 
 
 
@@ -150,6 +151,50 @@ def send_message(text, chat_id=None):
         "sent_count": sent,
         "errors": errors,
     }
+
+
+
+def format_run_status_report(
+    *,
+    phase,
+    summary,
+    duration_bound=None,
+    primary_lane=None,
+    maintenance_lane=None,
+    current_task=None,
+    health=None,
+    last_success=None,
+    changed_items=None,
+    next_step=None,
+    closure_state=None,
+    worker_state=None,
+    log_path=None,
+):
+    title = str(phase or "status").strip().upper()
+    lines = [f"{title} — {summary}"]
+    if duration_bound:
+        lines.append(f"Duration: {duration_bound}")
+    if primary_lane:
+        lines.append(f"Primary lane: {primary_lane}")
+    if maintenance_lane:
+        lines.append(f"Maintenance lane: {maintenance_lane}")
+    if current_task:
+        lines.append(f"Current task: {current_task}")
+    if health:
+        lines.append(f"Health: {health}")
+    if last_success:
+        lines.append(f"Last success: {last_success}")
+    if changed_items:
+        lines.append(f"Changed: {', '.join(changed_items)}")
+    if next_step:
+        lines.append(f"Next: {next_step}")
+    if closure_state:
+        lines.append(f"Closure: {closure_state}")
+    if worker_state:
+        lines.append(f"Worker: {worker_state}")
+    if log_path:
+        lines.append(f"Log: {log_path}")
+    return "\n".join(lines)
 
 
 def _split(text):
@@ -362,6 +407,39 @@ def handle_align(args):
     return f"align {verdict} (rc={r.returncode}):\n{out[:2000]}"
 
 
+def _parse_run_duration_minutes(text):
+    m = re.search(r"(\d+)\s*(hour|hours|hr|hrs)", text, flags=re.I)
+    if m:
+        return int(m.group(1)) * 60
+    m = re.search(r"(\d+)\s*(minute|minutes|min|mins)", text, flags=re.I)
+    if m:
+        return int(m.group(1))
+    return None
+
+
+def handle_live_queue_run(text):
+    minutes = _parse_run_duration_minutes(text) or 60
+    if not os.path.exists(LIVE_QUEUE_CONTROLLER):
+        return "live queue controller missing"
+    log_path = f"/tmp/codex_live_queue_run_{int(time.time())}.log"
+    with open(log_path, "w", encoding="utf-8") as logf:
+        proc = subprocess.Popen(
+            [PYTHON_BIN, LIVE_QUEUE_CONTROLLER, "--minutes", str(minutes)],
+            cwd=PROJECT_DIR,
+            env=_base_env(),
+            stdout=logf,
+            stderr=subprocess.STDOUT,
+            text=True,
+        )
+    return (
+        f"live queue run started\n"
+        f"- pid: {proc.pid}\n"
+        f"- minutes: {minutes}\n"
+        f"- controller: {LIVE_QUEUE_CONTROLLER}\n"
+        f"- log: {log_path}"
+    )
+
+
 HANDLERS = {
     "help":    handle_help,
     "status":  handle_status,
@@ -438,6 +516,12 @@ def codex_freeform(question):
 def dispatch(text):
     stripped = text.strip()
     lower = stripped.lower()
+    if lower.startswith("run for ") or lower.startswith("do a ") or lower.startswith("run "):
+        if "live queue" in lower or "bounded run" in lower or re.search(r"\d+\s*(hour|hours|hr|hrs|minute|minutes|min|mins)", lower):
+            try:
+                return handle_live_queue_run(stripped)
+            except Exception as e:
+                return f"(live-run handler error: {e})"
     for keyword, fn in HANDLERS.items():
         if lower == keyword or lower.startswith(keyword + " "):
             args = stripped[len(keyword):].strip()

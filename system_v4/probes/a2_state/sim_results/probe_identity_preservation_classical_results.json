@@ -1,0 +1,33 @@
+{
+  "name": "probe_identity_preservation_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix identity checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "identity_preserves_identity": true,
+    "rotation_preserves_identity": true,
+    "function_consistent": true
+  },
+  "negative": {
+    "stochastic_breaks_consistency": true
+  },
+  "boundary": {
+    "zero_op_annihilates_identity": false
+  },
+  "summary": {
+    "all_pass": false
+  }
+}

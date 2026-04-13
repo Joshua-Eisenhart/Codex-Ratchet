@@ -1,0 +1,164 @@
+{
+  "name": "sim_pytorch_capability",
+  "purpose": "Tool-capability isolation probe for pytorch -- primitives only, not full ratchet.",
+  "pytorch_version": "2.11.0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- autograd, nn.Module, tensor ops"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "separate pyg probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_available": {
+      "pass": true,
+      "version": "2.11.0"
+    },
+    "autograd_scalar": {
+      "pass": true,
+      "grad": 6.0,
+      "expected": 6.0
+    },
+    "autograd_vector_dot": {
+      "pass": true,
+      "grad": [
+        0.5,
+        -1.0,
+        2.0
+      ],
+      "expected": [
+        0.5,
+        -1.0,
+        2.0
+      ]
+    },
+    "nn_module_step_reduces_loss": {
+      "pass": true,
+      "loss_before": 4.129604339599609,
+      "loss_after": 2.1859450340270996
+    },
+    "shape_ops": {
+      "pass": true,
+      "A_shape": [
+        3,
+        4
+      ],
+      "B_shape": [
+        4,
+        3
+      ],
+      "C_shape": [
+        3,
+        3
+      ]
+    }
+  },
+  "negative": {
+    "no_requires_grad_raises": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    },
+    "shape_mismatch_raises": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    },
+    "zero_gradient_is_zero": {
+      "pass": true,
+      "grad": 0.0
+    }
+  },
+  "boundary": {
+    "empty_tensor": {
+      "pass": true,
+      "shape": [
+        0,
+        3
+      ]
+    },
+    "highdim_autograd": {
+      "pass": true
+    },
+    "double_backward": {
+      "pass": true,
+      "first": 27.0,
+      "second": 18.0
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

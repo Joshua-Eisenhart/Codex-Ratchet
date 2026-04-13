@@ -1,0 +1,259 @@
+{
+  "name": "sim_toponetx_capability",
+  "purpose": "Tool-capability isolation probe for toponetx -- unblocks load-bearing simplicial/cell complex use.",
+  "toponetx_version": "unknown",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure topology capability probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure topology capability probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold/geodesic needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph library not under test"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph lib not under test; separate probe"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- SimplicialComplex / CellComplex / boundary operator / Hodge Laplacian / face incidence"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence not the subject here"
+    },
+    "networkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy is the baseline for boundary matrices"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "gudhi": null,
+    "networkx": null,
+    "toponetx": "load_bearing"
+  },
+  "positive": {
+    "toponetx_available": {
+      "pass": true,
+      "version": "unknown"
+    },
+    "triangle_shape": {
+      "pass": true,
+      "got": [
+        3,
+        3,
+        1
+      ],
+      "expected_prefix": [
+        3,
+        3,
+        1
+      ],
+      "detail": "filled 2-simplex has 3 vertices, 3 edges, 1 triangle after downward closure"
+    },
+    "B1_rank_and_sign": {
+      "pass": true,
+      "rank": 2,
+      "expected_rank": 2,
+      "columns_balanced": true,
+      "shape": [
+        3,
+        3
+      ]
+    },
+    "boundary_of_boundary_zero": {
+      "pass": true,
+      "max_abs": 0.0,
+      "detail": "d^2 = 0 must hold exactly over Z"
+    },
+    "hodge_L0_spectrum": {
+      "pass": true,
+      "eigenvalues": [
+        -1.1102230246251565e-16,
+        3.0,
+        3.0
+      ],
+      "expected": [
+        0.0,
+        3.0,
+        3.0
+      ],
+      "detail": "triangle graph Laplacian has spectrum {0,3,3}"
+    },
+    "face_incidence": {
+      "pass": true,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "baseline_boundary_matches": {
+      "pass": true,
+      "detail": "each B1 column has exactly one +1 and one -1 entry (signed incidence)"
+    },
+    "cellcomplex_square": {
+      "pass": true,
+      "n_nodes": 4,
+      "n_edges": 4,
+      "n_cells": 1,
+      "expected": [
+        4,
+        4,
+        1
+      ],
+      "detail": "square 2-cell must induce 4 nodes, 4 boundary edges, 1 cell"
+    }
+  },
+  "negative": {
+    "edges_only_no_2simplex": {
+      "pass": true,
+      "shape": [
+        3,
+        2
+      ],
+      "detail": "two disjoint edges must not induce a triangle"
+    },
+    "duplicate_vertex_simplex_normalized": {
+      "pass": true,
+      "error_type": "ValueError",
+      "detail": "simplex with repeated vertex must be rejected or normalized (no degenerate 2-simplex)"
+    },
+    "disconnected_two_zero_eigs": {
+      "pass": true,
+      "n_zero_eigs": 2,
+      "eigenvalues": [
+        -1.1102230246251565e-16,
+        0.0,
+        3.0,
+        3.0
+      ],
+      "detail": "#connected components = multiplicity of 0 in L0 spectrum"
+    }
+  },
+  "boundary": {
+    "empty_complex": {
+      "pass": true,
+      "shape": [],
+      "detail": "empty complex must have no cells of any rank"
+    },
+    "singleton_vertex": {
+      "pass": true,
+      "shape": [
+        1
+      ],
+      "detail": "single vertex: 1 0-cell, 0 1-cells"
+    },
+    "duplicate_insertion_idempotent": {
+      "pass": true,
+      "shape_before": [
+        3,
+        3,
+        1
+      ],
+      "shape_after": [
+        3,
+        3,
+        1
+      ],
+      "detail": "re-adding an existing simplex must not change shape"
+    },
+    "permutation_invariant_simplex": {
+      "pass": true,
+      "shape_before": [
+        3,
+        3,
+        1
+      ],
+      "shape_after": [
+        3,
+        3,
+        1
+      ],
+      "detail": "simplices are unordered sets; vertex-order permutation must not add a new simplex"
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

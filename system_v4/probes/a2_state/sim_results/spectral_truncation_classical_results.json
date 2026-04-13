@@ -1,0 +1,119 @@
+{
+  "name": "spectral_truncation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "eckart_young_frobenius": {
+      "err_F": 0.5099019513592785,
+      "expected": 0.5099019513592787,
+      "pass": "True"
+    },
+    "spectral_norm": {
+      "err_2": 0.49999999999999994,
+      "expected": 0.5000000000000002,
+      "pass": "True"
+    },
+    "rank_k": {
+      "rank": 3,
+      "pass": true
+    }
+  },
+  "negative": {
+    "wrong_truncation_worse": {
+      "bad": 4.999999999999999,
+      "good": 2.2360679774997902,
+      "pass": "True"
+    },
+    "k_exceeds_n_zero_err": {
+      "err": 3.4985239719872952e-15,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "degenerate_trace_4": {
+      "trace": 4.0,
+      "pass": "True"
+    },
+    "k0_zero_matrix": {
+      "norm": 0.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: Eckart-Young optimality for symmetric matrices in Frobenius/spectral norm. Innately fails: optimality for operator-valued / CP-map truncation, non-Hermitian ordering."
+}

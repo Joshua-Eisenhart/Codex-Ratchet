@@ -1,0 +1,141 @@
+{
+  "name": "sim_geomstats_capability",
+  "purpose": "bounded isolation probe of geomstats: hypersphere geodesic, exp/log roundtrip, SPD affine distance, Frechet mean, numpy-slerp comparison, off-manifold rejection",
+  "witness_loadbearing_use": "system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for isolated geomstats capability probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message passing in manifold capability test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed for SPD/hypersphere checks"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: computes geodesic, exp/log, SPD distance, Frechet mean"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure probed here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph / multi-way interaction"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell/simplicial complex needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "hypersphere_geodesic": {
+      "geomstats_dist": 1.5707963267948966,
+      "expected": 1.5707963267948966,
+      "abs_err": 0.0,
+      "pass": true
+    },
+    "exp_log_roundtrip": {
+      "roundtrip_err": 6.123233995736766e-17,
+      "pass": true
+    },
+    "spd_affine_distance": {
+      "geomstats_dist": 2.59800075037001,
+      "expected": 2.59800075037001,
+      "abs_err": 0.0,
+      "pass": true
+    },
+    "frechet_mean": {
+      "mean_to_center_arc": 0.02646299055970733,
+      "pass": true
+    }
+  },
+  "negative": {
+    "baseline_slerp_comparison": {
+      "mid_geomstats": [
+        0.7071067811865476,
+        0.7071067811865475,
+        0.0
+      ],
+      "mid_numpy_slerp": [
+        0.7071067811865475,
+        0.7071067811865475,
+        0.0
+      ],
+      "abs_err": 1.1102230246251565e-16,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "off_manifold_belongs": {
+      "belongs_bad": false,
+      "belongs_good": true,
+      "pass": true
+    },
+    "antipodal_log": {
+      "tangent_norm": 0.0,
+      "expected_pi_analytic": 3.141592653589793,
+      "near_pi": false,
+      "near_zero": true,
+      "capability_limit": "antipodal log returns zero tangent (cut-locus degeneracy) -- do NOT rely on log at antipodes",
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true,
+  "pass_count": 7,
+  "total_count": 7,
+  "summary": {
+    "all_pass": true
+  }
+}

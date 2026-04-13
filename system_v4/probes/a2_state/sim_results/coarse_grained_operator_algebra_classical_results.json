@@ -1,0 +1,121 @@
+{
+  "name": "coarse_grained_operator_algebra",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_preserved": {
+      "err": 0.0,
+      "pass": true
+    },
+    "linearity": {
+      "err": 2.220446049250313e-16,
+      "pass": true
+    },
+    "hermiticity_preserved": {
+      "err": 1.3877787807814457e-17,
+      "pass": true
+    },
+    "trace_scaling_diag": {
+      "tr_full": 36.0,
+      "tr_cg": 9.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "multiplication_not_preserved": {
+      "diff": 1.319097058216744,
+      "pass": true
+    },
+    "commutator_not_preserved": {
+      "diff": 2.1519353240374044,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "block_1_identity": {
+      "err": 0.0,
+      "pass": true
+    },
+    "block_n_mean": {
+      "val": 7.0,
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: linear, Hermiticity-preserving block-average coarse-graining. Innately fails (boundary data): multiplicativity and commutator structure are NOT preserved \u2014 the 'operator algebra' is genuinely broken by naive classical block-averaging."
+}

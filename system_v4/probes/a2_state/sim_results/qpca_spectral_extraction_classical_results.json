@@ -1,0 +1,143 @@
+{
+  "name": "qpca_spectral_extraction",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "diagonal_rho_eigs": {
+      "eigs": [
+        0.5,
+        0.3
+      ],
+      "pass": true
+    },
+    "trace_sum_eigs": {
+      "trace": 1.0,
+      "sum_eigs": 1.0,
+      "pass": "True"
+    },
+    "eigs_nonneg_bounded": {
+      "min": 0.007504417744641656,
+      "max": 0.6823401043264022,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "pure_state_has_single_unit_eig": {
+      "eigs": [
+        1.0,
+        5.488686148701961e-33,
+        -5.370177283118941e-17,
+        -2.3119702285899436e-16
+      ],
+      "pass": "True"
+    },
+    "diag_only_misses_purity": {
+      "top_eig": 0.25,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "max_mixed_degenerate": {
+      "eigs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "pass": true
+    },
+    "pure_rank1": {
+      "eigs": [
+        1.0,
+        4.2543746303636e-17,
+        0.0,
+        0.0
+      ],
+      "pass": "True"
+    },
+    "complex_hermitian_real_eigs": {
+      "eigs": [
+        0.8,
+        0.2
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: spectrum of density matrix via eigh when given full Hermitian rho. Innately fails: QPCA's advantage (coherent access to rho^k, exponential speedup), and any approach that throws away off-diagonal coherences collapses pure states into mixed."
+}

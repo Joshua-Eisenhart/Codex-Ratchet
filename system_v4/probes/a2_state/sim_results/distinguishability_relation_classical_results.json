@@ -1,0 +1,40 @@
+{
+  "name": "distinguishability_relation_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "probability arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "reflexive": true,
+    "symmetric": true,
+    "transitive": true
+  },
+  "negative": {
+    "distinct_detected": true,
+    "asymmetry_violation_absent": true
+  },
+  "boundary": {
+    "within_tol_indistinguishable": true,
+    "just_outside_tol_distinguished": false
+  },
+  "summary": {
+    "all_pass": false
+  }
+}

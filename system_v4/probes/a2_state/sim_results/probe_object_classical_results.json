@@ -1,0 +1,50 @@
+{
+  "name": "probe_object_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "linear algebra baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "psd_E0": true,
+    "psd_E1": true,
+    "complete": true
+  },
+  "negative": {
+    "non_psd_rejected": true,
+    "incomplete_rejected": true
+  },
+  "boundary": {
+    "trivial_identity_povm": true,
+    "near_zero_psd": true
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

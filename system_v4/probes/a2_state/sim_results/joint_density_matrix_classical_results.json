@@ -1,0 +1,41 @@
+{
+  "name": "joint_density_matrix_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "valid_joint": "True",
+    "product_joint_valid": "True",
+    "all_classical_joints_separable": "True"
+  },
+  "negative": {
+    "negative_rejected": true,
+    "unnormalized_rejected": true
+  },
+  "boundary": {
+    "corner_delta_valid": "True",
+    "uniform_valid": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no off-diagonal coherences; only diagonal joint pmf",
+    "every classical joint is separable; cannot represent entangled joint states",
+    "no PPT / negativity witness structure; partial-transpose map undefined"
+  ]
+}

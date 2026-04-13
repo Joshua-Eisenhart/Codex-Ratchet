@@ -1,0 +1,52 @@
+{
+  "name": "shannon_entropy_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "log/sum on discrete pmf"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no constraint admissibility claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric entropy"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "uniform_2_is_1_bit": true,
+    "uniform_4_is_2_bits": true,
+    "nonneg_on_random": true
+  },
+  "negative": {
+    "delta_is_zero": true,
+    "no_negative_entropy": true
+  },
+  "boundary": {
+    "concavity": true,
+    "bounded_by_log_n": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "cannot encode noncommuting observable families",
+    "presumes fixed classical alphabet with distinguishable outcomes",
+    "blind to probe-relative indistinguishability classes",
+    "no shell-coupling or admissibility structure"
+  ]
+}

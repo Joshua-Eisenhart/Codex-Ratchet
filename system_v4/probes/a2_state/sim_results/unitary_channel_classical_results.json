@@ -1,0 +1,43 @@
+{
+  "name": "unitary_channel_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "permutation evolution"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "is_permutation": "True",
+    "norm_preserved": "True",
+    "entropy_preserved": true,
+    "reversible": true
+  },
+  "negative": {
+    "nonpermutation_rejected": true,
+    "nonperm_increases_entropy": true
+  },
+  "boundary": {
+    "identity_is_permutation": "True",
+    "identity_preserves_pmf": true,
+    "product_closed": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no continuous Lie-group structure; only discrete S_n permutations",
+    "no noncommuting infinitesimal generators; no Berry phase on loops",
+    "no conjugation on off-diagonal coherence (none exist)"
+  ]
+}

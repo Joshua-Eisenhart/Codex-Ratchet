@@ -1,0 +1,42 @@
+{
+  "name": "povm_measurement_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "stochastic matrix arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "valid_classical_povm": true,
+    "outcome_normalized": "True",
+    "outcome_nonneg": "True",
+    "identity_is_povm": true
+  },
+  "negative": {
+    "negative_entry_rejected": true,
+    "nonnormalized_rejected": true
+  },
+  "boundary": {
+    "orthogonal_pmfs_perfectly_distinguished": "True",
+    "guess_bound_le_1": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "POVM elements are scalars/rows, not PSD operators on a Hilbert space",
+    "no noncommuting measurement structure; cannot saturate Helstrom bound generically",
+    "no Naimark dilation; measurement instrument state-update undefined"
+  ]
+}

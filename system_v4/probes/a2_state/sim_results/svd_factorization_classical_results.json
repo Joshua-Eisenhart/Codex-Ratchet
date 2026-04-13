@@ -1,0 +1,147 @@
+{
+  "name": "svd_factorization",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "diag_singvals": {
+      "s": [
+        3.0,
+        2.0
+      ],
+      "pass": true
+    },
+    "reconstruction": {
+      "err": 1.3322676295501878e-15,
+      "pass": true
+    },
+    "U_orthonormal": {
+      "err": 8.881784197001252e-16,
+      "pass": true
+    },
+    "V_orthonormal": {
+      "err": 1.1102230246251565e-15,
+      "pass": true
+    },
+    "singvals_descending": {
+      "s": [
+        3.1509020164698485,
+        1.709330442533587,
+        0.33485474006514887
+      ],
+      "pass": true
+    },
+    "s2_matches_MTM_eigs": {
+      "err": 1.7763568394002505e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "eigs_ne_singvals": {
+      "pass": true
+    },
+    "random_factorization_wrong": {
+      "err": 5.969500917421129,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_matrix": {
+      "s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "1x1_abs": {
+      "s": [
+        5.0
+      ],
+      "pass": true
+    },
+    "tall_shape": {
+      "U_shape": [
+        50,
+        3
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: real SVD existence, orthonormality, Eckart-Young singular value ordering. Innately fails: SVD of operator-tensors with gauge, complex phases on degenerate singvals."
+}

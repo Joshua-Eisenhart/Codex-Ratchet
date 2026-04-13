@@ -1,0 +1,102 @@
+{
+  "name": "husimi_phase_space_representation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nonneg_0_0": true,
+    "normalized_0_0": true,
+    "centroid_0_0": true,
+    "nonneg_1.5_-0.5": true,
+    "normalized_1.5_-0.5": true,
+    "centroid_1.5_-0.5": true,
+    "nonneg_-2_2": true,
+    "normalized_-2_2": true,
+    "centroid_-2_2": true
+  },
+  "negative": {
+    "signed_violates_nonneg": true,
+    "unnormalized_detected": true
+  },
+  "boundary": {
+    "narrow_max_at_origin": true,
+    "broad_smooth": true
+  },
+  "classical_captured": "non-negative Gaussian phase-space density, normalization, centroid",
+  "innately_missing": "coherent-state overcompleteness, quantum smoothing of Wigner->Husimi, noncommuting q,p",
+  "all_pass": true
+}

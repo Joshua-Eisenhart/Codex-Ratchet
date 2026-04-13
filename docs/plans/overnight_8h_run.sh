@@ -488,7 +488,7 @@ run_live_queue_for_remaining_budget() {
   CLOSURE_STATE="continuous queue phase active"
   heartbeat "handing remaining budget to live queue controller (${remaining_minutes}m)"
 
-  "$PY" "$LIVE_QUEUE_CONTROLLER" --audit-first --minutes "$remaining_minutes" &
+  "$PY" "$LIVE_QUEUE_CONTROLLER" --minutes "$remaining_minutes" &
   local controller_pid=$!
   local controller_rc=0
 

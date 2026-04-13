@@ -1,0 +1,152 @@
+{
+  "name": "sim_sympy_capability",
+  "purpose": "Tool-capability isolation probe for sympy -- unblocks symbolic load-bearing use.",
+  "sympy_version": "1.14.0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- symbolic probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- eigenvals, simplify, solve, commutator"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_available": {
+      "pass": true,
+      "version": "1.14.0"
+    },
+    "pauli_z_eigenvalues": {
+      "pass": true,
+      "got": [
+        -1,
+        1
+      ],
+      "expected": [
+        -1,
+        1
+      ]
+    },
+    "trig_identity_simplify": {
+      "pass": true,
+      "got": "1"
+    },
+    "quadratic_solve": {
+      "pass": true,
+      "got": [
+        "-2",
+        "2"
+      ]
+    },
+    "commutator_pauli_xy": {
+      "pass": true,
+      "got": "Matrix([[2*I, 0], [0, -2*I]])",
+      "expected": "Matrix([[2*I, 0], [0, -2*I]])"
+    }
+  },
+  "negative": {
+    "not_identity_detected": {
+      "pass": true
+    },
+    "nonreal_roots_detected": {
+      "pass": true,
+      "got": [
+        "-I",
+        "I"
+      ]
+    },
+    "noncommuting_detected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "trivial_solve_returns_list": {
+      "pass": true,
+      "got": "[]"
+    },
+    "zero_matrix_eigenvals": {
+      "pass": true,
+      "got": [
+        "0"
+      ]
+    },
+    "polynomial_expansion_zero": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

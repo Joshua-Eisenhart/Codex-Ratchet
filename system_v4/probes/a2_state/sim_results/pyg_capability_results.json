@@ -1,0 +1,275 @@
+{
+  "name": "sim_pyg_capability",
+  "purpose": "Bounded isolation probe of torch_geometric capabilities. Unblocks load-bearing PyG use in canonical sims.",
+  "witness_use_cases": [
+    "system_v4/probes/sim_pyg_dynamic_edge_werner.py",
+    "system_v4/probes/sim_geometric_constraint_manifold_pyg.py",
+    "system_v4/probes/sim_foundation_equivariant_graph_backprop.py"
+  ],
+  "contract": "~/wiki/concepts/tool-capability-sim-program.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor ops, autograd through GCN/GAT, scatter_add baseline comparison"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "Data/Batch, MessagePassing propagate, GCNConv/GATConv, to_dense_adj/dense_to_sparse round-trip -- the object under test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed for graph MP probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold structure in this probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG internal aggregation is what's under test, not external graph lib"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph / multi-way interaction"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell/simplicial complex needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "classification": "canonical",
+  "all_pass": true,
+  "positive": {
+    "data_batch_construction": {
+      "pass": true
+    },
+    "message_passing_hand_match": {
+      "pass": true,
+      "out": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "expected": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    "gcn_gat_autograd": {
+      "pass": true,
+      "yg_shape": [
+        4,
+        3
+      ],
+      "ya_shape": [
+        4,
+        3
+      ],
+      "grad_finite": true
+    },
+    "edge_index_adjacency_roundtrip": {
+      "pass": true,
+      "A_shape": [
+        4,
+        4
+      ],
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "baseline_scatter_vs_pyg": {
+      "pass": true,
+      "baseline": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ],
+      "pyg": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.0,
+          -1.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "negative": {
+    "mp_not_equal_zero": {
+      "pass": true
+    },
+    "direction_matters": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "out_of_range_node": {
+      "pass": true,
+      "error_type": "IndexError",
+      "note": "PyG/torch should reject indexing beyond x.size(0)"
+    },
+    "malformed_edge_index_shape": {
+      "pass": true,
+      "error_type": "ValueError"
+    },
+    "empty_edge_index": {
+      "pass": true,
+      "out": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    "disconnected_components": {
+      "pass": true,
+      "out": [
+        [
+          0.0
+        ],
+        [
+          1.0
+        ],
+        [
+          0.0
+        ],
+        [
+          10.0
+        ]
+      ]
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  }
+}

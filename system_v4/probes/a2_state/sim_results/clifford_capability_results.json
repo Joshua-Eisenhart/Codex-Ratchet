@@ -1,0 +1,148 @@
+{
+  "name": "sim_clifford_capability",
+  "purpose": "Tool-capability isolation probe for clifford -- Cl(3)/Cl(6) rotor sandwich, grade projection, reversion.",
+  "clifford_version": "1.5.1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure GA probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not SMT-relevant"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not SMT-relevant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numeric GA"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- Cl(3)/Cl(6) rotor sandwich, grade projection, reversion"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "separate geomstats probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "separate e3nn probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "clifford_available": {
+      "pass": true,
+      "version": "1.5.1"
+    },
+    "rotor_sandwich_90deg": {
+      "pass": true,
+      "err": 2.220446049250313e-16,
+      "result": "(1.0^e2)",
+      "expected": "(1.0^e2)"
+    },
+    "rotor_composition_associative": {
+      "pass": true,
+      "err": 1.1443916996305594e-16
+    },
+    "cl6_bivector_square": {
+      "pass": true,
+      "grade0": -1.0,
+      "grade2_norm": 0.0
+    },
+    "reversion_antihomomorphism": {
+      "pass": true,
+      "err": 0.0
+    }
+  },
+  "negative": {
+    "basis_anticommute": {
+      "pass": true,
+      "sum_norm": 0.0,
+      "diff_norm": 2.0
+    },
+    "bad_blade_raises": {
+      "pass": true,
+      "error_type": "KeyError"
+    },
+    "non_rotor_breaks_grade_preservation": {
+      "pass": true,
+      "grade3_norm": 0.6,
+      "grade1_norm": 1.0965856099730655
+    }
+  },
+  "boundary": {
+    "scalar_vector_pure_grade1": {
+      "pass": true,
+      "other_grade_norm": 0.0
+    },
+    "pseudoscalar_square_minus_one": {
+      "pass": true,
+      "value": -1.0
+    },
+    "identity_rotor_no_op": {
+      "pass": true
+    },
+    "double_cover_2pi": {
+      "pass": true,
+      "scalar_part": -1.0,
+      "v_err": 2.4492935982947064e-16
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

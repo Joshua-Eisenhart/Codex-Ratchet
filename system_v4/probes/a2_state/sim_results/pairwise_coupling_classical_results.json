@@ -1,0 +1,100 @@
+{
+  "name": "pairwise_coupling_classical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "excluded; classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic check of CP1 inner product"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "aligned_avg_fidelity": 1.0,
+    "small_offset_avg_fidelity": 0.9964147034358313,
+    "pass": true,
+    "symbolic_norm": "1",
+    "symbolic_norm_is_one": true
+  },
+  "negative": {
+    "antipodal_avg_fidelity": 7.06316956052831e-33,
+    "equator_phi_pi_fidelity": 0.5624999999999999,
+    "pass": true
+  },
+  "boundary": {
+    "identical_fidelity": 1.0,
+    "identical_is_one": true,
+    "n2_aligned": 1.0,
+    "pole_is_ground": true,
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "all_pass": true
+}

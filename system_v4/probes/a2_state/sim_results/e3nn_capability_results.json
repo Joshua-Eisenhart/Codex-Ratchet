@@ -1,0 +1,170 @@
+{
+  "name": "sim_e3nn_capability",
+  "purpose": "Tool-capability isolation probe for e3nn -- SO(3) equivariance, irrep parsing, CG sanity.",
+  "e3nn_version": "0.6.0",
+  "importable": true,
+  "torch_available": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "used as e3nn backend (not under test)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not SMT-relevant"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not SMT-relevant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "separate clifford probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "separate probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- SO(3) equivariance, irrep parsing, CG sanity"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e3nn_available": {
+      "pass": true,
+      "version": "0.6.0"
+    },
+    "irrep_parsing": {
+      "pass": true,
+      "in_dim": 4,
+      "out_dim": 3
+    },
+    "cg_1ox1o_decomp": {
+      "pass": true,
+      "got": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "so3_equivariance": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "D_matrix_orthogonal": {
+      "pass": true,
+      "max_abs_err": 8.344650268554688e-07
+    }
+  },
+  "negative": {
+    "bad_irrep_raises": {
+      "pass": true,
+      "error_type": "ValueError"
+    },
+    "non_rotation_breaks_equivariance": {
+      "pass": true,
+      "max_abs_err": 0.179094597697258
+    },
+    "wrong_input_dim_raises": {
+      "pass": true,
+      "error_type": "AssertionError"
+    }
+  },
+  "boundary": {
+    "identity_rotation_exact": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "scalar_irrep_invariant": {
+      "pass": true,
+      "max_abs_err": 0.0
+    },
+    "D_homomorphism": {
+      "pass": true,
+      "max_abs_err": 1.9073486328125e-06
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "importable": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

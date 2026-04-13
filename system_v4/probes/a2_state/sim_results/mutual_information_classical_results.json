@@ -1,0 +1,46 @@
+{
+  "name": "mutual_information_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "marginal/joint pmf log arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "independent_MI_zero": true,
+    "perfect_corr_MI_equals_HX": true,
+    "nonneg_random": true
+  },
+  "negative": {
+    "zero_joint_not_allowed_via_normalization": "True",
+    "MI_bounded_by_min_marginal": true
+  },
+  "boundary": {
+    "symmetry": true,
+    "nonneg": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical MI bounded by min(H(X),H(Y)); quantum MI can reach 2 S(A) via entanglement",
+    "assumes commuting joint pmf; cannot encode noncommuting observable families",
+    "no probe-conditional admissibility; every joint outcome presumed measurable"
+  ]
+}

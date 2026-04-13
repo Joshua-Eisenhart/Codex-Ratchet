@@ -1,0 +1,141 @@
+{
+  "name": "sim_z3_capability",
+  "purpose": "Tool-capability isolation probe for z3 -- unblocks load-bearing SAT/UNSAT use.",
+  "z3_version": "4.16.0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- proof-layer probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- SAT/UNSAT on small nonclassical encodings"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "separate cvc5 probe handles parity"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure SMT"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z3_available": {
+      "pass": true,
+      "version": "4.16.0"
+    },
+    "simple_sat": {
+      "pass": true,
+      "result": "sat"
+    },
+    "commutativity_contradiction_unsat": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "commute AND not-commute must be UNSAT"
+    },
+    "noncontextuality_bound_unsat": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "max independent set in C5 is 2; sum>=3 must be UNSAT classically"
+    },
+    "push_pop_isolation": {
+      "pass": true,
+      "push_result": "unsat",
+      "pop_result": "sat"
+    }
+  },
+  "negative": {
+    "contradiction_unsat": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "tautology_sat": {
+      "pass": true,
+      "result": "sat"
+    },
+    "ill_formed_raises": {
+      "pass": true,
+      "error_type": "Z3Exception",
+      "detail": "And over Int+Bool must raise"
+    }
+  },
+  "boundary": {
+    "empty_solver_sat": {
+      "pass": true
+    },
+    "linear_system_solution": {
+      "pass": true,
+      "result": "sat"
+    },
+    "real_nonnegativity_unsat": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

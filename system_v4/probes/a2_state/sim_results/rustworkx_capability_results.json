@@ -1,0 +1,206 @@
+{
+  "name": "sim_rustworkx_capability",
+  "purpose": "Tool-capability isolation probe for rustworkx -- unblocks its load-bearing use in ~25 sims.",
+  "rustworkx_version": "0.17.1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure graph capability probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure graph capability probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numeric ground truth is enough for capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- DAG / toposort / transitive reduction / Dijkstra / cycle detection"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline is networkx, not xgi"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant here"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "classical baseline for cross-check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive"
+  },
+  "positive": {
+    "rustworkx_available": {
+      "pass": true,
+      "version": "0.17.1"
+    },
+    "toposort_diamond": {
+      "pass": true,
+      "order": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "detail": "every edge (u,v) must have pos(u) < pos(v)"
+    },
+    "toposort_vs_networkx": {
+      "pass": true,
+      "rx_order": [
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "nx_order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "detail": "both orderings must be topologically valid (not necessarily identical)"
+    },
+    "transitive_reduction": {
+      "pass": true,
+      "got": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    "dijkstra_01_3": {
+      "pass": true,
+      "got": 2.0,
+      "expected": 2.0,
+      "detail": "shortest path 0->1->3 has length 2; 0->3 direct is 4"
+    },
+    "acyclic_detection_positive": {
+      "pass": true,
+      "detail": "diamond DAG must register as acyclic"
+    },
+    "witness_shell_nesting_dag": {
+      "pass": true,
+      "longest_path_length": 4,
+      "expected_longest": 4,
+      "witness_file": "system_v4/probes/sim_foundation_shell_graph_topology.py",
+      "detail": "Replays the shell-nesting DAG operations (PyDiGraph, topological_sort, dag_longest_path_length, is_directed_acyclic_graph) used load-bearingly in the witness sim."
+    }
+  },
+  "negative": {
+    "cycle_detection_negative": {
+      "pass": true,
+      "detail": "3-cycle must register as NOT acyclic"
+    },
+    "toposort_on_cycle_raises": {
+      "pass": true,
+      "error_type": "DAGHasCycle",
+      "detail": "rustworkx must refuse to linearize a cycle"
+    },
+    "ill_formed_edge_raises": {
+      "pass": true,
+      "error_type": "IndexError",
+      "detail": "edge to undefined node must raise"
+    }
+  },
+  "boundary": {
+    "empty_graph_acyclic": {
+      "pass": true,
+      "detail": "empty graph is vacuously acyclic with empty topo order"
+    },
+    "singleton_graph": {
+      "pass": true,
+      "detail": "single node: topo=[0], longest_path_length=0"
+    },
+    "perf_vs_networkx_1k": {
+      "pass": true,
+      "rx_time_s": 8.204183541238308e-05,
+      "nx_time_s": 0.0006929170340299606,
+      "speedup_rx_over_nx": 8.445898736260773,
+      "N_nodes": 1000,
+      "M_edges": 2966,
+      "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "witness_file": "system_v4/probes/sim_foundation_shell_graph_topology.py",
+  "classification": "canonical"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "lindbladian_evolution_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exp/master eqn"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "expm for semigroup"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  },
+  "positive": {
+    "column_sums_zero": true,
+    "norm_preserved": "True",
+    "nonneg_preserved": "True",
+    "steady_state_exists": "True"
+  },
+  "negative": {
+    "negative_rate_breaks_positivity": "True"
+  },
+  "boundary": {
+    "t_zero_identity": true,
+    "semigroup": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no Hamiltonian commutator -i[H,rho] piece; purely dissipative rates",
+    "no decoherence on off-diagonals (none exist classically)",
+    "no Kraus/GKSL structure; cannot represent quantum Zeno or dephasing"
+  ]
+}

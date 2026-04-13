@@ -1,0 +1,120 @@
+{
+  "name": "covariance_operator",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "isotropic_near_identity": {
+      "max_off_diag": 0.026834021724440427,
+      "pass": true
+    },
+    "symmetric": {
+      "asym": 0.0,
+      "pass": true
+    },
+    "psd": {
+      "min_eig": 0.9496221298108312,
+      "pass": true
+    },
+    "diagonal_scaling_recovered": {
+      "err": 0.27908225514298857,
+      "pass": true
+    }
+  },
+  "negative": {
+    "uncentered_differs": {
+      "diff": 26.01469369555095,
+      "pass": true
+    },
+    "single_sample_rejected": {
+      "has_nonfinite": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rank_deficient_has_zero_eig": {
+      "min_eig": 2.83634839789572e-16,
+      "pass": true
+    },
+    "high_dim_small_n_low_rank": {
+      "rank": 2,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: symmetry, PSD, known-covariance recovery. Innately fails: quantum covariances with complex off-diagonal coherences / operator ordering."
+}

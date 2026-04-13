@@ -1,0 +1,140 @@
+{
+  "name": "sim_cvc5_capability",
+  "purpose": "Tool-capability isolation probe for cvc5 -- SAT/UNSAT parity with z3.",
+  "cvc5_version": "1.3.3",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "separate z3 probe"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- SAT/UNSAT parity with z3 on shared encodings"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_available": {
+      "pass": true,
+      "version": "1.3.3"
+    },
+    "simple_sat": {
+      "pass": true,
+      "result": "sat"
+    },
+    "linear_system_solution": {
+      "pass": true,
+      "result": "sat"
+    },
+    "kcbs_c5_bound_unsat": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "C5 max independent set = 2; sum>=3 must be UNSAT (parity with z3 probe)"
+    },
+    "real_nonnegativity_unsat": {
+      "pass": true,
+      "result": "unsat"
+    }
+  },
+  "negative": {
+    "contradiction_unsat": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "tautology_sat": {
+      "pass": true,
+      "result": "sat"
+    },
+    "ill_formed_raises": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    }
+  },
+  "boundary": {
+    "empty_assertions_sat": {
+      "pass": true,
+      "result": "sat"
+    },
+    "contradictory_ranges_unsat": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "multi_var_witness": {
+      "pass": true,
+      "result": "sat"
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

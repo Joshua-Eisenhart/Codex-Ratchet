@@ -1,0 +1,39 @@
+{
+  "name": "partial_trace_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "sum over axis"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "marginal_A_sum_1": "True",
+    "marginal_B_sum_1": "True",
+    "product_factorizes": true
+  },
+  "negative": {
+    "classical_pure_joint_yields_pure_marginal": "True"
+  },
+  "boundary": {
+    "linearity": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "cannot express pure-joint -> mixed-marginal (entanglement signature)",
+    "no off-diagonal coherence tracing; only diagonal marginalization",
+    "blind to subsystem purity inversion used in entanglement entropy"
+  ]
+}

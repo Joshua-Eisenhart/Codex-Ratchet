@@ -1,0 +1,34 @@
+{
+  "name": "carrier_probe_support_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trace/support arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "both_outcomes_positive": true,
+    "support_exists": true,
+    "probs_sum_to_one": true
+  },
+  "negative": {
+    "no_support_detected": true
+  },
+  "boundary": {
+    "mixed_has_support_under_tiny": true,
+    "mixed_no_support_under_zero": true
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "name": "sim_xgi_capability",
+  "purpose": "Tool-capability isolation probe for xgi -- unblocks load-bearing hypergraph use.",
+  "xgi_version": "0.10.1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure hypergraph capability probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure hypergraph capability probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation in a capability probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic derivation required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold/geodesic needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi is the graph library under test"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- Hypergraph construction / degree / incidence / CC / simplicial lift"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant here; separate probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence not needed for hypergraph probe"
+    },
+    "networkx": {
+      "tried": false,
+      "used": false,
+      "reason": "union-find baseline suffices"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": null
+  },
+  "positive": {
+    "xgi_available": {
+      "pass": true,
+      "version": "0.10.1"
+    },
+    "construction": {
+      "pass": true,
+      "num_nodes": 6,
+      "num_edges": 4,
+      "expected_nodes": 6,
+      "expected_edges": 4
+    },
+    "degree_sequence": {
+      "pass": true,
+      "got": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 2
+      },
+      "expected": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 2
+      }
+    },
+    "edge_sizes": {
+      "pass": true,
+      "got": [
+        2,
+        2,
+        3,
+        3
+      ],
+      "expected": [
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    "incidence_lookup": {
+      "pass": true,
+      "edges_of_node_2": [
+        0,
+        1
+      ],
+      "members_per_edge": {
+        "0": [
+          0,
+          1,
+          2
+        ],
+        "1": [
+          2,
+          3
+        ]
+      }
+    },
+    "connected_components_vs_baseline": {
+      "pass": true,
+      "xgi_partition": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "baseline_partition": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "detail": "all 6 nodes should be in one component via edge chain"
+    },
+    "simplicial_lift": {
+      "pass": true,
+      "num_nodes": 6,
+      "num_simplices": 10,
+      "detail": "SimplicialComplex must be downward-closed"
+    }
+  },
+  "negative": {
+    "disconnected_has_two_components": {
+      "pass": true,
+      "got": 2,
+      "expected": 2
+    },
+    "non_iterable_edge_raises": {
+      "pass": true,
+      "error_type": "TypeError",
+      "detail": "xgi must refuse a non-iterable hyperedge"
+    },
+    "missing_node_degree_raises": {
+      "pass": true,
+      "error_type": "KeyError",
+      "detail": "degree() on a nonexistent node must raise (IDNotFound or similar)"
+    }
+  },
+  "boundary": {
+    "empty_hypergraph": {
+      "pass": true,
+      "num_nodes": 0,
+      "num_edges": 0,
+      "detail": "empty Hypergraph must have 0 nodes and 0 edges"
+    },
+    "singleton_one_component": {
+      "pass": true,
+      "partition": [
+        [
+          0
+        ]
+      ]
+    },
+    "singleton_hyperedge_behavior": {
+      "pass": true,
+      "accepted": true,
+      "num_edges_after": 1,
+      "error_type": null,
+      "detail": "records xgi's policy on size-1 hyperedges (capability boundary)"
+    },
+    "one_big_hyperedge": {
+      "pass": true,
+      "all_degree_1": true,
+      "edge_size": 50
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

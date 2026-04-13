@@ -1,0 +1,39 @@
+{
+  "name": "branch_weight_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory product arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "weights_sum_to_1": true,
+    "weights_nonneg": true
+  },
+  "negative": {
+    "negative_transition_yields_negative_branch": true
+  },
+  "boundary": {
+    "length1_equals_initial": true,
+    "marginalization_consistent": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no off-diagonal decoherence-functional entries; cannot test consistent-histories diagonality",
+    "branch weights always multiplicative; no interference between paths",
+    "cannot represent quantum trajectory where Tr(rho-tilde) fails to factorize over paths"
+  ]
+}

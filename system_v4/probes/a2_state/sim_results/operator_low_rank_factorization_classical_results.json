@@ -1,0 +1,129 @@
+{
+  "name": "operator_low_rank_factorization",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "exact_rank_recovery": {
+      "err": 4.310254124241056e-15,
+      "pass": "True"
+    },
+    "factor_shapes": {
+      "B": [
+        6,
+        3
+      ],
+      "C": [
+        3,
+        5
+      ],
+      "pass": true
+    },
+    "product_rank": {
+      "rank": 3,
+      "pass": true
+    },
+    "ey_error": {
+      "err": 3.166689019730304,
+      "expected": 3.1666890197303026,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "random_factor_worse": {
+      "bad": 5.4229507292848345,
+      "good": 0.6635216783286111,
+      "pass": "True"
+    },
+    "k0_zero_product": {
+      "err": 0.0,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "k_exceeds_rank_ok": {
+      "err": 0.0,
+      "pass": "True"
+    },
+    "tall_exact": {
+      "err": 1.8284512100474422e-15,
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "note": "classical captures: A=BC factorization via truncated SVD, Eckart-Young optimality. Innately fails: gauge freedom (B->BG, C->G^-1 C) non-unique; CP-map / Kraus factorization constraints not enforced."
+}

@@ -1,0 +1,100 @@
+{
+  "name": "characteristic_representation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cayley_hamilton_n2": true,
+    "trace_matches_n2": true,
+    "cayley_hamilton_n3": true,
+    "trace_matches_n3": true,
+    "cayley_hamilton_n5": true,
+    "trace_matches_n5": true
+  },
+  "negative": {
+    "wrong_poly_nonzero": true,
+    "nonsquare_rejected": true
+  },
+  "boundary": {
+    "zero_matrix_poly": true,
+    "identity_poly": true,
+    "repeated_eigs": true
+  },
+  "classical_captured": "characteristic polynomial coefficients and Cayley-Hamilton on commutative numeric matrices",
+  "innately_missing": "operator-algebra / noncommutative characteristic structure, constraint-admissibility of representation choice",
+  "all_pass": true
+}

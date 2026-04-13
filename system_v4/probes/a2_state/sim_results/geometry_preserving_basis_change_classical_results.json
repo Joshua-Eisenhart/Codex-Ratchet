@@ -1,0 +1,106 @@
+{
+  "name": "geometry_preserving_basis_change",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline: numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "optional symbolic; not load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "inner_product_n3": true,
+    "norm_n3": true,
+    "eigs_n3": true,
+    "det_unit_n3": true,
+    "inner_product_n5": true,
+    "norm_n5": true,
+    "eigs_n5": true,
+    "det_unit_n5": true,
+    "inner_product_n7": true,
+    "norm_n7": true,
+    "eigs_n7": true,
+    "det_unit_n7": true
+  },
+  "negative": {
+    "nonortho_breaks_ip": true,
+    "nonortho_breaks_eigs": true
+  },
+  "boundary": {
+    "identity_preserves": true,
+    "reflection_det_neg": true,
+    "reflection_preserves_norm": true
+  },
+  "classical_captured": "O(n)/U(n) preservation of inner product, norms, spectrum",
+  "innately_missing": "basis-change constraints imposed by coupling / probe-admissible frames",
+  "all_pass": true
+}

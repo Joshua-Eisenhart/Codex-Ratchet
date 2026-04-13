@@ -115,6 +115,36 @@ def test_validate_cli_args_requires_explicit_target_selector():
         )
 
 
+def test_validate_cli_args_rejects_write_without_notes_fragment_or_preserve_notes():
+    mc = load_module()
+
+    with pytest.raises(ValueError, match="preserve-notes"):
+        mc.validate_cli_args(
+            result_json="system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json",
+            truth_row="explicit Hopf-map packet (`hopf_map_s3_to_s2`)",
+            backlog_row=None,
+            registry_row=None,
+            tool_row=None,
+            dry_run=False,
+            write=True,
+        )
+
+
+def test_validate_cli_args_accepts_write_with_preserve_notes():
+    mc = load_module()
+
+    mc.validate_cli_args(
+        result_json="system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json",
+        truth_row="explicit Hopf-map packet (`hopf_map_s3_to_s2`)",
+        backlog_row=None,
+        registry_row=None,
+        tool_row=None,
+        dry_run=False,
+        write=True,
+        preserve_notes=True,
+    )
+
+
 def test_validate_cli_args_rejects_dry_run_and_write_together():
     mc = load_module()
 

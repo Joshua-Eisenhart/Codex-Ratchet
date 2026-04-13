@@ -29,6 +29,8 @@ def validate_cli_args(
     tool_row: str | None,
     dry_run: bool,
     write: bool,
+    notes_fragment: str | None = None,
+    preserve_notes: bool = False,
 ) -> None:
     if not result_json:
         raise ValueError("result_json is required")
@@ -36,6 +38,10 @@ def validate_cli_args(
         raise ValueError("at least one explicit target selector is required")
     if dry_run and write:
         raise ValueError("dry-run and write cannot be used together")
+    if write and not (notes_fragment or preserve_notes):
+        raise ValueError(
+            "--write requires either --notes-fragment or --preserve-notes (fail-closed to avoid auto-generated notes overwriting live surfaces)"
+        )
 
 
 def summary_all_pass(payload: dict[str, Any]) -> bool:
@@ -310,13 +316,22 @@ def execute_truth_surface_update(
 
 
 
-def update_backlog_row(existing_row: str, *, current_state: str, next_move: str | None) -> str:
+def update_backlog_row(
+    existing_row: str,
+    *,
+    current_state: str,
+    next_move: str | None,
+    preserve_notes: bool = False,
+) -> str:
     cells = parse_markdown_row(existing_row)
     if len(cells) != 5:
         raise ValueError(f"backlog row must have 5 columns, got {len(cells)}")
     cells[2] = current_state
     if next_move is not None:
         cells[3] = next_move
+    # preserve_notes is implicit for backlog since next_move is already conditional,
+    # but keep the parameter for symmetry with truth/registry patchers.
+    _ = preserve_notes
     return format_markdown_row(cells)
 
 
@@ -326,14 +341,16 @@ def update_registry_row(
     *,
     current_coverage: str,
     result_json_name: str,
-    notes_note: str,
+    notes_note: str | None,
+    preserve_notes: bool = False,
 ) -> str:
     cells = parse_markdown_row(existing_row)
     if len(cells) != 11:
         raise ValueError(f"registry row must have 11 columns, got {len(cells)}")
     cells[7] = f"`{result_json_name}`"
     cells[8] = current_coverage
-    cells[10] = notes_note
+    if not (preserve_notes and notes_note is None):
+        cells[10] = notes_note if notes_note is not None else cells[10]
     return format_markdown_row(cells)
 
 
@@ -345,10 +362,16 @@ def execute_backlog_surface_update(
     current_state: str,
     next_move: str | None,
     write: bool,
+    preserve_notes: bool = False,
 ) -> dict[str, Any]:
     markdown = surface_path.read_text(encoding="utf-8")
     old_row = find_markdown_table_row(markdown, row_match_fragment)
-    new_row = update_backlog_row(old_row, current_state=current_state, next_move=next_move)
+    new_row = update_backlog_row(
+        old_row,
+        current_state=current_state,
+        next_move=next_move,
+        preserve_notes=preserve_notes,
+    )
     updated_text = replace_markdown_table_row(markdown, row_match_fragment, new_row)
     changed = apply_surface_update(surface_path, updated_text, write=write)
     return {
@@ -366,8 +389,9 @@ def execute_registry_surface_update(
     row_match_fragment: str,
     current_coverage: str,
     result_json_name: str,
-    notes_note: str,
+    notes_note: str | None,
     write: bool,
+    preserve_notes: bool = False,
 ) -> dict[str, Any]:
     markdown = surface_path.read_text(encoding="utf-8")
     old_row = find_markdown_table_row(markdown, row_match_fragment)
@@ -376,6 +400,7 @@ def execute_registry_surface_update(
         current_coverage=current_coverage,
         result_json_name=result_json_name,
         notes_note=notes_note,
+        preserve_notes=preserve_notes,
     )
     updated_text = replace_markdown_table_row(markdown, row_match_fragment, new_row)
     changed = apply_surface_update(surface_path, updated_text, write=write)
@@ -442,6 +467,8 @@ def main() -> int:
         tool_row=args.tool_row,
         dry_run=args.dry_run,
         write=args.write,
+        notes_fragment=args.notes_fragment,
+        preserve_notes=args.preserve_notes,
     )
 
     result_path = resolve_result_path(args.result_json)
@@ -499,6 +526,7 @@ def main() -> int:
                     current_state=truth_label,
                     next_move=args.notes_fragment,
                     write=args.write,
+                    preserve_notes=args.preserve_notes,
                 )
                 row_proposals["backlog_row"] = {
                     "surface": report["surface_path"],
@@ -520,8 +548,9 @@ def main() -> int:
                     row_match_fragment=f"`{args.registry_row}`",
                     current_coverage=truth_label,
                     result_json_name=result_path.name,
-                    notes_note=args.notes_fragment or f"{result_path.name}: {decision['reason']}",
+                    notes_note=args.notes_fragment if args.notes_fragment is not None else (None if args.preserve_notes else f"{result_path.name}: {decision['reason']}"),
                     write=args.write,
+                    preserve_notes=args.preserve_notes,
                 )
                 row_proposals["registry_row"] = {
                     "surface": report["surface_path"],

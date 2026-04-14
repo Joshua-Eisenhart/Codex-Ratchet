@@ -15,7 +15,7 @@ Files: `system_v4/probes/sim_*_classical*.py`
 
 **Infrastructure:**
 - `system_v4/probes/classical_sweep_runner.py` — Lane B runner. Default selects explicit `classical_baseline` only (44 sims). `--include-heuristic` flag restores numpy/sympy import fallback (152 sims).
-- `scripts/verify_load_bearing_has_capability_probe.py` — Lane A gate auditor. Currently **5 violations** (all pre-existing e3nn probe_failing sims, listed below).
+- `scripts/verify_load_bearing_has_capability_probe.py` — Lane A gate auditor. Currently **0 violations** across 194 sims. Supports batch mode (default) and per-sim gate mode (`--sim <path>`, exit 0/1 + JSON report) for worker-level gating.
 - `scripts/classical_baseline_report.py` — boundary-failure matrix aggregator.
 - `system_v4/probes/_classical_baseline_common.py` — shared manifest helper.
 
@@ -30,16 +30,15 @@ python3 system_v4/probes/classical_sweep_runner.py --minutes 240 --max-parallel 
 Safe: `classical_baseline` classification prevents any canonical promotion; failures are boundary data.
 
 ## NOT ready (gaps Hermes needs to decide on)
-1. **Per-worker gate shim** — `verify_load_bearing_has_capability_probe.py` only runs in batch mode. No `--sim <path>` single-sim gate call yet. Needed before Lane A or nonclassical sims run in parallel.
-2. **Queue dirs** — `a2_state/queue/lane_A/` + `lane_B/` with atomic-rename claim protocol not wired. Single-runner fine; multi-runner collisions possible.
-3. **5 pre-existing e3nn probe_failing sims** (outside this session's work):
-   - `sim_e3nn_hopf_spinor_equivariance.py`
-   - `sim_e3nn_ic_invariance.py`
-   - `sim_e3nn_relay_equivariance.py`
-   - `sim_e3nn_tensor_product.py`
-   - `sim_tools_load_bearing.py`
-4. **Morning reports** — `queue_manifest.json` / `gate_denials.json` / `tool_capability_state.json` / SHA-256 checksums not emitted by runner yet.
-5. **`overnight_8h_run.sh`** — still assumes old single-controller shape; two-runner topology from the brief not yet wired.
+1. **Queue dirs** — `a2_state/queue/lane_A/` + `lane_B/` with atomic-rename claim protocol not wired. Single-runner fine; multi-runner collisions possible.
+2. **Morning reports** — `queue_manifest.json` / `gate_denials.json` / `tool_capability_state.json` / SHA-256 checksums not emitted by runner yet.
+3. **`overnight_8h_run.sh`** — still assumes old single-controller shape; two-runner topology from the brief not yet wired.
+4. **5 ambiguous legacy classifications** — `supporting`, `frozen_kernel`, `NULL`, `symmetric (triplet)`, `entropy_increasing`. Strict sweep skips them (reported as ambiguous, not selected). Need real classifications.
+
+## CLOSED since initial handoff
+- Per-sim gate shim (`--sim <path>` mode) ✅
+- 5 e3nn probe_failing sims ✅ (all clear, 0 violations live)
+- `sim_partial_trace_audit.py` exit-code misclassification ✅
 
 ## Recommended first auto-run
 - **Tonight**: Lane B only, 4h, max-parallel 4, on the 44 strict-selected classical baselines. Hermes monitors + reads result JSON.

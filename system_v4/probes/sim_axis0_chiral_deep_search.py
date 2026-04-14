@@ -49,6 +49,12 @@ from typing import Dict, List, Tuple
 import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this performs a numerical deep search over Axis-0 chiral bridge candidates, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "bridge candidate construction and scoring numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square-root operations for density-matrix metrics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

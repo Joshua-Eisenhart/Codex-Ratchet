@@ -34,6 +34,11 @@ from functools import lru_cache
 import numpy as np
 from collections import defaultdict
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this characterizes Axis-0 orbit-phase failures numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "phase-alignment statistics and failure clustering numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 _PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(os.path.dirname(_PROBE_DIR))

@@ -60,6 +60,11 @@ from datetime import UTC, datetime
 import numpy as np
 from typing import Tuple
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this stress-tests Axis-0 co-arising numerically across random states, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "random-state stress testing and bridge numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from geometric_operators import (

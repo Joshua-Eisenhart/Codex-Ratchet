@@ -45,6 +45,12 @@ from typing import Dict, List, Tuple
 import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this evaluates the Phase-4 final Axis-0 bridge numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "final bridge candidate construction and scoring numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square-root operations for bridge metrics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

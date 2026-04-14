@@ -10,6 +10,7 @@ import os
 from math import log2
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for exact low-dimensional entropy identities"},

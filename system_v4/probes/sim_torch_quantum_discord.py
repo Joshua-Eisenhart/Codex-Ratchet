@@ -9,6 +9,7 @@ Always >= 0. Numpy baseline. Sympy symbolic check.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

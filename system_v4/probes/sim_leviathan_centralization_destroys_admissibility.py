@@ -6,6 +6,7 @@ civilizational shells. z3 encodes: admissibility requires >=2 independent
 authority centers; centralization forces UNSAT.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "z3":       {"tried": False, "used": False, "reason": ""},

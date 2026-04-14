@@ -14,6 +14,7 @@ Boundary : minimal 2x2x2 example where both legos co-admit the same q
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "KL + CI-gap evaluation"},

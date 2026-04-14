@@ -33,6 +33,7 @@ from datetime import datetime, UTC
 
 import numpy as np
 from scipy.linalg import logm
+classification = "classical_baseline"  # auto-backfill
 
 # ===================================================================
 # UTILITY HELPERS

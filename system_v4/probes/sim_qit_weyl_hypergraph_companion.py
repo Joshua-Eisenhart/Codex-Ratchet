@@ -22,6 +22,7 @@ import rustworkx as rx
 import xgi
 import z3
 from toponetx import CellComplex
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

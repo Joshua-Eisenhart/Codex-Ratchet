@@ -14,6 +14,7 @@ BND : delta generative model gives surprise 0 at supported o
 from __future__ import annotations
 import json, os, math
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "marginal + log"},

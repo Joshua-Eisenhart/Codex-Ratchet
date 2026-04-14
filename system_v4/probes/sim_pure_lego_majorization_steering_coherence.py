@@ -23,6 +23,7 @@ from scipy.linalg import sqrtm, logm
 from scipy.optimize import linprog
 import sympy
 from sympy import symbols, Sum, IndexedBase, oo, Rational
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-14

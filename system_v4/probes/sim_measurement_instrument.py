@@ -15,6 +15,7 @@ from fractions import Fraction
 import cvc5
 from cvc5 import Kind
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-10

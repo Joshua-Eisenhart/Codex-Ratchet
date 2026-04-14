@@ -21,6 +21,7 @@ import os
 from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
+classification = "classical_baseline"  # auto-backfill
 
 FILES = [
     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_bridge_packet_library_audit.py",

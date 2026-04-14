@@ -7,6 +7,7 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 No strong load-bearing tool per G-tower cut list; sympy used for polynomial A^1 contractibility checks as best-available.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

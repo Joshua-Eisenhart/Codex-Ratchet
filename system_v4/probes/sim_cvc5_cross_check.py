@@ -17,6 +17,7 @@ import os
 import time
 import numpy as np
 from fractions import Fraction
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

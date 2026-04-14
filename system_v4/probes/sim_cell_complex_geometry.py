@@ -14,6 +14,7 @@ import pathlib
 import numpy as np
 
 from toponetx import CellComplex
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-8

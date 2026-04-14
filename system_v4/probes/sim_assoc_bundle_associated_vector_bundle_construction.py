@@ -10,6 +10,7 @@ correctly.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},

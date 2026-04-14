@@ -5,6 +5,7 @@ Values across groups must be distinguishable for potential to exist.
 Uses symbolic KL-like divergence and z3 distinguishability constraint.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

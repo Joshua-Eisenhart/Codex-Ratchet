@@ -25,6 +25,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 EPS = 1e-12
 

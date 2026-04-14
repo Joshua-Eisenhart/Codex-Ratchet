@@ -32,6 +32,7 @@ import json
 import warnings
 import numpy as np
 from scipy.linalg import expm
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

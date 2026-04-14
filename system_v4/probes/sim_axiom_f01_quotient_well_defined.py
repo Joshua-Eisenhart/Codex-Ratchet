@@ -11,6 +11,7 @@ satisfies all three; UNSAT for models that break transitivity.
 
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

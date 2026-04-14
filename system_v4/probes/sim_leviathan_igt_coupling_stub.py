@@ -6,6 +6,7 @@ Shared object: strategy-distribution distinguishability across groups.
 Stub checks both shells admit the shared object without collapse.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

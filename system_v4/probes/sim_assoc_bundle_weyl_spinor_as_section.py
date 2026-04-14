@@ -10,6 +10,7 @@ Pauli algebra and verify SU(2)-rotation equivariance of its base-point image.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},

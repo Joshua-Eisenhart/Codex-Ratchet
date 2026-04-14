@@ -26,6 +26,7 @@ import os
 from typing import Callable, Dict, List
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 TOOL_MANIFEST = {

@@ -13,6 +13,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},
     "geomstats": {"tried": False, "used": False, "reason": ""},

@@ -7,6 +7,7 @@ phase. No ontology claimed; survival under probe is what is tested.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "numpy suffices for this ansatz"},

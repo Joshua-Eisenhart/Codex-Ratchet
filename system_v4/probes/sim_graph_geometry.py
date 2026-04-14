@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 import rustworkx as rx
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-10

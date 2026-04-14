@@ -19,6 +19,7 @@ No engine. numpy only.
 import json
 import numpy as np
 from pathlib import Path
+classification = "classical_baseline"  # auto-backfill
 
 RESULTS_DIR = Path(__file__).parent / "a2_state" / "sim_results"
 

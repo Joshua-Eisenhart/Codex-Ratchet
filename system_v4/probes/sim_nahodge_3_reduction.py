@@ -7,6 +7,7 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 Harmonic bundle ↔ Higgs bundle correspondence; sympy symbolic ops load-bearing for Hitchin equations; clifford for frame algebra.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

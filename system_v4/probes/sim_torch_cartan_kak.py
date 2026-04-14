@@ -18,6 +18,7 @@ unitary group SU(4) = SU(2) x SU(2) x Weyl_chamber x SU(2) x SU(2).
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -223,9 +223,18 @@ def test_antipodal_log_degeneracy():
                 "capability_limit": capability_limit,
                 "pass": bool(predictable)}
     except Exception as e:
-        # Predictable raise also counts as pass for a boundary probe
-        return {"raised": str(type(e).__name__),
-                "message": str(e)[:200], "pass": True}
+        # Only typed, predictable raises (ValueError / RuntimeError /
+        # NotImplementedError) count as boundary-predictable. An arbitrary
+        # Exception (e.g. AttributeError from an API drift) is a real
+        # capability regression.
+        etype = type(e).__name__
+        predictable = etype in {"ValueError", "RuntimeError",
+                                 "NotImplementedError", "ArithmeticError"}
+        return {"raised": etype, "message": str(e)[:200],
+                "pass": bool(predictable),
+                "capability_limit": ("antipodal log raised "
+                                     f"{etype} at cut locus")
+                                     if predictable else None}
 
 
 def run_boundary_tests():
@@ -273,9 +282,7 @@ if __name__ == "__main__":
                 "exp/log roundtrip, SPD affine distance, Frechet mean, "
                 "numpy-slerp comparison, off-manifold rejection"
             ),
-            "witness_loadbearing_use": (
-                "system_v4/probes/sim_foundation_hopf_torus_geomstats_clifford.py"
-            ),
+            "witness_loadbearing_use": "system_v4/probes/sim_density_hopf_geometry.py",
             "tool_manifest": TOOL_MANIFEST,
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos,

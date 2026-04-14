@@ -33,6 +33,7 @@ import time
 import traceback
 
 import torch
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

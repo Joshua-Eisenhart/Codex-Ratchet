@@ -6,6 +6,7 @@ Pattern-durability: civilizational collapse/rebirth. Legacy pattern
 preserve their value base across the reset boundary.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "z3":       {"tried": False, "used": False, "reason": ""},

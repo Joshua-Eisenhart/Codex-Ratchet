@@ -7,6 +7,7 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 Symplectic ↔ complex dual; sympy symbolic for Kähler/complex moduli pairing.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

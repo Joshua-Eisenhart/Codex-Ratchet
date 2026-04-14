@@ -10,6 +10,7 @@ import pathlib
 from datetime import datetime, timezone
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-10

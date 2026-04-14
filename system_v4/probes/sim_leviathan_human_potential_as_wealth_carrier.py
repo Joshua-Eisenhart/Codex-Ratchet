@@ -6,6 +6,7 @@ the primary wealth substrate. Wealth admissibility requires non-collapsed
 potential distribution.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

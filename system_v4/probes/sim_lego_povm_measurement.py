@@ -24,6 +24,7 @@ import json
 import os
 import numpy as np
 from datetime import datetime
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

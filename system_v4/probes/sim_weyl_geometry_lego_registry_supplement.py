@@ -14,6 +14,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+classification = "classical_baseline"  # auto-backfill
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent

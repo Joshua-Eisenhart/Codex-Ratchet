@@ -255,6 +255,7 @@ if __name__ == "__main__":
         "clifford_version": CLIFFORD_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_assoc_bundle_weyl_spinor_as_section.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

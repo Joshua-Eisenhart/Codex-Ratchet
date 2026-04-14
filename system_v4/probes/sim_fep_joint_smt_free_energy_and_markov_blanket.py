@@ -31,6 +31,7 @@ Scenarios:
 """
 from __future__ import annotations
 import json, os
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "z3":    {"tried": False, "used": False, "reason": ""},

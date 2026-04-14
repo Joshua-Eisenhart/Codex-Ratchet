@@ -45,6 +45,7 @@ import json
 import os
 import numpy as np
 import traceback
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -25,6 +25,7 @@ Tools: rustworkx=load_bearing, z3=load_bearing, cvc5=supportive,
 
 import json
 import os
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

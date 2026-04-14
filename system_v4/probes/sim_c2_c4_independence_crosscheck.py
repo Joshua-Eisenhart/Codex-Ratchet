@@ -20,6 +20,7 @@ Output: c2_c4_independence_crosscheck_results.json
 import json
 import os
 import sys
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

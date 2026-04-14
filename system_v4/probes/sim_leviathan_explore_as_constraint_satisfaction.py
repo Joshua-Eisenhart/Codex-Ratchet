@@ -12,6 +12,7 @@ Blind spot:
   - No dynamics — purely static feasibility.
 """
 import json, os
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"z3": {"tried": False, "used": False, "reason": ""}}
 TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}

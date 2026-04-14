@@ -24,6 +24,7 @@ tool_integration_depth:
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

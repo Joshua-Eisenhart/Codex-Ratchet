@@ -20,6 +20,7 @@ import rustworkx as rx
 import xgi
 import z3
 from toponetx import CellComplex
+classification = "classical_baseline"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

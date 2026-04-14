@@ -26,6 +26,7 @@ from datetime import datetime, UTC
 
 import numpy as np
 from scipy.linalg import expm, sqrtm, logm
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # Shared helpers

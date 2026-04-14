@@ -16,6 +16,7 @@ Chirality: Popper is future-oriented (could be falsified); Hume is
            past-oriented (constant conjunction so far).
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

@@ -30,6 +30,7 @@ tool_integration_depth:
 
 import json
 import os
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

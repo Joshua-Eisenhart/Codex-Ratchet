@@ -27,6 +27,7 @@ import time
 import traceback
 import numpy as np
 from scipy.linalg import expm, eigvals
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

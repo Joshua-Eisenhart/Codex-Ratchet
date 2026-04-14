@@ -6,6 +6,7 @@ admissibility constraints are compatible with (do not destroy) adjacent layer
 structure at the shell-local level.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "networkx": {"tried": False, "used": False, "reason": ""},

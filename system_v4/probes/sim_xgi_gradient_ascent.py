@@ -20,6 +20,7 @@ does not assume the direct L4 edges must dominate at convergence.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

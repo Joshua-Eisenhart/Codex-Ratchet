@@ -27,6 +27,7 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROBE_DIR not in sys.path:

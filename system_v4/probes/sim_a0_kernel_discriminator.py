@@ -35,6 +35,7 @@ from datetime import datetime, UTC
 from typing import Dict, List
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # ---------------------------------------------------------------------------
 # QIT primitives (self-contained, no engine dependency)

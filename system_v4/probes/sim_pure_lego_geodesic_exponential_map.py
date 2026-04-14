@@ -26,6 +26,7 @@ import os
 from typing import Any
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

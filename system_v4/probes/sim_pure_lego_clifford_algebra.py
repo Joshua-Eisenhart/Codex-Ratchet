@@ -20,6 +20,7 @@ Sections
 import json, sys, os
 import numpy as np
 from clifford import Cl
+classification = "classical_baseline"  # auto-backfill
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 

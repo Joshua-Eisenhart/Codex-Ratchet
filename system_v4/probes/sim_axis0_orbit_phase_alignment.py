@@ -33,6 +33,7 @@ from datetime import UTC, datetime
 from functools import lru_cache
 import numpy as np
 from collections import defaultdict
+classification = "classical_baseline"  # auto-backfill
 
 _PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(os.path.dirname(_PROBE_DIR))

@@ -30,6 +30,7 @@ import json
 import os
 import math
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

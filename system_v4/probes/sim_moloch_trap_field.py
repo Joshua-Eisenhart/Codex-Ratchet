@@ -20,6 +20,7 @@ import os
 from datetime import datetime, UTC
 
 import sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import (
     make_random_density_matrix,

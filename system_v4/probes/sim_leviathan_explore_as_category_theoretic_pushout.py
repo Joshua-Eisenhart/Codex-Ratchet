@@ -12,6 +12,7 @@ Blind spot:
   - Treats colimit existence as unproblematic — in practice, diagrams don't commute.
 """
 import json, os
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"sympy": {"tried": False, "used": False, "reason": ""}}
 TOOL_INTEGRATION_DEPTH = {"sympy": "load_bearing"}

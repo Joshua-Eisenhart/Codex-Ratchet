@@ -3,6 +3,7 @@ import glob
 import subprocess
 import time
 import json
+classification = "classical_baseline"  # auto-backfill
 
 PROBES_DIR = "system_v4/probes"
 EXCLUDES = ["sim_timing_benchmark.py", "autoresearch_sim_harness.py", "exploratory_process_cycle_stage_matrix_sim.py", "stage_matrix_neg_lib.py"]

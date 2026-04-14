@@ -27,6 +27,7 @@ from datetime import datetime, UTC
 from itertools import combinations
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # Utilities

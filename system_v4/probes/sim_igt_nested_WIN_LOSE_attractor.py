@@ -6,6 +6,7 @@ is not the sum of short-horizon labels but an attractor over their sequence.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "sequence is scalar, torch unnecessary"},

@@ -14,6 +14,7 @@ NO engine imports. Pure legos only: numpy, scipy.
 import sys, os, json, pathlib, time, warnings
 import numpy as np
 from scipy.linalg import logm
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

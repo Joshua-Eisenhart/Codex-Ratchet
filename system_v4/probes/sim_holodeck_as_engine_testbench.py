@@ -8,6 +8,7 @@ stays within the projective unit sphere (norm-preserving up to tol).
 """
 import numpy as np
 import sys, os
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _holodeck_common import build_manifest, write_results, summary_ok
 

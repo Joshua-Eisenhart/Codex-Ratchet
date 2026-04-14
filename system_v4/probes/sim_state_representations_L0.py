@@ -19,6 +19,7 @@ Output: a2_state/sim_results/state_representations_L0_results.json
 
 import sys, os, json, time
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

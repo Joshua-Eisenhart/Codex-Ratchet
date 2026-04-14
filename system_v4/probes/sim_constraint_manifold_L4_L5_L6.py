@@ -14,6 +14,7 @@ Uses: sympy, z3, PyG, clifford.
 
 import sys, os, json, warnings
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

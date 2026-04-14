@@ -26,6 +26,7 @@ import os
 import sys
 import numpy as np
 from itertools import combinations
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

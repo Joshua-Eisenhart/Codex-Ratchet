@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 from datetime import UTC, datetime
 from pathlib import Path
+classification = "classical_baseline"  # auto-backfill
 
 
 ROOT = Path(__file__).resolve().parent

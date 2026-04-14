@@ -8,6 +8,7 @@ claimed: "win" is only the admissible branch under the round's probe.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed for atomic round"},

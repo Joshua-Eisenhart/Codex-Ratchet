@@ -14,6 +14,7 @@ import sys, os, json
 import numpy as np
 from scipy.linalg import sqrtm, expm
 from clifford import Cl
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # SETUP

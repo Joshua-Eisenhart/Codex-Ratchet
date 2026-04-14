@@ -30,6 +30,7 @@ Grid: 15x15 = 225 points primary; 10x10 and 20x20 for density comparison.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

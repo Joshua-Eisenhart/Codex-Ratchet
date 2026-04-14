@@ -23,6 +23,7 @@ import os
 import time
 import numpy as np
 from collections import OrderedDict
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

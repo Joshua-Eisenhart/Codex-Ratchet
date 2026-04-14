@@ -38,6 +38,7 @@ import math
 import os
 
 import numpy as np  # noqa: F401  (used for np.cos/sin in analytic checks)
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -19,6 +19,7 @@ import os
 import time
 import numpy as np
 from scipy import linalg as la
+classification = "classical_baseline"  # auto-backfill
 
 # ---------------------------------------------------------------------------
 # Constants

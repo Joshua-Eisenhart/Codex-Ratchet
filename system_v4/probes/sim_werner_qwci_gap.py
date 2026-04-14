@@ -41,6 +41,7 @@ import os
 import math
 import numpy as np
 from scipy.optimize import minimize_scalar, minimize
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

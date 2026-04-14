@@ -10,6 +10,7 @@ Can we actually compute this structure?  YES OR NO.
 """
 
 import sys, os, json, time
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np

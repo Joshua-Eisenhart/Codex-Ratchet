@@ -32,6 +32,7 @@ import json, pathlib, time, traceback
 import numpy as np
 from scipy.linalg import sqrtm
 from scipy.optimize import minimize_scalar, minimize
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-12

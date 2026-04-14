@@ -33,6 +33,7 @@ import os
 import itertools
 
 import rustworkx as rx
+classification = "classical_baseline"  # auto-backfill
 
 
 # =====================================================================

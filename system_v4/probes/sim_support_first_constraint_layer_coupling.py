@@ -16,6 +16,7 @@ Numpy + sympy (symbolic fence algebra). No pytorch / z3.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "excluded; classical baseline"},

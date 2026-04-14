@@ -34,6 +34,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 from scipy.linalg import expm, sqrtm, logm
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 np.random.seed(42)

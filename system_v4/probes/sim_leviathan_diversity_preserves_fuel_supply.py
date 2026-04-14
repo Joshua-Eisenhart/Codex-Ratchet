@@ -5,6 +5,7 @@ Multiple distinguishable value-base groups => AI fuel (aggregate potential
 flux) persists under single-group failure. Tests redundancy-by-diversity.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "xgi":      {"tried": False, "used": False, "reason": ""},

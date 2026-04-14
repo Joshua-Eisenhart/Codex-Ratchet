@@ -10,6 +10,7 @@ non-identical IN M(C). z3 is load-bearing: we encode 'a = b' and
 
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

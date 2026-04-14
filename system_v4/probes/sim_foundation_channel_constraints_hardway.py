@@ -31,6 +31,7 @@ import numpy as np
 import sympy as sp
 import torch
 from z3 import And, Or, Real, Solver, unsat, sat
+classification = "classical_baseline"  # auto-backfill
 
 
 torch.set_default_dtype(torch.float64)

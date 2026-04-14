@@ -22,6 +22,7 @@ import sys
 import copy
 import numpy as np
 from collections import Counter
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

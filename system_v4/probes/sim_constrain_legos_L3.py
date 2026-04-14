@@ -38,6 +38,7 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 from z3 import (
+classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal, If,
 )

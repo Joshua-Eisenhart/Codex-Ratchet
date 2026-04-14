@@ -10,6 +10,7 @@ load-bearing; sympy is load-bearing for the exact equivalence.
 import numpy as np
 import sympy as sp
 import sys, os
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _holodeck_common import build_manifest, write_results, summary_ok
 

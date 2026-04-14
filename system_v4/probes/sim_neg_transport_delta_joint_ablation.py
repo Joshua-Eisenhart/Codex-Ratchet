@@ -26,6 +26,7 @@ from datetime import UTC, datetime
 import numpy as np
 
 from hopf_manifold import (
+classification = "classical_baseline"  # auto-backfill
     TORUS_CLIFFORD,
     TORUS_INNER,
     TORUS_OUTER,

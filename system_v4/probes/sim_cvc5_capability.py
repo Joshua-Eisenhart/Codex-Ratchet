@@ -239,6 +239,7 @@ if __name__ == "__main__":
         "cvc5_version": CVC5_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_bridge_cvc5_crosscheck.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

@@ -22,6 +22,7 @@ Tools: pytorch (matrix computation), sympy (exact symbolic verification),
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

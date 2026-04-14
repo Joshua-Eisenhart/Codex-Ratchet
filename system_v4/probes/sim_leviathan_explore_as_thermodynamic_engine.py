@@ -12,6 +12,7 @@ Blind spot:
   - Reservoirs independent; ignores cross-group feedback.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "carnot-style work calc"}}
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}

@@ -11,6 +11,7 @@ Admissibility: M(S) = True.
 Chirality: recursion depth bounded (stop at depth=2).
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

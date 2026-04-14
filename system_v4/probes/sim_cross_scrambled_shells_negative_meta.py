@@ -30,7 +30,7 @@ import json, os, itertools
 import numpy as np
 
 CLASSIFICATION = "canonical"
-classification = CLASSIFICATION
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True,  "used": True,  "reason": "shell signatures + predicate arithmetic"},

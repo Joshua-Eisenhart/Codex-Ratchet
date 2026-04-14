@@ -2,6 +2,7 @@
 import json
 import pathlib
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local shell-indexed tensor-network support row on one bounded shell chain."

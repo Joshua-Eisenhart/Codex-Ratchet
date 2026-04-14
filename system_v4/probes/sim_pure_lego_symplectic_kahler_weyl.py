@@ -18,6 +18,7 @@ import json, sys, os, time
 from itertools import permutations
 import numpy as np
 from scipy.linalg import expm, sqrtm
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-10

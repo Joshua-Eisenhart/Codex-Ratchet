@@ -19,6 +19,7 @@ import math
 from pathlib import Path
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 TOOL_MANIFEST = {
@@ -34,6 +35,21 @@ TOOL_MANIFEST = {
     "xgi": {"tried": True, "used": False, "reason": ""},
     "toponetx": {"tried": True, "used": False, "reason": "tried for cell-complex comparison; GUDHI filtration chosen here"},
     "gudhi": {"tried": True, "used": False, "reason": ""},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": None,
+    "gudhi": "load_bearing",
 }
 
 try:

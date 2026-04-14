@@ -15,6 +15,7 @@ import pathlib
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

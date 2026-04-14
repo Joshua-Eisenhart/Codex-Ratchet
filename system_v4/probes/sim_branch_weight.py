@@ -2,6 +2,7 @@
 import json
 import pathlib
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local support row for normalized branch weights on one bounded finite branch family."

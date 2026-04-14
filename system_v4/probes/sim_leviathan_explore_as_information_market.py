@@ -11,6 +11,7 @@ Blind spot:
   - Assumes stationarity of group distributions.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "joint distributions, MI"},
                  "sympy": {"tried": False, "used": False, "reason": ""}}

@@ -10,6 +10,7 @@ Clifford algebra is used supportively to represent vectors as Cl(3) 1-vectors.
 import numpy as np
 import sys, os
 from clifford import Cl
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _holodeck_common import build_manifest, write_results, summary_ok
 

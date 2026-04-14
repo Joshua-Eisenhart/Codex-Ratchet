@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm, eigvalsh
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

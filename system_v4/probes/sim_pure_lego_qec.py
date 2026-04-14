@@ -16,6 +16,7 @@ import json
 import sys
 import numpy as np
 from pathlib import Path
+classification = "classical_baseline"  # auto-backfill
 
 # ── Pauli matrices ──────────────────────────────────────────────────────────
 I2 = np.eye(2, dtype=complex)

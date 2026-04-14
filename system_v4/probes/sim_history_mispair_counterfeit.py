@@ -22,6 +22,7 @@ import numpy as np
 from engine_core import GeometricEngine, EngineState
 from geometric_operators import _ensure_valid_density
 from sim_axis0_bridge_search import TORUS_CONFIGS, ALL_CANDIDATES, full_metrics
+classification = "classical_baseline"  # auto-backfill
 
 
 ROOT = Path(__file__).resolve().parent

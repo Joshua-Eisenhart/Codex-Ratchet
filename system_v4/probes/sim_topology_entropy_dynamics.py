@@ -22,6 +22,7 @@ Tools:
 import json
 import os
 import sys
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

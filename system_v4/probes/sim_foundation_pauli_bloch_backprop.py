@@ -17,6 +17,7 @@ no physical qubit state can lie outside the Bloch ball.
 import json
 import math
 import os
+classification = "classical_baseline"  # auto-backfill
 
 
 TOOL_MANIFEST = {

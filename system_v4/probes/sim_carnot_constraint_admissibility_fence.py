@@ -54,6 +54,7 @@ import json
 import os
 import sys
 from fractions import Fraction
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

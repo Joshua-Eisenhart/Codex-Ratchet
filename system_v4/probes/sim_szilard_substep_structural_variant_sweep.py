@@ -14,6 +14,7 @@ import pathlib
 import numpy as np
 
 import sim_szilard_record_ordering_refinement_sweep as record_base
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"

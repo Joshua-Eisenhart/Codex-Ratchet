@@ -18,6 +18,7 @@ import rustworkx as rx
 
 import sim_helstrom_guess_bound as helstrom
 import sim_qit_szilard_bidirectional_protocol as base
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

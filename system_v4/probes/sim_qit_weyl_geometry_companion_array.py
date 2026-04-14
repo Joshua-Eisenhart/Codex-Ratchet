@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

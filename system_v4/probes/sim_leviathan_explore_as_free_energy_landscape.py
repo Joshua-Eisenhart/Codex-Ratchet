@@ -12,6 +12,7 @@ Blind spot:
   - Treats diversity and centralization as orthogonal — they aren't.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "landscape eval + gradient descent"}}
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}

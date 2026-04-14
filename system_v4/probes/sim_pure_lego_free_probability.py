@@ -16,6 +16,7 @@ from scipy import stats as sp_stats
 import json
 import os
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

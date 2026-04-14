@@ -12,6 +12,7 @@ from itertools import combinations
 import numpy as np
 import xgi
 from toponetx import CellComplex
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "canonical"

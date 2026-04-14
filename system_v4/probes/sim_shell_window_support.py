@@ -7,6 +7,7 @@ Direct local support-object lego for contiguous shell-window selection on one bo
 
 import json
 import pathlib
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "canonical"

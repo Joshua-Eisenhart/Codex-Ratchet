@@ -19,6 +19,7 @@ Classification: canonical (torch-native)
 
 import json, os, pathlib, time, warnings
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 np.random.seed(42)

@@ -18,6 +18,7 @@ BND : Leviathan = full space reduces to shell-local observer only.
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "interval intersection"},

@@ -31,6 +31,7 @@ import sys
 from datetime import datetime, UTC
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # Pauli matrices and Bell states

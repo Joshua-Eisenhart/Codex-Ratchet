@@ -34,6 +34,7 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 import sympy as sp
 from z3 import (
+classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal,
 )

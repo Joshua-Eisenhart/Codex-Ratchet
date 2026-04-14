@@ -15,6 +15,7 @@ import sys
 from typing import Any, Optional
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

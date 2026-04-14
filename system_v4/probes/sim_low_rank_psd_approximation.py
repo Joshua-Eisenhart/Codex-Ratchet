@@ -13,6 +13,7 @@ import pathlib
 
 import numpy as np
 from scipy.linalg import sqrtm
+classification = "classical_baseline"  # auto-backfill
 
 
 np.random.seed(42)

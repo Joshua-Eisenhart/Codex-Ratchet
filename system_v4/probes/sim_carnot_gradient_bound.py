@@ -30,8 +30,38 @@ a useful structural constraint on the runtime.
 
 import numpy as np
 import json, os, sys
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+# =====================================================================
+# TOOL MANIFEST -- required by ENFORCEMENT_AND_PROCESS_RULES.md
+# =====================================================================
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False,
+                "reason": "engine_core uses numpy; torch not required for sweep statistics"},
+    "pyg":     {"tried": False, "used": False, "reason": "no graph transport in this probe"},
+    "z3":      {"tried": False, "used": False,
+                "reason": "symbolic proof lives in sim_carnot_constraint_admissibility_fence.py"},
+    "cvc5":    {"tried": False, "used": False, "reason": "z3 chosen for the proof-layer sibling sim"},
+    "sympy":   {"tried": False, "used": False,
+                "reason": "symbolic efficiency bound proven in constraint-admissibility sibling"},
+    "clifford":{"tried": False, "used": False, "reason": "rotor geometry not driving this bound test"},
+    "geomstats":{"tried": False, "used": False, "reason": "metric learning unused"},
+    "e3nn":    {"tried": False, "used": False, "reason": "no equivariant network"},
+    "rustworkx":{"tried": False, "used": False, "reason": "no graph structure"},
+    "xgi":     {"tried": False, "used": False, "reason": "no hypergraph"},
+    "toponetx":{"tried": False, "used": False, "reason": "no cell complex"},
+    "gudhi":   {"tried": False, "used": False, "reason": "no persistent homology"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None, "pyg": None, "z3": None, "cvc5": None, "sympy": None,
+    "clifford": None, "geomstats": None, "e3nn": None,
+    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+}
+
+# numpy is the load-bearing numeric tool here; manifest only lists optional ecosystem tools.
 
 from engine_core import (
     GeometricEngine, StageControls,
@@ -243,9 +273,71 @@ def analyze_bounds(results):
     }
 
 
+# =====================================================================
+# POSITIVE / NEGATIVE / BOUNDARY TESTS (required by SIM contract)
+# =====================================================================
+
+def run_positive_tests(results):
+    """Positive: at least one operating point produces non-zero work and a finite
+    static-geometry efficiency. Also: work is non-negative (|ΔΦ| is absolute)."""
+    works = [r["total_work"] for r in results]
+    any_positive_work = any(w > 1e-9 for w in works)
+    all_nonneg = all(w >= 0.0 for w in works)
+    return {
+        "any_positive_work": bool(any_positive_work),
+        "all_work_nonneg": bool(all_nonneg),
+        "n_points": len(results),
+        "pass": bool(any_positive_work and all_nonneg),
+    }
+
+
+def run_negative_tests(results):
+    """Negative: an uncorrelated efficiency denominator should NOT produce a
+    stable (low-CV) ratio. We use a random denominator surrogate as the
+    null — it must fail the bound-candidate criterion."""
+    rng = np.random.default_rng(0)
+    ratios = []
+    for r in results:
+        denom = rng.uniform(0.1, 1.0)
+        ratios.append(r["total_work"] / denom)
+    arr = np.array(ratios)
+    mean = float(np.mean(arr))
+    cv = float(np.std(arr) / max(abs(mean), 1e-12))
+    # We require the random surrogate to NOT be "low variance" (CV < 0.15).
+    # If it accidentally does, the bound criterion is meaningless.
+    return {
+        "surrogate_mean": mean,
+        "surrogate_cv": cv,
+        "surrogate_rejected_as_bound": bool(cv >= 0.15),
+        "pass": bool(cv >= 0.15),
+    }
+
+
+def run_boundary_tests():
+    """Boundary: extreme ga0 values (0.01, 0.99) at clifford torus should run
+    without raising and produce finite work values."""
+    import math
+    out = {"cases": [], "pass": True}
+    for ga0 in (0.01, 0.99):
+        try:
+            r = run_programmed_cycle(1, ga0, TORUS_CLIFFORD)
+            finite = math.isfinite(r["total_work"])
+            out["cases"].append({"ga0": ga0, "total_work": r["total_work"], "finite": finite})
+            if not finite:
+                out["pass"] = False
+        except Exception as e:
+            out["cases"].append({"ga0": ga0, "error": str(e)})
+            out["pass"] = False
+    return out
+
+
 def main():
     results = run_sweep()
     summary = analyze_bounds(results)
+
+    positive = run_positive_tests(results)
+    negative = run_negative_tests(results)
+    boundary = run_boundary_tests()
 
     # Save
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -254,8 +346,15 @@ def main():
     out_file = os.path.join(out_dir, "carnot_gradient_bound.json")
 
     save_data = {
+        "classification": "classical_baseline",
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "summary": summary,
         "operating_points": [{k: v for k, v in r.items()} for r in results],
+        "overall_pass": bool(positive["pass"] and negative["pass"] and boundary["pass"]),
     }
     with open(out_file, "w") as f:
         json.dump(save_data, f, indent=2, default=str)

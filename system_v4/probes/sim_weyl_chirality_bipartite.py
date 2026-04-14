@@ -34,6 +34,7 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

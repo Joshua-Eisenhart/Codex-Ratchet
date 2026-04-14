@@ -33,6 +33,7 @@ import datetime
 
 import torch
 import sympy as sp
+classification = "classical_baseline"  # auto-backfill
 
 # ─── canonical contract fields ────────────────────────────────────────────────
 CLASSIFICATION = "canonical"

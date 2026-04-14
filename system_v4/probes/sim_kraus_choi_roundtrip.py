@@ -34,6 +34,7 @@ Classification: classical_baseline (numpy only; torch tried for cross-check)
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

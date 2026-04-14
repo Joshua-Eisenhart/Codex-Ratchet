@@ -13,6 +13,7 @@ Probe: verify the two sets are computed by different operators and
 Chirality: forward vs backward — these are the two chirality classes.
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

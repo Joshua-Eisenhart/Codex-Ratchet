@@ -13,6 +13,7 @@ Chirality: the anti-pattern is asymmetric — copying is detectable; true
            independence is not provable, only evidenced by graph sparsity.
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

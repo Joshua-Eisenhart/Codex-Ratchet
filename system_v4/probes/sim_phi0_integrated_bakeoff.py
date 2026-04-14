@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+classification = "classical_baseline"  # auto-backfill
 r"""
 PURE LEGO: Phi0 Integrated Bakeoff on Separated Bridge Foundations
 ==================================================================

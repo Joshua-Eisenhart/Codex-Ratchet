@@ -10,6 +10,7 @@ import json
 import pathlib
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 
 LN2 = float(np.log(2.0))

@@ -18,6 +18,7 @@ import numpy as np
 from scipy.linalg import sqrtm
 from scipy.optimize import minimize_scalar
 import z3
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", message="Matrix is singular", category=RuntimeWarning)
 

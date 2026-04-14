@@ -34,6 +34,7 @@ Sections
 import json, pathlib, time, traceback
 import numpy as np
 from itertools import product as iter_product
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-12

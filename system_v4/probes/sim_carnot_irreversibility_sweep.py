@@ -15,6 +15,7 @@ import json
 import pathlib
 
 from sim_stoch_harmonic_carnot_finite_time import (
+classification = "classical_baseline"  # auto-backfill
     CLASSIFICATION_NOTE as PARENT_SCOPE_NOTE,
     T_HOT,
     T_COLD,

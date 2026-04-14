@@ -23,6 +23,7 @@ import numpy as np
 from scipy.linalg import expm, logm
 import json
 import os
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # CONSTANTS

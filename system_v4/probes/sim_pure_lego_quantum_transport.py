@@ -27,6 +27,7 @@ from scipy.optimize import linprog
 import json
 import os
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 

@@ -13,6 +13,7 @@ the S^2 topology of the Bloch sphere, or does it collapse it?
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},

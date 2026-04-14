@@ -15,6 +15,7 @@ BND : trivial policy (uniform over A) preserves CI vacuously
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "CI + policy perturbation"},

@@ -26,6 +26,7 @@ from datetime import UTC, datetime
 
 import numpy as np
 from scipy.linalg import logm
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "supporting"
 CLASSIFICATION_NOTE = (

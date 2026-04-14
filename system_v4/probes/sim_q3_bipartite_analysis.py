@@ -19,6 +19,7 @@ Uses sympy to derive exact gradient formulas, confirmed against torch autograd.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -19,6 +19,7 @@ is well-defined regardless of float representation.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

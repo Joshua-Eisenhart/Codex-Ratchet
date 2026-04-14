@@ -18,6 +18,7 @@ BND : horizon >= full tree depth reproduces IGT-shell-local optimum
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "tree evaluation"},

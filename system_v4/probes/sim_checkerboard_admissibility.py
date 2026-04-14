@@ -34,6 +34,7 @@ import os
 import sys
 from dataclasses import dataclass
 from typing import Optional
+classification = "classical_baseline"  # auto-backfill
 
 _PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _PROBE_DIR)

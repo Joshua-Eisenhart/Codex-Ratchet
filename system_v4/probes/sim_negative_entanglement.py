@@ -27,6 +27,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 from scipy.optimize import minimize_scalar
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

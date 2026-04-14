@@ -17,6 +17,7 @@ import json
 import os
 import numpy as np
 from collections import Counter, defaultdict
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -25,6 +25,7 @@ from dataclasses import asdict, dataclass
 from typing import Any
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:

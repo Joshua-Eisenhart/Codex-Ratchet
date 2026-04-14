@@ -32,6 +32,7 @@ from datetime import datetime, timezone
 from typing import Dict, Any, Callable
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 OUTPUT_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

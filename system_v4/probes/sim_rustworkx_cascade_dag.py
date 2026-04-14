@@ -9,6 +9,7 @@ diamond dependency, parallel paths, and kill-set disjointness (via z3).
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

@@ -31,6 +31,7 @@ import time
 import traceback
 import numpy as np
 from datetime import datetime, timezone
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

@@ -181,6 +181,7 @@ if __name__ == "__main__":
         "sympy_version": SP_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_assoc_bundle_canonical_connection_from_hopf.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

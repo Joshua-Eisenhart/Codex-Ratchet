@@ -25,6 +25,7 @@ from dataclasses import dataclass, replace
 from typing import Dict, List
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 EPS = 1e-12
 

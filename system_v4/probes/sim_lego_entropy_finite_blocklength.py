@@ -20,6 +20,7 @@ bed before any bridge or full quantum optimizer is claimed.
 import json
 import math
 import os
+classification = "classical_baseline"  # auto-backfill
 
 
 TOOL_MANIFEST = {

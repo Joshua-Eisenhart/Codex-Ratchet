@@ -12,6 +12,7 @@ import warnings
 import numpy as np
 from scipy.linalg import sqrtm
 import sympy as sp
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", message="Matrix is singular", category=RuntimeWarning)
 from sympy import sqrt, Rational, conjugate, re, im, symbols, simplify, Matrix

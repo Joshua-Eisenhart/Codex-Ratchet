@@ -12,6 +12,7 @@ KILL token: S_NEG_NO_CHIRALITY
 import numpy as np
 import os, sys, json
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import density_to_bloch

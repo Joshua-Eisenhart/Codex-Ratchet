@@ -29,6 +29,7 @@ from typing import Callable, Dict, List
 import numpy as np
 
 from stoch_thermo_core import ProtocolStage, jarzynski_estimator, simulate_protocol
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

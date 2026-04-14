@@ -26,6 +26,7 @@ from itertools import combinations
 from typing import Dict, Iterable, List, Sequence, Tuple
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 ROOT = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))

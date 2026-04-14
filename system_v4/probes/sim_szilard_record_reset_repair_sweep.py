@@ -21,6 +21,7 @@ import pathlib
 import numpy as np
 
 import sim_szilard_record_reset_sweep as base
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"

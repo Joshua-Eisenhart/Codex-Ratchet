@@ -23,6 +23,7 @@ import json, os, sys
 from datetime import UTC, datetime
 import numpy as np
 from scipy.optimize import minimize
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine

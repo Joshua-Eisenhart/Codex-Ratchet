@@ -25,6 +25,7 @@ import json
 import os
 import time
 import math
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

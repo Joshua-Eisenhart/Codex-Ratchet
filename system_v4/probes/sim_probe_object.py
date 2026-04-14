@@ -16,6 +16,7 @@ import json
 import pathlib
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 try:
     import sympy as sp

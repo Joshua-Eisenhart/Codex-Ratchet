@@ -2,6 +2,7 @@
 import json
 import pathlib
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local discrete Axis-0 field row on one bounded lattice of signed field values, kept below selector promotion."

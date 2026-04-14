@@ -15,6 +15,7 @@ BND : e==0 (perfect match) -> surprise minimized at 0.5*(log 2pi - log pi)
 from __future__ import annotations
 import json, os, math
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Gaussian surprise numeric"},

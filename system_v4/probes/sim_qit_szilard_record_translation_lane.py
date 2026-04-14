@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import pathlib
 from statistics import mean
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

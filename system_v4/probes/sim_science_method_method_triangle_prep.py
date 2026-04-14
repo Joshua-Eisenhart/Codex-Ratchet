@@ -16,6 +16,7 @@ Chirality/orientation: each frame has its own orientation; coupling stub
        step 2. Step 3 (coexistence) is out of scope here.
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

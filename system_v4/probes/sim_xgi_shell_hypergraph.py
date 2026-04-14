@@ -17,6 +17,7 @@ Boundary test: singleton and full-set hyperedges behave correctly.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

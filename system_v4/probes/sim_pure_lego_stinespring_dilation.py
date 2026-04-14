@@ -29,6 +29,7 @@ import math
 import os
 import datetime
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

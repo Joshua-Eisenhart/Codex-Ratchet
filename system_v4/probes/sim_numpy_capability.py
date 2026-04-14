@@ -65,19 +65,44 @@ def run_positive_tests():
         "pass": np.allclose(reduced, np.eye(2) / 2),
     }
 
-    # eigendecomposition of hermitian
+    # eigendecomposition of hermitian: eigenvalues AND eigenvector orthonormality
     H = np.array([[2.0, 1.0], [1.0, 2.0]])
-    w, _ = np.linalg.eigh(H)
+    w, V = np.linalg.eigh(H)
+    orth_err = float(np.abs(V.T @ V - np.eye(2)).max())
+    recon_err = float(np.abs(V @ np.diag(w) @ V.T - H).max())
     r["eigh_symmetric"] = {
-        "pass": np.allclose(sorted(w.tolist()), [1.0, 3.0]),
+        "pass": (np.allclose(sorted(w.tolist()), [1.0, 3.0])
+                 and orth_err < 1e-10
+                 and recon_err < 1e-10),
         "eigvals": w.tolist(),
+        "orthonormality_err": orth_err,
+        "reconstruction_err": recon_err,
     }
 
-    # SVD reconstruction
+    # SVD reconstruction + singular-value non-negativity + U,V orthonormality
     M = np.random.RandomState(0).randn(4, 3)
     U, s, Vt = np.linalg.svd(M, full_matrices=False)
+    u_err = float(np.abs(U.T @ U - np.eye(3)).max())
+    v_err = float(np.abs(Vt @ Vt.T - np.eye(3)).max())
     r["svd_reconstruct"] = {
-        "pass": np.allclose(U @ np.diag(s) @ Vt, M, atol=1e-10),
+        "pass": (np.allclose(U @ np.diag(s) @ Vt, M, atol=1e-10)
+                 and bool(np.all(s >= -1e-12))
+                 and u_err < 1e-10
+                 and v_err < 1e-10),
+        "U_orth_err": u_err,
+        "Vt_orth_err": v_err,
+        "min_singular_value": float(s.min()),
+    }
+
+    # linalg.solve against a handbuilt system: [[2,1],[1,3]] x = [4, 5] -> [1.4, 1.2]
+    A_sys = np.array([[2.0, 1.0], [1.0, 3.0]])
+    b_sys = np.array([4.0, 5.0])
+    x_sys = np.linalg.solve(A_sys, b_sys)
+    residual = float(np.abs(A_sys @ x_sys - b_sys).max())
+    r["linalg_solve"] = {
+        "pass": residual < 1e-12 and np.allclose(x_sys, [1.4, 1.2]),
+        "residual": residual,
+        "solution": x_sys.tolist(),
     }
     return r
 
@@ -146,6 +171,7 @@ if __name__ == "__main__":
         "numpy_version": NP_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_cross_fep_x_igt.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

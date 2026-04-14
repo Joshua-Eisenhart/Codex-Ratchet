@@ -17,6 +17,7 @@ import math
 import os
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

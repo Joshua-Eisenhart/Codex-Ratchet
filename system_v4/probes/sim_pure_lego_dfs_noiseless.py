@@ -33,6 +33,7 @@ import sys
 from datetime import datetime, UTC
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 

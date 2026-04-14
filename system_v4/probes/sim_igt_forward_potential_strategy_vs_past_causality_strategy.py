@@ -7,6 +7,7 @@ when the short-horizon signal inverts the long-horizon attractor.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "scalar decisions"},

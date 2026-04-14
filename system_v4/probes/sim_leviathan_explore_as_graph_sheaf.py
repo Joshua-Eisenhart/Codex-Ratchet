@@ -12,6 +12,7 @@ Blind spot:
   - Stalk dimension fixed across groups.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "linear sheaf sections"},
                  "toponetx": {"tried": False, "used": False, "reason": ""}}

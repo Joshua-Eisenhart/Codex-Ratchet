@@ -36,6 +36,7 @@ import json
 import os
 import time
 import traceback
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

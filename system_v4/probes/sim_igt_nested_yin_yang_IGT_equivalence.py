@@ -7,6 +7,7 @@ two scales. The equivalence holds under a relabeling bijection.
 import json, os
 import numpy as np
 from itertools import product
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "no tensors"},

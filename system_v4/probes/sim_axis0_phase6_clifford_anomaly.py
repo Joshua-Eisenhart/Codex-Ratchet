@@ -36,6 +36,7 @@ from __future__ import annotations
 import json, os, sys, copy
 from datetime import UTC, datetime
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine

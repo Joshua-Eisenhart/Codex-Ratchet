@@ -6,6 +6,7 @@ Tests that the duality is self-inverse and probe-symmetric.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "no tensor ops needed"},

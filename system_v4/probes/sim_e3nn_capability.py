@@ -270,6 +270,7 @@ if __name__ == "__main__":
         "torch_available": TORCH_OK,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_e3nn_hopf_spinor_equivariance.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

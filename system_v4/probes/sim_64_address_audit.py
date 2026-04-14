@@ -22,6 +22,7 @@ Sources:
 
 import json, os
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 
 # ───────────────────────────────────────────────────────────────────

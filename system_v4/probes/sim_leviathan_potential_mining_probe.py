@@ -5,6 +5,7 @@ Mining potential = extracting work/value from distinguishable groups.
 Yield is bounded by group distinguishability (mutual information-like).
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

@@ -211,6 +211,7 @@ if __name__ == "__main__":
         "pytorch_version": TORCH_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_bridge_to_rhoab_construction.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

@@ -51,6 +51,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from scipy.linalg import sqrtm, logm
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

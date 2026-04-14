@@ -9,6 +9,7 @@ Gradient w.r.t. Bloch params. Numpy baseline cross-validation.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

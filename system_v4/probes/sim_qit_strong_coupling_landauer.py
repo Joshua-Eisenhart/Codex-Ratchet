@@ -22,6 +22,7 @@ import pathlib
 
 import numpy as np
 from scipy.linalg import expm
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "canonical"

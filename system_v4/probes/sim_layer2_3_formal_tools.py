@@ -13,6 +13,7 @@ Outputs JSON results to a2_state/sim_results/.
 
 import sys, os, json, time
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

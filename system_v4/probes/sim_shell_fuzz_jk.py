@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import pathlib
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local shell fuzz j/k support row on one bounded shell index family."

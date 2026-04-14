@@ -15,6 +15,7 @@ What this framing FAILS to capture:
 classification: classical_baseline
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": ""},

@@ -25,6 +25,7 @@ from datetime import datetime, UTC
 
 import numpy as np
 from numpy.linalg import eigvalsh
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # Constants

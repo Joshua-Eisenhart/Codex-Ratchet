@@ -18,6 +18,7 @@ from __future__ import annotations
 import json, pathlib, time, warnings
 import numpy as np
 from scipy.linalg import sqrtm, logm
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", message="Matrix is singular")
 

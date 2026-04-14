@@ -7,6 +7,7 @@ assume the holodeck module is present.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "stub-level contract test"},

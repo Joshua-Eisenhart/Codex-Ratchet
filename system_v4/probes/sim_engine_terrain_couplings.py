@@ -25,6 +25,7 @@ import os
 import copy
 import numpy as np
 from datetime import datetime, timezone
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

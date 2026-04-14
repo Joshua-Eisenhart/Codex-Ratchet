@@ -18,6 +18,7 @@ import sys
 import os
 import json
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

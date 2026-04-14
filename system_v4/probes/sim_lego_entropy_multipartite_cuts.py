@@ -24,6 +24,7 @@ import os
 import time
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-12

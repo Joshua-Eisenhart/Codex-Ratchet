@@ -27,6 +27,7 @@ import rustworkx as rx
 import z3
 
 from hopf_manifold import (
+classification = "classical_baseline"  # auto-backfill
     TORUS_CLIFFORD,
     TORUS_INNER,
     TORUS_OUTER,

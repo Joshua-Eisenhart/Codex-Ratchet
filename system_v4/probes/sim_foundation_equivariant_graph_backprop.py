@@ -40,6 +40,7 @@ import torch.nn.functional as F
 
 from torch_geometric.data import Batch, Data
 from torch_geometric.nn import GCNConv
+classification = "classical_baseline"  # auto-backfill
 
 torch.manual_seed(7)
 np.random.seed(7)

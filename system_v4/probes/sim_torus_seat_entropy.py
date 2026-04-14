@@ -2,6 +2,7 @@
 import json
 import pathlib
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local torus-seat entropy row on one bounded seat-allocation distribution."

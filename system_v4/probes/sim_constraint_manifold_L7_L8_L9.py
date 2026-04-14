@@ -14,6 +14,7 @@ Each layer's output is the LANDSCAPE before constraints narrow it.
 
 import sys, os, json, time, itertools
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

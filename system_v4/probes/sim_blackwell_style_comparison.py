@@ -15,6 +15,7 @@ import numpy as np
 
 import cvc5
 from cvc5 import Kind
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-10

@@ -40,6 +40,7 @@ from dataclasses import dataclass
 from typing import Dict, List
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(11)
 EPS = 1e-12

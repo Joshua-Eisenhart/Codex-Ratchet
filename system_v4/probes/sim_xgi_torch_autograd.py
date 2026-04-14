@@ -22,6 +22,7 @@ Boundary test: uniform edge weights (all 1.0) vs perturbed weights.
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

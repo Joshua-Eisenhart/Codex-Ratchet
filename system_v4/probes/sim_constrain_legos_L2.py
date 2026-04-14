@@ -42,6 +42,7 @@ import sympy as sp
 from sympy import Matrix, symbols, sqrt, pi, cos, sin, exp, I, conjugate
 from sympy import simplify, trigsimp, diff, atan2, Rational
 from z3 import (
+classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal, If,
 )

@@ -42,6 +42,7 @@ import time
 import traceback
 import numpy as np
 import sys
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

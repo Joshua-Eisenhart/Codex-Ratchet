@@ -11,6 +11,7 @@ on a family killed at a later cascade layer (cross-layer consistency).
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

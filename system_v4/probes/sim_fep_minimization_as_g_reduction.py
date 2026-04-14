@@ -15,6 +15,7 @@ BND : q = p => full stabilizer equality already.
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

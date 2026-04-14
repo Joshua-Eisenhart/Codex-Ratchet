@@ -20,6 +20,7 @@ import sys
 import numpy as np
 import rustworkx as rx
 import z3
+classification = "classical_baseline"  # auto-backfill
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:

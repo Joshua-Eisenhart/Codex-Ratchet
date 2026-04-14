@@ -6,6 +6,7 @@ admissibility. The irrational label is probe-relative.
 """
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "scalar sequence"},

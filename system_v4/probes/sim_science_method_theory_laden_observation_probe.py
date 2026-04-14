@@ -13,6 +13,7 @@ Admissibility: the claim "observation is frame-free" is refuted when
 Chirality: the negative result IS the canonical result here.
 """
 import os, sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

@@ -14,6 +14,7 @@ import os
 import warnings
 import numpy as np
 from scipy.linalg import logm, sqrtm, expm
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

@@ -24,6 +24,7 @@ import numpy as np
 from typing import Dict, List, Tuple
 
 import sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from engine_core import GeometricEngine, EngineState, StageControls, TERRAINS

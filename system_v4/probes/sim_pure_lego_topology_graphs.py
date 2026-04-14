@@ -39,6 +39,7 @@ from toponetx import CellComplex
 import torch
 from torch_geometric.data import Data
 from torch_geometric.nn import MessagePassing
+classification = "classical_baseline"  # auto-backfill
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

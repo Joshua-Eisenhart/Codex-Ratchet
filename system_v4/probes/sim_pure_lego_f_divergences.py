@@ -35,6 +35,7 @@ from datetime import datetime, UTC
 
 import numpy as np
 from scipy.linalg import sqrtm, logm, fractional_matrix_power
+classification = "classical_baseline"  # auto-backfill
 
 # ═══════════════════════════════════════════════════════════════════
 # HELPERS

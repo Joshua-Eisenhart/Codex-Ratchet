@@ -19,6 +19,7 @@ Tools: e3nn=load_bearing, pytorch=load_bearing, z3=supportive, cvc5=supportive
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

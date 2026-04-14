@@ -19,6 +19,7 @@ from __future__ import annotations
 import json, os, sys, time, warnings
 import numpy as np
 from scipy.linalg import sqrtm, logm, fractional_matrix_power
+classification = "classical_baseline"  # auto-backfill
 
 warnings.filterwarnings("ignore", message="Matrix is singular", category=RuntimeWarning)
 # sqrtm on rank-1 density matrices triggers a benign LinAlgWarning

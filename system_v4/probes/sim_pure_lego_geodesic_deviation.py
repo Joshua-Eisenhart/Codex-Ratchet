@@ -37,6 +37,7 @@ import pathlib
 from datetime import datetime, timezone
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

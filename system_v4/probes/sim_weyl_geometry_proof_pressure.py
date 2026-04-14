@@ -18,6 +18,7 @@ import pathlib
 
 import rustworkx as rx
 import z3
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

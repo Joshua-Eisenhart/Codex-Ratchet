@@ -209,10 +209,21 @@ def run_positive_tests():
     # --- 6. Simplicial complex lift (if available in this xgi version) ---
     sc_cls = getattr(xgi, "SimplicialComplex", None)
     if sc_cls is None:
+        # Even when SimplicialComplex isn't top-level, require the base
+        # Hypergraph interface to still support downward-closed containment
+        # checks on a manually-expanded 2-simplex. This keeps a real
+        # structural claim on the capability boundary instead of auto-passing.
+        H_ds = xgi.Hypergraph()
+        H_ds.add_nodes_from([0, 1, 2])
+        H_ds.add_edges_from([[0, 1, 2], [0, 1], [0, 2], [1, 2]])
+        members = {frozenset(H_ds.edges.members(e)) for e in H_ds.edges}
+        required = {frozenset([0, 1, 2]), frozenset([0, 1]),
+                    frozenset([0, 2]), frozenset([1, 2])}
         results["simplicial_lift"] = {
-            "pass": True,
-            "skipped": True,
-            "detail": f"xgi {XGI_VERSION} does not expose SimplicialComplex at top level -- capability limit noted",
+            "pass": required.issubset(members),
+            "skipped_reason": f"xgi {XGI_VERSION} has no top-level SimplicialComplex",
+            "got_members": [sorted(m) for m in members],
+            "detail": "fallback: Hypergraph must still carry all 2-faces of {0,1,2}",
         }
     else:
         try:
@@ -348,12 +359,19 @@ def run_boundary_tests():
     except Exception as exc:
         accepted = False
         err = type(exc).__name__
+    # Require EITHER clean acceptance (edge count increments to 1) OR a
+    # clean typed refusal (exception raised). An unaccepted-but-silent
+    # state (accepted=False, err=None, n_edges unchanged) is a real failure.
+    if accepted:
+        ok = (n_edges == 1)
+    else:
+        ok = (err is not None)
     results["singleton_hyperedge_behavior"] = {
-        "pass": True,   # behavior-recording only, not a failure either way
+        "pass": bool(ok),
         "accepted": accepted,
         "num_edges_after": n_edges,
         "error_type": err,
-        "detail": "records xgi's policy on size-1 hyperedges (capability boundary)",
+        "detail": "xgi must either accept size-1 edges cleanly or raise; silent refusal fails",
     }
 
     # --- B4. Large-ish sanity check: 50 nodes, all in one hyperedge ---
@@ -400,6 +418,7 @@ if __name__ == "__main__":
         "xgi_version": XGI_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_xgi_family_hypergraph.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

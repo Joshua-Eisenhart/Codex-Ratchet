@@ -19,6 +19,7 @@ import json, pathlib, time, traceback
 import numpy as np
 from scipy.linalg import expm, sqrtm, logm
 from z3 import (
+classification = "classical_baseline"  # auto-backfill
     Reals, Real, Solver, sat, unsat, And, Or, Not, ForAll,
     Implies, RealVal, simplify, Sum, If
 )

@@ -18,6 +18,7 @@ Sections
 import json, sys, os
 import numpy as np
 from itertools import product as iter_product
+classification = "classical_baseline"  # auto-backfill
 
 # ── constants ────────────────────────────────────────────────────────────────
 

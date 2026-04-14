@@ -7,6 +7,7 @@ Part of the G-tower math backlog (families 7-12). Atomization pattern step
 z3 load-bearing for finite-field admissibility constraints; sympy for modular arithmetic & Frobenius.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},

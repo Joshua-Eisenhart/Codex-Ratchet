@@ -11,6 +11,7 @@ from fractions import Fraction
 
 import numpy as np
 from z3 import Bool, If, Or, RealVal, Solver, Sum, sat, unsat
+classification = "classical_baseline"  # auto-backfill
 
 
 EPS = 1e-10

@@ -33,6 +33,7 @@ import warnings
 
 import numpy as np
 from scipy.linalg import sqrtm, logm
+classification = "classical_baseline"  # auto-backfill
 
 np.random.seed(42)
 EPS = 1e-14

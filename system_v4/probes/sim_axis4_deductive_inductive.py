@@ -25,6 +25,7 @@ import sys
 from datetime import datetime, timezone
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

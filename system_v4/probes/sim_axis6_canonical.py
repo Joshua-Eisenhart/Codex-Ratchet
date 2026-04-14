@@ -27,6 +27,7 @@ import os
 import time
 import traceback
 import math
+classification = "classical_baseline"  # auto-backfill
 
 # Set geomstats backend before any geomstats import
 os.environ.setdefault("GEOMSTATS_BACKEND", "numpy")

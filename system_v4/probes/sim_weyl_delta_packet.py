@@ -16,6 +16,7 @@ from pathlib import Path
 import numpy as np
 
 from engine_core import (
+classification = "classical_baseline"  # auto-backfill
     GeometricEngine,
     STAGES,
     StageControls,

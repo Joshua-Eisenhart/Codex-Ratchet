@@ -12,6 +12,7 @@ import json
 import os
 import numpy as np
 from scipy.linalg import expm
+classification = "classical_baseline"  # auto-backfill
 
 # ─── Pauli matrices ───────────────────────────────────────────────────────────
 sx = np.array([[0, 1], [1, 0]], dtype=complex)

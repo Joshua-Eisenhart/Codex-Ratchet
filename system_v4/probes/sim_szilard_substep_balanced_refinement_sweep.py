@@ -14,6 +14,7 @@ import pathlib
 import numpy as np
 
 import sim_szilard_substep_refinement_sweep as coarse
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"

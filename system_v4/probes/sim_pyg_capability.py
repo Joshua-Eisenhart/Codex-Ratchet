@@ -46,7 +46,20 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "no persistent homology in this probe"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",
+    "pyg":       "load_bearing",
+    "z3":        None,
+    "cvc5":      None,
+    "sympy":     None,
+    "clifford":  None,
+    "geomstats": None,
+    "e3nn":      None,
+    "rustworkx": None,
+    "xgi":       None,
+    "toponetx":  None,
+    "gudhi":     None,
+}
 
 try:
     import torch

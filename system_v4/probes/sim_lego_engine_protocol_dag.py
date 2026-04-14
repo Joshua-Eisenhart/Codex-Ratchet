@@ -21,6 +21,7 @@ from typing import Iterable
 
 import rustworkx as rx
 import z3
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "canonical"

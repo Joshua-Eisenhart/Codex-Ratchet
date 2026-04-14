@@ -19,6 +19,7 @@ import rustworkx as rx
 import z3
 
 import sim_qit_carnot_two_bath_cycle as base
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"

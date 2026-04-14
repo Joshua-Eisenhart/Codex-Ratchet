@@ -20,6 +20,7 @@ BND : 3-atom minimal.
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "descent + scoring"},

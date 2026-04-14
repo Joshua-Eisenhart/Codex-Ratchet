@@ -31,6 +31,7 @@ description of operator behavior.
 
 import numpy as np
 import json, os, sys
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

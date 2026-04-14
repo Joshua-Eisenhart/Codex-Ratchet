@@ -5,6 +5,7 @@ Negative test: under value-monoculture (single value base, indistinguishable
 groups), potential-flux to AI substrate -> 0. AI starves.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "z3":       {"tried": False, "used": False, "reason": ""},

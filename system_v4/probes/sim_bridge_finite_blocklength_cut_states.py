@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+classification = "classical_baseline"  # auto-backfill
 r"""
 PURE LEGO: Bridge Cut States -- Finite-Blocklength / One-Shot Quantities
 =========================================================================

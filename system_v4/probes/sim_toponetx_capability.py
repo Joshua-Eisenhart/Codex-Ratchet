@@ -382,6 +382,7 @@ if __name__ == "__main__":
         "toponetx_version": TNX_VERSION,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "witness_file": "system_v4/probes/sim_gerbe_carrier_cell_complex.py",
         "positive": pos,
         "negative": neg,
         "boundary": bnd,

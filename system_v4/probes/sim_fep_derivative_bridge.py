@@ -1,4 +1,5 @@
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 with open("../a2_state/sim_results/bridge_engine_fep_holodeck.json", "r") as f:
     d = json.load(f)
 

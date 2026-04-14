@@ -15,6 +15,7 @@ import pathlib
 import numpy as np
 
 from stoch_thermo_core import ProtocolStage, simulate_protocol
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"

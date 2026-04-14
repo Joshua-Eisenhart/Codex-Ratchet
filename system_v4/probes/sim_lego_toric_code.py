@@ -36,6 +36,7 @@ import os
 import numpy as np
 from datetime import datetime
 from itertools import combinations
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

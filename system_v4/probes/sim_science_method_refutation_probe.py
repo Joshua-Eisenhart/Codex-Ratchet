@@ -14,6 +14,7 @@ Coupling stub: consumes candidate list from conjecture_generation format.
 """
 import os
 import sys
+classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(__file__))
 from _sci_method_common import new_manifest, write_results, all_pass
 

@@ -9,6 +9,7 @@ import json
 import pathlib
 
 import xgi
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "canonical"

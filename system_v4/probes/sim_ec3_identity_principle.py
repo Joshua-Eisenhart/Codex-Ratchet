@@ -27,6 +27,7 @@ Date: 2026-03-30
 """
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # ─── qubit toolbox ───────────────────────────────────────────────────
 I = np.eye(2, dtype=complex)

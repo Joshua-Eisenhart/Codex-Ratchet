@@ -34,6 +34,7 @@ from datetime import datetime, UTC
 from itertools import combinations
 
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

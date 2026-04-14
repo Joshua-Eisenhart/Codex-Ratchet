@@ -24,6 +24,7 @@ import numpy as np
 import json
 import os
 from datetime import datetime, UTC
+classification = "classical_baseline"  # auto-backfill
 
 # ---------------------------------------------------------------------------
 # Pauli matrices

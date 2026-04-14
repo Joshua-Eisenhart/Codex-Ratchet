@@ -5,6 +5,7 @@ Detector for collapse-to-single-narrative failure mode: narrative-share
 concentration (HHI) above threshold indicates authoritarian attractor.
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy":    {"tried": False, "used": False, "reason": ""},

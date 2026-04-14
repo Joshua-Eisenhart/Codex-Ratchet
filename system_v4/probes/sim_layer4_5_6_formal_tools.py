@@ -13,6 +13,7 @@ Outputs 3 JSON files to a2_state/sim_results/.
 
 import sys, os, json, datetime, traceback
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -17,6 +17,7 @@ import pathlib
 import numpy as np
 
 import sim_stoch_doublewell_landauer_erasure as base
+classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"

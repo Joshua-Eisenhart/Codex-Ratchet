@@ -36,6 +36,7 @@ from collections import OrderedDict
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 from z3 import (
+classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,
 )

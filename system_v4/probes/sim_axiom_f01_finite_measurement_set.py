@@ -8,6 +8,7 @@ load-bearing: we require each measurement to be a distinct index in
 
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

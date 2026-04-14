@@ -25,6 +25,7 @@ and should yield H1 (equatorial circle) or H2 (sphere topology).
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

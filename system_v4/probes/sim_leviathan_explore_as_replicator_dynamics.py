@@ -12,6 +12,7 @@ Blind spot:
   - No innovation / mutation (closed strategy set).
 """
 import json, os, numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "replicator ODE"}}
 TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}

@@ -20,6 +20,7 @@ Tools: sympy=load_bearing, pytorch=load_bearing, z3=supportive, cvc5=supportive
 import json
 import os
 import math
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

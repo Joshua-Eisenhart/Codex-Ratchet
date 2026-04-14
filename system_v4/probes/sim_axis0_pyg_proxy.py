@@ -35,6 +35,7 @@ classification: canonical
 import json
 import math
 import os
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

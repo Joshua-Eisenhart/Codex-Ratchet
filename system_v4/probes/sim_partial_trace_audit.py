@@ -19,6 +19,7 @@ import re
 import numpy as np
 from pathlib import Path
 from datetime import datetime
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # CONSTANTS

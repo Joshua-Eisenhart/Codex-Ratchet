@@ -22,6 +22,7 @@ from typing import Any
 import numpy as np
 import rustworkx as rx
 import z3
+classification = "classical_baseline"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

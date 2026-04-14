@@ -354,7 +354,25 @@ def run_boundary_tests():
             "detail": "Both orderings must be valid; speedup reported for context, not load-bearing.",
         }
     else:
-        perf = {"pass": True, "detail": "networkx missing; perf comparison skipped"}
+        # No networkx -- still run rustworkx on the moderate DAG and require
+        # a topologically valid ordering. This keeps the capability claim
+        # real instead of auto-passing.
+        rng = np.random.default_rng(0)
+        N = 1000
+        edges = []
+        for i in range(N):
+            targets = rng.integers(i + 1, N + 1, size=3)
+            for j in targets:
+                if j < N:
+                    edges.append((int(i), int(j), 1.0))
+        g_rx_big, _ = _build_rx_dag(edges, N)
+        order_rx = list(rx.topological_sort(g_rx_big))
+        perf = {
+            "pass": _is_topo_valid(order_rx, edges),
+            "N_nodes": N,
+            "M_edges": len(edges),
+            "detail": "networkx missing; rustworkx-only topo validity still enforced",
+        }
     results["perf_vs_networkx_1k"] = perf
 
     return results

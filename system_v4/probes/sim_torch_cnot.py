@@ -17,6 +17,7 @@ Tests torch CNOT against numpy baseline across:
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

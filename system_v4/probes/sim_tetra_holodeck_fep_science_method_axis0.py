@@ -42,6 +42,7 @@ Size target: ~180 lines. Classification: canonical. z3 load-bearing.
 from __future__ import annotations
 import json, os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

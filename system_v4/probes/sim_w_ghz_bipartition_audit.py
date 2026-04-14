@@ -18,6 +18,7 @@ Output: system_v4/probes/a2_state/sim_results/w_ghz_bipartition_audit_results.js
 import json
 import os
 import numpy as np
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

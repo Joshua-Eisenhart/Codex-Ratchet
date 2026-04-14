@@ -34,6 +34,7 @@ For each relay strength:
 import json
 import os
 import time
+classification = "classical_baseline"  # auto-backfill
 
 # =====================================================================
 # TOOL MANIFEST

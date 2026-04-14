@@ -14,6 +14,37 @@ Outputs JSON results to a2_state/sim_results/.
 import sys, os, json, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: layers 2-3 are audited here with topology and Clifford-backed formal checks, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "carrier/loop numerics and JSON-safe verification surfaces"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex carrier realization"},
+    "clifford": {"tried": True, "used": True, "reason": "rotor and density conversion checks"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "toponetx": "supportive",
+    "clifford": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "gudhi": None,
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

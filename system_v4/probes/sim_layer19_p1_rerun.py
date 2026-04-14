@@ -23,6 +23,15 @@ from datetime import datetime, UTC
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: the layer-19 P1 rerun is represented here by eta-sweep 3-qubit engine numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "eta sweeps, trajectory summaries, and gradient numerics"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

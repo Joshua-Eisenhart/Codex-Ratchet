@@ -4,8 +4,16 @@ Classical Gaussian phase-space density Q(q,p) on a discretized grid; checks
 non-negativity, normalization, and concentration around (q0,p0). Innately misses
 quantum coherent-state overcompleteness / noncommutative phase space structure."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: Husimi phase-space representation is approximated here by Gaussian grid numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "phase-space grids, Gaussian densities, and normalization numerics"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 NAME = "husimi_phase_space_representation"
 
 def husimi_gaussian(q, p, q0, p0, sigma=1.0):

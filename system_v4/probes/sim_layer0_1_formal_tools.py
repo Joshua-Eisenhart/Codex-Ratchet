@@ -23,6 +23,37 @@ import os
 import json
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: layers 0-1 are audited here with formal-tool proofs and algebra checks, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix numerics and JSON-safe verification surfaces"},
+    "z3": {"tried": True, "used": True, "reason": "SAT/UNSAT checks for root constraints and fences"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic algebra verification"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(3) algebra checks"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "z3": "supportive",
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "cvc5": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

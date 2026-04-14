@@ -88,7 +88,53 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--report-json", action="store_true",
                     help=f"Write JSON summary to {REPORT_PATH}")
+    ap.add_argument("--sim", type=str, default=None,
+                    help="Gate a single sim path; print JSON report; exit 0 if all "
+                         "load-bearing tools have passing capability probes.")
     args = ap.parse_args()
+
+    if args.sim is not None:
+        sim_path = Path(args.sim)
+        if not sim_path.is_absolute():
+            sim_path = (REPO / sim_path).resolve()
+        report: dict = {
+            "sim_file": sim_path.name,
+            "sim_path": str(sim_path),
+            "load_bearing_tools": [],
+            "violations": [],
+        }
+        if not sim_path.exists():
+            report["error"] = "sim_not_found"
+            print(json.dumps(report, indent=2))
+            return 1
+        depth = extract_tool_integration_depth(sim_path)
+        if depth is None:
+            report["error"] = "no_tool_integration_depth"
+            print(json.dumps(report, indent=2))
+            return 1
+        for tool, level in depth.items():
+            if not isinstance(level, str) or level != "load_bearing":
+                continue
+            canon = canonical(str(tool))
+            entry = {"tool_declared": str(tool), "tool_canonical": canon}
+            report["load_bearing_tools"].append(entry)
+            # Self-probe: a capability sim is load-bearing on its own tool.
+            if sim_path.name == f"sim_{canon}_capability.py":
+                entry["status"] = "self_probe_ok"
+                continue
+            status = probe_status(canon)
+            if status is None:
+                entry["status"] = "ok"
+            else:
+                entry["status"] = status
+                report["violations"].append({
+                    "sim_file": sim_path.name,
+                    "tool_declared": str(tool),
+                    "tool_canonical": canon,
+                    "status": status,
+                })
+        print(json.dumps(report, indent=2))
+        return 1 if report["violations"] else 0
 
     sims = sorted(
         p for p in PROBES_DIR.glob("sim_*.py")

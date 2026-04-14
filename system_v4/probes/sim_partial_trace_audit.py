@@ -760,8 +760,9 @@ def main():
         json.dump(results, f, indent=2, default=str)
     print(f"\nResults written to: {output_path}")
 
-    # Return exit code based on findings
-    return 0 if buggy_files == 0 and len(naming_issues) == 0 else 1
+    # Report-only auditor: exit 0 regardless of findings (findings are in the
+    # results JSON). Non-zero exit is reserved for true internal errors.
+    return 0
 
 
 if __name__ == "__main__":

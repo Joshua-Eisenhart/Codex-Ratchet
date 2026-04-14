@@ -1,0 +1,110 @@
+{
+  "name": "holodeck_atom_6_chirality",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) pseudoscalar algebra load-bearing for chirality"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Cl(3) pseudoscalar"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "i_squared_is_neg1": {
+      "val": "-1",
+      "pass": true
+    },
+    "single_refl_flips": {
+      "I_sign": 1.0,
+      "Ip_sign_opposite": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "i_not_scalar": {
+      "scalar": 0.0,
+      "pass": true
+    },
+    "i_sq_not_plus1": {
+      "val": -1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "double_refl_restores": {
+      "pass": true
+    },
+    "I_central": {
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

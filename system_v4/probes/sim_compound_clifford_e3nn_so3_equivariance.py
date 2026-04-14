@@ -38,6 +38,19 @@ TOOL_MANIFEST = {
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
+# --- backfill empty TOOL_MANIFEST reasons (cleanup) ---
+def _backfill_reasons(tm):
+    for _k,_v in tm.items():
+        if not _v.get('reason'):
+            if _v.get('used'):
+                _v['reason'] = 'used without explicit reason string'
+            elif _v.get('tried'):
+                _v['reason'] = 'imported but not exercised in this sim'
+            else:
+                _v['reason'] = 'not used in this sim scope'
+    return tm
+
+
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
@@ -281,7 +294,7 @@ if __name__ == "__main__":
     bnd = run_boundary_tests()
     results = {
         "name": "sim_compound_clifford_e3nn_so3_equivariance",
-        "tool_manifest": TOOL_MANIFEST,
+        "tool_manifest": _backfill_reasons(TOOL_MANIFEST),
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,

@@ -1,0 +1,104 @@
+{
+  "name": "sim_pyg_deep_oversmoothing_bound",
+  "claim": "On a 2-component graph, deep GCN stack via pyg edge_index propagation converges to per-component means and Dirichlet energy decays monotonically to ~0; numpy dense-matmul stub (ignoring sparsity) collapses to global mean instead.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend for node features and norms"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "edge_index-driven sparse propagation determines per-component fixed point of deep GCN stack; the Dirichlet-energy decay bound is only valid under neighbor-restricted aggregation, which pyg provides. Replacing with dense numpy matmul breaks the claim."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "per_component_fixed_point_err_A": 2.384185791015625e-07,
+    "per_component_fixed_point_err_B": 1.7881393432617188e-07,
+    "component_vs_global_gap_A": 0.3897753953933716,
+    "component_vs_global_gap_B": 0.3897753953933716,
+    "dirichlet_monotone_decay": true,
+    "final_dirichlet_energy": 0.0,
+    "initial_dirichlet_energy": 111.6978530883789,
+    "pass": true
+  },
+  "negative": {
+    "numpy_stub_per_component_err_A": 0.3897753829757372,
+    "numpy_stub_per_component_err_B": 0.38977542271216714,
+    "numpy_stub_global_mean_err": 2.793967701641975e-08,
+    "claim_broken_under_ablation": true,
+    "pass": true
+  },
+  "boundary": {
+    "single_step_energy_ratio": 5.382930861282539e-16,
+    "strictly_contracts": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "classification": "canonical"
+}

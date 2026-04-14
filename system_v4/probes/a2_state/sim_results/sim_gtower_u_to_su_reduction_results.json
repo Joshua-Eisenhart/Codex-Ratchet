@@ -1,0 +1,106 @@
+{
+  "name": "sim_gtower_u_to_su_reduction",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolically computes det(c*U)=c^n*det(U), solves c^n=1/det(U) exactly, and certifies |c|=1 -- proves U(1) phase is trivializable"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "u2_frame_is_unitary": true,
+    "sympy_c_on_unit_circle": true,
+    "sympy_residual_zero": true,
+    "sympy_cU_in_SUn": "True",
+    "det_cU_numeric": "(0.9999999999999998-2.626815880129516e-16j)",
+    "u3_sympy_c_unit": true,
+    "u3_sympy_cU_in_SUn": "True"
+  },
+  "negative": {
+    "nonunitary_det1_not_in_SUn": true,
+    "nonunit_sympy_resid_zero": true,
+    "nonunit_sympy_cM_not_SUn": true,
+    "singular_no_solution": true
+  },
+  "boundary": {
+    "identity_c_unit": true,
+    "identity_resid_zero": true,
+    "identity_cI_in_SUn": "True",
+    "n1_cU_is_one": "True",
+    "n1_c_unit": true,
+    "n4_root_count": 4,
+    "n4_has_multiple_roots": true,
+    "n4_all_roots_on_unit_circle": true
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,109 @@
+{
+  "name": "sci_method_atom_7_coupling",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing witness of a pair excluded by coupling"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic predicate form available for cross-check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this sim scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nontrivial_coupling": {
+      "n_marginal": 9,
+      "n_joint": 5,
+      "z3_excluded_witness": [
+        2,
+        2
+      ],
+      "strict_subset": true,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "trivial_coupling": {
+      "n_marginal": 9,
+      "n_joint": 9,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "empty_marginal": {
+      "n_joint": 0,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "overall_pass": true
+}

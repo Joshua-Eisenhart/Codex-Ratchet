@@ -1,0 +1,186 @@
+{
+  "name": "sim_L10_engine_family_split",
+  "layer": "L10",
+  "ladder_row": "Engine family split -- Type 1 vs Type 2",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proved UNSAT that a single admissible outer-ring loop has both chi>0 and chi<0; this is the structural proof that the Type1/Type2 split is a partition, not an overlap."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "imported but not exercised in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_disjoint_chi": {
+      "chi_cw": 1,
+      "chi_ccw": -1,
+      "class_cw": "Type1",
+      "class_ccw": "Type2",
+      "pass": true
+    },
+    "P2_chiral_density_split": {
+      "type1_rhoL_rhoR": [
+        1.0,
+        0.0
+      ],
+      "type2_rhoL_rhoR": [
+        0.0,
+        1.0
+      ],
+      "pass": true
+    },
+    "P3_unsigned_summary_indistinguishable": {
+      "unsigned_cw": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "unsigned_ccw": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pass": true
+    },
+    "P4_z3_no_dual_chi_loop": {
+      "verdict": "unsat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_scrambled_collapses_split": {
+      "chi": 0,
+      "class": "UNASSIGNED",
+      "pass": true
+    },
+    "N2_fiber_base_swap_collapse": {
+      "chi": 0,
+      "class": "UNASSIGNED",
+      "pass": true
+    },
+    "N3_no_chirality_collapse": {
+      "type1": [
+        0.5,
+        0.5
+      ],
+      "type2": [
+        0.5,
+        0.5
+      ],
+      "pass": true
+    },
+    "N4_unoriented_ensemble_not_a_split": {
+      "saw_type1": true,
+      "saw_type2": true,
+      "saw_unassigned": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_single_step": {
+      "chi": 1,
+      "class": "Type1",
+      "pass": true
+    },
+    "B2_symmetric_chi_zero": {
+      "chi": 0,
+      "class": "UNASSIGNED",
+      "pass": true
+    },
+    "B3_near_balance": {
+      "chi": 1,
+      "class": "Type1",
+      "pass": true
+    },
+    "B4_odd_ring_z3_partition": {
+      "verdict": "unsat",
+      "pass": true
+    }
+  },
+  "pass": {
+    "positive": true,
+    "negative": true,
+    "boundary": true,
+    "overall": true
+  },
+  "notes": "Split admitted under L5/L6/L7/L8/L9 as two surviving candidate families distinguished by signed outer-ring traversal chi. z3 UNSAT proves structural partition (no loop is both Type1 and Type2). Negatives show the split collapses without orientation or chirality -- confirming load-bearing role."
+}

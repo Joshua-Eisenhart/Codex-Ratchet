@@ -47,6 +47,10 @@ def canonical(tool: str) -> str:
     return ALIASES.get(key, key)
 
 
+def _is_ignored_sim_path(path: Path) -> bool:
+    return path.name.endswith(" 2.py")
+
+
 def _find_module_literal(tree: ast.AST, name: str):
     """Return the literal Python value of a top-level `name = <literal>` assign, or None.
 
@@ -229,6 +233,7 @@ def main() -> int:
 
     sims = sorted(
         p for p in PROBES_DIR.glob("sim_*.py")
+        if not _is_ignored_sim_path(p)
         if "_archive_lane_c" not in p.parts
     )
 

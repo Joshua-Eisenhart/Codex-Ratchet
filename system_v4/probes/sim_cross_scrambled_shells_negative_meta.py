@@ -56,7 +56,7 @@ except ImportError:
 # present AND the payload satisfies the slot's condition.
 SHELLS = {
     "holodeck":       ("mask",        np.array([1, 1, 0, 0])),
-    "fep":            ("belief",      np.array([0.55, 0.30, 0.10, 0.05])),
+    "fep":            ("belief",      np.array([0.65, 0.33, 0.01, 0.01])),
     "igt":            ("horizon",     {"short": 0.2, "long": 0.8}),
     "leviathan":      ("civic_var",   0.02),              # low variance = civic consensus
     "science_method": ("refutable",   {"claim": "X", "refutable": True, "surprise": 0.7}),

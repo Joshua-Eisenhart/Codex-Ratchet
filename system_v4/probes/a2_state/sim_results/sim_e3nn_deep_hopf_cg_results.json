@@ -1,0 +1,103 @@
+{
+  "name": "sim_e3nn_deep_hopf_cg",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend for e3nn and closed-form comparison"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no message passing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric equivariance, not FOL"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric equivariance, not FOL"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "CG computed from closed form directly"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) handled via Wigner-D, not GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold mean here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn FullTensorProduct provides the SO(3) CG machine; equivariance check IS the test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e3nn_so3_equivariance": {
+      "pass": true,
+      "max_err": 1.1920928955078125e-06
+    },
+    "e3nn_cg_matches_closed_form": {
+      "pass": true,
+      "ratio_spread": 1.7881393432617188e-07
+    }
+  },
+  "negative": {
+    "non_rotation_breaks_equivariance": {
+      "pass": true,
+      "max_err": 1.723876953125
+    }
+  },
+  "boundary": {
+    "identity_rotation_zero_error": {
+      "pass": true,
+      "max_err": 0.0
+    }
+  },
+  "overall_pass": true
+}

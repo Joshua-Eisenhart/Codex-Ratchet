@@ -1,0 +1,227 @@
+{
+  "name": "L8_chiral_density_bookkeeping",
+  "layer": 8,
+  "object": "chiral density (rho_L, rho_R) and joint bookkeeping",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not used (numpy suffices for 2x2 density)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no graph structure at L8"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT proof that rho_mix(w_L,w_R) is a valid density for every point of the 2-simplex (trace=1 and eigenvalues >=0); UNSAT on the violation formula is the admissibility certificate."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "available; z3 already covers the SMT layer"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic eigenvalues/trace of the chiral mixture confirm eigs={wL,wR} and tr=wL+wR (cross-check of the z3 encoding)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "available; 2x2 density doesn't need Cl(3) rotors at L8 surface"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no manifold transport at this layer"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no equivariant nets at L8"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not a graph problem"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no hypergraph object"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no cell complex at L8"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "available; no persistence question here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_L_is_density": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": true,
+        "psd": true,
+        "min_eig": 0.0
+      }
+    },
+    "P1_rho_R_is_density": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": true,
+        "psd": true,
+        "min_eig": 0.0
+      }
+    },
+    "P2_rank_and_orthogonality": {
+      "pass": true,
+      "rank_L": 1,
+      "rank_R": 1,
+      "tr_rhoL_rhoR": 0.0
+    },
+    "P3_joint_mixture_admissible": {
+      "pass": true,
+      "cases": [
+        {
+          "wL": 1.0,
+          "wR": 0.0,
+          "pass": true,
+          "hermitian": true,
+          "trace_one": true,
+          "psd": true,
+          "min_eig": 0.0
+        },
+        {
+          "wL": 0.0,
+          "wR": 1.0,
+          "pass": true,
+          "hermitian": true,
+          "trace_one": true,
+          "psd": true,
+          "min_eig": 0.0
+        },
+        {
+          "wL": 0.5,
+          "wR": 0.5,
+          "pass": true,
+          "hermitian": true,
+          "trace_one": true,
+          "psd": true,
+          "min_eig": 0.5
+        },
+        {
+          "wL": 0.3,
+          "wR": 0.7,
+          "pass": true,
+          "hermitian": true,
+          "trace_one": true,
+          "psd": true,
+          "min_eig": 0.3
+        },
+        {
+          "wL": 0.8,
+          "wR": 0.2,
+          "pass": true,
+          "hermitian": true,
+          "trace_one": true,
+          "psd": true,
+          "min_eig": 0.2
+        }
+      ]
+    },
+    "P4_z3_simplex_admissibility": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": {
+        "unsat_means_admissible_everywhere_on_simplex": true
+      }
+    },
+    "P5_sympy_symbolic_eigs": {
+      "pass": true,
+      "ran": true
+    }
+  },
+  "negative": {
+    "N1_unnormalized_spinor_excluded": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": false,
+        "psd": true,
+        "min_eig": 0.0
+      }
+    },
+    "N2_negative_weight_excluded": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": true,
+        "psd": false,
+        "min_eig": -0.3
+      }
+    },
+    "N3_offsimplex_weights_excluded": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": false,
+        "psd": true,
+        "min_eig": 0.4
+      }
+    },
+    "N4_z3_violation_exists_offsimplex": {
+      "ran": true,
+      "z3_result": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_pure_left_limit": {
+      "pass": true,
+      "purity": 1.0
+    },
+    "B2_pure_right_limit": {
+      "pass": true,
+      "purity": 1.0
+    },
+    "B3_maximally_mixed_chirality": {
+      "pass": true,
+      "purity": 0.5
+    },
+    "B4_tiny_weight_numerical_stability": {
+      "pass": true,
+      "detail": {
+        "hermitian": true,
+        "trace_one": true,
+        "psd": true,
+        "min_eig": 1e-12
+      }
+    }
+  },
+  "verdict": "PASS"
+}

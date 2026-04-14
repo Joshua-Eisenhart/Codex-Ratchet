@@ -1,0 +1,116 @@
+{
+  "name": "holodeck_atom_5_distinguishability",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "eigvalsh + abs sum = load-bearing trace distance"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for trace-distance"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "self_zero": {
+      "D": 0.0,
+      "pass": true
+    },
+    "ortho_pure": {
+      "D": 1.0,
+      "pass": true
+    },
+    "symmetry": {
+      "D_ab": 0.5757343880789623,
+      "D_ba": 0.5757343880789623,
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonzero_diff": {
+      "D": 0.6990253678072506,
+      "pass": true
+    },
+    "global_phase_indist": {
+      "D": 7.92843835029089e-09,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "range_bound": {
+      "D": 0.46522371237476967,
+      "pass": true
+    },
+    "mix_self": {
+      "D": 0.0,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

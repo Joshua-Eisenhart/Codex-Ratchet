@@ -1,0 +1,98 @@
+{
+  "name": "sim_igt_atom_1_carrier",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- 4-element finite set"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph yet (atom 1)"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proves carrier set is exhaustive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic manipulation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "geometry deferred to atom 6"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no filtration"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "carrier_count_eq_4": true,
+    "carriers_in_signs_squared": true,
+    "carriers_unique": true,
+    "labels_cover": true,
+    "z3_no_fifth_carrier": true
+  },
+  "negative": {
+    "zero_not_carrier": true,
+    "three_valued_rejected": true,
+    "duplicate_breaks_uniqueness": true
+  },
+  "boundary": {
+    "cardinality_is_2_to_2": true,
+    "sum_is_zero": true,
+    "axis_products_plus1": true
+  },
+  "all_pass": true
+}

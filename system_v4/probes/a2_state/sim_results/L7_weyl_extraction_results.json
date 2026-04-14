@@ -1,0 +1,139 @@
+{
+  "name": "L7_weyl_extraction",
+  "layer": 7,
+  "classification": "canonical",
+  "divergence_log": "L7 carrier-level Weyl L/R projector identities proved symbolically via sympy (load-bearing) and cross-validated numerically over a 128-sample S^3 family; negatives confirm non-sigma_z splits break chirality; boundaries confirm pole/equator structure.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not required for L7 algebra"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure not needed at L7 (pointwise spinor extraction)"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked: sympy CAS already closes the 2x2 identities exactly"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not invoked: sympy closes the identities; z3 is the proof fallback"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic 2x2 matrix algebra for projector idempotence/orthogonality/completeness"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Cl(3) rotor form deferred to L8 chiral density; not needed for extraction identities"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "S^3 manifold routines not required; Hopf sampling is a 4-tuple norm"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) irreps irrelevant at carrier-level L/R split"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph tools not required at L7"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraphs not required at L7"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex gating is L6-side; L7 pointwise"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology unused at L7"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sym_idempotent_L": {
+      "pass": true
+    },
+    "sym_idempotent_R": {
+      "pass": true
+    },
+    "sym_orthogonal_LR": {
+      "pass": true
+    },
+    "sym_orthogonal_RL": {
+      "pass": true
+    },
+    "sym_completeness": {
+      "pass": true
+    },
+    "num_norm_conservation": {
+      "pass": "True",
+      "max_err": 4.440892098500626e-16,
+      "n_samples": 128
+    },
+    "num_LR_inner_zero": {
+      "pass": "True",
+      "max_err": 0.0,
+      "n_samples": 128
+    }
+  },
+  "negative": {
+    "neg_bad_projector_nonchiral": {
+      "pass": true,
+      "commutator_nonzero": true
+    },
+    "neg_duplicate_L_breaks_completeness": {
+      "pass": true
+    },
+    "neg_bad_not_orthogonal_to_PL": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_pole_up": {
+      "pass": "True",
+      "L_norm": 0.0,
+      "R_norm": 1.0
+    },
+    "boundary_pole_down": {
+      "pass": "True",
+      "L_norm": 1.0,
+      "R_norm": 0.0
+    },
+    "boundary_equator_equal_split": {
+      "pass": "True",
+      "L_weight": 0.4999999999999999,
+      "R_weight": 0.4999999999999999
+    }
+  },
+  "verdict": "PASS"
+}

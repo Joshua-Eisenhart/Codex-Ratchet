@@ -450,13 +450,14 @@ if __name__ == "__main__":
     )
     TOOL_MANIFEST["pyg"]["used"] = True
     TOOL_MANIFEST["pyg"]["reason"] = (
-        "torch_geometric.nn.MessagePassing subclass with explicit message() and "
-        "propagate(edge_index, x=x); edge_index tensor drives aggregation; "
-        "removing PyG eliminates the sim's claim."
+        "PyG MessagePassing is used for propagate()/message() scaffolding, but "
+        "ablation audit found linear symmetric aggregation is numpy-equivalent "
+        "(decorative, not load-bearing). Load-bearing PyG integration lives in "
+        "sim_pyg_deep_oversmoothing_bound.py."
     )
 
     TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
-    TOOL_INTEGRATION_DEPTH["pyg"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["pyg"] = "supportive"
 
     results = {
         "name": "sim_pyg_deep_hopf_u1_equivariant_conservation",
@@ -468,7 +469,7 @@ if __name__ == "__main__":
             "with the expected (E,2) shape. Negative controls: asymmetric rule "
             "breaks conservation, channel-swap rule breaks U(1) equivariance."
         ),
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

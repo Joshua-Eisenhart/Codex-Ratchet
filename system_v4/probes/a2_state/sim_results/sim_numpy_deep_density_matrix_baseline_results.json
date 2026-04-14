@@ -1,0 +1,133 @@
+{
+  "name": "sim_numpy_deep_density_matrix_baseline",
+  "classification": "classical_baseline",
+  "baseline_role": "reference ground truth for torch-autograd canonical sim; NOT canonical itself",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "deliberately excluded -- this is the numpy-only baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigendecomp, not FOL"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigendecomp, not FOL"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric, not symbolic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "standard complex matrix suffices"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "flat spectral problem"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "baseline eigendecomp reference that a torch-autograd canonical sim will be compared against"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "bell_pure_spectrum": {
+      "pass": true,
+      "spectrum": [
+        0.0,
+        0.0,
+        0.0,
+        0.9999999999999998
+      ],
+      "purity": 0.9999999999999996
+    },
+    "werner_mixed_spectrum": {
+      "pass": true,
+      "spectrum": [
+        0.175,
+        0.175,
+        0.175,
+        0.4749999999999999
+      ],
+      "expected": [
+        0.175,
+        0.175,
+        0.175,
+        0.475
+      ]
+    }
+  },
+  "negative": {
+    "nonhermitian_rejected": {
+      "pass": true,
+      "hermitian": false
+    }
+  },
+  "boundary": {
+    "maximally_mixed_uniform": {
+      "pass": true,
+      "spectrum": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "purity": 0.25
+    }
+  },
+  "overall_pass": true
+}

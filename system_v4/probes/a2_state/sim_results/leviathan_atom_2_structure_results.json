@@ -1,0 +1,99 @@
+{
+  "name": "leviathan_atom_2_structure",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no learned structure yet"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "message passing is reduction atom 3"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "connectedness solved combinatorially"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic claim here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no multivector structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no metric structure yet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "connected-components decides shell admissibility"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "structure here is 2-uniform"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex yet"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence not probed here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "connected_ring": {
+      "components": 1,
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_rejected": {
+      "components": 2,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "singleton_degenerate": {
+      "components": 1,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,124 @@
+{
+  "name": "holodeck_atom_1_carrier",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "carrier state constructed/normed in torch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at carrier level"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "norm_d2": {
+      "value": 1.0,
+      "pass": true
+    },
+    "norm_d4": {
+      "value": 1.0,
+      "pass": true
+    },
+    "norm_d8": {
+      "value": 0.9999999999999997,
+      "pass": true
+    },
+    "norm_d16": {
+      "value": 1.0,
+      "pass": true
+    },
+    "linearity": {
+      "lhs": "(-0.2475823081001665-0.1382329237587274j)",
+      "rhs": "(-0.24758230810016646-0.13823292375872742j)",
+      "pass": true
+    }
+  },
+  "negative": {
+    "unnormalized_rejected": {
+      "norm": 2.4000548571233637,
+      "pass": true
+    },
+    "zero_dim_rejected": {
+      "pass": true,
+      "reason": "d=0 has no states"
+    }
+  },
+  "boundary": {
+    "d1_trivial": {
+      "norm": 1.0,
+      "pass": true
+    },
+    "d1024_stable": {
+      "norm": 0.9999999999999998,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

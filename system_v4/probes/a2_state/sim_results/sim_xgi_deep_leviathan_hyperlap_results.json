@@ -1,0 +1,138 @@
+{
+  "name": "sim_xgi_deep_leviathan_hyperlap",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph, not pairwise graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral claim, not FOL"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral claim, not FOL"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigenvalues"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph-native tool required"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "xgi hypergraph incidence powers the Laplacian that separates the two Leviathan carriers; clique-expansion graph cannot"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "baseline 1-skeleton Laplacian; its failure to separate IS the negative test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive"
+  },
+  "positive": {
+    "hyperlap_separates_leviathan_carriers": {
+      "pass": true,
+      "spec_A": [
+        6.691815476402728e-16,
+        0.5298816045955714,
+        1.2083270469167888,
+        1.7508630474276212,
+        1.9999999999999998,
+        2.510928301060017
+      ],
+      "spec_B": [
+        2.4047175629364762e-17,
+        0.48711653817344397,
+        0.9999999999999992,
+        1.082680174149431,
+        1.8072253824401874,
+        2.622977905236936
+      ],
+      "max_diff": 0.6681828732781903
+    }
+  },
+  "negative": {
+    "skeleton_cannot_separate": {
+      "pass": true,
+      "skeletons_isomorphic": true,
+      "spec_equal": true,
+      "spec_A_skeleton": [
+        -1.8208286884452533e-16,
+        1.5188056959079843,
+        3.311107817465982,
+        4.0,
+        5.170086486626033,
+        6.0
+      ],
+      "spec_B_skeleton": [
+        -1.8208286884452533e-16,
+        1.5188056959079843,
+        3.311107817465982,
+        4.0,
+        5.170086486626033,
+        6.0
+      ]
+    }
+  },
+  "boundary": {
+    "identical_hypergraphs_identical_spectrum": {
+      "pass": true,
+      "max_abs_diff": 0.0
+    }
+  },
+  "overall_pass": true
+}

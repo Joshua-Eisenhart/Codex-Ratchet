@@ -1,0 +1,143 @@
+{
+  "name": "sim_L12_geometry_negatives_triad",
+  "layer": "L12",
+  "description": "L12 negatives-on-geometry triad: torus scrambled, no chirality, loop swap. Each negative must exclude a distinguishability property that the positive shell-local geometry carries.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "pyg not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT-proves loop-swap involution (structural negation of L12 swap ban-breaker); load-bearing for boundary test."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "clifford not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not required for L12 triad: numpy baseline suffices for stratification/chirality/loop-swap distinguishability; z3 carries the load-bearing structural check."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "torus_stratification_present": {
+      "strata_found": [
+        "clifford",
+        "inner",
+        "outer"
+      ],
+      "pass": true
+    },
+    "chirality_distinguishable": {
+      "L_R_mean_abs_diff": 1.2714209740221287,
+      "pass": true
+    },
+    "loop_fiber_base_distinct": {
+      "fiber_winding": 24,
+      "base_winding": 12,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "torus_scrambled_excludes_stratification": {
+      "H_positive_slice": 0.3371347549009505,
+      "H_scrambled_slice": 1.081261057774236,
+      "pass": true
+    },
+    "no_chirality_excludes_L_R_distinction": {
+      "L_R_mean_abs_diff": 0.0,
+      "pass": true
+    },
+    "loop_swap_excludes_fiber_base_ordering": {
+      "positive_pair": [
+        24,
+        12
+      ],
+      "swapped_pair": [
+        12,
+        24
+      ],
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "min_grid_degenerate_strata": {
+      "strata_found": [
+        "inner",
+        "outer"
+      ],
+      "pass": true
+    },
+    "chirality_at_origin_point_indistinguishable": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "loop_swap_involution": {
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "classification": "classical_baseline",
+  "overall_pass": true
+}

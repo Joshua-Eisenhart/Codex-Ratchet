@@ -1,0 +1,97 @@
+{
+  "name": "sim_igt_atom_2_structure",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "structural counting check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic work"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "geometry deferred"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph cycle verification"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex yet"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "edge_count_eq_4": true,
+    "all_degrees_2": true,
+    "rx_one_4cycle": true,
+    "two_diagonals": true
+  },
+  "negative": {
+    "no_self_edges": true,
+    "winWIN_loseLOSE_not_adjacent": true,
+    "winLOSE_loseWIN_not_adjacent": true,
+    "diagonal_has_ham_2": true
+  },
+  "boundary": {
+    "six_pairs": true,
+    "four_edges_two_diagonals": true
+  },
+  "all_pass": true
+}

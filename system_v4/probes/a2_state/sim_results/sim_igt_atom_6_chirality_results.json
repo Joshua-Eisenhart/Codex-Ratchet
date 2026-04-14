@@ -1,0 +1,100 @@
+{
+  "name": "sim_igt_atom_6_chirality",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proves CW chirality is not any sign-flip"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor in Cl(2) preserves ring (supportive geometric check)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cw_visits_all": true,
+    "cw_period_4": true,
+    "ccw_inverse_cw": true,
+    "cw_ccw_distinct": true,
+    "inner_flip_not_cw": true,
+    "outer_flip_not_cw": true,
+    "z3_cw_not_a_sign_flip": true,
+    "clifford_rotor_stays_on_ring": true
+  },
+  "negative": {
+    "cw_ne_ccw_each": true,
+    "cw2_equals_full_inversion": true,
+    "cw_not_full_inversion": true
+  },
+  "boundary": {
+    "ccw_period_4": true,
+    "cw2_eq_ccw2": true
+  },
+  "all_pass": true
+}

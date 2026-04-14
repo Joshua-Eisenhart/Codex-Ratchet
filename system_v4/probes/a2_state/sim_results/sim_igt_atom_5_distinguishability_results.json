@@ -1,0 +1,98 @@
+{
+  "name": "sim_igt_atom_5_distinguishability",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT witness shows each partial probe is insufficient"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "inner_probe_distinguishes_4": true,
+    "outer_probe_distinguishes_4": true,
+    "full_probe_distinguishes_all_6": true,
+    "inner_two_indistinguishable_pairs": true,
+    "z3_inner_collapses_some_pair": true,
+    "z3_outer_collapses_some_pair": true
+  },
+  "negative": {
+    "winWIN_winLOSE_indist_inner": true,
+    "winWIN_loseWIN_indist_outer": true,
+    "full_probe_sees_all": true
+  },
+  "boundary": {
+    "identity_indist_full": true,
+    "invalid_probe_raises": true
+  },
+  "all_pass": true
+}

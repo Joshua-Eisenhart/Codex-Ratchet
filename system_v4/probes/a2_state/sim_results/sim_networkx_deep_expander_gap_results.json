@@ -1,0 +1,120 @@
+{
+  "name": "sim_networkx_deep_expander_gap",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no message passing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral numeric claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral numeric claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigenvalues"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold mean"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "could substitute; networkx chosen for API match"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise graph, not hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "networkx builds the candidate transition graph and its normalized Laplacian; spectral gap verdict is the admission evidence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "load_bearing"
+  },
+  "positive": {
+    "random_3regular_expander_gap": {
+      "pass": true,
+      "lambda_1": 0.09207291053285864,
+      "spectrum_head": [
+        -4.300617786459924e-16,
+        0.09207291053285864,
+        0.14026905446746185,
+        0.18787867872609462,
+        0.25987638807100627
+      ]
+    }
+  },
+  "negative": {
+    "cycle_graph_no_gap": {
+      "pass": true,
+      "lambda_1": 0.019214719596769132,
+      "spectrum_head": [
+        2.665160928351756e-16,
+        0.019214719596769132,
+        0.01921471959676924,
+        0.07612046748871308,
+        0.07612046748871319
+      ]
+    }
+  },
+  "boundary": {
+    "complete_graph_max_gap": {
+      "pass": true,
+      "lambda_1": 1.0666666666666653,
+      "target": 1.0666666666666667
+    }
+  },
+  "overall_pass": true
+}

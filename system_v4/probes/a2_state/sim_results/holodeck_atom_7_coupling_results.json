@@ -1,0 +1,114 @@
+{
+  "name": "holodeck_atom_7_coupling",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "bipartite unitary ops + eigvalsh + matrix_rank load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for bipartite unitary coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "unitary": {
+      "pass": true
+    },
+    "entangling": {
+      "rA_eigs": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "pass": true
+    },
+    "trace_pres": {
+      "tr": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_unitary_rejected": {
+      "pass": true
+    },
+    "trivial_no_ent": {
+      "rank_rA": 1,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_preserves": {
+      "pass": true
+    },
+    "cnot_involution": {
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

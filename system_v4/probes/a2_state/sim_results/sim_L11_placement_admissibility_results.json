@@ -1,0 +1,146 @@
+{
+  "name": "sim_L11_placement_admissibility",
+  "layer": "L11_placement_law",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT checks for L11 placement admissibility rules (type<->loop, chirality<->Clifford, terrain range)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed: admissibility is discrete, handled by z3"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "structural record of op<->terrain admissibility edges; supportive cross-check of edge count"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to shell-local discrete placement law"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "canonical_placement": {
+      "z3_sat": true,
+      "z3_msg": "sat",
+      "classical_ok": true,
+      "classical_msg": "ok",
+      "passed": true
+    },
+    "alt_all_clifford": {
+      "z3_sat": true,
+      "classical_ok": true,
+      "passed": true
+    }
+  },
+  "negative": {
+    "neg_type1_on_base": {
+      "z3_sat": false,
+      "z3_msg": "unsat",
+      "classical_ok": false,
+      "classical_msg": "op 0 Type-1 but loop=1 (not fiber)",
+      "passed": true
+    },
+    "neg_chiral_on_inner": {
+      "z3_sat": false,
+      "z3_msg": "unsat",
+      "classical_ok": false,
+      "passed": true
+    },
+    "neg_type2_on_fiber": {
+      "z3_sat": false,
+      "classical_ok": false,
+      "passed": true
+    },
+    "neg_chiral_on_outer": {
+      "z3_sat": false,
+      "classical_ok": false,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "bnd_nonchiral_on_clifford": {
+      "z3_sat": true,
+      "classical_ok": true,
+      "passed": true
+    },
+    "bnd_terrain_out_of_range": {
+      "z3_sat": false,
+      "classical_ok": false,
+      "passed": true
+    },
+    "bnd_empty_placement_satisfiable": {
+      "z3_sat": true,
+      "passed": true
+    },
+    "bnd_enumeration_count": {
+      "admitted": 9,
+      "expected": 9,
+      "passed": true
+    },
+    "bnd_rx_graph_edges": {
+      "num_edges": 8,
+      "passed": true
+    }
+  },
+  "classification": "classical_baseline",
+  "all_passed": true
+}

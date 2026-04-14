@@ -1,0 +1,139 @@
+{
+  "name": "holodeck_atom_2_structure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "kron / matrix_rank / allclose load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed at tensor-structure level"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "dim_2x2": {
+      "shape": [
+        4,
+        4
+      ],
+      "pass": true
+    },
+    "dim_2x3": {
+      "shape": [
+        6,
+        6
+      ],
+      "pass": true
+    },
+    "dim_3x4": {
+      "shape": [
+        12,
+        12
+      ],
+      "pass": true
+    },
+    "dim_2x8": {
+      "shape": [
+        16,
+        16
+      ],
+      "pass": true
+    },
+    "product_norm": {
+      "norm": 1.0,
+      "pass": true
+    },
+    "factorization": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "entangled_nonproduct": {
+      "schmidt_rank": 2,
+      "pass": true
+    },
+    "dim_mismatch_rejected": {
+      "shape": [
+        6,
+        6
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "trivial_factor": {
+      "pass": true
+    },
+    "assoc": {
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

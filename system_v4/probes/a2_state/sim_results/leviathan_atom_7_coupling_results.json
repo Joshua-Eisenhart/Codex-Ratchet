@@ -1,0 +1,99 @@
+{
+  "name": "leviathan_atom_7_coupling",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric feasibility is secondary"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "joint admissibility SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant cross-check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure atoms handle graphs"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "two_balanced_shells_coexist": {
+      "z3": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "destructive_coupling_unsat": {
+      "z3": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "trivial_coupling_sat": {
+      "z3": "sat",
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

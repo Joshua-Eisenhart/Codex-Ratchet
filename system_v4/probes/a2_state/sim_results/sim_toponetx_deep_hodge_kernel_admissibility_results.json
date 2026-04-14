@@ -1,0 +1,145 @@
+{
+  "name": "sim_toponetx_deep_hodge_kernel_admissibility",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "integer incidence; no autograd needed for rank/kernel dim"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no message passing in this algebraic-topology claim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "kernel dim is numerical linear algebra, not SAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "same as z3"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "integer matrices + numpy SVD are exact enough"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no geometric algebra rotors"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "combinatorial topology only"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no equivariant features"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "TopoNetX carries simplicial structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph layer not exercised"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "SimplicialComplex.incidence_matrix supplies B_k under arbitrary vertex orderings; construction-load-bearing because ablation to a hand-coded numpy boundary breaks on perturbed complexes even when the admissibility claim itself is tool-neutral."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; TopoNetX supplies operators"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "torus_betti_via_toponetx": {
+      "b0": 1,
+      "b1": 2,
+      "b2": 1,
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    },
+    "exact_chain_harmonic_zero": {
+      "norm": 3.236828524569469e-16,
+      "pass": true
+    },
+    "harmonic_chain_admissible": {
+      "proj_norm": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "clean_torus_handcoded_b1": {
+      "b1": 2,
+      "expected": 2,
+      "pass": true,
+      "note": "ablation succeeds when complex is static -- claim is tool-neutral here"
+    },
+    "perturbed_toponetx_chain_axiom": {
+      "B1_B2_norm": 0.0,
+      "pass": true,
+      "b1": 1
+    },
+    "perturbed_handcoded_chain_axiom": {
+      "B1_B2_norm": 2.8284271247461903,
+      "missing_edges": [],
+      "pass_is_failure_mode": true,
+      "note": "hand-coded construction is brittle: perturbation either violates B1@B2=0 or requires rebuilding the entire index"
+    },
+    "coboundary_chain_inadmissible": {
+      "harm_norm": 4.344434768182728e-16,
+      "pass": true,
+      "note": "coboundary is exact, hence orthogonal to harmonics -> inadmissible"
+    }
+  },
+  "boundary": {
+    "chain_complex_axiom": {
+      "norm": 0.0,
+      "pass": true
+    },
+    "L1_psd": {
+      "min_eig": 2.5626609310521582e-17,
+      "pass": true
+    },
+    "L1_self_adjoint": {
+      "asym_norm": 0.0,
+      "pass": true
+    },
+    "kernel_tol_stability": {
+      "loose": 2,
+      "tight": 2,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

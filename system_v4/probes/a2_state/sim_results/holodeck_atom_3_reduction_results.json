@@ -1,0 +1,113 @@
+{
+  "name": "holodeck_atom_3_reduction",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "einsum partial trace + eigvalsh load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for partial trace"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "trace_preservation": {
+      "tr_rho": 1.0000000000000002,
+      "tr_rA": 1.0,
+      "pass": true
+    },
+    "product_reduces": {
+      "pass": true
+    },
+    "positivity": {
+      "min_eig": 2.0947517249686858e-17,
+      "pass": true
+    }
+  },
+  "negative": {
+    "entangled_mixes": {
+      "rank_rA": 2,
+      "pass": true
+    },
+    "bad_dims_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "max_mixed": {
+      "pass": true
+    },
+    "dual_reduction": {
+      "tr_rB": 1.0,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

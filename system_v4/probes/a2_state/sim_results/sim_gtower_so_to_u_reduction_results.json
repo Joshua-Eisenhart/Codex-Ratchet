@@ -1,0 +1,124 @@
+{
+  "name": "sim_gtower_so_to_u_reduction",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- reduction is algebraic, numeric baseline uses numpy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "proves (a) odd-dim obstruction j^2=-1 UNSAT over reals, (b) dim-2 orthogonal J with J^2=-I cannot have det=-1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of J^2=-I, J^T J=I, det J=1 for n=1,2,3 and moduli dim SO(2n)/U(n) = n(n-1)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "standard_J1_R1": true,
+    "standard_J1_R2": true,
+    "standard_J1_R3": "True",
+    "standard_J2_R1": true,
+    "standard_J2_R2": true,
+    "standard_J2_R3": "True",
+    "standard_J3_R1": true,
+    "standard_J3_R2": true,
+    "standard_J3_R3": "True",
+    "conjugated_J1_R1": true,
+    "conjugated_J1_R2": true,
+    "conjugated_J1_R3": "True",
+    "conjugated_J2_R1": true,
+    "conjugated_J2_R2": true,
+    "conjugated_J2_R3": "True",
+    "conjugated_J3_R1": true,
+    "conjugated_J3_R2": true,
+    "conjugated_J3_R3": "True",
+    "moduli_dim_n1": true,
+    "moduli_dim_n2": true,
+    "moduli_dim_n3": true
+  },
+  "negative": {
+    "P_in_SO4": "True",
+    "P_excluded_from_U2_reduction": true,
+    "scaled_J_fails_R1": true,
+    "refl_conjugate_R1": true,
+    "refl_conjugate_R2": true,
+    "refl_not_in_SO4": true,
+    "refl_in_O4": true
+  },
+  "boundary": {
+    "z3_odd_dim_unsat": "unsat",
+    "z3_odd_dim_ok": true,
+    "z3_det_minus_one_unsat": "unsat",
+    "z3_det_minus_one_ok": true,
+    "sympy_standard_J_R_all": true,
+    "sympy_moduli_dim_identity": true,
+    "near_identity_conjugate_R1": true,
+    "near_identity_conjugate_R2": true,
+    "near_identity_conjugate_R3": "True"
+  },
+  "status": "PASS"
+}

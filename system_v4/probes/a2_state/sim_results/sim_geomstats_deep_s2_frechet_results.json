@@ -1,0 +1,102 @@
+{
+  "name": "sim_geomstats_deep_s2_frechet",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only; geomstats numpy backend used"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric, not FOL"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric, not FOL"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic manipulation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "S^2 handled intrinsically"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "FrechetMean on Hypersphere(2) computes the intrinsic mean; euclidean mean would sit off-manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "frechet_mean_near_pole": {
+      "pass": true,
+      "norm": 1.0,
+      "geodesic_to_pole": 0.00795965811282933
+    }
+  },
+  "negative": {
+    "euclidean_mean_off_sphere": {
+      "pass": "True",
+      "euclidean_norm": 0.0820552600028713
+    }
+  },
+  "boundary": {
+    "cut_locus_antipodal_equidistant": {
+      "pass": true,
+      "var_eq1": 4.934802200544679,
+      "var_eq2": 4.934802200544679,
+      "var_pole": 9.869604401089358
+    }
+  },
+  "overall_pass": true
+}

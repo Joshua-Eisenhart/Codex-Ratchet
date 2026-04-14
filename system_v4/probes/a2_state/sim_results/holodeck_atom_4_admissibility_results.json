@@ -1,0 +1,117 @@
+{
+  "name": "holodeck_atom_4_admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric cross-check of admissibility predicate"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof of non-admissibility; SAT witness for admissible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for admissibility predicate"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "canonical_admissible": {
+      "z3": "sat",
+      "pass": true
+    },
+    "exists_admissible": {
+      "z3": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "trace_violation_unsat": {
+      "z3": "unsat",
+      "pass": true
+    },
+    "hermiticity_violation_unsat": {
+      "z3": "unsat",
+      "pass": true
+    },
+    "psd_violation_unsat": {
+      "z3": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pure_boundary": {
+      "z3": "sat",
+      "pass": true
+    },
+    "torch_admissible_cross_check": {
+      "hermitian": true,
+      "trace1": true,
+      "psd": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

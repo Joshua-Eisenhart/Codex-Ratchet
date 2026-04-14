@@ -1,0 +1,103 @@
+{
+  "name": "sim_cvc5_deep_bc04_identity_fence",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; fence is a first-order admissibility claim, not a numeric one"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing in a FOL fence proof"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 parity check matches cvc5 UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 returned UNSAT on smuggled-identity + BC04 witness; verdict IS the fence proof"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "fence is relational/FOL, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra content in BC04"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no group-equivariance content"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph search"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_bc04_unsat": {
+      "pass": true,
+      "verdict": "unsat"
+    },
+    "z3_parity_unsat": {
+      "pass": true,
+      "verdict": "unsat"
+    }
+  },
+  "negative": {
+    "cvc5_no_smuggle_sat": {
+      "pass": true,
+      "verdict": "sat"
+    }
+  },
+  "boundary": {
+    "cvc5_reflexive_sat": {
+      "pass": true,
+      "verdict": "sat"
+    }
+  },
+  "overall_pass": true
+}

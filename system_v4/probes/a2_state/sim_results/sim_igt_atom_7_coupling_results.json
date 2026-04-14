@@ -1,0 +1,97 @@
+{
+  "name": "sim_igt_atom_7_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "enumeration of admissible inner combos under coupling constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "joint admissible sub-ring is a 4-cycle (structure preserved)"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "joint_size_16": true,
+    "joint_admissible_4": true,
+    "inner_projection_is_full_2x2": true,
+    "z3_admissible_inner_is_full_2x2": true,
+    "rx_admissible_is_4_cycle": true
+  },
+  "negative": {
+    "one_LOSE_not_admissible": true,
+    "both_LOSE_not_admissible": true,
+    "no_LOSE_in_admissible": true
+  },
+  "boundary": {
+    "admissibility_rate_quarter": true,
+    "adm_size_equals_original_carrier_count": true
+  },
+  "all_pass": true
+}

@@ -1,0 +1,99 @@
+{
+  "name": "leviathan_atom_5_distinguishability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "differentiable probe functionals"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof atom"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "variance_probe_distinguishes": {
+      "gap": 6.25,
+      "pass": true
+    }
+  },
+  "negative": {
+    "sum_probe_fails_to_distinguish": {
+      "gap": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identical_indistinguishable": {
+      "gap": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

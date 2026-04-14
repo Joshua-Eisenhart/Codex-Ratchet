@@ -1,0 +1,100 @@
+{
+  "name": "leviathan_atom_3_reduction",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd reduction over carrier"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no edge-based aggregation yet"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical reduction not boolean"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic done in atom 1"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar reduction here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold mean here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure is atom 2"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sum_reduction": {
+      "S": 10.0,
+      "grad_ones": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "identity_rejected": {
+      "is_reduction": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_carrier_reduction": {
+      "S": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

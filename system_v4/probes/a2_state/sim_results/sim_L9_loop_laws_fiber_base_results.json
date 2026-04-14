@@ -1,0 +1,142 @@
+{
+  "name": "sim_L9_loop_laws_fiber_base",
+  "layer": "L9",
+  "description": "Fiber/base loop distinction, horizontal lift, density-stationary vs traversing on Hopf S^3->S^2.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "numpy/sympy sufficient for 2-state symbolic Hopf check; no autograd needed at L9"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure at loop-law layer"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "finite-grid UNSAT check that phase action keeps projection below tol (B3)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers this support role; cvc5 redundant"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of Hopf projection and U(1) phase action -- decisive for P1/P2"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor form not needed for loop-law admissibility at this stage"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S^2 geodesic machinery not required; direct Hopf coords suffice"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN claims at L9"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph at L9"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph at L9"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell-complex not used; fiber/base distinction tested directly"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence claim at L9"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_fiber_loop_stationary_symbolic": {
+      "passed": true,
+      "dx": "0",
+      "dy": "0",
+      "dz": "0",
+      "tool": "sympy"
+    },
+    "P2_base_loop_closes_on_S2": {
+      "passed": true,
+      "start": [
+        0.8414709848078965,
+        0.0,
+        0.5403023058681398
+      ],
+      "end": [
+        0.8414709848078965,
+        -2.0610094962407234e-16,
+        0.5403023058681398
+      ],
+      "tool": "numpy"
+    },
+    "P3_density_stationary_vs_traversing": {
+      "passed": true,
+      "fiber_loop_S2_variation": 2.220446049250313e-16,
+      "base_loop_S2_variation": 1.682941969615793
+    }
+  },
+  "negative": {
+    "N1_loop_swap_rejects_stationary_claim": {
+      "passed": true,
+      "variation": 1.682941969615793
+    },
+    "N2_scrambled_phases_break_stationary": {
+      "passed": true,
+      "max_projection_change": 1.6447094834260896
+    },
+    "N3_open_base_path_is_not_loop": {
+      "passed": true,
+      "endpoint_distance": 1.682941969615793
+    }
+  },
+  "boundary": {
+    "B1_epsilon_base_loop_near_stationary": {
+      "passed": true,
+      "variation": 8.41470983405445e-05,
+      "eps": 0.0001
+    },
+    "B2_full_2pi_fiber_loop_exact": {
+      "passed": true,
+      "residual": 0.0
+    },
+    "B3_z3_fiber_invariance_support": {
+      "passed": true,
+      "z3_result": "unsat",
+      "max_dev_on_grid": 1.1102230246251565e-16,
+      "tol": 1e-09
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

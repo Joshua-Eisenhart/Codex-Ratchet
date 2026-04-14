@@ -23,7 +23,7 @@ import json
 import os
 import sys
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

@@ -35,6 +35,11 @@ import sys
 from dataclasses import dataclass
 from typing import Optional
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this falsifies checkerboard admissibility against existing step edges with optional z3 support, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "z3": {"tried": True, "used": True, "reason": "constraint consistency check for checkerboard admissibility"},
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "supportive"}
 
 _PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _PROBE_DIR)

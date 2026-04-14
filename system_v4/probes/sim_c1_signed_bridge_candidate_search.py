@@ -17,6 +17,11 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical packaging baseline: this packages the current signed C1 bridge candidate for downstream readout, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "python_stdlib": {"tried": True, "used": True, "reason": "JSON packet assembly from prior result artifacts"},
+}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive"}
 
 
 ROOT = Path(__file__).resolve().parent

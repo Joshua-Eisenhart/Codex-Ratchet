@@ -17,6 +17,12 @@ import json
 import itertools
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this explores the L10-L12 constraint manifold numerically across eta and operator subsets, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "layered manifold sweep and entanglement numerics"},
+    "toponetx": {"tried": False, "used": False, "reason": "optional torus-complex bridge; not load-bearing here"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "toponetx": None}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

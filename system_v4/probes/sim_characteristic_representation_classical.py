@@ -4,8 +4,12 @@ Characteristic polynomial / function of a matrix via numpy. Tests Cayley-Hamilto
 coefficient sign pattern, and degeneracy edge case. Classical captures the
 polynomial; innately misses noncommutative operator-algebra structure."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: characteristic representation is modeled here by matrix-polynomial numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "eigenvalue and matrix-polynomial numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 NAME = "characteristic_representation"
 

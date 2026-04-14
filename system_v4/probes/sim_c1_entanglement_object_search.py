@@ -25,6 +25,11 @@ from typing import Dict, List, Tuple
 
 import sys
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical bridge baseline: this searches C1 entanglement-capable objects numerically on the admitted carrier, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "two-qubit state construction and entanglement witness numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from engine_core import GeometricEngine, EngineState, StageControls, TERRAINS

@@ -2,8 +2,12 @@
 """Classical baseline: coarse_grained_operator_algebra.
 Test whether block-averaging / projection preserves algebra structure (commutation, associativity)."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: naive coarse-graining is tested here for algebra preservation failures, not as a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "block-averaging and algebra-comparison numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 NAME = "coarse_grained_operator_algebra"
 

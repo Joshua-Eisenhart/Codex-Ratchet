@@ -4,8 +4,12 @@ Channel = Kraus sum. Compute a diamond-norm LOWER BOUND by sampling random pure
 inputs on extended space and maximizing trace distance of outputs. Verifies
 CPTP trace preservation and composition. Diamond norm upper bound not reached."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: channel-space geometry is approximated here by sampled lower-bound numerics on Kraus channels, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "Kraus-channel sampling and trace-distance numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 NAME = "channel_space_geometry"
 
 def apply_channel(kraus, rho):

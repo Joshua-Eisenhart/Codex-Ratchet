@@ -39,13 +39,13 @@ while :; do
   # report duplicate copy-file count, but do not move active probe files from the loop
   copy_count=$(find system_v4/probes -maxdepth 1 -name "* 2.py" 2>/dev/null | wc -l)
 
-  # release stale claims (>2h old, pid dead)
+  # release dead claims after a short grace window so a crashed pool does not freeze overnight
   now=$(date +%s)
   for cf in system_v4/probes/a2_state/queue/claimed/*.json.*; do
     [ -f "$cf" ] || continue
     mtime=$(stat -f %m "$cf" 2>/dev/null || echo "$now")
     age=$(( now - mtime ))
-    [ "$age" -lt 7200 ] && continue
+    [ "$age" -lt 300 ] && continue
     pid=$(basename "$cf" | awk -F. '{print $3}')
     kill -0 "$pid" 2>/dev/null && continue
     # pid dead, claim stale: move back to lane
@@ -101,8 +101,17 @@ print(f'retag candidates flagged: {len(flagged)}')
     idle=0
   fi
 
-  # restart runner if no worker pool alive
-  if ! pgrep -f "overnight_two_runner.sh" >/dev/null 2>&1; then
+  # clear a dead runner lock before trying to respawn
+  if [ -f /tmp/codex_ratchet_overnight.lock ]; then
+    lock_pid=$(cat /tmp/codex_ratchet_overnight.lock 2>/dev/null)
+    if [ -n "$lock_pid" ] && ! kill -0 "$lock_pid" 2>/dev/null; then
+      rm -f /tmp/codex_ratchet_overnight.lock
+      echo "[$(date)] cleared stale runner lock pid=$lock_pid" >> "$LOG"
+    fi
+  fi
+
+  # restart runner if no active lock holder remains
+  if [ ! -f /tmp/codex_ratchet_overnight.lock ]; then
     mins=$(( (DEADLINE - $(date +%s)) / 60 ))
     [ "$mins" -gt 10 ] && nohup bash scripts/overnight_two_runner.sh --minutes "$mins" --lane-a-parallel 3 --lane-b-parallel 5 >> "$LOG" 2>&1 &
     echo "[$(date)] respawned runner for $mins min" >> "$LOG"

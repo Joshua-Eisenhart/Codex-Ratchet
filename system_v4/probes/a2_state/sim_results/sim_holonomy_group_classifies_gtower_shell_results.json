@@ -1,0 +1,120 @@
+{
+  "name": "sim_holonomy_group_classifies_gtower_shell",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of 'distinct shells share angle' = injectivity admissibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotors realize holonomy of canonical connection on Hopf shell"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) irrep equivariance check on holonomy action; failure would invalidate classification"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for holonomy/injectivity admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "SO3_level_injective_admissible": {
+      "pass": true,
+      "angles": [
+        1.0471975511965976,
+        2.0943951023931953,
+        3.141592653589793
+      ]
+    },
+    "e3nn_equivariance_admissible": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "trivial_G_reduction_excluded": {
+      "pass": true,
+      "angles": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "boundary": {
+    "single_shell_boundary": {
+      "pass": true,
+      "angles": [
+        1.0471975511965976
+      ]
+    },
+    "SO2_level_two_shells_boundary": {
+      "pass": true,
+      "angles": [
+        1.0471975511965976,
+        2.0943951023931953
+      ]
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "language_discipline": "admissibility/exclusion only; z3 UNSAT primary"
+}

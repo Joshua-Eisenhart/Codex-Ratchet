@@ -1,0 +1,96 @@
+{
+  "name": "sim_spectral_triple_noncomm_order",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic BCH sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: encodes the reversed-order equality D.H = H.D as SAT query and proves UNSAT given the commutator-nonzero witness"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: computes [D,H] symbolically via sp.Matrix, BCH first-order term; Frobenius norm of commutator is the load-bearing non-commutativity witness"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "matrix representation sufficient here; geometric form covered by sim_geom_noncomm_weyl_then_hopf"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "commutator_frobenius_norm": 1.6583123951777,
+    "commutator_nonzero": true,
+    "ratchet_order_survives": true,
+    "pass": true,
+    "note": "Admitted ratchet: D.H excludes the ordering B.A; reversed order excluded below via z3 UNSAT"
+  },
+  "negative": {
+    "reversed_order_excluded_unsat": true,
+    "identity_control_commutes": true,
+    "pass": true
+  },
+  "boundary": {
+    "N2_commutator_norm": 0.5,
+    "pass": true
+  }
+}

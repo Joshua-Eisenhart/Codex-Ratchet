@@ -1,0 +1,102 @@
+{
+  "name": "sim_spectral_triple_gtower_reduction_spectrum",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "eigenvalue multiplicities via numpy are sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: encodes the subgroup chain GL > O > SU2 > U1 as SAT constraints and proves UNSAT for every reversed/skipping order"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric spectrum enough here"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3) rotors realize SU(2) subgroup action (even subalgebra) and U(1) further reduction via single-bivector rotor -- subgroup structure is carried by the algebra, not labels"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "chain_bucket_sizes": [
+      3,
+      3,
+      1,
+      1
+    ],
+    "monotone_refinement_chain": true,
+    "cl3_su2_rotor_preserves_grade1": true,
+    "pass": true,
+    "note": "Admissible reduction chain GL>O>SU2>U1 preserves monotone spectral refinement"
+  },
+  "negative": {
+    "reversed_order_excluded_unsat": true,
+    "skip_order_excluded_unsat": true,
+    "pass": true
+  },
+  "boundary": {
+    "N2_gl_bucket": 1,
+    "N2_u1_bucket": 1,
+    "pass": true
+  }
+}

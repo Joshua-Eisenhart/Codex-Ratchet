@@ -1,0 +1,109 @@
+{
+  "name": "sim_derived_stack_nested_shells_coexist",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic incidence: nested-radius ordering required for common refinement"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "nerve-of-cover graph: connected components decide coexistence admissibility"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for nerve/incidence admissibility check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nerve_connected_three_shell_coexist": {
+      "pass": true,
+      "components": 1
+    },
+    "sympy_incidence_nested_admissible": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "disjoint_shells_excluded": {
+      "pass": true,
+      "components": 3
+    },
+    "inverted_radii_excluded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "equal_radii_boundary": {
+      "pass": true
+    },
+    "single_common_refinement_boundary": {
+      "pass": true,
+      "components": 1
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "language_discipline": "admissibility/exclusion only"
+}

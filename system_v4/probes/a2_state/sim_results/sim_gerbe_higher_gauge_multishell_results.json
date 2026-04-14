@@ -1,0 +1,111 @@
+{
+  "name": "sim_gerbe_higher_gauge_multishell",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic quantization test: admissibility = integer class via nsimplify"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) bivector realizes gerbe 2-form curvature; grade-projection gives flux"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gerbe curvature admissibility test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "integer_class_multishell_admissible": {
+      "pass": true,
+      "flux": 6.0
+    },
+    "cancelling_pair_admissible": {
+      "pass": true,
+      "flux": 0.0
+    }
+  },
+  "negative": {
+    "fractional_flux_excluded": {
+      "pass": true,
+      "flux": 0.8999999999999999
+    },
+    "irrational_single_shell_excluded": {
+      "pass": true,
+      "flux": 0.6283185307179586
+    }
+  },
+  "boundary": {
+    "zero_curvature_boundary": {
+      "pass": true
+    },
+    "large_integer_boundary": {
+      "pass": true,
+      "flux": 1000.0
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical",
+  "language_discipline": "admissibility/exclusion only"
+}

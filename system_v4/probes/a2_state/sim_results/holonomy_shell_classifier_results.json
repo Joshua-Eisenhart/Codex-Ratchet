@@ -1,0 +1,97 @@
+{
+  "name": "sim_holonomy_shell_classifier",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "backs e3nn tensors; not load_bearing on its own"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "holonomy membership is numeric/algebraic here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3) rotor COMPOSITION around a closed loop computes holonomy element; matrix exponential alone would lose spinor double-cover info"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: e3nn.o3 Wigner D-matrices classify holonomy by irrep restriction (SO(3) vs SU(2) vs U(1))"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "u1_shell_holonomy_in_u1": true,
+    "su2_shell_holonomy_nontrivial": true,
+    "e3nn_o3_rotation_valid": true,
+    "pass": true,
+    "note": "Admissible shells: holonomy lies in the structure group; other shells excluded by group-membership"
+  },
+  "negative": {
+    "mixed_plane_loop_excluded_from_u1_shell": true,
+    "biv_e23_witness": 0.029345023100127404,
+    "biv_e31_witness": 0.11492442353296507,
+    "pass": true
+  },
+  "boundary": {
+    "trivial_loop_admissible": true,
+    "pass": true
+  }
+}

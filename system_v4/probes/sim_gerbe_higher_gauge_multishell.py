@@ -48,7 +48,7 @@ except ImportError:
 # Cl(3) setup
 layout, blades = Cl(3)
 e1, e2, e3 = blades["e1"], blades["e2"], blades["e3"]
-e12, e23, e31 = blades["e12"], blades["e23"], blades["e31"]
+e12, e23, e13 = blades["e12"], blades["e23"], blades["e13"]
 
 
 def gerbe_curvature_2form(n):

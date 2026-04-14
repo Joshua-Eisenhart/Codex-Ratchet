@@ -1,0 +1,126 @@
+{
+  "name": "sim_capability_hypothesis_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "hypothesis",
+    "version": "6.151.12",
+    "integration": "load_bearing"
+  },
+  "positive": {
+    "hypothesis_available": {
+      "pass": true,
+      "version": "6.151.12"
+    },
+    "double_reverse_holds_100_cases": {
+      "pass": true,
+      "failures_found": 0
+    },
+    "empty_list_double_reverse": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "hypothesis_finds_counterexample_for_broken_invariant": {
+      "pass": true,
+      "counterexample_found": true,
+      "exc_type": "AssertionError",
+      "detail": "Not a palindrome: [0, 1]"
+    }
+  },
+  "boundary": {
+    "empty_list_boundary": {
+      "pass": true,
+      "result": []
+    },
+    "single_element_boundary": {
+      "pass": true,
+      "result": [
+        42
+      ]
+    },
+    "max_examples_1_runs_ok": {
+      "pass": true
+    }
+  },
+  "overall_pass": true,
+  "capability_summary": {
+    "can": "Verify reverse(reverse(xs))==xs holds across 100 generated integer list cases; actively find counterexamples when an invariant is broken (palindrome check on random lists fails fast); handles empty and single-element boundary inputs without crash.",
+    "cannot": "Does not provide formal proofs; shrinking is heuristic and may not find minimal counterexample in all cases; database persistence between runs requires hypothesis database configuration."
+  }
+}

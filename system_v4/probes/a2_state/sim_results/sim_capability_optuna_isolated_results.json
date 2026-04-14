@@ -1,0 +1,130 @@
+{
+  "name": "sim_capability_optuna_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the optuna TPE hyperparameter optimization capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "optuna",
+    "version": "4.8.0",
+    "integration": "load_bearing"
+  },
+  "positive": {
+    "optuna_available": {
+      "pass": true,
+      "version": "4.8.0"
+    },
+    "tpe_finds_minimum_near_3": {
+      "pass": true,
+      "best_x": 2.947118429264174,
+      "best_value": 0.002796460523488157,
+      "abs_error": 0.05288157073582589
+    },
+    "best_value_near_zero": {
+      "pass": true,
+      "best_value": 0.002796460523488157
+    },
+    "thirty_trials_completed": {
+      "pass": true,
+      "n_trials": 30
+    }
+  },
+  "negative": {
+    "noisy_flat_no_reliable_convergence": {
+      "pass": true,
+      "best_noisy_value": -0.9711352140758163,
+      "note": "Noisy flat landscape: best value is noise-driven, not optimizer-driven; TPE survives but produces no meaningful convergence signal."
+    },
+    "noisy_landscape_excluded_from_parabola_criterion": {
+      "pass": true,
+      "best_noisy_value": -0.9711352140758163,
+      "note": "Confirms best value is in noise range, not near 0 like the parabola case"
+    }
+  },
+  "boundary": {
+    "one_trial_run_completes": {
+      "pass": true,
+      "best_x": 5.4881350392732475,
+      "best_value": 6.190815973659285,
+      "consistent_with_objective": true
+    }
+  },
+  "overall_pass": true,
+  "capability_summary": {
+    "can": "Find minimum of (x-3)^2 in [0,10] within |best-3|<0.5 using TPE in 30 trials (seed=42); completes a 1-trial boundary run with a value consistent with the objective; runs without crash on noisy flat landscapes.",
+    "cannot": "Does not converge reliably on noisy flat landscapes with no gradient signal; 1-trial run is pure random exploration (no TPE model built); no GPU acceleration for objective evaluation by default."
+  }
+}

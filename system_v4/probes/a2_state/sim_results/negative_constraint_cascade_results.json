@@ -1,7 +1,7 @@
 {
   "probe": "sim_negative_constraint_cascade",
   "purpose": "Negative battery: attack necessity and ordering of L0-L7 constraint cascade",
-  "timestamp": "2026-04-07T19:06:06.931501+00:00",
+  "timestamp": "2026-04-14T10:25:26.299418+00:00",
   "tests": {
     "T01": {
       "test": "T01_skip_L0_no_N01",
@@ -312,23 +312,23 @@
         {
           "layer": "L4",
           "killed": [
-            "qgt_curvature",
-            "negativity",
-            "min_entropy",
             "berry_phase",
-            "linear_entropy",
-            "hopf_fiber_coordinate",
-            "entanglement_entropy",
-            "renyi",
-            "geometric_phase_quantization",
-            "max_entropy",
-            "participation_ratio",
-            "coherent_information",
-            "monopole_curvature",
             "entanglement_of_formation",
-            "von_neumann",
+            "coherent_information",
+            "entanglement_entropy",
+            "geometric_phase_quantization",
+            "participation_ratio",
+            "renyi",
             "tsallis",
+            "von_neumann",
             "conditional_entropy",
+            "monopole_curvature",
+            "negativity",
+            "max_entropy",
+            "min_entropy",
+            "qgt_curvature",
+            "hopf_fiber_coordinate",
+            "linear_entropy",
             "concurrence"
           ],
           "remaining": 48
@@ -342,10 +342,10 @@
           "layer": "L6",
           "killed": [
             "chirality_bipartition_marker",
+            "berry_holonomy_operator",
             "chirality_operator_C",
-            "hopf_invariant",
             "schmidt",
-            "berry_holonomy_operator"
+            "hopf_invariant"
           ],
           "remaining": 43
         },
@@ -365,10 +365,10 @@
           "layer": "L6",
           "killed": [
             "chirality_bipartition_marker",
+            "berry_holonomy_operator",
             "chirality_operator_C",
-            "hopf_invariant",
             "schmidt",
-            "berry_holonomy_operator"
+            "hopf_invariant"
           ],
           "remaining": 61
         },
@@ -380,23 +380,23 @@
         {
           "layer": "L4",
           "killed": [
-            "qgt_curvature",
-            "negativity",
-            "min_entropy",
             "berry_phase",
-            "linear_entropy",
-            "hopf_fiber_coordinate",
-            "entanglement_entropy",
-            "renyi",
-            "geometric_phase_quantization",
-            "max_entropy",
-            "participation_ratio",
-            "coherent_information",
-            "monopole_curvature",
             "entanglement_of_formation",
-            "von_neumann",
+            "coherent_information",
+            "entanglement_entropy",
+            "geometric_phase_quantization",
+            "participation_ratio",
+            "renyi",
             "tsallis",
+            "von_neumann",
             "conditional_entropy",
+            "monopole_curvature",
+            "negativity",
+            "max_entropy",
+            "min_entropy",
+            "qgt_curvature",
+            "hopf_fiber_coordinate",
+            "linear_entropy",
             "concurrence"
           ],
           "remaining": 43
@@ -1060,13 +1060,11 @@
     }
   },
   "summary": {
-    "runtime_seconds": 0.06,
+    "runtime_seconds": 0.05,
     "total_tests": 10,
     "passed": 10,
     "failed": 0,
     "errors": [],
     "headline": "Negative constraint cascade battery: 10/10 PASS, 0 FAIL, 0 ERROR. The L0-L7 ordering is NECESSARY: skipping layers changes kills, z3 confirms dependencies, layers are idempotent, 10 rounds suffice."
-  },
-  "classification": "supporting",
-  "classification_note": "Supporting foundational or negative-battery probe for negative constraint cascade. It provides bounded controller/reference evidence for constraint behavior, failure boundaries, or lower-ladder structure, but it is not promoted here as a canonical owner surface, bridge/cut closure, or final doctrine claim."
+  }
 }

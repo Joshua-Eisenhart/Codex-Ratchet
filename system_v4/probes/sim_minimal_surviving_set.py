@@ -24,8 +24,8 @@ from itertools import combinations
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 from scipy.stats import spearmanr
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Optimize, Sum, If as Z3If,
 )

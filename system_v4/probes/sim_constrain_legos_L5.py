@@ -40,8 +40,8 @@ from datetime import datetime, UTC
 
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,
     IntVal, Int, Ints, Sum as z3Sum,

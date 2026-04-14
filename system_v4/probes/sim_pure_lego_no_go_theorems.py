@@ -19,8 +19,8 @@ Sections
 
 import json, pathlib, time
 import numpy as np
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     RealSort, Real, Solver, unsat, And, Or, Not,
     ForAll, Exists, Implies, sat,
 )

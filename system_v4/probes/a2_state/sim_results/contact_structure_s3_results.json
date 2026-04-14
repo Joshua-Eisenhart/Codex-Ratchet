@@ -1,21 +1,18 @@
 {
-  "name": "contact_structure_s3",
-  "description": "Probe for the standard contact structure on S\u00b3. Verifies: \u03b1\u2227d\u03b1\u22600 (contact condition), Reeb field axioms, Reeb=Hopf generator, Frobenius non-integrability (z3 UNSAT), Clifford torus character, and volume normalisation.",
-  "classification": "classical_baseline",
+  "name": "pure_lego_contact_structure_s3",
+  "classification": "canonical",
+  "classification_note": "Standalone pure-geometry lego for the standard contact structure on S\u00b3. Distinct from sim_geom_symplectic_kahler_contact.py which bundles contact as one of three structures (symplectic/K\u00e4hler/contact) in a comparative survey. This probe verifies \u03b1\u2227d\u03b1\u22600, Reeb field axioms, and Hopf-fiber identity in isolation, using pytorch (load_bearing) + z3 UNSAT + sympy symbolic d\u03b1 formula.",
   "lego_ids": [
-    "contact_structure_s3",
-    "contact_form_s3",
-    "reeb_vector_s3"
+    "contact_structure_s3"
   ],
   "primary_lego_ids": [
     "contact_structure_s3"
   ],
-  "created_at": "2026-04-14T10:23:49.368759+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "Supportive: Monte Carlo numerical integration of \u03b1\u2227d\u03b1 over S\u00b3 using torch tensor sampling to confirm the volume integral = 4\u03c0\u00b2."
+      "reason": "Primary engine for all contact geometry computations: S\u00b3 point generation, tangent projection, contact form evaluation \u03b1(v), exterior derivative d\u03b1(u,v), Reeb field R, nondegeneracy \u03b1\u2227d\u03b1, Hopf orbit flow"
     },
     "pyg": {
       "tried": false,
@@ -25,60 +22,60 @@
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "Load-bearing UNSAT proof: encodes \u03b1\u2227d\u03b1 = 1 at p=(1,0,0,0) (numerically established) together with the Frobenius integrability hypothesis \u03b1\u2227d\u03b1 = 0, yielding UNSAT \u2014 the contact distribution \u03be = ker(\u03b1) is structurally non-integrable."
+      "reason": "UNSAT proof: assuming contact form is integrable (\u03b1\u2227d\u03b1=0) contradicts explicit formula at p=(1,0,0,0) where \u03b1\u2227d\u03b1=2. Integrability is structurally impossible."
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not relevant; z3 suffices for UNSAT Frobenius proof"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "Load-bearing: symbolic computation of \u03b1\u2227d\u03b1 for parametric S\u00b3 in (\u03b7,\u03c6,\u03c7) coordinates confirms the contact condition \u03b1\u2227d\u03b1 \u2260 0 as a symbolic expression, and verifies the Frobenius non-integrability condition cannot be satisfied identically."
+      "reason": "Symbolic verification that d(x\u2080dx\u2081\u2212x\u2081dx\u2080+x\u2082dx\u2083\u2212x\u2083dx\u2082) = 2(dx\u2080\u2227dx\u2081+dx\u2082\u2227dx\u2083) via exterior derivative matrix computation"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not required; no Clifford algebra claim in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not required; no geodesic or curvature claim here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not required; no equivariant learning claim here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not required; no shell DAG update here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not required; no hypergraph claim here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not required; no cell-complex claim here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not required; no persistence claim here"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
+    "pytorch": "load_bearing",
     "pyg": null,
     "z3": "load_bearing",
     "cvc5": null,
-    "sympy": "load_bearing",
+    "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -88,771 +85,187 @@
     "gudhi": null
   },
   "positive": {
-    "P1_contact_nondegeneracy_numeric": {
+    "s3_constraint": {
+      "name": "s3_constraint",
       "pass": true,
-      "n_sampled": 20,
-      "checks": [
-        {
-          "point": [
-            0.18817375576319426,
-            -0.6422275881713418,
-            0.4634306030554158,
-            0.5808325393650813
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.8230998094189101,
-            -0.5493615441488346,
-            0.0539331182210158,
-            -0.1334159522093214
-          ],
-          "alpha_wedge_dalpha": 1.0000000000000002,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.011576638156344,
-            -0.5877797930568169,
-            0.6059387365310941,
-            0.5359283010759779
-          ],
-          "alpha_wedge_dalpha": -0.9999999999999998,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.04419779549869587,
-            0.7545214299316981,
-            0.3129284267128859,
-            -0.5751693371537455
-          ],
-          "alpha_wedge_dalpha": 1.0000000000000002,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.27261818114460307,
-            -0.7089037958783686,
-            0.6494400383830482,
-            -0.036910324350699034
-          ],
-          "alpha_wedge_dalpha": 1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.13018715765372885,
-            -0.47953666851551197,
-            0.8609604407507705,
-            -0.10882558060183356
-          ],
-          "alpha_wedge_dalpha": 1.0000000000000002,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.5032658922416283,
-            -0.4137410560437215,
-            0.6254393092258828,
-            0.4293803101274143
-          ],
-          "alpha_wedge_dalpha": -0.9999999999999999,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.18262178575028878,
-            0.19062535573284173,
-            0.9476147470063081,
-            -0.17982643959460937
-          ],
-          "alpha_wedge_dalpha": 1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.31899323748197655,
-            -0.5067675584753463,
-            0.3835940640598035,
-            0.7030544432231313
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.08441971856055065,
-            -0.6224427889108408,
-            -0.6108295316068183,
-            0.4820016275574668
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.641059115670463,
-            0.46847230517197946,
-            -0.5740042652351591,
-            0.20023988861987668
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.12504116335722268,
-            0.23434791899137397,
-            0.9338279348621441,
-            0.2396062361496207
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.6974301527089,
-            0.06942221118739357,
-            0.29700479906027133,
-            0.6485058889643651
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.8624023437811382,
-            -0.18919404669653725,
-            -0.2783851074711023,
-            -0.37811313396084356
-          ],
-          "alpha_wedge_dalpha": 1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.13760932997110054,
-            0.747678232870157,
-            -0.4330357811912917,
-            0.48427362575832245
-          ],
-          "alpha_wedge_dalpha": -0.9999999999999999,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.9243825302615885,
-            -0.1839487978132456,
-            0.08939853378264886,
-            0.3220057137501724
-          ],
-          "alpha_wedge_dalpha": -1.0000000000000002,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.5864858413735208,
-            0.6542035041394257,
-            -0.2875628150247618,
-            -0.3812607512649634
-          ],
-          "alpha_wedge_dalpha": 1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            0.44698155559224967,
-            -0.099664229024499,
-            -0.664597070511867,
-            -0.5904110976940807
-          ],
-          "alpha_wedge_dalpha": 1.0000000000000002,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.7292610626994184,
-            0.39432168265928497,
-            0.11296458252797827,
-            0.5476565676676803
-          ],
-          "alpha_wedge_dalpha": -1.0,
-          "nonzero": true
-        },
-        {
-          "point": [
-            -0.5125947416687988,
-            0.19020739295247852,
-            0.750549701998998,
-            -0.37113733753010386
-          ],
-          "alpha_wedge_dalpha": 0.9999999999999999,
-          "nonzero": true
-        }
-      ],
-      "criterion": "|\u03b1\u2227d\u03b1| > 1e-6 at every sampled point"
+      "details": {
+        "n_points": 100,
+        "max_norm_error": 2.220446049250313e-16,
+        "note": "Random S\u00b3 points satisfy \u2016p\u2016\u00b2 = 1 to float64 precision"
+      }
     },
-    "P1_contact_nondegeneracy_sympy": {
+    "reeb_tangent_unit": {
+      "name": "reeb_tangent_unit",
       "pass": true,
-      "vol_simplified_repr": "-sin(2*eta)/2",
-      "numeric_check_eta_pi4": -0.5,
-      "symbolic_nonzero": true
+      "details": {
+        "max_tangency_error": 0.0,
+        "max_norm_error": 2.220446049250313e-16,
+        "note": "R = (\u2212x\u2081,x\u2080,\u2212x\u2083,x\u2082): p\u00b7R = 0 and |R| = 1 by |p|\u00b2 = 1"
+      }
     },
-    "P2_reeb_axioms": {
+    "alpha_reeb_equals_one": {
+      "name": "alpha_reeb_equals_one",
       "pass": true,
-      "n_sampled": 20,
-      "checks": [
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 5.589128095609923e-17,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0000000000000002,
-          "alpha_R_minus_1": 2.220446049250313e-16,
-          "iota_R_dalpha_max": 1.1102230246251565e-15,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 2.5257187760138e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 5.598297618497441e-17,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0000000000000002,
-          "alpha_R_minus_1": 2.220446049250313e-16,
-          "iota_R_dalpha_max": 5.29441861274606e-15,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 3.9781944807276836e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 1.6269803008952464e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 0.9999999999999999,
-          "alpha_R_minus_1": -1.1102230246251565e-16,
-          "iota_R_dalpha_max": 4.724678445703296e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 5.551115123125783e-17,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 2.795452065109959e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 0.9999999999999999,
-          "alpha_R_minus_1": -1.1102230246251565e-16,
-          "iota_R_dalpha_max": 1.1341834781263508e-15,
-          "pass": true
-        },
-        {
-          "alpha_R": 0.9999999999999999,
-          "alpha_R_minus_1": -1.1102230246251565e-16,
-          "iota_R_dalpha_max": 5.707211450715705e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0000000000000002,
-          "alpha_R_minus_1": 2.220446049250313e-16,
-          "iota_R_dalpha_max": 2.220446049250313e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 1.6653345369377348e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 1.1315421483783875e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 3.3306690738754696e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 0.9999999999999998,
-          "alpha_R_minus_1": -2.220446049250313e-16,
-          "iota_R_dalpha_max": 3.3306690738754696e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 3.527723734203442e-17,
-          "pass": true
-        },
-        {
-          "alpha_R": 0.9999999999999999,
-          "alpha_R_minus_1": -1.1102230246251565e-16,
-          "iota_R_dalpha_max": 1.6653345369377348e-16,
-          "pass": true
-        },
-        {
-          "alpha_R": 1.0,
-          "alpha_R_minus_1": 0.0,
-          "iota_R_dalpha_max": 1.968901377329713e-16,
-          "pass": true
-        }
-      ],
-      "criterion": "|\u03b1(R)-1| < 1e-10 AND |\u03b9_R d\u03b1|_max < 1e-10"
+      "details": {
+        "max_deviation_from_1": 4.440892098500626e-16,
+        "n_points": 100,
+        "formula": "\u03b1(R) = p\u2080\u00b7p\u2080 \u2212 p\u2081\u00b7(\u2212p\u2081) + p\u2082\u00b7p\u2082 \u2212 p\u2083\u00b7(\u2212p\u2083) = \u2016p\u2016\u00b2 = 1"
+      }
     },
-    "P3_reeb_is_hopf_generator": {
+    "contact_nondegeneracy": {
+      "name": "contact_nondegeneracy",
       "pass": true,
-      "n_sampled": 20,
-      "checks": [
-        {
-          "R": [
-            0.6422275881713418,
-            0.18817375576319426,
-            -0.5808325393650813,
-            0.4634306030554158
-          ],
-          "hopf_gen": [
-            0.6422275881713418,
-            0.18817375576319426,
-            -0.5808325393650813,
-            0.4634306030554158
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.5493615441488346,
-            -0.8230998094189101,
-            0.1334159522093214,
-            0.0539331182210158
-          ],
-          "hopf_gen": [
-            0.5493615441488346,
-            -0.8230998094189101,
-            0.1334159522093214,
-            0.0539331182210158
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.5877797930568169,
-            -0.011576638156344,
-            -0.5359283010759779,
-            0.6059387365310941
-          ],
-          "hopf_gen": [
-            0.5877797930568169,
-            -0.011576638156344,
-            -0.5359283010759779,
-            0.6059387365310941
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.7545214299316981,
-            0.04419779549869587,
-            0.5751693371537455,
-            0.3129284267128859
-          ],
-          "hopf_gen": [
-            -0.7545214299316981,
-            0.04419779549869587,
-            0.5751693371537455,
-            0.3129284267128859
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.7089037958783686,
-            0.27261818114460307,
-            0.036910324350699034,
-            0.6494400383830482
-          ],
-          "hopf_gen": [
-            0.7089037958783686,
-            0.27261818114460307,
-            0.036910324350699034,
-            0.6494400383830482
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.47953666851551197,
-            -0.13018715765372885,
-            0.10882558060183356,
-            0.8609604407507705
-          ],
-          "hopf_gen": [
-            0.47953666851551197,
-            -0.13018715765372885,
-            0.10882558060183356,
-            0.8609604407507705
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.4137410560437215,
-            -0.5032658922416283,
-            -0.4293803101274143,
-            0.6254393092258828
-          ],
-          "hopf_gen": [
-            0.4137410560437215,
-            -0.5032658922416283,
-            -0.4293803101274143,
-            0.6254393092258828
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.19062535573284173,
-            0.18262178575028878,
-            0.17982643959460937,
-            0.9476147470063081
-          ],
-          "hopf_gen": [
-            -0.19062535573284173,
-            0.18262178575028878,
-            0.17982643959460937,
-            0.9476147470063081
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.5067675584753463,
-            -0.31899323748197655,
-            -0.7030544432231313,
-            0.3835940640598035
-          ],
-          "hopf_gen": [
-            0.5067675584753463,
-            -0.31899323748197655,
-            -0.7030544432231313,
-            0.3835940640598035
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.6224427889108408,
-            -0.08441971856055065,
-            -0.4820016275574668,
-            -0.6108295316068183
-          ],
-          "hopf_gen": [
-            0.6224427889108408,
-            -0.08441971856055065,
-            -0.4820016275574668,
-            -0.6108295316068183
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.46847230517197946,
-            0.641059115670463,
-            -0.20023988861987668,
-            -0.5740042652351591
-          ],
-          "hopf_gen": [
-            -0.46847230517197946,
-            0.641059115670463,
-            -0.20023988861987668,
-            -0.5740042652351591
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.23434791899137397,
-            0.12504116335722268,
-            -0.2396062361496207,
-            0.9338279348621441
-          ],
-          "hopf_gen": [
-            -0.23434791899137397,
-            0.12504116335722268,
-            -0.2396062361496207,
-            0.9338279348621441
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.06942221118739357,
-            0.6974301527089,
-            -0.6485058889643651,
-            0.29700479906027133
-          ],
-          "hopf_gen": [
-            -0.06942221118739357,
-            0.6974301527089,
-            -0.6485058889643651,
-            0.29700479906027133
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.18919404669653725,
-            -0.8624023437811382,
-            0.37811313396084356,
-            -0.2783851074711023
-          ],
-          "hopf_gen": [
-            0.18919404669653725,
-            -0.8624023437811382,
-            0.37811313396084356,
-            -0.2783851074711023
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.747678232870157,
-            -0.13760932997110054,
-            -0.48427362575832245,
-            -0.4330357811912917
-          ],
-          "hopf_gen": [
-            -0.747678232870157,
-            -0.13760932997110054,
-            -0.48427362575832245,
-            -0.4330357811912917
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.1839487978132456,
-            -0.9243825302615885,
-            -0.3220057137501724,
-            0.08939853378264886
-          ],
-          "hopf_gen": [
-            0.1839487978132456,
-            -0.9243825302615885,
-            -0.3220057137501724,
-            0.08939853378264886
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.6542035041394257,
-            0.5864858413735208,
-            0.3812607512649634,
-            -0.2875628150247618
-          ],
-          "hopf_gen": [
-            -0.6542035041394257,
-            0.5864858413735208,
-            0.3812607512649634,
-            -0.2875628150247618
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            0.099664229024499,
-            0.44698155559224967,
-            0.5904110976940807,
-            -0.664597070511867
-          ],
-          "hopf_gen": [
-            0.099664229024499,
-            0.44698155559224967,
-            0.5904110976940807,
-            -0.664597070511867
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.39432168265928497,
-            -0.7292610626994184,
-            -0.5476565676676803,
-            0.11296458252797827
-          ],
-          "hopf_gen": [
-            -0.39432168265928497,
-            -0.7292610626994184,
-            -0.5476565676676803,
-            0.11296458252797827
-          ],
-          "gap": 0.0,
-          "pass": true
-        },
-        {
-          "R": [
-            -0.19020739295247852,
-            -0.5125947416687988,
-            0.37113733753010386,
-            0.750549701998998
-          ],
-          "hopf_gen": [
-            -0.19020739295247852,
-            -0.5125947416687988,
-            0.37113733753010386,
-            0.750549701998998
-          ],
-          "gap": 0.0,
-          "pass": true
-        }
-      ],
-      "criterion": "R = (-y1,x1,-y2,x2) at all sampled points (gap < 1e-12)"
+      "details": {
+        "min_abs_alpha_wedge_dalpha": 2.0,
+        "max_abs_alpha_wedge_dalpha": 2.0,
+        "n_points": 50,
+        "threshold": 0.5,
+        "note": "\u03b1\u2227d\u03b1 is a nonzero 3-form (volume form) on T_pS\u00b3. Expected value \u2248 2 for orthonormal frames. Nonzero means ker(\u03b1) is maximally non-integrable."
+      }
     },
-    "P4_sympy_volume_form_standard": {
+    "hopf_fiber_reeb_relation": {
+      "name": "hopf_fiber_reeb_relation",
       "pass": true,
-      "computed_repr": "-sin(2*eta2)/2",
-      "expected_repr": "-sin(2*eta2)/2 = -cos(eta2)*sin(eta2)",
-      "difference": "0",
-      "numeric_at_eta_pi4": -0.5,
-      "interpretation": "\u03b1\u2227d\u03b1 = -cos(\u03b7)sin(\u03b7) d\u03b7\u2227d\u03c6\u2227d\u03c7 in the (\u03b7,\u03c6,\u03c7) coordinate basis (sign is the orientation of the ordered basis \u2202_\u03b7, \u2202_\u03c6, \u2202_\u03c7). Non-zero for all \u03b7 \u2208 (0, \u03c0/2), confirming \u03b1\u2227d\u03b1 is a non-degenerate volume form on the interior of S\u00b3 in these coordinates."
+      "details": {
+        "max_s3_norm_err_after_flow": 2.220446049250313e-16,
+        "max_alpha_reeb_err_after_flow": 4.440892098500626e-16,
+        "reeb_equals_hopf_generator_err": 0.0,
+        "flow_angle_rad": 0.3,
+        "note": "R = d/dt|\u2080 e^{it}(z\u2080,z\u2081) = (\u2212x\u2081,x\u2080,\u2212x\u2083,x\u2082). Hopf U(1) flow preserves S\u00b3 and contact structure."
+      }
+    },
+    "sympy_dalpha_formula": {
+      "name": "sympy_dalpha_formula",
+      "pass": true,
+      "details": {
+        "dalpha_matrix": "[[0, 2, 0, 0], [-2, 0, 0, 0], [0, 0, 0, 2], [0, 0, -2, 0]]",
+        "expected_formula": "2(dx\u2080\u2227dx\u2081 + dx\u2082\u2227dx\u2083)",
+        "note": "Symbolic exterior derivative confirms d\u03b1 = 2(dx\u2080\u2227dx\u2081+dx\u2082\u2227dx\u2083). All other wedge components vanish."
+      }
     }
   },
   "negative": {
-    "N1_frobenius_nonintegrability_z3_unsat": {
+    "alpha_not_closed": {
+      "name": "alpha_not_closed",
       "pass": true,
-      "z3_result": "unsat",
-      "unsat": true,
-      "numeric_alpha_wedge_dalpha_at_north": 1.0,
-      "interpretation": "UNSAT confirms: \u03b1\u2227d\u03b1 \u2260 0 is incompatible with Frobenius integrability condition \u03b1\u2227d\u03b1 = 0. The contact distribution \u03be = ker(\u03b1) is maximally non-integrable \u2014 [\u03be,\u03be] \u2284 \u03be everywhere."
+      "details": {
+        "max_abs_dalpha_component": 1.9924769826625575,
+        "n_points": 30,
+        "note": "d\u03b1 \u2260 0: \u03b1 is NOT a closed form. Closed contact form would give trivial bundle. This confirms \u03b1 is a genuine contact form, not an exact 1-form."
+      }
     },
-    "N2_random_1form_not_contact": {
+    "contact_dist_not_integrable": {
+      "name": "contact_dist_not_integrable",
       "pass": true,
-      "checks_n": 10,
-      "interpretation": "A constant-coefficient 1-form \u03b2 has d\u03b2=0 (closed), so \u03b2\u2227d\u03b2=0 everywhere: it is integrable and cannot be a contact form. This contrasts with \u03b1 where d\u03b1 = 2(dx1\u2227dy1 + dx2\u2227dy2) \u2260 0."
+      "details": {
+        "min_abs_alpha_wedge_dalpha": 1.9999999999999993,
+        "n_points": 30,
+        "frobenius_condition": "\u03b1\u2227d\u03b1=0 everywhere \u2194 ker(\u03b1) is integrable (codim-1 foliation). Measured nonzero \u2192 NOT integrable. Consistent with Reeb's theorem: S\u00b3 admits no codim-1 foliation via this \u03b1."
+      }
     },
-    "N2b_lie_bracket_leaves_xi": {
+    "z3_integrability_unsat": {
+      "name": "z3_integrability_unsat",
       "pass": true,
-      "n_sampled": 15,
-      "checks": [
-        {
-          "alpha_X": 0.0,
-          "alpha_Y": 2.7755575615628914e-17,
-          "alpha_bracket_XY": -0.992242824813562,
-          "nonzero_bracket": true
-        },
-        {
-          "alpha_X": -6.938893903907228e-16,
-          "alpha_Y": 5.551115123125783e-17,
-          "alpha_bracket_XY": -0.58066749521775,
-          "nonzero_bracket": true
-        },
-        {
-          "alpha_X": -5.551115123125783e-17,
-          "alpha_Y": -2.7755575615628914e-17,
-          "alpha_bracket_XY": -0.9999768438925862,
-          "nonzero_bracket": true
-        },
-        {
-          "alpha_X": 6.938893903907228e-17,
-          "alpha_Y": 2.7755575615628914e-17,
-          "alpha_bracket_XY": -0.9994422375012277,
-          "nonzero_bracket": true
-        },
-        {
-          "alpha_X": -1.1102230246251565e-16,
-          "alpha_Y": -5.551115123125783e-17,
-          "alpha_bracket_XY": -0.978893718837166,
-          "nonzero_bracket": true
-        }
-      ],
-      "interpretation": "At generic points p, for X,Y \u2208 \u03be_p: \u03b1([X,Y]) = -d\u03b1(X,Y) \u2260 0, confirming [\u03be,\u03be] \u2284 \u03be \u2014 the distribution is NOT Frobenius-integrable."
+      "details": {
+        "z3_result": "unsat",
+        "encoding": "At p=(1,0,0,0): \u03b1(e\u2081)=1, d\u03b1(e\u2082,e\u2083)=2 \u2192 \u03b1\u2227d\u03b1=2. z3 asked: can this value simultaneously equal 0? Result: UNSAT.",
+        "geometric_meaning": "Contact form \u03b1 is structurally non-integrable on S\u00b3. No 2-dimensional integral submanifolds of ker(\u03b1) can exist."
+      }
+    },
+    "reeb_in_kernel_dalpha": {
+      "name": "reeb_in_kernel_dalpha",
+      "pass": true,
+      "details": {
+        "max_abs_dalpha_R_v": 1.5543122344752192e-15,
+        "identity": "(d\u03b1)(R,v) = \u22122(p\u00b7v) = 0 for v \u2208 T_pS\u00b3",
+        "note": "Reeb field R is in the kernel of \u03b9_R(d\u03b1) restricted to T_pS\u00b3. This follows from p\u00b7v=0 for all tangent vectors."
+      }
     }
   },
   "boundary": {
-    "B1_clifford_torus_contact_character": {
+    "coordinate_poles": {
+      "name": "coordinate_poles",
       "pass": true,
-      "mean_abs_alpha_dphi": 0.5,
-      "mean_abs_alpha_dchi": 0.49999999999999994,
-      "max_abs_alpha_dphi": 0.5000000000000001,
-      "max_abs_alpha_dchi": 0.5,
-      "sympy_alpha_dphi": "1/2",
-      "sympy_alpha_dchi": "1/2",
-      "dphi_in_xi": false,
-      "dchi_in_xi": false,
-      "is_legendrian": false,
-      "is_transverse": true,
-      "determination": "TRANSVERSE: neither tangent direction lies in \u03be",
-      "interpretation": "Clifford torus T_{\u03c0/4} sits at \u03b7=\u03c0/4. sympy computes \u03b1(\u2202/\u2202\u03c6)=1/2 and \u03b1(\u2202/\u2202\u03c7)=1/2. A Legendrian surface would require BOTH to vanish; a transverse surface would require BOTH to be non-zero. The actual character determines whether T_{\u03c0/4} can be a Legendrian submanifold."
+      "details": {
+        "alpha_reeb_values": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "max_alpha_error_from_1": 0.0,
+        "contact_volume_values": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "min_contact_volume": 2.0,
+        "note": "Contact structure is non-degenerate at all 8 coordinate poles of S\u00b3"
+      }
     },
-    "B2_volume_integral": {
+    "reeb_orbit_full_circle": {
+      "name": "reeb_orbit_full_circle",
       "pass": true,
-      "numerical_integral": 39.464858217281304,
-      "exact_value": 39.47841760435743,
-      "relative_error": 0.00034346328700448573,
-      "n_samples": 500000,
-      "note": "\u222b_{S\u00b3} \u03b1\u2227d\u03b1 = 4\u03c0\u00b2 in Hopf coordinates (not 2\u03c0\u00b2 = vol(S\u00b3)). The standard contact form on S\u00b3 has \u222b\u03b1\u2227d\u03b1 = 4\u03c0\u00b2. This is consistent: the standard volume form of S\u00b3 is 2\u03c0\u00b2, and \u03b1\u2227d\u03b1 = 2\u00b7sin(\u03b7)cos(\u03b7) d\u03b7 d\u03c6 d\u03c7, whose integral is 4\u03c0\u00b2. The contact volume form here equals TWICE the standard Riemannian volume."
+      "details": {
+        "max_norm_error": 1.1102230246251565e-16,
+        "max_alpha_error": 2.220446049250313e-16,
+        "n_orbit_steps": 200,
+        "orbit_range": "0 to 2\u03c0",
+        "note": "Hopf circle orbit of p=(1,0,0,0) stays on S\u00b3 for full revolution. \u03b1(R) = 1 preserved throughout."
+      }
+    },
+    "near_antipodal": {
+      "name": "near_antipodal",
+      "pass": true,
+      "details": {
+        "base": {
+          "alpha_reeb": 1.0,
+          "contact_volume": 2.0,
+          "pass": true
+        },
+        "antipodal": {
+          "alpha_reeb": 1.0,
+          "contact_volume": 2.0,
+          "pass": true
+        },
+        "test_points": {
+          "base": [
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "antipodal": [
+            -0.5,
+            -0.5,
+            -0.5,
+            -0.5
+          ]
+        },
+        "note": "Contact structure is non-degenerate at both p=(0.5,0.5,0.5,0.5) and its antipodal point -p. The standard contact form on S\u00b3 is invariant in nondegeneracy (|\u03b1\u2227d\u03b1|=2) under the antipodal involution."
+      }
     }
   },
-  "all_pass": true,
   "summary": {
-    "positive": {
-      "passed": 5,
-      "total": 5
-    },
-    "negative": {
-      "passed": 3,
-      "total": 3
-    },
-    "boundary": {
-      "passed": 2,
-      "total": 2
-    }
-  }
+    "tests_passed": 13,
+    "tests_total": 13,
+    "contact_form": "\u03b1 = x\u2080dx\u2081 \u2212 x\u2081dx\u2080 + x\u2082dx\u2083 \u2212 x\u2083dx\u2082",
+    "exterior_derivative": "d\u03b1 = 2(dx\u2080\u2227dx\u2081 + dx\u2082\u2227dx\u2083)",
+    "reeb_field": "R = (\u2212x\u2081, x\u2080, \u2212x\u2083, x\u2082)",
+    "nondegeneracy_check": "\u03b1\u2227d\u03b1 \u2260 0 verified numerically on 50 random S\u00b3 points",
+    "hopf_relation": "R = generator of U(1) Hopf circle action e^{it}(z\u2080,z\u2081)",
+    "z3_proof": "\u03b1\u2227d\u03b1 = 0 (integrability) is UNSAT at p=(1,0,0,0)",
+    "scope": "Standalone probe for S\u00b3 contact structure. Distinct from sim_geom_symplectic_kahler_contact.py which embeds contact as one item in a 3-structure comparative survey.",
+    "interpretation": "Standard contact structure on S\u00b3 verified via \u211d\u2074 embedding. Contact 1-form \u03b1 = x\u2080dx\u2081\u2212x\u2081dx\u2080+x\u2082dx\u2083\u2212x\u2083dx\u2082 satisfies: (1) \u03b1\u2227d\u03b1 \u2260 0 everywhere \u2014 a nonzero volume form on each T_pS\u00b3. (2) Reeb field R=(\u2212x\u2081,x\u2080,\u2212x\u2083,x\u2082) satisfies \u03b1(R)=1 and (d\u03b1)(R,v)=0 for all tangent v, following from p\u00b7v=0. (3) R generates the U(1) Hopf circle action \u2014 its flow is e^{it}(z\u2080,z\u2081) where z_k are complex coordinates on \u2102\u00b2. (4) Contact distribution ker(\u03b1) is maximally non-integrable (Frobenius: \u03b1\u2227d\u03b1\u22600 violates integrability condition). (5) z3 UNSAT confirms: integrability assumption is algebraically contradictory. (6) Sympy verifies d\u03b1 = 2(dx\u2080\u2227dx\u2081+dx\u2082\u2227dx\u2083) symbolically."
+  },
+  "timestamp": "2026-04-14T10:24:40.441883+00:00"
 }

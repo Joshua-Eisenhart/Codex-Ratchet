@@ -17,8 +17,8 @@ Sections
 import json, pathlib, time
 import numpy as np
 from scipy.linalg import expm, svd, sqrtm
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     Reals, Solver, sat, unsat, And, Or, Not,
     RealVal, If, simplify, Sum,
 )

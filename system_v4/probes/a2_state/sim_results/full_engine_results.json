@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-27T09:12:43.810095+00:00",
+  "timestamp": "2026-04-14T10:29:17.611709+00:00",
   "total_stages": 16,
   "engine_types": [
     1,
@@ -16,107 +16,107 @@
   ],
   "controls_per_stage": 4,
   "results": {
-    "total_stages": 64,
-    "lr_distance_after_cycle": 0.5753949403304772,
-    "torus_inner_eta": 0.6524314425081712,
-    "torus_outer_eta": 0.9183648842867251,
-    "inner_outer_dist": 0.24307431413508412,
-    "controls_nondegen": 4,
-    "ti_active": 8,
-    "ti_total": 8,
-    "fe_active": 8,
-    "fe_total": 8,
-    "te_isometric": 5,
-    "te_total": 8,
-    "fi_filtering": 8,
-    "fi_total": 8,
-    "axes_changed": 5,
-    "spinor_L_evolved": 0.43296279521058284,
-    "spinor_R_evolved": 0.32266359654462407,
-    "axis0_dist_L": 0.32125049367559894,
-    "axis0_dist_R": 0.20579867296375326,
-    "axis0_entropy_gap": 0.036180402593863015,
-    "axis0_level_low": 0.10000000009285077,
-    "axis0_level_high": 0.9000000000103169,
-    "torus_program_dist_L": 0.4495149980812586,
-    "torus_program_dist_R": 0.33310801066175627,
-    "torus_program_ga0_gap": 0.009194656044222316,
-    "torus_program_ga2_gap": 0.012871889434393102,
-    "type_dist_L": 0.15250996023169353,
-    "type_dist_R": 0.2659014836342475
+    "total_stages": 16,
+    "lr_distance_after_cycle": 0.7298110091680065,
+    "torus_inner_eta": 0.7355476900993291,
+    "torus_outer_eta": 0.8352486366955674,
+    "inner_outer_dist": 0.08744862516917162,
+    "controls_nondegen": 1,
+    "ti_active": 2,
+    "ti_total": 2,
+    "fe_active": 0,
+    "fe_total": 2,
+    "te_isometric": 0,
+    "te_total": 2,
+    "fi_filtering": 0,
+    "fi_total": 2,
+    "axes_changed": 4,
+    "spinor_L_evolved": 0.3260552911568641,
+    "spinor_R_evolved": 0.3304404752366386,
+    "axis0_dist_L": 0.22482497113449565,
+    "axis0_dist_R": 0.24335759843574384,
+    "axis0_entropy_gap": -0.0030046961318397347,
+    "axis0_level_low": 0.9317438372054377,
+    "axis0_level_high": 0.5573255088530649,
+    "torus_program_dist_L": 0.14667643977725645,
+    "torus_program_dist_R": 0.12950068776335433,
+    "torus_program_ga0_gap": 0.0023078872636553838,
+    "torus_program_ga2_gap": 0.00026091592720101087,
+    "type_dist_L": 0.3045760552303094,
+    "type_dist_R": 0.3111131020255407
   },
   "evidence_ledger": [
     {
-      "token_id": "E_FULL_ENGINE_CYCLE",
+      "token_id": "",
       "sim_spec_id": "S_FULL_ENGINE_T1",
-      "status": "PASS",
-      "measured_value": 64.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809246"
+      "status": "KILL",
+      "measured_value": 16.0,
+      "kill_reason": "FULL_CYCLE_INCOMPLETE",
+      "timestamp": "2026-04-14T10:29:17.610698"
     },
     {
       "token_id": "E_FULL_ENGINE_LR",
       "sim_spec_id": "S_FULL_ENGINE_T2",
       "status": "PASS",
-      "measured_value": 0.5753949403304772,
+      "measured_value": 0.7298110091680065,
       "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809382"
+      "timestamp": "2026-04-14T10:29:17.610709"
     },
     {
       "token_id": "E_FULL_ENGINE_TORUS",
       "sim_spec_id": "S_FULL_ENGINE_T3",
       "status": "PASS",
-      "measured_value": 0.24307431413508412,
+      "measured_value": 0.08744862516917162,
       "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809385"
+      "timestamp": "2026-04-14T10:29:17.610712"
     },
     {
-      "token_id": "E_FULL_ENGINE_CTRL",
+      "token_id": "",
       "sim_spec_id": "S_FULL_ENGINE_T4",
-      "status": "PASS",
-      "measured_value": 4.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809386"
+      "status": "KILL",
+      "measured_value": 1.0,
+      "kill_reason": "CONTROL_DEGENERACY",
+      "timestamp": "2026-04-14T10:29:17.610715"
     },
     {
-      "token_id": "E_FULL_ENGINE_OPS",
+      "token_id": "",
       "sim_spec_id": "S_FULL_ENGINE_T5",
-      "status": "PASS",
-      "measured_value": 29.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809388"
+      "status": "KILL",
+      "measured_value": 2.0,
+      "kill_reason": "OPERATOR_FAMILY_BEHAVIOR_MISMATCH",
+      "timestamp": "2026-04-14T10:29:17.610717"
     },
     {
       "token_id": "E_FULL_ENGINE_AXES",
       "sim_spec_id": "S_FULL_ENGINE_T6",
       "status": "PASS",
-      "measured_value": 5.0,
+      "measured_value": 4.0,
       "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809390"
+      "timestamp": "2026-04-14T10:29:17.610719"
     },
     {
-      "token_id": "E_FULL_ENGINE_AXIS0",
+      "token_id": "",
       "sim_spec_id": "S_FULL_ENGINE_T7",
-      "status": "PASS",
-      "measured_value": 0.32125049367559894,
-      "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809392"
+      "status": "KILL",
+      "measured_value": 0.24335759843574384,
+      "kill_reason": "AXIS0_NOT_CAUSAL",
+      "timestamp": "2026-04-14T10:29:17.610721"
     },
     {
-      "token_id": "E_FULL_ENGINE_TORUS_PROGRAM",
+      "token_id": "",
       "sim_spec_id": "S_FULL_ENGINE_T8",
-      "status": "PASS",
-      "measured_value": 0.4495149980812586,
-      "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809393"
+      "status": "KILL",
+      "measured_value": 0.14667643977725645,
+      "kill_reason": "TORUS_PROGRAM_NOT_IDENTIFIABLE",
+      "timestamp": "2026-04-14T10:29:17.610722"
     },
     {
       "token_id": "E_FULL_ENGINE_TYPES",
       "sim_spec_id": "S_FULL_ENGINE_T9",
       "status": "PASS",
-      "measured_value": 0.2659014836342475,
+      "measured_value": 0.3111131020255407,
       "kill_reason": null,
-      "timestamp": "2026-03-27T09:12:43.809395"
+      "timestamp": "2026-04-14T10:29:17.610726"
     }
   ]
 }

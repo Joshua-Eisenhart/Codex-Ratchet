@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-11T07:25:53.541088+00:00",
+  "generated_at": "2026-04-14T10:27:06.379273+00:00",
   "strict": false,
-  "current_interpreter": "/usr/local/bin/python3",
+  "current_interpreter": "/opt/homebrew/opt/python@3.13/bin/python3.13",
   "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
   "bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
   "makefile_cache_dirs": {
@@ -51,28 +51,28 @@
       "import_name": "cvc5",
       "distribution_name": "cvc5",
       "floor": "1.3.3",
-      "installed": "",
-      "meets_floor": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'cvc5'"
+      "installed": "1.3.3",
+      "meets_floor": true,
+      "import_ok": true,
+      "import_error": ""
     },
     "e3nn": {
       "import_name": "e3nn",
       "distribution_name": "e3nn",
       "floor": "0.6.0",
-      "installed": "",
-      "meets_floor": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'e3nn'"
+      "installed": "0.6.0",
+      "meets_floor": true,
+      "import_ok": true,
+      "import_error": ""
     },
     "geomstats": {
       "import_name": "geomstats",
       "distribution_name": "geomstats",
       "floor": "2.8.0",
-      "installed": "",
-      "meets_floor": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'geomstats'"
+      "installed": "2.8.0",
+      "meets_floor": true,
+      "import_ok": true,
+      "import_error": ""
     },
     "gudhi": {
       "import_name": "gudhi",
@@ -87,7 +87,7 @@
       "import_name": "matplotlib",
       "distribution_name": "matplotlib",
       "floor": "3.10.0",
-      "installed": "3.10.5",
+      "installed": "3.10.8",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -114,7 +114,7 @@
       "import_name": "pandas",
       "distribution_name": "pandas",
       "floor": "3.0.0",
-      "installed": "2.3.1",
+      "installed": "2.2.3",
       "meets_floor": false,
       "import_ok": true,
       "import_error": ""
@@ -123,7 +123,7 @@
       "import_name": "pydantic",
       "distribution_name": "pydantic",
       "floor": "2.4.0",
-      "installed": "2.11.9",
+      "installed": "2.11.7",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -132,7 +132,7 @@
       "import_name": "requests",
       "distribution_name": "requests",
       "floor": "2.31.0",
-      "installed": "2.32.5",
+      "installed": "2.33.1",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -141,10 +141,10 @@
       "import_name": "rustworkx",
       "distribution_name": "rustworkx",
       "floor": "0.17.1",
-      "installed": "",
-      "meets_floor": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'rustworkx'"
+      "installed": "0.17.1",
+      "meets_floor": true,
+      "import_ok": true,
+      "import_error": ""
     },
     "scipy": {
       "import_name": "scipy",
@@ -186,44 +186,29 @@
       "import_name": "xgi",
       "distribution_name": "xgi",
       "floor": "0.10.1",
-      "installed": "",
-      "meets_floor": null,
-      "import_ok": false,
-      "import_error": "ModuleNotFoundError: No module named 'xgi'"
+      "installed": "0.10.1",
+      "meets_floor": true,
+      "import_ok": true,
+      "import_error": ""
     },
     "z3-solver": {
       "import_name": "z3",
       "distribution_name": "z3-solver",
       "floor": "4.16.0.0",
-      "installed": "4.16.0.0",
-      "meets_floor": true,
+      "installed": "",
+      "meets_floor": null,
       "import_ok": true,
       "import_error": ""
     }
   },
   "summary": {
-    "blocker_count": 8,
-    "advisory_count": 1,
+    "blocker_count": 4,
+    "advisory_count": 0,
     "repair_candidate_count": 1,
     "requirements_package_count": 19,
     "ok": false
   },
   "blockers": [
-    {
-      "kind": "required_package_missing",
-      "package": "cvc5",
-      "floor": "1.3.3"
-    },
-    {
-      "kind": "required_package_missing",
-      "package": "e3nn",
-      "floor": "0.6.0"
-    },
-    {
-      "kind": "required_package_missing",
-      "package": "geomstats",
-      "floor": "2.8.0"
-    },
     {
       "kind": "package_below_floor",
       "package": "networkx",
@@ -233,13 +218,8 @@
     {
       "kind": "package_below_floor",
       "package": "pandas",
-      "installed": "2.3.1",
+      "installed": "2.2.3",
       "floor": "3.0.0"
-    },
-    {
-      "kind": "required_package_missing",
-      "package": "rustworkx",
-      "floor": "0.17.1"
     },
     {
       "kind": "package_below_floor",
@@ -249,17 +229,11 @@
     },
     {
       "kind": "required_package_missing",
-      "package": "xgi",
-      "floor": "0.10.1"
+      "package": "z3-solver",
+      "floor": "4.16.0.0"
     }
   ],
-  "advisories": [
-    {
-      "kind": "current_interpreter_differs_from_makefile",
-      "current": "/usr/local/bin/python3",
-      "expected": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
-    }
-  ],
+  "advisories": [],
   "repair_candidates": [
     {
       "kind": "runtime_alignment_required",

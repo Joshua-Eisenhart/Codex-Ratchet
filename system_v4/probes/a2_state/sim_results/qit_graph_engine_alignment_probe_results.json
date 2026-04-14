@@ -1,22 +1,24 @@
 {
   "schema": "QIT_GRAPH_ENGINE_ALIGNMENT_PROBE_v1",
-  "generated_utc": "2026-03-30T22:28:51.118070+00:00",
+  "generated_utc": "2026-04-14T10:27:53.571527+00:00",
   "graph_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
   "owner_graph": {
     "schema": "QIT_ENGINE_GRAPH_v2",
     "summary": {
-      "node_count": 105,
-      "edge_count": 272,
+      "node_count": 107,
+      "edge_count": 290,
       "node_types": {
         "ENGINE": 2,
         "MACRO_STAGE": 16,
         "OPERATOR": 4,
         "TORUS": 3,
+        "WEYL_BRANCH": 2,
         "AXIS": 7,
         "NEG_WITNESS": 9,
         "SUBCYCLE_STEP": 64
       },
       "relation_types": {
+        "ENGINE_REALIZES_WEYL_BRANCH": 2,
         "SUBCYCLE_ORDER": 4,
         "STAGE_SEQUENCE": 16,
         "TORUS_NESTING": 2,
@@ -24,15 +26,15 @@
         "CHIRALITY_COUPLING": 1,
         "STEP_IN_STAGE": 64,
         "STEP_USES_OPERATOR": 64,
-        "STEP_SEQUENCE": 48,
+        "STEP_SEQUENCE": 64,
         "STAGE_ON_TORUS": 32,
         "AXIS_GOVERNS": 14,
         "NEGATIVE_PROVES": 11
       },
       "validation_errors": []
     },
-    "node_count": 105,
-    "edge_count": 272
+    "node_count": 107,
+    "edge_count": 290
   },
   "expected_counts": {
     "ENGINE": 2,
@@ -53,10 +55,10 @@
   "runtime_checks": {
     "stage_presence_ok": true,
     "graph_stage_sequence_ok": true,
-    "graph_operator_sequence_ok": true,
+    "graph_operator_sequence_ok": false,
     "type1": {
       "engine_type": 1,
-      "history_length": 32,
+      "history_length": 8,
       "runtime_stage_order": [
         "Se_b",
         "Ne_b",
@@ -79,14 +81,14 @@
       ],
       "history_operator_sequence_first_stage": [
         "Ti",
+        "Ti",
         "Fe",
-        "Te",
-        "Fi"
+        "Fe"
       ]
     },
     "type2": {
       "engine_type": 2,
-      "history_length": 32,
+      "history_length": 8,
       "runtime_stage_order": [
         "Se_f",
         "Si_f",
@@ -110,13 +112,13 @@
       "history_operator_sequence_first_stage": [
         "Ti",
         "Fe",
-        "Te",
-        "Fi"
+        "Fe",
+        "Ti"
       ]
     }
   },
   "verdict": {
-    "result": "PASS",
-    "read": "The QIT owner graph is structurally aligned with the live engine topology and subcycle sequencing."
+    "result": "KILL",
+    "read": "The QIT owner graph has drifted from the live engine topology and needs reconciliation before it is trusted as a runtime substrate."
   }
 }

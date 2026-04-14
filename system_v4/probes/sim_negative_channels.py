@@ -35,8 +35,8 @@ import traceback
 
 import numpy as np
 from scipy.linalg import sqrtm
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     Real, RealVal, Solver, sat, unsat, And, Or, Not, Implies, Sum, If,
 )
 

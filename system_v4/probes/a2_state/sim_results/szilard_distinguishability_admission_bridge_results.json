@@ -1,0 +1,156 @@
+{
+  "name": "szilard_distinguishability_admission_bridge",
+  "classification": "canonical",
+  "classification_note": "Canonical bridge row: maps the classical Szilard-Landauer bookkeeping (mutual information / free-energy / erasure cost) onto the constraint-admissibility frame (distinguishability / admission-gate / F01 floor). The nonclassical claim is that free-erasure-after-admission is not 'expensive' but 'inadmissible' -- certified as UNSAT by z3.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "constraint_admissibility",
+    "f01_floor"
+  ],
+  "primary_lego_ids": [
+    "constraint_admissibility"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "2-qubit bookkeeping row uses numpy; no gradient surface needed for the bridge"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph carrier in this bridge row"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes the Szilard<->admissibility bridge axioms (F01 = T*D, demon dF<=E, admission-gated floor) and certifies the nonclassical forbidden region (admitted AND Ev < F01) is UNSAT; plus a counterfactual-UNSAT and an independence-SAT row."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 already covers the Real-arithmetic admission encoding"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form one-bit values are numeric-exact; no symbolic step needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric-algebra carrier in this bridge row"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold carrier in this bridge row"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant representation in this bridge row"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph carrier"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph carrier"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex carrier"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "measurement_admits_exactly_one_bit_of_distinguishability": {
+      "D_nats": 0.6931471805599453,
+      "expected_ln2": 0.6931471805599453,
+      "pass": true
+    },
+    "f01_floor_equals_T_times_D_in_the_one_bit_row": {
+      "F01": 0.6931471805599453,
+      "T_times_D": 0.6931471805599453,
+      "pass": true
+    },
+    "demon_inequality_holds_as_equality_in_ideal_one_bit_row": {
+      "dF": 0.6931471805599453,
+      "E": 0.6931471805599453,
+      "pass": true
+    }
+  },
+  "negative": {
+    "free_erasure_of_admitted_record_is_inadmissible_unsat": {
+      "admission_floor_unsat": true,
+      "counterfactual_free_erasure": true,
+      "pass": true
+    },
+    "admission_independence_is_not_vacuous": {
+      "no_admission_sat": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bridge_anchored_numerically_to_one_bit_szilard_row": {
+      "D_nats": 0.6931471805599453,
+      "dF": 0.6931471805599453,
+      "E": 0.6931471805599453,
+      "pass": true
+    },
+    "z3_proof_block_reports_pass": {
+      "pass": true
+    }
+  },
+  "z3_bridge_proof": {
+    "positive_sat": true,
+    "positive_result": "sat",
+    "negative_admission_floor_unsat": true,
+    "negative_result": "unsat",
+    "counterfactual_free_erasure_unsat": true,
+    "counterfactual_result": "unsat",
+    "independence_no_admission_sat": true,
+    "independence_result": "sat",
+    "pass": true,
+    "note": "z3 is load-bearing: the bridge's nonclassical claim (free-erasure of an admitted record is structurally inadmissible, not merely expensive) is certified by UNSAT of (admitted AND Ev < F01). The independence SAT row gates the forbidden region to the admission branch, preventing a vacuous global constraint."
+  },
+  "anchor": {
+    "temperature": 1.0,
+    "D_nats": 0.6931471805599453,
+    "dF": 0.6931471805599453,
+    "E": 0.6931471805599453,
+    "expected_ln2": 0.6931471805599453
+  },
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "D_nats": 0.6931471805599453,
+    "dF": 0.6931471805599453,
+    "E": 0.6931471805599453,
+    "scope_note": "Bridge row only: identifies Szilard quantities with admission-gate variables on a two-qubit carrier. No engine-runtime, reservoir, or universal-demon claim."
+  }
+}

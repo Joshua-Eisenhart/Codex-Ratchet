@@ -20,8 +20,8 @@ import torch
 import sympy as sp
 from sympy import sqrt as sp_sqrt, exp as sp_exp, Matrix, Symbol, I as sp_I
 from sympy import eye as sp_eye, simplify, trigsimp, series
+classification = "canonical"
 from z3 import (
-classification = "classical_baseline"  # auto-backfill
     RealVal, Real, Solver, sat, ForAll, And, Implies,
     RealSort, Function, unsat
 )

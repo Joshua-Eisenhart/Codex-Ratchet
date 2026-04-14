@@ -6,7 +6,7 @@ Governing rule (durable, owner+Hermes 2026-04-13):
 rustworkx is currently used as load_bearing in ~25 sims with no capability probe.
 This sim is the bounded isolation probe that unblocks rustworkx for nonclassical use.
 
-Contract (from new docs/plans/tool-capability-sim-program.md / ~/wiki/concepts/...):
+Contract (from system_v5/new docs/plans/tool-capability-sim-program.md / ~/wiki/concepts/...):
 
 - Job the tool is supposed to do here:
     Fast DAG construction, topological sort, transitive reduction,

@@ -91,8 +91,10 @@ def complete(claim_path: str | Path, exit_code: int, artifact_path: str) -> Path
     data["artifact_path"] = str(artifact_path)
     data["completed_at"] = time.time()
     done = QUEUE_ROOT / "done" / claim_path.name
-    claim_path.write_text(json.dumps(data, sort_keys=True))
-    os.rename(claim_path, done)
+    tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
+    tmp.write_text(json.dumps(data, sort_keys=True))
+    os.rename(tmp, done)
+    claim_path.unlink(missing_ok=True)
     return done
 
 
@@ -102,8 +104,10 @@ def block(claim_path: str | Path, reason: str) -> Path:
     data["blocked_reason"] = reason
     data["blocked_at"] = time.time()
     blocked = QUEUE_ROOT / "blocked" / claim_path.name
-    claim_path.write_text(json.dumps(data, sort_keys=True))
-    os.rename(claim_path, blocked)
+    tmp = claim_path.with_suffix(claim_path.suffix + ".tmp")
+    tmp.write_text(json.dumps(data, sort_keys=True))
+    os.rename(tmp, blocked)
+    claim_path.unlink(missing_ok=True)
     return blocked
 
 
@@ -115,14 +119,86 @@ def counts() -> dict:
     }
 
 
+def _claimed_matches(worker: str | None) -> list[Path]:
+    claimed_dir = QUEUE_ROOT / "claimed"
+    if not worker:
+        return []
+    return sorted(claimed_dir.glob(f"*.{worker}"))
+
+
+def _resolve_claim_path(*, claim_path: str | None, worker: str | None) -> Path:
+    if claim_path:
+        return Path(claim_path)
+
+    matches = _claimed_matches(worker)
+    if not matches:
+        raise FileNotFoundError(f"no claimed item found for worker={worker!r}")
+    if len(matches) > 1:
+        raise RuntimeError(
+            f"ambiguous claimed item for worker={worker!r}; pass --claim-path explicitly"
+        )
+    return matches[0]
+
+
+def _parse_flags(argv):
+    flags = {}
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a.startswith("--"):
+            key = a[2:]
+            if i + 1 < len(argv) and not argv[i + 1].startswith("--"):
+                flags[key] = argv[i + 1]
+                i += 2
+            else:
+                flags[key] = True
+                i += 1
+        else:
+            i += 1
+    return flags
+
+
+def _lane_from_queue(queue_arg: str) -> str:
+    base = Path(queue_arg).name
+    if base in LANES:
+        return base
+    raise ValueError(f"unknown lane: {queue_arg}")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "counts"
+    rest = sys.argv[2:]
+    flags = _parse_flags(rest)
+
     if cmd == "counts":
         print(json.dumps(counts(), indent=2))
     elif cmd == "enqueue":
-        print(enqueue(sys.argv[2], sys.argv[3]))
+        lane = flags.get("lane") or rest[0]
+        sim = flags.get("sim") or rest[1]
+        print(enqueue(lane, sim))
     elif cmd == "claim":
-        p = claim(sys.argv[2], sys.argv[3])
-        print(p if p else "EMPTY")
+        if "queue" in flags:
+            lane = _lane_from_queue(flags["queue"])
+            worker = flags.get("worker", "w0")
+        else:
+            lane, worker = rest[0], rest[1]
+        p = claim(lane, worker)
+        if p:
+            data = json.loads(Path(p).read_text())
+            data["claim_path"] = str(p)
+            data["sim"] = data.get("sim_path", "")
+            print(json.dumps(data))
+        # empty -> print nothing; runner treats empty stdout as "no work"
+    elif cmd == "complete":
+        worker = flags.get("worker")
+        claim_path = flags.get("claim-path")
+        exit_code = int(flags.get("exit", 0))
+        artifact = flags.get("artifact", "")
+        complete(_resolve_claim_path(claim_path=claim_path, worker=worker), exit_code, artifact)
+    elif cmd == "block":
+        worker = flags.get("worker")
+        claim_path = flags.get("claim-path")
+        reason = flags.get("reason", "unspecified")
+        block(_resolve_claim_path(claim_path=claim_path, worker=worker), reason)
     else:
         sys.exit(f"unknown cmd: {cmd}")

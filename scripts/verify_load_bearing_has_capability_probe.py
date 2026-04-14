@@ -47,22 +47,113 @@ def canonical(tool: str) -> str:
     return ALIASES.get(key, key)
 
 
+def _find_module_literal(tree: ast.AST, name: str):
+    """Return the literal Python value of a top-level `name = <literal>` assign, or None.
+
+    Also resolves single-generator dict-comprehensions whose iter is itself a
+    literal (or a Name referencing another sibling literal) — this is enough to
+    cover the `TOOL_MANIFEST = {k: {...} for k in [<list>]}` pattern. In that
+    case we only need the *keys*, so we return a dict mapping keys to None.
+    """
+    for node in ast.iter_child_nodes(tree):
+        if isinstance(node, ast.Assign):
+            for t in node.targets:
+                if isinstance(t, ast.Name) and t.id == name:
+                    try:
+                        return ast.literal_eval(node.value)
+                    except (ValueError, SyntaxError):
+                        pass
+                    if isinstance(node.value, ast.DictComp) and len(node.value.generators) == 1:
+                        gen = node.value.generators[0]
+                        if gen.ifs or gen.is_async:
+                            return None
+                        if not isinstance(gen.target, ast.Name):
+                            return None
+                        iter_node = gen.iter
+                        iterable = None
+                        try:
+                            iterable = ast.literal_eval(iter_node)
+                        except (ValueError, SyntaxError):
+                            if isinstance(iter_node, ast.Name):
+                                iterable = _find_module_literal(tree, iter_node.id)
+                        if isinstance(iterable, dict):
+                            keys = list(iterable.keys())
+                        elif isinstance(iterable, (list, tuple, set)):
+                            keys = list(iterable)
+                        else:
+                            return None
+                        if isinstance(node.value.key, ast.Name) and node.value.key.id == gen.target.id:
+                            return {k: None for k in keys}
+                    return None
+    return None
+
+
+def _eval_dictcomp_from_manifest(node: ast.DictComp, tree: ast.AST) -> dict | None:
+    """Handle `{k: <expr> for k in TOOL_MANIFEST}` — single generator over a sibling literal.
+
+    Returns a dict mapping manifest keys to the comprehension's value expression
+    evaluated as a literal if possible, else None. Returns None if the pattern
+    doesn't match or the iterator can't be resolved.
+    """
+    if len(node.generators) != 1:
+        return None
+    gen = node.generators[0]
+    if gen.ifs or gen.is_async:
+        return None
+    if not isinstance(gen.target, ast.Name):
+        return None
+    loop_var = gen.target.id
+    if not isinstance(gen.iter, ast.Name):
+        return None
+    manifest = _find_module_literal(tree, gen.iter.id)
+    if manifest is None:
+        return None
+    # Keys are the iterated elements; for a dict iteration this is dict keys.
+    if isinstance(manifest, dict):
+        keys = list(manifest.keys())
+    elif isinstance(manifest, (list, tuple, set)):
+        keys = list(manifest)
+    else:
+        return None
+
+    # Only accept a key expression that is just the loop variable (common case).
+    if not (isinstance(node.key, ast.Name) and node.key.id == loop_var):
+        return None
+
+    # Try to evaluate the value as a literal independent of the loop var.
+    try:
+        value = ast.literal_eval(node.value)
+    except (ValueError, SyntaxError):
+        value = None
+    return {k: value for k in keys}
+
+
 def extract_tool_integration_depth(path: Path) -> dict | None:
-    """Parse-only extraction of TOOL_INTEGRATION_DEPTH dict literal."""
+    """Parse-only extraction of TOOL_INTEGRATION_DEPTH.
+
+    Primary: `ast.literal_eval` of a dict literal.
+    Fallback: dict-comprehension `{k: <literal> for k in TOOL_MANIFEST}` where
+    `TOOL_MANIFEST` is a sibling literal dict/list/tuple/set at module scope.
+    """
     try:
         tree = ast.parse(path.read_text(encoding="utf-8"))
     except (SyntaxError, UnicodeDecodeError):
         return None
-    for node in ast.walk(tree):
+    for node in ast.iter_child_nodes(tree):
         if isinstance(node, ast.Assign):
             for t in node.targets:
                 if isinstance(t, ast.Name) and t.id == "TOOL_INTEGRATION_DEPTH":
                     try:
                         val = ast.literal_eval(node.value)
                     except (ValueError, SyntaxError):
-                        return None
+                        val = None
                     if isinstance(val, dict):
                         return val
+                    if isinstance(node.value, ast.DictComp):
+                        comp_val = _eval_dictcomp_from_manifest(node.value, tree)
+                        if isinstance(comp_val, dict):
+                            return comp_val
+                    return None
     return None
 
 

@@ -7,7 +7,7 @@ toponetx is used as load_bearing in shell-coupling and Hodge Laplacian sims
 with no dedicated capability probe. This sim is the bounded isolation probe
 that unblocks toponetx for nonclassical use.
 
-Contract (from new docs/plans/tool-capability-sim-program.md):
+Contract (from system_v5/new docs/plans/tool-capability-sim-program.md):
 
 - Job the tool is supposed to do here:
     Construct simplicial and cell complexes, compute boundary operator

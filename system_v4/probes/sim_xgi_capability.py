@@ -7,7 +7,7 @@ xgi is used as load_bearing in several coupling/multi-way interaction sims with
 no dedicated capability probe. This sim is the bounded isolation probe that
 unblocks xgi for nonclassical use.
 
-Contract (from new docs/plans/tool-capability-sim-program.md):
+Contract (from system_v5/new docs/plans/tool-capability-sim-program.md):
 
 - Job the tool is supposed to do here:
     Construct hypergraphs (nodes + hyperedges of arbitrary arity),

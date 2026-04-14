@@ -39,6 +39,8 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed for this geometry lego"},
 }
 
+TOOL_INTEGRATION_DEPTH = {tool: None for tool in TOOL_MANIFEST}
+
 try:
     import geomstats.backend as gs
     from geomstats.geometry.hypersphere import Hypersphere
@@ -51,6 +53,7 @@ try:
         "Load-bearing manifold layer: S^3/S^2 membership, geodesic distance, "
         "torus as S^1 x S^1, and Fréchet mean"
     )
+    TOOL_INTEGRATION_DEPTH["geomstats"] = "load_bearing"
 except Exception as e:
     raise RuntimeError(f"geomstats is required for this sim: {type(e).__name__}: {e}") from e
 
@@ -60,6 +63,7 @@ try:
     TOOL_MANIFEST["sympy"]["tried"] = True
     TOOL_MANIFEST["sympy"]["used"] = True
     TOOL_MANIFEST["sympy"]["reason"] = "Exact verification of torus metric and area formulas"
+    TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 except Exception as e:
     sp = None
     TOOL_MANIFEST["sympy"]["tried"] = True
@@ -71,6 +75,7 @@ try:
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["used"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "Geometric algebra basis available"
+    TOOL_INTEGRATION_DEPTH["clifford"] = "supportive"
     CLIFFORD_STATUS = "available"
 except Exception as e:
     TOOL_MANIFEST["clifford"]["tried"] = True
@@ -356,6 +361,7 @@ def main() -> None:
         "probe": "foundation_hopf_torus_geomstats_clifford",
         "purpose": "Foundational geometry lego for normalized spinors, Hopf map, and nested torus structure",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

@@ -15,9 +15,9 @@ The goal is bounded taxonomy and falsification:
 - when weighting cannot manufacture signal from uniformly weak shells
 
 Boot context:
-- new docs/06_entropy_sweep_protocol.md
-- new docs/10_cross_domain_equivalence_map.md
-- new docs/09_research_inventory_and_foundations.md
+- system_v5/new docs/06_entropy_sweep_protocol.md
+- system_v5/new docs/10_cross_domain_equivalence_map.md
+- system_v5/new docs/09_research_inventory_and_foundations.md
 """
 
 import json

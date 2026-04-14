@@ -15,7 +15,7 @@ Covers:
   - cvc5 SAT/UNSAT: R² round-trip correctness (supportive)
 
 Classification: canonical
-Start from SIM_TEMPLATE.py pattern — see new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+Start from SIM_TEMPLATE.py pattern — see system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 from __future__ import annotations

@@ -9,8 +9,8 @@ PY="${PY:-/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python
 LOCK="/tmp/codex_ratchet_overnight.lock"
 QUEUE_CLAIM="$ROOT/scripts/queue_claim.py"
 GATE="$ROOT/scripts/verify_load_bearing_has_capability_probe.py"
-LANE_A_DIR="$ROOT/queue/lane_A"
-LANE_B_DIR="$ROOT/queue/lane_B"
+LANE_A_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_A"
+LANE_B_DIR="$ROOT/system_v4/probes/a2_state/queue/lane_B"
 LOG_DIR="$ROOT/overnight_logs"
 STAMP=$(date +%Y%m%d_%H%M%S)
 
@@ -66,7 +66,7 @@ release_lock() { rm -f "$LOCK"; }
 # --- worker: claim one item, maybe-gate, run, complete ----------------------
 worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   local lane="$1" qdir="$2" gated="$3" wid="$4"
-  local claim_json sim exit_code artifact sha
+  local claim_json claim_path sim exit_code artifact sha
   if [ "$DRY" -eq 1 ]; then
     echo "DRY: $PY $QUEUE_CLAIM claim --queue $qdir --worker $wid"
     echo "DRY:  (gate if lane_a) $PY $GATE --sim <path>"
@@ -75,12 +75,14 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   fi
   claim_json=$("$PY" "$QUEUE_CLAIM" claim --queue "$qdir" --worker "$wid" 2>/dev/null) || return 1
   [ -z "$claim_json" ] && return 1
+  claim_path=$("$PY" -c "import json,sys;print(json.loads(sys.argv[1]).get('claim_path',''))" "$claim_json")
   sim=$("$PY" -c "import json,sys;print(json.loads(sys.argv[1]).get('sim',''))" "$claim_json")
+  [ -z "$claim_path" ] && return 1
   [ -z "$sim" ] && return 1
 
   if [ "$gated" -eq 1 ]; then
     if ! "$PY" "$GATE" --sim "$sim" >/dev/null 2>&1; then
-      "$PY" "$QUEUE_CLAIM" block --worker "$wid" --reason "gate_denied" >/dev/null 2>&1 || true
+      "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "gate_denied" >/dev/null 2>&1 || true
       emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\""
       return 0
     fi
@@ -91,7 +93,7 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
     "$PY" "$sim" >"$artifact" 2>&1
   exit_code=$?
   sha=$(shasum -a 256 "$artifact" | awk '{print $1}')
-  "$PY" "$QUEUE_CLAIM" complete --worker "$wid" --exit "$exit_code" --artifact "$artifact" >/dev/null 2>&1 || true
+  "$PY" "$QUEUE_CLAIM" complete --claim-path "$claim_path" --exit "$exit_code" --artifact "$artifact" >/dev/null 2>&1 || true
   emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
   return 0
 }

@@ -25,7 +25,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "fep + igt evaluation"},
     "z3":    {"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "z3": None}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "z3": None}
 
 try:
     import z3; TOOL_MANIFEST["z3"]["tried"] = True
@@ -64,7 +64,7 @@ def run_positive_tests():
     r["z3_long_horizon_action_dominant"] = (s.check() == z3.unsat)
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "long-horizon payoff strictly dominates"
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["z3"] = "supportive"
 
     # Short-horizon alone would prefer action 0 (payoff = 1 vs -1)
     short_payoffs = np.array([1, -1])

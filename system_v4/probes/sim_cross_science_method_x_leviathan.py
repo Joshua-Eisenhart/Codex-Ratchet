@@ -24,7 +24,7 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "simulate adversary vs consensus"},
     "z3":    {"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "z3": None}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "z3": None}
 
 try:
     import z3; TOOL_MANIFEST["z3"]["tried"] = True
@@ -64,7 +64,7 @@ def run_positive_tests():
     r["z3_full_leviathan_blocks_decay"] = (s.check() == z3.unsat)
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "leviathan weight=1 freezes support"
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["z3"] = "supportive"
 
     r["EMERGENT_false_stable_region"] = bool(r["civic_preserves_refutable_claim"] and r["free_collapses_claim"])
     return r

@@ -20,7 +20,7 @@ TOOL_MANIFEST = {
     "z3":    {"tried": False, "used": False, "reason": ""},
     "numpy": {"tried": True,  "used": True,  "reason": "trajectory + correlation"},
 }
-TOOL_INTEGRATION_DEPTH = {"sympy": None, "z3": None, "numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"sympy": None, "z3": None, "numpy": "supportive"}
 
 try:
     import sympy as sp; TOOL_MANIFEST["sympy"]["tried"] = True
@@ -83,7 +83,7 @@ def run_positive_tests():
     r["z3_step_shrinks_L1"] = (s.check() == z3.unsat)
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "step cannot expand L1 distance => Xi monotone"
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["z3"] = "supportive"
     return r
 
 

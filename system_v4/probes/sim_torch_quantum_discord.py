@@ -31,7 +31,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
+    "pytorch": "supportive",
     "pyg": None,
     "z3": None,
     "cvc5": None,

@@ -15,7 +15,7 @@ Steps:
      should be removed if a longer path exists through an intermediate node.
 
 Tool integration:
-  rustworkx = load_bearing  (transitive_reduction is the core operation; all
+  rustworkx = supportive    (baseline graph substrate; transitive_reduction is the core operation, but this row stays classical_baseline)
                              graph queries are rustworkx-native)
   pytorch   = supportive    (density matrix MI/I_c computation)
 """
@@ -52,7 +52,7 @@ TOOL_INTEGRATION_DEPTH = {
     "clifford":  None,
     "geomstats": None,
     "e3nn":      None,
-    "rustworkx": "load_bearing",
+    "rustworkx": "supportive",
     "xgi":       None,
     "toponetx":  None,
     "gudhi":     None,

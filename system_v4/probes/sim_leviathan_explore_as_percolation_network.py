@@ -16,7 +16,7 @@ classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "bond sampling"},
                  "networkx": {"tried": False, "used": False, "reason": ""}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "networkx": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "networkx": "supportive"}
 try:
     import networkx as nx
     TOOL_MANIFEST["networkx"]["tried"] = True

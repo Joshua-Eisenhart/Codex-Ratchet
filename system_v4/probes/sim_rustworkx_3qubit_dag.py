@@ -20,7 +20,7 @@ Coherent information for A→BC cut: I_c = S(BC) - S(ABC)
 Question: Does GHZ now separate from Bell⊗|0⟩ on the tripartite MI and I_c axes?
 
 Tool integration:
-  rustworkx = load_bearing  (DAG construction, topological_sort, dag_longest_path,
+  rustworkx = supportive    (baseline DAG substrate for construction, topological_sort, dag_longest_path,
                              descendants, is_directed_acyclic_graph)
   pytorch   = supportive    (8×8 density matrix arithmetic for 3-qubit MI/I_c)
 """
@@ -57,7 +57,7 @@ TOOL_INTEGRATION_DEPTH = {
     "clifford":  None,
     "geomstats": None,
     "e3nn":      None,
-    "rustworkx": "load_bearing",
+    "rustworkx": "supportive",
     "xgi":       None,
     "toponetx":  None,
     "gudhi":     None,

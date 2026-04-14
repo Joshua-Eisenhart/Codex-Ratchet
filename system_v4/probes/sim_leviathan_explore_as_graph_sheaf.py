@@ -16,7 +16,7 @@ classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "linear sheaf sections"},
                  "toponetx": {"tried": False, "used": False, "reason": ""}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "toponetx": None}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "toponetx": None}
 try:
     from toponetx.classes import CellComplex  # noqa
     TOOL_MANIFEST["toponetx"]["tried"] = True

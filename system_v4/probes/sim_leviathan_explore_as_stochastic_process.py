@@ -15,7 +15,7 @@ import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "stationary via eigen-decomp"}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 
 def stationary(P):

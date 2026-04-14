@@ -15,7 +15,7 @@ import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "replicator ODE"}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 
 def replicator(x, A, T=500, dt=0.01):

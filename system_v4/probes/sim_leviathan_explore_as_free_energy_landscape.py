@@ -15,7 +15,7 @@ import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "landscape eval + gradient descent"}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 
 def F(x, y, T=1.0):

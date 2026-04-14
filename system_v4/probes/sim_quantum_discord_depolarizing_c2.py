@@ -17,7 +17,7 @@ Then re-run the z3 proof from sim_c2_c4_independence_crosscheck.py with the new 
 to confirm the gap closes to UNSAT.
 
 tool_integration_depth:
-  pytorch = "load_bearing"  (gradient range computation is the classification criterion)
+  pytorch = "supportive"    (baseline substrate for the gradient-range classification criterion)
   z3      = "supportive"    (confirms closure of the classical_quantity gap)
 """
 
@@ -46,7 +46,7 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":    "load_bearing",
+    "pytorch":    "supportive",
     "pyg":        None,
     "z3":         "supportive",
     "cvc5":       None,
@@ -65,7 +65,7 @@ try:
     TOOL_MANIFEST["pytorch"]["tried"] = True
     TOOL_MANIFEST["pytorch"]["used"] = True
     TOOL_MANIFEST["pytorch"]["reason"] = (
-        "load_bearing: gradient range across chain/star/skip_connect topologies "
+        "supportive baseline substrate: gradient range across chain/star/skip_connect topologies "
         "is the C2 classification criterion for quantum_discord and depolarizing"
     )
     TORCH_OK = True

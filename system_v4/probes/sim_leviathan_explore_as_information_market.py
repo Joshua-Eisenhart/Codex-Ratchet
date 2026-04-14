@@ -15,7 +15,7 @@ classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "joint distributions, MI"},
                  "sympy": {"tried": False, "used": False, "reason": ""}}
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing", "sympy": None}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "sympy": None}
 try:
     import sympy as sp
     TOOL_MANIFEST["sympy"]["tried"] = True

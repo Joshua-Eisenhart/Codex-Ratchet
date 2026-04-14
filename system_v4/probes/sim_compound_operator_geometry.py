@@ -22,7 +22,7 @@ NO engine imports. Pure legos: numpy, scipy, clifford.
 import sys, os, json, time
 import numpy as np
 from scipy.linalg import expm
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- numpy/scipy state evolution"},

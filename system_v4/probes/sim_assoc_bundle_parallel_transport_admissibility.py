@@ -11,7 +11,7 @@ the |ψ|^2 probability density is preserved).
 import json
 import os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},

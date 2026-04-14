@@ -19,7 +19,7 @@ import math
 from pathlib import Path
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 TOOL_MANIFEST = {

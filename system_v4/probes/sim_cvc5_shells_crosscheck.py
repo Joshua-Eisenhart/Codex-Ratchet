@@ -40,7 +40,7 @@ import os
 import time
 import math
 from fractions import Fraction
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

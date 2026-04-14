@@ -11,7 +11,7 @@ Admissibility = does the section's transition satisfy the G-cocycle condition?
 import json
 import os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "clifford":  {"tried": False, "used": False, "reason": ""},

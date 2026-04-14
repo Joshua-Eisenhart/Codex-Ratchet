@@ -24,7 +24,7 @@ import os
 import time
 from datetime import UTC, datetime
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

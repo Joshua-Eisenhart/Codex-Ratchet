@@ -17,6 +17,7 @@ import json
 import time
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: the master engine composes prior layers for bottom-up validation, not as a canonical nonclassical witness."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import EvidenceToken

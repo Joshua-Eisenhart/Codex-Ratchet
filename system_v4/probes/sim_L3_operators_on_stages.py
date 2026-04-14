@@ -25,6 +25,7 @@ import json
 import dataclasses
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: operator action on stages is a geometric engine validation pass, not a canonical nonclassical proof object."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import (

@@ -39,6 +39,7 @@ import sys
 import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: the eight-stage lattice is being validated as topology-first structure, not as a canonical nonclassical witness."
 
 # =====================================================================
 # TOOL MANIFEST

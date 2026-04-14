@@ -10,6 +10,8 @@ Decorative = `import cvc5` without solver.checkSat() used in claim.
 Load-bearing = cvc5 verdict used to corroborate (or falsify) z3 verdict.
 """
 
+classification = "canonical"
+
 import json
 import os
 

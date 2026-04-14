@@ -17,6 +17,8 @@ Contract: ~/wiki/concepts/tool-capability-sim-program.md
     compared (not replaced) in test 5
 """
 
+classification = "canonical"
+
 import json
 import os
 import numpy as np

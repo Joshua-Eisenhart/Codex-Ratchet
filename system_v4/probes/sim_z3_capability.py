@@ -19,6 +19,8 @@ Contract:
 - Baseline = hand-truth-table on tiny propositional problems; z3 must agree.
 """
 
+classification = "canonical"
+
 import json
 import os
 

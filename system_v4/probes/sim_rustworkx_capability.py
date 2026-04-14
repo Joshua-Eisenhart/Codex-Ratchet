@@ -49,6 +49,8 @@ Contract (from system_v5/new docs/plans/tool-capability-sim-program.md / ~/wiki/
     the same ordering / depth that hand-verified ground truth gives.
 """
 
+classification = "canonical"
+
 import json
 import os
 import time

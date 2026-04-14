@@ -7,6 +7,8 @@ einsum, eigendecomposition used by classical_baseline sims. This probes only
 those primitives, not the full ratchet.
 """
 
+classification = "canonical"
+
 import json
 import os
 

@@ -41,6 +41,8 @@ Contract (from system_v5/new docs/plans/tool-capability-sim-program.md):
     both must agree up to column/row permutation and sign convention.
 """
 
+classification = "canonical"
+
 import json
 import os
 

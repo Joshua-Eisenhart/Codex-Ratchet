@@ -14,6 +14,8 @@ These sims treat GUDHI persistence as decisive structure -- this probe provides
 the missing isolation test unblocking that use.
 """
 
+classification = "canonical"
+
 import json
 import math
 import os

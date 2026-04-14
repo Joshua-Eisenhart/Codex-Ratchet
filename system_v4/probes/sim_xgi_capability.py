@@ -43,6 +43,8 @@ Contract (from system_v5/new docs/plans/tool-capability-sim-program.md):
     both must agree on the partition.
 """
 
+classification = "canonical"
+
 import json
 import os
 

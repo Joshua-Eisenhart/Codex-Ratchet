@@ -11,6 +11,8 @@ Load-bearing = the rotor-sandwich output IS the claim (rotation of a vector, gra
 projection, reversion).
 """
 
+classification = "canonical"
+
 import json
 import math
 import os

@@ -36,9 +36,8 @@ while :; do
   done
 
   # === free local maintenance (no tokens) ===
-  # quarantine " 2.py" copy files
-  mkdir -p system_v4/probes/_quarantine_copies
-  find system_v4/probes -maxdepth 1 -name "* 2.py" -exec mv {} system_v4/probes/_quarantine_copies/ \; 2>/dev/null
+  # report duplicate copy-file count, but do not move active probe files from the loop
+  copy_count=$(find system_v4/probes -maxdepth 1 -name "* 2.py" 2>/dev/null | wc -l)
 
   # release stale claims (>2h old, pid dead)
   now=$(date +%s)
@@ -69,19 +68,22 @@ pathlib.Path('overnight_logs/retag_candidates.json').write_text(json.dumps(flagg
 print(f'retag candidates flagged: {len(flagged)}')
 " 2>&1
 
-  # auto-commit new results if any (skip pre-commit hook to not block on known result-json debt)
+  # auto-commit result artifacts only; do not scoop unrelated source edits mid-run
   if [ -n "$(git status --porcelain system_v4/probes/a2_state/sim_results/ 2>/dev/null | head -1)" ]; then
-    git add system_v4/probes/a2_state/sim_results/ system_v4/probes/sim_*.py scripts/ 2>/dev/null
-    git commit --no-verify -m "auto: reseed-loop snapshot $(date +%Y%m%d_%H%M)" 2>&1 | tail -2
+    git add system_v4/probes/a2_state/sim_results/ 2>/dev/null
+    if ! git diff --cached --quiet -- system_v4/probes/a2_state/sim_results/; then
+      git commit --no-verify -m "auto: sim-results snapshot $(date +%Y%m%d_%H%M)" 2>&1 | tail -2
+    fi
   fi
 
   # run audits every cycle (free — local only)
   {
     echo "=== AUDIT [$(date)] ==="
     python3 scripts/queue_claim.py 2>/dev/null
-    python3 scripts/check_classification.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"classification: ok={d.get('ok_count',0)} missing={len(d.get('missing',[]))} non_literal={len(d.get('non_literal',[]))}\")" 2>/dev/null
+    echo "copy_candidates=$copy_count"
+    python3 scripts/check_classification.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"classification: ok={d.get('ok',0)} missing={len(d.get('missing',[]))} invalid={len(d.get('invalid',[]))} parse_error={len(d.get('parse_errors',[]))} non_literal={len(d.get('non_literal',[]))}\")" 2>/dev/null
     python3 scripts/check_witnesses.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"witnesses: checked={d.get('checked',0)} violations={d.get('violation_count',0)}\")" 2>/dev/null
-    python3 scripts/lint_sim_contract.py 2>/dev/null | tail -3
+    python3 scripts/lint_sim_contract.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"contract: checked={d.get('checked',0)} sims_with_violations={d.get('sims_with_violations',0)} total={d.get('violation_total',0)} c6={d.get('violations_by_type',{}).get('C6_classical_has_load_bearing',0)}\")" 2>/dev/null
     # blocked audit: reasons histogram
     find system_v4/probes/a2_state/queue/blocked -type f -name '*.json*' 2>/dev/null | head -500 | xargs -I{} python3 -c "import json,sys; d=json.load(open('{}'));print(d.get('blocked_reason','?'))" 2>/dev/null | sort | uniq -c | sort -rn | head -5
     echo "done_recent_5min=$(find system_v4/probes/a2_state/queue/done -type f -mmin -5 2>/dev/null | wc -l)"

@@ -13,6 +13,8 @@ If e3nn is not importable, probe reports importable=False and all_pass=False
 honestly (no fake pass).
 """
 
+classification = "canonical"
+
 import json
 import math
 import os

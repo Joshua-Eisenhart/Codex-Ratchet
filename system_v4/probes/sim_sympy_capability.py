@@ -11,6 +11,8 @@ Decorative = `import sympy` without a symbolic result affecting the claim.
 Load-bearing = a simplified/solved/eigen expression IS the claim.
 """
 
+classification = "canonical"
+
 import json
 import os
 

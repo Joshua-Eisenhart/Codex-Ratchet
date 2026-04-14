@@ -23,6 +23,8 @@ Tests (in isolation):
   6. Failure: mismatched edge_index / invalid graph raises     (boundary)
 """
 
+classification = "canonical"
+
 import json
 import os
 import traceback

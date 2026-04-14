@@ -11,6 +11,8 @@ Decorative = `import torch` with no autograd/backward actually run.
 Load-bearing = gradient values / tensor shape ops are the claim.
 """
 
+classification = "canonical"
+
 import json
 import os
 

@@ -1,0 +1,116 @@
+{
+  "name": "sim_toponetx_deep_hodge_laplacian_kernel_excludes_nontrivial",
+  "classification": "canonical",
+  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (harmonic-form distinguishability)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "hodge_laplacian_matrix(k) emits the canonical L_k whose kernel dimension is the admissibility witness for H_k. Removing toponetx removes the oriented operator; claim has no referent."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "contractible_b1_zero": {
+      "PASS": true,
+      "b1": 0,
+      "language": "admissible: harmonic 1-forms excluded on contractible shell"
+    },
+    "loop_b1_one": {
+      "PASS": true,
+      "b1": 1,
+      "language": "admissible: exactly one harmonic class survives the hole"
+    }
+  },
+  "negative": {
+    "filling_excludes_harmonic": {
+      "PASS": true,
+      "before": 1,
+      "after": 0,
+      "language": "excluded: filling-cell kills the candidate harmonic class"
+    },
+    "two_loops_not_one": {
+      "PASS": true,
+      "b1": 2,
+      "language": "excluded: single-class claim fails for two disjoint cycles"
+    }
+  },
+  "boundary": {
+    "edge_b1_zero": {
+      "PASS": true
+    },
+    "figure_eight_b1_two": {
+      "PASS": true,
+      "b1": 2
+    }
+  },
+  "ALL_PASS": true
+}

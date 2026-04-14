@@ -1,0 +1,80 @@
+{
+  "name": "f01n01_couple_cvc5_parity_on_joint_bound",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-solver UNSAT parity on F01+N01 joint bound; load-bearing"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "cvc5_unsat_P3_over_8": true
+  },
+  "negative": {
+    "cvc5_sat_P3_eq_8": true
+  },
+  "boundary": {
+    "cvc5_unsat_P1_over_2": true
+  },
+  "overall_pass": true,
+  "exclusion_statement": "F01+N01 joint bound C<=2^P excluded by cvc5 (cross-solver parity with z3)."
+}

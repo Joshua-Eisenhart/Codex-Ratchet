@@ -1,0 +1,136 @@
+{
+  "name": "sim_em_classical_entropy_as_space_volume",
+  "scope_note": "Illumination of doctrine 'space=entropy'. Classical baseline only; co-variation test of log-microstate-count vs lattice volume on toy box. Citation: user_entropic_monism_doctrine.md",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; pure counting"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure probed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "bridge sim 08 handles admissibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant with z3 bridge"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form not required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "flat lattice"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance probed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing microstate counting"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "monotone_S_with_V": {
+      "pass": true,
+      "S": [
+        5.545177444479562,
+        18.714973875118524,
+        44.3614195558365,
+        86.64339756999316,
+        149.7197910009482
+      ],
+      "V": [
+        8,
+        27,
+        64,
+        125,
+        216
+      ]
+    },
+    "constant_S_over_V": {
+      "pass": true,
+      "ratio": [
+        0.6931471805599453,
+        0.6931471805599453,
+        0.6931471805599453,
+        0.6931471805599453,
+        0.6931471805599453
+      ]
+    }
+  },
+  "negative": {
+    "shuffled_not_monotone": {
+      "pass": true
+    },
+    "zero_entropy_nonzero_volume_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "L1_boundary": {
+      "pass": "True",
+      "S": 0.6931471805599453,
+      "V": 1
+    },
+    "large_L_finite": {
+      "pass": "True",
+      "S": 5545.177444479562
+    }
+  },
+  "all_pass": true
+}

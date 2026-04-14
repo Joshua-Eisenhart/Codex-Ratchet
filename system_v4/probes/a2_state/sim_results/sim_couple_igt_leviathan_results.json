@@ -1,0 +1,94 @@
+{
+  "name": "sim_couple_igt_leviathan",
+  "classification": "canonical",
+  "scope_note": "Pairwise coupling test under exclusion-language discipline. See system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. Candidates are not 'created' or 'derived'; they are 'admissible under joint coupling', 'survived', or 'excluded'.",
+  "exclusion_language_note": "All admissibility statements use 'survived' / 'admissible under joint coupling' / 'excluded'. No creates/derives/drives.",
+  "shells": [
+    "igt",
+    "leviathan"
+  ],
+  "coupling_description": "coalition_stable AND not_strictly_dominated => no_blocking_subcoalition (blocking subcoalition excludes the joint survival)",
+  "atoms": [
+    "not_strictly_dominated",
+    "pareto_non_minimal",
+    "monotone_aggregation",
+    "coalition_stable",
+    "no_blocking_subcoalition"
+  ],
+  "positive": {
+    "enum": {
+      "admissible_A": 8,
+      "admissible_B": 8,
+      "admissible_intersection": 2,
+      "admissible_joint": 1,
+      "excluded_by_coupling": 1,
+      "interacting": true,
+      "additive": false
+    },
+    "z3": {
+      "z3_available": true,
+      "shell_A_alone": "sat",
+      "shell_B_alone": "sat",
+      "joint_coupling": "sat",
+      "coupling_exclusion_witness": "sat"
+    },
+    "pass": true
+  },
+  "negative": {
+    "enum": {
+      "admissible_A": 8,
+      "admissible_B": 8,
+      "admissible_intersection": 2,
+      "admissible_joint": 0,
+      "excluded_by_coupling": 2,
+      "interacting": true,
+      "additive": false
+    },
+    "description": "coupling forced identically FALSE; joint admissible set must be empty",
+    "pass": true
+  },
+  "boundary": {
+    "enum": {
+      "admissible_A": 8,
+      "admissible_B": 8,
+      "admissible_intersection": 2,
+      "admissible_joint": 2,
+      "excluded_by_coupling": 0,
+      "interacting": false,
+      "additive": true
+    },
+    "description": "coupling forced identically TRUE; joint reduces to shell-local intersection (additive)",
+    "pass": true
+  },
+  "overall_pass": true,
+  "interacting": true,
+  "additive": false,
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: joint/shell/exclusion SAT-UNSAT decides admissibility and coupling-exclusion witness"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive only; not needed for Boolean admissibility"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable at pair-level Boolean coupling layer"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no gradient surface at this Boolean admissibility layer"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "pytorch": null
+  }
+}

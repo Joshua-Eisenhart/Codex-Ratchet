@@ -1,0 +1,64 @@
+{
+  "name": "sim_L15_bridge_family",
+  "layer": 15,
+  "layer_name": "Bridge family (Xi_point, Xi_shell, Xi_hist)",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 15 (bridge family candidates)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "bridge functionals evaluated as torch tensor contractions; split-behavior is load-bearing for distinguishability claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic sanity check of Xi_point on diagonal rho; confirms probe-relative formulation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "bridges_split_on_bell": {
+      "pass": true,
+      "values": [
+        0.4999999999999999,
+        0.4999999999999998,
+        1.9999999999999996
+      ]
+    },
+    "bridges_split_on_product": {
+      "pass": true,
+      "values": [
+        0.0,
+        0.9999999999999996,
+        0.9999999999999998
+      ]
+    },
+    "torch_available": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "redundant_family_excluded": {
+      "pass": true
+    },
+    "mixed_state_nonnegative": {
+      "pass": true,
+      "values": [
+        0.0,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "boundary": {
+    "bridge_continuity_small_perturbation": {
+      "pass": true,
+      "delta": 1.9999919999569293e-06
+    }
+  },
+  "all_pass": true
+}

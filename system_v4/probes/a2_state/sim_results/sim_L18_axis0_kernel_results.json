@@ -1,0 +1,47 @@
+{
+  "name": "sim_L18_axis0_kernel",
+  "layer": 18,
+  "layer_name": "Axis 0 kernel",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 18 (preferred signed scalar on bridge output)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd gradient of I_c wrt entangling parameter is THE load-bearing Axis 0 evidence; numpy has no autograd"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "I_c_defined": {
+      "pass": true,
+      "value": 1.2519549131393433
+    },
+    "gradient_nonzero": {
+      "pass": true,
+      "grad": 1.4151976108551025,
+      "claim": "non-zero autograd gradient admits I_c as Axis 0 kernel candidate"
+    }
+  },
+  "negative": {
+    "constant_candidate_excluded": {
+      "pass": true,
+      "grad": 0.0
+    }
+  },
+  "boundary": {
+    "boundary_product": {
+      "pass": true,
+      "I_c": -6.907755801951788e-29,
+      "grad": 0.0
+    },
+    "boundary_bell_maximum": {
+      "pass": true,
+      "I_c": 1.3862943649291992,
+      "grad": 0.0
+    }
+  },
+  "all_pass": true
+}

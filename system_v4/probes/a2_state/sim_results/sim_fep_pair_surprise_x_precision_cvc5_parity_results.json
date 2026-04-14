@@ -1,0 +1,39 @@
+{
+  "name": "sim_fep_pair_surprise_x_precision_cvc5_parity",
+  "scope_note": "redundant-SMT parity for system_v4/probes/sim_fep_pair_surprise_x_precision.py",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check: UNSAT on pi*e^2<0 under pi>0"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT on same encoding, parity witness"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "z3_unsat": true,
+    "cvc5_unsat": true,
+    "parity_both_unsat": true
+  },
+  "negative": {
+    "dropping_pi_positive_becomes_sat": true
+  },
+  "boundary": {
+    "pi_e2_eq_zero_sat_at_boundary": true
+  },
+  "PASS": true
+}

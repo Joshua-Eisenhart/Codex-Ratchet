@@ -1,0 +1,51 @@
+{
+  "name": "sim_em_classical_future_compression_future_from_external",
+  "scope_note": "Doctrine 'future from external compression'. RG-block toy; compressed macro predicts evolution. user_entropic_monism_doctrine.md",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing RG coarse-grain + prediction"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "block_evolve_commute": {
+      "pass": true,
+      "corr": 0.7439155559593237
+    }
+  },
+  "negative": {
+    "independent_signals_uncorrelated": {
+      "pass": true,
+      "corr": -0.037207971763699305
+    }
+  },
+  "boundary": {
+    "constant_signal_fixed": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,126 @@
+{
+  "name": "sim_toponetx_deep_cell_complex_boundary_consistency",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md (boundary fence)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex + incidence_matrix(k) provide the oriented boundary operators B1,B2; the admissibility claim B1 @ B2 == 0 is only defined in toponetx's orientation convention. Without it, the admissibility referent does not exist -- this is load_bearing."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "B1B2_zero_square": {
+      "PASS": true,
+      "max_abs": 0.0,
+      "note": "admissible: boundary-of-boundary vanishes on oriented 2-cell"
+    },
+    "B1B2_zero_two_glued": {
+      "PASS": true,
+      "max_abs": 0.0
+    }
+  },
+  "negative": {
+    "orientation_violation_excluded": {
+      "PASS": true,
+      "max_abs": 1.0,
+      "language": "excluded: orientation-violating B2 is not admissible"
+    },
+    "rank_mismatch_caught": {
+      "PASS": true,
+      "note": "excluded by shape"
+    }
+  },
+  "boundary": {
+    "triangle_d2_zero": {
+      "PASS": true,
+      "shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "no_2cells_vacuous": {
+      "PASS": true,
+      "shape": [
+        1,
+        0
+      ]
+    }
+  },
+  "ALL_PASS": true
+}

@@ -1,0 +1,52 @@
+{
+  "name": "sim_L16_shell_history_support",
+  "layer": 16,
+  "layer_name": "Shell / history support",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 16 (shell cuts, history windows, j/k fuzz)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "shell support computed on torch tensors; fuzz perturbation and survival test is load-bearing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 checks finite-sequencing of history windows (BC06 order ban compliance): sequence is explicit, not derived from global order"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "z3": "supportive"
+  },
+  "positive": {
+    "shell_survives_fuzz": {
+      "pass": true,
+      "mean_overlap": 3.7,
+      "base": 4
+    },
+    "torch_shell_tensor": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "short_window_excluded": {
+      "pass": true,
+      "candidate": 1,
+      "min": 3
+    },
+    "explicit_sequencing_admitted": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_fuzz_identity": {
+      "pass": true
+    },
+    "total_inversion_excluded": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

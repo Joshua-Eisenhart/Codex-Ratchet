@@ -1,0 +1,73 @@
+{
+  "name": "sim_em_classical_time_as_entropy_increment",
+  "scope_note": "Doctrine 'time=entropy increasing'. Baseline diffusion; dS/dt sign test. See user_entropic_monism_doctrine.md",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing diffusion + entropy calc"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "bridge sim 09 handles autograd time-arrow"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not an admissibility claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometry"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "clifford": null,
+    "rustworkx": null,
+    "toponetx": null
+  },
+  "positive": {
+    "monotone_increase": {
+      "pass": true,
+      "dS_min": 0.009696272625690838
+    }
+  },
+  "negative": {
+    "uniform_no_decrease": {
+      "pass": true
+    },
+    "reverse_time_violates_arrow": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "small_lattice": {
+      "pass": true,
+      "S0": -0.0,
+      "Sfinal": 1.3853171618415185
+    }
+  },
+  "all_pass": true
+}

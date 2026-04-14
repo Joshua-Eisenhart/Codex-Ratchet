@@ -1,0 +1,138 @@
+{
+  "name": "sim_toponetx_deep_simplicial_vs_cell_distinguishability",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md (cell/simplicial admission ladder)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Provides both CellComplex and SimplicialComplex with a shared hodge_laplacian_matrix API. The admissibility equivalence (same b_k) and distinction (different |spectrum|) is only expressible in toponetx's dual API -- load_bearing."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "same_homology": {
+      "PASS": true,
+      "cell": [
+        1,
+        0
+      ],
+      "simplicial": [
+        1,
+        0
+      ],
+      "language": "indistinguishable under H_*"
+    },
+    "different_decomposition": {
+      "PASS": true,
+      "cell_L1": [
+        4,
+        4
+      ],
+      "simplicial_L1": [
+        5,
+        5
+      ],
+      "language": "distinguishable under cell-count probe"
+    }
+  },
+  "negative": {
+    "hollow_vs_filled_distinguishable": {
+      "PASS": true,
+      "hollow": 1,
+      "filled": 0,
+      "language": "excluded: different H_1 -> not indistinguishable"
+    },
+    "diag_swap_same_edge_count": {
+      "PASS": true,
+      "a": [
+        5,
+        5
+      ],
+      "b": [
+        5,
+        5
+      ],
+      "language": "excluded: same simplicial dim -> edge-count probe alone cannot distinguish"
+    }
+  },
+  "boundary": {
+    "edge_b0_one": {
+      "PASS": true
+    },
+    "pentagon_same_b1": {
+      "PASS": true,
+      "cell": 0,
+      "simp": 0
+    }
+  },
+  "ALL_PASS": true
+}

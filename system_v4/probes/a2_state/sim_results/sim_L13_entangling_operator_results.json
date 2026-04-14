@@ -1,0 +1,66 @@
+{
+  "name": "sim_L13_entangling_operator",
+  "layer": 13,
+  "layer_name": "Entangling operator layer",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 13 (admissible coupling / 4x4 action)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "candidate 4x4 operators constructed as torch tensors; unitarity residual computed via torch ops"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT-encode the locality factorization U = U_A (x) U_B for candidate CNOT; UNSAT is the load-bearing proof of non-factorizability (entangling)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification that CNOT is unitary and that SWAP*CNOT*SWAP != CNOT (non-trivial bipartite action)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null
+  },
+  "positive": {
+    "unitarity": {
+      "pass": true
+    },
+    "z3_factorization_check": {
+      "result": "unsat",
+      "factorizable": false,
+      "pass": true,
+      "claim": "CNOT excluded from locally-factorizable class (z3 UNSAT)"
+    }
+  },
+  "negative": {
+    "nonunitary_excluded": {
+      "pass": true
+    },
+    "local_product_excluded": {
+      "pass": true,
+      "operator_schmidt_rank": 1
+    }
+  },
+  "boundary": {
+    "identity_boundary": {
+      "operator_schmidt_rank": 1,
+      "pass": "True"
+    },
+    "cnot_boundary": {
+      "operator_schmidt_rank": 2,
+      "pass": "True"
+    }
+  },
+  "all_pass": true
+}

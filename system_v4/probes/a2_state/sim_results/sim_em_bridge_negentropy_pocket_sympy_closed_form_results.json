@@ -1,0 +1,57 @@
+{
+  "name": "sim_em_bridge_negentropy_pocket_sympy_closed_form",
+  "scope_note": "Bridge: sympy closed-form negentropy derivative analysis. Doctrine: dark-matter=negentropy. user_entropic_monism_doctrine.md",
+  "classification": "canonical",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing closed-form differentiation"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: numeric sanity"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form not autograd"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "closed form suffices"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "numpy": "supportive",
+    "pytorch": null,
+    "z3": null
+  },
+  "positive": {
+    "dI_zero_at_half": {
+      "pass": true,
+      "val": "0"
+    },
+    "d2I_positive_at_half": {
+      "pass": true,
+      "val": "4"
+    },
+    "I_max_at_boundary": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "dI_nonzero_off_half": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "I_zero_at_uniform": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

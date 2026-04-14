@@ -1,0 +1,57 @@
+{
+  "name": "sim_em_classical_fep_mirror_entropy_minimization",
+  "scope_note": "Doctrine 'FEP literal physics mirror'. Grad descent on F=E-S; convergence. user_entropic_monism_doctrine.md",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing variational gradient descent"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "bridge 09 covers autograd"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "F_nonincreasing": {
+      "pass": true
+    },
+    "q_matches_p": {
+      "pass": true,
+      "qhat": [
+        0.20000216282753078,
+        0.300018299810683,
+        0.4999795373617862
+      ]
+    }
+  },
+  "negative": {
+    "uniform_not_optimal": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "first_step_finite": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,65 @@
+{
+  "name": "sim_L14_joint_cut_state",
+  "layer": 14,
+  "layer_name": "Joint cut-state rho_AB",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 14 (rho_AB bipartite)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "rho_AB constructed and partial-traced as torch tensors; eigenvalues via torch.linalg.eigvalsh is load-bearing for PSD admission"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic trace and partial trace consistency check on Bell state rho_AB"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 checks linear constraint Tr(rho)=1 and Hermiticity predicates for candidate families"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "sympy": "supportive",
+    "z3": "supportive"
+  },
+  "positive": {
+    "hermitian": {
+      "pass": true
+    },
+    "psd": {
+      "pass": true,
+      "min_eig": 0.0
+    },
+    "trace_one": {
+      "pass": true,
+      "trace": "(0.9999999999999998+0j)"
+    },
+    "partial_trace_consistency": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_psd_excluded": {
+      "pass": true
+    },
+    "non_hermitian_excluded": {
+      "pass": true
+    },
+    "non_normalized_excluded": {
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "max_mixed_admissible": {
+      "pass": true
+    },
+    "max_mixed_marginal_is_I_over_2": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

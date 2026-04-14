@@ -1,0 +1,49 @@
+{
+  "name": "sim_em_bridge_entropy_volume_admissibility_z3",
+  "scope_note": "Bridge: z3 admissibility encoding of S<->V monotone co-variation. Doctrine: space=entropy. user_entropic_monism_doctrine.md",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SAT/UNSAT admissibility proofs"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: build test volumes"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "proof layer, not autograd"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "SMT not CAS"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "numpy": "supportive",
+    "pytorch": null,
+    "sympy": null
+  },
+  "positive": {
+    "monotone_admissible": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonmono_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_point_admissible": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

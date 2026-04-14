@@ -1,0 +1,53 @@
+{
+  "name": "sim_em_bridge_time_arrow_autograd_gradient",
+  "scope_note": "Bridge: pytorch autograd computes dS/dtheta; time-arrow = entropy gradient direction. user_entropic_monism_doctrine.md",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing autograd gradient of entropy"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: comparison baselines"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not an SMT claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric autograd"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "numpy": "supportive",
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "grad_points_to_higher_S": {
+      "pass": true,
+      "S0": 0.3665939271450043,
+      "S1": 0.375832736492157
+    }
+  },
+  "negative": {
+    "anti_grad_decreases_S": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "uniform_max_entropy_zero_grad": {
+      "pass": true,
+      "S": 1.3862943649291992,
+      "S_max": 1.3862943611198906
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,97 @@
+{
+  "name": "sim_gtower_cvc5_parity_on_reduction",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: fence-proof solver parity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "reference UNSAT verdicts for fence obstructions"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "independent UNSAT reproduction -- solver-parity check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z3_orientation": "unsat",
+    "cvc5_orientation": "unsat",
+    "orientation_parity": true,
+    "z3_sp_det": "unsat",
+    "cvc5_sp_det": "unsat",
+    "sp_det_parity": true
+  },
+  "negative": {
+    "sat_case": "sat",
+    "sat_ok": true
+  },
+  "boundary": {
+    "trivial_unsat": true
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,112 @@
+{
+  "name": "sim_gudhi_deep_persistent_h1_excludes_trivial_homology",
+  "classification": "canonical",
+  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (persistent class distinguishability)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "RipsComplex + SimplexTree.persistence_intervals_in_dimension is the only admissibility probe for persistent H_k. Removing gudhi removes the claim's referent -- load_bearing."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "annulus_persistent_loop": {
+      "PASS": true,
+      "max_lifetime": 1.2171884848460681,
+      "n_intervals": 4,
+      "language": "admissible: persistent 1-cycle survives filtration"
+    }
+  },
+  "negative": {
+    "blob_excludes_persistent_loop": {
+      "PASS": true,
+      "max_lifetime": 0.2306573103231837,
+      "language": "excluded: convex cloud admits no persistent 1-cycle"
+    },
+    "two_clusters_no_h1": {
+      "PASS": true,
+      "max_lifetime": 0.23011048179447013,
+      "language": "excluded: disjoint clusters admit no persistent loop"
+    }
+  },
+  "boundary": {
+    "thin_annulus_still_admissible": {
+      "PASS": false,
+      "max_lifetime": 0.0
+    },
+    "tiny_cloud_no_h1": {
+      "PASS": true,
+      "max_lifetime": 0.0
+    }
+  },
+  "ALL_PASS": false
+}

@@ -1,0 +1,54 @@
+{
+  "name": "sim_em_classical_dark_matter_as_negentropy_reservoir",
+  "scope_note": "Doctrine 'dark-matter=negentropy'. Coarse-grain negentropy pocket; conserved-reservoir probe. user_entropic_monism_doctrine.md",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing negentropy calc"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility claim here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "bridge 10 handles closed form"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "pocket_has_negentropy": {
+      "pass": true,
+      "I_pocket": 2.772588722239781,
+      "I_bg": 0.0
+    },
+    "negentropy_nonneg": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "uniform_zero_negentropy": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "two_bin_max": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,48 @@
+{
+  "name": "measurement_instrument_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Bayes/pmf arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "likelihood_stochastic": true,
+    "joint_sums_to_one": "True",
+    "posterior_rows_normalized": true,
+    "marginal_outcome_matches": true
+  },
+  "negative": {
+    "non_stochastic_likelihood_detected": true,
+    "repeated_measurement_idempotent_classical": true
+  },
+  "boundary": {
+    "sharp_measurement_diagonal_posterior": true,
+    "trivial_instrument_keeps_prior": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical measurement has no back-action on noncommuting observables",
+    "ideal classical measurement is repeatable AND non-disturbing; quantum forbids both simultaneously for nondiagonal observables",
+    "cannot express weak/continuous measurement with coherence loss",
+    "no POVM-Kraus pair distinguishing (multiple Kraus decompositions for same POVM outcome)"
+  ]
+}

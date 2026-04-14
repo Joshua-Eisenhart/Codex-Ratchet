@@ -1,0 +1,47 @@
+{
+  "name": "quantum_discord_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf mutual info; local measurement sweep"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "all_classical_joints_discord_zero": true,
+    "product_state_discord_zero": true,
+    "perfect_correlated_discord_zero": true
+  },
+  "negative": {
+    "classical_cannot_see_nonzero_quantum_discord": true,
+    "requires_density_matrix_not_pmf": true
+  },
+  "boundary": {
+    "zero_joint_trivial": true,
+    "symmetric_in_AB_classically": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "discord identically 0 on classical joints; THE KEY INNATE FAILURE \u2014 cannot witness quantum correlations beyond entanglement",
+    "no notion of local-measurement-induced coherence destruction (discord's actual mechanism)",
+    "classical J(A:B) = I(A:B) always; quantum J <= I with strict inequality for coherent states",
+    "classical-classical vs classical-quantum states indistinguishable in this baseline"
+  ]
+}

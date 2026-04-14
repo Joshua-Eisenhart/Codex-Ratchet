@@ -1,0 +1,52 @@
+{
+  "name": "holevo_bound_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "entropy arithmetic on pmfs"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed numerically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "perfect_distinguishable_chi_equals_Hpriors": true,
+    "identical_states_chi_zero": true,
+    "nonneg_random": true
+  },
+  "negative": {
+    "chi_bounded_by_Hpriors": true,
+    "chi_bounded_by_log_dim": "True"
+  },
+  "boundary": {
+    "degenerate_prior_chi_zero": true,
+    "two_state_symmetric": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical chi collapses to mixing entropy on commuting states; misses noncommuting rho_i",
+    "no advantage from nonorthogonal-but-overlapping quantum ensembles (Holevo < log d)",
+    "cannot model chi > I_acc gap: classical equality is generic, quantum inequality is strict",
+    "ignores probe-basis admissibility; assumes a single diagonalizing frame"
+  ]
+}

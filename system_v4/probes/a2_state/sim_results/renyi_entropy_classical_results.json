@@ -1,0 +1,48 @@
+{
+  "name": "renyi_entropy_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf power sums and log"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "uniform_alpha_invariant": true,
+    "shannon_matches_alpha_one": "True",
+    "monotone_decreasing_in_alpha": true
+  },
+  "negative": {
+    "nonincreasing_0_to_2": true,
+    "hmin_le_hmax": true
+  },
+  "boundary": {
+    "delta_zero_entropy": true,
+    "alpha_zero_hartley": true,
+    "alpha_inf_minlog": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical Renyi acts on a single-basis pmf; misses sandwiched/Petz quantum Renyi divergences (distinct for noncommuting rho, sigma)",
+    "no data-processing contraction distinguishing alpha<1 vs alpha>1 under nonunital channels",
+    "cannot detect coherence spectrum (majorization on eigenvalues); classical sees only a diagonal",
+    "lacks min/max entropy smoothing in the one-shot quantum sense (purified distance unavailable)"
+  ]
+}

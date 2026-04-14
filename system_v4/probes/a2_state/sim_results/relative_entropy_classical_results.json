@@ -1,0 +1,47 @@
+{
+  "name": "relative_entropy_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "log arithmetic on pmfs"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "same_dist_zero": true,
+    "nonneg_random": true,
+    "gibbs_pos": true
+  },
+  "negative": {
+    "support_violation_infinite": true,
+    "not_symmetric": true
+  },
+  "boundary": {
+    "delta_to_uniform": "True",
+    "uniform_to_uniform_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical KL assumes a shared sample space; misses noncommuting-basis D(rho||sigma)",
+    "classical KL finite only if supp(p) subseteq supp(q); quantum relative entropy has analogous but basis-dependent kernel structure",
+    "no Umegaki/Petz monotonicity distinctions; only DPI in one (stochastic) form",
+    "cannot capture quantum hypothesis-testing (Stein lemma) strengthening"
+  ]
+}

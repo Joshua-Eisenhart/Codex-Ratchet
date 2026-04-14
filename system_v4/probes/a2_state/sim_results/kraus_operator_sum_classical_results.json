@@ -1,0 +1,47 @@
+{
+  "name": "kraus_operator_sum_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix arithmetic on stochastic matrices"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "completeness_identity": true,
+    "channel_preserves_normalization": "True",
+    "channel_nonneg": true
+  },
+  "negative": {
+    "broken_completeness_detected": true,
+    "noncommuting_not_representable": true
+  },
+  "boundary": {
+    "identity_channel_trivially_complete": true,
+    "single_dim_stochastic": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical Kraus collapse to rank-1 diagonal selections; cannot express non-commuting K_k",
+    "misses nonorthogonal measurement back-action (POVM Kraus with K_k^dag K_k overlap)",
+    "no interference between Kraus branches; classical channel acts on pmf, not amplitudes",
+    "unitary Kraus (|K|=1) absent; classical has no reversible mixing channel beyond permutations"
+  ]
+}

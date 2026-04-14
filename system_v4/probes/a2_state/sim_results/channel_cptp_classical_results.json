@@ -1,0 +1,48 @@
+{
+  "name": "channel_cptp_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "stochastic matrix checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "random_stochastic_cp": true,
+    "random_stochastic_tp": true,
+    "identity_cptp": true,
+    "permutation_cptp": true
+  },
+  "negative": {
+    "non_tp_detected": true,
+    "non_cp_detected": true
+  },
+  "boundary": {
+    "composition_preserves_cptp": true,
+    "dephasing_trivial_in_diag_basis": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "CP classically reduces to entrywise positivity; misses complete-positivity on entangled extensions (tensor with ancilla)",
+    "no Choi-positivity witnessing for noncommuting channels",
+    "unitary channels absent; only permutations are reversible classically",
+    "cannot model non-Markovian / non-CP-divisible quantum dynamics"
+  ]
+}

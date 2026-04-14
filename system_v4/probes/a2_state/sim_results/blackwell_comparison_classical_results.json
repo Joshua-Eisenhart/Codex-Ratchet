@@ -1,0 +1,50 @@
+{
+  "name": "blackwell_comparison_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "stochastic matrix / lstsq garbling check"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "nnls to solve garbling M >=0 columnwise"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  },
+  "positive": {
+    "constructed_garbling_detected": true,
+    "self_garbling_trivial": true
+  },
+  "negative": {
+    "uninformative_cannot_yield_informative": true
+  },
+  "boundary": {
+    "permutation_equivalent_both_directions": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Blackwell ordering on stochastic matrices is total up to sufficiency; quantum channel ordering (degradability) is strictly partial and basis-sensitive",
+    "no quantum sufficiency / Petz recovery map; classical sufficiency has no coherent-frame analog",
+    "misses entanglement-assisted information gaps where quantum B can exceed classical bound with side resource",
+    "ignores incompatible-measurement hierarchy where no single classical M unifies two measurement channels"
+  ]
+}

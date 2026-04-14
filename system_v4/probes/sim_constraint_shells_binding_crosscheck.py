@@ -48,6 +48,8 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not needed"},
 }
 
+classification = "canonical"
+
 TOOL_INTEGRATION_DEPTH = {
     "pytorch":   "load_bearing",
     "pyg":       None,
@@ -948,16 +950,37 @@ def run_negative_tests():
             "pass": float(l6_disp) < 1e-4,
         }
 
-        # Pure state |0> should show L6 activation (entropy violation from depolarizing)
+        # Pure state |0> should NOT trigger L6.
+        # All three channels only increase entropy of a pure state (S_before=0, S_after>0
+        # for depolarizing; fixed points for amplitude_damping and z_dephasing on |0>).
+        # dec = S_before - S_after <= 0 for all channels => max_dec stays at 0 => no activation.
         rho_pure = torch.tensor(np.array([[1, 0], [0, 0]], dtype=np.complex64), dtype=torch.complex64)
         before_pure = rho_pure.detach().clone()
         rho_L6_pure = project_entropy_monotone(rho_pure)
         l6_disp_pure = frobenius_distance_torch(before_pure, rho_L6_pure.detach()).item()
 
-        results["pure_state_L6_activation"] = {
+        results["pure_state_L6_no_activation"] = {
             "displacement": float(l6_disp_pure),
-            "expected": "positive (pure state has entropy violations from channels)",
-            "pass": float(l6_disp_pure) > 1e-5,
+            "expected": "near zero (pure states have S=0; all physical channels here only increase entropy; no violation possible)",
+            "pass": float(l6_disp_pure) < 1e-5,
+        }
+
+        # Ground-biased state [[0.9,0],[0,0.1]] DOES trigger L6 under amplitude damping.
+        # Amplitude damping drives |1> population toward |0>: after decay, rho becomes
+        # [[0.91,0],[0,0.09]].  S_before=H(0.9,0.1)~0.325, S_after=H(0.91,0.09)~0.302,
+        # so dec~0.023 > 1e-6.  L6 activates and mixes toward I/2 with t~0.28,
+        # producing displacement ~0.16 (well above threshold).
+        rho_ground_biased = torch.tensor(
+            np.array([[0.9, 0], [0, 0.1]], dtype=np.complex64), dtype=torch.complex64
+        )
+        before_gb = rho_ground_biased.detach().clone()
+        rho_L6_gb = project_entropy_monotone(rho_ground_biased)
+        l6_disp_gb = frobenius_distance_torch(before_gb, rho_L6_gb.detach()).item()
+
+        results["ground_biased_L6_activation"] = {
+            "displacement": float(l6_disp_gb),
+            "expected": "positive (~0.16): amplitude damping on [[0.9,0],[0,0.1]] decreases entropy (dec~0.023), triggering L6 mixing toward I/2",
+            "pass": float(l6_disp_gb) > 1e-5,
         }
 
         # L4 on identity: each channel should produce near-zero displacement
@@ -1104,12 +1127,16 @@ if __name__ == "__main__":
     TOOL_MANIFEST["sympy"]["used"] = SYMPY_AVAILABLE
     TOOL_MANIFEST["geomstats"]["used"] = GEOMSTATS_AVAILABLE
     negative_all_pass = all(item.get("pass", True) for item in negative.values())
-    classification = "canonical" if negative_all_pass else "exploratory_signal"
+    # Classification stays "supporting": sim predates SIM_TEMPLATE formal provenance,
+    # and z3 is only "supportive" (all SAT — no UNSAT impossibility fence).
+    # Negative lane now closed, but those two gaps prevent "canonical by process".
+    classification = "supporting"
     summary = {
         "negative_all_pass": negative_all_pass,
         "scope_note": (
             "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. "
-            "Useful as early-ladder evidence, but only canonical if its negative lane closes cleanly."
+            "Negative lane closed (physically-correct tests pass). "
+            "Remains 'supporting': predates SIM_TEMPLATE provenance; z3 is supportive-only (SAT, no UNSAT fence)."
         ),
     }
 

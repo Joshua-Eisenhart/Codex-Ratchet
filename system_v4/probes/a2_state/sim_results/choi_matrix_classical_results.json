@@ -1,0 +1,47 @@
+{
+  "name": "choi_matrix_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "block-diagonal Choi on stochastic matrix"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "choi_psd_cp": true,
+    "partial_trace_identity_tp": true,
+    "block_diagonal_classical": true
+  },
+  "negative": {
+    "non_cp_detected_neg_eig": true,
+    "non_tp_detected": true
+  },
+  "boundary": {
+    "identity_channel_cptp": true,
+    "choi_rank_equals_nonzero_T_entries": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical Choi is block-diagonal; misses off-diagonal coherences that witness non-CP-divisible or entanglement-breaking distinctions",
+    "Choi rank=1 (unitary) unreachable classically except for permutations",
+    "no Jamiolkowski isomorphism subtlety (state-channel duality trivial on diagonals)",
+    "cannot detect PPT/NPT entanglement of Choi state; classical Choi is always separable"
+  ]
+}

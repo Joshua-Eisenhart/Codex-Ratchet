@@ -1,0 +1,47 @@
+{
+  "name": "fisher_information_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "finite-difference scoring on pmf"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "bernoulli_closed_form": "True",
+    "fisher_symmetric": true,
+    "fisher_psd": true
+  },
+  "negative": {
+    "single_param_positive": "True",
+    "noncommuting_SLD_unavailable": true
+  },
+  "boundary": {
+    "near_boundary_finite_numeric": "True",
+    "interior_symmetric": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical Fisher ignores SLD (symmetric logarithmic derivative) structure; multiple inequivalent quantum Fishers (SLD, RLD, BKM) collapse to one",
+    "no noncommuting-parameter incompatibility; classical Cramer-Rao bound is always tight in the limit",
+    "misses quantum metrology advantage (Heisenberg scaling 1/N vs 1/sqrt(N))",
+    "cannot diagnose parameter estimation obstructions from measurement incompatibility"
+  ]
+}

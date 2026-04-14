@@ -29,6 +29,8 @@ import warnings
 import numpy as np
 from scipy.linalg import sqrtm
 
+classification = "classical_baseline"
+
 # ─── output path ──────────────────────────────────────────────────────
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

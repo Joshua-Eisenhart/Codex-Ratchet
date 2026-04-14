@@ -56,6 +56,8 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
 }
 
+classification = "canonical"
+
 TOOL_INTEGRATION_DEPTH = {
     "pytorch":   "supportive",
     "pyg":       None,

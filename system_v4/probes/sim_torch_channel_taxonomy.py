@@ -17,6 +17,8 @@ Output: a2_state/sim_results/torch_channel_taxonomy_results.json
 import json
 import os
 import numpy as np
+
+classification = "canonical"
 from itertools import combinations
 
 # =====================================================================

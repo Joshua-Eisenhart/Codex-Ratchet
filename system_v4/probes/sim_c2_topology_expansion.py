@@ -31,7 +31,7 @@ import math
 from datetime import datetime, timezone
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

@@ -1,0 +1,323 @@
+{
+  "name": "sim_integration_ribs_z3_constraint_archive",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 Solver encodes constraint admissibility rules per MAP-Elites cell; UNSAT result is the primary exclusion signal \u2014 structurally impossible configurations identified via boolean constraint contradiction, not heuristic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "ribs": {
+      "tried": true,
+      "used": true,
+      "reason": "ribs GridArchive stores one z3-checked formula per (depth, clause_count) cell; MAP-Elites coverage metric quantifies how densely the constraint-admissibility space is populated \u2014 coverage value directly drives the pass/fail assertion"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "ribs": "load_bearing"
+  },
+  "positive": {
+    "z3_unsat_cell_count": {
+      "value": 6,
+      "pass": true,
+      "unsat_cells": [
+        "d0_c1",
+        "d0_c2",
+        "d0_c3",
+        "d1_c2",
+        "d1_c3",
+        "d2_c3"
+      ],
+      "sat_cells": [
+        "d0_c0",
+        "d1_c0",
+        "d1_c1",
+        "d2_c0",
+        "d2_c1",
+        "d2_c2",
+        "d3_c0",
+        "d3_c1",
+        "d3_c2",
+        "d3_c3"
+      ],
+      "all_cell_results": {
+        "d0_c0": {
+          "depth": 0,
+          "clause_count": 0,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=0 clause_count=0 excluded=False"
+        },
+        "d0_c1": {
+          "depth": 0,
+          "clause_count": 1,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=0 clause_count=1 excluded=True"
+        },
+        "d0_c2": {
+          "depth": 0,
+          "clause_count": 2,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=0 clause_count=2 excluded=True"
+        },
+        "d0_c3": {
+          "depth": 0,
+          "clause_count": 3,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=0 clause_count=3 excluded=True"
+        },
+        "d1_c0": {
+          "depth": 1,
+          "clause_count": 0,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=1 clause_count=0 excluded=False"
+        },
+        "d1_c1": {
+          "depth": 1,
+          "clause_count": 1,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=1 clause_count=1 excluded=False"
+        },
+        "d1_c2": {
+          "depth": 1,
+          "clause_count": 2,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=1 clause_count=2 excluded=True"
+        },
+        "d1_c3": {
+          "depth": 1,
+          "clause_count": 3,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=1 clause_count=3 excluded=True"
+        },
+        "d2_c0": {
+          "depth": 2,
+          "clause_count": 0,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=2 clause_count=0 excluded=False"
+        },
+        "d2_c1": {
+          "depth": 2,
+          "clause_count": 1,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=2 clause_count=1 excluded=False"
+        },
+        "d2_c2": {
+          "depth": 2,
+          "clause_count": 2,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=2 clause_count=2 excluded=False"
+        },
+        "d2_c3": {
+          "depth": 2,
+          "clause_count": 3,
+          "z3_result": "unsat",
+          "expected_sat": false,
+          "correct_prediction": true,
+          "description": "depth=2 clause_count=3 excluded=True"
+        },
+        "d3_c0": {
+          "depth": 3,
+          "clause_count": 0,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=3 clause_count=0 excluded=False"
+        },
+        "d3_c1": {
+          "depth": 3,
+          "clause_count": 1,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=3 clause_count=1 excluded=False"
+        },
+        "d3_c2": {
+          "depth": 3,
+          "clause_count": 2,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=3 clause_count=2 excluded=False"
+        },
+        "d3_c3": {
+          "depth": 3,
+          "clause_count": 3,
+          "z3_result": "sat",
+          "expected_sat": true,
+          "correct_prediction": true,
+          "description": "depth=3 clause_count=3 excluded=False"
+        }
+      }
+    },
+    "ribs_archive_coverage": {
+      "value": 1.0,
+      "pass": true,
+      "additions_attempted": 16,
+      "num_elites": 16,
+      "archive_dims": [
+        4,
+        4
+      ],
+      "total_cells": 16
+    },
+    "z3_prediction_correctness": {
+      "value": 16,
+      "total": 16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "depth0_clause1_must_be_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "rationale": "clause_count(1) > depth(0) so no layer support exists \u2014 excluded region"
+    },
+    "depth0_clause3_must_be_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "rationale": "clause_count(3) >> depth(0) \u2014 maximum overload, structurally impossible"
+    },
+    "depth1_clause3_must_be_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "rationale": "clause_count(3) > depth(1) \u2014 more constraints than tower layers available"
+    },
+    "depth2_clause3_must_be_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "rationale": "clause_count(3) > depth(2) \u2014 still exceeds tower depth, excluded"
+    },
+    "empty_archive_zero_coverage": {
+      "value": 0.0,
+      "pass": true,
+      "rationale": "Unpopulated archive must report zero coverage \u2014 ribs API baseline check"
+    }
+  },
+  "boundary": {
+    "depth3_clause3_sat_boundary": {
+      "z3_result": "sat",
+      "pass": true,
+      "rationale": "depth == clause_count at maximum \u2014 boundary cell must be SAT (admissible)"
+    },
+    "depth3_clause0_sat_corner": {
+      "z3_result": "sat",
+      "pass": true,
+      "rationale": "No clauses at max tower depth \u2014 trivially admissible"
+    },
+    "single_cell_coverage_boundary": {
+      "value": 0.0625,
+      "expected": 0.0625,
+      "pass": true,
+      "rationale": "One cell added to 4x4=16 cell archive must yield coverage=0.0625"
+    },
+    "full_archive_coverage_boundary": {
+      "value": 1.0,
+      "pass": true,
+      "rationale": "All 16 cells populated \u2014 coverage must be 1.0"
+    }
+  },
+  "all_checks": {
+    "positive.z3_unsat_cell_count": true,
+    "positive.ribs_archive_coverage": true,
+    "positive.z3_prediction_correctness": true,
+    "negative.depth0_clause1_must_be_unsat": true,
+    "negative.depth0_clause3_must_be_unsat": true,
+    "negative.depth1_clause3_must_be_unsat": true,
+    "negative.depth2_clause3_must_be_unsat": true,
+    "negative.empty_archive_zero_coverage": true,
+    "boundary.depth3_clause3_sat_boundary": true,
+    "boundary.depth3_clause0_sat_corner": true,
+    "boundary.single_cell_coverage_boundary": true,
+    "boundary.full_archive_coverage_boundary": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

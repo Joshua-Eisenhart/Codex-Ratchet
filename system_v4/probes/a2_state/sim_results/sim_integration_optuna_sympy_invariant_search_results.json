@@ -1,0 +1,122 @@
+{
+  "name": "sim_integration_optuna_sympy_invariant_search",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- invariant evaluation is symbolic and scalar; no tensor autograd required"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph structure in the curvature invariant lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed here -- sympy provides exact algebraic zero confirmation; z3 would add coverage for inequality constraints not present in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no formal quantifier reasoning required for root confirmation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: evaluates the curvature invariant expression symbolically at the parameter values found by optuna, confirming the root is exact (zero under algebraic simplify) rather than merely numerically small; also proves the always-positive invariant is never zero via sympy.solve returning empty set"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- density matrix is 2x2 complex, not a Clifford algebra element"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Bloch ball geometry is computed directly; no Riemannian manifold library required for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SO(3) equivariant network structure in this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph dependency structure in this invariant search"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hyperedge topology in the curvature invariant lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex structure required for parametric invariant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology in the curvature invariant search"
+    },
+    "optuna": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: TPE surrogate-model search over (a, b, c) parameter space finds invariant zero within 50 trials; TPE builds acquisition function from evaluated trials to focus on promising regions -- strictly more efficient than grid or random search, and the surrogate model constitutes genuine optimization coupling rather than simple enumeration"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "optuna": "load_bearing"
+  },
+  "positive": {
+    "optuna_best_abs_invariant": 0.004874633012318265,
+    "optuna_best_params": {
+      "theta": 1.5610469063219756
+    },
+    "optuna_n_trials": 50,
+    "optuna_converged_toward_root": true,
+    "sympy_analytic_roots_r_half": [
+      "pi/2",
+      "3*pi/2"
+    ],
+    "sympy_analytic_roots_nonempty": true,
+    "optuna_theta_error_from_pi_half": 0.009749420472920933,
+    "optuna_theta_close_to_pi_half": true,
+    "sympy_exact_value_at_pi_half": "0",
+    "sympy_confirms_exact_root_at_pi_half": true,
+    "pass": true
+  },
+  "negative": {
+    "always_positive_optuna_best": 1.2648997864432485,
+    "optuna_correctly_finds_no_zero": true,
+    "sympy_always_positive_real_solutions": [],
+    "sympy_confirms_no_real_root": true,
+    "trivial_zero_at_r0": 0.0,
+    "r0_excluded_as_trivial": true,
+    "pass": true
+  },
+  "boundary": {
+    "boundary_narrow_best": 0.00026707105028563434,
+    "boundary_narrow_finds_root": true,
+    "sympy_dG_dtheta_at_pi_half": "-1/2",
+    "sympy_gradient_nonzero_at_root": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "elapsed_s": 0.249
+}

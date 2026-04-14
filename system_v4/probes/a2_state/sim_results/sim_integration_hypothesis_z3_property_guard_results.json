@@ -1,0 +1,111 @@
+{
+  "name": "sim_integration_hypothesis_z3_property_guard",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this is a constraint proof sim, no autograd layer required"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message-passing structure in distinguishability probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 provides formal UNSAT/SAT verdicts for each probe state against the four distinguishability axioms; exclusion verdict is structurally prior to the property test and cannot be substituted by a Python if-check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim -- z3 Real arithmetic is sufficient for the linear distinguishability constraints; cvc5 would add no additional coverage here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- axioms are linear real inequalities directly encodable in z3; no symbolic algebra required for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- probe states are classical probability vectors, not geometric algebra objects"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Riemannian manifold structure invoked in this probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant neural network layer required here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency or constraint graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hyperedge structure in the distinguishability probe lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex topology involved in this constraint sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology in this distinguishability axiom guard"
+    },
+    "hypothesis": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: drives adversarial search over random (p0, p1) pairs across 200 cases including boundary regions; finds counterexamples if z3-admitted states ever violate a Python-level axiom check -- coverage hypothesis alone cannot provide"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "hypothesis": "load_bearing"
+  },
+  "positive": {
+    "total_tested": 200,
+    "admitted_count": 200,
+    "violations_manual": [],
+    "hypothesis_result": "no_counterexample_found",
+    "hypothesis_counterexample": null,
+    "pass": true
+  },
+  "negative": {
+    "uniform_state_z3_excluded": true,
+    "uniform_state_py_axiom_fails": true,
+    "negative_prob_z3_excluded": true,
+    "unnormalized_uniform_z3_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "near_uniform_just_above_admitted": true,
+    "pure_state_admitted": true,
+    "barely_nonuniform_admitted": false,
+    "boundary_hypothesis_result": "no_violation",
+    "boundary_violations": [],
+    "pass": true
+  },
+  "overall_pass": true,
+  "elapsed_s": 0.757
+}

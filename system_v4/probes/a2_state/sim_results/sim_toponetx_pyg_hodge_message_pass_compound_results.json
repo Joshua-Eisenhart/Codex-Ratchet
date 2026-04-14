@@ -1,0 +1,126 @@
+{
+  "name": "sim_toponetx_pyg_hodge_message_pass_compound",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md (harmonic + dynamical fence)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Hosts tensors for the message-pass iteration."
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "torch_geometric.utils.scatter is the sparse message-pass operator enacting the diffusion; removing it removes the dynamical half of the compound claim -- load_bearing."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Hodge-1 Laplacian from SimplicialComplex defines the harmonic admissibility kernel under the compound claim -- load_bearing."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "kernel_dim_one": {
+      "PASS": true,
+      "ker_dim": 1,
+      "language": "admissible: unique harmonic flow on the loop"
+    },
+    "harmonic_fixed_under_diffusion": {
+      "PASS": true,
+      "drift": 1.3597399555105182e-16,
+      "language": "admissible: harmonic component excluded from decay"
+    },
+    "orthogonal_decays": {
+      "PASS": true,
+      "remaining_fraction": 0.002882204032259277,
+      "language": "admissible: non-harmonic component decays under diffusion"
+    }
+  },
+  "negative": {
+    "path_no_harmonic": {
+      "PASS": true,
+      "ker_dim": 0,
+      "language": "excluded: path admits no harmonic 1-form"
+    },
+    "path_all_decays": {
+      "PASS": true,
+      "remaining_fraction": 0.01133097136206061,
+      "language": "excluded: no harmonic => every signal excluded from persistence"
+    },
+    "bad_step_diverges": {
+      "PASS": true,
+      "growth": 2.9799532788630732e+16,
+      "language": "excluded: step outside admissibility window violates decay"
+    }
+  },
+  "boundary": {
+    "triangle_loop_b1_one": {
+      "PASS": true,
+      "ker_dim": 1
+    },
+    "4cycle_b1_one": {
+      "PASS": true,
+      "ker_dim": 1
+    }
+  },
+  "ALL_PASS": true
+}

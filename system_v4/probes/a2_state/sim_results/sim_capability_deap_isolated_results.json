@@ -1,0 +1,110 @@
+{
+  "name": "sim_capability_deap_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the DEAP evolutionary toolbox in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "deap",
+    "version": "1.4",
+    "integration": "load_bearing"
+  },
+  "positive": {
+    "deap_available": {
+      "pass": true,
+      "version": "1.4"
+    },
+    "evolution_improves_fitness": {
+      "pass": true,
+      "best_fitness": 8.0
+    }
+  },
+  "negative": {
+    "zero_length_individual_handled": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pop_size_one_selects": {
+      "pass": true
+    }
+  },
+  "overall_pass": true,
+  "capability_summary": {
+    "can": "Compose a GA loop from tournament selection + two-point crossover + bit-flip mutation, reaching >=6/8 on OneMax in 20 generations with pop=20 from a fixed seed.",
+    "cannot": "Does not provide parallelism or GPU acceleration out of the box; large populations are slow relative to evotorch."
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "name": "sim_capability_ribs_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the pyribs GridArchive capability in isolation; cross-tool integration deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "ribs",
+    "version": "0.10.0",
+    "integration": "load_bearing"
+  },
+  "positive": {
+    "ribs_available": {
+      "pass": true,
+      "version": "0.10.0"
+    },
+    "insert_populates_archive": {
+      "pass": true,
+      "occupied": 36,
+      "coverage": 0.36
+    },
+    "sample_elites": {
+      "pass": true,
+      "sample_count": 5
+    }
+  },
+  "negative": {
+    "malformed_insert_raises": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "empty_archive_coverage_zero": {
+      "pass": true,
+      "coverage": 0.0
+    }
+  },
+  "overall_pass": true,
+  "capability_summary": {
+    "can": "GridArchive admits batched (solution, objective, measure) inserts, tracks coverage, and samples elites deterministically with a seed; supports boundary case of empty archive = 0 coverage.",
+    "cannot": "Does not by itself define what behavior measures MEAN; measure-design is a modeling decision excluded from this probe."
+  }
+}

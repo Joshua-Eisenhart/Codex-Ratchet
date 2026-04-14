@@ -1,0 +1,110 @@
+{
+  "name": "sim_capability_evotorch_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "evotorch",
+    "version": "0.6.1",
+    "integration": "load_bearing"
+  },
+  "positive": {
+    "evotorch_available": {
+      "pass": true,
+      "version": "0.6.1"
+    },
+    "snes_minimizes_sphere": {
+      "pass": true,
+      "best_eval": 1.5673340385546908e-05
+    }
+  },
+  "negative": {
+    "bad_popsize_raises": {
+      "pass": false
+    }
+  },
+  "boundary": {
+    "zero_step_run_stable": {
+      "pass": true
+    }
+  },
+  "overall_pass": false,
+  "capability_summary": {
+    "can": "SNES drives a 4D sphere objective below 0.5 within 50 generations at popsize=20 on CPU tensors; rejects invalid popsize=0 and survives a zero-generation run.",
+    "cannot": "Does not by itself pick a step-size schedule; stdev_init must be chosen problem-aware or convergence stalls."
+  }
+}

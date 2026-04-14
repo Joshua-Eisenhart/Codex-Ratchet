@@ -18,6 +18,15 @@ import json
 import datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: full torus spinor dynamics is represented here by direct spinor/rotor numerics on bounded torus loops, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "spinor evolution, Bloch summaries, and trajectory numerics"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(3) rotors and multivector transport on torus loops"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "clifford": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

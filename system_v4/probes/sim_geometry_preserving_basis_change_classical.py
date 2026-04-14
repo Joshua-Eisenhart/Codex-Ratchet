@@ -3,8 +3,16 @@
 Orthogonal/unitary basis changes preserve inner product, norms, eigenvalues.
 Non-orthogonal changes break these. Tests both positive and negative cases."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: geometry-preserving basis change is modeled here by orthogonal/unitary invariance numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "basis-change invariance, norms, and eigenspectrum numerics"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 NAME = "geometry_preserving_basis_change"
 
 def run_positive_tests():

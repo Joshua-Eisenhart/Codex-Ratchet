@@ -15,6 +15,15 @@ import sys
 import copy
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: higher geometric constraints are evaluated here by bounded Cl(3)-engine numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "trajectory comparisons, correlations, and geometric summary numerics"},
+    "clifford": {"tried": True, "used": True, "reason": "real geometric engine state evolution is Clifford-backed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "clifford": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

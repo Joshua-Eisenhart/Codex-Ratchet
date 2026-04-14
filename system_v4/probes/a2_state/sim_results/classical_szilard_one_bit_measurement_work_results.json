@@ -1,0 +1,111 @@
+{
+  "name": "classical_szilard_one_bit_measurement_work",
+  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): W_extract = kT ln2 per measured bit.",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "numpy",
+  "positive": {
+    "kT_1.0": {
+      "W": 0.6931471805599453,
+      "theory": 0.6931471805599453,
+      "ok": true
+    },
+    "kT_4.14e-21": {
+      "W": 2.8696293275181737e-21,
+      "theory": 2.8696293275181737e-21,
+      "ok": true
+    },
+    "kT_300.0": {
+      "W": 207.94415416798358,
+      "theory": 207.94415416798358,
+      "ok": true
+    }
+  },
+  "negative": {
+    "zero_info_zero_work": true
+  },
+  "boundary": {
+    "kT_zero": {
+      "W": 0.0
+    },
+    "kT_small": {
+      "W": 6.9314718055994535e-31
+    }
+  },
+  "pass": true
+}

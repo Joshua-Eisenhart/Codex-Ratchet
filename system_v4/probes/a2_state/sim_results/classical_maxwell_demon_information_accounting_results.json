@@ -1,0 +1,109 @@
+{
+  "name": "classical_maxwell_demon_information_accounting",
+  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): W_demon <= kT * I_memory, net dissipation non-negative once memory erasure is included.",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "numpy",
+  "positive": {
+    "I_1.0_W_0.5": {
+      "net_dissipation": 0.1931471805599453,
+      "erase_cost": 0.6931471805599453,
+      "ok": true
+    },
+    "I_2.0_W_1.0": {
+      "net_dissipation": 0.3862943611198906,
+      "erase_cost": 1.3862943611198906,
+      "ok": true
+    },
+    "I_0.1_W_0.05": {
+      "net_dissipation": 0.019314718055994523,
+      "erase_cost": 0.06931471805599453,
+      "ok": true
+    }
+  },
+  "negative": {
+    "reject_overdraw_demon": true
+  },
+  "boundary": {
+    "zero_info": {
+      "net": 0.0,
+      "erase_cost": 0.0
+    }
+  },
+  "pass": true
+}

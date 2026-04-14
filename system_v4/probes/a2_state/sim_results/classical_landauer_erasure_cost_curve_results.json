@@ -1,0 +1,116 @@
+{
+  "name": "classical_landauer_erasure_cost_curve",
+  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): E_erase >= kT * Delta H.",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "numpy",
+  "positive": {
+    "p_0.5": {
+      "E": 0.6931471805599453,
+      "theory": 0.6931471805599453,
+      "ok": true
+    },
+    "p_0.25": {
+      "E": 0.5623351446188083,
+      "theory": 0.5623351446188083,
+      "ok": true
+    },
+    "p_0.1": {
+      "E": 0.3250829733914482,
+      "theory": 0.3250829733914482,
+      "ok": true
+    },
+    "floor": {
+      "E": 0.6931471805599453,
+      "ln2": 0.6931471805599453,
+      "ok": true
+    }
+  },
+  "negative": {
+    "reject_free_erasure": true
+  },
+  "boundary": {
+    "p_zero": {
+      "E": 3.553797711707333e-14
+    },
+    "p_one": {
+      "E": 3.551116999690106e-14
+    }
+  },
+  "pass": true
+}

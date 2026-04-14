@@ -1,13 +1,14 @@
 {
   "name": "lego_coupling_candidates",
-  "generated_at": "2026-04-10T10:03:02.331856+00:00",
+  "generated_at": "2026-04-14T12:19:12.505258+00:00",
   "rows": [
     {
       "lego_family_id": "carrier_admission_density_matrix",
       "lego_probe": "sim_density_hopf_geometry.py",
       "recommended_lego_probes": [
         "sim_carrier_probe_support.py",
-        "sim_density_hopf_geometry.py"
+        "sim_assoc_bundle_hopf_frame_bundle_carrier.py",
+        "sim_carrier_probe_support_classical.py"
       ],
       "coupling_probe": "sim_operator_geometry_compatibility.py",
       "existing_anchor": "operator_geometry_compatibility_results.json",
@@ -25,7 +26,8 @@
       "lego_probe": "sim_density_hopf_geometry.py",
       "recommended_lego_probes": [
         "sim_carrier_probe_support.py",
-        "sim_density_hopf_geometry.py"
+        "sim_assoc_bundle_hopf_frame_bundle_carrier.py",
+        "sim_carrier_probe_support_classical.py"
       ],
       "coupling_probe": "sim_integrated_dependency_chain.py",
       "existing_anchor": "integrated_dependency_chain_results.json",
@@ -84,9 +86,9 @@
       "lego_family_id": "graph_cell_complex_geometry",
       "lego_probe": "sim_xgi_family_hypergraph.py",
       "recommended_lego_probes": [
-        "sim_cell_complex_geometry.py",
         "sim_dual_hypergraph_geometry.py",
         "sim_hypergraph_geometry.py",
+        "sim_lego_weyl_hypergraph_local.py",
         "sim_xgi_dual_hypergraph.py",
         "sim_xgi_family_hypergraph.py",
         "sim_xgi_shell_hypergraph.py"
@@ -106,9 +108,9 @@
       "lego_family_id": "graph_cell_complex_geometry",
       "lego_probe": "sim_foundation_shell_graph_topology.py",
       "recommended_lego_probes": [
-        "sim_cell_complex_geometry.py",
         "sim_dual_hypergraph_geometry.py",
         "sim_hypergraph_geometry.py",
+        "sim_lego_weyl_hypergraph_local.py",
         "sim_xgi_dual_hypergraph.py",
         "sim_xgi_family_hypergraph.py",
         "sim_xgi_shell_hypergraph.py"
@@ -128,9 +130,9 @@
       "lego_family_id": "graph_cell_complex_geometry",
       "lego_probe": "sim_foundation_equivariant_graph_backprop.py",
       "recommended_lego_probes": [
-        "sim_cell_complex_geometry.py",
         "sim_dual_hypergraph_geometry.py",
         "sim_hypergraph_geometry.py",
+        "sim_lego_weyl_hypergraph_local.py",
         "sim_xgi_dual_hypergraph.py",
         "sim_xgi_family_hypergraph.py",
         "sim_xgi_shell_hypergraph.py"
@@ -152,7 +154,7 @@
       "recommended_lego_probes": [
         "sim_concurrence_measure.py",
         "sim_hilbert_schmidt_flatness_rejection.py",
-        "sim_negativity_measure.py",
+        "sim_logarithmic_negativity_werner_canonical.py",
         "sim_gudhi_bipartite_entangled.py",
         "sim_gudhi_concurrence_filtration.py"
       ],
@@ -173,7 +175,7 @@
       "recommended_lego_probes": [
         "sim_concurrence_measure.py",
         "sim_hilbert_schmidt_flatness_rejection.py",
-        "sim_negativity_measure.py",
+        "sim_logarithmic_negativity_werner_canonical.py",
         "sim_gudhi_bipartite_entangled.py",
         "sim_gudhi_concurrence_filtration.py"
       ],
@@ -192,7 +194,7 @@
       "lego_family_id": "constraint_probe_admissibility",
       "lego_probe": "sim_bc1_fence_investigation.py",
       "recommended_lego_probes": [
-        "sim_carrier_probe_support.py"
+        "sim_assoc_bundle_parallel_transport_admissibility.py"
       ],
       "coupling_probe": "sim_constraint_shells_binding_crosscheck.py",
       "existing_anchor": "constraint_shells_binding_crosscheck_results.json",
@@ -209,7 +211,7 @@
       "lego_family_id": "operator_family_admission",
       "lego_probe": null,
       "recommended_lego_probes": [
-        "sim_channel_capacity.py"
+        "sim_bch_first_order_commutator_classical.py"
       ],
       "coupling_probe": "sim_operator_geometry_compatibility.py",
       "existing_anchor": "operator_geometry_compatibility_results.json",
@@ -227,8 +229,7 @@
       "lego_probe": null,
       "recommended_lego_probes": [
         "sim_coherent_information_measure.py",
-        "sim_conditional_entropy.py",
-        "sim_entanglement_entropy.py"
+        "sim_renyi_entropy_classical.py"
       ],
       "coupling_probe": null,
       "existing_anchor": null,
@@ -247,7 +248,7 @@
       "recommended_lego_probes": [
         "sim_berry_phase_u1_abelian.py",
         "sim_commutator_algebra.py",
-        "sim_gauge_group_correspondence.py"
+        "sim_bch_first_order_commutator_classical.py"
       ],
       "coupling_probe": null,
       "existing_anchor": null,
@@ -265,7 +266,8 @@
       "lego_probe": "sim_geomstats_shell_metrics.py",
       "recommended_lego_probes": [
         "sim_bures_geometry.py",
-        "sim_cross_shell_coupling_cp1_bures.py"
+        "sim_cross_shell_coupling_cp1_bures.py",
+        "sim_bottleneck_distance_classical.py"
       ],
       "coupling_probe": null,
       "existing_anchor": null,

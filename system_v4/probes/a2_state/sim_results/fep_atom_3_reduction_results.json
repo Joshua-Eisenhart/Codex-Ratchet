@@ -1,0 +1,100 @@
+{
+  "name": "fep_atom_3_reduction",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd of F and gradient flow"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no edge aggregation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof atom"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "redundant"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "atom 1 handled symbolic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar reduction"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "flat Euclidean here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structure is atom 2"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gradient_flow_decreases_F": {
+      "F0": 4.859140872955322,
+      "F1": 3.780694007873535,
+      "pass": true
+    }
+  },
+  "negative": {
+    "identity_rejected": {
+      "ndim": 1,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "F_at_posterior_zero": {
+      "F": 0.0,
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

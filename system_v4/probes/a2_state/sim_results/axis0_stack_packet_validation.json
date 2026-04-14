@@ -1,20 +1,20 @@
 {
   "name": "axis0_stack_packet_validation",
-  "timestamp": "2026-04-08T10:22:48.105650+00:00",
-  "passed_gates": 8,
+  "timestamp": "2026-04-14T11:41:27.640220+00:00",
+  "passed_gates": 0,
   "total_gates": 8,
-  "score": 1.0,
+  "score": 0.0,
   "gates": [
     {
       "name": "S1_all_packet_runners_execute_cleanly",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "all_ok": true,
+        "all_ok": false,
         "steps": [
           {
             "label": "formal_geometry",
-            "ok": true,
-            "returncode": 0
+            "ok": false,
+            "returncode": 1
           },
           {
             "label": "root_emergence",
@@ -33,8 +33,8 @@
           },
           {
             "label": "c1_bridge_object",
-            "ok": true,
-            "returncode": 0
+            "ok": false,
+            "returncode": 1
           },
           {
             "label": "matched_marginal",
@@ -51,32 +51,32 @@
     },
     {
       "name": "S2_all_component_packets_are_closed",
-      "pass": true,
+      "pass": false,
       "detail": {
         "formal_geometry": {
-          "passed_gates": 14,
+          "passed_gates": 13,
           "total_gates": 14,
-          "score": 1.0
+          "score": 0.9285714285714286
         },
         "root_emergence": {
-          "passed_gates": 10,
-          "total_gates": 10,
-          "score": 1.0
+          "passed_gates": 9,
+          "total_gates": 12,
+          "score": 0.75
         },
         "carrier_selection": {
-          "passed_gates": 9,
+          "passed_gates": 4,
           "total_gates": 9,
-          "score": 1.0
+          "score": 0.4444444444444444
         },
         "pre_entropy": {
-          "passed_gates": 25,
+          "passed_gates": 14,
           "total_gates": 25,
-          "score": 1.0
+          "score": 0.56
         },
         "c1_bridge_object": {
-          "passed_gates": 4,
+          "passed_gates": 3,
           "total_gates": 4,
-          "score": 1.0
+          "score": 0.75
         },
         "matched_marginal": {
           "passed_gates": 9,
@@ -84,46 +84,46 @@
           "score": 1.0
         },
         "entropy_readout": {
-          "passed_gates": 12,
+          "passed_gates": 8,
           "total_gates": 12,
-          "score": 1.0
+          "score": 0.6666666666666666
         }
       }
     },
     {
       "name": "S3_lower_ladder_is_coherent",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "formal_geometry_score": 1.0,
-        "root_emergence_score": 1.0,
-        "carrier_selection_score": 1.0
+        "formal_geometry_score": 0.9285714285714286,
+        "root_emergence_score": 0.75,
+        "carrier_selection_score": 0.4444444444444444
       }
     },
     {
       "name": "S4_upper_ladder_is_coherent",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "pre_entropy_score": 1.0,
-        "c1_bridge_object_score": 1.0,
+        "pre_entropy_score": 0.56,
+        "c1_bridge_object_score": 0.75,
         "matched_marginal_score": 1.0,
-        "entropy_readout_score": 1.0
+        "entropy_readout_score": 0.6666666666666666
       }
     },
     {
       "name": "S5_axis0_ladder_is_mechanically_traversable",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "root_emergence_score": 1.0,
-        "pre_entropy_score": 1.0,
-        "c1_bridge_object_score": 1.0,
-        "entropy_readout_score": 1.0
+        "root_emergence_score": 0.75,
+        "pre_entropy_score": 0.56,
+        "c1_bridge_object_score": 0.75,
+        "entropy_readout_score": 0.6666666666666666
       }
     },
     {
       "name": "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "c1b1_pass": true,
+        "c1b1_pass": false,
         "c1b3_pass": true,
         "c1b4_pass": true,
         "entropy_e10_status": "admitted_executable_candidate_not_final_owner_law",
@@ -136,25 +136,25 @@
     },
     {
       "name": "S7_axis0_stack_explicitly_consumes_named_contract_gates",
-      "pass": true,
+      "pass": false,
       "detail": {
         "root_r10_pass": true,
         "c1b3_pass": true,
         "pre_entropy_p24_pass": true,
         "matched_m9_pass": true,
-        "entropy_e10_pass": true,
+        "entropy_e10_pass": false,
         "entropy_e12_pass": true
       }
     },
     {
       "name": "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "c1b1_pass": true,
+        "c1b1_pass": false,
         "c1b2_pass": true,
         "c1b3_pass": true,
         "c1b4_pass": true,
-        "entropy_e10_pass": true,
+        "entropy_e10_pass": false,
         "entropy_e12_pass": true
       }
     }

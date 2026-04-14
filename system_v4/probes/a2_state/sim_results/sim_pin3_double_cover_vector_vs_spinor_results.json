@@ -1,0 +1,103 @@
+{
+  "name": "sim_pin3_double_cover_vector_vs_spinor",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) even-subalgebra represents Spin(3); the double cover is the property under test"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n": 50,
+    "max_vector_diff_R_vs_minusR": 0.0,
+    "min_spinor_diff_R_vs_minusR": 1.9999999999999996,
+    "pass": true
+  },
+  "negative": {
+    "scale_by_2_breaks_vector_equality": true,
+    "diff": 3.277705141211728,
+    "pass": true
+  },
+  "boundary": {
+    "vector_identity_both_ways": 0.0,
+    "spinor_diff": 2.0,
+    "expected_2norm_psi": 2.0,
+    "pass": true
+  },
+  "ablation": {
+    "numpy_SO3_matrix_diff": 0.0,
+    "clifford_rotor_diff": 2.0,
+    "ablation_shows_numpy_insufficient": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

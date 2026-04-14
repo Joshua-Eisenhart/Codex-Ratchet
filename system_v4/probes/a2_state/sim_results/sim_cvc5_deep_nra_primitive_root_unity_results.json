@@ -1,0 +1,103 @@
+{
+  "name": "sim_cvc5_deep_nra_primitive_root_unity",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric search cannot certify no-solution"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 NRA parity UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_NRA UNSAT on r^2+r+1=0 IS the no-real-root proof"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy could solve symbolically but claim is SMT-style UNSAT"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_nra_unsat": {
+      "pass": true,
+      "verdict": "unsat"
+    },
+    "z3_parity_unsat": {
+      "pass": true,
+      "verdict": "unsat"
+    }
+  },
+  "negative": {
+    "cvc5_rsq_plus_r_sat": {
+      "pass": true,
+      "verdict": "sat"
+    }
+  },
+  "boundary": {
+    "cvc5_rsq_minus_1_sat": {
+      "pass": true,
+      "verdict": "sat"
+    }
+  },
+  "overall_pass": true
+}

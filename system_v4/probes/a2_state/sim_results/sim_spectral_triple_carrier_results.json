@@ -1,0 +1,138 @@
+{
+  "name": "sim_spectral_triple_carrier",
+  "description": "Simplest concrete spectral triple (M_2(C), C^2, sigma_x)",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; finite-dim 2x2 linear algebra handled by numpy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic verification of [D,a] form"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "spectral norms, resolvent inverse, and commutator matrices for the (A,H,D) triple are all computed with numpy; the self-adjoint, compact-resolvent, and boundedness claims are load-bearing on numpy linear algebra."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "D_self_adjoint": {
+      "pass": true,
+      "residual": 0.0
+    },
+    "compact_resolvent": {
+      "pass": true,
+      "note": "finite-dim: every bounded operator is compact",
+      "resolvent_norm": 0.7071067811865476
+    },
+    "bounded_commutators_basis": {
+      "pass": true,
+      "norms": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "bounded_commutators_random": {
+      "pass": true,
+      "n_samples": 32
+    },
+    "sympy_exact_commutator": {
+      "pass": true,
+      "form": "[[-a12 + a21, -a11 + a22], [a11 - a22, a12 - a21]]"
+    }
+  },
+  "negative": {
+    "non_self_adjoint_rejected": {
+      "pass": true,
+      "residual": 1.4142135623730951
+    },
+    "identity_commutes_with_D": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_element": {
+      "pass": true
+    },
+    "D_commutes_with_D": {
+      "pass": true
+    },
+    "large_norm_bound": {
+      "pass": true,
+      "lhs": 1000000.0,
+      "rhs": 2000000.0
+    }
+  },
+  "overall_pass": true
+}

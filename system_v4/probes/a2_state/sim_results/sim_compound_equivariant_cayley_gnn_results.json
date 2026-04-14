@@ -1,0 +1,55 @@
+{
+  "name": "sim_compound_equivariant_cayley_gnn",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor action on e1 seeds node features"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) equivariant tensor-product layer"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd gradient step across equivariant op"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Cayley graph of generated rotation subgroup"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "e3nn": "load_bearing",
+    "pytorch": "load_bearing",
+    "networkx": "load_bearing"
+  },
+  "positive": {
+    "num_group_elements": 24,
+    "num_cayley_edges": 48,
+    "equivariance_err_before": 0.0,
+    "equivariance_err_after": 0.0,
+    "equivariant_before": true,
+    "equivariant_after": true
+  },
+  "negative": {
+    "plain_linear_err": 1.4462945461273193,
+    "correctly_breaks_equivariance": true
+  },
+  "boundary": {
+    "identity_err": 0.0,
+    "identity_ok": true
+  },
+  "ablations": {
+    "ablate_networkx_breaks_claim": true,
+    "ablate_clifford_breaks_claim": true,
+    "ablate_e3nn_breaks_claim": true,
+    "ablate_pytorch_breaks_claim": true
+  },
+  "PASS": true
+}

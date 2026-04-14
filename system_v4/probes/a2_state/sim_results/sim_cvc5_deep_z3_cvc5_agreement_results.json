@@ -1,0 +1,102 @@
+{
+  "name": "sim_cvc5_deep_z3_cvc5_agreement",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not a numeric claim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT on pigeonhole; agreement with cvc5 IS the evidence"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 UNSAT on pigeonhole; agreement with z3 IS the evidence"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not symbolic algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph search"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "agreement_unsat": {
+      "pass": true,
+      "cvc5": "unsat",
+      "z3": "unsat"
+    }
+  },
+  "negative": {
+    "agreement_sat_3in3": {
+      "pass": true,
+      "cvc5": "sat",
+      "z3": "sat"
+    }
+  },
+  "boundary": {
+    "agreement_unsat_with_unit": {
+      "pass": true,
+      "cvc5": "unsat",
+      "z3": "unsat"
+    }
+  },
+  "overall_pass": true
+}

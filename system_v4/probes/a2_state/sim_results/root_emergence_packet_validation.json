@@ -1,17 +1,166 @@
 {
   "name": "root_emergence_packet_validation",
-  "timestamp": "2026-04-01T21:47:00.518571+00:00",
-  "passed_gates": 10,
-  "total_gates": 10,
-  "score": 1.0,
+  "timestamp": "2026-04-14T11:41:04.162317+00:00",
+  "passed_gates": 9,
+  "total_gates": 12,
+  "score": 0.75,
   "gates": [
     {
       "name": "R1_formal_geometry_prerequisite_is_closed",
       "pass": true,
       "detail": {
-        "score": 1.0,
-        "passed_gates": 14,
-        "total_gates": 14
+        "formal_g1_pass": true,
+        "formal_g3_pass": true,
+        "formal_g6_pass": true,
+        "formal_g8_pass": true,
+        "formal_g10_pass": true,
+        "formal_g11_pass": true,
+        "formal_g10_detail": {
+          "carrier_geometry_admission": {
+            "object": "carrier_geometry_admission",
+            "carrier": "finite Hopf/Weyl carrier",
+            "admitted": true,
+            "source_gates": [
+              "G1_exact_hopf_geometry_truth",
+              "G2_weyl_ambient_rung",
+              "G3_ambient_vs_engine_overlay",
+              "G4_live_engine_family_split",
+              "G9_owner_anchor_state_explicit"
+            ],
+            "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
+            "owner_anchor_state": {
+              "projection_status": "owner_weyl_branch_materialized",
+              "weyl_branch_nodes_present": true,
+              "missing_owner_anchors": []
+            },
+            "read": "Finite Hopf/Weyl carrier geometry and Weyl-sheet overlay are admitted as lower-tier pre-Axis machinery."
+          },
+          "classical_leakage_guards": {
+            "object": "classical_leakage_guards",
+            "admitted": true,
+            "source_gates": [
+              "G3_ambient_vs_engine_overlay",
+              "G6_torus_negative_is_load_bearing",
+              "G7_no_chirality_negative_still_incomplete",
+              "G8_exact_loop_law_swap_negative"
+            ],
+            "raw_lr_control_blocked": {
+              "status": "control_only",
+              "max_raw_LR_mutual_information": 0.0
+            },
+            "torus_scramble_kill": {
+              "status": "KILL",
+              "structure_matters": true,
+              "n_axis_diff": 5
+            },
+            "no_chirality_kill": {
+              "status": "KILL",
+              "chirality_matters": true,
+              "residual_gap": 0.7668505694139549,
+              "source_probe_gates": [
+                "N1_no_chirality_kill_is_real_but_not_total",
+                "N2_no_chirality_residual_is_explicitly_nontrivial",
+                "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"
+              ]
+            },
+            "loop_law_swap_kill": {
+              "status": "KILL",
+              "structure_matters": true,
+              "max_true_fiber_drift": 1.4694327085712575e-16,
+              "min_true_base_traversal": 0.11476546161121078
+            },
+            "read": "Classicalized collapse routes are blocked at the lower geometry tier; raw L|R control stays trivial and exact torus or loop-law corruption fails."
+          }
+        },
+        "formal_g11_detail": {
+          "object": "chiral_law_embargo",
+          "admitted": true,
+          "source_gates": [
+            "G3_ambient_vs_engine_overlay",
+            "G4_live_engine_family_split",
+            "G7_no_chirality_negative_still_incomplete"
+          ],
+          "ga3_chirality": {
+            "status": "readout_only",
+            "reason": "GA3 is a valid asymmetry readout but not yet a lower-tier signed differential law"
+          },
+          "symmetric_dphi_bookkeeping": {
+            "status": "bookkeeping_only",
+            "max_abs_compat_dphi_gap": 0.0,
+            "reason": "runtime dphi_L and dphi_R are symmetric compatibility shims in engine history"
+          },
+          "promotion_block": "awaiting_real_lower_tier_chiral_differential_law",
+          "read": "Lower-tier chirality is real as a carrier/readout asymmetry, but GA3 and symmetric dphi bookkeeping are embargoed from promotion as chiral law objects."
+        },
+        "formal_g12_pass": true,
+        "formal_g12_detail": {
+          "summary": {
+            "winner": "chirality_separated_transport_deltas",
+            "winner_status": "surviving_compound_candidate",
+            "fake_law_routes": [
+              "ga3_chirality_readout",
+              "symmetric_dphi_bookkeeping"
+            ],
+            "signal_only_routes": [
+              "delta_chirality_signal"
+            ],
+            "single_lower_tier_chiral_law": "not_supported_yet"
+          },
+          "owner_read": {
+            "status": "compound_candidate_only",
+            "note": "No single lower-tier chiral law is admitted; the best surviving branch remains the compound transport/chirality candidate."
+          },
+          "source_support": {
+            "formal_geometry_gates": [
+              "G1_exact_hopf_geometry_truth",
+              "G2_weyl_ambient_rung",
+              "G3_ambient_vs_engine_overlay",
+              "G4_live_engine_family_split",
+              "G5_dual_weyl_cycle_stability",
+              "G6_torus_negative_is_load_bearing",
+              "G7_no_chirality_negative_still_incomplete",
+              "G8_exact_loop_law_swap_negative",
+              "G9_owner_anchor_state_explicit",
+              "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+              "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion",
+              "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
+              "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
+              "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"
+            ],
+            "no_chirality_gates": [
+              "N1_no_chirality_kill_is_real_but_not_total",
+              "N2_no_chirality_residual_is_explicitly_nontrivial",
+              "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"
+            ],
+            "weyl_delta_gates": [
+              "W1_stagewise_raw_delta_surfaces_exist",
+              "W2_transport_geometry_is_mechanically_nontrivial",
+              "W3_chirality_differential_is_real_pre_axis_signal",
+              "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim",
+              "W5_branch_map_keeps_flux_placement_open",
+              "W6_flux_family_is_explicit_without_canonizing_flux",
+              "W7_branch_map_preserves_skeptical_flux_read",
+              "W8_pre_axis_object_inventory_is_explicit",
+              "W9_transport_embargo_boundary_is_explicit"
+            ]
+          }
+        },
+        "formal_g14_pass": true,
+        "formal_g14_o4_detail": {
+          "local_unitary_pair_Fe_Fi": {
+            "status": "not_proven_load_bearing_in_local_test",
+            "keep": false,
+            "reason": "Removing Fe and Fi does not change the one-step local dphi response here; this is not enough to demote them from substrate use in higher tiers.",
+            "evidence": {
+              "demotion_structural_changes": 0,
+              "total_stages": 16
+            }
+          },
+          "owner_read": {
+            "status": "lower_tier_noncommuting_basis_split_survives_local_search",
+            "note": "This search supports a lower-tier noncommuting basis split and rejects pure coordinate relabeling as substrate, but it does not yet justify promoting Fe/Fi as demoted or representation-only."
+          }
+        }
       }
     },
     {
@@ -26,8 +175,14 @@
       "name": "R3_missing_axis_search_finds_uncaptured_structure",
       "pass": true,
       "detail": {
+        "missing_axis_search_ok": true,
         "best_candidate": "A: measurement_basis",
         "best_residual": 0.9459762214871965,
+        "measurement_basis_residual": 0.9459762214871965,
+        "squeezing_residual": 0.8829578544659955,
+        "coupling_strength_residual": 0.7900410482040878,
+        "measurement_basis_minus_squeezing": 0.063018367021201,
+        "squeezing_minus_coupling_strength": 0.09291680626190768,
         "coherence_class_residual": 1.3469822409568326e-16
       }
     },
@@ -36,41 +191,117 @@
       "pass": true,
       "detail": {
         "winner": "Xi_chiral_entangle",
-        "winner_mean_mi": 0.5850944299846628,
-        "lr_direct_mean_mi": 3.3769283665681843e-16
+        "winner_mean_mi": 0.8232542855942899,
+        "lr_direct_mean_mi": 1.6653345369377348e-16
       }
     },
     {
       "name": "R5_small_carrier_family_selects_live_hopf_weyl",
-      "pass": true,
+      "pass": false,
       "detail": {
         "live_best_candidate": "Xi_chiral_entangle",
-        "live_best_mean_mi": 0.5850944299846628,
-        "best_control_mean_mi": 7.822432235948806e-05,
-        "best_root_rank_margin": 0.5850162056623033
+        "live_best_mean_mi": 0.8232542855942899,
+        "best_control_mean_mi": 0.00033283375056732584,
+        "best_root_rank_margin": 0.8229214518437226,
+        "live_row_best_iab": [
+          {
+            "engine_type": 1,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          }
+        ]
       }
     },
     {
       "name": "R6_live_carrier_keeps_unique_positive_honesty_signal",
-      "pass": true,
+      "pass": false,
       "detail": {
         "live_honesty_candidate": "Xi_chiral_entangle",
-        "live_honesty_mean_i_c": 0.0775200940266869,
-        "live_honesty_mean_mi": 0.5850944299846628,
+        "live_honesty_mean_i_c": 0.028504810872339026,
+        "live_honesty_mean_mi": 0.8232542855942899,
         "best_control_honesty_score": 0.0,
-        "best_honesty_margin": 0.0775200940266869
+        "best_honesty_margin": 0.028504810872339026,
+        "live_row_best_iab": [
+          {
+            "engine_type": 1,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          }
+        ]
       }
     },
     {
       "name": "R7_mispair_counterfeit_games_mi_but_not_coherent_info",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "mean_live_I_AB": 0.5850944299846628,
-        "mean_counterfeit_I_AB": 0.7929333246640154,
-        "mean_live_I_c": 0.0775200940266869,
-        "mean_counterfeit_I_c": 0.007098294355261954,
-        "mean_I_c_gap": 0.07042179967142495,
-        "counterfeit_beats_live_on_I_AB_count": 4,
+        "mean_live_I_AB": 0.8232542855942899,
+        "mean_counterfeit_I_AB": 0.7633044530859198,
+        "mean_live_I_c": 0.028504810872339026,
+        "mean_counterfeit_I_c": -0.06070342631953977,
+        "mean_I_c_gap": 0.08920823719187879,
+        "counterfeit_beats_live_on_I_AB_count": 2,
         "live_beats_counterfeit_on_I_c_count": 4
       }
     },
@@ -78,10 +309,14 @@
       "name": "R8_coarising_is_attractor_specific_not_universal_algebra",
       "pass": true,
       "detail": {
+        "ti_level1_universal": false,
         "fi_level1_universal": true,
+        "ti_level2_universal": false,
         "fi_level2_universal": true,
         "fe_level1_universal": false,
         "te_level1_universal": false,
+        "fe_level2_universal": false,
+        "te_level2_universal": false,
         "algebraic_structure": "TRAJECTORY-SPECIFIC: Co-arising is attractor-dependent, not operator-algebraic. The theorem requires the attractor as a precondition. Proof strategy: characterize the attractor basin, then prove co-arising within it."
       }
     },
@@ -90,9 +325,64 @@
       "pass": true,
       "detail": {
         "all_ok": true,
-        "ti_universal": false,
-        "fe_universal": false,
-        "te_universal": false
+        "all_level1_universal": false,
+        "all_level2_universal": false,
+        "level3_total_trials": 0,
+        "orbit_phase_alignment_ok": true,
+        "orbit_guard_event_count": 0,
+        "orbit_total_failures": 2,
+        "orbit_phase_stats": {
+          "Ti": {
+            "ok": 1,
+            "fail": 0,
+            "neutral": 0
+          },
+          "Fe": {
+            "ok": 1,
+            "fail": 1,
+            "neutral": 0
+          },
+          "Te": {
+            "ok": 2,
+            "fail": 0,
+            "neutral": 0
+          },
+          "Fi": {
+            "ok": 1,
+            "fail": 1,
+            "neutral": 0
+          }
+        },
+        "orbit_half_stats": {
+          "outer": {
+            "ok": 5,
+            "fail": 2
+          },
+          "inner": {
+            "ok": 0,
+            "fail": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "R10A_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary",
+      "pass": true,
+      "detail": {
+        "threshold_accuracy": 0.9344761904761905,
+        "ti_failure_threshold": 0.05,
+        "min_trajectory_lr_asym": 0.5803230021906318,
+        "ti_boundary_gap": 0.5303230021906318
+      }
+    },
+    {
+      "name": "R10B_te_steps_stay_on_antiparallel_yz_band_on_attractor",
+      "pass": true,
+      "detail": {
+        "config_count": 3,
+        "max_q4_norm_cyz": -0.9965834498377752,
+        "min_q4_norm_cyz": -0.9999662998821437,
+        "min_q4_lr_asym": 0.9710414016600907
       }
     },
     {

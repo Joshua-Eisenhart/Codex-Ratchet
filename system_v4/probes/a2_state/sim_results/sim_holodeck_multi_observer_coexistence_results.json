@@ -2,44 +2,86 @@
   "name": "sim_holodeck_multi_observer_coexistence",
   "classification": "classical_baseline",
   "tool_manifest": {
-    "sympy": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "clifford": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "geomstats": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "toponetx": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "gudhi": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "subspace intersection + projection"
+      "reason": "subspace intersection and projection checks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
-    "sympy": null,
+    "numpy": "supportive",
     "clifford": null,
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
     "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
     "toponetx": null,
-    "gudhi": null,
-    "numpy": "load_bearing"
+    "gudhi": null
   },
   "positive": {
     "shared_carrier_consistent": true,

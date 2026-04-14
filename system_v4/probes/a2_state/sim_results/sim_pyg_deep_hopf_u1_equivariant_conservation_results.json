@@ -1,7 +1,7 @@
 {
   "name": "sim_pyg_deep_hopf_u1_equivariant_conservation",
   "description": "S^3 Hopf-discretized carrier; PyG MessagePassing symmetric Laplacian smoother on complex scalar charge; verifies (1) linear charge conservation sum_i f_i under repeated propagate(); (2) U(1) global equivariance of the update; (3) that message() is invoked with the expected (E,2) shape. Negative controls: asymmetric rule breaks conservation, channel-swap rule breaks U(1) equivariance.",
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "torch_geometric.nn.MessagePassing subclass with explicit message() and propagate(edge_index, x=x); edge_index tensor drives aggregation; removing PyG eliminates the sim's claim."
+      "reason": "PyG MessagePassing is used for propagate()/message() scaffolding, but ablation audit found linear symmetric aggregation is numpy-equivalent (decorative, not load-bearing). Load-bearing PyG integration lives in sim_pyg_deep_oversmoothing_bound.py."
     },
     "z3": {
       "tried": false,
@@ -66,7 +66,7 @@
   },
   "tool_integration_depth": {
     "pytorch": "load_bearing",
-    "pyg": "load_bearing",
+    "pyg": "supportive",
     "z3": null,
     "cvc5": null,
     "sympy": null,

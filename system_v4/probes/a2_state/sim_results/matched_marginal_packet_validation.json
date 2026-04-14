@@ -1,9 +1,9 @@
 {
   "name": "matched_marginal_packet_validation",
-  "timestamp": "2026-04-01T21:46:31.776311+00:00",
-  "passed_gates": 9,
+  "timestamp": "2026-04-14T12:20:06.192260+00:00",
+  "passed_gates": 8,
   "total_gates": 9,
-  "score": 1.0,
+  "score": 0.8888888888888888,
   "gates": [
     {
       "name": "M1_phase4_and_phase5a_execute_cleanly",
@@ -51,19 +51,19 @@
         "certified_blocks": 12,
         "total_blocks": 12,
         "failed_blocks": 0,
-        "max_final_dev_A": 4.3753564023070306e-16,
-        "max_final_dev_B": 5.471894787807448e-16,
-        "max_hist_dev_A": 3.6295124768498446e-16,
-        "max_hist_dev_B": 4.783309287441108e-16
+        "max_final_dev_A": 2.7894008272968645e-16,
+        "max_final_dev_B": 4.0221650305342743e-16,
+        "max_hist_dev_A": 2.847483988694276e-16,
+        "max_hist_dev_B": 3.3306690738754696e-16
       }
     },
     {
       "name": "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
       "pass": true,
       "detail": {
-        "mean_preserving": 4.440892098500626e-16,
-        "mean_chiral": 1.635766746086287,
-        "max_ratio_preserving_to_chiral": 5.194426056211188e-16
+        "mean_preserving": 2.590520390792032e-16,
+        "mean_chiral": 1.3086226003995745,
+        "max_ratio_preserving_to_chiral": 5.367767999330256e-16
       }
     },
     {
@@ -73,7 +73,7 @@
         "best_sources": [
           "product_seed"
         ],
-        "max_preserving_MI": 9.992007221626409e-16
+        "max_preserving_MI": 7.771561172376096e-16
       }
     },
     {
@@ -89,23 +89,30 @@
     },
     {
       "name": "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
-      "pass": true,
+      "pass": false,
       "detail": {
         "best_new_bridge": "C_fe_pairs_only",
-        "best_gain": 0.15375653780456644,
-        "mean_fe_advantage": 0.11738124811376545,
+        "best_gain": -0.06118899331325358,
+        "mean_fe_advantage": 0.1541156399753626,
         "mean_mi": {
-          "A_phase4_winner": 1.4828908499635307,
-          "B_fe_indexed": 1.461058045270187,
-          "C_fe_pairs_only": 1.636647387768097,
-          "D_lag7_pairs": 1.2371225765407867
+          "A_phase4_winner": 1.534040613809445,
+          "B_fe_indexed": 1.3179309343057353,
+          "C_fe_pairs_only": 1.472851620496191,
+          "D_lag7_pairs": 1.3027503051475369
+        },
+        "mean_ic": {
+          "A_phase4_winner": 0.5428860255643033,
+          "B_fe_indexed": 0.338606597341697,
+          "C_fe_pairs_only": 0.4896489122831466,
+          "D_lag7_pairs": 0.3207794681721909
         },
         "winner_counts": {
-          "A_phase4_winner": 1,
+          "A_phase4_winner": 6,
           "B_fe_indexed": 0,
-          "C_fe_pairs_only": 5,
+          "C_fe_pairs_only": 0,
           "D_lag7_pairs": 0
-        }
+        },
+        "fe_pairs_only_beats_phase4_on_ic_count": 0
       }
     },
     {

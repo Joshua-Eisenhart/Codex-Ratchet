@@ -2,7 +2,7 @@
   "name": "bridge_cut_perturbation_stability",
   "probe": "pure_math_bridge_cut_perturbation_stability",
   "purpose": "Perturb bridge-built bipartite states with local dephasing, depolarizing, and small packet shifts, then measure stability of mutual information, conditional entropy, coherent information, and a weighted cut functional.",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "schema": "bridge_cut_perturbation_stability/v1",
   "tools_used": [
     "numpy"
@@ -68,20 +68,6 @@
       "used": false,
       "reason": "no persistence computation is needed here"
     }
-  },
-  "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
   },
   "positive": {
     "battery_rows": [
@@ -1124,7 +1110,6 @@
     "classification_note": "Bridge-induced cut kernels separate real correlation-sensitive signals from fake correlation-blind kernels under local and packet perturbations.",
     "most_bridge_sensitive_kernel": "mutual_information",
     "most_fake_stable_kernel": "fake_trace",
-    "elapsed_s": 0.1695258617401123
-  },
-  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+    "elapsed_s": 0.10359907150268555
+  }
 }

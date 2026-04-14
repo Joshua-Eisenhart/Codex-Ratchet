@@ -1,0 +1,103 @@
+{
+  "name": "sim_cl3_e3nn_rotor_vs_wignerD_vector",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn uses torch tensors for D-matrix eval"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor sandwich R v R~ is one side of the equivalence"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Wigner-D on irrep 1o is the other side of the equivalence"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n": 50,
+    "max_err_rotor_vs_rotation_matrix": 3.9350319887992495e-16,
+    "max_err_e3nn_Dmatrix_vs_rotated_Ylm": 2.699114993592877e-07,
+    "pass": true
+  },
+  "negative": {
+    "improper_rotation_disagrees": true,
+    "err": 2.185136760807819,
+    "pass": true
+  },
+  "boundary": {
+    "identity_err": 0.0,
+    "rotor_2pi_scalar_is_minus_one": true,
+    "rotor_2pi_vector_action_identity": 6.280369834735101e-16,
+    "pass": true
+  },
+  "ablation": {
+    "R_and_minusR_vector_identical": 0.0,
+    "R_and_minusR_scalar_distinct": 1.9923697514777938,
+    "ablation_shows_numpy_insufficient": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

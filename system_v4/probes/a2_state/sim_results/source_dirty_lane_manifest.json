@@ -1,30 +1,90 @@
 {
-  "generated_at": "2026-04-10T18:26:12.183488+00:00",
-  "lane_id": "source_dirty__no_actionable_lanes",
+  "generated_at": "2026-04-14T11:47:34.906639+00:00",
+  "lane_id": "source_dirty__skill_runtime__skill_runtime",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "no_checkpoint_ready_groups",
+  "selection_mode": "default_prefer_probe_source_skip_docs",
   "allow_docs": false,
   "docs_opt_in_required": false,
-  "code_only_fallback": null,
-  "active_actionable_lane": null,
-  "selected_group_id": null,
-  "file_count": 0,
-  "safe_next_action": null,
-  "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
-  "code_only_fallback_group_id": null,
-  "active_actionable_lane_group_id": null,
-  "summary": {
-    "selected_group_id": null,
-    "file_count": 0,
-    "safe_next_action": null,
-    "docs_opt_in_required": false,
-    "code_only_fallback_group_id": null,
-    "active_actionable_lane_group_id": null,
-    "executable_lane_group_id": null,
-    "ok": true,
-    "status": "no_actionable_lanes",
-    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
+  "code_only_fallback": {
+    "group_id": "legacy_runtime__legacy_runtime",
+    "file_count": 3,
+    "untracked_count": 2,
+    "tracked_dirty_count": 1,
+    "safe_next_action": "archive_review",
+    "source_path": null,
+    "result_path": null
   },
-  "lane": null,
-  "executable_lane": null
+  "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+  "active_actionable_lane": {
+    "group_id": "skill_runtime__skill_runtime",
+    "file_count": 1,
+    "safe_next_action": "checkpoint",
+    "selection_mode": "default_prefer_probe_source_skip_docs",
+    "source_path": "system_v4/skills/llm_research_enforcement_validator 2.py",
+    "result_path": null
+  },
+  "selected_group_id": "skill_runtime__skill_runtime",
+  "file_count": 1,
+  "safe_next_action": "checkpoint",
+  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+  "summary": {
+    "selected_group_id": "skill_runtime__skill_runtime",
+    "file_count": 1,
+    "safe_next_action": "checkpoint",
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "active_actionable_lane_group_id": "skill_runtime__skill_runtime",
+    "executable_lane_group_id": "skill_runtime__skill_runtime",
+    "ok": true
+  },
+  "lane": {
+    "group_id": "skill_runtime__skill_runtime",
+    "display_name": "Runtime and skill support",
+    "bucket": "skill_runtime",
+    "notes": "Small bounded runtime-support cluster suitable for a scoped checkpoint.",
+    "blocking_reason": "bounded_human_checkpoint",
+    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
+    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+    "verification_commands": [
+      "make source-dirty-checkpoint-plan",
+      "make maintenance-report"
+    ],
+    "result_companions": [],
+    "required_git_paths_clean": [
+      "system_v4/skills/llm_research_enforcement_validator 2.py"
+    ],
+    "docs_opt_in_required": false,
+    "code_only_fallback": {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 3,
+      "untracked_count": 2,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "archive_review",
+      "source_path": null,
+      "result_path": null
+    },
+    "active_actionable_lane": {
+      "group_id": "skill_runtime__skill_runtime",
+      "file_count": 1,
+      "safe_next_action": "checkpoint",
+      "selection_mode": "default_prefer_probe_source_skip_docs",
+      "source_path": "system_v4/skills/llm_research_enforcement_validator 2.py",
+      "result_path": null
+    },
+    "files": [
+      "system_v4/skills/llm_research_enforcement_validator 2.py"
+    ]
+  },
+  "executable_lane": {
+    "group_id": "skill_runtime__skill_runtime",
+    "files": [
+      "system_v4/skills/llm_research_enforcement_validator 2.py"
+    ],
+    "result_companions": [],
+    "required_git_paths_clean": [
+      "system_v4/skills/llm_research_enforcement_validator 2.py"
+    ],
+    "goal": "Execute the currently actionable bounded lane without widening scope.",
+    "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."
+  }
 }

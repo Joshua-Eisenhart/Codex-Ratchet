@@ -1,6 +1,6 @@
 {
   "name": "lower_tier_transport_law_search_validation",
-  "timestamp": "2026-04-01T20:26:26.586510+00:00",
+  "timestamp": "2026-04-14T11:22:11.447769+00:00",
   "passed_gates": 4,
   "total_gates": 4,
   "score": 1.0,
@@ -77,6 +77,39 @@
             "downstream_cut_effect"
           ],
           "single_transport_law": "exact_loop_assigned_transport_only"
+        },
+        "owner_read": {
+          "status": "exact_loop_law_only",
+          "note": "The lower-tier transport law supported by the repo is the exact same-carrier loop law, not generic transport activity and not downstream cut effects."
+        },
+        "source_support": {
+          "formal_geometry_gates": [
+            "G1_exact_hopf_geometry_truth",
+            "G2_weyl_ambient_rung",
+            "G3_ambient_vs_engine_overlay",
+            "G4_live_engine_family_split",
+            "G5_dual_weyl_cycle_stability",
+            "G6_torus_negative_is_load_bearing",
+            "G7_no_chirality_negative_still_incomplete",
+            "G8_exact_loop_law_swap_negative",
+            "G9_owner_anchor_state_explicit",
+            "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+            "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion",
+            "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
+            "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
+            "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"
+          ],
+          "weyl_delta_gates": [
+            "W1_stagewise_raw_delta_surfaces_exist",
+            "W2_transport_geometry_is_mechanically_nontrivial",
+            "W3_chirality_differential_is_real_pre_axis_signal",
+            "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim",
+            "W5_branch_map_keeps_flux_placement_open",
+            "W6_flux_family_is_explicit_without_canonizing_flux",
+            "W7_branch_map_preserves_skeptical_flux_read",
+            "W8_pre_axis_object_inventory_is_explicit",
+            "W9_transport_embargo_boundary_is_explicit"
+          ]
         }
       }
     }

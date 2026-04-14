@@ -2,80 +2,20 @@
   "name": "eigenvalue_spectrum_view",
   "classification": "classical_baseline",
   "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "classical baseline: numpy only"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "classical baseline: numpy only"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for numeric spectral baseline"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Hermitian eigenspectra, trace identities, and unitary-invariance numerics"
     },
     "sympy": {
-      "tried": true,
-      "used": false,
-      "reason": "optional symbolic; not load-bearing"
-    },
-    "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this numeric baseline"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
+    "numpy": "supportive",
+    "sympy": null
   },
   "positive": {
     "real_spectrum_n2": true,

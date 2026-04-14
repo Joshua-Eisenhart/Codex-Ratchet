@@ -1,0 +1,48 @@
+{
+  "name": "sim_compound_autograd_topo_mp",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through MP + Laplacian loss"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order MessagePassing on co-face edge graph"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex -> B1,B2 -> Hodge L1"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "toponetx": "load_bearing"
+  },
+  "positive": {
+    "loss_start": 23.21330451965332,
+    "loss_end": 1.0,
+    "improved": true,
+    "residual": 7.727936892260578e-22,
+    "norm": 4.8299605576628615e-23,
+    "E": 6,
+    "num_2cells": 4
+  },
+  "negative": {
+    "identity_laplacian_norm": 0.6144562363624573,
+    "collapses_as_expected": false
+  },
+  "boundary": {
+    "num_steps": 400
+  },
+  "ablations": {
+    "ablate_toponetx_breaks_claim": true,
+    "ablate_pyg_breaks_claim": true,
+    "ablate_pytorch_breaks_claim": true
+  },
+  "PASS": true
+}

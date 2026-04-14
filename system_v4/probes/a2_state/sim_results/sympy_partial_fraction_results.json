@@ -1,0 +1,106 @@
+{
+  "name": "sympy_partial_fraction",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic rationals"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "rational identity better in sympy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "apart() yields exact rational residues; together() recombines to original exactly"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "apart_matches_expected_residues": true,
+    "together_recovers_original": true,
+    "decomposition": "7/(2*(s + 3)) - 7/(3*(s + 2)) + 5/(6*(s - 1))"
+  },
+  "negative": {
+    "wrong_residue_detected": true
+  },
+  "boundary": {
+    "repeated_pole_stable": true,
+    "improper_handled": true
+  },
+  "ablation": {
+    "numpy_residues_float": true,
+    "residues": [
+      0.8333333333333327,
+      -2.3333333333333246,
+      3.4999999999999925
+    ],
+    "poles": [
+      0.9999999999999997,
+      -1.9999999999999996,
+      -3.000000000000003
+    ],
+    "note": "floats approximate 5/6, -7/3, 7/2; sympy certifies exact rationals"
+  },
+  "classification": "canonical"
+}

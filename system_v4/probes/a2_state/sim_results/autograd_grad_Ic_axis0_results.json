@@ -1,0 +1,120 @@
+{
+  "name": "sim_autograd_grad_Ic_axis0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through eigvalsh of parameterized rho; FD is decorative noisy check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "grad_matches_fd": {
+      "rel_err": 8.678279609785695e-11,
+      "passed": true
+    },
+    "grad_nonzero": {
+      "norm": 0.3613266289473768,
+      "passed": "True"
+    },
+    "ascent_increases_S": {
+      "S0": 0.9266966691154264,
+      "S1": 0.9280008738657164,
+      "passed": true
+    }
+  },
+  "negative": {
+    "pure_state_S_near_zero": {
+      "S": 8.289306334778563e-11,
+      "passed": true
+    },
+    "rho_hermitian": {
+      "herm_err": 3.806646025237506e-17,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "maxmix_entropy": {
+      "S": 1.3862943611198906,
+      "target": 1.3862943611198906,
+      "passed": "True"
+    },
+    "maxmix_unitary_grad_zero": {
+      "grad_unitary": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

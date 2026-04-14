@@ -1,0 +1,59 @@
+{
+  "name": "sim_compound_torus_spinor_admissibility",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT fence on parity sabotage"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor spinor rotation"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Betti numbers of T^2"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "clifford": "load_bearing",
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "z3_parity_sat": true,
+    "z3_sabotage_unsat": true,
+    "clifford_2pi": -1.0,
+    "clifford_4pi": 1.0,
+    "clifford_ok": true,
+    "betti": [
+      1,
+      2
+    ],
+    "gudhi_ok": true
+  },
+  "negative": {
+    "punctured_betti": [
+      2,
+      2
+    ],
+    "differs_from_T2": true
+  },
+  "boundary": {
+    "betti_3x3": [
+      1,
+      2
+    ]
+  },
+  "ablations": {
+    "joint_holds": true,
+    "ablate_z3_breaks_claim": true,
+    "ablate_clifford_breaks_claim": true,
+    "ablate_gudhi_breaks_claim": true,
+    "note": "Each tool provides a witness no other tool supplies in this sim."
+  },
+  "PASS": true
+}

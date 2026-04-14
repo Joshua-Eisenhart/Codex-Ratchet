@@ -1,19 +1,161 @@
 {
-  "generated_at": "2026-04-14T08:46:46.730411+00:00",
+  "generated_at": "2026-04-14T11:46:22.849816+00:00",
   "summary": {
     "registry_row_count": 150,
     "registry_linked_result_count": 117,
     "registry_linked_lego_count": 148,
-    "blocker_count": 0,
-    "advisory_count": 7,
-    "blocker_result_count": 0,
-    "advisory_result_count": 7,
+    "blocker_count": 7,
+    "advisory_count": 9,
+    "blocker_result_count": 7,
+    "advisory_result_count": 9,
     "issue_kind_counts": {
-      "blank_unused_reason": 7
+      "blank_unused_reason": 9,
+      "missing_tool_integration_depth": 7
     },
-    "ok": true
+    "ok": false
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "engine_16_placements_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/engine_16_placements_results.json",
+      "lego_ids": [
+        "placement_law",
+        "signed_operator_variant",
+        "terrain_family_fourfold"
+      ],
+      "probe_paths": [
+        "sim_engine_16_placements.py"
+      ],
+      "sections": [
+        "Loop, Connection, And Placement Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "lego_entropy_smooth_one_shot_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/lego_entropy_smooth_one_shot_results.json",
+      "lego_ids": [
+        "max_entropy",
+        "min_entropy"
+      ],
+      "probe_paths": [
+        "sim_lego_entropy_smooth_one_shot.py"
+      ],
+      "sections": [
+        "Entropy Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "lego_entropy_spectral_families_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/lego_entropy_spectral_families_results.json",
+      "lego_ids": [
+        "renyi_entropy",
+        "spectral_entropy",
+        "tsallis_entropy"
+      ],
+      "probe_paths": [
+        "sim_lego_entropy_spectral_families.py"
+      ],
+      "sections": [
+        "Entropy Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "lego_weyl_wigner_phase_space_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/lego_weyl_wigner_phase_space_results.json",
+      "lego_ids": [
+        "phase_space_geometry",
+        "wigner_phase_space_representation"
+      ],
+      "probe_paths": [
+        "sim_lego_weyl_wigner_phase_space.py"
+      ],
+      "sections": [
+        "Geometry Legos",
+        "State Representation Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "torch_channel_taxonomy_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/torch_channel_taxonomy_results.json",
+      "lego_ids": [
+        "channel_taxonomy"
+      ],
+      "probe_paths": [
+        "sim_torch_channel_taxonomy.py"
+      ],
+      "sections": [
+        "Operator And Channel Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "torch_l1_coherence_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/torch_l1_coherence_results.json",
+      "lego_ids": [
+        "coherence_vector_representation"
+      ],
+      "probe_paths": [
+        "sim_torch_l1_coherence.py"
+      ],
+      "sections": [
+        "State Representation Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    },
+    {
+      "severity": "blocker",
+      "kind": "missing_tool_integration_depth",
+      "result_json": "torch_purification_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/torch_purification_results.json",
+      "lego_ids": [
+        "purification_representation"
+      ],
+      "probe_paths": [
+        "sim_torch_purification.py"
+      ],
+      "sections": [
+        "State Representation Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Registry-selected result is missing tool_integration_depth."
+    }
+  ],
   "advisories": [
     {
       "severity": "advisory",
@@ -161,6 +303,38 @@
     {
       "severity": "advisory",
       "kind": "blank_unused_reason",
+      "result_json": "torch_channel_taxonomy_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/torch_channel_taxonomy_results.json",
+      "lego_ids": [
+        "channel_taxonomy"
+      ],
+      "probe_paths": [
+        "sim_torch_channel_taxonomy.py"
+      ],
+      "sections": [
+        "Operator And Channel Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Manifest has tried=true, used=false tools with blank reasons.",
+      "tools": [
+        "clifford",
+        "cvc5",
+        "e3nn",
+        "geomstats",
+        "gudhi",
+        "pyg",
+        "rustworkx",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ]
+    },
+    {
+      "severity": "advisory",
+      "kind": "blank_unused_reason",
       "result_json": "torch_hopf_connection_results.json",
       "result_path": "system_v4/probes/a2_state/sim_results/torch_hopf_connection_results.json",
       "lego_ids": [
@@ -181,6 +355,36 @@
       "detail": "Manifest has tried=true, used=false tools with blank reasons.",
       "tools": [
         "cvc5",
+        "gudhi",
+        "pyg",
+        "rustworkx",
+        "sympy",
+        "toponetx",
+        "xgi",
+        "z3"
+      ]
+    },
+    {
+      "severity": "advisory",
+      "kind": "blank_unused_reason",
+      "result_json": "torch_purification_results.json",
+      "result_path": "system_v4/probes/a2_state/sim_results/torch_purification_results.json",
+      "lego_ids": [
+        "purification_representation"
+      ],
+      "probe_paths": [
+        "sim_torch_purification.py"
+      ],
+      "sections": [
+        "State Representation Legos"
+      ],
+      "classifications": [
+        "canonical"
+      ],
+      "detail": "Manifest has tried=true, used=false tools with blank reasons.",
+      "tools": [
+        "cvc5",
+        "e3nn",
         "gudhi",
         "pyg",
         "rustworkx",

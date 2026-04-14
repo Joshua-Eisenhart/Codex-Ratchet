@@ -1,0 +1,82 @@
+{
+  "name": "lego_10_n01_commutator_zero_equivalence",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT for commutator-zero implies shared eigenbasis; supportive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic simultaneous diagonalization; load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
+  "positive": {
+    "diag_commute": true,
+    "both_diagonal": true
+  },
+  "negative": {
+    "sx_sz_noncommute": true
+  },
+  "boundary": {
+    "b_eq_a_squared_commutes": true,
+    "z3_unsat_trivial": true
+  },
+  "overall_pass": true
+}

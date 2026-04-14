@@ -1,0 +1,95 @@
+{
+  "name": "sympy_jacobi_su2",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "random numeric matrices cannot prove identity for all coefficients"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "entries complex rationals; sympy simpler"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "simplify of symbolic commutator sum returns exact zero matrix"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "jacobi_zero": true
+  },
+  "negative": {
+    "qdeformed_bracket_violates_jacobi": true,
+    "value": "Matrix([[-9*I/8, 0], [0, -9*I/8]])"
+  },
+  "boundary": {
+    "repeat_generator_zero": true,
+    "zero_operand": true
+  },
+  "ablation": {
+    "numpy_cannot_certify_all_coeffs": true,
+    "residual_norm_single_draw": 1.798766884999431e-16
+  },
+  "classification": "canonical"
+}

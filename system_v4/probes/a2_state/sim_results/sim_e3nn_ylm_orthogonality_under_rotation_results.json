@@ -1,0 +1,102 @@
+{
+  "name": "sim_e3nn_ylm_orthogonality_under_rotation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn runs on torch tensors; used for Y_lm evaluation and SO(3) operations"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "spherical_harmonics + Irreps.D_from_matrix provide the equivariant Y_lm basis under test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "lmax": 3,
+    "gram_vs_identity_unrotated": 0.001818908960558474,
+    "gram_vs_identity_rotated": 0.001748590380884707,
+    "gram_rotated_minus_unrotated": 0.0021392483031377196,
+    "pass": true
+  },
+  "negative": {
+    "hemisphere_gram_err": 0.8664588332176208,
+    "pass": true
+  },
+  "boundary": {
+    "identity_rot_diff": 0.0,
+    "l0_selfnorm": 1.000008463859558,
+    "pass": true
+  },
+  "ablation": {
+    "numpy_no_Dmatrix_err": 0.9140799939632416,
+    "e3nn_Dmatrix_err": 1.0897287572309011e-07,
+    "ablation_shows_numpy_insufficient": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

@@ -1,0 +1,116 @@
+{
+  "name": "sim_autograd_vfe_descent",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd-driven SGD on VFE; monotonic descent checked numerically"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "monotone_decrease": {
+      "F0": 5.746815599614019,
+      "Fend": 4.541544150631032,
+      "max_increase": -4.0501800935288657e-07,
+      "passed": true
+    },
+    "converges_to_posterior_mean": {
+      "err": 6.089476619721126e-10,
+      "passed": true
+    }
+  },
+  "negative": {
+    "ascent_increases": {
+      "F0": 1.5439385332046727,
+      "F1": 1.5977096295806967,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "zero_obs_mu_grad_zero": {
+      "grad_mu": [
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    "zero_obs_logvar_grad_analytic": {
+      "grad_logvar": [
+        0.5,
+        0.5
+      ],
+      "expected": 0.5,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

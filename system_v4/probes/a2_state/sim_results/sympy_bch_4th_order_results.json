@@ -1,0 +1,102 @@
+{
+  "name": "sympy_bch_4th_order",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric-only; BCH identity requires symbolic noncommutative expansion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not a graph problem"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "noncommutative polynomial identities not native to SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "noncommutative Symbol + series expansion proves identity coefficient-by-coefficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "BCH holds for arbitrary associative algebra; Clifford is a special case"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian structure needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant tensor op"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bch_up_to_order_4_vanishes": {
+      "residual_low_order_is_zero": true,
+      "expression": "0"
+    }
+  },
+  "negative": {
+    "corrupted_coefficient_detected": {
+      "residual_nonzero": true
+    }
+  },
+  "boundary": {
+    "commuting_case_collapses": {
+      "residual_zero": true
+    }
+  },
+  "ablation": {
+    "numpy_cannot_certify_symbolically": true,
+    "true_residual_numeric": 1.8561907598815247e-06,
+    "wrong_residual_numeric": 9.662865412668203e-05,
+    "note": "numeric residual is small in both cases for small matrices; only symbolic vanishing certifies the identity"
+  },
+  "classification": "canonical"
+}

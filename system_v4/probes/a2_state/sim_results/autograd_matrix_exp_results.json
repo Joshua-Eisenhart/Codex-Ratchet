@@ -1,0 +1,117 @@
+{
+  "name": "sim_autograd_matrix_exp",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through matrix_exp (Frechet derivative); analytic -iHpsi check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "seed0_dpsi_dt": {
+      "autograd": -4.240461249344122,
+      "analytic": -4.240461249344117,
+      "rel_err": 1.256719541777149e-15,
+      "passed": true
+    },
+    "seed1_dpsi_dt": {
+      "autograd": 3.3619175885553907,
+      "analytic": 3.3619175885553876,
+      "rel_err": 9.246581413928371e-16,
+      "passed": true
+    },
+    "seed2_dpsi_dt": {
+      "autograd": -1.4951080026266625,
+      "analytic": -1.495108002626662,
+      "rel_err": 2.9702818061944213e-16,
+      "passed": true
+    }
+  },
+  "negative": {
+    "nonhermitian_breaks_unitarity": {
+      "n0": 0.6335468860038489,
+      "n1": 0.42619577971183764,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "t0_trace_grad_zero": {
+      "grad": -0.0,
+      "passed": true
+    },
+    "large_t_unitary": {
+      "err": 2.6201741620205076e-14,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

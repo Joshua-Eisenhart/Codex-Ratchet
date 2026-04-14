@@ -1,0 +1,133 @@
+{
+  "name": "sim_autograd_kraus_purity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through Kraus sum and trace(rho^2); analytic depol check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "p=0.1": {
+      "autograd": -1.1555555555555557,
+      "analytic": -1.1555555555555554,
+      "rel_err": 1.921539850311108e-16,
+      "passed": true
+    },
+    "p=0.4": {
+      "autograd": -0.6222222222222225,
+      "analytic": -0.6222222222222222,
+      "rel_err": 3.568574007717982e-16,
+      "passed": true
+    },
+    "p=0.7": {
+      "autograd": -0.08888888888888902,
+      "analytic": -0.08888888888888902,
+      "rel_err": 0.0,
+      "passed": true
+    },
+    "purity_monotone_decrease": {
+      "purities": [
+        1.0,
+        0.8950617283950617,
+        0.8024691358024691,
+        0.7222222222222222,
+        0.654320987654321,
+        0.5987654320987654,
+        0.5555555555555556,
+        0.5246913580246914,
+        0.5061728395061729,
+        0.5
+      ],
+      "passed": true
+    }
+  },
+  "negative": {
+    "maxmix_grad_zero": {
+      "grad": 0.0,
+      "purity": 0.5,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "p_zero_grad": {
+      "grad": -1.3333333333333335,
+      "expected": -1.3333333333333333,
+      "passed": true
+    },
+    "p_075_full_depol": {
+      "err_from_maxmix": 0.0,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

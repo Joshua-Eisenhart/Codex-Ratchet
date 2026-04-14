@@ -1,0 +1,103 @@
+{
+  "name": "sim_autograd_eigh",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through eigh; cross-checked by Hellmann-Feynman and FD"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "autograd_vs_hellmann_feynman": {
+      "rel_err": 3.05290071861475e-12,
+      "passed": true
+    },
+    "autograd_vs_fd": {
+      "rel_err": 1.4530963102253182e-10,
+      "passed": true
+    }
+  },
+  "negative": {
+    "eigh_ignores_upper": {
+      "diff": 1.2209811423965815,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "degenerate_trace_grad": {
+      "diag_ok": true,
+      "off_ok": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "sim_compound_dual_solver_bc_fence",
+  "classification": "canonical",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic simplification to 0"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of negated identity over reals"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-solver UNSAT of negated identity (QF_NRA)"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "sympy_identity": true,
+    "z3_unsat_negation": true,
+    "cvc5_unsat_negation": true,
+    "all_three_agree": true
+  },
+  "negative": {
+    "sympy_thinks_identity": false,
+    "z3_unsat_negation": false,
+    "cvc5_unsat_negation": false,
+    "correctly_rejected": true
+  },
+  "boundary": {
+    "sympy": true,
+    "z3": true,
+    "cvc5": true,
+    "all_three_agree": true
+  },
+  "ablations": {
+    "ablate_sympy_breaks_claim": true,
+    "ablate_z3_breaks_claim": true,
+    "ablate_cvc5_breaks_claim": true
+  },
+  "PASS": true
+}

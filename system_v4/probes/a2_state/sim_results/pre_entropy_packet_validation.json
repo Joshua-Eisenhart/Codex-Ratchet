@@ -1,12 +1,12 @@
 {
   "name": "pre_entropy_packet_validation",
-  "timestamp": "2026-04-02T00:44:25.754534+00:00",
-  "passed_gates": 25,
+  "timestamp": "2026-04-14T11:23:28.056611+00:00",
+  "passed_gates": 14,
   "total_gates": 25,
-  "score": 1.0,
+  "score": 0.56,
   "xi_hist_signed_law": {
     "object": "Xi_hist signed law",
-    "admitted": true,
+    "admitted": false,
     "source_gates": [
       "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement",
       "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
@@ -24,7 +24,7 @@
         "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
         "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
         "placement_8_23_equals_prefix_8_15_on_signed_count": 6,
-        "placement_8_23_beats_0_3_on_ic_count": 4
+        "placement_8_23_beats_0_3_on_ic_count": 6
       }
     },
     "short_width_exception": {
@@ -32,7 +32,7 @@
       "scope": "clifford only",
       "detail": {
         "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-        "short_width_0_3_beats_8_23_on_ic_clifford_count": 2,
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
         "total_rows": 6
       }
     },
@@ -42,8 +42,8 @@
       "local_stress_probe": "0_3",
       "detail": {
         "best_early_width_by_ic_counts": {
-          "0_3": 6,
-          "0_7": 0,
+          "0_3": 1,
+          "0_7": 5,
           "0_11": 0,
           "0_15": 0
         },
@@ -54,10 +54,10 @@
           "4_15": 0,
           "8_15": 6
         },
-        "min_ic_8_15_minus_2_15": 0.04563198324576534,
-        "min_signed_2_15_minus_8_15": 0.04563198324576534,
-        "off_clifford_min_ic_8_23_minus_0_3": 0.14308503210605894,
-        "clifford_max_ic_8_23_minus_0_3": -0.02342179765536795
+        "min_ic_8_15_minus_2_15": 0.3502518834011005,
+        "min_signed_2_15_minus_8_15": 0.3502518834011005,
+        "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
+        "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
       }
     }
   },
@@ -73,7 +73,7 @@
     },
     "clifford_local_short_width_stress": {
       "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-      "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+      "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
     }
   },
   "owner_worthiness_map": {
@@ -104,9 +104,9 @@
     "transport_delta_candidate": "chirality-separated loop-sensitive transport deltas",
     "same_carrier_chirality_ablation": {
       "status": "partial_support",
-      "d_chiral": 0.8234140396807214,
+      "d_chiral": 0.7107370477323017,
       "d_flat": 0.5450291097571088,
-      "retention_ratio": 0.6619137924444958
+      "retention_ratio": 0.7668505694139549
     },
     "same_carrier_loop_law_ablation": {
       "status": "strong_support",
@@ -261,35 +261,35 @@
   "gates": [
     {
       "name": "P1_bridge_admission_is_fail_closed",
-      "pass": true,
+      "pass": false,
       "detail": {
         "winner": "Xi_chiral_entangle",
-        "winner_mean_mi": 0.5850944299846628,
-        "winner_mean_i_c": 0.0775200940266869,
+        "winner_mean_mi": 0.8232542855942899,
+        "winner_mean_i_c": 0.028504810872339026,
         "runner_up": "Xi_chiral_hist_entangle",
-        "runner_up_mean_mi": 0.5153548066316724,
-        "runner_up_mean_i_c": -0.09313964667615891,
-        "winner_margin": 0.06973962335299033,
-        "lr_direct_mean_mi": 3.3769283665681843e-16
+        "runner_up_mean_mi": 0.5126433115412764,
+        "runner_up_mean_i_c": -0.07773004558064106,
+        "winner_margin": 0.3106109740530135,
+        "lr_direct_mean_mi": 1.6653345369377348e-16
       }
     },
     {
       "name": "P2_strict_bakeoff_separates_bridge_from_controls",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "hist_outer_minus_lr_mi": 0.011421614360603044,
-        "hist_cycle_minus_lr_mi": 0.011421614360603044,
+        "hist_outer_minus_lr_mi": -0.5651686148980888,
+        "hist_cycle_minus_lr_mi": -0.5651686148980888,
         "history_nontrivial_while_shell_flat": true,
-        "xi_lr_direct_MI": 0.20932035556626527,
+        "xi_lr_direct_MI": 0.5736024766849059,
         "point_ref_minus_shell_base_std": 0.2992748479986896
       }
     },
     {
       "name": "P3_history_windows_currently_degenerate",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "history_outer_beats_lr_count": 4,
-        "history_outer_beats_lr_while_shell_flat_count": 4,
+        "history_outer_beats_lr_count": 0,
+        "history_outer_beats_lr_while_shell_flat_count": 0,
         "outer_window_beats_cycle_count": 0,
         "cycle_window_beats_outer_count": 0,
         "mean_history_outer_minus_cycle_mi": 0.0,
@@ -319,33 +319,33 @@
       "name": "P5_bridge_is_multicycle_stable_off_clifford",
       "pass": true,
       "detail": {
-        "inner_min_winner_cumulative_MI": 1.5972914558971791,
-        "outer_min_winner_cumulative_MI": 1.597357721295048,
-        "inner_max_product_cumulative_MI": 0.011457400276617014,
-        "outer_max_product_cumulative_MI": 0.011457825362577445
+        "inner_min_winner_cumulative_MI": 1.7008337642380638,
+        "outer_min_winner_cumulative_MI": 1.7003537629203236,
+        "inner_max_product_cumulative_MI": 0.00651270176183516,
+        "outer_max_product_cumulative_MI": 0.006290880023432255
       }
     },
     {
       "name": "P6_clifford_is_the_edge_case_not_the_norm",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "clifford_max_winner_cumulative_MI": 1.1639553352298315,
-        "clifford_max_product_cumulative_MI": 0.004292586529197395
+        "clifford_max_winner_cumulative_MI": 1.254211694270688,
+        "clifford_max_product_cumulative_MI": 0.002203702773391214
       }
     },
     {
       "name": "P7_fe_indexed_is_partial_refinement_not_replacement",
-      "pass": true,
+      "pass": false,
       "detail": {
         "best_new_bridge": "C_fe_pairs_only",
-        "best_gain": 0.15375653780456644,
+        "best_gain": -0.06118899331325358,
         "winner_counts": {
-          "A_phase4_winner": 1,
+          "A_phase4_winner": 6,
           "B_fe_indexed": 0,
-          "C_fe_pairs_only": 5,
+          "C_fe_pairs_only": 0,
           "D_lag7_pairs": 0
         },
-        "mean_fe_advantage": 0.11738124811376545
+        "mean_fe_advantage": 0.1541156399753626
       }
     },
     {
@@ -362,34 +362,34 @@
     },
     {
       "name": "P9_xi_hist_handoff_is_placement_sensitive_not_width_accumulative",
-      "pass": true,
+      "pass": false,
       "detail": {
         "best_placement_by_mi_counts": {
-          "0_15": 4,
-          "8_23": 2,
+          "0_15": 0,
+          "8_23": 6,
           "16_31": 0
         },
-        "early_window_beats_shifted_count": 4,
+        "early_window_beats_shifted_count": 0,
         "best_early_width_by_mi_counts": {
-          "0_3": 6,
-          "0_7": 0,
+          "0_3": 2,
+          "0_7": 4,
           "0_11": 0,
           "0_15": 0
         },
-        "early_width_mi_monotonic_growth_count": 0,
+        "early_width_mi_monotonic_growth_count": 4,
         "best_prefix_drop_by_mi_counts": {
-          "0_15": 3,
+          "0_15": 0,
           "1_15": 0,
-          "2_15": 1,
+          "2_15": 0,
           "4_15": 0,
-          "8_15": 2
+          "8_15": 6
         },
         "prefix_drop_mi_monotonic_loss_count": 0
       }
     },
     {
       "name": "P10_xi_hist_signed_handoff_prefers_back_half_and_short_stress",
-      "pass": true,
+      "pass": false,
       "detail": {
         "best_placement_by_ic_counts": {
           "0_15": 0,
@@ -397,8 +397,8 @@
           "16_31": 0
         },
         "best_early_width_by_ic_counts": {
-          "0_3": 6,
-          "0_7": 0,
+          "0_3": 1,
+          "0_7": 5,
           "0_11": 0,
           "0_15": 0
         },
@@ -409,14 +409,14 @@
           "4_15": 0,
           "8_15": 6
         },
-        "min_ic_0_15_minus_8_23": -0.1983852809782908,
-        "min_ic_0_15_minus_0_3": -0.10934488920366203,
-        "negative_ic_0_15_minus_2_15_count": 5,
-        "min_ic_8_15_minus_2_15": 0.04563198324576534,
-        "min_signed_0_15_minus_8_23": 0.040457502984151406,
-        "min_signed_0_15_minus_0_3": 0.014260395036189144,
-        "positive_signed_0_15_minus_2_15_count": 5,
-        "min_signed_2_15_minus_8_15": 0.04563198324576534,
+        "min_ic_0_15_minus_8_23": -0.588664356509279,
+        "min_ic_0_15_minus_0_3": -0.01830856591188912,
+        "negative_ic_0_15_minus_2_15_count": 4,
+        "min_ic_8_15_minus_2_15": 0.3502518834011005,
+        "min_signed_0_15_minus_8_23": 0.38312732830046115,
+        "min_signed_0_15_minus_0_3": -0.154088472814792,
+        "positive_signed_0_15_minus_2_15_count": 4,
+        "min_signed_2_15_minus_8_15": 0.3502518834011005,
         "first_half_beats_second_half_on_signed_cut_count": 6,
         "second_half_beats_first_half_on_signed_cut_count": 0,
         "seat_signed_cut_half_preference": {
@@ -435,25 +435,25 @@
         "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
         "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
         "placement_8_23_equals_prefix_8_15_on_signed_count": 6,
-        "placement_8_23_beats_0_3_on_ic_count": 4
+        "placement_8_23_beats_0_3_on_ic_count": 6
       }
     },
     {
       "name": "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
-      "pass": true,
+      "pass": false,
       "detail": {
         "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-        "short_width_0_3_beats_8_23_on_ic_clifford_count": 2,
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
         "total_rows": 6
       }
     },
     {
       "name": "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3",
-      "pass": true,
+      "pass": false,
       "detail": {
         "best_early_width_by_ic_counts": {
-          "0_3": 6,
-          "0_7": 0,
+          "0_3": 1,
+          "0_7": 5,
           "0_11": 0,
           "0_15": 0
         },
@@ -464,15 +464,15 @@
           "4_15": 0,
           "8_15": 6
         },
-        "min_ic_8_15_minus_2_15": 0.04563198324576534,
-        "min_signed_2_15_minus_8_15": 0.04563198324576534,
-        "off_clifford_min_ic_8_23_minus_0_3": 0.14308503210605894,
-        "clifford_max_ic_8_23_minus_0_3": -0.02342179765536795
+        "min_ic_8_15_minus_2_15": 0.3502518834011005,
+        "min_signed_2_15_minus_8_15": 0.3502518834011005,
+        "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
+        "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
       }
     },
     {
       "name": "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
-      "pass": true,
+      "pass": false,
       "detail": {
         "law_name": "Xi_hist signed law",
         "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
@@ -483,16 +483,16 @@
           "placement_8_23_equals_prefix_8_15_on_signed_cut": true
         },
         "short_width_stress": {
-          "best_early_width_by_ic_is_0_3": true,
+          "best_early_width_by_ic_is_0_3": false,
           "late_anchor_beats_0_3_off_clifford": true,
-          "0_3_beats_late_anchor_on_clifford_only": true
+          "0_3_beats_late_anchor_on_clifford_only": false
         },
         "counts": {
           "total_rows": 6,
           "off_clifford_rows": 4,
           "clifford_rows": 2,
           "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-          "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
         }
       }
     },
@@ -584,9 +584,9 @@
         "transport_delta_candidate": "chirality-separated loop-sensitive transport deltas",
         "same_carrier_chirality_ablation": {
           "status": "partial_support",
-          "d_chiral": 0.8234140396807214,
+          "d_chiral": 0.7107370477323017,
           "d_flat": 0.5450291097571088,
-          "retention_ratio": 0.6619137924444958
+          "retention_ratio": 0.7668505694139549
         },
         "same_carrier_loop_law_ablation": {
           "status": "strong_support",
@@ -926,9 +926,9 @@
     },
     {
       "name": "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "c1b1_pass": true,
+        "c1b1_pass": false,
         "c1b2_pass": true,
         "c1b3_pass": true,
         "c1b4_pass": true,

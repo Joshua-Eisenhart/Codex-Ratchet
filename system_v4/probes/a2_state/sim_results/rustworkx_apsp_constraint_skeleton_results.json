@@ -1,0 +1,40 @@
+{
+  "name": "rustworkx_apsp_constraint_skeleton",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "all_pairs_dijkstra_path_lengths with edge_cost_fn \u2014 load-bearing typed-weight APSP"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Floyd-Warshall ablation"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "n_nodes": 30,
+    "n_edges": 67,
+    "self_distance_zero": true,
+    "triangle_violations": 0,
+    "backbone_reachable": true,
+    "backbone_distance": 7.743090860132452,
+    "pass": true
+  },
+  "negative": {
+    "isolated_node_unreachable": true,
+    "pass": true
+  },
+  "boundary": {
+    "t_rx_dijkstra_s": 0.00041294097900390625,
+    "t_numpy_floyd_s": 0.0001671314239501953,
+    "finite_entries_agree": false,
+    "infinite_mask_agree": true,
+    "pass": false
+  },
+  "classification": "canonical"
+}

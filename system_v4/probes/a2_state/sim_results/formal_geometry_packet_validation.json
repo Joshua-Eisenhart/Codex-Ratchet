@@ -1,9 +1,9 @@
 {
   "name": "formal_geometry_packet_validation",
-  "timestamp": "2026-04-01T21:47:00.649575+00:00",
-  "passed_gates": 14,
+  "timestamp": "2026-04-14T11:44:54.332998+00:00",
+  "passed_gates": 13,
   "total_gates": 14,
-  "score": 1.0,
+  "score": 0.9285714285714286,
   "carrier_geometry_admission": {
     "object": "carrier_geometry_admission",
     "carrier": "finite Hopf/Weyl carrier",
@@ -51,12 +51,17 @@
     "torus_scramble_kill": {
       "status": "KILL",
       "structure_matters": true,
-      "n_axis_diff": 4
+      "n_axis_diff": 5
     },
     "no_chirality_kill": {
       "status": "KILL",
       "chirality_matters": true,
-      "residual_gap": 0.6619137924444958
+      "residual_gap": 0.7668505694139549,
+      "source_probe_gates": [
+        "N1_no_chirality_kill_is_real_but_not_total",
+        "N2_no_chirality_residual_is_explicitly_nontrivial",
+        "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"
+      ]
     },
     "loop_law_swap_kill": {
       "status": "KILL",
@@ -98,13 +103,13 @@
     },
     {
       "name": "G2_weyl_ambient_rung",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "verdict": "PASS",
+        "verdict": "KILL",
         "ambient_nontrivial_count": 2,
         "clifford_neutral": true,
         "overlay_nontrivial": true,
-        "witness_separable": true
+        "witness_separable": false
       }
     },
     {
@@ -125,8 +130,8 @@
         "output_valid": true,
         "axes_diverge": true,
         "dominance_swap": true,
-        "avg_left_sheet_distance": 0.4130394760604442,
-        "avg_right_sheet_distance": 0.3621095976953866
+        "avg_left_sheet_distance": 0.3045760552303096,
+        "avg_right_sheet_distance": 0.3111131020255407
       }
     },
     {
@@ -142,9 +147,9 @@
       "pass": true,
       "detail": {
         "status": "KILL",
-        "d_L": 0.07746018469980029,
-        "d_R": 0.07511415031458818,
-        "n_axis_diff": 4
+        "d_L": 0.08215587620820751,
+        "d_R": 0.08014302801639353,
+        "n_axis_diff": 5
       }
     },
     {
@@ -152,9 +157,12 @@
       "pass": true,
       "detail": {
         "status": "KILL",
-        "d_chiral": 0.8234140396807214,
+        "d_chiral": 0.7107370477323017,
         "d_flat": 0.5450291097571088,
-        "residual_gap": 0.6619137924444958
+        "residual_gap": 0.7668505694139549,
+        "n1_pass": true,
+        "n2_pass": true,
+        "n3_pass": true
       }
     },
     {
@@ -216,12 +224,17 @@
           "torus_scramble_kill": {
             "status": "KILL",
             "structure_matters": true,
-            "n_axis_diff": 4
+            "n_axis_diff": 5
           },
           "no_chirality_kill": {
             "status": "KILL",
             "chirality_matters": true,
-            "residual_gap": 0.6619137924444958
+            "residual_gap": 0.7668505694139549,
+            "source_probe_gates": [
+              "N1_no_chirality_kill_is_real_but_not_total",
+              "N2_no_chirality_residual_is_explicitly_nontrivial",
+              "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"
+            ]
           },
           "loop_law_swap_kill": {
             "status": "KILL",
@@ -261,18 +274,72 @@
       "name": "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
       "pass": true,
       "detail": {
-        "passed_gates": 4,
-        "total_gates": 4,
-        "score": 1.0
+        "l1_pass": true,
+        "l2_pass": true,
+        "l3_pass": true,
+        "l4_pass": true,
+        "lower_tier_chiral_detail": {
+          "summary": {
+            "winner": "chirality_separated_transport_deltas",
+            "winner_status": "surviving_compound_candidate",
+            "fake_law_routes": [
+              "ga3_chirality_readout",
+              "symmetric_dphi_bookkeeping"
+            ],
+            "signal_only_routes": [
+              "delta_chirality_signal"
+            ],
+            "single_lower_tier_chiral_law": "not_supported_yet"
+          },
+          "owner_read": {
+            "status": "compound_candidate_only",
+            "note": "No single lower-tier chiral law is admitted; the best surviving branch remains the compound transport/chirality candidate."
+          },
+          "source_support": {
+            "formal_geometry_gates": [
+              "G1_exact_hopf_geometry_truth",
+              "G2_weyl_ambient_rung",
+              "G3_ambient_vs_engine_overlay",
+              "G4_live_engine_family_split",
+              "G5_dual_weyl_cycle_stability",
+              "G6_torus_negative_is_load_bearing",
+              "G7_no_chirality_negative_still_incomplete",
+              "G8_exact_loop_law_swap_negative",
+              "G9_owner_anchor_state_explicit",
+              "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+              "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion",
+              "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
+              "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
+              "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"
+            ],
+            "no_chirality_gates": [
+              "N1_no_chirality_kill_is_real_but_not_total",
+              "N2_no_chirality_residual_is_explicitly_nontrivial",
+              "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"
+            ],
+            "weyl_delta_gates": [
+              "W1_stagewise_raw_delta_surfaces_exist",
+              "W2_transport_geometry_is_mechanically_nontrivial",
+              "W3_chirality_differential_is_real_pre_axis_signal",
+              "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim",
+              "W5_branch_map_keeps_flux_placement_open",
+              "W6_flux_family_is_explicit_without_canonizing_flux",
+              "W7_branch_map_preserves_skeptical_flux_read",
+              "W8_pre_axis_object_inventory_is_explicit",
+              "W9_transport_embargo_boundary_is_explicit"
+            ]
+          }
+        }
       }
     },
     {
       "name": "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
       "pass": true,
       "detail": {
-        "passed_gates": 4,
-        "total_gates": 4,
-        "score": 1.0
+        "t1_pass": true,
+        "t2_pass": true,
+        "t3_pass": true,
+        "t4_pass": true
       }
     },
     {
@@ -291,9 +358,25 @@
           "status": "lower-tier noncommuting basis split survives local operator search",
           "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search."
         },
-        "passed_gates": 4,
-        "total_gates": 4,
-        "score": 1.0
+        "o1_pass": true,
+        "o2_pass": true,
+        "o3_pass": true,
+        "o4_pass": true,
+        "o4_detail": {
+          "local_unitary_pair_Fe_Fi": {
+            "status": "not_proven_load_bearing_in_local_test",
+            "keep": false,
+            "reason": "Removing Fe and Fi does not change the one-step local dphi response here; this is not enough to demote them from substrate use in higher tiers.",
+            "evidence": {
+              "demotion_structural_changes": 0,
+              "total_stages": 16
+            }
+          },
+          "owner_read": {
+            "status": "lower_tier_noncommuting_basis_split_survives_local_search",
+            "note": "This search supports a lower-tier noncommuting basis split and rejects pure coordinate relabeling as substrate, but it does not yet justify promoting Fe/Fi as demoted or representation-only."
+          }
+        }
       }
     }
   ]

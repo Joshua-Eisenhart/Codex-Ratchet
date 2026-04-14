@@ -1,0 +1,99 @@
+{
+  "name": "fep_atom_4_admissibility",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof tool"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "blanket conditional-independence UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cross-check only"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "boolean not symbolic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "structural test is atom 2"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "blanket_sat": {
+      "z3": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "bypass_unsat": {
+      "z3": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "vacuous_blanket_sat": {
+      "z3": "sat",
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

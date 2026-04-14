@@ -88,10 +88,10 @@
   },
   "summary": {
     "all_pass": true,
-    "target_rows": 13,
+    "target_rows": 15,
     "translate_now_count": 2,
     "tighten_then_translate_count": 7,
-    "build_companion_count": 0,
+    "build_companion_count": 2,
     "top_translate_now_row": "szilard_reverse_recovery",
     "scope_note": "Action surface over repair-priority rows. It names which rows are ready to translate, which need tighter metrics first, and which still need a new strict companion."
   },
@@ -370,6 +370,47 @@
         "lifetime_effect_delta_qit_minus_open": 0.0266413339476685,
         "reset_drop_delta_qit_minus_open": 0.3302110885446538
       }
+    },
+    {
+      "row_id": "carnot_graph_proof_alignment",
+      "family": "carnot",
+      "priority_bucket": "p3_keep_open_sidecar",
+      "translation_closeness_score": 0.0,
+      "pair_id": null,
+      "target_qit_row_id": null,
+      "action_label": "build_new_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0,
+        "graph_path_length": 4,
+        "cycle_schedule_valid": true,
+        "efficiency_identity_unsat": true,
+        "cop_identity_unsat": true
+      },
+      "delta_summary": {}
+    },
+    {
+      "row_id": "szilard_graph_proof_alignment",
+      "family": "szilard",
+      "priority_bucket": "p3_keep_open_sidecar",
+      "translation_closeness_score": 0.0,
+      "pair_id": null,
+      "target_qit_row_id": null,
+      "action_label": "build_new_companion",
+      "headline_metrics": {
+        "all_pass": true,
+        "graph_path_length": 3,
+        "protocol_schedule_valid": true,
+        "ktln2_balance_unsat": true,
+        "ordering_precedence_unsat": true,
+        "helstrom_measurement_guess_probability": 0.75,
+        "helstrom_erased_guess_probability": 0.5,
+        "wrong_order_vs_feedback_guess_probability": 0.75
+      },
+      "delta_summary": {}
     }
   ]
 }

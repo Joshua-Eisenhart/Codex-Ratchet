@@ -1,0 +1,166 @@
+{
+  "name": "sim_networkx_capability",
+  "tool_manifest": {
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "networkx provides shortest_path, normalized_laplacian_matrix, is_isomorphic, and maximum_flow -- each test's pass/fail is determined by networkx output; no substitute implementation is used."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "networkx": "load_bearing",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "shortest_path_path5": {
+      "path": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "len": 4,
+      "pass": true
+    },
+    "spectral_K4": {
+      "eig": [
+        -4.868636341866076e-17,
+        1.3333333333333328,
+        1.3333333333333337,
+        1.3333333333333337
+      ],
+      "expected": [
+        0.0,
+        1.3333333333333333,
+        1.3333333333333333,
+        1.3333333333333333
+      ],
+      "pass": true
+    },
+    "iso_C5_relabel": {
+      "iso": true,
+      "pass": true
+    },
+    "max_flow_small": {
+      "flow": 5,
+      "expected": 5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "shortest_path_disconnected_raises": {
+      "raised": true,
+      "pass": true
+    },
+    "spectral_P4_vs_K4_differ": {
+      "differ": true,
+      "pass": true
+    },
+    "iso_C5_vs_P5_false": {
+      "iso": false,
+      "pass": true
+    },
+    "max_flow_zero_cut": {
+      "flow": 0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "shortest_path_single_node": {
+      "path": [
+        0
+      ],
+      "pass": true
+    },
+    "spectral_isolated_nodes_all_zero": {
+      "eig": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "iso_empty_equal_order": {
+      "iso": true,
+      "pass": true
+    },
+    "max_flow_source_equals_sink": {
+      "flow": "raised",
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

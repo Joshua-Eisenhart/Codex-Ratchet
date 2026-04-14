@@ -1,9 +1,9 @@
 {
   "name": "carrier_selection_packet_validation",
-  "timestamp": "2026-04-01T21:42:20.475897+00:00",
-  "passed_gates": 9,
+  "timestamp": "2026-04-14T11:46:46.949857+00:00",
+  "passed_gates": 4,
   "total_gates": 9,
-  "score": 1.0,
+  "score": 0.4444444444444444,
   "signed_bridge_candidate_handoff": {
     "object": "c1_signed_bridge_candidate_handoff",
     "candidate": "Xi_chiral_entangle",
@@ -64,20 +64,58 @@
     },
     {
       "name": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
-      "pass": true,
+      "pass": false,
       "detail": {
         "live_best_candidate": "Xi_chiral_entangle",
-        "live_best_mean_mi": 0.5850944299846628,
+        "live_best_mean_mi": 0.8232542855942899,
         "live_honesty_candidate": "Xi_chiral_entangle",
-        "live_honesty_mean_i_c": 0.0775200940266869,
-        "dechiralized_best_candidate": "Xi_chiral_hist_entangle",
-        "dechiralized_best_mean_mi": 7.822432235948806e-05,
+        "live_honesty_mean_i_c": 0.028504810872339026,
+        "dechiralized_best_candidate": "Xi_compress_hist",
+        "dechiralized_best_mean_mi": 0.00033283375056732584,
         "cartesian_best_candidate": "Xi_chiral_entangle",
-        "cartesian_best_mean_mi": 7.681792575986446e-05,
-        "best_control_mean_mi": 7.822432235948806e-05,
-        "best_root_rank_margin": 0.5850162056623033,
+        "cartesian_best_mean_mi": 9.252029484504061e-05,
+        "best_control_mean_mi": 0.00033283375056732584,
+        "best_root_rank_margin": 0.8229214518437226,
         "best_control_honesty_score": 0.0,
-        "best_honesty_margin": 0.0775200940266869
+        "best_honesty_margin": 0.028504810872339026,
+        "live_row_best_iab": [
+          {
+            "engine_type": 1,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 1,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "inner",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "clifford",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          },
+          {
+            "engine_type": 2,
+            "torus": "outer",
+            "best_iab": "Xi_chiral_entangle",
+            "best_ic": "Xi_chiral_entangle"
+          }
+        ]
       }
     },
     {
@@ -88,33 +126,33 @@
         "top3": [
           [
             "Xi_chiral_entangle",
-            0.5850944299846628
+            0.8232542855942899
           ],
           [
             "Xi_chiral_hist_entangle",
-            0.5153548066316724
+            0.5126433115412764
           ],
           [
             "Xi_loop_phase",
-            0.008083514215814788
+            0.004535541367963543
           ]
         ],
-        "lr_direct_mean_mi": 3.3769283665681843e-16
+        "lr_direct_mean_mi": 1.6653345369377348e-16
       }
     },
     {
       "name": "C5_strict_bakeoff_confirms_history_over_direct_lr",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "hist_outer_minus_lr_mi": 0.011421614360603044,
-        "hist_cycle_minus_lr_mi": 0.011421614360603044,
+        "hist_outer_minus_lr_mi": -0.5651686148980888,
+        "hist_cycle_minus_lr_mi": -0.5651686148980888,
         "history_nontrivial_while_shell_flat": true,
         "point_ref_minus_shell_base_std": 0.2992748479986896
       }
     },
     {
       "name": "C6_direct_lr_stays_ranked_as_control_not_winner",
-      "pass": true,
+      "pass": false,
       "detail": {
         "winner": "Xi_chiral_entangle",
         "tail_ranking": [
@@ -122,25 +160,25 @@
           "Xi_LR_direct",
           "Xi_hist_uniform_8_15"
         ],
-        "xi_lr_direct_MI": 0.20932035556626527
+        "xi_lr_direct_MI": 0.5736024766849059
       }
     },
     {
       "name": "C7_counterfeit_history_games_mi_but_not_coherent_info",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "mean_live_I_AB": 0.5850944299846628,
-        "mean_counterfeit_I_AB": 0.7929333246640154,
-        "mean_live_I_c": 0.0775200940266869,
-        "mean_counterfeit_I_c": 0.007098294355261954,
-        "mean_I_c_gap": 0.07042179967142495,
-        "counterfeit_beats_live_on_I_AB_count": 4,
+        "mean_live_I_AB": 0.8232542855942899,
+        "mean_counterfeit_I_AB": 0.7633044530859198,
+        "mean_live_I_c": 0.028504810872339026,
+        "mean_counterfeit_I_c": -0.06070342631953977,
+        "mean_I_c_gap": 0.08920823719187879,
+        "counterfeit_beats_live_on_I_AB_count": 2,
         "live_beats_counterfeit_on_I_c_count": 4
       }
     },
     {
       "name": "C8_provisional_signed_bridge_candidate_handoff_is_explicit",
-      "pass": true,
+      "pass": false,
       "detail": {
         "signed_bridge_candidate_handoff": {
           "object": "c1_signed_bridge_candidate_handoff",
@@ -158,10 +196,10 @@
         },
         "bridge_winner": "Xi_chiral_entangle",
         "live_honesty_candidate": "Xi_chiral_entangle",
-        "live_honesty_mean_i_c": 0.0775200940266869,
-        "lr_direct_mean_mi": 3.3769283665681843e-16,
-        "mean_live_I_c": 0.0775200940266869,
-        "mean_counterfeit_I_c": 0.007098294355261954
+        "live_honesty_mean_i_c": 0.028504810872339026,
+        "lr_direct_mean_mi": 1.6653345369377348e-16,
+        "mean_live_I_c": 0.028504810872339026,
+        "mean_counterfeit_I_c": -0.06070342631953977
       }
     },
     {

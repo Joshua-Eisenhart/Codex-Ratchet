@@ -1,0 +1,156 @@
+{
+  "name": "coupling_holodeck_igt",
+  "pair": [
+    "holodeck",
+    "igt"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "joint admissibility SMT (load-bearing)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; coupling is a finite SMT check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "joint_well_defined": {
+      "pass": true,
+      "detail": {
+        "A": "holodeck",
+        "B": "igt",
+        "adm_A": [
+          0,
+          1,
+          2
+        ],
+        "adm_B": [
+          0,
+          2,
+          4
+        ],
+        "|prod|": 9,
+        "|joint|": 8,
+        "interacting": true,
+        "additive": false,
+        "z3_witness": {
+          "excluded_pair": [
+            2,
+            2
+          ],
+          "z3_unsat": true
+        },
+        "z3_ok": true
+      }
+    }
+  },
+  "negative": {
+    "excluded_pair_fails": {
+      "pass": true,
+      "pair": [
+        2,
+        2
+      ]
+    }
+  },
+  "boundary": {
+    "empty_side_empty_joint": {
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true,
+  "summary": {
+    "A": "holodeck",
+    "B": "igt",
+    "adm_A": [
+      0,
+      1,
+      2
+    ],
+    "adm_B": [
+      0,
+      2,
+      4
+    ],
+    "|prod|": 9,
+    "|joint|": 8,
+    "interacting": true,
+    "additive": false,
+    "z3_witness": {
+      "excluded_pair": [
+        2,
+        2
+      ],
+      "z3_unsat": true
+    },
+    "z3_ok": true
+  }
+}

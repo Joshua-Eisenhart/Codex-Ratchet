@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-14T03:17:45.853730",
+  "timestamp": "2026-04-14T04:07:02.687362",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -2422,7 +2422,7 @@
       "patterns": [
         {
           "file": "sim_numpy_capability.py",
-          "line": 63,
+          "line": 65,
           "pattern": "aiaj->ij",
           "line_text": "reduced = np.einsum(\"aiaj->ij\", rho.reshape(2, 2, 2, 2))",
           "classification": {

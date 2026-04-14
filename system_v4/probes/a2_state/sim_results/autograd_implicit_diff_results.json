@@ -1,0 +1,112 @@
+{
+  "name": "sim_autograd_implicit_diff",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd unrolled through Newton vs implicit function theorem"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "theta=0.3": {
+      "unroll": 2.0153917390739844,
+      "ift": 2.015391739073984,
+      "rel_err": 2.203488290836643e-16,
+      "passed": "True"
+    },
+    "theta=0.7": {
+      "unroll": 2.2064627043835987,
+      "ift": 2.2064627043835996,
+      "rel_err": 4.025349796011374e-16,
+      "passed": "True"
+    },
+    "theta=-0.4": {
+      "unroll": 0.5145110533185209,
+      "ift": 0.5145110533185209,
+      "rel_err": 0.0,
+      "passed": "True"
+    }
+  },
+  "negative": {
+    "near_singular_converges": {
+      "residual": 0.0,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "theta_zero_grad_is_one": {
+      "grad": 1.0,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

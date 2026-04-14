@@ -1,9 +1,9 @@
 {
   "name": "entropy_readout_packet_validation",
-  "timestamp": "2026-04-14T10:25:19.378255+00:00",
-  "passed_gates": 10,
+  "timestamp": "2026-04-14T11:00:46.896702+00:00",
+  "passed_gates": 8,
   "total_gates": 12,
-  "score": 0.8333333333333334,
+  "score": 0.6666666666666666,
   "gates": [
     {
       "name": "E1_qubit_spectral_family_is_order_equivalent",
@@ -65,7 +65,7 @@
       "pass": true,
       "detail": {
         "local_only_I_AB_max": 4.440892098500626e-16,
-        "xi_lr_control_I_AB_max": 6.406853007629834e-16,
+        "xi_lr_control_I_AB_max": 8.008566259537293e-16,
         "local_only_trivial": true,
         "xi_lr_control_trivial": true,
         "coupled_control_only": true
@@ -95,19 +95,19 @@
       "name": "E7_history_bridges_are_nontrivial_and_torus_sensitive",
       "pass": true,
       "detail": {
-        "hist_outer_I_AB_mean": 0.0035526853013598445,
-        "hist_cycle_I_AB_mean": 0.0024759698500263125,
+        "hist_outer_I_AB_mean": 0.0009397894511301205,
+        "hist_cycle_I_AB_mean": 0.0008778493463588352,
         "hist_outer_eta_sensitive": true,
         "hist_cycle_eta_sensitive": true,
         "hist_outer_torus_Ic_means": {
-          "inner": -0.36722935455118594,
-          "clifford": -0.5682454710056093,
-          "outer": -0.3666768254101421
+          "inner": -0.3685638885050798,
+          "clifford": -0.5736603733519037,
+          "outer": -0.36856388850508126
         },
         "hist_cycle_torus_Ic_means": {
-          "inner": -0.4163205784923989,
-          "clifford": -0.5741378429917682,
-          "outer": -0.4163859537582514
+          "inner": -0.4061140158057411,
+          "clifford": -0.5584810986891426,
+          "outer": -0.40916042408133624
         },
         "shell_torus_Ic_means": {
           "inner": 0.1338137487439096,
@@ -118,25 +118,25 @@
     },
     {
       "name": "E8_history_family_handoff_supports_signed_readout_on_same_objects",
-      "pass": true,
+      "pass": false,
       "detail": {
-        "hist_outer_I_AB_mean": 0.0035526853013598445,
-        "hist_outer_I_c_mean": -0.43405055032231243,
-        "hist_outer_S_A_given_B_mean": 0.43405055032231243,
-        "hist_cycle_I_AB_mean": 0.0024759698500263125,
-        "hist_cycle_I_c_mean": -0.46894812508080613,
-        "hist_cycle_S_A_given_B_mean": 0.46894812508080613,
+        "hist_outer_I_AB_mean": 0.0009397894511301205,
+        "hist_outer_I_c_mean": -0.43692938345402155,
+        "hist_outer_S_A_given_B_mean": 0.43692938345402155,
+        "hist_cycle_I_AB_mean": 0.0008778493463588352,
+        "hist_cycle_I_c_mean": -0.45791851285873997,
+        "hist_cycle_S_A_given_B_mean": 0.45791851285873997,
         "hist_outer_torus_Ic_means": {
-          "inner": -0.36722935455118594,
-          "clifford": -0.5682454710056093,
-          "outer": -0.3666768254101421
+          "inner": -0.3685638885050798,
+          "clifford": -0.5736603733519037,
+          "outer": -0.36856388850508126
         },
         "hist_cycle_torus_Ic_means": {
-          "inner": -0.4163205784923989,
-          "clifford": -0.5741378429917682,
-          "outer": -0.4163859537582514
+          "inner": -0.4061140158057411,
+          "clifford": -0.5584810986891426,
+          "outer": -0.40916042408133624
         },
-        "lr_control_I_AB_max": 6.406853007629834e-16
+        "lr_control_I_AB_max": 8.008566259537293e-16
       }
     },
     {
@@ -179,10 +179,10 @@
     },
     {
       "name": "E10_current_bridge_candidate_is_explicit_and_provisional",
-      "pass": true,
+      "pass": false,
       "detail": {
         "current_bridge_candidate": "Xi_chiral_entangle",
-        "c1b1_pass": true,
+        "c1b1_pass": false,
         "c1b3_pass": true,
         "c1b4_pass": true,
         "c1b4_detail": {
@@ -284,10 +284,10 @@
             "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
           }
         },
-        "hist_outer_I_c_mean": -0.43405055032231243,
-        "hist_cycle_I_c_mean": -0.46894812508080613,
-        "hist_outer_S_A_given_B_mean": 0.43405055032231243,
-        "hist_cycle_S_A_given_B_mean": 0.46894812508080613
+        "hist_outer_I_c_mean": -0.43692938345402155,
+        "hist_cycle_I_c_mean": -0.45791851285873997,
+        "hist_outer_S_A_given_B_mean": 0.43692938345402155,
+        "hist_cycle_S_A_given_B_mean": 0.45791851285873997
       }
     }
   ]

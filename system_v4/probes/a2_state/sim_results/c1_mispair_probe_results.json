@@ -1,23 +1,22 @@
 {
-  "timestamp": "2026-04-05T06:46:37.257605+00:00",
+  "timestamp": "2026-04-14T12:27:56.836558+00:00",
   "probe": "c1_mispair_targeted_probe",
   "characterization": "operator-driven",
   "verdict": "operator-driven",
-  "verdict_explanation": "Mispair entanglement is fully explained by operator structure. Universally-entangling operators ['Fe', 'Fi'] generate entanglement from ANY product state (regardless of chirality pairing). Non-entangling operators ['Te', 'Ti'] produce only dephasing and cannot generate entanglement from product states. The Weyl chirality difference between Type1/Type2 is REAL but IRRELEVANT to whether entanglement survives: it is the operator family (unitary rotation vs dephasing) that determines the outcome.",
+  "verdict_explanation": "Mispair entanglement is fully explained by operator structure. Universally-entangling operators [] generate entanglement from ANY product state (regardless of chirality pairing). Non-entangling operators ['Fe', 'Fi', 'Te', 'Ti'] produce only dephasing and cannot generate entanglement from product states. The Weyl chirality difference between Type1/Type2 is REAL but IRRELEVANT to whether entanglement survives: it is the operator family (unitary rotation vs dephasing) that determines the outcome.",
   "summary": {
     "total_stages": 16,
-    "correct_entangled_count": 8,
-    "mispair_entangled_count": 8,
-    "mispair_killed_count": 8,
-    "universally_entangling_ops": [
-      "Fe",
-      "Fi"
-    ],
+    "correct_entangled_count": 0,
+    "mispair_entangled_count": 0,
+    "mispair_killed_count": 16,
+    "universally_entangling_ops": [],
     "non_entangling_ops": [
+      "Fe",
+      "Fi",
       "Te",
       "Ti"
     ],
-    "universally_entangling_op_count": 2,
+    "universally_entangling_op_count": 0,
     "verdict_clean": true
   },
   "state_distinguishability_summary": {
@@ -31,7 +30,7 @@
       "polarity_up": {
         "any_entangled_from_product_state": false,
         "max_concurrence": 0.0,
-        "max_negativity": 2.3262437460454193e-16,
+        "max_negativity": 0.0,
         "per_input": [
           {
             "input_state": "00",
@@ -48,7 +47,7 @@
           {
             "input_state": "++",
             "concurrence_out": 0.0,
-            "negativity_out": 2.3262437460454193e-16,
+            "negativity_out": -0.0,
             "entangled": false
           },
           {
@@ -66,15 +65,15 @@
           {
             "input_state": "yy",
             "concurrence_out": 0.0,
-            "negativity_out": 9.648655121905964e-17,
+            "negativity_out": -0.0,
             "entangled": false
           }
         ]
       },
       "polarity_down": {
         "any_entangled_from_product_state": false,
-        "max_concurrence": 6.661338147750939e-16,
-        "max_negativity": 4.4357470862852096e-16,
+        "max_concurrence": 0.0,
+        "max_negativity": 0.0,
         "per_input": [
           {
             "input_state": "00",
@@ -91,7 +90,7 @@
           {
             "input_state": "++",
             "concurrence_out": 0.0,
-            "negativity_out": 1.1453698765054691e-16,
+            "negativity_out": -0.0,
             "entangled": false
           },
           {
@@ -108,8 +107,8 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 6.661338147750939e-16,
-            "negativity_out": 4.4357470862852096e-16,
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
             "entangled": false
           }
         ]
@@ -118,32 +117,32 @@
     },
     "Fe": {
       "polarity_up": {
-        "any_entangled_from_product_state": true,
-        "max_concurrence": 0.3145665606161179,
-        "max_negativity": 0.15728328030805896,
+        "any_entangled_from_product_state": false,
+        "max_concurrence": 3.080533348170612e-09,
+        "max_negativity": 2.6582906489905775e-16,
         "per_input": [
           {
             "input_state": "00",
-            "concurrence_out": 0.3145665606161178,
-            "negativity_out": 0.15728328030805885,
-            "entangled": true
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
+            "entangled": false
           },
           {
             "input_state": "11",
-            "concurrence_out": 0.3145665606161179,
-            "negativity_out": 0.15728328030805896,
-            "entangled": true
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
+            "entangled": false
           },
           {
             "input_state": "++",
-            "concurrence_out": 6.218450436949021e-10,
-            "negativity_out": 8.978896818321966e-17,
+            "concurrence_out": 3.080533348170612e-09,
+            "negativity_out": 8.187891759594249e-17,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 8.299845134580857e-11,
-            "negativity_out": 2.956334977952326e-18,
+            "concurrence_out": 0.0,
+            "negativity_out": 2.7755575615628914e-17,
             "entangled": false
           },
           {
@@ -154,39 +153,39 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 0.31456655707153675,
-            "negativity_out": 0.15728328030805877,
-            "entangled": true
+            "concurrence_out": 2.8203869775784616e-09,
+            "negativity_out": 2.6582906489905775e-16,
+            "entangled": false
           }
         ]
       },
       "polarity_down": {
-        "any_entangled_from_product_state": true,
-        "max_concurrence": 0.3145665606161179,
-        "max_negativity": 0.15728328030805896,
+        "any_entangled_from_product_state": false,
+        "max_concurrence": 3.7960787147032164e-09,
+        "max_negativity": 1.0829513551583916e-16,
         "per_input": [
           {
             "input_state": "00",
-            "concurrence_out": 0.3145665606161178,
-            "negativity_out": 0.15728328030805885,
-            "entangled": true
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
+            "entangled": false
           },
           {
             "input_state": "11",
-            "concurrence_out": 0.3145665606161179,
-            "negativity_out": 0.15728328030805896,
-            "entangled": true
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
+            "entangled": false
           },
           {
             "input_state": "++",
-            "concurrence_out": 6.218450436949021e-10,
-            "negativity_out": 8.978896818321966e-17,
+            "concurrence_out": 3.0805333481706096e-09,
+            "negativity_out": 8.187891759594249e-17,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 8.299845134580857e-11,
-            "negativity_out": 2.956334977952326e-18,
+            "concurrence_out": 0.0,
+            "negativity_out": 2.7755575615628914e-17,
             "entangled": false
           },
           {
@@ -197,19 +196,19 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 0.3145665581805969,
-            "negativity_out": 0.15728328030805885,
-            "entangled": true
+            "concurrence_out": 3.7960787147032164e-09,
+            "negativity_out": 1.0829513551583916e-16,
+            "entangled": false
           }
         ]
       },
-      "universally_entangling": true
+      "universally_entangling": false
     },
     "Te": {
       "polarity_up": {
         "any_entangled_from_product_state": false,
-        "max_concurrence": 5.5574640393584446e-12,
-        "max_negativity": 1.128400500239244e-16,
+        "max_concurrence": 1.3269318867850696e-13,
+        "max_negativity": 1.3877787807814452e-16,
         "per_input": [
           {
             "input_state": "00",
@@ -226,13 +225,13 @@
           {
             "input_state": "++",
             "concurrence_out": 0.0,
-            "negativity_out": 1.027091934410885e-16,
+            "negativity_out": 1.3877787807814452e-16,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 0.0,
-            "negativity_out": -0.0,
+            "concurrence_out": 1.3269318867850696e-13,
+            "negativity_out": 2.4761956427835875e-32,
             "entangled": false
           },
           {
@@ -243,16 +242,16 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 5.5574640393584446e-12,
-            "negativity_out": 1.128400500239244e-16,
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
             "entangled": false
           }
         ]
       },
       "polarity_down": {
         "any_entangled_from_product_state": false,
-        "max_concurrence": 4.440892098500626e-16,
-        "max_negativity": 1.3794222413539484e-16,
+        "max_concurrence": 1.1048284216310653e-13,
+        "max_negativity": 1.3877787807814452e-16,
         "per_input": [
           {
             "input_state": "00",
@@ -268,14 +267,14 @@
           },
           {
             "input_state": "++",
-            "concurrence_out": 4.440892098500626e-16,
-            "negativity_out": 1.1416959485185295e-16,
+            "concurrence_out": 0.0,
+            "negativity_out": 1.3877787807814452e-16,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 0.0,
-            "negativity_out": -0.0,
+            "concurrence_out": 1.1048284216310653e-13,
+            "negativity_out": 2.292773743318136e-33,
             "entangled": false
           },
           {
@@ -287,7 +286,7 @@
           {
             "input_state": "yy",
             "concurrence_out": 0.0,
-            "negativity_out": 1.3794222413539484e-16,
+            "negativity_out": -0.0,
             "entangled": false
           }
         ]
@@ -296,33 +295,33 @@
     },
     "Fi": {
       "polarity_up": {
-        "any_entangled_from_product_state": true,
-        "max_concurrence": 0.3145665582498676,
-        "max_negativity": 0.15728328030805885,
+        "any_entangled_from_product_state": false,
+        "max_concurrence": 1.9825145717946332e-10,
+        "max_negativity": 2.0455656217947767e-16,
         "per_input": [
           {
             "input_state": "00",
-            "concurrence_out": 8.819000628093613e-18,
-            "negativity_out": 2.914388202937145e-20,
+            "concurrence_out": 0.0,
+            "negativity_out": 7.738162621390956e-18,
             "entangled": false
           },
           {
             "input_state": "11",
-            "concurrence_out": 6.913286155071267e-17,
-            "negativity_out": 5.92251446982725e-17,
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
             "entangled": false
           },
           {
             "input_state": "++",
-            "concurrence_out": 2.1061634979944907e-09,
-            "negativity_out": 2.554897569618544e-16,
+            "concurrence_out": 9.689589732290158e-11,
+            "negativity_out": 9.295909127167163e-17,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 0.3145665582498676,
-            "negativity_out": 0.15728328030805877,
-            "entangled": true
+            "concurrence_out": 1.9825145717946332e-10,
+            "negativity_out": 5.553642973848973e-18,
+            "entangled": false
           },
           {
             "input_state": "mm",
@@ -332,40 +331,40 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 0.31456655108975173,
-            "negativity_out": 0.15728328030805885,
-            "entangled": true
+            "concurrence_out": 0.0,
+            "negativity_out": 2.0455656217947767e-16,
+            "entangled": false
           }
         ]
       },
       "polarity_down": {
-        "any_entangled_from_product_state": true,
-        "max_concurrence": 0.3145665582498676,
-        "max_negativity": 0.15728328030805883,
+        "any_entangled_from_product_state": false,
+        "max_concurrence": 1.285658032446622e-09,
+        "max_negativity": 3.7201104904656976e-16,
         "per_input": [
           {
             "input_state": "00",
-            "concurrence_out": 8.819000628093613e-18,
-            "negativity_out": 2.914388202937145e-20,
+            "concurrence_out": 0.0,
+            "negativity_out": 7.738162621390956e-18,
             "entangled": false
           },
           {
             "input_state": "11",
-            "concurrence_out": 6.913286155071267e-17,
-            "negativity_out": 5.92251446982725e-17,
+            "concurrence_out": 0.0,
+            "negativity_out": -0.0,
             "entangled": false
           },
           {
             "input_state": "++",
-            "concurrence_out": 2.1061634979944907e-09,
-            "negativity_out": 2.554897569618544e-16,
+            "concurrence_out": 9.689589732290158e-11,
+            "negativity_out": 9.295909127167163e-17,
             "entangled": false
           },
           {
             "input_state": "0+",
-            "concurrence_out": 0.3145665582498676,
-            "negativity_out": 0.15728328030805877,
-            "entangled": true
+            "concurrence_out": 1.9825145747097417e-10,
+            "negativity_out": 5.553642973848973e-18,
+            "entangled": false
           },
           {
             "input_state": "mm",
@@ -375,13 +374,13 @@
           },
           {
             "input_state": "yy",
-            "concurrence_out": 0.3145665552181416,
-            "negativity_out": 0.15728328030805883,
-            "entangled": true
+            "concurrence_out": 1.285658032446622e-09,
+            "negativity_out": 3.7201104904656976e-16,
+            "entangled": false
           }
         ]
       },
-      "universally_entangling": true
+      "universally_entangling": false
     }
   },
   "row_results": [
@@ -391,12 +390,12 @@
       "op": "Ti",
       "trace_distance_L": 0.3910246156676327,
       "trace_distance_R": 0.39102461566763225,
-      "mi_correct": 0.19669995353184094,
-      "mi_mispair": 0.196699953531841,
+      "mi_correct": -2.220446049250313e-16,
+      "mi_mispair": -1.1102230246251565e-16,
       "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
       "negativity_correct": -0.0,
-      "negativity_mispair": 2.22114625776286e-16,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.8470997499419805,
       "rho_R_fidelity_T1_vs_T2": 0.8470997499419805,
       "states_structurally_distinguishable": true,
@@ -409,17 +408,17 @@
       "op": "Fe",
       "trace_distance_L": 0.6317806841639899,
       "trace_distance_R": 0.6317806841639898,
-      "mi_correct": 0.1892148973043103,
-      "mi_mispair": 0.25447032025721905,
-      "concurrence_correct": 0.21893718701277673,
-      "concurrence_mispair": 0.26234034386848276,
-      "negativity_correct": 0.10946859622633417,
-      "negativity_mispair": 0.13117017212472673,
+      "mi_correct": -8.008566259537292e-16,
+      "mi_mispair": 9.860761315262648e-32,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 1.34892209247748e-09,
+      "negativity_correct": 5.523434350785601e-16,
+      "negativity_mispair": 4.006349034250856e-16,
       "rho_L_fidelity_T1_vs_T2": 0.6008531687391413,
       "rho_R_fidelity_T1_vs_T2": 0.6008531814660664,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 1,
@@ -427,11 +426,11 @@
       "op": "Ti",
       "trace_distance_L": 0.4559102843022839,
       "trace_distance_R": 0.4559102843022838,
-      "mi_correct": 0.37821741631563977,
-      "mi_mispair": 0.378217416315639,
-      "concurrence_correct": 1.1379786002407855e-15,
-      "concurrence_mispair": 1.8918673897442932e-16,
-      "negativity_correct": 7.190666636258091e-17,
+      "mi_correct": -4.440892098500626e-16,
+      "mi_mispair": 1.3322676295501878e-15,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 0.0,
+      "negativity_correct": -0.0,
       "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.7921458273819103,
       "rho_R_fidelity_T1_vs_T2": 0.7921458169550152,
@@ -445,17 +444,17 @@
       "op": "Fe",
       "trace_distance_L": 0.4195367450857643,
       "trace_distance_R": 0.41953674508576405,
-      "mi_correct": 0.2422358585752639,
-      "mi_mispair": 0.18009848275190837,
-      "concurrence_correct": 0.2545291617514999,
-      "concurrence_mispair": 0.21248047669863104,
-      "negativity_correct": 0.12726458324398388,
-      "negativity_mispair": 0.10624023929233736,
+      "mi_correct": -3.2034265038149167e-16,
+      "mi_mispair": -4.805139755722372e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 1.7759060390821584e-09,
+      "negativity_correct": 2.9435449920908625e-16,
+      "negativity_mispair": 3.9194321296782847e-16,
       "rho_L_fidelity_T1_vs_T2": 0.8239889251889622,
       "rho_R_fidelity_T1_vs_T2": 0.8239889195228428,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 1,
@@ -463,17 +462,17 @@
       "op": "Fi",
       "trace_distance_L": 0.5548124440028885,
       "trace_distance_R": 0.5548124440028889,
-      "mi_correct": 0.18344259270296928,
-      "mi_mispair": 0.18344259270296784,
-      "concurrence_correct": 0.2148621496974489,
-      "concurrence_mispair": 0.21486214979427098,
-      "negativity_correct": 0.10743107725276317,
-      "negativity_mispair": 0.10743107725276324,
+      "mi_correct": -6.406853007629838e-16,
+      "mi_mispair": 1.1211992763352211e-15,
+      "concurrence_correct": 2.5389004522565662e-09,
+      "concurrence_mispair": 1.6878622017776007e-09,
+      "negativity_correct": 2.1834027713151077e-17,
+      "negativity_mispair": 3.074334428981924e-18,
       "rho_L_fidelity_T1_vs_T2": 0.6921831595780845,
       "rho_R_fidelity_T1_vs_T2": 0.6921831605225595,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 1,
@@ -481,12 +480,12 @@
       "op": "Te",
       "trace_distance_L": 0.6901473776924861,
       "trace_distance_R": 0.690147377692486,
-      "mi_correct": 0.15284106230686462,
-      "mi_mispair": 0.16623881939552576,
-      "concurrence_correct": 1.3877787807814457e-16,
-      "concurrence_mispair": 4.718447854656915e-16,
-      "negativity_correct": 7.210165079809758e-18,
-      "negativity_mispair": 4.0382735537022734e-17,
+      "mi_correct": -4.440892098500626e-16,
+      "mi_mispair": -6.661338147750939e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 0.0,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.5236965970641849,
       "rho_R_fidelity_T1_vs_T2": 0.5236966019477401,
       "states_structurally_distinguishable": true,
@@ -499,17 +498,17 @@
       "op": "Fi",
       "trace_distance_L": 0.02966705451363812,
       "trace_distance_R": 0.029667054513638234,
-      "mi_correct": 0.19416232960054744,
-      "mi_mispair": 0.1941623296005462,
-      "concurrence_correct": 0.22239491879706372,
-      "concurrence_mispair": 0.2223949206839585,
-      "negativity_correct": 0.11119746034197915,
-      "negativity_mispair": 0.11119746034197912,
+      "mi_correct": -1.6017132519074583e-16,
+      "mi_mispair": 3.2034265038149176e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 0.0,
+      "negativity_correct": -0.0,
+      "negativity_mispair": 2.786346943173926e-17,
       "rho_L_fidelity_T1_vs_T2": 0.9991198658764847,
       "rho_R_fidelity_T1_vs_T2": 0.9991198780381562,
       "states_structurally_distinguishable": false,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 1,
@@ -517,12 +516,12 @@
       "op": "Te",
       "trace_distance_L": 0.09775073491474394,
       "trace_distance_R": 0.09775073491474383,
-      "mi_correct": 0.34311342707728654,
-      "mi_mispair": 0.3771644281250308,
-      "concurrence_correct": 1.1102230246251565e-16,
+      "mi_correct": 0.0,
+      "mi_mispair": 4.440892098500626e-16,
+      "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
-      "negativity_correct": 1.0978301075820365e-17,
-      "negativity_mispair": 1.6390630008669677e-17,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.9904447980946159,
       "rho_R_fidelity_T1_vs_T2": 0.9904448080244171,
       "states_structurally_distinguishable": true,
@@ -535,17 +534,17 @@
       "op": "Fi",
       "trace_distance_L": 0.3295719004079552,
       "trace_distance_R": 0.3295719004079551,
-      "mi_correct": 0.17498229411366156,
-      "mi_mispair": 0.17498229411366148,
-      "concurrence_correct": 0.20880596557721698,
-      "concurrence_mispair": 0.2088059687122428,
-      "negativity_correct": 0.10440298590908462,
-      "negativity_mispair": 0.10440298590908453,
+      "mi_correct": 1.6017132519074583e-16,
+      "mi_mispair": -1.6017132519074573e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 0.0,
+      "negativity_correct": 1.7740578424182211e-16,
+      "negativity_mispair": 1.892193688257062e-16,
       "rho_L_fidelity_T1_vs_T2": 0.8913823624614884,
       "rho_R_fidelity_T1_vs_T2": 0.8913823681571638,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 2,
@@ -553,12 +552,12 @@
       "op": "Te",
       "trace_distance_L": 0.5215307086976416,
       "trace_distance_R": 0.5215307086976417,
-      "mi_correct": 0.26585846013086545,
-      "mi_mispair": 0.28183100651001214,
+      "mi_correct": -2.220446049250313e-16,
+      "mi_mispair": 3.3306690738754696e-16,
       "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
-      "negativity_correct": 2.712293373016468e-16,
-      "negativity_mispair": 4.126296579335814e-17,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.7280057263627444,
       "rho_R_fidelity_T1_vs_T2": 0.7280057220349824,
       "states_structurally_distinguishable": true,
@@ -571,17 +570,17 @@
       "op": "Fi",
       "trace_distance_L": 0.43526583910105054,
       "trace_distance_R": 0.4352658391010504,
-      "mi_correct": 0.19322135436579987,
-      "mi_mispair": 0.19322135436579402,
-      "concurrence_correct": 0.22173970272427598,
-      "concurrence_mispair": 0.22173970106668564,
-      "negativity_correct": 0.11086985206194602,
-      "negativity_mispair": 0.11086985206194572,
+      "mi_correct": -8.008566259537289e-16,
+      "mi_mispair": -4.805139755722375e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 1.026444134251998e-09,
+      "negativity_correct": 3.4063089618467247e-16,
+      "negativity_mispair": 7.478428550700574e-17,
       "rho_L_fidelity_T1_vs_T2": 0.8105436493116589,
       "rho_R_fidelity_T1_vs_T2": 0.8105436493116585,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 2,
@@ -589,12 +588,12 @@
       "op": "Te",
       "trace_distance_L": 0.5209934232651009,
       "trace_distance_R": 0.5209934232651011,
-      "mi_correct": 0.4021052876609861,
-      "mi_mispair": 0.5294380518872148,
+      "mi_correct": -2.220446049250313e-16,
+      "mi_mispair": 0.0,
       "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
-      "negativity_correct": 1.617119341070985e-16,
-      "negativity_mispair": 1.299738101255061e-16,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.7285658529145115,
       "rho_R_fidelity_T1_vs_T2": 0.7285658529145115,
       "states_structurally_distinguishable": true,
@@ -607,12 +606,12 @@
       "op": "Ti",
       "trace_distance_L": 0.5246859098375811,
       "trace_distance_R": 0.5246859098375812,
-      "mi_correct": 0.3782174163156391,
-      "mi_mispair": 0.3782174163156391,
-      "concurrence_correct": 2.7755575615628914e-16,
+      "mi_correct": 3.3306690738754696e-16,
+      "mi_mispair": 0.0,
+      "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
-      "negativity_correct": 8.048640927344799e-18,
-      "negativity_mispair": 4.874516645869126e-17,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.7247046960179093,
       "rho_R_fidelity_T1_vs_T2": 0.7247046960179085,
       "states_structurally_distinguishable": true,
@@ -625,17 +624,17 @@
       "op": "Fe",
       "trace_distance_L": 0.14840835120789406,
       "trace_distance_R": 0.1484083512078942,
-      "mi_correct": 0.20398033624566358,
-      "mi_mispair": 0.16158311606441444,
-      "concurrence_correct": 0.2291658563306582,
-      "concurrence_mispair": 0.19899514155002807,
-      "negativity_correct": 0.11458292941380482,
-      "negativity_mispair": 0.09949757157436584,
+      "mi_correct": -8.008566259537292e-16,
+      "mi_mispair": 9.610279511444752e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 5.678777012174151e-10,
+      "negativity_correct": 2.978530387916428e-17,
+      "negativity_mispair": 7.902935005272052e-17,
       "rho_L_fidelity_T1_vs_T2": 0.9779749739311077,
       "rho_R_fidelity_T1_vs_T2": 0.9779749757836395,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     },
     {
       "engine_type": 2,
@@ -643,12 +642,12 @@
       "op": "Ti",
       "trace_distance_L": 0.6611421982410861,
       "trace_distance_R": 0.6611421982410861,
-      "mi_correct": 0.19669995353184216,
-      "mi_mispair": 0.1966999535318419,
+      "mi_correct": 1.887379141862766e-15,
+      "mi_mispair": -4.440892098500626e-16,
       "concurrence_correct": 0.0,
       "concurrence_mispair": 0.0,
-      "negativity_correct": 2.9251423856182764e-17,
-      "negativity_mispair": 3.3628238470222653e-17,
+      "negativity_correct": -0.0,
+      "negativity_mispair": -0.0,
       "rho_L_fidelity_T1_vs_T2": 0.5628910017794506,
       "rho_R_fidelity_T1_vs_T2": 0.5628909937049444,
       "states_structurally_distinguishable": true,
@@ -661,19 +660,17 @@
       "op": "Fe",
       "trace_distance_L": 0.5802902997766686,
       "trace_distance_R": 0.5802902997766687,
-      "mi_correct": 0.26736626008051495,
-      "mi_mispair": 0.25546572867231443,
-      "concurrence_correct": 0.27043546314216216,
-      "concurrence_mispair": 0.262970115497476,
-      "negativity_correct": 0.1352177315710809,
-      "negativity_mispair": 0.1314850594072757,
+      "mi_correct": -3.2034265038149176e-16,
+      "mi_mispair": 3.2034265038149176e-16,
+      "concurrence_correct": 0.0,
+      "concurrence_mispair": 7.552644853038757e-10,
+      "negativity_correct": 9.219213644230358e-17,
+      "negativity_mispair": 2.1314122926070658e-16,
       "rho_L_fidelity_T1_vs_T2": 0.663263167985104,
       "rho_R_fidelity_T1_vs_T2": 0.6632631679851045,
       "states_structurally_distinguishable": true,
-      "correct_entangled": true,
-      "mispair_entangled": true
+      "correct_entangled": false,
+      "mispair_entangled": false
     }
-  ],
-  "classification": "supporting",
-  "classification_note": "Supporting targeted mispair-control probe for the C1 lane. It helps explain why mispair survival is operator-driven rather than proof of the right bridge family, and should not be read as final bridge doctrine."
+  ]
 }

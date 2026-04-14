@@ -1,0 +1,103 @@
+{
+  "name": "sim_cl6_even_subalgebra_closure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(6) geometric product and grade projection are the object under test"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n_pairs": 100,
+    "failures": 0,
+    "max_odd_grade_leak": 0.0,
+    "pass": true
+  },
+  "negative": {
+    "n": 30,
+    "odd_times_even_is_odd": 30,
+    "pass": true
+  },
+  "boundary": {
+    "scalar_times_pseudoscalar_even": true,
+    "identity_times_even_is_even": true,
+    "pseudoscalar_squared_even": true,
+    "pass": true
+  },
+  "ablation": {
+    "numpy_indexsum_odd_leak": 31.691174682934502,
+    "clifford_geoprod_odd_leak": 0.0,
+    "ablation_shows_numpy_insufficient": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

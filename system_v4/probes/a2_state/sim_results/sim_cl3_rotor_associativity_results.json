@@ -1,0 +1,104 @@
+{
+  "name": "sim_cl3_rotor_associativity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic quaternion cross-check for rotor product associativity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor geometric product is the object under test"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n_triples": 100,
+    "max_associativity_err_clifford": 3.885780586188048e-16,
+    "sympy_exact_associativity_err": 1.1102230246251565e-16,
+    "clifford_sympy_scalar_match": true,
+    "pass": true
+  },
+  "negative": {
+    "swap_detected_as_different": true,
+    "err": 0.4894330304006812,
+    "pass": true
+  },
+  "boundary": {
+    "identity_boundary_err": 0.0,
+    "double_cover_R_pi_sq_is_minus_one": true,
+    "pass": true
+  },
+  "ablation": {
+    "numpy_matmul_loses_double_cover": true,
+    "numpy_Rz_squared_is_identity": true,
+    "clifford_rotor_squared_is_minus_one": true,
+    "ablation_shows_numpy_insufficient": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

@@ -62,20 +62,6 @@
       "reason": "not needed for layers 4-5"
     }
   },
-  "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": "supportive",
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
-  },
   "layer4_cl3": {
     "4a_basis_count": {
       "expected": 8,
@@ -303,35 +289,5 @@
     "total": 26,
     "all_pass": true
   },
-  "classification": "canonical",
-  "positive": {
-    "S1_L5_on_L4_rotors": {
-      "n_samples": 50,
-      "all_unit_norm": true,
-      "all_even_grade": true,
-      "interpretation": "Torus points embed as Cl+(3) unit rotors (quaternions)",
-      "pass": true
-    },
-    "S2_L5_on_L3_S3_submanifold": {
-      "S3_dimension": 3,
-      "torus_dimension": 2,
-      "codimension": 1,
-      "proper_submanifold": true,
-      "pass": true
-    },
-    "S3_L5_on_L2_equator": {
-      "hopf_image": "S^1 equator of S^2",
-      "angle_coverage": 6.2831854820251465,
-      "full_circle": true,
-      "surjective_onto_equator": true,
-      "pass": true
-    },
-    "S4_L5_on_L1_density_matrices": {
-      "n_tested": 20,
-      "all_trace_1": true,
-      "all_pure": true,
-      "all_positive_semidefinite": true,
-      "pass": true
-    }
-  }
+  "classification": "canonical"
 }

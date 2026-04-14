@@ -1,6 +1,6 @@
 {
   "name": "weyl_hypergraph_admission_helper",
-  "classification": "exploratory",
+  "classification": "canonical",
   "classification_note": "Controller-side admission helper for the Weyl hypergraph lane. It reads the finished hypergraph rows and decides whether the next family should be admitted as family-expansion beside the Weyl/Hopf anchor.",
   "lego_ids": [
     "weyl_hypergraph_follow_on",
@@ -93,13 +93,13 @@
   },
   "summary": {
     "all_pass": true,
-    "decision": "admit_as_family_expansion",
-    "controller_route": "family_expansion",
+    "decision": "keep_as_bridge_only",
+    "controller_route": "graph_proof_bridge",
     "best_family": "hypergraph_family",
     "best_family_score": 4.0,
     "follow_on_pass": true,
     "bridge_pass": true,
-    "family_pass": true,
+    "family_pass": false,
     "support_pass": true,
     "hypergraph_support_count": 4,
     "weyl_anchor_support_count": 4,
@@ -159,7 +159,7 @@
       "scope_note": "Dedicated Weyl/Hopf -> hypergraph family bridge."
     },
     "family": {
-      "all_pass": true,
+      "all_pass": false,
       "scope_note": "Ranks the next grounded geometry family beside the Weyl/Hopf anchor using existing controller-usable graph, hypergraph, and contact/symplectic rows.",
       "best_family": "hypergraph_family",
       "best_family_score": 4.0,

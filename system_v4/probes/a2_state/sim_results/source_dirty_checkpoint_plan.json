@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-04-10T18:26:12.146180+00:00",
+  "generated_at": "2026-04-14T11:54:19.295440+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 0,
-  "plan_group_count": 0,
-  "checkpoint_candidate_count": 0,
+  "dirty_source_count": 83,
+  "plan_group_count": 9,
+  "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 0,
-  "code_only_manual_count": 0,
-  "largest_group_id": null,
-  "next_code_only_manual_group_id": null,
-  "next_code_only_manual_file_count": 0,
+  "manual_only_count": 8,
+  "code_only_manual_count": 8,
+  "largest_group_id": "probe_source__sim_family_qit",
+  "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+  "next_code_only_manual_file_count": 3,
   "next_code_only_manual_source_path": null,
   "next_code_only_manual_result_path": null,
   "summary": {
-    "dirty_source_count": 0,
-    "plan_group_count": 0,
-    "checkpoint_candidate_count": 0,
+    "dirty_source_count": 83,
+    "plan_group_count": 9,
+    "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 0,
-    "code_only_manual_count": 0,
-    "largest_group_id": null,
-    "next_code_only_manual_group_id": null,
-    "next_code_only_manual_file_count": 0,
+    "manual_only_count": 8,
+    "code_only_manual_count": 8,
+    "largest_group_id": "probe_source__sim_family_qit",
+    "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+    "next_code_only_manual_file_count": 3,
     "next_code_only_manual_source_path": null,
     "next_code_only_manual_result_path": null,
     "ok": true
@@ -34,9 +34,451 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [],
-  "recommended_manual_split_order": [],
-  "recommended_code_only_order": [],
-  "next_code_only_manual": null,
-  "checkpoint_groups": []
+  "recommended_checkpoint_order": [
+    {
+      "group_id": "skill_runtime__skill_runtime",
+      "file_count": 1,
+      "safe_next_action": "checkpoint"
+    }
+  ],
+  "recommended_manual_split_order": [
+    {
+      "group_id": "probe_source__sim_family_qit",
+      "file_count": 24,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "other_source__other_source",
+      "file_count": 21,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 12,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_szilard",
+      "file_count": 9,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_carnot",
+      "file_count": 7,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_engine",
+      "file_count": 5,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 3,
+      "safe_next_action": "archive_review"
+    },
+    {
+      "group_id": "probe_source__sim_family_stoch",
+      "file_count": 3,
+      "safe_next_action": "manual_split_required"
+    }
+  ],
+  "recommended_code_only_order": [
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 3,
+      "untracked_count": 2,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "archive_review",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_stoch",
+      "file_count": 3,
+      "untracked_count": 0,
+      "tracked_dirty_count": 3,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_engine",
+      "file_count": 5,
+      "untracked_count": 0,
+      "tracked_dirty_count": 5,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_carnot",
+      "file_count": 7,
+      "untracked_count": 0,
+      "tracked_dirty_count": 7,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_szilard",
+      "file_count": 9,
+      "untracked_count": 0,
+      "tracked_dirty_count": 9,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 12,
+      "untracked_count": 5,
+      "tracked_dirty_count": 7,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "other_source__other_source",
+      "file_count": 21,
+      "untracked_count": 10,
+      "tracked_dirty_count": 11,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_qit",
+      "file_count": 24,
+      "untracked_count": 0,
+      "tracked_dirty_count": 24,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    }
+  ],
+  "next_code_only_manual": {
+    "group_id": "legacy_runtime__legacy_runtime",
+    "file_count": 3,
+    "untracked_count": 2,
+    "tracked_dirty_count": 1,
+    "safe_next_action": "archive_review",
+    "source_path": null,
+    "result_path": null
+  },
+  "checkpoint_groups": [
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "bucket": "legacy_runtime",
+      "label": "legacy_runtime",
+      "display_name": "Legacy/reference runtime surfaces",
+      "path_prefixes": [
+        "system_v5/new docs/00_manifest.md",
+        "system_v5/new docs/EXTERNAL_MATH_EML_OPERATOR.md",
+        "system_v5/tests/test_sim_cleanup_guards.py"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 1,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v5/new docs/00_manifest.md",
+        "system_v5/new docs/EXTERNAL_MATH_EML_OPERATOR.md",
+        "system_v5/tests/test_sim_cleanup_guards.py"
+      ],
+      "dominant_kinds": [
+        "untracked",
+        "modified"
+      ],
+      "safe_next_action": "archive_review",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Legacy/reference surfaces should be reviewed separately from active work."
+    },
+    {
+      "group_id": "other_source__other_source",
+      "bucket": "other_source",
+      "label": "other_source",
+      "display_name": "Other source surfaces",
+      "path_prefixes": [
+        ".hermes_tmp/",
+        ".mplconfig/",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._ copy.xlsx",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1 copy.tsv",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1.tsv",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/The Dark Empress-A Practical Guide to Universal Dominion V6.1 2 copy.pdf",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/The Grandmaster of the Universe copy 2.docx",
+        "READ ONLY Legacy core_docs/ultra high entropy docs/The Grandmaster of the Universe copy.docx (1).md",
+        "a2_state/",
+        "overnight_logs/",
+        "sim_evidence_pack.txt",
+        "system_v4/a2_state/audit_logs",
+        "system_v4/a2_state/graphs",
+        "system_v4/tests/test_overnight_runner_scripts.py"
+      ],
+      "file_count": 21,
+      "tracked_dirty_count": 11,
+      "untracked_count": 10,
+      "sample_paths": [
+        "sim_evidence_pack.txt",
+        "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/ENGINE_CONVERGENCE_DIAGNOSTIC__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/ENGINE_PHASE_SPACE__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/GRAPH_HEALTH_DASHBOARD__v1.md",
+        "system_v4/a2_state/audit_logs/MULTI_SEED_STABILITY__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.md"
+      ],
+      "dominant_kinds": [
+        "modified",
+        "untracked",
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Unclassified source/config residue needs manual grouping before checkpointing."
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "bucket": "probe_source",
+      "label": "probe_misc",
+      "display_name": "Misc active probes",
+      "path_prefixes": [
+        "system_v4/probes/SIM_TEMPLATE.py",
+        "system_v4/probes/_archive_lane_c",
+        "system_v4/probes/_gtower_common.py",
+        "system_v4/probes/_quarantine_copies",
+        "system_v4/probes/a2_state",
+        "system_v4/probes/classical_sweep_runner.py",
+        "system_v4/probes/extract_actual_lego_registry.py",
+        "system_v4/probes/lego_stack_audit.py",
+        "system_v4/probes/live_queue_controller.py",
+        "system_v4/probes/repo_hygiene_audit.py",
+        "system_v4/probes/results",
+        "system_v4/probes/source_dirty_checkpoint_plan.py"
+      ],
+      "file_count": 12,
+      "tracked_dirty_count": 7,
+      "untracked_count": 5,
+      "sample_paths": [
+        "system_v4/probes/SIM_TEMPLATE.py",
+        "system_v4/probes/classical_sweep_runner.py",
+        "system_v4/probes/extract_actual_lego_registry.py",
+        "system_v4/probes/lego_stack_audit.py",
+        "system_v4/probes/live_queue_controller.py",
+        "system_v4/probes/repo_hygiene_audit.py",
+        "system_v4/probes/source_dirty_checkpoint_plan.py",
+        "system_v4/probes/_archive_lane_c/"
+      ],
+      "dominant_kinds": [
+        "modified",
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active probe/control sources still mixed together."
+    },
+    {
+      "group_id": "probe_source__sim_family_carnot",
+      "bucket": "probe_source",
+      "label": "sim_family_carnot",
+      "display_name": "Probe sim family: carnot",
+      "path_prefixes": [
+        "system_v4/probes/sim_carnot_adaptive_hold_sweep 2.py",
+        "system_v4/probes/sim_carnot_asymmetric_isotherm_sweep 2.py",
+        "system_v4/probes/sim_carnot_closure_diagnostic 2.py",
+        "system_v4/probes/sim_carnot_entropy_family_array 2.py",
+        "system_v4/probes/sim_carnot_irreversibility_sweep 2.py",
+        "system_v4/probes/sim_carnot_reverse_asymmetric_sweep 2.py",
+        "system_v4/probes/sim_carnot_topology_array 2.py"
+      ],
+      "file_count": 7,
+      "tracked_dirty_count": 7,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_carnot_adaptive_hold_sweep 2.py",
+        "system_v4/probes/sim_carnot_asymmetric_isotherm_sweep 2.py",
+        "system_v4/probes/sim_carnot_closure_diagnostic 2.py",
+        "system_v4/probes/sim_carnot_entropy_family_array 2.py",
+        "system_v4/probes/sim_carnot_irreversibility_sweep 2.py",
+        "system_v4/probes/sim_carnot_reverse_asymmetric_sweep 2.py",
+        "system_v4/probes/sim_carnot_topology_array 2.py"
+      ],
+      "dominant_kinds": [
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'carnot' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_engine",
+      "bucket": "probe_source",
+      "label": "sim_family_engine",
+      "display_name": "Probe sim family: engine",
+      "path_prefixes": [
+        "system_v4/probes/sim_engine_lab_alignment_overlay 2.py",
+        "system_v4/probes/sim_engine_lab_constraint_audit 2.py",
+        "system_v4/probes/sim_engine_lab_matrix 2.py",
+        "system_v4/probes/sim_engine_lab_repair_priority 2.py",
+        "system_v4/probes/sim_engine_lab_translation_targets 2.py"
+      ],
+      "file_count": 5,
+      "tracked_dirty_count": 5,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_engine_lab_alignment_overlay 2.py",
+        "system_v4/probes/sim_engine_lab_constraint_audit 2.py",
+        "system_v4/probes/sim_engine_lab_matrix 2.py",
+        "system_v4/probes/sim_engine_lab_repair_priority 2.py",
+        "system_v4/probes/sim_engine_lab_translation_targets 2.py"
+      ],
+      "dominant_kinds": [
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'engine' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_qit",
+      "bucket": "probe_source",
+      "label": "sim_family_qit",
+      "display_name": "Probe sim family: qit",
+      "path_prefixes": [
+        "system_v4/probes/sim_qit_carnot_closure_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_closure_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_finite_time_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_finite_time_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_hold_policy_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_hold_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_irreversibility_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_irreversibility_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_two_bath_cycle 2.py",
+        "system_v4/probes/sim_qit_engine_companion_array 2.py",
+        "system_v4/probes/sim_qit_entropy_companion_array 2.py",
+        "system_v4/probes/sim_qit_repair_comparison_surface 2.py",
+        "system_v4/probes/sim_qit_szilard_bidirectional_protocol 2.py",
+        "system_v4/probes/sim_qit_szilard_record_companion 2.py",
+        "system_v4/probes/sim_qit_szilard_record_hard_reset_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_record_ordering_refinement_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_record_ordering_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_record_reconciled_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_record_repair_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_record_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_reverse_recovery_companion 2.py",
+        "system_v4/probes/sim_qit_szilard_reverse_translation_lane 2.py",
+        "system_v4/probes/sim_qit_szilard_substep_companion 2.py",
+        "system_v4/probes/sim_qit_szilard_substep_translation_lane 2.py"
+      ],
+      "file_count": 24,
+      "tracked_dirty_count": 24,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_qit_carnot_closure_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_closure_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_finite_time_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_finite_time_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_hold_policy_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_hold_translation_lane 2.py",
+        "system_v4/probes/sim_qit_carnot_irreversibility_companion 2.py",
+        "system_v4/probes/sim_qit_carnot_irreversibility_translation_lane 2.py"
+      ],
+      "dominant_kinds": [
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'qit' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_stoch",
+      "bucket": "probe_source",
+      "label": "sim_family_stoch",
+      "display_name": "Probe sim family: stoch",
+      "path_prefixes": [
+        "system_v4/probes/sim_stoch_doublewell_landauer_erasure 2.py",
+        "system_v4/probes/sim_stoch_harmonic_carnot_cycle 2.py",
+        "system_v4/probes/sim_stoch_harmonic_carnot_finite_time 2.py"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 3,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_stoch_doublewell_landauer_erasure 2.py",
+        "system_v4/probes/sim_stoch_harmonic_carnot_cycle 2.py",
+        "system_v4/probes/sim_stoch_harmonic_carnot_finite_time 2.py"
+      ],
+      "dominant_kinds": [
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'stoch' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_szilard",
+      "bucket": "probe_source",
+      "label": "sim_family_szilard",
+      "display_name": "Probe sim family: szilard",
+      "path_prefixes": [
+        "system_v4/probes/sim_szilard_ordering_sensitivity_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_hard_reset_repair_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_ordering_amplification_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_ordering_refinement_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_reset_repair_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_reset_sweep 2.py",
+        "system_v4/probes/sim_szilard_reset_axis_reconciliation 2.py",
+        "system_v4/probes/sim_szilard_reverse_recovery_sweep 2.py",
+        "system_v4/probes/sim_szilard_topology_entropy_array 2.py"
+      ],
+      "file_count": 9,
+      "tracked_dirty_count": 9,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_szilard_ordering_sensitivity_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_hard_reset_repair_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_ordering_amplification_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_ordering_refinement_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_reset_repair_sweep 2.py",
+        "system_v4/probes/sim_szilard_record_reset_sweep 2.py",
+        "system_v4/probes/sim_szilard_reset_axis_reconciliation 2.py",
+        "system_v4/probes/sim_szilard_reverse_recovery_sweep 2.py"
+      ],
+      "dominant_kinds": [
+        "deleted"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'szilard' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "skill_runtime__skill_runtime",
+      "bucket": "skill_runtime",
+      "label": "skill_runtime",
+      "display_name": "Runtime and skill support",
+      "path_prefixes": [
+        "system_v4/skills/llm_research_enforcement_validator 2.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/skills/llm_research_enforcement_validator 2.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "checkpoint",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Small bounded runtime-support cluster suitable for a scoped checkpoint."
+    }
+  ]
 }

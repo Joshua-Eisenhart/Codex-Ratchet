@@ -1,0 +1,103 @@
+{
+  "name": "sim_geomstats_s2_frechet",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Hypersphere metric.exp/dist + FrechetMean on S^2"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "frechet_converges": {
+      "dist_to_true_center": 0.02606233469532249,
+      "pass": true
+    }
+  },
+  "negative": {
+    "antipode_euclidean_offmanifold": {
+      "norm": 0.0,
+      "pass": true
+    },
+    "antipode_geodesic_is_pi": {
+      "d": 3.141592653589793,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "cut_locus_variance_signature": {
+      "var_at_cut_locus": 0.0010834927559362575,
+      "var_near_base": 0.0009377790664515885,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

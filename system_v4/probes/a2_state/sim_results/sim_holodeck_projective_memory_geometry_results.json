@@ -2,44 +2,86 @@
   "name": "sim_holodeck_projective_memory_geometry",
   "classification": "classical_baseline",
   "tool_manifest": {
-    "sympy": {
+    "numpy": {
       "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "projector arithmetic and chordal-distance numerics"
     },
     "clifford": {
       "tried": true,
       "used": true,
       "reason": "Cl(3) vector construction"
     },
-    "geomstats": {
-      "tried": true,
+    "pytorch": {
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
     },
     "toponetx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed"
     },
     "gudhi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
-    },
-    "numpy": {
-      "tried": true,
-      "used": true,
-      "reason": "projector arithmetic"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
-    "sympy": null,
+    "numpy": "supportive",
     "clifford": "supportive",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
     "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
     "toponetx": null,
-    "gudhi": null,
-    "numpy": "load_bearing"
+    "gudhi": null
   },
   "positive": {
     "nonneg": true,

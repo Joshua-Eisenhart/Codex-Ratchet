@@ -1,0 +1,56 @@
+{
+  "name": "rustworkx_cayley_s4",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Rust-backed BFS layers + all-pairs dijkstra; load-bearing for diameter/girth on |S_4|=24 Cayley graph"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "ablation baseline via adjacency matrix powers"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; combinatorial graph problem"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a constraint-satisfaction claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "permutation composition done natively with tuples"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "n_nodes": 24,
+    "n_edges": 36,
+    "diameter": 6,
+    "diameter_expected": 6,
+    "diameter_pass": true,
+    "girth": 4,
+    "girth_expected_even_min4": true
+  },
+  "negative": {
+    "single_gen_components": 12,
+    "expected_components": 12,
+    "pass": true
+  },
+  "boundary": {
+    "rx_diameter": 6,
+    "numpy_diameter": 6,
+    "agree": true,
+    "t_rx_s": 3.1948089599609375e-05,
+    "t_numpy_s": 0.0002880096435546875
+  },
+  "classification": "canonical"
+}

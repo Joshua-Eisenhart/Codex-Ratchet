@@ -1,0 +1,63 @@
+{
+  "name": "rustworkx_petersen_iso",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "VF2 is_isomorphic is load-bearing; eigen-spectrum is only a necessary filter, not a decision procedure"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "spectral ablation (cospectral false positives possible)"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "petersen_n_nodes": 10,
+    "petersen_n_edges": 15,
+    "three_regular": true,
+    "iso_with_relabel": true,
+    "pass": true
+  },
+  "negative": {
+    "attempts": 3,
+    "nonpetersen_confirmed": 3,
+    "sample": [
+      {
+        "seed": 1,
+        "iso_to_petersen": false
+      },
+      {
+        "seed": 2,
+        "iso_to_petersen": false
+      },
+      {
+        "seed": 3,
+        "iso_to_petersen": false
+      }
+    ],
+    "pass": true
+  },
+  "boundary": {
+    "petersen_spectrum": [
+      -2.0,
+      -1.9999999999999998,
+      -1.9999999999999996,
+      -1.999999999999999,
+      0.999999999999999,
+      0.9999999999999991,
+      0.9999999999999994,
+      1.0,
+      1.0000000000000002,
+      3.0
+    ],
+    "spectrum_matches_theory": true,
+    "cospectral_with_random": false,
+    "t_rx_vf2_s": 2.1696090698242188e-05
+  },
+  "classification": "canonical"
+}

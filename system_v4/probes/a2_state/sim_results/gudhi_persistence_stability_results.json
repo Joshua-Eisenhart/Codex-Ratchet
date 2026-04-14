@@ -1,0 +1,116 @@
+{
+  "name": "gudhi_persistence_stability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensors"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph MP"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "point cloud, not cell complex"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistence diagrams + bottleneck distance; load-bearing for stability claim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "eps_0.01": {
+      "bottleneck": 0.010065463821627263,
+      "2eps_bound": 0.02,
+      "naive_delta": 0.11871795741875132,
+      "pass": true
+    },
+    "eps_0.05": {
+      "bottleneck": 0.05956026227921929,
+      "2eps_bound": 0.1,
+      "naive_delta": 0.8774783934108077,
+      "pass": true
+    },
+    "eps_0.1": {
+      "bottleneck": 0.02598963981625599,
+      "2eps_bound": 0.2,
+      "naive_delta": 2.4955543546291183,
+      "pass": true
+    }
+  },
+  "negative": {
+    "ablation_naive_breaks_bound": {
+      "bd_small": 0.016317947591276194,
+      "bd_big": 0.17994306242265679,
+      "naive_small": 0.20232855848900413,
+      "naive_big": 4.83057352583166,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_noise": {
+      "bottleneck": 2.2102232106316e-308,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

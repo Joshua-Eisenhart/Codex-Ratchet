@@ -1,0 +1,136 @@
+{
+  "name": "z3-proves-no-local-hidden-variable-for-CHSH",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT over all deterministic {-1,+1} LHV assignments for S>2"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "reserved cross-check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Tsirelson bound 2*sqrt(2) > 2 verified symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "chsh_lhv_violation_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "tsirelson_exceeds_2": {
+      "value": true,
+      "pass": true
+    },
+    "chsh_lhv_violation_lower_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "chsh_boundary_attained": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "nonlocal_allows_violation": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "S_eq_2": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "S_eq_-2": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "S_eq_3": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "S_eq_-3": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "ablation_numpy_substitute": {
+    "numpy_enumeration_max_S": 2,
+    "covers_finite_domain_only": true,
+    "proves_universal_claim": false,
+    "note": "numpy max=2 observed but cannot certify impossibility w.r.t. symbolic extensions."
+  },
+  "classification": "canonical"
+}

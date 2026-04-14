@@ -1,0 +1,126 @@
+{
+  "name": "z3-proves-distinct-pauli-triples-cannot-commute-jointly",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of joint {-1,+1} eigenvalue assignment compatible with Peres-Mermin relations"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "reserved cross-check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "verifies Peres-Mermin row/column products via matrix algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "GA rep of Pauli algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "peres_mermin_square_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "ghz_mermin_parity_unsat": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "pm_without_last_col_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "commuting_pair_sat": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pm_flip_row_0": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "pm_flip_row_1": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    },
+    "pm_flip_row_2": {
+      "z3_result": "sat",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "ablation_numpy_substitute": {
+    "numpy_brute_force_consistent_count": 0,
+    "covers_binary_domain_only": true,
+    "note": "numpy confirms 0 hits over {-1,+1}^9 but cannot certify claim over richer theories (signed-measure lifts, probabilistic mixtures) -- z3 scales via theory encoding."
+  },
+  "classification": "canonical"
+}

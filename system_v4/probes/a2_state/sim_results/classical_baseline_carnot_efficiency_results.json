@@ -1,0 +1,122 @@
+{
+  "name": "classical_baseline_carnot_efficiency",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing linear algebra / rng for classical baseline"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical_baseline sim; torch not required"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph-NN step in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "equality-based checks; no UNSAT proof in baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "equality-based checks; no UNSAT proof in baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical identity sufficient; symbolic not needed here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "matrix rep baseline; Cl(n) algebra deferred to canonical lane"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "flat/discrete baseline; manifold tooling out of scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN in baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "small adjacency handled by numpy"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure in this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "carnot_0": {
+      "pass": true,
+      "eta": 0.5
+    },
+    "carnot_1": {
+      "pass": true,
+      "eta": 0.75
+    },
+    "carnot_2": {
+      "pass": true,
+      "eta": 0.75
+    },
+    "carnot_3": {
+      "pass": true,
+      "eta": 0.5
+    },
+    "carnot_4": {
+      "pass": true,
+      "eta": 0.7433333333333334
+    }
+  },
+  "negative": {
+    "super_carnot_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "Tc_eq_Th_zero_eta": {
+      "pass": true
+    },
+    "Tc_zero_eta_one": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

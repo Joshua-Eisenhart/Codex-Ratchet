@@ -1,0 +1,104 @@
+{
+  "name": "pyg_toponetx_higher_order_mp",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensors for MP features"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "MessagePassing on the 1-skeleton graph; load-bearing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex chosen"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "provides cell complex + coboundary propagation (face->edge->vertex); load-bearing"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no PH in this test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "ladder_spread": {
+      "graph_reached_count": 7,
+      "higher_order_reached_count": 8,
+      "target_reached_graph": false,
+      "target_reached_higher": false,
+      "pass": true
+    }
+  },
+  "negative": {
+    "random_op_fails_structure": {
+      "real_cc_hits_all_four_face_verts": true,
+      "random_op_hits_all_four": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_square": {
+      "graph_reached_count_k1": 3,
+      "higher_order_reached_count_k1": 4,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

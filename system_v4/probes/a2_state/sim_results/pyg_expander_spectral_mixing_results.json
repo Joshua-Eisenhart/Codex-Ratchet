@@ -1,0 +1,122 @@
+{
+  "name": "pyg_expander_spectral_mixing",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensors for diffusion state"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "MessagePassing applies row-stochastic walk step; load-bearing for empirical mixing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigendecomp"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "using networkx for random regular"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simple graph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph only"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no PH"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "k4_n60": {
+      "spectral_gap": 0.17026427416170442,
+      "predicted_steps": 25,
+      "empirical_steps": 11,
+      "final_tv": 0.08445242047309875,
+      "ratio": 0.44,
+      "pass": true
+    },
+    "k5_n100": {
+      "spectral_gap": 0.20338475917148702,
+      "predicted_steps": 23,
+      "empirical_steps": 9,
+      "final_tv": 0.07128562033176422,
+      "ratio": 0.391304347826087,
+      "pass": true
+    },
+    "k6_n80": {
+      "spectral_gap": 0.2847888492517028,
+      "predicted_steps": 16,
+      "empirical_steps": 7,
+      "final_tv": 0.06909793615341187,
+      "ratio": 0.4375,
+      "pass": true
+    }
+  },
+  "negative": {
+    "cycle_fails_fast_mix": {
+      "gap": -1.5543122344752192e-15,
+      "empirical_steps": 300,
+      "final_tv": null,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "complete_graph_fast": {
+      "gap": 0.9473684210526315,
+      "empirical_steps": 1,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

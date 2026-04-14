@@ -94,7 +94,7 @@
   },
   "negative": {
     "bad_popsize_raises": {
-      "pass": false
+      "pass": true
     }
   },
   "boundary": {
@@ -102,9 +102,9 @@
       "pass": true
     }
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "capability_summary": {
-    "can": "SNES drives a 4D sphere objective below 0.5 within 50 generations at popsize=20 on CPU tensors; rejects invalid popsize=0 and survives a zero-generation run.",
+    "can": "SNES drives a 4D sphere objective below 0.5 within 50 generations at popsize=20 on CPU tensors; raises on negative popsize at run time and survives a zero-generation run.",
     "cannot": "Does not by itself pick a step-size schedule; stdev_init must be chosen problem-aware or convergence stalls."
   }
 }

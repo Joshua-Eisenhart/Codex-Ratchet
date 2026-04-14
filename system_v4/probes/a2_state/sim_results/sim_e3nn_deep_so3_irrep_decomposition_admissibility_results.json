@@ -1,0 +1,39 @@
+{
+  "name": "sim_e3nn_deep_so3_irrep_decomposition_admissibility",
+  "scope_note": "SO(3) irrep decomposition admissibility under D(R); non-equivariant map excluded.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SO(3) Wigner-D representation on Irreps decomposition"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend for e3nn"
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive"
+  },
+  "positive": {
+    "identity_equivariant": {
+      "pass": true,
+      "residual": 0.0
+    }
+  },
+  "negative": {
+    "generic_map_nonequivariant": {
+      "pass": true,
+      "residual": 11.767200469970703
+    }
+  },
+  "boundary": {
+    "scalar_scale_equivariant": {
+      "pass": true,
+      "residual": 4.76837158203125e-07
+    }
+  }
+}

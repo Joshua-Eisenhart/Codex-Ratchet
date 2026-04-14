@@ -1,0 +1,112 @@
+{
+  "name": "sim_gtower_deep_so_lie_algebra_structure_constants",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: so(3) bracket fence",
+  "language": "admissible iff [Li,Lj]=eps_ijk Lk and Jacobi holds; else excluded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Lie bracket + Jacobi decide so(3) admissibility"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "L1_L2": {
+      "pass": true
+    },
+    "L2_L3": {
+      "pass": true
+    },
+    "L3_L1": {
+      "pass": true
+    },
+    "jacobi": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "symmetric_excluded": {
+      "pass": true
+    },
+    "wrong_sign_excluded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_trivial": {
+      "pass": true
+    },
+    "scaling_linear": {
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

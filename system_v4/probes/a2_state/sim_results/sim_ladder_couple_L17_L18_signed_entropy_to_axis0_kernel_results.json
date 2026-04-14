@@ -1,0 +1,53 @@
+{
+  "name": "sim_ladder_couple_L17_L18_signed_entropy_to_axis0_kernel",
+  "classification": "canonical",
+  "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "coupling": {
+    "layer_a": "L17_signed_entropy",
+    "layer_b": "L18_axis0_kernel"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "pytorch autograd is the axis-0 gradient kernel; not available in numpy"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "z3": null,
+    "sympy": null,
+    "clifford": null
+  },
+  "load_bearing_tool": "pytorch",
+  "load_bearing_reason": "pytorch autograd is the axis-0 gradient kernel; not available in numpy",
+  "positive": {
+    "signed_entropy_gradient_survives": true,
+    "I_c_value": -0.6931471824645996
+  },
+  "negative": {
+    "no_grad_excluded_from_axis0_kernel": true
+  },
+  "boundary": {
+    "delta_boundary_finite_grad": true
+  },
+  "pos_pass": true,
+  "neg_pass": true,
+  "bnd_pass": true,
+  "overall": "PASS"
+}

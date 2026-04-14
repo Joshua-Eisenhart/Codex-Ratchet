@@ -1,0 +1,114 @@
+{
+  "name": "sim_gtower_deep_o_reflection_generates_subgroup",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: reflection fence into O(n)",
+  "language": "admissible under unit-vector reflections; non-unit excluded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) reflections decide O(3) admissibility (Cartan-Dieudonne)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "refl_e1_e1": {
+      "val": "-(1^e1)",
+      "pass": true
+    },
+    "two_reflections_compose": {
+      "val": "(1^e1)",
+      "pass": true
+    },
+    "norm_preserved": {
+      "in": 25.0,
+      "out": 25.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_unit_breaks_norm": {
+      "in": 1.0,
+      "out": 16.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "three_refl_is_O_not_SO": {
+      "val": "-(1^e1)",
+      "pass": true
+    },
+    "perpendicular_fixed": {
+      "val": "(1^e2)",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

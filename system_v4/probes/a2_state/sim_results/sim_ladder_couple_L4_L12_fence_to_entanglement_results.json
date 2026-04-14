@@ -1,0 +1,52 @@
+{
+  "name": "sim_ladder_couple_L4_L12_fence_to_entanglement",
+  "classification": "canonical",
+  "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "coupling": {
+    "layer_a": "L4_fence",
+    "layer_b": "L12_entanglement"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT certifies fence->entanglement exclusion as structural, not numerical"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "z3": "load_bearing",
+    "sympy": null,
+    "clifford": null
+  },
+  "load_bearing_tool": "z3",
+  "load_bearing_reason": "z3 UNSAT certifies fence->entanglement exclusion as structural, not numerical",
+  "positive": {
+    "fence_admits_entanglement": true
+  },
+  "negative": {
+    "unfenced_entanglement_excluded": true
+  },
+  "boundary": {
+    "single_fence_boundary_admissible": true
+  },
+  "pos_pass": true,
+  "neg_pass": true,
+  "bnd_pass": true,
+  "overall": "PASS"
+}

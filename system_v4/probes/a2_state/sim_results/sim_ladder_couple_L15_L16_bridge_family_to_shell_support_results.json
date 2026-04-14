@@ -1,0 +1,52 @@
+{
+  "name": "sim_ladder_couple_L15_L16_bridge_family_to_shell_support",
+  "classification": "canonical",
+  "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "coupling": {
+    "layer_a": "L15_bridge_family",
+    "layer_b": "L16_shell_support"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "pytorch parameterized rotation families carry differentiable shell-support admissibility"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "z3": null,
+    "sympy": null,
+    "clifford": null
+  },
+  "load_bearing_tool": "pytorch",
+  "load_bearing_reason": "pytorch parameterized rotation families carry differentiable shell-support admissibility",
+  "positive": {
+    "bridge_family_admits_nontrivial_shell_support": true
+  },
+  "negative": {
+    "trivial_bridge_excluded_from_spreading_support": true
+  },
+  "boundary": {
+    "pi_over_4_boundary_balanced": true
+  },
+  "pos_pass": true,
+  "neg_pass": true,
+  "bnd_pass": true,
+  "overall": "PASS"
+}

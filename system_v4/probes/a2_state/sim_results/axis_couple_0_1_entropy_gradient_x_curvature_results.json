@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_0_1_entropy_gradient_x_curvature",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 1)",
+  "exclusion_claim": "coupling excludes Axis 0 gradient independence from Axis 1 curvature branch",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd entropy gradient evaluated on both curvature branches; decisive"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "kappa_1.5": -0.7599047422409058,
+    "kappa_-1.5": -0.9110696315765381,
+    "branch_dependence": true
+  },
+  "negative": {
+    "flat_curvature_no_gradient": true
+  },
+  "boundary": {
+    "near_zero_finite": true
+  },
+  "pass": true
+}

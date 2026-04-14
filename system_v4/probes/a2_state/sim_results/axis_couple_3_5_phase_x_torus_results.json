@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_3_5_phase_x_torus",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 5)",
+  "exclusion_claim": "coupling excludes Axis 3 phase invariance under Axis 5 operator-family swap",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic commutator of dephasing and rotation on fibered phase loop is load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "positive": {
+    "commutator_symbolic_nonzero": true,
+    "sample_value": "sqrt(2 - 2*cos(4/7))*sin(1/3)",
+    "coupling_detected": true
+  },
+  "negative": {
+    "identity_commutes": true
+  },
+  "boundary": {
+    "zero_dephasing_commutes": true
+  },
+  "pass": true
+}

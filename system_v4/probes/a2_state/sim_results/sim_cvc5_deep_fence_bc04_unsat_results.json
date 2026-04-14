@@ -1,0 +1,30 @@
+{
+  "name": "sim_cvc5_deep_fence_bc04_unsat",
+  "scope_note": "BC04 polar-branch exclusion; cvc5 UNSAT certifies admissibility fence.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT certificate of BC04 branch-exclusion fence"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "bc04_both_branches_unsat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "bc04_single_branch_sat": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bc04_three_branch_forced_unsat": {
+      "pass": false
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "sim_cvc5_deep_g_reduction_chain_sat",
+  "scope_note": "G-tower reduction chain admissibility; cvc5 SAT/UNSAT under monotone fence.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing QF_LIA SAT witness and ascending-step UNSAT"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "g_reduction_chain_sat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "g_ascending_unsat": {
+      "pass": false
+    }
+  },
+  "boundary": {
+    "g_min_length_chain_sat": {
+      "pass": true
+    }
+  }
+}

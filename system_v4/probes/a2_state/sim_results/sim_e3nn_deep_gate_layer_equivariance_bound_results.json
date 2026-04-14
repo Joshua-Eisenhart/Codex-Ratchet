@@ -1,0 +1,39 @@
+{
+  "name": "sim_e3nn_deep_gate_layer_equivariance_bound",
+  "scope_note": "Gate-layer equivariance; disruption by mixing gates/gated features excluded.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Gate nonlinearity + Wigner-D equivariance bound"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend"
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive"
+  },
+  "positive": {
+    "gate_equivariant": {
+      "pass": true,
+      "residual": 2.384185791015625e-07
+    }
+  },
+  "negative": {
+    "mixed_pre_gate_excluded": {
+      "pass": true,
+      "residual": 14.505098342895508
+    }
+  },
+  "boundary": {
+    "zero_input_equivariant": {
+      "pass": true,
+      "residual": 0.0
+    }
+  }
+}

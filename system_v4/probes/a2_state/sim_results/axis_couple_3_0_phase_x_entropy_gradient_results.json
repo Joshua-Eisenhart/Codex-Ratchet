@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_3_0_phase_x_entropy_gradient",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 0)",
+  "exclusion_claim": "coupling excludes Axis 0 gradient invariance under Axis 3 fiber/base loop choice",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd entropy gradient evaluated along fiber vs base loop; load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "grad_fiber": 0.1839362382888794,
+    "grad_base": -5.960464477539063e-08,
+    "coupling_detected": true
+  },
+  "negative": {
+    "phi_zero_fiber_gradient_zero": true
+  },
+  "boundary": {
+    "near_zero_finite": true
+  },
+  "pass": true
+}

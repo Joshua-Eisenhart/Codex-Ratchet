@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_6_1_action_x_curvature",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1)",
+  "exclusion_claim": "coupling excludes independent joint admissibility of Axis 6 and Axis 1",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 checks SAT/UNSAT of joint curvature x precedence admissibility; load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "incompatible_combo_unsat": true,
+    "compatible_combo_sat": true,
+    "coupling_detected": true
+  },
+  "negative": {
+    "independence_baseline_sat": true
+  },
+  "boundary": {
+    "empty_solver_sat": true
+  },
+  "pass": true
+}

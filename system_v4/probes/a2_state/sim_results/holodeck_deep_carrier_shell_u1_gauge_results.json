@@ -1,0 +1,116 @@
+{
+  "name": "holodeck_deep_carrier_shell_u1_gauge",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "carrier built/normed/compared in torch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Irreps used to register carrier rep and parity check"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed / not used"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "u1_invariant_theta_0": {
+      "pass": true
+    },
+    "u1_invariant_theta_1": {
+      "pass": true
+    },
+    "u1_invariant_theta_2": {
+      "pass": true
+    },
+    "u1_invariant_theta_3": {
+      "pass": true
+    },
+    "u1_invariant_theta_4": {
+      "pass": true
+    },
+    "e3nn_irreps_dim": {
+      "dim": 5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "noninvariant_excluded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "cycle_2pi": {
+      "pass": true
+    },
+    "irreps_has_1o": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

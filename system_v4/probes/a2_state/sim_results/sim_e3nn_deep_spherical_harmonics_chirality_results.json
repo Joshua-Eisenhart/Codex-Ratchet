@@ -1,0 +1,39 @@
+{
+  "name": "sim_e3nn_deep_spherical_harmonics_chirality",
+  "scope_note": "Y^l parity: odd-l flip under inversion; even-l invariant; chirality fence.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing spherical_harmonics evaluation for parity fence"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend"
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive"
+  },
+  "positive": {
+    "y1o_flips_under_inversion": {
+      "pass": true,
+      "residual": 0.0
+    }
+  },
+  "negative": {
+    "y2e_invariant_under_inversion": {
+      "pass": true,
+      "invariant_diff": 0.0,
+      "mistaken_sum": 4.179987907409668
+    }
+  },
+  "boundary": {
+    "y0e_invariant": {
+      "pass": true
+    }
+  }
+}

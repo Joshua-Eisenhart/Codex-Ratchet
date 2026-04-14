@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_1_4_curvature_x_loop",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4)",
+  "exclusion_claim": "coupling excludes commutation of Axis 1 curvature reversal with Axis 4 loop-order",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic commutator on curvature-signed matrix algebra; load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "positive": {
+    "commutator": "Matrix([[-k, 2*k*t], [2*k*t, k]])",
+    "sample_norm": "sqrt(26)/6",
+    "coupling_detected": true
+  },
+  "negative": {
+    "identity_commutes": true
+  },
+  "boundary": {
+    "zero_curvature_commutes": true
+  },
+  "pass": true
+}

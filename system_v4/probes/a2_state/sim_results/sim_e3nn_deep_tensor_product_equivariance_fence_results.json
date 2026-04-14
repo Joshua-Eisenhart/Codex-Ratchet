@@ -1,0 +1,39 @@
+{
+  "name": "sim_e3nn_deep_tensor_product_equivariance_fence",
+  "scope_note": "TP equivariance on 1o x 1o -> 0e+1e+2e; shuffled perturbation excluded.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing FullyConnectedTensorProduct equivariance check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend"
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive"
+  },
+  "positive": {
+    "tp_equivariant": {
+      "pass": true,
+      "residual": 1.9222497940063477e-06
+    }
+  },
+  "negative": {
+    "tp_shuffled_excluded": {
+      "pass": true,
+      "residual": 6.329894065856934
+    }
+  },
+  "boundary": {
+    "zero_input_zero_output": {
+      "pass": true,
+      "out": 0.0
+    }
+  }
+}

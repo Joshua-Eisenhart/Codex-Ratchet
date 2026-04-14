@@ -1,0 +1,33 @@
+{
+  "name": "sim_cvc5_deep_fence_bc09_unsat",
+  "scope_note": "BC09 weight-budget fence; cvc5 UNSAT excludes over-saturated coupled pairs.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing QF_LRA UNSAT of BC09 saturation fence"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "bc09_double_sat_unsat": {
+      "pass": true
+    },
+    "bc09_large_thresh_unsat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "bc09_moderate_sat_sat": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bc09_exact_half_sat": {
+      "pass": true
+    }
+  }
+}

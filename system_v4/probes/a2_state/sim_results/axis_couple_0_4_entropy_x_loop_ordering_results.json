@@ -1,0 +1,28 @@
+{
+  "name": "axis_couple_0_4_entropy_x_loop_ordering",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 4)",
+  "exclusion_claim": "coupling excludes Axis 0 gradient invariance under Axis 4 loop-order permutation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd entropy gradient compared across UEUE vs EUEU op sequences; load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "grad_UEUE": 0.42937010526657104,
+    "grad_EUEU": -0.09881314635276794,
+    "coupling_detected": true
+  },
+  "negative": {
+    "t_zero_orders_agree": true
+  },
+  "boundary": {
+    "near_zero_finite": true
+  },
+  "pass": true
+}

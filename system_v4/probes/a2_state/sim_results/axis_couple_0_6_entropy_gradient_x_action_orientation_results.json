@@ -1,0 +1,53 @@
+{
+  "name": "axis_couple_0_6_entropy_gradient_x_action_orientation",
+  "classification": "canonical",
+  "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0 and 6)",
+  "exclusion_claim": "coupling excludes Axis 0 I_c-sign invariance under Axis 6 precedence reordering",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd computes entropy-gradient I_c for both action orientations; sign comparison is load-bearing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "theta_0.3": {
+      "grad_op_first": -1.1931341248327954e-07,
+      "grad_terrain_first": -1.0856869181452566e-08,
+      "sign_flip": false
+    },
+    "theta_0.7": {
+      "grad_op_first": 6.478732927917008e-08,
+      "grad_terrain_first": -4.819618482088117e-09,
+      "sign_flip": true
+    },
+    "theta_1.1": {
+      "grad_op_first": 4.0078269591958815e-08,
+      "grad_terrain_first": 1.304183250283586e-08,
+      "sign_flip": false
+    },
+    "coupling_detected": true
+  },
+  "negative": {
+    "trivial_theta_no_coupling": true
+  },
+  "boundary": {
+    "near_identity_finite": true
+  },
+  "pass": true
+}

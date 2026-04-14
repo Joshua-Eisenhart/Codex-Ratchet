@@ -1,0 +1,52 @@
+{
+  "name": "sim_ladder_couple_L0_L1_spectral_to_geometric",
+  "classification": "canonical",
+  "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "coupling": {
+    "layer_a": "L0_spectral",
+    "layer_b": "L1_geometric"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy carries symbolic hermiticity check that numpy cannot express structurally"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "z3": null,
+    "sympy": "load_bearing",
+    "clifford": null
+  },
+  "load_bearing_tool": "sympy",
+  "load_bearing_reason": "sympy carries symbolic hermiticity check that numpy cannot express structurally",
+  "positive": {
+    "L0_spectral_survives_under_L1_geometric_probe": true
+  },
+  "negative": {
+    "non_hermitian_excluded_under_coupling": true
+  },
+  "boundary": {
+    "degenerate_boundary_admissible": true
+  },
+  "pos_pass": true,
+  "neg_pass": true,
+  "bnd_pass": true,
+  "overall": "PASS"
+}

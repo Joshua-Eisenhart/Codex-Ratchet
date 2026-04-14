@@ -1,0 +1,43 @@
+{
+  "name": "sim_e3nn_deep_cross_so3_vs_su2_parity",
+  "scope_note": "Integer-l Wigner-D factors through SO(3); compose(R1 R2) = D(R1) D(R2) fence. Half-integer reps excluded from scope.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing integer-l Wigner-D homomorphism check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend"
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive"
+  },
+  "positive": {
+    "l1_homomorphism": {
+      "pass": true,
+      "residual": 2.8014183044433594e-06
+    },
+    "l2_homomorphism": {
+      "pass": true,
+      "residual": 3.125518560409546e-06
+    }
+  },
+  "negative": {
+    "wrong_product_excluded": {
+      "pass": true,
+      "residual": 1.3886332511901855
+    }
+  },
+  "boundary": {
+    "identity_rotation_identity_D": {
+      "pass": true,
+      "residual": 0.0
+    }
+  }
+}

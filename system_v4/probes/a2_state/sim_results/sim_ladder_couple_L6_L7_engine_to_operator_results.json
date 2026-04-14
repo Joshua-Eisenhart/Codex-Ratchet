@@ -1,0 +1,52 @@
+{
+  "name": "sim_ladder_couple_L6_L7_engine_to_operator",
+  "classification": "canonical",
+  "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "coupling": {
+    "layer_a": "L6_engine",
+    "layer_b": "L7_operator"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "clifford Cl(3) rotor sandwich is the structural grade-preservation witness; numpy cannot represent geometric product"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "clifford": "load_bearing"
+  },
+  "load_bearing_tool": "clifford",
+  "load_bearing_reason": "clifford Cl(3) rotor sandwich is the structural grade-preservation witness; numpy cannot represent geometric product",
+  "positive": {
+    "engine_rotor_preserves_operator_grade1": true
+  },
+  "negative": {
+    "non_rotor_excluded_under_operator_coupling": true
+  },
+  "boundary": {
+    "identity_rotor_boundary_admissible": true
+  },
+  "pos_pass": true,
+  "neg_pass": true,
+  "bnd_pass": true,
+  "overall": "PASS"
+}

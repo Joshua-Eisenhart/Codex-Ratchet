@@ -19,6 +19,7 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical shell baseline: horizon-flip behavior is a projection-vs-payoff numerical study, not a canonical nonclassical proof object."
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "tree evaluation"},

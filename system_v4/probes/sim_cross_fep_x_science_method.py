@@ -21,6 +21,7 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical shell baseline: surprise-driven probe selection is a numerical cross-shell heuristic, not a canonical nonclassical witness."
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "surprise + correlation"},

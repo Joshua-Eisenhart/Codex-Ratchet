@@ -20,6 +20,7 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical shell baseline: numerical cross-coupling between FEP and IGT metaphor shells, not a canonical nonclassical witness."
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "fep + igt evaluation"},

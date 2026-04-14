@@ -14,6 +14,7 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical shell baseline: FEP-to-engine alignment is a trajectory correlation check on a proxy state, not a canonical nonclassical proof object."
 
 TOOL_MANIFEST = {
     "sympy": {"tried": False, "used": False, "reason": ""},

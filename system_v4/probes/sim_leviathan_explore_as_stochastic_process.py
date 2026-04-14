@@ -13,6 +13,7 @@ Blind spot:
 """
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical framing baseline: Leviathan is explored here as a Markov-process metaphor, not a canonical nonclassical witness."
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "stationary via eigen-decomp"}}
 TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}

@@ -12,6 +12,7 @@ Blind spot:
 """
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical framing baseline: Leviathan is explored here as an information-market metaphor, not a canonical nonclassical witness."
 
 TOOL_MANIFEST = {"numpy": {"tried": True, "used": True, "reason": "joint distributions, MI"},
                  "sympy": {"tried": False, "used": False, "reason": ""}}

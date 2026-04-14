@@ -19,6 +19,7 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical shell baseline: suppressed-refutation behavior is a numerical failure-mode coupling study, not a canonical nonclassical witness."
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "simulate adversary vs consensus"},

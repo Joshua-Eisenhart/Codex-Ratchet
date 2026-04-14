@@ -10,13 +10,39 @@ import numpy as np
 import sys, os
 classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _holodeck_common import build_manifest, write_results, summary_ok
+from _holodeck_common import write_results, summary_ok
 
-TOOL_MANIFEST = build_manifest()
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
-TOOL_MANIFEST["numpy"]["used"] = True
-TOOL_MANIFEST["numpy"]["reason"] = "unitary evolution check"
+divergence_log = "Classical baseline: the holodeck engine testbench is evaluated here by toy unitary trajectory numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "unitary evolution and norm-preservation checks"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "clifford": None,
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 
 def evolve(U, v0, steps):

@@ -12,19 +12,42 @@ import sys, os
 from clifford import Cl
 classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _holodeck_common import build_manifest, write_results, summary_ok
+from _holodeck_common import write_results, summary_ok
 
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
 
-TOOL_MANIFEST = build_manifest()
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
-TOOL_INTEGRATION_DEPTH["clifford"] = "supportive"
-TOOL_INTEGRATION_DEPTH["numpy"] = "load_bearing"
-TOOL_MANIFEST["clifford"]["used"] = True
-TOOL_MANIFEST["clifford"]["reason"] = "Cl(3) vector construction"
-TOOL_MANIFEST["numpy"]["used"] = True
-TOOL_MANIFEST["numpy"]["reason"] = "projector arithmetic"
+divergence_log = "Classical baseline: projective memory geometry is modeled here by projector-distance numerics with Clifford-backed vectors, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "projector arithmetic and chordal-distance numerics"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(3) vector construction"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "clifford": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 
 def vec_to_np(mv):

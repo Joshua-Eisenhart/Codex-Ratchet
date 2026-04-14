@@ -2,15 +2,40 @@
 import json
 import pathlib
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: the history-window support row is represented here by one bounded contiguous-path support object, not a canonical nonclassical witness."
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local support row for contiguous history-window selection on one bounded history path."
 LEGO_IDS = ["history_window_support"]
 PRIMARY_LEGO_IDS = ["history_window_support"]
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
-    "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
-]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 def hist_window(path, start, width):
     if width <= 0 or start < 0 or start + width > len(path):

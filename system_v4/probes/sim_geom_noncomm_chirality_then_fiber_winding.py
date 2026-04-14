@@ -17,7 +17,8 @@ TOOL_INTEGRATION_DEPTH = {"clifford": "load_bearing", "pytorch": None, "z3": Non
 
 def chirality(v):  return -e1*v*e1   # reflection through e2e3 plane (Pin element)
 def winding(v, t):
-    R = np.cos(t/2) - (e2*e3)*np.sin(t/2)
+    # winding in e1^e2 plane so reflection across e2e3 (through e1) does not commute
+    R = np.cos(t/2) - (e1*e2)*np.sin(t/2)
     return R*v*~R
 
 def run_positive_tests():

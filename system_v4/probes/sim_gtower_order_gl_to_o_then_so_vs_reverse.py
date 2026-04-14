@@ -31,14 +31,15 @@ except ImportError:
 
 
 def order_forward_metric_then_orient():
-    """Impose A^T A = I, then det(A)=+1. Returns symbolic admissible set description."""
-    a,b,c,d = sp.symbols('a b c d', real=True)
-    A = sp.Matrix([[a,b],[c,d]])
-    metric_eqs = list((A.T*A - sp.eye(2)).values())
-    sol_metric = sp.solve(metric_eqs, [a,b,c,d], dict=True)
-    # Filter by det = +1
-    sol_forward = [s for s in sol_metric if sp.simplify(A.subs(s).det() - 1) == 0]
-    return sol_metric, sol_forward
+    """Parametrize O(2) by angle+reflection, then impose det=+1 (SO(2))."""
+    theta, eps = sp.symbols('theta eps', real=True)
+    # O(2) has two components: det=+1 (rotations) and det=-1 (reflections)
+    Rot = sp.Matrix([[sp.cos(theta), -sp.sin(theta)],[sp.sin(theta), sp.cos(theta)]])
+    Ref = sp.Matrix([[sp.cos(theta), sp.sin(theta)],[sp.sin(theta), -sp.cos(theta)]])
+    # Metric preservation holds for both by construction; orient filter picks det=+1
+    metric_families = [("rotation", Rot, Rot.det()), ("reflection", Ref, sp.simplify(Ref.det()))]
+    forward = [name for name,M,dt in metric_families if sp.simplify(dt - 1) == 0]
+    return metric_families, forward
 
 
 def order_reverse_orient_then_metric():
@@ -56,12 +57,12 @@ def order_reverse_orient_then_metric():
 
 
 def run_positive_tests():
-    sol_metric, sol_forward = order_forward_metric_then_orient()
-    # forward reduction yields exactly SO(2) = rotations
+    fams, forward = order_forward_metric_then_orient()
     return {
-        "forward_metric_then_orient_admitted_count": len(sol_forward),
-        "forward_admits_only_rotations": len(sol_forward) >= 1 and len(sol_forward) <= 2,
-        "pass": len(sol_forward) >= 1,
+        "metric_families": [n for n,_,_ in fams],
+        "forward_admitted_after_orient": forward,
+        "forward_admits_only_rotations": forward == ["rotation"],
+        "pass": forward == ["rotation"],
     }
 
 
@@ -69,7 +70,16 @@ def run_negative_tests():
     # Reverse order: det=+1 first admits shears; adjacent-swap excludes witness
     shear_pre, t_sol = order_reverse_orient_then_metric()
     # With metric applied AFTER, only t=0 survives -> the pre-metric shear witness is excluded
-    shear_excluded_by_metric = (t_sol == [0] or t_sol == [{sp.Symbol('t', real=True): 0}] or 0 in t_sol)
+    # t_sol may be a list of values or a list of dicts; check 0 is the only solution
+    flat = []
+    for s in t_sol:
+        if hasattr(s, 'values') and not isinstance(s, tuple):
+            flat.extend(list(s.values()))
+        elif isinstance(s, tuple):
+            flat.extend(list(s))
+        else:
+            flat.append(s)
+    shear_excluded_by_metric = len(flat) >= 1 and all(sp.simplify(v) == 0 for v in flat)
     return {
         "reverse_order_admits_shear_pre_metric": shear_pre,
         "shear_witness_excluded_after_metric": shear_excluded_by_metric,

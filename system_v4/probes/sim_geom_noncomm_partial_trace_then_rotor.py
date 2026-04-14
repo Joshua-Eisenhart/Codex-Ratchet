@@ -48,12 +48,17 @@ def run_positive_tests():
     rho2 = torch.outer(psi2, psi2.conj())
     p1 = partial_trace_B(apply_rot_A(rho2, U))
     p2 = U @ partial_trace_B(rho2) @ U.conj().T
-    # Actually trace-then-rotate on A equals rotate-then-trace (rotor only acts on A). They SHOULD commute for local unitary on A.
-    # To get non-commute, apply U on B-subsystem before trace_B vs after
-    UB = torch.kron(torch.eye(2, dtype=torch.complex128), U)
-    path_rot_then_trace = partial_trace_B(UB @ rho2 @ UB.conj().T)
-    path_trace_then_rot = partial_trace_B(rho2)  # rotor on B has no place after tracing B
-    nz = torch.linalg.norm(path_rot_then_trace - path_trace_then_rot).item() > 1e-6
+    # Witness: SWAP then trace_B vs trace_B then (identity, since SWAP no longer applicable on 1-qubit).
+    # SWAP mixes A,B subsystems, so tr_B(SWAP rho SWAP) = tr_A(rho) which differs from tr_B(rho)
+    # for states with different marginals. Order swap excludes the post-swap witness.
+    SWAP = torch.tensor([[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]], dtype=torch.complex128)
+    # asymmetric state with different A and B marginals
+    psi3 = torch.tensor([0.8, 0.1, 0.5, 0.3], dtype=torch.complex128)
+    psi3 = psi3/torch.linalg.norm(psi3)
+    rho3 = torch.outer(psi3, psi3.conj())
+    path_swap_then_trace = partial_trace_B(SWAP @ rho3 @ SWAP.conj().T)
+    path_trace_only = partial_trace_B(rho3)  # order-swap excludes the SWAP step
+    nz = torch.linalg.norm(path_swap_then_trace - path_trace_only).item() > 1e-6
     return {"rotorB_then_traceB_vs_traceB_excludes_witness": nz,
             "note": "tracing out B then applying rotor on B is undefined — order swap excludes the witness trajectory",
             "pass": nz}

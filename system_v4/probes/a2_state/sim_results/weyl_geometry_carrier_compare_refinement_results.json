@@ -1,0 +1,273 @@
+{
+  "name": "weyl_geometry_carrier_compare_refinement",
+  "classification": "canonical",
+  "classification_note": "Controller-facing refinement of the Weyl/Hopf carrier-compare row. It keeps the open carrier comparison bounded against the strict companion carrier, translation targets, and the repair comparison surface without collapsing the open-vs-strict gap.",
+  "lego_ids": [
+    "weyl_geometry_carrier_compare",
+    "qit_weyl_geometry_companion",
+    "weyl_geometry_translation_targets",
+    "qit_weyl_geometry_repair_comparison_surface",
+    "geometry_preserving_basis_change",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "weyl_geometry_carrier_compare"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_compare_is_clean": {
+      "pass": true,
+      "classification": "canonical",
+      "carrier_count": 4,
+      "result_count": 96
+    },
+    "strict_anchor_is_clean": {
+      "pass": true,
+      "strict_anchor_row": "qit_weyl_geometry_companion",
+      "strict_carrier_count": 3,
+      "strict_sample_count": 24
+    },
+    "translation_targets_keep_compare_in_tighten_bucket": {
+      "pass": true,
+      "translation_bucket": "ready_for_stricter_companion_work",
+      "translation_action": "tighten_for_stricter_companion"
+    },
+    "repair_surface_confirms_compare_translation": {
+      "pass": true,
+      "pair_id": "weyl_geometry_carrier_compare_pair",
+      "surviving_feature_count": 4
+    },
+    "strict_companion_readiness_meets_threshold": {
+      "pass": true,
+      "priority_score": 0.89,
+      "threshold": 0.75
+    }
+  },
+  "negative": {
+    "open_and_strict_rows_are_not_identical": {
+      "pass": true,
+      "carrier_count_gap_qit_minus_open": -1,
+      "result_count_gap_qit_minus_open": -72
+    },
+    "equivalence_is_not_claimed": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "open_compare_source_is_available": {
+      "pass": true,
+      "source_file": "lego_weyl_geometry_carrier_compare_results.json"
+    },
+    "strict_companion_source_is_available": {
+      "pass": true,
+      "source_file": "qit_weyl_geometry_companion_results.json"
+    },
+    "translation_targets_source_is_available": {
+      "pass": true,
+      "source_file": "weyl_geometry_translation_targets_results.json"
+    },
+    "repair_comparison_source_is_available": {
+      "pass": true,
+      "source_file": "qit_weyl_geometry_repair_comparison_surface_results.json"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 1,
+    "tighten_then_promote_count": 1,
+    "strict_anchor_row": "qit_weyl_geometry_companion",
+    "top_row_id": "weyl_geometry_carrier_compare",
+    "strict_companion_readiness_score": 0.89,
+    "readiness_threshold": 0.75,
+    "compare_row_id": "weyl_geometry_carrier_compare",
+    "repair_pair_id": "weyl_geometry_carrier_compare_pair",
+    "translation_target_bucket": "ready_for_stricter_companion_work",
+    "equivalence_claimed": false,
+    "scope_note": "Tightened carrier-compare refinement. It keeps the open compare row bounded against the strict companion carrier and repair comparison surface without claiming equivalence."
+  },
+  "rows": [
+    {
+      "row_id": "weyl_geometry_carrier_compare",
+      "label": "Weyl geometry carrier compare refinement",
+      "priority_bucket": "tighten_then_promote",
+      "priority_rank": 110,
+      "priority_score": 0.89,
+      "action_label": "tighten_for_stricter_companion",
+      "translation_targets_bucket": "ready_for_stricter_companion_work",
+      "controller_route": "carrier_compare",
+      "matrix_role": "carrier_compare",
+      "overlay_category": "alternate_carrier",
+      "audit_route": null,
+      "source_surfaces": [
+        "open_compare_summary",
+        "translation_targets",
+        "strict_companion",
+        "repair_comparison_surface"
+      ],
+      "result_file": "lego_weyl_geometry_carrier_compare_results.json",
+      "all_pass": true,
+      "equivalence_claimed": false,
+      "strict_anchor_row": "qit_weyl_geometry_companion",
+      "strict_anchor_all_pass": true,
+      "repair_pair_id": "weyl_geometry_carrier_compare_pair",
+      "repair_surface_action_label": "tighten_for_stricter_companion",
+      "repair_surface_controller_route": "carrier_compare",
+      "repair_surface_translation_bucket": "companion_ready",
+      "repair_surface_translation_pass": true,
+      "repair_surviving_features": [
+        "carrier_diversity",
+        "entropy_spread",
+        "bloch_jump_spread",
+        "finite_readout"
+      ],
+      "repair_surviving_feature_count": 4,
+      "readiness_threshold": 0.75,
+      "readiness_gaps": {
+        "carrier_count_gap_qit_minus_open": -1,
+        "result_count_gap_qit_minus_open": -72,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963
+      },
+      "compare_summary": {
+        "classification": "canonical",
+        "carrier_count": 4,
+        "carrier_order": [
+          "hopf_torus",
+          "sphere_section",
+          "graph_carrier",
+          "hypergraph_carrier"
+        ],
+        "result_count": 96,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "hopf_reference_checks": [
+          {
+            "carrier": "sphere_section",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.08079313589591115,
+            "mean_right_entropy_gap_vs_reference": 0.08079313589591113,
+            "mean_step_bloch_jump_gap_vs_reference": -0.5706616935506963,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": -6.938893903907228e-18,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          },
+          {
+            "carrier": "graph_carrier",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.1414405425418208,
+            "mean_right_entropy_gap_vs_reference": 0.1414405425418209,
+            "mean_step_bloch_jump_gap_vs_reference": -0.18451654236826376,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": 3.469446951953617e-18,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          },
+          {
+            "carrier": "hypergraph_carrier",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.19439185783157628,
+            "mean_right_entropy_gap_vs_reference": 0.19439185783157628,
+            "mean_step_bloch_jump_gap_vs_reference": -0.17218917107402476,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": 4.184527551540034e-17,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          }
+        ],
+        "all_pass": true
+      },
+      "strict_summary": {
+        "all_pass": true,
+        "sample_count": 24,
+        "transport_reference_count": 3,
+        "row_count": 27,
+        "carrier_count": 3,
+        "max_stack_error": 4.443843741175801e-16,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16,
+        "stack_gap_to_open_reference": 3.314329501456529e-16,
+        "stereographic_nonfinite_count": 0
+      },
+      "translation_target": {
+        "bucket": "ready_for_stricter_companion_work",
+        "action_label": "tighten_for_stricter_companion",
+        "priority_rank": 202,
+        "note": "Carrier comparison is clean and reusable, but should be tightened before companion promotion."
+      },
+      "refinement_note": "Carrier compare remains broader than the strict companion carrier, but the repair surface confirms the row survives translation and the translation targets keep it in the companion-ready lane."
+    }
+  ]
+}

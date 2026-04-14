@@ -22,8 +22,9 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
+classification = "canonical"
+
 from hopf_manifold import (
-classification = "classical_baseline"  # auto-backfill
     NESTED_TORI,
     TORUS_CLIFFORD,
     TORUS_INNER,

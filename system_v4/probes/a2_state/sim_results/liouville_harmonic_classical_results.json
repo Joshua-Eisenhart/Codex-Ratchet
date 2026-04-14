@@ -1,0 +1,102 @@
+{
+  "name": "liouville_harmonic_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Liouville equation propagates a non-negative density on commuting coordinates (q, p). The Wigner/Weyl quantum analog allows negative values, signals non-classical states (Fock, cat, squeezed), and the flow is no longer a rigid symplectic rotation outside quadratic Hamiltonians. This baseline cannot encode Moyal-bracket corrections or interference between classically distinct trajectories.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch grid evaluation cross-check of rotated density"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "normalization_t0": "True",
+    "characteristics_conserved": true,
+    "normalization_conserved": "True",
+    "periodic_return": "True",
+    "quarter_period_rotation_q": "True",
+    "quarter_period_rotation_p": "True",
+    "torch_norm_cross": "True"
+  },
+  "negative": {
+    "off_trajectory_differs": "True",
+    "different_initials_differ": true
+  },
+  "boundary": {
+    "slow_osc_periodic": "True",
+    "fast_osc_periodic": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

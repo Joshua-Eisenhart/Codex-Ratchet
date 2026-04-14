@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_as_engine_testbench",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "unitary evolution check"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "engine_0_admissible": true,
+    "engine_1_admissible": true,
+    "engine_2_admissible": true
+  },
+  "negative": {
+    "non_unitary_admissible": false,
+    "zero_engine_admissible": false
+  },
+  "boundary": {
+    "identity_engine": true,
+    "one_step": true
+  },
+  "pass": true
+}

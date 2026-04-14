@@ -1,0 +1,70 @@
+{
+  "name": "quantum_discord_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "baseline numeric cross-check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "complex density matrix ops, eigh, partial trace, log2 via eigendecomp"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof that product states have exact zero discord"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed: numerical not proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": null
+  },
+  "positive": {
+    "werner_p0p8_discord_positive": true,
+    "werner_D_val": 0.6214109137647066,
+    "nonmax_entangled_discord_positive": true,
+    "nonmax_entangled_D_val": 0.8812908992306926,
+    "depolarized_plusplus_discord_positive": true,
+    "depolarized_plusplus_D_val": 0.0004436143444279672,
+    "sympy_product_state_structural_zero_discord": true
+  },
+  "negative": {
+    "classical_classical_discord_near_zero": true,
+    "classical_classical_D_val": -2.220446049250313e-16,
+    "product_state_discord_near_zero": true,
+    "product_state_D_val": -5.551115123125783e-16
+  },
+  "boundary": {
+    "maximally_mixed_D_near_zero": true,
+    "maximally_mixed_I_near_zero": true,
+    "bell_I_near_2": true,
+    "bell_D_positive": true,
+    "bell_D_val": 1.0
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_discord_always_zero": 0.0,
+      "quantum_werner_p0p8_D": 0.6214109137647066,
+      "quantum_nonmax_entangled_D": 0.8812908992306926,
+      "quantum_bell_D": 1.0,
+      "gap_werner_vs_classical": 0.6214109137647066
+    }
+  },
+  "pairs_with": "sim_quantum_discord_classical.py",
+  "divergence_log": [
+    "canonical D(A:B) nonzero for Werner/entangled/dephased-plus states; classical baseline is identically zero",
+    "J(A:B) optimized over qubit projective measurements on B; classical J=I always, quantum J<I for coherent rho_AB"
+  ]
+}

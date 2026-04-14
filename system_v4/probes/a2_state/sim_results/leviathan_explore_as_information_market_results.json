@@ -1,0 +1,35 @@
+{
+  "name": "leviathan_explore_as_information_market",
+  "framing_assumption": "potential = mutual information between group distributions",
+  "blind_spot": "bits are fungible; ignores meaning/embodiment",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "joint distributions, MI"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "sympy": null
+  },
+  "positive": {
+    "diverse_MI": 0.8107680655530459,
+    "pass": true
+  },
+  "negative": {
+    "mono_MI": 0.00026287358271382717,
+    "div_MI": 0.8107680655530459,
+    "pass_mono_lower": true
+  },
+  "boundary": {
+    "indep_MI": 1.110223024625156e-15,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

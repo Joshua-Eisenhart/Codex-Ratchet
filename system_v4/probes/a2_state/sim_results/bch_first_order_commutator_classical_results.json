@@ -1,0 +1,133 @@
+{
+  "name": "bch_first_order_commutator",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: torch.matrix_exp re-run to confirm scipy.linalg.expm agreement"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric BCH baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "residual_scales_cubically": {
+      "residuals": [
+        0.0055832065149459854,
+        0.000669714029206735,
+        8.227642374829487e-05,
+        1.0204830832633737e-05
+      ],
+      "ratios": [
+        0.11995150589789963,
+        0.12285306886246644,
+        0.1240310451977469
+      ],
+      "pass": true
+    },
+    "commuting_group_comm_is_identity": {
+      "err": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "torch_matrix_exp_agrees": {
+      "max_abs_diff": 2.220446049250313e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "linear_ansatz_is_worse": {
+      "wrong": 0.41928580045243524,
+      "right": 0.009197419523985341,
+      "pass": true
+    },
+    "noncommuting_expm_not_additive": {
+      "diff": 5.757071066440892,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_A_gives_identity": {
+      "err": 0.0,
+      "pass": true
+    },
+    "tiny_t_near_identity": {
+      "err": 8.271901574640117e-12,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 3,
+    "n_negative": 2,
+    "n_boundary": 2
+  },
+  "divergence_log": "Classical first-order BCH captures only the leading [A,B] correction for generic real matrices. Lost relative to the nonclassical shell: higher-order nested commutators of the full Dynkin series, unitary-group curvature terms relevant to holonomy and Berry-phase structure, Lie-algebraic structure constants under constraint-admissible generators, and the noncommutative geometry that governs coupled-generator evolution beyond the perturbative window."
+}

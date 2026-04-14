@@ -1,0 +1,32 @@
+{
+  "name": "sim_fep_pair_markov_blanket_x_precision",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "CI + precision numeric"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on factorization contradiction under precision scale"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "ci_invariant_under_precision": true,
+    "z3_factorization_holds_unsat": true
+  },
+  "negative": {
+    "drop_blanket_gap_grows": true,
+    "drop_precision_no_band": true
+  },
+  "boundary": {
+    "pi_large_ci_still_holds": true
+  },
+  "PASS": true
+}

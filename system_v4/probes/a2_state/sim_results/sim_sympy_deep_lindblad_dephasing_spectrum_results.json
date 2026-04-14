@@ -1,0 +1,103 @@
+{
+  "name": "sim_sympy_deep_lindblad_dephasing_spectrum",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not used; this sim is symbolic"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Closed-form Lindbladian eigenvalues load-bear the admissibility boundary claim: lambda_coh_real = -2 gamma_phi - gamma_1/2, zero only at origin in the nonnegative cone. Numerical spectrum could not prove the exact boundary locus or the degeneracy."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "available; not needed for symbolic spectrum"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_claim": "Coherence mode |0><1| is excluded as a persistent admissible candidate wherever lambda_coh_real(gamma_phi, gamma_1) < 0; the closed-form expression -2*gamma_phi - gamma_1/2 identifies the admissibility boundary as the single point gamma_phi=gamma_1=0 within the nonnegative parameter cone.",
+  "positive": {
+    "P1_total_multiplicity_is_4": true,
+    "P2_zero_eigenvalue_exists": true,
+    "P3_lambda_coh_real_matches_closed_form": true,
+    "P3_expected": "-gamma_1/2 - 2*gamma_phi",
+    "P3_derived": "-gamma_1/2 - 2*gamma_phi",
+    "P4_free_evolution_spectrum": true
+  },
+  "negative": {
+    "N1_lambda_coh_real_never_positive": true,
+    "N2_wrong_form_rejected": true,
+    "N3_no_damping_drops_gamma_1": true
+  },
+  "boundary": {
+    "B1_boundary_at_origin": true,
+    "B2_zero_eigenvalue_degeneracy_is_2": true,
+    "B3_dephasing_derivative": "-2",
+    "B3_dephasing_derivative_is_minus_2": true,
+    "B4_T2_rate_is_2_gamma_phi": true
+  },
+  "status": "PASS",
+  "bool_test_count": 11
+}

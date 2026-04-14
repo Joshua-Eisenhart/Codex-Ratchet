@@ -1,0 +1,40 @@
+{
+  "name": "sim_fep_engine_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "gradient sign identifies descent direction"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "step cannot expand L1 distance => Xi monotone"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory + correlation"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "coupling_positive_correlation": true,
+    "F_descends": "True",
+    "Xi_ascends": "True",
+    "sympy_gradient_sign_check": true,
+    "z3_step_shrinks_L1": true
+  },
+  "negative": {
+    "decoupled_weaker_correlation": true
+  },
+  "boundary": {
+    "flat_trajectory_when_matched": "True"
+  },
+  "PASS": true
+}

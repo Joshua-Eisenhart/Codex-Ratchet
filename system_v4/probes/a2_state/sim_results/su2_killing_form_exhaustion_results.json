@@ -1,0 +1,184 @@
+{
+  "name": "sim_su2_killing_form_exhaustion",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical cross-check of Chevalley-Serre relations; supportive"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: no 5th root space eigenvalue in sl(2,C); also used for gl(2,C) center exclusion (N2)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Killing form and root space computations"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_killing_form_negative_definite": {
+      "killing_values": {
+        "i*sigma_x": "-8",
+        "i*sigma_y": "-8",
+        "i*sigma_z": "-8"
+      },
+      "expected_per_generator": "-8",
+      "killing_form_negative_definite": true,
+      "pass": true
+    },
+    "P2_chevalley_serre_relations": {
+      "[H,E]-2E_is_zero": true,
+      "[H,F]+2F_is_zero": true,
+      "[E,F]-H_is_zero": true,
+      "chevalley_serre_relations_verified": true,
+      "pass": true
+    },
+    "P3_root_space_exhaustion": {
+      "decomposition_exact": true,
+      "killing_form_BHH": "8",
+      "killing_form_BEF": "4",
+      "killing_form_BFE": "4",
+      "basis_dimension": 3,
+      "spans_all_traceless_2x2": true,
+      "pass": true
+    },
+    "P4_topology_classification_via_root_space": {
+      "sigma_z_cartan_eigenval_0": true,
+      "sigma_plus_positive_root_eigenval_plus2": true,
+      "sigma_minus_negative_root_eigenval_minus2": true,
+      "sigma_x_not_ad_eigenvector": true,
+      "topology_map": {
+        "Si": "Cartan_h",
+        "Ne": "generic_su2",
+        "Se": "positive_root_g+",
+        "Ni": "negative_root_g-"
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_no_5th_root_space_z3_unsat": {
+      "z3_result": "unsat",
+      "claim": "no 5th ad(H) eigenvalue exists in sl(2,C)",
+      "expected": "unsat",
+      "pass": true
+    },
+    "N2_gl2C_center_excluded_from_sl2C": {
+      "[H,I]_is_zero": true,
+      "Tr(I)": "2",
+      "Tr(H)": "0",
+      "I_not_traceless": true,
+      "H_is_traceless": true,
+      "conclusion": "I commutes with H (eigenval 0) but is NOT in sl(2,C) \u2014 center of gl(2,C) is excluded by traceless requirement",
+      "z3_identity_traceless_claim": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_zero_operator_no_topology_type": {
+      "[H,0]_is_zero": true,
+      "killing_form_B(0,0)": "0",
+      "zero_has_no_type": true,
+      "conclusion": "Zero operator satisfies [H,0]=0 (looks Cartan) but has zero norm \u2014 it is the trivial boundary of all root spaces, not a member of any",
+      "pass": true
+    },
+    "B2_real_su2_vs_complex_sl2C": {
+      "sigma_plus_is_not_hermitian": true,
+      "sigma_minus_is_not_hermitian": true,
+      "sigma_x_is_hermitian": true,
+      "sigma_y_is_hermitian": true,
+      "conclusion": "Lindblad operators (Se/Ni types) live in sl(2,C) complexification, not in real su(2). The classification requires the complexification.",
+      "pass": true
+    },
+    "B3_pytorch_numerical_chevalley_serre": {
+      "pytorch_HE_residual": 0.0,
+      "pytorch_HF_residual": 0.0,
+      "pytorch_EF_residual": 0.0,
+      "chevalley_serre_numerical_pass": true,
+      "pass": true
+    }
+  },
+  "killing_form_result": {
+    "killing_form_negative_definite": true,
+    "root_space_decomposition": {
+      "Cartan": "sigma_z",
+      "positive_root": "sigma_plus",
+      "negative_root": "sigma_minus"
+    },
+    "chevalley_serre_relations_verified": true,
+    "exhaustion_n1_z3_unsat": true,
+    "topology_map": {
+      "Si": "Cartan_h",
+      "Ne": "generic_su2",
+      "Se": "positive_root_g+",
+      "Ni": "negative_root_g-"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "note": "Algebraic certificate: sl(2,C) root space decomposition is exhaustive. The four topology types (Si/Ne/Se/Ni) correspond exactly to Cartan subalgebra + positive/negative root spaces + generic su(2) element. z3 UNSAT confirms no 5th ad(H) eigenvalue exists."
+  }
+}

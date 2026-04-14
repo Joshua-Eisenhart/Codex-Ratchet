@@ -1,0 +1,37 @@
+{
+  "name": "strong_subadditivity_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Shannon entropy on marginals"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "SSA_nonneg_on_random_joints": true,
+    "mean_gap_positive": true
+  },
+  "negative": {
+    "real_SSA_nonneg": true,
+    "wrong_marginal_pattern_not_guaranteed_nonneg": true,
+    "fake_quantity_not_equal_to_SSA": true
+  },
+  "boundary": {
+    "markov_chain_saturates_SSA": true,
+    "product_joint_saturates_SSA": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Classical SSA is elementary: I(A;C|B) is an expected KL divergence over B and therefore nonneg by Gibbs. The quantum analog (Lieb-Ruskai) requires operator-convexity of x log x and is the nontrivial backbone of quantum information theory. The baseline cannot reveal the non-monotone, basis-dependent quantum conditional mutual information, nor detect approximate-Markov-chain failure modes (Fawzi-Renner recovery map), because the very notion of a conditional state sigma_{AC|B} that recovers ABC under a local map on B does not arise for commuting classical observables."
+}

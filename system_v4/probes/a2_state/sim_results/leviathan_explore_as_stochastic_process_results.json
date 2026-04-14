@@ -1,0 +1,41 @@
+{
+  "name": "leviathan_explore_as_stochastic_process",
+  "framing_assumption": "group emergence/collapse = Markov chain; stationary dist = long-run regime",
+  "blind_spot": "memoryless; no regime shifts",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "stationary via eigen-decomp"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "pi": [
+      0.37288135593220373,
+      0.3559322033898303,
+      0.271186440677966
+    ],
+    "entropy": 1.0894132960767138,
+    "pass_diverse": true
+  },
+  "negative": {
+    "pi": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "pass_absorbing": "True"
+  },
+  "boundary": {
+    "pi": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "pass": "True"
+  },
+  "classification": "classical_baseline"
+}

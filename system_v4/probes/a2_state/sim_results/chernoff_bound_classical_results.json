@@ -1,0 +1,100 @@
+{
+  "name": "chernoff_bound_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Chernoff exponent C(p,q) = -min_s log sum p^s q^(1-s) assumes commuting distributions on the same sample space. Quantum Chernoff bound -log min_s tr(rho^s sigma^(1-s)) requires noncommuting operator powers and cannot be reduced to pointwise probability ratios when [rho, sigma] != 0. This classical substrate captures diagonal cases only; it cannot encode interference in off-diagonal hypothesis tests.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check of classical Chernoff exponent with torch tensor reductions"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identical_zero": true,
+    "symmetric_positive": "True",
+    "symmetry": true,
+    "bhattacharyya_bound": "True"
+  },
+  "negative": {
+    "orthogonal_infinite": true,
+    "not_identical_positive": true
+  },
+  "boundary": {
+    "small_perturbation_nonneg": true,
+    "small_perturbation_small": true,
+    "highdim_finite_positive": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

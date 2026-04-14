@@ -1,0 +1,140 @@
+{
+  "name": "qit_weyl_geometry_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted open-vs-strict Weyl/Hopf translation lane built from the open composed geometry stack and the strict finite-state geometry companion. It is a comparison surface, not canonical owner math.",
+  "lego_ids": [
+    "weyl_hopf_pauli_composed_stack",
+    "qit_weyl_geometry_companion"
+  ],
+  "primary_lego_ids": [
+    "weyl_hopf_pauli_composed_stack"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "open_all_pass": true,
+      "pass": true
+    },
+    "strict_lane_is_clean": {
+      "strict_all_pass": true,
+      "pass": true
+    },
+    "translation_gap_is_bounded": {
+      "stack_error_gap": 3.314329501456529e-16,
+      "transport_error_gap": -2.220446049250313e-16,
+      "basis_change_gap": -3.296783224832479e-20,
+      "pass": true
+    }
+  },
+  "negative": {
+    "promoted_lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_and_strict_are_not_identical": {
+      "stack_error_gap": 3.314329501456529e-16,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_row_id": "weyl_hopf_pauli_composed_stack",
+    "strict_row_id": "qit_weyl_geometry_companion",
+    "open_sample_count": 192,
+    "strict_sample_count": 24,
+    "open_max_stack_error": 1.129514239719272e-16,
+    "strict_max_stack_error": 4.443843741175801e-16,
+    "open_max_transport_error": 2.7755575615628914e-16,
+    "strict_max_transport_error": 5.551115123125783e-17,
+    "strict_max_transport_roundtrip_error": 5.551115123125783e-17,
+    "strict_max_basis_change_covariance_error": 2.220446049250313e-16,
+    "stack_error_gap": 3.314329501456529e-16,
+    "transport_error_gap": -2.220446049250313e-16,
+    "basis_change_gap": -3.296783224832479e-20,
+    "overlap_gap": 0.0,
+    "strict_reference_file": "weyl_hopf_pauli_composed_stack_results.json",
+    "strict_reference_stack_gap": 3.314329501456529e-16,
+    "open_stack_reference_max_stack_error": 1.129514239719272e-16,
+    "open_stack_reference_max_transport_error": 2.7755575615628914e-16,
+    "scope_note": "Open-vs-strict translation lane for the top companion-ready Weyl/Hopf geometry row. It compares the open composed stack against the strict finite-state companion and keeps the gap explicit and bounded."
+  }
+}

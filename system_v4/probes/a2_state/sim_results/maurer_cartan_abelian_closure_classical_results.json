@@ -1,0 +1,101 @@
+{
+  "name": "maurer_cartan_abelian_closure_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor evaluation of d(omega) along sampled path"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "abelian_closure_a": true,
+    "abelian_bracket_zero": true,
+    "mc_equation_reduces": true,
+    "bracket_zero_torch": true
+  },
+  "negative": {
+    "nonzero_bracket_detected": true,
+    "noise_nonzero_grad": true
+  },
+  "boundary": {
+    "constant_path_zero_omega": true
+  },
+  "divergence_log": [
+    "Abelian MC closure trivially; nonabelian curvature deferred.",
+    "Classical differential geometry only; no Cl(3) rotor form tested."
+  ],
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

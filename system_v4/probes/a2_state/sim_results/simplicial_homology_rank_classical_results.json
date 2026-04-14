@@ -1,0 +1,139 @@
+{
+  "name": "simplicial_homology_rank_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.matrix_rank cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical rank"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "explicit matrices"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "raw boundaries"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Computed homology over R; integer torsion not detected (acceptable for listed test complexes).",
+    "Rejected computing via explicit cycle bases; rank arithmetic is equivalent and faster.",
+    "Selected S^2 (octahedron), circle (triangle boundary), and Klein-bottle-free orientable cases to avoid mod-2 subtlety."
+  ],
+  "positive": {
+    "sphere_S2_betti": {
+      "b": {
+        "0": "1",
+        "1": "0",
+        "2": "1"
+      },
+      "pass": "True"
+    },
+    "circle_S1_betti": {
+      "b": {
+        "0": "1",
+        "1": "1"
+      },
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "two_disks_b0_eq_2": {
+      "b": {
+        "0": "2",
+        "1": "0",
+        "2": "0"
+      },
+      "pass": true
+    },
+    "filling_kills_h1": {
+      "b": {
+        "0": "1",
+        "1": "0",
+        "2": "0"
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "point": {
+      "b": {
+        "0": 1
+      },
+      "pass": true
+    },
+    "single_edge": {
+      "b": {
+        "0": "1",
+        "1": "0"
+      },
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -91,7 +91,7 @@
       "L5_topologies": "KILLED",
       "L6_algebra": "KILLED",
       "L7_ordering": "KILLED",
-      "L9_goldilocks": "KILLED",
+      "L9_goldilocks": "SURVIVED",
       "L10_dual_stack": "KILLED",
       "L12_entanglement": "KILLED",
       "L13_bridge": "KILLED",
@@ -148,23 +148,23 @@
       "L9_goldilocks": {
         "normal_conc_range": [
           0.0,
-          0.17279535939164697
+          0.0
         ],
         "commuting_conc_range": [
           0.0,
           0.0
         ],
-        "normal_variation": 0.17279535939164697,
+        "normal_variation": 0.0,
         "commuting_variation": 0.0,
         "explanation": "Commuting ops cannot build entanglement; no Goldilocks window exists"
       },
       "L10_dual_stack": {
-        "interleave_diff_normal": 0.624502636461435,
+        "interleave_diff_normal": 0.16362792886620953,
         "interleave_diff_commuting": 0.0,
         "explanation": "Interleaving is irrelevant when all ops commute"
       },
       "L12_entanglement": {
-        "concurrence_normal": 0.038420910956797824,
+        "concurrence_normal": 0.40585777056276295,
         "concurrence_commuting": 7.257859262506223e-06,
         "explanation": "Z-rotation cannot mix populations -> no entanglement generation"
       },
@@ -225,32 +225,32 @@
       "ic_3q": 0.6471561
     },
     "no_Ti": {
-      "concurrence_2q": 0.0417513798255138,
-      "entropy_2q": 0.8762456273392968,
+      "concurrence_2q": 0.0,
+      "entropy_2q": 0.9420238659211191,
       "ic_3q": 0.6471561,
-      "conc_ratio_vs_full": 41751379825513.8,
-      "status": "SURVIVED"
+      "conc_ratio_vs_full": 0.0,
+      "status": "KILLED"
     },
     "no_Fe": {
       "concurrence_2q": 0.0,
-      "entropy_2q": 0.992694744703536,
+      "entropy_2q": 0.9997140151729432,
       "ic_3q": 0.0,
       "conc_ratio_vs_full": 0.0,
       "status": "KILLED"
     },
     "no_Te": {
       "concurrence_2q": 0.0,
-      "entropy_2q": 0.9675120655127734,
+      "entropy_2q": 0.9809558714279081,
       "ic_3q": 0.99938488,
       "conc_ratio_vs_full": 0.0,
       "status": "KILLED"
     },
     "no_Fi": {
-      "concurrence_2q": 0.07165614965596377,
-      "entropy_2q": 0.9972353128059824,
+      "concurrence_2q": 0.0,
+      "entropy_2q": 0.9935235485365446,
       "ic_3q": 0.6471561,
-      "conc_ratio_vs_full": 71656149655963.77,
-      "status": "SURVIVED"
+      "conc_ratio_vs_full": 0.0,
+      "status": "KILLED"
     }
   },
   "z3_supplementary": {
@@ -278,7 +278,6 @@
       "L5_topologies",
       "L6_algebra",
       "L7_ordering",
-      "L9_goldilocks",
       "L10_dual_stack",
       "L12_entanglement",
       "L13_bridge",
@@ -293,7 +292,6 @@
       "L5_topologies",
       "L6_algebra",
       "L7_ordering",
-      "L9_goldilocks",
       "L10_dual_stack",
       "L12_entanglement",
       "L13_bridge",
@@ -302,10 +300,8 @@
       "L2_carrier (torus radii lose uniqueness in higher dim)",
       "ALL fences (any bound K evadable)"
     ],
-    "most_critical_operator": "Fe",
+    "most_critical_operator": "Ti",
     "verdict": "CONFIRMED: Breaking either root constraint (F01 or N01) at layer 0 causes cascading failure through ALL higher layers. N01 (non-commutativity) is the more structurally devastating violation: it kills the algebra, ordering, chirality, entanglement, and bridge. F01 (finiteness) makes all fences meaningless. Both together produce complete collapse."
   },
-  "timestamp": "2026-04-06",
-  "classification": "supporting",
-  "classification_note": "Supporting foundational or negative-battery probe for root constraint ablation. It provides bounded controller/reference evidence for constraint behavior, failure boundaries, or lower-ladder structure, but it is not promoted here as a canonical owner surface, bridge/cut closure, or final doctrine claim."
+  "timestamp": "2026-04-14"
 }

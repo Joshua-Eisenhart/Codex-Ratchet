@@ -1,0 +1,125 @@
+{
+  "name": "bottleneck_distance_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor of pairwise L-inf distances cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "inline matching"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "N/A"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "diagram-level"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "would shortcut baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Implemented via binary search + bipartite feasibility; rejected LP formulation as over-heavy.",
+    "Diagonal-matching modeled as per-point phantom nodes with cost (d-b)/2.",
+    "Used scipy not required; plain Hungarian-style greedy augmentation is adequate for N<=20 points."
+  ],
+  "positive": {
+    "identical_is_zero": {
+      "d": 0.0,
+      "pass": true
+    },
+    "shift_equals_delta": {
+      "d": 0.09999999999999998,
+      "expected": 0.1,
+      "pass": true
+    },
+    "drop_matches_diagonal": {
+      "d": 0.5,
+      "expected": 0.5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "far_pairs_use_diagonal": {
+      "d": 1.0,
+      "pass": true
+    },
+    "empty_vs_one_bar": {
+      "d": 2.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "both_empty": {
+      "d": 0.0,
+      "pass": true
+    },
+    "single_identical": {
+      "d": 0.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

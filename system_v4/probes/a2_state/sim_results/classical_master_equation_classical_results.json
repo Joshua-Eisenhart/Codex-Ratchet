@@ -1,0 +1,100 @@
+{
+  "name": "classical_master_equation_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Pauli master equation tracks only diagonal populations p_i(t) on a commuting energy basis. It discards off-diagonal coherences, so coherent oscillations, dephasing-induced transport, and non-Markovian memory effects present in the Lindblad / Redfield generalizations are absent. The canonical nonclassical object is a CPTP semigroup acting on density operators.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch matrix-exp cross-check of propagator"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "stationary_db_small": "True",
+    "H_theorem_monotone": true,
+    "converges_to_pi": "True",
+    "torch_matches_scipy": true
+  },
+  "negative": {
+    "wrong_pi_not_stationary": "True",
+    "cycle_current_nonzero": "True"
+  },
+  "boundary": {
+    "low_T_ground_state": "True",
+    "infinite_T_uniform": "True",
+    "single_state_trivial": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

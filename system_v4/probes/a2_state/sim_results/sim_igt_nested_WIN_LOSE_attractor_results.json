@@ -1,0 +1,133 @@
+{
+  "name": "sim_igt_nested_WIN_LOSE_attractor",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "sequence is scalar, torch unnecessary"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "parity proof: odd count of \u00b11 cannot sum to even target"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers the boolean frame"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic total shows attractor depends on sum, not order"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no group action"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hyperedges"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "short_losses_inside_WIN": {
+      "seq": [
+        -1,
+        -1,
+        1,
+        1,
+        1
+      ],
+      "label": "WIN",
+      "ok": true
+    },
+    "short_wins_inside_LOSE": {
+      "seq": [
+        1,
+        1,
+        -1,
+        -1,
+        -1
+      ],
+      "label": "LOSE",
+      "ok": true
+    },
+    "sympy_sum_invariant": {
+      "expr": "x0 + x1 + x2 + x3 + x4",
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "prefix_rule_wrong": {
+      "naive": "WIN",
+      "true": "LOSE",
+      "ok": true
+    },
+    "z3_parity_unsat": {
+      "unsat": true,
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "empty_is_indistinguishable": {
+      "label": "INDISTINGUISHABLE",
+      "ok": true
+    },
+    "exact_tie_len4": {
+      "label": "INDISTINGUISHABLE",
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

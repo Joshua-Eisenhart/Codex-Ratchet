@@ -1,0 +1,32 @@
+{
+  "name": "sim_fep_pair_free_energy_x_markov_blanket",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL + CI-gap evaluation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on Gibbs lb in the paired admissibility region"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "both_admitted_F_below_tau": true,
+    "z3_gibbs_lb_unsat_under_pair": true
+  },
+  "negative": {
+    "drop_blanket_breaks_pair": true,
+    "drop_F_bound_breaks_pair": true
+  },
+  "boundary": {
+    "degenerate_blanket_pair_safe": true
+  },
+  "PASS": true
+}

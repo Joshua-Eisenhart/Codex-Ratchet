@@ -1,0 +1,151 @@
+{
+  "name": "pca_variance_explained",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: torch.linalg.eigvalsh re-run to confirm eigenvalues match scipy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric PCA baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "trace_equals_sum_eigs": {
+      "trace": 4.9669826896657,
+      "sum_eigs": 4.966982689665701,
+      "pass": true
+    },
+    "variance_fractions_k1": {
+      "explained": 0.23275109892327253,
+      "residual": 0.7672489010767274,
+      "pass": true
+    },
+    "variance_fractions_k2": {
+      "explained": 0.4573423106298022,
+      "residual": 0.5426576893701978,
+      "pass": true
+    },
+    "variance_fractions_k3": {
+      "explained": 0.6524499613556498,
+      "residual": 0.3475500386443502,
+      "pass": true
+    },
+    "variance_fractions_k4": {
+      "explained": 0.833501858819144,
+      "residual": 0.16649814118085607,
+      "pass": true
+    },
+    "eigs_nonnegative": {
+      "min_eig": 0.8269933851068281,
+      "pass": true
+    },
+    "torch_agrees": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "tail_not_head_fraction": {
+      "wrong_explained": 0.4558104844654412,
+      "true_explained": 0.5441895155345589,
+      "pass": true
+    },
+    "nsd_matrix_caught": {
+      "min_eig": -1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rank_one_all_variance_in_first": {
+      "w0": 1.9999999999999993,
+      "rest": -1.9271676452791333e-16,
+      "pass": true
+    },
+    "isotropic_equal_fractions": {
+      "fractions": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 7,
+    "n_negative": 2,
+    "n_boundary": 2
+  },
+  "divergence_log": "Classical PCA variance-explained uses a real symmetric sample-covariance matrix with non-negative eigenvalues and commuting directions. Lost relative to the nonclassical/qPCA shell: density-matrix coherences and relative phases between principal directions, noncommuting probe covariances (uncertainty floor), and distinguishability-constraint-admissible subspaces whose variance decomposition cannot be identified with a classical orthogonal direct sum."
+}

@@ -1,7 +1,7 @@
 {
   "name": "E3NN Equivariant Qubits",
   "token": "E_E3NN_EQUIVARIANT_QUBITS",
-  "timestamp": "2026-04-08T21:33:32.411859+00:00",
+  "timestamp": "2026-04-14T10:18:14.540554+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -29,9 +29,9 @@
       "reason": "not needed for this probe"
     },
     "clifford": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+      "reason": "import verified; not used in computation"
     },
     "geomstats": {
       "tried": false,
@@ -63,20 +63,6 @@
       "used": false,
       "reason": "not needed for this probe"
     }
-  },
-  "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": "load_bearing",
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
   },
   "positive": {
     "P1_depolarizing_equivariance": {

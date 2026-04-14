@@ -1,0 +1,117 @@
+{
+  "name": "sim_axiom_f01_finite_hilbert_dim",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: constructs rho on C^2, checks trace=1, hermiticity, PSD"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: a finite-dim basis of size d=2 is enumerable"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "traces": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "hermitian": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "psd": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "basis_sat": "sat",
+    "pass": true
+  },
+  "negative": {
+    "bloch_norm": 1.5588456392288208,
+    "psd": false,
+    "min_eig": -0.2794228427583402,
+    "pass": true
+  },
+  "boundary": {
+    "eigs": [
+      0.0,
+      1.0
+    ],
+    "rank1_pure": true,
+    "pass": true
+  },
+  "pass": true
+}

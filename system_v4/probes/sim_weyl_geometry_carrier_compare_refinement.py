@@ -14,10 +14,10 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Controller-facing refinement of the Weyl/Hopf carrier-compare row. It "
     "keeps the open carrier comparison bounded against the strict companion "

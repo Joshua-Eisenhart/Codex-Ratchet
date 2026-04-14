@@ -1,0 +1,48 @@
+{
+  "name": "le_cam_deficiency_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Le Cam deficiency between two probability experiments drops to a minimax over stochastic matrices. Quantum deficiency (Matsumoto / Buscemi) requires CPTP maps between density matrices with operator-convex constraints. This baseline elides CP and complete positivity.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix operations and TV"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "linprog for LP subroutine"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT proof"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "scipy": "load_bearing",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "identical_deficiency_zero": true,
+    "sufficient_reduces_zero": true
+  },
+  "negative": {
+    "trivial_to_distinguishing_positive": true
+  },
+  "boundary": {
+    "identity_reduction": true,
+    "tv_bounded": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

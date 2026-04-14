@@ -1,0 +1,101 @@
+{
+  "name": "triple_nested_hypersphere_triple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check of chord distances on tensor copy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in classical baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility SAT encoding in baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT closure in baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric checks only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor algebra in baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manual chord distance"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant features"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "torch_reference_chord": 1.4142135381698608,
+    "inclusion_chord_commutes": true,
+    "max_abs_diff": 0.0
+  },
+  "negative": {
+    "nonisometric_breaks_commutation": true
+  },
+  "boundary": {
+    "self_chord_zero": true,
+    "antipodal_chord_two": true
+  },
+  "divergence_log": [
+    "classical baseline treats S1 subset S2 subset S3 as flat chord embedding; loses Hopf fibration structure (S3 -> S2 with S1 fiber) that is load-bearing in the nonclassical program",
+    "no holonomy / Berry-phase around the triple nesting -- classical chord ignores bundle twist",
+    "no probe-relative distinguishability: classical distance is absolute, not constraint-admissible"
+  ],
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

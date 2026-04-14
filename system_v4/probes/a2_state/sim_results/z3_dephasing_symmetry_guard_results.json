@@ -1,16 +1,16 @@
 {
   "name": "z3_dephasing_symmetry_guard",
-  "timestamp": "2026-04-08T10:32:49.553474+00:00",
+  "timestamp": "2026-04-14T10:18:53.836112+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no autograd layer in this SMT proof"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no graph layer here"
     },
     "z3": {
       "tried": true,
@@ -20,47 +20,47 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- z3 alone provides the UNSAT verdicts"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- symbolic constants supplied directly to z3"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no geometric algebra layer here"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no manifold geometry layer here"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no equivariant network layer here"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no dependency graph here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no hypergraph layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not attempted; not applicable to this sim family"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -84,7 +84,7 @@
       "z3_result": "unsat",
       "expected": "unsat",
       "status": "PASS",
-      "elapsed_s": 0.0249,
+      "elapsed_s": 0.0047,
       "interpretation": "UNSAT: no p exists where suppression magnitudes differ -> symmetry proven"
     },
     "proof2_negativity_boundary": {
@@ -93,7 +93,7 @@
       "z3_result": "unsat",
       "expected": "unsat",
       "status": "PASS",
-      "elapsed_s": 0.0075,
+      "elapsed_s": 0.001,
       "log2_nats": 0.6931471805599453,
       "interpretation": "UNSAT: no configuration achieves I_c < -log(2) -> lower bound proven"
     },
@@ -103,7 +103,7 @@
       "z3_result": "unsat",
       "expected": "unsat",
       "status": "PASS",
-      "elapsed_s": 0.0008,
+      "elapsed_s": 0.0004,
       "interpretation": "UNSAT: disconnected relay cannot create partition advantage -> relay is load-bearing"
     }
   },
@@ -149,7 +149,7 @@
     "proof2_negativity_boundary": "PASS",
     "proof3_relay_load_bearing": "PASS",
     "z3_load_bearing": true,
-    "total_elapsed_s": 0.0437
+    "total_elapsed_s": 0.0108
   },
   "classification": "canonical"
 }

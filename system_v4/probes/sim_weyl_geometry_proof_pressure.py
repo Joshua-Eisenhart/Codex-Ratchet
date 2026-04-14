@@ -18,10 +18,10 @@ import pathlib
 
 import rustworkx as rx
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Proof-pressure row for the Weyl/Hopf/Pauli geometry lane. It composes "
     "the protocol DAG, graph/proof bridge, composed stack, carrier array, "

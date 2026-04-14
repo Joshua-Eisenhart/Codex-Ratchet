@@ -1,0 +1,80 @@
+{
+  "name": "sim_pagerank_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check PageRank vector via torch.linalg eigendecomposition"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive"
+  },
+  "divergence_log": [
+    "negative-case: raw adjacency isn't stochastic as expected",
+    "boundary: dangling handled via uniform teleport row"
+  ],
+  "positive": {
+    "cycle3_uniform": {
+      "pr": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "sum": 1.0,
+      "uniform": true,
+      "pass": true
+    },
+    "star_center_highest": {
+      "pr": [
+        0.47567567569792446,
+        0.1310810810755189,
+        0.1310810810755189,
+        0.1310810810755189,
+        0.1310810810755189
+      ],
+      "center_max": true,
+      "pass": true
+    },
+    "torch_eig_agrees": {
+      "diff": 4.44974335156445e-11,
+      "pass": true
+    }
+  },
+  "negative": {
+    "adj_not_row_stochastic": {
+      "row_sums": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "pass": true
+    },
+    "empty_graph_nonuniform_fails": {
+      "uniform": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "n1": {
+      "pr": [
+        1.0
+      ],
+      "pass": true
+    },
+    "dangling": {
+      "pr": [
+        0.1844167819178897,
+        0.3411710465671739,
+        0.4744121715149363
+      ],
+      "sum": 0.9999999999999999,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

@@ -1,0 +1,50 @@
+{
+  "name": "leviathan_human_potential_as_wealth_carrier",
+  "classification": "classical_baseline",
+  "positive": {
+    "uniform_potential_entropy": 1.3862943611198906,
+    "uniform_admissible": true,
+    "skewed_potential_entropy": 1.2798542258336676,
+    "skewed_admissible": true,
+    "wealth_symbolic": "p0*v0 + p1*v1 + p2*v2 + p3*v3"
+  },
+  "negative": {
+    "collapsed_entropy": -0.0,
+    "collapsed_fails_admissibility": true,
+    "z3_collapsed_admissible_check": "unsat",
+    "z3_excludes_collapse": true
+  },
+  "boundary": {
+    "near_equal_entropy": 0.6931471805599453,
+    "near_degenerate_entropy": 2.172326580816448e-08,
+    "separation": true
+  },
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic wealth carrier definition"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "exclude collapsed-potential as admissible wealth carrier"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "networkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "xgi": null,
+    "networkx": null
+  }
+}

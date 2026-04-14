@@ -1,0 +1,241 @@
+{
+  "name": "topology_entropy_dynamics",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical purity cross-check for unitary evolution (Si/Ne)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: tilted axis H cannot generate Si-type latitude-circle orbits"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Lyapunov derivative dV/dt=-gamma*(1-rho_00) for Se; dW/dt for Ni; orbit-axis symbolic analysis"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_lyapunov_Se": {
+      "sympy_dV_dt_formula": {
+        "claim": "dV/dt = -gamma*(1 - rho_00) for Se amplitude damping",
+        "value": "gamma*(rho_00 - 1)",
+        "form_correct": true,
+        "pass": true
+      },
+      "sympy_strict_negativity": {
+        "claim": "dV/dt < 0 at rho_00 = 0.5 (non-fixed-point)",
+        "value": "-gamma/2",
+        "pass": true
+      },
+      "sympy_fixed_point_dV_zero": {
+        "claim": "dV/dt = 0 at |0><0| (the Se fixed point)",
+        "value": "0",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P2_lyapunov_Ni": {
+      "sympy_dW_dt_formula": {
+        "claim": "dW/dt = -gamma * rho_00 for Ni amplitude pumping",
+        "value": "-gamma*rho_00",
+        "form_correct": true,
+        "pass": true
+      },
+      "sympy_strict_negativity": {
+        "claim": "dW/dt < 0 at rho_00 = 0.5 (non-fixed-point)",
+        "value": "-gamma/2",
+        "pass": true
+      },
+      "sympy_fixed_point_dW_zero": {
+        "claim": "dW/dt = 0 at |1><1| (the Ni fixed point, rho_00 = 0)",
+        "value": "0",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P3_purity_preserved_unitary": {
+      "Si_purity_preserved": {
+        "claim": "Purity invariant under H=sigma_z (Si) for 10 random states",
+        "max_delta": 1.177502539917441e-12,
+        "pass": true
+      },
+      "Ne_purity_preserved": {
+        "claim": "Purity invariant under H=sigma_x (Ne) for 10 random states",
+        "max_delta": 1.3091749906379846e-12,
+        "pass": true
+      },
+      "pytorch_si_purity_crosscheck": {
+        "claim": "Torch Euler cross-check: purity preserved under Si",
+        "delta": 0.000997553247498284,
+        "pass": true
+      },
+      "pass": true
+    },
+    "P4_purity_not_conserved_dissipative": {
+      "Se_purity_not_conserved": {
+        "claim": "Purity changes under Se dissipation (not conserved)",
+        "purity_changes": [
+          -0.3639857271693795,
+          -0.302407355021888,
+          -0.3572652079876165,
+          -0.34192316779415366,
+          -0.3439436932354185,
+          -0.25839364873729975,
+          -0.249714776706362,
+          -0.1285147443860224,
+          -0.36576433119263496,
+          -0.19711845369813052
+        ],
+        "pass": true
+      },
+      "Ni_purity_not_conserved": {
+        "claim": "Purity changes under Ni dissipation (not conserved)",
+        "purity_changes": [
+          -0.30188200769445384,
+          -0.3200417615872737,
+          -0.24804532660918954,
+          -0.3563576302278272,
+          -0.24401650317111956,
+          -0.12375866018112258,
+          -0.18543514976632636,
+          -0.289749332385669,
+          -0.33664137073060174,
+          -0.3765525560370563
+        ],
+        "pass": true
+      },
+      "pass": true
+    },
+    "P5_SiNe_coupling_orbit_type": {
+      "sympy_tilted_H_eigenvalues": {
+        "claim": "H = (1/sqrt(2))*(sigma_z + sigma_x) has eigenvalues +/-1 (single-axis rotation)",
+        "eigenvalues": [
+          "-1",
+          "1"
+        ],
+        "pass": true
+      },
+      "numerical_z_oscillates": {
+        "claim": "z-component oscillates under tilted H (great circle, not latitude circle)",
+        "z_range": 0.9999612371479739,
+        "pass": true
+      },
+      "numerical_bloch_norm_preserved": {
+        "claim": "Bloch norm (purity) preserved under tilted unitary (confirms unitary type)",
+        "norm_range": 5.673531311423119e-09,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_no_fifth_orbit_type_z3_UNSAT": {
+      "z3_claim": "Encoding: a>0, b>0 (tilted H), commutator [H,sz]=0 (latitude-circle condition) => UNSAT",
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N2_entropy_not_monotone_amplitude_damping": {
+      "S_initial": 0.1985152433458726,
+      "S_final": 0.03871409826148414,
+      "claim": "Starting near |0><0| (fixed point), entropy does NOT increase under Se damping. Entropy is not a monotone. The correct statement is purity convergence toward fixed point.",
+      "entropy_did_not_increase": true,
+      "purity_initial": 0.9049999999999999,
+      "purity_final": 0.9872798475696474,
+      "purity_convergence": true,
+      "mixed_state_S_initial": 0.6931471805599453,
+      "mixed_state_S_final": 0.02254335411295803,
+      "entropy_decreases_from_mixed": true,
+      "interpretation": "Entropy is not monotone: decreases from maximally mixed, near-zero near fixed point. Purity convergence is the correct invariant.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_theta_zero_pure_Si": {
+      "claim": "theta=0: H=sigma_z, z-component preserved (Si-type latitude circles)",
+      "pass": true
+    },
+    "B2_theta_pi2_pure_Ne": {
+      "claim": "theta=pi/2: H=sigma_x, z oscillates full range (Ne-type great circles)",
+      "z_range": 1.999922474295948,
+      "pass": true
+    },
+    "B3_theta_pi4_tilted_great_circle": {
+      "claim": "theta=pi/4: tilted H, orbit is great circle. z oscillates (not fixed), Bloch norm preserved.",
+      "z_range": 0.9999612371479739,
+      "norm_range": 5.673531311423119e-09,
+      "pass": true
+    }
+  },
+  "summary": {
+    "pass_count": 10,
+    "fail_count": 0,
+    "total": 10,
+    "all_pass": true,
+    "lyapunov_result": "Se: dV/dt = -gamma*(1-rho_00) < 0 for all rho != |0><0|. Ni: dW/dt = -gamma*rho_00 < 0 for all rho != |1><1|. Both fixed points are globally attracting (Lyapunov stable).",
+    "entropy_monotonicity_clarification": "Von Neumann entropy is NOT monotonically increasing under amplitude damping. Near the pure fixed point entropy is already ~0 and stays ~0. From the maximally mixed state entropy DECREASES (convergence to pure fixed point). The correct invariant is: purity converges to 1 (toward the fixed-point pure state). Unitaries (Si/Ne) preserve purity exactly. Dissipative (Se/Ni) do not.",
+    "SiNe_orbit_type_finding": "H = cos(theta)*sigma_z + sin(theta)*sigma_x generates a rotation around the tilted axis n=(cos(theta), 0, sin(theta)). Orbits are great circles (Ne-type) for ALL theta != 0. Si-type (latitude circles, z preserved) occurs ONLY at theta=0 exactly. z3 UNSAT: assuming b>0 and [H, sigma_z]=0 is unsatisfiable. Tilted coupling does NOT create a 5th orbit type."
+  }
+}

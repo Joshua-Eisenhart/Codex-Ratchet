@@ -1,0 +1,210 @@
+{
+  "name": "weyl_hypergraph_follow_on",
+  "classification": "canonical",
+  "classification_note": "Controller-facing hypergraph follow-on row for the stabilized Weyl/Hopf stack. It keeps the multiway hypergraph family as the next extension target and preserves the distinction from pairwise or runtime-equivalence claims.",
+  "lego_ids": [
+    "weyl_geometry_multifamily_expansion",
+    "weyl_hopf_pauli_composed_stack",
+    "qit_weyl_geometry_companion",
+    "hypergraph_geometry",
+    "dual_hypergraph_geometry",
+    "xgi_shell_hypergraph",
+    "toponetx_hopf_crosscheck"
+  ],
+  "primary_lego_ids": [
+    "weyl_hopf_pauli_composed_stack",
+    "hypergraph_geometry",
+    "dual_hypergraph_geometry",
+    "xgi_shell_hypergraph",
+    "toponetx_hopf_crosscheck"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "weyl_anchor_rows_remain_pass_bearing": {
+      "pass": true,
+      "support_count": 4,
+      "score": 4.0
+    },
+    "hypergraph_family_is_pass_bearing": {
+      "pass": true,
+      "support_count": 4,
+      "score": 4.0
+    },
+    "multifamily_ranking_keeps_hypergraph_first": {
+      "best_family_id": "hypergraph_family",
+      "pass": true
+    },
+    "multiway_support_rows_are_explicitly_available": {
+      "hypergraph_support_count": 4,
+      "graph_support_count": 3,
+      "contact_support_count": 3,
+      "pass": true
+    }
+  },
+  "negative": {
+    "pairwise_shadow_is_not_the_same_as_the_multiway_family": {
+      "pairwise_shadow_gap": true,
+      "shell_rankings_differ_from_pairwise": true,
+      "pass": true
+    },
+    "follow_on_is_not_a_runtime_equivalence_claim": {
+      "scope_note": "This row ranks the next grounded geometry family beside the Weyl/Hopf anchor; it does not claim geometry-native runtime equivalence.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "hypergraph_support_rows_are_finite_and_connected": {
+      "hypergraph_all_pass": true,
+      "dual_all_pass": true,
+      "shell_all_pass": true,
+      "crosscheck_all_pass": true,
+      "pass": true
+    },
+    "crosscheck_topology_matches_a_torus_like_reference": {
+      "beta0": 1,
+      "beta1": 2,
+      "beta2": 1,
+      "chi": 0,
+      "pass": true
+    }
+  },
+  "family_rankings": [
+    {
+      "family_id": "hypergraph_family",
+      "score": 4.0,
+      "pass": true,
+      "supporting_rows": [
+        "hypergraph_geometry_results.json",
+        "dual_hypergraph_geometry_results.json",
+        "xgi_shell_hypergraph_results.json",
+        "toponetx_hopf_crosscheck_results.json"
+      ],
+      "support_count": 4,
+      "reason": "Multiway hypergraph family with dual lift and torus crosscheck support."
+    },
+    {
+      "family_id": "weyl_anchor_family",
+      "score": 4.0,
+      "pass": true,
+      "supporting_rows": [
+        "weyl_hopf_pauli_composed_stack_results.json",
+        "qit_weyl_geometry_companion_results.json",
+        "qit_weyl_geometry_translation_lane_results.json",
+        "qit_weyl_geometry_carrier_translation_lane_results.json"
+      ],
+      "support_count": 4,
+      "reason": "Stabilized Weyl/Hopf anchor rows remain the source of truth for extension work."
+    },
+    {
+      "family_id": "graph_family",
+      "score": 3.0,
+      "pass": true,
+      "supporting_rows": [
+        "weyl_geometry_multifamily_expansion_results.json"
+      ],
+      "support_count": 1,
+      "reason": "Lower-ranked routing surface used only as the adjacent controller comparison."
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "best_family": "hypergraph_family",
+    "best_family_score": 4.0,
+    "runner_up_family": "weyl_anchor_family",
+    "third_family": "graph_family",
+    "family_count": 3,
+    "weyl_anchor_support_count": 4,
+    "hypergraph_support_count": 4,
+    "hypergraph_node_count": 4,
+    "hypergraph_edge_count": 2,
+    "hypergraph_edge_sizes": [
+      2,
+      3
+    ],
+    "hypergraph_connected": true,
+    "hypergraph_multiway_load_bearing": true,
+    "hypergraph_shell_count": 8,
+    "hyperedge_count": 8,
+    "max_hyperedge_size": 3,
+    "torus_beta0": 1,
+    "torus_beta1": 2,
+    "torus_beta2": 1,
+    "torus_chi": 0,
+    "scope_note": "Hypergraph follow-on row for the Weyl/Hopf stack. It makes the multiway hypergraph family the next controller-usable extension path and keeps the pairwise shadow explicitly distinct."
+  }
+}

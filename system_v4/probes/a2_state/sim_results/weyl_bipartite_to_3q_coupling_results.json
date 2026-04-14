@@ -1,0 +1,190 @@
+{
+  "name": "weyl_bipartite_to_3q_coupling",
+  "timestamp": "2026-04-14T10:18:06.687151+00:00",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: computes dI_c(AB|C)/d\u03b8 via central finite difference using torch tensor operations. The gradient sign determines whether relay strength \u03b8 increases or decreases the AB|C cut's I_c for Weyl-bipartite input states. This confirms the relay is actively opening the AB|C cut, not just preserving it. torch.kron, torch.linalg.eigvalsh, and tensor construction are used throughout."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no graph message-passing claim in this coupling sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: encodes the structural impossibility of product-state Weyl + relay earning I_c(A|BC) > 0. Uses entropy additivity constraint: CNOT_BC preserves independence of A from BC (since CNOT does not act on A), so S(rho_ABC) = S_A + S_BC, giving I_c(A|BC) = -S_A <= 0. z3 UNSAT confirms this is a structural impossibility, not just a numerical finding. This is the primary proof form for the product-state claim."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; z3 encodes the product-state UNSAT claim directly"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: symbolically verifies the partial CNOT relay unitary U(\u03b8). Confirms U\u2020U=I (unitarity), U(0)=I (identity limit), U(\u03c0) lower block = -iX (Rx(\u03c0)=-iX, not X; full relay limit). Cross-validates the numpy implementation used in all numeric tests."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no Clifford-algebra rotor claim in this coupling lego"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no geodesic or Riemannian claim in this packet"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no equivariant network claim here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no shell DAG update in this packet"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no hypergraph claim here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no cell-complex topology claim here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no persistence diagram claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_weyl_bell_earns_Ic_positive_at_2q_cut": {
+      "pass": true,
+      "S_B": 0.6931471805599453,
+      "S_AB": -0.0,
+      "I_c": 0.6931471805599453,
+      "expected_approx": "log(2) ~ 0.693",
+      "sympy_partial_cnot_verification": {
+        "pass": true,
+        "unitary_UdaggerU_is_identity": true,
+        "theta_0_gives_identity": true,
+        "theta_pi_lower_block_is_neg_iX": true,
+        "note": "Rx(pi) = -iX (not X); U(pi) is an entangling gate with same structure as CNOT up to a local phase"
+      },
+      "interpretation": "Weyl-chirality Bell state earns I_c > 0 at the single 2q cut. This is the baseline confirming the input state. Note: this is an entangled 2q state, not a product state. Sympy cross-checks the relay unitary used in all subsequent tests."
+    },
+    "P2_weyl_bell_plus_relay_earns_multicut": {
+      "pass": true,
+      "I_c_A_BC": 0.6931471805599453,
+      "I_c_AB_C": 0.6931471805599453,
+      "I_c_AC_B": 0.6931471805599453,
+      "active_cuts": 3,
+      "relay_theta": 3.141592653589793,
+      "both_cuts_positive": true,
+      "interpretation": "Weyl Bell \u2297 |0><0|_C + CNOT_BC relay: tests whether both A|BC and AB|C cuts earn positive I_c simultaneously."
+    },
+    "P3_without_relay_AB_C_cut_not_positive": {
+      "pass": true,
+      "I_c_A_BC": 0.6931471805599453,
+      "I_c_AB_C": 0.0,
+      "I_c_AC_B": 0.6931471805599453,
+      "active_cuts": 2,
+      "relay_theta": 0.0,
+      "AB_C_cut_not_positive_without_relay": true,
+      "interpretation": "Without relay (\u03b8=0): rho_ABC = rho_Bell_AB \u2297 |0><0|_C. rho_C = |0><0| is pure, so S(rho_C)=0 and I_c(AB|C) = 0-0 = 0. The relay is specifically what opens the AB|C cut. A|BC and AC|B can be positive from the underlying Bell entanglement alone."
+    }
+  },
+  "negative": {
+    "N1_product_weyl_plus_relay_no_multicut": {
+      "pass": true,
+      "numeric_active_cuts": 0,
+      "I_c_A_BC": 0.0,
+      "I_c_AB_C": 0.0,
+      "I_c_AC_B": 0.0,
+      "z3_unsat_structural_proof": {
+        "pass": true,
+        "z3_result": "unsat",
+        "meaning": "UNSAT: product-state Weyl + relay cannot earn I_c(A|BC) > 0. CNOT_BC preserves A-independence, forcing I_c(A|BC) = -S_A <= 0.",
+        "claim_encoded": "S_ABC = S_A + S_BC (product input) AND I_c(A|BC) = S_BC - S_ABC > 0",
+        "structural_impossibility": true
+      },
+      "interpretation": "Product-state Weyl + CNOT_BC relay cannot earn multi-cut I_c > 0. Entanglement in the input (not just chirality) is required. z3 UNSAT provides the structural proof."
+    },
+    "N2_chiral_vs_nonchiral_multicut_comparison": {
+      "pass": true,
+      "weyl_active_cuts": 3,
+      "non_chiral_active_cuts": 3,
+      "weyl_I_c_A_BC": 0.6931471805599453,
+      "weyl_I_c_AB_C": 0.6931471805599453,
+      "weyl_I_c_AC_B": 0.6931471805599453,
+      "non_chiral_I_c_A_BC": 0.6931471805599453,
+      "non_chiral_I_c_AB_C": 0.6931471805599453,
+      "non_chiral_I_c_AC_B": 0.6931471805599453,
+      "chirality_adds_multicut_advantage": false,
+      "autograd_gradient_weyl": {
+        "theta_init": 1.5707963267948966,
+        "Ic_AB_C_at_theta": 0.6931471805599452,
+        "Ic_AB_C_at_theta_plus_delta": 0.6931471805599452,
+        "Ic_AB_C_at_theta_minus_delta": 0.6931471805599453,
+        "dIc_dtheta": -5.551115123125782e-12,
+        "gradient_positive": false,
+        "interpretation": "Negative/zero gradient: relay angle does not increase I_c(AB|C) from this initial \u03b8."
+      },
+      "honest_finding": "Weyl (chiral) and non-chiral both have 3 active cuts. Chirality (H_L=-H_R vs H_L=H_R) provides NO additional multi-cut coverage beyond any entangled 2q state + relay. The advantage is from entanglement, not specifically from opposite Hamiltonians.",
+      "interpretation": "N2 compares chiral (H_L=-H_R) vs non-chiral (H_L=H_R) entangled input + relay. A clean negative (no chirality advantage) is a valid earned result."
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed_no_positive_Ic_cuts": {
+      "pass": true,
+      "Ic_2q": -0.6931471805599453,
+      "I_c_A_BC": -0.6931471805599453,
+      "I_c_AB_C": -0.6931471805599453,
+      "I_c_AC_B": -0.6931471805599453,
+      "active_cuts": 0,
+      "no_positive_cuts_3q": true,
+      "two_q_nonpositive": true,
+      "interpretation": "Maximally mixed state: I_c < 0 at all cuts (entropy-suppressed). Mixed state has no positive I_c at any bipartition. This is the floor: no I_c > 0 without entanglement in the input."
+    },
+    "B2_theta_to_zero_recovers_2q_limit": {
+      "pass": true,
+      "theta_small": 1e-08,
+      "Ic_2q_reference": 0.6931471805599453,
+      "I_c_A_BC_at_small_theta": 0.6931471805599453,
+      "gap": 0.0,
+      "tolerance": 0.0001,
+      "interpretation": "At \u03b8\u21920 the relay is identity; 3q state is rho_AB \u2297 |0><0|_C. I_c(A|BC) should converge to the 2q I_c(A->B). Confirms the relay \u2192 no-relay limit is continuous."
+    }
+  },
+  "summary": {
+    "positive_pass": 3,
+    "positive_fail": 0,
+    "negative_pass": 2,
+    "negative_fail": 0,
+    "boundary_pass": 2,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

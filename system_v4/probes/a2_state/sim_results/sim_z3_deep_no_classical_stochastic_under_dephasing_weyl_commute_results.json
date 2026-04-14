@@ -1,0 +1,159 @@
+{
+  "name": "sim_z3_deep_no_classical_stochastic_under_dephasing_weyl_commute",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SMT decision over nonlinear real arithmetic with universal and existential structure: proves UNSAT of classical stochastic surrogate under dephasing+Weyl-rotor commutation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: used to symbolically verify the circulant commutation P*S = S*P expansion as cross-check before handing the constraint set to z3"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable: this is a pure SMT admissibility proof over real arithmetic; no tensor/geometry/graph/topology layer needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "primary_unsat": {
+      "claim": "no classical 4x4 row-stochastic matrix is simultaneously a dephasing off-diagonal fixed point, commutes with the Weyl cyclic rotor S, and carries prescribed nonzero coupling-fence correlations (mu>0, delta>0)",
+      "params": {
+        "mu": [
+          1,
+          4
+        ],
+        "delta": [
+          1,
+          8
+        ],
+        "lam": [
+          1,
+          2
+        ]
+      },
+      "z3_result": "unsat",
+      "z3_seconds": 0.0024878978729248047,
+      "passes": true
+    },
+    "sympy_circulant_crosscheck": {
+      "num_commutator_entries": 16,
+      "all_linear": true
+    }
+  },
+  "negative": {
+    "drop_dephasing_should_be_sat": {
+      "z3_result": "sat",
+      "z3_seconds": 0.0010919570922851562,
+      "passes": true
+    },
+    "drop_rotor_with_mu0_should_be_sat": {
+      "z3_result": "sat",
+      "z3_seconds": 0.0012979507446289062,
+      "passes": true
+    }
+  },
+  "boundary": {
+    "lam_near_one": {
+      "params": {
+        "mu": [
+          1,
+          4
+        ],
+        "delta": [
+          1,
+          8
+        ],
+        "lam": [
+          999,
+          1000
+        ]
+      },
+      "z3_result": "unsat",
+      "z3_seconds": 0.0017590522766113281,
+      "passes": true
+    },
+    "delta_tiny": {
+      "params": {
+        "mu": [
+          1,
+          4
+        ],
+        "delta": [
+          1,
+          10000
+        ],
+        "lam": [
+          1,
+          2
+        ]
+      },
+      "z3_result": "unsat",
+      "z3_seconds": 0.0016829967498779297,
+      "passes": true
+    }
+  },
+  "all_pass": true
+}

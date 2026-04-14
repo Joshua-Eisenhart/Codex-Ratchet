@@ -1,0 +1,105 @@
+{
+  "name": "doubly_stochastic_mixing_time_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Doubly stochastic mixing is a classical random walk on a commuting probability simplex. The quantum analog is a unital CPTP channel whose mixing is governed by the second-largest singular value of its Liouville representation and can exhibit ballistic / non-diffusive mixing via coherent transport. Classical spectral-gap bounds are not tight in regimes where coherence aids mixing.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch eigenvalue cross-check of spectral gap"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "row_sums": "True",
+    "col_sums": "True",
+    "lambda_matches_analytic": "True",
+    "spectral_gap_positive": true,
+    "bound_holds": true,
+    "distances_decrease": true,
+    "converges_uniform": "True",
+    "torch_lambda_cross": true
+  },
+  "negative": {
+    "identity_no_mixing": true,
+    "permutation_periodic": true,
+    "non_ds_row_broken": "True"
+  },
+  "boundary": {
+    "uniform_fast_mix": true,
+    "larger_n_smaller_gap": true,
+    "sinkhorn_ds_rowcol": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

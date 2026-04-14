@@ -1,0 +1,46 @@
+{
+  "name": "spectral_triple_carrier_algebra",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix algebra for (A,H,D,gamma)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic anticommutator {gamma,D}=0 check"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "sympy": "supportive",
+    "z3": null,
+    "gudhi": null
+  },
+  "positive": {
+    "commutator_gamma_a_zero": true,
+    "anticommutator_gamma_D_zero": true,
+    "D_selfadjoint": true,
+    "sympy_anticommutator_zero": true
+  },
+  "negative": {
+    "even_D_rejected": true,
+    "chiral_mixing_algebra_rejected": true
+  },
+  "boundary": {
+    "zero_D_degenerate_admissible": true,
+    "tiny_perturbation_admissible": true
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "spectral_triple_reduction_connes_distance",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "linear algebra + sup optimisation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of Connes distance = 1/|m|"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "d_m_0.5": true,
+    "d_m_1.0": true,
+    "d_m_2.0": true,
+    "d_m_3.7": true,
+    "grid_sup_matches_closed_form": true,
+    "sympy_d_eq_one_over_m": true
+  },
+  "negative": {
+    "distance_decreases_with_m": true,
+    "not_flat_label_distance": true
+  },
+  "boundary": {
+    "zero_mass_infinite_distance": true,
+    "large_mass_zero_distance": true
+  },
+  "classification": "canonical"
+}

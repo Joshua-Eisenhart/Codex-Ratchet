@@ -9,7 +9,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "z3": {
       "tried": true,
@@ -19,47 +19,47 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "attempted but not applicable; primary tools sufficient"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
@@ -106,11 +106,11 @@
       "quadrant": "Q1_C2_sensitive_C4_sensitive"
     },
     "depolarizing": {
-      "c2_sensitive": null,
-      "c2_verdict": "NOT_TESTED",
+      "c2_sensitive": false,
+      "c2_verdict": "TOPOLOGY_INDEPENDENT",
       "c4_sensitive": true,
       "c4_verdict": "SUBSTRATE_SENSITIVE",
-      "quadrant": "C2_NOT_TESTED"
+      "quadrant": "Q3_C2_insensitive_C4_sensitive"
     },
     "amplitude_damping": {
       "c2_sensitive": true,
@@ -162,11 +162,11 @@
       "quadrant": "Q2_C2_sensitive_C4_insensitive"
     },
     "CNOT": {
-      "c2_sensitive": false,
-      "c2_verdict": "TOPOLOGY_INDEPENDENT",
+      "c2_sensitive": true,
+      "c2_verdict": "LOAD_BEARING",
       "c4_sensitive": true,
       "c4_verdict": "SUBSTRATE_SENSITIVE",
-      "quadrant": "Q3_C2_insensitive_C4_sensitive"
+      "quadrant": "Q1_C2_sensitive_C4_sensitive"
     },
     "CZ": {
       "c2_sensitive": true,
@@ -190,11 +190,11 @@
       "quadrant": "Q1_C2_sensitive_C4_sensitive"
     },
     "Hadamard": {
-      "c2_sensitive": true,
-      "c2_verdict": "LOAD_BEARING",
+      "c2_sensitive": false,
+      "c2_verdict": "TOPOLOGY_INDEPENDENT",
       "c4_sensitive": false,
       "c4_verdict": "SUBSTRATE_INSENSITIVE",
-      "quadrant": "Q2_C2_sensitive_C4_insensitive"
+      "quadrant": "Q4_both_independent"
     },
     "T_gate": {
       "c2_sensitive": false,
@@ -262,16 +262,16 @@
     "mutual_information": {
       "c2_sensitive": false,
       "c2_verdict": "TOPOLOGY_INDEPENDENT",
+      "c4_sensitive": false,
+      "c4_verdict": "SUBSTRATE_INSENSITIVE",
+      "quadrant": "Q4_both_independent"
+    },
+    "quantum_discord": {
+      "c2_sensitive": false,
+      "c2_verdict": "TOPOLOGY_INDEPENDENT",
       "c4_sensitive": true,
       "c4_verdict": "SUBSTRATE_SENSITIVE",
       "quadrant": "Q3_C2_insensitive_C4_sensitive"
-    },
-    "quantum_discord": {
-      "c2_sensitive": null,
-      "c2_verdict": "NOT_TESTED",
-      "c4_sensitive": false,
-      "c4_verdict": "SUBSTRATE_INSENSITIVE",
-      "quadrant": "C2_NOT_TESTED"
     }
   },
   "quadrants": {
@@ -281,6 +281,7 @@
       "bit_flip",
       "bit_phase_flip",
       "unitary_rotation",
+      "CNOT",
       "CZ",
       "SWAP",
       "iSWAP",
@@ -290,7 +291,6 @@
     "Q2_C2_sensitive_C4_insensitive": [
       "purification",
       "z_measurement",
-      "Hadamard",
       "eigenvalue_decomposition",
       "l1_coherence",
       "relative_entropy_coherence",
@@ -298,21 +298,20 @@
     ],
     "Q3_C2_insensitive_C4_sensitive": [
       "z_dephasing",
+      "depolarizing",
       "phase_damping",
       "phase_flip",
-      "CNOT",
-      "mutual_information"
+      "quantum_discord"
     ],
     "Q4_both_independent": [
       "density_matrix",
+      "Hadamard",
       "T_gate",
       "wigner_negativity",
-      "hopf_connection"
+      "hopf_connection",
+      "mutual_information"
     ],
-    "C2_NOT_TESTED": [
-      "depolarizing",
-      "quantum_discord"
-    ]
+    "C2_NOT_TESTED": []
   },
   "z3_proof": {
     "solver_result": "sat",
@@ -327,11 +326,13 @@
       "description": "Families with both C2 and C4 null \u2014 structural classical candidates",
       "families": [
         "density_matrix",
+        "Hadamard",
         "T_gate",
         "wigner_negativity",
-        "hopf_connection"
+        "hopf_connection",
+        "mutual_information"
       ],
-      "n": 4,
+      "n": 6,
       "status": "PASS"
     },
     "q2_topology_only": {
@@ -339,13 +340,12 @@
       "families": [
         "purification",
         "z_measurement",
-        "Hadamard",
         "eigenvalue_decomposition",
         "l1_coherence",
         "relative_entropy_coherence",
         "chiral_overlap"
       ],
-      "n": 7,
+      "n": 6,
       "status": "PASS",
       "interpretation": "These families show graph-structure dependence WITHOUT substrate sensitivity. Topology is doing real computational work here, independent of matrix representation."
     },
@@ -357,23 +357,24 @@
         "bit_flip",
         "bit_phase_flip",
         "unitary_rotation",
+        "CNOT",
         "CZ",
         "SWAP",
         "iSWAP",
         "cartan_kak",
         "husimi_q"
       ],
-      "n": 10,
+      "n": 11,
       "status": "PASS"
     },
     "q3_substrate_only": {
       "description": "Substrate-sensitive but topology-insensitive",
       "families": [
         "z_dephasing",
+        "depolarizing",
         "phase_damping",
         "phase_flip",
-        "CNOT",
-        "mutual_information"
+        "quantum_discord"
       ],
       "n": 5,
       "status": "PASS",
@@ -394,13 +395,10 @@
   },
   "boundary": {
     "c2_coverage": {
-      "c2_not_tested": [
-        "depolarizing",
-        "quantum_discord"
-      ],
-      "n_not_tested": 2,
+      "c2_not_tested": [],
+      "n_not_tested": 0,
       "n_total": 28,
-      "c2_coverage_pct": 92.9,
+      "c2_coverage_pct": 100.0,
       "note": "C2 coverage after SIM A + expansion batch. Any remaining NOT_TESTED families need their own sim."
     }
   },
@@ -412,6 +410,7 @@
       "bit_flip",
       "bit_phase_flip",
       "unitary_rotation",
+      "CNOT",
       "CZ",
       "SWAP",
       "iSWAP",
@@ -421,7 +420,6 @@
     "Q2_topo_only": [
       "purification",
       "z_measurement",
-      "Hadamard",
       "eigenvalue_decomposition",
       "l1_coherence",
       "relative_entropy_coherence",
@@ -429,21 +427,20 @@
     ],
     "Q3_substrate_only": [
       "z_dephasing",
+      "depolarizing",
       "phase_damping",
       "phase_flip",
-      "CNOT",
-      "mutual_information"
+      "quantum_discord"
     ],
     "Q4_classical_candidates": [
       "density_matrix",
+      "Hadamard",
       "T_gate",
       "wigner_negativity",
-      "hopf_connection"
+      "hopf_connection",
+      "mutual_information"
     ],
-    "c2_not_tested": [
-      "depolarizing",
-      "quantum_discord"
-    ]
+    "c2_not_tested": []
   },
   "classification": "canonical"
 }

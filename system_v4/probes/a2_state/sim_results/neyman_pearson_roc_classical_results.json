@@ -1,0 +1,54 @@
+{
+  "name": "neyman_pearson_roc_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical NP uses a scalar LR over commuting observations. The quantum analog is Helstrom's test with a noncommuting optimal POVM; this baseline omits the operator structure of the quantum hypothesis testing problem.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "LR computation and ROC sweep"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "normal pdf closed form"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive import; no gradient path needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT optimality encoding here"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "lr_auc_beats_abs": true,
+    "lr_auc_beats_square": true,
+    "lr_auc_above_0_7": true,
+    "auc_in_range": true,
+    "alpha_control": true,
+    "power_greater_than_alpha": true
+  },
+  "negative": {
+    "random_test_auc_near_0_5": true,
+    "flipped_score_below_optimal": true
+  },
+  "boundary": {
+    "identical_dists_auc_near_0_5": true,
+    "perfect_separation_auc_near_1": true,
+    "tiny_alpha_control": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

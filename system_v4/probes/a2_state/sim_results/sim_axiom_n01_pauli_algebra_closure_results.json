@@ -1,0 +1,105 @@
+{
+  "name": "sim_axiom_n01_pauli_algebra_closure",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: numeric Pauli closure verification"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: symbolic closure of Pauli algebra (F01+N01 carrier)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "symbolic_closure": true,
+    "numeric_closure": true,
+    "mismatches": [],
+    "pass": true
+  },
+  "negative": {
+    "commutator_over_2i_is_sigma_z_zero": false,
+    "sigma_z_sq": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "pass": true
+  },
+  "boundary": {
+    "identity_commutes": true,
+    "pass": true
+  },
+  "pass": true
+}

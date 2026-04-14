@@ -1,0 +1,53 @@
+{
+  "name": "assoc_bundle_hopf_frame_bundle_carrier",
+  "tool_manifest": {
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S^3 and S^2 as Hypersphere manifolds; is_tangent / belongs checks"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Hopf map p:S^3->S^2 verification"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "core linear algebra for S^3/S^2 checks"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "sympy": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "s3_points_on_s3": true,
+    "hopf_image_on_s2": true,
+    "geomstats_s2_belongs": true,
+    "fibre_u1_invariance": true,
+    "sympy_identity_p_norm_eq_q_norm_sq": true
+  },
+  "negative": {
+    "distinct_fibres_distinct_base": true,
+    "off_s3_rejected": true
+  },
+  "boundary": {
+    "antipode_same_fibre": true,
+    "near_pole_on_s2": true
+  },
+  "classification": "canonical"
+}

@@ -1,6 +1,6 @@
 {
   "name": "weyl_geometry_constraint_audit",
-  "classification": "exploratory",
+  "classification": "canonical",
   "classification_note": "Controller audit over the Weyl/Hopf geometry lane. It routes rows by the properties they actually expose: stacked torus composition, graph/proof alignment, carrier comparison, reusable base geometry, and open sidecar diagnostics.",
   "lego_ids": [
     "hopf_torus_lego",
@@ -89,7 +89,7 @@
     "gudhi": null
   },
   "summary": {
-    "all_pass": true,
+    "all_pass": false,
     "row_count": 8,
     "registry_matched_rows": 2,
     "route_counts": {
@@ -268,14 +268,14 @@
       "route": "open geometry sidecar",
       "route_reason": "The row is a diagnostic sidecar that checks Weyl-ambient witnesses against engine response without claiming a new core lego.",
       "source_classification": null,
-      "all_pass": true,
+      "all_pass": false,
       "registry_hint": null,
       "salient_metrics": {
-        "all_pass": true,
+        "all_pass": false,
         "ambient_nontrivial_count": 2,
         "clifford_neutral": true,
         "engine_nontrivial": true,
-        "witness_separable": true,
+        "witness_separable": false,
         "type2_witness_separable": true,
         "guardrail_pass": true
       }

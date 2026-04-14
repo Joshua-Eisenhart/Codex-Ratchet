@@ -1,0 +1,40 @@
+{
+  "name": "coherence_measure_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "diagonal_state_has_zero_coherence": true,
+    "uniform_classical_zero_coherence": true
+  },
+  "negative": {
+    "offdiag_state_has_positive_coherence": true,
+    "classical_cannot_represent_this_state": true
+  },
+  "boundary": {
+    "pure_classical_zero_coherence": true,
+    "zero_matrix_zero_coherence": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical diagonal states have identically zero l1 coherence",
+    "no basis rotation sensitivity; coherence is basis-fixed trivially",
+    "cannot witness superposition as a resource"
+  ]
+}

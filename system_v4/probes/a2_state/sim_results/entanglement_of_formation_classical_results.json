@@ -1,0 +1,40 @@
+{
+  "name": "entanglement_of_formation_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pmf arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "product_EF_zero": true,
+    "correlated_classical_EF_zero": true
+  },
+  "negative": {
+    "unnormalized_rejected": true,
+    "classical_cannot_represent_bell_state": true
+  },
+  "boundary": {
+    "uniform_EF_zero": true,
+    "delta_EF_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "E_F identically 0 on classical joints (always separable)",
+    "no concurrence / Wootters spin-flip structure",
+    "cannot distinguish classical correlation from quantum entanglement"
+  ]
+}

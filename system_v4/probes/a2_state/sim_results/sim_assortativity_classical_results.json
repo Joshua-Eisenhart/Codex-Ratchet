@@ -1,0 +1,61 @@
+{
+  "name": "sim_assortativity_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check Pearson r of endpoint degrees using torch.corrcoef"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive"
+  },
+  "divergence_log": [
+    "negative-case: star correctly disassortative",
+    "boundary: regular graph -> undefined, returned 0"
+  ],
+  "positive": {
+    "regular_K4_zero": {
+      "r": 0.0,
+      "pass": true
+    },
+    "star_disassortative": {
+      "r": -1.0,
+      "pass": true
+    },
+    "bridge_finite": {
+      "r": -0.6,
+      "pass": true
+    },
+    "torch_star_agrees": {
+      "torch": -1.0,
+      "np": -1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "empty_not_positive": {
+      "r": 0.0,
+      "pass": true
+    },
+    "star_not_assortative": {
+      "r": -1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_edge": {
+      "r": 0.0,
+      "pass": true
+    },
+    "regular_cycle": {
+      "r": 0.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

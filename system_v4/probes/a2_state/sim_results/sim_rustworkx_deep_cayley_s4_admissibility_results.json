@@ -1,0 +1,114 @@
+{
+  "name": "sim_rustworkx_deep_cayley_s4_admissibility",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; graph structure is combinatorial, not numerical"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no message passing required for pure structural property"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "supportive only; structural equalities here are exact combinatorics, rustworkx is decisive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3; not needed for this structural check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "used to enumerate S_4 elements as permutation tuples (ground-truth group enumeration)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra operation required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian structure under test"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant feature computation"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "LOAD-BEARING: cycle_basis, is_isomorphic, is_connected, max_flow, edge_connectivity decide the structural claim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not a hypergraph problem"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "1-skeleton suffices; no higher cells"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence computation required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "V": 24,
+    "E": 36,
+    "connected": true,
+    "beta1_formula": 13,
+    "beta1_cycle_basis": 13,
+    "beta1_consistent": true,
+    "global_min_cut": 3.0,
+    "degree_source": 3,
+    "edge_conn_equals_degree": true,
+    "pass": true
+  },
+  "negative": {
+    "disconnected_when_nongenerating": true,
+    "adjacent_vs_star_isomorphic": false,
+    "expected_nonisomorphic": true,
+    "iso_negative_pass": true,
+    "beta_increments_on_extra_edge": true,
+    "pass": true
+  },
+  "boundary": {
+    "S2_V": 2,
+    "S2_E": 1,
+    "S2_connected": true,
+    "S2_beta1": 0,
+    "S3_V": 6,
+    "S3_E": 6,
+    "S3_beta1": 1,
+    "self_isomorphism": true,
+    "S4_min_cut": 3.0,
+    "pass": true
+  },
+  "overall_pass": true,
+  "structural_claim": "Cay(S_4, adjacent-transpositions) is the permutohedron: 24 vertices, 36 edges, beta_1 = 13, connected, 3-edge-connected. It is NOT isomorphic to Cay(S_4, star-transpositions) (distinct girths). These rustworkx invariants are load-bearing for admissibility-closure of shell-local transitions."
+}

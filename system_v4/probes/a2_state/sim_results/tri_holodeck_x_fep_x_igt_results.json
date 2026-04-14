@@ -1,0 +1,44 @@
+{
+  "name": "sim_tri_holodeck_x_fep_x_igt",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "descent + scoring"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tri UNSAT on single-shell drop"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "F_descended": true,
+    "H_visible_respected": true,
+    "I_pick_nonzero_payoff": true,
+    "EMERGENT_3way_descent_reweighted_policy": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true,
+    "z3_all_three_sat": true
+  },
+  "negative": {
+    "drop_H_zero_score": true,
+    "drop_F_pick_is_prior_driven": true,
+    "drop_I_no_payoff_weighting": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true
+  },
+  "boundary": {
+    "min_descent": true,
+    "min_reweighting_changes_pick": true
+  },
+  "three_way_note": "3-way ADDS: FEP-descent reweights IGT policy within the H shell; pairwise H x I cannot see.",
+  "PASS": true
+}

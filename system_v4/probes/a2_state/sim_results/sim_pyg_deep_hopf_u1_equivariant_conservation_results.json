@@ -1,0 +1,144 @@
+{
+  "name": "sim_pyg_deep_hopf_u1_equivariant_conservation",
+  "description": "S^3 Hopf-discretized carrier; PyG MessagePassing symmetric Laplacian smoother on complex scalar charge; verifies (1) linear charge conservation sum_i f_i under repeated propagate(); (2) U(1) global equivariance of the update; (3) that message() is invoked with the expected (E,2) shape. Negative controls: asymmetric rule breaks conservation, channel-swap rule breaks U(1) equivariance.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensors, complex arithmetic, and autograd-capable Module carry the node feature state and all arithmetic operations."
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "torch_geometric.nn.MessagePassing subclass with explicit message() and propagate(edge_index, x=x); edge_index tensor drives aggregation; removing PyG eliminates the sim's claim."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: claim is numerical invariance under symmetric MP"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numerical proof path only"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: closed-form conservation is by construction"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: scalar complex charge, no multivector"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: Hopf sampling done explicitly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: U(1) equivariance checked directly"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: edge_index built directly"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: 1-skeleton suffices"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology claim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "s3_norm_max_err": 2.220446049250313e-16,
+    "num_nodes": 96,
+    "num_edges": 480,
+    "test1_linear_charge_conservation": {
+      "Q0": [
+        0.886085882263497,
+        1.3322676295501878e-15
+      ],
+      "Q_final": [
+        0.8860858822634968,
+        -3.7470027081099033e-16
+      ],
+      "max_drift_over_25_steps": 2.6668472207145996e-15,
+      "pass": true
+    },
+    "test2_u1_equivariance": {
+      "max_abs_diff": 5.551115123125783e-17,
+      "pass": true
+    },
+    "test3_propagate_load_bearing": {
+      "message_called": 1,
+      "message_shape": [
+        480,
+        2
+      ],
+      "expected_shape_E_by_2": [
+        480,
+        2
+      ],
+      "pass": true
+    },
+    "pass_all": true
+  },
+  "negative": {
+    "neg1_asymmetric_rule_breaks_conservation": {
+      "drift_one_step": 0.4430429411317488,
+      "pass_expect_broken": true
+    },
+    "neg2_nonequivariant_rule_breaks_equivariance": {
+      "max_abs_diff": 0.08784039064826976,
+      "pass_expect_broken": true
+    },
+    "pass_all": true
+  },
+  "boundary": {
+    "b1_no_edges_is_identity": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "b2_self_loop_only_is_identity": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "b3_large_alpha_still_conserves": {
+      "alpha": 5.0,
+      "drift": 1.4552500014939717e-15,
+      "pass": true
+    },
+    "pass_all": true
+  },
+  "overall_pass": true,
+  "invariant_preserved": "sum_i f_i (complex linear charge) under SymmetricComplexSmoother"
+}

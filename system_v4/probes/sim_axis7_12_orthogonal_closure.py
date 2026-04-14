@@ -31,7 +31,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

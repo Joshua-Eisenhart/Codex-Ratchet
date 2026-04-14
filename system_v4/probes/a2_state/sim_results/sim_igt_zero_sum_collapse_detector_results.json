@@ -1,0 +1,112 @@
+{
+  "name": "sim_igt_zero_sum_collapse_detector",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar stats suffice"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 proves zero-sum and positive-sum rows are mutually exclusive"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic row-sum zero identity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "detect_zero_sum": {
+      "ok": true
+    },
+    "detect_collapse": {
+      "ok": true
+    },
+    "sympy_row_zero": {
+      "expr": "0",
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "positive_sum_not_collapsed": {
+      "ok": true
+    },
+    "z3_no_contradictory_row": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "empty_vacuous": {
+      "ok": true
+    },
+    "near_zero": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

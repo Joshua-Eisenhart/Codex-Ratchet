@@ -119,14 +119,14 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies Q <= I_c AND Q > I_c simultaneously. Hashing bound Q <= I_c confirmed: quantum capacity cannot exceed the coherent information. Q > I_c is impossible given the bound.",
-      "elapsed_s": 0.0027
+      "elapsed_s": 0.0028
     },
     "proof2_Ic_upper_bound": {
       "name": "Ic_upper_bound_1ebit_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "I_c = S(output) - S(exchange) > 1 is UNSAT given S(output) <= 1. The coherent information cannot exceed log(dim) = 1 ebit for a qubit channel. Upper bound I_c <= 1 is confirmed.",
-      "elapsed_s": 0.0018
+      "elapsed_s": 0.0009
     },
     "proof3_degradable_Q_equals_Ic": {
       "name": "degradable_Q_equals_Ic_unsat",
@@ -153,7 +153,7 @@
       "example_Ic_single": "2/3",
       "example_Ic_double": "2",
       "interpretation": "Superadditivity I_c(T^\u22972) > 2*I_c(T) is SAT. This is the hallmark of non-degradable channels. The true quantum capacity Q = lim_n I_c(T^\u2297n)/n can exceed I_c(T). Computing Q exactly requires regularization over all block lengths.",
-      "elapsed_s": 0.001
+      "elapsed_s": 0.0008
     }
   },
   "boundary": {
@@ -169,7 +169,7 @@
       "status": "PASS",
       "verdict": "SAT",
       "interpretation": "Q = I_c = 1 for identity channel is SAT. The identity is degradable, so Q = I_c = 1 (maximum capacity). This is the upper boundary of the quantum capacity for qubit channels.",
-      "elapsed_s": 0.0004
+      "elapsed_s": 0.0005
     },
     "boundary3_completely_depolarizing_Q_0": {
       "name": "completely_depolarizing_Q_0",
@@ -184,6 +184,6 @@
     "status": "PASS",
     "synthesized_Q_bound": "(lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0))",
     "interpretation": "cvc5 synthesized Q_bound(I_c) = (lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0)). This confirms the hashing bound is a function of I_c alone. For I_c > 0: Q_bound = I_c (linear). For I_c <= 0: Q_bound = 0.",
-    "elapsed_s": 0.1039
+    "elapsed_s": 0.1122
   }
 }

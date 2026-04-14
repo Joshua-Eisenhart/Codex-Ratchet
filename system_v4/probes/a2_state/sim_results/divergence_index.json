@@ -1,0 +1,1486 @@
+{
+  "total": 123,
+  "families": {
+    "geometry": 9,
+    "other": 60,
+    "channel": 6,
+    "dynamics": 3,
+    "probe": 7,
+    "operator": 7,
+    "entropy": 10,
+    "bipartite": 5,
+    "constraint": 2,
+    "sweep": 1,
+    "coupling": 2,
+    "compression": 9,
+    "negation": 2
+  },
+  "missing_divergence_log": [
+    "carrier_probe_support",
+    "channel_space_geometry",
+    "characteristic_representation",
+    "coarse_grained_operator_algebra",
+    "correlation_tensor_principal_directions",
+    "covariance_operator",
+    "distinguishability_relation",
+    "eigenvalue_spectrum_view",
+    "f01_finitude_constraint",
+    "geometry_preserving_basis_change",
+    "helstrom_guess_bound",
+    "husimi_phase_space_representation",
+    "loop_vector_fields",
+    "low_rank_psd_approximation",
+    "neg_classical_probability_results.json",
+    "neg",
+    "operator_coordinate_representation",
+    "operator_low_rank_factorization",
+    "pairwise_coupling",
+    "placement_law",
+    "principal_subspace",
+    "probe_identity_preservation",
+    "probe_object",
+    "qpca_spectral_extraction",
+    "schmidt_mode_truncation",
+    "signed_operator_variant",
+    "spectral_decomposition",
+    "spectral_truncation",
+    "svd_factorization",
+    "terrain_family_fourfold",
+    "trace_distance_geometry"
+  ],
+  "records": [
+    {
+      "lego": "admissibility_manifold_mc",
+      "file": "system_v4/probes/a2_state/sim_results/admissibility_manifold_mc_classical_results.json",
+      "family": "geometry",
+      "divergence_log": {
+        "note": "classical substrate cannot encode probe-relative indistinguishability",
+        "missing_axes": [
+          "context-dependent admissibility",
+          "coupling-induced exclusion",
+          "nonclassical constraint interference"
+        ]
+      },
+      "innately_missing": "probe-relative admissibility, nonclassical exclusion under coupling",
+      "all_pass": true,
+      "summary": "note: classical substrate cannot encode probe-relative indistinguishability",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "bayesian_sufficiency_dpi",
+      "file": "system_v4/probes/a2_state/sim_results/bayesian_sufficiency_dpi_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Fisher-Neyman sufficiency uses factorization p(x|theta)=g(T(x),theta)h(x); information-preserving coarse-graining is defined on a commuting sample space and respects joint distributions p(theta,x). Quantum sufficiency requires a recovery channel R such that R circ N = id on the subalgebra, and is equivalent to equality in quantum DPI under operator-monotone functions of noncommuting rho. This classical substrate cannot witness Petz-recovery failure on genuinely nonclassical subalgebras.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Fisher-Neyman sufficiency uses factorization p(x|theta)=g(T(x),theta)h(x); information-preserving coarse-grain",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "bch_first_order_commutator",
+      "file": "system_v4/probes/a2_state/sim_results/bch_first_order_commutator_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical first-order BCH captures only the leading [A,B] correction for generic real matrices. Lost relative to the nonclassical shell: higher-order nested commutators of the full Dynkin series, unitary-group curvature terms relevant to holonomy and Berry-phase structure, Lie-algebraic structure constants under constraint-admissible generators, and the noncommutative geometry that governs coupled-generator evolution beyond the perturbative window.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical first-order BCH captures only the leading [A,B] correction for generic real matrices. Lost relative to the non",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "blackwell_comparison",
+      "file": "system_v4/probes/a2_state/sim_results/blackwell_comparison_classical_results.json",
+      "family": "channel",
+      "divergence_log": [
+        "Blackwell ordering on stochastic matrices is total up to sufficiency; quantum channel ordering (degradability) is strictly partial and basis-sensitive",
+        "no quantum sufficiency / Petz recovery map; classical sufficiency has no coherent-frame analog",
+        "misses entanglement-assisted information gaps where quantum B can exceed classical bound with side resource",
+        "ignores incompatible-measurement hierarchy where no single classical M unifies two measurement channels"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Blackwell ordering on stochastic matrices is total up to sufficiency; quantum channel ordering (degradability) is strictly partial and basis-sensitive [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "blackwell_sufficiency_order",
+      "file": "system_v4/probes/a2_state/sim_results/blackwell_sufficiency_order_classical_results.json",
+      "family": "channel",
+      "divergence_log": "Classical Blackwell ordering is a partial order on stochastic kernels via post-processing. Quantum Blackwell (Shmaya / Buscemi) requires CPTP post-processing between bipartite states, which this baseline drops.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Blackwell ordering is a partial order on stochastic kernels via post-processing. Quantum Blackwell (Shmaya / B",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "bootstrap_variance",
+      "file": "system_v4/probes/a2_state/sim_results/bootstrap_variance_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical bootstrap resamples iid real scalars. A quantum analog would resample POVM outcomes and track noncommuting estimators; this baseline is purely commutative and discards operator-valued uncertainty.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical bootstrap resamples iid real scalars. A quantum analog would resample POVM outcomes and track noncommuting est",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "branch_weight",
+      "file": "system_v4/probes/a2_state/sim_results/branch_weight_classical_results.json",
+      "family": "dynamics",
+      "divergence_log": [
+        "no off-diagonal decoherence-functional entries; cannot test consistent-histories diagonality",
+        "branch weights always multiplicative; no interference between paths",
+        "cannot represent quantum trajectory where Tr(rho-tilde) fails to factorize over paths"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no off-diagonal decoherence-functional entries; cannot test consistent-histories diagonality [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "bregman_divergence_simplex",
+      "file": "system_v4/probes/a2_state/sim_results/bregman_divergence_simplex_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Bregman divergence D_phi(p||q) = phi(p) - phi(q) - <grad phi(q), p-q> is defined on a commutative simplex using a scalar potential phi. Quantum Bregman divergence requires an operator-convex trace functional and honors noncommutativity of rho, sigma via symmetric logarithmic derivatives. The classical substrate cannot distinguish states that share eigenvalues but differ in eigenbasis: quantum coherence between eigenbases is invisible here.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Bregman divergence D_phi(p||q) = phi(p) - phi(q) - <grad phi(q), p-q> is defined on a commutative simplex usin",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "carrier_probe_support",
+      "file": "system_v4/probes/a2_state/sim_results/carrier_probe_support_classical_results.json",
+      "family": "probe",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "channel_cptp",
+      "file": "system_v4/probes/a2_state/sim_results/channel_cptp_classical_results.json",
+      "family": "channel",
+      "divergence_log": [
+        "CP classically reduces to entrywise positivity; misses complete-positivity on entangled extensions (tensor with ancilla)",
+        "no Choi-positivity witnessing for noncommuting channels",
+        "unitary channels absent; only permutations are reversible classically",
+        "cannot model non-Markovian / non-CP-divisible quantum dynamics"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "CP classically reduces to entrywise positivity; misses complete-positivity on entangled extensions (tensor with ancilla) [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "channel_space_geometry",
+      "file": "system_v4/probes/a2_state/sim_results/channel_space_geometry_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "true diamond norm (needs ancilla optimization / SDP), channel coupling geometry",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "characteristic_representation",
+      "file": "system_v4/probes/a2_state/sim_results/characteristic_representation_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": "operator-algebra / noncommutative characteristic structure, constraint-admissibility of representation choice",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "chebyshev_distinguishability",
+      "file": "system_v4/probes/a2_state/sim_results/chebyshev_distinguishability_classical_results.json",
+      "family": "probe",
+      "divergence_log": "Classical moment-matching uses real-valued scalar moments of commuting observables. Quantum distinguishability requires noncommuting-moment hierarchies (e.g. NPA). This baseline drops all operator noncommutativity.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical moment-matching uses real-valued scalar moments of commuting observables. Quantum distinguishability requires ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "chernoff_bound",
+      "file": "system_v4/probes/a2_state/sim_results/chernoff_bound_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Chernoff exponent C(p,q) = -min_s log sum p^s q^(1-s) assumes commuting distributions on the same sample space. Quantum Chernoff bound -log min_s tr(rho^s sigma^(1-s)) requires noncommuting operator powers and cannot be reduced to pointwise probability ratios when [rho, sigma] != 0. This classical substrate captures diagonal cases only; it cannot encode interference in off-diagonal hypothesis tests.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Chernoff exponent C(p,q) = -min_s log sum p^s q^(1-s) assumes commuting distributions on the same sample space",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "choi_matrix",
+      "file": "system_v4/probes/a2_state/sim_results/choi_matrix_classical_results.json",
+      "family": "channel",
+      "divergence_log": [
+        "classical Choi is block-diagonal; misses off-diagonal coherences that witness non-CP-divisible or entanglement-breaking distinctions",
+        "Choi rank=1 (unitary) unreachable classically except for permutations",
+        "no Jamiolkowski isomorphism subtlety (state-channel duality trivial on diagonals)",
+        "cannot detect PPT/NPT entanglement of Choi state; classical Choi is always separable"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical Choi is block-diagonal; misses off-diagonal coherences that witness non-CP-divisible or entanglement-breaking distinctions [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "classical_master_equation",
+      "file": "system_v4/probes/a2_state/sim_results/classical_master_equation_classical_results.json",
+      "family": "other",
+      "divergence_log": "Pauli master equation tracks only diagonal populations p_i(t) on a commuting energy basis. It discards off-diagonal coherences, so coherent oscillations, dephasing-induced transport, and non-Markovian memory effects present in the Lindblad / Redfield generalizations are absent. The canonical nonclassical object is a CPTP semigroup acting on density operators.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Pauli master equation tracks only diagonal populations p_i(t) on a commuting energy basis. It discards off-diagonal cohe",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "coarse_grained_operator_algebra",
+      "file": "system_v4/probes/a2_state/sim_results/coarse_grained_operator_algebra_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "coherence_measure",
+      "file": "system_v4/probes/a2_state/sim_results/coherence_measure_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical diagonal states have identically zero l1 coherence",
+        "no basis rotation sensitivity; coherence is basis-fixed trivially",
+        "cannot witness superposition as a resource"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical diagonal states have identically zero l1 coherence [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "conditional_entropy",
+      "file": "system_v4/probes/a2_state/sim_results/conditional_entropy_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "classical H(X|Y) >= 0 always; quantum S(A|B) can be negative under entanglement",
+        "no sign structure, so cannot carry coherent-information Axis-0 candidate",
+        "no noncommuting conditioning"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical H(X|Y) >= 0 always; quantum S(A|B) can be negative under entanglement [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "conditional_mutual_information",
+      "file": "system_v4/probes/a2_state/sim_results/conditional_mutual_information_classical_results.json",
+      "family": "entropy",
+      "divergence_log": "Classical CMI is always nonneg by Gibbs' inequality applied pointwise in Z. The baseline cannot encode the fact that quantum CMI, while also nonneg (by SSA), fails to characterize approximate Markov chains via Bayes conditioning \u2014 the correct recovery is the Petz map, and small CMI does not force small distance from a Markov state in the classical-Bayes sense. Therefore any sim that uses classical CMI as a stand-in for quantum conditional independence will miss noncommuting side-information leakage.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical CMI is always nonneg by Gibbs' inequality applied pointwise in Z. The baseline cannot encode the fact that qua",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "constraint_manifold",
+      "file": "system_v4/probes/a2_state/sim_results/constraint_manifold_classical_full_spine_results.json",
+      "family": "geometry",
+      "divergence_log": {
+        "note": "classical constraint manifolds are level sets of real functions on a commutative state space; they cannot encode constraint interference (two admissible constraints becoming jointly inadmissible), probe-relative admissibility, or the non-commuting constraint algebra where the order of constraint imposition changes the surviving manifold.",
+        "missing_axes": [
+          "constraint non-commutativity",
+          "interference of jointly-admissible constraints",
+          "probe-relative surface definition"
+        ]
+      },
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "note: classical constraint manifolds are level sets of real functions on a commutative",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "constraint_probe_admissibility",
+      "file": "system_v4/probes/a2_state/sim_results/constraint_probe_admissibility_classical_results.json",
+      "family": "probe",
+      "divergence_log": {
+        "note": "classical probe-set admissibility is order-invariant and monotone; nonclassical is not",
+        "missing": [
+          "probe-order contextuality",
+          "noncommuting probe incompatibility",
+          "admissibility change under entanglement with probe"
+        ]
+      },
+      "innately_missing": "probe-order contextuality, noncommuting probe incompatibility",
+      "all_pass": true,
+      "summary": "note: classical probe-set admissibility is order-invariant and monotone; nonclassical ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "contextuality_witness",
+      "file": "system_v4/probes/a2_state/sim_results/contextuality_witness_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "context-independent assignments bound CHSH by 2 (never reach Tsirelson)",
+        "no Kochen-Specker obstruction; every observable has a global value",
+        "KCBS and similar witnesses saturated only by quantum contextual models"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "context-independent assignments bound CHSH by 2 (never reach Tsirelson) [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "convex_admission_polytope",
+      "file": "system_v4/probes/a2_state/sim_results/convex_admission_polytope_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical admission collapses to a convex polytope over commuting scalar coordinates. A nonclassical admission region is an operator system / cone in a noncommutative algebra (e.g. PSD cone over Hermitian matrices). This baseline drops the operator-ordering and joint-spectral structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical admission collapses to a convex polytope over commuting scalar coordinates. A nonclassical admission region is",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "correlation_tensor_principal_directions",
+      "file": "system_v4/probes/a2_state/sim_results/correlation_tensor_principal_directions_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "covariance_operator",
+      "file": "system_v4/probes/a2_state/sim_results/covariance_operator_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "cramer_rao_bound",
+      "file": "system_v4/probes/a2_state/sim_results/cramer_rao_bound_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical CRB uses real-valued Fisher information on a single commuting parameter. Nonclassical quantum CRB requires SLD operators, noncommuting observables, and a Helstrom bound; this baseline discards the noncommuting-estimator structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical CRB uses real-valued Fisher information on a single commuting parameter. Nonclassical quantum CRB requires SLD",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "data_processing_inequality",
+      "file": "system_v4/probes/a2_state/sim_results/data_processing_inequality_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical DPI holds exactly under any column-stochastic map because Shannon entropy is strongly concave and every classical post-processing is a convex mixture of deterministic maps. The baseline cannot distinguish CPTP-quantum DPI from its classical shadow: it silently assumes the channel's Kraus operators commute, and therefore misses cases where a noncommuting quantum channel's Stinespring dilation introduces system-environment coherence that later collapses into classical-looking but provably nonclassical output (e.g., dephasing-vs-depolarizing distinguishability at equal classical output statistics).",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical DPI holds exactly under any column-stochastic map because Shannon entropy is strongly concave and every classi",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "distinguishability_relation",
+      "file": "system_v4/probes/a2_state/sim_results/distinguishability_relation_classical_results.json",
+      "family": "probe",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "doubly_stochastic_mixing_time",
+      "file": "system_v4/probes/a2_state/sim_results/doubly_stochastic_mixing_time_classical_results.json",
+      "family": "other",
+      "divergence_log": "Doubly stochastic mixing is a classical random walk on a commuting probability simplex. The quantum analog is a unital CPTP channel whose mixing is governed by the second-largest singular value of its Liouville representation and can exhibit ballistic / non-diffusive mixing via coherent transport. Classical spectral-gap bounds are not tight in regimes where coherence aids mixing.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Doubly stochastic mixing is a classical random walk on a commuting probability simplex. The quantum analog is a unital C",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "driven_markov_db_violation",
+      "file": "system_v4/probes/a2_state/sim_results/driven_markov_db_violation_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical entropy production on an asymmetric Markov ring measures breaking of detailed balance in diagonal populations. The nonclassical analog (driven Lindbladian with coherent coupling) admits coherence-enhanced thermodynamic uncertainty relations and heat currents that vanish in any strictly commuting rate description.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical entropy production on an asymmetric Markov ring measures breaking of detailed balance in diagonal populations.",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "eckart_young_truncated_svd",
+      "file": "system_v4/probes/a2_state/sim_results/eckart_young_truncated_svd_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Eckart-Young bounds rest on Frobenius/spectral norms of real matrices with ordered real singular values. Lost relative to nonclassical compression: operator-Schatten-p bounds with noncommuting corrections, purification-dependent rank (rank of density matrix vs rank of its classical embedding), entanglement spectrum structure, and constraint-admissibility restrictions on which truncations preserve distinguishability under a probe family.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Eckart-Young bounds rest on Frobenius/spectral norms of real matrices with ordered real singular values. Lost ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "eigenvalue_spectrum_view",
+      "file": "system_v4/probes/a2_state/sim_results/eigenvalue_spectrum_view_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": "probe-dependent spectrum admissibility, degeneracy-lifting under coupling",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "empirical_bayes_james_stein",
+      "file": "system_v4/probes/a2_state/sim_results/empirical_bayes_james_stein_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical JS shrinks scalar means under a Gaussian hyperprior estimated from the data. A quantum analog would shrink density-operator estimates under a CPTP prior; this baseline drops all operator structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical JS shrinks scalar means under a Gaussian hyperprior estimated from the data. A quantum analog would shrink den",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "entanglement_distillation",
+      "file": "system_v4/probes/a2_state/sim_results/entanglement_distillation_classical_results.json",
+      "family": "bipartite",
+      "divergence_log": "Every classical joint is separable so E_D=0 trivially; the classical baseline cannot express dilution/distillation rates, bound entanglement (PPT states with zero E_D but nonzero E_F), nor the gap E_D <= E_F that defines irreversibility in the entanglement resource theory. Because no classical LOCC-analog move can ever produce a nondiagonal reduced state, the baseline misses the central phenomenon the lego is supposed to capture: concentration of noisy shared randomness into noiseless shared quantum ebits.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Every classical joint is separable so E_D=0 trivially; the classical baseline cannot express dilution/distillation rates",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "entanglement_of_formation",
+      "file": "system_v4/probes/a2_state/sim_results/entanglement_of_formation_classical_results.json",
+      "family": "bipartite",
+      "divergence_log": [
+        "E_F identically 0 on classical joints (always separable)",
+        "no concurrence / Wootters spin-flip structure",
+        "cannot distinguish classical correlation from quantum entanglement"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "E_F identically 0 on classical joints (always separable) [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "f01_finitude_constraint",
+      "file": "system_v4/probes/a2_state/sim_results/f01_finitude_constraint_classical_results.json",
+      "family": "constraint",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "f_divergence_convexity_sweep",
+      "file": "system_v4/probes/a2_state/sim_results/f_divergence_convexity_sweep_classical_results.json",
+      "family": "sweep",
+      "divergence_log": "Classical f-divergences D_f(p||q) = sum q f(p/q) are defined on a commuting simplex and obey joint convexity and DPI for any convex f with f(1)=0. Quantum f-divergences require operator-convex f (Petz) and tr(sigma^{1/2} f(sigma^{-1/2} rho sigma^{-1/2}) sigma^{1/2}); not every classical convex f lifts monotonically to the quantum setting. The classical substrate cannot detect the operator-monotonicity gap that separates Petz-admissible f from generic convex f in the noncommuting regime.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical f-divergences D_f(p||q) = sum q f(p/q) are defined on a commuting simplex and obey joint convexity and DPI for",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "fiedler_spectral_clustering",
+      "file": "system_v4/probes/a2_state/sim_results/fiedler_spectral_clustering_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Fiedler partition uses real-symmetric Laplacian eigenvalues only. Lost relative to nonclassical shell: density-matrix coherence off-diagonals, noncommuting edge-operator algebra, unitary graph walks with phase, and any distinguishability-geometry constraint that forbids the zero-eigenvector degeneracy from collapsing onto a single classical partition.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Fiedler partition uses real-symmetric Laplacian eigenvalues only. Lost relative to nonclassical shell: density",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "fisher_dpi_coupling",
+      "file": "system_v4/probes/a2_state/sim_results/fisher_dpi_coupling_classical_results.json",
+      "family": "coupling",
+      "divergence_log": "Classical Fisher-DPI coupling loses: (1) quantum Fisher info (SLD) with Petz-Hasegawa family multiplicity, (2) non-commutative monotone metrics on the state manifold, (3) strict inequality gaps from quantum channel non-classicality (e.g. coherence-protected information).",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Fisher-DPI coupling loses: (1) quantum Fisher info (SLD) with Petz-Hasegawa family multiplicity, (2) non-commu",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "fisher_information",
+      "file": "system_v4/probes/a2_state/sim_results/fisher_information_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical Fisher ignores SLD (symmetric logarithmic derivative) structure; multiple inequivalent quantum Fishers (SLD, RLD, BKM) collapse to one",
+        "no noncommuting-parameter incompatibility; classical Cramer-Rao bound is always tight in the limit",
+        "misses quantum metrology advantage (Heisenberg scaling 1/N vs 1/sqrt(N))",
+        "cannot diagnose parameter estimation obstructions from measurement incompatibility"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical Fisher ignores SLD (symmetric logarithmic derivative) structure; multiple inequivalent quantum Fishers (SLD, RLD, BKM) collapse to one [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "fokker_planck_ou",
+      "file": "system_v4/probes/a2_state/sim_results/fokker_planck_ou_classical_results.json",
+      "family": "other",
+      "divergence_log": "Fokker-Planck operator acts on a real probability density p(x,t) on a commuting configuration space. It cannot represent interference between classically distinct paths, phase-space negativity, or the quantum Smoluchowski / quantum-Brownian-motion regime where position and momentum are non-commuting. The canonical nonclassical analog is a Caldeira-Leggett master equation on rho(x,x';t).",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Fokker-Planck operator acts on a real probability density p(x,t) on a commuting configuration space. It cannot represent",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "fubini_study_christoffel",
+      "file": "system_v4/probes/a2_state/sim_results/fubini_study_christoffel_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "CP^1 U(1) fibre phase invisible after real projection",
+        "Kahler 2-form omega_FS not representable in (theta, phi) alone",
+        "Hermitian connection demoted to real Levi-Civita connection",
+        "cannot recover geometric phase of projective quantum states"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "CP^1 U(1) fibre phase invisible after real projection [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "g_structure_tower_classical_obstruction_results.json",
+      "file": "system_v4/probes/a2_state/sim_results/g_structure_tower_classical_obstruction_results.json",
+      "family": "other",
+      "divergence_log": {
+        "note": "the classical G-structure tower detects obstructions in real frame bundles via vanishing of classical torsion/curvature tensors; it cannot encode spinorial reductions that require complex or quaternionic frames, projective G-structure lifts with Z2 cohomological obstructions, or the Weyl/Spin(3) tower where the reduction is visible only through nonclassical chirality witnesses.",
+        "missing_axes": [
+          "spinorial reductions requiring complex frames",
+          "projective Z2 cohomological obstruction",
+          "chirality witnesses (Weyl/Spin lifts)"
+        ]
+      },
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "note: the classical G-structure tower detects obstructions in real frame bundles via v",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "gauss_bonnet_triangulated",
+      "file": "system_v4/probes/a2_state/sim_results/gauss_bonnet_triangulated_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "Euler characteristic survives; spin structure does not",
+        "cannot detect w2 Stiefel-Whitney obstruction to spin lift",
+        "half-integer indices (Atiyah-Singer) invisible",
+        "orientability not distinguished from admissibility of a Pin cover"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Euler characteristic survives; spin structure does not [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "geometry_preserving_basis_change",
+      "file": "system_v4/probes/a2_state/sim_results/geometry_preserving_basis_change_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "basis-change constraints imposed by coupling / probe-admissible frames",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "grassmannian_geodesic",
+      "file": "system_v4/probes/a2_state/sim_results/grassmannian_geodesic_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "complex structure J on Gr_C(n,k) not representable over reals",
+        "no Fubini-Study / Kahler metric; metric is flat on tangent",
+        "principal angles carry no phase information",
+        "quantum state overlaps (|<psi|phi>|^2) cannot be recovered"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "complex structure J on Gr_C(n,k) not representable over reals [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "heisenberg_lie_bracket",
+      "file": "system_v4/probes/a2_state/sim_results/heisenberg_lie_bracket_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "CCR [x,p] = i*hbar at operator level on infinite-dim L^2 absent",
+        "Stone-von Neumann uniqueness invisible in nilpotent matrix rep",
+        "Weyl unitary form exp(i(aX+bY+cZ)) and its phase cocycle missing",
+        "no center with nontrivial unitary character"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "CCR [x,p] = i*hbar at operator level on infinite-dim L^2 absent [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "hellinger_categorical",
+      "file": "system_v4/probes/a2_state/sim_results/hellinger_categorical_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Hellinger uses commuting probability vectors on a fixed categorical alphabet. Quantum Hellinger (Bures) uses fidelity of density matrices with noncommuting spectra; this baseline drops operator structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Hellinger uses commuting probability vectors on a fixed categorical alphabet. Quantum Hellinger (Bures) uses f",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "helstrom_guess_bound",
+      "file": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_classical_results.json",
+      "family": "probe",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "holevo_bound",
+      "file": "system_v4/probes/a2_state/sim_results/holevo_bound_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical chi collapses to mixing entropy on commuting states; misses noncommuting rho_i",
+        "no advantage from nonorthogonal-but-overlapping quantum ensembles (Holevo < log d)",
+        "cannot model chi > I_acc gap: classical equality is generic, quantum inequality is strict",
+        "ignores probe-basis admissibility; assumes a single diagonalizing frame"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical chi collapses to mixing entropy on commuting states; misses noncommuting rho_i [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "hopf_fibration_embedding",
+      "file": "system_v4/probes/a2_state/sim_results/hopf_fibration_embedding_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "U(1) fibre coordinate (global phase) discarded",
+        "map is many-to-one; no section recovers the phase",
+        "Chern number of Hopf bundle not computable from real embedding alone",
+        "quantum ray vs point distinction invisible classically"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "U(1) fibre coordinate (global phase) discarded [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "husimi_phase_space_representation",
+      "file": "system_v4/probes/a2_state/sim_results/husimi_phase_space_representation_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "coherent-state overcompleteness, quantum smoothing of Wigner->Husimi, noncommuting q,p",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "jeffreys_divergence",
+      "file": "system_v4/probes/a2_state/sim_results/jeffreys_divergence_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Jeffreys divergence J(p,q) = KL(p||q)+KL(q||p) is symmetric on a commuting sample space. Quantum Jeffreys J(rho,sigma) = tr((rho-sigma)(log rho - log sigma)) requires operator logarithms whose difference is noncommuting; the classical substrate cannot represent the antisymmetric commutator term that drives nonclassical parameter sensitivity.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Jeffreys divergence J(p,q) = KL(p||q)+KL(q||p) is symmetric on a commuting sample space. Quantum Jeffreys J(rh",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "joint_density_matrix",
+      "file": "system_v4/probes/a2_state/sim_results/joint_density_matrix_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "no off-diagonal coherences; only diagonal joint pmf",
+        "every classical joint is separable; cannot represent entangled joint states",
+        "no PPT / negativity witness structure; partial-transpose map undefined"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no off-diagonal coherences; only diagonal joint pmf [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "kolmogorov_forward_chain",
+      "file": "system_v4/probes/a2_state/sim_results/kolmogorov_forward_chain_classical_results.json",
+      "family": "other",
+      "divergence_log": "Kolmogorov forward equation on a discrete chain propagates classical populations p_i(t) through a commuting transition kernel. It has a real spectrum bounded above by zero; quantum walks on the same graph have a unitary propagator with ballistic (not diffusive) spreading and spectrum on the unit circle. The nonclassical analog is a Lindbladian whose dissipative part reduces to Q on populations but acts nontrivially on coherences.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Kolmogorov forward equation on a discrete chain propagates classical populations p_i(t) through a commuting transition k",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "kramers_escape_arrhenius",
+      "file": "system_v4/probes/a2_state/sim_results/kramers_escape_arrhenius_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Kramers rate assumes a real trajectory crossing a potential barrier via thermal activation. The quantum analog includes tunneling contributions that make the rate finite as T -> 0 (where classical r -> 0) and admits complex instanton / WKB corrections invisible to Arrhenius. This baseline cannot encode tunneling or coherent splittings.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Kramers rate assumes a real trajectory crossing a potential barrier via thermal activation. The quantum analog",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "kraus_operator_sum",
+      "file": "system_v4/probes/a2_state/sim_results/kraus_operator_sum_classical_results.json",
+      "family": "channel",
+      "divergence_log": [
+        "classical Kraus collapse to rank-1 diagonal selections; cannot express non-commuting K_k",
+        "misses nonorthogonal measurement back-action (POVM Kraus with K_k^dag K_k overlap)",
+        "no interference between Kraus branches; classical channel acts on pmf, not amplitudes",
+        "unitary Kraus (|K|=1) absent; classical has no reversible mixing channel beyond permutations"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical Kraus collapse to rank-1 diagonal selections; cannot express non-commuting K_k [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "langevin_damped_oscillator",
+      "file": "system_v4/probes/a2_state/sim_results/langevin_damped_oscillator_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Langevin dynamics integrate a real trajectory under Gaussian white noise on commuting (q, v). The nonclassical (quantum Brownian-motion) limit has a colored noise kernel fixed by the fluctuation-dissipation theorem with hbar, and ground-state variances hbar/(2 m omega) that are strictly larger than any classical zero-T limit. This baseline cannot express zero-point fluctuations or off-diagonal quantum coherences.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Langevin dynamics integrate a real trajectory under Gaussian white noise on commuting (q, v). The nonclassical",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "le_cam_deficiency",
+      "file": "system_v4/probes/a2_state/sim_results/le_cam_deficiency_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Le Cam deficiency between two probability experiments drops to a minimax over stochastic matrices. Quantum deficiency (Matsumoto / Buscemi) requires CPTP maps between density matrices with operator-convex constraints. This baseline elides CP and complete positivity.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Le Cam deficiency between two probability experiments drops to a minimax over stochastic matrices. Quantum def",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "lindbladian_evolution",
+      "file": "system_v4/probes/a2_state/sim_results/lindbladian_evolution_classical_results.json",
+      "family": "dynamics",
+      "divergence_log": [
+        "no Hamiltonian commutator -i[H,rho] piece; purely dissipative rates",
+        "no decoherence on off-diagonals (none exist classically)",
+        "no Kraus/GKSL structure; cannot represent quantum Zeno or dephasing"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no Hamiltonian commutator -i[H,rho] piece; purely dissipative rates [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "liouville_harmonic",
+      "file": "system_v4/probes/a2_state/sim_results/liouville_harmonic_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Liouville equation propagates a non-negative density on commuting coordinates (q, p). The Wigner/Weyl quantum analog allows negative values, signals non-classical states (Fock, cat, squeezed), and the flow is no longer a rigid symplectic rotation outside quadratic Hamiltonians. This baseline cannot encode Moyal-bracket corrections or interference between classically distinct trajectories.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Liouville equation propagates a non-negative density on commuting coordinates (q, p). The Wigner/Weyl quantum ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "loop_vector_fields",
+      "file": "system_v4/probes/a2_state/sim_results/loop_vector_fields_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "nonclassical holonomy / Berry phase on constraint manifold loops",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "low_rank_psd_approximation",
+      "file": "system_v4/probes/a2_state/sim_results/low_rank_psd_approximation_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "magic_state",
+      "file": "system_v4/probes/a2_state/sim_results/magic_state_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical bit states have zero magic by construction",
+        "no T-state / H-state representation; no robustness-of-magic witness",
+        "cannot seed universal quantum computation via magic state distillation"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical bit states have zero magic by construction [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "majorization_lorenz",
+      "file": "system_v4/probes/a2_state/sim_results/majorization_lorenz_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical majorization compares probability vectors by their sorted partial sums (Lorenz curves) on a commuting sample space. It captures mixing of diagonal (classical) populations only. Quantum majorization rho >> sigma compares the eigenvalue vectors lambda(rho) >> lambda(sigma), but two states with identical spectra and therefore equal classical majorization status can still be distinguishable via noncommuting measurements; coherent superpositions between eigenbases are invisible to this substrate.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical majorization compares probability vectors by their sorted partial sums (Lorenz curves) on a commuting sample s",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "markov_entropy_production",
+      "file": "system_v4/probes/a2_state/sim_results/markov_entropy_production_classical_results.json",
+      "family": "entropy",
+      "divergence_log": "Classical entropy production sigma = sum J log(J_+/J_-) on a commuting state graph measures irreversibility of diagonal populations under a Markov generator. Quantum entropy production in Lindbladian dynamics uses -d/dt S(rho(t) || rho_ss) with noncommuting rho, rho_ss and can include coherence-driven contributions absent here. The classical substrate cannot encode coherent heat currents or quantum-coherence enhancement of the thermodynamic uncertainty relation.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical entropy production sigma = sum J log(J_+/J_-) on a commuting state graph measures irreversibility of diagonal ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "measurement_instrument",
+      "file": "system_v4/probes/a2_state/sim_results/measurement_instrument_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical measurement has no back-action on noncommuting observables",
+        "ideal classical measurement is repeatable AND non-disturbing; quantum forbids both simultaneously for nondiagonal observables",
+        "cannot express weak/continuous measurement with coherence loss",
+        "no POVM-Kraus pair distinguishing (multiple Kraus decompositions for same POVM outcome)"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical measurement has no back-action on noncommuting observables [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "min_max_entropy",
+      "file": "system_v4/probes/a2_state/sim_results/min_max_entropy_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "no smooth epsilon-ball around state (one-shot quantum notion)",
+        "no operational channel-compression meaning",
+        "cannot distinguish commuting vs noncommuting support"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no smooth epsilon-ball around state (one-shot quantum notion) [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "mle_consistency_bernoulli",
+      "file": "system_v4/probes/a2_state/sim_results/mle_consistency_bernoulli_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Bernoulli MLE is real-valued and commutes with itself; a quantum analog estimating population state from POVM outcomes would involve noncommuting measurements and SLD-weighted likelihoods, which this baseline does not encode.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Bernoulli MLE is real-valued and commutes with itself; a quantum analog estimating population state from POVM ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "monogamy_of_entanglement",
+      "file": "system_v4/probes/a2_state/sim_results/monogamy_of_entanglement_classical_results.json",
+      "family": "bipartite",
+      "divergence_log": "Classical monogamy is vacuous: every classical joint is separable under any entanglement monotone, so the inequality reduces to 0 >= 0. The baseline cannot express the quantitative trade-off (e.g., concurrence-squared CKW) that constrains how much a single qubit A can be entangled with B vs C when the tripartite state is genuinely nonclassical. Worse, swapping the entanglement measure for mutual information produces a classical inequality that is actively violated (GHZ-style joints), showing MI is not an entanglement monotone and cannot substitute for a quantum monogamy witness.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical monogamy is vacuous: every classical joint is separable under any entanglement monotone, so the inequality red",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "monotone_filtration_convergence",
+      "file": "system_v4/probes/a2_state/sim_results/monotone_filtration_convergence_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical filtrations are nested sigma-algebras of commuting events. Quantum filtrations are nested von Neumann subalgebras with noncommuting projections; conditional expectation is replaced by operator-valued projection. This baseline drops the noncommutativity.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical filtrations are nested sigma-algebras of commuting events. Quantum filtrations are nested von Neumann subalgeb",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "mutual_information_chain_rule",
+      "file": "system_v4/probes/a2_state/sim_results/mutual_information_chain_rule_classical_results.json",
+      "family": "entropy",
+      "divergence_log": "Classical Shannon chain rule is exact because pmfs factor via Bayes' rule and conditional entropy is always nonneg. Quantum mutual information I(A;B)=S(A)+S(B)-S(AB) satisfies an analogous chain rule but via strong subadditivity, not Bayes. The classical baseline cannot capture that the quantum conditional I(A;B|C) can fail to reduce to a weighted average of projected subsystem MIs (no joint distribution exists over noncommuting observables), so any construction that silently assumes a classical joint over all three parties cannot witness genuinely quantum tripartite correlations.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Shannon chain rule is exact because pmfs factor via Bayes' rule and conditional entropy is always nonneg. Quan",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "mutual_information",
+      "file": "system_v4/probes/a2_state/sim_results/mutual_information_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "classical MI bounded by min(H(X),H(Y)); quantum MI can reach 2 S(A) via entanglement",
+        "assumes commuting joint pmf; cannot encode noncommuting observable families",
+        "no probe-conditional admissibility; every joint outcome presumed measurable"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical MI bounded by min(H(X),H(Y)); quantum MI can reach 2 S(A) via entanglement [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "neg_classical_probability_results.json",
+      "file": "system_v4/probes/a2_state/sim_results/neg_classical_probability_results.json",
+      "family": "negation",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "neg",
+      "file": "system_v4/probes/a2_state/sim_results/neg_classical_results.json",
+      "family": "negation",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "neyman_pearson_roc",
+      "file": "system_v4/probes/a2_state/sim_results/neyman_pearson_roc_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical NP uses a scalar LR over commuting observations. The quantum analog is Helstrom's test with a noncommuting optimal POVM; this baseline omits the operator structure of the quantum hypothesis testing problem.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical NP uses a scalar LR over commuting observations. The quantum analog is Helstrom's test with a noncommuting opt",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "operator_coordinate_representation",
+      "file": "system_v4/probes/a2_state/sim_results/operator_coordinate_representation_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "operator_low_rank_factorization",
+      "file": "system_v4/probes/a2_state/sim_results/operator_low_rank_factorization_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "pairwise_coupling",
+      "file": "system_v4/probes/a2_state/sim_results/pairwise_coupling_classical_results.json",
+      "family": "coupling",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "parallel_transport_s2",
+      "file": "system_v4/probes/a2_state/sim_results/parallel_transport_s2_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "Berry phase = Omega/2 for spin-1/2 is null classically",
+        "no U(1) fibre to support a geometric phase",
+        "spinor sign ambiguity around closed loop unrepresentable",
+        "holonomy is a real frame rotation, not a complex phase"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Berry phase = Omega/2 for spin-1/2 is null classically [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "partial_trace",
+      "file": "system_v4/probes/a2_state/sim_results/partial_trace_classical_results.json",
+      "family": "bipartite",
+      "divergence_log": [
+        "cannot express pure-joint -> mixed-marginal (entanglement signature)",
+        "no off-diagonal coherence tracing; only diagonal marginalization",
+        "blind to subsystem purity inversion used in entanglement entropy"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "cannot express pure-joint -> mixed-marginal (entanglement signature) [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "pca_variance_explained",
+      "file": "system_v4/probes/a2_state/sim_results/pca_variance_explained_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical PCA variance-explained uses a real symmetric sample-covariance matrix with non-negative eigenvalues and commuting directions. Lost relative to the nonclassical/qPCA shell: density-matrix coherences and relative phases between principal directions, noncommuting probe covariances (uncertainty floor), and distinguishability-constraint-admissible subspaces whose variance decomposition cannot be identified with a classical orthogonal direct sum.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical PCA variance-explained uses a real symmetric sample-covariance matrix with non-negative eigenvalues and commut",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "petz_recovery",
+      "file": "system_v4/probes/a2_state/sim_results/petz_recovery_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "Bayes rule is commutative; no sqrt(rho) conjugation",
+        "cannot recover off-diagonal coherence destroyed by channel",
+        "no Fawzi-Renner approximate recovery inequality via quantum relative entropy"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Bayes rule is commutative; no sqrt(rho) conjugation [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "placement_law",
+      "file": "system_v4/probes/a2_state/sim_results/placement_law_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "constraint-admissible placement, probe-dependent legal-placement set",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "posterior_concentration_bvm",
+      "file": "system_v4/probes/a2_state/sim_results/posterior_concentration_bvm_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical BvM relies on commuting Fisher information and a scalar posterior density. The quantum analog involves density-operator posteriors over noncommuting parameters; this baseline does not track that operator structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical BvM relies on commuting Fisher information and a scalar posterior density. The quantum analog involves density",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "povm_measurement",
+      "file": "system_v4/probes/a2_state/sim_results/povm_measurement_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "POVM elements are scalars/rows, not PSD operators on a Hilbert space",
+        "no noncommuting measurement structure; cannot saturate Helstrom bound generically",
+        "no Naimark dilation; measurement instrument state-update undefined"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "POVM elements are scalars/rows, not PSD operators on a Hilbert space [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "principal_bundle_connection",
+      "file": "system_v4/probes/a2_state/sim_results/principal_bundle_connection_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "trivialized bundle: no Chern class, no twist",
+        "cannot encode Berry / Wilczek-Zee non-abelian holonomy",
+        "curvature of connection is identically zero",
+        "holonomy values here are gauge-additive but not topologically meaningful"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "trivialized bundle: no Chern class, no twist [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "principal_subspace",
+      "file": "system_v4/probes/a2_state/sim_results/principal_subspace_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "probe_identity_preservation",
+      "file": "system_v4/probes/a2_state/sim_results/probe_identity_preservation_classical_results.json",
+      "family": "probe",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "probe_object",
+      "file": "system_v4/probes/a2_state/sim_results/probe_object_classical_results.json",
+      "family": "probe",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": null,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "purification",
+      "file": "system_v4/probes/a2_state/sim_results/purification_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "no canonical purification; only ad hoc copy-map lifts",
+        "no Schmidt decomposition or rank invariant",
+        "no Uhlmann theorem / unitary equivalence on environment"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no canonical purification; only ad hoc copy-map lifts [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "qpca_spectral_extraction",
+      "file": "system_v4/probes/a2_state/sim_results/qpca_spectral_extraction_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "quantum_capacity",
+      "file": "system_v4/probes/a2_state/sim_results/quantum_capacity_classical_results.json",
+      "family": "other",
+      "divergence_log": "Shannon capacity is a single-letter max over input distributions; quantum capacity Q requires the regularized coherent-information formula lim_n (1/n) max_rho I_c(rho, N^{\u2297n}) and is known to be superadditive (Smith-Yard). The classical baseline therefore cannot express private capacity P, assisted capacities Q_E, nor the nonadditivity phenomena that are the signature of genuinely quantum channel coding. It also cannot witness channels with zero classical capacity but nonzero quantum capacity such as certain Horodecki private states.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Shannon capacity is a single-letter max over input distributions; quantum capacity Q requires the regularized coherent-i",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "quantum_discord",
+      "file": "system_v4/probes/a2_state/sim_results/quantum_discord_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "discord identically 0 on classical joints; THE KEY INNATE FAILURE \u2014 cannot witness quantum correlations beyond entanglement",
+        "no notion of local-measurement-induced coherence destruction (discord's actual mechanism)",
+        "classical J(A:B) = I(A:B) always; quantum J <= I with strict inequality for coherent states",
+        "classical-classical vs classical-quantum states indistinguishable in this baseline"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "discord identically 0 on classical joints; THE KEY INNATE FAILURE \u2014 cannot witness quantum correlations beyond entanglement [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "quantum_fisher_information",
+      "file": "system_v4/probes/a2_state/sim_results/quantum_fisher_information_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Fisher information cannot express the symmetric-logarithmic-derivative (SLD) term that raises QFI above classical Fisher for noncommuting parametric quantum families. The baseline captures only diagonal (commuting) eigenvalue variation under theta; for parametric families whose eigenbasis rotates with theta (e.g., rotated qubit Bloch states), the basis-rotation contribution is innately absent, so the classical sim cannot detect the 4x QFI enhancement for pure-state estimation nor the Heisenberg-scaling metrology regime.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Fisher information cannot express the symmetric-logarithmic-derivative (SLD) term that raises QFI above classi",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "rao_distance_gaussian",
+      "file": "system_v4/probes/a2_state/sim_results/rao_distance_gaussian_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Fisher-Rao distance on N(mu,sigma^2) uses the Fisher information metric g = diag(1/sigma^2, 2/sigma^2) of a commuting probability family, giving a hyperbolic (half-plane) geodesic. Quantum Fisher-Rao (Bures) distance ds^2 = tr(rho dL^2)/4 requires symmetric logarithmic derivatives and differs from the classical Fisher metric whenever the parameter shifts noncommuting generators. This classical substrate produces strictly smaller distances than Bures on genuinely quantum families.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Fisher-Rao distance on N(mu,sigma^2) uses the Fisher information metric g = diag(1/sigma^2, 2/sigma^2) of a co",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "rayleigh_quotient_extremum",
+      "file": "system_v4/probes/a2_state/sim_results/rayleigh_quotient_extremum_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Rayleigh quotient extremum requires a real symmetric (Hermitian-on-reals) operator and a real inner product. Lost relative to the nonclassical shell: complex-phase-sensitive variational forms, joint extremization under noncommuting constraints (uncertainty-coupled quotients), and constraint-admissibility bounds where the extremal direction is not a single eigenvector but a coherent superposition stabilized only under a specific probe family.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Rayleigh quotient extremum requires a real symmetric (Hermitian-on-reals) operator and a real inner product. L",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "relative_entropy",
+      "file": "system_v4/probes/a2_state/sim_results/relative_entropy_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "classical KL assumes a shared sample space; misses noncommuting-basis D(rho||sigma)",
+        "classical KL finite only if supp(p) subseteq supp(q); quantum relative entropy has analogous but basis-dependent kernel structure",
+        "no Umegaki/Petz monotonicity distinctions; only DPI in one (stochastic) form",
+        "cannot capture quantum hypothesis-testing (Stein lemma) strengthening"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical KL assumes a shared sample space; misses noncommuting-basis D(rho||sigma) [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "relative_entropy_of_entanglement",
+      "file": "system_v4/probes/a2_state/sim_results/relative_entropy_of_entanglement_classical_results.json",
+      "family": "entropy",
+      "divergence_log": "REE is identically zero on every classical joint because the separable set, intersected with diagonal density matrices, is the entire classical simplex. The baseline therefore cannot distinguish classically correlated states from product states via REE, and cannot detect the nonzero REE of entangled states such as |Phi+>, which depends on the convex geometry of separable mixed states in the full Bloch polytope rather than the classical simplex. Mutual information is still nonzero for classical correlations but does not upgrade to an entanglement monotone.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "REE is identically zero on every classical joint because the separable set, intersected with diagonal density matrices, ",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "renyi_entropy",
+      "file": "system_v4/probes/a2_state/sim_results/renyi_entropy_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "classical Renyi acts on a single-basis pmf; misses sandwiched/Petz quantum Renyi divergences (distinct for noncommuting rho, sigma)",
+        "no data-processing contraction distinguishing alpha<1 vs alpha>1 under nonunital channels",
+        "cannot detect coherence spectrum (majorization on eigenvalues); classical sees only a diagonal",
+        "lacks min/max entropy smoothing in the one-shot quantum sense (purified distance unavailable)"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical Renyi acts on a single-basis pmf; misses sandwiched/Petz quantum Renyi divergences (distinct for noncommuting rho, sigma) [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "resource_theory_of_coherence",
+      "file": "system_v4/probes/a2_state/sim_results/resource_theory_of_coherence_classical_results.json",
+      "family": "other",
+      "divergence_log": "The entire resource theory collapses classically: every free state is diagonal, every classical state IS diagonal, so coherence is identically zero under any monotone and 'free operations' are exactly the stochastic maps that permute/mix diagonal entries. The baseline cannot distinguish or cost superposition as a resource, and cannot express coherence distillation, coherence-to-entanglement conversion, or basis-dependence of the incoherent set \u2014 all of which hinge on off-diagonal terms that the classical embedding kills by construction.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "The entire resource theory collapses classically: every free state is diagonal, every classical state IS diagonal, so co",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "schmidt_decomposition",
+      "file": "system_v4/probes/a2_state/sim_results/schmidt_decomposition_classical_results.json",
+      "family": "bipartite",
+      "divergence_log": [
+        "Schmidt rank purely algebraic; no entanglement-as-resource distinction",
+        "cannot distinguish locally-prepared correlation from nonlocal entanglement",
+        "no relation to reduced-state entropy under partial trace (requires quantum structure)"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Schmidt rank purely algebraic; no entanglement-as-resource distinction [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "schmidt_mode_truncation",
+      "file": "system_v4/probes/a2_state/sim_results/schmidt_mode_truncation_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "schur_triangularization",
+      "file": "system_v4/probes/a2_state/sim_results/schur_triangularization_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Schur decomposition triangularizes any square matrix over C and reads off its spectrum from the diagonal. Lost relative to the nonclassical shell: the super-diagonal nilpotent part of a defective operator carries no physical meaning here (no Jordan-block coherence geometry), no constraint-admissibility filter on which spectra can co-exist under a probe family, and no noncommutative spectral overlap structure between multiple non-normal generators.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Schur decomposition triangularizes any square matrix over C and reads off its spectrum from the diagonal. Lost",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "sequential_admission_wald_boundaries",
+      "file": "system_v4/probes/a2_state/sim_results/sequential_admission_wald_boundaries_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical Wald boundaries carve an admission region in (alpha, beta) from a scalar log-likelihood ratio of commuting observables. Quantum sequential admission requires noncommuting adaptive POVMs with time-ordered measurement disturbance; this baseline drops that structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical Wald boundaries carve an admission region in (alpha, beta) from a scalar log-likelihood ratio of commuting obs",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "shannon_entropy",
+      "file": "system_v4/probes/a2_state/sim_results/shannon_entropy_classical_results.json",
+      "family": "entropy",
+      "divergence_log": [
+        "cannot encode noncommuting observable families",
+        "presumes fixed classical alphabet with distinguishable outcomes",
+        "blind to probe-relative indistinguishability classes",
+        "no shell-coupling or admissibility structure"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "cannot encode noncommuting observable families [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "signed_operator_variant",
+      "file": "system_v4/probes/a2_state/sim_results/signed_operator_variant_classical_results.json",
+      "family": "operator",
+      "divergence_log": null,
+      "innately_missing": "nonclassical signed-operator admissibility under coupling / charge-like constraints",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "so3_rotor_composition",
+      "file": "system_v4/probes/a2_state/sim_results/so3_rotor_composition_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "classical SO(3) rotor misses spin-1/2 double cover",
+        "2pi rotation collapses to identity (should yield -1 on spinors)",
+        "no half-angle representation available on 3x3 matrices",
+        "cannot distinguish a state from itself after odd multiples of 2pi"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical SO(3) rotor misses spin-1/2 double cover [+3 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "spectral_decomposition",
+      "file": "system_v4/probes/a2_state/sim_results/spectral_decomposition_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "spectral_truncation",
+      "file": "system_v4/probes/a2_state/sim_results/spectral_truncation_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "sprt_wald",
+      "file": "system_v4/probes/a2_state/sim_results/sprt_wald_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical SPRT accumulates a scalar log-likelihood ratio over iid observations. A quantum sequential test requires noncommuting measurement sequences and adaptive POVMs; this baseline drops that operator-sequential structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical SPRT accumulates a scalar log-likelihood ratio over iid observations. A quantum sequential test requires nonco",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "stabilizer_formalism",
+      "file": "system_v4/probes/a2_state/sim_results/stabilizer_formalism_classical_results.json",
+      "family": "other",
+      "divergence_log": [
+        "X and Y generators absent; only Z-diagonal tableau",
+        "no symplectic inner product structure over F_2^{2n}",
+        "measurement outcomes deterministic, no Born-rule branching"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "X and Y generators absent; only Z-diagonal tableau [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "strong_subadditivity",
+      "file": "system_v4/probes/a2_state/sim_results/strong_subadditivity_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical SSA is elementary: I(A;C|B) is an expected KL divergence over B and therefore nonneg by Gibbs. The quantum analog (Lieb-Ruskai) requires operator-convexity of x log x and is the nontrivial backbone of quantum information theory. The baseline cannot reveal the non-monotone, basis-dependent quantum conditional mutual information, nor detect approximate-Markov-chain failure modes (Fawzi-Renner recovery map), because the very notion of a conditional state sigma_{AC|B} that recovers ABC under a local map on B does not arise for commuting classical observables.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical SSA is elementary: I(A;C|B) is an expected KL divergence over B and therefore nonneg by Gibbs. The quantum ana",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "sufficient_statistics_expfam",
+      "file": "system_v4/probes/a2_state/sim_results/sufficient_statistics_expfam_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical sufficiency collapses all parameter-relevant information into a real statistic T(x). Quantum sufficiency (Petz) requires CPTP-equivariant recovery maps and noncommuting observables, which this baseline discards.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical sufficiency collapses all parameter-relevant information into a real statistic T(x). Quantum sufficiency (Petz",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "svd_factorization",
+      "file": "system_v4/probes/a2_state/sim_results/svd_factorization_classical_results.json",
+      "family": "compression",
+      "divergence_log": null,
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "syndrome_decoding",
+      "file": "system_v4/probes/a2_state/sim_results/syndrome_decoding_classical_results.json",
+      "family": "compression",
+      "divergence_log": [
+        "only bit-flip syndromes; no phase-flip / Z-error channel",
+        "no CSS dual-check structure or Pauli degeneracy classes",
+        "no stabilizer-measurement backaction / random outcome"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "only bit-flip syndromes; no phase-flip / Z-error channel [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "terrain_family_fourfold",
+      "file": "system_v4/probes/a2_state/sim_results/terrain_family_fourfold_classical_results.json",
+      "family": "constraint",
+      "divergence_log": null,
+      "innately_missing": "nonclassical shell coupling between terrain members, admissibility transitions",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "trace_distance_geometry",
+      "file": "system_v4/probes/a2_state/sim_results/trace_distance_geometry_classical_results.json",
+      "family": "geometry",
+      "divergence_log": null,
+      "innately_missing": "trace distance under nonclassical coupling / probe contextuality",
+      "all_pass": true,
+      "summary": "MISSING",
+      "missing_divergence_log": true
+    },
+    {
+      "lego": "trace_norm_dynamics",
+      "file": "system_v4/probes/a2_state/sim_results/trace_norm_dynamics_classical_results.json",
+      "family": "dynamics",
+      "divergence_log": [
+        "no unitary oscillation of distance; only monotone contraction",
+        "no BLP non-Markovianity signature (information backflow)",
+        "cannot distinguish dephasing from amplitude-damping via TV alone"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no unitary oscillation of distance; only monotone contraction [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "tv_contraction_dpi",
+      "file": "system_v4/probes/a2_state/sim_results/tv_contraction_dpi_classical_results.json",
+      "family": "other",
+      "divergence_log": "Classical DPI for TV operates on stochastic matrices acting on probability vectors. The quantum DPI requires CPTP maps on density matrices with trace-distance contraction; this baseline drops operator structure.",
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "Classical DPI for TV operates on stochastic matrices acting on probability vectors. The quantum DPI requires CPTP maps o",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "unitary_channel",
+      "file": "system_v4/probes/a2_state/sim_results/unitary_channel_classical_results.json",
+      "family": "channel",
+      "divergence_log": [
+        "no continuous Lie-group structure; only discrete S_n permutations",
+        "no noncommuting infinitesimal generators; no Berry phase on loops",
+        "no conjugation on off-diagonal coherence (none exist)"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "no continuous Lie-group structure; only discrete S_n permutations [+2 more]",
+      "missing_divergence_log": false
+    },
+    {
+      "lego": "witness_operator",
+      "file": "system_v4/probes/a2_state/sim_results/witness_operator_classical_results.json",
+      "family": "operator",
+      "divergence_log": [
+        "classical witnesses always yield nonneg expectation on classical joints",
+        "cannot encode W = a I - |phi><phi| operator witnesses",
+        "no partial-transpose / PPT-based witness machinery"
+      ],
+      "innately_missing": null,
+      "all_pass": true,
+      "summary": "classical witnesses always yield nonneg expectation on classical joints [+2 more]",
+      "missing_divergence_log": false
+    }
+  ]
+}

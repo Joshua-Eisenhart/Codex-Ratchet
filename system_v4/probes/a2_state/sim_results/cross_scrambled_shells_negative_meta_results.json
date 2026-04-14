@@ -1,0 +1,183 @@
+{
+  "classification": "canonical",
+  "sim": "sim_cross_scrambled_shells_negative_meta",
+  "positive": {
+    "scramble_results": {
+      "holodeck_x_fep": {
+        "canonical_slots": [
+          "holodeck",
+          "fep"
+        ],
+        "scrambled_assignment": [
+          "fep",
+          "holodeck"
+        ],
+        "emergent_under_scramble": false
+      },
+      "holodeck_x_igt": {
+        "canonical_slots": [
+          "holodeck",
+          "igt"
+        ],
+        "scrambled_assignment": [
+          "fep",
+          "holodeck"
+        ],
+        "emergent_under_scramble": false
+      },
+      "holodeck_x_leviathan": {
+        "canonical_slots": [
+          "holodeck",
+          "leviathan"
+        ],
+        "scrambled_assignment": [
+          "fep",
+          "holodeck"
+        ],
+        "emergent_under_scramble": false
+      },
+      "holodeck_x_science_method": {
+        "canonical_slots": [
+          "holodeck",
+          "science_method"
+        ],
+        "scrambled_assignment": [
+          "fep",
+          "holodeck"
+        ],
+        "emergent_under_scramble": false
+      },
+      "fep_x_igt": {
+        "canonical_slots": [
+          "fep",
+          "igt"
+        ],
+        "scrambled_assignment": [
+          "holodeck",
+          "fep"
+        ],
+        "emergent_under_scramble": false
+      },
+      "fep_x_leviathan": {
+        "canonical_slots": [
+          "fep",
+          "leviathan"
+        ],
+        "scrambled_assignment": [
+          "holodeck",
+          "fep"
+        ],
+        "emergent_under_scramble": false
+      },
+      "fep_x_science_method": {
+        "canonical_slots": [
+          "fep",
+          "science_method"
+        ],
+        "scrambled_assignment": [
+          "holodeck",
+          "fep"
+        ],
+        "emergent_under_scramble": false
+      },
+      "science_method_x_leviathan": {
+        "canonical_slots": [
+          "science_method",
+          "leviathan"
+        ],
+        "scrambled_assignment": [
+          "holodeck",
+          "fep"
+        ],
+        "emergent_under_scramble": false
+      }
+    },
+    "template_leaks": [],
+    "honest_scrambles": 8,
+    "honest_majority": true,
+    "z3_scramble_forbids_emergence": true
+  },
+  "negative": {
+    "identity_results": {
+      "holodeck_x_fep": true,
+      "holodeck_x_igt": true,
+      "holodeck_x_leviathan": true,
+      "holodeck_x_science_method": true,
+      "fep_x_igt": true,
+      "fep_x_leviathan": true,
+      "fep_x_science_method": true,
+      "science_method_x_leviathan": true
+    },
+    "identity_preserved_count": 8,
+    "identity_control_ok": true,
+    "flag_preserving_nonidentity": []
+  },
+  "boundary": {
+    "min_swap_results": {
+      "holodeck_x_fep": {
+        "touched": true,
+        "emergent": false
+      },
+      "holodeck_x_igt": {
+        "touched": true,
+        "emergent": false
+      },
+      "holodeck_x_leviathan": {
+        "touched": true,
+        "emergent": false
+      },
+      "holodeck_x_science_method": {
+        "touched": true,
+        "emergent": false
+      },
+      "fep_x_igt": {
+        "touched": true,
+        "emergent": false
+      },
+      "fep_x_leviathan": {
+        "touched": true,
+        "emergent": false
+      },
+      "fep_x_science_method": {
+        "touched": true,
+        "emergent": false
+      },
+      "science_method_x_leviathan": {
+        "touched": false,
+        "emergent": null
+      }
+    },
+    "min_swap_falsified_count": 7,
+    "min_swap_majority_falsified": true
+  },
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "shell signatures + predicate arithmetic"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: scrambled kind-assignment cannot satisfy emergent kind-gate"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "itertools": {
+      "tried": true,
+      "used": true,
+      "reason": "permutation enumeration over shell->slot"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing",
+    "sympy": null,
+    "itertools": "supportive"
+  },
+  "pass": true,
+  "template_leaks": []
+}

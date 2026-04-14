@@ -1,0 +1,103 @@
+{
+  "name": "sim_network_modularity_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive tensor reduction cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical Newman-Girvan Q assumes static partition labels; nonclassical constraint flows absent.",
+    "Null model (k_i k_j / 2m) is classical; does not reflect coupling-admissibility null."
+  ],
+  "positive": {
+    "positive_Q": true,
+    "natural_beats_alt": true,
+    "all_same_zero": true,
+    "torch_sum_match": true
+  },
+  "negative": {
+    "bounded_below": true,
+    "bounded_above": true,
+    "empty_graph_zero": true
+  },
+  "boundary": {
+    "singleton_nonpositive": true,
+    "single_edge_split_neg": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

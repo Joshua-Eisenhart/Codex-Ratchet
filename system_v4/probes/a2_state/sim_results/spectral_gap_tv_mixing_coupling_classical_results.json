@@ -1,0 +1,128 @@
+{
+  "name": "spectral_gap_tv_mixing_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical spectral-gap/TV mixing coupling loses: (1) quantum spectral gaps of Lindbladians with complex eigenvalues, (2) decoherence-free subspaces giving zero effective gap, (3) non-Hermitian (non-reversible) chain phenomena like exceptional points.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "eigendecomp cross-check via torch.linalg"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bound_0": {
+      "gamma": 0.39176760795754284,
+      "tv": 1.7274105125725248e-05,
+      "bound": 4.801654467017839e-05,
+      "pass": true
+    },
+    "bound_1": {
+      "gamma": 0.3935901655735343,
+      "tv": 1.4632890304108748e-05,
+      "bound": 4.5219391787842175e-05,
+      "pass": true
+    },
+    "bound_2": {
+      "gamma": 0.4699298003042205,
+      "tv": 5.488751111254464e-07,
+      "bound": 3.0666752029330215e-06,
+      "pass": true
+    },
+    "bound_3": {
+      "gamma": 0.36466288255647217,
+      "tv": 2.410076821844631e-05,
+      "bound": 0.00011483772110049794,
+      "pass": true
+    }
+  },
+  "negative": {
+    "periodic_no_mix": {
+      "gamma": 0.0,
+      "tv": 0.5,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "start_at_stationary": {
+      "tv": 0.0,
+      "pass": true
+    },
+    "identity_gap_zero": {
+      "gamma": 0.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

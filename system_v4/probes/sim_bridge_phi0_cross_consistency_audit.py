@@ -27,7 +27,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 TOOL_MANIFEST = {

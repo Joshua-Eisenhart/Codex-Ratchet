@@ -24,7 +24,7 @@ import os
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 TOOL_MANIFEST = {

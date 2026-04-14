@@ -1,0 +1,102 @@
+{
+  "name": "sim_line_graph_hitting_time_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive linear solve cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Hitting-time via classical Markov kernel; constraint-admissibility of transitions not probed.",
+    "Line-graph conversion assumes classical edge-incidence; nonclassical coupling omitted."
+  ],
+  "positive": {
+    "line_graph_p2": true,
+    "p2_hitting_1": true,
+    "k3_hitting_2": true,
+    "torch_ok": true
+  },
+  "negative": {
+    "detects_zero_degree": true,
+    "nonnegative_times": true
+  },
+  "boundary": {
+    "self_target_zero": true,
+    "single_edge_line": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

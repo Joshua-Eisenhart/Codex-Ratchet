@@ -1,0 +1,456 @@
+{
+  "name": "qit_weyl_geometry_companion_array",
+  "classification": "research_support",
+  "classification_note": "Companion array for the Weyl/Hopf geometry lane. It keeps the strict finite-state anchor separate from the open companion-ready rows and the promoted translation lanes, without claiming equivalence.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry",
+    "geometry_preserving_basis_change",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "strict_qit_subset_criteria": [
+    "finite_state_anchor_with_exact_density_operator_bookkeeping",
+    "explicit_transport_and_basis_change_readouts",
+    "bounded_open_vs_strict_translation_gap"
+  ],
+  "strict_qit_subset": [
+    {
+      "id": "qit_weyl_geometry_companion",
+      "family": "weyl_geometry",
+      "subset_role": "strict_qit_anchor",
+      "carrier_geometry_class": "finite_weyl_hopf_pauli_companion",
+      "entropy_readout_family": [
+        "stack_error",
+        "transport_roundtrip_error",
+        "basis_change_covariance_error",
+        "left_right_overlap"
+      ],
+      "direction_modes": [
+        "open_vs_strict_geometry_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_companion_results.json",
+      "strictness_reason": "finite strict anchor for the Weyl/Hopf geometry lane",
+      "classification": "research_support",
+      "headline_metrics": {
+        "sample_count": 24,
+        "transport_reference_count": 3,
+        "row_count": 27,
+        "carrier_count": 3,
+        "max_stack_error": 4.443843741175801e-16,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_weyl_hypergraph_companion",
+      "family": "weyl_hypergraph_geometry",
+      "subset_role": "strict_qit_anchor",
+      "carrier_geometry_class": "finite_hypergraph_companion",
+      "entropy_readout_family": [
+        "strict_hyperedge_count",
+        "strict_shadow_edge_count",
+        "beta1",
+        "chi"
+      ],
+      "direction_modes": [
+        "open_vs_strict_hypergraph_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_hypergraph_companion_results.json",
+      "strictness_reason": "finite strict anchor for the Weyl-hypergraph lane",
+      "classification": "research_support",
+      "headline_metrics": {
+        "support_pack_count": 4,
+        "strict_node_count": 4,
+        "strict_hyperedge_count": 2,
+        "strict_shadow_edge_count": 4,
+        "beta1": 2,
+        "chi": 0,
+        "all_pass": true
+      }
+    }
+  ],
+  "qit_repair_rows": [
+    {
+      "id": "qit_weyl_geometry_translation_lane",
+      "family": "weyl_geometry",
+      "subset_role": "qit_translation_lane",
+      "carrier_geometry_class": "open_composed_stack_to_finite_companion",
+      "entropy_readout_family": [
+        "stack_error_gap",
+        "transport_error_gap",
+        "basis_change_gap",
+        "overlap_gap"
+      ],
+      "direction_modes": [
+        "open_vs_strict_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_translation_lane_results.json",
+      "strictness_reason": "promoted open-vs-strict translation lane for the top companion-ready geometry row",
+      "classification": "research_support",
+      "open_row_id": "weyl_hopf_pauli_composed_stack",
+      "headline_metrics": {
+        "open_sample_count": 192,
+        "strict_sample_count": 24,
+        "stack_error_gap": 3.314329501456529e-16,
+        "transport_error_gap": -2.220446049250313e-16,
+        "basis_change_gap": -3.296783224832479e-20,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_weyl_geometry_carrier_translation_lane",
+      "family": "weyl_geometry",
+      "subset_role": "qit_translation_lane",
+      "carrier_geometry_class": "open_carrier_array_to_finite_companion",
+      "entropy_readout_family": [
+        "carrier_count_gap",
+        "carrier_readout_gap_abs",
+        "transport_roundtrip_error",
+        "basis_change_error"
+      ],
+      "direction_modes": [
+        "open_vs_strict_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_carrier_translation_lane_results.json",
+      "strictness_reason": "promoted carrier-array translation lane against the finite companion",
+      "classification": "research_support",
+      "open_row_id": "weyl_geometry_carrier_array",
+      "headline_metrics": {
+        "open_carrier_count": 5,
+        "strict_carrier_count": 3,
+        "carrier_count_gap": 2,
+        "carrier_readout_gap_abs": 8.516177039402992e-17,
+        "strict_stack_error": 4.443843741175801e-16,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_weyl_geometry_repair_comparison_surface",
+      "family": "weyl_geometry",
+      "subset_role": "qit_repair_comparison_surface",
+      "carrier_geometry_class": "open_repair_surface_against_finite_companion",
+      "entropy_readout_family": [
+        "pair_count",
+        "companion_ready_pair_count",
+        "surviving_features"
+      ],
+      "direction_modes": [
+        "open_vs_strict_repair_comparison"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_repair_comparison_surface_results.json",
+      "strictness_reason": "comparison surface over open geometry rows and the finite companion carrier",
+      "classification": "research_support",
+      "open_row_id": "weyl_hopf_pauli_composed_stack",
+      "headline_metrics": {
+        "pair_count": 3,
+        "companion_ready_pair_count": 3,
+        "strict_anchor_row": "qit_weyl_geometry_companion",
+        "top_survivor_row": "weyl_hopf_pauli_composed_stack",
+        "all_pass": true
+      }
+    },
+    {
+      "id": "qit_weyl_hypergraph_translation_lane",
+      "family": "weyl_hypergraph_geometry",
+      "subset_role": "qit_translation_lane",
+      "carrier_geometry_class": "open_hypergraph_follow_on_to_finite_companion",
+      "entropy_readout_family": [
+        "best_family_score",
+        "hypergraph_support_count",
+        "graph_path_length",
+        "multiway_load_bearing"
+      ],
+      "direction_modes": [
+        "open_vs_strict_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_hypergraph_translation_lane_results.json",
+      "strictness_reason": "bounded translation lane for the Weyl-hypergraph extension",
+      "classification": "research_support",
+      "open_row_id": "weyl_hypergraph_follow_on",
+      "headline_metrics": {
+        "best_family": "hypergraph_family",
+        "best_family_score": 4.0,
+        "support_pack_count": 4,
+        "hypergraph_support_count": 4,
+        "graph_path_length": 4,
+        "all_pass": true
+      }
+    }
+  ],
+  "open_lab_companion_rows": [
+    {
+      "id": "weyl_hopf_pauli_composed_stack",
+      "family": "weyl_geometry",
+      "carrier_geometry_class": "nested_hopf_tori_weyl_spinor_pauli_stack",
+      "entropy_readout_family": [
+        "spinor_norm",
+        "bloch_alignment",
+        "transport_closure",
+        "stack_consistency"
+      ],
+      "direction_modes": [
+        "stacked_geometry",
+        "transport_closure"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hopf_pauli_composed_stack_results.json",
+      "closest_translation_lane_id": "qit_weyl_geometry_translation_lane",
+      "bridge_reason": "top companion-ready stack row; closest to strict translation",
+      "classification": "canonical",
+      "headline_metrics": {
+        "sample_count": 192,
+        "total_stages": 4,
+        "max_stack_error": 1.129514239719272e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "weyl_geometry_carrier_array",
+      "family": "weyl_geometry",
+      "carrier_geometry_class": "multi_carrier_geometry_family",
+      "entropy_readout_family": [
+        "carrier_diversity",
+        "nested_lr_overlap",
+        "cp3_concurrence",
+        "graph_cycle_rank"
+      ],
+      "direction_modes": [
+        "carrier_family_comparison"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_carrier_array_results.json",
+      "closest_translation_lane_id": "qit_weyl_geometry_carrier_translation_lane",
+      "bridge_reason": "companion-ready carrier-family row for the strict companion",
+      "classification": "canonical",
+      "headline_metrics": {
+        "carrier_count": 5,
+        "passed_carriers": 5,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_graph_cycle_rank": 6,
+        "max_cp3_concurrence": 5.551115123125783e-17,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "weyl_geometry_carrier_compare",
+      "family": "weyl_geometry",
+      "carrier_geometry_class": "carrier_comparison_surface",
+      "entropy_readout_family": [
+        "mean_left_entropy",
+        "mean_step_bloch_jump",
+        "comparison_spread"
+      ],
+      "direction_modes": [
+        "carrier_comparison"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_carrier_compare_results.json",
+      "closest_translation_lane_id": "qit_weyl_geometry_repair_comparison_surface",
+      "bridge_reason": "carrier-comparison row that survives translation into a repair surface",
+      "classification": null,
+      "headline_metrics": {
+        "carrier_count": 4,
+        "result_count": 96,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "all_pass": true
+      }
+    },
+    {
+      "id": "weyl_hypergraph_follow_on",
+      "family": "weyl_hypergraph_geometry",
+      "carrier_geometry_class": "hypergraph_family_extension_surface",
+      "entropy_readout_family": [
+        "best_family_score",
+        "hypergraph_support_count",
+        "hypergraph_multiway_load_bearing",
+        "torus_beta1"
+      ],
+      "direction_modes": [
+        "family_expansion",
+        "hypergraph_translation"
+      ],
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hypergraph_follow_on_results.json",
+      "closest_translation_lane_id": "qit_weyl_hypergraph_translation_lane",
+      "bridge_reason": "hypergraph follow-on row now has bounded translation support and a dedicated strict companion.",
+      "classification": "canonical",
+      "headline_metrics": {
+        "best_family": "hypergraph_family",
+        "best_family_score": 4.0,
+        "hypergraph_support_count": 4,
+        "hypergraph_multiway_load_bearing": true,
+        "torus_beta1": 2,
+        "all_pass": true
+      }
+    }
+  ],
+  "open_to_translation_lane": [
+    {
+      "open_lab_row_id": "weyl_hopf_pauli_composed_stack",
+      "closest_translation_lane_id": "qit_weyl_geometry_translation_lane",
+      "bridge_reason": "top companion-ready stack row; closest to strict translation"
+    },
+    {
+      "open_lab_row_id": "weyl_geometry_carrier_array",
+      "closest_translation_lane_id": "qit_weyl_geometry_carrier_translation_lane",
+      "bridge_reason": "companion-ready carrier-family row for the strict companion"
+    },
+    {
+      "open_lab_row_id": "weyl_geometry_carrier_compare",
+      "closest_translation_lane_id": "qit_weyl_geometry_repair_comparison_surface",
+      "bridge_reason": "carrier-comparison row that survives translation into a repair surface"
+    },
+    {
+      "open_lab_row_id": "weyl_hypergraph_follow_on",
+      "closest_translation_lane_id": "qit_weyl_hypergraph_translation_lane",
+      "bridge_reason": "hypergraph follow-on row now has bounded translation support and a dedicated strict companion."
+    }
+  ],
+  "positive": {
+    "strict_anchor_is_clean": {
+      "pass": true
+    },
+    "companion_ready_rows_are_clean": {
+      "pass": true,
+      "open_companion_count": 4
+    },
+    "qit_repair_rows_are_clean": {
+      "pass": true,
+      "qit_repair_count": 4
+    },
+    "open_to_translation_lane_pairs_are_bounded": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "the_strict_anchor_is_not_the_open_rows": {
+      "pass": true
+    },
+    "the_companion_array_is_not_owner_math": {
+      "pass": true
+    },
+    "the_open_and_strict_rows_remain_distinct": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_referenced_files_exist": {
+      "pass": true
+    },
+    "all_headline_metrics_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "strict_qit_subset_count": 2,
+    "qit_repair_row_count": 4,
+    "open_lab_companion_count": 4,
+    "open_to_translation_lane_count": 4,
+    "strict_anchor_row_id": "qit_weyl_geometry_companion",
+    "strict_hypergraph_anchor_row_id": "qit_weyl_hypergraph_companion",
+    "top_open_companion_row": "weyl_hopf_pauli_composed_stack",
+    "top_translation_lane_row": "qit_weyl_geometry_translation_lane",
+    "companion_ready_row_ids": [
+      "weyl_hopf_pauli_composed_stack",
+      "weyl_geometry_carrier_array",
+      "weyl_geometry_carrier_compare",
+      "weyl_hypergraph_follow_on"
+    ],
+    "qit_translation_row_ids": [
+      "qit_weyl_geometry_translation_lane",
+      "qit_weyl_geometry_carrier_translation_lane",
+      "qit_weyl_geometry_repair_comparison_surface",
+      "qit_weyl_hypergraph_translation_lane"
+    ],
+    "strict_subset_row_ids": [
+      "qit_weyl_geometry_companion",
+      "qit_weyl_hypergraph_companion"
+    ],
+    "scope_note": "Companion array for the Weyl/Hopf geometry lane. The strict finite-state anchor stays separate from the open companion-ready rows and the promoted translation lanes, and the gap is left explicit."
+  }
+}

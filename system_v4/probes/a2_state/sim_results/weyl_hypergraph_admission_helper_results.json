@@ -1,0 +1,175 @@
+{
+  "name": "weyl_hypergraph_admission_helper",
+  "classification": "exploratory",
+  "classification_note": "Controller-side admission helper for the Weyl hypergraph lane. It reads the finished hypergraph rows and decides whether the next family should be admitted as family-expansion beside the Weyl/Hopf anchor.",
+  "lego_ids": [
+    "weyl_hypergraph_follow_on",
+    "weyl_hypergraph_geometry_bridge",
+    "weyl_geometry_multifamily_expansion",
+    "hypergraph_geometry",
+    "dual_hypergraph_geometry",
+    "xgi_shell_hypergraph",
+    "toponetx_hopf_crosscheck"
+  ],
+  "primary_lego_ids": [
+    "weyl_hypergraph_follow_on",
+    "weyl_hypergraph_geometry_bridge"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "decision": "admit_as_family_expansion",
+    "controller_route": "family_expansion",
+    "best_family": "hypergraph_family",
+    "best_family_score": 4.0,
+    "follow_on_pass": true,
+    "bridge_pass": true,
+    "family_pass": true,
+    "support_pass": true,
+    "hypergraph_support_count": 4,
+    "weyl_anchor_support_count": 4,
+    "hypergraph_edge_count": 2,
+    "hypergraph_edge_sizes": [
+      2,
+      3
+    ],
+    "pairwise_shadow_edge_count": 4,
+    "graph_path_length": 4,
+    "hypergraph_multiway_load_bearing": true,
+    "torus_chi": 0,
+    "scope_note": "Hypergraph admission helper for the Weyl/Hopf controller stack. It admits the family as a family-expansion sidecar because the hypergraph family is the top ranked next extension and both the dedicated follow-on and bridge rows pass."
+  },
+  "evidence": {
+    "follow_on": {
+      "all_pass": true,
+      "best_family": "hypergraph_family",
+      "best_family_score": 4.0,
+      "runner_up_family": "weyl_anchor_family",
+      "third_family": "graph_family",
+      "family_count": 3,
+      "weyl_anchor_support_count": 4,
+      "hypergraph_support_count": 4,
+      "hypergraph_node_count": 4,
+      "hypergraph_edge_count": 2,
+      "hypergraph_edge_sizes": [
+        2,
+        3
+      ],
+      "hypergraph_connected": true,
+      "hypergraph_multiway_load_bearing": true,
+      "hypergraph_shell_count": 8,
+      "hyperedge_count": 8,
+      "max_hyperedge_size": 3,
+      "torus_beta0": 1,
+      "torus_beta1": 2,
+      "torus_beta2": 1,
+      "torus_chi": 0,
+      "scope_note": "Hypergraph follow-on row for the Weyl/Hopf stack. It makes the multiway hypergraph family the next controller-usable extension path and keeps the pairwise shadow explicitly distinct."
+    },
+    "bridge": {
+      "all_pass": true,
+      "best_family": "hypergraph_family",
+      "hyperedge_count": 2,
+      "max_hyperedge_size": 3,
+      "pairwise_shadow_edge_count": 4,
+      "graph_path_length": 4,
+      "bridge_order_unsat": true,
+      "weyl_left_right_overlap_abs": 5.704004013523115e-17,
+      "weyl_bloch_antipodal_gap": 0.0,
+      "cell_complex_shape": [
+        4,
+        4,
+        1
+      ],
+      "scope_note": "Dedicated Weyl/Hopf -> hypergraph family bridge."
+    },
+    "family": {
+      "all_pass": true,
+      "scope_note": "Ranks the next grounded geometry family beside the Weyl/Hopf anchor using existing controller-usable graph, hypergraph, and contact/symplectic rows.",
+      "best_family": "hypergraph_family",
+      "best_family_score": 4.0,
+      "runner_up_family": "contact_symplectic_family",
+      "third_family": "graph_family",
+      "family_count": 3,
+      "weyl_anchor_support_count": 4,
+      "graph_support_count": 3,
+      "hypergraph_support_count": 4,
+      "contact_support_count": 3
+    }
+  }
+}

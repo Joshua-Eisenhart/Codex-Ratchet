@@ -1,0 +1,40 @@
+{
+  "name": "leviathan_explore_as_free_energy_landscape",
+  "framing_assumption": "civilization state minimizes F(diversity,centralization;T)",
+  "blind_spot": "diversity and centralization treated as orthogonal",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "landscape eval + gradient descent"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "highT_endpoint": [
+      0.5,
+      0.001
+    ],
+    "F": -2.2512555571198907,
+    "pass_diversity_preferred": "True"
+  },
+  "negative": {
+    "lowT_endpoint": [
+      0.5,
+      0.001
+    ],
+    "F": -0.8996185589279971,
+    "pass_authoritarian_well": "False"
+  },
+  "boundary": {
+    "critT_endpoint": [
+      0.5,
+      0.001
+    ],
+    "F": -1.5581083785599452,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

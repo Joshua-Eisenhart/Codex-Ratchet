@@ -1,0 +1,80 @@
+{
+  "name": "superdense_coding_capacity_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "scalar bookkeeping"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "density matrices as complex128 tensors; torch.linalg.eigvalsh computes von-Neumann entropies; Holevo capacity chi = S(rho_bar) - avg S(rho_i) is the torch-native quantum/classical gap"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- numeric channel capacity"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- capacity is numeric"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": null,
+    "z3": null
+  },
+  "positive": {
+    "max_pairwise_overlap": 0.0,
+    "bell_basis_orthogonal": true,
+    "holevo_capacity_chi": 1.9999999999999998,
+    "chi_ge_quantum_bound_minus_tol": true,
+    "chi_gt_classical_bound": true,
+    "quantum_classical_gap": 0.9999999999999998,
+    "S_rho_bar": 2.0,
+    "S_rho_bar_equals_2": true,
+    "S_each_encoded": [
+      3.2034265038149176e-16,
+      3.2034265038149176e-16,
+      3.2034265038149176e-16,
+      3.2034265038149176e-16
+    ],
+    "each_encoded_state_pure": true
+  },
+  "negative": {
+    "chi_without_entanglement": 1.0,
+    "chi_no_ent_le_classical": true,
+    "chi_no_ent_lt_quantum_bound": true,
+    "chi_identity_ensemble": -0.0,
+    "chi_identity_is_zero": true,
+    "classical_lt_quantum": true
+  },
+  "boundary": {
+    "chi_vs_depolarization": {
+      "p=0.0": 1.9999999999999998,
+      "p=0.05": 1.7098539505314796,
+      "p=0.1": 1.496816268319416,
+      "p=0.25": 1.0066072709896372
+    },
+    "chi_at_small_noise_gt_classical": true,
+    "chi_at_zero_noise_equals_two": true,
+    "chi_monotone_decreasing_in_noise": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_holevo_bound_bits_per_qubit": 1.0,
+      "superdense_bound_bits_per_qubit": 2.0,
+      "chi_superdense_measured": 1.9999999999999998,
+      "quantum_classical_gap_bits": 0.9999999999999998
+    },
+    "classical_baseline_cited": "Holevo bound 1 bit / qubit without pre-shared entanglement",
+    "measured_quantum_value": 1.9999999999999998
+  }
+}

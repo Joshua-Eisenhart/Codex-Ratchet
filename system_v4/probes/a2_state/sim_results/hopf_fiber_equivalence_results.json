@@ -1,0 +1,331 @@
+{
+  "name": "hopf_fiber_equivalence",
+  "description": "Direct local packet for density and Hopf-image invariance along a Hopf fiber",
+  "classification_note": "Direct local Hopf-fiber equivalence packet. It verifies that phase rotation along a fiber leaves the density matrix and Hopf image invariant, so the fiber is an equivalence class under local density-matrix measurement. The claim remains bounded to one admitted carrier and its fiber action.",
+  "lego_ids": [
+    "hopf_map_s3_to_s2",
+    "hopf_fiber_equivalence",
+    "fiber_loop_law"
+  ],
+  "primary_lego_ids": [
+    "hopf_fiber_equivalence"
+  ],
+  "created_at": "2026-04-14T10:19:27.004835+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing cross-check that fiber-equivalent states yield identical densities under torch complex outer-product construction"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for direct fiber-equivalence bookkeeping"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Trivial UNSAT smoke-test (encodes lam!=0 AND lam==0, not a direct fiber-equivalence encoding); confirms z3 pipeline is functional; symbolic fiber-equivalence proof is carried by sympy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; z3 suffices for bounded equivalence-class witness"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing symbolic proof that global fiber phase cancels in rho = |psi><psi|, establishing fiber equivalence under density measurement"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; hopf_manifold already provides the local fiber geometry primitives"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no geodesic claim in this direct equivalence packet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no equivariant learning claim in this packet"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no shell DAG update here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no hypergraph claim here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no cell-complex claim here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no persistence claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "fiber_density_and_hopf_invariance": {
+      "pass": true,
+      "checks": [
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.1,
+          "theta2": 0.3,
+          "phase": 0.2,
+          "density_gap": 8.449243414126814e-17,
+          "hopf_gap": 1.1443916996305594e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.1,
+          "theta2": 0.3,
+          "phase": 1.1,
+          "density_gap": 2.2426863875304603e-16,
+          "hopf_gap": 2.237726045655905e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.1,
+          "theta2": 0.3,
+          "phase": 2.4,
+          "density_gap": 1.4038491293082145e-16,
+          "hopf_gap": 2.498001805406602e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.1,
+          "theta2": 0.3,
+          "phase": 5.983185307179586,
+          "density_gap": 1.3754069773277341e-16,
+          "hopf_gap": 2.482534153247273e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 0.7,
+          "theta2": 1.4,
+          "phase": 0.2,
+          "density_gap": 9.640445713129474e-17,
+          "hopf_gap": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 0.7,
+          "theta2": 1.4,
+          "phase": 1.1,
+          "density_gap": 1.1146721179173437e-16,
+          "hopf_gap": 1.5700924586837752e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 0.7,
+          "theta2": 1.4,
+          "phase": 2.4,
+          "density_gap": 2.0796193275719982e-16,
+          "hopf_gap": 2.7194799110210365e-16,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 0.7,
+          "theta2": 1.4,
+          "phase": 5.983185307179586,
+          "density_gap": 1.471095850088073e-16,
+          "hopf_gap": 2.482534153247273e-16,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 1.2,
+          "theta2": 0.4,
+          "phase": 0.2,
+          "density_gap": 5.652325331772294e-18,
+          "hopf_gap": 0.0,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 1.2,
+          "theta2": 0.4,
+          "phase": 1.1,
+          "density_gap": 1.117005569469016e-16,
+          "hopf_gap": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 1.2,
+          "theta2": 0.4,
+          "phase": 2.4,
+          "density_gap": 1.1154986325418594e-16,
+          "hopf_gap": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 1.2,
+          "theta2": 0.4,
+          "phase": 5.983185307179586,
+          "density_gap": 1.1806905054364173e-16,
+          "hopf_gap": 2.2887833992611187e-16,
+          "pass": true
+        }
+      ]
+    },
+    "torch_density_crosscheck": {
+      "pass": true,
+      "density_gap": 0.0
+    },
+    "sympy_phase_cancellation": {
+      "pass": true
+    },
+    "z3_equivalence_witness_unsat": {
+      "pass": true,
+      "unsat": true
+    }
+  },
+  "negative": {
+    "base_motion_breaks_fiber_equivalence": {
+      "pass": true,
+      "density_gap": 0.5507207011297419,
+      "hopf_gap": 0.7788366846173009
+    },
+    "unnormalized_spinor_breaks_density_equivalence": {
+      "pass": true,
+      "bad_trace": 4.0
+    }
+  },
+  "boundary": {
+    "fiber_boundary_0_vs_2pi": {
+      "pass": true,
+      "density_gap": 1.2491464385346403e-16,
+      "hopf_gap": 1.1102230246251565e-16
+    },
+    "named_torus_seats": {
+      "pass": true,
+      "checks": [
+        {
+          "eta": 0.0,
+          "density_gap": 1.4874168143337463e-17,
+          "hopf_gap": 0.0,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "density_gap": 5.826729331229502e-17,
+          "hopf_gap": 2.6683760511347463e-17,
+          "pass": true
+        },
+        {
+          "eta": 1.5707963267948966,
+          "density_gap": 1.4874168143337463e-17,
+          "hopf_gap": 4.7357640477748995e-34,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "demo_sample": {
+    "rho_before": [
+      [
+        {
+          "re": 0.5000000000000001,
+          "im": -4.902470895453281e-18
+        },
+        {
+          "re": 0.3483533546735827,
+          "im": -0.3586780454497614
+        }
+      ],
+      [
+        {
+          "re": 0.3483533546735827,
+          "im": 0.3586780454497614
+        },
+        {
+          "re": 0.49999999999999994,
+          "im": -4.532893031683659e-18
+        }
+      ]
+    ],
+    "rho_after": [
+      [
+        {
+          "re": 0.5,
+          "im": 1.4432470067043396e-18
+        },
+        {
+          "re": 0.34835335467358264,
+          "im": -0.35867804544976134
+        }
+      ],
+      [
+        {
+          "re": 0.34835335467358264,
+          "im": 0.35867804544976134
+        },
+        {
+          "re": 0.4999999999999999,
+          "im": 3.0593036364263393e-18
+        }
+      ]
+    ],
+    "hopf_before": [
+      0.6967067093471654,
+      0.7173560908995228,
+      2.220446049250313e-16
+    ],
+    "hopf_after": [
+      0.6967067093471653,
+      0.7173560908995227,
+      2.220446049250313e-16
+    ],
+    "density_gap": 1.668271584158803e-16,
+    "hopf_gap": 1.5700924586837752e-16
+  },
+  "all_pass": true,
+  "summary": {
+    "positive": {
+      "passed": 4,
+      "total": 4
+    },
+    "negative": {
+      "passed": 2,
+      "total": 2
+    },
+    "boundary": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "classification": "canonical"
+}

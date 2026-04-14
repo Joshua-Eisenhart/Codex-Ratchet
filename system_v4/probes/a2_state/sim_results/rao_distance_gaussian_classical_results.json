@@ -1,0 +1,100 @@
+{
+  "name": "rao_distance_gaussian_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Fisher-Rao distance on N(mu,sigma^2) uses the Fisher information metric g = diag(1/sigma^2, 2/sigma^2) of a commuting probability family, giving a hyperbolic (half-plane) geodesic. Quantum Fisher-Rao (Bures) distance ds^2 = tr(rho dL^2)/4 requires symmetric logarithmic derivatives and differs from the classical Fisher metric whenever the parameter shifts noncommuting generators. This classical substrate produces strictly smaller distances than Bures on genuinely quantum families.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch autograd for numeric Fisher information cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "zero_at_same": true,
+    "symmetry": true,
+    "scale_sigma_closed_form": "True",
+    "triangle_inequality": true
+  },
+  "negative": {
+    "not_euclidean": "True",
+    "sigma_only_positive": true
+  },
+  "boundary": {
+    "local_sigma_linear": "True",
+    "local_mu_linear": true,
+    "sigma_to_zero_unbounded": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

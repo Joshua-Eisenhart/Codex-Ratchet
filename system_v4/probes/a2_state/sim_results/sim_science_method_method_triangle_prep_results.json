@@ -1,0 +1,132 @@
+{
+  "name": "science_method_method_triangle_prep",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "networkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": null,
+    "numpy": null
+  },
+  "positive": {
+    "heterogeneous_three_distinct": {
+      "pass": true,
+      "distinct": 3,
+      "triangle": {
+        "holodeck": [
+          3,
+          4
+        ],
+        "fep": [
+          2
+        ],
+        "method": [
+          2,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  "negative": {
+    "homogeneous_collapses": {
+      "pass": true,
+      "triangle": {
+        "holodeck": [],
+        "fep": [
+          5
+        ],
+        "method": []
+      }
+    }
+  },
+  "boundary": {
+    "empty_all_empty": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "status": "pass",
+  "note": "coupling_prep_only; step_3_coexistence_out_of_scope"
+}

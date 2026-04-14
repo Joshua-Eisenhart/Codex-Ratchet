@@ -1,0 +1,100 @@
+{
+  "name": "three_rotor_so3_composition_triple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor det cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor algebra used"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "torch_det": 0.9999999999999993,
+    "so3_triple_closure": true
+  },
+  "negative": {
+    "nonorthogonal_breaks_closure": true
+  },
+  "boundary": {
+    "identity_triple_is_identity": true,
+    "full_rotation_identity": true
+  },
+  "divergence_log": [
+    "classical SO(3) triple composition loses the Spin(3)=SU(2) double cover -- nonclassical triple-nesting requires +/- sign tracking across the cycle",
+    "no holonomy / Berry phase from nested rotor coupling is visible at SO(3) level",
+    "operator ordering treated as free; nonclassical program needs noncommuting constraint-ordering as load-bearing"
+  ],
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

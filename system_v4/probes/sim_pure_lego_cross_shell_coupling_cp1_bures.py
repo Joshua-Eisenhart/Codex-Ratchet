@@ -27,7 +27,7 @@ import os
 import torch
 import sympy as sp
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # ── LEGO IDENTITY ─────────────────────────────────────────────────────────────
 LEGO_NAME = "pure_lego_cross_shell_coupling_cp1_bures"

@@ -1,0 +1,123 @@
+{
+  "name": "relative_entropy_of_entanglement_canonical",
+  "description": "Lane C REE: Phi+ = 1 bit, separable = 0, gap = 1 bit",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: REE eigendecomposition, matrix log, and relative entropy S(rho||sigma) all computed via torch.linalg.eigh / eigvalsh. Closest-separable proxy and grid minimization are torch tensor ops."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_ree_phi_plus_near_log2": {
+      "ree_bits": 0.9999999998804102,
+      "expected_bits": 1.0,
+      "pass": true
+    },
+    "P2_ree_product_zero": {
+      "ree": -8.289306334778563e-11,
+      "pass": true
+    },
+    "P3_quantum_classical_gap": {
+      "gap_bits": 0.9999999999999996,
+      "expected_gap_bits": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_ree_non_negative": {
+      "min": 0.4888083532811747,
+      "pass": true
+    },
+    "N2_classical_corr_zero_ree": {
+      "ree": -5.526201718453194e-11,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_max_mixed_zero": {
+      "ree": 0.0,
+      "pass": true
+    },
+    "B2_werner_sep_boundary": {
+      "ree": 0.08782317456047384,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "quantum_classical_gap_bits": 0.9999999999999996,
+  "summary": {
+    "total_tests": 7,
+    "total_pass": 7,
+    "all_pass": true
+  }
+}

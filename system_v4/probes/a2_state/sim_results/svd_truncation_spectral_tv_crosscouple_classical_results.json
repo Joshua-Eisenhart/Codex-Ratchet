@@ -1,0 +1,201 @@
+{
+  "name": "svd_truncation_spectral_tv_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive SVD cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical SVD truncation is linear and basis-agnostic. Nonclassical compression-distinguishability coupling (where truncation alters WHICH states are probe-indistinguishable, not just how much spectral mass is kept) is NOT captured by sigma-mass accounting alone."
+  ],
+  "positive": {
+    "seed_0_k_1": {
+      "tv": 0.7110269966043912,
+      "dropped": 0.7110269966043911,
+      "pass": true
+    },
+    "seed_0_k_2": {
+      "tv": 0.45691903265998796,
+      "dropped": 0.45691903265998784,
+      "pass": true
+    },
+    "seed_0_k_4": {
+      "tv": 0.14022772664988933,
+      "dropped": 0.1402277266498893,
+      "pass": true
+    },
+    "seed_1_k_1": {
+      "tv": 0.6720397843455779,
+      "dropped": 0.6720397843455778,
+      "pass": true
+    },
+    "seed_1_k_2": {
+      "tv": 0.4021520996478873,
+      "dropped": 0.40215209964788723,
+      "pass": true
+    },
+    "seed_1_k_4": {
+      "tv": 0.0888109223898526,
+      "dropped": 0.0888109223898526,
+      "pass": true
+    },
+    "seed_2_k_1": {
+      "tv": 0.7045680687022268,
+      "dropped": 0.704568068702227,
+      "pass": true
+    },
+    "seed_2_k_2": {
+      "tv": 0.4668572516011461,
+      "dropped": 0.4668572516011461,
+      "pass": true
+    },
+    "seed_2_k_4": {
+      "tv": 0.173821707653808,
+      "dropped": 0.17382170765380803,
+      "pass": true
+    },
+    "seed_3_k_1": {
+      "tv": 0.6927254195250174,
+      "dropped": 0.6927254195250175,
+      "pass": true
+    },
+    "seed_3_k_2": {
+      "tv": 0.42572942976289785,
+      "dropped": 0.4257294297628978,
+      "pass": true
+    },
+    "seed_3_k_4": {
+      "tv": 0.09263912547090072,
+      "dropped": 0.09263912547090067,
+      "pass": true
+    },
+    "seed_4_k_1": {
+      "tv": 0.6609042935245734,
+      "dropped": 0.6609042935245732,
+      "pass": true
+    },
+    "seed_4_k_2": {
+      "tv": 0.40946282464593514,
+      "dropped": 0.4094628246459351,
+      "pass": true
+    },
+    "seed_4_k_4": {
+      "tv": 0.12298335871035602,
+      "dropped": 0.12298335871035601,
+      "pass": true
+    },
+    "seed_5_k_1": {
+      "tv": 0.7182392812482119,
+      "dropped": 0.7182392812482119,
+      "pass": true
+    },
+    "seed_5_k_2": {
+      "tv": 0.45800639337933624,
+      "dropped": 0.45800639337933624,
+      "pass": true
+    },
+    "seed_5_k_4": {
+      "tv": 0.10830792616733656,
+      "dropped": 0.10830792616733659,
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "tv_nonneg": {
+      "pass": true
+    },
+    "k0_positive_tv": {
+      "pass": true
+    },
+    "bound_not_exceeded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "full_rank_tv_zero": {
+      "pass": true
+    },
+    "zero_matrix_tv_zero": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "name": "langevin_damped_oscillator_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Langevin dynamics integrate a real trajectory under Gaussian white noise on commuting (q, v). The nonclassical (quantum Brownian-motion) limit has a colored noise kernel fixed by the fluctuation-dissipation theorem with hbar, and ground-state variances hbar/(2 m omega) that are strictly larger than any classical zero-T limit. This baseline cannot express zero-point fluctuations or off-diagonal quantum coherences.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch variance computation cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "equipartition_q": "True",
+    "equipartition_v": "True",
+    "mean_q_zero": "True",
+    "mean_v_zero": "True",
+    "energy_balance": "True",
+    "temperature_scales_var": "True",
+    "torch_variance_cross": "True"
+  },
+  "negative": {
+    "zero_T_no_variance": "True",
+    "no_dissipation_energy_grows": "True"
+  },
+  "boundary": {
+    "overdamped_equipartition_q": "True",
+    "overdamped_equipartition_v": "True",
+    "stiff_spring_small_q_var": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

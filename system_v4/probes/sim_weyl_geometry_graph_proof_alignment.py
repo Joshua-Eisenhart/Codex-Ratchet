@@ -20,7 +20,7 @@ import sys
 import numpy as np
 import rustworkx as rx
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:
@@ -30,7 +30,7 @@ import hopf_manifold as hopf
 import sim_pauli_algebra_relations as pauli
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Graph/proof alignment bridge for the Weyl/Hopf/Pauli geometry stack. "
     "It adds an explicit stage-order graph and z3 proof surfaces around the "

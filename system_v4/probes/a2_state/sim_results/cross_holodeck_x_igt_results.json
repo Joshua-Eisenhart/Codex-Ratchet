@@ -1,0 +1,34 @@
+{
+  "name": "sim_cross_holodeck_x_igt",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "tree evaluation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "projection-depth reverses argmax"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "short_horizon_best": true,
+    "long_horizon_best": true,
+    "horizon_induces_flip": true,
+    "z3_horizon_reversal_valid": true,
+    "EMERGENT_perception_induced_sign_flip": true
+  },
+  "negative": {
+    "flat_tree_no_flip": true
+  },
+  "boundary": {
+    "full_horizon_matches_igt_local": true
+  },
+  "PASS": true
+}

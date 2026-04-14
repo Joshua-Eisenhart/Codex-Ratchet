@@ -1,0 +1,40 @@
+{
+  "name": "witness_operator_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "linear algebra"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "witness_nonneg_on_product": true,
+    "elementwise_nonneg_witness_is_separable_safe": "True"
+  },
+  "negative": {
+    "nonentrywise_witness_not_classical_safe": true,
+    "classical_cannot_construct_entanglement_witness": true
+  },
+  "boundary": {
+    "zero_witness_zero_expectation": true,
+    "identity_witness_returns_sum_one": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical witnesses always yield nonneg expectation on classical joints",
+    "cannot encode W = a I - |phi><phi| operator witnesses",
+    "no partial-transpose / PPT-based witness machinery"
+  ]
+}

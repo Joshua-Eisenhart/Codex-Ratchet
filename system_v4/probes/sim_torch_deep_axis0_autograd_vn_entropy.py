@@ -44,6 +44,8 @@ import json
 import math
 import os
 
+classification = "canonical"
+
 import numpy as np
 
 # =====================================================================

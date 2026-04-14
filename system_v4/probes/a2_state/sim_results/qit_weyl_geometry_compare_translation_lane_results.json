@@ -1,0 +1,162 @@
+{
+  "name": "qit_weyl_geometry_compare_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Bounded open-vs-strict translation lane for the Weyl geometry carrier compare row. It compares the open comparison surface against the strict finite-state companion without claiming equivalence or canonical owner math.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "carrier_probe_support",
+    "state_distinguishability"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_compare_surface_is_clean": {
+      "pass": true,
+      "open_all_pass": true
+    },
+    "strict_companion_surface_is_clean": {
+      "pass": true,
+      "strict_all_pass": true
+    },
+    "compare_spread_is_real_and_bounded": {
+      "pass": true,
+      "mean_left_entropy_spread": 0.19439185783157628,
+      "mean_step_bloch_jump_spread": 0.5706616935506963
+    },
+    "strict_readouts_remain_exact": {
+      "pass": true,
+      "strict_max_stack_error": 4.443843741175801e-16,
+      "strict_max_transport_roundtrip_error": 5.551115123125783e-17
+    },
+    "surface_gaps_are_explicit": {
+      "pass": true,
+      "open_minus_strict_carrier_count_gap": 1,
+      "open_minus_strict_row_count_gap": 69,
+      "open_minus_strict_transport_reference_gap": 0
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_and_strict_are_not_equivalent": {
+      "pass": true,
+      "carrier_count_gap": 1,
+      "row_count_gap": 69
+    }
+  },
+  "boundary": {
+    "all_required_files_exist": {
+      "pass": true
+    },
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_row_id": "weyl_geometry_carrier_compare",
+    "strict_row_id": "qit_weyl_geometry_companion",
+    "open_carrier_count": 4,
+    "open_result_count": 96,
+    "open_comparison_rows": 3,
+    "open_mean_left_entropy_spread": 0.19439185783157628,
+    "open_mean_step_bloch_jump_spread": 0.5706616935506963,
+    "strict_sample_count": 24,
+    "strict_row_count": 27,
+    "strict_carrier_count": 3,
+    "strict_transport_reference_count": 3,
+    "strict_max_stack_error": 4.443843741175801e-16,
+    "strict_max_transport_error": 5.551115123125783e-17,
+    "strict_max_transport_roundtrip_error": 5.551115123125783e-17,
+    "strict_max_basis_change_covariance_error": 2.220446049250313e-16,
+    "strict_max_left_right_overlap_abs": 1.1102230246251565e-16,
+    "strict_max_left_hopf_alignment_error": 2.220446049250313e-16,
+    "strict_max_right_antipode_error": 2.220446049250313e-16,
+    "open_minus_strict_carrier_count_gap": 1,
+    "open_minus_strict_row_count_gap": 69,
+    "open_minus_strict_transport_reference_gap": 0,
+    "strict_reference_file": "weyl_hopf_pauli_composed_stack_results.json",
+    "strict_reference_stack_gap": 3.314329501456529e-16,
+    "scope_note": "Bounded open-vs-strict translation lane for the Weyl geometry carrier compare row. The open carrier-comparison surface stays diverse while the strict companion stays exact; the lane records the gap without claiming equivalence."
+  }
+}

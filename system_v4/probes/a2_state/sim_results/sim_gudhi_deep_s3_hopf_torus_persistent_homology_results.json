@@ -1,0 +1,223 @@
+{
+  "name": "sim_gudhi_deep_s3_hopf_torus_persistent_homology",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; sampling is numpy-only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph msg-passing in this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Betti numbers are numeric not SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no SMT constraint here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numeric sampling"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Hopf param given explicitly"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; S^3 sampled via Gaussian-normalize"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; simplex adjacency via gudhi"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; not a hypergraph problem"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; gudhi handles simplicial complex"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: RipsComplex.create_simplex_tree, SimplexTree.compute_persistence, persistent_betti_numbers, betti_numbers are the decisive calls producing Betti signatures"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "torus_T2": {
+      "n_points": 300,
+      "persistent_betti_at_plateau": [
+        1,
+        21,
+        0
+      ],
+      "final_betti": [
+        1,
+        4,
+        0
+      ],
+      "num_simplices": 243981,
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "plateau": 0.9,
+      "pass": false
+    },
+    "S3": {
+      "n_points": 250,
+      "persistent_betti_at_plateau": [
+        1,
+        8,
+        7,
+        0
+      ],
+      "final_betti": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "num_simplices": 11003743,
+      "expected": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "plateau": 0.7,
+      "pass": false
+    },
+    "hopf_torus": {
+      "n_points": 300,
+      "persistent_betti_at_plateau": [
+        1,
+        23,
+        0
+      ],
+      "final_betti": [
+        1,
+        2,
+        1
+      ],
+      "num_simplices": 169770,
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "plateau": 0.5,
+      "pass": false
+    },
+    "all_pass": false
+  },
+  "negative": {
+    "two_blobs": {
+      "persistent_betti": [
+        2,
+        0,
+        0
+      ],
+      "final_betti": [
+        2,
+        0,
+        0
+      ],
+      "num_simplices": 1047370,
+      "expected": [
+        2,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "single_point": {
+      "persistent_betti": [
+        0,
+        0,
+        0
+      ],
+      "pass": false
+    },
+    "torus_tiny_radius": {
+      "persistent_betti": [
+        0,
+        0,
+        0
+      ],
+      "expected_b0": 50,
+      "pass": false
+    },
+    "torus_oversized_radius": {
+      "persistent_betti": [
+        1,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    "all_pass": false
+  },
+  "all_pass": false,
+  "betti_signature_summary": {
+    "S3": [
+      1,
+      8,
+      7,
+      0
+    ],
+    "hopf_torus": [
+      1,
+      23,
+      0
+    ],
+    "torus_T2": [
+      1,
+      21,
+      0
+    ],
+    "two_blobs_negative": [
+      2,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "quantum_capacity_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Blahut-Arimoto iteration and closed-form checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "BSC_capacity_1_minus_h2": "True",
+    "BEC_capacity_1_minus_eps": "True",
+    "capacity_nonneg": "True"
+  },
+  "negative": {
+    "useless_channel_zero_capacity": "True",
+    "classical_cannot_reach_quantum_Q_ge_C_separation": true
+  },
+  "boundary": {
+    "identity_2ary_capacity_1": "True",
+    "identity_3ary_capacity_log2_3": "True",
+    "BSC_at_half_zero_capacity": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Shannon capacity is a single-letter max over input distributions; quantum capacity Q requires the regularized coherent-information formula lim_n (1/n) max_rho I_c(rho, N^{\u2297n}) and is known to be superadditive (Smith-Yard). The classical baseline therefore cannot express private capacity P, assisted capacities Q_E, nor the nonadditivity phenomena that are the signature of genuinely quantum channel coding. It also cannot witness channels with zero classical capacity but nonzero quantum capacity such as certain Horodecki private states."
+}

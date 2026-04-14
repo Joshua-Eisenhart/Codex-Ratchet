@@ -1,0 +1,51 @@
+{
+  "name": "monotone_filtration_convergence_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical filtrations are nested sigma-algebras of commuting events. Quantum filtrations are nested von Neumann subalgebras with noncommuting projections; conditional expectation is replaced by operator-valued projection. This baseline drops the noncommutativity.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "partition refinement and means"
+    },
+    "scipy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": "supportive",
+    "scipy": null,
+    "z3": null
+  },
+  "positive": {
+    "filtration_nested": true,
+    "refined_tends_to_X": true,
+    "L2_distance_monotone_nonincreasing": true,
+    "tower_property": true
+  },
+  "negative": {
+    "nonnested_fails_refinement": true,
+    "coarse_differs_from_fine": true
+  },
+  "boundary": {
+    "constant_CE_is_identity": true,
+    "trivial_CE_is_mean": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

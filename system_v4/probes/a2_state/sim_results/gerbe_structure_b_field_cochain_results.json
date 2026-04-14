@@ -1,0 +1,35 @@
+{
+  "name": "gerbe_structure_b_field_cochain",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "cochain arithmetic via incidence matrices"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "incidence matrices for computing coboundary dB"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "positive": {
+    "num_2_cochains": 4,
+    "B_length_matches_2cells": true,
+    "coboundary_space_empty": true,
+    "cocycle_condition_trivial": true
+  },
+  "negative": {
+    "nonzero_coboundary_detected": true,
+    "balanced_cochain_not_cocycle": false
+  },
+  "boundary": {
+    "zero_cochain_is_cocycle": true,
+    "cocycle_dim": 3,
+    "cocycle_dim_is_3": true
+  },
+  "classification": "canonical"
+}

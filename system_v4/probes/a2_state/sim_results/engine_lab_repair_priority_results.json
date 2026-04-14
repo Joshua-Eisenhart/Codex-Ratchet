@@ -88,12 +88,13 @@
   },
   "summary": {
     "all_pass": true,
-    "ranked_rows": 13,
+    "ranked_rows": 15,
     "paired_rows": 13,
     "priority_counts": {
       "p0_translate_now": 2,
       "p1_good_candidate": 7,
-      "p2_needs_new_companion_or_metric": 4
+      "p2_needs_new_companion_or_metric": 4,
+      "p3_keep_open_sidecar": 2
     },
     "top_row_id": "szilard_reverse_recovery",
     "top_row_score": 0.8319028567431039,
@@ -327,6 +328,49 @@
       "headline_metrics": {
         "all_pass": true,
         "best_ordering_margin": 0.026232612370151065
+      }
+    },
+    {
+      "row_id": "carnot_graph_proof_alignment",
+      "family": "carnot",
+      "route": "keep_as_open_lab_sidecar",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_carnot_two_bath_cycle",
+      "has_direct_qit_pair": false,
+      "pair_id": null,
+      "translation_closeness_score": 0.0,
+      "priority_bucket": "p3_keep_open_sidecar",
+      "headline_metrics": {
+        "all_pass": true,
+        "forward_efficiency": 0.5000000000000001,
+        "forward_carnot_bound": 0.5,
+        "reverse_cop": 0.9999999999999999,
+        "reverse_cop_carnot": 1.0,
+        "graph_path_length": 4,
+        "cycle_schedule_valid": true,
+        "efficiency_identity_unsat": true,
+        "cop_identity_unsat": true
+      }
+    },
+    {
+      "row_id": "szilard_graph_proof_alignment",
+      "family": "szilard",
+      "route": "keep_as_open_lab_sidecar",
+      "clean_run": true,
+      "closest_strict_anchor": "qit_szilard_landauer_cycle",
+      "has_direct_qit_pair": false,
+      "pair_id": null,
+      "translation_closeness_score": 0.0,
+      "priority_bucket": "p3_keep_open_sidecar",
+      "headline_metrics": {
+        "all_pass": true,
+        "graph_path_length": 3,
+        "protocol_schedule_valid": true,
+        "ktln2_balance_unsat": true,
+        "ordering_precedence_unsat": true,
+        "helstrom_measurement_guess_probability": 0.75,
+        "helstrom_erased_guess_probability": 0.5,
+        "wrong_order_vs_feedback_guess_probability": 0.75
       }
     }
   ]

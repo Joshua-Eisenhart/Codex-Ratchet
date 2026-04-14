@@ -1,0 +1,33 @@
+{
+  "name": "sim_cross_fep_x_igt",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "fep + igt evaluation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "long-horizon payoff strictly dominates"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "fep_prefers_long_horizon_win": true,
+    "fep_confidence_high": true,
+    "z3_long_horizon_action_dominant": true,
+    "EMERGENT_fep_overrides_short_horizon": true
+  },
+  "negative": {
+    "flat_payoff_prefers_action0": true
+  },
+  "boundary": {
+    "degenerate_payoff_no_preference": "True"
+  },
+  "PASS": true
+}

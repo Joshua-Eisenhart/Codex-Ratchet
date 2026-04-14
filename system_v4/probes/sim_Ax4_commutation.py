@@ -20,8 +20,10 @@ Results saved: a2_state/sim_results/Ax4_commutation_results.json
 import numpy as np
 import json
 from datetime import datetime, timezone
+
+classification = "canonical"
+
 from geometric_operators import (
-classification = "classical_baseline"  # auto-backfill
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
     trace_distance_2x2, _ensure_valid_density
 )

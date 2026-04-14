@@ -1,0 +1,52 @@
+{
+  "name": "sufficient_statistics_expfam_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical sufficiency collapses all parameter-relevant information into a real statistic T(x). Quantum sufficiency (Petz) requires CPTP-equivariant recovery maps and noncommuting observables, which this baseline discards.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "sample arithmetic and histogram"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "chi2 / KS reference for conditional check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive; not used in sufficiency derivation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT proof of factorization"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "conditional_independent_of_theta": true,
+    "conditional_matches_t_over_n": true,
+    "residual_mean_independent_of_mu": "True",
+    "residual_var_independent_of_mu": "True"
+  },
+  "negative": {
+    "nonsufficient_statistic_depends_on_theta": "True",
+    "single_observation_not_sufficient_for_n_gt_1": true
+  },
+  "boundary": {
+    "n1_trivially_sufficient": true,
+    "symmetric_sufficient_statistic_range": true,
+    "large_n_concentration": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

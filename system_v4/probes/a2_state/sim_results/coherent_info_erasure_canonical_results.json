@@ -1,0 +1,171 @@
+{
+  "name": "coherent_info_erasure_canonical",
+  "description": "Lane C: I_c(erasure,p<0.5)>0 quantum capacity witness; gap 0.8 at p=0.1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: purification via torch.linalg.eigh, Stinespring dilation from qubit (2-d) to erasure output (3-d) built with torch tensor ops, partial trace via indexing, VNE via torch.linalg.eigvalsh. Quantum capacity witness is a torch tensor computation end-to-end."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_erasure_formula": {
+      "p=0.0": {
+        "I_c": 0.9999999998405477,
+        "expected": 1.0,
+        "diff": 1.5945234022041177e-10,
+        "pass": true
+      },
+      "p=0.1": {
+        "I_c": 0.7999999998804107,
+        "expected": 0.8,
+        "diff": 1.1958933843203567e-10,
+        "pass": true
+      },
+      "p=0.25": {
+        "I_c": 0.499999999880411,
+        "expected": 0.5,
+        "diff": 1.1958900536512829e-10,
+        "pass": true
+      },
+      "p=0.49": {
+        "I_c": 0.01999999988041079,
+        "expected": 0.020000000000000018,
+        "diff": 1.195892274097332e-10,
+        "pass": true
+      }
+    },
+    "P2_positive_below_half": {
+      "p=0.05": {
+        "I_c": 0.8999999998804102,
+        "pass": true
+      },
+      "p=0.2": {
+        "I_c": 0.5999999998804109,
+        "pass": true
+      },
+      "p=0.4": {
+        "I_c": 0.19999999988041095,
+        "pass": true
+      }
+    },
+    "P3_quantum_classical_gap_at_p01": {
+      "I_c": 0.7999999998804107,
+      "gap_bits": 0.7999999998804107,
+      "expected_gap": 0.8,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_nonpositive_above_half": {
+      "p=0.5": {
+        "I_c": -1.195892274097332e-10,
+        "pass": true
+      },
+      "p=0.6": {
+        "I_c": -0.2000000001195894,
+        "pass": true
+      },
+      "p=0.9": {
+        "I_c": -0.8000000001195895,
+        "pass": true
+      }
+    },
+    "N2_pure_input_nonpositive": {
+      "I_c": -1.1958944945433814e-10,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_perfect_channel": {
+      "I_c": 0.9999999998405477,
+      "expected": 1.0,
+      "pass": true
+    },
+    "B2_threshold_half": {
+      "I_c": -1.195892274097332e-10,
+      "pass": true
+    },
+    "B3_full_erasure": {
+      "I_c": -1.0000000000797264,
+      "expected": -1.0,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "quantum_classical_gap_bits": 0.7999999998804107,
+  "summary": {
+    "total_tests": 15,
+    "total_pass": 15,
+    "all_pass": true
+  }
+}

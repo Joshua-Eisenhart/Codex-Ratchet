@@ -1,0 +1,101 @@
+{
+  "name": "sim_blp_non_markovianity_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Complex tensor ODE integration of Lindblad amplitude damping and trace-norm distinguishability D(t) = 0.5*||rho1(t)-rho2(t)||_1; the BLP derivative sign test is computed from torch tensors."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "N_BLP_markov": 0.0,
+    "N_BLP_non_markov": 1.0084463683807072,
+    "gap": 1.0084463683807072,
+    "pass": true,
+    "revival_detected": true
+  },
+  "negative": {
+    "N_BLP_markov": 0.0,
+    "D_monotone_nonincreasing": true,
+    "pass": true
+  },
+  "boundary": {
+    "N_BLP_zero_rate": 0.0,
+    "D_constant": true,
+    "pass": true
+  },
+  "gap": 1.0084463683807072,
+  "summary": {
+    "all_pass": true
+  }
+}

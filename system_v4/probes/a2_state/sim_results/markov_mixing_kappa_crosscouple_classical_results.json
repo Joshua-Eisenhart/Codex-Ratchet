@@ -1,0 +1,119 @@
+{
+  "name": "markov_mixing_kappa_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive eigvec cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical spectral-gap mixing treats coupling as a scalar strength with a single mixing rate. Nonclassical coupling-strength x mixing coupling (where constraint admissibility blocks some transitions entirely, making mixing rate probe-dependent rather than spectrum-determined) is lost."
+  ],
+  "positive": {
+    "path": {
+      "gap": 0.1522409349774265,
+      "tmix": 2000
+    },
+    "complete": {
+      "gap": 7.999999999999996,
+      "tmix": 1
+    },
+    "denser_mixes_faster": {
+      "pass": true
+    },
+    "denser_has_larger_gap": {
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_zero_gap": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "complete_gap_equals_n": {
+      "pass": true
+    },
+    "single_node_gap_zero": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

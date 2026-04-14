@@ -1,0 +1,101 @@
+{
+  "name": "homogeneous_space_so3_mod_so2_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check orbit point tensor on unit sphere via torch.norm"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "orbit_on_unit_sphere": true,
+    "orbit_on_unit_sphere_torch": true,
+    "so2_stabilizer_fixes_pole": true
+  },
+  "negative": {
+    "rx_moves_pole": true,
+    "nonortho_breaks_norm": true
+  },
+  "boundary": {
+    "identity_in_stabilizer": true,
+    "rz_2pi_is_identity": true
+  },
+  "divergence_log": [
+    "SO(3)/SO(2) classical baseline: no obstruction expected; classical quotient is S^2.",
+    "No nonclassical admissibility probe applied here \u2014 this is Lane-B baseline only."
+  ],
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

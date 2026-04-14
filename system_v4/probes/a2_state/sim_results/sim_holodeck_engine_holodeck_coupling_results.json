@@ -1,0 +1,57 @@
+{
+  "name": "sim_holodeck_engine_holodeck_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "fixed-point iteration"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "joint_admissible": true,
+    "zero_fixed_point": true
+  },
+  "negative": {
+    "one_way_passes": false,
+    "random_passes": false
+  },
+  "boundary": {
+    "large_init_converges": true,
+    "narrowing_strict": true
+  },
+  "pass": true
+}

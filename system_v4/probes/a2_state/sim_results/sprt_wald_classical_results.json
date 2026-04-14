@@ -1,0 +1,51 @@
+{
+  "name": "sprt_wald_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical SPRT accumulates a scalar log-likelihood ratio over iid observations. A quantum sequential test requires noncommuting measurement sequences and adaptive POVMs; this baseline drops that operator-sequential structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "cumulative LLR and stopping"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "normal pdf closed-form"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT optimality proof here"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "type_i_controlled": "True",
+    "type_ii_controlled": "True",
+    "sprt_beats_fixed_n": "True",
+    "sprt_terminates": true
+  },
+  "negative": {
+    "nearly_identical_needs_many_samples_or_maxn": true,
+    "misspecified_decides_h1_closest": true
+  },
+  "boundary": {
+    "tighter_alpha_more_samples": "True",
+    "loose_error_small_n": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

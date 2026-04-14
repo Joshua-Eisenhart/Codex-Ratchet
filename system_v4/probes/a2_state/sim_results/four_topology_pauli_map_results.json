@@ -1,0 +1,381 @@
+{
+  "name": "sim_four_topology_pauli_map",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical Lindblad RK4 evolution for all four topology types"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: sigma_plus not in SU(2); 4-type exhaustion constraint encoding"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic commutator: dz/dt=0 for sigma_z; fixed-point condition"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_sigma_z_Si_type": {
+      "sympy_dz_dt_zero": {
+        "claim": "Tr(sigma_z * (-i)[sigma_z, rho]) = 0 for all rho",
+        "value": "0",
+        "pass": true
+      },
+      "numerical_z_preserved_under_Hz": {
+        "claim": "z-component of Bloch vector unchanged under H=sigma_z evolution",
+        "pass": true
+      },
+      "numerical_xy_rotates_under_Hz": {
+        "claim": "xy-radius preserved (rotation not damping) under H=sigma_z",
+        "pass": true
+      },
+      "sympy_z_eigenstates_are_fixed_points": {
+        "claim": "[sigma_z, |0><0|] = 0 and [sigma_z, |1><1|] = 0",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P2_sigma_x_Ne_type": {
+      "sympy_z_poles_not_fixed_under_sx": {
+        "claim": "[sigma_x, |0><0|] != 0 (north pole is not a fixed point of sigma_x flow)",
+        "pass": true
+      },
+      "sympy_x_eigenstate_is_fixed": {
+        "claim": "[sigma_x, |+x><+x|] = 0",
+        "pass": true
+      },
+      "numerical_z_oscillates_under_Hx": {
+        "claim": "z-component oscillates (population mixing) under H=sigma_x",
+        "z_range": 1.4160968368116875,
+        "pass": true
+      },
+      "sympy_dz_dt_nonzero_under_sx": {
+        "claim": "Tr(sigma_z * (-i)[sigma_x, rho]) != 0 generically",
+        "value": "2*b",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P3_sigma_minus_Se_type": {
+      "numerical_Se_convergence_north": {
+        "claim": "All initial states converge to north pole under Lindblad L=sigma_plus (Se/amplitude-damping)",
+        "convergence_data": [
+          {
+            "bloch_final": [
+              2.723995788038085e-05,
+              -9.079985960126962e-06,
+              0.9999999979388468
+            ],
+            "converged": true
+          },
+          {
+            "bloch_final": [
+              9.079985960126962e-06,
+              0.0,
+              0.9999999967021543
+            ],
+            "converged": true
+          },
+          {
+            "bloch_final": [
+              3.631994384050785e-05,
+              0.0,
+              0.9999999979388468
+            ],
+            "converged": true
+          }
+        ],
+        "pass": true
+      },
+      "numerical_north_pole_is_fixed": {
+        "claim": "Lindblad(sigma_plus) at rho=|0><0| gives zero derivative",
+        "residual_norm": 0.0,
+        "pass": "True"
+      },
+      "sympy_ground_state_no_damping": {
+        "claim": "sigma_plus |0><0| sigma_minus = 0 (ground state is absorbing for amplitude-damping)",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P4_sigma_plus_Ni_type": {
+      "numerical_Ni_convergence_south": {
+        "claim": "All initial states converge to south pole under Lindblad L=sigma_minus (Ni/amplitude-pumping)",
+        "convergence_data": [
+          {
+            "bloch_final": [
+              2.723995788038085e-05,
+              -9.079985960126962e-06,
+              -0.9999999979388468
+            ],
+            "converged": true
+          },
+          {
+            "bloch_final": [
+              4.539992980063481e-06,
+              0.0,
+              -0.9999999962899244
+            ],
+            "converged": true
+          },
+          {
+            "bloch_final": [
+              0.0,
+              0.0,
+              -0.9999999979388468
+            ],
+            "converged": true
+          }
+        ],
+        "pass": true
+      },
+      "numerical_south_pole_is_fixed": {
+        "claim": "Lindblad(sigma_minus) at rho=|1><1| gives zero derivative",
+        "residual_norm": 0.0,
+        "pass": "True"
+      },
+      "sympy_excited_state_no_pumping": {
+        "claim": "sigma_minus |1><1| sigma_plus = 0 (excited state is absorbing for amplitude-pumping)",
+        "pass": true
+      },
+      "pass": true
+    },
+    "P5_G_structure_connection": {
+      "Si_preserves_purity": {
+        "claim": "sigma_z unitary evolution preserves Bloch norm",
+        "bloch_norm_final": 0.9999999999986118,
+        "pass": true
+      },
+      "Ne_preserves_purity": {
+        "claim": "sigma_x unitary evolution preserves Bloch norm",
+        "bloch_norm_final": 1.0,
+        "pass": true
+      },
+      "Se_decreases_purity_midway": {
+        "claim": "sigma_plus Lindblad (Se) decreases Bloch norm midway for non-fixed-point state",
+        "bloch_norm_initial": 0.9999989560974551,
+        "bloch_norm_midway": 0.9572268982027528,
+        "pass": true
+      },
+      "Ni_decreases_purity_midway": {
+        "claim": "sigma_minus Lindblad (Ni) decreases Bloch norm midway for non-fixed-point state",
+        "bloch_norm_initial": 0.9999989560974551,
+        "bloch_norm_midway": 0.7377077210767632,
+        "pass": true
+      },
+      "z3_sigma_plus_not_in_SU2": {
+        "claim": "sigma_plus NOT in SU(2): encoding SU(2) condition gives UNSAT",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_no_fifth_topology_type": {
+      "z3_unitary_types_exhausted": {
+        "claim": "No 5th unitary orbit type: Si and Ne exhaust hermitian traceless operators",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "pass": true
+      },
+      "sympy_nilpotent_only_two_types": {
+        "claim": "2x2 nilpotent traceless matrices have only sigma_plus or sigma_minus structure",
+        "solution_count": 1,
+        "solutions": [
+          "{b: -a**2/c}"
+        ],
+        "pass": true
+      },
+      "four_types_are_exhaustive": {
+        "claim": "Si, Ne, Se, Ni are the only 4 qualitatively distinct su(2) orbit types on D(C^2)",
+        "reasoning": "Hermitian traceless operators on C^2 decompose as bsx+csy+dsz. Pure z-axis rotation (d only) = Si; general rotation = Ne. Nilpotent operators are either sigma_minus (Se) or sigma_plus (Ni). Identity/trivial is the degenerate boundary. No other cases exist.",
+        "z3_unitary_exhaustion": true,
+        "sympy_nilpotent_cases": 1,
+        "pass": true
+      },
+      "pass": true
+    },
+    "N2_sigma_x_y_same_topology": {
+      "numerical_sx_sy_both_oscillate_z": {
+        "claim": "sigma_x and sigma_y both cause z-oscillation (same Ne-type topology)",
+        "z_range_sx": 1.9899424969797703,
+        "z_range_sy": 1.9899424969797703,
+        "pass": true
+      },
+      "sympy_both_generate_population_mixing": {
+        "claim": "[sigma_x, |0><0|]!=0 and [sigma_y, |0><0|]!=0",
+        "comm_x_zero": false,
+        "comm_y_zero": false,
+        "pass": true
+      },
+      "both_preserve_purity": {
+        "claim": "sigma_x and sigma_y evolutions both preserve Bloch norm",
+        "bn_sx": 0.9999999999996667,
+        "bn_sy": 0.9999999999979168,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_H_zero_trivial": {
+      "H_zero_no_motion": {
+        "claim": "H=0 produces no change in density matrix",
+        "rho_diff_norm": 0.0,
+        "pass": "True"
+      },
+      "bloch_vector_unchanged": {
+        "claim": "Bloch vector unchanged under H=0",
+        "pass": true
+      },
+      "pass": true
+    },
+    "B2_Si_to_Ne_bifurcation": {
+      "z_range_vs_epsilon": {
+        "claim": "z-oscillation range increases with epsilon (Si->Ne bifurcation)",
+        "epsilons": [
+          0.0,
+          0.01,
+          0.1,
+          0.5,
+          1.0,
+          2.0
+        ],
+        "z_ranges": [
+          0.0,
+          0.0001999748989968131,
+          0.019801400263384727,
+          0.39998749944296075,
+          0.9999948053995181,
+          1.599952187348777
+        ],
+        "monotone_increasing": true,
+        "small_eps_small_range": true,
+        "large_eps_large_range": true,
+        "pass": true
+      },
+      "sympy_perturbation_commutator": {
+        "claim": "[sz+eps*sx, |0><0|]=0 at eps=0, nonzero for eps>0",
+        "comm_at_zero_is_zero": true,
+        "comm_depends_on_eps": "Matrix([[0, -eps], [eps, 0]])",
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "test_results": {
+      "P1_sigma_z_Si_type": true,
+      "P2_sigma_x_Ne_type": true,
+      "P3_sigma_minus_Se_type": true,
+      "P4_sigma_plus_Ni_type": true,
+      "P5_G_structure_connection": true,
+      "N1_no_fifth_topology_type": true,
+      "N2_sigma_x_y_same_topology": true,
+      "B1_H_zero_trivial": true,
+      "B2_Si_to_Ne_bifurcation": true
+    },
+    "topology_pauli_map": {
+      "Si": {
+        "operator": "sigma_z",
+        "type": "unitary_stratified",
+        "fixed_points": "z_poles",
+        "motion": "latitude_circle_rotation",
+        "preserves_populations": true
+      },
+      "Ne": {
+        "operator": "sigma_x_or_y",
+        "type": "unitary_generic",
+        "fixed_points": "equatorial_axis_poles",
+        "motion": "great_circle_rotation",
+        "preserves_populations": false
+      },
+      "Se": {
+        "operator": "sigma_plus",
+        "lindblad_jump": "L=sigma_plus=(sigma_x+i*sigma_y)/2",
+        "type": "dissipative_raising",
+        "fixed_points": "north_pole",
+        "motion": "amplitude_damping_streamlines",
+        "preserves_populations": false,
+        "note": "sigma_plus takes |1>->|0> amplitude: all states converge to north pole (|0>)"
+      },
+      "Ni": {
+        "operator": "sigma_minus",
+        "lindblad_jump": "L=sigma_minus=(sigma_x-i*sigma_y)/2",
+        "type": "dissipative_lowering",
+        "fixed_points": "south_pole",
+        "motion": "amplitude_pumping_streamlines",
+        "preserves_populations": false,
+        "note": "sigma_minus takes |0>->|1> amplitude: all states converge to south pole (|1>)"
+      }
+    },
+    "claim": "The four topology families Se/Ne/Ni/Si are the four qualitatively distinct orbit types of su(2) acting on D(C^2). They map exactly to sigma_minus, sigma_x/y, sigma_plus, and sigma_z respectively. These four types are exhaustive: no fifth distinct orbit type exists under 2x2 operator action.",
+    "g_structure_note": "Si and Ne preserve Bloch norm (elements of SU(2) action = Spin(3) structure). Se and Ni are generated by sigma_plus/sigma_minus which are NOT in SU(2) (z3 UNSAT confirmed). Dissipative types break the G-structure entirely."
+  }
+}

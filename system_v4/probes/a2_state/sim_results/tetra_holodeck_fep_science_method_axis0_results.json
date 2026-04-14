@@ -1,0 +1,60 @@
+{
+  "name": "sim_tetra_holodeck_fep_science_method_axis0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "tetra conjunction as symbolic predicate"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tetra UNSAT on any single-edge drop"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory, KL descent, and holdout SM check"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "holodeck_shell_respected": true,
+    "F_descended": true,
+    "science_method_passed": true,
+    "axis0_Ic_gradient_earned": true,
+    "tetra_coherent": true,
+    "sympy_tetra_predicate": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_A0_unsat": true,
+    "z3_all_four_sat": true,
+    "z3_tetra_requires_all_four": true
+  },
+  "negative": {
+    "drop_H_SM_rejects": true,
+    "drop_F_SM_rejects": true,
+    "drop_SM_means_no_gate": true,
+    "drop_A0_no_bridge": true,
+    "drop_A0_small_support": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_A0_unsat": true
+  },
+  "boundary": {
+    "min_example_descent_converges": true,
+    "min_example_SM_holdout_pass": true,
+    "min_example_A0_admissible": true,
+    "min_example_A0_3atom_boundary": true,
+    "below_3atom_A0_rejected": true
+  },
+  "note": "Conceptual 4-way coherence check; Axis-0 encoded as a minimal surrogate (monotone I_c + Fe-like bridge + >=3-atom support). Not a formal multi-shell proof.",
+  "PASS": true
+}

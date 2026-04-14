@@ -1,0 +1,33 @@
+{
+  "name": "sim_fep_pair_surprise_x_generative_model",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "marginal + log"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on p > 1 (surprise non-negativity via monotonicity)"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "surprise_matches_marginal_log": true,
+    "all_nonnegative": true,
+    "z3_surprise_nonneg_unsat": true
+  },
+  "negative": {
+    "drop_gen_model_undefined": true,
+    "drop_surprise_no_fence": true
+  },
+  "boundary": {
+    "delta_gen_zero_surprise": true
+  },
+  "PASS": true
+}

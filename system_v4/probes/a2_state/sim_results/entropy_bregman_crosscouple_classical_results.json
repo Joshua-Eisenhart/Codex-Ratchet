@@ -1,0 +1,154 @@
+{
+  "name": "entropy_bregman_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive KL cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical entropy-as-Bregman identity assumes a fixed generator phi (negative entropy) against the uniform reference. Nonclassical entropy-Bregman coupling (where the generator itself is constraint-admissible and probe-dependent) is NOT modeled here."
+  ],
+  "positive": {
+    "seed_0": {
+      "lhs": 1.3272138202402088,
+      "rhs": 1.3272138202402086,
+      "pass": true
+    },
+    "seed_1": {
+      "lhs": 1.1842757285037675,
+      "rhs": 1.1842757285037675,
+      "pass": true
+    },
+    "seed_2": {
+      "lhs": 1.5519054215570638,
+      "rhs": 1.5519054215570636,
+      "pass": true
+    },
+    "seed_3": {
+      "lhs": 1.3607746835309746,
+      "rhs": 1.3607746835309742,
+      "pass": true
+    },
+    "seed_4": {
+      "lhs": 1.379022376442441,
+      "rhs": 1.3790223764424414,
+      "pass": true
+    },
+    "seed_5": {
+      "lhs": 1.4793520514136898,
+      "rhs": 1.4793520514136898,
+      "pass": true
+    },
+    "seed_6": {
+      "lhs": 1.6552854782825603,
+      "rhs": 1.6552854782825603,
+      "pass": true
+    },
+    "seed_7": {
+      "lhs": 1.449432003800639,
+      "rhs": 1.4494320038006392,
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "kl_nonneg": {
+      "pass": true
+    },
+    "kl_self_zero": {
+      "pass": true
+    },
+    "kl_asymmetric": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "uniform_H_logn": {
+      "pass": true
+    },
+    "uniform_bregman_zero": {
+      "pass": true
+    },
+    "delta_H_small": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

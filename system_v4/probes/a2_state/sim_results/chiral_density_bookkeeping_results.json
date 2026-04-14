@@ -1,0 +1,355 @@
+{
+  "name": "chiral_density_bookkeeping",
+  "description": "Direct local bookkeeping packet for rho_L and rho_R on the Hopf/Weyl carrier",
+  "classification_note": "Direct local bookkeeping packet for left/right Weyl density matrices on one Hopf/Weyl carrier. It explicitly constructs rho_L and rho_R, verifies trace-one / PSD / Hermiticity, checks fiber-phase invariance, and separates chirality-projector algebra from geometric bookkeeping without claiming bridge or axis closure.",
+  "lego_ids": [
+    "weyl_chirality_pair",
+    "chiral_density_bookkeeping",
+    "left_right_asymmetry"
+  ],
+  "primary_lego_ids": [
+    "chiral_density_bookkeeping"
+  ],
+  "created_at": "2026-04-14T08:41:30.292131+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing construction and validation of rho_L / rho_R from Weyl spinors with torch complex tensors"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for local chiral density bookkeeping"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing UNSAT proof that no nonzero vector can be fixed by both complementary chirality projectors simultaneously"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; z3 is sufficient for bounded projector mutual-exclusion proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing symbolic verification of chirality projector orthogonality, idempotency, and completeness"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; hopf_manifold already provides the needed Weyl-density primitives for this bounded packet"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no geodesic/curvature claim in this bookkeeping packet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no equivariant carrier-learning claim in this bookkeeping packet"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no shell-DAG update in this bookkeeping packet"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no hypergraph claim in this bookkeeping packet"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no cell-complex claim in this bookkeeping packet"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no persistence/topology claim in this bookkeeping packet"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "local_density_validity": {
+      "pass": true,
+      "checks": [
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.3,
+          "theta2": 1.1,
+          "rho_L_stats": {
+            "trace": 0.9999999999999999,
+            "hermitian": true,
+            "min_eigenvalue": -5.2974517141865445e-17,
+            "max_eigenvalue": 0.9999999999999999,
+            "psd": true
+          },
+          "rho_R_stats": {
+            "trace": 0.9999999999999999,
+            "hermitian": true,
+            "min_eigenvalue": -9.362161655227408e-17,
+            "max_eigenvalue": 0.9999999999999996,
+            "psd": true
+          },
+          "torch_crosscheck": true,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 0.8,
+          "theta2": 1.7,
+          "rho_L_stats": {
+            "trace": 1.0,
+            "hermitian": true,
+            "min_eigenvalue": -1.232595164407831e-32,
+            "max_eigenvalue": 1.0,
+            "psd": true
+          },
+          "rho_R_stats": {
+            "trace": 1.0,
+            "hermitian": true,
+            "min_eigenvalue": -1.232595164407831e-32,
+            "max_eigenvalue": 1.0,
+            "psd": true
+          },
+          "torch_crosscheck": true,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 1.4,
+          "theta2": 0.2,
+          "rho_L_stats": {
+            "trace": 1.0,
+            "hermitian": true,
+            "min_eigenvalue": -5.367191111352258e-17,
+            "max_eigenvalue": 0.9999999999999997,
+            "psd": true
+          },
+          "rho_R_stats": {
+            "trace": 1.0,
+            "hermitian": true,
+            "min_eigenvalue": -5.703922708290632e-17,
+            "max_eigenvalue": 1.0,
+            "psd": true
+          },
+          "torch_crosscheck": true,
+          "pass": true
+        }
+      ]
+    },
+    "bookkeeping_sum_and_antipodality": {
+      "pass": true,
+      "checks": [
+        {
+          "eta": 0.39269908169872414,
+          "theta1": 0.15,
+          "theta2": 0.45,
+          "rho_sum_trace": 1.9999999999999998,
+          "bloch_antipodal_gap": 0.0,
+          "bookkeeping_ok": true,
+          "antipodal_ok": true,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "theta1": 1.0,
+          "theta2": 2.0,
+          "rho_sum_trace": 2.0,
+          "bloch_antipodal_gap": 0.0,
+          "bookkeeping_ok": true,
+          "antipodal_ok": true,
+          "pass": true
+        },
+        {
+          "eta": 1.1780972450961724,
+          "theta1": 2.2,
+          "theta2": 1.4,
+          "rho_sum_trace": 1.9999999999999998,
+          "bloch_antipodal_gap": 0.0,
+          "bookkeeping_ok": true,
+          "antipodal_ok": true,
+          "pass": true
+        }
+      ]
+    },
+    "fiber_phase_invariance": {
+      "pass": true,
+      "left_invariant": true,
+      "right_invariant": true
+    },
+    "sympy_projector_bookkeeping": {
+      "pass": true,
+      "orthogonal": true,
+      "left_idempotent": true,
+      "right_idempotent": true,
+      "complete": true
+    },
+    "z3_projector_mutual_exclusion": {
+      "pass": true,
+      "unsat": true,
+      "claim": "no nonzero bookkeeping state can satisfy both P_L v = v and P_R v = v for complementary projectors"
+    }
+  },
+  "negative": {
+    "unnormalized_spinor_trace_breaks": {
+      "pass": true,
+      "bad_trace_L": 3.9999999999999996,
+      "bad_trace_R": 8.999999999999998
+    },
+    "fake_projectors_not_orthogonal": {
+      "pass": true,
+      "overlap_norm": 1.4142135623730951
+    },
+    "wrong_right_density_breaks_antipodality": {
+      "pass": true,
+      "bloch_antipodal_gap": 1.9999999999999998
+    }
+  },
+  "boundary": {
+    "named_torus_seats": {
+      "pass": true,
+      "checks": [
+        {
+          "eta": 0.0,
+          "rho_L_trace": 1.0,
+          "rho_R_trace": 1.0,
+          "bloch_antipodal_gap": 0.0,
+          "pass": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "rho_L_trace": 1.0,
+          "rho_R_trace": 1.0,
+          "bloch_antipodal_gap": 0.0,
+          "pass": true
+        },
+        {
+          "eta": 1.5707963267948966,
+          "rho_L_trace": 1.0,
+          "rho_R_trace": 1.0,
+          "bloch_antipodal_gap": 0.0,
+          "pass": true
+        }
+      ]
+    },
+    "fiber_phase_boundary_0_2pi": {
+      "pass": true,
+      "left_equal": true,
+      "right_equal": true
+    }
+  },
+  "demo_sample": {
+    "rho_L": [
+      [
+        {
+          "re": 0.5000000000000001,
+          "im": -4.902470895453281e-18
+        },
+        {
+          "re": 0.3483533546735827,
+          "im": -0.3586780454497614
+        }
+      ],
+      [
+        {
+          "re": 0.3483533546735827,
+          "im": 0.3586780454497614
+        },
+        {
+          "re": 0.49999999999999994,
+          "im": -4.532893031683659e-18
+        }
+      ]
+    ],
+    "rho_R": [
+      [
+        {
+          "re": 0.49999999999999994,
+          "im": 4.532893031683659e-18
+        },
+        {
+          "re": -0.3483533546735827,
+          "im": 0.3586780454497614
+        }
+      ],
+      [
+        {
+          "re": -0.3483533546735827,
+          "im": -0.3586780454497614
+        },
+        {
+          "re": 0.5000000000000001,
+          "im": 4.902470895453281e-18
+        }
+      ]
+    ],
+    "rho_sum": [
+      [
+        {
+          "re": 1.0,
+          "im": -3.695778637696226e-19
+        },
+        {
+          "re": 0.0,
+          "im": 0.0
+        }
+      ],
+      [
+        {
+          "re": 0.0,
+          "im": 0.0
+        },
+        {
+          "re": 1.0,
+          "im": 3.695778637696226e-19
+        }
+      ]
+    ],
+    "bloch_L": [
+      0.6967067093471654,
+      0.7173560908995228,
+      1.6653345369377348e-16
+    ],
+    "bloch_R": [
+      -0.6967067093471654,
+      -0.7173560908995228,
+      -1.6653345369377348e-16
+    ],
+    "bloch_antipodal_gap": 0.0
+  },
+  "all_pass": true,
+  "summary": {
+    "positive": {
+      "passed": 5,
+      "total": 5
+    },
+    "negative": {
+      "passed": 3,
+      "total": 3
+    },
+    "boundary": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "classification": "canonical"
+}

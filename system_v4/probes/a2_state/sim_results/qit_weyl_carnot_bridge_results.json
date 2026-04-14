@@ -1,0 +1,224 @@
+{
+  "name": "qit_weyl_carnot_bridge",
+  "classification": "research_support",
+  "classification_note": "Bounded open-vs-strict bridge between the stabilized Weyl/Hopf geometry carrier stack and the exact Carnot engine family. It uses a schedule graph plus z3 ordering checks to keep the carrier and engine lanes aligned without claiming equivalence.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "quantum_thermodynamics",
+    "stochastic_thermodynamics",
+    "graph_shell_geometry"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing bridge-order and stage-compatibility proof surface"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing bridge graph construction and path-length checks"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geometry_carrier_is_clean": {
+      "pass": true,
+      "geometry_all_pass": true
+    },
+    "geometry_strict_companion_is_clean": {
+      "pass": true,
+      "geometry_strict_all_pass": true
+    },
+    "engine_graph_proof_alignment_is_clean": {
+      "pass": true,
+      "engine_all_pass": true
+    },
+    "engine_strict_closure_translation_is_clean": {
+      "pass": true,
+      "engine_strict_all_pass": true
+    },
+    "bridge_graph_is_a_single_valid_geometry_to_engine_chain": {
+      "node_count": 8,
+      "edge_count": 7,
+      "topological_order": [
+        "G1_nested_hopf_tori",
+        "G2_weyl_pauli_transport",
+        "G3_weyl_hopf_pauli_composed_stack",
+        "G4_qit_weyl_geometry_companion",
+        "C1_carnot_hot_isotherm",
+        "C2_carnot_adiabatic_expand",
+        "C3_carnot_cold_isotherm",
+        "C4_carnot_adiabatic_compress"
+      ],
+      "longest_path": [
+        "G1_nested_hopf_tori",
+        "G2_weyl_pauli_transport",
+        "G3_weyl_hopf_pauli_composed_stack",
+        "G4_qit_weyl_geometry_companion",
+        "C1_carnot_hot_isotherm",
+        "C2_carnot_adiabatic_expand",
+        "C3_carnot_cold_isotherm",
+        "C4_carnot_adiabatic_compress"
+      ],
+      "longest_path_length": 7,
+      "is_dag": true,
+      "source_count": 1,
+      "sink_count": 1,
+      "pass": true
+    },
+    "geometry_and_carnot_core_lengths_match": {
+      "geometry_stage_count": 4,
+      "carnot_stage_count": 4,
+      "pass": true
+    },
+    "z3_forces_bridge_ordering_compatibility": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "The geometry carrier must precede the Carnot cycle and cannot be reversed without violating the bridge order."
+    },
+    "z3_forces_matching_four_stage_cores": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "The bridge only admits matching four-stage cores for the geometry and Carnot carriers."
+    },
+    "geometry_readouts_remain_exact": {
+      "max_stack_error": 1.129514239719272e-16,
+      "max_transport_error": 2.7755575615628914e-16,
+      "max_strict_stack_error": 4.443843741175801e-16,
+      "max_strict_transport_roundtrip_error": 5.551115123125783e-17,
+      "pass": true
+    },
+    "engine_identities_remain_exact": {
+      "forward_efficiency": 0.5000000000000001,
+      "forward_carnot_bound": 0.5,
+      "reverse_cop": 0.9999999999999999,
+      "reverse_cop_carnot": 1.0,
+      "pass": true
+    },
+    "closure_translation_stays_bounded": {
+      "best_closure_gap": 0.0013759010141487782,
+      "dominant_leg_matches": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "bridge_is_not_equivalence_math": {
+      "pass": true
+    },
+    "geometry_and_engine_lanes_remain_distinct": {
+      "pass": true
+    },
+    "bridge_row_is_not_a_runtime_engine_claim": {
+      "pass": true,
+      "scope_note": "This row aligns a geometry carrier to an engine family through a graph/proof bridge; it does not claim the runtime engine itself is geometry-native."
+    }
+  },
+  "boundary": {
+    "all_required_files_exist": {
+      "pass": true
+    },
+    "all_summary_values_are_finite": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "geometry_open_row_id": "weyl_hopf_pauli_composed_stack",
+    "geometry_strict_row_id": "qit_weyl_geometry_companion",
+    "engine_open_row_id": "carnot_graph_proof_alignment",
+    "engine_strict_row_id": "qit_carnot_closure_translation_lane",
+    "geometry_sample_count": 192,
+    "geometry_stage_count": 4,
+    "geometry_max_stack_error": 1.129514239719272e-16,
+    "geometry_max_transport_error": 2.7755575615628914e-16,
+    "geometry_strict_sample_count": 24,
+    "geometry_strict_row_count": 27,
+    "geometry_strict_max_stack_error": 4.443843741175801e-16,
+    "geometry_strict_max_transport_roundtrip_error": 5.551115123125783e-17,
+    "engine_graph_path_length": 4,
+    "engine_forward_efficiency": 0.5000000000000001,
+    "engine_forward_carnot_bound": 0.5,
+    "engine_reverse_cop": 0.9999999999999999,
+    "engine_reverse_cop_carnot": 1.0,
+    "engine_closure_gap": 0.0013759010141487782,
+    "engine_dominant_leg_matches": true,
+    "geometry_engine_stage_gap": 0,
+    "bridge_node_count": 8,
+    "bridge_edge_count": 7,
+    "bridge_path_length": 7,
+    "bridge_source_count": 1,
+    "bridge_sink_count": 1,
+    "bridge_order_unsat": true,
+    "stage_count_unsat": true,
+    "scope_note": "Bounded geometry-to-Carnot bridge lane. The open Weyl/Hopf carrier stack and the exact Carnot family are kept distinct but aligned through a DAG and solver-backed order checks."
+  }
+}

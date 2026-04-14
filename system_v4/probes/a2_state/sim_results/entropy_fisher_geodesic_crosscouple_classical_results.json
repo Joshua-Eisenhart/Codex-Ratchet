@@ -1,0 +1,138 @@
+{
+  "name": "entropy_fisher_geodesic_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check of entropy scalar"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no multivectors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "handrolled simplex"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical Fisher-geodesic entropy monotonicity does NOT capture nonclassical coupling where distinguishability constraints re-order admissible paths; constraint-admissibility on the simplex is replaced here by pure Riemannian geodesic flow (no probe-relative exclusion)."
+  ],
+  "positive": {
+    "seed_0": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "seed_1": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "seed_2": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "seed_3": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "seed_4": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "seed_5": {
+      "monotone": true,
+      "end_uniform": true,
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "uniform_to_peaked_decreases": {
+      "pass": true
+    },
+    "uniform_to_peaked_not_nondecreasing": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "degenerate_same_endpoint": {
+      "pass": true
+    },
+    "near_vertex_finite": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

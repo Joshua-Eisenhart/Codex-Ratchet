@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_fep_coupling_stub",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL divergence stub"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "zero_on_match": true,
+    "positive_on_mismatch": true,
+    "monotone_perturbation": true
+  },
+  "negative": {
+    "negative_kl": false,
+    "zero_kl_for_different": false
+  },
+  "boundary": {
+    "uniform_uniform": true,
+    "near_degenerate_finite": "True"
+  },
+  "pass": true
+}

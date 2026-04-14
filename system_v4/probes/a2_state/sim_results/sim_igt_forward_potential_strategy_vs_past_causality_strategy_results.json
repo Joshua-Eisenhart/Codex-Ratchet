@@ -1,0 +1,110 @@
+{
+  "name": "sim_igt_forward_potential_strategy_vs_past_causality_strategy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar decisions"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT witness: past and forward orientations can disagree"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete enumeration"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "orientations_disagree": {
+      "past": -1,
+      "forward": 1,
+      "ok": true
+    },
+    "z3_disagreement_exists": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "agree_when_aligned": {
+      "ok": "True"
+    },
+    "z3_aligned_no_disagreement": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "empty_history": {
+      "ok": true
+    },
+    "zero_future": {
+      "ok": "True"
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

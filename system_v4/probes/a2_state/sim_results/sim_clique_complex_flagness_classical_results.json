@@ -1,0 +1,101 @@
+{
+  "name": "sim_clique_complex_flagness_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check of adjacency tensor"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "manual enumeration suffices"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Flag-ness is graph-theoretic only; constraint coupling across shells not tested.",
+    "Treats clique presence as sufficient; indistinguishability probes ignored."
+  ],
+  "positive": {
+    "k4_is_flag": true,
+    "k3_is_flag": true,
+    "torch_adj_symmetric": true
+  },
+  "negative": {
+    "missing_top_not_flag": true,
+    "extra_without_clique_not_flag": true
+  },
+  "boundary": {
+    "empty_graph_flag": true,
+    "single_edge_flag": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

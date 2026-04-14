@@ -1,0 +1,32 @@
+{
+  "name": "leviathan_explore_as_replicator_dynamics",
+  "framing_assumption": "group shares evolve by replicator eq over payoff matrix",
+  "blind_spot": "closed strategy set; no innovation/mutation",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "replicator ODE"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "entropy": 1.0798597087726554,
+    "pass_mixed": true
+  },
+  "negative": {
+    "entropy": 0.005832753456594793,
+    "pass_fixation": true
+  },
+  "boundary": {
+    "final": [
+      0.5,
+      0.3,
+      0.2
+    ],
+    "pass": "True"
+  },
+  "classification": "classical_baseline"
+}

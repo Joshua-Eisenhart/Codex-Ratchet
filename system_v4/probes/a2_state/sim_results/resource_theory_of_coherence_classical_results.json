@@ -1,0 +1,39 @@
+{
+  "name": "resource_theory_of_coherence_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "diagonal-matrix arithmetic and entropy"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "l1_coherence_zero": true,
+    "relative_entropy_coherence_zero": true,
+    "robustness_zero": true
+  },
+  "negative": {
+    "offdiag_nonfree_detected": true,
+    "offdiag_relative_entropy_positive": true,
+    "classical_cannot_represent_offdiag": true
+  },
+  "boundary": {
+    "permutation_preserves_zero": true,
+    "classical_channel_preserves_zero": true,
+    "pure_classical_state_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "The entire resource theory collapses classically: every free state is diagonal, every classical state IS diagonal, so coherence is identically zero under any monotone and 'free operations' are exactly the stochastic maps that permute/mix diagonal entries. The baseline cannot distinguish or cost superposition as a resource, and cannot express coherence distillation, coherence-to-entanglement conversion, or basis-dependence of the incoherent set \u2014 all of which hinge on off-diagonal terms that the classical embedding kills by construction."
+}

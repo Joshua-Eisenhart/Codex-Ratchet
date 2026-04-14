@@ -1,0 +1,51 @@
+{
+  "name": "tv_contraction_dpi_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical DPI for TV operates on stochastic matrices acting on probability vectors. The quantum DPI requires CPTP maps on density matrices with trace-distance contraction; this baseline drops operator structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix-vector and TV"
+    },
+    "scipy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": "supportive",
+    "scipy": null,
+    "z3": null
+  },
+  "positive": {
+    "tv_contracts": true,
+    "dobrushin_bound": true,
+    "dobrushin_in_unit_interval": true,
+    "double_contracts": true
+  },
+  "negative": {
+    "identity_no_contraction": true,
+    "mixing_collapses": true
+  },
+  "boundary": {
+    "same_input_zero_tv": true,
+    "deterministic_zero_tv": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

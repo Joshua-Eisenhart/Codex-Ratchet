@@ -1,0 +1,628 @@
+{
+  "name": "lego_weyl_hopf_spinor_bridge",
+  "classification": "canonical",
+  "classification_note": "Reusable Weyl/Hopf/Pauli bridge lego with nested-torus transport, alternate carrier comparison, and a finite graph/proof relation.",
+  "lego_ids": [
+    "weyl_hopf_spinor_bridge",
+    "weyl_pauli_transport",
+    "nested_hopf_torus_lego",
+    "pauli_algebra_relations"
+  ],
+  "primary_lego_ids": [
+    "weyl_hopf_spinor_bridge"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing protocol order proof"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite protocol DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "records": [
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 0.17,
+      "theta2": 0.59,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 2.858316234104054e-17,
+      "left_bloch": [
+        0.645651381521272,
+        0.28833018145812106,
+        0.7071067811865477
+      ],
+      "right_bloch": [
+        -0.645651381521272,
+        -0.28833018145812106,
+        -0.7071067811865477
+      ],
+      "hopf_bloch": [
+        0.645651381521272,
+        0.288330181458121,
+        0.7071067811865477
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.645651381521272,
+        "y": 0.28833018145812106,
+        "z": 0.7071067811865477
+      },
+      "pauli_right": {
+        "x": -0.645651381521272,
+        "y": -0.28833018145812106,
+        "z": -0.7071067811865477
+      },
+      "hopf_roundtrip_gap": 5.551115123125783e-17,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "clifford"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 0.41,
+      "theta2": 1.13,
+      "q_norm": 0.9999999999999999,
+      "left_norm": 0.9999999999999999,
+      "right_norm": 0.9999999999999999,
+      "left_right_overlap_abs": 1.3017121380312806e-17,
+      "left_bloch": [
+        0.5316069292104236,
+        0.4662553729614958,
+        0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.5316069292104236,
+        -0.4662553729614958,
+        -0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.5316069292104236,
+        0.4662553729614958,
+        0.7071067811865472
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.5316069292104236,
+        "y": 0.4662553729614958,
+        "z": 0.7071067811865475
+      },
+      "pauli_right": {
+        "x": -0.5316069292104236,
+        "y": -0.4662553729614958,
+        "z": -0.7071067811865475
+      },
+      "hopf_roundtrip_gap": 2.220446049250313e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "clifford"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 0.79,
+      "theta2": 1.77,
+      "q_norm": 0.9999999999999999,
+      "left_norm": 0.9999999999999999,
+      "right_norm": 0.9999999999999999,
+      "left_right_overlap_abs": 8.045516316571617e-18,
+      "left_bloch": [
+        0.393874420092193,
+        0.5872503224324688,
+        0.7071067811865474
+      ],
+      "right_bloch": [
+        -0.393874420092193,
+        -0.5872503224324688,
+        -0.7071067811865474
+      ],
+      "hopf_bloch": [
+        0.393874420092193,
+        0.5872503224324688,
+        0.7071067811865472
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.393874420092193,
+        "y": 0.5872503224324688,
+        "z": 0.7071067811865474
+      },
+      "pauli_right": {
+        "x": -0.393874420092193,
+        "y": -0.5872503224324688,
+        "z": -0.7071067811865474
+      },
+      "hopf_roundtrip_gap": 1.1102230246251565e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "clifford"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "inner",
+      "eta": 0.39269908169872414,
+      "theta1": 1.19,
+      "theta2": 2.43,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 6.9187514338009425e-18,
+      "left_bloch": [
+        0.22966565523085333,
+        0.6687702795485031,
+        0.7071067811865476
+      ],
+      "right_bloch": [
+        -0.22966565523085333,
+        -0.6687702795485031,
+        -0.7071067811865476
+      ],
+      "hopf_bloch": [
+        0.22966565523085333,
+        0.6687702795485031,
+        0.7071067811865477
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.22966565523085333,
+        "y": 0.6687702795485031,
+        "z": 0.7071067811865476
+      },
+      "pauli_right": {
+        "x": -0.22966565523085333,
+        "y": -0.6687702795485031,
+        "z": -0.7071067811865476
+      },
+      "hopf_roundtrip_gap": 1.1102230246251565e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "clifford"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 0.17,
+      "theta2": 0.59,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 1.9001346780465567e-17,
+      "left_bloch": [
+        0.9130889403123085,
+        0.4077604530595702,
+        1.1102230246251565e-16
+      ],
+      "right_bloch": [
+        -0.9130889403123085,
+        -0.4077604530595702,
+        -1.1102230246251565e-16
+      ],
+      "hopf_bloch": [
+        0.9130889403123085,
+        0.4077604530595702,
+        0.0
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.9130889403123085,
+        "y": 0.4077604530595702,
+        "z": 1.1102230246251565e-16
+      },
+      "pauli_right": {
+        "x": -0.9130889403123085,
+        "y": -0.4077604530595702,
+        "z": -1.1102230246251565e-16
+      },
+      "hopf_roundtrip_gap": 1.1102230246251565e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "outer"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 0.41,
+      "theta2": 1.13,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 2.1222728028629552e-17,
+      "left_bloch": [
+        0.751805729140895,
+        0.6593846719714731,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        -0.751805729140895,
+        -0.6593846719714731,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        0.751805729140895,
+        0.6593846719714731,
+        2.220446049250313e-16
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.751805729140895,
+        "y": 0.6593846719714731,
+        "z": 2.220446049250313e-16
+      },
+      "pauli_right": {
+        "x": -0.751805729140895,
+        "y": -0.6593846719714731,
+        "z": -2.220446049250313e-16
+      },
+      "hopf_roundtrip_gap": 0.0,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "outer"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 0.79,
+      "theta2": 1.77,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 1.7729879394815835e-17,
+      "left_bloch": [
+        0.5570225467662172,
+        0.8304973704919705,
+        2.220446049250313e-16
+      ],
+      "right_bloch": [
+        -0.5570225467662172,
+        -0.8304973704919705,
+        -2.220446049250313e-16
+      ],
+      "hopf_bloch": [
+        0.5570225467662172,
+        0.8304973704919705,
+        2.220446049250313e-16
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.5570225467662172,
+        "y": 0.8304973704919705,
+        "z": 2.220446049250313e-16
+      },
+      "pauli_right": {
+        "x": -0.5570225467662172,
+        "y": -0.8304973704919705,
+        "z": -2.220446049250313e-16
+      },
+      "hopf_roundtrip_gap": 0.0,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "outer"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "clifford",
+      "eta": 0.7853981633974483,
+      "theta1": 1.19,
+      "theta2": 2.43,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 2.7443415707894315e-17,
+      "left_bloch": [
+        0.32479628443877606,
+        0.9457839994495392,
+        1.1102230246251565e-16
+      ],
+      "right_bloch": [
+        -0.32479628443877606,
+        -0.9457839994495392,
+        -1.1102230246251565e-16
+      ],
+      "hopf_bloch": [
+        0.32479628443877606,
+        0.9457839994495392,
+        0.0
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.32479628443877606,
+        "y": 0.9457839994495392,
+        "z": 1.1102230246251565e-16
+      },
+      "pauli_right": {
+        "x": -0.32479628443877606,
+        "y": -0.9457839994495392,
+        "z": -1.1102230246251565e-16
+      },
+      "hopf_roundtrip_gap": 1.1102230246251565e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "outer"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 0.17,
+      "theta2": 0.59,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 2.7865349397554066e-17,
+      "left_bloch": [
+        0.6456513815212721,
+        0.28833018145812106,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.6456513815212721,
+        -0.28833018145812106,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.6456513815212721,
+        0.28833018145812106,
+        -0.7071067811865477
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.6456513815212721,
+        "y": 0.28833018145812106,
+        "z": -0.7071067811865475
+      },
+      "pauli_right": {
+        "x": -0.6456513815212721,
+        "y": -0.28833018145812106,
+        "z": 0.7071067811865475
+      },
+      "hopf_roundtrip_gap": 2.220446049250313e-16,
+      "transport_roundtrip_gap": 1.5700924586837752e-16,
+      "transported_to_level": "inner"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 0.41,
+      "theta2": 1.13,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 2.0840275787280465e-17,
+      "left_bloch": [
+        0.5316069292104239,
+        0.4662553729614959,
+        -0.7071067811865475
+      ],
+      "right_bloch": [
+        -0.5316069292104239,
+        -0.4662553729614959,
+        0.7071067811865475
+      ],
+      "hopf_bloch": [
+        0.5316069292104239,
+        0.4662553729614959,
+        -0.7071067811865475
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.5316069292104239,
+        "y": 0.4662553729614959,
+        "z": -0.7071067811865475
+      },
+      "pauli_right": {
+        "x": -0.5316069292104239,
+        "y": -0.4662553729614959,
+        "z": 0.7071067811865475
+      },
+      "hopf_roundtrip_gap": 0.0,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "inner"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 0.79,
+      "theta2": 1.77,
+      "q_norm": 0.9999999999999999,
+      "left_norm": 0.9999999999999999,
+      "right_norm": 0.9999999999999999,
+      "left_right_overlap_abs": 4.37492727988491e-18,
+      "left_bloch": [
+        0.3938744200921931,
+        0.5872503224324689,
+        -0.7071067811865474
+      ],
+      "right_bloch": [
+        -0.3938744200921931,
+        -0.5872503224324689,
+        0.7071067811865474
+      ],
+      "hopf_bloch": [
+        0.3938744200921931,
+        0.5872503224324689,
+        -0.7071067811865472
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.3938744200921931,
+        "y": 0.5872503224324689,
+        "z": -0.7071067811865474
+      },
+      "pauli_right": {
+        "x": -0.3938744200921931,
+        "y": -0.5872503224324689,
+        "z": 0.7071067811865474
+      },
+      "hopf_roundtrip_gap": 1.1102230246251565e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "inner"
+    },
+    {
+      "carrier": "nested_hopf_torus",
+      "level": "outer",
+      "eta": 1.1780972450961724,
+      "theta1": 1.19,
+      "theta2": 2.43,
+      "q_norm": 1.0,
+      "left_norm": 1.0,
+      "right_norm": 1.0,
+      "left_right_overlap_abs": 5.596971127478021e-17,
+      "left_bloch": [
+        0.2296656552308533,
+        0.6687702795485031,
+        -0.7071067811865476
+      ],
+      "right_bloch": [
+        -0.2296656552308533,
+        -0.6687702795485031,
+        0.7071067811865476
+      ],
+      "hopf_bloch": [
+        0.2296656552308533,
+        0.6687702795485032,
+        -0.7071067811865477
+      ],
+      "bloch_antipodal_gap": 0.0,
+      "pauli_left": {
+        "x": 0.2296656552308533,
+        "y": 0.6687702795485031,
+        "z": -0.7071067811865476
+      },
+      "pauli_right": {
+        "x": -0.2296656552308533,
+        "y": -0.6687702795485031,
+        "z": 0.7071067811865476
+      },
+      "hopf_roundtrip_gap": 1.5700924586837752e-16,
+      "transport_roundtrip_gap": 0.0,
+      "transported_to_level": "inner"
+    }
+  ],
+  "graph_proof": {
+    "graph": {
+      "available": true,
+      "node_count": 5,
+      "edge_count": 4,
+      "is_dag": true,
+      "topological_order": [
+        "nested_hopf_torus_input",
+        "left_weyl_spinor_frame",
+        "pauli_readout",
+        "transport_to_clifford_torus",
+        "alternate_carrier_compare"
+      ],
+      "longest_path_length": 4,
+      "sources": [
+        "nested_hopf_torus_input"
+      ],
+      "sinks": [
+        "alternate_carrier_compare"
+      ]
+    },
+    "proof": {
+      "available": true,
+      "correct_order_sat": true,
+      "reverse_order_unsat": true,
+      "back_edge_unsat": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Reusable Weyl/Hopf/Pauli bridge lego with nested-torus transport, alternate-carrier comparison, and finite graph/proof ordering.",
+    "sample_count": 12,
+    "level_counts": {
+      "inner": 4,
+      "clifford": 4,
+      "outer": 4
+    },
+    "carrier_counts": {
+      "nested_hopf_torus": 12,
+      "alternate_carrier": 12
+    },
+    "graph_node_count": 5,
+    "graph_edge_count": 4,
+    "graph_is_dag": true,
+    "proof_correct_order_sat": true,
+    "proof_reverse_order_unsat": true,
+    "proof_back_edge_unsat": true,
+    "max_left_norm_gap": 1.1102230246251565e-16,
+    "max_right_norm_gap": 1.1102230246251565e-16,
+    "max_left_right_overlap_abs": 5.596971127478021e-17,
+    "max_bloch_antipodal_gap": 0.0,
+    "max_hopf_roundtrip_gap": 2.220446049250313e-16,
+    "max_transport_roundtrip_gap": 1.5700924586837752e-16,
+    "max_pauli_readout_gap": 0.0,
+    "alternate_carrier_gap": 1.3084103822364794e-17
+  }
+}

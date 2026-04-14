@@ -1,0 +1,99 @@
+{
+  "name": "jeffreys_divergence_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Jeffreys divergence J(p,q) = KL(p||q)+KL(q||p) is symmetric on a commuting sample space. Quantum Jeffreys J(rho,sigma) = tr((rho-sigma)(log rho - log sigma)) requires operator logarithms whose difference is noncommuting; the classical substrate cannot represent the antisymmetric commutator term that drives nonclassical parameter sensitivity.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch kl_div cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "symmetry": true,
+    "zero_at_equal": true,
+    "nonnegativity": true,
+    "torch_cross_check": true
+  },
+  "negative": {
+    "distinct_positive": true,
+    "near_orthogonal_large": true
+  },
+  "boundary": {
+    "quadratic_small": true,
+    "highdim_finite": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "name": "sim_g_structure_tower",
+  "date": "2026-04-14T10:18:16.649300Z",
+  "classification": "classical_baseline",
+  "classification_note": "numpy computes frame bundle geometry; z3 checks G-level ordering. Canonical counterpart (geomstats/sympy obstruction proofs) to be built.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical sampling of S\u00b3/S\u00b2/T\u00b2 points; curvature verification via autograd on embedding functions; contact metric numerical check"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing UNSAT proofs: (N1) no real 3\u00d73 J with J\u00b2=-I \u2192 S\u00b3 cannot admit almost complex structure; (N2) obstruction chain: K\u00e4hler requires spin in even dim, so w\u2082\u22600 blocks K\u00e4hler"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 covers all proof obligations; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing symbolic verification: K\u00e4hler compatibility \u03c9(X,Y)=g(JX,Y) on S\u00b2=CP\u00b9; contact metric condition g(X,Y)=d\u03b1(X,\u03a6Y)+\u03b1(X)\u03b1(Y) on S\u00b3; Sasakian tensor \u03a6 construction"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; z3/sympy cover structural claims"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; embedding-space computations used directly"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for G-structure tower"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_S3_parallelizable": {
+      "description": "Three left-invariant global vector fields on S\u00b3 are everywhere tangent and linearly independent",
+      "sample_points": 20,
+      "tangency_and_independence_failures": 0,
+      "gram_det_min": 0.9999999999999994,
+      "gram_det_max": 1.0000000000000007,
+      "pass": true,
+      "interpretation": "TS\u00b3 is trivial \u2192 w\u2082(S\u00b3)=0 \u2192 S\u00b3 admits spin structure"
+    },
+    "P1_S2_curvature": {
+      "description": "Round metric on S\u00b2: sectional curvature K=+1 verified numerically",
+      "sample_points": 20,
+      "mean_K": 1.0,
+      "tolerance": 1e-06,
+      "failures": 0,
+      "pass": true,
+      "euler_characteristic": 2,
+      "interpretation": "K=+1 confirms S\u00b2 with round metric; \u03c7=2 (2 zeros of any vector field by Poincar\u00e9-Hopf)"
+    },
+    "P2_S2_Kahler": {
+      "description": "K\u00e4hler compatibility \u03c9(X,Y)=g(JX,Y) on S\u00b2=CP\u00b9, with J\u00b2=-Id check",
+      "sample_points": 20,
+      "max_error": 6.664239393522201e-16,
+      "failures": 0,
+      "pass": true,
+      "interpretation": "S\u00b2 with round metric is K\u00e4hler \u2192 reaches L5 K\u00e4hler"
+    },
+    "P2_T2_Kahler": {
+      "description": "T\u00b2 flat metric is K\u00e4hler: symbolic verification of J\u00b2=-Id and \u03c9=g(J\u00b7,\u00b7)",
+      "J_squared_plus_identity": "Matrix([[0], [0]])",
+      "omega_minus_g_J": "0",
+      "pass": true,
+      "interpretation": "T\u00b2 with flat metric is K\u00e4hler \u2192 reaches L5 K\u00e4hler_flat"
+    },
+    "P3_S3_contact": {
+      "description": "S\u00b3 standard contact structure: \u03b1\u2227d\u03b1\u22600 (volume form) and \u03b1(R)=1",
+      "sample_points": 20,
+      "min_volume_form_magnitude": 1.9999999999999996,
+      "failures": 0,
+      "pass": true,
+      "interpretation": "S\u00b3 admits contact structure \u2192 passes L4 odd-dim branch"
+    },
+    "P4_S3_Sasakian": {
+      "description": "Sasakian contact metric condition g(X,Y)=d\u03b1(X,\u03a6Y)+\u03b1(X)\u03b1(Y) verified in Reeb frame",
+      "frame_checks": {
+        "R_R": {
+          "lhs_gXY": 1,
+          "rhs_dalphaXPhiY_plus_alphaXalphaY": 1,
+          "match": true
+        },
+        "e1_e1": {
+          "lhs_gXY": 1,
+          "rhs_dalphaXPhiY_plus_alphaXalphaY": 1,
+          "match": true
+        },
+        "e2_e2": {
+          "lhs_gXY": 1,
+          "rhs_dalphaXPhiY_plus_alphaXalphaY": 1,
+          "match": true
+        },
+        "e1_e2": {
+          "lhs_gXY": 0,
+          "rhs_dalphaXPhiY_plus_alphaXalphaY": 0,
+          "match": true
+        },
+        "R_e1": {
+          "lhs_gXY": 0,
+          "rhs_dalphaXPhiY_plus_alphaXalphaY": 0,
+          "match": true
+        }
+      },
+      "pass": true,
+      "interpretation": "S\u00b3 with round metric is Sasakian \u2192 reaches L5 Sasakian (deepest odd-dim level)"
+    }
+  },
+  "negative": {
+    "N1_S3_no_almost_complex": {
+      "description": "z3 UNSAT: no real d satisfies d\u00b2=-1 (det obstruction for J\u00b2=-I on odd-dim \u211d\u00b3)",
+      "z3_query": "d * d == -1, d real",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "interpretation": "det(J\u00b2)=det(J)\u00b2\u22650 but det(-I\u2083)=(-1)\u00b3=-1<0: contradiction \u2192 no real J satisfies J\u00b2=-I on \u211d\u00b3 \u2192 S\u00b3 (odd-dim) cannot admit almost complex structure"
+    },
+    "N2_obstruction_chain": {
+      "description": "z3 UNSAT: cannot have K\u00e4hler=True and oriented=False (tower implication chain)",
+      "z3_constraints": [
+        "riemannian \u2192 smooth",
+        "oriented \u2192 riemannian",
+        "almost_complex \u2192 oriented  (L4 requires L2)",
+        "kahler \u2192 almost_complex    (L5 requires L4)",
+        "CLAIM: kahler=True AND oriented=False"
+      ],
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "interpretation": "Level k+2 cannot be reached without level k+1: K\u00e4hler requires almost complex (L4) which requires oriented (L2). UNSAT confirms this tower is a hard constraint chain."
+    }
+  },
+  "boundary": {
+    "B1_CP1_equals_S2": {
+      "description": "CP\u00b9 and S\u00b2 have identical G-structure tower results (they are the same manifold)",
+      "S2_properties": {
+        "dim": 2,
+        "euler_characteristic": 2,
+        "orientable": true,
+        "w2_vanishes": true,
+        "spin": true,
+        "admits_almost_complex": true,
+        "admits_Kahler": true,
+        "max_level": "Kahler"
+      },
+      "CP1_properties": {
+        "dim": 2,
+        "euler_characteristic": 2,
+        "orientable": true,
+        "w2_vanishes": true,
+        "spin": true,
+        "admits_almost_complex": true,
+        "admits_Kahler": true,
+        "max_level": "Kahler"
+      },
+      "mismatches": {},
+      "pass": true,
+      "interpretation": "Consistency confirmed: CP\u00b9=S\u00b2 as smooth manifolds with identical G-structure type"
+    },
+    "B2_T_eta_invariance": {
+      "description": "T_\u03b7 tori: G-structure tower invariant under change of \u03b7 (conformal class changes, topology does not)",
+      "eta_values_tested": [
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976,
+        1.4707963267948965
+      ],
+      "per_eta": {
+        "eta=0.5236": {
+          "area": 0.49999999999999994,
+          "non_degenerate_lattice": "True",
+          "smooth": true,
+          "riemannian": true,
+          "oriented": true,
+          "spin": true,
+          "almost_complex": true,
+          "Kahler_flat": true,
+          "max_level": "Kahler_flat"
+        },
+        "eta=0.7854": {
+          "area": 0.7071067811865475,
+          "non_degenerate_lattice": "True",
+          "smooth": true,
+          "riemannian": true,
+          "oriented": true,
+          "spin": true,
+          "almost_complex": true,
+          "Kahler_flat": true,
+          "max_level": "Kahler_flat"
+        },
+        "eta=1.0472": {
+          "area": 0.8660254037844386,
+          "non_degenerate_lattice": "True",
+          "smooth": true,
+          "riemannian": true,
+          "oriented": true,
+          "spin": true,
+          "almost_complex": true,
+          "Kahler_flat": true,
+          "max_level": "Kahler_flat"
+        },
+        "eta=1.4708": {
+          "area": 0.9950041652780257,
+          "non_degenerate_lattice": "True",
+          "smooth": true,
+          "riemannian": true,
+          "oriented": true,
+          "spin": true,
+          "almost_complex": true,
+          "Kahler_flat": true,
+          "max_level": "Kahler_flat"
+        }
+      },
+      "unique_max_levels": [
+        "Kahler_flat"
+      ],
+      "all_reach_Kahler": true,
+      "pass": true,
+      "interpretation": "\u03b7 parametrizes the conformal structure (shape of torus), not the G-structure type; all T_\u03b7 are K\u00e4hler"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "total_tests": 10,
+    "tests_passed": 10,
+    "g_structure_tower": {
+      "S3": {
+        "dim": 3,
+        "parity": "odd",
+        "L0_smooth": true,
+        "L1_Riemannian": true,
+        "L2_oriented": true,
+        "L3_spin": true,
+        "L4_almost_complex_even_branch": false,
+        "L4_contact_odd_branch": true,
+        "L5_Sasakian": true,
+        "L5_Kahler": false,
+        "almost_complex_blocked_by": "odd dimension: det(J)\u00b2\u22650 but det(-I\u2083)=-1 (z3 UNSAT verified)",
+        "max_level": "Sasakian",
+        "fails_at": "almost_complex_even_branch",
+        "spin": true,
+        "contact": true,
+        "sasakian": true
+      },
+      "S2": {
+        "dim": 2,
+        "parity": "even",
+        "L0_smooth": true,
+        "L1_Riemannian": true,
+        "L2_oriented": true,
+        "L3_spin": true,
+        "L4_almost_complex": true,
+        "L5_Kahler": true,
+        "L5_Sasakian": false,
+        "curvature_K": "+1 (round metric)",
+        "euler_characteristic": 2,
+        "max_level": "Kahler",
+        "spin": true,
+        "almost_complex": true,
+        "kahler": true
+      },
+      "T2": {
+        "dim": 2,
+        "parity": "even",
+        "L0_smooth": true,
+        "L1_Riemannian": true,
+        "L2_oriented": true,
+        "L3_spin": true,
+        "L4_almost_complex": true,
+        "L5_Kahler_flat": true,
+        "L5_Sasakian": false,
+        "curvature_K": "0 (flat metric)",
+        "euler_characteristic": 0,
+        "max_level": "Kahler_flat",
+        "spin": true,
+        "almost_complex": true,
+        "kahler": true
+      },
+      "CP1": {
+        "dim": 2,
+        "parity": "even",
+        "note": "CP\u00b9 = S\u00b2 as smooth manifolds; consistency verified",
+        "agrees_with_S2": true,
+        "max_level": "Kahler",
+        "spin": true,
+        "almost_complex": true,
+        "kahler": true
+      }
+    },
+    "proof_summary": {
+      "z3_N1_almost_complex_blocked_on_odd_dim": true,
+      "z3_N2_obstruction_chain_kahler_requires_oriented": true,
+      "sympy_T2_Kahler_symbolic": true,
+      "sympy_S3_Sasakian_contact_metric": true,
+      "numpy_S2_curvature_K1": true,
+      "numpy_S3_parallelizability": true,
+      "numpy_S3_contact_volume_form": true,
+      "numpy_S2_Kahler_compatibility": true
+    }
+  }
+}

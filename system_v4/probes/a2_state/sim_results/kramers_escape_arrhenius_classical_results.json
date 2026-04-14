@@ -1,0 +1,100 @@
+{
+  "name": "kramers_escape_arrhenius_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Kramers rate assumes a real trajectory crossing a potential barrier via thermal activation. The quantum analog includes tunneling contributions that make the rate finite as T -> 0 (where classical r -> 0) and admits complex instanton / WKB corrections invisible to Arrhenius. This baseline cannot encode tunneling or coherent splittings.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch linear regression cross-check of Arrhenius slope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "got_rates": true,
+    "arrhenius_slope": "True",
+    "rate_increases_with_T": true,
+    "rate_positive": true,
+    "torch_slope_cross": "True"
+  },
+  "negative": {
+    "no_barrier_crossings_exist": true,
+    "very_cold_rate_near_zero": true
+  },
+  "boundary": {
+    "low_barrier_faster": true,
+    "higher_gamma_slower": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

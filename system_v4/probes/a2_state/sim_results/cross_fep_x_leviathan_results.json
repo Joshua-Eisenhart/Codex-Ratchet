@@ -1,0 +1,33 @@
+{
+  "name": "sim_cross_fep_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "multi-agent descent"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "shared target induces pairwise contraction"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "coupled_var_low": true,
+    "coupled_not_worse_than_alone": true,
+    "z3_consensus_contraction": true,
+    "EMERGENT_civic_consensus": true
+  },
+  "negative": {
+    "independent_targets_keep_variance": true
+  },
+  "boundary": {
+    "trivial_case_collapses": true
+  },
+  "PASS": true
+}

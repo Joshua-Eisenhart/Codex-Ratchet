@@ -1,0 +1,111 @@
+{
+  "name": "sim_igt_IGT_holodeck_coupling_stub",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "stub-level contract test"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph yet"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 enforces coupling contract: active & active -> coupled_active"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices for schema"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "schema-level"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors at stub"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "schema_iso": {
+      "ok": true
+    },
+    "active_couple": {
+      "ok": true
+    },
+    "seam_couple": {
+      "ok": true
+    },
+    "z3_contract_unsat_when_violated": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "mixed_is_mismatch": {
+      "ok": true
+    },
+    "bad_schema": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "both_seam": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

@@ -1,0 +1,32 @@
+{
+  "name": "sim_fep_pair_fep_minimization_x_g_reduction",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL + mean-field search"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on violating mean-field G-reduction"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "mean_field_min_exists": true,
+    "z3_g_reduction_consistent_unsat": true
+  },
+  "negative": {
+    "drop_g_reduction_admits_lower_F": true,
+    "drop_F_bound_admits_any_orbit": true
+  },
+  "boundary": {
+    "trivial_orbit_safe": true
+  },
+  "PASS": true
+}

@@ -1,0 +1,103 @@
+{
+  "name": "sim_axiom_n01_composition_order_distinguishes",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: computes outcome prob sequences under two orderings"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic [X,Z] != 0 confirms non-commutation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "probs_xz": [
+      1.0,
+      0.5
+    ],
+    "probs_zx": [
+      0.5,
+      0.5
+    ],
+    "diff": 0.5,
+    "sympy_nonzero_comm": true,
+    "pass": true
+  },
+  "negative": {
+    "diff": 0.0,
+    "pass": true
+  },
+  "boundary": {
+    "prob_diff": 0.0,
+    "state_diff": 1.0,
+    "pass": true
+  },
+  "pass": true
+}

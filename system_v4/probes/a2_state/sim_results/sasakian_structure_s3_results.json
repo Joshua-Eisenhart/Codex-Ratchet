@@ -1,0 +1,908 @@
+{
+  "name": "sasakian_structure_s3",
+  "timestamp": "2026-04-14T08:40:06.921538+00:00",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: cross-validates contact metric condition using torch tensor sampling; confirms consistent result across torch/numpy paths."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant \u2014 no message-passing claim in this probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: encodes the dimensional obstruction to contact forms on S\u00b2 (even dimension). z3 UNSAT proof shows \u03b1\u2227d\u03b1 \u2261 0 on any 2D tangent space \u2014 no contact structure can exist on S\u00b2."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; z3 handles the UNSAT claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic verification of contact metric condition g(X,Y)=d\u03b1(X,\u03a6(Y))+\u03b1(X)\u03b1(Y) for all 9 frame-pair combinations in Hopf coordinates (\u03a6=J\u2218horizontal-projection), and K\u00e4hler cone d\u03c9=0 via constant-coefficient exterior derivative."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no Clifford algebra claim here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no geodesic / curvature claim here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no equivariant learning claim here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no shell-DAG update here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no hypergraph claim here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no cell-complex claim here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required; no persistence claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_contact_metric_numeric": {
+      "pass": true,
+      "n_sampled": 20,
+      "checks": [
+        {
+          "g(X,Y)": 0.23628683891594943,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.23628683891594945,
+          "error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.3578299650162944,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.3578299650162944,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.9028969545364681,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.9028969545364681,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.4078167681689793,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.40781676816897927,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.25802796630173935,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.2580279663017393,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.5193345402584635,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.5193345402584635,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.35664279979872915,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.3566427997987292,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.6536066440260089,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.6536066440260089,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.45591261933212357,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.4559126193321237,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.7348207637450567,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.7348207637450568,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.0032444082651760867,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.0032444082651761352,
+          "error": 4.85722573273506e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.6042682487902963,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.6042682487902963,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.659577333780613,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.659577333780613,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.8631613780088357,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.8631613780088356,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.7651455128603708,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.7651455128603709,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.2518249516738045,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.2518249516738045,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.8355294241156881,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.8355294241156882,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.02604515026472229,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.026045150264722344,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": 0.07503687648604859,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": 0.07503687648604858,
+          "error": 1.3877787807814457e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)": -0.7057662276763084,
+          "dalpha(X,PhiY)+alpha(X)alpha(Y)": -0.7057662276763084,
+          "error": 0.0,
+          "pass": true
+        }
+      ],
+      "criterion": "|g(X,Y) - d\u03b1(X,\u03a6(Y)) - \u03b1(X)\u03b1(Y)| < 1e-10",
+      "phi_definition": "Phi(Y) = J(Y - alpha(Y)*xi)  (horizontal project, then J)"
+    },
+    "P1_contact_metric_sympy": {
+      "pass": true,
+      "pairs_checked": 9,
+      "sympy_errors": [],
+      "phi_definition": "Phi(v) = J(v - alpha(v)*xi)  [sympy: horizontal then J]",
+      "criterion": "lhs - rhs trigsimp = 0 for all 9 frame pairs"
+    },
+    "P2_reeb_killing": {
+      "pass": true,
+      "n_sampled": 20,
+      "method": "Hopf U(1) flow preserves round metric",
+      "eps": 1e-05,
+      "checks": [
+        {
+          "g(X,Y)_before": -0.6988385282534288,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.698838528253429,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.8214205069628506,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.8214205069628506,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.7149960729868836,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.7149960729868836,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.4278117087797857,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.4278117087797856,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.6002462170171274,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.6002462170171274,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.8405178437389725,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.8405178437389728,
+          "error": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.6271739041620746,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.6271739041620745,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.32054421659160015,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.3205442165916001,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.06735894307100615,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.0673589430710062,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.3341599422559346,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.33415994225593476,
+          "error": 1.6653345369377348e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.06428135319379101,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.06428135319379105,
+          "error": 4.163336342344337e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.6222783630642511,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.6222783630642511,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.8203808952798519,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.8203808952798518,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.8068001211191849,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.8068001211191849,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.44721546930047584,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.44721546930047573,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.44129326124339263,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.4412932612433925,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.42822974040924633,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.42822974040924633,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": 0.40866337315885504,
+          "g(phiFlow_X, phiFlow_Y)_after": 0.40866337315885504,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.1665864396516935,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.16658643965169345,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "g(X,Y)_before": -0.7946752597340421,
+          "g(phiFlow_X, phiFlow_Y)_after": -0.7946752597340419,
+          "error": 2.220446049250313e-16,
+          "pass": true
+        }
+      ],
+      "criterion": "|g(flow_X, flow_Y) - g(X,Y)| < 1e-9"
+    },
+    "P3_phi_squared": {
+      "pass": true,
+      "n_points": 20,
+      "n_vectors_per_point": 3,
+      "checks": [
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 2.7755575615628914e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.6131465265649995e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.107791749636883e-15,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 4.652682298944613e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.9231387308172978e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 2.3092681654749347e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.09421766020817e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 3.469446951953614e-18,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 2.0816681711721685e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 4.8155550689074447e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.6653345369377348e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 5.28415792030486e-15,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 7.695466143782599e-18,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 5.637184056103667e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 4.0235115121980153e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.2719202621569003e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.8255367187553684e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 4.900770359109277e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.512321739452061e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.6478959984131287e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 2.7755575615628914e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.6667795129466247e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 3.212940164695817e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.255656598058192e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.6883057536160649e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.107791749636883e-15,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 5.425775788417187e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 1.6693427062326407e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 6.938893903907228e-18,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.3947004136484323e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 1.1408473371842166e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.249000902703301e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.1443916996305594e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 3.0966437401742527e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 2.0396099332657776e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.0772060116306953e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 1.6761670038787778e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 2.6622212897024595e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 3.510833468576701e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 7.894203239293232e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 0.0,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 1.6902218344011555e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 1.1443916996305594e-16,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 3.925231146709438e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 0,
+          "error_norm": 2.3341356721241145e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 1,
+          "error_norm": 2.2215299868541707e-17,
+          "pass": true
+        },
+        {
+          "basis_vec": 2,
+          "error_norm": 1.798766884999431e-16,
+          "pass": true
+        }
+      ],
+      "criterion": "\u2016\u03a6\u00b2(X) - (-X + \u03b1(X)\u03be)\u2016 < 1e-10"
+    },
+    "P4_kahler_cone_sympy": {
+      "pass": true,
+      "kahler_form": "omega = dx1^dy1 + dx2^dy2 (constant coefficients on R^4)",
+      "domega": "all partial derivatives of coefficients = 0 \u2192 d\u03c9 = 0",
+      "all_partials_zero": true,
+      "interpretation": "C(S\u00b3) = R\u2074\\{0} with flat metric is K\u00e4hler: J = i-multiplication, \u03c9 = flat K\u00e4hler form, d\u03c9 = 0 verified.",
+      "restriction_to_S3": "\u03c9|_{S\u00b3} = d\u03b1 confirms cone/contact compatibility",
+      "criterion": "all \u2202f/\u2202x_i = 0 for constant coefficient K\u00e4hler form"
+    },
+    "P4b_contact_metric_torch": {
+      "pass": true,
+      "n_sampled": 15,
+      "checks": [
+        {
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 6.938893903907228e-17,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "error": 6.938893903907228e-17,
+          "pass": true
+        }
+      ],
+      "criterion": "|g(X,Y) - d\u03b1(X,\u03a6Y) - \u03b1(X)\u03b1(Y)| < 1e-9 via torch sampling"
+    }
+  },
+  "negative": {
+    "N1_s2_no_contact_form_z3": {
+      "pass": true,
+      "z3_status": "unsat",
+      "expected": "unsat",
+      "interpretation": "S\u00b2 is 2-dimensional (even). \u039b\u00b3(\u211d\u00b2)=0 forces \u03b1\u2227d\u03b1\u22610. z3 UNSAT confirms no contact form can exist on S\u00b2.",
+      "criterion": "z3 returns unsat when asked to satisfy \u03b1\u2227d\u03b1\u22600 in 2D"
+    },
+    "N2_reeb_transverse_to_clifford_torus": {
+      "pass": true,
+      "n_clifford_points": 16,
+      "checks": [
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        },
+        {
+          "alpha_xi": 0.9999999999999998,
+          "xi_transverse_to_ker_alpha": true,
+          "pass": true
+        }
+      ],
+      "interpretation": "\u03b1(\u03be)=1 at every Clifford torus point confirms \u03be is NOT in ker(\u03b1). The Reeb field generates the Hopf fiber flow transverse to the tori.",
+      "criterion": "|\u03b1(\u03be) - 1| < 1e-9 at all Clifford torus points"
+    }
+  },
+  "boundary": {
+    "B1_phi_full_rank_on_ker_alpha": {
+      "pass": true,
+      "clifford_point": [
+        0.5,
+        0.49999999999999994,
+        0.5,
+        0.49999999999999994
+      ],
+      "ker_basis_found": 2,
+      "phi_matrix_in_ker_basis": [
+        [
+          0.0,
+          0.9486832980505138
+        ],
+        [
+          -0.9486832980505138,
+          5.551115123125783e-17
+        ]
+      ],
+      "det_phi_on_ker": 0.8999999999999999,
+      "criterion": "|det(\u03a6|_{ker(\u03b1)})| > 0.5 at Clifford torus point"
+    },
+    "B2_phi_restriction_is_J": {
+      "pass": true,
+      "n_points": 3,
+      "checks": [
+        {
+          "point": [
+            0.7071067811865475,
+            0.0,
+            0.7071067811865475,
+            0.0
+          ],
+          "phi2_equals_minus_I_errors": [
+            3.1401849173675503e-16,
+            3.1401849173675503e-16,
+            3.1401849173675503e-16
+          ],
+          "pass": true
+        },
+        {
+          "point": [
+            0.5,
+            0.49999999999999994,
+            0.35355339059327384,
+            0.6123724356957945
+          ],
+          "phi2_equals_minus_I_errors": [
+            1.3329179921125024e-16,
+            2.0816681711721685e-17,
+            7.850462293418876e-17
+          ],
+          "pass": true
+        },
+        {
+          "point": [
+            0.35355339059327384,
+            0.6123724356957945,
+            0.6123724356957945,
+            0.3535533905932737
+          ],
+          "phi2_equals_minus_I_errors": [
+            3.3993498887762956e-17,
+            2.0955000055363631e-16,
+            3.510833468576701e-16
+          ],
+          "pass": true
+        }
+      ],
+      "interpretation": "\u03a6\u00b2v = -v for all v \u2208 ker(\u03b1) confirms \u03a6|_{ker(\u03b1)} = J (almost-complex structure on the contact distribution).",
+      "criterion": "\u2016\u03a6\u00b2v - (-v)\u2016 < 1e-10 for v \u2208 ker(\u03b1)"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "n_pass": 10,
+    "n_fail": 0,
+    "n_total": 10
+  }
+}

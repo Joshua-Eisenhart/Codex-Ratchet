@@ -1,0 +1,41 @@
+{
+  "name": "sim_cross_holodeck_x_fep",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "descent + mask arithmetic"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "coupled update strictly contracts off-mask mass"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing",
+    "sympy": null
+  },
+  "positive": {
+    "fep_limit_within_holodeck": true,
+    "argmax_agrees": true,
+    "z3_mass_cannot_escape_mask": true,
+    "EMERGENT_shared_fixed_point": true
+  },
+  "negative": {
+    "scrambled_p_still_in_mask": true,
+    "scrambled_argmax_not_global": true
+  },
+  "boundary": {
+    "trivial_mask_not_emergent": "True",
+    "trivial_converges_to_p": true
+  },
+  "PASS": true
+}

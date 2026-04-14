@@ -24,10 +24,10 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Controller overlay for the Weyl/Hopf geometry lane. It compares base "
     "legos, composed numeric rows, strict companion rows, translation lanes, "

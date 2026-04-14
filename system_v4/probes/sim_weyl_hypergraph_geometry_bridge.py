@@ -16,7 +16,7 @@ import rustworkx as rx
 import xgi
 import z3
 from toponetx import CellComplex
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:
@@ -24,7 +24,7 @@ if str(PROBE_DIR) not in sys.path:
 
 import hopf_manifold as hopf  # noqa: E402
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Bounded bridge row from the stabilized Weyl/Hopf stack into the hypergraph family. "
     "It keeps the geometry and hypergraph carriers distinct while checking a shared DAG, "

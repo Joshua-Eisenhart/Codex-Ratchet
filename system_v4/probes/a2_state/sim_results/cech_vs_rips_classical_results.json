@@ -1,0 +1,119 @@
+{
+  "name": "cech_vs_rips_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.cdist cross-check on pairwise distances"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Euclidean"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "inline"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "raw"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Restricted to 2-simplex level; higher-dim nerve checks omitted.",
+    "Cech triangle admission computed via miniball (smallest enclosing circle) of 3 points.",
+    "Jung constant sqrt(2 d/(d+1)) = sqrt(4/3) in R^2 used for Rips upper bound."
+  ],
+  "positive": {
+    "equilateral_rips_triangle": {
+      "pass": true
+    },
+    "equilateral_cech_excludes_at_r05": {
+      "pass": true
+    },
+    "equilateral_cech_includes_at_r06": {
+      "pass": true
+    },
+    "jung_inclusion": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "obtuse_both_exclude_small_r": {
+      "pass": true
+    },
+    "obtuse_both_include_at_r2": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "two_points_no_triangle": {
+      "pass": true
+    },
+    "collinear_degenerate_cech": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

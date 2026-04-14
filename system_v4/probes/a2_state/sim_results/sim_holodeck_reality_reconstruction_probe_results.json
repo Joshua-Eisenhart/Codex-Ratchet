@@ -1,0 +1,56 @@
+{
+  "name": "sim_holodeck_reality_reconstruction_probe",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "least-squares reconstruction"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "full_reconstruction": true,
+    "overdetermined_ok": true
+  },
+  "negative": {
+    "partial_claims_full": false
+  },
+  "boundary": {
+    "zero_recon": true,
+    "degenerate_returns_candidate": "True"
+  },
+  "pass": true
+}

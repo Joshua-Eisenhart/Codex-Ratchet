@@ -1,0 +1,56 @@
+{
+  "name": "sim_holodeck_chirality_recall_vs_projection",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor and reverse chirality"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "angle arithmetic"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": null
+  },
+  "positive": {
+    "recall_ne_projection": true,
+    "composition": true
+  },
+  "negative": {
+    "recall_eq_projection_claim": false
+  },
+  "boundary": {
+    "identity_rotor_same": true,
+    "pi_rotation_same": true
+  },
+  "pass": true
+}

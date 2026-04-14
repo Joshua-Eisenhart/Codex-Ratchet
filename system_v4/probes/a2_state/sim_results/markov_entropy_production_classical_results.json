@@ -1,0 +1,98 @@
+{
+  "name": "markov_entropy_production_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical entropy production sigma = sum J log(J_+/J_-) on a commuting state graph measures irreversibility of diagonal populations under a Markov generator. Quantum entropy production in Lindbladian dynamics uses -d/dt S(rho(t) || rho_ss) with noncommuting rho, rho_ss and can include coherence-driven contributions absent here. The classical substrate cannot encode coherent heat currents or quantum-coherence enhancement of the thermodynamic uncertainty relation.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch eig cross-check of stationary distribution"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "detailed_balance_zero": true,
+    "cycle_positive": true,
+    "monotone_in_drive": true
+  },
+  "negative": {
+    "reversible_two_state_zero": true,
+    "nonreversible_positive": true
+  },
+  "boundary": {
+    "small_drive_small_positive": true,
+    "four_state_ring_positive": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

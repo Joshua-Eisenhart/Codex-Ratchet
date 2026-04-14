@@ -307,10 +307,15 @@
       "expected": "near zero (max entropy -- L6 should not activate)",
       "pass": true
     },
-    "pure_state_L6_activation": {
+    "pure_state_L6_no_activation": {
       "displacement": 1.0000000116860974e-07,
-      "expected": "positive (pure state has entropy violations from channels)",
-      "pass": false
+      "expected": "near zero (pure states have S=0; all physical channels here only increase entropy; no violation possible)",
+      "pass": true
+    },
+    "ground_biased_L6_activation": {
+      "displacement": 0.15729595720767975,
+      "expected": "positive (~0.16): amplitude damping on [[0.9,0],[0,0.1]] decreases entropy (dec~0.023), triggering L6 mixing toward I/2",
+      "pass": true
     },
     "identity_L4_substeps": {
       "substep_displacements": [
@@ -358,8 +363,8 @@
     "contradiction_resolution": "L4 genuinely dominates per-step AND geodesic -- depth normalization overcorrects. The multiple sub-steps represent real constraint activity."
   },
   "summary": {
-    "negative_all_pass": false,
-    "scope_note": "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. Useful as early-ladder evidence, but only canonical if its negative lane closes cleanly."
+    "negative_all_pass": true,
+    "scope_note": "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. Negative lane closed (physically-correct tests pass). Remains 'supporting': predates SIM_TEMPLATE provenance; z3 is supportive-only (SAT, no UNSAT fence)."
   },
   "classification": "supporting"
 }

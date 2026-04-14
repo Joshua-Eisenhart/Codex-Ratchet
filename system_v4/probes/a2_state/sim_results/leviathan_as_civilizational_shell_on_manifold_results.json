@@ -1,0 +1,43 @@
+{
+  "name": "leviathan_as_civilizational_shell_on_manifold",
+  "classification": "canonical",
+  "positive": {
+    "connected": true,
+    "nodes": 4,
+    "edges": 5,
+    "nontrivial_topology": true,
+    "shell_local_admissible": "sat",
+    "admissible_sat": true
+  },
+  "negative": {
+    "disconnected": true,
+    "disconnected_excluded": true
+  },
+  "boundary": {
+    "tree_edges": 3,
+    "tree_is_min_admissible": true,
+    "cost_symbolic": "-c + n"
+  },
+  "tool_manifest": {
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "shell-local connectivity structure"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic shell layer cost"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "shell-local admissibility encoding"
+    }
+  },
+  "tool_integration_depth": {
+    "networkx": "load_bearing",
+    "sympy": "supportive",
+    "z3": "load_bearing"
+  }
+}

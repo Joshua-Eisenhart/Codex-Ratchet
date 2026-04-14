@@ -1,0 +1,32 @@
+{
+  "name": "sim_fep_pair_active_inference_x_markov_blanket",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "CI + policy perturbation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on factorization-breaking under positive policy"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "policy_preserves_CI": true,
+    "z3_policy_preserves_factorization_unsat": true
+  },
+  "negative": {
+    "drop_blanket_CI_violated": true,
+    "drop_action_loop_no_modulation": true
+  },
+  "boundary": {
+    "uniform_policy_CI_zero": true
+  },
+  "PASS": true
+}

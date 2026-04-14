@@ -1,0 +1,105 @@
+{
+  "name": "entanglement_breaking_ppt_witness_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Builds Choi matrix of depolarizing channel, computes partial transpose, and uses torch.linalg.eigvalsh to decide PPT/EB; load-bearing for the gap-across-threshold claim."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "p_0p8_min_pt_eig": 0.10000000000000006,
+    "p_0p8_is_EB": true
+  },
+  "negative": {
+    "p_0p3_min_pt_eig": -0.2749999999999999,
+    "p_0p3_is_not_EB": true
+  },
+  "boundary": {
+    "p_threshold_min_eig": 0.0,
+    "p_threshold_near_zero": true,
+    "p_0_min_eig": -0.4999999999999999,
+    "p_0_strongly_entangled": true,
+    "p_1_min_eig": 0.25,
+    "p_1_separable": true
+  },
+  "quantum_classical_gap": {
+    "metric": "min eigenvalue of partial transpose of Choi state",
+    "p_0p3_min_eig": -0.2749999999999999,
+    "p_0p8_min_eig": 0.10000000000000006,
+    "sign_change_gap": 0.375
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

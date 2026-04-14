@@ -56,6 +56,10 @@ def canonical(tool: str) -> str:
                        tool.strip().lower().replace("-", "_"))
 
 
+def _is_ignored_sim_path(path: Path) -> bool:
+    return path.name.endswith(" 2.py")
+
+
 def _module_level_assignments(tree: ast.Module) -> dict:
     """Collect literal-evaluable module-level assignments by name."""
     out: dict = {}
@@ -187,7 +191,7 @@ def main() -> int:
                     help="Include _archive_lane_c sims (default: excluded).")
     args = ap.parse_args()
 
-    sims = sorted(PROBES_DIR.glob("sim_*.py"))
+    sims = sorted(p for p in PROBES_DIR.glob("sim_*.py") if not _is_ignored_sim_path(p))
     if not args.include_archive:
         sims = [s for s in sims if "_archive_lane_c" not in s.parts]
 

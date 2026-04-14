@@ -1,0 +1,125 @@
+{
+  "name": "persistent_homology_circle_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check pairwise distance matrix via torch.cdist"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Euclidean only"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "explicit union-find"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "raw distances"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "would shortcut the baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Chose 1-skeleton persistence (H0 merges + H1 birth/death via cycle detection).",
+    "Considered full Rips up to triangles; limited to edge-skeleton for speed and clarity.",
+    "H1 death approximated as filtration value at which complete graph is reached (triangles kill all cycles conservatively)."
+  ],
+  "positive": {
+    "h0_bars_count": {
+      "count": 39,
+      "expected": 39,
+      "pass": true
+    },
+    "h1_loop_birth_scale": {
+      "birth": 0.1916191657398153,
+      "expected_range": [
+        0.07853981633974483,
+        0.47123889803846897
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "two_clusters_long_h0_bar": {
+      "longest": 4.820588546038373,
+      "pass": true
+    },
+    "random_cloud_no_tight_loop": {
+      "loop_birth": 1.9788977767266835,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_point": {
+      "pass": true
+    },
+    "two_points_one_death": {
+      "deaths": [
+        1.0
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

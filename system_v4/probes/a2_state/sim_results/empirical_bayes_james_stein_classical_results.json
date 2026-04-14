@@ -1,0 +1,52 @@
+{
+  "name": "empirical_bayes_james_stein_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical JS shrinks scalar means under a Gaussian hyperprior estimated from the data. A quantum analog would shrink density-operator estimates under a CPTP prior; this baseline drops all operator structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "MSE comparison under JS shrinkage"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "Gaussian sampling helper"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim for dominance"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "js_beats_mle_zero_mean": "True",
+    "js_dominates_mle_random_theta": "True",
+    "js_strict_gain_small_theta": "True",
+    "shrinkage_in_unit_interval": true
+  },
+  "negative": {
+    "k1_no_gain": "True",
+    "large_theta_js_no_worse": "True"
+  },
+  "boundary": {
+    "k3_dominance": "True",
+    "shrinkage_floor_at_zero": true,
+    "large_theta_shrinkage_close_to_one": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

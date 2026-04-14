@@ -1,0 +1,32 @@
+{
+  "name": "sim_cross_fep_x_science_method",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "surprise + correlation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "surprise strictly decreasing in q"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "surprise_refutation_corr": true,
+    "z3_surprise_monotone": true,
+    "EMERGENT_surprise_is_refutation_generator": true
+  },
+  "negative": {
+    "random_probe_decorrelated": true
+  },
+  "boundary": {
+    "flat_surprise_when_uniform": true
+  },
+  "PASS": true
+}

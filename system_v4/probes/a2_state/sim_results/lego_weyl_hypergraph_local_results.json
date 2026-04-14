@@ -1,0 +1,306 @@
+{
+  "sim_id": "lego_weyl_hypergraph_local",
+  "name": "Weyl Hypergraph Local Carrier",
+  "version": "0.1",
+  "tier": 2,
+  "purpose": "Build a small local Weyl-labelled hypergraph/cell-complex carrier before any bridge or companion claims.",
+  "scientific_question": "Can a bounded Weyl-labelled multi-way carrier preserve genuine hypergraph structure, a valid cell-complex lift, and proof-guarded ordering without collapsing to pairwise structure?",
+  "sim_class": "geometry_probe",
+  "root_constraints_in_force": [
+    "constraint_on_distinguishability",
+    "finite_admissible_carrier_only"
+  ],
+  "carrier_layer": "bounded_weyl_labelled_hypergraph",
+  "geometry_layer": "hypergraph_and_cell_complex_on_same_local_carrier",
+  "bridge_layer": "none",
+  "cut_layer": "cut_not_applicable_at_this_tier",
+  "law_or_candidate_tested": "genuine_multiway_local_hypergraph_structure_on_a_weyl_labelled_finite_carrier",
+  "branch_status_before_run": "local_lego_only",
+  "allowed_claims": [
+    "local geometry witness only",
+    "local graph/topology lego only"
+  ],
+  "promotion_blockers": [
+    "no strict companion comparison in this row",
+    "no engine bridge in this row",
+    "no higher-layer controller admission in this row"
+  ],
+  "required_tools": [
+    "z3",
+    "cvc5",
+    "rustworkx",
+    "xgi",
+    "toponetx"
+  ],
+  "actual_tools_used": [
+    "z3",
+    "cvc5",
+    "rustworkx",
+    "xgi",
+    "toponetx"
+  ],
+  "proof_surfaces_used": [
+    "z3",
+    "cvc5"
+  ],
+  "graph_surfaces_used": [
+    "rustworkx",
+    "xgi"
+  ],
+  "topology_surfaces_used": [
+    "toponetx"
+  ],
+  "required_inputs": [],
+  "data_or_artifact_dependencies": [],
+  "required_negatives": [
+    "pairwise_shadow_collapse",
+    "triad_removal_collapse",
+    "reverse_schedule_impossibility"
+  ],
+  "negatives_run": [
+    "pairwise_shadow_does_not_equal_multiway_carrier",
+    "triad_removal_collapses_local_relation",
+    "reverse_schedule_is_impossible"
+  ],
+  "kill_conditions": [
+    "multiway carrier collapses to pairwise only",
+    "cell-complex lift fails boundary composition",
+    "reverse schedule becomes satisfiable"
+  ],
+  "required_artifacts": [
+    "result_json",
+    "tool_usage_evidence",
+    "classification_summary",
+    "witness_trace"
+  ],
+  "artifacts_emitted": [
+    "result_json",
+    "tool_manifest",
+    "tool_integration_depth",
+    "witness_trace",
+    "classification_summary"
+  ],
+  "witness_trace_id": "lego_weyl_hypergraph_local::local_hypergraph::v0.1",
+  "result_summary": {
+    "all_pass": true,
+    "strict_scope": "local_lego_only",
+    "num_nodes": 4,
+    "num_edges": 2,
+    "shadow_edge_count": 4,
+    "graph_path_length": 3
+  },
+  "pass_rule": "all positive, negative, and boundary checks pass and at least one non-numeric tool is load-bearing",
+  "fail_rule": "any required local carrier, negative, or proof guard fails",
+  "promotion_status": "admitted",
+  "eligible_consumers": [
+    "hypergraph_family_follow_on",
+    "future_strict_hypergraph_companion",
+    "local_graph_topology_comparisons"
+  ],
+  "blocked_consumers": [
+    "engine_bridge_rows",
+    "strict_companion_arrays",
+    "translation_target_controller_surfaces"
+  ],
+  "classification": "canonical",
+  "classification_note": "Contract-clean local lego for a bounded Weyl-labelled hypergraph carrier. This is a real local building block, not a bridge, companion, routing, or owner-math surface.",
+  "lego_ids": [
+    "weyl_hypergraph_local"
+  ],
+  "primary_lego_ids": [
+    "weyl_hypergraph_local"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; not relevant to this non-differentiable local carrier lego"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no message-passing workload in this bounded local lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT proof for reverse schedule impossibility"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check for reverse schedule impossibility"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no symbolic identity is needed beyond exact finite checks"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no geometric-product transport in this local hypergraph lego"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no manifold geodesic computation in this local hypergraph lego"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no equivariant neural computation in this local lego"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing DAG schedule for local carrier assembly order"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing hypergraph construction and shadow comparison"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing cell-complex lift and boundary composition check"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "tried from template discipline; no persistence computation required for this smallest honest lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "supportive",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "bounded_multiway_carrier_exists": {
+      "num_nodes": 4,
+      "num_edges": 2,
+      "edge_sizes": [
+        2,
+        3
+      ],
+      "pass": true
+    },
+    "pairwise_shadow_is_finite_and_explicit": {
+      "shadow_edge_count": 4,
+      "shadow_edges": [
+        [
+          "hopf",
+          "transport"
+        ],
+        [
+          "hopf",
+          "weyl_left"
+        ],
+        [
+          "hopf",
+          "weyl_right"
+        ],
+        [
+          "weyl_left",
+          "weyl_right"
+        ]
+      ],
+      "pass": true
+    },
+    "cell_complex_lift_is_bounded": {
+      "cell_complex_shape": [
+        4,
+        4,
+        1
+      ],
+      "boundary_composes_to_zero": true,
+      "pass": true
+    },
+    "schedule_graph_is_valid": {
+      "graph_path_length": 3,
+      "topological_order": [
+        "local_hypergraph",
+        "pairwise_shadow",
+        "cell_complex_lift",
+        "boundary_check"
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "pairwise_shadow_does_not_equal_multiway_carrier": {
+      "hyperedge_count": 2,
+      "shadow_edge_count": 4,
+      "pass": true
+    },
+    "triad_removal_collapses_local_relation": {
+      "collapsed_edge_sizes": [
+        2
+      ],
+      "collapsed_edge_count": 1,
+      "pass": true
+    },
+    "reverse_schedule_is_impossible": {
+      "z3_verdict": "unsat",
+      "cvc5_verdict": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "tool_depth_is_honest": {
+      "load_bearing_tools": [
+        "z3",
+        "rustworkx",
+        "xgi",
+        "toponetx"
+      ],
+      "supportive_tools": [
+        "cvc5"
+      ],
+      "pass": true
+    },
+    "blocked_consumers_are_not_claimed": {
+      "blocked_consumers": [
+        "engine_bridge_rows",
+        "strict_companion_arrays",
+        "translation_target_controller_surfaces"
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "sim_id": "lego_weyl_hypergraph_local",
+    "tier": 2,
+    "promotion_status": "admitted",
+    "carrier_layer": "bounded_weyl_labelled_hypergraph",
+    "geometry_layer": "hypergraph_and_cell_complex_on_same_local_carrier",
+    "num_nodes": 4,
+    "num_edges": 2,
+    "edge_sizes": [
+      2,
+      3
+    ],
+    "shadow_edge_count": 4,
+    "cell_complex_shape": [
+      4,
+      4,
+      1
+    ],
+    "graph_path_length": 3,
+    "reverse_schedule_z3_unsat": true,
+    "reverse_schedule_cvc5_unsat": true,
+    "scope_note": "Contract-clean local Weyl-hypergraph lego. No bridge, no companion, no controller claim."
+  }
+}

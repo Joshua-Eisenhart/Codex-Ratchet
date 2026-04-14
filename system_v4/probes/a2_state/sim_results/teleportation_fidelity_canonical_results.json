@@ -1,0 +1,111 @@
+{
+  "name": "teleportation_fidelity_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": false,
+      "reason": "not required -- all arithmetic is symbolic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- exact symbolic tracking suffices"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic Bell-basis projection and conditional Pauli correction on the 8-dim ABC tensor; fidelity F=1 is proved by sp.simplify(|<psi|phi>|^2) == 1"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- identity is proved by sympy.simplify"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": null,
+    "pytorch": null,
+    "sympy": "load_bearing",
+    "z3": null
+  },
+  "positive": {
+    "per_outcome": {
+      "phi_plus": {
+        "fidelity_equals_one": true,
+        "fidelity_expr": "1"
+      },
+      "phi_minus": {
+        "fidelity_equals_one": true,
+        "fidelity_expr": "1"
+      },
+      "psi_plus": {
+        "fidelity_equals_one": true,
+        "fidelity_expr": "1"
+      },
+      "psi_minus": {
+        "fidelity_equals_one": true,
+        "fidelity_expr": "1"
+      }
+    },
+    "all_four_outcomes_recover_psi": true,
+    "quantum_fidelity": 1.0,
+    "classical_cloning_bound": 0.6666666666666666,
+    "quantum_gt_classical": true,
+    "quantum_classical_gap": 0.33333333333333337
+  },
+  "negative": {
+    "outcomes_without_correction_mismatch_count": 3,
+    "three_of_four_outcomes_fail_without_correction": true,
+    "per_outcome_no_correction": {
+      "phi_plus": {
+        "F": "1",
+        "matches_target": true
+      },
+      "phi_minus": {
+        "F": "49/625",
+        "matches_target": false
+      },
+      "psi_plus": {
+        "F": "576/625",
+        "matches_target": false
+      },
+      "psi_minus": {
+        "F": "0",
+        "matches_target": false
+      }
+    },
+    "classical_bound_lt_one": true
+  },
+  "boundary": {
+    "per_state_per_outcome_fidelity": {
+      "plus": {
+        "phi_plus": "1",
+        "phi_minus": "1",
+        "psi_plus": "1",
+        "psi_minus": "1"
+      },
+      "generic_complex": {
+        "phi_plus": "1",
+        "phi_minus": "1",
+        "psi_plus": "1",
+        "psi_minus": "1"
+      }
+    },
+    "all_concrete_cases_F_equal_one": true,
+    "quantum_exceeds_classical_by_at_least": 0.33333333333333337,
+    "gap_strictly_positive": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_cloning_bound_F": 0.6666666666666666,
+      "quantum_teleportation_bound_F": 1.0,
+      "F_quantum_measured": 1.0,
+      "quantum_classical_gap": 0.33333333333333337
+    },
+    "classical_baseline_cited": "optimal measure-and-prepare cloning bound F<=2/3",
+    "measured_quantum_value": 1.0
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "name": "sim_gtower_so_to_u",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "proves no real j with j^2=-1 (odd-dim complex-structure obstruction)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "verifies det of standard complex structure symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "J_in_SO2": "True",
+    "rot_commutes_J": true,
+    "complex_unitary": true,
+    "A_in_SO4": "True",
+    "A_commutes_J2": true,
+    "U_unitary": true
+  },
+  "negative": {
+    "reflection_breaks_J": true,
+    "P_in_SO4": "True",
+    "P_breaks_J2": true
+  },
+  "boundary": {
+    "z3_no_real_J_dim1": "unsat",
+    "z3_no_real_J_dim1_ok": true,
+    "sympy_det_J2": true
+  },
+  "status": "PASS"
+}

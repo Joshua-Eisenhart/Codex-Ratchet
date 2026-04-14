@@ -35,7 +35,7 @@ import os
 import sys
 from datetime import datetime, timezone
 from itertools import combinations
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

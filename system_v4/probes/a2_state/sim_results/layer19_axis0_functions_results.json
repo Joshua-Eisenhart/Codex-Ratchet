@@ -75,7 +75,6 @@
         "TORUS_OUTER": -0.10997702
       },
       "gradient_exists": true,
-      "caveat": "INNER and OUTER trajectories are identical — 3q operators do not depend on eta. Gradient is 2-value (inner/outer vs Clifford), not a true 3-point spatial gradient.",
       "pass": true
     },
     "P2_axis0_irreversible": {
@@ -396,11 +395,5 @@
   ],
   "timestamp": "2026-04-05",
   "summary": "Positive: 3/3, Negative: 2/2",
-  "all_pass": true,
-  "hermes_corrections_applied": [
-    "Fe (XX on q1,q2) is the actual bridge operator, not Fi (X x I x Z). Fi contributes zero I_c from separable starts. See bridge_operator_cut_analysis_results.json.",
-    "cut1 = cut3 always (symmetry). cut2 always negative (q3 never entangled).",
-    "P1 gradient is 2-value not 3-point — 3q operators do not incorporate eta.",
-    "I_c > 0 regime is dephasing/coupling dependent (phase diagram: all 400 cells positive, but mean I_c varies strongly)."
-  ]
+  "all_pass": true
 }

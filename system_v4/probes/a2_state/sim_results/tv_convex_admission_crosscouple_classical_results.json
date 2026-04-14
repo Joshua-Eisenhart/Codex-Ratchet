@@ -1,0 +1,141 @@
+{
+  "name": "tv_convex_admission_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive TV cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical TV convexity treats admission as convex mixing of classical distributions. Nonclassical distinguishability-admission coupling (where constraint exclusion on one component removes admissibility of the mixture even if each component is admissible) is lost."
+  ],
+  "positive": {
+    "seed_0": {
+      "lhs": 0.21072451527071165,
+      "rhs": 0.3634156197995231,
+      "pass": true
+    },
+    "seed_1": {
+      "lhs": 0.411881417858859,
+      "rhs": 0.5549101733561898,
+      "pass": true
+    },
+    "seed_2": {
+      "lhs": 0.359086265171519,
+      "rhs": 0.4769282883490241,
+      "pass": true
+    },
+    "seed_3": {
+      "lhs": 0.3046365262347694,
+      "rhs": 0.41902110940078724,
+      "pass": true
+    },
+    "seed_4": {
+      "lhs": 0.3702574674643746,
+      "rhs": 0.421595754689964,
+      "pass": true
+    },
+    "seed_5": {
+      "lhs": 0.2842019572652346,
+      "rhs": 0.46943208264640524,
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "tv_bounded_by_1": {
+      "pass": true
+    },
+    "tv_self_is_zero": {
+      "pass": true
+    },
+    "wrong_direction_fails": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "disjoint_vertices_tv_one": {
+      "pass": true
+    },
+    "degenerate_weights": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

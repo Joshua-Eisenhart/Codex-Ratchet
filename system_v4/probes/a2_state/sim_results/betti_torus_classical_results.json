@@ -1,0 +1,127 @@
+{
+  "name": "betti_torus_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check boundary rank via torch.linalg.matrix_rank"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical linalg baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT encoding for rank computation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT encoding for rank computation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy rank sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra structure needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete complex, no manifold stats"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant nets required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "explicit simplex lists used"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "standard simplicial, not hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline uses raw boundary matrices"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline uses raw linalg"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Chose minimal 7-vertex Cs\u00e1sz\u00e1r torus triangulation over subdivision for speed.",
+    "Considered Smith normal form for integer homology; used numpy real rank mod-2 agnostic because torus has free Z homology.",
+    "Rejected gudhi because classification demands classical-baseline with numpy-only decisive path."
+  ],
+  "positive": {
+    "torus_betti": {
+      "computed": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "disjoint_two_triangles": {
+      "b0": 2,
+      "b1": 0,
+      "pass": true
+    },
+    "rank_drops_on_zero_col": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_triangle": {
+      "betti": [
+        1,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    "chain_complex_d1d2_zero": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

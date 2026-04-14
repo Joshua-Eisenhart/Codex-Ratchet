@@ -1,0 +1,51 @@
+{
+  "name": "convex_admission_polytope_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical admission collapses to a convex polytope over commuting scalar coordinates. A nonclassical admission region is an operator system / cone in a noncommutative algebra (e.g. PSD cone over Hermitian matrices). This baseline drops the operator-ordering and joint-spectral structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "polytope inequality assembly"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "linprog Phase-I feasibility"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import; not load-bearing for LP"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT proof claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "simplex_feasible": true,
+    "box_feasible": true,
+    "random_interior_feasible": true
+  },
+  "negative": {
+    "contradictory_infeasible": true,
+    "excluded_corner_infeasible": true
+  },
+  "boundary": {
+    "single_point_feasible": true,
+    "trivial_polytope_feasible": true,
+    "thin_slab_feasible": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "name": "ghz_mermin_inequality_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Complex tensor Kronecker products and <psi|M|psi> expectation for the Mermin operator; load-bearing for quantum value = 4 witness."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ghz_mermin_value": 3.999999999999999,
+    "matches_quantum_bound_4": true
+  },
+  "negative": {
+    "product_state_value": 0.0,
+    "within_classical_bound": true
+  },
+  "boundary": {
+    "w_state_value": 0.0,
+    "w_distinct_from_ghz": true
+  },
+  "quantum_classical_gap": {
+    "classical_bound": 2.0,
+    "quantum_value_ghz": 3.999999999999999,
+    "gap": 1.9999999999999991
+  },
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "name": "majorization_lorenz_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical majorization compares probability vectors by their sorted partial sums (Lorenz curves) on a commuting sample space. It captures mixing of diagonal (classical) populations only. Quantum majorization rho >> sigma compares the eigenvalue vectors lambda(rho) >> lambda(sigma), but two states with identical spectra and therefore equal classical majorization status can still be distinguishable via noncommuting measurements; coherent superpositions between eigenbases are invisible to this substrate.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch sort / cumsum cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "delta_majorizes_uniform": true,
+    "delta_majorizes_mid": true,
+    "mid_majorizes_uniform": true,
+    "reflexivity": true,
+    "uniform_is_minimum": true,
+    "ds_application_majorized": true
+  },
+  "negative": {
+    "incomparable_not_majorize": true,
+    "sum_mismatch_fails": true
+  },
+  "boundary": {
+    "permutation_invariant": true,
+    "near_equal_majorizes": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

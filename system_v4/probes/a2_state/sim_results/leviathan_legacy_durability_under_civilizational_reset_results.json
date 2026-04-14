@@ -1,0 +1,43 @@
+{
+  "name": "leviathan_legacy_durability_under_civilizational_reset",
+  "classification": "canonical",
+  "positive": {
+    "survivors": 2,
+    "pattern_survived": true,
+    "z3_survived": "sat",
+    "admissible_sat": true
+  },
+  "negative": {
+    "survivors": 0,
+    "reset_wipes_pattern": true,
+    "shared_edges": 0,
+    "no_shared_structure": true
+  },
+  "boundary": {
+    "boundary_survivors": 2,
+    "boundary_admissible": true,
+    "durability_at_boundary": 1
+  },
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "encode >=k survivors admissibility"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic durability piecewise"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "pre/post structural overlap"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "networkx": "supportive"
+  }
+}

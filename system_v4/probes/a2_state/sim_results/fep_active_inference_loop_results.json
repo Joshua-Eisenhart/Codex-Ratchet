@@ -1,0 +1,42 @@
+{
+  "name": "sim_fep_active_inference_loop",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivative of F step"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "prove perception step is a contraction on simplex axis"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric loop iteration"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "perception_reduces_F": true,
+    "action_further_reduces_F_or_keeps": true,
+    "best_action_exists": true,
+    "sympy_derivative_symbolic": true,
+    "z3_step_is_contraction": true
+  },
+  "negative": {
+    "noop_when_already_matched": true,
+    "adversarial_action_increases_F": true
+  },
+  "boundary": {
+    "uniform_matches_zero_F": true,
+    "lr_zero_is_noop": true
+  },
+  "PASS": true
+}

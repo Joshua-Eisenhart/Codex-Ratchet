@@ -1,0 +1,93 @@
+{
+  "name": "sim_arith_geom_6_chirality_coupling",
+  "family": "arith_geom",
+  "step": "chirality_coupling",
+  "step_index": 6,
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic/proof lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic/proof lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: result of this atomic step materially depends on this tool"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 chosen as primary SMT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold structure in this atomic step"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN in this atomic step"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this atomic step"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this atomic step"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this atomic step"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence in this atomic step"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "a_p_in_hasse": true
+  },
+  "negative": {
+    "a_p_not_absurd": true
+  },
+  "boundary": {
+    "a_p_int": true
+  },
+  "all_pass": true
+}

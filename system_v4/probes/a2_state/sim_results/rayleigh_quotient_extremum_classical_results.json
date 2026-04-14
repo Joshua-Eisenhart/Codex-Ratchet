@@ -1,0 +1,135 @@
+{
+  "name": "rayleigh_quotient_extremum",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: torch power-iteration for lambda_max cross-validates scipy eigh"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "random_vectors_bounded": {
+      "lam_min": -2.003711955496317,
+      "lam_max": 1.8151400859302629,
+      "min_R": -1.7161418017138916,
+      "max_R": 1.3634032836665257,
+      "pass": true
+    },
+    "eigvec_min_attains_lam_min": {
+      "R": -2.003711955496322,
+      "pass": true
+    },
+    "eigvec_max_attains_lam_max": {
+      "R": 1.8151400859302627,
+      "pass": true
+    },
+    "torch_power_iter_lam_max": {
+      "est": -2.0037119554963225,
+      "lam_max": 1.8151400859302629,
+      "lam_min": -2.003711955496317,
+      "spectral_radius": 2.003711955496317,
+      "pass": true
+    }
+  },
+  "negative": {
+    "interior_eigvec_not_extremum": {
+      "R": -1.3004548197293613,
+      "lam_min": -2.9653991951589473,
+      "lam_max": 0.894912695324037,
+      "pass": true
+    },
+    "nonsym_rayleigh_not_operator_norm": {
+      "op_norm_B": 2.0,
+      "sym_lam_max": 1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "degenerate_R_is_eigenvalue": {
+      "R": 2.5,
+      "pass": true
+    },
+    "one_dim_R_is_zero": {
+      "R": 0.0,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 4,
+    "n_negative": 2,
+    "n_boundary": 2
+  },
+  "divergence_log": "Classical Rayleigh quotient extremum requires a real symmetric (Hermitian-on-reals) operator and a real inner product. Lost relative to the nonclassical shell: complex-phase-sensitive variational forms, joint extremization under noncommuting constraints (uncertainty-coupled quotients), and constraint-admissibility bounds where the extremal direction is not a single eigenvector but a coherent superposition stabilized only under a specific probe family."
+}

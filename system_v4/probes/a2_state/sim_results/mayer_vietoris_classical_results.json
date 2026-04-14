@@ -1,0 +1,137 @@
+{
+  "name": "mayer_vietoris_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check boundary rank"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical ranks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete complex"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "explicit simplex lists"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "raw boundaries"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline ranks"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Verified M-V via chi additivity and Betti summation rather than explicit connecting map.",
+    "Considered encoding the full long-exact sequence; limited to rank arithmetic for baseline scope.",
+    "Used 6-vertex octahedral S^2 triangulation (north cap + south cap + equator)."
+  ],
+  "positive": {
+    "s2_betti": {
+      "betti": [
+        "1",
+        "0",
+        "1"
+      ],
+      "pass": true
+    },
+    "disks_contractible": {
+      "A": [
+        "1",
+        "0",
+        "0"
+      ],
+      "B": [
+        "1",
+        "0",
+        "0"
+      ],
+      "pass": true
+    },
+    "equator_is_S1": {
+      "betti": [
+        "1",
+        "1",
+        0
+      ],
+      "pass": true
+    },
+    "chi_additivity": {
+      "chi_A": "1",
+      "chi_B": "1",
+      "chi_I": "0",
+      "chi_U": "2",
+      "pass": true
+    }
+  },
+  "negative": {
+    "wedge_violates_s2_mv": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "disjoint_union_chi": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

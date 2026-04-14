@@ -1,0 +1,102 @@
+{
+  "name": "sim_simplicial_fvector_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: tensor summation cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "hand-rolled SC is enough"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical f-vector counts ignore constraint-admissibility of simplices under probe coupling.",
+    "Euler characteristic alternating-sum treated as complete invariant; nonclassical probes excluded."
+  ],
+  "positive": {
+    "tet_fvector": true,
+    "tet_euler_1": true,
+    "tri_fvector": true,
+    "torch_sum_match": true
+  },
+  "negative": {
+    "detects_non_closed": true,
+    "empty_fvector": true
+  },
+  "boundary": {
+    "single_vertex": true,
+    "two_edges": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

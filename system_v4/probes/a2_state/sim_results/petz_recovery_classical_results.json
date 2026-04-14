@@ -1,0 +1,46 @@
+{
+  "name": "petz_recovery_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Bayes arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "prior_preserved_under_bayes_chain": true,
+    "recovery_is_stochastic": true,
+    "recovery_rows_nonneg": "True"
+  },
+  "negative": {
+    "invalid_channel_rejected": true,
+    "classical_misses_coherence": true
+  },
+  "boundary": {
+    "identity_channel_self_recovers": true,
+    "zero_prior_support_safe": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Bayes rule is commutative; no sqrt(rho) conjugation",
+    "cannot recover off-diagonal coherence destroyed by channel",
+    "no Fawzi-Renner approximate recovery inequality via quantum relative entropy"
+  ]
+}

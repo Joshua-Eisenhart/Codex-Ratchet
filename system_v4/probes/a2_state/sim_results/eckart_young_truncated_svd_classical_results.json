@@ -1,0 +1,155 @@
+{
+  "name": "eckart_young_truncated_svd",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: torch.linalg.svd re-run to confirm singular values match numpy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric SVD baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "eckart_young_k1": {
+      "fro_err2": 22.520752162616148,
+      "tail2": 22.520752162616144,
+      "spec_err": 3.3879343661237833,
+      "sigma_next": 3.387934366123782,
+      "pass": true
+    },
+    "eckart_young_k2": {
+      "fro_err2": 11.042652893453589,
+      "tail2": 11.04265289345359,
+      "spec_err": 2.2442768990605377,
+      "sigma_next": 2.2442768990605373,
+      "pass": true
+    },
+    "eckart_young_k3": {
+      "fro_err2": 6.005874093796807,
+      "tail2": 6.005874093796812,
+      "spec_err": 1.978059711054462,
+      "sigma_next": 1.9780597110544624,
+      "pass": true
+    },
+    "eckart_young_k4": {
+      "fro_err2": 2.0931538732999457,
+      "tail2": 2.093153873299948,
+      "spec_err": 1.350397926921039,
+      "sigma_next": 1.3503979269210398,
+      "pass": true
+    },
+    "eckart_young_k5": {
+      "fro_err2": 0.2695793122673059,
+      "tail2": 0.26957931226730614,
+      "spec_err": 0.5192102775054688,
+      "sigma_next": 0.519210277505469,
+      "pass": true
+    },
+    "torch_agrees": {
+      "max_abs_diff_s": 8.881784197001252e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_top_k_violates_bound": {
+      "fro_err2": 1.6030881591931814,
+      "tail2": 1.1834823195770097,
+      "pass": true
+    },
+    "optimal_le_perturbed": {
+      "fro_opt": 1.183482319577011,
+      "fro_pert": 1.9362121252788023,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "k_zero_full_error": {
+      "fro_err2": 4.0,
+      "pass": true
+    },
+    "rank_deficient_exact": {
+      "fro_err2": 0.0,
+      "pass": true
+    },
+    "k_full_zero_error": {
+      "fro_err2": 2.396535741123118e-29,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 6,
+    "n_negative": 2,
+    "n_boundary": 3
+  },
+  "divergence_log": "Classical Eckart-Young bounds rest on Frobenius/spectral norms of real matrices with ordered real singular values. Lost relative to nonclassical compression: operator-Schatten-p bounds with noncommuting corrections, purification-dependent rank (rank of density matrix vs rank of its classical embedding), entanglement spectrum structure, and constraint-admissibility restrictions on which truncations preserve distinguishability under a probe family."
+}

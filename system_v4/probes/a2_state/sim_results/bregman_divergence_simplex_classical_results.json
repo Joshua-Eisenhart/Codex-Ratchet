@@ -1,0 +1,98 @@
+{
+  "name": "bregman_divergence_simplex_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Bregman divergence D_phi(p||q) = phi(p) - phi(q) - <grad phi(q), p-q> is defined on a commutative simplex using a scalar potential phi. Quantum Bregman divergence requires an operator-convex trace functional and honors noncommutativity of rho, sigma via symmetric logarithmic derivatives. The classical substrate cannot distinguish states that share eigenvalues but differ in eigenbasis: quantum coherence between eigenbases is invisible here.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch autograd cross-check of grad(phi)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "negentropy_equals_kl": true,
+    "nonnegativity": true,
+    "zero_at_equal": true
+  },
+  "negative": {
+    "asymmetric": true,
+    "triangle_inequality_can_fail": true
+  },
+  "boundary": {
+    "near_boundary_finite": true,
+    "quadratic_small_regime": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

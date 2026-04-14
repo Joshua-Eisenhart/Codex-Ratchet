@@ -1,0 +1,118 @@
+{
+  "name": "modularity_probe_reliability_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive tensor conversion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical modularity-probe reliability coupling assumes community labels are objective graph-structural properties. Nonclassical network-probe coupling (where probe-induced admissibility changes the effective community boundaries under constraint exclusion) is NOT represented."
+  ],
+  "positive": {
+    "Q_hi": 0.5950255102040815,
+    "Q_lo": -0.022448979591836747,
+    "rel_hi": 0.9738255724316792,
+    "rel_lo": 0.08676193957855471,
+    "hi_Q_has_higher_Q": {
+      "pass": true
+    },
+    "hi_Q_more_reliable": {
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "single_class_Q_zero": {
+      "pass": true
+    },
+    "planted_has_positive_Q": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "empty_graph_Q_zero": {
+      "pass": true
+    },
+    "complete_Q_small": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

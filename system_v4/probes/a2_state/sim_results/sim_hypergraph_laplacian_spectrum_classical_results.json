@@ -1,0 +1,103 @@
+{
+  "name": "sim_hypergraph_laplacian_spectrum_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive tensor cross-check of eigenvalues"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical spectrum"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT obligation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "star expansion done by hand"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "simple incidence suffices"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical star-expansion Laplacian diverges from canonical constraint-admissibility because",
+    "eigenvalue ordering is treated as complete descriptor; nonclassical coupling behavior absent.",
+    "Hyperedge weights are unit-classical; constraint-surviving weights not probed."
+  ],
+  "positive": {
+    "smallest_eig_nonneg": true,
+    "smallest_eig_near_zero": true,
+    "spectrum_sorted": true,
+    "torch_match": true
+  },
+  "negative": {
+    "rejected_nonsym": true,
+    "negative_weight_violates_psd": true
+  },
+  "boundary": {
+    "single_edge_zero_eig": true,
+    "multi_zero_eigs_disconnected": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "sim_fep_pair_free_energy_x_engine_coupling",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL under coupled probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on coupled probe being non-positive"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "F_nonneg_under_coupling": true,
+    "F_responsive_to_k": true,
+    "z3_coupled_probe_positive_unsat": true
+  },
+  "negative": {
+    "drop_F_no_admissibility": true,
+    "drop_coupling_cant_probe_p1": true
+  },
+  "boundary": {
+    "k0_recovers_shell_local_F": true
+  },
+  "PASS": true
+}

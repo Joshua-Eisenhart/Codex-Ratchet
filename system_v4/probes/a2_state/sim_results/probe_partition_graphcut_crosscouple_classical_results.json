@@ -1,0 +1,132 @@
+{
+  "name": "probe_partition_graphcut_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive tensor conversion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical probe->partition->cut isomorphism assumes the probe deterministically labels nodes into disjoint classes. Nonclassical probe-topology coupling (where probe outcomes are constraint-admissible but not uniquely labeled) is NOT captured: the cut set is ambiguous under nonclassical indistinguishability."
+  ],
+  "positive": {
+    "seed_0": {
+      "pass": true,
+      "|c|": 5
+    },
+    "seed_1": {
+      "pass": true,
+      "|c|": 6
+    },
+    "seed_2": {
+      "pass": true,
+      "|c|": 6
+    },
+    "seed_3": {
+      "pass": true,
+      "|c|": 7
+    },
+    "seed_4": {
+      "pass": true,
+      "|c|": 3
+    },
+    "seed_5": {
+      "pass": true,
+      "|c|": 6
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "different_partitions_differ": {
+      "pass": true
+    },
+    "single_class_empty_cut": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "empty_graph": {
+      "pass": true
+    },
+    "complete_graph_bipartition": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

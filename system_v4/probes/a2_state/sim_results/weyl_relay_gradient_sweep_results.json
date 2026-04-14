@@ -1,0 +1,1647 @@
+{
+  "name": "sim_weyl_relay_gradient_sweep",
+  "timestamp": "2026-04-14T10:19:56.750986+00:00",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: all tensor operations (torch.kron, torch.linalg.eigvalsh, torch.complex, torch.clamp) used to compute rho_ABC at each sweep point and to evaluate I_c at all three bipartitions. Central finite difference via torch tensors gives dI_c(AB|C)/dtheta at each theta. The theta_star activation threshold and gradient profiles at theta_star and theta=pi/2 are the primary quantitative claims of this sim."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no graph message-passing claim in this gradient sweep sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; product-state UNSAT already proven in coupling sim; this sim confirms numerically"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; z3 already encodes the product-state impossibility in the prior coupling sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: symbolically verifies U(theta)\u2020U(theta) = I for the partial relay unitary. Uses sympy.kronecker_product and symbolic Hermitian conjugate. Confirms the relay is genuinely unitary for all theta, which is required for rho_ABC = U rho U\u2020 to be a valid density matrix at every sweep point."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no Clifford-algebra rotor claim in this gradient sweep"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no geodesic or Riemannian claim in this packet"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no equivariant network claim here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no shell DAG update in this packet"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no hypergraph claim here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no cell-complex topology claim here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no persistence diagram claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_theta0_Ic_AB_C_not_positive": {
+      "pass": true,
+      "chiral_I_c_AB_C_at_theta_0": 0.0,
+      "nonchiral_I_c_AB_C_at_theta_0": 0.0,
+      "chiral_ok": true,
+      "nonchiral_ok": true,
+      "interpretation": "At theta=0 the relay is identity; rho_ABC = rho_AB \u2297 |0><0|_C, rho_C = |0><0| (pure), S(rho_C) = 0. Since S(rho_ABC) >= 0, I_c(AB|C) = S(rho_C) - S(rho_ABC) <= 0 for any input."
+    },
+    "P2_theta_pi_Ic_AB_C_positive": {
+      "pass": true,
+      "chiral_I_c_AB_C_at_theta_pi": 0.6931471805599452,
+      "nonchiral_I_c_AB_C_at_theta_pi": 0.6931471805599452,
+      "chiral_ok": true,
+      "nonchiral_ok": true,
+      "interpretation": "At theta=pi the full relay is active; CNOT_BC entangles B with C, making rho_C mixed (S(rho_C) > 0) for entangled inputs. I_c(AB|C) = S(rho_C) - S(rho_ABC) > 0 confirmed."
+    },
+    "P3_theta_star_exists_in_interior": {
+      "pass": true,
+      "chiral_theta_star": 0.15866629563584814,
+      "nonchiral_theta_star": 0.15866629563584814,
+      "chiral_interior": true,
+      "nonchiral_interior": true,
+      "interpretation": "theta_star is the first relay angle where I_c(AB|C) exceeds 0.01. An interior value confirms the activation is not trivially at the endpoint."
+    },
+    "P4_gradient_nonzero_near_theta_star": {
+      "pass": true,
+      "chiral_grad_near_theta_star": 0.127858779368651,
+      "nonchiral_grad_near_theta_star": 0.1278587793630999,
+      "chiral_grad_above_threshold": true,
+      "nonchiral_grad_above_threshold": true,
+      "gradient_threshold": 1e-06,
+      "interpretation": "Non-zero gradient near theta_star confirms the activation region carries meaningful information. Flat gradient (as seen at pi/2 in the prior coupling sim) is expected only at the plateau, not at the threshold."
+    }
+  },
+  "negative": {
+    "N1_product_state_relay_cannot_earn_A_BC_cut": {
+      "pass": true,
+      "max_I_c_A_BC_across_sweep": 2.2204460492503126e-16,
+      "all_I_c_A_BC_nonpositive": true,
+      "note_on_I_c_AB_C": "I_c(AB|C) CAN be positive for product inputs because CNOT_BC creates B-C entanglement regardless of the A-B entanglement structure. The structural impossibility (z3 UNSAT) applies specifically to I_c(A|BC), where A's independence from BC is preserved by the relay acting only on B,C.",
+      "interpretation": "For product-state input rho_A \u2297 rho_B, CNOT_BC preserves A-independence from BC. S(rho_ABC) = S_A + S_BC, so I_c(A|BC) = -S_A <= 0 always. Numerically confirms the z3 UNSAT structural proof from the coupling sim."
+    },
+    "N2_gradient_flat_at_plateau_theta_pi": {
+      "pass": true,
+      "chiral_dIc_dtheta_near_pi": 0.002499979168124611,
+      "nonchiral_dIc_dtheta_near_pi": 0.002499979168124611,
+      "chiral_dIc_dtheta_at_pi_over_2": 0.3116126200686242,
+      "nonchiral_dIc_dtheta_at_pi_over_2": 0.31161262007417534,
+      "chiral_plateau_at_pi": true,
+      "nonchiral_plateau_at_pi": true,
+      "chiral_pi2_larger_than_near_pi": true,
+      "nonchiral_pi2_larger_than_near_pi": true,
+      "plateau_threshold": 0.05,
+      "correction_note": "The prior coupling sim dI_c/dtheta ~ -5.5e-12 was computed at the full CNOT point (theta=pi) via a local perturbation \u2014 measuring gradient at the plateau. The full sweep here shows gradient at theta=pi/2 is ~0.31 (curve is still rising). Flat region is at theta near pi, not at pi/2.",
+      "interpretation": "I_c(AB|C) rises from 0 at theta=0, passes through activation near theta_star, then gradually saturates near theta=pi. The gradient is largest near theta_star and approaches zero at the plateau (theta=pi). The half-relay point (pi/2) is in the rising portion of the curve."
+    }
+  },
+  "boundary": {
+    "B1_theta_pi_recovers_coupling_sim_result": {
+      "pass": true,
+      "torch_I_c_AB_C_at_pi": 0.6931471805599452,
+      "numpy_I_c_AB_C_at_pi": 0.6931471805599453,
+      "torch_I_c_A_BC_at_pi": 0.6931471805599452,
+      "numpy_I_c_A_BC_at_pi": 0.6931471805599453,
+      "torch_numpy_agree_AB_C_within_1e4": true,
+      "torch_numpy_agree_A_BC_within_1e4": true,
+      "interpretation": "theta=pi recovers the full CNOT result. Torch and numpy implementations must agree within 1e-4 at this boundary, confirming the sweep is correctly parameterized and matches the prior coupling sim."
+    },
+    "B2_theta_2pi_returns_to_identity": {
+      "pass": true,
+      "I_c_AB_C_at_0": 0.0,
+      "I_c_AB_C_at_2pi": 0.0,
+      "diff_AB_C": 0.0,
+      "diff_A_BC": 0.0,
+      "diff_AC_B": 0.0,
+      "tolerance": 1e-08,
+      "interpretation": "Rx(theta) is 2*pi-periodic: Rx(2*pi) = -I (global phase). U_BC(2*pi) = |0><0| \u2297 I + |1><1| \u2297 Rx(2*pi) = |0><0| \u2297 I - |1><1| \u2297 I. This is -I on the |1x> sector, but -I \u2297 (-I) = I in the density matrix (phase does not affect rho). All I_c values should recover theta=0 result."
+    },
+    "B_sympy_unitarity_verification": {
+      "pass": true,
+      "UdaggerU_equals_identity_symbolic": true,
+      "element_wise_all_zero": true,
+      "note": "Rx(pi) = -iX (not X); relay is unitary for all theta in [0, 2pi]"
+    }
+  },
+  "chirality_comparison": {
+    "pass": true,
+    "chiral_sweep": {
+      "label": "chiral",
+      "N_sweep_steps": 100,
+      "theta_range": [
+        0.0,
+        3.141592653589793
+      ],
+      "activation_threshold": 0.01,
+      "theta_star": 0.15866629563584814,
+      "theta_star_exists_in_interior": true,
+      "I_c_AB_C_at_theta_0": 0.0,
+      "I_c_AB_C_at_theta_pi": 0.6931471805599452,
+      "I_c_A_BC_at_theta_pi": 0.6931471805599452,
+      "I_c_AC_B_at_theta_pi": 0.6931471805599452,
+      "grad_at_half_relay_pi_over_2": 0.3116126200686242,
+      "grad_near_theta_star": 0.127858779368651,
+      "sweep": [
+        {
+          "theta": 0.0,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0
+        },
+        {
+          "theta": 0.03173325912716963,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0006717402096622014,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.03836916273168458
+        },
+        {
+          "theta": 0.06346651825433926,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0023378135825940518,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0657316040899008
+        },
+        {
+          "theta": 0.0951997773815089,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.004800244672505069,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0889278218208899
+        },
+        {
+          "theta": 0.12693303650867852,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.007953244120320967,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10940798076328194
+        },
+        {
+          "theta": 0.15866629563584814,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.011722612693397007,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.127858779368651
+        },
+        {
+          "theta": 0.1903995547630178,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.01605083939327861,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.14468333995876215
+        },
+        {
+          "theta": 0.2221328138901874,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.02089079243543908,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.16014709230040974
+        },
+        {
+          "theta": 0.25386607301735703,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.026202428076984113,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.17443799885490105
+        },
+        {
+          "theta": 0.28559933214452665,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0319508508454077,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.1876960808763761
+        },
+        {
+          "theta": 0.3173325912716963,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.038105072959767186,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.20002962745901962
+        },
+        {
+          "theta": 0.3490658503988659,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.04463717275003333,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.21152484376910083
+        },
+        {
+          "theta": 0.3807991095260356,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.051521697656275685,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22225195577749154
+        },
+        {
+          "theta": 0.4125323686532052,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.05873522559815614,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2322692621643113
+        },
+        {
+          "theta": 0.4442656277803748,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.06625603344600962,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.24162592969848015
+        },
+        {
+          "theta": 0.47599888690754444,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.07406384052779895,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2503639839231131
+        },
+        {
+          "theta": 0.5077321460347141,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0821396062723187,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2585197651575055
+        },
+        {
+          "theta": 0.5394654051618837,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.09046536788995826,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.26612501806272393
+        },
+        {
+          "theta": 0.5711986642890533,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.09902410829860367,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2732077228083385
+        },
+        {
+          "theta": 0.6029319234162229,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.10779964732058565,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.27979274028477885
+        },
+        {
+          "theta": 0.6346651825433925,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.11677655107440435,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2859023205070699
+        },
+        {
+          "theta": 0.6663984416705622,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1259400557950289,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2915565082931004
+        },
+        {
+          "theta": 0.6981317007977318,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1352760032409291,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.296773471322731
+        },
+        {
+          "theta": 0.7298649599249014,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1447707855109021,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3015697676994611
+        },
+        {
+          "theta": 0.7615982190520711,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.15441129758042466,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.30596056669607297
+        },
+        {
+          "theta": 0.7933314781792408,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.16418489622902147,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.30995983232168234
+        },
+        {
+          "theta": 0.8250647373064104,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.17407936430287896,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.31358047706681047
+        },
+        {
+          "theta": 0.85679799643358,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.18408287946516688,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3168344918175192
+        },
+        {
+          "theta": 0.8885312555607496,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1941839867474078,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3197330561643952
+        },
+        {
+          "theta": 0.9202645146879193,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.204371574340841,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32228663284228354
+        },
+        {
+          "theta": 0.9519977738150889,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.21463485216575828,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3245050487571399
+        },
+        {
+          "theta": 0.9837310329422585,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.22496333283559594,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32639756521457564
+        },
+        {
+          "theta": 1.0154642920694281,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2353468146957818,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32797293872816047
+        },
+        {
+          "theta": 1.0471975511965979,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2457753666684711,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3292394742393512
+        },
+        {
+          "theta": 1.0789308103237674,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2562393146759321,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33020507159697843
+        },
+        {
+          "theta": 1.110664069450937,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.26672922944949806,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3308772665272519
+        },
+        {
+          "theta": 1.1423973285781066,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2772359155591681,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33126326673960094
+        },
+        {
+          "theta": 1.1741305877052763,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2877504015223408,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3313699839163631
+        },
+        {
+          "theta": 1.2058638468324459,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.29826393086967684,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33120406211228914
+        },
+        {
+          "theta": 1.2375971059596156,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3087679540624827,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3307719031231393
+        },
+        {
+          "theta": 1.269330365086785,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.31925412116981355,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3300796890898239
+        },
+        {
+          "theta": 1.3010636242139548,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.32971427522521124,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3291334027322179
+        },
+        {
+          "theta": 1.3327968833411243,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3401404461929405,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32793884555681885
+        },
+        {
+          "theta": 1.364530142468294,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3505248454821191,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32650165427416944
+        },
+        {
+          "theta": 1.3962634015954636,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.36085986095442196,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3248273154954351
+        },
+        {
+          "theta": 1.4279966607226333,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.37113805237734604,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32292117916332685
+        },
+        {
+          "theta": 1.4597299198498028,
+          "I_c_A_BC": 0.6931471805599454,
+          "I_c_AB_C": 0.38135214728045286,
+          "I_c_AC_B": 0.6931471805599454,
+          "dIc_AB_C_dtheta": 0.320788470511979
+        },
+        {
+          "theta": 1.4914631789769726,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.39149503717672285,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3184343011386481
+        },
+        {
+          "theta": 1.5231964381041423,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4015597741152603,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3158636789069025
+        },
+        {
+          "theta": 1.5549296972313118,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.41153956753517074,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.31308151693942854
+        },
+        {
+          "theta": 1.5866629563584815,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.42142778139356807,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.3100926419474792
+        },
+        {
+          "theta": 1.618396215485651,
+          "I_c_A_BC": 0.6931471805599454,
+          "I_c_AB_C": 0.4312179315434224,
+          "I_c_AC_B": 0.6931471805599454,
+          "dIc_AB_C_dtheta": 0.3069018017415326
+        },
+        {
+          "theta": 1.6501294746128208,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.44090368333938734,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.30351367200087687
+        },
+        {
+          "theta": 1.6818627337399903,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4504788494518819,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.29993286266849495
+        },
+        {
+          "theta": 1.71359599286716,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.45993738787160277,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.29616392356324184
+        },
+        {
+          "theta": 1.7453292519943295,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4692734000883156,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2922113497783041
+        },
+        {
+          "theta": 1.7770625111214993,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4784811294292821,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.28807958638299436
+        },
+        {
+          "theta": 1.8087957702486688,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.48755495954399686,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2837730328580923
+        },
+        {
+          "theta": 1.8405290293758385,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.49648941302311306,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2792960471620365
+        },
+        {
+          "theta": 1.872262288503008,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5052791501404933,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2746529494890293
+        },
+        {
+          "theta": 1.9039955476301778,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5139189677082836,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.26984802555807264
+        },
+        {
+          "theta": 1.9357288067573473,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.522403798035765,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2648855298992281
+        },
+        {
+          "theta": 1.967462065884517,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5307287079835156,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2597696885875411
+        },
+        {
+          "theta": 1.9991953250116865,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.538888898105113,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.25450470201859865
+        },
+        {
+          "theta": 2.0309285841388562,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.54687970186924,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.24909474721779287
+        },
+        {
+          "theta": 2.0626618432660258,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5546965849556298,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2435439801440342
+        },
+        {
+          "theta": 2.0943951023931957,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5623351446188083,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.23785653772145918
+        },
+        {
+          "theta": 2.126128361520365,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5697911091140594,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.23203653970460533
+        },
+        {
+          "theta": 2.1578616206475347,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5770603371804773,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22608809039925679
+        },
+        {
+          "theta": 2.1895948797747042,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5841388175763563,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22001528024451208
+        },
+        {
+          "theta": 2.221328138901874,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5910226686625298,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.21382218728938082
+        },
+        {
+          "theta": 2.2530613980290437,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5977081380296033,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.20751287845288677
+        },
+        {
+          "theta": 2.284794657156213,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6041916021653213,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.201091410784171
+        },
+        {
+          "theta": 2.3165279162833827,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6104695661585896,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.19456183254495937
+        },
+        {
+          "theta": 2.3482611754105527,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6165386634369299,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.18792818422541654
+        },
+        {
+          "theta": 2.379994434537722,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6223956555343767,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.18119449944897778
+        },
+        {
+          "theta": 2.4117276936648917,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6280374318870451,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.17436480578281174
+        },
+        {
+          "theta": 2.443460952792061,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6334610096538007,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.16744312554273222
+        },
+        {
+          "theta": 2.475194211919231,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6386635335596462,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.16043347644822958
+        },
+        {
+          "theta": 2.5069274710464007,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6436422757596156,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.15333987218868472
+        },
+        {
+          "theta": 2.53866073017357,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6483946357211263,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.14616632306174715
+        },
+        {
+          "theta": 2.57039398930074,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6529181401228916,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.1389168363952198
+        },
+        {
+          "theta": 2.6021272484279097,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6572104427686325,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.131595417030006
+        },
+        {
+          "theta": 2.633860507555079,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6612693245139663,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.12420606766427865
+        },
+        {
+          "theta": 2.6655937666822487,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6650926932049659,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.11675278928646725
+        },
+        {
+          "theta": 2.6973270258094186,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6686785836270033,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10923958135844457
+        },
+        {
+          "theta": 2.729060284936588,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6720251574626013,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10167044217079811
+        },
+        {
+          "theta": 2.7607935440637577,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.675130703257117,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.09404936905932358
+        },
+        {
+          "theta": 2.792526803190927,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6779936363911834,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0863803585604561
+        },
+        {
+          "theta": 2.824260062318097,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6806124990589256,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0786674066166615
+        },
+        {
+          "theta": 2.8559933214452666,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6829859602510573,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0709145087152141
+        },
+        {
+          "theta": 2.887726580572436,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6851128157420477,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.06312565998811692
+        },
+        {
+          "theta": 2.9194598396996057,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6869919880806344,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.05530485529536832
+        },
+        {
+          "theta": 2.9511930988267756,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6886225265830275,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.04745608935263767
+        },
+        {
+          "theta": 2.982926357953945,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.690003607328235,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.03958335673126534
+        },
+        {
+          "theta": 3.0146596170811146,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6911345331550067,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.03169065194708054
+        },
+        {
+          "theta": 3.0463928762082846,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.692014733659966,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.023781969443747993
+        },
+        {
+          "theta": 3.078126135335454,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6926437651965683,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.01586130367048355
+        },
+        {
+          "theta": 3.1098593944626236,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6930213108745935,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.007932649037645234
+        },
+        {
+          "theta": 3.141592653589793,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6931471805599452,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0
+        }
+      ]
+    },
+    "nonchiral_sweep": {
+      "label": "non_chiral",
+      "N_sweep_steps": 100,
+      "theta_range": [
+        0.0,
+        3.141592653589793
+      ],
+      "activation_threshold": 0.01,
+      "theta_star": 0.15866629563584814,
+      "theta_star_exists_in_interior": true,
+      "I_c_AB_C_at_theta_0": 0.0,
+      "I_c_AB_C_at_theta_pi": 0.6931471805599452,
+      "I_c_A_BC_at_theta_pi": 0.6931471805599452,
+      "I_c_AC_B_at_theta_pi": 0.6931471805599452,
+      "grad_at_half_relay_pi_over_2": 0.31161262007417534,
+      "grad_near_theta_star": 0.1278587793630999,
+      "sweep": [
+        {
+          "theta": 0.0,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0
+        },
+        {
+          "theta": 0.03173325912716963,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0006717402096622014,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.03836916273168458
+        },
+        {
+          "theta": 0.06346651825433926,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.0023378135825939408,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.0657316040899008
+        },
+        {
+          "theta": 0.0951997773815089,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.004800244672505069,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0889278218208899
+        },
+        {
+          "theta": 0.12693303650867852,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.007953244120320967,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10940798076328194
+        },
+        {
+          "theta": 0.15866629563584814,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.011722612693397007,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.1278587793630999
+        },
+        {
+          "theta": 0.1903995547630178,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.01605083939327861,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.14468333995876215
+        },
+        {
+          "theta": 0.2221328138901874,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.02089079243543908,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.16014709230040974
+        },
+        {
+          "theta": 0.25386607301735703,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.026202428076984113,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.17443799885490105
+        },
+        {
+          "theta": 0.28559933214452665,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.03195085084540759,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.1876960808763761
+        },
+        {
+          "theta": 0.3173325912716963,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.038105072959767075,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.20002962745901962
+        },
+        {
+          "theta": 0.3490658503988659,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.04463717275003333,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.21152484376910083
+        },
+        {
+          "theta": 0.3807991095260356,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.051521697656275685,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22225195577749154
+        },
+        {
+          "theta": 0.4125323686532052,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.05873522559815614,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2322692621698624
+        },
+        {
+          "theta": 0.4442656277803748,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.06625603344600962,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.24162592969848015
+        },
+        {
+          "theta": 0.47599888690754444,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.07406384052779895,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2503639839231131
+        },
+        {
+          "theta": 0.5077321460347141,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.0821396062723187,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2585197651575055
+        },
+        {
+          "theta": 0.5394654051618837,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.09046536788995826,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.26612501806272393
+        },
+        {
+          "theta": 0.5711986642890533,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.09902410829860367,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2732077228083385
+        },
+        {
+          "theta": 0.6029319234162229,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.10779964732058565,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.27979274028477885
+        },
+        {
+          "theta": 0.6346651825433925,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.11677655107440435,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2859023205070699
+        },
+        {
+          "theta": 0.6663984416705622,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.1259400557950288,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.2915565082931004
+        },
+        {
+          "theta": 0.6981317007977318,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1352760032409291,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2967734713171799
+        },
+        {
+          "theta": 0.7298649599249014,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1447707855109021,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.30156976769391
+        },
+        {
+          "theta": 0.7615982190520711,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.15441129758042466,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3059605667016241
+        },
+        {
+          "theta": 0.7933314781792408,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.16418489622902135,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.3099598323161312
+        },
+        {
+          "theta": 0.8250647373064104,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.17407936430287896,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.31358047706681047
+        },
+        {
+          "theta": 0.85679799643358,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.18408287946516688,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3168344918175192
+        },
+        {
+          "theta": 0.8885312555607496,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.1941839867474078,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3197330561643952
+        },
+        {
+          "theta": 0.9202645146879193,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.204371574340841,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32228663284783465
+        },
+        {
+          "theta": 0.9519977738150889,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.21463485216575828,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3245050487571399
+        },
+        {
+          "theta": 0.9837310329422585,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.22496333283559594,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32639756521457564
+        },
+        {
+          "theta": 1.0154642920694281,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2353468146957818,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32797293872816047
+        },
+        {
+          "theta": 1.0471975511965979,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.245775366668471,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.32923947423380007
+        },
+        {
+          "theta": 1.0789308103237674,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2562393146759321,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33020507160252954
+        },
+        {
+          "theta": 1.110664069450937,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.26672922944949806,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3308772665217008
+        },
+        {
+          "theta": 1.1423973285781066,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.2772359155591681,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33126326673960094
+        },
+        {
+          "theta": 1.1741305877052763,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.2877504015223407,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.3313699839163631
+        },
+        {
+          "theta": 1.2058638468324459,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.29826393086967684,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.33120406211784026
+        },
+        {
+          "theta": 1.2375971059596156,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3087679540624827,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3307719031175882
+        },
+        {
+          "theta": 1.269330365086785,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.31925412116981355,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.330079689095375
+        },
+        {
+          "theta": 1.3010636242139548,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.32971427522521124,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3291334027322179
+        },
+        {
+          "theta": 1.3327968833411243,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3401404461929405,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32793884555681885
+        },
+        {
+          "theta": 1.364530142468294,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.3505248454821191,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32650165427416944
+        },
+        {
+          "theta": 1.3962634015954636,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.36085986095442196,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3248273154954351
+        },
+        {
+          "theta": 1.4279966607226333,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.37113805237734604,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.32292117916332685
+        },
+        {
+          "theta": 1.4597299198498028,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.38135214728045264,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.320788470511979
+        },
+        {
+          "theta": 1.4914631789769726,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.39149503717672274,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.31843430114419924
+        },
+        {
+          "theta": 1.5231964381041423,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4015597741152603,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3158636789069025
+        },
+        {
+          "theta": 1.5549296972313118,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.41153956753517074,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.31308151693942854
+        },
+        {
+          "theta": 1.5866629563584815,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.42142778139356807,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.3100926419474792
+        },
+        {
+          "theta": 1.618396215485651,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4312179315434222,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.3069018017470837
+        },
+        {
+          "theta": 1.6501294746128208,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.44090368333938723,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.30351367200087687
+        },
+        {
+          "theta": 1.6818627337399903,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4504788494518819,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.29993286266294383
+        },
+        {
+          "theta": 1.71359599286716,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.45993738787160277,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2961639235576907
+        },
+        {
+          "theta": 1.7453292519943295,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4692734000883156,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2922113497783041
+        },
+        {
+          "theta": 1.7770625111214993,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.4784811294292821,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.28807958638299436
+        },
+        {
+          "theta": 1.8087957702486688,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.48755495954399686,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2837730328580923
+        },
+        {
+          "theta": 1.8405290293758385,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.49648941302311295,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.2792960471620365
+        },
+        {
+          "theta": 1.872262288503008,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5052791501404933,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2746529494945804
+        },
+        {
+          "theta": 1.9039955476301778,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5139189677082836,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.26984802555807264
+        },
+        {
+          "theta": 1.9357288067573473,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.522403798035765,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2648855298992281
+        },
+        {
+          "theta": 1.967462065884517,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5307287079835156,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2597696885875411
+        },
+        {
+          "theta": 1.9991953250116865,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.538888898105113,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.25450470201859865
+        },
+        {
+          "theta": 2.0309285841388562,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.54687970186924,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.24909474721779287
+        },
+        {
+          "theta": 2.0626618432660258,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5546965849556298,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.2435439801440342
+        },
+        {
+          "theta": 2.0943951023931957,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5623351446188083,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.23785653772145918
+        },
+        {
+          "theta": 2.126128361520365,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5697911091140594,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.23203653971015645
+        },
+        {
+          "theta": 2.1578616206475347,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5770603371804773,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22608809039925679
+        },
+        {
+          "theta": 2.1895948797747042,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5841388175763563,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.22001528024451208
+        },
+        {
+          "theta": 2.221328138901874,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5910226686625298,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.21382218728938082
+        },
+        {
+          "theta": 2.2530613980290437,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.5977081380296033,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.20751287845288677
+        },
+        {
+          "theta": 2.284794657156213,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6041916021653213,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.201091410784171
+        },
+        {
+          "theta": 2.3165279162833827,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6104695661585896,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.19456183254495937
+        },
+        {
+          "theta": 2.3482611754105527,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6165386634369299,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.18792818422541654
+        },
+        {
+          "theta": 2.379994434537722,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6223956555343767,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.18119449944897778
+        },
+        {
+          "theta": 2.4117276936648917,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6280374318870451,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.17436480578281174
+        },
+        {
+          "theta": 2.443460952792061,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.6334610096538006,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.16744312554273222
+        },
+        {
+          "theta": 2.475194211919231,
+          "I_c_A_BC": 0.693147180559945,
+          "I_c_AB_C": 0.638663533559646,
+          "I_c_AC_B": 0.693147180559945,
+          "dIc_AB_C_dtheta": 0.16043347644822958
+        },
+        {
+          "theta": 2.5069274710464007,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.6436422757596155,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.15333987218868472
+        },
+        {
+          "theta": 2.53866073017357,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6483946357211263,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.14616632306174715
+        },
+        {
+          "theta": 2.57039398930074,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6529181401228916,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.1389168363952198
+        },
+        {
+          "theta": 2.6021272484279097,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6572104427686325,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.131595417030006
+        },
+        {
+          "theta": 2.633860507555079,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6612693245139663,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.12420606766427865
+        },
+        {
+          "theta": 2.6655937666822487,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6650926932049659,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.11675278928646725
+        },
+        {
+          "theta": 2.6973270258094186,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6686785836270033,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10923958135844457
+        },
+        {
+          "theta": 2.729060284936588,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6720251574626013,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.10167044215969588
+        },
+        {
+          "theta": 2.7607935440637577,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.675130703257117,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.09404936905932358
+        },
+        {
+          "theta": 2.792526803190927,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6779936363911834,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0863803585604561
+        },
+        {
+          "theta": 2.824260062318097,
+          "I_c_A_BC": 0.6931471805599453,
+          "I_c_AB_C": 0.6806124990589257,
+          "I_c_AC_B": 0.6931471805599453,
+          "dIc_AB_C_dtheta": 0.0786674066166615
+        },
+        {
+          "theta": 2.8559933214452666,
+          "I_c_A_BC": 0.6931471805599451,
+          "I_c_AB_C": 0.6829859602510572,
+          "I_c_AC_B": 0.6931471805599451,
+          "dIc_AB_C_dtheta": 0.0709145087152141
+        },
+        {
+          "theta": 2.887726580572436,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6851128157420477,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.06312565998811692
+        },
+        {
+          "theta": 2.9194598396996057,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6869919880806344,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.05530485529536832
+        },
+        {
+          "theta": 2.9511930988267756,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6886225265830275,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.04745608935263767
+        },
+        {
+          "theta": 2.982926357953945,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.690003607328235,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.039583356736816455
+        },
+        {
+          "theta": 3.0146596170811146,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6911345331550067,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.03169065194708054
+        },
+        {
+          "theta": 3.0463928762082846,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.692014733659966,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.023781969443747993
+        },
+        {
+          "theta": 3.078126135335454,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6926437651965683,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.01586130367048355
+        },
+        {
+          "theta": 3.1098593944626236,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6930213108745935,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.007932649037645234
+        },
+        {
+          "theta": 3.141592653589793,
+          "I_c_A_BC": 0.6931471805599452,
+          "I_c_AB_C": 0.6931471805599452,
+          "I_c_AC_B": 0.6931471805599452,
+          "dIc_AB_C_dtheta": 0.0
+        }
+      ]
+    },
+    "theta_star_chiral": 0.15866629563584814,
+    "theta_star_nonchiral": 0.15866629563584814,
+    "theta_star_difference": 0.0,
+    "theta_star_values_differ": false,
+    "grad_chiral_near_theta_star": 0.127858779368651,
+    "grad_nonchiral_near_theta_star": 0.1278587793630999,
+    "grad_profiles_differ": false,
+    "grad_chiral_at_half_relay": 0.3116126200686242,
+    "grad_nonchiral_at_half_relay": 0.31161262007417534,
+    "I_c_AB_C_chiral_at_pi": 0.6931471805599452,
+    "I_c_AB_C_nonchiral_at_pi": 0.6931471805599452,
+    "chirality_changes_activation_profile": false,
+    "note": "chirality_changes_activation_profile=True means chiral and non-chiral inputs produce measurably different theta_star or gradient profiles. chirality_changes_activation_profile=False means inputs are indistinguishable by this measure and the difference is not reported."
+  },
+  "summary": {
+    "all_pass": true,
+    "positive": {
+      "P1_theta0_Ic_AB_C_not_positive": true,
+      "P2_theta_pi_Ic_AB_C_positive": true,
+      "P3_theta_star_exists_in_interior": true,
+      "P4_gradient_nonzero_near_theta_star": true
+    },
+    "negative": {
+      "N1_product_state_relay_cannot_earn_A_BC_cut": true,
+      "N2_gradient_flat_at_plateau_theta_pi": true
+    },
+    "boundary": {
+      "B1_theta_pi_recovers_coupling_sim_result": true,
+      "B2_theta_2pi_returns_to_identity": true,
+      "B_sympy_unitarity_verification": true
+    },
+    "chirality_comparison": {
+      "theta_star_chiral": 0.15866629563584814,
+      "theta_star_nonchiral": 0.15866629563584814,
+      "theta_star_difference": 0.0,
+      "theta_star_values_differ": false,
+      "grad_profiles_differ": false,
+      "chirality_changes_activation_profile": false
+    }
+  }
+}

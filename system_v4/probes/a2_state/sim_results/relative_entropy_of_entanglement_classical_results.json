@@ -1,0 +1,37 @@
+{
+  "name": "relative_entropy_of_entanglement_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL divergence and separable-hull construction"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "product_ree_zero": true,
+    "correlated_classical_ree_zero": true,
+    "mi_distinct_from_ree": true
+  },
+  "negative": {
+    "classical_match_to_bell_marginals_has_zero_ree": true,
+    "classical_cannot_witness_entanglement": true
+  },
+  "boundary": {
+    "random_classical_joint_zero_ree": true,
+    "ree_nonneg": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "REE is identically zero on every classical joint because the separable set, intersected with diagonal density matrices, is the entire classical simplex. The baseline therefore cannot distinguish classically correlated states from product states via REE, and cannot detect the nonzero REE of entangled states such as |Phi+>, which depends on the convex geometry of separable mixed states in the full Bloch polytope rather than the classical simplex. Mutual information is still nonzero for classical correlations but does not upgrade to an entanglement monotone."
+}

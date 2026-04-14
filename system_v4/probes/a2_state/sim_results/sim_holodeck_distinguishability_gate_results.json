@@ -1,0 +1,57 @@
+{
+  "name": "sim_holodeck_distinguishability_gate",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trace-based probe evaluation"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "orthogonal_distinguishable": true,
+    "superposition_distinguishable": true
+  },
+  "negative": {
+    "same_state_distinguishable": false,
+    "empty_probes_distinguish": false
+  },
+  "boundary": {
+    "global_phase_same": true,
+    "tiny_angle_distinguishable": true
+  },
+  "pass": true
+}

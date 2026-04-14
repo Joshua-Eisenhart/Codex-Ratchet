@@ -1,0 +1,218 @@
+{
+  "name": "sim_gstructure_compatibility_coupling",
+  "claim": "S\u00b3 (Sasakian, G-level 4) and S\u00b2 (K\u00e4hler, G-level 4) couple only via Hopf projection \u03c0: S\u00b3\u2192S\u00b2 (Riemannian submersion); coupling is directional (S\u00b3=fiber, S\u00b2=base) and constrained by G-structure tower compatibility.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: autograd cross-check on Hopf pullback metric for P1"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: graph message-passing is not relevant here; Hopf coupling is a fiber-base bundle map, not a graph connectivity computation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: P4 G-level admissibility SAT; N1 S\u00b3-not-K\u00e4hler UNSAT; N2 S\u00b2-not-contact UNSAT; N3 vertical-fiber-zero UNSAT; N4 fundamental-group mismatch UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: z3 covers all structural UNSAT proofs in this sim (P4, N1-N4); cvc5 cross-check would be redundant for this bounded claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: P1 Riemannian submersion horizontal metric block; P2 J-compatibility J\u03c0*(X)=\u03c0*(\u03a6X); P3 curvature 2-form = d\u03b1|_H"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: Clifford algebra spinor transport is not part of the Riemannian submersion or G-level admissibility claim; z3/sympy cover all structural checks"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: sympy symbolic matrix comparison is sufficient for the horizontal metric block check; Riemannian geodesic computation not needed for submersion verification"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: no O(3)/SU(2) equivariant layer computation is part of the Hopf coupling claim; round metric symmetry is implicit in the coordinate expressions"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: no directed graph or DAG computation needed; the coupling is a smooth fiber bundle projection, not a graph routing problem"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: no hypergraph or multi-way interaction in the Hopf bundle; coupling is a pairwise fiber-base structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: cell-complex topology not needed at this level; all topological claims (odd/even dim obstruction, pi_1 mismatch) are proven by z3 UNSAT"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not tried: no persistent homology or TDA filtration computation; topological invariants in this sim are handled by z3 constraint proofs"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_hopf_projection_riemannian_submersion": {
+      "status": "PASS",
+      "claim": "horizontal block of g_S3 = g_S2 (Riemannian submersion)",
+      "G_H": "[[1/4, 0], [0, sin(theta)**2/4]]",
+      "g_S2": "[[1/4, 0], [0, sin(theta)**2/4]]",
+      "diff_all_zero": true
+    },
+    "P2_horizontal_lift_preserves_contact": {
+      "status": "PASS",
+      "claim": "J\u03c0*(X) = \u03c0*(\u03a6X) for horizontal X in orthonormal frame",
+      "frame": "orthonormal (avoids coordinate-metric artifacts)",
+      "J_pi_f1": "[[0], [1]]",
+      "pi_Phi_f1": "[[0], [1]]",
+      "J_pi_f2": "[[-1], [0]]",
+      "pi_Phi_f2": "[[-1], [0]]",
+      "check_f1": true,
+      "check_f2": true
+    },
+    "P3_curvature_equals_contact_form": {
+      "status": "PASS",
+      "claim": "curvature F = d\u03b1|_H = -(sin\u03b8/2)d\u03b8\u2227d\u03c6 = -\u03c9_{FS}",
+      "dalpha_H_component": "-sin(theta)/2",
+      "expected": "-sin(theta)/2",
+      "dalpha_H_matches_expected": true,
+      "psi_theta_component_zero": true,
+      "psi_phi_component_zero": true,
+      "F_equals_neg_Fubini_Study": true
+    },
+    "P4_g_level_admissibility": {
+      "status": "PASS",
+      "claim": "G-level admissible (4\u22654) and dim-check SAT for S\u00b3\u2192S\u00b2 Hopf",
+      "z3_result": "sat",
+      "admissible": "True",
+      "g_level_fiber_S3": 4,
+      "g_level_base_S2": 4,
+      "hopf_dim_check": true
+    }
+  },
+  "negative": {
+    "N1_s3_not_kahler": {
+      "status": "PASS",
+      "claim": "S\u00b3 (dim=3, odd) cannot be K\u00e4hler",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "is_unsat": true
+    },
+    "N2_s2_not_contact": {
+      "status": "PASS",
+      "claim": "S\u00b2 (dim=2, even) cannot be contact",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "is_unsat": true
+    },
+    "N3_vertical_fiber_not_projected": {
+      "status": "PASS",
+      "claim": "vertical vector v\u22600 maps to 0 under \u03c0* (UNSAT contradiction)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "is_unsat": true
+    },
+    "N4_incompatible_without_hopf_map": {
+      "status": "PASS",
+      "claim": "S\u00b3\u2192T\u00b2 prequantum bundle impossible (\u03c0\u2081 mismatch: 0 vs \u2124\u00b2)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "is_unsat": true
+    }
+  },
+  "boundary": {
+    "B1_equatorial_s2_slice": {
+      "status": "PASS",
+      "claim": "Berry phase at equator \u03b8=\u03c0/2 equals -\u03c0; holonomy = -1",
+      "theta": "\u03c0/2",
+      "holonomy_phase_rad": -3.1415926535897927,
+      "holonomy_phase_deg": -179.99999999999997,
+      "holonomy_real": -1.0,
+      "holonomy_imag": -0.0,
+      "expected_holonomy": -1,
+      "matches": true
+    },
+    "B2_pole_fiber_degenerate": {
+      "status": "PASS",
+      "claim": "Hopf coupling degenerates at poles: fiber maps to point, horizontal vol\u21920",
+      "north_pole_fiber_collapses": true,
+      "south_pole_fiber_collapses": true,
+      "det_g_H_at_poles": [
+        0.0,
+        0.0
+      ],
+      "det_g_H_at_equator": 0.0625,
+      "pole_degenerate": true,
+      "equator_nondegenerate": true,
+      "vol_H_samples": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1e-06,
+          0.0
+        ],
+        [
+          0.001,
+          6.25e-08
+        ],
+        [
+          0.785398,
+          0.03125
+        ],
+        [
+          1.570796,
+          0.0625
+        ],
+        [
+          3.140593,
+          6.25e-08
+        ],
+        [
+          3.141592,
+          0.0
+        ],
+        [
+          3.141593,
+          0.0
+        ]
+      ]
+    }
+  },
+  "supportive": {
+    "pytorch_crosscheck_P1": {
+      "status": "PASS",
+      "claim": "pytorch numerical cross-check: horizontal metric block matches g_S2",
+      "max_error": 0.0,
+      "theta_samples": 5
+    }
+  }
+}

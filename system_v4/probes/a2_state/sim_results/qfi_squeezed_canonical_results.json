@@ -1,0 +1,61 @@
+{
+  "name": "qfi_squeezed_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "scalar bookkeeping and classical bound constant"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd derivatives for classical Fisher; complex eigendecomposition of rho(theta) for the SLD and the quantum Fisher information"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": null
+  },
+  "positive": {
+    "QFI_ghz_theta0": 3.9999999998666644,
+    "QFI_ghz_ge_heisenberg_minus_tol": true,
+    "F_c_ghz_collective_Y": 0.0,
+    "QFI_exceeds_shot_noise": true,
+    "QFI_gap": 1.9999999998666644
+  },
+  "negative": {
+    "QFI_plus_singleq": 0.9999999999916664,
+    "QFI_plus_le_shot_noise_single_probe": true,
+    "QFI_nonnegative": true
+  },
+  "boundary": {
+    "QFI_ghz_perturbed": [
+      3.9999999998613074,
+      3.9999999998742624,
+      3.9999999998613074
+    ],
+    "QFI_ghz_robust_ge_shot": true,
+    "QFI_plus_pi2": 0.9999999999242843,
+    "QFI_plus_pi2_le_shot": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_shot_noise_bound_N2": 2.0,
+      "QFI_ghz_measured": 3.9999999998666644,
+      "QFI_gap": 1.9999999998666644,
+      "classical_single_probe_bound": 1.0,
+      "QFI_plus_single_probe": 0.9999999999916664
+    },
+    "classical_baseline_cited": "shot-noise (standard quantum limit): F_c <= N",
+    "measured_quantum_value": 3.9999999998666644
+  }
+}

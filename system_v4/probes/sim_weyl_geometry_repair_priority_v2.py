@@ -13,10 +13,10 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Updated controller ranking surface over the Weyl/Hopf geometry lane after "
     "direct translation lanes were added for the composed stack, carrier array, "

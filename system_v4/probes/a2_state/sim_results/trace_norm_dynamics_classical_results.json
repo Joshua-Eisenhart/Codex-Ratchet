@@ -1,0 +1,41 @@
+{
+  "name": "trace_norm_dynamics_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix arithmetic"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "tv_nonneg": true,
+    "tv_monotone_under_stochastic": true,
+    "tv_self_zero": true
+  },
+  "negative": {
+    "permutation_preserves_tv": true,
+    "classical_cannot_oscillate_trace_distance": true
+  },
+  "boundary": {
+    "tv_orthogonal_pmfs_is_one": true,
+    "uniform_self_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "no unitary oscillation of distance; only monotone contraction",
+    "no BLP non-Markovianity signature (information backflow)",
+    "cannot distinguish dephasing from amplitude-damping via TV alone"
+  ]
+}

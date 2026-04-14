@@ -1,0 +1,382 @@
+{
+  "name": "qit_weyl_geometry_repair_comparison_surface",
+  "classification": "research_support",
+  "classification_note": "Direct comparison surface between the Weyl/Hopf geometry rows that are ready for stricter companion work and the finite-state strict companion carrier. It keeps the lanes paired so transport, carrier, and readout survival can be compared without pretending the models are identical.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "pauli_algebra_relations",
+    "transport_geometry",
+    "geometry_preserving_basis_change",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "composed_stack_translation_survives": {
+      "pass": true,
+      "open_stack_error": 1.129514239719272e-16,
+      "strict_stack_error": 4.443843741175801e-16
+    },
+    "carrier_array_translation_survives": {
+      "pass": true,
+      "open_carrier_count": 5,
+      "strict_carrier_count": 3
+    },
+    "carrier_compare_translation_survives": {
+      "pass": true,
+      "open_result_count": 96,
+      "strict_sample_count": 24
+    },
+    "strict_anchor_stays_finite_and_exact": {
+      "pass": true,
+      "strict_sample_count": 24,
+      "strict_transport_reference_count": 3
+    }
+  },
+  "negative": {
+    "open_and_strict_rows_are_not_identical": {
+      "pass": true,
+      "max_stack_gap_on_composed_row": 3.314329501456529e-16,
+      "max_carrier_gap_on_array_row": -2
+    },
+    "translation_is_still_a_comparison_surface_not_owner_math": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "strict_anchor_is_available": {
+      "pass": true,
+      "strict_row_file": "qit_weyl_geometry_companion_results.json",
+      "strict_carrier_count": 3
+    },
+    "translation_targets_are_available": {
+      "pass": true,
+      "translation_targets_file": "weyl_geometry_translation_targets_results.json",
+      "companion_ready_count": 3
+    },
+    "open_stack_reference_is_available": {
+      "pass": true,
+      "open_stack_file": "weyl_hopf_pauli_composed_stack_results.json"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "pair_count": 3,
+    "companion_ready_pair_count": 3,
+    "strict_anchor_row": "qit_weyl_geometry_companion",
+    "top_survivor_row": "weyl_hopf_pauli_composed_stack",
+    "scope_note": "Direct comparison surface between open Weyl/Hopf geometry rows and the strict finite-state companion carrier. Use it to see what survives translation into the stricter carrier without collapsing the open-vs-strict gap."
+  },
+  "rows": [
+    {
+      "pair_id": "weyl_hopf_pauli_composed_stack_pair",
+      "open_row_id": "weyl_hopf_pauli_composed_stack",
+      "strict_row_id": "qit_weyl_geometry_companion",
+      "translation_bucket": "companion_ready",
+      "priority_rank": 200,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "stack_anchor",
+      "matched_axes": [
+        "nested_hopf_tori",
+        "weyl_spinor_frames",
+        "pauli_readout",
+        "transport_closure"
+      ],
+      "open_metrics": {
+        "sample_count": 192,
+        "total_stages": 4,
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16
+      },
+      "strict_metrics": {
+        "sample_count": 24,
+        "transport_reference_count": 3,
+        "row_count": 27,
+        "carrier_count": 3,
+        "max_left_norm_error": 1.1102230246251565e-16,
+        "max_right_norm_error": 1.1102230246251565e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16,
+        "max_trace_error": 2.2408136244087373e-16,
+        "max_purity_error": 4.443843741175801e-16,
+        "max_left_hopf_alignment_error": 2.220446049250313e-16,
+        "max_right_antipode_error": 2.220446049250313e-16,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "max_hopf_norm_gap": 2.220446049250313e-16,
+        "max_pauli_commutator_error": 0.0,
+        "max_pauli_anticommutator_error": 0.0,
+        "max_identity_neutral_error": 0.0,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "min_partial_transport_midpoint_separation": 0.39018064403225644,
+        "max_stack_error": 4.443843741175801e-16,
+        "stereographic_nonfinite_count": 0,
+        "open_stack_reference_max_stack_error": 1.129514239719272e-16,
+        "open_stack_reference_max_transport_error": 2.7755575615628914e-16,
+        "stack_gap_to_open_reference": 3.314329501456529e-16
+      },
+      "delta": {
+        "stack_error_delta_qit_minus_open": 3.314329501456529e-16,
+        "transport_error_delta_qit_minus_open": -2.220446049250313e-16,
+        "alignment_error_delta_qit_minus_open": -3.296783224832479e-20,
+        "left_right_overlap_delta_qit_minus_open": 0.0,
+        "carrier_count_delta_qit_minus_open": 0
+      },
+      "surviving_features": [
+        "nested_tori",
+        "spinor_norm",
+        "pauli_consistency",
+        "transport_closure",
+        "stack_consistency"
+      ],
+      "translation_pass": true,
+      "route_note": "Top companion-ready stack row; survives translation as a strict finite-state comparison surface."
+    },
+    {
+      "pair_id": "weyl_geometry_carrier_array_pair",
+      "open_row_id": "weyl_geometry_carrier_array",
+      "strict_row_id": "qit_weyl_geometry_companion",
+      "translation_bucket": "companion_ready",
+      "priority_rank": 201,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "carrier_compare",
+      "matched_axes": [
+        "nested_tori",
+        "bloch_projection",
+        "graph_carrier",
+        "hypergraph_carrier",
+        "cp3_s7_lift"
+      ],
+      "open_metrics": {
+        "carrier_count": 5,
+        "passed_carriers": 5,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_nested_bloch_gap": 0.0,
+        "max_graph_cycle_rank": 6,
+        "max_hypergraph_shadow_components": 1,
+        "max_cp3_concurrence": 5.551115123125783e-17
+      },
+      "strict_metrics": {
+        "sample_count": 24,
+        "transport_reference_count": 3,
+        "row_count": 27,
+        "carrier_count": 3,
+        "max_left_norm_error": 1.1102230246251565e-16,
+        "max_right_norm_error": 1.1102230246251565e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16,
+        "max_trace_error": 2.2408136244087373e-16,
+        "max_purity_error": 4.443843741175801e-16,
+        "max_left_hopf_alignment_error": 2.220446049250313e-16,
+        "max_right_antipode_error": 2.220446049250313e-16,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "max_hopf_norm_gap": 2.220446049250313e-16,
+        "max_pauli_commutator_error": 0.0,
+        "max_pauli_anticommutator_error": 0.0,
+        "max_identity_neutral_error": 0.0,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "min_partial_transport_midpoint_separation": 0.39018064403225644,
+        "max_stack_error": 4.443843741175801e-16,
+        "stereographic_nonfinite_count": 0,
+        "open_stack_reference_max_stack_error": 1.129514239719272e-16,
+        "open_stack_reference_max_transport_error": 2.7755575615628914e-16,
+        "stack_gap_to_open_reference": 3.314329501456529e-16
+      },
+      "delta": {
+        "carrier_count_delta_qit_minus_open": -2,
+        "nested_lr_overlap_delta_qit_minus_open": 8.516177039402992e-17,
+        "left_hopf_alignment_delta_qit_minus_open": 2.220446049250313e-16,
+        "transport_roundtrip_delta_qit_minus_open": 5.551115123125783e-17,
+        "basis_change_delta_qit_minus_open": 2.220446049250313e-16
+      },
+      "surviving_features": [
+        "nested_hopf_core",
+        "bloch_projection",
+        "graph_carrier",
+        "hypergraph_carrier",
+        "cp3_lift"
+      ],
+      "translation_pass": true,
+      "route_note": "Carrier-array comparison survives as a broader geometry carrier test, but its strict side stays finite-state and lower-cardinality."
+    },
+    {
+      "pair_id": "weyl_geometry_carrier_compare_pair",
+      "open_row_id": "weyl_geometry_carrier_compare",
+      "strict_row_id": "qit_weyl_geometry_companion",
+      "translation_bucket": "companion_ready",
+      "priority_rank": 202,
+      "action_label": "tighten_for_stricter_companion",
+      "controller_route": "carrier_compare",
+      "matched_axes": [
+        "carrier_order",
+        "entropy_spread",
+        "step_bloch_jump_spread",
+        "readout_exactness"
+      ],
+      "open_metrics": {
+        "carrier_count": 4,
+        "result_count": 96,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "carrier_order": [
+          "hopf_torus",
+          "sphere_section",
+          "graph_carrier",
+          "hypergraph_carrier"
+        ],
+        "comparison_gaps_vs_hopf_reference": [
+          {
+            "carrier": "sphere_section",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.08079313589591115,
+            "mean_right_entropy_gap_vs_reference": 0.08079313589591113,
+            "mean_step_bloch_jump_gap_vs_reference": -0.5706616935506963,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": -6.938893903907228e-18,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          },
+          {
+            "carrier": "graph_carrier",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.1414405425418208,
+            "mean_right_entropy_gap_vs_reference": 0.1414405425418209,
+            "mean_step_bloch_jump_gap_vs_reference": -0.18451654236826376,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": 3.469446951953617e-18,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          },
+          {
+            "carrier": "hypergraph_carrier",
+            "reference": "hopf_torus",
+            "mean_left_entropy_gap_vs_reference": 0.19439185783157628,
+            "mean_right_entropy_gap_vs_reference": 0.19439185783157628,
+            "mean_step_bloch_jump_gap_vs_reference": -0.17218917107402476,
+            "mean_hopf_roundtrip_gap_gap_vs_reference": 4.184527551540034e-17,
+            "max_left_right_bloch_antipodal_gap_gap_vs_reference": 0.0
+          }
+        ]
+      },
+      "strict_metrics": {
+        "sample_count": 24,
+        "transport_reference_count": 3,
+        "row_count": 27,
+        "carrier_count": 3,
+        "max_left_norm_error": 1.1102230246251565e-16,
+        "max_right_norm_error": 1.1102230246251565e-16,
+        "max_left_right_overlap_abs": 1.1102230246251565e-16,
+        "max_trace_error": 2.2408136244087373e-16,
+        "max_purity_error": 4.443843741175801e-16,
+        "max_left_hopf_alignment_error": 2.220446049250313e-16,
+        "max_right_antipode_error": 2.220446049250313e-16,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "max_hopf_norm_gap": 2.220446049250313e-16,
+        "max_pauli_commutator_error": 0.0,
+        "max_pauli_anticommutator_error": 0.0,
+        "max_identity_neutral_error": 0.0,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "min_partial_transport_midpoint_separation": 0.39018064403225644,
+        "max_stack_error": 4.443843741175801e-16,
+        "stereographic_nonfinite_count": 0,
+        "open_stack_reference_max_stack_error": 1.129514239719272e-16,
+        "open_stack_reference_max_transport_error": 2.7755575615628914e-16,
+        "stack_gap_to_open_reference": 3.314329501456529e-16
+      },
+      "delta": {
+        "carrier_count_delta_qit_minus_open": -1,
+        "result_count_delta_qit_minus_open": -72,
+        "stack_error_delta_qit_minus_open": 3.314329501456529e-16,
+        "transport_roundtrip_delta_qit_minus_open": 5.551115123125783e-17
+      },
+      "surviving_features": [
+        "carrier_diversity",
+        "entropy_spread",
+        "bloch_jump_spread",
+        "finite_readout"
+      ],
+      "translation_pass": true,
+      "route_note": "Carrier-compare survives as a comparison surface; the strict companion keeps the readout exact while the open carrier set remains diverse."
+    }
+  ]
+}

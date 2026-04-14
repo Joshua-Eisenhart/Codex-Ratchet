@@ -1,0 +1,32 @@
+{
+  "name": "sim_fep_pair_active_inference_x_generative_model",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "expected F over actions"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on argmin inversion under paired shell"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "gen_model_determines_action": "True",
+    "z3_argmin_consistent_unsat": true
+  },
+  "negative": {
+    "drop_gen_model_ties_actions": "True",
+    "drop_action_loop_stuck_high_F": "True"
+  },
+  "boundary": {
+    "single_action_zero_F": "True"
+  },
+  "PASS": true
+}

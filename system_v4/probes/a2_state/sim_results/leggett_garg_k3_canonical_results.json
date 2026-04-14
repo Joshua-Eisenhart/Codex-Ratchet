@@ -1,0 +1,74 @@
+{
+  "name": "leggett_garg_k3_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "scalar bookkeeping and classical bound constant"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd optimizes measurement time t of Larmor precession; matrix exponential via cos/sin parameterization; K3 computed from torch correlators and differentiated to saturate the quantum bound 3/2"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for time optimization"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- classical bound is numeric"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": null,
+    "z3": null
+  },
+  "positive": {
+    "K3_analytic": 1.5,
+    "K3_analytic_ge_quantum_bound_minus_tol": true,
+    "K3_analytic_gt_classical": true,
+    "t_optimized": 1.0471975511965836,
+    "K3_optimized": 1.5,
+    "K3_optimized_ge_quantum_bound_minus_tol": true,
+    "K3_optimized_gt_classical": true,
+    "quantum_classical_gap": 0.5,
+    "distance_from_quantum_bound": 0.0
+  },
+  "negative": {
+    "max_K3_over_classical_trajectories": 1,
+    "classical_respects_bound": true,
+    "K3_decohered": 0.0,
+    "decohered_respects_classical_bound": true,
+    "classical_lt_quantum_bound": true
+  },
+  "boundary": {
+    "K3_perturbed": [
+      1.4993931324866292,
+      1.4961441574998284,
+      1.4841735916945247
+    ],
+    "robust_quantum_violation": true,
+    "K3_t_near_zero": 1.0000000000009999,
+    "t_near_zero_respects_classical": true,
+    "K3_t_pi": -3.0,
+    "K3_t_pi_respects_classical": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_macrorealist_bound": 1.0,
+      "quantum_bound_K3_max": 1.5,
+      "K3_quantum_optimized": 1.5,
+      "K3_quantum_minus_classical": 0.5
+    },
+    "classical_baseline_cited": "Leggett-Garg macrorealism bound K3 <= 1",
+    "measured_quantum_value": 1.5
+  }
+}

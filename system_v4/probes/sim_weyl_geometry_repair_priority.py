@@ -15,10 +15,10 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Controller ranking surface over the Weyl/Hopf geometry lane. It combines "
     "route class, translation-target buckets, direct open-vs-strict translation "

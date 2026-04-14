@@ -1,0 +1,67 @@
+{
+  "name": "coherence_measure_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "complex rho, unitary basis rotation, l1-norm over off-diagonals"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed: numerical"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "z3": null
+  },
+  "positive": {
+    "plus_state_c_l1_is_1": true,
+    "plus_c_val": 0.9999999999999998,
+    "ghz2_c_l1_is_1": true,
+    "ghz2_c_val": 0.9999999999999998,
+    "dephased_plus_c_l1_is_0p5": true,
+    "dephased_c_val": 0.4999999999999999,
+    "dim3_uniform_c_l1_is_2": true,
+    "dim3_c_val": 2.0000000000000004
+  },
+  "negative": {
+    "diagonal_c_l1_zero": true,
+    "diag_c_val": 0.0,
+    "max_mixed_c_l1_zero": true,
+    "max_mixed_c_val": 0.0
+  },
+  "boundary": {
+    "classical_in_native_basis_zero": true,
+    "classical_becomes_coherent_under_Hadamard": true,
+    "rot_c_val": 0.1999999999999999,
+    "pure_classical_zero_coherence": true,
+    "random_unitary_induces_coherence_dim3": true,
+    "rot_dim3_c_val": 0.48206415885949583
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_c_l1_always_zero": 0.0,
+      "canonical_plus_state_c_l1": 0.9999999999999998,
+      "canonical_dim3_uniform_c_l1": 2.0000000000000004,
+      "canonical_ghz2_c_l1": 0.9999999999999998,
+      "gap_plus_vs_classical": 0.9999999999999998,
+      "basis_rotation_induced_coherence": 0.1999999999999999
+    }
+  },
+  "pairs_with": "sim_coherence_measure_classical.py",
+  "divergence_log": [
+    "|+> superposition yields C_l1 = 1; classical diagonal yields 0",
+    "basis rotation makes classical state coherent \u2014 basis-dependence absent in classical baseline"
+  ]
+}

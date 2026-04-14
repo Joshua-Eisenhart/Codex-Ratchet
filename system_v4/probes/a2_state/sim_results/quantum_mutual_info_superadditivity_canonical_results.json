@@ -1,0 +1,135 @@
+{
+  "name": "quantum_mutual_info_superadditivity_canonical",
+  "description": "Lane C: I_Q(Phi+)=2 bits vs classical I_C<=1 bit; gap=1 bit",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: quantum VNE via torch.linalg.eigvalsh, partial traces via torch.einsum, classical measurement probabilities and Shannon entropy via torch tensor reductions. Full pipeline is torch-native."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_quantum_MI_phi_plus_2bits": {
+      "I_Q_bits": 1.9999999998804103,
+      "expected": 2.0,
+      "pass": true
+    },
+    "P2_classical_MI_bounded_1bit": {
+      "I_C_max_bits": 0.9999999999202738,
+      "bound": 1.0,
+      "pass": true
+    },
+    "P3_quantum_classical_gap": {
+      "gap_bits": 0.9999999999601366,
+      "expected": 1.0,
+      "pass": true
+    },
+    "P4_product_zero_both": {
+      "I_Q": -3.9863137138648357e-11,
+      "I_C": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_classical_MI_bounded": {
+      "max": 0.7852126197146592,
+      "pass": true
+    },
+    "N2_IQ_geq_IC": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_max_mixed_zero": {
+      "I_Q": 0.0,
+      "I_C": 0.0,
+      "pass": true
+    },
+    "B2_classical_correlated": {
+      "I_Q": 0.9999999999202738,
+      "I_C": 0.9999999999202738,
+      "pass": true
+    },
+    "B3_IQ_upper_bound": {
+      "I_Q": 1.9999999998804103,
+      "bound": 2.0,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "quantum_classical_gap_bits": 0.9999999999601366,
+  "summary": {
+    "total_tests": 9,
+    "total_pass": 9,
+    "all_pass": true
+  }
+}

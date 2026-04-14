@@ -1,0 +1,113 @@
+{
+  "name": "sim_igt_yin_yang_ansatz",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor ops needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 proves involution is universal over integers"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof that swap is self-inverse"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "involution is scalar \u00b11 here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hyperedges"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "involution_plus": {
+      "got": 1,
+      "ok": true
+    },
+    "involution_minus": {
+      "got": -1,
+      "ok": true
+    },
+    "sympy_identity": {
+      "expr": "0",
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "bad_not_involutive": {
+      "ok": true
+    },
+    "z3_involution_unsat": {
+      "unsat": true,
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "zero_fixed_point": {
+      "got": 0,
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

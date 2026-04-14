@@ -1,0 +1,59 @@
+{
+  "name": "sim_holodeck_as_constraint_narrower",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "sampling + admissibility filter"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "strict_narrows": true,
+    "strict_narrows_nontrivially": true,
+    "loose_is_subset": true
+  },
+  "negative": {
+    "admits_all": false,
+    "rejects_all_unitaries": false
+  },
+  "boundary": {
+    "identity_admitted": true,
+    "zero_rejected": true,
+    "empty_set_consistent": true
+  },
+  "pass": true
+}

@@ -1,0 +1,118 @@
+{
+  "name": "hodge_decomposition_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor cross-check of Hodge Laplacian spectrum"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no learning"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "inline matrices"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "raw Hodge Laplacian"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Used real-valued cochains with identity inner product (no weighted metric).",
+    "Projected via pseudoinverse-of-Laplacian approach; rejected explicit SVD-of-boundary routing as equivalent.",
+    "Chose a 4-cycle (square) as the harmonic-rich boundary test case."
+  ],
+  "positive": {
+    "pure_gradient_decomp": {
+      "pass": true
+    },
+    "cycle_is_harmonic": {
+      "closed_check": true,
+      "pass": true
+    },
+    "random_reconstruction": {
+      "pass": true
+    },
+    "orthogonality": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "filled_triangle_no_harmonic": {
+      "h_norm": 1.6361670521979892e-16,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "disconnected_recon": {
+      "pass": true
+    },
+    "single_edge_pure_grad": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

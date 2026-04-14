@@ -1,0 +1,102 @@
+{
+  "name": "three_state_polytope_admission_triple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor check of halfspace inequalities"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT on polytope faces here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "torch_l1": 1.0,
+    "nested_admission_holds": true,
+    "survivors": 200
+  },
+  "negative": {
+    "outside_s1_rejected": true,
+    "outside_s2_rejected": true
+  },
+  "boundary": {
+    "boundary_s2_admitted": true,
+    "eps_outside_s2_in_s1": true
+  },
+  "divergence_log": [
+    "classical polytope admission treats each shell as independent halfspace set; loses the constraint-admissibility geometry where inner shell constraints reshape outer shell face structure",
+    "no z3 UNSAT proof of structural impossibility -- admission here is numeric containment, not load-bearing structural exclusion",
+    "treats survivors as constructed objects rather than candidates that merely haven't been excluded yet"
+  ],
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

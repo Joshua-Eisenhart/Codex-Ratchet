@@ -1,0 +1,216 @@
+{
+  "name": "sim_torch_deep_axis0_autograd_vn_entropy",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd backpropagates through matrix_exp, complex conjugation, matmul, eigvalsh, and -sum lam log lam; this IS the claim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic closed-form S(theta) and dS/dtheta = 0 provide analytic ground truth that autograd must reproduce on the positive cases"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised: sim scope is autograd-through-spectrum; this tool is outside the minimal load-bearing path"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "vn_entropy_autograd_matches_sympy": {
+      "pass": true,
+      "tolerance_dS": 1e-09,
+      "cases": [
+        {
+          "p": 0.5,
+          "theta": 0.0,
+          "S_autograd": 0.6931471805599453,
+          "S_sympy": 0.6931471805599453,
+          "S_abs_err": 0.0,
+          "dS_autograd": 0.0,
+          "dS_sympy": 0.0,
+          "dS_abs_err": 0.0,
+          "pass": true
+        },
+        {
+          "p": 0.5,
+          "theta": 0.7,
+          "S_autograd": 0.6931471805599452,
+          "S_sympy": 0.6931471805599453,
+          "S_abs_err": 1.1102230246251565e-16,
+          "dS_autograd": 2.7755575615628914e-17,
+          "dS_sympy": 0.0,
+          "dS_abs_err": 2.7755575615628914e-17,
+          "pass": true
+        },
+        {
+          "p": 0.25,
+          "theta": 1.3,
+          "S_autograd": 0.5623351446188081,
+          "S_sympy": 0.5623351446188083,
+          "S_abs_err": 2.220446049250313e-16,
+          "dS_autograd": -4.440892098500626e-16,
+          "dS_sympy": 0.0,
+          "dS_abs_err": 4.440892098500626e-16,
+          "pass": true
+        },
+        {
+          "p": 0.75,
+          "theta": -0.4,
+          "S_autograd": 0.5623351446188086,
+          "S_sympy": 0.5623351446188083,
+          "S_abs_err": 3.3306690738754696e-16,
+          "dS_autograd": 1.942890293094024e-16,
+          "dS_sympy": 0.0,
+          "dS_abs_err": 1.942890293094024e-16,
+          "pass": true
+        },
+        {
+          "p": 0.1,
+          "theta": 2.1,
+          "S_autograd": 0.32508297339144754,
+          "S_sympy": 0.3250829733914482,
+          "S_abs_err": 6.661338147750939e-16,
+          "dS_autograd": 2.220446049250313e-16,
+          "dS_sympy": 0.0,
+          "dS_abs_err": 2.220446049250313e-16,
+          "pass": true
+        }
+      ],
+      "composition_depth": [
+        "torch.linalg.matrix_exp(complex Hermitian generator)",
+        "complex conjugate-transpose",
+        "two complex matmuls (unitary conjugation)",
+        "torch.linalg.eigvalsh (Hermitian eigendecomp under autograd)",
+        "-sum lam*log(lam)"
+      ]
+    }
+  },
+  "negative": {
+    "nonunitary_breaks_invariance_grad_nonzero": {
+      "pass": true,
+      "cases": [
+        {
+          "p": 0.3,
+          "theta": 0.4,
+          "alpha": 0.9,
+          "S_autograd": 0.651090908580549,
+          "dS_autograd": -0.4891962257390093,
+          "dS_finite_diff": -0.48919622560594783,
+          "nonzero_grad": true,
+          "matches_finite_diff": true,
+          "pass": true
+        },
+        {
+          "p": 0.25,
+          "theta": 0.2,
+          "alpha": 1.1,
+          "S_autograd": 0.6872087630954877,
+          "dS_autograd": 0.2376231112553098,
+          "dS_finite_diff": 0.23762311114339238,
+          "nonzero_grad": true,
+          "matches_finite_diff": true,
+          "pass": true
+        },
+        {
+          "p": 0.6,
+          "theta": -0.3,
+          "alpha": 0.7,
+          "S_autograd": 0.6700902327597664,
+          "dS_autograd": 0.2902558967723946,
+          "dS_finite_diff": 0.2902558967177171,
+          "nonzero_grad": true,
+          "matches_finite_diff": true,
+          "pass": true
+        }
+      ],
+      "rationale": "non-unitary M changes the spectrum, so dS/dtheta must be nonzero; autograd must also match a central finite-difference independent numerical check"
+    }
+  },
+  "boundary": {
+    "near_pure_state_stable": {
+      "pass": true,
+      "S": 2.8629491092266933e-11,
+      "dS": -4.6629367034256575e-15,
+      "error": null
+    },
+    "maximally_mixed_state": {
+      "pass": true,
+      "S": 0.6931471805599452,
+      "S_expected": 0.6931471805599453,
+      "dS": 0.0
+    },
+    "large_theta_unitary_still_invariant": {
+      "pass": true,
+      "dS": 3.400058012914542e-16,
+      "tolerance": 1e-06
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "overall_pass": true
+  }
+}

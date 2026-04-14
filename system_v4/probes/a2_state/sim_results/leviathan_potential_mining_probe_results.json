@@ -1,0 +1,45 @@
+{
+  "name": "leviathan_potential_mining_probe",
+  "classification": "classical_baseline",
+  "positive": {
+    "yield_diverse": 2.9699999999999998,
+    "yield_positive": true,
+    "num_groups": 4,
+    "num_value_bases": 3,
+    "mining_channels": true
+  },
+  "negative": {
+    "yield_indistinguishable": 0.0,
+    "mining_fails_on_collapse": true,
+    "single_channel": true,
+    "fragile_regime": true
+  },
+  "boundary": {
+    "zero_potential": true,
+    "tiny_D_tiny_yield": true,
+    "dY_dD": "P",
+    "dY_dP": "D"
+  },
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "partial sensitivities of mining yield"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "multi-group multi-value-base structure"
+    },
+    "networkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "xgi": "load_bearing",
+    "networkx": null
+  }
+}

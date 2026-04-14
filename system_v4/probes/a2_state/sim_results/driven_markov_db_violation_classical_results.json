@@ -1,0 +1,105 @@
+{
+  "name": "driven_markov_db_violation_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical entropy production on an asymmetric Markov ring measures breaking of detailed balance in diagonal populations. The nonclassical analog (driven Lindbladian with coherent coupling) admits coherence-enhanced thermodynamic uncertainty relations and heat currents that vanish in any strictly commuting rate description.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch solve of stationary distribution"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "symmetric_sigma_zero": true,
+    "symmetric_current_zero": "True",
+    "driven_sigma_positive": true,
+    "driven_current_nonzero": "True",
+    "sigma_monotone_in_drive": true,
+    "stationary_correct": "True",
+    "torch_stationary_cross": true
+  },
+  "negative": {
+    "DB_sym_no_current": "True",
+    "DB_sym_no_entropy_prod": true,
+    "reverse_drive_current_negative": "True",
+    "sigma_positive_either_direction": true
+  },
+  "boundary": {
+    "small_drive_small_sigma": true,
+    "strong_drive_large_sigma": true,
+    "4state_ring_sigma_positive": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

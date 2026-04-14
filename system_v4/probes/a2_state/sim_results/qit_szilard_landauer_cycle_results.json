@@ -13,68 +13,68 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "numeric baseline handled by numpy; torch not needed for 2-qubit bookkeeping"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph carrier in this row"
     },
     "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "Encodes the Landauer floor E >= T*I and demon inequality dF <= E as Real-arithmetic constraints; certifies the forbidden region (dF > E OR E < T*I) is UNSAT for the measured row, and that free-erasure (E=0 with I>=ln2) is UNSAT against the floor. Pass gate depends on these UNSAT results."
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "z3 covers the linear-arithmetic bookkeeping encoding"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "closed-form kT ln2 values are numeric-exact; no symbolic manipulation needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no geometric-algebra carrier in this row"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no manifold carrier in this row"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no equivariant representation in this row"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph carrier in this row"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no hypergraph carrier"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no cell complex carrier"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no persistence computation"
     }
   },
   "tool_integration_depth": {
     "pytorch": null,
     "pyg": null,
-    "z3": null,
+    "z3": "load_bearing",
     "cvc5": null,
     "sympy": null,
     "clifford": null,
@@ -122,6 +122,12 @@
       "erasure_cost": 0.6931471805599453,
       "net_after_erasure": 0.0,
       "pass": true
+    },
+    "landauer_floor_forbidden_region_unsat_under_z3": {
+      "positive_sat": true,
+      "negative_unsat": true,
+      "counterfactual_free_erasure_unsat": true,
+      "pass": true
     }
   },
   "boundary": {
@@ -137,6 +143,16 @@
       ],
       "pass": true
     }
+  },
+  "z3_landauer_proof": {
+    "positive_sat": true,
+    "positive_result": "sat",
+    "negative_unsat": true,
+    "negative_result": "unsat",
+    "counterfactual_free_erasure_unsat": true,
+    "counterfactual_result": "unsat",
+    "pass": true,
+    "note": "z3 is load-bearing: the claim 'this cycle respects Landauer' is certified by UNSAT of (measured-row AND forbidden-violation). Numeric pass alone would be a coincidence of one tuple; UNSAT rules out an entire forbidden region around the measured tuple."
   },
   "summary": {
     "all_pass": true,

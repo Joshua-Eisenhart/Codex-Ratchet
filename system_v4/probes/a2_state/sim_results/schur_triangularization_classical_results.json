@@ -1,0 +1,129 @@
+{
+  "name": "schur_triangularization",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: torch.linalg.eigvals re-run to confirm diagonal of T matches spectrum"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric Schur baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "reconstruction": {
+      "err": 3.9983445677392e-15,
+      "pass": true
+    },
+    "Q_unitary": {
+      "err": 1.3322676295501878e-15,
+      "pass": true
+    },
+    "T_upper_triangular": {
+      "max_below_diag": 0.0,
+      "pass": true
+    },
+    "diag_is_spectrum": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "torch_spectrum_agrees": {
+      "max_abs_diff": 5.339468714465245e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "defective_T_not_diagonal": {
+      "off_diag_norm": 1.0,
+      "pass": true
+    },
+    "nonsquare_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "diagonal_input_T_diagonal": {
+      "off_diag": 0.0,
+      "pass": true
+    },
+    "normal_matrix_T_diagonal": {
+      "off_diag": 1.4946834900704542e-15,
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 5,
+    "n_negative": 2,
+    "n_boundary": 2
+  },
+  "divergence_log": "Classical Schur decomposition triangularizes any square matrix over C and reads off its spectrum from the diagonal. Lost relative to the nonclassical shell: the super-diagonal nilpotent part of a defective operator carries no physical meaning here (no Jordan-block coherence geometry), no constraint-admissibility filter on which spectra can co-exist under a probe family, and no noncommutative spectral overlap structure between multiple non-normal generators."
+}

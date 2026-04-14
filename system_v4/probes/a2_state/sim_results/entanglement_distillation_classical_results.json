@@ -1,0 +1,37 @@
+{
+  "name": "entanglement_distillation_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "local stochastic map composition and marginal checks"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "perfectly_correlated_classical_nondistillable": true,
+    "MI_present_but_no_entanglement": true,
+    "product_nondistillable": true
+  },
+  "negative": {
+    "classical_cannot_represent_bell_state": true,
+    "classical_distillable_always_zero": true
+  },
+  "boundary": {
+    "LOCC_preserves_zero_distillable": true,
+    "zero_state_distillable_zero": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Every classical joint is separable so E_D=0 trivially; the classical baseline cannot express dilution/distillation rates, bound entanglement (PPT states with zero E_D but nonzero E_F), nor the gap E_D <= E_F that defines irreversibility in the entanglement resource theory. Because no classical LOCC-analog move can ever produce a nondiagonal reduced state, the baseline misses the central phenomenon the lego is supposed to capture: concentration of noisy shared randomness into noiseless shared quantum ebits."
+}

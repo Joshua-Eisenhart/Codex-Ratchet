@@ -1,8 +1,8 @@
 {
   "name": "engine_16_placements",
   "description": "All 16 (terrain, loop) placement tuples with spinor evolution on Hopf torus",
-  "timestamp": "2026-04-08T07:01:50Z",
-  "elapsed_seconds": 0.496,
+  "timestamp": "2026-04-14T10:20:47Z",
+  "elapsed_seconds": 0.336,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -20,9 +20,9 @@
       "reason": "CPTP verification at each step via Choi positivity"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "available but not needed for this sim"
     },
     "sympy": {
       "tried": true,
@@ -35,14 +35,14 @@
       "reason": "Cl(3) rotor representation of terrain generators"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "available but not needed for this sim"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "available but not needed for this sim"
     },
     "rustworkx": {
       "tried": true,
@@ -50,9 +50,9 @@
       "reason": "available but not needed for this sim"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "available but not needed for this sim"
     },
     "toponetx": {
       "tried": true,
@@ -64,20 +64,6 @@
       "used": true,
       "reason": "Persistence diagrams across placement evolution trajectories"
     }
-  },
-  "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "supportive",
-    "cvc5": null,
-    "sympy": "supportive",
-    "clifford": "supportive",
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": "supportive"
   },
   "sympy_stationarity_proof": {
     "inner_loop_stationary": true,

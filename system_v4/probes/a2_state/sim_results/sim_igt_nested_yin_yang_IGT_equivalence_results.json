@@ -1,0 +1,125 @@
+{
+  "name": "sim_igt_nested_yin_yang_IGT_equivalence",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensors"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "structural xor at both scales is simultaneously satisfiable"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "discrete enumeration suffices"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pairs": {
+      "n": 4,
+      "mapped": [
+        [
+          "yang",
+          "YANG"
+        ],
+        [
+          "yang",
+          "YIN"
+        ],
+        [
+          "yin",
+          "YANG"
+        ],
+        [
+          "yin",
+          "YIN"
+        ]
+      ],
+      "ok": true
+    },
+    "z3_two_scale_xor_sat": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "collapse_not_bijection": {
+      "distinct": 1,
+      "ok": true
+    },
+    "z3_same_scale_contra": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "depth0": {
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

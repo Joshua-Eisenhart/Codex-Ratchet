@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_projective_memory_geometry",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) vector construction"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "projector arithmetic"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": "supportive",
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "nonneg": true,
+    "symmetric": true,
+    "self_zero": true
+  },
+  "negative": {
+    "distinct_zero": false,
+    "triangle_violated": false
+  },
+  "boundary": {
+    "orthogonal_max": true,
+    "scale_invariant": true
+  },
+  "pass": true
+}

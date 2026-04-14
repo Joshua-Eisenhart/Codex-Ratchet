@@ -1,0 +1,46 @@
+{
+  "name": "sim_tri_fep_x_igt_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL descent and policy stability"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tri UNSAT on any single-shell drop"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "F_descended": true,
+    "I_policy_stabilizes": true,
+    "L_final_pick_civic": true,
+    "EMERGENT_3way_descent_stabilized_policy": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true,
+    "z3_drop_L_unsat": true,
+    "z3_all_three_sat": true
+  },
+  "negative": {
+    "drop_F_no_descent_trajectory": true,
+    "drop_I_no_dominance": true,
+    "drop_I_policy_not_payoff_driven": true,
+    "drop_L_no_civic_score": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_I_unsat": true,
+    "z3_drop_L_unsat": true
+  },
+  "boundary": {
+    "min_descent": true,
+    "min_policy_stabilizes": true,
+    "min_civic_pick": true
+  },
+  "three_way_note": "3-way ADDS: FEP-descent-driven policy stabilization under civic ref; pairwise F x I cannot anchor.",
+  "PASS": true
+}

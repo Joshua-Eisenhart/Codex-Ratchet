@@ -1,0 +1,305 @@
+{
+  "name": "sim_weyl_chirality_bipartite",
+  "classification": "classical_baseline",
+  "timestamp": "2026-04-14T08:39:47.379854+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: computes VN entropy S(B) and coherent information I_c(A->B)=S(B)-S(AB) using torch.linalg.eigvalsh. Cross-validates numpy I_c computation and provides a differentiable pathway for future autograd extension."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no graph message-passing claim in 2q chirality lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: encodes H_L=-H_R chirality constraint. SAT check confirms Weyl structure admits a model. UNSAT checks confirm (1) same Hamiltonian cannot produce opposite phases, (2) chirality flip L<->R is provably equivalent to H0->-H0. These z3 results are the primary proof certificates for this sim."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; z3 encodes chirality constraint and SAT/UNSAT directly"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing symbolic derivation: phase_L = e^{-i lambda t}, phase_R = e^{+i lambda t} for each eigenvalue of H0=sigma_z; verifies these are complex conjugates (sign-flip under H0 -> -H0). This is the primary algebraic certificate for Weyl chirality phase opposition."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no Clifford-algebra rotor claim in this 2q lego"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no geodesic or Riemannian claim in this packet"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no equivariant network claim here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no shell DAG update in this packet"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no hypergraph claim here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no cell-complex topology claim here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not required; no persistence diagram claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_sympy_opposite_phase_derivation": {
+      "pass": true,
+      "sign_flip_verified": true,
+      "ratio_is_e2ilambdat": true,
+      "diff_plus": "0",
+      "diff_minus": "0",
+      "ratio": "exp(2*I*lambda*t)"
+    },
+    "P2_z3_chirality_constraint": {
+      "weyl_chirality_is_satisfiable": {
+        "pass": true,
+        "z3_result": "sat",
+        "meaning": "H_L=+h, H_R=-h with h!=0 is satisfiable -- Weyl structure admits a model"
+      },
+      "same_hamiltonian_cannot_give_opposite_phases": {
+        "pass": true,
+        "z3_result": "unsat",
+        "meaning": "H_L=H_R AND left_phase!=right_phase is UNSAT -- identical Hamiltonians produce identical phases"
+      },
+      "chirality_flip_equiv_H0_negation": {
+        "pass": true,
+        "z3_result": "unsat",
+        "meaning": "Negation of (swap <=> H0->-H0) is UNSAT -- chirality flip is provably equivalent to H0 negation"
+      },
+      "all_pass": true,
+      "pass": true
+    },
+    "P3_numeric_opposite_phases": {
+      "pass": true,
+      "checks": [
+        {
+          "t": 0.3,
+          "phase_L": -0.3,
+          "phase_R": 0.3,
+          "phases_sum_to_zero": true,
+          "UL_eq_conj_UR": true,
+          "pass": true
+        },
+        {
+          "t": 0.7,
+          "phase_L": -0.7,
+          "phase_R": 0.7,
+          "phases_sum_to_zero": true,
+          "UL_eq_conj_UR": true,
+          "pass": true
+        },
+        {
+          "t": 1.2,
+          "phase_L": -1.2,
+          "phase_R": 1.2,
+          "phases_sum_to_zero": true,
+          "UL_eq_conj_UR": true,
+          "pass": true
+        },
+        {
+          "t": 0.7853981633974483,
+          "phase_L": -0.7853981633974482,
+          "phase_R": 0.7853981633974482,
+          "phases_sum_to_zero": true,
+          "UL_eq_conj_UR": true,
+          "pass": true
+        }
+      ]
+    },
+    "P4_marginal_consistency": {
+      "pass": true,
+      "trace_B_recovers_rho_L": true,
+      "trace_A_recovers_rho_R": true,
+      "gap_L": 0.0,
+      "gap_R": 6.798699777552591e-17
+    },
+    "P5_evolution_preserves_density_matrix": {
+      "pass": true,
+      "checks": [
+        {
+          "t": 0.1,
+          "trace_ok": true,
+          "herm_ok": true,
+          "psd_ok": true,
+          "pass": true
+        },
+        {
+          "t": 0.5,
+          "trace_ok": true,
+          "herm_ok": true,
+          "psd_ok": true,
+          "pass": true
+        },
+        {
+          "t": 1.0,
+          "trace_ok": true,
+          "herm_ok": true,
+          "psd_ok": true,
+          "pass": true
+        },
+        {
+          "t": 2.0,
+          "trace_ok": true,
+          "herm_ok": true,
+          "psd_ok": true,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "negative": {
+    "N1_same_hamiltonian_zero_phase_diff": {
+      "pass": true,
+      "interpretation": "H_L=H_R gives zero phase difference; this is NOT the Weyl structure",
+      "checks": [
+        {
+          "t": 0.3,
+          "phase_L": -0.3,
+          "phase_R": -0.3,
+          "phase_diff": 0.0,
+          "zero_diff_confirmed": true,
+          "pass": true
+        },
+        {
+          "t": 0.7,
+          "phase_L": -0.7,
+          "phase_R": -0.7,
+          "phase_diff": 0.0,
+          "zero_diff_confirmed": true,
+          "pass": true
+        },
+        {
+          "t": 1.5,
+          "phase_L": -1.5,
+          "phase_R": -1.5,
+          "phase_diff": 0.0,
+          "zero_diff_confirmed": true,
+          "pass": true
+        }
+      ]
+    },
+    "N2_product_state_Ic_nonpositive": {
+      "pass": true,
+      "interpretation": "2q product-state Weyl evolution: I_c(A->B)<=0. I_c>0 requires 3q.",
+      "checks": [
+        {
+          "t": 0.3,
+          "Ic_numpy": 0.0,
+          "Ic_torch": 0.0,
+          "Ic_nonpositive": true,
+          "numpy_torch_consistent": true,
+          "pass": true
+        },
+        {
+          "t": 0.7,
+          "Ic_numpy": 0.0,
+          "Ic_torch": 0.0,
+          "Ic_nonpositive": true,
+          "numpy_torch_consistent": true,
+          "pass": true
+        },
+        {
+          "t": 1.0,
+          "Ic_numpy": 0.0,
+          "Ic_torch": 0.0,
+          "Ic_nonpositive": true,
+          "numpy_torch_consistent": true,
+          "pass": true
+        },
+        {
+          "t": 1.0471975511965976,
+          "Ic_numpy": 0.0,
+          "Ic_torch": 0.0,
+          "Ic_nonpositive": true,
+          "numpy_torch_consistent": true,
+          "pass": true
+        }
+      ]
+    },
+    "N3_bell_state_Ic_is_positive": {
+      "pass": true,
+      "S_B": 0.6931471805599454,
+      "S_AB": 2.220446049250313e-16,
+      "Ic": 0.6931471805599452,
+      "interpretation": "Bell state has I_c=log(2)>0; this is consistent -- N2 only claims product states give I_c<=0"
+    }
+  },
+  "boundary": {
+    "B1_zero_hamiltonian_no_chirality": {
+      "pass": true,
+      "U_L_is_identity": true,
+      "U_R_is_identity": true,
+      "UL_eq_UR": true,
+      "gap_UL_I": 0.0,
+      "gap_UR_I": 0.0
+    },
+    "B2_t_equals_zero_unchanged": {
+      "pass": true,
+      "gap": 0.0
+    },
+    "B3_full_period_returns_to_original": {
+      "pass": true,
+      "gap": 0.0
+    },
+    "B4_sympy_zero_eigenvalue_phases_are_one": {
+      "pass": true,
+      "phase_fwd_simplified": "1",
+      "phase_back_simplified": "1"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "positive_pass": 5,
+    "positive_total": 5,
+    "negative_pass": 3,
+    "negative_total": 3,
+    "boundary_pass": 4,
+    "boundary_total": 4,
+    "total_pass": 12,
+    "total_tests": 12,
+    "load_bearing_tools": [
+      "z3",
+      "sympy"
+    ],
+    "supportive_tools": [
+      "pytorch"
+    ]
+  }
+}

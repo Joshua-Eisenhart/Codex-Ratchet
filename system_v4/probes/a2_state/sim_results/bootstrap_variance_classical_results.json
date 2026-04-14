@@ -1,0 +1,52 @@
+{
+  "name": "bootstrap_variance_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical bootstrap resamples iid real scalars. A quantum analog would resample POVM outcomes and track noncommuting estimators; this baseline is purely commutative and discards operator-valued uncertainty.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "resampling and variance arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "normal/chi2 closed-form reference"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive import only; no gradients needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT assertion for bootstrap"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "boot_var_mean_matches_true": true,
+    "boot_var_bernoulli_matches_true": true,
+    "boot_var_positive": "True",
+    "boot_var_matches_monte_carlo": true
+  },
+  "negative": {
+    "degenerate_sample_zero_boot_var": true,
+    "boot_var_min_differs_from_mean": true
+  },
+  "boundary": {
+    "n2_boot_var_finite": true,
+    "large_n_small_boot_var": true,
+    "small_B_boot_var_finite": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

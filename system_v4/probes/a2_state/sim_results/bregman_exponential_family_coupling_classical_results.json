@@ -1,0 +1,142 @@
+{
+  "name": "bregman_exponential_family_coupling_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Bregman/exp-family coupling loses: (1) quantum relative entropy gap from Bregman on non-commuting density matrices, (2) non-abelian dual flat structures (alpha-connections only partially survive), (3) quantum exponential families where log-partition is not a simple scalar convex function.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd verification of grad A"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "closed-form by hand"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bregman_kl_0": {
+      "bregman": 0.0007212511511228564,
+      "kl": 0.0007212511511229857,
+      "pass": true
+    },
+    "mle_0": {
+      "t_true": 0.6220467975686843,
+      "mu_hat": 0.6234908197937474,
+      "pass": true
+    },
+    "bregman_kl_1": {
+      "bregman": 0.14870384531573233,
+      "kl": 0.14870384531573236,
+      "pass": true
+    },
+    "mle_1": {
+      "t_true": 0.8823926883977931,
+      "mu_hat": 0.9326615747728283,
+      "pass": true
+    },
+    "bregman_kl_2": {
+      "bregman": 3.502787558428552,
+      "kl": 3.502787558428552,
+      "pass": true
+    },
+    "mle_2": {
+      "t_true": 0.06675035594767875,
+      "mu_hat": 0.05858231566326259,
+      "pass": true
+    },
+    "bregman_kl_3": {
+      "bregman": 0.33829215622376063,
+      "kl": 0.33829215622376063,
+      "pass": true
+    },
+    "mle_3": {
+      "t_true": 0.08286740473525311,
+      "mu_hat": 0.0692153032654733,
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonconvex_not_bregman": {
+      "value": -0.1585290151921035,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_self": {
+      "value": 0.0,
+      "pass": true
+    },
+    "legendre": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

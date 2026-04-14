@@ -1,0 +1,100 @@
+{
+  "name": "fiber_bundle_triviality_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor-batched evaluation of transition functions on chart overlap"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_transition_trivial": true,
+    "constant_transition_gauge_trivial": true,
+    "identity_transition_trivial_torch": true
+  },
+  "negative": {
+    "signflip_not_trivializable": true
+  },
+  "boundary": {
+    "empty_overlap_trivial": true,
+    "near_zero_flagged": true
+  },
+  "divergence_log": [
+    "Classical bundle triviality via transition gauge; no holonomy probe applied.",
+    "Nonclassical obstruction (characteristic classes) not evaluated here."
+  ],
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "name": "sim_axis0_pyg_proxy",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through S3\u2192Spin3_SU2\u2192WeylBipartite\u2192ThreeQ chain is the core claim; ChainPropagator and ic_proxy both require torch.autograd; list-based propagation preserves gradient path across 3 hops"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph encodes the chain topology (edge_index, node features); this structural reference feeds the z3 admissibility encoding and documents the canonical runs_on convention used in ChainPropagator"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 Solver verifies G-level admissibility of S3\u2192...\u2192ThreeQ chain (SAT) and inadmissibility of the reversed S3-as-child-of-ThreeQ edge (UNSAT)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verifies symbolic structure of I_c = S(BC) - S(ABC) and confirms non-negativity in the pure-state (S_ABC=0) limit"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_theta_grad_nonzero": {
+      "theta": 0.7853981633974483,
+      "ic_proxy": 0.156524658203125,
+      "grad_theta_S3": -0.006891811266541481,
+      "threshold": 1e-06,
+      "result": "PASS",
+      "note": "dI_c/dtheta_S3 must be nonzero at theta=pi/4"
+    },
+    "P2_gradient_varies_with_theta": {
+      "grad_std": 0.0068515295832816455,
+      "threshold": 0.0001,
+      "result": "PASS",
+      "note": "gradient profile must have structure (non-flat)"
+    },
+    "P3_ic_proxy_sign_correct": {
+      "ic_proxy_at_pi4": 0.156524658203125,
+      "result": "PASS",
+      "note": "I_c proxy (S(BC)-S(ABC)) should be >= 0 at pi/4"
+    },
+    "P4_theta_star_exists": {
+      "theta_star": 1.5607963267948968,
+      "grad_at_theta_star": -0.021159619092941284,
+      "in_admissible_range": true,
+      "grad_threshold_used": 0.010579809546470642,
+      "grad_max_abs": 0.021159619092941284,
+      "result": "PASS",
+      "note": "candidate Axis 0 activation point: theta_star in admissible domain, |grad| >= half of max_abs (meaningful peak exists)"
+    },
+    "P5_chain_differentiable": {
+      "grad_at_theta5_full_chain": 0.009616827592253685,
+      "result": "PASS",
+      "note": "gradient must flow through S3->Spin3_SU2->WeylBipartite->ThreeQ"
+    }
+  },
+  "negative": {
+    "N1_broken_chain_kills_grad": {
+      "grad_intact": -0.006891811266541481,
+      "grad_severed": -0.0044959671795368195,
+      "severed_lt_intact": true,
+      "result": "PASS",
+      "note": "zeroing lin_parent_1 severs S3\u2192Spin3 propagation, reducing grad"
+    },
+    "N2_wrong_direction_no_grad": {
+      "grad_forward_direction": -0.006891811266541481,
+      "grad_reversed_direction": 0.0,
+      "difference": 0.006891811266541481,
+      "result": "PASS",
+      "note": "reversed propagation direction must yield different gradient"
+    }
+  },
+  "boundary": {
+    "B1_theta_near_zero_pole_behavior": {
+      "theta": 0.01,
+      "ic_proxy": 0.16535234451293945,
+      "grad": -0.019149983301758766,
+      "is_finite": true,
+      "result": "PASS",
+      "note": "near north pole (theta~0): I_c proxy finite, gradient defined"
+    },
+    "B2_theta_near_halfpi_equator_behavior": {
+      "theta": 1.5607963267948965,
+      "ic_proxy": 0.15130853652954102,
+      "grad": -0.021159619092941284,
+      "is_finite": true,
+      "result": "PASS",
+      "note": "near Clifford torus latitude (theta~pi/2): I_c proxy finite, gradient defined"
+    }
+  },
+  "axis0_summary": {
+    "A0_gradient_profile_matches_expected": {
+      "theta_star": 1.5607963267948968,
+      "peak_in_domain": true,
+      "has_sign_change": true,
+      "is_nonmonotone": true,
+      "grad_std": 0.0068515295832816455,
+      "grad_max_abs": 0.021159619092941284,
+      "result": "PASS",
+      "note": "candidate Axis 0 shape: theta_star in admissible domain, gradient profile non-monotone (sign change or structured variation)"
+    }
+  },
+  "z3_chain_admissibility": {
+    "z3_available": true,
+    "chain_sat": "sat",
+    "chain_is_sat": true,
+    "reversed_edge_result": "unsat",
+    "reversed_is_unsat": true,
+    "result": "PASS"
+  },
+  "sympy_ic_formula": {
+    "sympy_available": true,
+    "formula": "I_c = S(BC) - S(ABC)",
+    "is_linear_difference": true,
+    "ic_pure_state": "S_BC",
+    "pure_state_nonneg": true,
+    "result": "PASS"
+  },
+  "theta_star": 1.5607963267948968,
+  "ic_proxy_at_theta_star": 0.15130853652954102,
+  "grad_at_theta_star": -0.021159619092941284,
+  "gradient_profile_summary": {
+    "thetas_sample": [
+      0.01,
+      0.1682,
+      0.3265,
+      0.4847,
+      0.643,
+      0.8012,
+      0.9595,
+      1.1177,
+      1.276,
+      1.4342
+    ],
+    "ic_vals_sample": [
+      0.165352,
+      0.16268,
+      0.160616,
+      0.158916,
+      0.157565,
+      0.156416,
+      0.155975,
+      0.156381,
+      0.155538,
+      0.153648
+    ],
+    "grad_vals_sample": [
+      -0.01915,
+      -0.014647,
+      -0.011681,
+      -0.009974,
+      -0.007773,
+      -0.006814,
+      0.006823,
+      -0.002746,
+      -0.008327,
+      -0.015672
+    ],
+    "n_steps": 50,
+    "grad_std": 0.0068515295832816455,
+    "grad_mean": -0.009130762906279415,
+    "grad_max_abs": 0.021159619092941284
+  },
+  "chain_differentiable": true,
+  "pyg_used": true,
+  "pyg_graph_built": true,
+  "z3_used": true,
+  "sympy_used": true
+}

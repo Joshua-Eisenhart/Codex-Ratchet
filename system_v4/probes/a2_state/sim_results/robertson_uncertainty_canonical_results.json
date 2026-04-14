@@ -1,0 +1,146 @@
+{
+  "name": "robertson_uncertainty_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no gradient optimization needed; exact symbolic result"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not a graph task"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real analysis, not boolean SAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of <X>, <X^2>, <P>, <P^2> on Gaussian psi; exact commutator [X,P] on test function; Robertson bound hbar/2 exact"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar operators in Schrodinger rep"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no representation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "symbolic_derivation_available": {
+      "pass": true
+    },
+    "normalization": {
+      "value": "1",
+      "pass": true
+    },
+    "var_x_equals_sigma_sq": {
+      "value": "sigma**2",
+      "pass": true
+    },
+    "var_p_equals_hbar_sq_over_4sigma_sq": {
+      "value": "hbar**2/(4*sigma**2)",
+      "pass": true
+    },
+    "commutator_XP_i_hbar": {
+      "pass": true
+    },
+    "product_equals_hbar_over_2": {
+      "value": "hbar/2",
+      "pass": true
+    },
+    "saturates_robertson": {
+      "pass": true
+    },
+    "gap": {
+      "classical_min_product": 0.0,
+      "quantum_min_product_symbolic": "hbar/2",
+      "gap_symbolic": "hbar/2",
+      "pass": true
+    }
+  },
+  "negative": {
+    "classical_product_violates_bound": {
+      "classical_product": 0.0,
+      "bound_hbar_eq_1": 0.5,
+      "pass": true
+    },
+    "sympy_classical_below_bound": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "saturation_sigma_1/100": {
+      "product": "hbar/2",
+      "pass": true
+    },
+    "saturation_sigma_1": {
+      "product": "hbar/2",
+      "pass": true
+    },
+    "saturation_sigma_100": {
+      "product": "hbar/2",
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "load_bearing_tool": "sympy",
+    "gap_classical": 0.0,
+    "gap_quantum_symbolic": "hbar/2",
+    "gap_value_hbar_eq_1": 0.5,
+    "gap_kind": "variance_product_lower_bound"
+  }
+}

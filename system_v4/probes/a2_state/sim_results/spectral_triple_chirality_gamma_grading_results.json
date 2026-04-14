@@ -1,0 +1,34 @@
+{
+  "name": "spectral_triple_chirality_gamma_grading",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "block SVD for index computation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic rank of block-offdiag matrix"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "index_computed": 2,
+    "index_is_two": true,
+    "gamma_flip_negates_index": true,
+    "sympy_rank_matches": true
+  },
+  "negative": {
+    "invertible_index_zero": true,
+    "abs_index_invariant_under_sign_flip": true
+  },
+  "boundary": {
+    "zero_map_index": true,
+    "square_zero_map_index_zero": true
+  },
+  "classification": "canonical"
+}

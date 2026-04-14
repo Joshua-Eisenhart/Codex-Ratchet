@@ -36,7 +36,7 @@ from dataclasses import asdict
 from datetime import UTC, datetime
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

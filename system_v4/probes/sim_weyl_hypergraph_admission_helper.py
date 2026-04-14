@@ -13,14 +13,14 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 OUT_PATH = RESULT_DIR / "weyl_hypergraph_admission_helper_results.json"
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Controller-side admission helper for the Weyl hypergraph lane. It reads "
     "the finished hypergraph rows and decides whether the next family should be "

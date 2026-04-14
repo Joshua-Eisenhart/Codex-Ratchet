@@ -1,0 +1,36 @@
+{
+  "name": "gerbe_carrier_cell_complex",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "boundary matrix arithmetic"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex construction + incidence matrices for gerbe carrier"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "toponetx": "load_bearing"
+  },
+  "positive": {
+    "num_0_cells": 4,
+    "num_2_cells": 4,
+    "dd_zero": true,
+    "tetra_has_4_vertices": true,
+    "tetra_has_4_triangles": true
+  },
+  "negative": {
+    "single_triangle_insufficient_for_gluing": true,
+    "single_triangle_dd_zero": true,
+    "empty_complex_has_no_2cells": true
+  },
+  "boundary": {
+    "tetra_euler_characteristic": 2,
+    "tetra_euler_is_2": true
+  },
+  "classification": "canonical"
+}

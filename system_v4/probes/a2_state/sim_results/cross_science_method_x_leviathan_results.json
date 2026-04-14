@@ -1,0 +1,33 @@
+{
+  "name": "sim_cross_science_method_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "simulate adversary vs consensus"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "leviathan weight=1 freezes support"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "civic_preserves_refutable_claim": true,
+    "free_collapses_claim": true,
+    "z3_full_leviathan_blocks_decay": true,
+    "EMERGENT_false_stable_region": true
+  },
+  "negative": {
+    "pure_refutation_collapses_claim": true
+  },
+  "boundary": {
+    "zero_leviathan_reproduces_free": true
+  },
+  "PASS": true
+}

@@ -1,0 +1,51 @@
+{
+  "name": "chebyshev_distinguishability_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical moment-matching uses real-valued scalar moments of commuting observables. Quantum distinguishability requires noncommuting-moment hierarchies (e.g. NPA). This baseline drops all operator noncommutativity.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "moment vectors and arithmetic"
+    },
+    "scipy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import; moments computed in numpy"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT moment-problem proof"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": "supportive",
+    "scipy": null,
+    "z3": null
+  },
+  "positive": {
+    "equal_distributions_match_moments": true,
+    "symmetric_odd_moment_zero": true,
+    "chebyshev_holds": true
+  },
+  "negative": {
+    "different_mean_detected": true,
+    "different_variance_detected": true
+  },
+  "boundary": {
+    "zeroth_moment_equal": true,
+    "point_mass_zero_variance": true,
+    "high_order_moments_finite": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

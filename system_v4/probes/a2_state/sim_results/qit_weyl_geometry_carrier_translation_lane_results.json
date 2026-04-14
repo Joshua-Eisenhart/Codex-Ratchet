@@ -1,0 +1,171 @@
+{
+  "name": "qit_weyl_geometry_carrier_translation_lane",
+  "classification": "research_support",
+  "classification_note": "Promoted QIT-aligned Weyl/Hopf carrier translation lane built from the open carrier-array row and the strict finite-state companion. It keeps the carrier/readout gap explicit and bounded; it does not claim equivalence or canonical geometry admission.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry",
+    "geometry_preserving_basis_change",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "open_lane_is_clean": {
+      "pass": true,
+      "open_all_pass": true
+    },
+    "strict_lane_is_clean": {
+      "pass": true,
+      "strict_all_pass": true
+    },
+    "open_lane_has_more_carrier_families": {
+      "pass": true,
+      "open_carrier_count": 5,
+      "strict_carrier_count": 3
+    },
+    "direct_core_matches_strict_carrier_count": {
+      "pass": true,
+      "open_direct_core_count": 3,
+      "strict_carrier_count": 3
+    },
+    "carrier_readout_gap_stays_bounded": {
+      "pass": true,
+      "open_core_lr_overlap": 2.5860532068485732e-17,
+      "strict_lr_overlap": 1.1102230246251565e-16,
+      "carrier_readout_gap_abs": 8.516177039402992e-17
+    },
+    "strict_side_readouts_remain_tight": {
+      "pass": true,
+      "strict_transport_roundtrip_error": 5.551115123125783e-17,
+      "strict_basis_change_error": 2.220446049250313e-16,
+      "strict_stack_error": 4.443843741175801e-16,
+      "strict_hopf_norm_gap": 2.220446049250313e-16
+    }
+  },
+  "negative": {
+    "lane_is_not_canonical_owner_math": {
+      "pass": true
+    },
+    "open_and_strict_are_not_identical": {
+      "pass": true,
+      "carrier_count_gap": 2,
+      "carrier_readout_gap_abs": 8.516177039402992e-17
+    }
+  },
+  "boundary": {
+    "all_metrics_are_finite": {
+      "pass": true
+    },
+    "source_rows_remain_the_source_of_truth": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "open_carrier_count": 5,
+    "strict_carrier_count": 3,
+    "carrier_count_gap": 2,
+    "open_direct_core_count": 3,
+    "open_structural_count": 2,
+    "direct_core_count_gap": 0,
+    "open_core_lr_overlap": 2.5860532068485732e-17,
+    "strict_lr_overlap": 1.1102230246251565e-16,
+    "carrier_readout_gap_abs": 8.516177039402992e-17,
+    "open_core_roundtrip_error": 0.0,
+    "strict_transport_roundtrip_error": 5.551115123125783e-17,
+    "strict_basis_change_error": 2.220446049250313e-16,
+    "strict_stack_error": 4.443843741175801e-16,
+    "strict_hopf_norm_gap": 2.220446049250313e-16,
+    "open_graph_cycle_rank": 6,
+    "open_hypergraph_shadow_components": 1,
+    "open_cp3_max_concurrence": 5.551115123125783e-17,
+    "open_best_direct_match": "nested_hopf_torus",
+    "open_richer_alt_geometry": "cp3_s7_product_lift",
+    "open_graph_bridge": "graph_torus_grid",
+    "open_hypergraph_bridge": "hypergraph_multiway_carrier",
+    "strict_transport_reference_count": 3,
+    "strict_row_count": 27,
+    "scope_note": "Promoted QIT-aligned Weyl/Hopf carrier translation lane. It compares the open carrier-array row against the strict finite-state companion and keeps the carrier/readout gap explicit without claiming equivalence."
+  }
+}

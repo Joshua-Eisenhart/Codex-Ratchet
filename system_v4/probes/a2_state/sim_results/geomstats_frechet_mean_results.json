@@ -27,9 +27,9 @@
       "reason": "not needed for this sim"
     },
     "clifford": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+      "reason": "not needed; using geomstats for manifold ops"
     },
     "geomstats": {
       "tried": true,
@@ -61,20 +61,6 @@
       "used": false,
       "reason": "not needed for this sim"
     }
-  },
-  "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": "load_bearing",
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
   },
   "positive": {
     "frechet_mean_sphere_pure_states": {
@@ -333,7 +319,7 @@
     "total_tests": 10,
     "passed": 10,
     "failed": 0,
-    "elapsed_seconds": 0.243,
+    "elapsed_seconds": 0.225,
     "all_passed": true
   }
 }

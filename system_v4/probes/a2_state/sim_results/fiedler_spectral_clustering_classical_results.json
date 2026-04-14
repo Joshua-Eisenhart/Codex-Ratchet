@@ -1,0 +1,147 @@
+{
+  "name": "fiedler_spectral_clustering",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive cross-check: Laplacian eigh re-run via torch to confirm numeric agreement with scipy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Laplacian eigen-baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric spectral baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for numeric baseline"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; scipy.linalg used for eigh"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "zero_eig_connected_components": {
+      "lambda0": 3.552713678800501e-15,
+      "lambda1": 3.552713678800501e-15,
+      "pass": "True"
+    },
+    "fiedler_separates_blocks": {
+      "lambda1": 0.801476792601763,
+      "labels": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "pass": true
+    },
+    "torch_scipy_agreement": {
+      "max_abs_diff": 8.493729161993004e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "high_intercon_fails_to_separate": {
+      "labels": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0
+      ],
+      "pass": true
+    },
+    "non_sym_rejected_or_wrong": {
+      "pass": true,
+      "note": "eigh symmetrized silently; still classical failure mode"
+    }
+  },
+  "boundary": {
+    "single_node": {
+      "lambda0": 0.0,
+      "pass": "True"
+    },
+    "complete_graph_spectrum": {
+      "lambda0": 5.329070518200751e-15,
+      "lambda1": 6.0,
+      "pass": "True"
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_positive": 3,
+    "n_negative": 2,
+    "n_boundary": 2
+  },
+  "divergence_log": "Classical Fiedler partition uses real-symmetric Laplacian eigenvalues only. Lost relative to nonclassical shell: density-matrix coherence off-diagonals, noncommuting edge-operator algebra, unitary graph walks with phase, and any distinguishability-geometry constraint that forbids the zero-eigenvector degeneracy from collapsing onto a single classical partition."
+}

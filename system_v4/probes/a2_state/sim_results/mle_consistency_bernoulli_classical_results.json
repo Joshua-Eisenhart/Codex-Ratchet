@@ -1,0 +1,55 @@
+{
+  "name": "mle_consistency_bernoulli_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Bernoulli MLE is real-valued and commutes with itself; a quantum analog estimating population state from POVM outcomes would involve noncommuting measurements and SLD-weighted likelihoods, which this baseline does not encode.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "sampling and MLE arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "normal cdf for asymptotic check"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive import only; autograd not required"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT assertion on consistency"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "error_shrinks_with_n": true,
+    "large_n_accurate": "True",
+    "asymptotic_mean_zero": true,
+    "asymptotic_var_one": true,
+    "mle_equals_sample_mean": "True"
+  },
+  "negative": {
+    "mle_does_not_recover_wrong_guess": "True",
+    "small_n_high_variance": "True",
+    "degenerate_sample_at_boundary": "True"
+  },
+  "boundary": {
+    "rare_event_estimate_finite": "True",
+    "rare_event_estimate_positive_or_zero": "True",
+    "near_one_estimate_close": "True",
+    "n1_in_support": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

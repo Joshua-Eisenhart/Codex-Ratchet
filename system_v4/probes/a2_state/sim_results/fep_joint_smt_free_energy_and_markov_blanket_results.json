@@ -1,0 +1,66 @@
+{
+  "name": "sim_fep_joint_smt_free_energy_and_markov_blanket",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "joint SMT proof of F<=tau AND CI-factorization over one 8-var model"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used; z3 is sole proof engine for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; joint encoding is fully SMT-native"
+    },
+    "numpy": {
+      "tried": false,
+      "used": false,
+      "reason": "no numeric baseline; proof is symbolic-only"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "numpy": null
+  },
+  "positive": {
+    "joint_SAT": true,
+    "witness": {
+      "pib": "0",
+      "peb": "0",
+      "pieb": "0",
+      "q": "1/2",
+      "p": "1/2",
+      "tau": "0",
+      "F_lb": "0",
+      "s": "0"
+    }
+  },
+  "negative": {
+    "neg1_F_held_CI_broken_UNSAT": true,
+    "neg1_unsat_core": [
+      "peb_val",
+      "pib_val",
+      "pieb_val_off_product",
+      "CI_clause"
+    ],
+    "neg2_CI_held_F_broken_UNSAT": true,
+    "neg2_unsat_core": [
+      "F_def",
+      "q_lt1",
+      "q_pos",
+      "F_mono",
+      "tau_neg_forced"
+    ]
+  },
+  "boundary": {
+    "boundary_minimal_SAT": true
+  },
+  "PASS": true
+}

@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_observer_shell_projection",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "projector linear algebra"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "idempotent": true,
+    "self_adjoint": true,
+    "range_fixed": true
+  },
+  "negative": {
+    "ortho_survives": "False",
+    "distinct_same_slice": false
+  },
+  "boundary": {
+    "full_rank_identity": true,
+    "empty_annihilates": true
+  },
+  "pass": true
+}

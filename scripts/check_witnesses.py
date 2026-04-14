@@ -39,6 +39,14 @@ def _extract_dict_assign(tree: ast.AST, name: str) -> dict | None:
                         return None
                     if isinstance(val, dict):
                         return val
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            if isinstance(node.target, ast.Name) and node.target.id == name:
+                try:
+                    val = ast.literal_eval(node.value)
+                except (ValueError, SyntaxError):
+                    return None
+                if isinstance(val, dict):
+                    return val
     return None
 
 
@@ -58,18 +66,36 @@ def _collect_module_str_constants(tree: ast.AST) -> dict[str, str]:
     return consts
 
 
-def _extract_witness_sim_path(cap_path: Path) -> str | None:
-    """Find the witness sim path referenced inside run_witness_replay().
+def _literal_string_list(value: ast.AST, mod_consts: dict[str, str]) -> list[str]:
+    if isinstance(value, ast.Constant) and isinstance(value.value, str):
+        return [value.value]
+    if isinstance(value, ast.Name) and value.id in mod_consts:
+        return [mod_consts[value.id]]
+    if isinstance(value, (ast.List, ast.Tuple, ast.Set)):
+        items: list[str] = []
+        for elt in value.elts:
+            if isinstance(elt, ast.Constant) and isinstance(elt.value, str):
+                items.append(elt.value)
+            elif isinstance(elt, ast.Name) and elt.id in mod_consts:
+                items.append(mod_consts[elt.id])
+        return items
+    return []
 
-    Accepts either:
-      - a literal string at the 'sim' key, or
-      - a Name reference that resolves to a module-level string constant.
-    """
+
+def _extract_witness_sim_paths(cap_path: Path) -> list[str]:
+    """Find declared witness sim paths across recent capability-probe schemas."""
     try:
         tree = ast.parse(cap_path.read_text(encoding="utf-8"))
     except (SyntaxError, UnicodeDecodeError):
-        return None
+        return []
     mod_consts = _collect_module_str_constants(tree)
+    witness_paths: list[str] = []
+
+    def add_candidates(value: ast.AST) -> None:
+        for candidate in _literal_string_list(value, mod_consts):
+            if candidate not in witness_paths:
+                witness_paths.append(candidate)
+
     for node in ast.walk(tree):
         if isinstance(node, ast.FunctionDef) and node.name == "run_witness_replay":
             for sub in ast.walk(node):
@@ -77,11 +103,19 @@ def _extract_witness_sim_path(cap_path: Path) -> str | None:
                     for k, v in zip(sub.keys, sub.values):
                         if not (isinstance(k, ast.Constant) and k.value == "sim"):
                             continue
-                        if isinstance(v, ast.Constant) and isinstance(v.value, str):
-                            return v.value
-                        if isinstance(v, ast.Name) and v.id in mod_consts:
-                            return mod_consts[v.id]
-    return None
+                        add_candidates(v)
+        if isinstance(node, ast.Dict):
+            for k, v in zip(node.keys, node.values):
+                if not isinstance(k, ast.Constant):
+                    continue
+                if k.value in {
+                    "witness_file",
+                    "witness_loadbearing_use",
+                    "witness_use_cases",
+                    "witness_load_bearing_uses",
+                }:
+                    add_candidates(v)
+    return witness_paths
 
 
 def main() -> int:
@@ -91,48 +125,61 @@ def main() -> int:
 
     for cap in cap_probes:
         tool = _tool_name_from_capability(cap)
-        witness_rel = _extract_witness_sim_path(cap)
+        witness_rel_paths = _extract_witness_sim_paths(cap)
         entry: dict = {
             "capability_probe": cap.name,
             "tool": tool,
-            "witness_sim": witness_rel,
+            "witness_sims": witness_rel_paths,
             "status": "ok",
         }
 
-        if witness_rel is None:
+        if not witness_rel_paths:
             entry["status"] = "no_witness_declared"
             violations.append(entry)
             per_probe.append(entry)
             continue
 
-        witness_path = (REPO / witness_rel).resolve()
-        if not witness_path.exists():
-            entry["status"] = "witness_file_missing"
-            entry["resolved_path"] = str(witness_path)
-            violations.append(entry)
-            per_probe.append(entry)
-            continue
+        witness_details: list[dict] = []
+        accepted = False
+        for witness_rel in witness_rel_paths:
+            witness_path = (REPO / witness_rel).resolve()
+            detail: dict = {
+                "witness_sim": witness_rel,
+                "resolved_path": str(witness_path),
+            }
+            if not witness_path.exists():
+                detail["status"] = "witness_file_missing"
+                witness_details.append(detail)
+                continue
 
-        try:
-            tree = ast.parse(witness_path.read_text(encoding="utf-8"))
-        except (SyntaxError, UnicodeDecodeError) as exc:
-            entry["status"] = "witness_parse_error"
-            entry["detail"] = str(exc)
-            violations.append(entry)
-            per_probe.append(entry)
-            continue
+            try:
+                tree = ast.parse(witness_path.read_text(encoding="utf-8"))
+            except (SyntaxError, UnicodeDecodeError) as exc:
+                detail["status"] = "witness_parse_error"
+                detail["detail"] = str(exc)
+                witness_details.append(detail)
+                continue
 
-        depth = _extract_dict_assign(tree, "TOOL_INTEGRATION_DEPTH")
-        if depth is None:
-            entry["status"] = "witness_no_tool_integration_depth"
-            violations.append(entry)
-            per_probe.append(entry)
-            continue
+            depth = _extract_dict_assign(tree, "TOOL_INTEGRATION_DEPTH")
+            if depth is None:
+                detail["status"] = "witness_no_tool_integration_depth"
+                witness_details.append(detail)
+                continue
 
-        level = depth.get(tool)
-        entry["declared_level"] = level
-        if level != "load_bearing":
-            entry["status"] = "witness_not_load_bearing"
+            level = depth.get(tool)
+            detail["declared_level"] = level
+            if level == "load_bearing":
+                detail["status"] = "ok"
+                witness_details.append(detail)
+                accepted = True
+                break
+
+            detail["status"] = "witness_not_load_bearing"
+            witness_details.append(detail)
+
+        entry["witness_details"] = witness_details
+        if not accepted:
+            entry["status"] = witness_details[-1]["status"]
             violations.append(entry)
             per_probe.append(entry)
             continue

@@ -1,0 +1,111 @@
+{
+  "name": "science_method_refutation_probe",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT = refutation proof; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "networkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": null,
+    "numpy": null
+  },
+  "positive": {
+    "square_nonneg_survives": {
+      "pass": true,
+      "result": "survives"
+    }
+  },
+  "negative": {
+    "positivity_refuted": {
+      "pass": true,
+      "result": "refuted"
+    }
+  },
+  "boundary": {
+    "vacuous_survives": {
+      "pass": true,
+      "result": "survives"
+    }
+  },
+  "classification": "canonical",
+  "status": "pass"
+}

@@ -1,0 +1,68 @@
+{
+  "name": "holevo_bound_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "scalar arithmetic"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "complex density matrix mix + eigvalsh for von Neumann entropy"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": null
+  },
+  "positive": {
+    "nonortho_chi_less_than_1": true,
+    "nonortho_chi_val": 0.3545789026652699,
+    "ortho_chi_equals_1": true,
+    "ortho_chi_val": 1.0,
+    "bb84_chi_val": 1.0,
+    "bb84_chi_less_than_log_d": true,
+    "chi_geq_I_acc": true,
+    "holevo_gap_chi_minus_Iacc": 0.16587733465961696,
+    "I_acc_lower_bound": 0.18870156800565296
+  },
+  "negative": {
+    "identical_states_chi_zero": true,
+    "identical_chi_val": -0.0,
+    "commuting_matches_classical_formula": true,
+    "commuting_chi_val": 0.19116495692878077,
+    "classical_formula_val": 0.19116495692878077
+  },
+  "boundary": {
+    "degenerate_prior_chi_zero": true,
+    "degen_chi_val": -0.0,
+    "chi_bounded_by_log2_d": true,
+    "chi_nonnegative": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_chi_equals_mixing_entropy_with_equality": "chi = H(mix) - sum p_i H(rho_i) on commuting rho_i",
+      "canonical_nonortho_chi": 0.3545789026652699,
+      "classical_prior_H_bound": 1.0,
+      "holevo_bound_gap_nonortho": 0.6454210973347301,
+      "chi_minus_I_acc": 0.16587733465961696,
+      "I_acc_best_projective": 0.18870156800565296,
+      "classical_baseline_admits_no_nonortho_ensemble": true
+    }
+  },
+  "pairs_with": "sim_holevo_bound_classical.py",
+  "divergence_log": [
+    "canonical chi on nonorthogonal |0>,|theta=pi/3> ensemble is strictly less than prior entropy (1 bit) \u2014 classical baseline cannot see this",
+    "chi > I_accessible (best projective measurement) exhibits the Holevo gap"
+  ]
+}

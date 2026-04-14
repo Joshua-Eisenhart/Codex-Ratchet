@@ -4,64 +4,62 @@
   "positive": {
     "P1_different_eta_different_entropy": {
       "pass": true,
-      "entropy_inner": 0.625892753648577,
-      "entropy_clifford": 0.5616636084976543,
-      "entropy_outer": 0.6264403568971483,
+      "entropy_inner": 0.7319752617107607,
+      "entropy_clifford": 0.6334170113514047,
+      "entropy_outer": 0.7496266299164213,
       "note": "Different torus latitudes produce different entropy profiles"
     },
     "P2_clifford_concurrence_maximum": {
       "pass": true,
-      "concurrence_clifford": 0.049240429385882474,
-      "concurrence_inner": 0.040086375508137595,
-      "concurrence_outer": 0.0390546539696458,
-      "entropy_clifford": 0.5616636084976543,
-      "entropy_inner": 0.625892753648577,
-      "entropy_outer": 0.6264403568971483,
-      "note": "HERMES CORRECTION: Clifford is CONCURRENCE maximum but NOT entropy maximum. Inner/outer have higher entropy (0.626/0.626) than Clifford (0.562). Split these claims. Clifford has best entangling geometry; entropy peaks are at inner/outer."
+      "concurrence_clifford": 0.4172289817728478,
+      "concurrence_inner": 0.14944466131496456,
+      "concurrence_outer": 0.14480512257221692,
+      "entropy_clifford": 0.6334170113514047,
+      "note": "Clifford torus has maximum concurrence (balanced radii maximise entangling)"
     }
   },
   "negative": {
     "N1_degenerate_kills_structure": {
-      "pass": true,
-      "entropy_degenerate_0": 0.39020092441435694,
-      "entropy_degenerate_pi2": 0.3902002373547669,
-      "entropy_clifford": 0.5616636084976543,
+      "pass": false,
+      "entropy_degenerate_0": 0.7047913930492966,
+      "entropy_degenerate_pi2": 0.7048382606243777,
+      "entropy_clifford": 0.6334170113514047,
       "note": "Degenerate torus (eta near 0 or pi/2) has less structure than Clifford"
     }
   },
   "entropy_profiles": {
     "inner": {
       "eta": 0.39269908169872414,
-      "entropy": 0.625892753648577,
-      "concurrence": 0.040086375508137595,
+      "entropy": 0.7319752617107607,
+      "concurrence": 0.14944466131496456,
       "R_major": 0.9238795325112867,
       "R_minor": 0.3826834323650898
     },
     "clifford": {
       "eta": 0.7853981633974483,
-      "entropy": 0.5616636084976543,
-      "concurrence": 0.049240429385882474,
+      "entropy": 0.6334170113514047,
+      "concurrence": 0.4172289817728478,
       "R_major": 0.7071067811865476,
       "R_minor": 0.7071067811865475
     },
     "outer": {
       "eta": 1.1780972450961724,
-      "entropy": 0.6264403568971483,
-      "concurrence": 0.0390546539696458,
+      "entropy": 0.7496266299164213,
+      "concurrence": 0.14480512257221692,
       "R_major": 0.38268343236508984,
       "R_minor": 0.9238795325112867
     },
     "degenerate_0": {
       "eta": 0.001,
-      "entropy": 0.39020092441435694,
-      "concurrence": 0.0017301192582199225,
+      "entropy": 0.7047913930492966,
+      "concurrence": 0.0,
       "R_major": 0.9999995000000417,
       "R_minor": 0.0009999998333333417
     },
     "degenerate_pi2": {
       "eta": 1.5697963267948967,
-      "entropy": 0.3902002373547669,
-      "concurrence": 0.0014794449441481608,
+      "entropy": 0.7048382606243777,
+      "concurrence": 0.0,
       "R_major": 0.0009999998333332927,
       "R_minor": 0.9999995000000417
     }
@@ -73,8 +71,8 @@
   ],
   "timestamp": "2026-04-05",
   "summary": {
-    "passed": 3,
+    "passed": 2,
     "total": 3,
-    "all_pass": true
+    "all_pass": false
   }
 }

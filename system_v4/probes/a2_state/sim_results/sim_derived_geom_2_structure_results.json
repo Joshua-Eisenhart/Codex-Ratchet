@@ -1,0 +1,93 @@
+{
+  "name": "sim_derived_geom_2_structure",
+  "family": "derived_geom",
+  "step": "structure",
+  "step_index": 2,
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic/proof lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic/proof lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 chosen as primary SMT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: result of this atomic step materially depends on this tool"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold structure in this atomic step"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN in this atomic step"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this atomic step"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this atomic step"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this atomic step"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence in this atomic step"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "leibniz": true
+  },
+  "negative": {
+    "bad_deriv": true
+  },
+  "boundary": {
+    "scalar_d_zero": true
+  },
+  "all_pass": true
+}

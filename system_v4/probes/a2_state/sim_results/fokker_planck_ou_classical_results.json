@@ -1,0 +1,100 @@
+{
+  "name": "fokker_planck_ou_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Fokker-Planck operator acts on a real probability density p(x,t) on a commuting configuration space. It cannot represent interference between classically distinct paths, phase-space negativity, or the quantum Smoluchowski / quantum-Brownian-motion regime where position and momentum are non-commuting. The canonical nonclassical analog is a Caldeira-Leggett master equation on rho(x,x';t).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch variance computation cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "steady_variance": "True",
+    "steady_zero_mean": "True",
+    "variance_growth_matches": "True",
+    "probability_preserved": "True",
+    "torch_variance_cross": "True"
+  },
+  "negative": {
+    "offcenter_not_stationary": "True",
+    "zero_noise_shrinks": "True"
+  },
+  "boundary": {
+    "high_drift_small_var": "True",
+    "weak_drift_wide_var": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

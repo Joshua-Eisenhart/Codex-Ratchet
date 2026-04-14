@@ -1,0 +1,39 @@
+{
+  "name": "sim_fep_pair_surprise_x_precision",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Gaussian surprise numeric"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "closed form for dS/dpi critical point"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on negativity of pi*e^2 admissibility term"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "surprise_pi_part_linear": true,
+    "sympy_critical_pi_matches": true,
+    "z3_surprise_pi_part_nonneg_unsat": true
+  },
+  "negative": {
+    "zero_precision_blows_up": true,
+    "drop_surprise_loses_check": true
+  },
+  "boundary": {
+    "e_zero_matches_entropy_term": true
+  },
+  "PASS": true
+}

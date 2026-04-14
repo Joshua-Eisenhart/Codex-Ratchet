@@ -21,7 +21,7 @@ import os
 from typing import Dict, List
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 EPS = 1e-12
 

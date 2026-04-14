@@ -1,0 +1,181 @@
+{
+  "name": "constraint_manifold_classical_full_spine",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim; baseline only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic monotonicity cross-check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric product needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n0": 81,
+    "layer_sizes": [
+      [
+        "L0_exists",
+        81
+      ],
+      [
+        "L1_F01_nonzero",
+        80
+      ],
+      [
+        "L2_N01_sum_bounded",
+        78
+      ],
+      [
+        "L3_no_all_plus",
+        78
+      ],
+      [
+        "L4_no_all_minus",
+        78
+      ],
+      [
+        "L5_parity_even",
+        38
+      ],
+      [
+        "L6_first_nonneg",
+        25
+      ],
+      [
+        "L7_last_nonpos",
+        17
+      ],
+      [
+        "L8_not_origin",
+        17
+      ],
+      [
+        "L9_sum_nonneg",
+        13
+      ],
+      [
+        "L10_no_adjacent_same_pm",
+        9
+      ],
+      [
+        "L11_contains_zero",
+        8
+      ],
+      [
+        "L12_one_plus",
+        8
+      ],
+      [
+        "L13_one_minus",
+        7
+      ],
+      [
+        "L14_balance",
+        7
+      ],
+      [
+        "L15_first_is_plus",
+        3
+      ],
+      [
+        "L16_last_is_minus",
+        1
+      ],
+      [
+        "L17_middle_zero",
+        1
+      ],
+      [
+        "L18_unique_pattern",
+        1
+      ],
+      [
+        "L19_canonical",
+        1
+      ]
+    ],
+    "monotone_nonincreasing": true,
+    "final_over_initial": 0.012345679012345678,
+    "pass": true
+  },
+  "negative": {
+    "vacuous_layer_monotone": true,
+    "illegal_reset_breaks_monotone": true,
+    "pass": true
+  },
+  "boundary": {
+    "n1_size": 3,
+    "empty_stack_unchanged": true,
+    "canonical_empty_on_n3": true,
+    "sympy_symbolic_check": true,
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "all_pass": true
+}

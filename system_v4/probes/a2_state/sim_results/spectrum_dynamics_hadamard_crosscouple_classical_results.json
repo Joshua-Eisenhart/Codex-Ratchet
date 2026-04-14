@@ -1,0 +1,148 @@
+{
+  "name": "spectrum_dynamics_hadamard_crosscouple_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive eigenvalue cross-check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "divergence_log": [
+    "Classical Weyl/Hadamard eigenvalue drift bound treats spectrum and dynamics as independently perturbable numeric sets. Nonclassical coupling (where a probe-induced perturbation reorders admissibility and changes which eigenspaces are distinguishable) is NOT captured by ||E||_2."
+  ],
+  "positive": {
+    "seed_0": {
+      "drift": 0.01330913954914914,
+      "bound": 0.03992001152693183,
+      "pass": true
+    },
+    "seed_1": {
+      "drift": 0.006271555886810942,
+      "bound": 0.01939340052501702,
+      "pass": true
+    },
+    "seed_2": {
+      "drift": 0.009234342129095685,
+      "bound": 0.02508480481846379,
+      "pass": true
+    },
+    "seed_3": {
+      "drift": 0.034046708483545185,
+      "bound": 0.037606378947355724,
+      "pass": true
+    },
+    "seed_4": {
+      "drift": 0.010822629288375518,
+      "bound": 0.020413474655284997,
+      "pass": true
+    },
+    "seed_5": {
+      "drift": 0.012245170228250668,
+      "bound": 0.029255049768465068,
+      "pass": true
+    },
+    "seed_6": {
+      "drift": 0.008110346448716221,
+      "bound": 0.014469539863588633,
+      "pass": true
+    },
+    "seed_7": {
+      "drift": 0.005181721033731712,
+      "bound": 0.02623650515135771,
+      "pass": true
+    },
+    "torch_xcheck": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "unsorted_pairing_can_exceed_bound": {
+      "pass": true
+    },
+    "tiny_bound_violated": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_perturbation": {
+      "pass": true
+    },
+    "tiny_perturbation": {
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

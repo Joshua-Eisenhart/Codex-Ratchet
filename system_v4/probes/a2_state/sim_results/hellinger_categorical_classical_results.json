@@ -1,0 +1,53 @@
+{
+  "name": "hellinger_categorical_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Hellinger uses commuting probability vectors on a fixed categorical alphabet. Quantum Hellinger (Bures) uses fidelity of density matrices with noncommuting spectra; this baseline drops operator structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Bhattacharyya coefficient"
+    },
+    "scipy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive import only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": "supportive",
+    "scipy": null,
+    "z3": null
+  },
+  "positive": {
+    "identity_zero": true,
+    "symmetry": true,
+    "in_unit_interval": true,
+    "tv_bounds": true,
+    "triangle_inequality": true
+  },
+  "negative": {
+    "orthogonal_maximal": true,
+    "different_nonzero": true
+  },
+  "boundary": {
+    "point_mass_self": true,
+    "small_perturbation_small": true,
+    "large_alphabet_finite": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_recall_space_carrier",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact projective equivalence via ratios"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric cross-check of rays"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "supportive"
+  },
+  "positive": {
+    "ray_collapse_numeric": true,
+    "ray_collapse_symbolic": true,
+    "distinct_rays": true
+  },
+  "negative": {
+    "nonparallel_same_ray": false,
+    "zero_is_ray": false
+  },
+  "boundary": {
+    "negative_scalar_same_ray": true,
+    "tiny_scalar_same_ray": true
+  },
+  "pass": true
+}

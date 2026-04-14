@@ -1,0 +1,61 @@
+{
+  "name": "grassmannian_geodesic_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "SVD and QR"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "real-only baseline; no geomstats"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "self_distance_zero": true,
+    "symmetry": true,
+    "gauge_invariance_right": true,
+    "angles_in_range": "True"
+  },
+  "negative": {
+    "distinct_subspaces_nonzero": true,
+    "triangle_inequality": true,
+    "frame_equivalence_detected": true
+  },
+  "boundary": {
+    "orthogonal_subspaces_pi_over_2": true,
+    "small_perturbation_distance": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "complex structure J on Gr_C(n,k) not representable over reals",
+    "no Fubini-Study / Kahler metric; metric is flat on tangent",
+    "principal angles carry no phase information",
+    "quantum state overlaps (|<psi|phi>|^2) cannot be recovered"
+  ]
+}

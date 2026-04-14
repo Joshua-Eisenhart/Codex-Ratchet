@@ -1,0 +1,179 @@
+{
+  "name": "qit_weyl_szilard_geometry_bridge",
+  "classification": "research_support",
+  "classification_note": "Bridge row between the stabilized Weyl/Hopf geometry stack and the exact Szilard bookkeeping family. It uses Weyl-spinor distinguishability, a shared protocol/order DAG, and z3 precedence guards without claiming a geometry-native engine runtime.",
+  "lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "helstrom_guess_bound",
+    "quantum_thermodynamics",
+    "graph_shell_geometry"
+  ],
+  "primary_lego_ids": [
+    "hopf_geometry",
+    "weyl_chirality_pair",
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing precedence guard for geometry-readout-to-Szilard protocol order"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing combined geometry/protocol DAG and path-length checks"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "combined_geometry_to_protocol_graph_is_a_single_valid_chain": {
+      "node_count": 5,
+      "edge_count": 4,
+      "topological_order": [
+        "weyl_left_right_frame",
+        "pauli_readout",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path": [
+        "weyl_left_right_frame",
+        "pauli_readout",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "longest_path_length": 4,
+      "is_dag": true,
+      "source_count": 1,
+      "sink_count": 1,
+      "pass": true
+    },
+    "weyl_left_right_pair_is_perfectly_distinguishable_at_the_bridge_reference": {
+      "left_right_guess_probability": 1.0,
+      "left_right_overlap_abs": 5.704004013523115e-17,
+      "pass": true
+    },
+    "szilard_measurement_feedback_reset_chain_preserves_expected_distinguishability_order": {
+      "blank_vs_measured_guess_probability": 0.75,
+      "blank_vs_erased_guess_probability": 0.5,
+      "wrong_order_vs_feedback_guess_probability": 0.75,
+      "pass": true
+    },
+    "z3_rejects_reset_before_measurement_in_the_combined_chain": {
+      "verdict": "unsat",
+      "pass": true,
+      "claim": "Combined geometry/readout/protocol DAG rejects reset-before-measurement orderings."
+    }
+  },
+  "negative": {
+    "existing_strict_rows_remain_bounded_and_clean": {
+      "weyl_strict_all_pass": true,
+      "weyl_translation_all_pass": true,
+      "szilard_graph_bridge_all_pass": true,
+      "control_lego_all_pass": true,
+      "pass": true
+    },
+    "bridge_row_is_not_a_geometry_native_demon_claim": {
+      "scope_note": "This row only aligns Weyl/Hopf geometry readout structure with the exact Szilard protocol chain and its operational-control surfaces.",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "combined_order_matches_geometry_then_measurement_then_feedback_then_reset": {
+      "topological_order": [
+        "weyl_left_right_frame",
+        "pauli_readout",
+        "measurement_record_written",
+        "feedback_applied",
+        "memory_erased"
+      ],
+      "pass": true
+    },
+    "bridge_metrics_match_strict_reference_scales": {
+      "weyl_transport_roundtrip_error": 5.551115123125783e-17,
+      "weyl_stack_error_gap": 3.314329501456529e-16,
+      "szilard_measurement_guess_probability": 0.75,
+      "szilard_erased_guess_probability": 0.5,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "graph_path_length": 4,
+    "geometry_left_right_guess_probability": 1.0,
+    "geometry_left_right_overlap_abs": 5.704004013523115e-17,
+    "szilard_measurement_guess_probability": 0.75,
+    "szilard_erased_guess_probability": 0.5,
+    "wrong_order_vs_feedback_guess_probability": 0.75,
+    "geometry_to_protocol_order_unsat": true,
+    "weyl_transport_roundtrip_error": 5.551115123125783e-17,
+    "weyl_translation_stack_gap": 3.314329501456529e-16,
+    "scope_note": "Weyl/Hopf <-> Szilard bridge row. It ties strict geometry readout to strict measurement/feedback/reset ordering without claiming a runtime engine rewrite."
+  }
+}

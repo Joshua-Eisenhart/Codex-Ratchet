@@ -1,0 +1,229 @@
+{
+  "name": "sim_geometric_constraint_manifold_pyg",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData node tensors, autograd through runs_on edges"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph construction, MessagePassing base class"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "admissibility SAT/UNSAT for G-structure tower constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 z3 already supplies the load-bearing SAT/UNSAT admissibility proof for this packet; cvc5 cross-check and SyGuS fence synthesis are out of scope for this bounded same-carrier run"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of g_level admissibility"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 node features are integer G-structure flags, not spinor/rotor objects; no Cl(3) geometric product needed in this graph-topology packet"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 constraint manifold is represented as a discrete G-level hierarchy graph; no Riemannian metric, geodesic, or holonomy computation is required in this packet"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 node features are binary structural flags and G-level integers, not SO(3)/SU(2) equivariant vectors; no equivariant layer computation needed in this bounded graph-topology packet"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 PyG handles all graph computation; rustworkx DAG/routing algorithms are not needed for this single G-structure hierarchy packet"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 all graph edges are pairwise; no multi-way hyperedge structure is modeled in this packet; XGI is relevant if multi-shell interactions are encoded as hyperedges, which is not done here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 no CW-complex or cell-complex structure is constructed; the constraint manifold graph uses directed pairwise edges only; TopoNetX is relevant for shell-face / higher-order topology, which is not in scope for this packet"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "tried and available; not used \u2014 boundary conditions are handled by z3 UNSAT proofs; no persistence diagram, filtration, or Betti-number computation is required in this bounded graph-admissibility packet"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "manifold_structure": {
+    "n_geometry_nodes": 8,
+    "n_topology_nodes": 4,
+    "n_operator_nodes": 4,
+    "n_runs_on_edges": 6,
+    "gradient_flows_to_base": true,
+    "z3_admissibility": "sat",
+    "z3_invalid_edge_unsat": true,
+    "pyg_native": true,
+    "message_passing_layers": [
+      "GeometryConstraintConv",
+      "EntropyReadoutConv"
+    ]
+  },
+  "z3_details": {
+    "z3_available": true,
+    "valid_graph_result": "sat",
+    "invalid_edge_result": "unsat",
+    "valid_graph_sat": true,
+    "invalid_edge_unsat": true
+  },
+  "sympy_admissibility": {
+    "sympy_available": true,
+    "all_admissible": true,
+    "edges": [
+      {
+        "child": "T_eta",
+        "parent": "S3",
+        "g_child": 2,
+        "g_parent": 1,
+        "admissible": true
+      },
+      {
+        "child": "Contact_S3",
+        "parent": "S3",
+        "g_child": 3,
+        "g_parent": 1,
+        "admissible": true
+      },
+      {
+        "child": "Sasakian_S3",
+        "parent": "Contact_S3",
+        "g_child": 4,
+        "g_parent": 3,
+        "admissible": true
+      },
+      {
+        "child": "Spin3_SU2",
+        "parent": "S3",
+        "g_child": 2,
+        "g_parent": 1,
+        "admissible": true
+      },
+      {
+        "child": "WeylBipartite",
+        "parent": "Spin3_SU2",
+        "g_child": 2,
+        "g_parent": 2,
+        "admissible": true
+      },
+      {
+        "child": "ThreeQ",
+        "parent": "WeylBipartite",
+        "g_child": 3,
+        "g_parent": 2,
+        "admissible": true
+      }
+    ]
+  },
+  "positive": {
+    "P1_graph_construction": {
+      "pass": true,
+      "n_geometry_nodes": 8,
+      "n_topology_nodes": 4,
+      "n_operator_nodes": 4,
+      "n_runs_on_edges": 6,
+      "pyg_validate": true
+    },
+    "P2_geometry_constraint_conv": {
+      "pass": true,
+      "output_shape": [
+        8,
+        7
+      ],
+      "no_nan": true
+    },
+    "P3_entropy_readout_conv": {
+      "pass": true,
+      "Ic_at_ThreeQ": 0.5855743288993835,
+      "output_shape": [
+        8,
+        7
+      ]
+    },
+    "P4_autograd_flows_to_S3": {
+      "pass": true,
+      "grad_S3_is_not_None": true,
+      "grad_S3_nonzero": true,
+      "grad_S3_value": -0.0010728181805461645,
+      "conv_used": "GeometryConstraintConv (3 passes \u2014 parent->child, 3-hop path S3->Spin->Weyl->ThreeQ)"
+    },
+    "P5_z3_admissibility_sat": {
+      "pass": true,
+      "z3_result": "sat",
+      "z3_available": true
+    }
+  },
+  "negative": {
+    "N1_z3_invalid_edge_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "z3_available": true
+    },
+    "N2_disconnected_no_gradient": {
+      "pass": true,
+      "grad_S3_disconnected": 0.0,
+      "interpretation": "no gradient path from ThreeQ to S3 when disconnected"
+    }
+  },
+  "boundary": {
+    "B1_single_node_forward": {
+      "pass": true,
+      "gcc_out_shape": [
+        1,
+        7
+      ],
+      "erc_out_shape": [
+        1,
+        7
+      ],
+      "no_nan_gcc": true,
+      "no_nan_erc": true
+    },
+    "B2_full_graph_no_nan_inf": {
+      "pass": true,
+      "gcc_no_nan": true,
+      "gcc_no_inf": true,
+      "erc_no_nan": true,
+      "erc_no_inf": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "pyg_available": true,
+    "z3_available": true,
+    "autograd_to_S3": true,
+    "z3_valid_graph_sat": true,
+    "z3_invalid_edge_unsat": true
+  }
+}

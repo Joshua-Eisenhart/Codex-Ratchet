@@ -1,0 +1,41 @@
+{
+  "name": "sim_fep_generative_model_as_shell",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "encode supp(q) subseteq supp(p) as logical implication"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "encode generative-shell exclusion rule as UNSAT"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "finite-support KL evaluation"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "supportive",
+    "z3": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "admissible_q_has_finite_F": "True",
+    "F_value_sane": true,
+    "sympy_supp_condition_well_formed": true,
+    "z3_shell_rule_unsat": true
+  },
+  "negative": {
+    "q_outside_shell_is_inf": "True",
+    "infinitesimal_leak_is_inf": "True"
+  },
+  "boundary": {
+    "edge_support_finite": "True",
+    "match_shell_zero_F": true
+  },
+  "PASS": true
+}

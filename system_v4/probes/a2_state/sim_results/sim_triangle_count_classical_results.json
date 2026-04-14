@@ -1,0 +1,68 @@
+{
+  "name": "sim_triangle_count_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check triangle count via torch.matrix_power(A,3).diagonal()/2"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive"
+  },
+  "divergence_log": [
+    "negative-case: triangle-free graphs give 0 as expected",
+    "boundary: deg<2 yields c=0 by convention"
+  ],
+  "positive": {
+    "K4_4_triangles": {
+      "count": 4,
+      "pass": true
+    },
+    "K4_clustering_1": {
+      "c": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "pass": true
+    },
+    "C5_0_triangles": {
+      "count": 0,
+      "pass": true
+    },
+    "torch_cycle_agrees": {
+      "torch": 0,
+      "np": 0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "path_has_triangle_fails": {
+      "count": 0,
+      "pass": true
+    },
+    "2K2_no_tri": {
+      "count": 0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "K3_one": {
+      "count": 1,
+      "pass": true
+    },
+    "n1_zero_clust": {
+      "c": [
+        0.0
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true
+  },
+  "all_pass": true
+}

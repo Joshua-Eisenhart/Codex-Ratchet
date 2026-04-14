@@ -1,0 +1,69 @@
+{
+  "name": "chsh_tsirelson_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "scalar bookkeeping and classical bound constant"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd over measurement angles; complex tensor kron/eigvalsh to realize the CHSH operator on the singlet density matrix and saturate Tsirelson"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for angle optimization"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required -- classical bound is numeric"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "load_bearing",
+    "sympy": null,
+    "z3": null
+  },
+  "positive": {
+    "S_analytic": -2.82842712474619,
+    "S_analytic_abs_ge_tsirelson_minus_tol": true,
+    "S_analytic_abs_gt_classical": true,
+    "S_optimized": -2.82842712474619,
+    "S_optimized_abs_ge_tsirelson_minus_tol": true,
+    "S_optimized_abs_gt_classical": true,
+    "quantum_classical_gap": 0.8284271247461898,
+    "distance_from_tsirelson": 4.440892098500626e-16
+  },
+  "negative": {
+    "S_product_state": 1.4142135623730951,
+    "product_state_respects_classical_bound": true,
+    "classical_lt_tsirelson": true
+  },
+  "boundary": {
+    "S_perturbed": [
+      -2.8213619475269995,
+      -2.800237008784765,
+      -2.7167905118648177
+    ],
+    "robust_quantum_violation": true,
+    "S_degenerate_angles": -1.9999999999999996,
+    "degenerate_respects_classical_bound": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "gap": {
+      "classical_baseline_bound": 2.0,
+      "tsirelson_bound": 2.8284271247461903,
+      "S_quantum_optimized": -2.82842712474619,
+      "S_quantum_minus_classical": 0.8284271247461898
+    },
+    "classical_baseline_cited": "local hidden variable CHSH bound |S|<=2",
+    "measured_quantum_value": -2.82842712474619
+  }
+}

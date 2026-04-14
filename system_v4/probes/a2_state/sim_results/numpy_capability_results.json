@@ -1,0 +1,152 @@
+{
+  "name": "sim_numpy_capability",
+  "purpose": "Tool-capability isolation probe for numpy -- primitives only.",
+  "numpy_version": "2.3.4",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- linalg, einsum, eig"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "separate probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not geometry-relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not graph-relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not topology-relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "witness_file": "system_v4/probes/sim_cross_fep_x_igt.py",
+  "positive": {
+    "numpy_available": {
+      "pass": true,
+      "version": "2.3.4"
+    },
+    "matmul_identity": {
+      "pass": true
+    },
+    "einsum_partial_trace": {
+      "pass": true
+    },
+    "eigh_symmetric": {
+      "pass": true,
+      "eigvals": [
+        1.0,
+        3.0
+      ],
+      "orthonormality_err": 2.220446049250313e-16,
+      "reconstruction_err": 4.440892098500626e-16
+    },
+    "svd_reconstruct": {
+      "pass": true,
+      "U_orth_err": 8.881784197001252e-16,
+      "Vt_orth_err": 4.440892098500626e-16,
+      "min_singular_value": 0.7602211603069272
+    },
+    "linalg_solve": {
+      "pass": true,
+      "residual": 0.0,
+      "solution": [
+        1.4,
+        1.2000000000000002
+      ]
+    }
+  },
+  "negative": {
+    "shape_mismatch_raises": {
+      "pass": true,
+      "error_type": "ValueError"
+    },
+    "singular_inverse_raises": {
+      "pass": true,
+      "error_type": "LinAlgError"
+    }
+  },
+  "boundary": {
+    "empty_array": {
+      "pass": true
+    },
+    "large_sum": {
+      "pass": true
+    },
+    "complex_conj": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

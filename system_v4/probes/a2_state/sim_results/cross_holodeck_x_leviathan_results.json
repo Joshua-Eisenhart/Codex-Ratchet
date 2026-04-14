@@ -1,0 +1,34 @@
+{
+  "name": "sim_cross_holodeck_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "interval intersection"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "proves civic point under leviathan+majority observers"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "observers_alone_no_shared_core": true,
+    "coupled_all_nonempty": true,
+    "coupled_shared_core_nonempty": true,
+    "z3_civic_coherent_point_exists": true,
+    "EMERGENT_civic_coherence": true
+  },
+  "negative": {
+    "no_leviathan_no_core": true
+  },
+  "boundary": {
+    "trivial_leviathan_reduces_to_observer": true
+  },
+  "PASS": true
+}

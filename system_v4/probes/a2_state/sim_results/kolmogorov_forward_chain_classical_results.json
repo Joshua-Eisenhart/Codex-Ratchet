@@ -1,0 +1,102 @@
+{
+  "name": "kolmogorov_forward_chain_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Kolmogorov forward equation on a discrete chain propagates classical populations p_i(t) through a commuting transition kernel. It has a real spectrum bounded above by zero; quantum walks on the same graph have a unitary propagator with ballistic (not diffusive) spreading and spectrum on the unit circle. The nonclassical analog is a Lindbladian whose dissipative part reduces to Q on populations but acts nontrivially on coherences.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch eigvals cross-check of Q spectrum"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "uniform_stationary": "True",
+    "gap_matches_analytic": "True",
+    "distances_decrease": true,
+    "converges_to_uniform": "True",
+    "exp_bound_holds": true,
+    "torch_gap_cross": "True"
+  },
+  "negative": {
+    "disconnected_gap_zero": true,
+    "disconnected_no_mixing": "True"
+  },
+  "boundary": {
+    "single_state_stationary": "True",
+    "complete_graph_fast_mix": true,
+    "rate_scales_gap": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

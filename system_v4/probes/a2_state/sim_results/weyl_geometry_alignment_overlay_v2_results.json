@@ -1,0 +1,693 @@
+{
+  "name": "weyl_geometry_alignment_overlay_v2",
+  "classification": "exploratory",
+  "classification_note": "Controller overlay for the Weyl/Hopf geometry lane. It compares base legos, composed numeric rows, strict companion rows, translation lanes, repair comparison surfaces, proof-pressure rows, and routing/controller surfaces when available.",
+  "lego_ids": [
+    "nested_hopf_tori",
+    "weyl_pauli_transport",
+    "weyl_hopf_spinor_bridge",
+    "weyl_hopf_pauli_composed_stack",
+    "qit_weyl_geometry_companion",
+    "qit_weyl_hypergraph_companion",
+    "qit_weyl_geometry_translation_lane",
+    "qit_weyl_geometry_carrier_translation_lane",
+    "qit_weyl_geometry_repair_comparison_surface",
+    "weyl_geometry_proof_pressure",
+    "weyl_geometry_family_expansion",
+    "weyl_geometry_multifamily_expansion",
+    "weyl_geometry_translation_targets",
+    "weyl_geometry_graph_proof_alignment",
+    "qit_weyl_carnot_bridge",
+    "qit_weyl_szilard_geometry_bridge",
+    "weyl_hypergraph_geometry_bridge",
+    "weyl_hypergraph_follow_on",
+    "qit_weyl_hypergraph_translation_lane",
+    "weyl_geometry_ladder_audit"
+  ],
+  "primary_lego_ids": [
+    "nested_hopf_tori",
+    "weyl_hopf_pauli_composed_stack",
+    "qit_weyl_geometry_companion"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "all_pass": true,
+    "row_count": 23,
+    "available_row_count": 23,
+    "category_counts": {
+      "base_lego": 3,
+      "composed_numeric": 1,
+      "strict_companion": 2,
+      "translation_lane": 3,
+      "repair_comparison": 1,
+      "proof_pressure": 1,
+      "family_expansion": 3,
+      "routing_controller": 1,
+      "graph_proof_bridge": 5,
+      "alternate_carrier": 2,
+      "sidecar": 1
+    },
+    "has_base_legos": true,
+    "has_composed_numeric_row": true,
+    "has_strict_companion_row": true,
+    "has_translation_lanes": true,
+    "has_repair_comparison_row": true,
+    "has_proof_pressure_row": true,
+    "has_family_expansion_row": true,
+    "has_routing_controller_row": true,
+    "has_graph_proof_rows": true,
+    "has_alternate_carrier_rows": true,
+    "has_sidecar_row": true,
+    "top_foundation_row": "nested_hopf_tori",
+    "top_composed_row": "weyl_hopf_pauli_composed_stack",
+    "top_strict_row": "qit_weyl_geometry_companion",
+    "top_translation_row": "qit_weyl_geometry_translation_lane",
+    "top_repair_row": "qit_weyl_geometry_repair_comparison_surface",
+    "top_proof_row": "weyl_geometry_proof_pressure",
+    "top_family_row": "weyl_hypergraph_follow_on",
+    "top_routing_row": "weyl_geometry_translation_targets",
+    "top_bridge_row": "weyl_geometry_graph_proof_alignment",
+    "top_carrier_row": "weyl_geometry_carrier_array",
+    "top_sidecar_row": "weyl_geometry_ladder_audit",
+    "scope_note": "Controller-facing overlay for the Weyl/Hopf geometry lane. It now includes base legos, the composed stack, strict companion, translation lanes, repair comparison, proof pressure, family expansion, routing targets, bridge rows, engine bridges, carrier comparison, and sidecar diagnostics."
+  },
+  "rows": [
+    {
+      "category": "base_lego",
+      "role": "base_geometry_carrier",
+      "row_id": "nested_hopf_tori",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_nested_hopf_tori_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 192,
+        "total_tests": 10,
+        "max_point_norm_error": 1.1102230246251565e-16,
+        "max_left_hopf_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 0.0,
+        "inner_radius_identity": true,
+        "clifford_radius_identity": true,
+        "outer_radius_identity": true,
+        "all_pass": true,
+        "spinor_pass": true,
+        "transport_pass": true,
+        "combined_pass": true
+      },
+      "note": "Layered Hopf-torus base lego with Weyl spinors, Pauli/Bloch checks, and transport closure."
+    },
+    {
+      "category": "base_lego",
+      "role": "spinor_transport_base",
+      "row_id": "weyl_pauli_transport",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_pauli_transport_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 18,
+        "transport_count": 3,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_bloch_antipodal_gap": 0.0,
+        "pauli_readout_gap": 0.0,
+        "transport_roundtrip_error": 5.551115123125783e-17,
+        "transport_partial_midpoint_separation": 0.19603428065912115,
+        "radii_monotone": true,
+        "all_pass": true,
+        "first_sample_chiral_z_gap": 1.4142135623730947
+      },
+      "note": "Reusable Weyl/Hopf/Pauli transport lego with left/right readouts and bounded transport checks."
+    },
+    {
+      "category": "base_lego",
+      "role": "spinor_bridge_base",
+      "row_id": "weyl_hopf_spinor_bridge",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_hopf_spinor_bridge_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 12,
+        "graph_node_count": 5,
+        "graph_edge_count": 4,
+        "graph_is_dag": true,
+        "proof_correct_order_sat": true,
+        "proof_reverse_order_unsat": true,
+        "proof_back_edge_unsat": true,
+        "max_left_right_overlap_abs": 5.596971127478021e-17,
+        "max_hopf_roundtrip_gap": 2.220446049250313e-16,
+        "max_transport_roundtrip_gap": 1.5700924586837752e-16,
+        "max_pauli_readout_gap": 0.0,
+        "alternate_carrier_gap": 1.3084103822364794e-17,
+        "all_pass": true
+      },
+      "note": "Reusable Weyl/Hopf/Pauli bridge lego with nested-torus transport, alternate-carrier comparison, and finite graph/proof ordering."
+    },
+    {
+      "category": "composed_numeric",
+      "role": "composed_geometry_anchor",
+      "row_id": "weyl_hopf_pauli_composed_stack",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hopf_pauli_composed_stack_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 192,
+        "torus_levels": [
+          "inner",
+          "clifford",
+          "outer"
+        ],
+        "max_spinor_norm_error": 1.1102230246251565e-16,
+        "max_bloch_alignment_error": 2.2207757275727963e-16,
+        "max_transport_error": 2.7755575615628914e-16,
+        "max_stack_error": 1.129514239719272e-16,
+        "all_pass": true,
+        "spinor_pass": true,
+        "density_pass": true,
+        "transport_pass": true,
+        "combined_pass": true
+      },
+      "note": "Canonical composed stack: nested Hopf tori, left/right Weyl spinors, Pauli/Bloch checks, and transport consistency."
+    },
+    {
+      "category": "strict_companion",
+      "role": "finite_state_strict_anchor",
+      "row_id": "qit_weyl_geometry_companion",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_companion_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "sample_count": 24,
+        "carrier_count": 3,
+        "row_count": 27,
+        "max_stack_error": 4.443843741175801e-16,
+        "max_transport_error": 5.551115123125783e-17,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "max_basis_change_covariance_error": 2.220446049250313e-16,
+        "stack_gap_to_open_reference": 3.314329501456529e-16,
+        "stereographic_nonfinite_count": 0,
+        "all_pass": true
+      },
+      "note": "Strict finite-state companion/readout surface for the Weyl/Hopf/Pauli geometry stack."
+    },
+    {
+      "category": "strict_companion",
+      "role": "finite_hypergraph_strict_anchor",
+      "row_id": "qit_weyl_hypergraph_companion",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_hypergraph_companion_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "support_pack_count": 4,
+        "strict_node_count": 4,
+        "strict_hyperedge_count": 2,
+        "strict_shadow_edge_count": 4,
+        "strict_dual_node_count": 2,
+        "strict_dual_edge_count": 4,
+        "cell_complex_shape": [
+          4,
+          4,
+          1
+        ],
+        "graph_path_length": 4,
+        "reverse_order_z3_unsat": true,
+        "reverse_order_cvc5_unsat": true,
+        "all_pass": true
+      },
+      "note": "Strict bounded companion/readout surface for the Weyl-hypergraph lane with xgi/toponetx carrier checks and z3/cvc5 ordering guards."
+    },
+    {
+      "category": "translation_lane",
+      "role": "open_vs_strict_translation",
+      "row_id": "qit_weyl_geometry_translation_lane",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_translation_lane_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "open_sample_count": 192,
+        "strict_sample_count": 24,
+        "stack_error_gap": 3.314329501456529e-16,
+        "transport_error_gap": -2.220446049250313e-16,
+        "basis_change_gap": -3.296783224832479e-20,
+        "open_max_stack_error": 1.129514239719272e-16,
+        "strict_max_stack_error": 4.443843741175801e-16,
+        "all_pass": true,
+        "open_row_id": "weyl_hopf_pauli_composed_stack",
+        "strict_row_id": "qit_weyl_geometry_companion"
+      },
+      "note": "Promoted open-vs-strict translation lane built from the open composed stack and the strict finite-state geometry companion."
+    },
+    {
+      "category": "translation_lane",
+      "role": "open_vs_strict_carrier_translation",
+      "row_id": "qit_weyl_geometry_carrier_translation_lane",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_carrier_translation_lane_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "open_carrier_count": 5,
+        "strict_carrier_count": 3,
+        "carrier_count_gap": 2,
+        "open_direct_core_count": 3,
+        "open_structural_count": 2,
+        "direct_core_count_gap": 0,
+        "open_core_lr_overlap": 2.5860532068485732e-17,
+        "strict_lr_overlap": 1.1102230246251565e-16,
+        "carrier_readout_gap_abs": 8.516177039402992e-17,
+        "strict_transport_roundtrip_error": 5.551115123125783e-17,
+        "strict_basis_change_error": 2.220446049250313e-16,
+        "strict_stack_error": 4.443843741175801e-16,
+        "all_pass": true,
+        "open_best_direct_match": "nested_hopf_torus",
+        "open_richer_alt_geometry": "cp3_s7_product_lift"
+      },
+      "note": "Open-vs-strict carrier translation lane pairing the carrier array against the strict finite-state companion."
+    },
+    {
+      "category": "repair_comparison",
+      "role": "paired_survivor_surface",
+      "row_id": "qit_weyl_geometry_repair_comparison_surface",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_geometry_repair_comparison_surface_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "pair_count": 3,
+        "companion_ready_pair_count": 3,
+        "strict_anchor_row": "qit_weyl_geometry_companion",
+        "top_survivor_row": "weyl_hopf_pauli_composed_stack",
+        "all_pass": true
+      },
+      "note": "Controller-facing repair comparison surface that records which open rows survive translation into the strict companion carrier."
+    },
+    {
+      "category": "proof_pressure",
+      "role": "solver_checked_schedule_pressure",
+      "row_id": "weyl_geometry_proof_pressure",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_proof_pressure_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "row_count": 8,
+        "graph_path_length": 7,
+        "base_row_count": 2,
+        "bridge_row_count": 3,
+        "comparison_row_count": 1,
+        "audit_row_count": 1,
+        "sidecar_row_count": 1,
+        "carrier_count": 5,
+        "compare_carrier_count": 4,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_chiral_z_gap": 1.4142135623730951,
+        "max_transport_roundtrip_error": 5.551115123125783e-17,
+        "max_stack_error": 1.129514239719272e-16,
+        "max_hopf_transport_error": 2.7755575615628914e-16,
+        "all_pass": true
+      },
+      "note": "Solver-backed pressure surface over the existing geometry stack, blocking shortcut ordering and illegal carrier transitions."
+    },
+    {
+      "category": "family_expansion",
+      "role": "hypergraph_follow_on",
+      "row_id": "weyl_hypergraph_follow_on",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hypergraph_follow_on_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "best_family": "hypergraph_family",
+        "best_family_score": 4.0,
+        "hypergraph_support_count": 4,
+        "hypergraph_edge_count": 2,
+        "hypergraph_edge_sizes": [
+          2,
+          3
+        ],
+        "hypergraph_multiway_load_bearing": true,
+        "torus_beta1": 2,
+        "all_pass": true
+      },
+      "note": "Dedicated hypergraph follow-on row for the Weyl/Hopf lane; this is the live next-family extension path."
+    },
+    {
+      "category": "family_expansion",
+      "role": "carrier_family_expansion",
+      "row_id": "weyl_geometry_multifamily_expansion",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_multifamily_expansion_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "best_family": "hypergraph_family",
+        "runner_up_family": "contact_symplectic_family",
+        "third_family": "graph_family",
+        "family_count": 3,
+        "weyl_anchor_support_count": 4,
+        "hypergraph_support_count": 4,
+        "graph_support_count": 3,
+        "contact_support_count": 3,
+        "all_pass": true
+      },
+      "note": "Family-routing surface that ranks hypergraph, contact/symplectic, and graph follow-on geometry families beside the Weyl/Hopf anchor."
+    },
+    {
+      "category": "family_expansion",
+      "role": "carrier_family_expansion",
+      "row_id": "weyl_geometry_family_expansion",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_family_expansion_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "family_count": 7,
+        "source_result_count": 10,
+        "carrier_core_count": 5,
+        "carrier_core_passed_carriers": 5,
+        "carrier_core_failed_carriers": 0,
+        "carrier_compare_carrier_count": 4,
+        "carrier_compare_result_count": 96,
+        "all_pass": true
+      },
+      "note": "Bounded expansion row that widens the live Weyl/Hopf carrier set into other repo geometry families already present."
+    },
+    {
+      "category": "routing_controller",
+      "role": "promotion_queue",
+      "row_id": "weyl_geometry_translation_targets",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_translation_targets_results.json",
+      "classification": "exploratory",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "row_count": 22,
+        "foundation_count": 5,
+        "companion_ready_count": 4,
+        "graph_proof_bridge_count": 5,
+        "sidecar_count": 8,
+        "top_foundation_row": "nested_hopf_tori",
+        "top_companion_row": "weyl_hopf_pauli_composed_stack",
+        "top_bridge_row": "weyl_geometry_graph_proof_alignment",
+        "top_sidecar_row": "weyl_geometry_multifamily_expansion",
+        "registry_gap_concept_count": 5,
+        "registry_new_concept_count": 9,
+        "all_pass": true
+      },
+      "note": "Ranked translation-target queue for the Weyl/Hopf lane; foundation, companion-ready, bridge-only, and sidecar rows are separated explicitly."
+    },
+    {
+      "category": "graph_proof_bridge",
+      "role": "schedule_and_proof_bridge",
+      "row_id": "weyl_geometry_graph_proof_alignment",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_graph_proof_alignment_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "node_count": 6,
+        "edge_count": 5,
+        "graph_path_length": 5,
+        "source_count": 1,
+        "sink_count": 1,
+        "forward_order_sat": true,
+        "reverse_order_unsat": true,
+        "chirality_unsat": true,
+        "pauli_products_ok": true,
+        "max_left_right_overlap_abs": 5.704004013523115e-17,
+        "max_bloch_antipodal_gap": 0.0,
+        "max_hopf_image_norm_gap": 2.220446049250313e-16,
+        "transport_fraction_inner_to_outer": 1.0,
+        "all_pass": true,
+        "negative_reverse_order_unsat": true,
+        "negative_same_sign_unsat": true,
+        "boundary_pass": true
+      },
+      "note": "Graph/proof bridge over the Weyl/Hopf/Pauli schedule, with rustworkx ordering and z3 legality checks."
+    },
+    {
+      "category": "graph_proof_bridge",
+      "role": "engine_bridge",
+      "row_id": "qit_weyl_carnot_bridge",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_carnot_bridge_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "geometry_stage_count": 4,
+        "engine_graph_path_length": 4,
+        "geometry_engine_stage_gap": 0,
+        "bridge_node_count": 8,
+        "bridge_edge_count": 7,
+        "bridge_path_length": 7,
+        "bridge_order_unsat": true,
+        "stage_count_unsat": true,
+        "engine_forward_efficiency": 0.5000000000000001,
+        "engine_forward_carnot_bound": 0.5,
+        "engine_reverse_cop": 0.9999999999999999,
+        "engine_reverse_cop_carnot": 1.0,
+        "all_pass": true
+      },
+      "note": "Bounded geometry-to-Carnot bridge that keeps the geometry carrier and Carnot family distinct while checking ordering and stage-count compatibility."
+    },
+    {
+      "category": "graph_proof_bridge",
+      "role": "engine_bridge",
+      "row_id": "qit_weyl_szilard_geometry_bridge",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_szilard_geometry_bridge_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "graph_path_length": 4,
+        "geometry_left_right_guess_probability": 1.0,
+        "geometry_left_right_overlap_abs": 5.704004013523115e-17,
+        "szilard_measurement_guess_probability": 0.75,
+        "szilard_erased_guess_probability": 0.5,
+        "wrong_order_vs_feedback_guess_probability": 0.75,
+        "geometry_to_protocol_order_unsat": true,
+        "weyl_transport_roundtrip_error": 5.551115123125783e-17,
+        "weyl_translation_stack_gap": 3.314329501456529e-16,
+        "all_pass": true
+      },
+      "note": "Bounded geometry-to-Szilard bridge that ties Weyl/Hopf readout structure to the measurement/feedback/reset protocol chain."
+    },
+    {
+      "category": "graph_proof_bridge",
+      "role": "hypergraph_bridge",
+      "row_id": "weyl_hypergraph_geometry_bridge",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_hypergraph_geometry_bridge_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "best_family": "hypergraph_family",
+        "hyperedge_count": 2,
+        "max_hyperedge_size": 3,
+        "pairwise_shadow_edge_count": 4,
+        "graph_path_length": 4,
+        "bridge_order_unsat": true,
+        "cell_complex_shape": [
+          4,
+          4,
+          1
+        ],
+        "all_pass": true
+      },
+      "note": "Bounded geometry-to-hypergraph bridge that keeps the multiway family explicit and distinct from pairwise collapse."
+    },
+    {
+      "category": "translation_lane",
+      "role": "hypergraph_translation",
+      "row_id": "qit_weyl_hypergraph_translation_lane",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_weyl_hypergraph_translation_lane_results.json",
+      "classification": "research_support",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "best_family": "hypergraph_family",
+        "best_family_score": 4.0,
+        "support_pack_count": 4,
+        "hypergraph_support_count": 4,
+        "pairwise_shadow_rankings_differ": true,
+        "multiway_load_bearing": true,
+        "support_pack_all_pass": true,
+        "graph_path_length": 4,
+        "all_pass": true
+      },
+      "note": "Bounded translation lane for the Weyl-hypergraph extension; enough to treat the family as companion-ready in the controller sense."
+    },
+    {
+      "category": "graph_proof_bridge",
+      "role": "protocol_schedule_bridge",
+      "row_id": "weyl_geometry_protocol_dag",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_protocol_dag_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "node_count": null,
+        "edge_count": null,
+        "graph_path_length": 5,
+        "source_count": null,
+        "sink_count": null,
+        "forward_order_sat": null,
+        "reverse_order_unsat": null,
+        "ordering_unsat": null,
+        "chirality_unsat": null,
+        "pauli_products_ok": null,
+        "transport_fraction_inner_to_outer": null,
+        "all_pass": true,
+        "negative_back_edge_unsat": null,
+        "boundary_pass": null
+      },
+      "note": "Reusable graph/proof protocol DAG for the Weyl/Hopf geometry stack."
+    },
+    {
+      "category": "alternate_carrier",
+      "role": "carrier_family_array",
+      "row_id": "weyl_geometry_carrier_array",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_carrier_array_results.json",
+      "classification": "canonical",
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "total_tests": 35,
+        "passed": 35,
+        "failed": 0,
+        "carrier_count": 5,
+        "passed_carriers": 5,
+        "failed_carriers": 0,
+        "max_nested_lr_overlap": 2.5860532068485732e-17,
+        "max_nested_bloch_gap": 0.0,
+        "max_graph_cycle_rank": 6,
+        "max_hypergraph_shadow_components": 1,
+        "max_cp3_concurrence": 5.551115123125783e-17,
+        "all_pass": true
+      },
+      "note": "Carrier array that runs the same spinor/Pauli core across multiple geometry carriers already in the repo."
+    },
+    {
+      "category": "alternate_carrier",
+      "role": "carrier_family_comparison",
+      "row_id": "weyl_geometry_carrier_compare",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/lego_weyl_geometry_carrier_compare_results.json",
+      "classification": null,
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "carrier_count": 4,
+        "sample_count": null,
+        "comparison_rows": 3,
+        "mean_left_entropy_spread": 0.19439185783157628,
+        "mean_step_bloch_jump_spread": 0.5706616935506963,
+        "all_pass": true
+      },
+      "note": "Reusable comparison lego that keeps the Weyl-style readout core fixed while varying the carrier plumbing."
+    },
+    {
+      "category": "sidecar",
+      "role": "ambient_witness_audit",
+      "row_id": "weyl_geometry_ladder_audit",
+      "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_ladder_audit_results.json",
+      "classification": null,
+      "available": true,
+      "all_pass": true,
+      "key_metrics": {
+        "ambient_nontrivial_count": 2,
+        "clifford_neutral": true,
+        "engine_nontrivial": true,
+        "engine_type2_nontrivial": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true,
+        "type2_witness_separable": true,
+        "guardrail_pass": true,
+        "verdict": "PASS",
+        "all_pass": true,
+        "ambient_torus_count": 3,
+        "engine_torus_count": 3
+      },
+      "note": "Independent witness audit for the Weyl-ambient rung before folding it into engine dynamics or bridge language."
+    }
+  ]
+}

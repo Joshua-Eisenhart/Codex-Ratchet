@@ -1,0 +1,104 @@
+{
+  "name": "differential_entropy_mvn_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.slogdet cross-check of log-determinant term"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_d1": true,
+    "identity_d2": true,
+    "identity_d3": true,
+    "identity_d5": true,
+    "shift_invariant_by_formula": true,
+    "scaling_adds_d_log_c": true,
+    "torch_logdet_cross": true
+  },
+  "negative": {
+    "singular_nonpositive_det": true,
+    "negdef_rejected": true
+  },
+  "boundary": {
+    "d1_scalar": true
+  },
+  "divergence_log": [
+    "Classical MVN differential entropy; quantum Gaussian (bosonic) analog not probed.",
+    "Positive-definiteness enforced; degenerate covariance deliberately excluded."
+  ],
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

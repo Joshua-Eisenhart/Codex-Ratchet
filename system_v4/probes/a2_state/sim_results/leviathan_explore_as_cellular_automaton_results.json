@@ -1,0 +1,29 @@
+{
+  "name": "leviathan_explore_as_cellular_automaton",
+  "framing_assumption": "civilization = local-rule lattice; diversity=diffusion, centralization=max-routing",
+  "blind_spot": "no long-range coupling; discrete state",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "CA lattice update"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "diffusive_final_var": 8.855037286546112e-05,
+    "diffusive_initial_var": 0.025545419975822395,
+    "pass_variance_decreases": true
+  },
+  "negative": {
+    "central_final_maxfrac": 0.009883853100030976,
+    "pass_concentrates": false
+  },
+  "boundary": {
+    "uniform_stays_uniform": true,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

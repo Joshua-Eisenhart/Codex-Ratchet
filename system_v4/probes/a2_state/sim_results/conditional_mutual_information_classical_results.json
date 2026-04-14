@@ -1,0 +1,36 @@
+{
+  "name": "conditional_mutual_information_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "joint-pmf marginalization and entropy computation"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
+  "positive": {
+    "CMI_nonneg_on_random": true,
+    "markov_chain_zero_CMI": true
+  },
+  "negative": {
+    "direct_correlation_has_positive_CMI": true,
+    "classical_CMI_cannot_be_negative": true
+  },
+  "boundary": {
+    "product_zero_CMI": true,
+    "uniform_joint_zero_CMI": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": "Classical CMI is always nonneg by Gibbs' inequality applied pointwise in Z. The baseline cannot encode the fact that quantum CMI, while also nonneg (by SSA), fails to characterize approximate Markov chains via Bayes conditioning \u2014 the correct recovery is the Petz map, and small CMI does not force small distance from a Markov state in the classical-Bayes sense. Therefore any sim that uses classical CMI as a stand-in for quantum conditional independence will miss noncommuting side-information leakage."
+}

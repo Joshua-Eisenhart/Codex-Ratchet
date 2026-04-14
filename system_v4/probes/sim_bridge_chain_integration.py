@@ -8,7 +8,7 @@ Tests gradient ordering vs kernel ordering and z3 guard verification.
 import json
 import os
 import time
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

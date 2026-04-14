@@ -25,6 +25,11 @@ PROBES_DIR = REPO / "system_v4" / "probes"
 VALID = {"classical_baseline", "canonical"}
 
 
+def _is_ignored_sim_path(path: Path) -> bool:
+    name = path.name
+    return name.endswith(" 2.py")
+
+
 def _module_level_classification(path: Path) -> tuple[str, object]:
     """Return (status, value).
 
@@ -66,6 +71,7 @@ def main() -> int:
     sims = sorted(
         p for p in PROBES_DIR.glob("sim_*.py")
         if not p.name.endswith("_capability.py")
+        and not _is_ignored_sim_path(p)
         and "_archive_lane_c" not in p.parts
     )
 

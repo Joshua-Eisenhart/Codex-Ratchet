@@ -2,7 +2,7 @@
   "name": "negative_xi_winner_disqualifiers",
   "probe": "xi_winner_claim_negative_battery",
   "purpose": "Disqualify weak Xi winner claims under matched packets, counterfeit packet classes, controlled ablations, and small balance changes.",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "tools_used": [
     "numpy"
   ],
@@ -67,20 +67,6 @@
       "used": false,
       "reason": "no persistent topology needed"
     }
-  },
-  "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
   },
   "positive": {
     "base_non_counterfeit_aggregate": {
@@ -225,6 +211,5 @@
       "small_balance_change_collapse": false
     },
     "base_non_counterfeit_winner": "Xi_ref"
-  },
-  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+  }
 }

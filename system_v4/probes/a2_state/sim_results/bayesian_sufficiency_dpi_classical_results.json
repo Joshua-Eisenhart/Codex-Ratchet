@@ -1,0 +1,98 @@
+{
+  "name": "bayesian_sufficiency_dpi_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Fisher-Neyman sufficiency uses factorization p(x|theta)=g(T(x),theta)h(x); information-preserving coarse-graining is defined on a commuting sample space and respects joint distributions p(theta,x). Quantum sufficiency requires a recovery channel R such that R circ N = id on the subalgebra, and is equivalent to equality in quantum DPI under operator-monotone functions of noncommuting rho. This classical substrate cannot witness Petz-recovery failure on genuinely nonclassical subalgebras.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensor joint-marginal reductions"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sufficient_statistic_preserves_mi": true,
+    "constant_statistic_zero_mi": true,
+    "dpi_lossy_strict_decrease": true
+  },
+  "negative": {
+    "generic_non_sufficient_loses_mi": true,
+    "no_coarse_graining_increases_mi": true
+  },
+  "boundary": {
+    "independent_zero_mi": true,
+    "perfect_correlation_entropy": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

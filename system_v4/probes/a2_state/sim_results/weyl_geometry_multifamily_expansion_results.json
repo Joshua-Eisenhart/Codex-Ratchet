@@ -1,0 +1,234 @@
+{
+  "name": "weyl_geometry_multifamily_expansion",
+  "classification": "canonical",
+  "classification_note": "Controller-facing multifamily geometry expansion lane. It keeps the Weyl/Hopf stack as anchor and ranks the next grounded geometry family using existing pass-bearing graph, hypergraph, and contact/symplectic rows.",
+  "lego_ids": [
+    "weyl_geometry_multifamily_expansion",
+    "weyl_hopf_pauli_composed_stack",
+    "weyl_geometry_graph_proof_alignment",
+    "weyl_geometry_proof_pressure",
+    "graph_shell_geometry",
+    "hypergraph_geometry",
+    "dual_hypergraph_geometry",
+    "xgi_shell_hypergraph",
+    "toponetx_hopf_crosscheck",
+    "hopf_contact_symplectic_bridge",
+    "contact_symplectic_coupling",
+    "pure_lego_symplectic_kahler_weyl"
+  ],
+  "primary_lego_ids": [
+    "weyl_hopf_pauli_composed_stack",
+    "graph_shell_geometry",
+    "hypergraph_geometry",
+    "dual_hypergraph_geometry",
+    "hopf_contact_symplectic_bridge"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "weyl_anchor_stays_the_source_of_truth": {
+      "pass": true,
+      "support_count": 4,
+      "score": 4.0,
+      "supporting_rows": [
+        "weyl_hopf_pauli_composed_stack_results.json",
+        "qit_weyl_geometry_translation_lane_results.json",
+        "qit_weyl_geometry_carrier_translation_lane_results.json",
+        "weyl_geometry_repair_priority_v2_results.json"
+      ]
+    },
+    "graph_family_is_controller_usable": {
+      "pass": true,
+      "support_count": 3,
+      "score": 3.0,
+      "supporting_rows": [
+        "graph_shell_geometry_results.json",
+        "weyl_geometry_graph_proof_alignment_results.json",
+        "weyl_geometry_proof_pressure_results.json"
+      ]
+    },
+    "hypergraph_family_is_controller_usable": {
+      "pass": true,
+      "support_count": 4,
+      "score": 4.0,
+      "supporting_rows": [
+        "hypergraph_geometry_results.json",
+        "dual_hypergraph_geometry_results.json",
+        "xgi_shell_hypergraph_results.json",
+        "toponetx_hopf_crosscheck_results.json"
+      ]
+    },
+    "contact_symplectic_family_is_controller_usable": {
+      "pass": true,
+      "support_count": 3,
+      "score": 3.0,
+      "supporting_rows": [
+        "hopf_contact_symplectic_bridge_results.json",
+        "contact_symplectic_coupling_results.json",
+        "pure_lego_symplectic_kahler_weyl_results.json"
+      ]
+    },
+    "hypergraph_is_the_strongest_next_family": {
+      "pass": true,
+      "best_family": "hypergraph_family",
+      "best_score": 4.0,
+      "runner_up_family": "contact_symplectic_family"
+    }
+  },
+  "negative": {
+    "pairwise_graph_shadow_does_not_replace_multiway_structure": {
+      "pass": true,
+      "graph_family_score": 3.0,
+      "hypergraph_family_score": 4.0,
+      "shadow_is_not_the_full_family": true
+    },
+    "contact_bridge_is_not_the_only_extension_path": {
+      "pass": true,
+      "contact_family_score": 3.0,
+      "hypergraph_family_score": 4.0
+    }
+  },
+  "boundary": {
+    "dual_hypergraph_round_trip_restores_counts": {
+      "pass": true,
+      "dual_summary_all_pass": true,
+      "double_dual_restores_counts": true
+    },
+    "weyl_anchor_remains_distinct_from_extension_families": {
+      "pass": true,
+      "anchor_support_count": 4,
+      "extension_family_count": 3
+    },
+    "hypergraph_and_contact_are_different_extension_modes": {
+      "pass": true,
+      "hypergraph_support_count": 4,
+      "contact_support_count": 3
+    }
+  },
+  "family_rankings": [
+    {
+      "family_id": "hypergraph_family",
+      "score": 4.0,
+      "support_count": 4,
+      "pass": true,
+      "reason": "Multiway shell family with dual lift and torus crosscheck; strongest next extension path.",
+      "supporting_rows": [
+        "hypergraph_geometry_results.json",
+        "dual_hypergraph_geometry_results.json",
+        "xgi_shell_hypergraph_results.json",
+        "toponetx_hopf_crosscheck_results.json"
+      ]
+    },
+    {
+      "family_id": "contact_symplectic_family",
+      "score": 3.0,
+      "support_count": 3,
+      "pass": true,
+      "reason": "Direct Hopf-contact-symplectic bridge family; strong, but narrower than the multiway hypergraph lane.",
+      "supporting_rows": [
+        "hopf_contact_symplectic_bridge_results.json",
+        "contact_symplectic_coupling_results.json",
+        "pure_lego_symplectic_kahler_weyl_results.json"
+      ]
+    },
+    {
+      "family_id": "graph_family",
+      "score": 3.0,
+      "support_count": 3,
+      "pass": true,
+      "reason": "Binary graph shell plus z3/rustworkx proof pressure over the Weyl/Hopf stack.",
+      "supporting_rows": [
+        "graph_shell_geometry_results.json",
+        "weyl_geometry_graph_proof_alignment_results.json",
+        "weyl_geometry_proof_pressure_results.json"
+      ]
+    }
+  ],
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Ranks the next grounded geometry family beside the Weyl/Hopf anchor using existing controller-usable graph, hypergraph, and contact/symplectic rows.",
+    "best_family": "hypergraph_family",
+    "best_family_score": 4.0,
+    "runner_up_family": "contact_symplectic_family",
+    "third_family": "graph_family",
+    "family_count": 3,
+    "weyl_anchor_support_count": 4,
+    "graph_support_count": 3,
+    "hypergraph_support_count": 4,
+    "contact_support_count": 3
+  }
+}

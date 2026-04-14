@@ -1,0 +1,58 @@
+{
+  "name": "sim_holodeck_self_similar_holodeck_in_holodeck",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "nested projector chain"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "all_admissible": true,
+    "chain_nested": true,
+    "depth2_nested": true
+  },
+  "negative": {
+    "disjoint_nested": false,
+    "non_projector_admissible": false
+  },
+  "boundary": {
+    "singleton_nested": true,
+    "identical_chain": true
+  },
+  "pass": true
+}

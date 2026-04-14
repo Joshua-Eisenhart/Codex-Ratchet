@@ -1,0 +1,52 @@
+{
+  "name": "sim_tri_holodeck_x_fep_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "KL descent + civic intersection numerics"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tri conjunction UNSAT on any single-shell drop"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic tri conjunction"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "F_descended_all": true,
+    "H_shell_respected": true,
+    "L_civic_respected": true,
+    "EMERGENT_3way_civic_belief_core": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_L_unsat": true,
+    "z3_all_three_sat": true,
+    "sympy_tri_predicate": true
+  },
+  "negative": {
+    "drop_H_civic_fails": true,
+    "drop_F_no_descent": true,
+    "drop_L_no_civic_core": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_F_unsat": true,
+    "z3_drop_L_unsat": true
+  },
+  "boundary": {
+    "min_descent_both": true,
+    "min_civic_both": true,
+    "min_atoms_3": true
+  },
+  "three_way_note": "3-way ADDS: shared civic-belief core across FEP-descended observers, undetectable pairwise.",
+  "PASS": true
+}

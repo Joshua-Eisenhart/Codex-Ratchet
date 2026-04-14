@@ -64,20 +64,6 @@
       "reason": "not needed for this lego"
     }
   },
-  "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
-  },
   "positive": {
     "pure_state_checks": {
       "product_000": {
@@ -336,7 +322,7 @@
     ],
     "noisy_ghz_pass": true,
     "pass": true,
-    "elapsed_s": 0.008835077285766602
+    "elapsed_s": 0.0049550533294677734
   },
   "negative": {
     "product_state_has_nonzero_cut_entropy": {
@@ -472,12 +458,11 @@
     },
     "pass": true
   },
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "summary": {
     "total_tests": 9,
     "passed": 9,
     "failed": 0,
     "all_pass": true
-  },
-  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+  }
 }

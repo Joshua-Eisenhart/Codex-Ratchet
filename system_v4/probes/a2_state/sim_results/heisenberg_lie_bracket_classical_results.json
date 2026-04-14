@@ -1,0 +1,60 @@
+{
+  "name": "heisenberg_lie_bracket_classical",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix bracket and exp"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric matrices suffice"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "XY_bracket_is_Z": true,
+    "X_Z_central": true,
+    "Y_Z_central": true,
+    "step_2_nilpotent": true,
+    "antisymmetry": true,
+    "jacobi": true
+  },
+  "negative": {
+    "XY_not_commutative": true,
+    "I_not_nilpotent": true,
+    "W_out_of_algebra": true
+  },
+  "boundary": {
+    "X_squared_zero": true,
+    "Y_squared_zero": true,
+    "BCH_closed_form": true,
+    "exp_noncommutes": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "CCR [x,p] = i*hbar at operator level on infinite-dim L^2 absent",
+    "Stone-von Neumann uniqueness invisible in nilpotent matrix rep",
+    "Weyl unitary form exp(i(aX+bY+cZ)) and its phase cocycle missing",
+    "no center with nontrivial unitary character"
+  ]
+}

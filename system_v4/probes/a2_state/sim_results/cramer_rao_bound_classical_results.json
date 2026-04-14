@@ -1,0 +1,52 @@
+{
+  "name": "cramer_rao_bound_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical CRB uses real-valued Fisher information on a single commuting parameter. Nonclassical quantum CRB requires SLD operators, noncommuting observables, and a Helstrom bound; this baseline discards the noncommuting-estimator structure.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Monte Carlo variance and Fisher eval"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "normal/bernoulli pmf reference"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "imported as supportive dependency; not load-bearing for classical CRB"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT proof claim for this baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "pytorch": "supportive",
+    "z3": null
+  },
+  "positive": {
+    "bernoulli_mle_meets_crb": true,
+    "normal_mean_meets_crb": true,
+    "bound_is_lower_bound_bernoulli": true,
+    "bound_is_lower_bound_normal": true
+  },
+  "negative": {
+    "biased_estimator_variance_below_crb": true,
+    "constant_estimator_zero_variance": true
+  },
+  "boundary": {
+    "near_boundary_finite": "True",
+    "near_boundary_ratio_reasonable": true,
+    "small_n_bound_holds": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

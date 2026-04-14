@@ -1,0 +1,100 @@
+{
+  "name": "f_divergence_convexity_sweep_classical",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical f-divergences D_f(p||q) = sum q f(p/q) are defined on a commuting simplex and obey joint convexity and DPI for any convex f with f(1)=0. Quantum f-divergences require operator-convex f (Petz) and tr(sigma^{1/2} f(sigma^{-1/2} rho sigma^{-1/2}) sigma^{1/2}); not every classical convex f lifts monotonically to the quantum setting. The classical substrate cannot detect the operator-monotonicity gap that separates Petz-admissible f from generic convex f in the noncommuting regime.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch cross-check of each f-divergence"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not_attempted"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "zero_at_equal": true,
+    "dpi_under_stochastic": true,
+    "joint_convexity": true,
+    "nonnegativity": true
+  },
+  "negative": {
+    "distinct_positive_all": true,
+    "kl_asymmetric": true
+  },
+  "boundary": {
+    "tv_bounded": true,
+    "hellinger_bounded": true,
+    "extreme_finite": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  }
+}

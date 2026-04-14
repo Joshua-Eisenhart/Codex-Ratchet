@@ -1,0 +1,43 @@
+{
+  "name": "sim_tri_holodeck_x_science_method_x_leviathan",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "set intersections"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "tri UNSAT on single-shell drop"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "H_SM_shared_nonempty": true,
+    "L_shared_civic_nonempty": true,
+    "EMERGENT_3way_strict_civic_refinement": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_L_unsat": true,
+    "z3_all_three_sat": true
+  },
+  "negative": {
+    "drop_H_no_shell_discipline": true,
+    "drop_SM_visibility_only_empty": true,
+    "drop_L_no_civic": true,
+    "z3_drop_H_unsat": true,
+    "z3_drop_SM_unsat": true,
+    "z3_drop_L_unsat": true
+  },
+  "boundary": {
+    "min_shared_single_atom": true,
+    "min_civic_admits": true
+  },
+  "three_way_note": "3-way ADDS: civic-refuted-visible intersection across observers; pairwise cannot compose all 3.",
+  "PASS": true
+}

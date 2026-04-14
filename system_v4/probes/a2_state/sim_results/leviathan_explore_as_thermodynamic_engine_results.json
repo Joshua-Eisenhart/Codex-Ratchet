@@ -1,0 +1,28 @@
+{
+  "name": "leviathan_explore_as_thermodynamic_engine",
+  "framing_assumption": "group value-diversities act as thermal reservoirs; work = temperature gradient",
+  "blind_spot": "quasi-static; reservoirs independent",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "carnot-style work calc"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "work": 0.8,
+    "pass_positive_work": true
+  },
+  "negative": {
+    "work": 0.0,
+    "pass_zero_work": true
+  },
+  "boundary": {
+    "eta_limit_work": 0.9999998,
+    "pass": true
+  },
+  "classification": "classical_baseline"
+}

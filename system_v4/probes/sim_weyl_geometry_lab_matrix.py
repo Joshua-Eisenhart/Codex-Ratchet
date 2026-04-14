@@ -19,10 +19,10 @@ import json
 import pathlib
 from collections import Counter
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Controller-facing Weyl/Hopf geometry matrix over reusable legos, "
     "composed rows, bridge rows, and directly relevant legacy geometry anchors."

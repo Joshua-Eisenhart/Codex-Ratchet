@@ -1,0 +1,53 @@
+{
+  "name": "sim_rustworkx_deep_pagerank_admissibility_bound",
+  "classification": "canonical",
+  "scope_note": "Probe-relative attention: rustworkx.pagerank supplies the load-bearing stationary distribution. Exclusion floor is defined on this distribution; no numpy eigenvector fallback.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "pagerank stationary vector decides exclusion floor (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no autograd needed"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "star_leaves_excluded": {
+      "pass": true,
+      "pr": {
+        "0": 0.5238,
+        "1": 0.119,
+        "2": 0.119,
+        "3": 0.119,
+        "4": 0.119
+      },
+      "result": "leaves_excluded"
+    }
+  },
+  "negative": {
+    "ring_all_admitted": {
+      "pass": true,
+      "pr": {
+        "0": 0.25,
+        "1": 0.25,
+        "2": 0.25,
+        "3": 0.25
+      },
+      "result": "admitted"
+    }
+  },
+  "boundary": {
+    "pagerank_sum_normalized": {
+      "pass": true,
+      "sum": 1.0,
+      "result": "normalized"
+    }
+  },
+  "all_pass": true
+}

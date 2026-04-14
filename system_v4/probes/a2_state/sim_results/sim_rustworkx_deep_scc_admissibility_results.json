@@ -1,0 +1,49 @@
+{
+  "name": "sim_rustworkx_deep_scc_admissibility",
+  "classification": "canonical",
+  "scope_note": "Probe-relative: admissibility is defined by whether the probe pair (forbidden_src, forbidden_dst) lies in a common SCC. rustworkx SCC is load-bearing; without Tarjan/Kosaraju on the full digraph the exclusion cannot be decided. No numpy fallback.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "strongly_connected_components decides cyclic closure exclusion (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: combinatorial admissibility"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "SCC is polynomial; SMT not required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic closure needed"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "cycle4_pair_02_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "negative": {
+    "dag_pair_03_not_excluded": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "boundary": {
+    "self_loop_disjoint": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,44 @@
+{
+  "name": "sim_rustworkx_deep_isomorphism_class_excludes",
+  "classification": "canonical",
+  "scope_note": "Probe-relative structural equivalence: rustworkx VF2 isomorphism is load-bearing. Two probe graphs are indistinguishable only if is_isomorphic returns True; otherwise one is EXCLUDED from the class.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "VF2 is_isomorphic decides structural exclusion (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "combinatorial"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "VF2 sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "C4_relabeled_indistinguishable": {
+      "pass": true,
+      "result": "indistinguishable"
+    }
+  },
+  "negative": {
+    "C4_vs_star_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "boundary": {
+    "same_degree_seq_but_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "all_pass": true
+}

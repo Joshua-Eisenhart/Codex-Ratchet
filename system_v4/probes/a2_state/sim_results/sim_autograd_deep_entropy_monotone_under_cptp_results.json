@@ -1,0 +1,103 @@
+{
+  "name": "sim_autograd_deep_entropy_monotone_under_cptp -- S(Phi(rho)) >= S(rho) for unital channel via autograd probe",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd is load-bearing: derivative of S w.r.t. channel parameter p is obtained via autograd through eigvalsh of Phi(rho)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not required for this scalar/matrix-functional claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "claim is numerical-gradient structure, not SMT admissibility (deferred to companion proof sim)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3: numerical gradient claim, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic form of entropy/Fisher/KL is standard; numerical gradient is the load-bearing object"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(n) rotor needed for scalar functional of rho"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold metric not used; Fisher computed directly via autograd"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "scope_note": "Depolarizing channel parameter p; admissibility = non-negative d/dp S at non-maximally-mixed candidates.",
+  "positive": {
+    "unital_channel_increases_entropy": {
+      "pass": true,
+      "dS_dp": 0.5962097774634285,
+      "note": "candidate survived monotonicity probe"
+    }
+  },
+  "negative": {
+    "anti_unital_excluded": {
+      "pass": true,
+      "dS_dq": -0.686646924391491,
+      "note": "non-unital-direction candidate excluded"
+    }
+  },
+  "boundary": {
+    "maximally_mixed_zero_derivative": {
+      "pass": true,
+      "dS_dp": 0.0,
+      "note": "boundary candidate: indistinguishable from stationary"
+    }
+  },
+  "overall_pass": true
+}

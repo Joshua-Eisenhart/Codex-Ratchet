@@ -1,0 +1,96 @@
+{
+  "name": "sim_geomstats_deep_sphere_geodesic_admissibility",
+  "classification": "canonical",
+  "scope_note": "ENGINE_MATH_REFERENCE.md (sphere) + LADDERS_FENCES_ADMISSION_REFERENCE.md: surviving candidates respect S^2 geodesic distance; ambient chord endpoints are excluded by belongs().",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued geodesic, not SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued geodesic, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "rotor parallel not decisive"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Hypersphere.metric.dist/geodesic is the decisive admissibility probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no irrep op"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "triangle_violations": 0,
+    "max_dist": 3.1063860835025676,
+    "pass": true
+  },
+  "negative": {
+    "off_manifold_admitted": false,
+    "pass": true
+  },
+  "boundary": {
+    "antipodal_dist": 3.141592653589793,
+    "midpoint_on_sphere": true,
+    "pass": true
+  },
+  "overall_pass": true
+}

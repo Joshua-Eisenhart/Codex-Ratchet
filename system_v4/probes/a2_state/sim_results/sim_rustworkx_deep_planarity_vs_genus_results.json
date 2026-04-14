@@ -1,0 +1,39 @@
+{
+  "name": "sim_rustworkx_deep_planarity_vs_genus",
+  "classification": "canonical",
+  "scope_note": "Topological admissibility (probe-relative to sphere embedding): rustworkx.is_planar is load-bearing. Non-planar graphs are EXCLUDED from genus-0 admissible class; the Kuratowski witnesses K_5, K_{3,3} are the canonical exclusion cases.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "is_planar Left-Right test decides genus-0 admissibility (load-bearing)"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "planarity sufficient; no cell-complex needed here"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "K4_admitted": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "negative": {
+    "K5_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "boundary": {
+    "K33_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "all_pass": true
+}

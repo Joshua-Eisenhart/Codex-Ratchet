@@ -1,0 +1,104 @@
+{
+  "name": "sim_autograd_deep_second_order_couple_to_axis0 -- mixed second derivative \u2202\u00b2I_c/\u2202theta\u2202phi couples Axis 0 gradient to external param",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd is load-bearing: mixed partial \u2202\u00b2I_c/\u2202\u03b8\u2202\u03c6 is the coupling witness; it requires autograd through the full rho(\u03b8,\u03c6)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not required for this scalar/matrix-functional claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "claim is numerical-gradient structure, not SMT admissibility (deferred to companion proof sim)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3: numerical gradient claim, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic form of entropy/Fisher/KL is standard; numerical gradient is the load-bearing object"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(n) rotor needed for scalar functional of rho"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold metric not used; Fisher computed directly via autograd"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "scope_note": "2-qubit rho(theta, phi) with entangling angle phi; coupling = mixed second derivative of I_c.",
+  "positive": {
+    "axis0_couples_to_phi": {
+      "pass": true,
+      "mixed_partial": 0.12856496764280664,
+      "I_c": 0.6430248755880912,
+      "note": "Axis 0 gradient co-varies with external phi (coupling admitted)"
+    }
+  },
+  "negative": {
+    "decoupled_param_excluded": {
+      "pass": true,
+      "mixed_partial": 0.0,
+      "note": "non-coupling candidate excluded (mixed partial indistinguishable from 0)"
+    }
+  },
+  "boundary": {
+    "boundary_product_finite_coupling": {
+      "pass": true,
+      "mixed_partial": 7.79167812011672e-05,
+      "note": "boundary candidate: coupling remains finite and small"
+    }
+  },
+  "overall_pass": true
+}

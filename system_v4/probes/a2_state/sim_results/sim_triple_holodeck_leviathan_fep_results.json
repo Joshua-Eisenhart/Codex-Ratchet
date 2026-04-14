@@ -1,0 +1,100 @@
+{
+  "name": "sim_triple_holodeck_leviathan_fep",
+  "classification": "canonical",
+  "scope_note": "Triple coupling test (step 3 of coupling program: multi-shell coexistence). Cites system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. Statements use 'survived' / 'admissible under joint triple coupling' / 'joint coupling excludes ...'. No creates/derives/drives language.",
+  "exclusion_language_note": "Triple coupling uses 'joint coupling excludes ...' / 'survived' / 'admissible under triple coupling'. No create/derive/drive language.",
+  "shells": [
+    "holodeck",
+    "leviathan",
+    "fep"
+  ],
+  "coupling_description": "joint coupling excludes: nothing beyond pairwise (additive triple)",
+  "atoms": [
+    "carrier_equiv",
+    "projection_quotient",
+    "monotone_aggregation",
+    "coalition_stable",
+    "vfe_nonincreasing",
+    "markov_blanket_ci"
+  ],
+  "positive": {
+    "enum": {
+      "admissible_A": 16,
+      "admissible_B": 16,
+      "admissible_C": 16,
+      "admissible_intersection_ABC": 1,
+      "admissible_pairwise_joint": 1,
+      "admissible_triple_joint": 1,
+      "excluded_by_triple_coupling": 0,
+      "interacting": false,
+      "additive": true
+    },
+    "z3": {
+      "z3_available": true,
+      "joint_triple": "sat",
+      "triple_exclusion_witness": "unsat"
+    },
+    "pass": true
+  },
+  "negative": {
+    "enum": {
+      "admissible_A": 16,
+      "admissible_B": 16,
+      "admissible_C": 16,
+      "admissible_intersection_ABC": 1,
+      "admissible_pairwise_joint": 1,
+      "admissible_triple_joint": 0,
+      "excluded_by_triple_coupling": 1,
+      "interacting": true,
+      "additive": false
+    },
+    "description": "triple coupling forced FALSE; joint admissible triple must be empty",
+    "pass": true
+  },
+  "boundary": {
+    "enum": {
+      "admissible_A": 16,
+      "admissible_B": 16,
+      "admissible_C": 16,
+      "admissible_intersection_ABC": 1,
+      "admissible_pairwise_joint": 1,
+      "admissible_triple_joint": 1,
+      "excluded_by_triple_coupling": 0,
+      "interacting": false,
+      "additive": true
+    },
+    "description": "triple coupling forced TRUE; joint reduces to pairwise-joint",
+    "pass": true
+  },
+  "overall_pass": true,
+  "interacting": false,
+  "additive": true,
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: triple-joint SAT and triple-exclusion-witness SAT/UNSAT decides whether three-way coupling strictly excludes beyond pairwise"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive only; Boolean admissibility does not require symbolic algebra"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable at triple-level Boolean coupling layer"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no gradient surface at this Boolean triple-admissibility layer"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "pytorch": null
+  }
+}

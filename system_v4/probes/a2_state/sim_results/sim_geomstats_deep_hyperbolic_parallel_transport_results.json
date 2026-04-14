@@ -1,0 +1,94 @@
+{
+  "name": "sim_geomstats_deep_hyperbolic_parallel_transport",
+  "classification": "canonical",
+  "scope_note": "ENGINE_MATH_REFERENCE.md (hyperbolic) + LADDERS_FENCES_ADMISSION_REFERENCE.md: candidates that preserve the Minkowski inner product under transport are admitted; naive Euclidean translation is excluded.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous manifold"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous manifold"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(1,2) parallel, not decisive"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Hyperboloid.metric.parallel_transport + inner_product are the decisive isometry probes"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no irrep"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "max_ip_drift": 7.105427357601002e-15,
+    "pass": true
+  },
+  "negative": {
+    "euclidean_ip_drift": 2.8371259868916283,
+    "pass": true
+  },
+  "boundary": {
+    "self_transport_err": 0.0,
+    "pass": true
+  },
+  "overall_pass": true
+}

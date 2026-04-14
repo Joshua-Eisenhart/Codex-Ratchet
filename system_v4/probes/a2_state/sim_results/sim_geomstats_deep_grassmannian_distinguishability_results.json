@@ -1,0 +1,94 @@
+{
+  "name": "sim_geomstats_deep_grassmannian_distinguishability",
+  "classification": "canonical",
+  "scope_note": "ENGINE_MATH_REFERENCE.md (Grassmann) + LADDERS_FENCES_ADMISSION_REFERENCE.md: within-subspace basis changes are indistinguishable (dist=0); distinct subspaces remain distinguishable; non-projectors are excluded.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not decisive"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Grassmannian.metric.dist is decisive for subspace-equivalence probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no irrep"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "max_same_subspace_dist": 5.22937857211667e-16,
+    "pass": true
+  },
+  "negative": {
+    "distinct_subspace_dist": 1.9892679575757795,
+    "pass": true
+  },
+  "boundary": {
+    "non_projector_admitted": false,
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,95 @@
+{
+  "name": "sim_geomstats_deep_frechet_mean_convergence",
+  "classification": "canonical",
+  "scope_note": "ENGINE_MATH_REFERENCE.md (mean/centroid) + LADDERS_FENCES_ADMISSION_REFERENCE.md: Frechet-mean candidate survives on S^2; ambient arithmetic mean is excluded by belongs().",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not decisive"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "FrechetMean iterative solver on Hypersphere metric is load-bearing"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no irrep"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "dist_to_base": 0.010853517122177194,
+    "on_manifold": true,
+    "pass": true
+  },
+  "negative": {
+    "ambient_mean_on_manifold": false,
+    "pass": true
+  },
+  "boundary": {
+    "single_point_err": 0.0,
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,99 @@
+{
+  "name": "sim_compound_pyg_toponetx_gudhi_hodge_pipeline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "hosts pyg tensors"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "message-passing Laplacian eigen witness; irreducible"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "oriented boundary operators B1,B2 for Hodge L1; irreducible"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent Betti ground-truth; irreducible"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "gudhi_b1": 1,
+    "toponetx_hodge_b1": 1,
+    "pyg_components": 1,
+    "pass": true
+  },
+  "negative": {
+    "gudhi_b1": 0,
+    "toponetx_hodge_b1": 0,
+    "pyg_components": 1,
+    "pass": true
+  },
+  "boundary": {
+    "gudhi_b1": 0,
+    "toponetx_b1": 0,
+    "components": 1,
+    "pass": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

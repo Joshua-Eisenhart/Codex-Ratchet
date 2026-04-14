@@ -1,0 +1,44 @@
+{
+  "name": "sim_rustworkx_deep_bfs_layer_distinguishability",
+  "classification": "canonical",
+  "scope_note": "Distinguishability is probe-relative to BFS layer structure from a chosen source. rustworkx.distance_matrix supplies the load-bearing all-pairs distances; the equivalence relation is derived from it.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "distance_matrix gives BFS layer signatures (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor op needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial decision"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "path_endpoints_indistinguishable": {
+      "pass": true,
+      "result": "indistinguishable"
+    }
+  },
+  "negative": {
+    "path_layers_distinguished": {
+      "pass": true,
+      "result": "excluded_from_equiv"
+    }
+  },
+  "boundary": {
+    "disconnected_node_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,47 @@
+{
+  "name": "sim_rustworkx_deep_mincut_probe_relative",
+  "classification": "canonical",
+  "scope_note": "Probe-relative capacity: rustworkx stoer_wagner_min_cut is load-bearing for deciding coupling admissibility under a capacity bound. Graphs with min-cut above the bound are EXCLUDED.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "stoer_wagner_min_cut computes global min-cut (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "combinatorial"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "integer weights"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "bridge_cut_admitted": {
+      "pass": true,
+      "cut": 1.0,
+      "result": "admitted"
+    }
+  },
+  "negative": {
+    "K4_above_bound_excluded": {
+      "pass": true,
+      "cut": 9.0,
+      "result": "excluded"
+    }
+  },
+  "boundary": {
+    "triangle_mincut_equals_2": {
+      "pass": true,
+      "cut": 2.0,
+      "result": "admitted_at_bound"
+    }
+  },
+  "all_pass": true
+}

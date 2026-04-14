@@ -1,0 +1,95 @@
+{
+  "name": "sim_geomstats_deep_so3_exp_log_consistency",
+  "classification": "canonical",
+  "scope_note": "ENGINE_MATH_REFERENCE.md (SO(3) exp/log) + LADDERS_FENCES_ADMISSION_REFERENCE.md (exp/log fence); survived candidates are those whose SO(3) log/exp round-trip is stable; non-orthogonal matrices are excluded (not constructed).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for Lie group exp/log"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued manifold check, not SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued manifold check, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric tolerance, not symbolic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "parallel rotor layer, supportive only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) group exp/log invertibility is the decisive check"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "irreps not involved here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "roundtrip_max_err": 4.518642660291933e-15,
+    "pass": true,
+    "n": 20
+  },
+  "negative": {
+    "non_orthogonal_admitted": false,
+    "pass": true
+  },
+  "boundary": {
+    "near_pi_err": 6.318199744623286e-16,
+    "pass": true
+  },
+  "overall_pass": true
+}

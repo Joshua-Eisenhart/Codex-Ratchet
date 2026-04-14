@@ -1,0 +1,112 @@
+{
+  "name": "sim_autograd_deep_hessian_psd_at_admissible_point -- autograd Hessian PSD test at critical point",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd is load-bearing: Hessian obtained via autograd.functional.hessian; PSD eigenspectrum is the admissibility criterion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not required for this scalar/matrix-functional claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "claim is numerical-gradient structure, not SMT admissibility (deferred to companion proof sim)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3: numerical gradient claim, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic form of entropy/Fisher/KL is standard; numerical gradient is the load-bearing object"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(n) rotor needed for scalar functional of rho"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold metric not used; Fisher computed directly via autograd"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "scope_note": "Quadratic+quartic potential; admissible minima have PSD Hessian via autograd.",
+  "positive": {
+    "minimum_psd_admissible": {
+      "pass": true,
+      "eigvals": [
+        1.0,
+        1.0
+      ],
+      "note": "candidate minimum survived PSD probe"
+    }
+  },
+  "negative": {
+    "saddle_excluded": {
+      "pass": true,
+      "eigvals": [
+        -1.0,
+        1.0
+      ],
+      "note": "saddle candidate excluded from PSD-admissible set"
+    }
+  },
+  "boundary": {
+    "flat_boundary_psd": {
+      "pass": true,
+      "eigvals": [
+        0.0,
+        0.0
+      ],
+      "note": "boundary candidate indistinguishable from zero-curvature"
+    }
+  },
+  "overall_pass": true
+}

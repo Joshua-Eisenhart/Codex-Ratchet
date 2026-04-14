@@ -1,0 +1,39 @@
+{
+  "name": "sim_rustworkx_deep_bipartite_exclusion",
+  "classification": "canonical",
+  "scope_note": "Parity admissibility (probe-relative to 2-coloring): rustworkx.two_color is load-bearing. Odd-cycle graphs are EXCLUDED; no manual DFS fallback.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "two_color decides bipartite admissibility (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "combinatorial"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "C4_admitted": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "negative": {
+    "triangle_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "boundary": {
+    "tree_admitted": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "all_pass": true
+}

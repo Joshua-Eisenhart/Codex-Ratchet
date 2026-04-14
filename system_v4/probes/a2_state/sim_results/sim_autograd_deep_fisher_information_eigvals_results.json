@@ -1,0 +1,112 @@
+{
+  "name": "sim_autograd_deep_fisher_information_eigvals -- autograd Hessian of -log p as Fisher metric",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd is load-bearing: Fisher matrix is computed as autograd Hessian of the negative log-likelihood; no analytic form used"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not required for this scalar/matrix-functional claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "claim is numerical-gradient structure, not SMT admissibility (deferred to companion proof sim)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3: numerical gradient claim, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic form of entropy/Fisher/KL is standard; numerical gradient is the load-bearing object"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(n) rotor needed for scalar functional of rho"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold metric not used; Fisher computed directly via autograd"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "scope_note": "Fisher information matrix via autograd Hessian on a Gaussian model; PSD spectrum is the admissibility.",
+  "positive": {
+    "fisher_psd_admissible": {
+      "pass": true,
+      "eigvals": [
+        0.9995795378056638,
+        1.976162289594971
+      ],
+      "note": "Fisher candidate survived PSD probe"
+    }
+  },
+  "negative": {
+    "negated_fisher_excluded": {
+      "pass": true,
+      "eigvals": [
+        -1.976162289594971,
+        -0.9995795378056638
+      ],
+      "note": "non-PSD candidate excluded"
+    }
+  },
+  "boundary": {
+    "single_sample_still_psd": {
+      "pass": true,
+      "eigvals": [
+        0.9782501634399873,
+        2.1589354167194137
+      ],
+      "note": "boundary candidate survives PSD probe"
+    }
+  },
+  "overall_pass": true
+}

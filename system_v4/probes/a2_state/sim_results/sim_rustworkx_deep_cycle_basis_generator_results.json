@@ -1,0 +1,44 @@
+{
+  "name": "sim_rustworkx_deep_cycle_basis_generator",
+  "classification": "canonical",
+  "scope_note": "Cycle basis from rustworkx spans H_1(graph; Z). Membership of a probe edge in any basis cycle is load-bearing for the admissibility decision; no linear-algebra fallback is used.",
+  "tool_manifest": {
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "cycle_basis enumerates Z-basis of H_1 (load-bearing)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor op needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "integer cycle membership only"
+    }
+  },
+  "tool_integration_depth": {
+    "rustworkx": "load_bearing"
+  },
+  "positive": {
+    "triangle_edge_in_basis": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "negative": {
+    "tree_edge_excluded": {
+      "pass": true,
+      "result": "excluded"
+    }
+  },
+  "boundary": {
+    "disjoint_triangles_second_component": {
+      "pass": true,
+      "result": "admitted"
+    }
+  },
+  "all_pass": true
+}

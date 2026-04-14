@@ -1,0 +1,104 @@
+{
+  "name": "sim_autograd_deep_nabla_Ic_admissibility -- autograd \u2207I_c on rho admissibility probe",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd is load-bearing: gradient of I_c through partial_trace+eigvalsh is computed only via autograd; finite-diff would change the claim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not required for this scalar/matrix-functional claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "claim is numerical-gradient structure, not SMT admissibility (deferred to companion proof sim)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "same as z3: numerical gradient claim, not SMT"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "symbolic form of entropy/Fisher/KL is standard; numerical gradient is the load-bearing object"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(n) rotor needed for scalar functional of rho"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manifold metric not used; Fisher computed directly via autograd"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph in this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "scope_note": "Autograd \u2207I_c on 2-qubit rho; admissibility = non-zero gradient norm on entangled candidate, zero on product.",
+  "positive": {
+    "entangled_candidate_nonzero_grad": {
+      "pass": true,
+      "grad_norm": 0.17598611285326518,
+      "I_c": 0.16668971509556307,
+      "note": "candidate survived admissibility probe (nonzero autograd gradient)"
+    }
+  },
+  "negative": {
+    "product_state_excluded_from_entangled_class": {
+      "pass": true,
+      "I_c": -3.3306690738754696e-16,
+      "note": "product candidate excluded: I_c indistinguishable from 0"
+    }
+  },
+  "boundary": {
+    "near_maximally_mixed_finite_gradient": {
+      "pass": true,
+      "grad_finite": true,
+      "note": "boundary candidate: gradient remains finite under autograd"
+    }
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,104 @@
+{
+  "name": "sim_gtower_order_gl_to_o_then_so_vs_reverse",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: metric fence precedes orientation fence",
+  "ordering_claim": "GL->O (metric) must precede O->SO (orientation); reverse admits shear witnesses later excluded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolically derives admissible set in each reduction order; ordering claim rests on set comparison"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised in this ordering sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "metric_families": [
+      "rotation",
+      "reflection"
+    ],
+    "forward_admitted_after_orient": [
+      "rotation"
+    ],
+    "forward_admits_only_rotations": true,
+    "pass": true
+  },
+  "negative": {
+    "reverse_order_admits_shear_pre_metric": true,
+    "shear_witness_excluded_after_metric": true,
+    "pass": true
+  },
+  "boundary": {
+    "commuting_sanity_pass": "True",
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

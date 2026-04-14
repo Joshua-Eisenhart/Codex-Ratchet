@@ -1,0 +1,97 @@
+{
+  "name": "sim_gtower_order_z3_unsat_invalid_reduction_order",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: z3 UNSAT enforces ordering axiom",
+  "ordering_claim": "O fence MUST precede SO fence; reversed-ordering witness is UNSAT",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on reversed ordering = structural exclusion; ordering claim is proven, not measured"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_SO_sat": "sat",
+    "pass": true
+  },
+  "negative": {
+    "reversed_order_unsat": "unsat",
+    "witness_excluded_by_unsat": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_sat_both_fences": "sat",
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

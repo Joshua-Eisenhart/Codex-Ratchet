@@ -12,7 +12,7 @@ Blind spot:
   - TDA is scale-sensitive; results depend on filtration range.
 """
 import json, os, numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {"gudhi": {"tried": False, "used": False, "reason": ""},
                  "numpy": {"tried": True, "used": True, "reason": "point cloud generation"}}

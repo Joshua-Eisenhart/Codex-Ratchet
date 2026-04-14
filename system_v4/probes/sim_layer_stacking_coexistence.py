@@ -31,7 +31,7 @@ import json
 import os
 import math
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

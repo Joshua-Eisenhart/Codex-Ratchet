@@ -19,7 +19,7 @@ Tests torch AmplitudeDamping against numpy baseline across:
 import json
 import os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried

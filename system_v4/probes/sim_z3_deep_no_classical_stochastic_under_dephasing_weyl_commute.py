@@ -58,7 +58,7 @@ classical row-stochastic matrix of this size under these symmetries).
 import json
 import os
 import time
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

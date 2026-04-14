@@ -38,7 +38,7 @@ Classification: canonical
 
 import json
 import os
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST

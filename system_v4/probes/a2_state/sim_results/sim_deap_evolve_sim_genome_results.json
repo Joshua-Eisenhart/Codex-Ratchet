@@ -1,0 +1,110 @@
+{
+  "name": "sim_deap_evolve_sim_genome",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensors; genome is 4 bits"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "integer fitness only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no PD"
+    },
+    "deap": {
+      "tried": true,
+      "used": true,
+      "reason": "base/creator/tools supply individuals, tournament select, cxTwoPoint, mutFlipBit"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "diversity / entropy summary of population"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "deap": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "initial_diversity": 12,
+    "final_diversity": 6,
+    "initial_mean_fitness": 2.05,
+    "final_mean_fitness": 3.45,
+    "diversity_survived": true,
+    "pass": true
+  },
+  "negative": {
+    "degenerate_mean_fitness": 0.0,
+    "degenerate_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "saturated_fitness": 4.0,
+    "pass": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

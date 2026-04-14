@@ -1,0 +1,116 @@
+{
+  "name": "sim_evotorch_es_constraint_search",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor ops inside evaluator and SolutionBatch backing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT obligation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Euclidean search space"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no PD"
+    },
+    "evotorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Problem + SNES run the ES loop producing the admissible candidate"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "numeric forbidden-region check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "evotorch": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "final_best_cost": 1.392524211496493e-07,
+    "final_best_x": [
+      0.0002809573197737336,
+      -7.174217171268538e-05,
+      -2.7955473342444748e-05,
+      0.00023321012849919498
+    ],
+    "dist_to_forbidden_center": 3.99979277713728,
+    "admissible_outside_forbidden": true,
+    "threshold": 0.5,
+    "pass": true
+  },
+  "negative": {
+    "inside_forbidden_dist": 0.0,
+    "inside_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "shell_dist": 1.0,
+    "at_boundary": true,
+    "pass": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

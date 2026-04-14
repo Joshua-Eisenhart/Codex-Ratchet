@@ -1,0 +1,121 @@
+{
+  "name": "sim_ribs_map_elites_constraint_manifold_archive",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not invoked; archive is behavior-indexed, not gradient-indexed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SAT/UNSAT claim; archive membership is not a proof"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no proof obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric objective only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Cl(p,q) rotors here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold distance used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant feature"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence diagram"
+    },
+    "ribs": {
+      "tried": true,
+      "used": true,
+      "reason": "GridArchive is the behavior-indexed container; Rosetta count reads archive.stats + signature map"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "behavior/objective vectors for ribs add()"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "ribs": "load_bearing",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "n_cells_seeded": 30,
+    "n_bins_admitted": 16,
+    "coverage": 0.6666666666666666,
+    "admissible": true,
+    "rosetta_candidates": 6,
+    "rosetta_policy": "count_only_no_merge",
+    "rosetta_buckets_detail": {
+      "3": 3,
+      "4": 3,
+      "0": 4,
+      "5": 7,
+      "1": 3,
+      "2": 7
+    },
+    "pass": true
+  },
+  "negative": {
+    "empty_archive_coverage": 0.0,
+    "empty_excluded": "True",
+    "pass": "True"
+  },
+  "boundary": {
+    "capacity": 24,
+    "n_elites_after_oor": 1,
+    "coverage_after_oor": 0.041666666666666664,
+    "pass": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

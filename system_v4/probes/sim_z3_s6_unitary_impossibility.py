@@ -30,19 +30,21 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
-    "pytorch":    {"tried": False, "used": False, "reason": ""},
-    "pyg":        {"tried": False, "used": False, "reason": ""},
-    "z3":         {"tried": False, "used": False, "reason": ""},
-    "cvc5":       {"tried": False, "used": False, "reason": ""},
-    "sympy":      {"tried": False, "used": False, "reason": ""},
-    "clifford":   {"tried": False, "used": False, "reason": ""},
-    "geomstats":  {"tried": False, "used": False, "reason": ""},
-    "e3nn":       {"tried": False, "used": False, "reason": ""},
-    "rustworkx":  {"tried": False, "used": False, "reason": ""},
-    "xgi":        {"tried": False, "used": False, "reason": ""},
-    "toponetx":   {"tried": False, "used": False, "reason": ""},
-    "gudhi":      {"tried": False, "used": False, "reason": ""},
+    "pytorch":    {"tried": True,  "used": True,  "reason": "supportive: numerical verification that amplitude damping channel increases entropy"},
+    "pyg":        {"tried": False, "used": False, "reason": "not needed -- no graph message-passing layer in this proof sim"},
+    "z3":         {"tried": True,  "used": True,  "reason": "load_bearing: four SAT/UNSAT proofs that S6 entropy increase is impossible under unitary evolution"},
+    "cvc5":       {"tried": False, "used": False, "reason": "not needed -- z3 alone provides the UNSAT verdicts required"},
+    "sympy":      {"tried": True,  "used": True,  "reason": "load_bearing: analytic derivation of entropy conservation theorem U†SU = S"},
+    "clifford":   {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer in this proof sim"},
+    "geomstats":  {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
+    "e3nn":       {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},
+    "rustworkx":  {"tried": False, "used": False, "reason": "not needed -- no dependency graph here"},
+    "xgi":        {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer here"},
+    "toponetx":   {"tried": False, "used": False, "reason": "not needed -- no cell complex here"},
+    "gudhi":      {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

@@ -34,19 +34,21 @@ import numpy as np
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
-    "pyg":       {"tried": False, "used": False, "reason": ""},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
-    "toponetx":  {"tried": False, "used": False, "reason": ""},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- no autograd layer in this SMT proof"},
+    "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph layer here"},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: SMT UNSAT for dephasing symmetry, negativity boundary, and relay disconnection"},
+    "cvc5":      {"tried": False, "used": False, "reason": "not needed -- z3 alone provides the UNSAT verdicts"},
+    "sympy":     {"tried": False, "used": False, "reason": "not needed -- symbolic constants supplied directly to z3"},
+    "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer here"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
+    "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency graph here"},
+    "xgi":       {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer here"},
+    "toponetx":  {"tried": False, "used": False, "reason": "not needed -- no cell complex here"},
+    "gudhi":     {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

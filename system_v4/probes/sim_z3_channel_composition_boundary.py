@@ -31,12 +31,14 @@ import math
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": True,  "used": True,  "reason": "load_bearing: numerical gradient of I_c boundary surfaces via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph layer"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: UNSAT compositionality theorem; SAT negative non-CPTP test"},
+    "cvc5":      {"tried": True,  "used": True,  "reason": "load_bearing: SyGuS minimal generator synthesis for each boundary polynomial"},
+    "sympy":     {"tried": True,  "used": True,  "reason": "load_bearing: analytic boundary derivations and canonical form theta + a*p = b"},
     "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer"},
     "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},

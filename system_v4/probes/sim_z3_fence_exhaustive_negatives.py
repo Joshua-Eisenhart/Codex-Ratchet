@@ -25,6 +25,43 @@ from z3 import (
 from engine_core import TERRAINS, STAGE_OPERATOR_LUT, LOOP_STAGE_ORDER, LOOP_GRAMMAR
 
 
+# =====================================================================
+# SIM CONTRACT METADATA
+# =====================================================================
+
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch":   {"tried": False, "used": False, "reason": "not needed -- no autograd layer; pure SMT fence-removal battery"},
+    "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph message-passing layer here"},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: SAT/UNSAT verdicts for every fence-removal and pairwise-removal test in the exhaustive battery"},
+    "cvc5":      {"tried": False, "used": False, "reason": "not needed -- z3 alone covers the SAT/UNSAT battery"},
+    "sympy":     {"tried": False, "used": False, "reason": "not needed -- fence encodings use z3 primitives directly"},
+    "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer here"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
+    "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency graph needed for fence battery"},
+    "xgi":       {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer here"},
+    "toponetx":  {"tried": False, "used": False, "reason": "not needed -- no cell complex here"},
+    "gudhi":     {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   None,
+    "pyg":       None,
+    "z3":        "load_bearing",
+    "cvc5":      None,
+    "sympy":     None,
+    "clifford":  None,
+    "geomstats": None,
+    "e3nn":      None,
+    "rustworkx": None,
+    "xgi":       None,
+    "toponetx":  None,
+    "gudhi":     None,
+}
+
+
 # ═════════════════════════════════════════════════════════════════════
 # UTILITY
 # ═════════════════════════════════════════════════════════════════════

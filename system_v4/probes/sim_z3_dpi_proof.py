@@ -32,12 +32,14 @@ import traceback
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed -- no autograd layer in proof sim"},
     "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph layer in proof sim"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: UNSAT/SAT verdicts for relative-entropy DPI, mutual-information DPI, and non-CPTP negative control"},
     "cvc5":      {"tried": False, "used": False, "reason": "not needed -- SyGuS not required for this DPI proof"},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": True,  "used": True,  "reason": "supportive: symbolic derivation of the contraction bound used as z3 constraint"},
     "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer here"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
     "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},

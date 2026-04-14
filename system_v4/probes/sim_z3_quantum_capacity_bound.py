@@ -26,12 +26,14 @@ import traceback
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed -- no autograd layer in this proof sim"},
     "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph layer here"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: UNSAT hashing bound, UNSAT I_c <= 1 ebit, UNSAT degradable Q<I_c, SAT non-degradable gap"},
+    "cvc5":      {"tried": True,  "used": False, "reason": "supportive: cross-check the I_c formula for depolarizing channel"},
+    "sympy":     {"tried": True,  "used": True,  "reason": "load_bearing: derive I_c = 1 - H(lambda) - lambda*log(d-1)/log(d) analytically"},
     "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer here"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
     "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},

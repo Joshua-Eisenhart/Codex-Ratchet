@@ -16,7 +16,9 @@ After any multi-step action chain — especially when another agent (Hermes, Cod
 - Runtime shape tests (not just string-presence) for load-bearing loops (overnight runner, queue controllers)
 
 ## Read First (every session)
-Before any work: read `new docs/ENFORCEMENT_AND_PROCESS_RULES.md` and `new docs/LLM_CONTROLLER_CONTRACT.md`.
+Before any work: read `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md` and `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`.
+
+All human-readable docs live under `system_v5/` (`docs/`, `new docs/`, `READ ONLY Reference Docs/`). See `REPO_LAYOUT.md` for the map. Do not create `docs/` or `new docs/` at repo root.
 
 ---
 

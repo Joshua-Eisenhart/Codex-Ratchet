@@ -46,6 +46,43 @@ from hopf_manifold import (
 from proto_ratchet_sim_runner import EvidenceToken
 
 
+# =====================================================================
+# SIM CONTRACT METADATA
+# =====================================================================
+
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch":    {"tried": False, "used": False, "reason": "not needed -- numpy-based audit; no autograd layer in this discriminator"},
+    "pyg":        {"tried": False, "used": False, "reason": "not needed -- no graph message-passing layer here"},
+    "z3":         {"tried": False, "used": False, "reason": "not needed -- numeric witness audit, not an SMT proof"},
+    "cvc5":       {"tried": False, "used": False, "reason": "not needed -- numeric witness audit, not an SMT proof"},
+    "sympy":      {"tried": False, "used": False, "reason": "not needed -- numeric witness audit, not symbolic"},
+    "clifford":   {"tried": True,  "used": True,  "reason": "load_bearing: TORUS_CLIFFORD manifold case provides the neutral-witness discriminator separating ambient Weyl geometry from engine response"},
+    "geomstats":  {"tried": False, "used": False, "reason": "not needed -- Hopf manifold built from scratch in hopf_manifold module"},
+    "e3nn":       {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},
+    "rustworkx":  {"tried": False, "used": False, "reason": "not needed -- no dependency graph here"},
+    "xgi":        {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer here"},
+    "toponetx":   {"tried": False, "used": False, "reason": "not needed -- no cell complex here"},
+    "gudhi":      {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":    None,
+    "pyg":        None,
+    "z3":         None,
+    "cvc5":       None,
+    "sympy":      None,
+    "clifford":   "load_bearing",
+    "geomstats":  None,
+    "e3nn":       None,
+    "rustworkx":  None,
+    "xgi":        None,
+    "toponetx":   None,
+    "gudhi":      None,
+}
+
+
 RESULTS_PATH = os.path.join(
     os.path.dirname(__file__),
     "a2_state",

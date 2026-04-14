@@ -34,12 +34,14 @@ import traceback
 # TOOL MANIFEST
 # =====================================================================
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed -- no autograd layer in this proof sim"},
     "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph layer here"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": True,  "used": True,  "reason": "load_bearing: UNSAT / SAT verdicts establishing linear admissibility boundary for each channel family"},
+    "cvc5":      {"tried": True,  "used": False, "reason": "supportive: cross-check on linearity claim for depolarizing family"},
+    "sympy":     {"tried": True,  "used": True,  "reason": "load_bearing: analytic boundary derivations and quadratic coefficient checks"},
     "clifford":  {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer here"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
     "e3nn":      {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},

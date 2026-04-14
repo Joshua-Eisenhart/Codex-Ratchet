@@ -32,6 +32,44 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+
+# =====================================================================
+# SIM CONTRACT METADATA
+# =====================================================================
+
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch":    {"tried": True,  "used": True,  "reason": "load_bearing: d=8 density-matrix algebra, partial-trace reductions, and coherent-information evaluations driving the Axis-0 bridge prototype across all three bipartitions"},
+    "pyg":        {"tried": False, "used": False, "reason": "not needed -- no graph message-passing layer here"},
+    "z3":         {"tried": False, "used": False, "reason": "not needed -- numerical prototype, SMT guard lives in companion proof sims"},
+    "cvc5":       {"tried": False, "used": False, "reason": "not needed -- numerical prototype, not an SMT proof"},
+    "sympy":      {"tried": False, "used": False, "reason": "not needed -- numeric I_c evaluation, no symbolic derivation here"},
+    "clifford":   {"tried": False, "used": False, "reason": "not needed -- direct Pauli matrices used, no Cl(3) algebra layer"},
+    "geomstats":  {"tried": False, "used": False, "reason": "not needed -- no manifold geometry layer here"},
+    "e3nn":       {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer here"},
+    "rustworkx":  {"tried": False, "used": False, "reason": "not needed -- no dependency graph here"},
+    "xgi":        {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer here"},
+    "toponetx":   {"tried": False, "used": False, "reason": "not needed -- no cell complex here"},
+    "gudhi":      {"tried": False, "used": False, "reason": "not needed -- no persistent homology here"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":    "load_bearing",
+    "pyg":        None,
+    "z3":         None,
+    "cvc5":       None,
+    "sympy":      None,
+    "clifford":   None,
+    "geomstats":  None,
+    "e3nn":       None,
+    "rustworkx":  None,
+    "xgi":        None,
+    "toponetx":   None,
+    "gudhi":      None,
+}
+
+
 # ═══════════════════════════════════════════════════════════════════
 # PAULI MATRICES
 # ═══════════════════════════════════════════════════════════════════

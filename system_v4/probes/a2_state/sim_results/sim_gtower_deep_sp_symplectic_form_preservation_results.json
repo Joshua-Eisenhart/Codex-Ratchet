@@ -1,0 +1,113 @@
+{
+  "name": "sim_gtower_deep_sp_symplectic_form_preservation",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: Sp symplectic fence",
+  "language": "M^T J M = J -> admissible; else excluded from Sp",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic M^T J M = J decides Sp admissibility"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "id_symplectic": {
+      "pass": true
+    },
+    "Sp2_eq_SL2": {
+      "val": "Matrix([[0, a*d - b*c - 1], [-a*d + b*c + 1, 0]])",
+      "pass": true
+    },
+    "sl2_is_sp2": {
+      "pass": true
+    },
+    "id4_symplectic": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "det2_excluded": {
+      "pass": true
+    },
+    "symmetric_excluded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "minus_id_symplectic": {
+      "pass": true
+    },
+    "shear_symplectic": {
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

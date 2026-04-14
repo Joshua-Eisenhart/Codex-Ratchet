@@ -1,0 +1,37 @@
+{
+  "name": "sim_weyl_deep_pauli_joint_commute_unsat",
+  "classification": "canonical",
+  "scope_note": "z3 exclusion of joint commutation for distinct Pauli axes; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT exclusion of simultaneous Pauli commutation"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "joint_pauli_excluded": {
+      "pass": true,
+      "status": "unsat",
+      "reason": "non-scalar A cannot commute with both sigma_x and sigma_z"
+    }
+  },
+  "negative": {
+    "single_axis_admissible": {
+      "pass": true,
+      "status": "sat",
+      "reason": "A commuting with only sigma_x admits non-scalar solutions"
+    }
+  },
+  "boundary": {
+    "scalar_A_ok": {
+      "pass": true,
+      "status": "sat",
+      "reason": "scalar A trivially commutes with all Paulis"
+    }
+  },
+  "overall_pass": true
+}

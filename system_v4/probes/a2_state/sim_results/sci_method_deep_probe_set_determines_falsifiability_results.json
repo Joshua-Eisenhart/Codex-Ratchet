@@ -1,0 +1,100 @@
+{
+  "name": "sci_method_deep_probe_set_determines_falsifiability",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SAT/UNSAT witnesses probe-relative falsifiability"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for cvc5 falsifiability witness"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "falsifier_exists": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "unfalsifiable_under_P": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "enriched_probe_exposes_falsifier": {
+      "pass": true
+    },
+    "empty_domain_unsat": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,118 @@
+{
+  "name": "sim_gtower_exceptional_g2_admissibility_probe",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: exceptional-group G2 fence",
+  "language": "M preserves Bryant 3-form phi -> G2-admissible; else excluded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic/antisymmetric 3-form tensor decides G2 admissibility"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_preserves_phi": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "phi_antisymmetric": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "lambda_one_preserves": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "scale2_excluded": {
+      "ratio": 8.0,
+      "pass": true
+    },
+    "random_gl7_excluded": {
+      "max_diff": 6.589341423868589,
+      "pass": true
+    },
+    "swap_e1_e2_excluded": {
+      "val": -2.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "minus_I_flips_phi": {
+      "pass": true
+    },
+    "so7_direction_generic_breaks": {
+      "max_diff": 0.001,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,112 @@
+{
+  "name": "sim_gtower_deep_su2_so3_double_cover_parity",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: Spin(3) double-cover fence",
+  "language": "spinor candidates with 2*pi identity are excluded; admissible period is 4*pi",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotors decide Spin(3) double-cover parity"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "vector_2pi_returns": {
+      "diff": 5.99903913064743e-32,
+      "pass": true
+    },
+    "rotor_2pi_is_minus_one": {
+      "scalar": -1.0,
+      "pass": true
+    },
+    "rotor_4pi_is_plus_one": {
+      "scalar": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "spinor_2pi_not_identity": {
+      "scalar": -1.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pi_is_pure_bivector": {
+      "scalar": 6.123233995736766e-17,
+      "pass": true
+    },
+    "zero_is_identity": {
+      "scalar": 1.0,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,99 @@
+{
+  "name": "sim_fence_t3_unsat",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md T3_01 line 134 (Neighborhood fence).",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "fence is FOL admissibility, not numeric"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of (reflexive-neighborhood smuggling + empty-neighborhood witness) IS the fence"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "fence is relational, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra content"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph search"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "fence_unsat": {
+      "verdict": "unsat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_smuggle_sat": {
+      "verdict": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "smuggle_alone_sat": {
+      "verdict": "sat",
+      "pass": true
+    }
+  }
+}

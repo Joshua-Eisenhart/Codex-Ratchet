@@ -1,0 +1,65 @@
+{
+  "name": "sim_weyl_deep_cross_cl3_vs_sympy_pauli_decomp",
+  "classification": "canonical",
+  "scope_note": "Cl(3) bivector <-> Pauli i*sigma cross-check; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) bivector coefficient extraction"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Pauli matrix trace decomposition"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real-valued coefficient match, not SAT"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "sympy": "load_bearing"
+  },
+  "positive": {
+    "decomps_agree": {
+      "pass": true,
+      "cl3": [
+        0.3,
+        -0.7,
+        1.1
+      ],
+      "pauli": [
+        0.3,
+        -0.7,
+        1.1
+      ],
+      "reason": "agreement admits identification of bivector with i*sigma"
+    }
+  },
+  "negative": {
+    "mismatch_excluded": {
+      "pass": true,
+      "cl3": [
+        0.3,
+        -0.7,
+        1.1
+      ],
+      "pauli": [
+        0.3,
+        0.1,
+        1.1
+      ],
+      "reason": "coefficient divergence excludes shared decomposition"
+    }
+  },
+  "boundary": {
+    "zero_vector": {
+      "pass": true,
+      "reason": "zero bivector matches zero Pauli combo"
+    }
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,112 @@
+{
+  "name": "holodeck_deep_coupling_to_fep_markov_blanket",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "precision matrix, Schur complement, autograd for coupling gradient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for blanket precision-matrix test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "precision_mu_eta_zero": {
+      "val": 0.0,
+      "pass": true
+    },
+    "cond_cov_offdiag_zero": {
+      "off": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "direct_coupling_breaks_blanket": {
+      "off": 0.31746031746031744,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "monotone_degradation": {
+      "offs": [
+        4.444444444444444e-09,
+        4.444444444641975e-06,
+        0.00044444464197539646
+      ],
+      "pass": true
+    },
+    "grad_exists": {
+      "grad": 0.04205832425447818,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

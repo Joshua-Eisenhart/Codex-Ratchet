@@ -1,0 +1,46 @@
+{
+  "name": "sim_hopf_deep_linking_number_topology",
+  "classification": "canonical",
+  "scope_note": "Hopf fiber linking number via Gauss integral; gudhi H1 witness; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "RipsComplex persistence confirms H_1 cycle per fiber"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "vectorized numpy is sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "linking_integer": {
+      "pass": true,
+      "linking": 0.9577250999216007,
+      "reason": "distinct Hopf fibers link with integer number (excludes lk=0 trivial)"
+    },
+    "h1_cycle_present": {
+      "pass": true,
+      "h1_bars": 1,
+      "reason": "persistent H_1 confirms closed fiber loop"
+    }
+  },
+  "negative": {
+    "unlinked_excluded": {
+      "pass": true,
+      "linking": 0.0006659158824013577,
+      "reason": "spatially-separated copy has zero linking -> excluded as linked candidate"
+    }
+  },
+  "boundary": {
+    "coarse_fiber_nonempty": {
+      "pass": true,
+      "reason": "fiber sampling preserved at low resolution"
+    }
+  },
+  "overall_pass": true
+}

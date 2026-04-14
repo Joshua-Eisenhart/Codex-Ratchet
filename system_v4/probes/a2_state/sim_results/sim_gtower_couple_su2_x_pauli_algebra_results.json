@@ -1,0 +1,120 @@
+{
+  "name": "sim_gtower_couple_su2_x_pauli_algebra",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: SU(2)<->Cl(3) bivector coupling",
+  "language": "isomorphism admissible if commutator structure matches; else excluded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Pauli algebra for commutator equality"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) bivector commutators compared to SU(2)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pauli_comm_xy": {
+      "pass": true
+    },
+    "pauli_comm_yz": {
+      "pass": true
+    },
+    "pauli_comm_zx": {
+      "pass": true
+    },
+    "cl3_bivec_comm": {
+      "diff_norm": 0.0,
+      "pass": true
+    },
+    "structure_const_match": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "wrong_pairing_excluded": {
+      "pass": true
+    },
+    "non_pauli_excluded": {
+      "val": "Matrix([[1, 0], [0, -1]])",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pauli_sq_identity": {
+      "pass": true
+    },
+    "cl3_vec_sq_one": {
+      "pass": true
+    },
+    "bivec_sq_minus_one": {
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

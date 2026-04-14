@@ -1,0 +1,42 @@
+{
+  "name": "sim_hopf_deep_fiber_winding_number_bound",
+  "classification": "canonical",
+  "scope_note": "Hopf fiber integer winding bound via rotor holonomy; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor holonomy computes fiber phase accumulation"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "scalar algebra, no grad needed"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing"
+  },
+  "positive": {
+    "unit_winding": {
+      "pass": true,
+      "winding_pi_units": 0.999999999999982,
+      "reason": "integer winding survives; non-integer excluded"
+    }
+  },
+  "negative": {
+    "half_loop_excluded": {
+      "pass": true,
+      "winding_pi_units": 0.499999999999991,
+      "reason": "non-integer winding excluded from admissible fiber count"
+    }
+  },
+  "boundary": {
+    "zero_loop": {
+      "pass": true,
+      "winding_pi_units": 0.0,
+      "reason": "trivial loop has zero winding"
+    }
+  },
+  "overall_pass": true
+}

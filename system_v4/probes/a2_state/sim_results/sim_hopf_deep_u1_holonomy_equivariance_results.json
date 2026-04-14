@@ -1,0 +1,42 @@
+{
+  "name": "sim_hopf_deep_u1_holonomy_equivariance",
+  "classification": "canonical",
+  "scope_note": "U(1) Hopf holonomy vs SO(3) base equivariance via e3nn; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "o3.rand_matrix + irrep transform for SO(3) base action"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "vector rotations and norms"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "e3nn": "load_bearing"
+  },
+  "positive": {
+    "equivariance_additive": {
+      "pass": true,
+      "delta_sum": 0.5370368361473083,
+      "direct": 0.5370368361473083,
+      "reason": "phase deltas compose additively under base SO(3); excludes non-equivariant candidates"
+    }
+  },
+  "negative": {
+    "offset_excluded": {
+      "pass": true,
+      "reason": "injected offset excluded as non-equivariant"
+    }
+  },
+  "boundary": {
+    "identity_noop": {
+      "pass": true,
+      "reason": "identity base action yields zero phase shift"
+    }
+  },
+  "overall_pass": true
+}

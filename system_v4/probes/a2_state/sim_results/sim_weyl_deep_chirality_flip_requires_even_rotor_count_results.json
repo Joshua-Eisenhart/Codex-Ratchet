@@ -1,0 +1,47 @@
+{
+  "name": "sim_weyl_deep_chirality_flip_requires_even_rotor_count",
+  "classification": "canonical",
+  "scope_note": "Cl(3) rotor parity exclusion for chirality return; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor algebra computes SU(2) double-cover parity"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic, not numeric optimization"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "parity shown by direct rotor eval"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing"
+  },
+  "positive": {
+    "even_count_returns_bin": {
+      "pass": true,
+      "scalar": -1.0,
+      "reason": "even pi-rotor count yields unit scalar; chirality bin preserved up to sign"
+    }
+  },
+  "negative": {
+    "odd_count_excluded": {
+      "pass": true,
+      "scalar": 6.123233995736766e-17,
+      "reason": "odd pi-rotor has zero scalar part; cannot act as identity -> chirality return excluded"
+    }
+  },
+  "boundary": {
+    "zero_rotors_identity": {
+      "pass": true,
+      "scalar": 1.0,
+      "reason": "empty product is identity"
+    }
+  },
+  "overall_pass": true
+}

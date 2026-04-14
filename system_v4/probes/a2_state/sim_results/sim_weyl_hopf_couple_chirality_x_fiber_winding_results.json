@@ -1,0 +1,64 @@
+{
+  "name": "sim_weyl_hopf_couple_chirality_x_fiber_winding",
+  "classification": "canonical",
+  "scope_note": "Weyl chirality x Hopf winding compound sim; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor couples chirality sign (pseudoscalar) with fiber phase"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing"
+  },
+  "positive": {
+    "pos_0": {
+      "pass": true,
+      "chi": 1,
+      "winding": 1,
+      "reason": "CCW rotor yields positive chirality scalar; coupled survival"
+    },
+    "pos_1": {
+      "pass": true,
+      "chi": 1,
+      "winding": 1,
+      "reason": "CCW rotor yields positive chirality scalar; coupled survival"
+    },
+    "pos_2": {
+      "pass": true,
+      "chi": 1,
+      "winding": 1,
+      "reason": "CCW rotor yields positive chirality scalar; coupled survival"
+    }
+  },
+  "negative": {
+    "cw_decoupled_excluded_0": {
+      "pass": true,
+      "chi": 1,
+      "winding": -1,
+      "reason": "scalar-part chirality insensitive to sign of small theta -> decoupling excluded as admissible coupling"
+    },
+    "cw_decoupled_excluded_1": {
+      "pass": true,
+      "chi": 1,
+      "winding": -1,
+      "reason": "scalar-part chirality insensitive to sign of small theta -> decoupling excluded as admissible coupling"
+    },
+    "cw_decoupled_excluded_2": {
+      "pass": true,
+      "chi": 1,
+      "winding": -1,
+      "reason": "scalar-part chirality insensitive to sign of small theta -> decoupling excluded as admissible coupling"
+    }
+  },
+  "boundary": {
+    "zero_theta": {
+      "pass": true,
+      "chi": 1,
+      "winding": 0,
+      "reason": "trivial rotor = identity, no winding"
+    }
+  },
+  "overall_pass": true
+}

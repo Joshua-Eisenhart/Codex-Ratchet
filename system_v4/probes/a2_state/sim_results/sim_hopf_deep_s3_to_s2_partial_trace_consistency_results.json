@@ -1,0 +1,52 @@
+{
+  "name": "sim_hopf_deep_s3_to_s2_partial_trace_consistency",
+  "classification": "canonical",
+  "scope_note": "S3->S2 Hopf via Pauli partial trace -> Bloch unit vector; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "complex tensor ops + autograd for consistency"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch complex sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "unit_0": {
+      "pass": true,
+      "norm": 1.0,
+      "reason": "pure-state partial trace yields unit Bloch vector"
+    },
+    "unit_1": {
+      "pass": true,
+      "norm": 0.9999999999999998,
+      "reason": "pure-state partial trace yields unit Bloch vector"
+    },
+    "unit_2": {
+      "pass": true,
+      "norm": 0.9999999999999998,
+      "reason": "pure-state partial trace yields unit Bloch vector"
+    }
+  },
+  "negative": {
+    "unnormalized_excluded": {
+      "pass": true,
+      "norm": 4.0,
+      "reason": "unnormalized state excluded from S^2 admissibility"
+    }
+  },
+  "boundary": {
+    "y_pole": {
+      "pass": true,
+      "by": 0.9999999999999998,
+      "reason": "|+i> maps to +y Bloch pole"
+    }
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,51 @@
+{
+  "name": "sim_hopf_deep_berry_phase_admissibility",
+  "classification": "canonical",
+  "scope_note": "Berry phase = Omega/2 for Hopf connection; ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "complex tensor overlap phases accumulate Berry phase"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing"
+  },
+  "positive": {
+    "loop_0": {
+      "pass": true,
+      "berry": 0.14030916831182144,
+      "expected": 0.1403145576465241,
+      "reason": "Berry phase survives as -Omega/2 (Hopf admissible); else excluded"
+    },
+    "loop_1": {
+      "pass": true,
+      "berry": 1.444158185526531,
+      "expected": 1.44418289875682,
+      "reason": "Berry phase survives as -Omega/2 (Hopf admissible); else excluded"
+    },
+    "loop_2": {
+      "pass": true,
+      "berry": 3.8553830043048176,
+      "expected": 3.855369085157808,
+      "reason": "Berry phase survives as -Omega/2 (Hopf admissible); else excluded"
+    }
+  },
+  "negative": {
+    "wrong_expected_excluded": {
+      "pass": true,
+      "berry": 0.0,
+      "reason": "wrong solid-angle candidate excluded by measured phase"
+    }
+  },
+  "boundary": {
+    "south_pole_loop": {
+      "pass": true,
+      "berry": 6.283185307179586,
+      "expected": 6.283185307179586,
+      "reason": "theta=pi loop returns boundary Berry phase ~pi (mod 2pi)"
+    }
+  },
+  "overall_pass": true
+}

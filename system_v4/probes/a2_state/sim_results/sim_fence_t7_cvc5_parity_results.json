@@ -1,0 +1,106 @@
+{
+  "name": "sim_fence_t7_cvc5_parity",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md -- no T7 row verbatim; literal surrogate (T6_03 rank/scalarization, line 138). Flagged.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "fence is FOL admissibility, not numeric"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "parity cross-check of cvc5 UNSAT verdict"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT of (rank-distinguishes-adjacency smuggling + equal-rank adjacent witness) IS the fence"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "fence is relational, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra content"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph search"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_fence_unsat": {
+      "verdict": "unsat",
+      "pass": true
+    },
+    "z3_parity_unsat": {
+      "verdict": "unsat",
+      "pass": true
+    },
+    "parity_match": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "cvc5_witness_only_sat": {
+      "verdict": "sat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "z3_smuggle_only_sat": {
+      "verdict": "sat",
+      "pass": true
+    }
+  }
+}

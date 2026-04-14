@@ -1,0 +1,109 @@
+{
+  "name": "sim_gtower_deep_u1_phase_factor_indistinguishable",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: U(1) global-phase fence",
+  "language": "global phase: indistinguishable; relative phase: distinguishable",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic expectation values decide U(1) phase indistinguishability"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sigma_z_indistinguishable": {
+      "diff": "0",
+      "pass": true
+    },
+    "sigma_x_indistinguishable": {
+      "diff": "0",
+      "pass": true
+    },
+    "norm_preserved": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "relative_phase_distinguishable": {
+      "diff": "1 - cos(theta)",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "theta_zero_identity": {
+      "pass": true
+    },
+    "theta_2pi_period": {
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

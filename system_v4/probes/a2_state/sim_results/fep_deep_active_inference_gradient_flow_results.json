@@ -1,0 +1,109 @@
+{
+  "name": "fep_deep_active_inference_gradient_flow",
+  "classification": "canonical",
+  "scope_note": "OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd computes active-inference gradient flow"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not required for gradient flow on free energy"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "monotone_decrease": {
+      "start": 1.6800000000000004,
+      "end": 6.164924280155466e-12,
+      "pass": true
+    },
+    "converged_near_s": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "ascent_increases_F": {
+      "F0": 1.0100000000000002,
+      "F1": 1.7069,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "fixed_point_zero_grad": {
+      "g_norm": 0.0,
+      "pass": true
+    },
+    "high_precision_drives_flow": {
+      "g": -199.99999999999997,
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

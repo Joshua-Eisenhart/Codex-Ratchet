@@ -1,0 +1,52 @@
+{
+  "name": "sim_weyl_deep_left_right_projector_unsat_mix",
+  "classification": "canonical",
+  "scope_note": "Weyl P_L/P_R orthogonal projector exclusion; see ENGINE_MATH_REFERENCE.md",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof of forbidden chirality-mixed eigenvector"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing; z3 owns proof"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric unneeded for structural UNSAT"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Pauli algebra encoded in z3 constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "mixed_both_one_excluded": {
+      "pass": true,
+      "status": "unsat",
+      "reason": "P_L and P_R joint eigenvalue 1 has no common nonzero eigenvector"
+    }
+  },
+  "negative": {
+    "pure_left_admissible": {
+      "pass": true,
+      "status": "sat",
+      "reason": "pure left eigenvector survives"
+    }
+  },
+  "boundary": {
+    "both_zero_excluded": {
+      "pass": true,
+      "status": "unsat",
+      "reason": "zero eigenvalue pair excludes nonzero spinor"
+    }
+  },
+  "overall_pass": true
+}

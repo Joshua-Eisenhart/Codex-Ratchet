@@ -3,6 +3,7 @@ import json
 import pathlib
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this packages a bounded local branch-weight normalization row, not a canonical nonclassical witness."
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local support row for normalized branch weights on one bounded finite branch family."

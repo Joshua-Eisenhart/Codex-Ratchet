@@ -17,6 +17,11 @@ import os
 import json
 from datetime import datetime
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this audits BC1 fence alternation rules against engine tables and z3 constraints, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "z3": {"tried": True, "used": True, "reason": "constraint checks against engine traversal invariants"},
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

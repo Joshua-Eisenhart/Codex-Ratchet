@@ -18,6 +18,12 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical bridge baseline: this compares live engine trajectories to Holodeck/FEP metrics numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "trajectory statistics and correlation numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "linear algebra helpers for trajectory processing"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

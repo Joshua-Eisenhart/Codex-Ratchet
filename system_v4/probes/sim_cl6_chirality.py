@@ -9,7 +9,8 @@ with grade-1, commutes with grade-0,2,4,6 appropriately (even n). Concretely:
 """
 import json, os, numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
     "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",

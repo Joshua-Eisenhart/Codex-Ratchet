@@ -45,7 +45,8 @@ from datetime import datetime, UTC
 
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,

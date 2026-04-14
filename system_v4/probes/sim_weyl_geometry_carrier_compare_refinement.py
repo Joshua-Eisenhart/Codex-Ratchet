@@ -14,10 +14,11 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller-facing refinement of the Weyl/Hopf carrier-compare row. It "
     "keeps the open carrier comparison bounded against the strict companion "

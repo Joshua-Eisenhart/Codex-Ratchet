@@ -17,14 +17,15 @@ hand-coded numpy pipeline breaks (index drift / stale shape) -- i.e.
 construction is brittle without TopoNetX even though the admissibility
 CLAIM itself is tool-neutral once B_k is correct.
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 """
 
 import json
 import os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST

@@ -20,10 +20,11 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller audit over the Weyl/Hopf geometry lane. It routes rows by the "
     "properties they actually expose: stacked torus composition, graph/proof "

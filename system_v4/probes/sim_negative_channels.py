@@ -35,7 +35,8 @@ import traceback
 
 import numpy as np
 from scipy.linalg import sqrtm
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from z3 import (
     Real, RealVal, Solver, sat, unsat, And, Or, Not, Implies, Sum, If,
 )

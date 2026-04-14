@@ -15,7 +15,8 @@ Load-bearing tool: z3 (all five are UNSAT).
 import json
 import os
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

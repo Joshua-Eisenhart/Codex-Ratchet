@@ -17,7 +17,8 @@ Sections
 import json, pathlib, time
 import numpy as np
 from scipy.linalg import expm, svd, sqrtm
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from z3 import (
     Reals, Solver, sat, unsat, And, Or, Not,
     RealVal, If, simplify, Sum,

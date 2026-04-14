@@ -23,7 +23,8 @@ from typing import Any, Dict, List
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from hopf_manifold import (
     TORUS_CLIFFORD,
@@ -45,7 +46,7 @@ RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 OUT_PATH = RESULT_DIR / "weyl_geometry_family_expansion_results.json"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller-facing expansion row that widens the Weyl/Hopf carrier core "
     "into additional geometry families already present in the repo."

@@ -23,14 +23,15 @@ and checks UNSAT for the scrambled assignment of the holodeck/fep coupling
 (canonical representative). UNSAT under scramble is the structural proof
 that the template is not flag-preserving by arithmetic coincidence.
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 """
 from __future__ import annotations
 import json, os, itertools
 import numpy as np
 
-CLASSIFICATION = "canonical"
-classification = "canonical"
+CLASSIFICATION = "classical_baseline"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True,  "used": True,  "reason": "shell signatures + predicate arithmetic"},

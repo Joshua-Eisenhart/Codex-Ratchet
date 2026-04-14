@@ -22,7 +22,8 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from hopf_manifold import (
     NESTED_TORI,
@@ -44,7 +45,7 @@ from hopf_manifold import (
 from sim_pauli_algebra_relations import I2, X, Y, Z, anti_commutator, commutator
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Canonical composed geometry lego: nested Hopf tori, left/right Weyl spinors, "
     "Pauli/Bloch density checks, and transport consistency across stacked carriers."

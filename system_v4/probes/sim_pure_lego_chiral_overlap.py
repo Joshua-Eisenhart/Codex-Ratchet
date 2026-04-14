@@ -21,7 +21,8 @@ Sections
 import json, os, time, traceback
 import numpy as np
 from clifford import Cl
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 np.random.seed(42)
 EPS = 1e-12

@@ -8,7 +8,8 @@ Sp-det fence). Mismatch => fence not solver-invariant => flagged.
 """
 import json, os
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}

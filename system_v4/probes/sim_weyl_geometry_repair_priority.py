@@ -15,10 +15,11 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller ranking surface over the Weyl/Hopf geometry lane. It combines "
     "route class, translation-target buckets, direct open-vs-strict translation "

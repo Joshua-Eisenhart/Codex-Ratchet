@@ -23,7 +23,8 @@ import json
 import os
 import time
 import traceback
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 # Set geomstats backend before any geomstats import
 os.environ.setdefault("GEOMSTATS_BACKEND", "numpy")

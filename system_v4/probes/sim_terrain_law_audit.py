@@ -20,7 +20,8 @@ import numpy as np
 import json
 from datetime import datetime, timezone
 from engine_core import GeometricEngine, StageControls, TERRAINS, LOOP_STAGE_ORDER
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
     trace_distance_2x2, negentropy, _ensure_valid_density

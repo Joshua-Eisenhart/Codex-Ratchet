@@ -2,7 +2,8 @@
 """sim_cl3_bivector_exp -- exp(theta/2 * B) for unit bivector B^2=-1 yields cos + sin*B."""
 import json, os, numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
     "pytorch":"numeric algebra only",

@@ -24,7 +24,8 @@ import os
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 TOOL_MANIFEST = {

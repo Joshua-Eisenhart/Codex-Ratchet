@@ -21,7 +21,8 @@ import numpy as np
 import json
 from datetime import datetime, timezone
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,

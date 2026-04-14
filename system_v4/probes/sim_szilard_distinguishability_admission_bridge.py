@@ -45,13 +45,14 @@ import pathlib
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 LN2 = float(np.log(2.0))
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Canonical bridge row: maps the classical Szilard-Landauer bookkeeping "
     "(mutual information / free-energy / erasure cost) onto the constraint-"

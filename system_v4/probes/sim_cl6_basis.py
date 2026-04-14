@@ -3,7 +3,8 @@
 import json, os, numpy as np
 from math import comb
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
     "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",

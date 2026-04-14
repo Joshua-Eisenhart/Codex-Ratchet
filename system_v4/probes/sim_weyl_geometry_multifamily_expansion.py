@@ -23,14 +23,15 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 OUT_PATH = RESULT_DIR / "weyl_geometry_multifamily_expansion_results.json"
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller-facing multifamily geometry expansion lane. It keeps the "
     "Weyl/Hopf stack as anchor and ranks the next grounded geometry family "

@@ -18,10 +18,11 @@ import pathlib
 
 import rustworkx as rx
 import z3
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Proof-pressure row for the Weyl/Hopf/Pauli geometry lane. It composes "
     "the protocol DAG, graph/proof bridge, composed stack, carrier array, "

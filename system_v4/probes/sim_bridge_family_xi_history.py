@@ -2,10 +2,11 @@
 import json
 import pathlib
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 EPS = 1e-10
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = "Canonical local Xi history bridge row on one bounded packet history, kept separate from point and shell bridge rows."
 LEGO_IDS = ["bridge_family_xi_history"]
 PRIMARY_LEGO_IDS = ["bridge_family_xi_history"]

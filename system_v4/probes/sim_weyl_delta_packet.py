@@ -15,7 +15,8 @@ from pathlib import Path
 
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from engine_core import (
     GeometricEngine,

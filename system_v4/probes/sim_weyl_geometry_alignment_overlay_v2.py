@@ -24,10 +24,11 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Controller overlay for the Weyl/Hopf geometry lane. It compares base "
     "legos, composed numeric rows, strict companion rows, translation lanes, "

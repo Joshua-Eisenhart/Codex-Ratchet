@@ -34,7 +34,8 @@ import traceback
 from datetime import UTC, datetime
 
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 # =====================================================================
 # TOOL MANIFEST

@@ -9,12 +9,13 @@ import json
 import pathlib
 
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Canonical late-layer lego for the point bridge Xi_point on one bounded packet family, "
     "kept separate from Axis-0 selector logic, shell-weighted entropy fields, and broad bridge searches."

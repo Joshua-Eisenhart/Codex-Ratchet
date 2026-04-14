@@ -48,7 +48,8 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not needed -- no persistence required"},
 }
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch":   None,

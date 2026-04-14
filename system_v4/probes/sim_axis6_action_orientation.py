@@ -30,7 +30,8 @@ import sys
 import copy
 import numpy as np
 from datetime import datetime, UTC
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -2,7 +2,8 @@
 """sim_cl6_spin_group_embedding -- Spin(6) rotors preserve quadratic form; Cl(3) embeds into Cl(6)."""
 import json, os, numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": r} for k,r in {
     "pytorch":"not needed","pyg":"no graph","z3":"numeric","cvc5":"numeric",

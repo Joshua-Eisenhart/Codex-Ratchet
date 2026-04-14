@@ -35,7 +35,8 @@ Closed-form (sympy, analytic):
     of the spectrum). Negative and boundary tests break that invariance to
     confirm autograd also captures *nonzero* gradients correctly.
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 pytorch        = load_bearing (autograd IS the claim)
 sympy          = supportive  (closed-form ground truth for pass/fail gate)
 """
@@ -44,7 +45,7 @@ import json
 import math
 import os
 
-classification = "canonical"
+classification = "classical_baseline"
 
 import numpy as np
 

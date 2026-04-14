@@ -26,7 +26,8 @@ import numpy as np
 import rustworkx as rx
 import z3
 
-classification = "canonical"
+classification = "classical_baseline"
+DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 from hopf_manifold import (
     TORUS_CLIFFORD,
@@ -47,7 +48,7 @@ from hopf_manifold import (
 )
 
 
-CLASSIFICATION = "canonical"
+CLASSIFICATION = "classical_baseline"
 CLASSIFICATION_NOTE = (
     "Canonical protocol-DAG lego for nested Weyl/Hopf geometry schedules. "
     "It keeps the graph/proof layer reusable and separate from any runtime "

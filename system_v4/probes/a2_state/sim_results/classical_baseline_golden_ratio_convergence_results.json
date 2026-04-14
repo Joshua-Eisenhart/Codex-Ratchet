@@ -1,0 +1,90 @@
+{
+  "name": "classical_baseline_golden_ratio_convergence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: all numerics (Fibonacci ratio -> phi)"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning in this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim in classical baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT claim in classical baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric-only probe, no symbolic needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold learning needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariant NN needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy adjacency sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "converges": {
+      "pass": "True",
+      "err": 2.466915560717098e-13
+    }
+  },
+  "negative": {
+    "zero_degenerate": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "one_iter": {
+      "pass": true
+    }
+  }
+}

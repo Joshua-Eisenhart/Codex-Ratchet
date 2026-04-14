@@ -1,0 +1,115 @@
+{
+  "name": "sim_classical_igt_nested_win_lose_cycle",
+  "scope_note": "classical_baseline mirror of IGT nested win-lose cycle (OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "antisymmetric": {
+      "pass": true
+    },
+    "zero_trace": {
+      "trace": 0.0,
+      "pass": true
+    },
+    "uniform_is_equalizer": {
+      "payoffs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "dominant_strategy_breaks_cycle": {
+      "payoffs": [
+        0.6666666666666666,
+        0.0,
+        -0.6666666666666666
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "2cycle_antisym": {
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

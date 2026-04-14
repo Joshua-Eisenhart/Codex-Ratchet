@@ -181,7 +181,7 @@ def classify_group(rel_path: str) -> tuple[str, str, str, str, str]:
             "checkpoint",
             "Root runtime entrypoints changed; checkpoint with build contract if related.",
         )
-    if rel_path.startswith("new docs/") or rel_path.startswith("docs/") or rel_path == "CLAUDE.md":
+    if rel_path.startswith("system_v5/new docs/") or rel_path.startswith("system_v5/docs/") or rel_path == "CLAUDE.md":
         return (
             "docs_and_specs",
             "docs_and_specs",

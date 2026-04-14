@@ -1,0 +1,94 @@
+{
+  "name": "sim_cl3_invariants",
+  "classification": "canonical",
+  "positive": {
+    "inner_preserved": true,
+    "grade1_preserved": true,
+    "pseudoscalar_invariant": true
+  },
+  "negative": {
+    "reverse_flips_bivector_part": true,
+    "scaled_breaks_inner": true
+  },
+  "boundary": {
+    "identity_rotor": true,
+    "2pi_vector_unchanged": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: grade projection and inner product"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cells"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "pass": true
+}

@@ -206,7 +206,10 @@ QUEUE = [
 
 
 def enumerate_all_sims() -> list[Path]:
-    return sorted(PROBES.glob("sim_*.py"))
+    return sorted(
+        path for path in PROBES.glob("sim_*.py")
+        if not path.name.endswith(" 2.py")
+    )
 
 
 def result_path_for(sim: Path) -> Path:

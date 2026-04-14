@@ -1,0 +1,565 @@
+{
+  "name": "Unitary Generators exp(-iHt)",
+  "timestamp": "2026-04-14T13:55:18.035646",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd verification of dU/dt = -iHU"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "prove unitarity constraint is satisfiable"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic matrix exponential, exact verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra rotors R=exp(-Bt/2) cross-validate SU(2) generators"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "pauli_generator_x": {
+      "pass": "True",
+      "details": [
+        {
+          "t": 0.0,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 0.7853981633974483,
+          "max_error": 1.1265203469543244e-16,
+          "pass": "True"
+        },
+        {
+          "t": 1.5707963267948966,
+          "max_error": 2.196506478351618e-16,
+          "pass": "True"
+        },
+        {
+          "t": 3.141592653589793,
+          "max_error": 2.4486249277104126e-16,
+          "pass": "True"
+        },
+        {
+          "t": 6.283185307179586,
+          "max_error": 2.482534153247273e-16,
+          "pass": "True"
+        }
+      ]
+    },
+    "pauli_generator_y": {
+      "pass": "True",
+      "details": [
+        {
+          "t": 0.0,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 0.7853981633974483,
+          "max_error": 1.1102230246251565e-16,
+          "pass": "True"
+        },
+        {
+          "t": 1.5707963267948966,
+          "max_error": 2.0014830212433607e-16,
+          "pass": "True"
+        },
+        {
+          "t": 3.141592653589793,
+          "max_error": 2.6763840698626e-16,
+          "pass": "True"
+        },
+        {
+          "t": 6.283185307179586,
+          "max_error": 2.482534153247273e-16,
+          "pass": "True"
+        }
+      ]
+    },
+    "pauli_generator_z": {
+      "pass": "True",
+      "details": [
+        {
+          "t": 0.0,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 0.7853981633974483,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 1.5707963267948966,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 3.141592653589793,
+          "max_error": 0.0,
+          "pass": "True"
+        },
+        {
+          "t": 6.283185307179586,
+          "max_error": 0.0,
+          "pass": "True"
+        }
+      ]
+    },
+    "general_axis_trial_0": {
+      "pass": "True",
+      "n_hat": [
+        0.6000020458127243,
+        -0.16701530057610703,
+        0.7823703946303298
+      ],
+      "t": 0.980294029274052,
+      "max_error": 3.3306690738754696e-16
+    },
+    "general_axis_trial_1": {
+      "pass": "True",
+      "n_hat": [
+        0.8237258152661942,
+        0.1509185883279967,
+        0.5465339522491979
+      ],
+      "t": 4.448951217224888,
+      "max_error": 2.3714374201337736e-16
+    },
+    "general_axis_trial_2": {
+      "pass": "True",
+      "n_hat": [
+        -0.5496538390268512,
+        0.6352214727661861,
+        -0.5425627500850034
+      ],
+      "t": 1.9116103907867292,
+      "max_error": 3.3306690738754696e-16
+    },
+    "general_axis_trial_3": {
+      "pass": "True",
+      "n_hat": [
+        -0.16522389143522556,
+        -0.9268368858408713,
+        0.3371564217745177
+      ],
+      "t": 1.8298466547148808,
+      "max_error": 4.440892098500626e-16
+    },
+    "general_axis_trial_4": {
+      "pass": "True",
+      "n_hat": [
+        -0.7254734738970755,
+        0.22508994783405512,
+        -0.6504019941972593
+      ],
+      "t": 2.865572223878106,
+      "max_error": 2.0014830212433607e-16
+    },
+    "unitarity": {
+      "pass": "True"
+    },
+    "det_equals_1": {
+      "pass": "True",
+      "details": [
+        {
+          "axis": "x",
+          "t": 0.7,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "x",
+          "t": 1.5,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "x",
+          "t": 3.141592653589793,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "y",
+          "t": 0.7,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "y",
+          "t": 1.5,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "y",
+          "t": 3.141592653589793,
+          "det": "(1+0j)",
+          "error": 0.0
+        },
+        {
+          "axis": "z",
+          "t": 0.7,
+          "det": "(0.9999999999999999+8.4470797676263425e-19j)",
+          "error": 1.1102551587650613e-16
+        },
+        {
+          "axis": "z",
+          "t": 1.5,
+          "det": "(1+2.31016589563637e-17j)",
+          "error": 2.31016589563637e-17
+        },
+        {
+          "axis": "z",
+          "t": 3.141592653589793,
+          "det": "(1+0j)",
+          "error": 0.0
+        }
+      ]
+    },
+    "purity_preservation": {
+      "pass": "True"
+    },
+    "entropy_preservation": {
+      "pass": "True"
+    },
+    "eigenvalue_preservation": {
+      "pass": "True"
+    },
+    "group_composition": {
+      "pass": "True",
+      "details": [
+        {
+          "axis": "x",
+          "t1": 0.8,
+          "t2": 1.3,
+          "error": 1.1102230246251565e-16
+        },
+        {
+          "axis": "y",
+          "t1": 0.8,
+          "t2": 1.3,
+          "error": 5.551115123125783e-17
+        },
+        {
+          "axis": "z",
+          "t1": 0.8,
+          "t2": 1.3,
+          "error": 1.2412670766236366e-16
+        }
+      ]
+    },
+    "non_commutativity": {
+      "pass": "True",
+      "commutator_norm": 0.3287879320510601,
+      "note": "U_x(1.0) and U_z(0.7) do NOT commute"
+    },
+    "bch_first_order": {
+      "pass": "True",
+      "error": 4.166791662755256e-08,
+      "eps": 0.01,
+      "note": "BCH e^A e^B = e^{A+B+[A,B]/2+...} verified to O(eps^2)"
+    },
+    "bloch_rotation_z_x": {
+      "pass": "True",
+      "details": [
+        {
+          "axis": "z",
+          "t": 1.0471975511965976,
+          "r_before": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "r_after": [
+            0.5000000000000002,
+            0.8660254037844386,
+            0.0
+          ],
+          "r_expected": [
+            0.5000000000000001,
+            0.8660254037844386,
+            0.0
+          ],
+          "error": 1.1102230246251565e-16
+        },
+        {
+          "axis": "x",
+          "t": 1.0471975511965976,
+          "r_before": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "r_after": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "r_expected": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "error": 0.0
+        }
+      ]
+    },
+    "bloch_rotation_general": {
+      "pass": "True",
+      "n_hat": [
+        0.5773502691896258,
+        0.5773502691896258,
+        0.5773502691896258
+      ],
+      "t": 1.2,
+      "error": 1.1102230246251565e-16
+    },
+    "sympy_symbolic": {
+      "pass": true,
+      "details": {
+        "Uz_diag_form": {
+          "pass": true,
+          "note": "cos(t/2)I - i sin(t/2)sz == diag(e^{-it/2}, e^{it/2})"
+        },
+        "Uz_unitarity_symbolic": {
+          "pass": true,
+          "note": "U_z^dag U_z = I (symbolic)"
+        },
+        "Uz_det_symbolic": {
+          "pass": true,
+          "det": "1"
+        },
+        "Ux_unitarity_symbolic": {
+          "pass": true
+        },
+        "composition_symbolic": {
+          "pass": true,
+          "note": "U_z(a) U_z(b) = U_z(a+b) verified symbolically"
+        }
+      }
+    },
+    "clifford_rotor": {
+      "pass": true,
+      "details": {
+        "rotor_vs_su2_z": {
+          "pass": "True",
+          "clifford_result": [
+            0.5403023058681398,
+            0.8414709848078965,
+            0.0
+          ],
+          "su2_result": [
+            0.5403023058681398,
+            0.8414709848078965,
+            0.0
+          ],
+          "error": 0.0
+        },
+        "rotor_vs_su2_x": {
+          "pass": "True",
+          "clifford_result": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "su2_result": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "error": 0.0
+        },
+        "rotor_vs_su2_y": {
+          "pass": "True",
+          "clifford_result": [
+            0.5403023058681398,
+            0.0,
+            -0.8414709848078965
+          ],
+          "su2_result": [
+            0.5403023058681398,
+            0.0,
+            -0.8414709848078965
+          ],
+          "error": 0.0
+        },
+        "rotor_vs_su2_general": {
+          "pass": "True",
+          "error": 1.1102230246251565e-16
+        }
+      }
+    },
+    "z3_unitarity_proof": {
+      "pass": true,
+      "satisfiable": true,
+      "contradiction_unsat": true,
+      "note": "c^2 + s^2 = 1 is necessary and sufficient for unitarity of U_z"
+    },
+    "pytorch_autograd": {
+      "pass": true,
+      "details": {
+        "t=0.50": {
+          "pass": true,
+          "error": 0.0
+        },
+        "t=1.00": {
+          "pass": true,
+          "error": 0.0
+        },
+        "t=1.57": {
+          "pass": true,
+          "error": 0.0
+        }
+      },
+      "note": "dU/dt = -iHU verified via autograd"
+    }
+  },
+  "negative": {
+    "non_hermitian_H_breaks_unitarity": {
+      "pass": "True",
+      "error": 2.8322936730942843,
+      "note": "Non-Hermitian H produces non-unitary U"
+    },
+    "non_unit_nhat_wrong_angle": {
+      "pass": "True",
+      "error": 0.6895465411977906,
+      "note": "|n_hat| != 1 gives wrong rotation angle on Bloch sphere"
+    },
+    "identity_only_at_zero": {
+      "pass": "True",
+      "note": "U(0) = I but U(t!=0) != I"
+    },
+    "random_matrix_not_unitary": {
+      "pass": "True",
+      "error": 5.687018822804774,
+      "note": "Random complex 2x2 is not unitary"
+    },
+    "pauli_noncommutative": {
+      "pass": "True",
+      "commutator_norm": 2.0,
+      "note": "[sigma_x, sigma_z] != 0"
+    }
+  },
+  "boundary": {
+    "t_zero_x": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "t_zero_y": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "t_zero_z": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "t_2pi_x": {
+      "pass": "True",
+      "error": 1.2246467991473532e-16,
+      "note": "U(2pi) = -I (SU(2) double cover of SO(3))"
+    },
+    "t_2pi_y": {
+      "pass": "True",
+      "error": 1.2246467991473532e-16,
+      "note": "U(2pi) = -I (SU(2) double cover of SO(3))"
+    },
+    "t_2pi_z": {
+      "pass": "True",
+      "error": 1.2246467991473532e-16,
+      "note": "U(2pi) = -I (SU(2) double cover of SO(3))"
+    },
+    "t_4pi_x": {
+      "pass": "True",
+      "error": 2.4492935982947064e-16
+    },
+    "t_4pi_y": {
+      "pass": "True",
+      "error": 2.4492935982947064e-16
+    },
+    "t_4pi_z": {
+      "pass": "True",
+      "error": 2.4492935982947064e-16
+    },
+    "Uz_pi": {
+      "pass": "True",
+      "error": 6.123233995736766e-17
+    },
+    "Ux_pi": {
+      "pass": "True",
+      "error": 6.123233995736766e-17
+    },
+    "small_t_taylor_x": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "small_t_taylor_y": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "small_t_taylor_z": {
+      "pass": "True",
+      "error": 0.0
+    },
+    "Uz_pi_over_2": {
+      "pass": "True",
+      "error": 1.1102230246251565e-16
+    }
+  },
+  "summary": {
+    "positive": "22/22",
+    "negative": "5/5",
+    "boundary": "15/15",
+    "total": "42/42"
+  },
+  "classification": "canonical"
+}

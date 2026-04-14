@@ -1,0 +1,100 @@
+{
+  "name": "sim_cl3_basis",
+  "classification": "canonical",
+  "positive": {
+    "e1_sq": true,
+    "e2_sq": true,
+    "e3_sq": true,
+    "anticommute_12": true,
+    "anticommute_13": true,
+    "anticommute_23": true,
+    "dim_is_8": true,
+    "sympy_scalar_one": true
+  },
+  "negative": {
+    "e1e2_not_scalar": true,
+    "e1_ne_e2": true,
+    "commutator_nonzero": true
+  },
+  "boundary": {
+    "I_sq_minus_one": true,
+    "I_commutes_e1": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; algebraic identity test"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in basis axioms"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "real-algebra SMT not required for numeric identities"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "covered by numeric + sympy check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "used for symbolic e_i*e_i cross-check"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "constructs Cl(3,0) and provides grade projection"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not a manifold/statistics sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor-product reps needed at basis level"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "pass": true
+}

@@ -1,0 +1,288 @@
+{
+  "name": "Wilczek-Zee Non-Abelian Geometric Phase",
+  "probe": "lego_wilczek_zee",
+  "purpose": "Verify non-abelian holonomy for a transported two-dimensional degenerate eigenspace",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: complex matrix exponentials, eigenspace transport, holonomy accumulation, and autograd validation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- finite-dimensional matrix transport only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check of the abelian Berry-phase solid-angle formula"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- explicit matrix geometry suffices"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "tools_used": [
+    "pytorch",
+    "sympy"
+  ],
+  "positive": {
+    "P1_abelian_berry_phase": {
+      "pass": true,
+      "theta": 1.0471975511965976,
+      "berry_exact": -1.5707963267948961,
+      "berry_numeric": -1.5708002025890442,
+      "berry_sympy": -1.5707963267948963,
+      "error_numeric_mod_2pi": 3.875794148067158e-06,
+      "error_sympy": 2.220446049250313e-16
+    },
+    "P2_nonabelian_offdiag": {
+      "pass": true,
+      "holonomy_real": [
+        [
+          0.9643206988857164,
+          -0.24228919604479962
+        ],
+        [
+          0.2422891960448001,
+          0.9643206988855068
+        ]
+      ],
+      "holonomy_imag": [
+        [
+          0.10668426844075024,
+          4.525248015800279e-05
+        ],
+        [
+          4.525247968025512e-05,
+          -0.10668426844265265
+        ]
+      ],
+      "off_diagonal_norm": 0.48457840054142903,
+      "is_unitary": true,
+      "det_real": 0.9999999999999978,
+      "det_imag": -1.9726434088637442e-12,
+      "degeneracy": 2
+    },
+    "P3_path_ordering_matters": {
+      "pass": true,
+      "commutator_norm": 0.7071067812418705,
+      "fwd_rev_diff_norm": 0.4921379341940423,
+      "A_theta_real": [
+        [
+          0.0,
+          -1.9675233664528946e-13
+        ],
+        [
+          1.9675233664528946e-13,
+          0.0
+        ]
+      ],
+      "A_theta_imag": [
+        [
+          -5.2430516525592274e-12,
+          -0.5000000000198179
+        ],
+        [
+          -0.5000000000198179,
+          -8.617143457123611e-13
+        ]
+      ],
+      "A_phi_real": [
+        [
+          0.0,
+          -0.32210884363115444
+        ],
+        [
+          0.32210884363115444,
+          0.0
+        ]
+      ],
+      "A_phi_imag": [
+        [
+          -0.3824210936568463,
+          1.3304912727107876e-12
+        ],
+        [
+          1.3304912727107876e-12,
+          0.38242109365737825
+        ]
+      ]
+    },
+    "P4_su2_holonomy": {
+      "pass": true,
+      "is_unitary": true,
+      "det_real": 0.9999999999999978,
+      "det_imag": -1.9726434088637442e-12,
+      "half_trace_real": 0.9643206988856116
+    },
+    "P5_solid_angle_dependence": {
+      "pass": true,
+      "loop_radii": [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ],
+      "holonomy_traces": [
+        1.999025409841464,
+        1.9849831679223167,
+        1.9286395725283243,
+        1.793808468089615
+      ],
+      "off_diagonal_norms": [
+        0.05150208161747309,
+        0.2141039231710087,
+        0.48458444377352666,
+        0.8367454805856196
+      ],
+      "trace_spread": 0.205216941751849,
+      "off_diag_monotone": true
+    },
+    "P6_autograd": {
+      "pass": true,
+      "grad_value": -0.26378796606096133
+    },
+    "elapsed_s": 2.0303499698638916
+  },
+  "negative": {
+    "N1_trivial_loop": {
+      "pass": true,
+      "diff_from_identity": 0.0
+    },
+    "N2_broken_degeneracy": {
+      "pass": true,
+      "eigenvalues": [
+        "(-1.2999999999999992+0j)",
+        "(-0.7+0j)",
+        "(1+0j)",
+        "(1.0000000000000002+0j)"
+      ],
+      "gaps": [
+        0.5999999999999992,
+        1.7,
+        2.220446049250313e-16
+      ],
+      "doublet_split_gap": 0.5999999999999992
+    },
+    "N3_commuting_surrogate": {
+      "pass": true,
+      "commutator_norm": 0.0,
+      "order_diff_norm": 0.0
+    },
+    "elapsed_s": 0.006283760070800781
+  },
+  "boundary": {
+    "B1_small_loop_linear": {
+      "pass": true,
+      "epsilons": [
+        0.02,
+        0.05,
+        0.1,
+        0.2
+      ],
+      "deviations": [
+        0.0017765060220323,
+        0.011088596761653668,
+        0.04414673624988945,
+        0.17329148512662604
+      ],
+      "is_monotone": true
+    },
+    "B2_fixed_latitude_loop": {
+      "pass": true,
+      "holonomy_trace": -1.999999999999852,
+      "off_diagonal_magnitude": 3.3493474019930366e-10,
+      "holonomy_real": [
+        [
+          -0.9999999999999264,
+          1.6746597707253207e-10
+        ],
+        [
+          -1.674663257540313e-10,
+          -0.9999999999999255
+        ]
+      ],
+      "holonomy_imag": [
+        [
+          -6.076188519683273e-11,
+          -6.388888045559853e-13
+        ],
+        [
+          -6.388888248780679e-13,
+          -6.048328586059408e-11
+        ]
+      ]
+    },
+    "B3_step_convergence": {
+      "pass": true,
+      "step_counts": [
+        50,
+        100,
+        200,
+        400
+      ],
+      "holonomy_traces": [
+        1.9289882826570914,
+        1.9287217209854899,
+        1.9286549635896713,
+        1.9286382669234383
+      ],
+      "successive_diffs": [
+        0.00026656167160155064,
+        6.67573958186285e-05,
+        1.6696666232940416e-05
+      ]
+    },
+    "elapsed_s": 1.8483169078826904
+  },
+  "classification": "canonical",
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "failed_tests": []
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "name": "Quantum Thermodynamics -- Gibbs, Free Energy, Ergotropy, Jarzynski",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All numerics: Gibbs states, free energy, ergotropy, Jarzynski sampling, second law"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Gibbs state, free energy identity, Landauer bound proof"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "gibbs_state": {
+      "rho_diagonal": [
+        0.11920292202211757,
+        0.8807970779778824
+      ],
+      "rho_matches_analytic": true,
+      "trace_1": true,
+      "positive_semidefinite": true,
+      "commutes_with_H": true,
+      "Z_value": 3.0861612696304874,
+      "Z_matches_2cosh_beta": true,
+      "F_value": -1.1269280110429725,
+      "pass": true
+    },
+    "free_energy": {
+      "beta_sweep": [
+        {
+          "beta": 0.1,
+          "F_from_Z": -6.981388693815919,
+          "F_from_state": -6.981388693815918,
+          "match": true
+        },
+        {
+          "beta": 0.5,
+          "F_from_Z": -1.6265233750364456,
+          "F_from_state": -1.6265233750364454,
+          "match": true
+        },
+        {
+          "beta": 1.0,
+          "F_from_Z": -1.1269280110429725,
+          "F_from_state": -1.1269280110429725,
+          "match": true
+        },
+        {
+          "beta": 2.0,
+          "F_from_Z": -1.0090749639589047,
+          "F_from_state": -1.009074963958905,
+          "match": true
+        },
+        {
+          "beta": 5.0,
+          "F_from_Z": -1.0000090797798433,
+          "F_from_state": -1.0000090797798433,
+          "match": true
+        },
+        {
+          "beta": 10.0,
+          "F_from_Z": -1.0000000002061153,
+          "F_from_state": -1.0000000002061153,
+          "match": true
+        }
+      ],
+      "all_F_methods_agree": true,
+      "pass": true
+    },
+    "ergotropy": {
+      "W_excited": 2.0,
+      "W_excited_positive": true,
+      "W_gibbs": 0.0,
+      "W_gibbs_zero": true,
+      "W_mixed": 0.0,
+      "W_mixed_zero": true,
+      "W_superposition": 0.9999999999999998,
+      "W_super_zero": false,
+      "pass": true
+    },
+    "landauer_bound": {
+      "W_erasure": 0.6931471805599453,
+      "W_landauer_kT_ln2": 0.6931471805599453,
+      "delta_S": 0.6931471805599453,
+      "bound_satisfied": true,
+      "bound_tight_reversible": true,
+      "pass": true
+    },
+    "jarzynski_equality": {
+      "delta_F": -0.8912219168748374,
+      "jarzynski_lhs_mean": 2.431532737209958,
+      "jarzynski_rhs": 2.4381069959666024,
+      "std_error": 0.02433809874132669,
+      "ratio": 0.9973035396856987,
+      "works_mean": -0.756,
+      "works_std": 0.6548991471157113,
+      "n_samples": 1000,
+      "ratio_lhs_over_rhs": 0.9973035396856987,
+      "within_3sigma": true,
+      "pass": true
+    },
+    "second_law": {
+      "delta_S_system": 0.36533385508720767,
+      "Q_heat": 0.23840584404423515,
+      "beta_Q": 0.23840584404423515,
+      "delta_S_total": 0.6037396991314428,
+      "second_law_satisfied": true,
+      "pass": true
+    },
+    "sympy_verification": {
+      "gibbs": {
+        "Z": "2*cosh(beta)",
+        "Z_is_2cosh_beta": "0",
+        "rho": "Matrix([[1/(exp(2*beta) + 1), 0], [0, exp(2*beta)/(exp(2*beta) + 1)]])",
+        "trace_rho": "1",
+        "commutator_H_rho": "Matrix([[0, 0], [0, 0]])",
+        "commutator_is_zero": true,
+        "F_symbolic": "-(log(cosh(beta)) + log(2))/beta",
+        "E_mean": "-tanh(beta)",
+        "S_symbolic": "(beta + (-beta + log(cosh(beta)) + log(2))*exp(2*beta) + log(cosh(beta)) + log(2))*exp(-beta)/(2*cosh(beta))",
+        "F_equals_E_minus_TS_residual": "-(2*beta*exp(beta)*sinh(beta) + beta - (beta - log(2*cosh(beta)))*exp(2*beta) + log(2*cosh(beta)/(2*cosh(beta))**(2*exp(beta)*cosh(beta))))*exp(-beta)/(2*beta*cosh(beta))"
+      },
+      "landauer": {
+        "S_mixed": "log(2)",
+        "S_pure": "0",
+        "W_min": "T*log(2)",
+        "W_min_equals_kT_ln2": "0"
+      },
+      "pass": true
+    },
+    "jarzynski_large_ensemble": {
+      "delta_F": -0.11463809598356334,
+      "jarzynski_lhs_mean": 1.2244099694396875,
+      "jarzynski_rhs": 1.2576893547416441,
+      "std_error": 0.019602876174321278,
+      "ratio": 0.9735392645437531,
+      "works_mean": -0.00579514302140865,
+      "works_std": 0.48370892349437317,
+      "n_samples": 5000,
+      "ratio_lhs_over_rhs": 0.9735392645437531,
+      "within_3sigma": true,
+      "pass": true
+    },
+    "elapsed_s": 1.825859785079956
+  },
+  "negative": {
+    "non_gibbs_not_equilibrium": {
+      "commutator_norm": 0.848528137423857,
+      "correctly_nonzero": true,
+      "pass": true
+    },
+    "negative_temperature": {
+      "beta": -1.0,
+      "p_high_energy": 0.8807970779778824,
+      "p_low_energy": 0.11920292202211757,
+      "population_inverted": true,
+      "pass": true
+    },
+    "ergotropy_nonnegative": {
+      "ergotropies": [
+        0.0047024028936089035,
+        0.1774155272934428,
+        1.2053746890706425,
+        0.4087540567647445,
+        0.4861186850310867,
+        0.8435270329470883,
+        1.103411062433324,
+        0.31954543238274674,
+        0.07926014034467344,
+        0.11904839856863658,
+        0.002736079776213818,
+        1.4813900254349508,
+        0.788718927391177,
+        1.708168013851596,
+        0.07200889845110958,
+        0.03657067773377409,
+        5.804398724429394e-05,
+        1.229201873661733,
+        0.816010834948049,
+        0.3793002412506285
+      ],
+      "all_nonnegative": true,
+      "pass": true
+    },
+    "landauer_no_violation": {
+      "W_erasure": 0.6931471805599453,
+      "W_min_kT_ln2": 0.6931471805599453,
+      "violation_found": false,
+      "pass": true
+    },
+    "elapsed_s": 0.003036022186279297
+  },
+  "boundary": {
+    "zero_temperature_limit": {
+      "beta": 50.0,
+      "p_ground": 0.9999999999999999,
+      "near_pure_ground": true,
+      "F": -1.0,
+      "F_near_minus_1": true,
+      "S": 1.1102230246251564e-16,
+      "S_near_zero": true,
+      "pass": true
+    },
+    "infinite_temperature_limit": {
+      "beta": 0.001,
+      "rho_diagonal": [
+        0.4995000001666667,
+        0.5004999998333334
+      ],
+      "near_maximally_mixed": true,
+      "S": 0.6931466805601953,
+      "ln2": 0.6931471824645996,
+      "S_near_ln2": true,
+      "pass": true
+    },
+    "degenerate_hamiltonian": {
+      "rho_is_maximally_mixed": true,
+      "Z_equals_2": true,
+      "F_value": -0.6931471805599453,
+      "F_expected": -0.6931471805599453,
+      "F_correct": true,
+      "pass": true
+    },
+    "gibbs_is_passive": {
+      "ergotropies": [
+        {
+          "beta": 0.01,
+          "ergotropy": 0.0
+        },
+        {
+          "beta": 0.1,
+          "ergotropy": 0.0
+        },
+        {
+          "beta": 1.0,
+          "ergotropy": 0.0
+        },
+        {
+          "beta": 5.0,
+          "ergotropy": 0.0
+        },
+        {
+          "beta": 50.0,
+          "ergotropy": 0.0
+        }
+      ],
+      "all_zero": true,
+      "pass": true
+    },
+    "jarzynski_trivial_quench": {
+      "delta_F": 0.0,
+      "jarzynski_lhs_mean": 1.0,
+      "jarzynski_rhs": 1.0,
+      "std_error": 0.0,
+      "ratio": 1.0,
+      "works_mean": 0.0,
+      "works_std": 0.0,
+      "n_samples": 1000,
+      "delta_F_zero": true,
+      "works_zero": true,
+      "ratio_near_one": true,
+      "pass": true
+    },
+    "elapsed_s": 0.034631967544555664
+  },
+  "summary": {
+    "positive_pass": "8/8",
+    "negative_pass": "4/4",
+    "boundary_pass": "5/5",
+    "all_pass": true
+  },
+  "classification": "canonical"
+}

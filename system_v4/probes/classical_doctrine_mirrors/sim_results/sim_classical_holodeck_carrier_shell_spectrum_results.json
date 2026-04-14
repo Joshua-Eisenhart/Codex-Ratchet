@@ -1,0 +1,114 @@
+{
+  "name": "sim_classical_holodeck_carrier_shell_spectrum",
+  "scope_note": "classical_baseline for holodeck carrier-shell (OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md, ENGINE_MATH_REFERENCE.md)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "ring_n6": {
+      "max_abs_err": 8.881784197001252e-16,
+      "pass": true
+    },
+    "ring_n12": {
+      "max_abs_err": 8.881784197001252e-16,
+      "pass": true
+    },
+    "ring_n24": {
+      "max_abs_err": 2.220446049250313e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "path_not_ring": {
+      "max_abs_err": 0.5176380902050417,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "ring_n3_min": {
+      "eig": [
+        -1.1102230246251565e-16,
+        3.0,
+        3.0
+      ],
+      "max_abs_err": 1.1102230246251565e-16,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

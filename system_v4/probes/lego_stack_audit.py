@@ -23,11 +23,13 @@ OUT_PATH = RESULTS_DIR / "lego_stack_audit_results.json"
 LIVE_SPINE_PATH = RESULTS_DIR / "live_anchor_spine.json"
 PROBES_DIR = SCRIPT_DIR
 
+DOCS_ROOT = PROJECT_DIR / "system_v5" / "new docs"
+
 CORE_DOCS = [
-    PROJECT_DIR / "new docs" / "07_model_math_geometry_sim_plan.md",
-    PROJECT_DIR / "new docs" / "08_aligned_sim_backlog_and_build_order.md",
-    PROJECT_DIR / "new docs" / "LEGO_SIM_CONTRACT.md",
-    PROJECT_DIR / "new docs" / "FALSIFICATION_SIM_DESIGNS.md",
+    DOCS_ROOT / "07_model_math_geometry_sim_plan.md",
+    DOCS_ROOT / "08_aligned_sim_backlog_and_build_order.md",
+    DOCS_ROOT / "LEGO_SIM_CONTRACT.md",
+    DOCS_ROOT / "FALSIFICATION_SIM_DESIGNS.md",
 ]
 
 BACKLOG = [
@@ -40,9 +42,9 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Root-constraint kills are useful because they map the admissible boundary early.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
-            "new docs/LEGO_SIM_CONTRACT.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/LEGO_SIM_CONTRACT.md",
         ],
     },
     {
@@ -54,8 +56,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Rejected carrier families still show what the root constraints refuse to admit.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -67,8 +69,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Geometry failures are useful because they kill metric smuggling and flat-only shortcuts.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -80,8 +82,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Topology-sensitive failures are still evidence about which carrier views survive.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -93,9 +95,9 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Operator families that collapse under commutative or symmetric reductions are useful kills.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
-            "new docs/FALSIFICATION_SIM_DESIGNS.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/FALSIFICATION_SIM_DESIGNS.md",
         ],
     },
     {
@@ -107,8 +109,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "False bipartite or witness candidates are still useful because they clarify which summaries are lossy.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -120,8 +122,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Rejected entropy candidates are useful because entropy is later-layer and should lose if underpowered.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -133,7 +135,7 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Collapse failures show which families are genuinely distinct rather than renamed summaries.",
         "source_docs": [
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -145,8 +147,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "Axis candidates that fail lower-layer admission are useful because they prevent premature promotion.",
         "source_docs": [
-            "new docs/07_model_math_geometry_sim_plan.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/07_model_math_geometry_sim_plan.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
     {
@@ -158,7 +160,7 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "A kill here is more informative than a vague positive mapping claim.",
         "source_docs": [
-            "new docs/FALSIFICATION_SIM_DESIGNS.md",
+            "system_v5/new docs/FALSIFICATION_SIM_DESIGNS.md",
         ],
     },
     {
@@ -170,7 +172,7 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "If viability fails, that changes the framing cleanly and usefully.",
         "source_docs": [
-            "new docs/FALSIFICATION_SIM_DESIGNS.md",
+            "system_v5/new docs/FALSIFICATION_SIM_DESIGNS.md",
         ],
     },
     {
@@ -182,8 +184,8 @@ BACKLOG = [
         "useful_if_rejected": True,
         "why": "If the metrics disagree qualitatively, that is useful structure pressure, not failure noise.",
         "source_docs": [
-            "new docs/FALSIFICATION_SIM_DESIGNS.md",
-            "new docs/08_aligned_sim_backlog_and_build_order.md",
+            "system_v5/new docs/FALSIFICATION_SIM_DESIGNS.md",
+            "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
         ],
     },
 ]
@@ -240,6 +242,8 @@ def load_live_spine() -> list[dict]:
 def probe_index() -> list[dict]:
     rows = []
     for path in sorted(PROBES_DIR.glob("sim_*.py")):
+        if path.name.endswith(" 2.py"):
+            continue
         stem = path.stem.lower()
         rows.append({"path": str(path), "stem": stem})
     return rows

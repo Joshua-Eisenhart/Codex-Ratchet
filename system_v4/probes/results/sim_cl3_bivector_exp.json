@@ -1,0 +1,92 @@
+{
+  "name": "sim_cl3_bivector_exp",
+  "classification": "canonical",
+  "positive": {
+    "exp_matches_cos_sin": true,
+    "sympy_series_exists": true
+  },
+  "negative": {
+    "wrong_basis_mismatch": true
+  },
+  "boundary": {
+    "zero_angle": true,
+    "2pi_gives_minus_one": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric algebra only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric identity"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric identity"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic series verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3) exp of bivector"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cells"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "pass": true
+}

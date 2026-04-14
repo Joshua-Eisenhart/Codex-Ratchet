@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SIM TEMPLATE -- All new sims must start from this template.
-See new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 Usage:
   1. Copy this file to sim_<your_name>.py

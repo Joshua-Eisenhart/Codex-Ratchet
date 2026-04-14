@@ -3,7 +3,7 @@
 Parse the markdown lego registry into a machine-readable JSON artifact.
 
 Consumes:
-  - new docs/17_actual_lego_registry.md
+  - system_v5/new docs/17_actual_lego_registry.md
 
 Emits:
   - system_v4/probes/a2_state/sim_results/actual_lego_registry.json

@@ -1,0 +1,340 @@
+{
+  "name": "geom_metric_layers -- FS / Bures / QFI / Trace Distance",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "all metric computations, autograd differentiation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check Bures distance via SPD manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "pure_state_metrics": {
+      "name": "pure_state_metric_comparison",
+      "pass": true,
+      "details": {
+        "z_up_vs_z_down": {
+          "fubini_study": 1.5707963267948966,
+          "bures": 1.414213562373095,
+          "bures_from_fs": 1.414213562373095,
+          "trace_dist": 1.0,
+          "fidelity": 3.749399456654644e-33,
+          "fs_bures_consistent": "True",
+          "fuchs_van_de_graaf": "True"
+        },
+        "z_up_vs_x_plus": {
+          "fubini_study": 0.7853981633974483,
+          "bures": 0.7653668647301795,
+          "bures_from_fs": 0.7653668647301795,
+          "trace_dist": 0.7071067811865475,
+          "fidelity": 0.5000000000000001,
+          "fs_bures_consistent": "True",
+          "fuchs_van_de_graaf": "True"
+        },
+        "nearby_pure": {
+          "fubini_study": 0.026236383228590742,
+          "bures": 0.02623556360869031,
+          "bures_from_fs": 0.02623563074519855,
+          "trace_dist": 0.02623337337271174,
+          "fidelity": 0.999311813643008,
+          "fs_bures_consistent": "True",
+          "fuchs_van_de_graaf": "True"
+        },
+        "orthogonal_xy": {
+          "fubini_study": 1.5707963267948966,
+          "bures": 1.414213562373095,
+          "bures_from_fs": 1.414213562373095,
+          "trace_dist": 1.0,
+          "fidelity": 3.1120808932977014e-32,
+          "fs_bures_consistent": "True",
+          "fuchs_van_de_graaf": "True"
+        }
+      }
+    },
+    "mixed_state_metrics": {
+      "name": "mixed_state_metric_divergence",
+      "pass": true,
+      "details": {
+        "slightly_mixed": {
+          "bures": 0.10457052385498512,
+          "trace_dist": 0.0940198168760099,
+          "fidelity": 0.9890948990666503,
+          "fuchs_van_de_graaf": "True"
+        },
+        "very_mixed": {
+          "bures": 0.057568918337289325,
+          "trace_dist": 0.05607398891268803,
+          "fidelity": 0.9966885655893367,
+          "fuchs_van_de_graaf": "True"
+        },
+        "one_near_boundary": {
+          "bures": 0.45551618588660675,
+          "trace_dist": 0.25561770462702144,
+          "fidelity": 0.8032685476955651,
+          "fuchs_van_de_graaf": "True"
+        },
+        "both_near_center": {
+          "bures": 0.03355842142838115,
+          "trace_dist": 0.03355369704476307,
+          "fidelity": 0.9988741494146285,
+          "fuchs_van_de_graaf": "True"
+        }
+      }
+    },
+    "qfi_cramer_rao": {
+      "name": "qfi_cramer_rao",
+      "pass": true,
+      "details": {
+        "pure_theta": {
+          "qfi": 0.999999999998,
+          "nonneg": true,
+          "param_idx": 0,
+          "r": 0.999999999999
+        },
+        "mixed_theta": {
+          "qfi": 0.36,
+          "nonneg": true,
+          "param_idx": 0,
+          "r": 0.6
+        },
+        "mixed_r": {
+          "qfi": 1.5625,
+          "nonneg": true,
+          "param_idx": 2,
+          "r": 0.6
+        },
+        "maximally_mixed": {
+          "qfi": 0.00010000000000000002,
+          "nonneg": true,
+          "param_idx": 0,
+          "r": 0.01
+        },
+        "pure_qfi_value": 0.999999999998,
+        "pure_qfi_expected_1": true
+      }
+    },
+    "fs_curvature": {
+      "name": "fubini_study_curvature_K4",
+      "pass": true,
+      "details": {
+        "g_theta_theta": 0.25,
+        "g_phi_phi": 0.1770183545683928,
+        "expected_gtt": 0.25,
+        "expected_gpp": 0.1770183545683928,
+        "gtt_match": true,
+        "gpp_match": "True",
+        "gaussian_curvature_K": 4.0,
+        "curvature_note": "S^2 radius 1/2 => K = 1/(1/2)^2 = 4"
+      }
+    },
+    "autograd_metrics": {
+      "name": "autograd_through_metrics",
+      "pass": true,
+      "details": {
+        "fubini_study": {
+          "distance": 0.31833605186372216,
+          "grad_theta": -0.3298096117745671,
+          "grad_phi": -0.2420969897051644,
+          "autograd_works": true
+        },
+        "bures": {
+          "distance": 0.3169935955653164,
+          "grad_theta": -0.32564065790691094,
+          "grad_phi": -0.2390367647843108,
+          "autograd_works": true
+        },
+        "trace_dist": {
+          "distance": 0.3129866473663687,
+          "grad_theta": -0.3132391609954425,
+          "grad_phi": -0.22993343804243815,
+          "autograd_works": true
+        }
+      }
+    },
+    "_elapsed_s": 0.05313897132873535
+  },
+  "negative": {
+    "fs_bures_disagree_mixed": {
+      "name": "fs_bures_disagree_mixed",
+      "pass": true,
+      "details": {
+        "fs": 0.7231225300862377,
+        "bures": 0.15802968736311884,
+        "differ": true,
+        "note": "FS and Bures must diverge on mixed states"
+      }
+    },
+    "trace_dist_identical": {
+      "name": "trace_dist_identical_zero",
+      "pass": true,
+      "details": {
+        "trace_dist_self": 0.0,
+        "is_zero": true
+      }
+    },
+    "fidelity_in_range": {
+      "name": "fidelity_in_range",
+      "pass": true,
+      "details": {
+        "cases_checked": 10
+      }
+    },
+    "qfi_maximally_mixed": {
+      "name": "qfi_maximally_mixed_near_zero",
+      "pass": true,
+      "details": {
+        "qfi_r001": 9.999999999999999e-05,
+        "near_zero": true
+      }
+    }
+  },
+  "boundary": {
+    "bures_pure_boundary": {
+      "name": "bures_pure_boundary",
+      "pass": true,
+      "details": {
+        "r_0.9": {
+          "bures": 0.26614802630654044,
+          "finite": "True"
+        },
+        "r_0.99": {
+          "bures": 0.2933310672820737,
+          "finite": "True"
+        },
+        "r_0.999": {
+          "bures": 0.29605851781261716,
+          "finite": "True"
+        },
+        "r_0.9999": {
+          "bures": 0.2963313583185956,
+          "finite": "True"
+        }
+      }
+    },
+    "orthogonal_maximal": {
+      "name": "orthogonal_pure_maximal",
+      "pass": true,
+      "details": {
+        "fs": 1.5707963267948966,
+        "fs_max_pi_over_2": true,
+        "bures": 1.414213562373095,
+        "bures_max_sqrt2": "True",
+        "trace": 1.0,
+        "trace_max_1": true
+      }
+    },
+    "identical_zero": {
+      "name": "identical_states_zero",
+      "pass": true,
+      "details": {
+        "bures_mixed": {
+          "distance": 0.0,
+          "is_zero": true
+        },
+        "trace_mixed": {
+          "distance": 0.0,
+          "is_zero": true
+        },
+        "fs_pure": {
+          "distance": 0.0,
+          "is_zero": true
+        },
+        "fs_mixed_nonzero_expected": {
+          "distance": 0.6590580358264089,
+          "note": "FS not a valid distance on mixed states; nonzero self-distance expected"
+        }
+      }
+    },
+    "near_maximally_mixed": {
+      "name": "near_maximally_mixed",
+      "pass": true,
+      "details": {
+        "bures": 0.00029308993078060934,
+        "trace": 0.0002930899256919144,
+        "fidelity": 0.9999999140982944,
+        "all_finite": true,
+        "fidelity_near_1": true,
+        "note": "near maximally mixed, states nearly indistinguishable"
+      }
+    }
+  },
+  "geomstats_crosscheck": {
+    "attempted": true,
+    "our_bures": 0.20539565267695817,
+    "crosscheck_status": "geomstats_loaded"
+  },
+  "classification": "canonical",
+  "all_pass": true,
+  "summary": {
+    "metrics_computed": [
+      "fubini_study",
+      "bures",
+      "qfi_sld",
+      "trace_distance"
+    ],
+    "inequalities_verified": [
+      "Bures = sqrt(2 - 2*cos(d_FS)) on pure states (consistent)",
+      "d_tr <= sqrt(1 - F^2) (Fuchs-van de Graaf)",
+      "FS != Bures on mixed states",
+      "QFI >= 0 always",
+      "QFI -> 0 for maximally mixed",
+      "QFI(pure, theta) = 1 (Bloch sphere)"
+    ],
+    "autograd": "through all distance metrics",
+    "curvature": "FS Gaussian K=4 verified analytically"
+  }
+}

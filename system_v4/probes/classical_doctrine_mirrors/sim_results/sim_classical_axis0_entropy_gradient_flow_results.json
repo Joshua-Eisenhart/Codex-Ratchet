@@ -1,0 +1,122 @@
+{
+  "name": "sim_classical_axis0_entropy_gradient_flow",
+  "scope_note": "classical_baseline mirror of Axis 0 entropy-gradient (OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md, ENGINE_MATH_REFERENCE.md)",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: classical baseline; numpy sufficient for closed-form check"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph message passing in this baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SAT/UNSAT claim; numeric comparison only"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no SMT obligation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: numeric-only classical check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no Cl(p,q) rotor used in classical baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no manifold geometry in classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no equivariant network in classical baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no graph algorithms invoked"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no hypergraph in this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no cell complex in classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed: no persistent homology in classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_integration": "load_bearing",
+  "positive": {
+    "n3": {
+      "H_initial": 0.4292336790994974,
+      "H_final": 1.0986122886681098,
+      "H_uniform": 1.0986122886681096,
+      "monotonic_nondecreasing": true,
+      "close_to_uniform": true,
+      "pass": true
+    },
+    "n5": {
+      "H_initial": 0.7015074886046345,
+      "H_final": 1.6094379124341005,
+      "H_uniform": 1.6094379124341005,
+      "monotonic_nondecreasing": true,
+      "close_to_uniform": true,
+      "pass": true
+    },
+    "n8": {
+      "H_initial": 1.6118342227641518,
+      "H_final": 2.0794415416798357,
+      "H_uniform": 2.0794415416798357,
+      "monotonic_nondecreasing": true,
+      "close_to_uniform": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "descent_decreases_H": {
+      "H0": 1.0296530140645737,
+      "Hf": 4.147058285645163e-08,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "uniform_fixed_point": {
+      "drift": 0.0,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

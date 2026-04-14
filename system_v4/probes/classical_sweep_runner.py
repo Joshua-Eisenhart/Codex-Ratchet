@@ -98,6 +98,8 @@ def select_sims(include_heuristic: bool = False) -> tuple[list[Path], list[tuple
     for path in sorted(PROBES_DIR.rglob("sim_*.py")):
         if ARCHIVE_NAME in path.parts:
             continue
+        if path.name.endswith(" 2.py"):
+            continue
         try:
             src = path.read_text(encoding="utf-8", errors="replace")
         except OSError as exc:

@@ -1,0 +1,311 @@
+{
+  "name": "Fiber Bundles -- Hopf bundle, connections, holonomy, Chern-Weil",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd for connection forms, parallel transport ODE, curvature computation, Chern number integration"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal proof: cocycle condition on transition functions, integrality of Chern number, connection splitting"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic connection 1-form, curvature 2-form, exact Berry phase, Chern class computation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor representation of S^3 -> S^2 Hopf map, connection as bivector-valued form"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Geodesics on S^2, tangent space operations, metric for parallel transport cross-validation"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_hopf_map_on_S2": {
+      "description": "Hopf map sends S^3 to S^2 (all output norms = 1)",
+      "max_norm_error": 4.440892098500626e-16,
+      "pass": true
+    },
+    "P2_sections_roundtrip": {
+      "description": "sigma_N and sigma_S are sections (pi . sigma = id)",
+      "max_error_north": 4.443059973708341e-16,
+      "max_error_south": 4.509747244882934e-16,
+      "pass": true
+    },
+    "P3_ehresmann_split": {
+      "description": "Connection 1-form vanishes on horizontal, nonzero on vertical",
+      "omega_on_vertical": "1",
+      "omega_on_horizontal": "0",
+      "pass": true
+    },
+    "P4_holonomy_berry_phase": {
+      "description": "Holonomy phase = -Omega/2 for loops at constant theta",
+      "loops": [
+        {
+          "theta_0_deg": 30.0,
+          "solid_angle": 0.84178721,
+          "phase_numerical": -0.42089361,
+          "phase_theory": -0.42089361,
+          "error": 1.942890293094024e-15,
+          "pass": true
+        },
+        {
+          "theta_0_deg": 45.0,
+          "solid_angle": 1.84030237,
+          "phase_numerical": -0.92015118,
+          "phase_theory": -0.92015118,
+          "error": 4.973799150320701e-14,
+          "pass": true
+        },
+        {
+          "theta_0_deg": 60.0,
+          "solid_angle": 3.14159265,
+          "phase_numerical": -1.57079633,
+          "phase_theory": -1.57079633,
+          "error": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "theta_0_deg": 90.0,
+          "solid_angle": 6.28318531,
+          "phase_numerical": -3.14159265,
+          "phase_theory": -3.14159265,
+          "error": 0.0,
+          "pass": true
+        }
+      ],
+      "all_pass": true,
+      "pass": true
+    },
+    "P5_curvature_2form": {
+      "description": "F = dA = (sin(theta)/2) d(theta)^d(phi), symbolic + autograd",
+      "symbolic_F": "sin(theta)/2",
+      "symbolic_match": true,
+      "autograd_max_error": 0.0,
+      "pass": true
+    },
+    "P6_transition_functions": {
+      "description": "A_N - A_S = d(phi), cocycle g_NS * g_SN = id",
+      "A_N_minus_A_S": "1",
+      "gauge_transform_correct": true,
+      "z3_cocycle_sat": true,
+      "pass": true
+    },
+    "P7_chern_number": {
+      "description": "c_1 = (1/(2*pi)) integral F = 1 for the Hopf bundle",
+      "c1_symbolic": "1",
+      "c1_numeric": 1.00500426,
+      "z3_integrality_sat": true,
+      "pass": true
+    },
+    "P8_clifford_hopf_map": {
+      "description": "Cl(3) rotor R e3 ~R reproduces Hopf map S^3 -> S^2",
+      "test_points": [
+        {
+          "theta_deg": 0.0,
+          "phi_deg": 0.0,
+          "clifford_xyz": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "expected_xyz": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "theta_deg": 45.0,
+          "phi_deg": 0.0,
+          "clifford_xyz": [
+            0.70710678,
+            0.0,
+            0.70710678
+          ],
+          "expected_xyz": [
+            0.70710678,
+            0.0,
+            0.70710678
+          ],
+          "error": 1.5700924586837752e-16,
+          "pass": true
+        },
+        {
+          "theta_deg": 90.0,
+          "phi_deg": 45.0,
+          "clifford_xyz": [
+            0.70710678,
+            0.70710678,
+            0.0
+          ],
+          "expected_xyz": [
+            0.70710678,
+            0.70710678,
+            0.0
+          ],
+          "error": 1.8416213569112558e-16,
+          "pass": true
+        },
+        {
+          "theta_deg": 60.0,
+          "phi_deg": 30.0,
+          "clifford_xyz": [
+            0.75,
+            0.4330127,
+            0.5
+          ],
+          "expected_xyz": [
+            0.75,
+            0.4330127,
+            0.5
+          ],
+          "error": 1.2412670766236366e-16,
+          "pass": true
+        }
+      ],
+      "all_pass": true,
+      "pass": true
+    },
+    "P9_geomstats_geodesic": {
+      "description": "Geomstats geodesic distance on S^2 matches pi/2",
+      "distance": 1.57079633,
+      "expected": 1.57079633,
+      "error": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_flat_connection_trivial_holonomy": {
+      "description": "Flat connection (A=0) gives zero holonomy phase",
+      "phase": 0.0,
+      "pass": true
+    },
+    "N2_non_unit_hopf_fails": {
+      "description": "Non-unit point in C^2 does NOT map to S^2",
+      "output_norm": 30.0,
+      "is_on_S2": false,
+      "pass": true
+    },
+    "N3_trivial_bundle_c1_zero": {
+      "description": "Trivial bundle (A=0) has c_1 = 0, not 1",
+      "c1": 0.0,
+      "pass": true
+    },
+    "N4_cocycle_violation_unsat": {
+      "description": "Violating cocycle g_NS*g_SN=id is UNSAT",
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N5_open_path_dependent": {
+      "description": "Open-path transport is path-dependent (different phases)",
+      "phase_path1": -0.78539816,
+      "phase_path2": -7.854e-05,
+      "phases_differ": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_great_circle_holonomy": {
+      "description": "Equatorial great circle: holonomy = exp(-i*pi) = -1",
+      "phase_numerical": -3.14159265,
+      "phase_expected": -3.14159265,
+      "error": 4.440892098500626e-16,
+      "pass": true
+    },
+    "B2_small_loop_curvature": {
+      "description": "Small loop holonomy approaches curvature * area",
+      "loops": [
+        {
+          "epsilon_deg": 0.573,
+          "solid_angle": 0.0003141566473739186,
+          "phase_numerical": -0.00015707832368695306,
+          "phase_expected": -0.0001570783236869593,
+          "error": 6.2341624917916505e-18,
+          "pass": true
+        },
+        {
+          "epsilon_deg": 0.2865,
+          "solid_angle": 7.853965271527965e-05,
+          "phase_numerical": -3.926982635763532e-05,
+          "phase_expected": -3.926982635763983e-05,
+          "error": 4.506215279392878e-18,
+          "pass": true
+        },
+        {
+          "epsilon_deg": 0.0573,
+          "solid_angle": 3.1415923917412074e-06,
+          "phase_numerical": -1.570796195870312e-06,
+          "phase_expected": -1.5707961958706037e-06,
+          "error": 2.915910920922929e-19,
+          "pass": true
+        }
+      ],
+      "all_pass": true,
+      "pass": true
+    },
+    "B3_full_sphere_holonomy": {
+      "description": "Loop enclosing full sphere: phase = -2*pi (trivial holonomy)",
+      "phase_numerical": -6.283185,
+      "phase_expected": -6.283185,
+      "error": 2.859934511434403e-13,
+      "pass": true
+    },
+    "B4_z3_splitting_exhaustive": {
+      "description": "z3: every tangent vector has unique H+V decomposition",
+      "z3_result": "True",
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "all_pass": true
+  }
+}

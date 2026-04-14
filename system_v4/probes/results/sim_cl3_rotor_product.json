@@ -1,0 +1,95 @@
+{
+  "name": "sim_cl3_rotor_product",
+  "classification": "canonical",
+  "positive": {
+    "R1_unitary": true,
+    "R2_unitary": true,
+    "product_unitary": true,
+    "R_2pi_is_minus_one": true
+  },
+  "negative": {
+    "nonunit_not_rotor": true,
+    "sum_not_rotor": true
+  },
+  "boundary": {
+    "theta_zero_is_identity": true,
+    "theta_4pi_is_identity": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic identity; no autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "covered numerically"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "covered numerically"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used here; clifford suffices"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: constructs rotor R=exp(-B/2) and reverse"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cells"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "pass": true
+}

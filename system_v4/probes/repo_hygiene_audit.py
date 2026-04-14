@@ -48,8 +48,9 @@ SOURCE_BUCKET_RULES = (
     ("root_runtime", ("imessage_bot.py",)),
     ("probe_source", ("system_v4/probes/",)),
     ("skill_runtime", ("system_v4/skills/",)),
-    ("legacy_runtime", ("system_v3/", "system_v5/")),
-    ("docs_and_specs", ("CLAUDE.md", "new docs/", "docs/", "specs/")),
+    ("legacy_runtime", ("system_v3/",)),
+    ("next_gen_system", ("system_v5/",)),
+    ("docs_and_specs", ("CLAUDE.md", "README.md", "REPO_LAYOUT.md", "system_v5/new docs/", "system_v5/docs/", "specs/")),
     ("agent_state", (".agent/", ".agents/", ".codex_bg_home/", ".codex_runtime_home/")),
 )
 

@@ -1,0 +1,611 @@
+{
+  "name": "LEGO: Three Quantum Channel Capacities",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core compute: density matrices, entropy, channel application, autograd for capacity optimization"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of binary entropy, analytic capacity formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "erasure_analytic": {
+      "p=0.0": {
+        "C_analytic": 1.0,
+        "Q_analytic": 1.0,
+        "P_analytic": 1.0,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.1": {
+        "C_analytic": 0.9,
+        "Q_analytic": 0.8,
+        "P_analytic": 0.8,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.3": {
+        "C_analytic": 0.7,
+        "Q_analytic": 0.4,
+        "P_analytic": 0.4,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.5": {
+        "C_analytic": 0.5,
+        "Q_analytic": 0.0,
+        "P_analytic": 0.0,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.7": {
+        "C_analytic": 0.30000000000000004,
+        "Q_analytic": 0.0,
+        "P_analytic": 0.0,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=1.0": {
+        "C_analytic": 0.0,
+        "Q_analytic": 0.0,
+        "P_analytic": 0.0,
+        "C_ge_Q": true,
+        "pass": true
+      }
+    },
+    "amplitude_damping": {
+      "gamma=0.05": {
+        "Q_analytic": 0.831124,
+        "p_opt_analytic": 0.475238,
+        "Q_numeric": 0.83111,
+        "C_numeric": 0.857098,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": true,
+        "pass": true
+      },
+      "gamma=0.1": {
+        "Q_analytic": 0.709418,
+        "p_opt_analytic": 0.463232,
+        "Q_numeric": 0.709417,
+        "C_numeric": 0.762841,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": true,
+        "pass": true
+      },
+      "gamma=0.2": {
+        "Q_analytic": 0.506215,
+        "p_opt_analytic": 0.448724,
+        "Q_numeric": 0.50621,
+        "C_numeric": 0.618228,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": true,
+        "pass": true
+      },
+      "gamma=0.3": {
+        "Q_analytic": 0.327955,
+        "p_opt_analytic": 0.441221,
+        "Q_numeric": 0.327953,
+        "C_numeric": 0.503674,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": true,
+        "pass": true
+      },
+      "gamma=0.4": {
+        "Q_analytic": 0.16148,
+        "p_opt_analytic": 0.436718,
+        "Q_numeric": 0.16148,
+        "C_numeric": 0.406757,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": true,
+        "pass": true
+      },
+      "gamma=0.5": {
+        "Q_analytic": 0.0,
+        "p_opt_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "C_numeric": 0.32191,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": false,
+        "pass": true
+      },
+      "gamma=0.7": {
+        "Q_analytic": 0.0,
+        "p_opt_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "C_numeric": 0.176988,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": false,
+        "pass": true
+      },
+      "gamma=0.9": {
+        "Q_analytic": 0.0,
+        "p_opt_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "C_numeric": 0.054837,
+        "Q_match": true,
+        "C_ge_Q": true,
+        "degradable": false,
+        "pass": true
+      }
+    },
+    "z_dephasing": {
+      "p=0.01": {
+        "Q_analytic": 0.919207,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.91919,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.05": {
+        "Q_analytic": 0.713603,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.71359,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.1": {
+        "Q_analytic": 0.531004,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.530995,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.2": {
+        "Q_analytic": 0.278072,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.278067,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.3": {
+        "Q_analytic": 0.118709,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.118707,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.5": {
+        "Q_analytic": 0.0,
+        "C_basis_analytic": 1.0,
+        "Q_numeric": 0.0,
+        "C_numeric": 0.999926,
+        "Q_match": true,
+        "C_basis_match": true,
+        "C_ge_Q": true,
+        "pass": true
+      }
+    },
+    "depolarizing": {
+      "p=0.01": {
+        "Q_numeric": 0.90334,
+        "C_numeric": 0.94215,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.05": {
+        "Q_numeric": 0.634342,
+        "C_numeric": 0.789094,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.1": {
+        "Q_numeric": 0.3725,
+        "C_numeric": 0.646585,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.15": {
+        "Q_numeric": 0.152411,
+        "C_numeric": 0.530957,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.2": {
+        "Q_numeric": -0.0,
+        "C_numeric": 0.433451,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.25": {
+        "Q_numeric": -0.0,
+        "C_numeric": 0.349945,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.3": {
+        "Q_numeric": -0.0,
+        "C_numeric": 0.278045,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.5": {
+        "Q_numeric": -0.0,
+        "C_numeric": 0.081696,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "p=0.75": {
+        "Q_numeric": -0.0,
+        "C_numeric": 0.0,
+        "Q_zero_if_high_p": true,
+        "C_ge_Q": true,
+        "pass": true
+      }
+    },
+    "sympy_binary_entropy": {
+      "H_half_equals_1": true,
+      "critical_point_at_half": true
+    },
+    "sympy_erasure": {
+      "C_at_0": true,
+      "C_at_1": true,
+      "Q_at_0": true,
+      "Q_at_half": true,
+      "Q_at_1": true,
+      "P_equals_Q_below_half": true
+    },
+    "sympy_dephasing": {
+      "Q_at_0p01": true,
+      "Q_at_half": true,
+      "computational_basis_classical_capacity_is_1": true
+    },
+    "_elapsed_s": 0.851
+  },
+  "negative": {
+    "erasure_Q_zero_above_half": {
+      "p=0.5": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "p=0.6": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "p=0.7": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "p=0.8": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "p=0.9": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "p=1.0": {
+        "Q_analytic": 0.0,
+        "Q_is_zero": true,
+        "pass": true
+      }
+    },
+    "amplitude_damping_antidegradable": {
+      "gamma=0.5": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "gamma=0.6": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "gamma=0.7": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "gamma=0.8": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "gamma=0.9": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      },
+      "gamma=1.0": {
+        "Q_analytic": 0.0,
+        "Q_numeric": 0.0,
+        "is_antidegradable": true,
+        "Q_is_zero": true,
+        "pass": true
+      }
+    },
+    "depolarizing_Q_zero_high_noise": {
+      "p=0.3": {
+        "Q_numeric": -0.0,
+        "Q_leq_zero": true,
+        "pass": true
+      },
+      "p=0.4": {
+        "Q_numeric": -0.0,
+        "Q_leq_zero": true,
+        "pass": true
+      },
+      "p=0.5": {
+        "Q_numeric": -0.0,
+        "Q_leq_zero": true,
+        "pass": true
+      },
+      "p=0.75": {
+        "Q_numeric": -0.0,
+        "Q_leq_zero": true,
+        "pass": true
+      }
+    },
+    "fully_depolarizing_output_mixed": {
+      "off_diagonal_near_zero": true,
+      "diagonal_equal": true,
+      "pass": true
+    },
+    "capacity_ordering_C_ge_Q": {
+      "ad_0.2": {
+        "C": 0.618228,
+        "Q": 0.50621,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "ad_0.4": {
+        "C": 0.406757,
+        "Q": 0.16148,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "deph_0.1": {
+        "C": 0.999926,
+        "Q": 0.530995,
+        "C_ge_Q": true,
+        "pass": true
+      },
+      "depol_0.1": {
+        "C": 0.646585,
+        "Q": 0.3725,
+        "C_ge_Q": true,
+        "pass": true
+      }
+    },
+    "_elapsed_s": 0.332
+  },
+  "boundary": {
+    "hashing_bound_degradable": {
+      "gamma=0.1": {
+        "I_c_at_half": 0.706377,
+        "Q_max": 0.709417,
+        "Q_ge_Ic_at_half": true,
+        "pass": true
+      },
+      "gamma=0.2": {
+        "I_c_at_half": 0.501955,
+        "Q_max": 0.50621,
+        "Q_ge_Ic_at_half": true,
+        "pass": true
+      },
+      "gamma=0.3": {
+        "I_c_at_half": 0.324228,
+        "Q_max": 0.327953,
+        "Q_ge_Ic_at_half": true,
+        "pass": true
+      },
+      "gamma=0.4": {
+        "I_c_at_half": 0.159363,
+        "Q_max": 0.16148,
+        "Q_ge_Ic_at_half": true,
+        "pass": true
+      }
+    },
+    "ad_threshold_crossing": {
+      "gamma": 0.5,
+      "Q_at_threshold": 0,
+      "Q_near_zero": true,
+      "pass": true
+    },
+    "erasure_threshold_crossing": {
+      "p": 0.5,
+      "Q_analytic": 0.0,
+      "Q_is_zero": true,
+      "C_analytic": 0.5,
+      "C_still_positive": true,
+      "pass": true
+    },
+    "noiseless_capacity_1bit": {
+      "erasure_p0": {
+        "C": 1.0,
+        "Q": 1.0,
+        "C_is_1": true,
+        "Q_is_1": true,
+        "pass": true
+      },
+      "dephasing_p0": {
+        "C": 0.9999,
+        "Q": 1.0,
+        "C_is_1": true,
+        "Q_is_1": true,
+        "pass": true
+      },
+      "ad_gamma0": {
+        "C": 0.9999,
+        "Q": 1.0,
+        "C_is_1": true,
+        "Q_is_1": true,
+        "pass": true
+      },
+      "depol_p0": {
+        "C": 0.9999,
+        "Q": 1.0,
+        "C_is_1": true,
+        "Q_is_1": true,
+        "pass": true
+      }
+    },
+    "capacity_monotonicity": {
+      "amplitude_damping": {
+        "params": [
+          0.05,
+          0.1,
+          0.2,
+          0.3,
+          0.4
+        ],
+        "Q_values": [
+          0.8311,
+          0.7094,
+          0.5062,
+          0.328,
+          0.1615
+        ],
+        "monotone_decreasing": true,
+        "pass": true
+      },
+      "z_dephasing": {
+        "params": [
+          0.01,
+          0.05,
+          0.1,
+          0.2,
+          0.3
+        ],
+        "Q_values": [
+          0.9192,
+          0.7136,
+          0.531,
+          0.2781,
+          0.1187
+        ],
+        "monotone_decreasing": true,
+        "pass": true
+      },
+      "depolarizing": {
+        "params": [
+          0.01,
+          0.05,
+          0.1,
+          0.15,
+          0.2
+        ],
+        "Q_values": [
+          0.9033,
+          0.6343,
+          0.3725,
+          0.1524,
+          -0.0
+        ],
+        "monotone_decreasing": true,
+        "pass": true
+      }
+    },
+    "_elapsed_s": 0.467
+  },
+  "classification": "canonical",
+  "summary": {
+    "positive_pass": 29,
+    "positive_fail": 0,
+    "negative_pass": 21,
+    "negative_fail": 0,
+    "boundary_pass": 13,
+    "boundary_fail": 0,
+    "total_pass": 63,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

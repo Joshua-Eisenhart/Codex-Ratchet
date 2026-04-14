@@ -1,0 +1,86 @@
+{
+  "name": "classical_baseline_lu_decomposition",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing numeric core for lu_decomposition"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "reconstruct": true,
+    "L_lower_tri": true
+  },
+  "negative": {
+    "U_upper_tri": true
+  },
+  "boundary": {
+    "scalar_lu": true
+  },
+  "all_pass": true,
+  "classification": "classical_baseline",
+  "lane": "lane_B"
+}

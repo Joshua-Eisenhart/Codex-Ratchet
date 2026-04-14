@@ -1,0 +1,86 @@
+{
+  "name": "classical_baseline_wave_equation_1d",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing numeric core for wave_equation_1d"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "energy_bounded": true,
+    "wave_propagates": true
+  },
+  "negative": {
+    "not_identical_to_initial": true
+  },
+  "boundary": {
+    "no_time_one_frame": true
+  },
+  "all_pass": true,
+  "classification": "classical_baseline",
+  "lane": "lane_B"
+}

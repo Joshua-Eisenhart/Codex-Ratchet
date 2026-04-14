@@ -1,0 +1,86 @@
+{
+  "name": "classical_baseline_cellular_automaton",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for classical baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not a proof sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric only"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no geometric algebra here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing numeric core for cellular_automaton"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "rule30_nontrivial": true,
+    "rule110_nontrivial": true
+  },
+  "negative": {
+    "rule0_dies": true
+  },
+  "boundary": {
+    "T0_one_row": true
+  },
+  "all_pass": true,
+  "classification": "classical_baseline",
+  "lane": "lane_B"
+}

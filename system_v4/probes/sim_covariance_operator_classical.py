@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 """Classical baseline: covariance_operator. numpy-only."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: covariance-operator behavior is modeled here by sample-covariance numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "sample-covariance construction and eigenspectrum checks"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 
 NAME = "covariance_operator"
 

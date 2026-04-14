@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 """Classical baseline: correlation_tensor_principal_directions (HOSVD / mode-n SVD)."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: correlation-tensor principal directions are modeled here by HOSVD numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "tensor unfoldings and SVD-based principal-direction numerics"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 
 NAME = "correlation_tensor_principal_directions"
 

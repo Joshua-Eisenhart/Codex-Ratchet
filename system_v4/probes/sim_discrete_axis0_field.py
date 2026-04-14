@@ -3,15 +3,40 @@ import json
 import pathlib
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: the discrete Axis-0 field row is represented here by one bounded lattice of signed values, not a canonical nonclassical witness."
 
 CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = "Canonical local discrete Axis-0 field row on one bounded lattice of signed field values, kept below selector promotion."
 LEGO_IDS = ["discrete_axis0_field"]
 PRIMARY_LEGO_IDS = ["discrete_axis0_field"]
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": "not needed"} for k in [
-    "pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"
-]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 def discrete_gradient(field):
     return np.diff(field)

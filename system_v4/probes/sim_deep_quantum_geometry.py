@@ -22,6 +22,17 @@ import os
 import json
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: deep quantum geometry is approximated here by numpy/scipy/clifford numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state geometry, metric tensors, and mixed-state numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots and linear-algebra helpers"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(3) rotor decomposition and holonomy numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "clifford": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

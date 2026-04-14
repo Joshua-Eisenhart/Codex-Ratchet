@@ -25,6 +25,13 @@ import json
 import warnings
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: deep entanglement measures are scanned here by numeric 2-qubit correlation diagnostics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "2-qubit entanglement, entropy, and Bell-measure numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

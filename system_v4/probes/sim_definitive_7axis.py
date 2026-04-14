@@ -16,6 +16,15 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: seven-axis mixed-state validation is explored here by numpy/scipy numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "mixed-state axis metrics and overlap numerics"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this numeric baseline"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": None,
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

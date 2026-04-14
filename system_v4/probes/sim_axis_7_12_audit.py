@@ -29,6 +29,13 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this audits candidate Axes 7-12 numerically and algebraically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "axis overlap and redundancy numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for axis displacement construction"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric algebra candidate construction for axes 7-12"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive", "clifford": "supportive"}
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
 

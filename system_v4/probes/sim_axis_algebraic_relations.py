@@ -36,6 +36,11 @@ import numpy as np
 from datetime import datetime, UTC
 from collections import Counter
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this studies algebraic relations among axis signs numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "axis-product search and group-structure numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -33,6 +33,12 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this validates Axis-3 fiber-vs-base behavior on the engine geometry, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "fiber/base density-path and engine-state numerics"},
+    "toponetx": {"tried": False, "used": False, "reason": "optional torus-complex bridge; not load-bearing here"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "toponetx": None}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

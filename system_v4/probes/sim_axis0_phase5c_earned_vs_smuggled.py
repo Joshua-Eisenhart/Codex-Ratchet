@@ -27,6 +27,11 @@ import json, os, sys
 from datetime import UTC, datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this tests earned-vs-smuggled Axis-0 bridge information numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "scramble, decoupled, and decomposition bridge numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine

@@ -37,6 +37,11 @@ import json, os, sys, copy
 from datetime import UTC, datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this probes the Axis-0 Clifford anomaly and composite i-scalar numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "epsilon sweeps and composite i-scalar numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine

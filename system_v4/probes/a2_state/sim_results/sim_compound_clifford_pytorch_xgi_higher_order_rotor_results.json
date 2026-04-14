@@ -1,35 +1,35 @@
 {
-  "name": "sim_compound_autograd_sympy_z3_fisher_admissibility",
+  "name": "sim_compound_clifford_pytorch_xgi_higher_order_rotor",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "autograd Hessian; irreducible numeric derivative"
+      "reason": "autograd consistency loss on hyperedge aggregation; irreducible"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "pairwise only; xgi needed for higher-order"
     },
     "z3": {
-      "tried": true,
-      "used": true,
-      "reason": "UNSAT of negation over rationals; irreducible proof"
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 suffices"
+      "reason": "not needed"
     },
     "sympy": {
-      "tried": true,
-      "used": true,
-      "reason": "closed-form Fisher derivation; irreducible symbolic layer"
-    },
-    "clifford": {
       "tried": false,
       "used": false,
       "reason": "not needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor sandwich; irreducible geometric algebra"
     },
     "geomstats": {
       "tried": false,
@@ -44,17 +44,17 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "pairwise only"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph + higher-order cycle enumeration; irreducible"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "higher-order cycles via xgi"
     },
     "gudhi": {
       "tried": false,
@@ -65,33 +65,32 @@
   "tool_integration_depth": {
     "pytorch": "load_bearing",
     "pyg": null,
-    "z3": "load_bearing",
+    "z3": null,
     "cvc5": null,
-    "sympy": "load_bearing",
-    "clifford": null,
+    "sympy": null,
+    "clifford": "load_bearing",
     "geomstats": null,
     "e3nn": null,
     "rustworkx": null,
-    "xgi": null,
+    "xgi": "load_bearing",
     "toponetx": null,
     "gudhi": null
   },
   "positive": {
-    "sympy_closed_form_ok": true,
-    "autograd_matches": true,
-    "max_diff": 0.0,
-    "z3_admissible_unsat_of_negation": true,
+    "hyperedge_size": 3,
+    "composed_matrix_close_to_I": true,
+    "torch_loss": 0.0,
     "pass": true
   },
   "negative": {
-    "sympy_disagrees": true,
-    "autograd_diff_nonzero": true,
-    "z3_excludes_wrong_form": true,
+    "hyperedge_size": 3,
+    "torch_loss": 5.999999999999999,
+    "excluded_nonzero_loss": true,
     "pass": true
   },
   "boundary": {
-    "z3_unbounded_witness_sat": true,
-    "autograd_near_zero_large": true,
+    "loss": 0.0,
+    "torch_loss": 0.0,
     "pass": true
   },
   "classification": "canonical",

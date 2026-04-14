@@ -1,0 +1,111 @@
+{
+  "name": "sim_compound_cvc5_rustworkx_toponetx_graph_topology",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT UNSAT of negated Euler predicate; irreducible proof"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "degree sequence + connectivity; irreducible graph engine"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "1-skeleton from cell complex + incidence rank; independent witness"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "degrees": [
+      2,
+      2,
+      2
+    ],
+    "rustworkx_connected": true,
+    "toponetx_components": 1,
+    "cvc5_all_even_unsat_of_odd": true,
+    "pass": true
+  },
+  "negative": {
+    "degrees": [
+      1,
+      2,
+      1
+    ],
+    "connected": true,
+    "toponetx_components": 1,
+    "cvc5_admissible": false,
+    "pass": true
+  },
+  "boundary": {
+    "degrees": [
+      0
+    ],
+    "connected": true,
+    "cvc5_all_even": true,
+    "pass": true
+  },
+  "classification": "canonical",
+  "overall_pass": true
+}

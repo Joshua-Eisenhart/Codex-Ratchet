@@ -1,0 +1,99 @@
+{
+  "name": "sim_quad_igt_leviathan_sci_method_fep",
+  "classification": "canonical",
+  "scope_note": "4-shell / 5-shell coexistence test (step 4 of coupling program: multi-shell coexistence). Cites system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. Statements use 'survived' / 'admissible under joint coupling' / 'joint coupling excludes ...'. No creates/derives/drives language.",
+  "exclusion_language_note": "k-wise coupling uses 'joint coupling excludes ...' / 'survived' / 'admissible under joint coupling'. No create/derive/drive language.",
+  "shells": [
+    "igt",
+    "leviathan",
+    "sci_method",
+    "fep"
+  ],
+  "k": 4,
+  "coupling_description": "4-way coupling excludes: pareto_non_minimal AND coalition_stable AND survives_modus_tollens AND vfe_nonincreasing without strategic_inference_consensus_quad",
+  "atoms": [
+    "not_strictly_dominated",
+    "pareto_non_minimal",
+    "monotone_aggregation",
+    "coalition_stable",
+    "falsifiable",
+    "survives_modus_tollens",
+    "vfe_nonincreasing",
+    "markov_blanket_ci",
+    "strategic_inference_consensus_quad"
+  ],
+  "positive": {
+    "enum": {
+      "admissible_shellwise_intersection": 2,
+      "admissible_pair_joint": 2,
+      "admissible_triple_joint": 2,
+      "admissible_kwise_joint": 1,
+      "excluded_by_kwise_coupling": 1,
+      "interacting": true,
+      "additive": false
+    },
+    "z3": {
+      "z3_available": true,
+      "joint_kwise": "sat",
+      "kwise_exclusion_witness": "sat"
+    },
+    "pass": true
+  },
+  "negative": {
+    "enum": {
+      "admissible_shellwise_intersection": 2,
+      "admissible_pair_joint": 2,
+      "admissible_triple_joint": 2,
+      "admissible_kwise_joint": 0,
+      "excluded_by_kwise_coupling": 2,
+      "interacting": true,
+      "additive": false
+    },
+    "description": "k-wise coupling forced FALSE; joint admissible set must be empty",
+    "pass": true
+  },
+  "boundary": {
+    "enum": {
+      "admissible_shellwise_intersection": 2,
+      "admissible_pair_joint": 2,
+      "admissible_triple_joint": 2,
+      "admissible_kwise_joint": 2,
+      "excluded_by_kwise_coupling": 0,
+      "interacting": false,
+      "additive": true
+    },
+    "description": "k-wise coupling forced TRUE; joint reduces to (k-1)-wise triple joint",
+    "pass": true
+  },
+  "overall_pass": true,
+  "interacting": true,
+  "additive": false,
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: k-wise joint SAT and k-wise-exclusion-witness SAT/UNSAT decides whether k-way coupling strictly excludes beyond all embedded (k-1)-triples"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "supportive only; Boolean admissibility at k-wise layer does not require symbolic algebra"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable at Boolean k-wise coupling layer"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no gradient surface at Boolean k-wise admissibility layer"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "pytorch": null
+  }
+}

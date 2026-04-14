@@ -1,0 +1,121 @@
+{
+  "name": "sim_compound_z3_clifford_pyg_so3_admissibility",
+  "claim": "SO(3)-equivariant message passing over a Cl(3)-rotor graph is admissibility-consistent; z3+clifford+pyg are simultaneously load-bearing.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor carrier for pyg propagation"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "dynamic edge-indexed message passing with mutable edge_index"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT-proves no non-equivariant output is admissible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 sufficient for the admissibility fence"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; rotor algebra handled by clifford"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor composition on node features"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) action realized via clifford rotors"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariance hand-coded to keep ablation clean"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph too small"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "equivariance_max_diff": 5.056813810964802e-31,
+    "equivariant": true,
+    "degrees": [
+      2.0,
+      2.0,
+      2.0
+    ]
+  },
+  "negative": {
+    "ablation_clifford": {
+      "broken": false,
+      "cl_e2": -1.0,
+      "quat_y": -1.0
+    },
+    "ablation_pyg": {
+      "broken": true,
+      "dense_deg": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "true_deg_after_add": [
+        3.0,
+        2.0,
+        2.0
+      ]
+    },
+    "ablation_z3": {
+      "broken": true,
+      "reason": "single-angle numeric check cannot exclude forbidden rule family"
+    },
+    "all_ablations_broken": false
+  },
+  "boundary": {
+    "z3_result": "sat",
+    "fence_unsat": false,
+    "interpretation": "UNSAT = forbidden non-equivariant rule cannot be admissible"
+  },
+  "compound_claim_holds": false
+}

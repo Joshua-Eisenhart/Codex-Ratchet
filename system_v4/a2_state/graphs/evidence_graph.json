@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-25T21:45:59.811421+00:00",
+  "timestamp": "2026-04-14T11:53:52.281315+00:00",
   "schema_version": "1.0",
   "node_types": [
     "SystemState",
@@ -20,8 +20,8 @@
       "id": "SYS_AGGREGATE",
       "type": "SystemState",
       "aggregate_score": 1.0,
-      "total_problems": 13,
-      "timestamp": "2026-03-25T21:05:19.116530+00:00"
+      "total_problems": 14,
+      "timestamp": "2026-03-28T21:38:20.544165+00:00"
     },
     {
       "id": "7d2b999e4fe4e485",
@@ -126,7 +126,7 @@
       "id": "5f836be351673f49",
       "type": "SpecClaim",
       "name": "ABIOGENESIS",
-      "description": "Life requires chiral Deductive-Inductive engine; symmetric engines die",
+      "description": "Life requires chiral Left-Right Weyl engine; symmetric engines die",
       "score": 1.0,
       "status": "SOLVED",
       "sim_file": "abiogenesis_v2_sim.py"
@@ -139,6 +139,15 @@
       "score": 1.0,
       "status": "SOLVED",
       "sim_file": "axis3_orthogonality_sim.py"
+    },
+    {
+      "id": "ee9606ac8a597e73",
+      "type": "SpecClaim",
+      "name": "HOLODECK_FEP",
+      "description": "S^3 Hopf projection + FEP surprise minimizes to finite bound over random density matrices",
+      "score": 1.0,
+      "status": "SOLVED",
+      "sim_file": "holodeck_fep_engine.py"
     },
     {
       "id": "624a149470aaae73",
@@ -383,6 +392,12 @@
       "weight": 1.0
     },
     {
+      "source": "ee9606ac8a597e73",
+      "target": "SYS_AGGREGATE",
+      "type": "supports",
+      "weight": 1.0
+    },
+    {
       "source": "624a149470aaae73",
       "target": "SYS_AGGREGATE",
       "type": "supports",
@@ -402,9 +417,9 @@
     }
   ],
   "stats": {
-    "n_nodes": 32,
-    "n_edges": 16,
-    "n_supporting": 16,
+    "n_nodes": 33,
+    "n_edges": 17,
+    "n_supporting": 17,
     "n_refuting": 0
   }
 }

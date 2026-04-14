@@ -34,42 +34,7 @@ None
 
 ---
 
-## a2_high_intake_graph_v1.json
-- **Nodes**: 8793
-- **Edges**: 16279
-- **Density**: 0.000211
-- **Connected Components**: 1708 (Largest: 4894)
-- **Degree Distribution**: Min=1, Max=185, Mean=3.70, Median=1.00
-- **Isolated Nodes (degree 0)**: 0
-- **Self-loops**: 0
-- **Duplicate Edges**: 0
-- **Dangling Edges**: 0
-
-### Node Types Distribution
-- `EXTRACTED_CONCEPT`: 5765
-- `SOURCE_DOCUMENT`: 3028
-
-### Edge Relation Types Distribution
-- `RELATED_TO`: 6001
-- `SOURCE_MAP_PASS`: 5449
-- `STRUCTURALLY_RELATED`: 3010
-- `EXCLUDES`: 793
-- `DEPENDS_ON`: 753
-- `ENGINE_PATTERN_PASS`: 258
-- `MATH_CLASS_PASS`: 6
-- `QIT_BRIDGE_PASS`: 5
-- `CONTRADICTS`: 3
-- `OVERLAPS`: 1
-
-### Missing Required Fields
-None
-
-### Health Anomalies
-- ✅ No significant anomalies detected.
-
----
-
-## a2_low_control_graph_v1.json
+## enriched_a2_low_control_graph_v1.json
 - **Nodes**: 667
 - **Edges**: 1121
 - **Density**: 0.002524
@@ -104,71 +69,12 @@ None
 
 ---
 
-## a2_mid_refinement_graph_v1.json
-- **Nodes**: 858
-- **Edges**: 3029
-- **Density**: 0.004119
-- **Connected Components**: 547 (Largest: 50)
-- **Degree Distribution**: Min=0, Max=49, Mean=7.06, Median=0.00
-- **Isolated Nodes (degree 0)**: 481
-- **Self-loops**: 0
-- **Duplicate Edges**: 0
-- **Dangling Edges**: 0
-
-### Node Types Distribution
-- `REFINED_CONCEPT`: 858
-
-### Edge Relation Types Distribution
-- `OVERLAPS`: 2947
-- `DEPENDS_ON`: 43
-- `STRUCTURALLY_RELATED`: 30
-- `EXCLUDES`: 5
-- `REFINED_INTO`: 2
-- `RELATED_TO`: 2
-
-### Missing Required Fields
-None
-
-### Health Anomalies
-- ⚠️ High number of isolated nodes: 481/858 (56.1%)
-
----
-
-## enriched_a2_low_control_graph_v1.json
-- **Nodes**: 419
-- **Edges**: 858
-- **Density**: 0.004899
-- **Connected Components**: 272 (Largest: 62)
-- **Degree Distribution**: Min=0, Max=53, Mean=4.10, Median=0.00
-- **Isolated Nodes (degree 0)**: 218
-- **Self-loops**: 0
-- **Duplicate Edges**: 0
-- **Dangling Edges**: 0
-
-### Node Types Distribution
-- `KERNEL_CONCEPT`: 419
-
-### Edge Relation Types Distribution
-- `OVERLAPS`: 614
-- `STRUCTURALLY_RELATED`: 178
-- `DEPENDS_ON`: 55
-- `EXCLUDES`: 9
-- `RELATED_TO`: 2
-
-### Missing Required Fields
-None
-
-### Health Anomalies
-- ⚠️ High number of isolated nodes: 218/419 (52.0%)
-
----
-
 ## evidence_graph.json
-- **Nodes**: 31
-- **Edges**: 15
-- **Density**: 0.016129
-- **Connected Components**: 16 (Largest: 16)
-- **Degree Distribution**: Min=0, Max=15, Mean=0.97, Median=1.00
+- **Nodes**: 33
+- **Edges**: 17
+- **Density**: 0.016098
+- **Connected Components**: 16 (Largest: 18)
+- **Degree Distribution**: Min=0, Max=17, Mean=1.03, Median=1.00
 - **Isolated Nodes (degree 0)**: 15
 - **Self-loops**: 0
 - **Duplicate Edges**: 0
@@ -176,73 +82,24 @@ None
 
 ### Node Types Distribution
 - `NonCommutativity`: 15
-- `SpecClaim`: 12
+- `SpecClaim`: 14
 - `LieClosure`: 3
 - `SystemState`: 1
 
 ### Edge Relation Types Distribution
-- `supports`: 13
-- `refutes`: 2
+- `supports`: 17
 
 ### Missing Required Fields
 - `description`: 19 nodes missing
+- `admissibility_state`: 19 nodes missing
 
 ### Health Anomalies
 - ⚠️ Many nodes missing 'description': 19 nodes
+- ⚠️ Many nodes missing 'admissibility_state': 19 nodes
 
 ---
 
-## identity_registry_overlap_suggestions_v1.json
-- **Nodes**: 7392
-- **Edges**: 95106
-- **Density**: 0.001741
-- **Connected Components**: 510 (Largest: 5018)
-- **Degree Distribution**: Min=1, Max=200, Mean=25.73, Median=10.00
-- **Isolated Nodes (degree 0)**: 0
-- **Self-loops**: 0
-- **Duplicate Edges**: 0
-- **Dangling Edges**: 0
-
-### Node Types Distribution
-- `IDENTITY_ENTITY`: 7392
-
-### Edge Relation Types Distribution
-- `IDENTITY_OVERLAP`: 95106
-
-### Missing Required Fields
-None
-
-### Health Anomalies
-- ✅ No significant anomalies detected.
-
----
-
-## identity_registry_v1.json
-- **Nodes**: 13481
-- **Edges**: 0
-- **Density**: 0.000000
-- **Connected Components**: 13481 (Largest: 1)
-- **Degree Distribution**: Min=0, Max=0, Mean=0.00, Median=0.00
-- **Isolated Nodes (degree 0)**: 13481
-- **Self-loops**: 0
-- **Duplicate Edges**: 0
-- **Dangling Edges**: 0
-
-### Node Types Distribution
-- `IDENTITY_ENTITY`: 13481
-
-### Edge Relation Types Distribution
-None
-
-### Missing Required Fields
-None
-
-### Health Anomalies
-- ⚠️ High number of isolated nodes: 13481/13481 (100.0%)
-
----
-
-## nested_graph_v1.json
+## full_stack_ingestion_manifest.json
 - **Nodes**: 0
 - **Edges**: 0
 - **Density**: 0.000000
@@ -350,6 +207,74 @@ None
 
 ### Health Anomalies
 - ✅ No significant anomalies detected.
+
+---
+
+## qit_cross_layer_registry_v1.json
+- **Nodes**: 0
+- **Edges**: 0
+- **Density**: 0.000000
+- **Connected Components**: 0 (Largest: 0)
+- **Degree Distribution**: Min=0, Max=0, Mean=0.00, Median=0.00
+- **Isolated Nodes (degree 0)**: 0
+- **Self-loops**: 0
+- **Duplicate Edges**: 0
+- **Dangling Edges**: 0
+
+### Node Types Distribution
+None
+
+### Edge Relation Types Distribution
+None
+
+### Missing Required Fields
+None
+
+### Health Anomalies
+- ✅ No significant anomalies detected.
+
+---
+
+## qit_engine_graph_v1.json
+- **Nodes**: 107
+- **Edges**: 290
+- **Density**: 0.025569
+- **Connected Components**: 4 (Largest: 104)
+- **Degree Distribution**: Min=0, Max=20, Mean=5.42, Median=4.00
+- **Isolated Nodes (degree 0)**: 3
+- **Self-loops**: 0
+- **Duplicate Edges**: 0
+- **Dangling Edges**: 0
+
+### Node Types Distribution
+- `SUBCYCLE_STEP`: 64
+- `MACRO_STAGE`: 16
+- `NEG_WITNESS`: 9
+- `AXIS`: 7
+- `OPERATOR`: 4
+- `TORUS`: 3
+- `ENGINE`: 2
+- `WEYL_BRANCH`: 2
+
+### Edge Relation Types Distribution
+- `STEP_IN_STAGE`: 64
+- `STEP_USES_OPERATOR`: 64
+- `STEP_SEQUENCE`: 64
+- `STAGE_ON_TORUS`: 32
+- `STAGE_SEQUENCE`: 16
+- `ENGINE_OWNS_STAGE`: 16
+- `AXIS_GOVERNS`: 14
+- `NEGATIVE_PROVES`: 11
+- `SUBCYCLE_ORDER`: 4
+- `ENGINE_REALIZES_WEYL_BRANCH`: 2
+- `TORUS_NESTING`: 2
+- `CHIRALITY_COUPLING`: 1
+
+### Missing Required Fields
+- `description`: 80 nodes missing
+
+### Health Anomalies
+- ⚠️ Many nodes missing 'description': 80 nodes
 
 ---
 

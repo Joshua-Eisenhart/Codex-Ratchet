@@ -23,6 +23,7 @@ import numpy as np
 import os, sys, json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this checks the Ax3 density-path distinction on the geometry spine, not a canonical nonclassical witness."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import von_neumann_entropy_2x2

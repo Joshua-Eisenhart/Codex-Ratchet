@@ -24,6 +24,7 @@ import sys
 import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this checks pairwise orthogonality of the geometric axes, not a canonical nonclassical proof object."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density

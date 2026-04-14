@@ -27,6 +27,7 @@ import numpy as np
 import os, sys, json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this validates the locked Ax5 kernel split against the ledger math, not as a canonical nonclassical proof object."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density, von_neumann_entropy_2x2

@@ -27,6 +27,7 @@ import sys
 import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: GA1 is validated here as an open-vs-closed boundary construction, not a canonical nonclassical witness."
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import (

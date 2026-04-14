@@ -36,6 +36,7 @@ from typing import Dict, List
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this discriminates candidate Axis-0 entropy kernels numerically, not as a canonical nonclassical witness."
 
 # ---------------------------------------------------------------------------
 # QIT primitives (self-contained, no engine dependency)

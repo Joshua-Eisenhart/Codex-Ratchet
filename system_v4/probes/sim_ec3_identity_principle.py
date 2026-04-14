@@ -28,6 +28,13 @@ Date: 2026-03-30
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: the EC-3 identity principle is approximated here by Pauli-probe expectation numerics on a fixed bipartite state, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "Bell-state density matrices, partial traces, and probe-consistency numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ─── qubit toolbox ───────────────────────────────────────────────────
 I = np.eye(2, dtype=complex)

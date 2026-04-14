@@ -25,6 +25,21 @@ from __future__ import annotations
 import os, sys, json
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: edge-state writeback is validated here as a graph/runtime integration loop, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "slot aggregates, Bloch-vector summaries, and validation numerics"},
+    "pytorch": {"tried": True, "used": True, "reason": "heterogeneous graph tensor substrate for edge-state writeback"},
+    "pyg": {"tried": True, "used": True, "reason": "hetero graph edge_attr writeback and runtime projections"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex runtime projection used in topology legality checks"},
+    "clifford": {"tried": True, "used": True, "reason": "runtime graph enrichment carries clifford multivector edge sidecars"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "pytorch": "supportive",
+    "pyg": "supportive",
+    "toponetx": "supportive",
+    "clifford": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))

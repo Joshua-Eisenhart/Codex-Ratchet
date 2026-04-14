@@ -15,6 +15,15 @@ import sys, os, json, pathlib, time, warnings
 import numpy as np
 from scipy.linalg import logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: entropy-topology compatibility is scanned here by numeric entropy and topology surrogates, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "density-matrix families, entropy measures, and compatibility-matrix numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix logarithms for entropy-family calculations"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

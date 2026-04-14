@@ -21,6 +21,13 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: inside-geometry mass sweeps are logged here as runtime engine diagnostics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "mass-sweep aggregation, deltas, and runtime summary numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

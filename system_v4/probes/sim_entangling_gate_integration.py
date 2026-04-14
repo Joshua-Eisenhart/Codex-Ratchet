@@ -33,6 +33,15 @@ import warnings
 import numpy as np
 from scipy.linalg import expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: entangling-gate integration is explored here by numeric 2-qubit gate insertion sweeps, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "2-qubit density-matrix evolution and entanglement numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for Cartan and swap-family gates"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

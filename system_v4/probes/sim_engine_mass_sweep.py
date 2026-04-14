@@ -20,6 +20,13 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: engine mass sweeps are evaluated here by batched runtime numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "batch engine-state comparisons, trace distances, and summary statistics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -22,6 +22,13 @@ import sys
 import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: full-engine validation is represented here by runtime geometry checks and evidence-token collection, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "runtime geometry checks, trace distances, and validation numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import (

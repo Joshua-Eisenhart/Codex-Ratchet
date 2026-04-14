@@ -18,6 +18,13 @@ from datetime import datetime, timezone
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: entropy and correlation survival across L7-L12 is explored here by numeric dynamics-layer sweeps, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "entropy-family sweeps, correlation measures, and dynamics-layer numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

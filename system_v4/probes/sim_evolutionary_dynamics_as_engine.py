@@ -25,6 +25,13 @@ import os
 import json
 import traceback
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: evolutionary dynamics is mapped here into density-matrix numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "population-density mappings, selection/mutation updates, and sweep numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

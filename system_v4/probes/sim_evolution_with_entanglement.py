@@ -27,6 +27,13 @@ import os
 import json
 import traceback
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: evolutionary dynamics with entanglement is explored here by numeric two-locus sweeps and gate insertions, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "two-locus state evolution, information measures, and sweep numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

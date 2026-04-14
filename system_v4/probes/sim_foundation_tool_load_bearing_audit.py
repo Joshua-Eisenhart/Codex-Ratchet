@@ -22,6 +22,7 @@ from collections import Counter
 from dataclasses import dataclass
 from datetime import datetime, timezone
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this file audits declared tool penetration in a bounded bridge/Phi0 batch, not a canonical nonclassical witness."
 
 FILES = [
     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_bridge_packet_library_audit.py",
@@ -53,8 +54,32 @@ HARD_WAY_TOOLS = ["torch", "pyg", "z3", "cvc5", "sympy", "clifford", "geomstats"
 SUPPORT_TOOLS = ["numpy", "ast"]
 
 TOOL_MANIFEST = {
-    name: {"tried": False, "used": False, "reason": "audit probe only"}
-    for name in ["pytorch", "pyg", "z3", "cvc5", "sympy", "clifford", "geomstats", "e3nn", "rustworkx", "xgi", "toponetx", "gudhi"]
+    "pytorch": {"tried": False, "used": False, "reason": "audit probe only"},
+    "pyg": {"tried": False, "used": False, "reason": "audit probe only"},
+    "z3": {"tried": False, "used": False, "reason": "audit probe only"},
+    "cvc5": {"tried": False, "used": False, "reason": "audit probe only"},
+    "sympy": {"tried": False, "used": False, "reason": "audit probe only"},
+    "clifford": {"tried": False, "used": False, "reason": "audit probe only"},
+    "geomstats": {"tried": False, "used": False, "reason": "audit probe only"},
+    "e3nn": {"tried": False, "used": False, "reason": "audit probe only"},
+    "rustworkx": {"tried": False, "used": False, "reason": "audit probe only"},
+    "xgi": {"tried": False, "used": False, "reason": "audit probe only"},
+    "toponetx": {"tried": False, "used": False, "reason": "audit probe only"},
+    "gudhi": {"tried": False, "used": False, "reason": "audit probe only"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
 }
 
 

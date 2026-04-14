@@ -19,6 +19,13 @@ import json, pathlib, time, warnings
 import numpy as np
 from scipy.linalg import sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: FEP and compression are modeled here by density-matrix numerics and matrix-function calculations, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "density-matrix constructions, rate-distortion numerics, and spectral truncation"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 warnings.filterwarnings("ignore", message="Matrix is singular")
 

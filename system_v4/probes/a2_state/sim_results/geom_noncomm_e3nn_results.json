@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_e3nn_irrep_compose_order",
+  "classification": "canonical",
+  "tool_manifest": {
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Wigner-D matrices for l>=1 irreps of SO(3) are order-dependent; e3nn's exact D-matrix construction is load-bearing because a naive cartesian matmul cannot certify the irrep structure preserved by the composition."
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor framework e3nn builds upon; needed to evaluate D-matrix products on probe vectors."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "e3nn": "load_bearing",
+    "pytorch": "supportive",
+    "clifford": null,
+    "z3": null,
+    "sympy": null
+  },
+  "positive": {
+    "irrep_l1_order_matters": true,
+    "note": "order swap excludes irrep-coherent witness",
+    "pass": true
+  },
+  "negative": {
+    "l0_scalar_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "same_axis_commutes": true,
+    "pass": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_chirality_then_fiber_winding",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "chirality flip is grade-reversal combined with a vector reflection; this cannot be encoded as an orthogonal matrix plus rotor composition \u2014 only Cl(3) versor action preserves the Pin structure whose commutator with a rotor is nontrivial."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "e3nn": null
+  },
+  "positive": {
+    "chirality_winding_noncommute": false,
+    "note": "chirality-first admits state that winding-first excludes",
+    "pass": false
+  },
+  "negative": {
+    "identity_reflection_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "scalar_trivially_equal": true,
+    "pass": true
+  }
+}

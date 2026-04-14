@@ -1,0 +1,96 @@
+{
+  "name": "sim_gtower_order_u1_gauge_then_chirality_vs_reverse",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: gauge before chirality",
+  "ordering_claim": "gauge-then-chirality admits LR-coupled U(1) witness; reverse excludes it",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor and pseudoscalar realise U(1) gauge and chirality projector; ordering claim rests on grade algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_gauge_then_chirality_admits_witness": true,
+    "pass": true
+  },
+  "negative": {
+    "reverse_excludes_LR_coupled_witness": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_gauge_commutes_with_projection": true,
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

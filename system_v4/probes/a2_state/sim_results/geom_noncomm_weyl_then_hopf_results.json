@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_weyl_then_hopf_vs_hopf_then_weyl",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotors carry spinor/bivector structure that matrix algebra on R^4 alone would not preserve; the commutator [Weyl, Hopf] must be evaluated as rotor-sandwich products, not matrix multiplies."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for rotor commutator"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "e3nn": null
+  },
+  "positive": {
+    "weyl_hopf_noncommute": true,
+    "note": "A.B admits what B.A excludes: order swap excludes witness orientation",
+    "pass": true
+  },
+  "negative": {
+    "same_plane_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_trivially_equal": true,
+    "pass": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_partial_trace_then_rotor",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "partial trace acts on tensor-factored 4x4 density; autograd-capable tensor reshape is load-bearing because the rotor must act on the full 2-qubit space BEFORE trace to witness non-commutativity \u2014 numpy collapsing would hide the order dependence."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor is constructed from Cl(3) bivector to guarantee SU(2) structure on qubit A; matrix-only construction would not certify the spin-half double cover used in the compound map."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "z3": null,
+    "sympy": null,
+    "e3nn": null
+  },
+  "positive": {
+    "rotorB_then_traceB_vs_traceB_excludes_witness": false,
+    "note": "tracing out B then applying rotor on B is undefined \u2014 order swap excludes the witness trajectory",
+    "pass": false
+  },
+  "negative": {
+    "UA_commutes_with_traceB_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_trivially_equal": true,
+    "pass": true
+  }
+}

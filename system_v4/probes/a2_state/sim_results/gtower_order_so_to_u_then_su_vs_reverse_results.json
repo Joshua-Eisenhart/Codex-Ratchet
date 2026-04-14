@@ -1,0 +1,99 @@
+{
+  "name": "sim_gtower_order_so_to_u_then_su_vs_reverse",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: complex fence before SU det fence",
+  "ordering_claim": "complexify-then-phase isolates SU(1)={1}; reverse (det fence on real SO2) is tautological and excludes SU structure",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof that det=1 fence is meaningful only after U(1) phase exists; reverse order excludes SU structure witness"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_complex_then_su_picks_identity": true,
+    "solutions": 1,
+    "pass": true
+  },
+  "negative": {
+    "reverse_det_fence_tautological_on_real_so2": true,
+    "note": "det=1 is trivially satisfied; no phase isolated",
+    "witness_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "scale_by_one_commutes": true,
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

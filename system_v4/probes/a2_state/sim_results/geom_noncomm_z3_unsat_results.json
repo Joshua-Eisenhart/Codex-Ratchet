@@ -1,0 +1,53 @@
+{
+  "name": "sim_geom_noncomm_z3_unsat_order_swap",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT is the primary proof form \u2014 z3 certifies that NO real assignment satisfies 'probe admissible under A then B AND under B then A' for the chosen A,B, turning a numerical noncommute check into a structural exclusion."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "pytorch": null,
+    "e3nn": null
+  },
+  "positive": {
+    "joint_admissibility_UNSAT": true,
+    "AB_admits_witness": true,
+    "BA_admits_different_witness": true,
+    "note": "A.B admits x=-1 which B.A excludes; UNSAT is structural, not numeric",
+    "pass": true
+  },
+  "negative": {
+    "commuting_ops_joint_SAT_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "origin_identity_SAT": true,
+    "pass": true
+  }
+}

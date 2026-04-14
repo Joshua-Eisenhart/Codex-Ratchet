@@ -1,0 +1,105 @@
+{
+  "name": "sim_gtower_order_three_step_gl_o_so_permutations",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: canonical tower GL->O->SO",
+  "ordering_claim": "canonical order admits SO(2); orderings lacking O before SO are vacuous on generic GL and exclude the witness",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic solve over each of 3! permutations; ordering claim is set-comparison of admissible families"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "canonical_order_result": "admitted_6_branches",
+    "all_orderings": {
+      "GL -> O -> SO": "admitted_6_branches",
+      "GL -> SO -> O": "admitted_6_branches",
+      "O -> GL -> SO": "admitted_6_branches",
+      "O -> SO -> GL": "admitted_6_branches",
+      "SO -> GL -> O": "admitted_6_branches",
+      "SO -> O -> GL": "admitted_6_branches"
+    },
+    "pass": true
+  },
+  "negative": {
+    "vacuous_orderings": [],
+    "SO_first_then_O_still_rigid": true,
+    "pass": true
+  },
+  "boundary": {
+    "GL_fence_idempotent": true,
+    "pass": true
+  },
+  "rigid_or_flexible": "partially_flexible",
+  "overall_pass": true
+}

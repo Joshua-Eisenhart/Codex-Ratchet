@@ -1,0 +1,111 @@
+{
+  "name": "cl3_deep_stack_three_rotors_order_sensitive",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix numpy cannot express the bivector/rotor distinction needed for this admissibility claim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "num_perms": 6,
+    "pairwise_seps": [
+      0.3733031535542722,
+      0.4534356202904291,
+      0.36149972883345255,
+      0.43452483658734864,
+      0.5953115303909196,
+      0.4988978653531322,
+      0.34746777573400583,
+      0.16252185780486572,
+      0.29719231214722597,
+      0.1548537961148429,
+      0.6503453909097441,
+      0.45826450633572763,
+      0.5018019296946893,
+      0.3529479237955705,
+      0.41820227534627497
+    ],
+    "max_sep": 0.6503453909097441,
+    "min_sep": 0.1548537961148429,
+    "order_sensitive": true
+  },
+  "negative": {
+    "coaxial_order_invariant": true,
+    "max_diff": 1.5700924586837752e-16
+  },
+  "boundary": {
+    "identity_triple": true
+  },
+  "classification": "canonical",
+  "scope_note": "Scope: see system_v5/new docs/ENGINE_MATH_REFERENCE.md -- rotor composition is shell-local non-commutative geometric product; exclusion language: candidates failing equality are excluded as indistinguishable-under-commutation, not proven nonexistent."
+}

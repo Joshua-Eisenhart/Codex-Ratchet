@@ -1,0 +1,99 @@
+{
+  "name": "sim_gtower_order_su_to_sp_then_so_vs_reverse",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: symplectic fence precedes auxiliary orthogonal fence",
+  "ordering_claim": "SU->Sp->SO admits; reverse (SO first) excludes reflection witnesses under symplectic fence",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "solves symplectic and orthogonal admissibility equations in each order; ordering claim hinges on symbolic set membership"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_sp_family_count": 1,
+    "intersect_with_SO_count": 0,
+    "pass": true
+  },
+  "negative": {
+    "reverse_o_family_count": 12,
+    "intersect_with_Sp_count": 6,
+    "reflection_witness_excluded_by_symplectic": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_commutes": true,
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

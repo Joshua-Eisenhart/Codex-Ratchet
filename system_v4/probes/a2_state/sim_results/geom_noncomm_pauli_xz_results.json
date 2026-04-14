@@ -1,0 +1,53 @@
+{
+  "name": "sim_geom_noncomm_pauli_x_then_z_fails_id",
+  "classification": "canonical",
+  "tool_manifest": {
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic verification that [X,Z] = -2iY \u2260 0; floating-point matrix algebra could hide degeneracies at exact zero, sympy's exact arithmetic is load-bearing for the UNSAT-style exclusion claim."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "pytorch": null,
+    "clifford": null,
+    "z3": null,
+    "e3nn": null
+  },
+  "positive": {
+    "commutator_equals_neg_2iY": true,
+    "commutator_nonzero": true,
+    "witness_state_differs": true,
+    "note": "order XZ admits |+> rotation Z then flip; ZX excludes same final state",
+    "pass": true
+  },
+  "negative": {
+    "Z_self_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_scalar_commutes": true,
+    "pass": true
+  }
+}

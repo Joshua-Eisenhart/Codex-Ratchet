@@ -1,0 +1,51 @@
+{
+  "name": "sim_geom_noncomm_hopf_fiber_then_weyl_projector",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Weyl chiral projector P\u00b1 = (1 \u00b1 i*e3)/2 uses pseudoscalar i*e3 \u2014 applying it after a Hopf bivector rotor requires full Cl(3) grade structure; matrix projectors on C^2 would lose the fiber winding's grade-2 contribution."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "sympy": null,
+    "e3nn": null
+  },
+  "positive": {
+    "hopf_then_weyl_proj_noncommute": false,
+    "note": "compound order swap excludes chiral-witness state",
+    "pass": false
+  },
+  "negative": {
+    "aligned_plane_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_equal": true,
+    "pass": true
+  }
+}

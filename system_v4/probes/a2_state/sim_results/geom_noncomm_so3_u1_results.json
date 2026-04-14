@@ -1,0 +1,52 @@
+{
+  "name": "sim_geom_noncomm_so3_reduction_then_u1_phase",
+  "classification": "canonical",
+  "tool_manifest": {
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) rotor in e1^e2 and U(1) phase in e1^e3 only non-commute when encoded as bivector exponentials; matrix embeddings lose the grade-4 cross term in the commutator."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic BCH-style expansion confirms [B12,B13] = 2 e2 e3 is nonzero in exact arithmetic, avoiding float cancellation."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": "load_bearing",
+    "sympy": "load_bearing",
+    "pytorch": null,
+    "z3": null,
+    "e3nn": null
+  },
+  "positive": {
+    "so3_u1_noncommute": true,
+    "sympy_commutator_class": "2*e2*e3",
+    "note": "order swap excludes phase-locked witness",
+    "pass": true
+  },
+  "negative": {
+    "u1_self_commutes_control": true,
+    "pass": true
+  },
+  "boundary": {
+    "identity_equal": true,
+    "pass": true
+  }
+}

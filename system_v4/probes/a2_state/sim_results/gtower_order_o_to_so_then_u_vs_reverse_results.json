@@ -1,0 +1,96 @@
+{
+  "name": "sim_gtower_order_o_to_so_then_u_vs_reverse",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: orientation fence precedes complex-structure fence",
+  "ordering_claim": "orient-then-J uniquely admits J=I; reverse admits {+I,-I} and excludes uniqueness witness",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(2) pseudoscalar realises orientation; J^2=-1 decides complex-structure admissibility; ordering claim rests on rotor algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "forward_orient_then_complex_admits_unique_J": true,
+    "pass": true
+  },
+  "negative": {
+    "reverse_order_admits_two_distinct_J_witness_excluded_uniqueness": true,
+    "pass": true
+  },
+  "boundary": {
+    "scalar_rescale_commutes_with_J": true,
+    "pass": true
+  },
+  "rigid_or_flexible": "rigid",
+  "overall_pass": true
+}

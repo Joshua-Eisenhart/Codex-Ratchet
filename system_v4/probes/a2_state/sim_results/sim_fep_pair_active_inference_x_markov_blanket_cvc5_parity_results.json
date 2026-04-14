@@ -1,0 +1,33 @@
+{
+  "name": "sim_fep_pair_active_inference_x_markov_blanket_cvc5_parity",
+  "scope_note": "redundant-SMT parity for system_v4/probes/sim_fep_pair_active_inference_x_markov_blanket.py",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check UNSAT on factorization tautology"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing UNSAT parity witness"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "supportive",
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "z3_unsat": true,
+    "cvc5_unsat": true,
+    "parity_both_unsat": true
+  },
+  "negative": {
+    "broken_tautology_becomes_sat": true
+  },
+  "boundary": {
+    "pol_eq_one_still_unsat": true
+  },
+  "PASS": true
+}

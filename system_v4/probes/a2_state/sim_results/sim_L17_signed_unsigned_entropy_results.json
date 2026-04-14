@@ -1,0 +1,57 @@
+{
+  "name": "sim_L17_signed_unsigned_entropy",
+  "layer": 17,
+  "layer_name": "Signed/unsigned entropy",
+  "classification": "canonical",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md layer 17 (S, S(A|B), I, I_c)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "von Neumann entropy via torch.linalg.eigvalsh is load-bearing for S, S(A|B), I on rho_AB"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic S(diag(1/2,1/2)) = log 2 sanity check"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "sympy": "supportive"
+  },
+  "positive": {
+    "S_nonneg": {
+      "pass": true,
+      "S_AB": 2.2204460492503126e-16
+    },
+    "conditional_negative_on_bell": {
+      "pass": true,
+      "S_A|B": -0.6931471805599452,
+      "claim": "S(A|B)<0 excludes Bell from classical-signed class"
+    },
+    "mutual_info_bound": {
+      "pass": true,
+      "I": 1.3862943611198906,
+      "bound": 1.3862943611198906
+    }
+  },
+  "negative": {
+    "product_conditional_nonneg": {
+      "pass": true,
+      "S_A|B": 0.0,
+      "claim": "product state excluded from nonclassical-signed family"
+    }
+  },
+  "boundary": {
+    "max_mixed_entropy": {
+      "pass": true,
+      "S_AB": 1.3862943611198906,
+      "S_A": 0.6931471805599453
+    },
+    "pure_product_zero": {
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

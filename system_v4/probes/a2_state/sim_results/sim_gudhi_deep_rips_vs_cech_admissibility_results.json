@@ -1,7 +1,7 @@
 {
-  "name": "sim_gudhi_deep_persistent_h1_excludes_trivial_homology",
+  "name": "sim_gudhi_deep_rips_vs_cech_admissibility",
   "classification": "canonical",
-  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (persistent class distinguishability)",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md (filtration ladder admission)",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "RipsComplex + SimplexTree.persistence_intervals_in_dimension is the only admissibility probe for persistent H_k. Removing gudhi removes the claim's referent -- load_bearing."
+      "reason": "Provides RipsComplex and AlphaComplex with shared persistence machinery; admissibility comparison requires both filtrations from the same engine -- load_bearing."
     }
   },
   "tool_integration_depth": {
@@ -79,33 +79,47 @@
     "gudhi": "load_bearing"
   },
   "positive": {
-    "annulus_persistent_loop": {
+    "both_admit_h1": {
       "PASS": true,
-      "max_lifetime": 1.2171884848460681,
-      "n_intervals": 4,
-      "language": "admissible: persistent 1-cycle survives filtration"
+      "rips": [
+        0.26105238444010403,
+        1.7320508075688772
+      ],
+      "alpha": [
+        0.017037086855465962,
+        1.0000000000000124
+      ]
+    },
+    "alpha_tighter_than_rips": {
+      "PASS": "True",
+      "alpha_radius": 0.130526192220052,
+      "rips_radius": 0.13052619222005202,
+      "language": "admissible: alpha admits H_1 at a radius not exceeding rips"
     }
   },
   "negative": {
-    "blob_excludes_persistent_loop": {
+    "rips_below_threshold_excluded": {
       "PASS": true,
-      "max_lifetime": 0.2306573103231837,
-      "language": "excluded: convex cloud admits no persistent 1-cycle"
+      "n_intervals": 0,
+      "language": "excluded: below-threshold rips admits no persistent H_1"
     },
-    "two_clusters_no_h1": {
+    "blob_alpha_excludes_h1": {
       "PASS": true,
-      "max_lifetime": 0.23011048179447013,
-      "language": "excluded: disjoint clusters admit no persistent loop"
+      "max_lifetime": 0.08770156287461084,
+      "language": "excluded: alpha on convex blob admits no persistent loop"
     }
   },
   "boundary": {
-    "thin_annulus_still_admissible": {
+    "triangle_h1_short_or_none": {
       "PASS": true,
-      "max_lifetime": 3.2547577901659777
+      "rips": null
     },
-    "tiny_cloud_no_h1": {
+    "dense_circle_stable": {
       "PASS": true,
-      "max_lifetime": 0.0
+      "rips": [
+        0.1046719124858885,
+        1.7320508075688774
+      ]
     }
   },
   "ALL_PASS": true

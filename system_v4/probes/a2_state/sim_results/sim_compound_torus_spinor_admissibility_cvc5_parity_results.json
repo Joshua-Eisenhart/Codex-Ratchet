@@ -1,0 +1,36 @@
+{
+  "name": "sim_compound_torus_spinor_admissibility_cvc5_parity",
+  "scope_note": "redundant-SMT parity for system_v4/probes/sim_compound_torus_spinor_admissibility.py",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check triangle-XOR parity fence on T^2 triangulation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SAT/UNSAT parity witness on same Boolean encoding"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "supportive",
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "clean_z3_sat": true,
+    "clean_cvc5_sat": true,
+    "sabotage_z3_unsat": true,
+    "sabotage_cvc5_unsat": true,
+    "parity_clean": true,
+    "parity_sabotage": true
+  },
+  "negative": {
+    "sabotage_alone_unsat": true
+  },
+  "boundary": {
+    "small_torus_parity_sat": true
+  },
+  "PASS": true
+}

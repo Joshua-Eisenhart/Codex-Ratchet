@@ -1,0 +1,39 @@
+{
+  "name": "sim_science_method_refutation_probe_cvc5_parity",
+  "scope_note": "redundant-SMT parity for system_v4/probes/sim_science_method_refutation_probe.py",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check refutation-probe claims"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing parity on refutation-probe claims"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "supportive",
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "A_z3_unsat": true,
+    "A_cvc5_unsat": true,
+    "A_parity": true,
+    "B_z3_sat": true,
+    "B_cvc5_sat": true,
+    "B_parity": true,
+    "C_z3_unsat": true,
+    "C_cvc5_unsat": true,
+    "C_parity": true
+  },
+  "negative": {
+    "flipped_claim_sat": true
+  },
+  "boundary": {
+    "true_tautology_sat": true
+  },
+  "PASS": true
+}

@@ -1,7 +1,7 @@
 {
-  "name": "sim_gudhi_deep_persistent_h1_excludes_trivial_homology",
+  "name": "sim_gudhi_deep_persistence_diagram_stability_under_probe",
   "classification": "canonical",
-  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (persistent class distinguishability)",
+  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (probe-stability fence)",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "RipsComplex + SimplexTree.persistence_intervals_in_dimension is the only admissibility probe for persistent H_k. Removing gudhi removes the claim's referent -- load_bearing."
+      "reason": "bottleneck_distance + persistence backend together are the admissibility probe for diagram stability. No gudhi means no operator, not just slow -- load_bearing."
     }
   },
   "tool_integration_depth": {
@@ -79,33 +79,40 @@
     "gudhi": "load_bearing"
   },
   "positive": {
-    "annulus_persistent_loop": {
+    "eps=0.01": {
       "PASS": true,
-      "max_lifetime": 1.2171884848460681,
-      "n_intervals": 4,
-      "language": "admissible: persistent 1-cycle survives filtration"
+      "bottleneck": 0.0485292837316377,
+      "language": "admissible: diagram stable within probe bound"
+    },
+    "eps=0.05": {
+      "PASS": true,
+      "bottleneck": 0.24458208395489572,
+      "language": "admissible: diagram stable within probe bound"
+    },
+    "eps=0.1": {
+      "PASS": true,
+      "bottleneck": 0.40968585526124424,
+      "language": "admissible: diagram stable within probe bound"
     }
   },
   "negative": {
-    "blob_excludes_persistent_loop": {
+    "structural_change_large_db": {
       "PASS": true,
-      "max_lifetime": 0.2306573103231837,
-      "language": "excluded: convex cloud admits no persistent 1-cycle"
+      "bottleneck": 0.7614969405167848,
+      "language": "excluded: non-probe deformation breaks stability"
     },
-    "two_clusters_no_h1": {
+    "outlier_excluded_by_probe_bound": {
       "PASS": true,
-      "max_lifetime": 0.23011048179447013,
-      "language": "excluded: disjoint clusters admit no persistent loop"
+      "bottleneck": 0.2067664551002117,
+      "language": "excluded: outlier shift is not admissible as a bounded probe"
     }
   },
   "boundary": {
-    "thin_annulus_still_admissible": {
-      "PASS": true,
-      "max_lifetime": 3.2547577901659777
+    "self_identity": {
+      "PASS": true
     },
-    "tiny_cloud_no_h1": {
-      "PASS": true,
-      "max_lifetime": 0.0
+    "tiny_diagrams_finite": {
+      "PASS": "True"
     }
   },
   "ALL_PASS": true

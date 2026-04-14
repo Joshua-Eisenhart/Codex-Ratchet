@@ -1,12 +1,12 @@
 {
-  "name": "sim_gtower_su_to_sp_symplectic",
+  "name": "sim_gtower_e3nn_so3_equivariance_check",
   "classification": "canonical",
-  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: SU->Sp symplectic-form fence",
+  "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: SO(3) fence equivariance via e3nn irreps",
   "tool_manifest": {
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": ""
+      "tried": true,
+      "used": true,
+      "reason": "tensor backend for e3nn"
     },
     "pyg": {
       "tried": false,
@@ -24,9 +24,9 @@
       "reason": ""
     },
     "sympy": {
-      "tried": true,
-      "used": true,
-      "reason": "symbolic Sp(2n) preservation of J"
+      "tried": false,
+      "used": false,
+      "reason": ""
     },
     "clifford": {
       "tried": false,
@@ -39,9 +39,9 @@
       "reason": ""
     },
     "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": ""
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) irrep D-matrix homomorphism check"
     },
     "rustworkx": {
       "tried": false,
@@ -65,30 +65,28 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
+    "pytorch": "supportive",
     "pyg": null,
     "z3": null,
     "cvc5": null,
-    "sympy": "load_bearing",
+    "sympy": null,
     "clifford": null,
     "geomstats": null,
-    "e3nn": null,
+    "e3nn": "load_bearing",
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
     "gudhi": null
   },
   "positive": {
-    "sp2_preserves_J": true,
-    "sp4_numeric_admitted": true
+    "l1_equivariant": true,
+    "D_homomorphism": true
   },
   "negative": {
-    "detne1_excluded_from_sp": true,
-    "scale_excluded": true
+    "non_so3_rejected_by_e3nn": true
   },
   "boundary": {
-    "identity_in_sp": true,
-    "sp2_is_sl2": true
+    "identity_maps_identity": true
   },
   "status": "PASS"
 }

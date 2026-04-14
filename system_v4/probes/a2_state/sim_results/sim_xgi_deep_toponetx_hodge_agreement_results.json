@@ -1,0 +1,143 @@
+{
+  "name": "sim_xgi_deep_toponetx_hodge_agreement",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eig"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not pairwise GNN"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise only"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph Laplacian kernel encodes 0-level connectivity of the triadic 2-complex"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Hodge 0-Laplacian provides the independent cell-complex witness"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "homology not computed here"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph-projection with bridge edge breaks component count agreement"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "eigensolve / sparse-to-dense"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": null,
+    "networkx": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "kernel_dims_agree": {
+      "pass": true,
+      "hyper_zero_count": 2,
+      "hodge_zero_count": 2,
+      "spec_hyper": [
+        2.9387352619399456e-16,
+        3.3998125633561323e-16,
+        0.6666666666666667,
+        0.6666666666666667,
+        1.3333333333333335,
+        1.3333333333333335,
+        2.0,
+        2.0000000000000004
+      ],
+      "spec_hodge": [
+        2.2204460492502934e-16,
+        2.3510088283821287e-16,
+        1.9999999999999998,
+        2.0,
+        3.9999999999999982,
+        3.999999999999999,
+        3.9999999999999996,
+        4.0
+      ]
+    }
+  },
+  "negative": {
+    "projection_with_bridge_disagrees": {
+      "pass": true,
+      "projection_zero_count": 1,
+      "spec": [
+        -2.2204460492520215e-16,
+        0.2907246405630757,
+        1.9999999999999996,
+        2.8060634335253694,
+        4.0,
+        4.0,
+        4.000000000000003,
+        4.9032119259115525
+      ]
+    }
+  },
+  "boundary": {
+    "single_triad_single_component": {
+      "pass": true,
+      "hyper_zero": 1,
+      "hodge_zero": 1
+    }
+  },
+  "overall_pass": true
+}

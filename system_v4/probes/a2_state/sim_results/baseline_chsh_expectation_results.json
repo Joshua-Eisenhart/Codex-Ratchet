@@ -1,0 +1,123 @@
+{
+  "name": "baseline_chsh_expectation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "sep_bound_0": {
+      "S": -0.13017249567097203,
+      "pass": "True"
+    },
+    "sep_bound_1": {
+      "S": 0.012575826823844224,
+      "pass": "True"
+    },
+    "sep_bound_2": {
+      "S": -0.054170175403192924,
+      "pass": "True"
+    },
+    "sep_bound_3": {
+      "S": 0.002965705128326581,
+      "pass": "True"
+    },
+    "sep_bound_4": {
+      "S": 0.06633339164870197,
+      "pass": "True"
+    },
+    "bell_tsirelson": {
+      "S": 2.82842712474619,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "sep_never_exceeds_2": {
+      "max_S": 0.09473284852907145,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "maxmixed_zero": {
+      "S": 0.0,
+      "pass": "True"
+    },
+    "tsirelson_respected": {
+      "max": 1.8332025010395656,
+      "pass": "True"
+    }
+  },
+  "classification": "classical_baseline"
+}

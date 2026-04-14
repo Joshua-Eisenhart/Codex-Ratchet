@@ -1,0 +1,111 @@
+{
+  "name": "sim_geomstats_grassmann_principal_angles",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Grassmannian intrinsic geodesic distance via principal angles"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "grassmann_metric_axioms": {
+      "symmetric": true,
+      "nonneg": true,
+      "triangle": true,
+      "d_geomstats_sample": 2.4260436950927273,
+      "principal_angles_sample": [
+        0.8510951464012628,
+        1.4894566314672615
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "grassmann_basis_invariant_frob_not": {
+      "gs_invariant": true,
+      "frob_invariant": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identical_zero": {
+      "d": 2.6984242036790024e-16,
+      "pass": true
+    },
+    "orthogonal_complement_finite": {
+      "d_embedding": 8.650592052219155e-16,
+      "d_principal_angles": 2.221441469079183,
+      "pass": "True"
+    }
+  },
+  "classification": "canonical"
+}

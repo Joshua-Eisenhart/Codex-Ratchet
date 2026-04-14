@@ -1,0 +1,142 @@
+{
+  "name": "baseline_bloch_vector",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "GA cross-check deferred"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "ball manifold not used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "roundtrip_z": {
+      "pass": true
+    },
+    "hermitian_z": {
+      "pass": true
+    },
+    "trace1_z": {
+      "pass": "True"
+    },
+    "roundtrip_x": {
+      "pass": true
+    },
+    "hermitian_x": {
+      "pass": true
+    },
+    "trace1_x": {
+      "pass": "True"
+    },
+    "roundtrip_y": {
+      "pass": true
+    },
+    "hermitian_y": {
+      "pass": true
+    },
+    "trace1_y": {
+      "pass": "True"
+    },
+    "roundtrip_mz": {
+      "pass": true
+    },
+    "hermitian_mz": {
+      "pass": true
+    },
+    "trace1_mz": {
+      "pass": "True"
+    },
+    "pure_norm": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "norm_gt_1_not_psd": {
+      "pass": true
+    },
+    "non_bloch_mismatch_allowed": {
+      "pass": true,
+      "note": "reconstruction from bloch of arbitrary matrix may differ"
+    },
+    "imag_needs_y": {
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "unit_norm_pure": {
+      "pass": "True"
+    },
+    "origin_maxmixed": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline"
+}

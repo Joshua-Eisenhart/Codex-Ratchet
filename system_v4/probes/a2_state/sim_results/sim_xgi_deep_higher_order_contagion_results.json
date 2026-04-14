@@ -1,0 +1,115 @@
+{
+  "name": "sim_xgi_deep_higher_order_contagion",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "stochastic sim, numpy rng"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise graph only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "stochastic"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "stochastic"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no closed form tested"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise only"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "triadic infection rule requires genuine hyperedges of size >=3"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no homology"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "pairwise projection baseline SIS"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "rng only"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "triadic_raises_prevalence": {
+      "pass": true,
+      "p_hyper": 0.9485000000000001,
+      "p_pair": 0.8775000000000002,
+      "delta": 0.07099999999999995
+    }
+  },
+  "negative": {
+    "no_triad_matches_pair": {
+      "pass": true,
+      "p_hyper": 0.0,
+      "p_pair": 0.505,
+      "delta": -0.505
+    }
+  },
+  "boundary": {
+    "zero_rate_extinction": {
+      "pass": true,
+      "final_prevalence": 0.0
+    }
+  },
+  "overall_pass": true
+}

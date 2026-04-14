@@ -1,82 +1,75 @@
 {
-  "name": "sim_holodeck_fep_coupling_stub",
-  "classification": "classical_baseline",
+  "name": "sim_geomstats_so3_geodesic",
   "tool_manifest": {
-    "numpy": {
-      "tried": true,
-      "used": true,
-      "reason": "KL divergence and distribution-shape numerics"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
-    "geomstats": {
+    "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) canonical log/exp with branch control"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
-    "numpy": "supportive",
-    "clifford": null,
     "pytorch": null,
     "pyg": null,
     "z3": null,
     "cvc5": null,
     "sympy": null,
-    "geomstats": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
     "e3nn": null,
     "rustworkx": null,
     "xgi": null,
@@ -84,17 +77,27 @@
     "gudhi": null
   },
   "positive": {
-    "zero_on_match": true,
-    "positive_on_mismatch": true,
-    "monotone_perturbation": true
+    "geodesic_closes": {
+      "max_err": 3.864534092714259e-15,
+      "pass": true
+    }
   },
   "negative": {
-    "negative_kl": false,
-    "zero_kl_for_different": false
+    "numpy_silent_complex_geomstats_raises": {
+      "numpy_returned_complex": true,
+      "geomstats_raised": true,
+      "pass": true
+    }
   },
   "boundary": {
-    "uniform_uniform": true,
-    "near_degenerate_finite": "True"
+    "pi_rotation_log_raises": {
+      "raised": true,
+      "pass": true
+    },
+    "just_below_pi_closes": {
+      "err": 1.4711071319799143e-15,
+      "pass": true
+    }
   },
-  "pass": true
+  "classification": "canonical"
 }

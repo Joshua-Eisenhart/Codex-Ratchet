@@ -1,0 +1,119 @@
+{
+  "name": "baseline_purity_depolarizing",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "pure_p0": {
+      "val": 1.0,
+      "pass": true
+    },
+    "p1_maxmixed": {
+      "val": 0.5,
+      "pass": true
+    },
+    "analytic_curve_match": {
+      "pass": true
+    },
+    "monotone_decrease": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "never_exceeds_1": {
+      "max": 1.0,
+      "pass": true
+    },
+    "never_below_1_over_d": {
+      "min": 0.5,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "d4_p1_purity": {
+      "val": 0.25,
+      "pass": true
+    },
+    "mixed_p0_invariant": {
+      "pass": true
+    },
+    "p1_invariant_on_any": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline"
+}

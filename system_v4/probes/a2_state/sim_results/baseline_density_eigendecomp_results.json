@@ -1,0 +1,116 @@
+{
+  "name": "baseline_density_eigendecomp_vn_entropy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "baseline uses numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric baseline, no SMT claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric baseline, no SMT claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric baseline; symbolic cross-check deferred"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA rotor here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold structure here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance claim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "numpy_role": "load_bearing",
+  "positive": {
+    "pure_zero_entropy": {
+      "value": 4.9828921423310435e-14,
+      "expected": 0.0,
+      "pass": true
+    },
+    "maxmixed_entropy": {
+      "value": 1.0,
+      "expected": 1.0,
+      "pass": true
+    },
+    "eig_reconstruct": {
+      "err": 1.442222014787673e-16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonhermitian_detected": {
+      "pass": "True"
+    },
+    "negative_eig_flagged": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "near_pure": {
+      "value": 4.130580026464068e-11,
+      "pass": true
+    },
+    "degenerate_4d": {
+      "value": 2.0,
+      "expected": 2.0,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline"
+}

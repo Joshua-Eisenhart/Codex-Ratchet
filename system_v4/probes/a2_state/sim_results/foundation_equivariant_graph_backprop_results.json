@@ -80,44 +80,44 @@
       },
       {
         "epoch": 25,
-        "loss": 0.15168875836803253,
-        "data_loss": 0.15063281646690835,
-        "symmetry_loss": 0.003016976860354797
+        "loss": 0.1516887583680346,
+        "data_loss": 0.1506328164669104,
+        "symmetry_loss": 0.003016976860354845
       },
       {
         "epoch": 50,
-        "loss": 0.07586893607957286,
-        "data_loss": 0.07580984291384035,
-        "symmetry_loss": 0.00016883761637857735
+        "loss": 0.07586893607953563,
+        "data_loss": 0.07580984291380312,
+        "symmetry_loss": 0.00016883761637858454
       },
       {
         "epoch": 100,
-        "loss": 0.059945994742428295,
-        "data_loss": 0.05994302122769456,
-        "symmetry_loss": 8.495756382100016e-06
+        "loss": 0.059945994742428906,
+        "data_loss": 0.05994302122769517,
+        "symmetry_loss": 8.495756382101591e-06
       },
       {
         "epoch": 200,
-        "loss": 0.0600816012296469,
-        "data_loss": 0.06007096261239458,
-        "symmetry_loss": 3.039604929234428e-05
+        "loss": 0.06008160122866145,
+        "data_loss": 0.060070962611409096,
+        "symmetry_loss": 3.0396049292439808e-05
       },
       {
         "epoch": 349,
-        "loss": 0.0590544877018736,
-        "data_loss": 0.05905236564146019,
-        "symmetry_loss": 6.0630297525761354e-06
+        "loss": 0.05905448771659792,
+        "data_loss": 0.05905236565618455,
+        "symmetry_loss": 6.063029752504408e-06
       }
     ],
     "model_metrics": {
-      "mse": 0.05801160259470657,
-      "mae": 0.1201577035076191,
-      "swap_error": 0.001367921280901827
+      "mse": 0.05801160260406742,
+      "mae": 0.12015770363703823,
+      "swap_error": 0.001367921281325635
     },
     "gradient_check": {
-      "autograd": 2.7032568772990784,
-      "finite_difference": 2.70325683514705,
-      "abs_error": 4.2152028534303554e-08,
+      "autograd": 2.7032568768656073,
+      "finite_difference": 2.7032568347118424,
+      "abs_error": 4.215376492311407e-08,
       "nonzero": true
     },
     "exact_state_reports": {
@@ -212,14 +212,14 @@
         "pass": true
       },
       "product_+-": {
-        "mutual_information": 1.6017132519074583e-16,
-        "coherent_information_a_to_b": -1.6017132519074593e-16,
-        "coherent_information_b_to_a": -3.2034265038149167e-16,
+        "mutual_information": 1.6017132519074593e-16,
+        "coherent_information_a_to_b": -1.6017132519074583e-16,
+        "coherent_information_b_to_a": -3.2034265038149157e-16,
         "negativity": 0.0,
         "purity": 0.999999999999999,
-        "mi_gap": 3.2034265038149167e-16,
-        "ic_swap_gap": 3.2034265038149167e-16,
-        "ic_reverse_gap": 3.2034265038149167e-16,
+        "mi_gap": 3.2034265038149157e-16,
+        "ic_swap_gap": 3.2034265038149157e-16,
+        "ic_reverse_gap": 3.2034265038149157e-16,
         "pass": true
       },
       "classical_corr_70_30": {
@@ -334,13 +334,13 @@
   },
   "negative": {
     "edge_removed_ablation_is_worse": {
-      "full_mse": 0.05801160259470657,
-      "ablation_mse": 0.7729555403394333,
+      "full_mse": 0.05801160260406742,
+      "ablation_mse": 0.7729555403394334,
       "pass": true
     },
     "edge_removed_ablation_collapses_to_trivial_swap_symmetry": {
-      "full_swap_error": 0.001367921280901827,
-      "ablation_swap_error": 7.459705546877719e-10,
+      "full_swap_error": 0.001367921281325635,
+      "ablation_swap_error": 7.459708532704793e-10,
       "pass": true
     },
     "detached_path_breaks_gradient_flow": {
@@ -371,11 +371,11 @@
     "tests_passed": 6,
     "tests_failed": 0,
     "all_pass": false,
-    "elapsed_s": 3.3366031646728516,
-    "full_model_mse": 0.05801160259470657,
-    "full_model_swap_error": 0.001367921280901827,
-    "ablation_mse": 0.7729555403394333,
-    "ablation_swap_error": 7.459705546877719e-10
+    "elapsed_s": 5.84332275390625,
+    "full_model_mse": 0.05801160260406742,
+    "full_model_swap_error": 0.001367921281325635,
+    "ablation_mse": 0.7729555403394334,
+    "ablation_swap_error": 7.459708532704793e-10
   },
   "caveat": "This is a foundation lego only. The graph is intentionally tiny; the point is to make message passing and autograd materially necessary on a basic quantum object."
 }

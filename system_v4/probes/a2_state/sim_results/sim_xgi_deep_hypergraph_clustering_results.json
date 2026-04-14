@@ -1,0 +1,114 @@
+{
+  "name": "sim_xgi_deep_hypergraph_clustering",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no grads"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph native required"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric claim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "pairwise only"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge membership is queried directly; projection destroys the distinction"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no homology"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph-projection clustering as ablation baseline"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "array stats only"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "clustering_differs": {
+      "pass": true,
+      "hyper_c0": 0.0,
+      "proj_c0": 0.3333333333333333,
+      "abs_diff": 0.3333333333333333
+    }
+  },
+  "negative": {
+    "flattened_diverges_opposite": {
+      "pass": true,
+      "hyper_c0": 0.0,
+      "proj_c0": 0.3333333333333333
+    }
+  },
+  "boundary": {
+    "isolated_dyadic_zero": {
+      "pass": true,
+      "value": 0.0
+    }
+  },
+  "overall_pass": true
+}

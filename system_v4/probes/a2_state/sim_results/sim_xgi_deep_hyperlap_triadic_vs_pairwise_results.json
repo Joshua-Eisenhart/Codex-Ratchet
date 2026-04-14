@@ -1,0 +1,136 @@
+{
+  "name": "sim_xgi_deep_hyperlap_triadic_vs_pairwise",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eig only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not a pairwise graph sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral, not FOL"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "spectral, not FOL"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric eigs"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no GA"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph-native required"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph incidence with true edge cardinality separates triadic from pairwise carriers sharing 1-skeleton"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "pure hypergraph claim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no homology"
+    },
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph-projection ablation; its spectral collapse IS the negative"
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "eigendecomposition only; not the distinguishing structure"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": "supportive",
+    "numpy": "supportive"
+  },
+  "positive": {
+    "hyperlap_separates_tri_vs_pair": {
+      "pass": true,
+      "spec_tri": [
+        2.9387352619399456e-16,
+        0.6666666666666667,
+        1.3333333333333335,
+        2.0
+      ],
+      "spec_pair": [
+        1.1102230246251467e-16,
+        1.0,
+        1.9999999999999991,
+        2.0
+      ],
+      "max_diff": 0.6666666666666656
+    }
+  },
+  "negative": {
+    "skeleton_lap_collapses": {
+      "pass": true,
+      "iso": true,
+      "spec_equal": true,
+      "spec_tri_skel": [
+        2.2204460492502934e-16,
+        2.0,
+        3.9999999999999982,
+        4.0
+      ],
+      "spec_pair_skel": [
+        2.2204460492502934e-16,
+        2.0,
+        3.9999999999999982,
+        4.0
+      ]
+    }
+  },
+  "boundary": {
+    "identical_input_identical_spectrum": {
+      "pass": true,
+      "max_abs_diff": 0.0
+    }
+  },
+  "overall_pass": true
+}

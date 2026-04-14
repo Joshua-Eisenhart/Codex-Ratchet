@@ -52,6 +52,12 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.linalg import sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this searches Xi bridge candidates numerically under doctrine-informed constraints, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "bridge construction and candidate scoring numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square-root and log operations for bridge metrics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

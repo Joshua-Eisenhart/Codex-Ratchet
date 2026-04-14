@@ -23,6 +23,15 @@ Sources:
 import json, os
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this is a deterministic address-table audit over symbolic axis rules, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "python_stdlib": {
+        "tried": True,
+        "used": True,
+        "reason": "deterministic address-table construction and rule audit",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {"python_stdlib": "supportive"}
 
 
 # ───────────────────────────────────────────────────────────────────

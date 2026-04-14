@@ -4,8 +4,16 @@ MC sampler over a classical feasible region (box + linear constraints). By desig
 this SUBSTRATE cannot represent probe-dependent indistinguishability — divergence
 from nonclassical admissibility is logged as `innately_missing`, not as a failure."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical foundation baseline: Monte Carlo feasibility on a classical admissibility region cannot encode probe-relative indistinguishability."
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "Monte Carlo sampling over the classical admissibility region",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 NAME = "admissibility_manifold_mc"
 
 def sample_box(n, d, rng): return rng.uniform(-1, 1, size=(n, d))

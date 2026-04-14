@@ -22,6 +22,12 @@ from datetime import UTC, datetime
 import numpy as np
 import scipy.linalg as la
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this is a narrow numerical probe over Ax3/Ax5 observables, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "spinor and torus observable numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for gamma5 action"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

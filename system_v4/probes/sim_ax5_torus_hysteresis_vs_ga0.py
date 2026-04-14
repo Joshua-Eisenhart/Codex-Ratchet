@@ -16,6 +16,11 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this compares torus hysteresis against GA0 coarse-graining numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "torus transport and coarse-graining numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

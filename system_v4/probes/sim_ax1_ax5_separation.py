@@ -20,6 +20,12 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: Ax1/Ax5 separation on mixed states is a numerical probe here, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "mixed-state sampling and overlap numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for channel trajectories"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

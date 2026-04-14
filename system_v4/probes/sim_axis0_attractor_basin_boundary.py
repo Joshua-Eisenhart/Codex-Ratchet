@@ -45,6 +45,11 @@ from datetime import UTC, datetime
 import numpy as np
 from typing import Tuple, List
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this probes Axis-0 attractor boundary behavior numerically on the engine trajectory, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "trajectory statistics and operator-response numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from geometric_operators import (

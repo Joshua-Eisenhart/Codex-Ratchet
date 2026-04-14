@@ -1,0 +1,97 @@
+{
+  "name": "bridge_sci_z3_inadmissible_unfalsifiable",
+  "classification": "canonical",
+  "scope_note": "Sci-method admissibility via z3: unfalsifiable claim excluded by structural impossibility of its negation's satisfaction.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT of negation is load-bearing falsifiability test"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "falsifiable_negation_sat": {
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "tautology_negation_unsat": {
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "contradiction_unsat_boundary": {
+      "status": "PASS"
+    }
+  },
+  "pass": true
+}

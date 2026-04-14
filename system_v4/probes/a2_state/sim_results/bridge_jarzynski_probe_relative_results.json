@@ -1,0 +1,94 @@
+{
+  "name": "bridge_jarzynski_probe_relative",
+  "scope_note": "Bridge: sympy proves Jarzynski identity symbolically under the probe-relative Gaussian work shift. Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof of Jarzynski identity; load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "sympy",
+  "positive": {
+    "residual": "0",
+    "is_zero": true
+  },
+  "negative": {
+    "residual": "(exp(beta**2*sigma**2/2) - 1)*exp(-beta*dF)",
+    "nonzero_as_expected": true
+  },
+  "boundary": {
+    "delta_limit_equal": true
+  },
+  "pass": true
+}

@@ -1,0 +1,80 @@
+{
+  "name": "f01_fail_07_zero_quantum_infinite_regress",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: minimal positive separator does not exist with q=0; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "positive_q_chain_sat": true
+  },
+  "negative": {
+    "no_minimal_positive_unsat_as_minimum": true,
+    "zero_q_requires_regress": true
+  },
+  "boundary": {
+    "no_quantum_vacuous_sat": true
+  },
+  "overall_pass": true
+}

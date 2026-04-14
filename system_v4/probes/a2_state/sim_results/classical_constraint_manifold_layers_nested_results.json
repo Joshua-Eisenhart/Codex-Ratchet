@@ -1,0 +1,111 @@
+{
+  "name": "classical_constraint_manifold_layers_nested",
+  "classification": "classical_baseline",
+  "scope_note": "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md layer nesting; LADDERS_FENCES_ADMISSION_REFERENCE.md",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "set admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "numpy": "load_bearing"
+  },
+  "positive": {
+    "monotone_nesting": {
+      "pass": true,
+      "counts": [
+        2000,
+        1000,
+        312
+      ]
+    },
+    "strict_shrink": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "L2_subset_L1": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "empty_safe": {
+      "pass": "True"
+    }
+  },
+  "pass": true
+}

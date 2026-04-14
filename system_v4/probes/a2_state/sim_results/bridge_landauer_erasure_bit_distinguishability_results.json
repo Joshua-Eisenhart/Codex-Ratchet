@@ -1,0 +1,95 @@
+{
+  "name": "bridge_landauer_erasure_bit_distinguishability",
+  "scope_note": "Bridge: sympy derives E_erase = F01 * H(p) for Bernoulli p, and z3 proves UNSAT for E_erase < F01 * H(p). Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT on sub-floor erasure; load-bearing fence"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic derivation of E = F01 * H(p); load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "load_bearing_tool": "sympy+z3",
+  "positive": {
+    "sympy_residual_at_half": "0",
+    "is_zero": true
+  },
+  "negative": {
+    "inadmissible_sub_floor": "unsat",
+    "unsat_as_expected": true
+  },
+  "boundary": {
+    "p_to_zero_limit": "0",
+    "is_zero": true
+  },
+  "pass": true
+}

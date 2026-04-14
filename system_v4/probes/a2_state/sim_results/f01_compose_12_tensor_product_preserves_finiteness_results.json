@@ -1,0 +1,81 @@
+{
+  "name": "f01_compose_12_tensor_product_preserves_finiteness",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Kronecker product dimension; load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "positive": {
+    "dim_product_2x3_eq_6": true
+  },
+  "negative": {
+    "no_finite_equals_infinity": true
+  },
+  "boundary": {
+    "2x2_eq_4": true,
+    "3x4_eq_12": true,
+    "5x5_eq_25": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,106 @@
+{
+  "name": "bridge_axis0_gradient_autograd",
+  "classification": "canonical",
+  "scope_note": "AXIS_AND_ENTROPY_REFERENCE.md Axis 0; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md entropy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd dS/dp"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "uniform_matches_analytic": {
+      "pass": true,
+      "g": [
+        0.3862943611198906,
+        0.3862943611198906,
+        0.3862943611198906,
+        0.3862943611198906
+      ]
+    },
+    "autograd_matches_FD": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonuniform_not_constant": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "near_degenerate_finite": {
+      "pass": true
+    }
+  },
+  "pass": true
+}

@@ -1,0 +1,98 @@
+{
+  "name": "bridge_igt_chirality_clifford",
+  "classification": "canonical",
+  "scope_note": "IGT ring chirality via Cl(3) pseudoscalar sign; canonical: two chirality classes exist that the zero-sum classical test merges.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) bivector/pseudoscalar separates ring chirality; load-bearing"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "chirality_antisym": {
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "classical_blind_to_chirality": {
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "I_squared_neg1": {
+      "I2": -1.0,
+      "status": "PASS"
+    }
+  },
+  "pass": true
+}

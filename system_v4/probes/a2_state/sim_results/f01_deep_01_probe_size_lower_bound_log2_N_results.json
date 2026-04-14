@@ -1,0 +1,84 @@
+{
+  "name": "f01_deep_01_probe_size_lower_bound_log2_N",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: no 2 binary probes separate 8 states; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "N8_k3_sat": true,
+    "N4_k2_sat": true
+  },
+  "negative": {
+    "N8_k2_unsat": true,
+    "N4_k1_unsat": true,
+    "N16_k3_unsat": true
+  },
+  "boundary": {
+    "N1_k0_sat": true,
+    "N2_k1_sat": true,
+    "N2_k0_unsat": true
+  },
+  "overall_pass": true
+}

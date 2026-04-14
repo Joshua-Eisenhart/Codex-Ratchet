@@ -1,0 +1,82 @@
+{
+  "name": "f01_deep_03_information_bound_shannon_log_N_max",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Lagrangian maximizer of Shannon on simplex; load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing"
+  },
+  "positive": {
+    "uniform_N4_eq_log2N": true,
+    "uniform_N8_eq_log2N": true
+  },
+  "negative": {
+    "skewed_lt_log2N": true,
+    "deterministic_eq_0": true
+  },
+  "boundary": {
+    "N1_H_eq_0": true,
+    "N2_uniform_eq_1": true
+  },
+  "overall_pass": true
+}

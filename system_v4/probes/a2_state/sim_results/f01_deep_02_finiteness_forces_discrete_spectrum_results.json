@@ -1,0 +1,82 @@
+{
+  "name": "f01_deep_02_finiteness_forces_discrete_spectrum",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: no d+1 distinct roots of a deg-d poly"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic eigenvalues of generic hermitian on C^d; load-bearing"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "n/a"
+    }
+  },
+  "tool_integration_depth": {
+    "sympy": "load_bearing",
+    "z3": "supportive"
+  },
+  "positive": {
+    "d3_eigs_finite": true,
+    "d3_eigs_real": true
+  },
+  "negative": {
+    "charpoly_deg_eq_d": true,
+    "total_roots_le_d": true
+  },
+  "boundary": {
+    "no_4th_root_of_deg3": true
+  },
+  "overall_pass": true
+}

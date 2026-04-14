@@ -15,6 +15,11 @@ Each layer's output is the LANDSCAPE before constraints narrow it.
 import sys, os, json, time, itertools
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this explores the L7-L9 constraint manifold numerically before later constraints cut it down, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "ordering, polarity, and strength-landscape numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

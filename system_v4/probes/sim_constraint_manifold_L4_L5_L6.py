@@ -15,6 +15,12 @@ Uses: sympy, z3, PyG, clifford.
 import sys, os, json, warnings
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical foundation baseline: this explores the L4-L6 constraint manifold numerically and symbolically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "operator-manifold numerics across layers 4-6"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic parameterization of chiral Hamiltonians"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "sympy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

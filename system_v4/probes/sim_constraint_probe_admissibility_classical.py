@@ -4,8 +4,12 @@ Probes represented as linear inequality rows a.x<=b. Checks probe-set intersecti
 semantics classically. Substrate innately misses nonclassical contextuality
 (Kochen-Specker-like probe-set dependence); divergence logged."""
 import json, os, numpy as np
-from _classical_baseline_common import TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH
 classification = "classical_baseline"
+divergence_log = "Classical baseline: probe admissibility is modeled here by linear-inequality intersection numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "linear-constraint admissibility and probe-set numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 NAME = "constraint_probe_admissibility"
 
 def admissible_under(probes, x):

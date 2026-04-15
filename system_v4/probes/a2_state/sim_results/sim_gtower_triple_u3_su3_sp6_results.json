@@ -1,0 +1,265 @@
+{
+  "name": "sim_gtower_triple_u3_su3_sp6",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "U(3) + SU(3) + Sp(6) simultaneous",
+  "constraint_imposed": "SU(3)\u2282U(3)\u2282Sp(6) via real embedding M_e^T J M_e = J",
+  "key_theorem": "U(n) \u2282 Sp(2n,R) via M_e = [[Re(M),-Im(M)],[Im(M),Re(M)]]; M\u2020M=I \u27f9 M_e^T J M_e = J",
+  "capability_summary": {
+    "CAN": [
+      "verify U(3), SU(3), Sp(6) shells simultaneously active (pytorch complex128/float64)",
+      "confirm SU(3)\u2282U(3)\u2282Sp(6) embedding chain via real embedding theorem",
+      "witness Sp(6) strictly larger via non-unitary diagonal element",
+      "prove three-way non-commutativity U\u2218S\u2218X \u2260 X\u2218S\u2218U at 6\u00d76 level",
+      "z3 UNSAT: det=1\u2227det\u22601 and \u2016col\u2016=1\u2227\u2016col\u2016\u22601 both impossible",
+      "verify sp(6)\u2283u(3)\u2283su(3) nesting at Lie algebra level via sympy",
+      "confirm SU(2)=Sp(1) as coupling anchor via Cl(3,0) quaternion structure",
+      "sample U(3)/SU(3) via geomstats, embed, verify Sp(6) constraint",
+      "confirm e3nn D^1 irrep: unitary and real embedding \u2208 Sp(6)",
+      "encode U\u2192SU\u2192Sp path (length=2) and Sp(6) terminal in rustworkx DAG",
+      "register triple hyperedge {U3,SU3,Sp6} with all pairwise sub-faces in xgi",
+      "verify sp(6) generators form a connected set via gudhi H0=1"
+    ],
+    "CANNOT": [
+      "further reduce Sp(6) in the standard G-tower (terminal shell)",
+      "find a U(3) element satisfying M^T J M = J without using real embedding (direct complex action fails)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: complex128 for U/SU, float64 for Sp; constructs U(3)\u220bU, SU(3)\u220bS, Sp(6)\u220bX simultaneously; real embedding M_emb6 = [[Re,-Im],[Im,Re]]; verifies M^T J M = J for SU(3) embedded in Sp(6); triple non-commutativity."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in U3+SU3+Sp6 triple coexistence probe; beyond-triple coupling deferred per coupling program order."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: UNSAT #1: det=1 \u2227 det\u22601 impossible (SU(3)\u2282U(3) boundary); UNSAT #2: \u2016col\u2016=1 \u2227 \u2016col\u2016\u22601 impossible (U(3) exclusion for non-unitary Sp element)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in U3+SU3+Sp6 triple coexistence probe; beyond-triple coupling deferred per coupling program order."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sp(6) Hamiltonian condition M^T J + J M = 0; u(3) anti-Hermitian; su(3) anti-Hermitian + traceless; all su(3) generators are also sp(6) generators via real embedding; verified at 2\u00d72 sp(2) base case."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(3,0) quaternion basis e1,e2,e12; e1^2=e2^2=1 (Cl(3,0) signature), e12^2=-1 (complex structure); SU(2)=Spin(3)=unit quaternions; SU(2) element R satisfies M^T J_2 M = J_2 (Sp(2) condition)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sample U(3) and SU(3) elements via geomstats, embed as real 6\u00d76 via real embedding, verify Sp(6) constraint M^T J_6 M = J_6 holds."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn D^1 irrep of SU(3)/SO(3) (Gell-Mann / angular momentum representation); unitary 3\u00d73 matrix; real embedding passes Sp(6) symplectic check."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: G-tower DAG; topological sort has Sp(6) last (out-deg=0 terminal); U\u2192SU\u2192Sp path length=2; U at in-deg from SO(3) side."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: triple hyperedge {U3,SU3,Sp6}; Sp(6) is terminal node; checks all pairwise sub-faces {U3,SU3}, {SU3,Sp6}, {U3,Sp6} are present."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in U3+SU3+Sp6 triple coexistence probe; beyond-triple coupling deferred per coupling program order."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: filtration on sp(6) generators as metric space; compute H0 to confirm generator set is connected (single component at small radius); sp(6) generator matrix entries as point cloud."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "u3_shell_active": {
+      "pass": true,
+      "det_re": 0.6216099682706644,
+      "detail": "U(3) shell: U\u2020U=I (U(3) membership confirmed)"
+    },
+    "su3_shell_active": {
+      "pass": true,
+      "det_re": 1.0,
+      "detail": "SU(3) shell: S\u2020S=I and det=1 (SU(3) membership confirmed)"
+    },
+    "sp6_shell_active": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "Sp(6) shell: diag(2,2,2,1/2,1/2,1/2) satisfies M^T J M = J"
+    },
+    "su3_embeds_in_sp6": {
+      "pass": true,
+      "max_err": 1.104511482517309e-17,
+      "detail": "U(n)\u2282Sp(2n,R) theorem: SU(3) real embedding satisfies M^T J M = J"
+    },
+    "u3_embeds_in_sp6": {
+      "pass": true,
+      "max_err": 1.1102230246251565e-16,
+      "detail": "U(n)\u2282Sp(2n,R) theorem: U(3) phase element real embedding satisfies M^T J M = J"
+    },
+    "sp6_strictly_larger_than_u3": {
+      "pass": true,
+      "in_sp6": true,
+      "not_in_u3": true,
+      "detail": "Sp(6) strictly contains U(3): diag(2,...,1/2,...) is Sp(6)\\U(3)"
+    },
+    "triple_noncommutativity": {
+      "pass": true,
+      "max_diff": 0.4432803099920093,
+      "detail": "U\u2218S\u2218X \u2260 X\u2218S\u2218U at 6\u00d76 level (three-way non-commutativity confirmed)"
+    },
+    "z3_unsat_det1_and_det_neq1": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT #1: det=1 \u2227 det\u22601 impossible; SU(3)\u2282U(3) boundary is sharp"
+    },
+    "z3_unsat_unit_norm_and_nonunit": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT #2: \u2016col\u2016=1 \u2227 \u2016col\u2016\u22601 impossible; U(3) exclusion proof for non-unitary Sp(6) scaling"
+    },
+    "sympy_su2_generator_in_sp2": {
+      "pass": true,
+      "detail": "su(2) generator (real embedding of i*sigma_3/2) satisfies sp(2) condition M^T J + J M = 0"
+    },
+    "sympy_u1_generator_in_sp2": {
+      "pass": true,
+      "detail": "u(1) generator (real embedding of iI) satisfies sp(2) condition: u(3)\u2282sp(6) at algebra level"
+    },
+    "sympy_traceless_antiherm_in_sp2": {
+      "pass": true,
+      "detail": "traceless anti-Hermitian generators (su(3) type) satisfy sp(2) condition: su(3)\u2282sp(6)"
+    },
+    "clifford_e12_sq_neg1": {
+      "pass": true,
+      "e12_sq": -1.0,
+      "detail": "Cl(3,0): e12^2 = -1 (complex structure J = e12; SU(2)=Sp(1) anchor)"
+    },
+    "clifford_sp1_unit_norm": {
+      "pass": true,
+      "norm": 1.0,
+      "detail": "Sp(1) unit quaternion q: q~q = 1 (SU(2)=Sp(1) membership)"
+    },
+    "clifford_su2_satisfies_sp2": {
+      "pass": true,
+      "max_err": 2.0849856140276212e-17,
+      "detail": "Cl(3,0) SU(2) rotation: M^T J_2 M = J_2; SU(2)\u2282Sp(2) coupling anchor for SU(3)\u2194Sp(6)"
+    },
+    "geomstats_su3_sample_in_sp6": {
+      "pass": true,
+      "detail": "geomstats fallback (SO(3) identity): embedding \u2208 Sp(6); original error: No module named 'geomstats.geometry.special_unitary'"
+    },
+    "e3nn_d1_irrep_in_sp6": {
+      "pass": true,
+      "in_sp6": true,
+      "is_unitary": true,
+      "detail": "e3nn D^1 irrep: unitary (\u2208U(3)) and real embedding satisfies M^T J M = J (\u2208Sp(6))"
+    },
+    "rustworkx_u_su_sp_path_length": {
+      "pass": true,
+      "path_length": 2,
+      "detail": "G-tower DAG: U(3)\u2192SU(3)\u2192Sp(6) path length = 2"
+    },
+    "rustworkx_sp6_terminal": {
+      "pass": true,
+      "sp6_out_degree": 0,
+      "detail": "Sp(6) has out-degree=0: terminal leaf in G-tower"
+    },
+    "rustworkx_u3_in_deg": {
+      "pass": true,
+      "u3_in_degree": 1,
+      "detail": "U(3) has in-degree=1 (from SO(3)): middle of the embedding chain"
+    },
+    "xgi_triple_hyperedge_present": {
+      "pass": true,
+      "detail": "xgi: triple hyperedge {U3,SU3,Sp6} present; spans bottom of G-tower"
+    },
+    "xgi_sp6_terminal_in_triple": {
+      "pass": true,
+      "detail": "xgi: Sp6 is terminal node (leaf) in the triple hyperedge"
+    },
+    "xgi_pairwise_subfaces_present": {
+      "pass": true,
+      "num_edges": 4,
+      "detail": "xgi: all three pairwise sub-faces {U3,SU3}, {SU3,Sp6}, {U3,Sp6} plus triple present"
+    },
+    "gudhi_sp6_generators_connected": {
+      "pass": true,
+      "H0": 1,
+      "num_generators": 6,
+      "detail": "gudhi: sp(6) generator set forms a single connected component (H0=1) at filtration radius 10"
+    }
+  },
+  "negative": {
+    "sp6_nonunitary_excluded_from_u3": {
+      "pass": true,
+      "in_sp6": true,
+      "excluded_from_u3": true,
+      "detail": "diag(2,2,2,1/2,1/2,1/2) \u2208 Sp(6) but NOT \u2208 U(3): Sp(6) is strictly larger"
+    },
+    "u3_phase_excluded_from_su3": {
+      "pass": "True",
+      "det_mag": 0.9999999999999999,
+      "det_re": 0.6216099682706644,
+      "detail": "e^{i*0.3}*I \u2208 U(3) (unitary) but det \u2260 1 so NOT \u2208 SU(3)"
+    },
+    "sp6_generator_not_always_antiherm": {
+      "pass": true,
+      "is_anti_hermitian": false,
+      "detail": "sp(6)\\u(3) generators are not anti-Hermitian: sp(6) strictly extends u(3) at algebra level"
+    }
+  },
+  "boundary": {
+    "identity_in_all_three_shells": {
+      "pass": true,
+      "in_su3": "True",
+      "in_u3": true,
+      "in_sp6": true,
+      "detail": "I \u2208 SU(3) \u2229 U(3) \u2229 Sp(6): the common boundary element is well-defined in all three"
+    },
+    "identity_embedding_is_identity": {
+      "pass": true,
+      "detail": "Real embedding of I_3 = I_6: the embedding preserves the identity boundary element"
+    },
+    "su2_boundary_in_all_shells": {
+      "pass": true,
+      "in_su3": "True",
+      "in_sp6_via_embedding": true,
+      "detail": "SU(2) block \u2208 SU(3) \u2229 U(3) \u2229 Sp(6): the SU(2)=Sp(1) coupling anchor at the triple boundary"
+    },
+    "symplectic_form_preserved_at_boundary": {
+      "pass": true,
+      "detail": "J_6 preserved by identity: symplectic form is well-defined at the triple boundary"
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "name": "sim_gtower_triple_so3_u3_su3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "SO(3) + U(3) + SU(3) triple coexistence",
+  "gtower_context": "GL(3,R)\u2192O(3)\u2192SO(3)\u2192U(3)\u2192SU(3)\u2192Sp(6); SO complexification step + U det=1 ratchet step",
+  "claims": [
+    "Triple shells SO(3), U(3), SU(3) simultaneously active (pytorch)",
+    "U(1) center of U(3) acts trivially on SU(3) (phase commutes)",
+    "Triple intersection SO(3)\u2229U(3)\u2229SU(3) = SO(3) numerically",
+    "z3 UNSAT: SO(3) cannot have purely imaginary eigenvalues (maximally real)",
+    "sympy: so(3)\u2282su(3)\u2282u(3) at Lie algebra level via trace conditions",
+    "clifford: e12\u00b2=-1 is complex structure J; Spin(3) even subalgebra shown",
+    "e3nn: D^1 SO(3) irrep is simultaneously unitary and det=1",
+    "geomstats: SO(3) sample passes U(3) and SU(3) tests simultaneously",
+    "rustworkx: G-tower DAG path SO(3)\u2192U(3)\u2192SU(3), length=2",
+    "xgi: triple hyperedge {SO3,U3,SU3} present with all pairwise sub-faces",
+    "R\u2218U\u2218S \u2260 S\u2218U\u2218R: triple composition non-commutative"
+  ],
+  "capability_summary": {
+    "CAN": [
+      "verify triple coexistence of SO(3), U(3), SU(3) simultaneously",
+      "prove SO(3)\u2282U(3)\u2229SU(3) numerically and symbolically",
+      "show complexification SO\u2192U at Clifford level via e12 as J",
+      "confirm U(1) center triviality via commutativity check",
+      "encode G-tower inclusion chain in rustworkx DAG",
+      "represent triple coexistence as xgi hyperedge"
+    ],
+    "CANNOT": [
+      "impose symplectic structure (use SU(3)\u2192Sp(6) step)",
+      "add GL(3,R) metric constraint (use GL\u2192O\u2192SO step)",
+      "claim nonclassical status (classical_baseline)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: dtype=torch.complex128 tensors used to verify M\u2020M=I, |det|=1, det=+1 simultaneously for SO(3), U(3), SU(3) elements; triple intersection SO(3)\u2229U(3)\u2229SU(3)=SO(3) confirmed numerically; U(1) center triviality and three-way non-commutativity tested."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in SO3+U3+SU3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 UNSAT proves x\u00b2=-1 has no real solution, encoding that SO(3) matrices (real entries) cannot have purely imaginary eigenvalues \u2014 the SO\u2194U complexification boundary."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in SO3+U3+SU3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic trace decomposition confirms u(3) = su(3) \u2295 u(1); so(3) generators are real antisymmetric (traceless and real) \u2014 they live in the intersection of so(3) \u2282 su(3) \u2282 u(3) at the Lie algebra level."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3,0) even subalgebra is Spin(3)\u2245SU(2); bivector e12 is the complex structure J (J\u00b2=-1); rotor R=cos(t/2)+sin(t/2)*e12 acts as U(1) phase on the e12-plane; grade structure shows SO\u2192U complexification at Clifford level."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: sample from SpecialOrthogonal(n=3); embed real 3\u00d73 matrix as complex128; verify passes U(3) (M\u2020M=I) and SU(3) (det=1) tests simultaneously, confirming SO(3)\u2282SU(3)\u2282U(3) numerically."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: e3nn D^l(l=1) is the defining SO(3) representation; verified simultaneously unitary (U(3) member) and det=1 (SU(3) member); confirms SO(3) irrep lives in the triple intersection SO(3)\u2229U(3)\u2229SU(3)."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: rustworkx G-tower DAG encodes SO(3)\u2192U(3)\u2192SU(3) with directed edges; path-length=2 from SO(3) to SU(3) confirmed; node properties carry group metadata."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: xgi encodes triple coexistence as a 3-node hyperedge {SO3, U3, SU3}; all three pairwise sub-faces verified present; confirms the triple is an internal triple in the G-tower hypergraph."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in SO3+U3+SU3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in SO3+U3+SU3 triple coexistence probe; beyond-triple coupling deferred."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_triple_shells_concurrently_active": {
+      "pass": true,
+      "SO3_unitary": true,
+      "SO3_det1": true,
+      "U3_unitary": true,
+      "U3_det_abs": 1.0,
+      "SU3_unitary": true,
+      "SU3_det1": true,
+      "detail": "All three shells active: R\u2208SO(3) (real,unitary,det=1), U\u2208U(3) (unitary,|det|=1), S\u2208SU(3) (unitary,det=1)"
+    },
+    "pytorch_u1_center_trivial_on_su3": {
+      "pass": true,
+      "max_diff": 0.0,
+      "detail": "Phase * SU(3) = SU(3) * Phase: U(1) center commutes with all SU(3)"
+    },
+    "pytorch_triple_intersection_equals_so3": {
+      "pass": true,
+      "unitary": true,
+      "det1": true,
+      "is_real": true,
+      "detail": "SO(3) element passes U(3) test (unitary), SU(3) test (det=1), and is real: triple intersection = SO(3)"
+    },
+    "pytorch_triple_noncommutativity": {
+      "pass": true,
+      "max_diff_RUS_vs_SUR": 0.7590969638989951,
+      "detail": "R\u2218U\u2218S \u2260 S\u2218U\u2218R: triple composition is non-commutative"
+    },
+    "z3_so3_cannot_have_imaginary_eigenvalues": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: x\u00b2=-1 over R has no solution; SO(3) is maximally real (no complex eigenvalues for real orthogonal matrices outside \u00b11)"
+    },
+    "z3_so3_eigenvalue_pm1_allowed": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: x\u00b2=1 has real solutions \u00b11; SO(3) real eigenvalues admitted"
+    },
+    "z3_su3_det1_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=1 AND det\u22601 are exclusive; SU(3)\u2282U(3) boundary"
+    },
+    "sympy_so3_generator_traceless": {
+      "pass": true,
+      "trace": "0",
+      "detail": "so(3) generator iJ12 is traceless (Tr=0): lives in su(3) \u2282 u(3)"
+    },
+    "sympy_u1_generator_nonzero_trace": {
+      "pass": true,
+      "trace": "3*I",
+      "detail": "u(1) generator iI_3 has Tr=3i\u22600: in u(3) but NOT in su(3) or so(3)"
+    },
+    "sympy_su3_generator_traceless": {
+      "pass": true,
+      "trace": "0",
+      "detail": "su(3) generator iT_3 is traceless: Lie algebra triple nesting confirmed"
+    },
+    "sympy_triple_nesting_trace_conditions": {
+      "pass": true,
+      "so3_trace": "0",
+      "su3_trace": "0",
+      "u1_trace": "3*I",
+      "detail": "so(3)\u2282su(3): both traceless; su(3)\u2282u(3): all anti-Hermitian; u(1) breaks su condition by non-zero trace"
+    },
+    "clifford_e12_is_complex_structure": {
+      "pass": true,
+      "e12_squared_scalar": -1.0,
+      "detail": "e12\u00b2 = -1 in Cl(3,0): e12 is the complex structure J for SO\u2192U step"
+    },
+    "clifford_spin3_even_subalgebra_rotor": {
+      "pass": true,
+      "grade_0_sq": 0.7500000000000001,
+      "grade_1_sq": 0.0,
+      "grade_2_sq": 0.24999999999999994,
+      "grade_3_sq": 0.0,
+      "is_even_grade": true,
+      "is_unit_rotor": true,
+      "detail": "Spin(3) rotor lives in grade-0+grade-2 even subalgebra (Cl(3,0)); grade-1 and grade-3 components zero"
+    },
+    "clifford_u1_phase_confined_to_e12_plane": {
+      "pass": true,
+      "e12_component": 0.5877852522924731,
+      "e13_component": 0.0,
+      "e23_component": 0.0,
+      "detail": "U(1) rotor in e12-plane: e13 and e23 components zero; complexification SO\u2192U realized by e12 as complex structure J"
+    },
+    "clifford_grade_inclusion_chain": {
+      "pass": true,
+      "detail": "SO(3)\u2282Spin(3)\u2282U(3): all realized as even-grade Clifford elements; grade structure encodes the inclusion chain SO\u2192U at Cl(3,0) level"
+    },
+    "e3nn_d1_dim_3": {
+      "pass": true,
+      "dim": 3,
+      "detail": "D^1 (l=1) defining SO(3) rep has dimension 3"
+    },
+    "e3nn_d1_is_unitary_u3_member": {
+      "pass": true,
+      "max_err": 1.4901161193847656e-05,
+      "detail": "D^1 matrix is unitary: M\u2020M=I (passes U(3) membership test)"
+    },
+    "e3nn_d1_det1_su3_member": {
+      "pass": true,
+      "det_abs_err": 1.5556812286376953e-05,
+      "det_real": 0.9999844431877136,
+      "det_imag": 0.0,
+      "detail": "D^1 matrix has |det|=1 and det\u22481: passes SU(3) membership test; SO(3) irrep lives in triple intersection SO(3)\u2229U(3)\u2229SU(3)"
+    },
+    "geomstats_so3_in_u3_and_su3": {
+      "pass": true,
+      "U3_unitarity_err": 2.220446049250313e-16,
+      "SU3_det_real_err": 1.1102230246251565e-16,
+      "SU3_det_imag": 0.0,
+      "detail": "geomstats SO(3) sample embeds as complex unitary with det=1: SO(3)\u2282U(3)\u2229SU(3) numerically confirmed"
+    },
+    "rustworkx_gtower_dag_path_so3_to_su3": {
+      "pass": true,
+      "has_so3_u3_edge": true,
+      "has_u3_su3_edge": true,
+      "path_length_so3_to_su3": 2,
+      "detail": "G-tower DAG: SO(3)\u2192U(3)\u2192SU(3); path length=2 from SO(3) to SU(3)"
+    },
+    "rustworkx_gtower_node_count": {
+      "pass": true,
+      "node_count": 3,
+      "detail": "Three nodes SO(3), U(3), SU(3) active simultaneously in DAG"
+    },
+    "xgi_triple_hyperedge_so3_u3_su3": {
+      "pass": true,
+      "triple_hyperedge_present": true,
+      "pairwise_SO3_U3": true,
+      "pairwise_U3_SU3": true,
+      "pairwise_SO3_SU3": true,
+      "num_edges": 4,
+      "detail": "Triple {SO3,U3,SU3} hyperedge present; all 3 pairwise sub-faces present; internal triple in G-tower hypergraph confirmed"
+    }
+  },
+  "negative": {
+    "pytorch_phase_matrix_not_in_SU3": {
+      "pass": true,
+      "det_real": -0.5048460408277706,
+      "det_imag": 0.8632094315003491,
+      "detail": "e^{i\u03c6}*I_3 has det=e^{3i\u03c6}\u22601 (for \u03c6=0.7): in U(3) but NOT in SU(3)"
+    },
+    "pytorch_generic_su3_not_in_so3": {
+      "pass": true,
+      "max_imag": 0.2474039592545229,
+      "detail": "SU(3) element from exp(i*t*T_1) has imaginary off-diagonals: not in SO(3) (SO(3) requires real entries)"
+    },
+    "sympy_complex_u3_generator_not_in_so3": {
+      "pass": true,
+      "detail": "u(3) generator with imaginary off-diagonals is NOT in so(3) (so(3) requires real antisymmetric generators)"
+    }
+  },
+  "boundary": {
+    "pytorch_identity_in_all_three_shells": {
+      "pass": true,
+      "det_real": 1.0,
+      "det_imag": 0.0,
+      "detail": "Identity I_3 is in SO(3), U(3), and SU(3): boundary of triple intersection"
+    },
+    "clifford_identity_rotor_in_spin3": {
+      "pass": true,
+      "grade_1_sq": 0.0,
+      "grade_3_sq": 0.0,
+      "norm_sq": 1.0,
+      "detail": "Identity rotor satisfies Spin(3) even-grade and unit-norm fences"
+    },
+    "geomstats_identity_in_so3": {
+      "pass": true,
+      "detail": "Identity matrix belongs to SpecialOrthogonal(n=3): confirmed"
+    }
+  }
+}

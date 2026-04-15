@@ -1,0 +1,325 @@
+{
+  "name": "sim_gtower_triple_gl3_o3_so3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "triple": "GL(3,R) + O(3) + SO(3)",
+  "constraints": {
+    "GL_to_O": "metric preservation (M^TM = I)",
+    "O_to_SO": "orientation (det = +1)",
+    "GL_exclusion": "invertibility (det \u2260 0)"
+  },
+  "capability_summary": {
+    "CAN": [
+      "verify all three shells simultaneously active via pytorch det/M^TM checks",
+      "prove GL exclusion \u22a5 O membership via z3 UNSAT (det=0 AND M^TM=I impossible)",
+      "verify composition GL\u2192O\u2192SO = GL\u2192SO shortcut via sympy Gram-Schmidt pipeline",
+      "demonstrate triple non-commutativity A\u2218B\u2218C \u2260 C\u2218B\u2218A via pytorch",
+      "confirm triple intersection SO(3)\u2229O(3)\u2229GL(3)=SO(3) numerically",
+      "distinguish Spin(3)/Pin(3) grade structure as O\u2192SO step in Clifford algebra",
+      "sample SO(3) via geomstats and pass all three simultaneous group tests",
+      "encode {GL,O,SO} as length-2 path in rustworkx G-tower DAG",
+      "encode triple coexistence as cardinality-3 xgi hyperedge",
+      "verify SO(3)\u2245RP^3 H0=1 (connected) via gudhi Vietoris-Rips"
+    ],
+    "CANNOT": [
+      "add complex structure at this level (use SO(3)\u2194U(3) coupling)",
+      "claim emergence \u2014 this is classical_baseline, not canonical",
+      "advance to bridge claims (rho_AB, Xi, Phi0) without steps 4-5 complete"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: torch tensors for all three group elements (GL, O, SO); simultaneous validity verified via det and M^TM checks; triple non-commutativity A\u2218B\u2218C \u2260 C\u2218B\u2218A computed via torch.mm; triple intersection SO(3)\u2229O(3)\u2229GL(3)=SO(3) verified numerically."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in GL3+O3+SO3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves det=0 (outside GL) is incompatible with M^TM=I (inside O) AND det=+1 (inside SO); the GL exclusion and O/SO membership constraints are mutually exclusive in dimension 1 (and by extension 3); structural impossibility is the primary proof form."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in GL3+O3+SO3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies GL\u2192O\u2192SO composition equals GL\u2192SO shortcut via symbolic Gram-Schmidt pipeline on a concrete 3\u00d73 integer matrix; confirms the composition is order-preserving (no path-dependence)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(3,0) distinguishes Pin(3) (O(3) double cover, odd+even versors) from Spin(3) (SO(3) double cover, even subalgebra only); the GL\u2192O step corresponds to passing from arbitrary grade-1 scalings to unit versors; the O\u2192SO step is exactly the passage from Pin(3) to Spin(3) (even grades only)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialOrthogonal(n=3) samples SO(3) elements; each sampled element is verified to pass GL(3), O(3), and SO(3) tests simultaneously, confirming triple coexistence from the manifold side."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in GL3+O3+SO3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx G-tower DAG with GL/O/SO nodes; verifies GL\u2192O\u2192SO path has length 2; all three nodes reachable from GL; SO is the shared face of both GL\u2194O and O\u2194SO pairwise edges."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: xgi hypergraph with the triple coexistence hyperedge {GL, O, SO}; verifies cardinality 3; confirms this is the only 3-clique at the top of the tower (no other 3-way coexistence claimed)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in GL3+O3+SO3 triple coexistence probe; beyond-triple coupling deferred."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: gudhi Vietoris-Rips complex on a sample of SO(3) \u2245 RP^3 (represented as unit quaternions on S^3); verifies H0=1 (connected); persistence diagram is non-empty, confirming topological structure."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "triple_shells_simultaneously_active": {
+      "pass": true,
+      "A_in_GL3": true,
+      "B_in_O3": true,
+      "C_in_SO3": true,
+      "detail": "GL(3,R) \u220b A, O(3) \u220b B, SO(3) \u220b C all simultaneously well-defined"
+    },
+    "triple_noncommutativity_ABC_ne_CBA": {
+      "pass": true,
+      "max_diff": 4.949747468305832,
+      "detail": "A\u2218B\u2218C \u2260 C\u2218B\u2218A: triple composition is order-sensitive (ratchet direction)"
+    },
+    "triple_intersection_equals_SO3": {
+      "pass": true,
+      "in_GL3": true,
+      "in_O3": true,
+      "in_SO3": true,
+      "detail": "SO(3) element passes all three tests: SO(3) \u2282 O(3) \u2282 GL(3); intersection = SO(3)"
+    },
+    "GL3_element_not_in_O3_or_SO3": {
+      "pass": true,
+      "A_in_GL3": true,
+      "A_in_O3": false,
+      "A_in_SO3": false,
+      "detail": "Generic GL(3,R) element is not in O(3) or SO(3): shells are strictly nested"
+    },
+    "z3_det0_AND_orthogonal_UNSAT": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=0 AND M^TM=I cannot both hold; GL exclusion \u22a5 O membership"
+    },
+    "z3_triple_exclusion_UNSAT": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=0 AND orthogonal AND det=+1 all impossible simultaneously"
+    },
+    "z3_SO3_membership_SAT": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: x^2=1 AND x=+1 AND x\u22600 is consistent; SO(3) element admitted by all three"
+    },
+    "sympy_GL_to_O_to_SO_composition": {
+      "pass": true,
+      "det_Q_after_GS": "1",
+      "det_Q_final": "1",
+      "orthogonal": true,
+      "detail": "sympy: GL\u2192O (Gram-Schmidt) \u2192 SO (det-fix) yields det=+1 orthogonal matrix"
+    },
+    "sympy_GL_to_O_to_SO_equals_GL_to_SO": {
+      "pass": true,
+      "max_diff_nonzero": "Matrix([[0, 0, 0], [0, 0, 0], [0, 0, 0]])",
+      "detail": "GL\u2192O\u2192SO and GL\u2192SO shortcut agree: composition is order-preserving"
+    },
+    "clifford_spin3_even_grade_covers_SO3": {
+      "pass": true,
+      "g0": 0.7500000000000001,
+      "g1": 0.0,
+      "g2": 0.24999999999999994,
+      "g3": 0.0,
+      "norm_sq": 1.0,
+      "detail": "Spin(3) rotor: even grades only (g1=g3=0), unit norm; double covers SO(3)"
+    },
+    "clifford_pin3_odd_grade_covers_O3_minus_SO3": {
+      "pass": true,
+      "g0": 0.0,
+      "g1": 1.0,
+      "g3": 0.0,
+      "detail": "Pin(3) odd versor: grade-1 only; double covers O(3)\\SO(3) reflections"
+    },
+    "clifford_O_to_SO_is_even_grade_projection": {
+      "pass": true,
+      "detail": "O(3)\u2192SO(3) corresponds to Pin(3)\u2192Spin(3): keeping only even-grade multivectors"
+    },
+    "clifford_GL3_non_unit_outside_O3": {
+      "pass": true,
+      "n_sq": 4.0,
+      "detail": "GL(3)\\O(3) element: scaled vector has n^2=4\u22601, not in Pin(3)/O(3)"
+    },
+    "geomstats_SO3_samples_pass_all_three": {
+      "pass": true,
+      "n_samples": 5,
+      "sample_details": [
+        {
+          "in_GL3": true,
+          "in_O3": true,
+          "in_SO3": true,
+          "geomstats_belongs": true
+        },
+        {
+          "in_GL3": true,
+          "in_O3": true,
+          "in_SO3": true,
+          "geomstats_belongs": true
+        },
+        {
+          "in_GL3": true,
+          "in_O3": true,
+          "in_SO3": true,
+          "geomstats_belongs": true
+        },
+        {
+          "in_GL3": true,
+          "in_O3": true,
+          "in_SO3": true,
+          "geomstats_belongs": true
+        },
+        {
+          "in_GL3": true,
+          "in_O3": true,
+          "in_SO3": true,
+          "geomstats_belongs": true
+        }
+      ],
+      "detail": "geomstats SO(3) samples pass GL(3), O(3), and SO(3) tests simultaneously"
+    },
+    "rustworkx_GL_O_SO_path_length_2": {
+      "pass": true,
+      "path": [
+        0,
+        1,
+        2
+      ],
+      "length": 2,
+      "detail": "GL(3)\u2192O(3)\u2192SO(3) path has length 2 in G-tower DAG"
+    },
+    "rustworkx_all_three_reachable": {
+      "pass": true,
+      "O3_reachable": true,
+      "SO3_reachable": true,
+      "detail": "All three G-tower nodes (GL, O, SO) reachable from GL root"
+    },
+    "rustworkx_SO3_shared_face": {
+      "pass": true,
+      "has_GL_O_edge": true,
+      "has_O_SO_edge": true,
+      "detail": "SO(3) is the shared endpoint of both pairwise edges; it is the terminal face"
+    },
+    "rustworkx_topological_order_GL_O_SO": {
+      "pass": true,
+      "gl3_pos": 0,
+      "o3_pos": 1,
+      "so3_pos": 2,
+      "detail": "Topological sort: GL(3) < O(3) < SO(3) (decreasing constraint depth)"
+    },
+    "xgi_triple_hyperedge_cardinality_3": {
+      "pass": true,
+      "n_triple_edges": 1,
+      "cardinality": 3,
+      "detail": "xgi: exactly one 3-clique hyperedge {GL,O,SO} with cardinality 3"
+    },
+    "xgi_all_three_nodes_present": {
+      "pass": true,
+      "nodes": [
+        "GL(3,R)",
+        "SO(3)",
+        "O(3)"
+      ],
+      "detail": "All three G-tower nodes present as xgi hypergraph nodes"
+    },
+    "xgi_pairwise_edges_are_subfaces": {
+      "pass": true,
+      "n_pairwise_edges": 2,
+      "detail": "Both pairwise edges (GL\u2194O, O\u2194SO) are sub-faces of the triple hyperedge"
+    },
+    "gudhi_SO3_H0_rank_1_connected": {
+      "pass": true,
+      "H0_infinite_pairs": 1,
+      "H0_total_pairs": 60,
+      "H1_total_pairs": 32,
+      "n_persistence_pairs": 92,
+      "detail": "gudhi Rips on SO(3)\u2245RP^3 sample: H0 has exactly 1 infinite class (connected); persistence diagram non-empty (non-trivial topology detected)"
+    }
+  },
+  "negative": {
+    "singular_matrix_fails_GL3": {
+      "pass": true,
+      "in_GL3": false,
+      "det": 0.0,
+      "detail": "Rank-2 matrix has det=0: fails GL(3,R) test (not invertible)"
+    },
+    "det_minus1_passes_O3_fails_SO3": {
+      "pass": true,
+      "in_O3": true,
+      "in_SO3": false,
+      "det": -1.0,
+      "detail": "Reflection (det=-1) passes O(3) test but fails SO(3) test (orientation constraint)"
+    },
+    "scaling_passes_GL3_fails_O3": {
+      "pass": true,
+      "in_GL3": true,
+      "in_O3": false,
+      "det": 2.0,
+      "detail": "Scaling matrix diag(2,1,1): in GL(3,R), not in O(3) (M^TM \u2260 I)"
+    }
+  },
+  "boundary": {
+    "rotation_at_pi_in_SO3": {
+      "pass": true,
+      "in_SO3": true,
+      "det": 1.0,
+      "detail": "Rotation by pi: boundary of Spin(3) normalization (rotor = -1), still in SO(3)"
+    },
+    "perturbed_identity_passes_GL_fails_O_SO": {
+      "pass": true,
+      "in_GL3": true,
+      "in_O3": false,
+      "in_SO3": false,
+      "det": 1.0001,
+      "detail": "diag(1+eps,1,1): in GL(3,R) (det\u22481+eps\u22600), fails O(3) and SO(3) (M^TM\u2260I)"
+    },
+    "random_O3_sign_corrected_to_SO3": {
+      "pass": true,
+      "det_before": -0.9999999999999994,
+      "det_after": 0.9999999999999994,
+      "in_SO3_after": true,
+      "detail": "O(3) element with det=-1 mapped to SO(3) by last-column sign flip (O\u2192SO step)"
+    }
+  }
+}

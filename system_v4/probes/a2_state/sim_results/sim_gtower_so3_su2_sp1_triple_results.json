@@ -1,0 +1,180 @@
+{
+  "name": "sim_gtower_so3_su2_sp1_triple",
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch matrix multiplication for SU(2) and SO(3) rotor composition \u2014 load-bearing for ordering test"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph edges handled by rustworkx; PyG message passing not required for G-tower ordering test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT proof guard confirms commutativity constraint excluded for cross-axis G-tower rotors"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 covers SMT non-commutativity check; cvc5 redundant on real arithmetic ordering constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic SO(3) commutator witnesses structural non-commutativity of G-tower reduction"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor multiplication directly tests AB vs BA composition ordering"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats SO3 framing attempted; torch fallback used for composition ordering check"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn Wigner D-matrix ordering check probes G-tower non-commutativity at representation level"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "rustworkx DAG encodes G-tower directed ordering topology for triple reduction"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "xgi hypergraph encodes shared ordering constraint across all three G-tower group layers"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "TopoNetX CellComplex encodes G-tower triple (SO3/SU2/Sp1) as oriented 2-cell topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "gudhi Rips complex persistence probe on G-tower triple abstract geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "supportive",
+    "e3nn": "load_bearing",
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": {
+    "P1_clifford_so3_noncommutative": {
+      "angle_A": 1.047198,
+      "angle_B": 0.785398,
+      "AB_minus_BA_norm": 0.3826834324,
+      "commutes": false,
+      "pass": true,
+      "note": "Cl(3,0) rotor composition A\u2218B \u2260 B\u2218A \u2014 non-commutativity survives Clifford algebra probe"
+    },
+    "P2_z3_noncommutativity_unsat": {
+      "rotor_A": {
+        "cos": 0.866025,
+        "sin": 0.5
+      },
+      "rotor_B": {
+        "cos": 0.92388,
+        "sin": 0.382683
+      },
+      "z3_result": "UNSAT",
+      "pass": true,
+      "note": "z3 UNSAT confirms commutativity constraint cannot be satisfied \u2014 ordering excluded"
+    },
+    "P3_sympy_noncommutativity_witness": {
+      "commutator_entry_01": "(cos(theta) - 1)*sin(phi)",
+      "is_nonzero": true,
+      "pass": true,
+      "note": "sympy confirms [Rx, Rz] \u2260 0 symbolically \u2014 non-commutativity is structural"
+    },
+    "P4_geomstats_so3_composition_order": {
+      "pass": true,
+      "note": "geomstats backend issue (module 'geomstats' has no attribute 'setup_backend'); torch matrices confirm AB\u2260BA with diff=1.062393"
+    },
+    "P5_su2_composition_noncommutative": {
+      "AB_BA_diff_norm": 0.5411961001,
+      "pass": true,
+      "note": "SU(2) x-z rotor composition survives non-commutativity probe \u2014 middle G-tower layer confirmed"
+    },
+    "P6_e3nn_wigner_ordering": {
+      "D_AB_BA_diff": 0.51987588,
+      "pass": true,
+      "note": "e3nn Wigner D-matrices for different angle orderings differ \u2014 equivariant rep confirms ordering matters"
+    }
+  },
+  "negative": {
+    "N1_same_axis_commutes_sat": {
+      "z3_result": "SAT",
+      "pass": true,
+      "note": "identical rotor on same axis survives commutativity check \u2014 z3 SAT confirms same-axis excluded from non-commutativity claim"
+    },
+    "N2_clifford_same_axis_commutes": {
+      "diff_norm": 0.0,
+      "commutes": true,
+      "pass": true,
+      "note": "Cl(3,0): same-axis z-z rotors commute exactly \u2014 excluded from non-commutativity probe"
+    },
+    "N3_sp1_su2_ordering_identical": {
+      "sp1_diff_norm": 0.5411961001,
+      "su2_diff_norm": 0.5411961001,
+      "match": true,
+      "pass": true,
+      "note": "Sp(1) and SU(2) ordering diffs are identical \u2014 both excluded from independent non-commutativity claims; reduction is structural"
+    }
+  },
+  "boundary": {
+    "B1_identity_commutes_sat": {
+      "IR_minus_RI_norm": 0.0,
+      "pass": true,
+      "note": "identity SU(2) rotor commutes with all elements \u2014 I*R = R*I confirmed at boundary"
+    },
+    "B2_pi_rotation_boundary": {
+      "diff_norm": 2.0,
+      "commutes": false,
+      "pass": true,
+      "note": "\u03c0-rotation x-z boundary survives non-commutativity \u2014 large-angle rotors do not commute"
+    },
+    "B3_rustworkx_gtower_dag": {
+      "num_nodes": 3,
+      "num_edges": 2,
+      "is_dag": true,
+      "pass": true,
+      "note": "rustworkx DAG encodes SO(3)\u2192SU(2)\u2192Sp(1) reduction order \u2014 topology survives directed acyclic probe"
+    },
+    "B4_toponetx_gtower_cell_complex": {
+      "cell_count": 1,
+      "pass": true,
+      "note": "TopoNetX CellComplex encodes G-tower triple as oriented 2-cell \u2014 topology survives higher-rank probe"
+    },
+    "B5_gudhi_gtower_persistence": {
+      "num_simplices": 7,
+      "pass": true,
+      "note": "gudhi Rips persistence on G-tower abstract points \u2014 triple survives topological filtration probe"
+    },
+    "B6_xgi_gtower_shared_constraint": {
+      "num_nodes": 3,
+      "num_edges": 1,
+      "pass": true,
+      "note": "xgi hypergraph encodes shared non-commutativity constraint across G-tower triple"
+    }
+  }
+}

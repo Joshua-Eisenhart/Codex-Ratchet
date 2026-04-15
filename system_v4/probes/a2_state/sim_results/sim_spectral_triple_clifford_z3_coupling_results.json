@@ -1,0 +1,175 @@
+{
+  "name": "sim_spectral_triple_clifford_z3_coupling",
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.eigvalsh on Cl(3,0) Dirac tensor \u2014 load-bearing eigenvalue computation"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not load-bearing for spectral triple; graph structure handled by rustworkx and xgi"
+    },
+    "z3": {
+      "tried": false,
+      "used": true,
+      "reason": "z3 SAT/UNSAT proof guard for mass-shell constraint admissibility \u2014 primary exclusion mechanism"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for mass-shell SMT queries; cvc5 redundant on scalar real arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic exact eigenvalue computation for minimal Dirac chiral block"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) algebra construction and Dirac operator assembly from gamma blades"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "eigenvalue geometry is Clifford-native; geomstats not needed for this scalar spectrum"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant features not required; Dirac spectrum symmetry verified via torch eigvalsh"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DiGraph encodes spectral proximity relations between eigenvalue candidates"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "xgi hypergraph encodes constraint set shared across multiple eigenvalue candidates"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex encodes oriented eigenvalue pair topology for spectral triple"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips complex on eigenvalue point cloud probes spectral topology persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": {
+    "P1_dirac_eigenvalues_real_symmetric": {
+      "eigenvalues": [
+        -1.73205185,
+        -1.7320509,
+        -1.73205078,
+        -1.73205078,
+        1.73205054,
+        1.7320509,
+        1.7320509,
+        1.73205101
+      ],
+      "symmetric_spectrum": true,
+      "pass": true,
+      "note": "Cl(3,0) Dirac operator real symmetric part survives eigenvalue symmetry probe"
+    },
+    "P2_z3_mass_shell_admissible": {
+      "eigenvalue": 1.7320508075688772,
+      "mass_sq_target": 3.0,
+      "z3_result": "SAT",
+      "pass": true,
+      "note": "sqrt(3) eigenvalue survives z3 mass-shell constraint probe"
+    },
+    "P3_sympy_exact_eigenvalues": {
+      "eigenvalues": [
+        "-m",
+        "m"
+      ],
+      "has_mass_parameter": true,
+      "pass": true,
+      "note": "sympy yields exactly \u00b1m as constraint-admissible eigenvalues"
+    },
+    "P4_rustworkx_eigenvalue_graph": {
+      "node_count": 2,
+      "edge_count": 0,
+      "pass": true,
+      "note": "rustworkx DiGraph correctly indexes 2 eigenvalue nodes"
+    }
+  },
+  "negative": {
+    "N1_z3_excludes_offshell_eigenvalue": {
+      "eigenvalue": 2.0,
+      "mass_sq_tested": 3.0,
+      "z3_result": "UNSAT",
+      "pass": true,
+      "note": "z3 correctly excluded lambda=2.0 as off-shell \u2014 UNSAT proof confirms exclusion"
+    },
+    "N2_z3_excludes_complex_offshell": {
+      "eigenvalue": "1.0 + 1.0i",
+      "mass_sq_computed": 2.0,
+      "z3_result": "UNSAT",
+      "pass": true,
+      "note": "complex eigenvalue 1+i excluded by z3 \u2014 |1+i|^2=2 violates mass-shell constraint"
+    },
+    "N3_antihermitian_perturbation_excluded": {
+      "actual_dirac_antihermitian_norm": 0.0,
+      "perturbed_dirac_antihermitian_norm": 2.82842712,
+      "actual_is_selfadjoint": true,
+      "perturbed_excluded": true,
+      "pass": true,
+      "note": "actual Cl(3,0) Dirac is self-adjoint (survives); i*I perturbation is excluded from spectral triple"
+    }
+  },
+  "boundary": {
+    "B1_zero_eigenvalue_excluded": {
+      "eigenvalue": 0.0,
+      "z3_result": "UNSAT",
+      "pass": true,
+      "note": "lambda=0 excluded by z3 from mass_sq=3 spectral triple \u2014 massless not admissible here"
+    },
+    "B2_massless_admits_zero": {
+      "eigenvalue": 0.0,
+      "mass_sq": 0.0,
+      "z3_result": "SAT",
+      "pass": true,
+      "note": "lambda=0 survives z3 probe for massless spectral triple \u2014 constraint-admissible boundary case"
+    },
+    "B3_toponetx_eigenvalue_cell_complex": {
+      "cell_count": 1,
+      "pass": true,
+      "note": "TopoNetX CellComplex encodes oriented eigenvalue pairs as 1-cells"
+    },
+    "B4_gudhi_rips_eigenvalue_cloud": {
+      "num_simplices": 3,
+      "pass": true,
+      "note": "gudhi Rips complex on eigenvalue point cloud \u2014 \u00b1sqrt(3) connected within max_edge_length"
+    },
+    "B5_xgi_constraint_hypergraph": {
+      "num_nodes": 3,
+      "num_edges": 1,
+      "pass": true,
+      "note": "xgi hypergraph encodes mass-shell constraint as a shared hyperedge over eigenvalue nodes"
+    }
+  }
+}

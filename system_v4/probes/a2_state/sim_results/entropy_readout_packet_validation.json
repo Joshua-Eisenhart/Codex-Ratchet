@@ -1,9 +1,9 @@
 {
   "name": "entropy_readout_packet_validation",
-  "timestamp": "2026-04-14T11:00:46.896702+00:00",
-  "passed_gates": 8,
+  "timestamp": "2026-04-15T07:16:31.799270+00:00",
+  "passed_gates": 7,
   "total_gates": 12,
-  "score": 0.6666666666666666,
+  "score": 0.5833333333333334,
   "gates": [
     {
       "name": "E1_qubit_spectral_family_is_order_equivalent",
@@ -183,7 +183,7 @@
       "detail": {
         "current_bridge_candidate": "Xi_chiral_entangle",
         "c1b1_pass": false,
-        "c1b3_pass": true,
+        "c1b3_pass": false,
         "c1b4_pass": true,
         "c1b4_detail": {
           "status": "explicit_non_owner_reservation",
@@ -224,29 +224,29 @@
     },
     {
       "name": "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
-      "pass": true,
+      "pass": false,
       "detail": {
         "p11_pass": true,
-        "p12_pass": true,
-        "p13_pass": true,
-        "p14_pass": true,
+        "p12_pass": false,
+        "p13_pass": false,
+        "p14_pass": false,
         "p11_detail": {
           "total_rows": 6,
           "placement_8_23_equals_16_31_count": 6,
           "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
           "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
           "placement_8_23_equals_prefix_8_15_on_signed_count": 6,
-          "placement_8_23_beats_0_3_on_ic_count": 4
+          "placement_8_23_beats_0_3_on_ic_count": 6
         },
         "p12_detail": {
           "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-          "short_width_0_3_beats_8_23_on_ic_clifford_count": 2,
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
           "total_rows": 6
         },
         "p13_detail": {
           "best_early_width_by_ic_counts": {
-            "0_3": 6,
-            "0_7": 0,
+            "0_3": 1,
+            "0_7": 5,
             "0_11": 0,
             "0_15": 0
           },
@@ -257,10 +257,10 @@
             "4_15": 0,
             "8_15": 6
           },
-          "min_ic_8_15_minus_2_15": 0.04563198324576534,
-          "min_signed_2_15_minus_8_15": 0.04563198324576534,
-          "off_clifford_min_ic_8_23_minus_0_3": 0.14308503210605894,
-          "clifford_max_ic_8_23_minus_0_3": -0.02342179765536795
+          "min_ic_8_15_minus_2_15": 0.3502518834011005,
+          "min_signed_2_15_minus_8_15": 0.3502518834011005,
+          "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
+          "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
         },
         "p14_detail": {
           "law_name": "Xi_hist signed law",
@@ -272,16 +272,16 @@
             "placement_8_23_equals_prefix_8_15_on_signed_cut": true
           },
           "short_width_stress": {
-            "best_early_width_by_ic_is_0_3": true,
+            "best_early_width_by_ic_is_0_3": false,
             "late_anchor_beats_0_3_off_clifford": true,
-            "0_3_beats_late_anchor_on_clifford_only": true
+            "0_3_beats_late_anchor_on_clifford_only": false
           },
           "counts": {
             "total_rows": 6,
             "off_clifford_rows": 4,
             "clifford_rows": 2,
             "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-            "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+            "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
           }
         },
         "hist_outer_I_c_mean": -0.43692938345402155,

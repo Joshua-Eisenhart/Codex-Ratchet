@@ -65,12 +65,12 @@
     "ribs": {
       "tried": true,
       "used": true,
-      "reason": "Archives (G-depth, commutator-norm) grid solutions into quality-diversity archive; makes the non-commutativity landscape queryable as a structured lego output"
+      "reason": "not installed"
     },
     "optuna": {
       "tried": true,
       "used": true,
-      "reason": "Searches Cl(3,0) rotor parameter space to find the G-tower pair maximizing |A\u2218B - B\u2218A|; the found pair becomes the canonical ratchet witness"
+      "reason": "not installed"
     }
   },
   "tool_integration_depth": {
@@ -126,33 +126,16 @@
         3
       ],
       "unitarity_residual": 1.10498e-05,
-      "equivariant": false,
-      "pass": false
+      "equivariant": true,
+      "pass": true
     },
     "optuna_max_noncommutative": {
-      "best_noncommutativity": 1.9158741026,
-      "best_params": {
-        "a0": 3.111484,
-        "a1": 2.05316,
-        "a2": 0.481549,
-        "b0": 2.729153,
-        "b1": 0.731232,
-        "b2": 0.857941
-      },
-      "pass": true
+      "pass": false,
+      "error": "optuna or clifford not installed"
     },
     "ribs_archive": {
-      "solutions_attempted": 80,
-      "archive_elites": 5,
-      "grid_dims": [
-        5,
-        5
-      ],
-      "measures": [
-        "gtower_depth",
-        "commutator_norm"
-      ],
-      "pass": true
+      "pass": false,
+      "error": "ribs or clifford not installed"
     }
   },
   "negative": {
@@ -176,12 +159,12 @@
       "pass": true
     },
     "optuna_identical_pair_commutes": {
-      "best_value": 0.0,
-      "pass": true
+      "pass": false,
+      "error": "optuna or clifford not installed"
     },
     "ribs_dominated_not_added": {
-      "elites_after_dominated_insert": 1,
-      "pass": true
+      "pass": false,
+      "error": "ribs or clifford not installed"
     }
   },
   "boundary": {
@@ -203,18 +186,18 @@
       "pass": true
     },
     "ribs_single_cell_holds_one": {
-      "elites": 1,
-      "pass": true
+      "pass": false,
+      "error": "ribs or clifford not installed"
     },
     "optuna_single_trial_nonzero": {
-      "best_value": 0.291601698785,
-      "pass": true
+      "pass": false,
+      "error": "optuna or clifford not installed"
     }
   },
   "summary": {
     "n_tests": 18,
-    "n_pass": 17,
-    "n_fail": 1,
+    "n_pass": 12,
+    "n_fail": 6,
     "pass": false
   }
 }

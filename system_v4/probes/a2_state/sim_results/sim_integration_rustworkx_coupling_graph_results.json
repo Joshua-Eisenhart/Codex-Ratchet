@@ -1,0 +1,153 @@
+{
+  "name": "sim_integration_rustworkx_coupling_graph",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.tensor stores the 6x6 compatibility matrix; torch operations compute coupling score statistics (mean, std, max) that characterise the overall coupling landscape."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: PyG message-passing would extend this sim by propagating coupling scores along graph edges to compute steady-state shell influence; that multi-hop diffusion analysis is deferred to a dedicated graph-neural-network integration sim."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 encodes the admissibility constraint \u2014 for the minimum-weight path found by rustworkx, each edge score x_i must satisfy x_i >= 0.3 (SAT = admissible coupling chain); a path containing any score < 0.2 is UNSAT (inadmissible coupling). z3 UNSAT is the primary proof form per project doctrine."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cvc5 would provide an independent SMT cross-check on the admissibility constraints already discharged by z3; that dual-solver validation is deferred to a dedicated proof-layer comparison sim once the constraint vocabulary is stable."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: sympy could derive closed-form coupling score formulas from group-theoretic inclusion relations (e.g. SU <= U <= GL); that symbolic derivation is deferred to a group-hierarchy lego sim that targets the full G-tower math backlog."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: clifford would encode shell coupling as geometric-algebra rotor compositions to test non-commutative ordering of coupling paths; that A\u2218B != B\u2218A ratchet test is deferred per the geometry stack ratchet doctrine which requires separate ordering sims."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: geomstats could embed shell nodes on a Lie-group manifold and compute geodesic coupling distances; that manifold-geometry integration is deferred to a dedicated geomstats coupling sim after the shell-local lego sims are complete per the coupling program order."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: e3nn equivariant networks would be relevant when shell coupling must respect SO(3) symmetry constraints on edge features; that equivariance test is deferred to a canonical (non-classical) coupling sim after classical baselines are established."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing (PRIMARY): PyDiGraph encodes the 6-shell coupling topology; dijkstra_shortest_paths finds the optimal coupling route from GL to Sp; betweenness_centrality identifies the hub shell; topological_sort gives the coupling order. rustworkx is the primary computational tool for this integration sim."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: xgi hypergraph tools would extend this sim to model three-way shell coupling (hyperedges among GL, O, SO simultaneously); that higher-order coupling topology is deferred to a dedicated xgi hypergraph integration sim after pairwise coupling is characterised."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: toponetx CellComplex would model coupling as a 2-cell complex where edges are coupling paths and faces are coupling loops; that topological-complex analysis is deferred to a dedicated toponetx coupling-surface sim after the graph-level structure is understood."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: gudhi persistence homology would reveal the topological structure of the coupling-score filtration across the shell graph; that filtration analysis is deferred to a dedicated gudhi coupling topology sim after pairwise scores are validated by this sim."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_01_shortest_path_GL_to_Sp": {
+      "pass": true,
+      "path_nodes": [
+        "GL",
+        "Sp"
+      ],
+      "path_scores": [
+        0.3
+      ],
+      "z3_admissible": true,
+      "torch_stats": {
+        "mean": 0.60999995470047,
+        "std": 0.22456306219100952,
+        "max": 0.949999988079071,
+        "min": 0.25
+      }
+    },
+    "pos_02_betweenness_centrality": {
+      "pass": true,
+      "top_hub": "GL",
+      "centrality": {
+        "GL": 0.0,
+        "O": 0.0,
+        "SO": 0.0,
+        "U": 0.0,
+        "SU": 0.0,
+        "Sp": 0.0
+      }
+    },
+    "pos_03_topological_sort_GL_first": {
+      "pass": true,
+      "topo_order": [
+        "GL",
+        "O",
+        "SO",
+        "U",
+        "SU",
+        "Sp"
+      ],
+      "gl_first": true
+    }
+  },
+  "negative": {
+    "neg_01_inadmissible_path_z3_UNSAT": {
+      "pass": true,
+      "scores_tested": [
+        0.9,
+        0.1
+      ],
+      "z3_result": "unsat",
+      "note": "path with score 0.1 edge is UNSAT for admissibility (expected UNSAT)"
+    },
+    "neg_02_self_path_length_zero": {
+      "pass": true,
+      "self_path_nodes": [
+        "GL"
+      ],
+      "edge_count": 0
+    }
+  },
+  "boundary": {
+    "bnd_01_single_node_centrality_zero": {
+      "pass": true,
+      "centrality": 0.0
+    },
+    "bnd_02_empty_path_trivially_sat": {
+      "pass": true,
+      "z3_result": "sat",
+      "note": "empty path (0 edges) has no constraints, trivially admissible"
+    }
+  }
+}

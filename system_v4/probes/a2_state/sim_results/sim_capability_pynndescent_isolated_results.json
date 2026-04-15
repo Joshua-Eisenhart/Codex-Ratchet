@@ -1,0 +1,137 @@
+{
+  "name": "sim_capability_pynndescent_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates pynndescent approximate nearest-neighbor capability; integration with state-space similarity search deferred to a dedicated integration sim per the four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_01_shape_and_ordering": {
+      "pass": true,
+      "indices_shape": [
+        10,
+        5
+      ],
+      "distances_shape": [
+        10,
+        5
+      ],
+      "all_distances_nonneg": true,
+      "nearest_lt_second_nearest": true
+    },
+    "pos_02_cosine_metric": {
+      "pass": true,
+      "indices_shape": [
+        10,
+        5
+      ],
+      "all_distances_nonneg": true
+    }
+  },
+  "negative": {
+    "neg_01_k_greater_than_n_data": {
+      "pass": true,
+      "note": "pynndescent pads result to k=30 when k>20; no exception raised; indices may repeat valid rows"
+    },
+    "neg_02_1d_data": {
+      "pass": true,
+      "note": "1D index built and queried without error",
+      "shape": [
+        5,
+        3
+      ]
+    }
+  },
+  "boundary": {
+    "bnd_01_n_neighbors_1": {
+      "pass": true,
+      "shape_ok": true,
+      "nonneg_ok": true,
+      "valid_indices": true,
+      "indices_shape": [
+        5,
+        1
+      ]
+    },
+    "bnd_02_square_shape": {
+      "pass": true,
+      "shape": [
+        2,
+        3
+      ]
+    }
+  }
+}

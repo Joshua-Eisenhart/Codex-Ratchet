@@ -1,0 +1,139 @@
+{
+  "name": "sim_integration_pynndescent_state_similarity",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.tensor holds the 50 state vectors; torch.norm computes per-state norms used to classify each state as admissible (norm in [0.9, 1.1]) or excluded, which is the primary distinction this sim tests."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: PyG message-passing would propagate admissibility labels along the kNN graph edges to test whether constraint information diffuses correctly across the state manifold; that graph-neural propagation test is deferred to a dedicated PyG state-manifold integration sim."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 verifies per-query admissibility coherence \u2014 for each admissible query state, z3 encodes the constraint that at least 3 of 5 nearest neighbours must also have norm in [0.9, 1.1]; SAT confirms manifold coherence, UNSAT flags a neighbourhood admissibility violation."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cvc5 would provide an independent SMT cross-check on the neighbourhood-admissibility constraints already handled by z3; dual-solver validation is deferred to a dedicated proof-layer comparison sim once the constraint vocabulary is stable."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: sympy could derive the analytic kNN density on S^7 to compare against the empirical pynndescent results; that symbolic sphere-geometry analysis is deferred to a dedicated sympy manifold lego sim that targets the sphere geometry family."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: clifford Cl(8) rotors would represent state vectors as spinors on the 8D constraint manifold and test whether nearest-neighbour structure is preserved under rotor action; that geometric-algebra integration is deferred to a dedicated clifford state-manifold sim."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: geomstats hypersphere manifold tools would compute geodesic distances on S^7 to replace Euclidean kNN; that Riemannian-geometry integration is deferred to a dedicated geomstats sphere-kNN sim after this Euclidean baseline is established."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: e3nn equivariant networks would test whether admissibility is preserved under SO(3)/SO(8) symmetry transformations of the state vectors; that equivariance probe is deferred to a dedicated e3nn state-symmetry sim targeting canonical (non-classical) sims."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: rustworkx would model the kNN graph as a PyDiGraph and compute betweenness centrality to identify structurally important states on the manifold; that graph-topology analysis is deferred to a dedicated rustworkx state-graph integration sim after this sim establishes the kNN baseline."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: xgi would model higher-order (k>2) co-membership in nearest-neighbour sets as hyperedges to detect manifold clusters; that hypergraph analysis is deferred to a dedicated xgi state-cloud sim after pairwise kNN structure is characterised."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: toponetx CellComplex would represent the admissible state cloud as a 2-cell complex (states as nodes, kNN pairs as edges, triangles as 2-cells) to compute higher-order connectivity; that cell-complex analysis is deferred to a dedicated toponetx state-manifold sim."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: gudhi RipsComplex on the admissible state point cloud computes H0 (number of connected components) and H1 (loops) via persistent homology; small H0 count confirms the admissible states form a connected manifold-like region, which is the topological claim this sim tests."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "pos_01_index_query_shape": {
+      "pass": true,
+      "indices_shape": [
+        50,
+        5
+      ],
+      "distances_shape": [
+        50,
+        5
+      ]
+    },
+    "pos_02_admissible_neighborhood_coherence": {
+      "pass": true,
+      "mean_admissible_nbr_fraction": 0.7,
+      "frac_ok_60pct": true,
+      "z3_sat_count": 22,
+      "z3_total_admissible": 30,
+      "z3_majority_sat": true
+    },
+    "pos_03_gudhi_persistence_admissible_cloud": {
+      "pass": true,
+      "h0_components": 1,
+      "h1_loops": 0,
+      "betti": [
+        1,
+        0
+      ],
+      "note": "H0 modest => admissible states form connected region"
+    }
+  },
+  "negative": {
+    "neg_01_excluded_out_states_cluster": {
+      "pass": true,
+      "mean_far_neighbor_fraction": 0.32,
+      "note": "excluded (norm~3) states have >25% far-norm neighbours; pynndescent is approximate so perfect separation is not expected"
+    },
+    "neg_02_z3_unsat_sparse_admissible_neighbourhood": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "1/5 admissible neighbours is UNSAT for >= 3 threshold"
+    }
+  },
+  "boundary": {
+    "bnd_01_k_equals_1": {
+      "pass": true,
+      "shape_ok": true,
+      "frac_admissible_single_nn": 1.0,
+      "structural_ok": true
+    },
+    "bnd_02_boundary_norm_state": {
+      "pass": true,
+      "boundary_norm": 0.9,
+      "is_admissible_with_epsilon": true,
+      "query_shape_ok": true,
+      "note": "float32 norm targets 0.9 but may be 0.89999992; epsilon=1e-4 applied"
+    }
+  }
+}

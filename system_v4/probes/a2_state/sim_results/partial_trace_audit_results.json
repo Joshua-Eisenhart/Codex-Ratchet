@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T15:32:50.928728",
+  "timestamp": "2026-04-15T16:06:36.447050",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -3285,6 +3285,238 @@
       ],
       "has_bug": false
     },
+    "sim_mera_weyl_hopf_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+          "line": 242,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A = torch.einsum(\"ibjb->ij\", rho_reshaped)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+          "line": 243,
+          "pattern": "aibj->ij",
+          "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_reshaped.reshape(half, half, half, half))",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+          "line": 623,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A = torch.einsum(\"ibjb->ij\", rho_reshaped)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+          "line": 624,
+          "pattern": "aibj->ij",
+          "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_reshaped.reshape(half, half, half, half))",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
+    },
+    "sim_mera_weyl_hopf_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_mera_weyl_hopf_topology_variants.py",
+          "line": 149,
+          "pattern": "ibkb->ik",
+          "line_text": "rho_a = torch.einsum(\"ibkb->ik\", rho_r)",
+          "classification": {
+            "pattern": "ibkb->ik",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_topology_variants.py",
+          "line": 150,
+          "pattern": "ajal->jl",
+          "line_text": "rho_b = torch.einsum(\"ajal->jl\", rho_r)",
+          "classification": {
+            "pattern": "ajal->jl",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "j",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_mera_weyl_hopf_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_mera_weyl_hopf_triple_coexistence.py",
+          "line": 147,
+          "pattern": "ibkb->ik",
+          "line_text": "rho_a = torch.einsum(\"ibkb->ik\", rho_ab_r)",
+          "classification": {
+            "pattern": "ibkb->ik",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_triple_coexistence.py",
+          "line": 149,
+          "pattern": "ajal->jl",
+          "line_text": "rho_b = torch.einsum(\"ajal->jl\", rho_ab_r)",
+          "classification": {
+            "pattern": "ajal->jl",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "j",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mera_weyl_hopf_triple_coexistence.py",
+          "line": 207,
+          "pattern": "iaja->ij",
+          "line_text": "rho_coarse = torch.einsum(\"iaja->ij\", rho_r)",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_mutual_information_monotone_canonical.py": {
       "patterns": [
         {
@@ -6303,6 +6535,62 @@
       }
     },
     {
+      "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+      "line": 243,
+      "pattern": "aibj->ij",
+      "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_reshaped.reshape(half, half, half, half))",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_mera_weyl_hopf_emergence_quantities.py",
+      "line": 624,
+      "pattern": "aibj->ij",
+      "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_reshaped.reshape(half, half, half, half))",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
       "file": "sim_rustworkx_bridge_dag.py",
       "line": 96,
       "pattern": "aibj->ij",
@@ -6699,9 +6987,9 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 86,
-    "clean_files": 75,
-    "files_with_einsum_bugs": 11,
+    "total_files_with_einsum_ptrace": 89,
+    "clean_files": 77,
+    "files_with_einsum_bugs": 12,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
     "naming_swap_bugs": 2,

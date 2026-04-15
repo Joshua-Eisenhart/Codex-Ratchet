@@ -1,9 +1,9 @@
 {
   "name": "sim_capability_umap_isolated",
   "classification": "classical_baseline",
-  "overall_pass": false,
-  "pass_count": 1,
-  "total_count": 2,
+  "overall_pass": true,
+  "pass_count": 7,
+  "total_count": 7,
   "capability_summary": {
     "CAN": [
       "reduce high-dimensional data to 2D (or any target n_components < n_samples)",
@@ -103,20 +103,58 @@
   },
   "positive": {
     "umap_available": {
-      "pass": false,
-      "detail": "umap not importable"
+      "pass": true,
+      "version": "0.5.12"
+    },
+    "output_shape_30x2": {
+      "pass": true,
+      "shape": [
+        30,
+        2
+      ],
+      "detail": "UMAP on 30x5 input must produce (30,2) output"
+    },
+    "all_values_finite": {
+      "pass": true,
+      "n_nonfinite": 0,
+      "detail": "embedding must contain no NaN or Inf values"
+    },
+    "not_all_zero": {
+      "pass": true,
+      "max_abs_value": 9.119068145751953,
+      "detail": "embedding must not be identically zero"
     }
   },
   "negative": {
-    "umap_unavailable": {
+    "n_components_exceeds_n_samples": {
       "pass": true,
-      "detail": "skip: umap not installed"
+      "error_caught": true,
+      "error_msg": "Cannot use scipy.linalg.eigh for sparse A with k >= N. Use scipy.linalg.eigh(A.toarray()) or reduce k.",
+      "degenerate_output": false,
+      "detail": "n_components > n_samples must raise or produce degenerate output"
     }
   },
   "boundary": {
-    "umap_unavailable": {
+    "n_neighbors_2_vs_15_both_valid": {
       "pass": true,
-      "detail": "skip: umap not installed"
+      "shape_tight": [
+        30,
+        2
+      ],
+      "shape_broad": [
+        30,
+        2
+      ],
+      "var_tight": 56.09904479980469,
+      "var_broad": 10.748198509216309,
+      "detail": "n_neighbors=2 and n_neighbors=15 both produce valid (30,2) finite embeddings"
+    },
+    "n_neighbors_changes_embedding_variance": {
+      "pass": true,
+      "var_n2": 56.09904479980469,
+      "var_n15": 10.748198509216309,
+      "abs_diff": 45.35084629058838,
+      "detail": "different n_neighbors values should produce embeddings with different variance"
     }
   }
 }

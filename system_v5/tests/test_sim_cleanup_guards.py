@@ -245,6 +245,8 @@ def test_adaptive_controller_builds_plane_snapshot_from_current_surfaces(
     assert snapshot["state_plane"]["program"]["passing_families"] == {"ok1": 1, "ok2": 1}
     assert snapshot["state_plane"]["program"]["never_run_buckets"] == {"exploratory": 1}
     assert snapshot["state_plane"]["program"]["passing_buckets"] == {"exploratory": 2}
+    assert snapshot["state_plane"]["program"]["never_run_stages"] == {"early_core": 1}
+    assert snapshot["state_plane"]["program"]["passing_stages"] == {"early_core": 2}
     assert snapshot["state_plane"]["program"]["queue_families"]["lane_A"] == {"other": 2}
 
 
@@ -620,6 +622,66 @@ def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> Non
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+
+
+def test_queue_claim_classifies_coherent_info_as_late_info(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_coherent_info_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    late_info = lane / "a.json"
+    late_info.write_text(
+        '{"sim_path":"sim_lego_coherent_info_advanced.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
+        encoding="utf-8",
+    )
+    early = lane / "b.json"
+    early.write_text(
+        '{"sim_path":"sim_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+
+
+def test_queue_claim_classifies_entanglement_as_late_info(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_entanglement_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    late_info = lane / "a.json"
+    late_info.write_text(
+        '{"sim_path":"sim_lego_entanglement_distillation.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
+        encoding="utf-8",
+    )
+    early = lane / "b.json"
+    early.write_text(
+        '{"sim_path":"sim_geom_cp1_u1_projective.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_geom_cp1_u1_projective.py"
 
 
 def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:

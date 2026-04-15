@@ -81,12 +81,17 @@ FRAMEWORK_DOCTRINE_FAMILIES = {
 LATE_INFO_KEYWORDS = (
     "bipartite",
     "partial_trace",
+    "entanglement",
     "mutual_information",
+    "mutual_info",
     "coherent_information",
+    "coherent_info",
     "concurrence",
     "negativity",
     "schmidt",
     "entropy",
+    "capacity",
+    "capacities",
     "carnot",
     "szilard",
     "landauer",
@@ -285,6 +290,11 @@ def summarize_buckets(sim_names: list[str]) -> dict[str, int]:
     return dict(counts)
 
 
+def summarize_stages(sim_names: list[str]) -> dict[str, int]:
+    counts = Counter(plan_stage(name) for name in sim_names)
+    return dict(counts)
+
+
 def queue_family_counts(limit: int = 8) -> dict[str, dict[str, int]]:
     out: dict[str, dict[str, int]] = {}
     for lane in ("lane_A", "lane_B", "claimed", "blocked"):
@@ -313,6 +323,22 @@ def queue_bucket_counts() -> dict[str, dict[str, int]]:
                 data = load_result(item)
                 bucket = data.get("plan_bucket") or plan_bucket(data.get("sim_path", ""))
                 counts[str(bucket)] += 1
+        out[lane] = dict(counts)
+    return out
+
+
+def queue_stage_counts() -> dict[str, dict[str, int]]:
+    out: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B", "claimed", "blocked"):
+        lane_dir = QUEUE / lane
+        counts: Counter[str] = Counter()
+        if lane_dir.exists():
+            for item in lane_dir.iterdir():
+                if not item.is_file():
+                    continue
+                data = load_result(item)
+                stage = data.get("plan_stage") or plan_stage(str(data.get("sim_path", "")))
+                counts[str(stage)] += 1
         out[lane] = dict(counts)
     return out
 
@@ -428,8 +454,11 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
                 "passing_families": summarize_families((state or {}).get("passing", [])),
                 "never_run_buckets": summarize_buckets((state or {}).get("never_run", [])),
                 "passing_buckets": summarize_buckets((state or {}).get("passing", [])),
+                "never_run_stages": summarize_stages((state or {}).get("never_run", [])),
+                "passing_stages": summarize_stages((state or {}).get("passing", [])),
                 "queue_families": queue_family_counts(),
                 "queue_buckets": queue_bucket_counts(),
+                "queue_stages": queue_stage_counts(),
             },
         },
     }

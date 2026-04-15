@@ -133,6 +133,7 @@ def main() -> int:
         "top_never_run_families": top_families(never_run),
         "top_never_run_buckets": top_buckets(never_run),
         "top_never_run_stages": top_stages(never_run),
+        "queue_stage_counts": snapshot["state_plane"]["program"]["queue_stages"],
         "blocked_reasons": queue_blocked_reasons(),
         "resolved_blocked_reasons": resolved_blocked_reasons(),
         "top_failing": state.get("failing", [])[:12],

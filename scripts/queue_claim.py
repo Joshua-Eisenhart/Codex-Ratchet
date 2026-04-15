@@ -112,16 +112,23 @@ def _priority_for_bucket(bucket: str) -> str:
     return "normal"
 
 
+def _effective_priority(priority: str | None, bucket: str) -> str:
+    desired = _priority_for_bucket(bucket)
+    if not priority:
+        return desired
+    given = str(priority).lower()
+    if PRIORITY_RANK.get(given, PRIORITY_RANK["normal"]) > PRIORITY_RANK[desired]:
+        return desired
+    return given
+
+
 def _claim_order(item: Path) -> tuple[int, int, float, str]:
     try:
         data = json.loads(item.read_text())
     except Exception:
         return (PRIORITY_RANK["normal"], PLAN_BUCKET_RANK["exploratory"], 0.0, item.name)
     bucket = str(data.get("plan_bucket") or _plan_bucket_from_sim_path(str(data.get("sim_path", ""))))
-    priority = data.get("priority")
-    if not priority:
-        priority = _priority_for_bucket(bucket)
-    priority = str(priority).lower()
+    priority = _effective_priority(data.get("priority"), bucket)
     try:
         enqueued_at = float(data.get("enqueued_at", 0))
     except Exception:

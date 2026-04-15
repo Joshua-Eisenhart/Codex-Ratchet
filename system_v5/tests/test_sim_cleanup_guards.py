@@ -395,6 +395,7 @@ def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
     payload = json.loads(remaining[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == abs_sim
     assert payload["plan_bucket"] == "core_ladder"
+    assert payload["priority"] == "high"
 
 
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
@@ -485,6 +486,36 @@ def test_queue_claim_prefers_core_ladder_when_priority_ties(tmp_path) -> None:
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+
+
+def test_queue_claim_promotes_stale_priority_to_bucket_default(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_priority_upgrade_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    stale_core = lane / "a.json"
+    stale_core.write_text(
+        '{"sim_path":"sim_qit_szilard_record_translation_lane.py","lane":"lane_B","priority":"normal","plan_bucket":"core_ladder","enqueued_at":1}\n',
+        encoding="utf-8",
+    )
+    exploratory = lane / "b.json"
+    exploratory.write_text(
+        '{"sim_path":"sim_leviathan_control_surface.py","lane":"lane_B","priority":"normal","plan_bucket":"exploratory","enqueued_at":0}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_qit_szilard_record_translation_lane.py"
 
 
 def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:

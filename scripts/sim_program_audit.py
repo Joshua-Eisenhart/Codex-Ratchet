@@ -70,12 +70,11 @@ def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
     for item in sorted(lane_dir.glob("*.json"), key=queue_claim._claim_order)[:limit]:
         data = adaptive_controller.load_result(item)
         sim_path = str(data.get("sim_path", ""))
+        bucket = str(data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path))
         out.append({
             "sim": Path(sim_path).name,
-            "priority": data.get("priority") or queue_claim._priority_for_bucket(
-                str(data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path))
-            ),
-            "plan_bucket": data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path),
+            "priority": queue_claim._effective_priority(data.get("priority"), bucket),
+            "plan_bucket": bucket,
         })
     return out
 

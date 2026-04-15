@@ -230,6 +230,17 @@ def default_priority_for_bucket(bucket: str) -> str:
     return "normal"
 
 
+def canonical_priority(priority: str | None, bucket: str) -> str:
+    desired = default_priority_for_bucket(bucket)
+    if not priority:
+        return desired
+    rank = {"high": 0, "normal": 1, "low": 2}
+    given = str(priority).lower()
+    if rank.get(given, rank["normal"]) > rank[desired]:
+        return desired
+    return given
+
+
 def summarize_families(sim_names: list[str], limit: int = 8) -> dict[str, int]:
     counts = Counter(sim_family(name) for name in sim_names)
     return dict(counts.most_common(limit))
@@ -273,9 +284,8 @@ def queue_bucket_counts() -> dict[str, dict[str, int]]:
 
 
 def _queue_priority(data: dict) -> tuple[int, float]:
-    priority = str(data.get("priority") or default_priority_for_bucket(
-        str(data.get("plan_bucket") or plan_bucket(str(data.get("sim_path", ""))))
-    )).lower()
+    bucket = str(data.get("plan_bucket") or plan_bucket(str(data.get("sim_path", ""))))
+    priority = canonical_priority(data.get("priority"), bucket)
     rank = {"high": 0, "normal": 1, "low": 2}.get(priority, 1)
     try:
         enqueued_at = float(data.get("enqueued_at", 0))
@@ -299,8 +309,8 @@ def dedupe_queue_entries() -> int:
                 continue
             normalized = normalize_sim_path(sim_path)
             data["sim_path"] = normalized
-            data["plan_bucket"] = data.get("plan_bucket") or plan_bucket(normalized)
-            data["priority"] = data.get("priority") or default_priority_for_bucket(str(data["plan_bucket"]))
+            data["plan_bucket"] = str(data.get("plan_bucket") or plan_bucket(normalized))
+            data["priority"] = canonical_priority(data.get("priority"), str(data["plan_bucket"]))
             data["lane"] = lane
             entries.append((item, lane_dir, data, normalized))
 

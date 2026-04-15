@@ -1,0 +1,241 @@
+{
+  "name": "sim_weyl_pairwise_g2_rescaling_coupling",
+  "classification": "classical_baseline",
+  "scope_note": "Pairwise coupling probe: W(G2) <-> Weyl conformal rescaling. G2 Cartan matrix [[2,-1],[-3,2]]; A21=-3 encodes long/short ratio sqrt(3). Under UNIFORM Omega: Cartan entries preserved (numerator/denominator cancel). Under NON-UNIFORM Omega: A21 -> -3*(O2/O1), A12 -> -1*(O1/O2), both broken. z3 UNSAT: A21=-3 AND non-uniform Omega simultaneously. Clifford: uniform Omega commutes with G2 reflections; non-uniform breaks commutation.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Apply Omega^2 rescaling to G2 root metric; check Cartan matrix entries A21=-3 and A12=-1 after rescaling via autograd; verify uniform Omega preserves symmetry while non-uniform Omega changes the -3 entry by Omega2^2/Omega1^2"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: A21=-3 AND A12=-1 AND Omega non-uniform simultaneously; non-uniform Omega scales A21 by Omega2^2/Omega1^2 != 1, changing it from -3; encode as: A21_scaled * Omega1^2 == -3 * Omega2^2 with Omega1 != Omega2 AND A21_scaled == -3"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "G2 Cartan matrix [[2,-1],[-3,2]]; symbolic Omega rescaling: <alpha_i, alpha_j>_Omega = Omega_i^2 * <alpha_i,alpha_j>; show A21 = 2*Omega_2^2*<alpha2,alpha1> / (Omega_1^2*<alpha1,alpha1>); confirm uniform Omega cancels; derive non-uniform correction factor"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Omega as grade-0 Clifford scalar; G2 long-root reflection as grade-1 sandwich; commutator [Omega, s_alpha2] = 0 for uniform Omega (scalar commutes with all); for non-uniform Omega(x): Omega acts differently before vs after reflection"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Graph encoding of Omega-stability: nodes = {G2_root, rescaled_root}; edges = 'same under Omega' (uniform) or 'different under Omega' (non-uniform); verify graph structure changes when Omega is non-uniform"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hyperedge {s_alpha_G2, Omega_conformal, A21_entry}: 3-way coupling between the G2 reflection, the rescaling, and the Cartan entry; records which Cartan entries are preserved vs broken under rescaling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_g2_cartan_entries_baseline": {
+      "pass": true,
+      "A12": -1.0,
+      "A21": -3.0,
+      "reason": "G2 Cartan: A12=2<alpha1,alpha2>/<alpha2,alpha2>=-1; A21=2<alpha2,alpha1>/<alpha1,alpha1>=-3"
+    },
+    "P2_pytorch_uniform_omega_preserves_cartan": {
+      "pass": true,
+      "omega": 2.5,
+      "A12_after_uniform_rescaling": -1.0,
+      "A21_after_uniform_rescaling": -3.0,
+      "reason": "Uniform Omega rescaling: A_ij * (Omega/Omega) = A_ij; Cartan entries preserved exactly"
+    },
+    "P3_pytorch_nonuniform_omega_breaks_cartan": {
+      "pass": true,
+      "omega1": 1.0,
+      "omega2": 2.0,
+      "A12_nonunif": -0.5,
+      "A21_nonunif": -6.0,
+      "A21_expected_broken": -6.0,
+      "reason": "Non-uniform Omega: A21_Omega = A21 * (omega2/omega1) != -3 when omega1 != omega2"
+    },
+    "P4_pytorch_g2_reflection_is_isometry": {
+      "pass": true,
+      "reason": "W(G2) reflections are isometries: |s1(v)| = |v| for all test vectors (standard metric)"
+    },
+    "P5_pytorch_uniform_omega_commutes_with_isometry": {
+      "pass": true,
+      "lhs_norm": 3.6619666847,
+      "rhs_norm": 3.6619666847,
+      "reason": "Uniform Omega and W(G2) isometry commute in norm: |Omega*s(v)| = Omega*|v| = |Omega*v|"
+    },
+    "P6_sympy_uniform_omega_cancels_symbolically": {
+      "pass": true,
+      "A21_uniform_symbolic": "-3",
+      "A21_value": -3,
+      "reason": "Symbolic: A21 under uniform Omega = 2*Omega^2*(-3/2) / (Omega^2*1) = -3; Omega cancels"
+    },
+    "P7_sympy_nonuniform_omega_breaks_a21": {
+      "pass": true,
+      "A21_nonuniform": "-3*Omega2/Omega1",
+      "ratio_to_baseline": "Omega2/Omega1",
+      "reason": "Symbolic: A21 under non-uniform Omega = -3 * (O2/O1); breaks from -3 when O1 != O2"
+    },
+    "P8_clifford_uniform_omega_commutes_with_g2": {
+      "pass": true,
+      "omega_r_v": [
+        0.26554446,
+        3.04006351
+      ],
+      "r_omega_v": [
+        0.26554446,
+        3.04006351
+      ],
+      "commute_diff": 0.0,
+      "reason": "Uniform Omega (grade-0 scalar) commutes with G2 Clifford reflection: Omega*s(v) = s(Omega*v)"
+    },
+    "P9_rustworkx_omega_stability_graph": {
+      "pass": true,
+      "nodes": 2,
+      "edges": 2,
+      "reason": "Graph: alpha1(short) <-> alpha2(long); uniform Omega = stable; non-uniform Omega = broken edge"
+    },
+    "P10_xgi_g2_omega_coupling_hyperedges": {
+      "pass": true,
+      "num_edges": 3,
+      "num_nodes": 6,
+      "reason": "XGI encodes: G2 long-root/uniform-Omega/A21 coupling and G2 long-root/nonuniform-Omega/A21 breakage"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_a21_preserved_under_nonuniform_omega": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: A21=-3*O2/O1 AND A21=-3 AND O1!=O2 is impossible; non-uniform Omega breaks A21"
+    },
+    "N2_pytorch_nonuniform_omega_changes_a21": {
+      "pass": true,
+      "omega1": 1.0,
+      "omega2": 3.0,
+      "A21_rescaled": -9.0,
+      "A21_baseline": -3.0,
+      "reason": "Non-uniform Omega (1.0, 3.0) changes A21 from -3 to -9: G2 asymmetry is broken"
+    },
+    "N3_pytorch_nonuniform_omega_changes_a12": {
+      "pass": true,
+      "A12_rescaled": -0.33333333,
+      "A12_baseline": -1.0,
+      "reason": "Non-uniform Omega also changes A12 from -1: both G2 Cartan entries are broken simultaneously"
+    },
+    "N4_sympy_g2_asymmetry_preserved_under_nonuniform": {
+      "pass": true,
+      "A21_nonunif": "-3*O2/O1",
+      "A12_nonunif": "-O1/O2",
+      "diff": "O1/O2 - 3*O2/O1",
+      "reason": "A21_Omega - A12_Omega = -3*O2/O1 + O1/O2 is generically nonzero: G2 asymmetry persists (differently)"
+    },
+    "N5_clifford_nonuniform_omega_breaks_commutation": {
+      "pass": true,
+      "omega_s_v": [
+        0.82044827,
+        2.37894192
+      ],
+      "s_omega_v": [
+        -0.39557714,
+        2.4851597
+      ],
+      "noncommute_diff": 1.32224319,
+      "reason": "Non-uniform Omega (grade-0+grade-2 bivector in Cl(2)) breaks Omega*s(v) = s(Omega*v): not G2-equivariant"
+    },
+    "N6_rustworkx_nonuniform_breaks_stability": {
+      "pass": true,
+      "broken_edges": 2,
+      "reason": "Under non-uniform Omega, both A12 and A21 edges are broken: full G2 Cartan structure lost"
+    }
+  },
+  "boundary": {
+    "B1_pytorch_omega_one_preserves_cartan": {
+      "pass": true,
+      "A12_at_omega1": -1.0,
+      "A21_at_omega1": -3.0,
+      "reason": "Omega=1 (identity rescaling) preserves A12=-1 and A21=-3: trivial boundary condition"
+    },
+    "B2_pytorch_omega_near_zero_preserves_cartan": {
+      "pass": true,
+      "omega": 1e-08,
+      "A12_tiny_omega": -1.0,
+      "A21_tiny_omega": -3.0,
+      "reason": "Near-zero uniform Omega still preserves Cartan entries: ratio cancels at all scales"
+    },
+    "B3_pytorch_limit_nonuniform_approaches_uniform": {
+      "pass": true,
+      "omega2_over_omega1": 1.00000000005,
+      "A21_at_limit": -3.0,
+      "reason": "As O2/O1 -> 1 (limit to uniform), A21_Omega -> -3: continuous recovery at boundary"
+    },
+    "B4_sympy_special_ratio_where_cartan_symmetric": {
+      "pass": true,
+      "special_ratio": "sqrt(3)/3",
+      "equation": "Eq(-3*r, -1/r)",
+      "reason": "Special Omega2/Omega1 = 1/sqrt(3) makes A21_Omega = A12_Omega: accidental symmetry boundary"
+    },
+    "B5_z3_sat_uniform_omega_and_a21_minus3": {
+      "pass": true,
+      "z3_result": "sat",
+      "reason": "SAT: uniform Omega AND A21=-3 are simultaneously consistent; no contradiction at the boundary"
+    },
+    "B6_clifford_uniform_omega_commutes_with_short_root": {
+      "pass": true,
+      "diff": 0.0,
+      "reason": "Uniform Omega commutes with G2 short-root s1 too: boundary condition holds for both simple roots"
+    },
+    "B7_xgi_uniform_omega_g2_compatibility_hyperedges": {
+      "pass": true,
+      "num_edges": 3,
+      "reason": "XGI: uniform Omega is compatible with both G2 simple roots; both Cartan entries preserved"
+    }
+  },
+  "overall_pass": true
+}

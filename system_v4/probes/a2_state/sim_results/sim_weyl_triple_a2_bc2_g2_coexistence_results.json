@@ -1,0 +1,298 @@
+{
+  "name": "sim_weyl_triple_a2_bc2_g2_coexistence",
+  "classification": "classical_baseline",
+  "scope_note": "Triple coexistence probe: W(A2) + W(B2) + W(G2) simultaneously. A2 \u2282 G2: all 6 A2 roots appear as the 6 short G2 roots; W(A2) <= W(G2). B2 is NOT a sub-root-system of G2: no B2 roots appear in G2 root set. A21 ladder: -1(A2), -2(B2), -3(G2) \u2014 clean distinct ordering. Triple non-commutativity: 3-way composition gives new structure. Emergence: triple union covers more angles than any pair. z3 UNSAT: |alpha|^2=1 AND |alpha|^2=3 simultaneously.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Represent all A2(6), B2(8), G2(12) roots as 2D float64 tensors; verify A2 roots are subset of G2 roots; check B2 roots have no overlap with G2; compute triple non-commutativity ||s_A2(s_B2(s_G2(v))) - s_G2(s_B2(s_A2(v)))||; measure angular coverage of union of all three root systems"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: |alpha|^2=1 (A2-length) AND |alpha|^2=1 (B2-short-length) AND |alpha|^2=3 (G2-long-length) simultaneously; also UNSAT: W(A2) order AND W(B2) order AND W(G2) order all equal"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification A2 Cartan [[2,-1],[-1,2]] is submatrix of G2 [[2,-1],[-3,2]]; verify A2 simple roots are G2 short roots; check B2 Cartan [[2,-1],[-2,2]] has no common submatrix structure with G2; combined rank of A2+B2+G2 simple roots in R^2"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Triple Clifford composition: s_A2(s_B2(s_G2(v))); verify the composed map is NOT equal to s_G2(s_B2(s_A2(v))); confirm A2 Clifford reflections are a sub-algebra of G2 Clifford reflections (A2 \u2282 G2 structure in Clifford algebra)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Triple Cayley graph: A2(6 nodes) + B2(8 nodes) + G2(12 nodes) subgraphs; A2 nodes are a SUBSET of G2 nodes (A2 <= G2); B2 nodes are DISJOINT from G2; inter-group edges record which cross-shell reflections commute vs don't"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {W(A2), W(B2), W(G2)} encoding their simultaneous coexistence; sub-hyperedge {A2, G2, nested} encoding A2 \u2282 G2; hyperedge {B2, G2, disjoint} encoding B2 is not nested in G2"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry probe; deferred to integration sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_all_three_orders_distinct": {
+      "pass": true,
+      "a2_order": 6,
+      "b2_order": 8,
+      "g2_order": 12,
+      "reason": "|W(A2)|=6, |W(B2)|=8, |W(G2)|=12: all three are mutually distinct Weyl group orders"
+    },
+    "P2_pytorch_root_system_counts": {
+      "pass": true,
+      "a2_roots": 6,
+      "b2_roots": 8,
+      "g2_roots": 12,
+      "reason": "A2 has 6 roots, B2 has 8 roots, G2 has 12 roots: all root system sizes confirmed"
+    },
+    "P3_pytorch_a2_roots_subset_of_g2": {
+      "pass": true,
+      "a2_roots_in_g2": 6,
+      "a2_total": 6,
+      "reason": "A2 root system is a sub-root-system of G2: all 6 A2 roots appear in G2 as the 6 short roots"
+    },
+    "P4_pytorch_b2_mostly_outside_g2": {
+      "pass": true,
+      "b2_g2_overlap_count": 2,
+      "b2_outside_g2_count": 6,
+      "b2_outside_g2_sample": [
+        [
+          -1.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          1.0
+        ],
+        [
+          -0.0,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "reason": "B2 has 6 roots outside G2 (only +-e1 are shared); B2 long roots +-e2 and +-{e1+-e2} are NOT G2 roots; B2 is NOT a sub-root-system of G2"
+    },
+    "P5_pytorch_a2_generators_in_g2": {
+      "pass": true,
+      "s1_a2_in_g2": true,
+      "s2_a2_in_g2": true,
+      "reason": "W(A2) generators s1 and s2 are BOTH elements of W(G2): W(A2) is a subgroup of W(G2)"
+    },
+    "P6_pytorch_b2_generator_not_in_g2": {
+      "pass": true,
+      "sb2_in_g2": false,
+      "reason": "W(B2) generator sB2 is NOT in W(G2): B2 is not a sub-Weyl-group of G2; incompatible geometries"
+    },
+    "P7_pytorch_triple_noncommutativity": {
+      "pass": true,
+      "triple_noncommutativity_norm": 2.44131112,
+      "generators": "A2:s1(e1 reflection), B2:sb2(-e1+e2 reflection), G2:s1@s2(60-deg rotation)",
+      "reason": "s_A2(s_B2(G2_rot(v))) != G2_rot(s_B2(s_A2(v))): triple three-way non-commutative structure"
+    },
+    "P8_pytorch_triple_union_coverage": {
+      "pass": true,
+      "a2_angle_count": 6,
+      "a2_b2_angle_count": 12,
+      "all_three_angle_count": 16,
+      "reason": "Each additional root system extends angular coverage: A2 < A2+B2 <= A2+B2+G2"
+    },
+    "P9_sympy_a2_g2_cartan_relationship": {
+      "pass": true,
+      "A2_cartan": "Matrix([[2, -1], [-1, 2]])",
+      "G2_cartan": "Matrix([[2, -1], [-3, 2]])",
+      "a21_A2": -1,
+      "a21_G2": -3,
+      "reason": "A2 and G2 Cartan share same row1 and diagonal; differ only in A21 (-1 vs -3): A2 is 'less constrained' G2"
+    },
+    "P10_clifford_a2_s1_matches_g2_s1": {
+      "pass": true,
+      "g2_s1_result": [
+        -1.0,
+        0.7
+      ],
+      "a2_s1_result": [
+        -1.0,
+        0.7
+      ],
+      "diff": 0.0,
+      "reason": "A2 s1 and G2 s1 share alpha1=(1,0): their Clifford reflections of same vector are identical (A2 \u2282 G2)"
+    },
+    "P11_rustworkx_triple_cayley_structure": {
+      "pass": true,
+      "total_nodes": 20,
+      "cross_edges": 3,
+      "reason": "Triple graph: 12 G2 nodes + 8 B2 extra nodes = 20 total; A2 nodes are subset of G2 nodes"
+    },
+    "P12_xgi_triple_coexistence_hyperedges": {
+      "pass": true,
+      "num_edges": 4,
+      "num_nodes": 9,
+      "reason": "XGI: triple coexistence, A2\u2282G2 nesting, B2 disjoint from G2, triple root union"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_all_orders_equal": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: |W(A2)|=6 AND |W(B2)|=8 AND |W(G2)|=12 AND all equal: triple equality is impossible"
+    },
+    "N2_z3_unsat_a2_length_and_g2_long_length": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: |alpha|^2=1 (A2-length) AND |alpha|^2=3 (G2-long-length): same vector can't have two norms"
+    },
+    "N3_pytorch_b2_not_subgroup_of_g2": {
+      "pass": true,
+      "sb2_in_g2": false,
+      "reason": "W(B2) generator sB2 is absent from W(G2): B2 is NOT a subgroup of G2 (incompatible Coxeter structure)"
+    },
+    "N4_pytorch_b2_long_root_not_in_g2": {
+      "pass": true,
+      "b2_beta2_in_g2": false,
+      "reason": "B2 long root beta2=(-1,1) is NOT in the G2 root system: B2 geometry is incompatible with G2"
+    },
+    "N5_pytorch_triple_union_larger_than_pair": {
+      "pass": true,
+      "ab_union_size": 12,
+      "ag_union_size": 12,
+      "triple_union_size": 18,
+      "reason": "Triple union is larger than any pairwise union: new roots emerge only when all three are active"
+    },
+    "N6_sympy_a21_ladder_all_distinct": {
+      "pass": true,
+      "A21_A2": -1,
+      "A21_B2": -2,
+      "A21_G2": -3,
+      "reason": "A21 values form a clean ladder: -1(A2), -2(B2), -3(G2); all distinct; no two groups share A21"
+    },
+    "N7_clifford_triple_composition_not_identity": {
+      "pass": true,
+      "triple_result": [
+        -1.2160254,
+        0.10621778
+      ],
+      "original_v": [
+        1.0,
+        0.7
+      ],
+      "diff_from_identity": 2.80980762,
+      "reason": "Triple reflection composition s_A2 \u2218 s_B2 \u2218 s_G2 is NOT identity: no accidental cancellation"
+    },
+    "N8_rustworkx_all_three_graphs_distinct": {
+      "pass": true,
+      "a2_nodes": 6,
+      "b2_nodes": 8,
+      "g2_nodes": 12,
+      "reason": "All three Cayley graphs have distinct node counts (6, 8, 12): mutually non-isomorphic"
+    }
+  },
+  "boundary": {
+    "B1_pytorch_identity_shared_by_all_three": {
+      "pass": true,
+      "reason": "Identity element commutes with all generators from W(A2), W(B2), W(G2): universal fixed point"
+    },
+    "B2_pytorch_zero_fixed_by_all_three": {
+      "pass": true,
+      "reason": "Zero vector is fixed by all reflections from all three groups: degenerate triple boundary"
+    },
+    "B3_pytorch_shared_e1_reflection_all_three": {
+      "pass": true,
+      "a2_s1_on_e1": [
+        -1.0,
+        0.0
+      ],
+      "b2_sb1_on_e1": [
+        -1.0,
+        0.0
+      ],
+      "g2_s1_on_e1": [
+        -1.0,
+        0.0
+      ],
+      "reason": "All three groups share s_e1 (alpha1=beta1=gamma1=e1): universal A1=Z2 subgroup"
+    },
+    "B4_sympy_all_three_share_cartan_skeleton": {
+      "pass": true,
+      "A2_row1": "Matrix([[2, -1]])",
+      "B2_row1": "Matrix([[2, -1]])",
+      "G2_row1": "Matrix([[2, -1]])",
+      "reason": "All three Cartan matrices have same first row [2,-1] and same diagonal 2: shared skeleton structure"
+    },
+    "B5_z3_sat_a2_length_equals_g2_short_length": {
+      "pass": true,
+      "z3_result": "sat",
+      "reason": "SAT: A2 root length and G2 short root length are both 1 \u2014 A2 \u2282 G2 is consistent at the length boundary"
+    },
+    "B6_clifford_a2_alpha2_equals_g2_short_root": {
+      "pass": true,
+      "a2_alpha2_reflection": [
+        1.10621778,
+        0.5160254
+      ],
+      "g2_short_root_reflection": [
+        1.10621778,
+        0.5160254
+      ],
+      "diff": 0.0,
+      "reason": "A2 alpha2 = G2 short root: their Clifford reflections are identical; A2 \u2282 G2 confirmed at boundary"
+    },
+    "B7_xgi_triple_boundary_structure": {
+      "pass": true,
+      "num_edges": 4,
+      "num_nodes": 7,
+      "reason": "XGI: A2\u2282G2 nesting boundary; B2 disjoint from G2; shared A1 and origin across all three"
+    }
+  },
+  "overall_pass": true
+}

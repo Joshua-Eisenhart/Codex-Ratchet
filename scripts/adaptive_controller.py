@@ -158,6 +158,7 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
         "sim_path": normalized,
         "priority": priority,
         "plan_bucket": bucket,
+        "plan_stage": plan_stage(normalized),
     }
     (QUEUE / lane / f"{uid}.json").write_text(json.dumps(payload))
 
@@ -227,6 +228,13 @@ def plan_bucket(name: str) -> str:
     if family in FRAMEWORK_DOCTRINE_FAMILIES:
         return "framework_doctrine"
     return "exploratory"
+
+
+def plan_stage(name: str) -> str:
+    family = sim_family(name)
+    if family in {"axis", "axis0"}:
+        return "late_axis"
+    return "early_core"
 
 
 def default_priority_for_bucket(bucket: str) -> str:
@@ -334,6 +342,7 @@ def dedupe_queue_entries() -> int:
             normalized = normalize_sim_path(sim_path)
             data["sim_path"] = normalized
             data["plan_bucket"] = str(data.get("plan_bucket") or plan_bucket(normalized))
+            data["plan_stage"] = str(data.get("plan_stage") or plan_stage(normalized))
             data["priority"] = canonical_priority(data.get("priority"), str(data["plan_bucket"]))
             data["lane"] = lane
             entries.append((item, lane_dir, data, normalized))

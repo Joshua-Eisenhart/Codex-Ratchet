@@ -31,6 +31,11 @@ def top_buckets(sim_paths: list[Path]) -> dict[str, int]:
     return dict(counts)
 
 
+def top_stages(sim_paths: list[Path]) -> dict[str, int]:
+    counts = Counter(adaptive_controller.plan_stage(path.name) for path in sim_paths)
+    return dict(counts)
+
+
 def queue_blocked_reasons(limit: int = 8) -> dict[str, int]:
     counts: Counter[str] = Counter()
     blocked = QUEUE / "blocked"
@@ -83,10 +88,12 @@ def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
         data = adaptive_controller.load_result(item)
         sim_path = str(data.get("sim_path", ""))
         bucket = str(data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path))
+        stage = str(data.get("plan_stage") or queue_claim._plan_stage_from_sim_path(sim_path))
         out.append({
             "sim": Path(sim_path).name,
             "priority": queue_claim._effective_priority(data.get("priority"), bucket),
             "plan_bucket": bucket,
+            "plan_stage": stage,
         })
     return out
 
@@ -112,6 +119,7 @@ def main() -> int:
             "total_sims": len(sims),
             "top_families": top_families(sims),
             "top_buckets": top_buckets(sims),
+            "top_stages": top_stages(sims),
         },
         "triage": snapshot["state_plane"]["triage"],
         "program": snapshot["state_plane"]["program"],
@@ -124,6 +132,7 @@ def main() -> int:
         "top_never_run_examples": [path.name for path in never_run[:12]],
         "top_never_run_families": top_families(never_run),
         "top_never_run_buckets": top_buckets(never_run),
+        "top_never_run_stages": top_stages(never_run),
         "blocked_reasons": queue_blocked_reasons(),
         "resolved_blocked_reasons": resolved_blocked_reasons(),
         "top_failing": state.get("failing", [])[:12],

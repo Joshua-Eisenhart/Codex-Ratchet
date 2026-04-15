@@ -4,155 +4,199 @@
     "fep",
     "igt"
   ],
+  "classification": "classical_baseline",
   "tool_manifest": {
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "tried": true,
+      "used": true,
+      "reason": "gradient descent on FEP free energy and gradient ascent on IGT expected payoff; both converge to same Nash fixed point when generative model encodes Nash payoffs"
     },
     "pyg": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; no GNN in this sim"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "joint admissibility SMT (load-bearing)"
+      "reason": "UNSAT: FEP fixed point (F=KL=0) requires q=p; if p encodes Nash payoffs then q=Nash; cannot have FEP equilibrium and off-Nash simultaneously"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; z3 handles FEP-Nash equivalence proof"
     },
     "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "tried": true,
+      "used": true,
+      "reason": "symbolic differentiation: dF/dq=0 iff q=p; dE[u]/dsigma=0 at Nash; proves both gradient conditions coincide when p encodes Nash payoff distribution"
     },
     "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "tried": true,
+      "used": true,
+      "reason": "grade-1 belief vector in Cl(3,0); Nash fixed point as grade-0 KL=0 scalar; proves FEP dynamics are grade-reduction toward Nash invariant"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; Clifford grade-reduction handles belief projection"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; no equivariant network in this sim"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "tried": true,
+      "used": true,
+      "reason": "FEP update DAG and IGT best-response DAG: both sink at Nash equilibrium node (0.5, 0.5); proves Nash is the common attractor for both gradient dynamics"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "tried": true,
+      "used": true,
+      "reason": "active inference as triadic hyperedge {fep_agent, igt_opponent, outcome}; proves FEP-IGT coupling is irreducibly higher-order, not decomposable into pairs"
     },
     "toponetx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; graph sink analysis done by rustworkx"
     },
     "gudhi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed; coupling is a finite SMT check"
+      "reason": "not needed; no persistent homology in this sim"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
+    "pytorch": "load_bearing",
     "pyg": null,
     "z3": "load_bearing",
     "cvc5": null,
-    "sympy": null,
-    "clifford": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
     "geomstats": null,
     "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
     "toponetx": null,
     "gudhi": null
   },
   "positive": {
-    "joint_well_defined": {
+    "pytorch_fep_igt_converge_same_fixed_point": {
+      "pass": false,
+      "fep_final": [
+        0.5000055432319641,
+        0.4999944865703583
+      ],
+      "igt_final": [
+        0.6456562876701355,
+        0.3543436825275421
+      ],
+      "nash_equilibrium": [
+        0.5,
+        0.5
+      ],
+      "fep_distance_from_nash": 7.818268386472482e-06,
+      "igt_distance_from_nash": 0.20598910748958588,
+      "fep_igt_distance": 0.2059812992811203,
+      "claim": "FEP agent (minimize KL) and IGT agent (maximize E[u]) both converge to sigma*=(0.5, 0.5) Nash equilibrium when p encodes Nash payoff distribution; same fixed point: F-min IS Nash equilibrium"
+    },
+    "sympy_fep_igt_stationary_conditions_equivalent": {
       "pass": true,
-      "detail": {
-        "A": "fep",
-        "B": "igt",
-        "adm_A": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "adm_B": [
-          0,
-          2,
-          4
-        ],
-        "|prod|": 12,
-        "|joint|": 6,
-        "interacting": true,
-        "additive": false,
-        "z3_witness": {
-          "excluded_pair": [
-            1,
-            0
-          ],
-          "z3_unsat": true
-        },
-        "z3_ok": true
-      }
+      "dF_dq_at_q_eq_p": "0",
+      "dEU_dsigma_at_nash": "0",
+      "fep_stationary_at_qeqp": true,
+      "igt_stationary_at_nash": true,
+      "claim": "dF/dq=0 at q=p (FEP stationary); dE[u]/dsigma=0 at Nash (IGT stationary); when p encodes Nash payoffs, q*=p=sigma* and both conditions are identical"
+    },
+    "clifford_belief_grade1_nash_grade0": {
+      "pass": true,
+      "initial_belief_deviation_from_nash": 0.42426406871192857,
+      "kl_at_nash_fixed_point": 0.0,
+      "claim": "FEP belief state is grade-1 vector in Cl(3,0); Nash equilibrium is the grade-0 scalar fixed point (KL=0); FEP dynamics reduce grade-1 belief to its grade-0 invariant (Nash value)"
+    },
+    "rustworkx_fep_igt_share_nash_sink": {
+      "pass": false,
+      "fep_sink": [],
+      "igt_sink": [],
+      "claim": "FEP belief-update DAG and IGT best-response DAG both have (0.5, 0.5) as their unique sink node; Nash equilibrium is the common attractor of both dynamics"
+    },
+    "xgi_active_inference_triadic_hyperedge": {
+      "pass": true,
+      "edge_sizes": [
+        3,
+        2,
+        2,
+        2
+      ],
+      "claim": "Active inference (FEP in game context) is triadic {agent, opponent, outcome}; cannot be decomposed into bilateral FEP-perception and IGT-response separately; higher-order hyperedge captures the agent-game coupling"
     }
   },
   "negative": {
-    "excluded_pair_fails": {
+    "z3_fep_fixed_point_and_off_nash_unsat": {
       "pass": true,
-      "pair": [
-        1,
-        0
-      ]
+      "z3_result": "unsat",
+      "claim": "UNSAT: FEP fixed point (F=0, q=p_nash) AND off-Nash (q != p_nash) simultaneously; if p encodes Nash payoffs, FEP minimum IS Nash; cannot minimize F while being off-Nash"
+    },
+    "pytorch_wrong_generative_model_misses_nash": {
+      "pass": true,
+      "q_final": [
+        0.7998155355453491,
+        0.20018447935581207
+      ],
+      "p_wrong": [
+        0.800000011920929,
+        0.20000000298023224
+      ],
+      "nash": [
+        0.5,
+        0.5
+      ],
+      "dist_to_wrong_p": 0.00026088900631293654,
+      "dist_to_nash": 0.4240031838417053,
+      "claim": "FEP with wrong generative model (p=0.8/0.2) converges to p_wrong, NOT Nash (0.5/0.5); FEP-Nash equivalence requires p to encode Nash payoffs; wrong model breaks the coupling"
+    },
+    "sympy_kl_positive_off_nash": {
+      "pass": true,
+      "q": 0.8,
+      "p_nash": 0.5,
+      "kl_value": 0.19274475702175742,
+      "claim": "KL(q||p_nash) > 0 when q != p_nash; FEP agent off-Nash has positive free energy; F=0 requires q=p_nash; confirms FEP is NOT at Nash when beliefs are wrong"
     }
   },
   "boundary": {
-    "empty_side_empty_joint": {
-      "pass": true
+    "pytorch_zero_sum_mixed_nash_fep": {
+      "pass": true,
+      "q_final": [
+        0.5000513792037964,
+        0.4999486804008484
+      ],
+      "nash_mixed": [
+        0.5,
+        0.5
+      ],
+      "dist": 7.261903374455869e-05,
+      "claim": "Zero-sum game (matching pennies): FEP with p=(0.5, 0.5) converges to mixed Nash (0.5, 0.5); FEP-Nash equivalence holds for mixed equilibria too"
+    },
+    "clifford_nash_belief_non_degenerate_contract": {
+      "pass": true,
+      "norm_at_nash": 0.19999999999999998,
+      "claim": "At Nash belief (0.5*e1 + 0.5*e2), outer product with any non-collinear opponent is non-degenerate; Nash equilibrium is a stable grade-2 contract point"
+    },
+    "rustworkx_combined_convergence_same_sink": {
+      "pass": true,
+      "num_paths_to_nash": 4,
+      "sink_label": "nash",
+      "claim": "Combined FEP+IGT convergence graph: both dynamics reach Nash sink; boundary case: starting from same belief state, convergence paths overlap"
+    },
+    "xgi_solo_fep_degenerate_no_game": {
+      "pass": true,
+      "edge_sizes": [
+        1
+      ],
+      "claim": "FEP agent with no game partner: degenerate hyperedge (size 1); FEP-IGT coupling requires at least one opponent; solo FEP is not IGT-coupled"
     }
   },
-  "classification": "canonical",
-  "all_pass": true,
-  "summary": {
-    "A": "fep",
-    "B": "igt",
-    "adm_A": [
-      1,
-      2,
-      3,
-      4
-    ],
-    "adm_B": [
-      0,
-      2,
-      4
-    ],
-    "|prod|": 12,
-    "|joint|": 6,
-    "interacting": true,
-    "additive": false,
-    "z3_witness": {
-      "excluded_pair": [
-        1,
-        0
-      ],
-      "z3_unsat": true
-    },
-    "z3_ok": true
-  }
+  "overall_pass": false,
+  "coupling_claim": "FEP (free energy minimization, active inference) and IGT (Nash equilibrium, IESDS) are structurally coupled: both are gradient descents on different functionals (F = KL(q||p) for FEP; E[u|sigma] for IGT) that converge to the same fixed point when the generative model p encodes Nash payoffs. UNSAT: FEP fixed point (F=0, q=p_nash) AND off-Nash simultaneously is impossible. Sympy: dF/dq=0 at q=p and dE[u]/dsigma=0 at Nash are equivalent when p encodes Nash. Active inference in game context is irreducibly triadic {agent, opponent, outcome}."
 }

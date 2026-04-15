@@ -45,7 +45,22 @@ def load_result(path: pathlib.Path) -> dict:
         return {}
 
 def is_passing(r: dict) -> bool:
-    return bool(r.get("overall_pass") or r.get("pass") or r.get("result") == "PASS")
+    # Only treat as failing if overall_pass is explicitly False.
+    # Legacy JSONs (pre-SIM_TEMPLATE, no overall_pass field) are NOT failures —
+    # they use different schemas (verdict/timestamp/axis). Treat them as "unknown".
+    if "overall_pass" in r:
+        return bool(r["overall_pass"])
+    if "pass" in r:
+        return bool(r["pass"])
+    if r.get("result") == "PASS":
+        return True
+    # No known pass/fail field → legacy schema, not a real failure
+    return None  # type: ignore  — caller must handle None = unknown
+
+def is_legacy_schema(r: dict) -> bool:
+    """Pre-SIM_TEMPLATE result: has no overall_pass but has old-style fields."""
+    return ("overall_pass" not in r and "pass" not in r and
+            any(k in r for k in ("timestamp", "verdict", "axis", "evidence_ledger")))
 
 def has_stub_reasons(r: dict) -> bool:
     tm = r.get("tool_manifest", {})
@@ -232,8 +247,15 @@ def triage_cycle(dry: bool = False) -> dict:
 
         r = load_result(rj)
         age = result_age_days(rj)
+        passing = is_passing(r)
 
-        if not is_passing(r):
+        if is_legacy_schema(r):
+            # Legacy pre-SIM_TEMPLATE result — not a real failure, not a pass
+            # Count as "passing" for queue purposes (don't re-run old-format sims)
+            state["passing"].append(stem)
+            continue
+
+        if passing is False:
             state["failing"].append(stem)
             if not dry and not is_queued(str(sim)):
                 enqueue(sim, infer_lane(sim), "high")

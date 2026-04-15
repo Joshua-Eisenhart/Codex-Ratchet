@@ -621,6 +621,85 @@ def test_system_surface_audit_infers_legacy_pass_shapes() -> None:
     assert module._pass_state({"summary": {"positive": "42/42", "boundary": "5/5"}}) == "pass_inferred"
 
 
+def test_system_surface_audit_pidfile_uses_ps_fallback_on_permission_error(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_pid_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    pidfile = tmp_path / "runner.pid"
+    pidfile.write_text("123\n", encoding="utf-8")
+
+    def fake_kill(pid: int, sig: int) -> None:
+        raise PermissionError
+
+    monkeypatch.setattr(module.os, "kill", fake_kill)
+    monkeypatch.setattr(module, "_process_command", lambda pid: "bash scripts/perpetual_runner.sh")
+
+    status = module._pidfile_status("perpetual_runner", pidfile)
+
+    assert status["alive"] is True
+    assert status["alive_state"] == "ps_visible_permission_limited"
+    assert status["command"] == "bash scripts/perpetual_runner.sh"
+
+
+def test_system_surface_audit_reports_fail_and_unknown_families(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_result_surface_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    root = probes / "a2_state" / "sim_results"
+    root.mkdir(parents=True, exist_ok=True)
+
+    (root / "sim_szilard_alpha_results.json").write_text(
+        '{"overall_pass": false}\n',
+        encoding="utf-8",
+    )
+    (root / "sim_szilard_beta_results.json").write_text(
+        '{"overall_pass": false}\n',
+        encoding="utf-8",
+    )
+    (root / "sim_weyl_gamma_results.json").write_text(
+        '{"summary": {"all_checks_pass": true}}\n',
+        encoding="utf-8",
+    )
+    (root / "sim_axis_delta_results.json").write_text(
+        '{"summary": {"note": "unknown legacy shape"}}\n',
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULT_ROOTS", [root])
+
+    report = module.result_surface()["system_v4/probes/a2_state/sim_results"]
+
+    assert report["status"]["fail"] == 2
+    assert report["status"]["pass"] == 1
+    assert report["status"]["unknown"] == 1
+    assert report["fail_families"] == {"szilard": 2}
+    assert report["unknown_families"] == {"axis": 1}
+
+
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
     module = _load_module(
         "queue_claim_under_test",

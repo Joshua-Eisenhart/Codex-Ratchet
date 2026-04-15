@@ -65,10 +65,20 @@ def _pidfile_status(name: str, pidfile: Path) -> dict:
         status["alive_state"] = "stale_pid"
         return status
     except PermissionError:
+        status["command"] = _process_command(pid)
+        if status["command"]:
+            status["alive"] = True
+            status["alive_state"] = "ps_visible_permission_limited"
+            return status
         status["alive"] = None
         status["alive_state"] = "permission_limited"
         return status
     except OSError:
+        status["command"] = _process_command(pid)
+        if status["command"]:
+            status["alive"] = True
+            status["alive_state"] = "ps_visible_os_error_limited"
+            return status
         status["alive"] = None
         status["alive_state"] = "os_error_limited"
         return status
@@ -79,20 +89,30 @@ def _pidfile_status(name: str, pidfile: Path) -> dict:
 
 
 def _wrapper_processes() -> list[dict]:
-    proc = _run(["ps", "-Ao", "pid=,command="])
-    if proc is None or proc.returncode != 0:
-        return []
     rows = []
-    for line in proc.stdout.splitlines():
-        line = line.strip()
-        if not line or "scripts/perpetual_runner.sh" not in line:
+    for args in (["ps", "aux"], ["ps", "-Ao", "pid=,command="]):
+        proc = _run(args)
+        if proc is None or proc.returncode != 0:
             continue
-        pid_text, _, cmd = line.partition(" ")
-        try:
-            pid = int(pid_text.strip())
-        except ValueError:
-            continue
-        rows.append({"pid": pid, "command": cmd.strip()})
+        for line in proc.stdout.splitlines():
+            line = line.strip()
+            if not line or "scripts/perpetual_runner.sh" not in line:
+                continue
+            if args == ["ps", "aux"]:
+                parts = line.split(None, 10)
+                if len(parts) < 11:
+                    continue
+                pid_text = parts[1]
+                cmd = parts[10]
+            else:
+                pid_text, _, cmd = line.partition(" ")
+            try:
+                pid = int(pid_text.strip())
+            except ValueError:
+                continue
+            rows.append({"pid": pid, "command": cmd.strip()})
+        if rows:
+            break
     return rows
 
 
@@ -261,12 +281,25 @@ def _looks_like_legacy_pass(data: dict) -> bool:
     return bool(section_votes) and all(section_votes)
 
 
+def _result_family(path: Path) -> str:
+    stem = path.name
+    if stem.endswith("_results.json"):
+        stem = stem[:-13]
+    elif stem.endswith(".json"):
+        stem = stem[:-5]
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    return stem.split("_", 1)[0] if "_" in stem else stem
+
+
 def result_surface() -> dict:
     roots = {}
     for root in RESULT_ROOTS:
         files = list(root.glob("*.json")) if root.exists() else []
         status_counts: Counter[str] = Counter()
         schema_counts: Counter[str] = Counter()
+        fail_families: Counter[str] = Counter()
+        unknown_families: Counter[str] = Counter()
         orphan_like = 0
         samples: defaultdict[str, list[str]] = defaultdict(list)
         for path in files:
@@ -278,6 +311,11 @@ def result_surface() -> dict:
             status_counts[pass_state] += 1
             if pass_state == "fail" and len(samples["fail"]) < 8:
                 samples["fail"].append(path.name)
+                fail_families[_result_family(path)] += 1
+            elif pass_state == "fail":
+                fail_families[_result_family(path)] += 1
+            elif pass_state == "unknown":
+                unknown_families[_result_family(path)] += 1
             if isinstance(data, dict):
                 if "overall_pass" in data:
                     schema_counts["overall_pass"] += 1
@@ -315,6 +353,8 @@ def result_surface() -> dict:
             "count": len(files),
             "status": dict(status_counts),
             "schema": dict(schema_counts),
+            "fail_families": dict(fail_families.most_common(10)),
+            "unknown_families": dict(unknown_families.most_common(10)),
             "orphan_like": orphan_like,
             "samples": dict(samples),
         }

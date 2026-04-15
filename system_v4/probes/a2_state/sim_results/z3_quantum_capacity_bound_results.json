@@ -119,21 +119,21 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies Q <= I_c AND Q > I_c simultaneously. Hashing bound Q <= I_c confirmed: quantum capacity cannot exceed the coherent information. Q > I_c is impossible given the bound.",
-      "elapsed_s": 0.0127
+      "elapsed_s": 0.0045
     },
     "proof2_Ic_upper_bound": {
       "name": "Ic_upper_bound_1ebit_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "I_c = S(output) - S(exchange) > 1 is UNSAT given S(output) <= 1. The coherent information cannot exceed log(dim) = 1 ebit for a qubit channel. Upper bound I_c <= 1 is confirmed.",
-      "elapsed_s": 0.0009
+      "elapsed_s": 0.0016
     },
     "proof3_degradable_Q_equals_Ic": {
       "name": "degradable_Q_equals_Ic_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Degradable channel has Q = I_c (no gap). Asserting Q < I_c under the degradable constraint is UNSAT. For degradable channels, the single-letter hashing formula is tight.",
-      "elapsed_s": 0.0006
+      "elapsed_s": 0.0012
     }
   },
   "negative": {
@@ -144,7 +144,7 @@
       "example_Q": "1/2",
       "example_Ic": "1",
       "interpretation": "Non-degradable channel with Q < I_c is SAT (gap exists). This matches the Shor-Smolin code result: non-degradable channels can have Q < I_c (the single-letter formula is not tight). Regularization (block coding) can be needed to achieve true capacity.",
-      "elapsed_s": 0.0008
+      "elapsed_s": 0.0011
     },
     "proof5_superadditivity": {
       "name": "superadditivity_sat",
@@ -153,7 +153,7 @@
       "example_Ic_single": "2/3",
       "example_Ic_double": "2",
       "interpretation": "Superadditivity I_c(T^\u22972) > 2*I_c(T) is SAT. This is the hallmark of non-degradable channels. The true quantum capacity Q = lim_n I_c(T^\u2297n)/n can exceed I_c(T). Computing Q exactly requires regularization over all block lengths.",
-      "elapsed_s": 0.0008
+      "elapsed_s": 0.0018
     }
   },
   "boundary": {
@@ -162,21 +162,21 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Q > 0 AND I_c <= 0 is UNSAT given the hashing bound Q <= I_c. Positive quantum capacity REQUIRES positive coherent information. I_c <= 0 is a sufficient condition for Q = 0.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0011
     },
     "boundary2_identity_Q_1": {
       "name": "identity_channel_Q_1",
       "status": "PASS",
       "verdict": "SAT",
       "interpretation": "Q = I_c = 1 for identity channel is SAT. The identity is degradable, so Q = I_c = 1 (maximum capacity). This is the upper boundary of the quantum capacity for qubit channels.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0011
     },
     "boundary3_completely_depolarizing_Q_0": {
       "name": "completely_depolarizing_Q_0",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Completely depolarizing channel forces I_c = -1. Combined with Q >= 0 and hashing bound Q <= I_c = -1: Q > 0 is UNSAT. The completely depolarizing channel has Q = 0.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0009
     }
   },
   "cvc5_crosscheck": {
@@ -184,6 +184,6 @@
     "status": "PASS",
     "synthesized_Q_bound": "(lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0))",
     "interpretation": "cvc5 synthesized Q_bound(I_c) = (lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0)). This confirms the hashing bound is a function of I_c alone. For I_c > 0: Q_bound = I_c (linear). For I_c <= 0: Q_bound = 0.",
-    "elapsed_s": 0.3197
+    "elapsed_s": 0.2601
   }
 }

@@ -8,8 +8,8 @@ Claim (admissibility):
   (1) Gram-Schmidt maps any GL(3,R) element to an O(3) element (projection is well-defined).
   (2) The inclusion O(3) ↪ GL(3,R) is order-preserving in the tower DAG.
   (3) The quotient GL(3,R)/O(3) ≅ positive-definite symmetric matrices (polar decomposition).
-  (4) A∘B ≠ B∘A when A ∈ GL(3,R)\O(3) and B ∈ O(3) (non-commutativity = ratchet direction).
-  z3 UNSAT: no element can be simultaneously in GL(3,R)\O(3) and have M^TM = I.
+  (4) A∘B ≠ B∘A when A ∈ GL(3,R)\\O(3) and B ∈ O(3) (non-commutativity = ratchet direction).
+  z3 UNSAT: no element can be simultaneously in GL(3,R)\\O(3) and have M^TM = I.
 
 Per coupling program order: pairwise coupling follows shell-local probes for both shells.
 Classification: classical_baseline.
@@ -20,6 +20,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical pairwise baseline: this tests the GL(3,R)↔O(3) coupling and its "
+    "exclusion structure before triple or higher-order coexistence claims."
+)
 
 _PAIRWISE_REASON = (
     "not used in this pairwise GL(3)↔O(3) coupling probe; "
@@ -27,24 +31,24 @@ _PAIRWISE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: pytorch polar decomposition (QR) maps any GL(3,R) element to its O(3) factor; the metric constraint is imposed by extracting Q."},
     "pyg":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves no element can be in GL(3,R)\\O(3) (i.e., det≠0 AND M^TM≠I) while simultaneously satisfying M^TM=I."},
     "cvc5":      {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy decomposes gl(3) = so(3) + sym(3) into antisymmetric (so(3)) and symmetric parts; the metric constraint projects onto so(3) = Lie(O(3))."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: in Cl(3,0), O(3) acts via versors (grade-1 elements); GL(3,R)\\O(3) elements distort the metric but remain grade-1 in the algebra."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialOrthogonal confirms identity belongs to SO(3); GL(3)→O(3) coupling is validated through the manifold structure."},
     "e3nn":      {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes the GL(3)→O(3) coupling as the first directed edge in the G-tower DAG; verified via adjacency query."},
     "xgi":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": None,
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

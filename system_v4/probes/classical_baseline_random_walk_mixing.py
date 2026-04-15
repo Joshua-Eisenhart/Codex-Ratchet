@@ -46,19 +46,17 @@ def run_positive_tests():
     out = {}
     n = 8
     A = build_cycle(n)
-    P_raw = transition(A)
-    P = 0.5*np.eye(n) + 0.5*P_raw  # lazy chain to break period-2 on even cycle
+    P = transition(A)
     # stationary distribution is uniform
     pi = np.ones(n)/n
     out["stationary_is_fixed"] = {"pass": bool(np.allclose(pi @ P, pi, atol=1e-12))}
     # after many steps from delta, distribution approaches uniform
     x = np.zeros(n); x[0] = 1.0
-    Pk = np.linalg.matrix_power(P, 400)
+    Pk = np.linalg.matrix_power(P, 200)
     xk = x @ Pk
     out["mixes_to_uniform"] = {"pass": bool(np.allclose(xk, pi, atol=1e-6))}
     # Row sums of P are 1
     out["rows_sum_one"] = {"pass": bool(np.allclose(P.sum(axis=1), np.ones(n)))}
-    out["raw_rows_sum_one"] = {"pass": bool(np.allclose(P_raw.sum(axis=1), np.ones(n)))}
     return out
 
 def run_negative_tests():

@@ -11,6 +11,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates evotorch as a single-tool "
+    "evolutionary-optimization probe, not a canonical nonclassical witness."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the evotorch SNES optimizer in isolation; "
@@ -31,12 +35,14 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "evotorch":  {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for SNES-based evolutionary optimization"},
 }
 # NOTE: evotorch uses pytorch as a dependency to represent tensors, but this
 # probe does not exercise pytorch as a separately-tested tool; the quadratic
 # objective is trivially evaluable without autograd or any torch-specific API.
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["evotorch"] = "load_bearing"
 
 EVO_OK = False
 EVO_VERSION = None

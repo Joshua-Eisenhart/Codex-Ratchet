@@ -39,6 +39,21 @@ ALIASES = {
     "toponetx": "toponetx",
     "gudhi": "gudhi",
     "rustworkx": "rustworkx",
+    "hypothesis": "hypothesis",
+    "optuna": "optuna",
+    "evotorch": "evotorch",
+    "datasketch": "datasketch",
+    "pymoo": "pymoo",
+    "ribs": "ribs",
+    "deap": "deap",
+    "networkx": "networkx",
+    "igraph": "igraph",
+    "scipy": "scipy",
+    "sklearn": "sklearn",
+    "hdbscan": "hdbscan",
+    "umap": "umap",
+    "pynndescent": "pynndescent",
+    "cma": "cma",
 }
 
 
@@ -163,20 +178,44 @@ def extract_tool_integration_depth(path: Path) -> dict | None:
 
 def probe_status(tool: str) -> str | None:
     """Return None if OK, else violation status string."""
-    probe = PROBES_DIR / f"sim_{tool}_capability.py"
-    result = RESULTS_DIR / f"{tool}_capability_results.json"
-    if not probe.exists():
-        return "missing_probe"
-    if not result.exists():
+    candidates = [
+        (
+            PROBES_DIR / f"sim_{tool}_capability.py",
+            RESULTS_DIR / f"{tool}_capability_results.json",
+        ),
+        (
+            PROBES_DIR / f"sim_capability_{tool}_isolated.py",
+            RESULTS_DIR / f"sim_capability_{tool}_isolated_results.json",
+        ),
+    ]
+
+    existing_probe = False
+    saw_result = False
+    for probe, result in candidates:
+        if not probe.exists():
+            continue
+        existing_probe = True
+        if not result.exists():
+            continue
+        saw_result = True
+        try:
+            data = json.loads(result.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+
+        summary = data.get("summary") or {}
+        if (
+            summary.get("all_pass") is True
+            or data.get("overall_pass") is True
+            or data.get("passed") is True
+        ):
+            return None
+
+    if existing_probe and not saw_result:
         return "probe_stale"
-    try:
-        data = json.loads(result.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
-        return "probe_stale"
-    summary = data.get("summary") or {}
-    if summary.get("all_pass") is True:
-        return None
-    return "probe_failing"
+    if existing_probe:
+        return "probe_failing"
+    return "missing_probe"
 
 
 def main() -> int:
@@ -214,7 +253,10 @@ def main() -> int:
             entry = {"tool_declared": str(tool), "tool_canonical": canon}
             report["load_bearing_tools"].append(entry)
             # Self-probe: a capability sim is load-bearing on its own tool.
-            if sim_path.name == f"sim_{canon}_capability.py":
+            if sim_path.name in {
+                f"sim_{canon}_capability.py",
+                f"sim_capability_{canon}_isolated.py",
+            }:
                 entry["status"] = "self_probe_ok"
                 continue
             status = probe_status(canon)

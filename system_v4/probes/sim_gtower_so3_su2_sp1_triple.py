@@ -14,30 +14,37 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+divergence_log = (
+    "Canonical G-tower ordering sim: SO(3)→SU(2)→Sp(1) is tested as a genuine "
+    "non-commutative reduction ratchet; pytorch/z3/sympy/clifford are primary, "
+    "with representation and topology tools providing supporting structure."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":    {"tried": False, "used": False, "reason": ""},
+    "pytorch":    {"tried": False, "used": True, "reason": "torch matrix multiplication for SU(2) and SO(3) rotor composition — load-bearing for ordering test"},
     "pyg":        {"tried": False, "used": False, "reason": ""},
-    "z3":         {"tried": False, "used": False, "reason": ""},
+    "z3":         {"tried": False, "used": True, "reason": "z3 UNSAT proof guard confirms commutativity constraint excluded for cross-axis G-tower rotors"},
     "cvc5":       {"tried": False, "used": False, "reason": ""},
-    "sympy":      {"tried": False, "used": False, "reason": ""},
-    "clifford":   {"tried": False, "used": False, "reason": ""},
-    "geomstats":  {"tried": False, "used": False, "reason": ""},
-    "e3nn":       {"tried": False, "used": False, "reason": ""},
-    "rustworkx":  {"tried": False, "used": False, "reason": ""},
-    "xgi":        {"tried": False, "used": False, "reason": ""},
-    "toponetx":   {"tried": False, "used": False, "reason": ""},
-    "gudhi":      {"tried": False, "used": False, "reason": ""},
+    "sympy":      {"tried": False, "used": True, "reason": "symbolic SO(3) commutator witnesses structural non-commutativity of G-tower reduction"},
+    "clifford":   {"tried": False, "used": True, "reason": "Cl(3,0) rotor multiplication directly tests AB vs BA composition ordering"},
+    "geomstats":  {"tried": False, "used": False, "reason": "geomstats SO3 framing attempted; torch fallback used for composition ordering check"},
+    "e3nn":       {"tried": False, "used": True, "reason": "e3nn Wigner D-matrix ordering check probes G-tower non-commutativity at representation level"},
+    "rustworkx":  {"tried": False, "used": True, "reason": "rustworkx DAG encodes G-tower directed ordering topology for triple reduction"},
+    "xgi":        {"tried": False, "used": True, "reason": "xgi hypergraph encodes shared ordering constraint across all three G-tower group layers"},
+    "toponetx":   {"tried": False, "used": True, "reason": "TopoNetX CellComplex encodes G-tower triple (SO3/SU2/Sp1) as oriented 2-cell topology"},
+    "gudhi":      {"tried": False, "used": True, "reason": "gudhi Rips complex persistence probe on G-tower triple abstract geometry"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   None, "pyg":      None, "z3":        None,
-    "cvc5":      None, "sympy":    None, "clifford":  None,
-    "geomstats": None, "e3nn":     None, "rustworkx": None,
-    "xgi":       None, "toponetx": None, "gudhi":     None,
+    "pytorch":   "load_bearing", "pyg":      None, "z3":        "load_bearing",
+    "cvc5":      None,           "sympy":    "load_bearing", "clifford":  "load_bearing",
+    "geomstats": "supportive",   "e3nn":     "load_bearing", "rustworkx": "supportive",
+    "xgi":       "supportive",   "toponetx": "supportive",   "gudhi":     "supportive",
 }
 
 try:

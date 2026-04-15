@@ -41,24 +41,24 @@ _TRIPLE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: torch tensors for all three group elements (GL, O, SO); simultaneous validity verified via det and M^TM checks; triple non-commutativity A∘B∘C ≠ C∘B∘A computed via torch.mm; triple intersection SO(3)∩O(3)∩GL(3)=SO(3) verified numerically."},
     "pyg":       {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves det=0 (outside GL) is incompatible with M^TM=I (inside O) AND det=+1 (inside SO); the GL exclusion and O/SO membership constraints are mutually exclusive in dimension 1 (and by extension 3); structural impossibility is the primary proof form."},
     "cvc5":      {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies GL→O→SO composition equals GL→SO shortcut via symbolic Gram-Schmidt pipeline on a concrete 3×3 integer matrix; confirms the composition is order-preserving (no path-dependence)."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Cl(3,0) distinguishes Pin(3) (O(3) double cover, odd+even versors) from Spin(3) (SO(3) double cover, even subalgebra only); the GL→O step corresponds to passing from arbitrary grade-1 scalings to unit versors; the O→SO step is exactly the passage from Pin(3) to Spin(3) (even grades only)."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialOrthogonal(n=3) samples SO(3) elements; each sampled element is verified to pass GL(3), O(3), and SO(3) tests simultaneously, confirming triple coexistence from the manifold side."},
     "e3nn":      {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx G-tower DAG with GL/O/SO nodes; verifies GL→O→SO path has length 2; all three nodes reachable from GL; SO is the shared face of both GL↔O and O↔SO pairwise edges."},
+    "xgi":       {"tried": False, "used": True, "reason": "load-bearing: xgi hypergraph with the triple coexistence hyperedge {GL, O, SO}; verifies cardinality 3; confirms this is the only 3-clique at the top of the tower (no other 3-way coexistence claimed)."},
     "toponetx":  {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "gudhi":     {"tried": False, "used": True, "reason": "load-bearing: gudhi Vietoris-Rips complex on a sample of SO(3) ≅ RP^3 (represented as unit quaternions on S^3); verifies H0=1 (connected); persistence diagram is non-empty, confirming topological structure."},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": None,
+    "rustworkx": "load_bearing", "xgi": "load_bearing", "toponetx": None, "gudhi": "load_bearing",
 }
 
 TORCH_OK = False

@@ -14,6 +14,8 @@ scope_note:
 """
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST={
     "pytorch":{"tried":False,"used":False,"reason":""},
     "sympy":  {"tried":False,"used":False,"reason":""},

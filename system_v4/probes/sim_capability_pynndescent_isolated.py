@@ -16,6 +16,12 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates pynndescent as a single-tool "
+    "approximate nearest-neighbor probe, not a canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -129,6 +135,13 @@ TOOL_MANIFEST = {
             "per the four-sim-kinds doctrine."
         ),
     },
+    "pynndescent": {
+        "tried": True, "used": True,
+        "reason": (
+            "load-bearing isolated capability probe for approximate nearest-neighbor "
+            "indexing and query over high-dimensional state vectors."
+        ),
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -144,6 +157,7 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None,
     "toponetx": None,
     "gudhi": None,
+    "pynndescent": "load_bearing",
 }
 
 # =====================================================================

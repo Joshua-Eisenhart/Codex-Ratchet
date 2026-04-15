@@ -18,7 +18,11 @@ construction is brittle without TopoNetX even though the admissibility
 CLAIM itself is tool-neutral once B_k is correct.
 
 classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+DEMOTE_REASON = (
+    "classical baseline integration: TopoNetX is construction-load-bearing, but "
+    "the Hodge-kernel admissibility claim remains a classical topology baseline "
+    "rather than a canonical nonclassical witness."
+)
 """
 
 import json
@@ -26,6 +30,11 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises TopoNetX construction of "
+    "Hodge operators on a classical topology pipeline, not a canonical "
+    "nonclassical witness."
+)
 
 # =====================================================================
 # TOOL MANIFEST

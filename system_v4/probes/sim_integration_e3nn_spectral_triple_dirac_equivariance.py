@@ -43,6 +43,11 @@ import math
 # =====================================================================
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises e3nn Dirac equivariance with "
+    "pytorch and z3 cross-checks as a tool-integration baseline, not a canonical "
+    "nonclassical witness."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {

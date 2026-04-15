@@ -24,6 +24,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises pynndescent neighborhood search "
+    "with torch, z3, and gudhi cross-checks as a tool-integration baseline, not a "
+    "canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -144,6 +151,15 @@ TOOL_MANIFEST = {
             "is the topological claim this sim tests."
         ),
     },
+    "pynndescent": {
+        "tried": True, "used": True,
+        "reason": (
+            "load-bearing: pynndescent builds the approximate nearest-neighbor "
+            "index over the 50 state vectors and returns the k=5 neighborhood "
+            "used by the z3 and gudhi checks; without that neighborhood graph "
+            "the integration claim is undefined."
+        ),
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -159,6 +175,7 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None,
     "toponetx": None,
     "gudhi": "load_bearing",
+    "pynndescent": "load_bearing",
 }
 
 # =====================================================================

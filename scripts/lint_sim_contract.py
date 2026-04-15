@@ -48,6 +48,13 @@ ALIASES = {
     "toponetx": "toponetx",
     "gudhi": "gudhi",
     "rustworkx": "rustworkx",
+    "hypothesis": "hypothesis",
+    "optuna": "optuna",
+    "evotorch": "evotorch",
+    "datasketch": "datasketch",
+    "pynndescent": "pynndescent",
+    "numpy": "numpy", "np": "numpy",
+    "networkx": "networkx", "nx": "networkx",
 }
 
 
@@ -60,9 +67,71 @@ def _is_ignored_sim_path(path: Path) -> bool:
     return path.name.endswith(" 2.py")
 
 
+def _is_capability_probe(path: Path, tool_canon: str | None = None) -> bool:
+    if tool_canon is not None:
+        return path.name in {
+            f"sim_{tool_canon}_capability.py",
+            f"sim_capability_{tool_canon}_isolated.py",
+        }
+    return path.name.endswith("_capability.py") or (
+        path.name.startswith("sim_capability_") and path.name.endswith("_isolated.py")
+    )
+
+
+def _is_integration_probe(path: Path) -> bool:
+    return path.name.startswith("sim_integration_")
+
+
 def _module_level_assignments(tree: ast.Module) -> dict:
-    """Collect literal-evaluable module-level assignments by name."""
+    """Collect module-level assignments that are static after simple name resolution."""
     out: dict = {}
+
+    def _literalish_eval(node: ast.AST):
+        if isinstance(node, ast.Constant):
+            return node.value
+        if isinstance(node, ast.Name):
+            if node.id in out:
+                return out[node.id]
+            raise ValueError(node.id)
+        if isinstance(node, ast.List):
+            return [_literalish_eval(elt) for elt in node.elts]
+        if isinstance(node, ast.Tuple):
+            return tuple(_literalish_eval(elt) for elt in node.elts)
+        if isinstance(node, ast.Set):
+            return {_literalish_eval(elt) for elt in node.elts}
+        if isinstance(node, ast.Dict):
+            return {
+                _literalish_eval(k): _literalish_eval(v)
+                for k, v in zip(node.keys, node.values)
+            }
+        if (
+            isinstance(node, ast.DictComp)
+            and len(node.generators) == 1
+            and not node.generators[0].ifs
+            and isinstance(node.generators[0].target, ast.Name)
+            and isinstance(node.generators[0].iter, ast.Name)
+        ):
+            source = out.get(node.generators[0].iter.id)
+            if not isinstance(source, dict):
+                raise ValueError(node.generators[0].iter.id)
+            target_name = node.generators[0].target.id
+            result = {}
+            for key in source:
+                local_env = dict(out)
+                local_env[target_name] = key
+                result_key = key if isinstance(node.key, ast.Name) and node.key.id == target_name else _literalish_eval(node.key)
+                if isinstance(node.value, ast.Name) and node.value.id == target_name:
+                    result_val = key
+                else:
+                    # Only support the common "{k: None for k in TOOL_MANIFEST}" pattern.
+                    if isinstance(node.value, ast.Constant):
+                        result_val = node.value.value
+                    else:
+                        raise ValueError("dictcomp_value")
+                result[result_key] = result_val
+            return result
+        raise ValueError(type(node).__name__)
+
     for node in tree.body:
         targets = []
         value = None
@@ -77,28 +146,44 @@ def _module_level_assignments(tree: ast.Module) -> dict:
         for t in targets:
             if isinstance(t, ast.Name):
                 try:
-                    out[t.id] = ast.literal_eval(value)
+                    out[t.id] = _literalish_eval(value)
                 except (ValueError, SyntaxError):
-                    # Re-attempt for dict-of-dicts whose inner strings are literals:
-                    # literal_eval handles those. A failure means non-literal; skip.
                     pass
     return out
 
 
 def _capability_ok(tool_canon: str) -> tuple[bool, str]:
-    probe = PROBES_DIR / f"sim_{tool_canon}_capability.py"
-    result = RESULTS_DIR / f"{tool_canon}_capability_results.json"
-    if not probe.exists():
+    candidates = [
+        (
+            PROBES_DIR / f"sim_{tool_canon}_capability.py",
+            RESULTS_DIR / f"{tool_canon}_capability_results.json",
+        ),
+        (
+            PROBES_DIR / f"sim_capability_{tool_canon}_isolated.py",
+            RESULTS_DIR / f"sim_capability_{tool_canon}_isolated_results.json",
+        ),
+    ]
+    any_probe = False
+    for probe, result in candidates:
+        if not probe.exists():
+            continue
+        any_probe = True
+        if not result.exists():
+            continue
+        try:
+            data = json.loads(result.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if (
+            (data.get("summary") or {}).get("all_pass") is True
+            or data.get("overall_pass") is True
+            or data.get("passed") is True
+        ):
+            return True, "ok"
+        return False, "probe_failing"
+    if not any_probe:
         return False, "missing_probe"
-    if not result.exists():
-        return False, "probe_stale"
-    try:
-        data = json.loads(result.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, OSError):
-        return False, "probe_stale"
-    if (data.get("summary") or {}).get("all_pass") is True:
-        return True, "ok"
-    return False, "probe_failing"
+    return False, "probe_stale"
 
 
 def lint_sim(path: Path) -> list[dict]:
@@ -168,15 +253,20 @@ def lint_sim(path: Path) -> list[dict]:
                 continue
             canon = canonical(str(tool))
             # Self-probe exception
-            if path.name == f"sim_{canon}_capability.py":
+            if _is_capability_probe(path, canon):
                 continue
             ok, detail = _capability_ok(canon)
             if not ok:
                 violations.append({"sim": rel, "rule": f"C5_{detail}",
                                    "detail": f"{tool}->{canon}"})
 
-    # C6: classical_baseline sims may not carry load_bearing tools (Lane B doctrine)
-    if cls == "classical_baseline" and isinstance(depth, dict):
+    # C6: classical_baseline sims may not carry load_bearing tools, except explicit
+    # capability/integration tool-surface baselines.
+    if (
+        cls == "classical_baseline"
+        and isinstance(depth, dict)
+        and not (_is_capability_probe(path) or _is_integration_probe(path))
+    ):
         for tool, lvl in depth.items():
             if lvl == "load_bearing":
                 violations.append({"sim": rel, "rule": "C6_classical_has_load_bearing",

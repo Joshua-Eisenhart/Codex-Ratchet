@@ -45,6 +45,8 @@ import math
 import cmath
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "numpy/sympy sufficient for 2-state symbolic Hopf check; no autograd needed at L9"},
     "pyg":       {"tried": False, "used": False, "reason": "no graph structure at loop-law layer"},

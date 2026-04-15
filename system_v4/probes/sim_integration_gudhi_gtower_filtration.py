@@ -13,6 +13,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises gudhi persistence, z3 ordering, "
+    "and torch/rustworkx cross-checks on the G-tower filtration as a tool-integration "
+    "baseline, not a canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

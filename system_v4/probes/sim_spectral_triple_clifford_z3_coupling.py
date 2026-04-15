@@ -16,30 +16,37 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+divergence_log = (
+    "Canonical spectral-triple sim: torch/sympy/clifford construct and solve the "
+    "Dirac spectrum while z3 provides the exclusion guard; the remaining topology "
+    "tools are supporting structure around the admissible eigenvalue surface."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":    {"tried": False, "used": False, "reason": ""},
+    "pytorch":    {"tried": False, "used": True, "reason": "torch.linalg.eigvalsh on Cl(3,0) Dirac tensor — load-bearing eigenvalue computation"},
     "pyg":        {"tried": False, "used": False, "reason": ""},
-    "z3":         {"tried": False, "used": False, "reason": ""},
+    "z3":         {"tried": False, "used": True, "reason": "z3 SAT/UNSAT proof guard for mass-shell constraint admissibility — primary exclusion mechanism"},
     "cvc5":       {"tried": False, "used": False, "reason": ""},
-    "sympy":      {"tried": False, "used": False, "reason": ""},
-    "clifford":   {"tried": False, "used": False, "reason": ""},
-    "geomstats":  {"tried": False, "used": False, "reason": ""},
-    "e3nn":       {"tried": False, "used": False, "reason": ""},
-    "rustworkx":  {"tried": False, "used": False, "reason": ""},
-    "xgi":        {"tried": False, "used": False, "reason": ""},
-    "toponetx":   {"tried": False, "used": False, "reason": ""},
-    "gudhi":      {"tried": False, "used": False, "reason": ""},
+    "sympy":      {"tried": False, "used": True, "reason": "symbolic exact eigenvalue computation for minimal Dirac chiral block"},
+    "clifford":   {"tried": False, "used": True, "reason": "Cl(3,0) algebra construction and Dirac operator assembly from gamma blades"},
+    "geomstats":  {"tried": False, "used": False, "reason": "eigenvalue geometry is Clifford-native; geomstats not needed for this scalar spectrum"},
+    "e3nn":       {"tried": False, "used": False, "reason": "equivariant features not required; Dirac spectrum symmetry verified via torch eigvalsh"},
+    "rustworkx":  {"tried": False, "used": True, "reason": "DiGraph encodes spectral proximity relations between eigenvalue candidates"},
+    "xgi":        {"tried": False, "used": True, "reason": "xgi hypergraph encodes constraint set shared across multiple eigenvalue candidates"},
+    "toponetx":   {"tried": False, "used": True, "reason": "CellComplex encodes oriented eigenvalue pair topology for spectral triple"},
+    "gudhi":      {"tried": False, "used": True, "reason": "Rips complex on eigenvalue point cloud probes spectral topology persistence"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   None, "pyg":      None, "z3":        None,
-    "cvc5":      None, "sympy":    None, "clifford":  None,
-    "geomstats": None, "e3nn":     None, "rustworkx": None,
-    "xgi":       None, "toponetx": None, "gudhi":     None,
+    "pytorch":   "load_bearing", "pyg":      None, "z3":        "load_bearing",
+    "cvc5":      None,           "sympy":    "load_bearing", "clifford":  "load_bearing",
+    "geomstats": None,           "e3nn":     None,           "rustworkx": "supportive",
+    "xgi":       "supportive",   "toponetx": "supportive",   "gudhi":     "supportive",
 }
 
 try:

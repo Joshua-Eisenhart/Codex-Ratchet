@@ -28,6 +28,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical ladder baseline: L11 placement admissibility is represented here "
+    "by discrete shell-local rule checks and z3 support, not a canonical "
+    "nonclassical witness."
+)
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
     "pyg":       {"tried": False, "used": False, "reason": ""},

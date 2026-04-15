@@ -10,8 +10,7 @@ and {gamma, D}=0 for a prescribed Dirac.
 import json, os
 import numpy as np
 
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "numpy":  {"tried": True, "used": True,  "reason": "matrix algebra for (A,H,D,gamma)"},

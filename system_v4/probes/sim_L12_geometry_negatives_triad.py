@@ -19,6 +19,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical ladder baseline: L12 geometry negatives are represented here by "
+    "shell-local exclusion checks and a z3 support guard, not a canonical "
+    "nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

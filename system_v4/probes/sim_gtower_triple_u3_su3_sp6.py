@@ -60,21 +60,25 @@ _TRIPLE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: complex128 for U/SU, float64 for Sp; constructs U(3)∋U, SU(3)∋S, Sp(6)∋X simultaneously; real embedding M_emb6 = [[Re,-Im],[Im,Re]]; verifies M^T J M = J for SU(3) embedded in Sp(6); triple non-commutativity."},
     "pyg":       {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: UNSAT #1: det=1 ∧ det≠1 impossible (SU(3)⊂U(3) boundary); UNSAT #2: ‖col‖=1 ∧ ‖col‖≠1 impossible (U(3) exclusion for non-unitary Sp element)."},
     "cvc5":      {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sp(6) Hamiltonian condition M^T J + J M = 0; u(3) anti-Hermitian; su(3) anti-Hermitian + traceless; all su(3) generators are also sp(6) generators via real embedding; verified at 2×2 sp(2) base case."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Cl(3,0) quaternion basis e1,e2,e12; e1^2=e2^2=1 (Cl(3,0) signature), e12^2=-1 (complex structure); SU(2)=Spin(3)=unit quaternions; SU(2) element R satisfies M^T J_2 M = J_2 (Sp(2) condition)."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: sample U(3) and SU(3) elements via geomstats, embed as real 6×6 via real embedding, verify Sp(6) constraint M^T J_6 M = J_6 holds."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: e3nn D^1 irrep of SU(3)/SO(3) (Gell-Mann / angular momentum representation); unitary 3×3 matrix; real embedding passes Sp(6) symplectic check."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: G-tower DAG; topological sort has Sp(6) last (out-deg=0 terminal); U→SU→Sp path length=2; U at in-deg from SO(3) side."},
+    "xgi":       {"tried": False, "used": True, "reason": "load-bearing: triple hyperedge {U3,SU3,Sp6}; Sp(6) is terminal node; checks all pairwise sub-faces {U3,SU3}, {SU3,Sp6}, {U3,Sp6} are present."},
     "toponetx":  {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "gudhi":     {"tried": False, "used": True, "reason": "load-bearing: filtration on sp(6) generators as metric space; compute H0 to confirm generator set is connected (single component at small radius); sp(6) generator matrix entries as point cloud."},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": "load_bearing", "toponetx": None, "gudhi": "load_bearing",
+}
 
 # ── tool imports ───────────────────────────────────────────────────────────────
 

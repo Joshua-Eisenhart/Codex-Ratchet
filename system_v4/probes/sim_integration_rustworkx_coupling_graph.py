@@ -23,6 +23,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises rustworkx shell-coupling "
+    "graph analysis with torch and z3 cross-checks as a tool-integration baseline, "
+    "not a canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

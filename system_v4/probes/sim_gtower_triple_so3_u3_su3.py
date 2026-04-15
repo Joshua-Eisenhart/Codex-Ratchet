@@ -53,21 +53,25 @@ _TRIPLE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load_bearing: dtype=torch.complex128 tensors used to verify M†M=I, |det|=1, det=+1 simultaneously for SO(3), U(3), SU(3) elements; triple intersection SO(3)∩U(3)∩SU(3)=SO(3) confirmed numerically; U(1) center triviality and three-way non-commutativity tested."},
     "pyg":       {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load_bearing: z3 UNSAT proves x²=-1 has no real solution, encoding that SO(3) matrices (real entries) cannot have purely imaginary eigenvalues — the SO↔U complexification boundary."},
     "cvc5":      {"tried": False, "used": False, "reason": _TRIPLE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load_bearing: symbolic trace decomposition confirms u(3) = su(3) ⊕ u(1); so(3) generators are real antisymmetric (traceless and real) — they live in the intersection of so(3) ⊂ su(3) ⊂ u(3) at the Lie algebra level."},
+    "clifford":  {"tried": False, "used": True, "reason": "load_bearing: Cl(3,0) even subalgebra is Spin(3)≅SU(2); bivector e12 is the complex structure J (J²=-1); rotor R=cos(t/2)+sin(t/2)*e12 acts as U(1) phase on the e12-plane; grade structure shows SO→U complexification at Clifford level."},
+    "geomstats": {"tried": False, "used": True, "reason": "load_bearing: sample from SpecialOrthogonal(n=3); embed real 3×3 matrix as complex128; verify passes U(3) (M†M=I) and SU(3) (det=1) tests simultaneously, confirming SO(3)⊂SU(3)⊂U(3) numerically."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load_bearing: e3nn D^l(l=1) is the defining SO(3) representation; verified simultaneously unitary (U(3) member) and det=1 (SU(3) member); confirms SO(3) irrep lives in the triple intersection SO(3)∩U(3)∩SU(3)."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load_bearing: rustworkx G-tower DAG encodes SO(3)→U(3)→SU(3) with directed edges; path-length=2 from SO(3) to SU(3) confirmed; node properties carry group metadata."},
+    "xgi":       {"tried": False, "used": True, "reason": "load_bearing: xgi encodes triple coexistence as a 3-node hyperedge {SO3, U3, SU3}; all three pairwise sub-faces verified present; confirms the triple is an internal triple in the G-tower hypergraph."},
     "toponetx":  {"tried": False, "used": False, "reason": _TRIPLE_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _TRIPLE_REASON},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": "load_bearing", "toponetx": None, "gudhi": None,
+}
 
 # ── tool imports ──────────────────────────────────────────────────────────────
 

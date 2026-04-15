@@ -17,30 +17,37 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+divergence_log = (
+    "Canonical gerbe coupling sim: S^2 gerbe curvature and T^2 holonomy remain "
+    "non-trivial under pairwise coupling; torch/z3/sympy carry the primary witness "
+    "while the remaining geometric/topological tools provide supporting structure."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":    {"tried": False, "used": False, "reason": ""},
+    "pytorch":    {"tried": False, "used": True, "reason": "torch discretization of S^2 curvature 2-form tensor and numerical integration — load-bearing"},
     "pyg":        {"tried": False, "used": False, "reason": ""},
-    "z3":         {"tried": False, "used": False, "reason": ""},
+    "z3":         {"tried": False, "used": True, "reason": "z3 UNSAT proof that curvature integral = 0 is excluded — primary non-triviality guard"},
     "cvc5":       {"tried": False, "used": False, "reason": ""},
-    "sympy":      {"tried": False, "used": False, "reason": ""},
-    "clifford":   {"tried": False, "used": False, "reason": ""},
-    "geomstats":  {"tried": False, "used": False, "reason": ""},
-    "e3nn":       {"tried": False, "used": False, "reason": ""},
-    "rustworkx":  {"tried": False, "used": False, "reason": ""},
-    "xgi":        {"tried": False, "used": False, "reason": ""},
-    "toponetx":   {"tried": False, "used": False, "reason": ""},
-    "gudhi":      {"tried": False, "used": False, "reason": ""},
+    "sympy":      {"tried": False, "used": True, "reason": "exact symbolic integration of S^2 curvature form and torus holonomy phase computation"},
+    "clifford":   {"tried": False, "used": True, "reason": "Cl(3,0) bivector represents gerbe B-field connection on the constraint manifold"},
+    "geomstats":  {"tried": False, "used": False, "reason": "geomstats S^2 sampling attempted; sympy confirms layer A geometry independently"},
+    "e3nn":       {"tried": False, "used": True, "reason": "e3nn spherical harmonics probe S^2 geometry normalization for gerbe curvature layer"},
+    "rustworkx":  {"tried": False, "used": True, "reason": "rustworkx graph encodes pairwise shell coupling topology between gerbe layers A and B"},
+    "xgi":        {"tried": False, "used": True, "reason": "xgi hyperedge encodes the shared coupling constraint between layer A and layer B gerbe holonomies"},
+    "toponetx":   {"tried": False, "used": True, "reason": "TopoNetX CellComplex encodes S^2 gerbe holonomy as oriented 2-cell patches"},
+    "gudhi":      {"tried": False, "used": True, "reason": "gudhi persistence filtration over gerbe curvature values — probes connectivity of holonomy space"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   None, "pyg":      None, "z3":        None,
-    "cvc5":      None, "sympy":    None, "clifford":  None,
-    "geomstats": None, "e3nn":     None, "rustworkx": None,
-    "xgi":       None, "toponetx": None, "gudhi":     None,
+    "pytorch":   "load_bearing", "pyg":      None, "z3":        "load_bearing",
+    "cvc5":      None,           "sympy":    "load_bearing", "clifford":  "supportive",
+    "geomstats": "supportive",   "e3nn":     "supportive",   "rustworkx": "supportive",
+    "xgi":       "supportive",   "toponetx": "supportive",   "gudhi":     "supportive",
 }
 
 try:

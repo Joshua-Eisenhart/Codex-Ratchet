@@ -7,7 +7,7 @@ Claim (admissibility):
   When O(3) and SO(3) are simultaneously active:
   (1) The determinant map det: O(3) → {-1,+1} identifies the two components.
   (2) SO(3) = ker(det - 1) ⊂ O(3): the connected component containing identity.
-  (3) A∘B for A ∈ O(3)\SO(3), B ∈ SO(3) stays in O(3)\SO(3) (coset structure).
+  (3) A∘B for A ∈ O(3)\\SO(3), B ∈ SO(3) stays in O(3)\\SO(3) (coset structure).
   (4) A∘B ≠ B∘A in general (orientation reversal does not commute with rotation).
   z3 UNSAT: no element can simultaneously have det=-1 and be in SO(3).
 
@@ -20,6 +20,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical pairwise baseline: this tests the O(3)↔SO(3) coupling and its "
+    "exclusion structure before triple or higher-order coexistence claims."
+)
 
 _PAIRWISE_REASON = (
     "not used in this pairwise O(3)↔SO(3) coupling probe; "
@@ -27,24 +31,24 @@ _PAIRWISE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: pytorch det map det:O(3)→{-1,+1} identifies two components; product of two O(3)\\SO(3) elements is in SO(3) (coset closure)."},
     "pyg":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves det=-1 is incompatible with SO membership; the orientation constraint strictly separates O(3) into two components."},
     "cvc5":      {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies that O(3)/SO(3) ≅ Z_2 by showing the det map has image {-1,+1} and that SO(3) is a normal subgroup."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Pin(3) ⊂ Cl(3,0) double covers O(3); Spin(3) = Pin(3)^+ (even subalgebra) double covers SO(3); the O(3)/SO(3) split corresponds to Pin(3)/Spin(3) = Z_2."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SO(3) manifold is connected; O(3) has two connected components; the coupling exposes this topological difference."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: e3nn differentiates even/odd parity: D^l with p=+1 is SO(3) irrep, p=-1 is O(3) irrep including reflection; O(3)/SO(3) coupling controls which parity is accessible."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes O(3)→SO(3) as a directed edge; verified via adjacency and path length between the two nodes."},
     "xgi":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

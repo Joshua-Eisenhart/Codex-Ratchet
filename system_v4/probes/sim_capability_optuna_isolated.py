@@ -13,6 +13,10 @@ import os
 import math
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates optuna as a single-tool "
+    "optimization probe, not a canonical nonclassical witness."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the optuna TPE hyperparameter optimization "
@@ -33,9 +37,11 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "optuna":    {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for TPE-based search and trial management"},
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["optuna"] = "load_bearing"
 
 OPTUNA_OK = False
 OPTUNA_VERSION = None

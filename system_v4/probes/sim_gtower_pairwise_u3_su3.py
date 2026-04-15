@@ -21,6 +21,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical pairwise baseline: this tests the U(3)↔SU(3) coupling and its "
+    "exclusion structure before triple or higher-order coexistence claims."
+)
 
 _PAIRWISE_REASON = (
     "not used in this pairwise U(3)↔SU(3) coupling probe; "
@@ -28,24 +32,24 @@ _PAIRWISE_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: U(3) = SU(3) × U(1) is verified numerically by factoring any U(3) element into (phase) × (SU(3) element) and checking both parts."},
     "pyg":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves no element can simultaneously satisfy det=1 (SU constraint) and det≠1 (in U(3)\\SU(3)); the constraints are exclusive."},
     "cvc5":      {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies u(3) = su(3) + u(1) Lie algebra decomposition; the trace condition Tr(A)=0 separates su(3) from the u(1) factor."},
     "clifford":  {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) manifold; SU(3) dim = 8, U(3) dim = 9 (SU(3) × U(1) factorization confirmed by dims)."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: e3nn SU(2) ⊂ SU(3) irreps; the U(3)/SU(3) split corresponds to the U(1) center acting trivially on SU(3) irreps."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes U(3)→SU(3) as a directed edge; verified via adjacency in the G-tower DAG."},
     "xgi":       {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _PAIRWISE_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": None, "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

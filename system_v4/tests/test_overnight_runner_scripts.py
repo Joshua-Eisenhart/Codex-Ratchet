@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-CANONICAL_RUNNER = REPO_ROOT / "docs" / "plans" / "overnight_8h_run.sh"
+CANONICAL_RUNNER = REPO_ROOT / "system_v5" / "docs" / "plans" / "overnight_8h_run.sh"
 LIVE_RUNNER = REPO_ROOT / "system_v5" / "new docs" / "plans" / "run_overnight_8h_controller.sh"
 
 
@@ -62,4 +62,4 @@ def test_canonical_runner_uses_decoupled_reporter_process():
 
 def test_live_runner_delegates_to_canonical_runner():
     text = LIVE_RUNNER.read_text(encoding="utf-8")
-    assert "docs/plans/overnight_8h_run.sh" in text
+    assert "system_v5/docs/plans/overnight_8h_run.sh" in text

@@ -11,6 +11,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates datasketch as a single-tool "
+    "MinHash/LSH probe, not a canonical nonclassical witness."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the datasketch MinHashLSH capability in isolation; "
@@ -31,9 +35,11 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "datasketch": {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for MinHash signature estimation and LSH indexing"},
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["datasketch"] = "load_bearing"
 
 DATASKETCH_OK = False
 DATASKETCH_VERSION = None

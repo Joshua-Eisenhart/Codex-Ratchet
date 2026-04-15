@@ -19,6 +19,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises XGI and rustworkx on "
+    "multi-shell coexistence structure as a tool-integration baseline, not a "
+    "canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

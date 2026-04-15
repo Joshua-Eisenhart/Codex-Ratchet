@@ -11,6 +11,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates pymoo as a single-tool "
+    "multi-objective optimization probe, not a canonical nonclassical witness."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the pymoo NSGA-II multi-objective optimizer "
@@ -31,9 +35,11 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "pymoo":     {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for NSGA-II Pareto search and hypervolume evaluation"},
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["pymoo"] = "load_bearing"
 
 PYMOO_OK = False
 PYMOO_VERSION = None

@@ -19,6 +19,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the GL(3,R) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates GL(3,R) shell-local properties; "
@@ -26,24 +30,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: GL(3,R) matrix operations (det, inverse, matmul) verify invertibility constraint directly via torch.linalg."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves that no matrix with det=0 can be in GL(3,R); singular matrices are structurally excluded by the invertibility constraint."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies Lie bracket identity [Eij,Ekl]=δjk*Eil - δli*Ekj symbolically for gl(3) elementary matrix basis."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: GL(3,R) acts on R^3 as linear maps; Clifford algebra Cl(3,0) contains the grade-1 subspace isomorphic to R^3; this probe verifies GL action preserves the grade-1 subspace."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats GeneralLinear group provides the Riemannian metric on GL(3,R) for geodesic distance computations."},
     "e3nn":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes the G-tower reduction graph; GL(3) is the root (no parent), with one child O(3) via metric constraint."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": None,
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

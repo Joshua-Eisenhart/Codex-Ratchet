@@ -22,6 +22,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the SU(3) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates SU(3) shell-local properties; "
@@ -29,24 +33,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: SU(3) requires both M†M = I AND det(M) = 1; torch complex128 ops verify both constraints for Gell-Mann exponentiated elements."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves that |det|=1 AND det=1 AND det≠1 is impossible; SU(3) det=1 constraint strictly excludes U(3)\\SU(3)."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies [T_a, T_b] = i f_abc T_c for Gell-Mann generators; computes su(3) structure constants for the first few pairs."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: SU(2) ≅ Spin(3) is the double cover of SO(3); SU(2) ⊂ SU(3); Clifford Cl(3,0) rotors identify the SU(2) subgroup structure."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) group manifold; identity element verified as a member of the manifold."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: e3nn SO(3) irreps are SU(2) irreps by double cover; SU(2) ⊂ SU(3) means SU(3) representations decompose into SU(2) irreps."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes SU(3) as interior node in G-tower; parent=U(3), child=Sp(6); lies on the unique path from GL to Sp."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

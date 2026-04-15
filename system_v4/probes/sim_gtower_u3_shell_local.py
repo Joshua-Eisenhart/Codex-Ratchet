@@ -21,6 +21,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the U(3) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates U(3) shell-local properties; "
@@ -28,24 +32,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: U(3) membership test M†M = I on complex tensors; torch complex128 supports full-precision unitary verification."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves that |x|^2 = 1 (unitarity in U(1)) and |x|^2 != 1 are mutually exclusive; structural exclusion of non-unitary elements."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy constructs u(3) basis generators (Hermitian iH matrices) and verifies Lie bracket closure and anti-Hermitian property symbolically."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: U(1) ≅ Spin(2) acts as rotation in Cl(2,0); complexification R^2 → C maps e1 to Re, e2 to Im; U(1) phase rotation verified as Cl(2,0) rotor in the complex plane."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) manifold which is the unit-det submanifold of U(3); identity belongs to both."},
     "e3nn":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes U(3) as an interior node in the G-tower DAG; parent=SO(3) (via complexification), child=SU(3) (via det=1 constraint)."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": None,
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

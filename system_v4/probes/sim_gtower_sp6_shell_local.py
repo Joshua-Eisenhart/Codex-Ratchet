@@ -24,6 +24,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the Sp(6) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates Sp(6) shell-local properties; "
@@ -31,24 +35,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: Sp(6) membership requires M^T J M = J for the 6x6 symplectic form J; torch.linalg verifies this constraint numerically."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves that a scaling matrix M=diag(2,2) cannot satisfy the Sp(2) symplectic constraint M^T J M = J."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy constructs sp(2) generators, verifies the symplectic condition M^T J + J M = 0 (Lie algebra condition) symbolically."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Sp(1) = unit quaternions ≅ SU(2) ≅ Spin(3); Cl(3,0) even subalgebra gives the quaternion algebra underlying Sp(1)."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats provides Riemannian geometry for compact Lie groups; SO(3) ≅ Sp(1)/Z_2 metric verified as adjacent to Sp geometry."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: Sp(1) = SU(2) = Spin(3); e3nn D^l are SU(2) irreps; the isomorphism chain Sp(1) ≅ SU(2) ≅ Spin(3) is verified via irrep dimensions."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes Sp(6) as the terminal leaf of the G-tower DAG; in-degree=1 (parent=SU(3)), out-degree=0 (no child: most constrained shell)."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

@@ -15,6 +15,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates ribs as a single-tool "
+    "MAP-Elites/archive probe, not a canonical nonclassical witness."
+)
 
 # =====================================================================
 # TOOL MANIFEST
@@ -39,15 +43,15 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "ribs":      {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for GridArchive insertion, coverage tracking, and elite sampling"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None, "pyg": None, "z3": None, "cvc5": None, "sympy": None,
     "clifford": None, "geomstats": None, "e3nn": None,
     "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "ribs": "load_bearing",
 }
-
-# Target tool (ribs) is outside the 12-tool manifest; tracked separately.
 RIBS_OK = False
 RIBS_VERSION = None
 try:

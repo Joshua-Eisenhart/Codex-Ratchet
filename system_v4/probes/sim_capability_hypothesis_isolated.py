@@ -12,6 +12,10 @@ import json
 import os
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical capability baseline: this isolates hypothesis as a single-tool "
+    "property-testing probe, not a canonical nonclassical witness."
+)
 
 _ISOLATED_REASON = (
     "not used: this probe isolates the hypothesis property-based testing capability "
@@ -32,9 +36,11 @@ TOOL_MANIFEST = {
     "xgi":       {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _ISOLATED_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _ISOLATED_REASON},
+    "hypothesis": {"tried": True, "used": True, "reason": "load-bearing isolated capability probe for property-based test generation and shrinking"},
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH["hypothesis"] = "load_bearing"
 
 HYPOTHESIS_OK = False
 HYPOTHESIS_VERSION = None

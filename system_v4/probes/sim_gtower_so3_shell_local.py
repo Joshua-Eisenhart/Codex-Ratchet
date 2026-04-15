@@ -22,6 +22,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the SO(3) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates SO(3) shell-local properties; "
@@ -29,24 +33,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: SO(3) membership requires both M^T M = I AND det(M) = +1; torch.linalg verifies both constraints numerically for concrete rotations."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves no orthogonal matrix with det=-1 can be in SO(3); the orientation constraint det=+1 excludes all reflections."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies so(3) [Li,Lj]=eps_ijk Lk, Killing form negativity, and Casimir element for this shell."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Spin(3) ≅ Cl(3,0)^+ even subalgebra rotors; SO(3) ≅ Spin(3) / {±1}; rotor sandwich product R v ~R gives SO(3) rotation."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialOrthogonal(n=3) gives the bi-invariant Riemannian metric on SO(3); geodesic distance and group exponential verified."},
+    "e3nn":      {"tried": False, "used": True, "reason": "load-bearing: e3nn provides SO(3) irreps D^l (spherical harmonics); this shell-local probe verifies D^1 (vector, 3D) and D^0 (scalar) irreps exist."},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx encodes SO(3) position in G-tower DAG: parent=O(3), child=U(3); betweenness centrality nonzero (interior node)."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": "load_bearing",
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

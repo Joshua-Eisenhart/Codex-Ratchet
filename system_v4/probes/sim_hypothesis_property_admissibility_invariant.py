@@ -16,6 +16,8 @@ import json
 import os
 from hypothesis import given, strategies as st, settings, HealthCheck
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "hypothesis": {"tried": True, "used": True,
                    "reason": "randomized property-based generation of G-tower reduction sequences"},
@@ -136,12 +138,13 @@ if __name__ == "__main__":
     )
     results = {
         "name": "sim_hypothesis_property_admissibility_invariant",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
+        "overall_pass": bool(passed),
         "passed": bool(passed),
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

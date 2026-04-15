@@ -20,6 +20,10 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical shell-local baseline: this isolates the O(3) shell and its "
+    "tool-mediated local constraints before any cross-shell coupling claims."
+)
 
 _SHELL_LOCAL_REASON = (
     "not used: this probe isolates O(3) shell-local properties; "
@@ -27,24 +31,24 @@ _SHELL_LOCAL_REASON = (
 )
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": True, "reason": "load-bearing: O(3) membership test M^T M = I and |det(M)| = 1 are verified numerically via torch.linalg operations."},
     "pyg":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": True, "reason": "load-bearing: z3 UNSAT proves no matrix can satisfy both M^T M = I and |det| != 1; the orthogonality constraint forces |det| in {-1, +1}."},
     "cvc5":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": True, "reason": "load-bearing: sympy verifies so(3) structure constants [Li,Lj]=eps_ijk Lk and antisymmetry of generators symbolically."},
+    "clifford":  {"tried": False, "used": True, "reason": "load-bearing: Pin(3) ⊂ Cl(3,0) provides the double cover of O(3); unit vectors in Cl(3,0) are versors; reflection v -> -n v n^{-1} gives O(3) action."},
+    "geomstats": {"tried": False, "used": True, "reason": "load-bearing: geomstats SpecialOrthogonal provides the Riemannian metric on SO(3) ⊂ O(3), confirming the group manifold structure."},
     "e3nn":      {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": True, "reason": "load-bearing: rustworkx DAG encodes O(3) tower position: parent=GL(3,R), child=SO(3); in-degree=1, out-degree=1."},
     "xgi":       {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "toponetx":  {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
     "gudhi":     {"tried": False, "used": False, "reason": _SHELL_LOCAL_REASON},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None, "pyg": None, "z3": None, "cvc5": None,
-    "sympy": None, "clifford": None, "geomstats": None, "e3nn": None,
-    "rustworkx": None, "xgi": None, "toponetx": None, "gudhi": None,
+    "pytorch": "load_bearing", "pyg": None, "z3": "load_bearing", "cvc5": None,
+    "sympy": "load_bearing", "clifford": "load_bearing", "geomstats": "load_bearing", "e3nn": None,
+    "rustworkx": "load_bearing", "xgi": None, "toponetx": None, "gudhi": None,
 }
 
 TORCH_OK = False

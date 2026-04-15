@@ -16,6 +16,13 @@ import json
 import os
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical integration baseline: this exercises PyG shell-coupling propagation "
+    "and z3 admissibility checks as a tool-integration baseline, not a canonical "
+    "nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

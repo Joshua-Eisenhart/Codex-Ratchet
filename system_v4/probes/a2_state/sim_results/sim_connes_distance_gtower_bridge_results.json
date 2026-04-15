@@ -1,0 +1,108 @@
+{
+  "name": "sim_connes_distance_gtower_bridge",
+  "classification": "canonical",
+  "scope_note": "Connes spectral distance d(rho,sigma)=1/lambda on 2-point space; G-tower tightening increases lambda (Dirac eigenvalue gap), decreasing d (finer spectral resolution). Exclusion: no tightening step can increase d. z3 UNSAT closes the reversed-ordering claim.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proves that no lambda assignment can simultaneously satisfy G-tower tightening (lambda_O > lambda_GL) and distance increase (1/lambda_O > 1/lambda_GL); these are logically contradictory, establishing the structural impossibility of Connes distance increase under metric-group tightening in this spectral model."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolically derives d=1/lambda Connes distance formula for 2-point spectral triple, computes derivative to confirm strict monotone decrease as Dirac eigenvalue increases with G-tower tightening, and verifies the collapse limit d->0 as lambda->infinity (fully tightened geometry)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Connes spectral distance computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "distance_GL": "4",
+    "distance_O": "2",
+    "distance_SU2": "1",
+    "distance_U1": "1/2",
+    "strict_ordering_GL_gt_O_gt_SU2_gt_U1": true,
+    "GL_minus_O_positive_exclusion": true,
+    "O_minus_SU2_positive_exclusion": true,
+    "SU2_minus_U1_positive_exclusion": true,
+    "pass": true
+  },
+  "negative": {
+    "reversed_chain_distances_grow_on_loosening": true,
+    "forbidden_lambda_O_lt_lambda_GL_inadmissible": true,
+    "distance_still_formally_increases_but_lambda_ordering_violated": true,
+    "pass": true
+  },
+  "boundary": {
+    "z3_distance_increase_under_tightening_unsat": "unsat",
+    "z3_pass": true,
+    "sympy_d_strictly_decreasing_in_lambda": true,
+    "sympy_d_limit_inf_lambda_is_zero": true,
+    "sympy_pass": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

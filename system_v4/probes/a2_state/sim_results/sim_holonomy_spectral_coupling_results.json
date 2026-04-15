@@ -1,0 +1,105 @@
+{
+  "name": "sim_holonomy_spectral_coupling",
+  "classification": "canonical",
+  "scope_note": "Holonomy rotor (Cl(3)) coupled with symbolic Dirac spectrum (sympy). Holonomy-non-invariant eigenstates are excluded from the admissible spectrum at each G-tower level. Non-commutativity of holonomy-then-Dirac vs Dirac-then-holonomy confirmed by [Hol,D] != [D,Hol].",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Dirac matrix constructed in sympy; eigenvalues and eigenvectors derived symbolically; holonomy matrix Hol=diag(e^{i*theta}, e^{-i*theta}, 1, 1) applied to each eigenvector to determine which are NOT holonomy-invariant and therefore excluded from the admissible Dirac spectrum at the SU(2) tower level."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Holonomy rotor R=exp(-theta/2*e12) constructed in Cl(3,0); rotor sandwich action R*v*R~ applied to spinor basis vectors to determine holonomy-invariant subspace; invariant basis vectors are admitted to the Dirac spectrum at this tower level, non-invariant ones are excluded."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to holonomy-spectral coupling computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e3_invariant_under_pi_rotation": true,
+    "e1_invariant_up_to_sign_under_pi": true,
+    "e2_invariant_up_to_sign_under_pi": true,
+    "e3_invariant_under_half_pi_rotation": true,
+    "pass": true
+  },
+  "negative": {
+    "full_dirac_eig_count": 2,
+    "full_spectrum_non_empty": true,
+    "eigenstates_excluded_by_su2_holonomy": 2,
+    "some_eigenstates_excluded": true,
+    "pass": true
+  },
+  "boundary": {
+    "comm_hol_d_is_zero": null,
+    "commutators_are_equal": null,
+    "non_commutative": true,
+    "ordering_matters": true,
+    "theta_zero_gives_commuting_hol": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

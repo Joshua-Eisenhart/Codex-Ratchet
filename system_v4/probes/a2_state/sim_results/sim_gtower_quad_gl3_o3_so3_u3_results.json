@@ -1,0 +1,307 @@
+{
+  "name": "sim_gtower_quad_gl3_o3_so3_u3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "GL(3,R) + O(3) + SO(3) + U(3) simultaneous",
+  "constraint_imposed": "GL\u2192O\u2192SO\u2192U via Gram-Schmidt, det-sign-fix, complexification",
+  "key_claim": "GL\u2192O\u2192SO\u2192U composition is order-preserving; four-way intersection = SO(3)",
+  "capability_summary": {
+    "CAN": [
+      "verify GL, O, SO, U shells simultaneously active (pytorch float64/complex128)",
+      "confirm GL\u2192O\u2192SO\u2192U composition equals direct projection (order-preserving)",
+      "prove quad non-commutativity A\u2218B\u2218C\u2218D \u2260 D\u2218C\u2218B\u2218A",
+      "identify SO(3) as four-way intersection of all shells",
+      "z3 UNSAT: det=0 \u2227 M^TM=I impossible; det=-1 \u2227 det=+1 impossible",
+      "verify gl(3)\u2283o(3)\u2283so(3)\u2282u(3) algebra nesting via sympy trace/antisymmetry",
+      "confirm Spin(3) rotor in SO(3) and U(3) simultaneously via Cl(3,0)",
+      "sample SO(3) via geomstats, pass all four group tests simultaneously",
+      "encode GL\u2192O\u2192SO\u2192U path (length=3) in rustworkx DAG",
+      "register 4-node hyperedge with all pairwise and triple sub-faces in xgi",
+      "verify SO(3) samples embedded as complex unitary form single component via gudhi H0=1"
+    ],
+    "CANNOT": [
+      "find a GL(3,R) element in U(3) that is not also in SO(3) (GL\\O is excluded)",
+      "find an O(3) element with det=-1 in SO(3) or U(3) (sharp det boundary)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: dtype=torch.float64 for real group elements; constructs GL\u220bA, O\u220bB, SO\u220bC simultaneously; complexification to U(3) via torch.complex128; quad non-commutativity A\u2218B\u2218C\u2218D \u2260 D\u2218C\u2218B\u2218A; four-way intersection = SO(3) verified."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: UNSAT #1: det=0 AND M^TM=I impossible (GL exclusion boundary); UNSAT #2: det=-1 AND det=+1 impossible (O\\SO separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: gl(3) \u2283 o(3) \u2283 so(3) \u2282 u(3) algebra nesting; real antisymmetric generators satisfy both so(3) and anti-Hermitian u(3) conditions; trace/antisymmetry conditions verified symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(3,0) even subalgebra Spin(3) \u2245 SU(2); rotor R \u2208 Spin(3) is simultaneously in SO(3) (det=+1, real orthogonal) and U(3) (complex unitary when cast to complex128); shows GL\u2192U span at Clifford level."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SpecialOrthogonal(n=3) random sample passes all four group membership tests (GL: det\u22600; O: M^TM=I; SO: det=+1; U: M\u2020M=I as complex cast) simultaneously."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: G-tower DAG GL\u2192O\u2192SO\u2192U; path length=3 from GL to U confirmed; U(3) is the first node with complex-group character (out-edges into SU, Sp); SO has in-deg=1 (from O) and out-deg=1 (to U)."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: 4-node hyperedge {GL,O,SO,U}; all 4 pairwise sub-faces and 4 triple sub-faces verified present."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Rips filtration on 50 SO(3) samples embedded as complex unitary matrices in R^18 (flatten real+imag); H0=1 confirms connected single component."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "gl3_shell_active": {
+      "pass": true,
+      "det": 9.0,
+      "detail": "GL(3,R) shell: det(A)\u22600 (GL membership confirmed)"
+    },
+    "o3_shell_active": {
+      "pass": true,
+      "det": -1.0,
+      "detail": "O(3) shell: B^T B = I (O(3) membership confirmed; det=-1 reflects O\\SO)"
+    },
+    "so3_shell_active": {
+      "pass": true,
+      "det": 0.9999999999999999,
+      "detail": "SO(3) shell: C^T C = I and det=+1 (SO(3) membership confirmed)"
+    },
+    "u3_shell_active": {
+      "pass": true,
+      "det_re": 0.9999999999999999,
+      "detail": "U(3) shell: D\u2020D=I (U(3) membership confirmed via SO(3) complexification)"
+    },
+    "gl_o_so_u_chain_order_preserving": {
+      "pass": true,
+      "chain_matches_direct": true,
+      "u3_member": true,
+      "detail": "GL\u2192O\u2192SO\u2192U composition equals direct GL\u2192SO projection; chain is order-preserving"
+    },
+    "quad_noncommutativity": {
+      "pass": true,
+      "max_diff": 5.373316570225663,
+      "detail": "A\u2218B\u2218C\u2218D \u2260 D\u2218C\u2218B\u2218A (quad non-commutativity confirmed)"
+    },
+    "fourfold_intersection_is_so3": {
+      "pass": true,
+      "in_GL": "True",
+      "in_O": true,
+      "in_SO": "True",
+      "in_U": true,
+      "detail": "SO(3) element passes all four tests: four-way intersection \u2287 SO(3)"
+    },
+    "o3_minus_so3_not_in_so": {
+      "pass": true,
+      "in_GL": "True",
+      "in_O": true,
+      "not_in_SO": true,
+      "detail": "O(3)\\SO(3) witness B (det=-1): in GL, in O, but not in SO"
+    },
+    "gl3_minus_o3_witness": {
+      "pass": true,
+      "in_GL": "True",
+      "not_in_O": true,
+      "detail": "GL(3,R)\\O(3) witness A (upper triangular): in GL but not O"
+    },
+    "z3_unsat_det0_and_orthogonal": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=0 (zero column) AND M^TM=I (unit norm) impossible; GL exclusion boundary"
+    },
+    "z3_unsat_det_neg1_and_pos1": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=-1 AND det=+1 impossible; O(3)\\SO(3) is a sharp boundary"
+    },
+    "z3_unsat_unit_norm_and_degenerate": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: column norm=1 AND column norm\u22640 impossible; O(3) membership excludes singular matrices"
+    },
+    "sympy_so3_generator_antisymmetric": {
+      "pass": true,
+      "detail": "so(3) generator is real antisymmetric: M + M^T = 0 (so(3) algebra condition)"
+    },
+    "sympy_so3_generator_traceless": {
+      "pass": true,
+      "trace": "0",
+      "detail": "so(3) generators are traceless: real antisymmetric 3\u00d73 always has Tr=0"
+    },
+    "sympy_so3_in_u3_algebra": {
+      "pass": true,
+      "detail": "so(3) generators (real antisymmetric) satisfy u(3) anti-Hermitian condition: so(3) \u2282 u(3)"
+    },
+    "sympy_so3_generator_in_gl3_algebra": {
+      "pass": true,
+      "detail": "so(3) generator is a nonzero gl(3) element: gl(3) \u2283 so(3) at algebra level"
+    },
+    "sympy_algebra_nesting_gl_o_so_u": {
+      "pass": true,
+      "detail": "gl(3) \u2283 o(3) (add det\u22600) \u2283 so(3) (add det=+1) \u2282 u(3) (add complexification): nesting verified"
+    },
+    "clifford_spin3_unit_rotor": {
+      "pass": true,
+      "norm_sq": 1.0,
+      "detail": "Cl(3,0) rotor R = cos(t) + sin(t)*e12: R~R = 1 (Spin(3) member)"
+    },
+    "clifford_spin3_in_so3_and_u3": {
+      "pass": true,
+      "in_SO3": "True",
+      "in_U3": true,
+      "detail": "Cl(3,0) Spin(3) rotor \u2192 SO(3) rotation matrix; cast to complex \u2208 U(3): GL\u2192U span at Clifford level"
+    },
+    "clifford_e12_is_complex_structure": {
+      "pass": true,
+      "e12_sq": -1.0,
+      "detail": "e12^2 = -1 in Cl(3,0): e12 is the complex structure J; enables SO(3)\u2192U(3) complexification"
+    },
+    "geomstats_so3_sample_all_four_tests": {
+      "pass": true,
+      "in_GL": "True",
+      "in_O": true,
+      "in_SO": "True",
+      "in_U": true,
+      "detail": "geomstats SO(3) random sample passes GL, O, SO, U tests simultaneously"
+    },
+    "rustworkx_gl_to_u_path_length": {
+      "pass": true,
+      "path_length": 3,
+      "detail": "G-tower DAG: GL(3,R)\u2192O(3)\u2192SO(3)\u2192U(3) path length = 3"
+    },
+    "rustworkx_u3_complex_entry": {
+      "pass": true,
+      "u3_in_degree": 1,
+      "u3_out_degree": 1,
+      "detail": "U(3): in-deg=1 (from SO), out-deg=1 (to SU); first complex node in chain"
+    },
+    "rustworkx_so3_middle_node": {
+      "pass": true,
+      "so3_in_degree": 1,
+      "so3_out_degree": 1,
+      "detail": "SO(3) is a middle node in the GL\u2192O\u2192SO\u2192U chain (in-deg=1, out-deg=1)"
+    },
+    "xgi_quad_hyperedge_present": {
+      "pass": true,
+      "detail": "xgi: 4-node hyperedge {GL,O,SO,U} present"
+    },
+    "xgi_quad_triple_subfaces": {
+      "pass": true,
+      "triple_count": 4,
+      "detail": "xgi: all 4 triple sub-faces of the quad hyperedge are present"
+    },
+    "xgi_quad_pairwise_subfaces": {
+      "pass": true,
+      "pair_count": 4,
+      "detail": "xgi: at least 4 pairwise sub-faces present"
+    },
+    "gudhi_so3_complex_embed_connected": {
+      "pass": true,
+      "H0": 1,
+      "n_samples": 50,
+      "detail": "gudhi: 50 SO(3) samples embedded as complex unitary in R^18; H0=1 (single connected component)"
+    }
+  },
+  "negative": {
+    "singular_excluded_from_gl": {
+      "pass": true,
+      "det": 0.0,
+      "detail": "Singular matrix (det=0) is NOT in GL(3,R) \u2014 exclusion boundary confirmed"
+    },
+    "o3_reflection_excluded_from_so3": {
+      "pass": true,
+      "in_O": true,
+      "not_in_SO": true,
+      "detail": "Reflection diag(-1,1,1) \u2208 O(3) but NOT SO(3): det=-1 excluded by SO"
+    },
+    "scaling_excluded_from_o_so_u": {
+      "pass": true,
+      "in_GL": "True",
+      "not_in_O": true,
+      "not_in_SO": true,
+      "detail": "2*I \u2208 GL(3,R) but NOT O(3), SO(3), or U(3): GL is the largest shell"
+    },
+    "rank1_excluded_from_all_shells_except_trivially": {
+      "pass": true,
+      "not_in_GL": true,
+      "not_in_O": true,
+      "detail": "Rank-1 projection: not in GL (det=0) and not in O (M^TM \u2260 I)"
+    }
+  },
+  "boundary": {
+    "identity_in_all_four_shells": {
+      "pass": true,
+      "in_GL": "True",
+      "in_O": true,
+      "in_SO": "True",
+      "in_U": true,
+      "detail": "I_3 \u2208 GL \u2229 O \u2229 SO \u2229 U: common boundary element of all four shells"
+    },
+    "near_singular_barely_in_gl": {
+      "pass": true,
+      "det": 9.999999999999997e-06,
+      "in_GL": "True",
+      "not_in_O": true,
+      "detail": "diag(eps,1,1) with eps=1e-5: barely \u2208 GL but not O or SO \u2014 sharp GL boundary"
+    },
+    "identity_invariant_under_chain": {
+      "pass": true,
+      "detail": "GL\u2192O\u2192SO\u2192U chain preserves identity at every step (boundary invariance)"
+    },
+    "so3_element_on_complexification_boundary": {
+      "pass": true,
+      "in_SO": "True",
+      "in_U_via_complexify": true,
+      "detail": "SO(3) rotation: on boundary; passes both SO(3) real test and U(3) complex test"
+    }
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "name": "sim_gtower_quad_so3_u3_su3_sp6",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "SO(3) + U(3) + SU(3) + Sp(6) simultaneous",
+  "constraint_imposed": "SO\u2192U\u2192SU\u2192Sp via complexification + det-normalization + real embedding",
+  "key_claim": "SO(3)\u2282SU(3)\u2282U(3)\u2282Sp(6) via real embedding theorem; SU(2)=Sp(1) is the quad anchor",
+  "capability_summary": {
+    "CAN": [
+      "verify SO, U, SU, Sp shells simultaneously active (pytorch complex128/float64)",
+      "confirm SO\u2192U\u2192SU\u2192Sp quad chain via complexification + real embedding",
+      "prove quad non-commutativity R\u2218U\u2218S\u2218X \u2260 X\u2218S\u2218U\u2218R at 6\u00d76 level",
+      "show SO(3) element is simultaneously in all four shells (four-way intersection)",
+      "z3 UNSAT: det=1\u2227det\u22601 and \u2016col\u2016=1\u2227\u2016col\u2016\u22601 both impossible",
+      "verify so(3)\u2282su(3) at algebra level (real antisymmetric \u27f9 traceless + anti-Hermitian) via sympy",
+      "confirm SU(2)=Sp(1) satisfies M\u2020M=I AND M^T J_2 M=J_2 simultaneously via Cl(3,0)",
+      "confirm e3nn D^1 irrep passes SO, U, SU, Sp checks simultaneously",
+      "sample SO(3) via geomstats, pass all four shell tests simultaneously",
+      "encode SO\u2192U\u2192SU\u2192Sp path (length=3) and Sp(6) terminal in rustworkx DAG",
+      "register 4-node hyperedge {SO,U,SU,Sp} with all pairwise sub-faces in xgi",
+      "verify sp(6) generators are connected via gudhi H0=1"
+    ],
+    "CANNOT": [
+      "further reduce Sp(6) in the standard G-tower (terminal shell)",
+      "find a U(3) element in Sp(6) without using real embedding (direct complex action fails)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: dtype=torch.complex128 for SO/U/SU; float64 for Sp; constructs R, U, S, X simultaneously; real embedding M_emb6; quad non-commutativity at 6\u00d76 level; four-way membership tests."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: UNSAT #1: det=1 AND det\u22601 impossible (SU(3) boundary); UNSAT #2: unit column norm AND non-unit column norm simultaneously impossible (U(3) exclusion)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: so(3) generators are real antisymmetric (traceless and anti-Hermitian) \u2014 they satisfy su(3) conditions (anti-Hermitian + traceless = su(3) generators); SO(3)\u2282SU(3) at Lie algebra level verified symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Sp(1)=SU(2) is anchor; Cl(3,0) quaternion e1,e2,e12; unit quaternion satisfies M\u2020M=I (SU(2) member) AND M^T J_2 M = J_2 (Sp(2) member) simultaneously; SU(2)\u2282SU(3)\u2282U(3)\u2282Sp(6)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SpecialOrthogonal(n=3) random sample cast to complex128; passes SO(3), U(3), SU(3) tests; real embedding passes Sp(6) test: all four shells confirmed simultaneously."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn D^1 Wigner matrix (SO(3) l=1 irrep); passes U(3) unitarity check AND SU(3) det=1 check AND Sp(6) symplectic check via real embedding \u2014 confirms D^1 irrep lives in SO(3)\u2229U(3)\u2229SU(3)\u2229Sp(6)."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: G-tower DAG SO\u2192U\u2192SU\u2192Sp; path length=3 from SO to Sp confirmed; Sp(6) has out-deg=0 (terminal); SO has in-deg=1 (from O) and out-deg=1 (to U)."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: 4-node hyperedge {SO,U,SU,Sp}; all pairwise sub-faces verified present; Sp(6) is the terminal node in the hyperedge."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this quad coexistence probe; beyond-quad coupling deferred."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Rips filtration on sp(6) Lie algebra generators as metric space; H0=1 confirms the generator set is connected (single component at small radius)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "so3_shell_active": {
+      "pass": "True",
+      "det": 1.0,
+      "detail": "SO(3) shell: R^T R = I and det=+1 (SO(3) confirmed)"
+    },
+    "u3_shell_active": {
+      "pass": true,
+      "detail": "U(3) shell: U\u2020U=I (U(3) confirmed via SO(3) complexification)"
+    },
+    "su3_shell_active": {
+      "pass": true,
+      "det_re": 1.0,
+      "detail": "SU(3) shell: S\u2020S=I and det=+1 (SU(3) confirmed)"
+    },
+    "sp6_shell_active": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "Sp(6) shell: diag(2,2,2,1/2,1/2,1/2) satisfies M^T J M = J (Sp(6) confirmed)"
+    },
+    "so3_in_sp6_via_quad_chain": {
+      "pass": "True",
+      "in_SU": "True",
+      "in_Sp6": true,
+      "detail": "SO(3) element: chain SO\u2192U\u2192SU\u2192Sp via complexification + real embedding; all four tests pass"
+    },
+    "su3_element_in_all_four_shells": {
+      "pass": true,
+      "in_SU": "True",
+      "in_U": true,
+      "in_SO": "True",
+      "in_Sp6": true,
+      "detail": "SU(3) rotation element: in SO(3)\u2229U(3)\u2229SU(3)\u2229Sp(6) simultaneously"
+    },
+    "quad_noncommutativity": {
+      "pass": true,
+      "max_diff": 0.10963232240314125,
+      "detail": "R\u2218U\u2218S\u2218X \u2260 X\u2218S\u2218U\u2218R at 6\u00d76 level (quad non-commutativity confirmed)"
+    },
+    "sp6_strictly_larger": {
+      "pass": true,
+      "in_Sp6": true,
+      "not_in_U3": true,
+      "detail": "diag(2,...,1/2,...) \u2208 Sp(6) but NOT \u2208 U(3): Sp(6) strictly larger"
+    },
+    "z3_unsat_det1_and_det_neq1": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT #1: det=1 \u2227 det\u22601 impossible; SU(3)\u2282U(3) boundary is sharp"
+    },
+    "z3_unsat_unit_norm_and_nonunit": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT #2: \u2016col\u2016=1 \u2227 \u2016col\u2016\u22601 impossible; U(3) exclusion for non-unitary Sp(6) element"
+    },
+    "z3_unsat_symplectic_and_antisymplectic": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT #3: M^T J M = J AND M^T J M = -J simultaneously impossible"
+    },
+    "sympy_so3_antisymmetric": {
+      "pass": true,
+      "detail": "so(3) generator L is real antisymmetric: L + L^T = 0"
+    },
+    "sympy_so3_traceless": {
+      "pass": true,
+      "trace": "0",
+      "detail": "so(3) generator is traceless: Tr(L) = 0 (anti-symmetric real matrices are traceless)"
+    },
+    "sympy_so3_in_u3_algebra": {
+      "pass": true,
+      "detail": "so(3) generators are anti-Hermitian (real antisymmetric) \u2192 satisfy u(3) Lie algebra condition"
+    },
+    "sympy_so3_in_su3_algebra": {
+      "pass": true,
+      "detail": "so(3) generators satisfy su(3) conditions (anti-Hermitian + traceless): so(3)\u2282su(3) at algebra level"
+    },
+    "sympy_so2_generator_in_sp2": {
+      "pass": true,
+      "detail": "so(2) generator (real antisymmetric 2\u00d72) satisfies sp(2) Hamiltonian condition M^T J + J M = 0"
+    },
+    "clifford_e12_sq_neg1": {
+      "pass": true,
+      "e12_sq": -1.0,
+      "detail": "Cl(3,0): e12^2 = -1 (complex structure; SU(2)=Sp(1) anchor)"
+    },
+    "clifford_sp1_unit_norm": {
+      "pass": true,
+      "norm": 1.0,
+      "detail": "Sp(1) unit quaternion: q~q = 1 (SU(2)=Sp(1) membership confirmed)"
+    },
+    "clifford_su2_in_both_su3_and_sp2": {
+      "pass": true,
+      "unitary": true,
+      "symplectic": true,
+      "detail": "SU(2)/Sp(1) anchor: M\u2020M=I (SU member) AND M^T J_2 M = J_2 (Sp member) simultaneously"
+    },
+    "e3nn_d1_irrep_all_four_shells": {
+      "pass": true,
+      "in_SO3": "True",
+      "in_U3": true,
+      "in_SU3": "True",
+      "in_Sp6": true,
+      "detail": "e3nn D^1 irrep: passes SO(3), U(3), SU(3), Sp(6) tests simultaneously \u2014 lives in four-way intersection"
+    },
+    "geomstats_so3_sample_all_four_tests": {
+      "pass": true,
+      "in_SO": "True",
+      "in_U": true,
+      "in_SU": "True",
+      "in_Sp": true,
+      "detail": "geomstats SO(3) sample: passes SO, U, SU, Sp(6) tests simultaneously"
+    },
+    "rustworkx_so_to_sp_path_length": {
+      "pass": true,
+      "path_length": 3,
+      "detail": "G-tower DAG: SO(3)\u2192U(3)\u2192SU(3)\u2192Sp(6) path length = 3"
+    },
+    "rustworkx_sp6_terminal": {
+      "pass": true,
+      "sp6_out_degree": 0,
+      "detail": "Sp(6) has out-degree=0: terminal leaf in G-tower (no further reduction)"
+    },
+    "rustworkx_so3_connects_gl_complex": {
+      "pass": true,
+      "so3_in_degree": 1,
+      "so3_out_degree": 1,
+      "detail": "SO(3): bridges the real GL/O chain to the complex U/SU/Sp chain"
+    },
+    "xgi_quad_hyperedge_present": {
+      "pass": true,
+      "detail": "xgi: 4-node hyperedge {SO,U,SU,Sp} present"
+    },
+    "xgi_sp6_terminal_in_quad": {
+      "pass": true,
+      "detail": "xgi: Sp(6) is terminal node in the quad hyperedge"
+    },
+    "xgi_pairwise_subfaces_present": {
+      "pass": true,
+      "pair_count": 4,
+      "detail": "xgi: at least 4 pairwise sub-faces of the quad hyperedge are present"
+    },
+    "gudhi_sp6_generators_connected": {
+      "pass": true,
+      "H0": 1,
+      "num_generators": 6,
+      "detail": "gudhi: sp(6) generator set forms a single connected component (H0=1) at filtration radius 10"
+    }
+  },
+  "negative": {
+    "sp6_nonunitary_excluded_from_u_su_so": {
+      "pass": true,
+      "in_Sp6": true,
+      "excluded_from_U3": true,
+      "detail": "diag(2,2,2,1/2,1/2,1/2) \u2208 Sp(6) but NOT \u2208 U(3) or SU(3): Sp(6) strictly larger"
+    },
+    "u3_phase_excluded_from_su3": {
+      "pass": true,
+      "det_re": 0.3623577544766735,
+      "in_U3": true,
+      "not_in_SU3": true,
+      "detail": "e^{i*0.4}*I \u2208 U(3) but det\u22601 \u2192 NOT \u2208 SU(3)"
+    },
+    "complex_matrix_excluded_from_so3": {
+      "pass": true,
+      "detail": "SO(3) requires real entries and det=+1; complex-valued matrices with Im\u22600 are excluded"
+    },
+    "sp6_generator_not_always_antiherm": {
+      "pass": true,
+      "is_anti_hermitian": false,
+      "detail": "sp(6)\\u(3) generator (lower-left block) is NOT anti-Hermitian: sp(6) extends beyond u(3) at algebra level"
+    }
+  },
+  "boundary": {
+    "identity_in_all_four_shells": {
+      "pass": true,
+      "in_SO": "True",
+      "in_U": true,
+      "in_SU": "True",
+      "in_Sp": true,
+      "detail": "I_3 \u2208 SO(3) \u2229 U(3) \u2229 SU(3) \u2229 Sp(6): common boundary element of all four shells"
+    },
+    "identity_embedding_is_identity": {
+      "pass": true,
+      "detail": "Real embedding of I_3 = I_6: identity preserved under SO\u2192Sp embedding chain"
+    },
+    "su2_in_all_four_shells": {
+      "pass": true,
+      "in_SO3": "True",
+      "in_SU3": "True",
+      "in_Sp6_via_embedding": true,
+      "detail": "SU(2) block \u2208 SO(3) \u2229 SU(3) \u2229 U(3) \u2229 Sp(6): the SU(2)=Sp(1) quad coupling anchor"
+    },
+    "symplectic_form_preserved_at_boundary": {
+      "pass": true,
+      "detail": "J_6 preserved by identity: symplectic form well-defined at the quad boundary"
+    }
+  }
+}

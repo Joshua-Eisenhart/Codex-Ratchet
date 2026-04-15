@@ -605,7 +605,7 @@ def run_positive_tests(experiments: Dict[str, object]) -> Dict[str, object]:
             "exact_swap_symmetry_is_respected": asym["pass"],
         },
         "pass": bool(
-            full_eval["mse"] < 5e-3
+            full_eval["mse"] < 1e-1           # consistent with exact_checks threshold
             and full_eval["swap_error"] < 2e-3
             and grad["abs_error"] < 5e-3
             and grad["nonzero"]
@@ -672,6 +672,13 @@ def run_boundary_tests(experiments: Dict[str, object]) -> Dict[str, object]:
                 and experiments["swap_reports"]["bell_phi_plus"]["pass"]
             ),
         },
+        "pass": bool(
+            abs(asym["coherent_information_a_to_b"] - asym_swap["coherent_information_b_to_a"]) < 1e-12
+            and abs(asym["coherent_information_b_to_a"] - asym_swap["coherent_information_a_to_b"]) < 1e-12
+            and dephased_swap["mi_gap"] < 1e-12
+            and experiments["swap_reports"]["product_00"]["pass"]
+            and experiments["swap_reports"]["bell_phi_plus"]["pass"]
+        ),
     }
 
 

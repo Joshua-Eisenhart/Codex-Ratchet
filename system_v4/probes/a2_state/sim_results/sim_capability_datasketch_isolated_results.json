@@ -79,49 +79,28 @@
   },
   "target_tool": {
     "name": "datasketch",
-    "version": "1.9.0",
+    "version": null,
     "integration": "load_bearing"
   },
   "positive": {
     "datasketch_available": {
-      "pass": true,
-      "version": "1.9.0"
-    },
-    "identical_sets_high_similarity": {
-      "pass": true,
-      "jaccard": 1.0
-    },
-    "identical_sets_lsh_collide": {
-      "pass": true,
-      "result": [
-        "setA"
-      ]
-    },
-    "near_identical_sets_high_similarity": {
-      "pass": true,
-      "minhash_jaccard": 0.6484375,
-      "true_jaccard": 0.7777777777777778,
-      "note": "MinHash estimate >= 0.6 accepted; true Jaccard = 7/9 ~ 0.78"
+      "pass": false,
+      "detail": "datasketch missing: No module named 'datasketch'"
     }
   },
   "negative": {
-    "disjoint_sets_no_collision": {
-      "pass": true,
-      "jaccard": 0.0,
-      "query_result": []
+    "skip": {
+      "pass": false,
+      "detail": "datasketch missing"
     }
   },
   "boundary": {
-    "threshold_0p5_intermediate": {
-      "pass": true,
-      "jaccard_half": 0.265625,
-      "jaccard_none": 0.0,
-      "half_in_result": false,
-      "none_in_result": false,
-      "note": "disjoint excluded at threshold=0.5; half-overlap is probabilistic boundary"
+    "skip": {
+      "pass": false,
+      "detail": "datasketch missing"
     }
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "capability_summary": {
     "can": "Insert synthetic shingle sets into MinHashLSH and query by approximate Jaccard similarity; identical sets collide with jaccard>=0.9; near-identical (1 element diff) score >=0.7; threshold parameter controls collision granularity.",
     "cannot": "Does not provide exact Jaccard; probabilistic false-negative rate exists at boundary thresholds; no native support for weighted sets without WeightedMinHash variant."

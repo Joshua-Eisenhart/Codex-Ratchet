@@ -67,6 +67,35 @@ raise SystemExit(1)
 PY
 }
 
+sim_family() {
+  local base
+  base=$(basename "$1" .py)
+  base=${base#sim_}
+  printf '%s\n' "${base%%_*}"
+}
+
+plan_bucket_for_sim() {
+  case "$(sim_family "$1")" in
+    axis|axis0|bridge|capability|clifford|cvc5|geom|geomstats|gerbe|gtower|gudhi|integration|lego|pure|pyg|qit|rustworkx|spectral|toponetx|torch|weyl|xgi|z3)
+      echo "core_ladder"
+      ;;
+    fep|holodeck|iching|igt|leviathan)
+      echo "framework_doctrine"
+      ;;
+    *)
+      echo "exploratory"
+      ;;
+  esac
+}
+
+priority_for_bucket() {
+  case "$1" in
+    core_ladder) echo "high" ;;
+    framework_doctrine) echo "low" ;;
+    *) echo "normal" ;;
+  esac
+}
+
 idle=0
 if ! acquire_reseed_pidfile; then
   echo "[$(date)] existing reseed pidfile is alive; exiting duplicate" >> "$LOG"
@@ -92,8 +121,11 @@ while :; do
     # classify: canonical sims (check for classification = "canonical") go lane_A, rest lane_B
     lane="lane_B"
     grep -q '^classification\s*=\s*"canonical"' "$sim" 2>/dev/null && lane="lane_A"
+    bucket=$(plan_bucket_for_sim "$sim")
+    priority=$(priority_for_bucket "$bucket")
     ID=$("$PY" -c "import secrets; print(secrets.token_hex(8))")
-    printf '{"enqueued_at": %s, "lane": "%s", "sim_path": "%s"}\n' "$(date +%s)" "$lane" "$sim" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
+    printf '{"enqueued_at": %s, "lane": "%s", "sim_path": "%s", "priority": "%s", "plan_bucket": "%s"}\n' \
+      "$(date +%s)" "$lane" "$sim" "$priority" "$bucket" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
     enq=$((enq+1))
   done
 

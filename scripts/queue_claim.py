@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
 
 LANES = ("lane_A", "lane_B")
+PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
 
 
 def _ensure_dirs() -> None:
@@ -59,6 +60,15 @@ def enqueue(lane: str, sim_path: str) -> Path:
     return target
 
 
+def _claim_order(item: Path) -> tuple[int, str]:
+    try:
+        data = json.loads(item.read_text())
+    except Exception:
+        return (PRIORITY_RANK["normal"], item.name)
+    priority = str(data.get("priority", "normal")).lower()
+    return (PRIORITY_RANK.get(priority, PRIORITY_RANK["normal"]), item.name)
+
+
 def claim(lane: str, worker_id: str) -> Path | None:
     """Atomic claim via os.rename. Returns claimed path or None if queue empty."""
     _ensure_dirs()
@@ -67,7 +77,7 @@ def claim(lane: str, worker_id: str) -> Path | None:
     pid = os.getpid()
     host = socket.gethostname().split(".")[0]
     # Snapshot then race; os.rename on same fs is atomic and fails if src missing
-    for item in sorted(ld.glob("*.json")):
+    for item in sorted(ld.glob("*.json"), key=_claim_order):
         target = claimed_dir / f"{item.name}.{pid}.{host}.{worker_id}"
         try:
             os.rename(item, target)

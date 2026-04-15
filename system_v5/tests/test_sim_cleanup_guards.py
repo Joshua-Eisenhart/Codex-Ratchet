@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
@@ -240,6 +241,123 @@ def test_adaptive_controller_builds_plane_snapshot_from_current_surfaces(
         "passing": 2,
     }
     assert snapshot["state_plane"]["integration"]["rosetta_candidate_clusters"] == 3
+    assert snapshot["state_plane"]["program"]["never_run_families"] == {"new": 1}
+    assert snapshot["state_plane"]["program"]["passing_families"] == {"ok1": 1, "ok2": 1}
+    assert snapshot["state_plane"]["program"]["never_run_buckets"] == {"exploratory": 1}
+    assert snapshot["state_plane"]["program"]["passing_buckets"] == {"exploratory": 2}
+    assert snapshot["state_plane"]["program"]["queue_families"]["lane_A"] == {"other": 2}
+
+
+def test_adaptive_controller_rescues_misrouted_blocked_classical_baseline(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_rescue_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    queue_root = probes / "a2_state" / "queue"
+    blocked = queue_root / "blocked"
+    lane_b = queue_root / "lane_B"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+    lane_b.mkdir(parents=True)
+
+    sim = probes / "sim_cl3_composition.py"
+    sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
+    blocked_item = blocked / "dead.json.123.host.w1"
+    blocked_item.write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied"}\n' % sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS", results)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    rescued = module.rescue_misrouted_blocked()
+
+    queued = list(lane_b.glob("*.json"))
+    assert rescued == 1
+    assert len(queued) == 1
+    queued_payload = json.loads(queued[0].read_text(encoding="utf-8"))
+    assert queued_payload["sim_path"] == str(sim)
+    blocked_payload = json.loads(blocked_item.read_text(encoding="utf-8"))
+    assert blocked_payload["rescued_lane"] == "lane_B"
+
+
+def test_adaptive_controller_dry_mode_skips_queue_mutation(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "adaptive_controller_dry_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    queue_root = probes / "a2_state" / "queue"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    for lane in ("claimed", "blocked"):
+        (queue_root / lane).mkdir(parents=True, exist_ok=True)
+
+    sim = probes / "sim_alpha.py"
+    sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
+    claim = queue_root / "claimed" / "dead.json.123.host.w1"
+    claim.write_text(
+        '{"lane":"lane_A","sim_path":"%s"}\n' % sim,
+        encoding="utf-8",
+    )
+    blocked = queue_root / "blocked" / "gate.json.123.host.w1"
+    blocked.write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied"}\n' % sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS", results)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    state = module.triage_cycle(dry=True)
+
+    assert state["released_claims"] == 0
+    assert state["rescued_misrouted_blocked"] == 0
+    assert claim.exists()
+    assert blocked.exists()
+
+
+def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    low = lane / "b.json"
+    low.write_text(
+        '{"sim_path":"sim_low.py","lane":"lane_B","priority":"low"}\n',
+        encoding="utf-8",
+    )
+    high = lane / "a.json"
+    high.write_text(
+        '{"sim_path":"sim_high.py","lane":"lane_B","priority":"high"}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_high.py"
 
 
 def test_controller_plane_snapshot_dry_mode_prints_snapshot(

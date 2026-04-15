@@ -25,6 +25,7 @@ import secrets
 import subprocess
 import sys
 import time
+from collections import Counter
 from datetime import datetime
 
 ROOT = pathlib.Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
@@ -44,6 +45,38 @@ QUEUE_BLACKLIST = {
     "autoresearch_sim_harness",
     "exploratory_process_cycle_stage_matrix_sim",
     "stage_matrix_neg_lib",
+}
+CORE_LADDER_FAMILIES = {
+    "axis",
+    "axis0",
+    "bridge",
+    "capability",
+    "clifford",
+    "cvc5",
+    "geom",
+    "geomstats",
+    "gerbe",
+    "gtower",
+    "gudhi",
+    "integration",
+    "lego",
+    "pure",
+    "pyg",
+    "qit",
+    "rustworkx",
+    "spectral",
+    "toponetx",
+    "torch",
+    "weyl",
+    "xgi",
+    "z3",
+}
+FRAMEWORK_DOCTRINE_FAMILIES = {
+    "fep",
+    "holodeck",
+    "iching",
+    "igt",
+    "leviathan",
 }
 
 # ── helpers ──────────────────────────────────────────────────────────────────
@@ -104,11 +137,13 @@ def is_queued(sim_path: str) -> bool:
 def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
     uid = secrets.token_hex(8)
+    bucket = plan_bucket(str(sim_path))
     payload = {
         "enqueued_at": int(time.time()),
         "lane": lane,
         "sim_path": str(sim_path),
         "priority": priority,
+        "plan_bucket": bucket,
     }
     (QUEUE / lane / f"{uid}.json").write_text(json.dumps(payload))
 
@@ -156,6 +191,73 @@ def recent_dispatch(limit: int = 8) -> list[dict]:
     return recent
 
 
+def sim_family(name: str) -> str:
+    stem = pathlib.Path(name).stem
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    match = re.match(r"([a-z0-9]+)", stem)
+    return match.group(1) if match else "other"
+
+
+def plan_bucket(name: str) -> str:
+    family = sim_family(name)
+    if family in CORE_LADDER_FAMILIES:
+        return "core_ladder"
+    if family in FRAMEWORK_DOCTRINE_FAMILIES:
+        return "framework_doctrine"
+    return "exploratory"
+
+
+def default_priority_for_bucket(bucket: str) -> str:
+    if bucket == "core_ladder":
+        return "high"
+    if bucket == "framework_doctrine":
+        return "low"
+    return "normal"
+
+
+def summarize_families(sim_names: list[str], limit: int = 8) -> dict[str, int]:
+    counts = Counter(sim_family(name) for name in sim_names)
+    return dict(counts.most_common(limit))
+
+
+def summarize_buckets(sim_names: list[str]) -> dict[str, int]:
+    counts = Counter(plan_bucket(name) for name in sim_names)
+    return dict(counts)
+
+
+def queue_family_counts(limit: int = 8) -> dict[str, dict[str, int]]:
+    out: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B", "claimed", "blocked"):
+        lane_dir = QUEUE / lane
+        counts: Counter[str] = Counter()
+        if lane_dir.exists():
+            for item in lane_dir.iterdir():
+                if not item.is_file():
+                    continue
+                data = load_result(item)
+                sim_path = data.get("sim_path", "")
+                counts[sim_family(sim_path)] += 1
+        out[lane] = dict(counts.most_common(limit))
+    return out
+
+
+def queue_bucket_counts() -> dict[str, dict[str, int]]:
+    out: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B", "claimed", "blocked"):
+        lane_dir = QUEUE / lane
+        counts: Counter[str] = Counter()
+        if lane_dir.exists():
+            for item in lane_dir.iterdir():
+                if not item.is_file():
+                    continue
+                data = load_result(item)
+                bucket = data.get("plan_bucket") or plan_bucket(data.get("sim_path", ""))
+                counts[str(bucket)] += 1
+        out[lane] = dict(counts)
+    return out
+
+
 def build_plane_snapshot(state: dict | None = None, integration: dict | None = None) -> dict:
     triage = {
         "failing": len((state or {}).get("failing", [])),
@@ -184,6 +286,14 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
                 "rosetta_candidate_clusters": (integration or {}).get("rosetta_candidate_clusters", 0),
             },
             "top_examples": top_examples,
+            "program": {
+                "never_run_families": summarize_families((state or {}).get("never_run", [])),
+                "passing_families": summarize_families((state or {}).get("passing", [])),
+                "never_run_buckets": summarize_buckets((state or {}).get("never_run", [])),
+                "passing_buckets": summarize_buckets((state or {}).get("passing", [])),
+                "queue_families": queue_family_counts(),
+                "queue_buckets": queue_bucket_counts(),
+            },
         },
     }
 
@@ -281,6 +391,37 @@ def release_dead_claims():
         print(f"[release_dead_claims] released stale claim: {cf.name} -> {lane}")
     return released
 
+
+def rescue_misrouted_blocked() -> int:
+    blocked = QUEUE / "blocked"
+    if not blocked.exists():
+        return 0
+    rescued = 0
+    for bf in blocked.iterdir():
+        if not bf.is_file():
+            continue
+        data = load_result(bf)
+        if data.get("blocked_reason") != "gate_denied":
+            continue
+        if data.get("lane") != "lane_A":
+            continue
+        if data.get("rescued_lane") == "lane_B":
+            continue
+        sim_path = pathlib.Path(str(data.get("sim_path", "")))
+        if not sim_path.exists():
+            continue
+        if infer_lane(sim_path) != "lane_B":
+            continue
+        result_json = RESULTS / f"{sim_path.stem}_results.json"
+        if result_json.exists() or is_queued(str(sim_path)):
+            continue
+        enqueue(sim_path, "lane_B", "normal")
+        data["rescued_at"] = datetime.now().isoformat()
+        data["rescued_lane"] = "lane_B"
+        bf.write_text(json.dumps(data, sort_keys=True))
+        rescued += 1
+    return rescued
+
 # ── schema repair ─────────────────────────────────────────────────────────────
 
 def auto_repair_classification(sim_path: pathlib.Path) -> bool:
@@ -375,10 +516,12 @@ def triage_cycle(dry: bool = False) -> dict:
         "failing": [], "schema_debt": [], "never_run": [],
         "stale": [], "passing": [],
         "enqueued": {"failing": 0, "schema_debt": 0, "never_run": 0, "stale": 0},
-        "repairs": 0, "released_claims": 0,
+        "repairs": 0, "released_claims": 0, "rescued_misrouted_blocked": 0,
     }
 
-    state["released_claims"] = release_dead_claims()
+    if not dry:
+        state["released_claims"] = release_dead_claims()
+        state["rescued_misrouted_blocked"] = rescue_misrouted_blocked()
 
     all_sims = [p for p in PROBES.glob("sim_*.py")
                 if " 2" not in p.name and p.stem not in QUEUE_BLACKLIST]
@@ -390,7 +533,7 @@ def triage_cycle(dry: bool = False) -> dict:
         if not rj.exists():
             state["never_run"].append(stem)
             if not dry and not is_queued(str(sim)):
-                enqueue(sim, infer_lane(sim), "normal")
+                enqueue(sim, infer_lane(sim), default_priority_for_bucket(plan_bucket(sim.name)))
                 state["enqueued"]["never_run"] += 1
             continue
 
@@ -424,7 +567,8 @@ def triage_cycle(dry: bool = False) -> dict:
         if classification == "canonical" and age > 7:
             state["stale"].append(stem)
             if not dry and not is_queued(str(sim)):
-                enqueue(sim, infer_lane(sim), "low")
+                priority = "normal" if plan_bucket(sim.name) == "core_ladder" else "low"
+                enqueue(sim, infer_lane(sim), priority)
                 state["enqueued"]["stale"] += 1
             continue
 
@@ -447,6 +591,7 @@ def health_report(state: dict, integration: dict) -> str:
         f"  never_run         : {len(state['never_run'])} (+{state['enqueued']['never_run']})",
         f"  stale canonical   : {len(state['stale'])} (+{state['enqueued']['stale']})",
         f"  released_claims   : {state['released_claims']}",
+        f"  rescued_blocked   : {state.get('rescued_misrouted_blocked', 0)}",
         f"  rosetta_clusters  : {integration.get('rosetta_candidate_clusters', 0)}",
         f"  top_failing       : {state['failing'][:3]}",
         f"  top_never_run     : {state['never_run'][:3]}",

@@ -1,0 +1,141 @@
+{
+  "name": "sim_integration_networkx_rustworkx_crosscheck",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.tensor converts the adjacency matrix; matrix power via torch.linalg.matrix_power computes reachability as an independent check confirming path existence agrees with both nx and rustworkx"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: PyG message-passing neural networks are not required for algorithmic shortest-path cross-validation; the claim is about classical graph algorithm agreement, not learned representations"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 encodes the agreement constraint for each node pair: dist_nx(u,v) == dist_rx(u,v) must be SAT; when a deliberate weight discrepancy is introduced z3 returns UNSAT, serving as the formal disagreement detector"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: z3 is sufficient to encode and check pairwise distance agreement constraints; cvc5 duplication would not add new information for this agreement-checking claim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: shortest-path distances are numeric, not symbolic; sympy symbolic algebra is not needed to verify floating-point agreement between two C-backed graph libraries"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: geometric algebra is not relevant to pairwise shortest-path distance cross-validation; Clifford rotors operate on geometric objects, not graph adjacency structures"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Riemannian manifold geometry is not needed for discrete weighted graph path validation; geomstats is reserved for sims involving continuous manifold structure"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: rotation-equivariant neural networks are not relevant to algorithmic cross-validation of graph shortest paths between two libraries"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "rustworkx.dijkstra_shortest_path_lengths is one of the two primary libraries being cross-validated; its C-backed Dijkstra implementation is compared against networkx to establish agreement"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: hyperedge structures are not relevant to this pairwise-edge graph cross-validation; xgi is reserved for sims that probe higher-order incidence structures"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: topological cell complex operations are out of scope; this sim concerns classical graph algorithms on pairwise-edge structures, not simplicial or cell complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: persistent homology of the graph filtration is not the claim being tested; gudhi is reserved for sims probing topological invariants of the constraint surface"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "networkx",
+    "import": "import networkx as nx; nx.single_source_dijkstra_path_length",
+    "role": "load_bearing",
+    "description": "networkx is the second primary library being cross-validated against rustworkx; agreement between nx and rx Dijkstra is the main claim"
+  },
+  "positive": {
+    "positive_nx_rx_agreement": {
+      "nx_pair_count": 10,
+      "rx_pair_count": 10,
+      "mismatches": [],
+      "all_agree": true,
+      "z3_result": "sat",
+      "dist_0_4_nx": 4.0,
+      "dist_0_4_rx": 4.0,
+      "expected_0_4": 4.0,
+      "pytorch_reachable_agreement": "10/10",
+      "pass_agreement": true,
+      "pass_z3": true,
+      "pass_spot_check": true,
+      "pass_pytorch": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_deliberate_weight_discrepancy": {
+      "description": "nx has 0->4 weight=2, rx has 0->4 weight=99; nx sees 2 as shortest direct, rx takes chain=4",
+      "z3_result": "unsat",
+      "z3_is_unsat_as_expected": true,
+      "mismatches": [
+        {
+          "pair": [
+            0,
+            4
+          ],
+          "nx": 2.0,
+          "rx": 4.0,
+          "diff": 2.0
+        }
+      ],
+      "has_mismatch": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_empty_graph": {
+      "nx_pairs": 0,
+      "rx_pairs": 0,
+      "pass": true
+    },
+    "boundary_complete_k5": {
+      "nx_pairs": 20,
+      "rx_pairs": 20,
+      "z3_result": "sat",
+      "mismatches": [],
+      "all_distances_1_nx": true,
+      "all_distances_1_rx": true,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

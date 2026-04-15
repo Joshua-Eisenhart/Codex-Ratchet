@@ -1,0 +1,160 @@
+{
+  "name": "sim_integration_cma_constraint_optimization",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.tensor wraps CMA-ES candidate solutions; torch.norm computes fitness values as tensor ops providing a consistent numeric interface between the optimizer and the constraint evaluator"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: PyG graph-neural message passing is not needed for this point-on-manifold optimization; the constraint is a scalar sphere equation, not a graph structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 verifies the final CMA-ES result: checks whether the best solution satisfies |x^2+y^2+z^2 - 1| < epsilon, encoding the S^2 membership constraint as an SMT query (SAT = on manifold)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: z3 is sufficient for this scalar algebraic constraint; cvc5 would be redundant here and is reserved for proofs requiring first-order arithmetic not supported by z3"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives the constraint manifold equation x^2+y^2+z^2=1 symbolically and computes its gradient [2x,2y,2z]; this analytical form is used to define the fitness landscape and verify the analytical optimum"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Clifford geometric algebra is not required to represent a sphere constraint; rotor-based geometry is reserved for sims where spinor structure is the object of study"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: while geomstats could represent S^2 as a Riemannian manifold, this sim focuses on the CMA-ES black-box search in ambient 3D space rather than intrinsic geodesic operations"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: e3nn equivariant networks are not needed for this scalar constraint optimization; no rotation-equivariant feature extraction is required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: the constraint manifold here is a smooth sphere, not a graph structure; rustworkx graph algorithms are out of scope for this continuous optimization probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: hyperedge structures are not relevant to sphere-constraint optimization; xgi is reserved for sims involving higher-order relational structures"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: topological cell complex operations are not needed for S^2 point optimization; toponetx is reserved for sims where the topology of the complex is the primary object"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: persistent homology of the manifold is not the claim being tested here; gudhi is reserved for sims that probe topological invariants of the constraint surface"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "cma",
+    "import": "import cma; cma.fmin2",
+    "role": "load_bearing",
+    "description": "CMA-ES is the optimization engine; fmin2 searches 3D ambient space; fitness = negative constraint clearance from excluded poles"
+  },
+  "positive": {
+    "positive_cma_finds_sphere_point": {
+      "x_best": [
+        0.42200536980003145,
+        0.9065933714485,
+        -3.180225708090699e-14
+      ],
+      "norm_squared": 1.0000000732944192,
+      "dist_from_sphere": 7.329441920056468e-08,
+      "z3_result_tight_01": "sat",
+      "z3_sat_tight": true,
+      "z3_result_relaxed_02": "sat",
+      "z3_sat_relaxed": true,
+      "manifold_sympy": {
+        "sphere_equation": "x**2 + y**2 + z**2 - 1",
+        "gradient": [
+          "2*x",
+          "2*y",
+          "2*z"
+        ],
+        "gradient_at_north_pole": [
+          0.0,
+          0.0,
+          2.0
+        ]
+      },
+      "pass_near_sphere": true,
+      "pass_z3_sat": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_far_start_convergence": {
+      "far_start": [
+        10.0,
+        0.0,
+        0.0
+      ],
+      "far_x_best": [
+        0.9985655253772556,
+        0.05354337886849622,
+        -1.8835656596272993e-14
+      ],
+      "far_norm_sq": 1.0000000018926098,
+      "far_fevals": 1142,
+      "close_start": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "close_x_best": [
+        0.9922358466282313,
+        0.12437063505334203,
+        -1.5241021264150774e-14
+      ],
+      "close_norm_sq": 1.0000000301976144,
+      "close_fevals": 995,
+      "note": "far start uses more function evaluations; close start converges faster to sphere",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_2d_circle": {
+      "x_best_2d": [
+        0.999999928279157,
+        -4.266720520035749e-15
+      ],
+      "norm": 0.999999928279157,
+      "dist_from_unit_circle": 7.172084304229998e-08,
+      "pass_near_circle": true,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

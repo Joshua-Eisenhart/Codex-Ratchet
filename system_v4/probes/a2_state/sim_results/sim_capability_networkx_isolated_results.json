@@ -1,0 +1,160 @@
+{
+  "name": "sim_capability_networkx_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; pytorch tensor operations are addressed in dedicated integration sims per four-sim-kinds doctrine"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; PyG message-passing neural networks are a separate concern addressed in integration sims per four-sim-kinds doctrine"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; SMT constraint verification over graph properties deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; cvc5 formal proof checking deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; symbolic verification of graph invariants deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; geometric algebra over graph structures deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; Riemannian geometry embedding deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; equivariant spherical harmonic networks deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; rustworkx cross-validation is the focus of the dedicated crosscheck integration sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; hyperedge structures handled by xgi are out of scope for this isolation probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; topological complex operations are out of scope for this isolation probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates networkx graph algorithm capability; persistent homology analysis deferred to integration sims per four-sim-kinds doctrine"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "networkx",
+    "import": "import networkx as nx; nx.DiGraph",
+    "role": "load_bearing",
+    "can": [
+      "rich graph algorithm library covering paths, centrality, clustering, flows, matching",
+      "interoperates with scipy sparse arrays and numpy for numeric analysis",
+      "directed and undirected graphs with arbitrary node and edge attributes",
+      "DAG detection, topological sort, and ancestor/descendant queries"
+    ],
+    "cannot": [
+      "GPU acceleration \u2014 slower than rustworkx or igraph for large graphs",
+      "hyperedges or higher-order structures (use xgi or toponetx for those)",
+      "formal constraint satisfaction over graph properties (use z3 for that)"
+    ]
+  },
+  "positive": {
+    "positive_digraph_path_dag_centrality": {
+      "path_found": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected_path": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "path_length": 3.0,
+      "expected_length": 3.0,
+      "is_dag": true,
+      "betweenness_centrality": {
+        "0": 0.0,
+        "1": 0.16666666666666666,
+        "2": 0.16666666666666666,
+        "3": 0.0
+      },
+      "interior_nonzero": true,
+      "pass_path": true,
+      "pass_length": true,
+      "pass_dag": true,
+      "pass_bc": true,
+      "pass": true
+    },
+    "positive_scipy_bridge": {
+      "matrix_shape": [
+        4,
+        4
+      ],
+      "expected_shape": [
+        4,
+        4
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_cyclic_not_dag": {
+      "is_dag": false,
+      "expected": false,
+      "pass_returns_false": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_empty_graph": {
+      "n_nodes": 0,
+      "n_edges": 0,
+      "pass": true
+    },
+    "boundary_complete_graph_k4": {
+      "n_nodes": 4,
+      "n_edges": 6,
+      "expected_edges": 6,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

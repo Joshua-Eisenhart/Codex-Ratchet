@@ -1,0 +1,159 @@
+{
+  "name": "sim_integration_xgi_multishell_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 multi-shell coexistence is modeled as hyperedge structure; tensor operations not needed for this probe"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 PyG graph message passing couples a different shell-coupling lego; XGI is the primary graph object here"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 coexistence admissibility is verified structurally via hyperedge size and deduplication, not z3 boolean constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 formal proof layer not required for hyperedge size verification; structural checks suffice"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 symbolic algebra not needed; coexistence is a combinatorial counting problem on hyperedges"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 geometric algebra couples a different geometry lego; multi-shell coexistence is a topology/graph problem"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 Riemannian geometry not required; coexistence states are discrete hyperedges, not manifold points"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 equivariant networks couple a different symmetry lego; hyperedge coexistence does not require SE(3) equivariance"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "rustworkx converts the XGI line graph to a rustworkx graph for shortest-path between coexistence states; compatibility = path length"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hypergraph, edges.members, nodes.memberships, convert.to_line_graph are all primary; multi-shell coexistence states represented directly as hyperedges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 cell complexes couple a different combinatorial topology lego; XGI hyperedges are the appropriate primitive here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 persistent homology couples a different filtration lego; not needed for discrete hyperedge coexistence counting"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "p1_5shell_4coexistence_states": {
+      "hyperedge_sizes": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "expected_sizes": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "sizes_ok": true,
+      "node_degrees": {
+        "0": 3,
+        "1": 3,
+        "2": 2,
+        "3": 2,
+        "4": 1
+      },
+      "expected_degrees": {
+        "0": 3,
+        "1": 3,
+        "2": 2,
+        "3": 2,
+        "4": 1
+      },
+      "degrees_ok": true,
+      "line_graph_node_count": 4,
+      "lg_ok": true,
+      "rustworkx_num_nodes": 4,
+      "rustworkx_num_edges": 5,
+      "rx_nodes_ok": true,
+      "shortest_paths_from_state0": {
+        "3": "NodeIndices[0, 3]",
+        "1": "NodeIndices[0, 1]",
+        "2": "NodeIndices[0, 3, 2]"
+      },
+      "pass": true,
+      "note": "5 shells, 4 coexistence states; hyperedge sizes match co-existing shell count; node degrees match membership counts; line graph has 4 nodes; rustworkx shortest paths computed \u2014 coexistence states survived structural verification"
+    }
+  },
+  "negative": {
+    "n1_contradictory_self_coexistence": {
+      "contradictory_input": [
+        0,
+        0,
+        1
+      ],
+      "stated_cardinality": 3,
+      "actual_hyperedge_size": 2,
+      "dedup_excluded": true,
+      "pass": true,
+      "note": "shell 0 appears twice in hyperedge [0,0,1]; after deduplication actual size < stated cardinality; self-coexistence excluded by structural constraint \u2014 size reduced from 3 to 2"
+    }
+  },
+  "boundary": {
+    "b1_all_shells_hyperedge": {
+      "num_shells": 5,
+      "hyperedge_size": 5,
+      "pass": true,
+      "note": "all-shells hyperedge size = num_shells = 5; boundary coexistence state survived with correct cardinality"
+    },
+    "b2_empty_hypergraph": {
+      "num_edges": 0,
+      "pass": true,
+      "note": "empty hypergraph has 0 edges; trivial boundary case survived as structurally valid"
+    },
+    "b3_single_node_rustworkx": {
+      "rustworkx_num_nodes": 1,
+      "rustworkx_num_edges": 0,
+      "pass": true,
+      "note": "single coexistence state; rustworkx line graph has 1 node, 0 edges; isolated coexistence state survived"
+    }
+  },
+  "overall_pass": true,
+  "summary": "XGI hyperedges directly represent multi-shell coexistence states. Hyperedge sizes match co-existing shell counts. Node degrees match membership counts. Line graph nodes = coexistence state count. Rustworkx shortest paths reveal coexistence state compatibility. Self-coexistence excluded by deduplication constraint. XGI + rustworkx are load-bearing."
+}

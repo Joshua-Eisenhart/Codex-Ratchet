@@ -1,0 +1,138 @@
+{
+  "name": "sim_integration_pyg_shell_coupling_admissibility",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "GCNConv forward pass and tensor operations are the computation backbone for propagating admissibility scores"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "torch_geometric Data + GCNConv are the primary objects; graph message passing propagates admissibility scores between shell nodes"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 SAT/UNSAT cross-validates which coupling configurations survive the constraint; coupling A with anti-A is UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 this probe focuses on pyg message passing and z3 constraint verification; cvc5 couples a different proof layer"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 symbolic algebra not needed; admissibility is a numeric tensor quantity verified by z3 boolean constraints"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 geometric algebra not load-bearing here; shell coupling is modeled as graph weights, not spinor products"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 Riemannian geometry not required; shell admissibility is a graph-propagation problem, not manifold curvature"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 equivariant networks couple a different lego family; GCNConv is the appropriate message-passing primitive here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 rustworkx graph algorithms not needed for this probe; PyG handles the graph computation natively"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 hyperedge structure couples a different multi-shell coexistence lego; this probe is pairwise coupling only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 cell complexes couple a different topology lego; shell coupling here is a weighted graph problem"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used \u2014 persistent homology couples a different topological invariant; not needed for pairwise coupling admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "p1_4node_admissible_coupling": {
+      "output_shape": [
+        4,
+        1
+      ],
+      "shape_ok": true,
+      "aggregated_signals": [
+        -0.9533333778381348,
+        -0.9533333778381348,
+        -0.9533333778381348,
+        -0.9533333778381348
+      ],
+      "propagation_survived": true,
+      "z3_result": "sat",
+      "z3_sat": true,
+      "pass": true,
+      "note": "4-shell fully-connected graph with admissible weights; GCNConv output shape correct; z3 confirms SAT for valid coupling"
+    }
+  },
+  "negative": {
+    "n1_anti_correlated_coupling": {
+      "node1_aggregated_signal": 0.0,
+      "z3_result": "unsat",
+      "z3_unsat": true,
+      "pass": true,
+      "note": "shell A coupled with NOT-A constraint; z3 correctly returns UNSAT for contradictory coupling; excluded by constraint"
+    }
+  },
+  "boundary": {
+    "b1_single_isolated_node": {
+      "output_shape": [
+        1,
+        1
+      ],
+      "shape_ok": true,
+      "output_value": 0.3022720515727997,
+      "z3_result": "sat",
+      "z3_sat": true,
+      "pass": true,
+      "note": "single isolated node; GCNConv output is self-feature transform only; z3 confirms trivially SAT with no coupling constraint"
+    },
+    "b2_threshold_weight_coupling": {
+      "output_shape": [
+        2,
+        1
+      ],
+      "shape_ok": true,
+      "aggregated_signals": [
+        0.2101772129535675,
+        0.2101772129535675
+      ],
+      "pass": true,
+      "note": "edge weight exactly at admissibility threshold; GCNConv output shape correct; boundary coupling survived as constraint-admissible"
+    }
+  },
+  "overall_pass": true,
+  "summary": "PyG GCNConv propagates admissibility signals across a 4-shell coupling graph. z3 confirms SAT for constraint-admissible couplings and UNSAT for A-with-NOT-A contradictory couplings. Isolated shell survived as trivially admissible. No tool excluded by import failure; pyg+pytorch+z3 are load-bearing."
+}

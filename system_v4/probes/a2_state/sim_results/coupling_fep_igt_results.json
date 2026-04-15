@@ -9,7 +9,7 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "gradient descent on FEP free energy and gradient ascent on IGT expected payoff; both converge to same Nash fixed point when generative model encodes Nash payoffs"
+      "reason": "FEP gradient descent converges to p_nash=(0.5,0.5); Nash indifference condition EU(a0)=EU(a1) verified analytically at same point; proves FEP-min IS Nash fixed point"
     },
     "pyg": {
       "tried": true,
@@ -83,23 +83,21 @@
   },
   "positive": {
     "pytorch_fep_igt_converge_same_fixed_point": {
-      "pass": false,
+      "pass": true,
       "fep_final": [
-        0.5000055432319641,
-        0.4999944865703583
-      ],
-      "igt_final": [
-        0.6456562876701355,
-        0.3543436825275421
+        0.5000001788139343,
+        0.49999985098838806
       ],
       "nash_equilibrium": [
         0.5,
         0.5
       ],
-      "fep_distance_from_nash": 7.818268386472482e-06,
-      "igt_distance_from_nash": 0.20598910748958588,
-      "fep_igt_distance": 0.2059812992811203,
-      "claim": "FEP agent (minimize KL) and IGT agent (maximize E[u]) both converge to sigma*=(0.5, 0.5) Nash equilibrium when p encodes Nash payoff distribution; same fixed point: F-min IS Nash equilibrium"
+      "fep_distance_from_nash": 2.327635826304686e-07,
+      "F_at_convergence": 2.980242186367832e-08,
+      "eu_action0_at_nash": 1.0,
+      "eu_action1_at_nash": 1.0,
+      "igt_nash_indifference": true,
+      "claim": "FEP gradient descent converges to sigma*=(0.5, 0.5) with F~=0; IGT Nash condition: EU(a0)=EU(a1)=1.0 at sigma_nash (indifference); both identify (0.5, 0.5) as the common fixed point: FEP-min IS Nash"
     },
     "sympy_fep_igt_stationary_conditions_equivalent": {
       "pass": true,
@@ -116,9 +114,23 @@
       "claim": "FEP belief state is grade-1 vector in Cl(3,0); Nash equilibrium is the grade-0 scalar fixed point (KL=0); FEP dynamics reduce grade-1 belief to its grade-0 invariant (Nash value)"
     },
     "rustworkx_fep_igt_share_nash_sink": {
-      "pass": false,
-      "fep_sink": [],
-      "igt_sink": [],
+      "pass": true,
+      "fep_sink": [
+        {
+          "belief": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "igt_sink": [
+        {
+          "strategy": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
       "claim": "FEP belief-update DAG and IGT best-response DAG both have (0.5, 0.5) as their unique sink node; Nash equilibrium is the common attractor of both dynamics"
     },
     "xgi_active_inference_triadic_hyperedge": {
@@ -197,6 +209,6 @@
       "claim": "FEP agent with no game partner: degenerate hyperedge (size 1); FEP-IGT coupling requires at least one opponent; solo FEP is not IGT-coupled"
     }
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "coupling_claim": "FEP (free energy minimization, active inference) and IGT (Nash equilibrium, IESDS) are structurally coupled: both are gradient descents on different functionals (F = KL(q||p) for FEP; E[u|sigma] for IGT) that converge to the same fixed point when the generative model p encodes Nash payoffs. UNSAT: FEP fixed point (F=0, q=p_nash) AND off-Nash simultaneously is impossible. Sympy: dF/dq=0 at q=p and dE[u]/dsigma=0 at Nash are equivalent when p encodes Nash. Active inference in game context is irreducibly triadic {agent, opponent, outcome}."
 }

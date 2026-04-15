@@ -17,11 +17,11 @@ Loops indefinitely unless --once. Cycle = CYCLE_SEC (default 300s).
 
 import argparse
 import atexit
+import hashlib
 import json
 import os
 import pathlib
 import re
-import secrets
 import subprocess
 import sys
 import time
@@ -166,11 +166,18 @@ def is_queued(sim_path: str) -> bool:
                 pass
     return False
 
+
+def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
+    normalized = normalize_sim_path(sim_path)
+    digest = hashlib.sha1(f"{lane}:{normalized}".encode()).hexdigest()[:16]
+    return QUEUE / lane / f"{digest}.json"
+
+
 def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
-    uid = secrets.token_hex(8)
     normalized = normalize_sim_path(sim_path)
     bucket = plan_bucket(normalized)
+    priority = canonical_priority(priority, bucket)
     payload = {
         "enqueued_at": int(time.time()),
         "lane": lane,
@@ -179,7 +186,21 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
         "plan_bucket": bucket,
         "plan_stage": plan_stage(normalized),
     }
-    (QUEUE / lane / f"{uid}.json").write_text(json.dumps(payload))
+    target = queue_item_path(lane, normalized)
+    try:
+        fd = os.open(str(target), os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    except FileExistsError:
+        existing = load_result(target)
+        existing["sim_path"] = normalized
+        existing["lane"] = lane
+        existing["plan_bucket"] = bucket
+        existing["plan_stage"] = plan_stage(normalized)
+        existing["priority"] = canonical_priority(existing.get("priority") or priority, bucket)
+        existing["enqueued_at"] = existing.get("enqueued_at", payload["enqueued_at"])
+        target.write_text(json.dumps(existing, sort_keys=True))
+        return
+    with os.fdopen(fd, "w", encoding="utf-8") as handle:
+        handle.write(json.dumps(payload, sort_keys=True))
 
 
 def queue_counts() -> dict[str, int]:

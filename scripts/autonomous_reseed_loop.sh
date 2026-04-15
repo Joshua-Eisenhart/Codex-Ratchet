@@ -96,6 +96,26 @@ priority_for_bucket() {
   esac
 }
 
+plan_stage_for_sim() {
+  local base family
+  base=$(basename "$1" .py)
+  base=${base#sim_}
+  family=${base%%_*}
+  case "$family" in
+    axis|axis0) echo "late_axis" ;;
+    *)
+      case "$base" in
+        *bipartite*|*partial_trace*|*entanglement*|*mutual_information*|*mutual_info*|*coherent_information*|*coherent_info*|*concurrence*|*negativity*|*schmidt*|*entropy*|*capacity*|*capacities*|*carnot*|*szilard*|*landauer*|*thermo*)
+          echo "late_info"
+          ;;
+        *)
+          echo "early_core"
+          ;;
+      esac
+      ;;
+  esac
+}
+
 idle=0
 if ! acquire_reseed_pidfile; then
   echo "[$(date)] existing reseed pidfile is alive; exiting duplicate" >> "$LOG"
@@ -124,9 +144,46 @@ while :; do
     grep -q '^classification\s*=\s*"canonical"' "$sim" 2>/dev/null && lane="lane_A"
     bucket=$(plan_bucket_for_sim "$sim")
     priority=$(priority_for_bucket "$bucket")
-    ID=$("$PY" -c "import secrets; print(secrets.token_hex(8))")
-    printf '{"enqueued_at": %s, "lane": "%s", "sim_path": "%s", "priority": "%s", "plan_bucket": "%s"}\n' \
-      "$(date +%s)" "$lane" "$sim_abs" "$priority" "$bucket" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
+    stage=$(plan_stage_for_sim "$sim")
+    "$PY" - "$ROOT" "$lane" "$sim_abs" "$priority" "$bucket" "$stage" <<'PY'
+import hashlib
+import json
+import os
+import sys
+import time
+from pathlib import Path
+
+root, lane, sim_abs, priority, bucket, stage = sys.argv[1:]
+queue_dir = Path(root) / "system_v4/probes/a2_state/queue" / lane
+queue_dir.mkdir(parents=True, exist_ok=True)
+digest = hashlib.sha1(f"{lane}:{sim_abs}".encode()).hexdigest()[:16]
+target = queue_dir / f"{digest}.json"
+payload = {
+    "enqueued_at": int(time.time()),
+    "lane": lane,
+    "sim_path": sim_abs,
+    "priority": priority,
+    "plan_bucket": bucket,
+    "plan_stage": stage,
+}
+try:
+    fd = os.open(str(target), os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+except FileExistsError:
+    try:
+        existing = json.loads(target.read_text())
+    except Exception:
+        existing = {}
+    existing["sim_path"] = sim_abs
+    existing["lane"] = lane
+    existing["plan_bucket"] = bucket
+    existing["plan_stage"] = stage
+    existing["priority"] = priority
+    existing["enqueued_at"] = existing.get("enqueued_at", payload["enqueued_at"])
+    target.write_text(json.dumps(existing, sort_keys=True))
+else:
+    with os.fdopen(fd, "w", encoding="utf-8") as handle:
+        handle.write(json.dumps(payload, sort_keys=True))
+PY
     enq=$((enq+1))
   done
 

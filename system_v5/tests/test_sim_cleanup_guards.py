@@ -399,6 +399,35 @@ def test_adaptive_controller_is_queued_matches_relative_and_absolute_paths(
     assert module.is_queued(sim_abs) is True
 
 
+def test_adaptive_controller_enqueue_is_idempotent(tmp_path, monkeypatch) -> None:
+    module = _load_module(
+        "adaptive_controller_enqueue_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    queue_root = probes / "a2_state" / "queue"
+    lane_b = queue_root / "lane_B"
+    probes.mkdir(parents=True, exist_ok=True)
+    lane_b.mkdir(parents=True, exist_ok=True)
+
+    sim = probes / "sim_weyl_chirality_bipartite.py"
+    sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    module.enqueue(sim, "lane_B", "normal")
+    module.enqueue(sim, "lane_B", "normal")
+
+    queued = list(lane_b.glob("*.json"))
+    assert len(queued) == 1
+    payload = json.loads(queued[0].read_text(encoding="utf-8"))
+    assert payload["sim_path"] == str(sim.resolve())
+    assert payload["plan_stage"] == "late_info"
+
+
 def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
     tmp_path, monkeypatch
 ) -> None:
@@ -682,6 +711,14 @@ def test_queue_claim_classifies_entanglement_as_late_info(tmp_path) -> None:
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_geom_cp1_u1_projective.py"
+
+
+def test_autonomous_reseed_loop_uses_deterministic_stage_aware_enqueue() -> None:
+    text = (REPO_ROOT / "scripts" / "autonomous_reseed_loop.sh").read_text(encoding="utf-8")
+    assert "plan_stage_for_sim()" in text
+    assert "hashlib.sha1" in text
+    assert '"plan_stage": stage' in text
+    assert "secrets.token_hex" not in text
 
 
 def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:

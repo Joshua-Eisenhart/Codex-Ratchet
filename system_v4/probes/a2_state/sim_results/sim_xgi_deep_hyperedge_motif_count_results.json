@@ -5,47 +5,47 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "combinatorial"
+      "reason": "purely combinatorial, no tensor compute"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "pairwise only"
+      "reason": "pairwise hyperedge count, no tensor ops"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "enumeration, not FOL"
+      "reason": "enumeration approach, no first-order logic"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "enumeration"
+      "reason": "enumeration only, no Clifford algebra"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "numeric count"
+      "reason": "numeric motif count, no manifold needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no GA"
+      "reason": "no geometric algebra in this motif probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no manifold"
+      "reason": "no manifold geometry in this sim scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariance"
+      "reason": "no equivariance constraint in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph required"
+      "reason": "hypergraph structure required, not graph ops"
     },
     "xgi": {
       "tried": true,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not cell complex"
+      "reason": "not a cell complex sim, hypergraph only"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no homology"
+      "reason": "no persistent homology in this motif sim"
     },
     "networkx": {
       "tried": true,
@@ -70,7 +70,7 @@
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "rng"
+      "reason": "random seeding only, no algebra needed"
     }
   },
   "tool_integration_depth": {

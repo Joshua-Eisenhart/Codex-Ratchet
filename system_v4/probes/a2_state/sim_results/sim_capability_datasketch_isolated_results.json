@@ -61,6 +61,11 @@
       "tried": false,
       "used": false,
       "reason": "not used: this probe isolates the datasketch MinHashLSH capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "datasketch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing isolated capability probe for MinHash signature estimation and LSH indexing"
     }
   },
   "tool_integration_depth": {
@@ -75,7 +80,8 @@
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
-    "gudhi": null
+    "gudhi": null,
+    "datasketch": "load_bearing"
   },
   "target_tool": {
     "name": "datasketch",

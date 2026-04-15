@@ -79,28 +79,36 @@
   },
   "target_tool": {
     "name": "ribs",
-    "version": null,
+    "version": "0.10.0",
     "integration": "load_bearing"
   },
   "positive": {
     "ribs_available": {
-      "pass": false,
-      "detail": "ribs missing: No module named 'ribs'"
+      "pass": true,
+      "version": "0.10.0"
+    },
+    "insert_populates_archive": {
+      "pass": true,
+      "occupied": 36,
+      "coverage": 0.36
+    },
+    "sample_elites": {
+      "pass": true,
+      "sample_count": 5
     }
   },
   "negative": {
-    "skip": {
-      "pass": false,
-      "detail": "ribs missing"
+    "malformed_insert_raises": {
+      "pass": true
     }
   },
   "boundary": {
-    "skip": {
-      "pass": false,
-      "detail": "ribs missing"
+    "empty_archive_coverage_zero": {
+      "pass": true,
+      "coverage": 0.0
     }
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "capability_summary": {
     "can": "GridArchive admits batched (solution, objective, measure) inserts, tracks coverage, and samples elites deterministically with a seed; supports boundary case of empty archive = 0 coverage.",
     "cannot": "Does not by itself define what behavior measures MEAN; measure-design is a modeling decision excluded from this probe."

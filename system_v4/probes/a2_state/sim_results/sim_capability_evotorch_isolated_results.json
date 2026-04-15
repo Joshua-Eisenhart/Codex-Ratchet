@@ -61,6 +61,11 @@
       "tried": false,
       "used": false,
       "reason": "not used: this probe isolates the evotorch SNES optimizer in isolation; cross-tool integration is deferred to a separate integration sim per the four-sim-kinds doctrine (capability probe must precede integration sim)."
+    },
+    "evotorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing isolated capability probe for SNES-based evolutionary optimization"
     }
   },
   "tool_integration_depth": {
@@ -75,34 +80,33 @@
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
-    "gudhi": null
+    "gudhi": null,
+    "evotorch": "load_bearing"
   },
   "target_tool": {
     "name": "evotorch",
-    "version": "0.6.1",
+    "version": null,
     "integration": "load_bearing"
   },
   "positive": {
     "evotorch_available": {
-      "pass": true,
-      "version": "0.6.1"
-    },
-    "snes_minimizes_sphere": {
-      "pass": true,
-      "best_eval": 1.5673340385546908e-05
+      "pass": false,
+      "detail": "evotorch missing: No module named 'evotorch'"
     }
   },
   "negative": {
-    "bad_popsize_raises": {
-      "pass": true
+    "skip": {
+      "pass": false,
+      "detail": "evotorch missing"
     }
   },
   "boundary": {
-    "zero_step_run_stable": {
-      "pass": true
+    "skip": {
+      "pass": false,
+      "detail": "evotorch missing"
     }
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "capability_summary": {
     "can": "SNES drives a 4D sphere objective below 0.5 within 50 generations at popsize=20 on CPU tensors; raises on negative popsize at run time and survives a zero-generation run.",
     "cannot": "Does not by itself pick a step-size schedule; stdev_init must be chosen problem-aware or convergence stalls."

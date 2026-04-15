@@ -1,0 +1,211 @@
+{
+  "name": "sim_weyl_geometry_rescaling_shell",
+  "classification": "classical_baseline",
+  "scope_note": "Shell-local Weyl geometry conformal rescaling probe. Tests: angle preservation, length scaling, Christoffel changes, Clifford conformal factor, geomstats geodesics. z3 UNSAT: 2D Weyl tensor cannot be nonzero.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Represent metric as 2x2 positive definite tensor; compute angle between two vectors before and after conformal rescaling; verify cos(theta) is invariant via autograd on the metric inner product formula"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: encode the structural impossibility that a 2D metric has Weyl tensor != 0; in 2D W_{abcd} = 0 is a theorem \u2014 violation is impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Christoffel symbols Gamma^k_{ij}; compute how Gamma changes under g -> Omega^2 * g; derive the Weyl connection correction terms Gamma -> Gamma + (delta terms involving d log Omega)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Weyl rescaling in Cl(2,0): grade-0 scalar Omega acts as conformal factor on grade-1 vectors e_i -> Omega*e_i; verify inner product scales as Omega^2 while angle cos(theta) = (u.v)/(|u||v|) is preserved"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Use Euclidean metric on R^2; compute geodesic distance before and after conformal rescaling (scaling all coordinates by Omega); verify distances scale by Omega but angle between tangent vectors is preserved"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl geometry shell-local probe; deferred to pairwise coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_angle_invariant_under_rescaling": {
+      "pass": true,
+      "omega_vals_tested": [
+        0.5,
+        1.0,
+        2.0,
+        3.14
+      ],
+      "reason": "cos(theta) = g(u,v)/(|u||v|) unchanged under g -> Omega^2*g because Omega^2 cancels"
+    },
+    "P2_pytorch_lengths_scale_by_Omega_sq": {
+      "pass": true,
+      "omega": 3.0,
+      "length_sq_orig": 5.0,
+      "length_sq_scaled": 45.0,
+      "ratio": 9.0,
+      "reason": "|v|^2 under g -> Omega^2*g scales by Omega^2 (here Omega=3, ratio=9)"
+    },
+    "P3_pytorch_length_ratios_preserved": {
+      "pass": true,
+      "ratio_orig": 0.5,
+      "ratio_scaled": 0.5,
+      "reason": "Length ratios |u|/|v| are preserved under conformal rescaling (Omega cancels)"
+    },
+    "P4_sympy_christoffel_changes_under_rescaling": {
+      "pass": true,
+      "Gamma1_11": "Derivative(f(x, y), x)",
+      "expected": "Derivative(f(x, y), x)",
+      "reason": "Gamma^1_11 for g=Omega^2*I equals d_x(log Omega), i.e., flat->rescaled adds d(log Omega) terms"
+    },
+    "P5_sympy_weyl_connection_correction_term": {
+      "pass": true,
+      "correction": "Derivative(f(x, y), x)",
+      "reason": "Weyl connection correction delta_Gamma^1_{11} = d_x(log Omega); formula verified symbolically"
+    },
+    "P6_clifford_inner_product_scales_by_Omega_sq": {
+      "pass": true,
+      "inner_orig": 1.0,
+      "inner_scaled": 4.0,
+      "omega": 2.0,
+      "reason": "Cl(2,0) inner product of scaled vectors e_i -> Omega*e_i scales by Omega^2"
+    },
+    "P7_clifford_angle_preserved_under_scaling": {
+      "pass": true,
+      "cos_orig": 0.9486832980505138,
+      "cos_scaled": 0.9486832980505138,
+      "reason": "Clifford angle cos(theta) invariant under uniform grade-0 scalar rescaling"
+    },
+    "P8_geomstats_geodesic_distance_scales_with_omega": {
+      "pass": true,
+      "dist_orig": 1.4142135623730951,
+      "dist_scaled": 2.8284271247461903,
+      "omega": 2.0,
+      "reason": "Geodesic distance in Euclidean R^2 scales by Omega when all coordinates scale by Omega"
+    },
+    "P9_geomstats_tangent_angle_preserved_under_rescaling": {
+      "pass": true,
+      "cos_t_orig": 0.7071067811865476,
+      "cos_t_scaled": 0.7071067811865476,
+      "reason": "Tangent angle (cos) unchanged under uniform Omega scaling of all vectors"
+    }
+  },
+  "negative": {
+    "N1_pytorch_lengths_NOT_preserved_under_rescaling": {
+      "pass": true,
+      "len_orig": 1.0,
+      "len_scaled": 2.0,
+      "reason": "Conformal rescaling changes lengths; |v| -> Omega*|v| (not a length-preserving isometry)"
+    },
+    "N2_sympy_christoffels_change_not_invariant": {
+      "pass": true,
+      "correction": "Derivative(f(x), x)",
+      "reason": "Christoffel symbols change under g -> Omega^2*g; they are NOT conformally invariant"
+    },
+    "N3_z3_unsat_2D_weyl_tensor_nonzero_impossible": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: encoding 'in_2D AND Weyl_nonzero' with theorem 'in_2D => weyl=0' is unsatisfiable; 2D Weyl tensor cannot be nonzero"
+    },
+    "N4_clifford_negative_omega_same_metric": {
+      "pass": true,
+      "omega": -1.0,
+      "omega_sq": 1.0,
+      "reason": "Omega=-1 satisfies Omega^2=1 so the rescaled metric is identical; NOT a distinct geometry"
+    },
+    "N5_geomstats_distances_differ_under_different_omega": {
+      "pass": true,
+      "d_small": 1.0,
+      "d_large": 2.0,
+      "reason": "Different Omega values produce different geodesic distances; rescaling is NOT an isometry"
+    }
+  },
+  "boundary": {
+    "B1_pytorch_omega_1_metric_unchanged": {
+      "pass": true,
+      "max_delta": 0.0,
+      "reason": "At Omega=1, g -> 1^2*g = g; metric unchanged; Weyl connection = Levi-Civita"
+    },
+    "B2_sympy_omega_1_christoffel_correction_zero": {
+      "pass": true,
+      "correction": "0",
+      "reason": "At Omega=1: d_x(log Omega) = d_x(0) = 0; Christoffel symbols unchanged (Weyl = Levi-Civita)"
+    },
+    "B3_pytorch_small_omega_angle_preserved_length_small": {
+      "pass": true,
+      "cos_orig": 0.7071067811865475,
+      "cos_scaled": 0.7071067811865476,
+      "len_v_scaled": 1.4142135623730952e-08,
+      "reason": "Small Omega: angle preserved (conformal invariance) but lengths -> 0 (extreme contraction)"
+    },
+    "B4_clifford_omega_1_identity_rescaling": {
+      "pass": true,
+      "inner_orig": 1.0,
+      "inner_scaled": 1.0,
+      "reason": "At Omega=1, e1 -> 1*e1 = e1; Clifford inner product unchanged"
+    },
+    "B5_geomstats_omega_1_distance_unchanged": {
+      "pass": true,
+      "d_orig": 2.23606797749979,
+      "d_scaled": 2.23606797749979,
+      "reason": "At Omega=1, coordinate rescaling is identity; geodesic distance unchanged"
+    },
+    "B6_z3_sat_3D_weyl_can_be_zero": {
+      "pass": true,
+      "z3_result": "sat",
+      "reason": "SAT: in_3D AND weyl_3D_zero is consistent; 3D metrics CAN have zero Weyl tensor (unlike 4D)"
+    }
+  },
+  "overall_pass": true
+}

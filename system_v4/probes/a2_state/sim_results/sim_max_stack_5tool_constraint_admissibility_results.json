@@ -1,0 +1,193 @@
+{
+  "name": "sim_max_stack_5tool_constraint_admissibility",
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical probability probes do not require autograd or tensor ops; numpy suffices for the admissibility geometry"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message-passing not needed; constraint manifold is 2D euclidean"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT UNSAT proof that no (p,q) state can simultaneously satisfy the distinguishability constraint (|p-q|>eps) and the negation of it; UNSAT is the primary exclusion proof \u2014 not just empirical filtering"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers the UNSAT requirement; cvc5 not added to avoid redundancy"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint geometry is numeric; no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford algebra structure in this 2D probability probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint manifold is flat euclidean; no Riemannian structure needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not relevant to 2D probability constraint probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph structure not part of this constraint manifold pipeline"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not needed; constraints are pairwise scalar inequalities"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell-complex topology not required; gudhi covers the homology layer"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "RipsComplex + persistent homology on the admitted state cloud; Betti numbers (beta_0, beta_1) structurally characterise the topology of the admissibility region independent of numeric values"
+    },
+    "hypothesis": {
+      "tried": true,
+      "used": true,
+      "reason": "Property-based generation of random (p, q) probe states across [0,1]^2; hypothesis shrinks counterexamples and confirms the exclusion predicate holds for all sampled states, not just hand-picked examples"
+    },
+    "pymoo": {
+      "tried": true,
+      "used": true,
+      "reason": "NSGA-II Pareto optimisation over (topological complexity, constraint cost) objective pair; identifies non-dominated admitted states that trade off topological richness against proximity to the exclusion boundary"
+    },
+    "datasketch": {
+      "tried": true,
+      "used": true,
+      "reason": "MinHash LSH clusters admitted states by Jaccard similarity of their discretized feature fingerprints; cluster representatives are Rosetta candidates \u2014 structurally distinct admitted states for further probing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing",
+    "hypothesis": "load_bearing",
+    "pymoo": "load_bearing",
+    "datasketch": "load_bearing"
+  },
+  "positive": {
+    "pos_a_z3_excluded_states_unsat": {
+      "pass": true,
+      "unsat_count": 20,
+      "sample_size": 20,
+      "note": "All excluded states must yield UNSAT when asserted simultaneously admitted"
+    },
+    "pos_b_gudhi_topology": {
+      "pass": true,
+      "beta_0": 2,
+      "beta_1": 8,
+      "admitted_count": 84,
+      "note": "Admitted set must have fewer connected components than total states (non-trivial topology)"
+    },
+    "pos_c_pymoo_pareto_front": {
+      "pass": true,
+      "pareto_front_size": 2,
+      "note": "Pareto front must contain > 1 non-dominated solution"
+    },
+    "pos_d_datasketch_clusters": {
+      "pass": true,
+      "n_clusters": 59,
+      "n_admitted_sampled": 84,
+      "note": "LSH must find >= 2 distinct clusters in the admitted state space"
+    },
+    "pos_e_admitted_subset": {
+      "pass": true,
+      "admitted_count": 84,
+      "excluded_count": 116,
+      "total_count": 200,
+      "note": "Admitted set must be non-empty but strictly smaller than total probe set"
+    },
+    "positive_all_pass": true
+  },
+  "negative": {
+    "neg_a_identical_states_excluded": {
+      "pass": true,
+      "states_tested": [
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.7,
+          0.7
+        ]
+      ],
+      "note": "Identical states (p=q) must be excluded by the distinguishability constraint"
+    },
+    "neg_b_z3_identical_unsat": {
+      "pass": true,
+      "note": "z3 must return UNSAT for p=q=0.5 when asserting simultaneous exclusion and admission"
+    },
+    "neg_c_gudhi_empty_set": {
+      "pass": true,
+      "betti_empty": {
+        "beta_0": 0,
+        "beta_1": 0
+      },
+      "note": "Empty admitted set must yield Betti-0 = 0"
+    },
+    "neg_d_datasketch_single_cluster": {
+      "pass": true,
+      "neighbors_of_single": 1,
+      "note": "Single inserted state must appear in its own query results"
+    },
+    "negative_all_pass": true
+  },
+  "boundary": {
+    "boundary_a_small_epsilon": {
+      "pass": true,
+      "fraction_admitted": 0.9523809523809523,
+      "epsilon": 0.001,
+      "note": "Near-zero epsilon must admit > 80% of non-identical states"
+    },
+    "boundary_b_large_epsilon": {
+      "pass": true,
+      "fraction_admitted": 0.2494331065759637,
+      "epsilon": 0.5,
+      "note": "Large epsilon (0.5) must admit < 30% of states (most excluded)"
+    },
+    "boundary_c_monotone_at_epsilon": {
+      "pass": true,
+      "just_below_excluded": true,
+      "just_above_admitted": true,
+      "tiny_delta": 1e-06,
+      "note": "States just below epsilon excluded; states just above admitted (strict inequality boundary)"
+    },
+    "boundary_all_pass": true
+  }
+}

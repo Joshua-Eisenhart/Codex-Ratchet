@@ -1,0 +1,128 @@
+{
+  "name": "sim_integration_evotorch_autograd_constraint_search",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: autograd computes the gradient of the ellipsoidal constraint violation scalar at each candidate evaluated by evotorch; grad_norm is fed back as a fitness shaping term (ALPHA * grad_norm) that changes the fitness landscape -- removing autograd changes which candidates are penalized most and alters convergence trajectory"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message-passing structure in this 4D constraint search; graph layers would not add coverage here"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- constraint is a smooth ellipsoidal inequality, not a Boolean/integer distinguishability axiom; z3 Real arithmetic is not the right tool for continuous evolutionary search"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- same reason as z3; continuous ellipsoidal constraint does not benefit from an SMT solver in this integration sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- constraint gradient is computed numerically via autograd; symbolic differentiation would produce the same expression but adds no additional coverage for the evotorch integration claim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- the forbidden zone is a Euclidean ellipsoid, not a geometric algebra object; Cl(3) rotors are not invoked here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Riemannian manifold structure required for this flat-space ellipsoidal constraint search"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SE(3)/E(3) equivariance constraint in this sim; the forbidden ellipsoid has no rotational symmetry to exploit"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph or dependency structure in the 4D constraint search; population graph is internal to evotorch"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hyperedge or higher-order interaction structure in this constraint violation search"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex topology in the ellipsoidal constraint; topological tools are not load-bearing for continuous SNES search"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology computation in this sim; the forbidden zone boundary is a single smooth manifold"
+    },
+    "evotorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SNES (separable natural evolution strategy) from evotorch drives the global population-based search over 4D constraint space; without evotorch the fitness shaping from autograd has no search loop to act on -- pure gradient descent could miss global escape directions"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "evotorch": "load_bearing"
+  },
+  "positive": {
+    "best_eval": 0.0,
+    "best_values": [
+      -0.7310845255851746,
+      -0.6744571924209595,
+      0.7034173011779785,
+      0.4529839754104614
+    ],
+    "n_violation_evals": 86,
+    "n_grad_norms_recorded": 86,
+    "grad_norm_std": 0.696974,
+    "assert_fitness_lt_0p1": true,
+    "assert_autograd_nontrivially_used": true,
+    "pass": true
+  },
+  "negative": {
+    "origin_violation": 1.0,
+    "origin_violation_positive": true,
+    "origin_grad_norm": 0.0,
+    "origin_autograd_correct_zero_at_center": true,
+    "interior_violation": 0.925000011920929,
+    "interior_violation_positive": true,
+    "interior_grad_norm": 0.9219545125961304,
+    "interior_grad_nonzero": true,
+    "outside_violation": 0.0,
+    "outside_no_violation": true,
+    "pass": true
+  },
+  "boundary": {
+    "surface_weighted_sq": 1.0,
+    "surface_weighted_sq_correct": true,
+    "surface_violation": 0.0,
+    "surface_zero_violation": true,
+    "just_inside_violation": 0.003995954990386963,
+    "just_inside_violation_positive": true,
+    "just_inside_grad_norm": 3.992000102996826,
+    "just_inside_grad_nonzero": true,
+    "grad_direction_correct": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "elapsed_s": 0.205
+}

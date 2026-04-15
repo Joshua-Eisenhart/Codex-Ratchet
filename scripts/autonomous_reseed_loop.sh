@@ -13,6 +13,38 @@ DEADLINE=$(( $(date +%s) + MAX_HOURS*3600 ))
 LOG="$ROOT/overnight_logs/autonomous_reseed_$(date +%Y%m%d_%H%M%S).log"
 mkdir -p "$ROOT/overnight_logs"
 
+sim_running_under_pinned_python() {
+  "$PY" - "$1" "$ROOT" "$PY" <<'PY'
+import subprocess
+import sys
+from pathlib import Path
+
+target = sys.argv[1]
+root = Path(sys.argv[2])
+py = sys.argv[3]
+target_path = Path(target)
+prefixes = {f"{py} {target}"}
+try:
+    if target_path.is_absolute():
+        prefixes.add(f"{py} {target_path.relative_to(root)}")
+    else:
+        prefixes.add(f"{py} {root / target_path}")
+except Exception:
+    pass
+try:
+    proc = subprocess.run(["pgrep", "-af", py], capture_output=True, text=True, timeout=5)
+except Exception:
+    raise SystemExit(1)
+if proc.returncode not in (0, 1):
+    raise SystemExit(1)
+for line in proc.stdout.splitlines():
+    _, _, cmd = line.partition(" ")
+    if any(cmd.startswith(prefix) for prefix in prefixes):
+        raise SystemExit(0)
+raise SystemExit(1)
+PY
+}
+
 idle=0
 while :; do
   [ "$(date +%s)" -ge "$DEADLINE" ] && echo "[$(date)] deadline reached, exit" >> "$LOG" && exit 0
@@ -52,7 +84,7 @@ while :; do
     # Check liveness by sim_path, not the ephemeral claim subprocess PID.
     # parts[3] in the filename is the queue_claim.py subprocess PID — always dead.
     sim_path=$("$PY" -c "import json; print(json.load(open('$cf')).get('sim_path',''))" 2>/dev/null || echo "")
-    if [ -n "$sim_path" ] && pgrep -f "$sim_path" >/dev/null 2>&1; then
+    if [ -n "$sim_path" ] && sim_running_under_pinned_python "$sim_path"; then
       continue  # sim still running — do not release
     fi
     # sim not running and claim is stale: release back to lane

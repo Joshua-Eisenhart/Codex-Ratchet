@@ -53,6 +53,27 @@ emit() { # emit JSON event line
 
 run_or_echo() { if [ "$DRY" -eq 1 ]; then echo "DRY: $*"; else "$@"; fi; }
 
+run_sim_with_timeout() { # $1=sim $2=artifact
+  local sim="$1" artifact="$2"
+  MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba \
+    "$PY" - "$PY" "$sim" "$SIM_TIMEOUT" >"$artifact" 2>&1 <<'PY'
+import subprocess
+import sys
+
+py = sys.argv[1]
+sim = sys.argv[2]
+timeout = int(sys.argv[3])
+
+try:
+    result = subprocess.run([py, sim], timeout=timeout, check=False)
+except subprocess.TimeoutExpired:
+    raise SystemExit(124)
+
+raise SystemExit(result.returncode)
+PY
+  return $?
+}
+
 # --- atomic O_EXCL lock via python ------------------------------------------
 acquire_lock() {
   "$PY" - "$LOCK" <<'PY' || return 1
@@ -101,8 +122,7 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   fi
 
   artifact="$LOG_DIR/artifact_${wid}_$(basename "$sim" .py)_$(date +%s).log"
-  MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba \
-    timeout "$SIM_TIMEOUT" "$PY" "$sim" >"$artifact" 2>&1
+  run_sim_with_timeout "$sim" "$artifact"
   exit_code=$?
   if [ "$exit_code" -eq 124 ]; then
     echo "[$(date -Iseconds)] TIMEOUT after ${SIM_TIMEOUT}s: $sim" >> "$artifact"

@@ -194,6 +194,36 @@ def infer_lane(sim_path: pathlib.Path) -> str:
         pass
     return "lane_B"
 
+
+def target_running_under_pinned_python(target: str) -> bool:
+    if not target:
+        return False
+    target_path = pathlib.Path(target)
+    prefixes = {f"{PY} {target}"}
+    try:
+        if target_path.is_absolute():
+            prefixes.add(f"{PY} {target_path.relative_to(ROOT)}")
+        else:
+            prefixes.add(f"{PY} {ROOT / target_path}")
+    except Exception:
+        pass
+    try:
+        proc = subprocess.run(
+            ["pgrep", "-af", PY],
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except Exception:
+        return False
+    if proc.returncode not in (0, 1):
+        return False
+    for line in proc.stdout.splitlines():
+        _, _, cmd = line.partition(" ")
+        if any(cmd.startswith(prefix) for prefix in prefixes):
+            return True
+    return False
+
 def release_dead_claims():
     claimed = QUEUE / "claimed"
     if not claimed.exists():
@@ -207,21 +237,9 @@ def release_dead_claims():
         if age < 300:
             continue
         r = load_result(cf)
-        # ── liveness check: is the sim process still running? ──────────────
-        # The PID in parts[2] is the ephemeral queue_claim.py subprocess PID
-        # (exits immediately after rename) — never use that for liveness.
-        # Instead, check whether any Python process is running the sim_path.
         sim_path = r.get("sim_path", "")
-        if sim_path:
-            try:
-                chk = subprocess.run(
-                    ["pgrep", "-f", sim_path],
-                    capture_output=True, timeout=5
-                )
-                if chk.returncode == 0:
-                    continue  # sim still running — do not release
-            except Exception:
-                pass  # pgrep failure → fall through to release
+        if sim_path and target_running_under_pinned_python(sim_path):
+            continue
         # Sim not running and claim is stale — release back to lane
         lane = r.get("lane", "lane_B")
         dest = QUEUE / lane / (cf.stem.split(".")[0] + ".json")

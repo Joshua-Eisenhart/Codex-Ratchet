@@ -1,0 +1,147 @@
+{
+  "name": "sim_capability_cvc5_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "check satisfiability over QF_LIA (quantifier-free linear integer arithmetic)",
+      "check satisfiability over QF_LRA (linear real arithmetic)",
+      "detect UNSAT via contradiction across theories",
+      "handle Boolean satisfiability",
+      "extract satisfying models when SAT",
+      "work independently of z3 as a cross-validation solver"
+    ],
+    "CANNOT": [
+      "decide non-linear arithmetic in general (may return unknown)",
+      "handle quantified formulas as efficiently as z3 in all cases",
+      "replace symbolic computation (use sympy for algebra)",
+      "provide proof certificates without extra options configuration"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver is the sole subject; SAT/UNSAT queries and model extraction are all computed by cvc5 directly."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates cvc5 SMT solver capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_available": {
+      "pass": true,
+      "version": "1.3.3"
+    },
+    "sat_integer_arith": {
+      "pass": true,
+      "result": "sat",
+      "detail": "x+y=10, x>3, y>3 must be SAT"
+    },
+    "unsat_detection": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "a>5 AND a<2 must be UNSAT"
+    },
+    "bool_sat": {
+      "pass": true,
+      "result": "sat",
+      "detail": "(p OR q) AND NOT p must be SAT with q=True"
+    },
+    "real_arithmetic": {
+      "pass": true,
+      "result": "sat",
+      "detail": "0 < rx < 1 over reals must be SAT"
+    }
+  },
+  "negative": {
+    "no_integer_solution": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "n+n=3 has no integer solution, must be UNSAT"
+    },
+    "contradictory_equalities": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "a+b=1 AND a+b=2 must be UNSAT"
+    }
+  },
+  "boundary": {
+    "tight_equality": {
+      "pass": true,
+      "result": "sat",
+      "detail": "x>=0 AND x<=0 forces x=0, must be SAT"
+    },
+    "empty_solver": {
+      "pass": true,
+      "result": "sat",
+      "detail": "empty constraint set must be SAT"
+    }
+  }
+}

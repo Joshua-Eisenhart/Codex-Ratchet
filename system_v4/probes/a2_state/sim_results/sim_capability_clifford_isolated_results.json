@@ -1,0 +1,169 @@
+{
+  "name": "sim_capability_clifford_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "compute geometric products in Cl(n,0) Euclidean geometric algebras",
+      "compute outer (wedge) and inner products between multivectors",
+      "construct rotors for SO(n) rotations and sandwich-product versors",
+      "select grade components from mixed-grade multivectors",
+      "verify non-commutativity (A\u2218B \u2260 B\u2218A) algebraically",
+      "work in arbitrary dimension Cl(p,q) algebras"
+    ],
+    "CANNOT": [
+      "compute automatically differentiate through multivector operations (use pytorch for that)",
+      "prove algebraic identities symbolically (use sympy/z3 for that)",
+      "handle infinite-dimensional Clifford algebras",
+      "replace e3nn for equivariant neural network features"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: clifford Cl(3,0) algebra is the sole subject; geometric/inner/outer products and rotor versors are computed directly by clifford."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates the clifford geometric algebra library alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "clifford_available": {
+      "pass": true,
+      "version": "1.5.1"
+    },
+    "basis_vector_squares": {
+      "pass": true,
+      "e1^2": 1.0,
+      "e2^2": 1.0,
+      "e3^2": 1.0,
+      "detail": "In Cl(3,0): e_i^2 = +1 for all basis vectors"
+    },
+    "outer_product_bivector": {
+      "pass": true,
+      "grades": [
+        "2"
+      ],
+      "detail": "e1 ^ e2 must be a grade-2 multivector (bivector)"
+    },
+    "anticommuting_basis": {
+      "pass": true,
+      "detail": "e1*e2 + e2*e1 = 0 (anticommuting off-diagonal basis vectors)"
+    },
+    "pseudoscalar_square": {
+      "pass": true,
+      "I^2": -1.0,
+      "detail": "In Cl(3,0): I^2 = (e123)^2 = -1"
+    },
+    "rotor_90deg_rotation": {
+      "pass": true,
+      "rotated_e1_coeff": 2.220446049250313e-16,
+      "rotated_e2_coeff": 1.0,
+      "detail": "90\u00b0 rotation about e3 axis maps e1 \u2192 e2"
+    },
+    "grade_selection": {
+      "pass": true,
+      "detail": "Grade projection on 1+e1+e12+e123"
+    }
+  },
+  "negative": {
+    "geometric_product_noncommutative": {
+      "pass": true,
+      "detail": "e1*e2 != e2*e1 confirms non-commutativity of geometric product"
+    },
+    "outer_product_nilpotent": {
+      "pass": true,
+      "detail": "e1 ^ e1 = 0: outer product of parallel vectors vanishes"
+    },
+    "bivector_not_grade1": {
+      "pass": true,
+      "grades": [
+        "2"
+      ],
+      "detail": "e12 is grade-2, has no grade-1 component"
+    }
+  },
+  "boundary": {
+    "identity_rotor": {
+      "pass": true,
+      "detail": "0-angle rotor leaves e1 unchanged"
+    },
+    "full_rotation_identity": {
+      "pass": true,
+      "e1_after_360": 1.0,
+      "detail": "360\u00b0 rotation returns e1 to itself"
+    },
+    "cl1_algebra": {
+      "pass": true,
+      "e1^2": 1.0,
+      "detail": "Cl(1,0): single basis vector squares to +1"
+    }
+  }
+}

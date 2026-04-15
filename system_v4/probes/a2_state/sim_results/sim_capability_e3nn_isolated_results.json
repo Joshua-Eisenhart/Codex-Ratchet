@@ -1,0 +1,161 @@
+{
+  "name": "sim_capability_e3nn_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "compute spherical harmonics Y_l^m and verify SO(3) equivariance",
+      "construct Wigner D matrices and verify unitarity",
+      "build equivariant tensor products of irreducible representations",
+      "represent SO(3)/O(3) symmetry in neural network layers",
+      "compute Clebsch-Gordan coefficients via tensor product instructions",
+      "validate Y_l(R*x) = D_l(R)*Y_l(x) equivariance identity"
+    ],
+    "CANNOT": [
+      "work without PyTorch (e3nn is a pure torch library)",
+      "handle arbitrary Lie group symmetries beyond O(3)/SO(3)",
+      "replace symbolic geometry tools (use clifford/geomstats for that)",
+      "provide SMT proof of equivariance (use z3 for logical proof)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "required: e3nn is built on PyTorch; all tensor operations and autograd run through torch; e3nn cannot function without it."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn irreps, spherical harmonics, and Wigner D matrices are the sole subject of this capability probe."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates e3nn equivariant neural network capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e3nn_available": {
+      "pass": true,
+      "version": "0.6.0"
+    },
+    "irreps_construction": {
+      "pass": true,
+      "dim": 4,
+      "detail": "1x0e + 1x1o: dim=4 (expected 4: 1 scalar + 3 vector)"
+    },
+    "spherical_harmonics_shape": {
+      "pass": true,
+      "shape": [
+        1,
+        4
+      ],
+      "detail": "Y_l^m for l=0,1 on 1 point: shape (1, 4)"
+    },
+    "wigner_D_unitary": {
+      "pass": true,
+      "max_off_diag": 8.344650268554688e-07,
+      "detail": "Wigner D(l=1) matrix must be unitary"
+    },
+    "spherical_harmonics_equivariance": {
+      "pass": true,
+      "max_diff": 1.4156103134155273e-06,
+      "detail": "Y_1(R*x) = D_1(R) * Y_1(x): spherical harmonics are equivariant"
+    },
+    "tensor_product": {
+      "pass": true,
+      "output_dim": 9,
+      "detail": "1o x 1o -> 0e + 1e + 2e (parity: odd*odd=even): output dim = 1+3+5 = 9"
+    }
+  },
+  "negative": {
+    "wigner_D_not_identity_for_nonzero_rotation": {
+      "pass": true,
+      "detail": "D(l=1) for non-zero rotation must not equal identity"
+    },
+    "scalar_irrep_is_invariant": {
+      "pass": true,
+      "detail": "Y_0 (scalar) is rotation-invariant: Y_0(R*x) = Y_0(x)"
+    }
+  },
+  "boundary": {
+    "identity_rotation_D": {
+      "pass": true,
+      "max_diff": 0.0,
+      "detail": "D(l=1, 0,0,0) = I_3 (zero rotation is identity)"
+    },
+    "scalar_irreps_dim1": {
+      "pass": true,
+      "dim": 1,
+      "detail": "1x0e has dimension 1"
+    },
+    "l2_wigner_D_unitary": {
+      "pass": true,
+      "shape": [
+        5,
+        5
+      ],
+      "detail": "D(l=2) is 5\u00d75 unitary"
+    }
+  }
+}

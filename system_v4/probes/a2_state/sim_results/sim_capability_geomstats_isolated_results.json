@@ -1,0 +1,152 @@
+{
+  "name": "sim_capability_geomstats_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "construct Riemannian manifolds (S^n, SO(n), SPD matrices, hyperbolic)",
+      "compute exponential and logarithm maps on manifolds",
+      "compute geodesic distances between points on manifolds",
+      "verify manifold membership (belongs_to checks)",
+      "support numpy and PyTorch backends interchangeably",
+      "handle parallel transport and Fr\u00e9chet mean on curved spaces"
+    ],
+    "CANNOT": [
+      "compute geometric algebra products (use clifford for that)",
+      "prove geometric properties formally (use z3 for that)",
+      "handle discrete topology (use toponetx/gudhi for that)",
+      "guarantee geodesic uniqueness near cut loci (conjugate points)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats supports numpy backend; pytorch backend optional and not needed for this capability probe."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats manifold objects, exp/log maps, and geodesic distances on S^2 and SO(3) are the sole subjects of this capability probe."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates geomstats differential geometry capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geomstats_available": {
+      "pass": true,
+      "version": "2.8.0"
+    },
+    "s2_construction": {
+      "pass": true,
+      "dim": 2,
+      "detail": "Hypersphere(dim=2) is the 2-sphere embedded in R^3"
+    },
+    "north_pole_belongs": {
+      "pass": true,
+      "detail": "[0,0,1] must belong to S^2 (unit sphere)"
+    },
+    "off_sphere_rejected": {
+      "pass": true,
+      "detail": "[1,1,1] is NOT on S^2 (norm != 1)"
+    },
+    "exp_map_stays_on_manifold": {
+      "pass": true,
+      "detail": "exp_map from north pole + tangent must land on S^2"
+    },
+    "log_inv_exp": {
+      "pass": true,
+      "detail": "log(exp(v, p), p) = v (log is inverse of exp on S^2)"
+    },
+    "geodesic_distance": {
+      "pass": true,
+      "dist": 1.5707963267948966,
+      "expected": 1.5707963,
+      "detail": "Geodesic distance between [1,0,0] and [0,1,0] on S^2 = pi/2"
+    }
+  },
+  "negative": {
+    "antipodal_max_distance": {
+      "pass": true,
+      "dist": 3.141592653589793,
+      "detail": "Antipodal distance on S^2 = pi (max geodesic distance)"
+    },
+    "zero_tangent_exp": {
+      "pass": true,
+      "detail": "exp(0, p) = p: zero tangent maps to same point"
+    }
+  },
+  "boundary": {
+    "s1_circle": {
+      "pass": true,
+      "detail": "Hypersphere(dim=1) is S^1 (circle); [1,0] belongs to it"
+    },
+    "zero_distance_self": {
+      "pass": true,
+      "dist": 0.0,
+      "detail": "dist(p, p) = 0 on any Riemannian manifold"
+    }
+  }
+}

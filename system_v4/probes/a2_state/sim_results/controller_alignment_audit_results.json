@@ -1,6 +1,6 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-15T08:26:31.267711+00:00",
+  "generated_at": "2026-04-15T08:40:01.789978+00:00",
   "classification": "audit",
   "interpreter_authority": {
     "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
@@ -152,8 +152,8 @@
   "probe_truth_audit": {
     "available": true,
     "ok": false,
-    "hard_finding_count": 34,
-    "warning_finding_count": 18,
+    "hard_finding_count": 28,
+    "warning_finding_count": 19,
     "blocked_results": {
       "gerbe_distinguishability_holonomy_results.json": [
         "stale_source_newer_than_result"
@@ -176,16 +176,10 @@
       "sim_L14_joint_cut_state_results.json": [
         "stale_source_newer_than_result"
       ],
-      "sim_L15_bridge_family_results.json": [
-        "stale_source_newer_than_result"
-      ],
       "sim_L16_shell_history_support_results.json": [
         "stale_source_newer_than_result"
       ],
       "sim_L17_signed_unsigned_entropy_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_L18_axis0_kernel_results.json": [
         "stale_source_newer_than_result"
       ],
       "sim_L19_dynamics_on_entropy_results.json": [
@@ -197,13 +191,7 @@
       "sim_a1_homotopy_1_carrier_results.json": [
         "stale_source_newer_than_result"
       ],
-      "sim_a1_homotopy_2_structure_results.json": [
-        "stale_source_newer_than_result"
-      ],
       "sim_a1_homotopy_3_reduction_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_a1_homotopy_4_admissibility_results.json": [
         "stale_source_newer_than_result"
       ],
       "sim_a1_homotopy_5_distinguishability_results.json": [
@@ -230,6 +218,12 @@
       "sim_hypothesis_property_admissibility_invariant_results.json": [
         "stale_source_newer_than_result"
       ],
+      "sim_integration_deap_clifford_rotor_evolution_results.json": [
+        "stale_source_newer_than_result"
+      ],
+      "sim_integration_ribs_z3_constraint_archive_results.json": [
+        "stale_source_newer_than_result"
+      ],
       "sim_max_stack_gtower_ratchet_6tools_results.json": [
         "canonical_has_failed_checks"
       ],
@@ -237,19 +231,7 @@
         "used_without_tried",
         "stale_source_newer_than_result"
       ],
-      "sim_xgi_deep_hyperedge_motif_count_results.json": [
-        "stale_source_newer_than_result"
-      ],
       "spectral_triple_carrier_algebra_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "spectral_triple_chirality_gamma_grading_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "spectral_triple_dirac_spectrum_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "spectral_triple_distinguishability_heat_trace_results.json": [
         "stale_source_newer_than_result"
       ],
       "spectral_triple_reduction_connes_distance_results.json": [
@@ -329,13 +311,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 1436,
+    "files_with_manifest_or_depth": 1446,
     "per_tool": {
       "pytorch": {
-        "tried_count": 523,
-        "used_count": 412,
-        "load_bearing_count": 199,
-        "depth_present_count": 357,
+        "tried_count": 533,
+        "used_count": 422,
+        "load_bearing_count": 209,
+        "depth_present_count": 367,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -476,7 +458,17 @@
           "sim_em_bridge_time_arrow_autograd_gradient_results.json",
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
           "sim_gtower_gl3_shell_local_results.json",
+          "sim_gtower_o3_shell_local_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
+          "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_so3_su2_sp1_triple_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_hopf_deep_berry_phase_admissibility_results.json",
           "sim_hopf_deep_s3_to_s2_partial_trace_consistency_results.json",
           "sim_integration_cma_constraint_optimization_results.json",
@@ -582,10 +574,10 @@
         ]
       },
       "z3": {
-        "tried_count": 545,
-        "used_count": 407,
-        "load_bearing_count": 318,
-        "depth_present_count": 385,
+        "tried_count": 555,
+        "used_count": 417,
+        "load_bearing_count": 328,
+        "depth_present_count": 395,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -785,12 +777,22 @@
           "sim_gtower_gl_to_o_reduction_results.json",
           "sim_gtower_gl_to_o_results.json",
           "sim_gtower_invariants_distinguishability_results.json",
+          "sim_gtower_o3_shell_local_results.json",
           "sim_gtower_o_to_so_orientation_results.json",
           "sim_gtower_o_to_so_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
           "sim_gtower_reduction_obstruction_z3_results.json",
+          "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_so3_su2_sp1_triple_results.json",
           "sim_gtower_so_to_u_reduction_results.json",
           "sim_gtower_so_to_u_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_gtower_u_to_su_results.json",
           "sim_gtower_z3_unsat_nonreductive_chain_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
@@ -969,10 +971,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 496,
-        "used_count": 331,
-        "load_bearing_count": 202,
-        "depth_present_count": 336,
+        "tried_count": 506,
+        "used_count": 341,
+        "load_bearing_count": 212,
+        "depth_present_count": 346,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -1107,11 +1109,21 @@
           "sim_gtower_gl3_shell_local_results.json",
           "sim_gtower_gl_to_o_reduction_results.json",
           "sim_gtower_invariants_distinguishability_results.json",
+          "sim_gtower_o3_shell_local_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
           "sim_gtower_reduction_chain_composition_results.json",
+          "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_so3_su2_sp1_triple_results.json",
           "sim_gtower_so_to_u_reduction_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
           "sim_gtower_su_to_sp_results.json",
           "sim_gtower_su_to_sp_symplectic_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_gtower_u_to_su_reduction_results.json",
           "sim_holonomy_spectral_coupling_results.json",
           "sim_igt_yin_yang_ansatz_results.json",
@@ -1184,10 +1196,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 318,
-        "used_count": 105,
-        "load_bearing_count": 88,
-        "depth_present_count": 107,
+        "tried_count": 327,
+        "used_count": 114,
+        "load_bearing_count": 97,
+        "depth_present_count": 116,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -1257,8 +1269,17 @@
           "sim_gtower_deep_su2_so3_double_cover_parity_results.json",
           "sim_gtower_gl3_shell_local_results.json",
           "sim_gtower_gl_o_ordering_deep_results.json",
+          "sim_gtower_o3_shell_local_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_so3_su2_sp1_triple_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
           "sim_gtower_u1_hopf_fiber_reduction_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
           "sim_holonomy_spectral_coupling_results.json",
           "sim_hopf_deep_fiber_winding_number_bound_results.json",
@@ -1283,10 +1304,10 @@
         ]
       },
       "geomstats": {
-        "tried_count": 209,
-        "used_count": 52,
-        "load_bearing_count": 39,
-        "depth_present_count": 60,
+        "tried_count": 219,
+        "used_count": 62,
+        "load_bearing_count": 49,
+        "depth_present_count": 70,
         "anchor_stage_coverage": [
           "lego",
           "coexistence"
@@ -1325,6 +1346,16 @@
           "sim_geomstats_spd_affine_results.json",
           "sim_geomstats_stiefel_retraction_results.json",
           "sim_gtower_gl3_shell_local_results.json",
+          "sim_gtower_o3_shell_local_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
+          "sim_gtower_so3_shell_local_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_integration_geomstats_constraint_manifold_results.json",
           "tools_load_bearing_results.json",
           "werner_qwci_gap_results.json",
@@ -1334,10 +1365,10 @@
         ]
       },
       "e3nn": {
-        "tried_count": 198,
-        "used_count": 37,
-        "load_bearing_count": 34,
-        "depth_present_count": 49,
+        "tried_count": 205,
+        "used_count": 44,
+        "load_bearing_count": 41,
+        "depth_present_count": 56,
         "anchor_stage_coverage": [
           "lego"
         ],
@@ -1368,7 +1399,14 @@
           "sim_e3nn_ylm_orthogonality_under_rotation_results.json",
           "sim_gtower_couple_so3_x_u1_fiber_results.json",
           "sim_gtower_e3nn_so3_equivariance_check_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
+          "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_so3_su2_sp1_triple_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
           "sim_hopf_deep_u1_holonomy_equivariance_results.json",
           "sim_integration_e3nn_spectral_triple_dirac_equivariance_results.json",
@@ -1379,10 +1417,10 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 240,
-        "used_count": 87,
-        "load_bearing_count": 63,
-        "depth_present_count": 82,
+        "tried_count": 250,
+        "used_count": 97,
+        "load_bearing_count": 73,
+        "depth_present_count": 92,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -1431,6 +1469,16 @@
           "sim_compound_cvc5_rustworkx_toponetx_graph_topology_results.json",
           "sim_derived_stack_nested_shells_coexist_results.json",
           "sim_gtower_gl3_shell_local_results.json",
+          "sim_gtower_o3_shell_local_results.json",
+          "sim_gtower_pairwise_gl3_o3_results.json",
+          "sim_gtower_pairwise_o3_so3_results.json",
+          "sim_gtower_pairwise_so3_u3_results.json",
+          "sim_gtower_pairwise_su3_sp6_results.json",
+          "sim_gtower_pairwise_u3_su3_results.json",
+          "sim_gtower_so3_shell_local_results.json",
+          "sim_gtower_sp6_shell_local_results.json",
+          "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_u3_shell_local_results.json",
           "sim_igt_atom_2_structure_results.json",
           "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "sim_integration_rustworkx_coupling_graph_results.json",

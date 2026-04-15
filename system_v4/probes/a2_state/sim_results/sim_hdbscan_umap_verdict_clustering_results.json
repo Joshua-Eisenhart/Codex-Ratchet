@@ -1,162 +1,36 @@
 {
   "name": "sim_hdbscan_umap_verdict_clustering",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "tool_manifest": {
     "hdbscan": {
-      "tried": true,
-      "used": true,
-      "reason": "density-based clustering of UMAP-reduced verdict signatures"
+      "tried": false,
+      "used": false,
+      "reason": ""
     },
     "umap-learn": {
-      "tried": true,
-      "used": true,
-      "reason": "nonlinear dim-reduction of verdict signature space"
+      "tried": false,
+      "used": false,
+      "reason": ""
     },
     "numpy": {
       "tried": true,
       "used": true,
       "reason": "signature vector assembly"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
     }
   },
   "tool_integration_depth": {
-    "hdbscan": "load_bearing",
-    "umap-learn": "load_bearing",
+    "hdbscan": null,
+    "umap-learn": null,
     "numpy": "supportive"
   },
   "positive": {
-    "n_signatures": 300,
-    "n_clusters": 4,
-    "noise_fraction": 0.0,
-    "cluster_tool_overlap": {
-      "0": {
-        "size": 53,
-        "tool_families": [
-          "clifford",
-          "rustworkx",
-          "toponetx",
-          "xgi"
-        ],
-        "n_tool_families": 4
-      },
-      "1": {
-        "size": 63,
-        "tool_families": [
-          "clifford",
-          "cvc5",
-          "e3nn",
-          "geomstats",
-          "gudhi",
-          "pyg",
-          "pytorch",
-          "rustworkx",
-          "sympy",
-          "toponetx",
-          "xgi",
-          "z3"
-        ],
-        "n_tool_families": 12
-      },
-      "2": {
-        "size": 133,
-        "tool_families": [
-          "clifford",
-          "rustworkx",
-          "sympy",
-          "z3"
-        ],
-        "n_tool_families": 4
-      },
-      "3": {
-        "size": 51,
-        "tool_families": [
-          "clifford",
-          "cvc5",
-          "e3nn",
-          "geomstats",
-          "gudhi",
-          "pyg",
-          "pytorch",
-          "rustworkx",
-          "sympy",
-          "toponetx",
-          "xgi",
-          "z3"
-        ],
-        "n_tool_families": 12
-      }
-    },
-    "rosetta_eligible_report_only": true,
-    "cluster_found": true,
-    "noise_below_0_95": true
+    "tools_available": false
   },
   "negative": {
-    "random_noise_frac": 0.4375,
-    "random_n_clusters": 2,
-    "noise_dominant_or_few_clusters": true
+    "skipped": true
   },
   "boundary": {
     "signature_dim": 52
   },
-  "passed": true,
-  "discipline_debt_note": "Demoted 2026-04-14: schema-stubbed manifest entries; awaiting upstream isolated tool capability probe before re-promotion to canonical."
+  "passed": false
 }

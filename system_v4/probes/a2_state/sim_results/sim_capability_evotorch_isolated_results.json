@@ -85,30 +85,28 @@
   },
   "target_tool": {
     "name": "evotorch",
-    "version": "0.6.1",
+    "version": null,
     "integration": "load_bearing"
   },
   "positive": {
     "evotorch_available": {
-      "pass": true,
-      "version": "0.6.1"
-    },
-    "snes_minimizes_sphere": {
-      "pass": true,
-      "best_eval": 1.5673340385546908e-05
+      "pass": false,
+      "detail": "evotorch missing: No module named 'evotorch'"
     }
   },
   "negative": {
-    "bad_popsize_raises": {
-      "pass": true
+    "skip": {
+      "pass": false,
+      "detail": "evotorch missing"
     }
   },
   "boundary": {
-    "zero_step_run_stable": {
-      "pass": true
+    "skip": {
+      "pass": false,
+      "detail": "evotorch missing"
     }
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "capability_summary": {
     "can": "SNES drives a 4D sphere objective below 0.5 within 50 generations at popsize=20 on CPU tensors; raises on negative popsize at run time and survives a zero-generation run.",
     "cannot": "Does not by itself pick a step-size schedule; stdev_init must be chosen problem-aware or convergence stalls."

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-04-15T08:31:23.668004+00:00",
+  "generated_at": "2026-04-15T08:44:31.288738+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 82,
+  "dirty_source_count": 86,
   "plan_group_count": 25,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
@@ -15,7 +15,7 @@
   "next_code_only_manual_source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
   "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json",
   "summary": {
-    "dirty_source_count": 82,
+    "dirty_source_count": 86,
     "plan_group_count": 25,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
@@ -44,7 +44,7 @@
   "recommended_manual_split_order": [
     {
       "group_id": "other_source__other_source",
-      "file_count": 72,
+      "file_count": 73,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -54,7 +54,12 @@
     },
     {
       "group_id": "probe_source__sim_family_integration",
-      "file_count": 7,
+      "file_count": 9,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_capability",
+      "file_count": 8,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -70,11 +75,6 @@
     {
       "group_id": "probe_source__sim_family_spectral",
       "file_count": 6,
-      "safe_next_action": "manual_split_required"
-    },
-    {
-      "group_id": "probe_source__sim_family_capability",
-      "file_count": 5,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -331,8 +331,8 @@
         "system_v4/a2_state/graphs",
         "system_v4/tests/test_overnight_runner_scripts.py"
       ],
-      "file_count": 72,
-      "tracked_dirty_count": 66,
+      "file_count": 73,
+      "tracked_dirty_count": 67,
       "untracked_count": 6,
       "sample_paths": [
         "obsidian_vault/.obsidian/app.json",
@@ -691,20 +691,26 @@
       "display_name": "Probe sim family: capability",
       "path_prefixes": [
         "system_v4/probes/sim_capability_datasketch_isolated.py",
+        "system_v4/probes/sim_capability_deap_isolated.py",
         "system_v4/probes/sim_capability_evotorch_isolated.py",
         "system_v4/probes/sim_capability_hypothesis_isolated.py",
         "system_v4/probes/sim_capability_optuna_isolated.py",
-        "system_v4/probes/sim_capability_pynndescent_isolated.py"
+        "system_v4/probes/sim_capability_pymoo_isolated.py",
+        "system_v4/probes/sim_capability_pynndescent_isolated.py",
+        "system_v4/probes/sim_capability_ribs_isolated.py"
       ],
-      "file_count": 5,
-      "tracked_dirty_count": 5,
+      "file_count": 8,
+      "tracked_dirty_count": 8,
       "untracked_count": 0,
       "sample_paths": [
         "system_v4/probes/sim_capability_datasketch_isolated.py",
+        "system_v4/probes/sim_capability_deap_isolated.py",
         "system_v4/probes/sim_capability_evotorch_isolated.py",
         "system_v4/probes/sim_capability_hypothesis_isolated.py",
         "system_v4/probes/sim_capability_optuna_isolated.py",
-        "system_v4/probes/sim_capability_pynndescent_isolated.py"
+        "system_v4/probes/sim_capability_pymoo_isolated.py",
+        "system_v4/probes/sim_capability_pynndescent_isolated.py",
+        "system_v4/probes/sim_capability_ribs_isolated.py"
       ],
       "dominant_kinds": [
         "modified"
@@ -789,24 +795,27 @@
       "display_name": "Probe sim family: integration",
       "path_prefixes": [
         "system_v4/probes/sim_integration_cvc5_spectral_triple_constraint.py",
+        "system_v4/probes/sim_integration_deap_clifford_rotor_evolution.py",
         "system_v4/probes/sim_integration_e3nn_spectral_triple_dirac_equivariance.py",
         "system_v4/probes/sim_integration_gudhi_gtower_filtration.py",
         "system_v4/probes/sim_integration_pyg_shell_coupling_admissibility.py",
         "system_v4/probes/sim_integration_pynndescent_state_similarity.py",
+        "system_v4/probes/sim_integration_ribs_z3_constraint_archive.py",
         "system_v4/probes/sim_integration_rustworkx_coupling_graph.py",
         "system_v4/probes/sim_integration_xgi_multishell_coexistence.py"
       ],
-      "file_count": 7,
-      "tracked_dirty_count": 7,
+      "file_count": 9,
+      "tracked_dirty_count": 9,
       "untracked_count": 0,
       "sample_paths": [
         "system_v4/probes/sim_integration_cvc5_spectral_triple_constraint.py",
+        "system_v4/probes/sim_integration_deap_clifford_rotor_evolution.py",
         "system_v4/probes/sim_integration_e3nn_spectral_triple_dirac_equivariance.py",
         "system_v4/probes/sim_integration_gudhi_gtower_filtration.py",
         "system_v4/probes/sim_integration_pyg_shell_coupling_admissibility.py",
         "system_v4/probes/sim_integration_pynndescent_state_similarity.py",
-        "system_v4/probes/sim_integration_rustworkx_coupling_graph.py",
-        "system_v4/probes/sim_integration_xgi_multishell_coexistence.py"
+        "system_v4/probes/sim_integration_ribs_z3_constraint_archive.py",
+        "system_v4/probes/sim_integration_rustworkx_coupling_graph.py"
       ],
       "dominant_kinds": [
         "modified"

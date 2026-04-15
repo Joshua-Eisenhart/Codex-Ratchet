@@ -1,13 +1,13 @@
 {
   "name": "entropy_readout_packet_run",
-  "timestamp": "2026-04-15T08:02:17.043093+00:00",
+  "timestamp": "2026-04-15T08:42:33.070008+00:00",
   "all_ok": true,
   "steps": [
     {
       "label": "entropy_negative_battery",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/entropy_form_negative_battery.py",
       "returncode": 0,
-      "elapsed_sec": 1.8984148502349854,
+      "elapsed_sec": 1.2479989528656006,
       "stdout_tail": "========================================================================\nENTROPY FORM NEGATIVE BATTERY\n  'Are alternative entropy forms actually better here?'\n========================================================================\n\n  [T1] Qubit spectral-family equivalence...\n    Pairs tested: 2016\n    linear / Renyi2 / Tsallis2 disagreements: 0 / 0 / 0\n    purity direction disagreements: 0\n    max affine error D(rho||I/2) vs 1-S_vN: 0.00e+00\n    \u2713 Spectral families are qubit-order equivalent\n\n  [T2] Shannon-on-diagonal basis dependence...\n    Unitary-invariant vN, but diagonal Shannon shifts in 32/32 trials\n    Avg diagonal-Shannon shift: 0.1603\n    \u2713 Shannon-on-diagonal is basis dependent\n\n  [T3] Conditional entropy in the current L/R engine...\n    max |S(L|R)_proxy - S(L)|: 2.22e-16\n    max I(L:R)_proxy: 2.22e-16\n    \u2713 Product-proxy conditional entropy adds no signal\n\n  [T4] Pure-state Fi blind spot across spectral entropy forms...\n    \u0394S_vN=0.00e+00, \u0394S_linear=0.00e+00, \u0394S_renyi2=0.00e+00\n    D(state)=0.3569, \u0394z=0.2548\n    \u2713 No spectral entropy rescues pure-state Fi\n\n  [T5] Renyi-2 as computational proxy...\n    \u2713 Renyi-2 tracks vN ordering on qubit mixedness\n\n========================================================================\n  ENTROPY BATTERY COMPLETE\n========================================================================\n  Results saved: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/entropy_form_negative_battery_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -16,7 +16,7 @@
       "label": "axis0_full_spectrum",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis0_full_spectrum_sim.py",
       "returncode": 0,
-      "elapsed_sec": 17.47414493560791,
+      "elapsed_sec": 11.736255884170532,
       "stdout_tail": "============================================================================\nAXIS 0 FULL SPECTRUM SIM\n============================================================================\nRunning real-geometry baselines plus Xi bridge families across multiple kernels\n\nFamily summary:\n                family    mean_MI      MImax    mean_Ic    eta_rng   loop_rng  trivial    sat\n--------------------------------------------------------------------------------------------\n        L|R_local_only   0.000000   0.000000  -0.998750   0.000982   0.001922     True  False\n   L|R_coupled_control   0.000229   0.025008  -0.999167   0.001140   0.001440    False  False\n              Xi_shell   0.333969   0.333969   0.166985   0.099513   0.000000    False  False\n         Xi_hist_outer   0.000940   0.000940  -0.436929   0.205096   0.000000    False  False\n         Xi_hist_cycle   0.000878   0.000878  -0.457919   0.152367   0.000000    False  False\n         Xi_LR_control   0.000000   0.000000   0.000000   0.000000   0.000000     True  False\n\nKeep candidates: Xi_shell, Xi_hist_outer, Xi_hist_cycle\nKill candidates: L|R_local_only, Xi_LR_control\nControl-only: L|R_coupled_control\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis0_full_spectrum_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -25,7 +25,7 @@
       "label": "axis0_fep_compression",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_fep_compression_framing.py",
       "returncode": 0,
-      "elapsed_sec": 1.2425861358642578,
+      "elapsed_sec": 0.7384059429168701,
       "stdout_tail": "========================================================================\nAXIS 0 FEP / COMPRESSION-FROM-FUTURE FRAMING SIM\n========================================================================\nTests whether the engine structure is better described by\ncompression-from-future (entropic monism) than classical causation.\n\n  T1: Backward MI \u2265 Forward MI?  (future predicts past)\n  T2: Negative Bloch autocorr?   (attractor, not drift)\n  T3: ga0 lags MI change?         (compression primary)\n  T4: MI increases late in traj?  (attractor convergence)\n\n  1/inner: T1=K asym=+0.039 | T2=k ac=+0.117 | T3=K pk_lag=-1 | T4=K slope=+0.1082 | \u2192 COMPRESSION-FROM-FUTURE\n  1/clifford: T1=K asym=+0.073 | T2=k ac=+0.523 | T3=k pk_lag=3 | T4=K slope=+0.1792 | \u2192 MIXED\n  1/outer: T1=K asym=+0.037 | T2=k ac=+0.015 | T3=K pk_lag=-1 | T4=K slope=+0.1087 | \u2192 COMPRESSION-FROM-FUTURE\n  2/inner: T1=k asym=-0.041 | T2=K ac=-0.011 | T3=K pk_lag=0 | T4=K slope=+0.0242 | \u2192 COMPRESSION-FROM-FUTURE\n  2/clifford: T1=k asym=-0.086 | T2=k ac=+0.044 | T3=K pk_lag=0 | T4=K slope=+0.0620 | \u2192 MIXED\n  2/outer: T1=k asym=-0.067 | T2=K ac=-0.041 | T3=K pk_lag=0 | T4=K slope=+0.0264 | \u2192 COMPRESSION-FROM-FUTURE\n\n========================================================================\nOVERALL VERDICT: FEP / COMPRESSION-FROM-FUTURE FRAMING\n========================================================================\n  T1 (backward MI \u2265 forward):    3/6\n  T2 (attractor, not drift):      2/6\n  T3 (ga0 lags MI):               5/6\n  T4 (MI increases late):         6/6\n  Full COMPRESSION verdict:       4/6\n  MIXED verdict:                  2/6\n\n  \u25d0 Engine trajectory is partially consistent with compression-from-future.\n    Some tests show classical causation; compression framing not universal.\n\n  Sample interpretations (Type 1 / inner):\n    T1: backward \u2265 forward \u2192 future predicts past (compression-from-future)\n    T2: positive autocorr \u2192 drift / causal momentum (classical propagation)\n    T3: peak lag=-1 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)\n    T4: MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)\n\n================================================================================\nPROBE STATUS: PASS\n================================================================================\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis0_fep_compression_results.json\n",
       "stderr_tail": "",
       "ok": true

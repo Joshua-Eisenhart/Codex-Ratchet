@@ -1,7 +1,7 @@
 {
   "probe": "sim_compound_legos_forced",
   "purpose": "Test which lego COMBINATIONS are FORCED / FORBIDDEN / EMERGENT by constraint layers",
-  "timestamp": "2026-04-15T19:55:43.985690+00:00",
+  "timestamp": "2026-04-15T20:05:57.083034+00:00",
   "test1_F01_forced": {
     "density_matrix_forces_discrete_spectrum": {
       "forced": true,
@@ -567,15 +567,7 @@
         1
       ],
       [
-        "berry_phase",
-        1
-      ],
-      [
-        "fubini_study",
-        1
-      ],
-      [
-        "eigenvalue_decomposition",
+        "choi_matrix",
         1
       ],
       [
@@ -583,11 +575,11 @@
         1
       ],
       [
-        "choi_matrix",
+        "partial_transpose",
         1
       ],
       [
-        "pauli_decomposition",
+        "berry_phase",
         1
       ],
       [
@@ -595,19 +587,27 @@
         1
       ],
       [
-        "partial_transpose",
+        "eigenvalue_decomposition",
         1
       ],
       [
-        "kraus_extraction",
-        2
+        "fubini_study",
+        1
+      ],
+      [
+        "pauli_decomposition",
+        1
       ],
       [
         "qgt_metric",
         2
       ],
       [
-        "von_neumann_entropy",
+        "kraus_extraction",
+        2
+      ],
+      [
+        "negativity",
         2
       ],
       [
@@ -615,15 +615,15 @@
         2
       ],
       [
-        "entanglement_of_formation",
-        2
-      ],
-      [
         "entanglement_entropy",
         2
       ],
       [
-        "negativity",
+        "entanglement_of_formation",
+        2
+      ],
+      [
+        "von_neumann_entropy",
         2
       ]
     ],
@@ -863,8 +863,8 @@
     "critical_path": {
       "path": [
         "density_matrix",
-        "eigenvalue_decomposition",
-        "kraus_extraction"
+        "fubini_study",
+        "qgt_metric"
       ],
       "length": 2,
       "note": "This is the LONGEST forced chain: you MUST compute these in this order."
@@ -875,23 +875,23 @@
       ],
       "layer_1_first_derived": [
         "concurrence",
-        "berry_phase",
-        "fubini_study",
-        "eigenvalue_decomposition",
-        "partial_trace",
         "choi_matrix",
-        "pauli_decomposition",
+        "partial_trace",
+        "partial_transpose",
+        "berry_phase",
         "trace_distance",
-        "partial_transpose"
+        "eigenvalue_decomposition",
+        "fubini_study",
+        "pauli_decomposition"
       ],
       "layer_2_second_derived": [
-        "kraus_extraction",
         "qgt_metric",
-        "von_neumann_entropy",
+        "kraus_extraction",
+        "negativity",
         "bloch_vector",
-        "entanglement_of_formation",
         "entanglement_entropy",
-        "negativity"
+        "entanglement_of_formation",
+        "von_neumann_entropy"
       ],
       "layer_3_plus": []
     }
@@ -1035,7 +1035,7 @@
     }
   },
   "summary": {
-    "elapsed_seconds": 0.593,
+    "elapsed_seconds": 0.618,
     "errors": [],
     "n_errors": 0,
     "verdict": "ALL TESTS PASSED",

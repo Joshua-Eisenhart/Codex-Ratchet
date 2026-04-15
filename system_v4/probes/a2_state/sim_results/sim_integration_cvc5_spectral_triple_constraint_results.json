@@ -1,0 +1,211 @@
+{
+  "name": "sim_integration_cvc5_spectral_triple_constraint",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: pytorch computes numerical eigenvalues of the Dirac matrix (Pauli-X) via torch.linalg.eigvalsh; result cross-validates the sympy characteristic polynomial factoring and the cvc5 SAT verdict -- if numerical eigenvalues deviate from \u00b11, the constraint-admissibility claim is not corroborated at the numeric layer"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe focuses on eigenvalue constraint proof for a 2x2 spectral triple Dirac operator; no graph message-passing structure is invoked; pyg integration is deferred to a dedicated graph-spectral sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: z3 encodes the same x^2=1 constraint as cvc5 and issues independent SAT/UNSAT verdicts; agreement between z3 and cvc5 on all candidate eigenvalues provides dual-solver corroboration that the exclusion result is not solver-specific"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: cvc5 SMT solver (QF_NRA) is the primary proof mechanism; it verifies which candidate real values x satisfy x^2=1 (SAT) and which are excluded (UNSAT); the constraint-admissibility verdict for \u00b11 and the exclusion of x=2 and x=0 are sourced from cvc5 checkSat results, not from Python arithmetic or sympy"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: sympy computes the characteristic polynomial of Pauli-X symbolically (det(D - xI)) and factors it to confirm x^2-1=(x-1)(x+1); the factored roots are used to specify which x values are encoded into cvc5 SAT queries, making sympy load_bearing for the query construction step"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: geometric algebra structure of Cl(3,0) is deferred; this probe uses only the minimal Pauli-X Dirac operator and encodes eigenvalue constraints algebraically; clifford integration is reserved for a dedicated Cl(3,0) rotor-spectral coupling sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no Riemannian or Lie-group manifold structure is invoked for the Pauli-X eigenvalue constraint probe; geomstats integration is deferred to sims involving spectral geometry on curved spaces"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: equivariance of the Dirac operator under SO(3) is a separate probe (sim_integration_e3nn_spectral_triple_dirac_equivariance); this sim focuses on eigenvalue constraint admissibility only"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no dependency graph or constraint graph structure is required for the 2x2 Dirac eigenvalue probe; rustworkx integration is deferred to graph-topology coupling sims"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no hyperedge or higher-order interaction structure is present in the spectral triple Pauli-X lego at this stage"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cell-complex topology is not required for the eigenvalue constraint admissibility proof on a 2x2 matrix; deferred to topology-layer coupling sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: persistent homology is not invoked for the Dirac eigenvalue constraint probe; gudhi integration is deferred to persistence-spectral sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_sympy_charpoly": {
+      "char_poly": "x**2 - 1",
+      "factors": "(x - 1)*(x + 1)",
+      "roots": [
+        -1.0,
+        1.0
+      ],
+      "passed": true,
+      "note": "sympy confirms x^2-1=(x-1)(x+1); roots \u00b11 survived -- constraint-admissible eigenvalue classes for Pauli-X Dirac operator"
+    },
+    "P2_cvc5_sat_plus1": {
+      "candidate": 1,
+      "poly_rhs": 1,
+      "cvc5_result": "sat",
+      "is_sat": true,
+      "passed": true,
+      "note": "cvc5 confirms x=+1 is constraint-admissible (SAT) under x^2=1"
+    },
+    "P3_cvc5_sat_minus1": {
+      "candidate": -1,
+      "poly_rhs": 1,
+      "cvc5_result": "sat",
+      "is_sat": true,
+      "passed": true,
+      "note": "cvc5 confirms x=-1 is constraint-admissible (SAT) under x^2=1"
+    },
+    "P4_pytorch_eigenvalues": {
+      "eigenvalues": [
+        -1.0,
+        1.0
+      ],
+      "expected": [
+        -1.0,
+        1.0
+      ],
+      "max_deviation": 0.0,
+      "passed": true,
+      "note": "pytorch numerical eigenvalues of Pauli-X agree with sympy roots and cvc5-SAT constraint-admissible values to within 1e-6"
+    },
+    "P5_z3_corroboration_plus1": {
+      "candidate": 1,
+      "z3_result": "sat",
+      "cvc5_agreed": true,
+      "passed": true,
+      "note": "z3 and cvc5 agree: x=+1 is SAT -- dual-solver corroboration holds"
+    },
+    "P6_z3_corroboration_minus1": {
+      "candidate": -1,
+      "z3_result": "sat",
+      "cvc5_agreed": true,
+      "passed": true,
+      "note": "z3 and cvc5 agree: x=-1 is SAT -- dual-solver corroboration holds"
+    }
+  },
+  "negative": {
+    "N1_cvc5_unsat_x2": {
+      "candidate": 2,
+      "poly_rhs": 1,
+      "cvc5_result": "unsat",
+      "is_unsat": true,
+      "passed": true,
+      "note": "x=2 excluded (UNSAT) under x^2=1 -- cvc5 confirms 2 is not a constraint-admissible eigenvalue for the Pauli-X Dirac operator"
+    },
+    "N2_cvc5_unsat_x0": {
+      "candidate": 0,
+      "poly_rhs": 1,
+      "cvc5_result": "unsat",
+      "is_unsat": true,
+      "passed": true,
+      "note": "x=0 excluded (UNSAT) under x^2=1 -- zero is not constraint-admissible for the Pauli-X Dirac operator eigenvalue class"
+    },
+    "N3_z3_unsat_x2": {
+      "candidate": 2,
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "cvc5_agreed": true,
+      "passed": true,
+      "note": "z3 corroborates cvc5: x=2 is excluded (UNSAT) -- dual-solver exclusion confirmed"
+    },
+    "N4_sympy_not_root_x2": {
+      "poly_at_2": 3,
+      "is_zero": false,
+      "passed": true,
+      "note": "sympy confirms x^2-1 evaluated at x=2 is 3 (non-zero); x=2 is not a root -- consistent with cvc5 UNSAT exclusion"
+    }
+  },
+  "boundary": {
+    "B1_zero_matrix_eigenvalue_sat": {
+      "candidate": 0,
+      "poly_rhs": 0,
+      "cvc5_result": "sat",
+      "is_sat": true,
+      "passed": true,
+      "note": "zero matrix D=0 has eigenvalue x=0; cvc5 confirms x=0 is SAT under x^2=0 -- constraint-admissible for the zero-operator spectral class"
+    },
+    "B2_pauli_eigenvalue_excluded_from_zero_class": {
+      "candidate": 1,
+      "poly_rhs": 0,
+      "cvc5_result": "unsat",
+      "is_unsat": true,
+      "passed": true,
+      "note": "x=1 is UNSAT under x^2=0 -- the Pauli-X eigenvalue class and the zero-operator eigenvalue class are constraint-distinct (no overlap); the two spectral triples are constraint-separated"
+    },
+    "B3_pytorch_eigenvalue_class_separation": {
+      "zero_matrix_eigenvalues": [
+        0.0,
+        0.0
+      ],
+      "pauli_x_eigenvalues": [
+        -1.0,
+        1.0
+      ],
+      "no_overlap_within_1e6": true,
+      "passed": true,
+      "note": "pytorch cross-validates constraint separation: zero-matrix eigenvalue class {0} and Pauli-X class {-1,+1} are constraint-distinct as confirmed by cvc5 B2"
+    },
+    "B4_cvc5_sqrt3_eigenvalue_class": {
+      "sqrt3_approx": 1.7320508075688772,
+      "poly_rhs": 3,
+      "cvc5_pos_sat": true,
+      "cvc5_pos_result": "sat",
+      "cvc5_neg_sat": true,
+      "cvc5_neg_result": "sat",
+      "passed": true,
+      "note": "cvc5 confirms: a real x satisfying x^2=3 exists in the interval (1.7320, 1.7321) and (-1.7321, -1.7320) -- both \u00b1sqrt(3) eigenvalue classes of the fuller Cl(3,0) Dirac operator are constraint-admissible; interval-bounded SAT used because cvc5 QF_NRA satisfies irrational roots existentially rather than by exact float encoding"
+    }
+  },
+  "overall_pass": true,
+  "elapsed_seconds": 0.121,
+  "summary": "cvc5 (primary) + sympy (symbolic) + pytorch (numeric) + z3 (dual-solver) agree: for the Pauli-X Dirac operator, \u00b11 are constraint-admissible eigenvalues (SAT); x=2 and x=0 are excluded (UNSAT). Zero-matrix and Pauli-X spectral classes are constraint-separated. All four tool layers corroborate: the spectral triple eigenvalue constraint survived multi-layer verification."
+}

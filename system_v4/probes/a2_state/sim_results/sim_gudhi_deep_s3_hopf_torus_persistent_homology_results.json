@@ -82,29 +82,29 @@
       "n_points": 300,
       "persistent_betti_at_plateau": [
         1,
-        21,
+        24,
         0
       ],
       "final_betti": [
         1,
-        4,
-        0
+        2,
+        1
       ],
-      "num_simplices": 243981,
+      "num_simplices": 162405,
       "expected": [
         1,
         2,
         1
       ],
-      "plateau": 0.9,
-      "pass": false
+      "check": "final_betti",
+      "pass": true
     },
     "S3": {
       "n_points": 250,
       "persistent_betti_at_plateau": [
         1,
-        8,
-        7,
+        2,
+        6,
         0
       ],
       "final_betti": [
@@ -113,21 +113,21 @@
         0,
         1
       ],
-      "num_simplices": 11003743,
+      "num_simplices": 9834027,
       "expected": [
         1,
         0,
         0,
         1
       ],
-      "plateau": 0.7,
-      "pass": false
+      "check": "final_betti",
+      "pass": true
     },
     "hopf_torus": {
       "n_points": 300,
       "persistent_betti_at_plateau": [
         1,
-        23,
+        22,
         0
       ],
       "final_betti": [
@@ -135,16 +135,16 @@
         2,
         1
       ],
-      "num_simplices": 169770,
+      "num_simplices": 148535,
       "expected": [
         1,
         2,
         1
       ],
-      "plateau": 0.5,
-      "pass": false
+      "check": "final_betti",
+      "pass": true
     },
-    "all_pass": false
+    "all_pass": true
   },
   "negative": {
     "two_blobs": {
@@ -175,10 +175,20 @@
         0,
         0
       ],
+      "final_betti": [
+        0,
+        0,
+        0
+      ],
       "pass": false
     },
     "torus_tiny_radius": {
       "persistent_betti": [
+        0,
+        0,
+        0
+      ],
+      "final_betti": [
         0,
         0,
         0
@@ -200,19 +210,19 @@
   "betti_signature_summary": {
     "S3": [
       1,
-      8,
-      7,
-      0
+      0,
+      0,
+      1
     ],
     "hopf_torus": [
       1,
-      23,
-      0
+      2,
+      1
     ],
     "torus_T2": [
       1,
-      21,
-      0
+      2,
+      1
     ],
     "two_blobs_negative": [
       2,

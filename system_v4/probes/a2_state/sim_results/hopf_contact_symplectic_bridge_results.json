@@ -1,6 +1,6 @@
 {
   "name": "pure_lego_hopf_contact_symplectic_bridge",
-  "timestamp": "2026-04-15T16:11:51.918190Z",
+  "timestamp": "2026-04-15T16:25:33.622512Z",
   "classification": "canonical",
   "classification_note": "Standalone pure-geometry lego for the Hopf-contact-symplectic bridge identity. Establishes that ker(\u03b1) on S\u00b3 is compatible with the symplectic area form on S\u00b2 under Hopf projection: \u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082). Distinct from sim_torch_hopf_connection.py (Berry phase/connection) and sim_hopf_pointwise_pullback.py (density matrix pullback). Uses pytorch (load_bearing) + z3 UNSAT + sympy polynomial identity.",
   "lego_ids": [
@@ -88,7 +88,7 @@
   "positive": {
     "P1_reeb_vertical": {
       "pass": true,
-      "max_JR_norm": 1.0396503521829428e-16,
+      "max_JR_norm": 9.085771695783109e-17,
       "threshold": 1e-12,
       "description": "J\u00b7R = 0 at 100 random S\u00b3 points"
     },
@@ -135,7 +135,7 @@
   "negative": {
     "N1_vertical_annihilated": {
       "pass": true,
-      "max_JR_norm": 1.0748524944332984e-16,
+      "max_JR_norm": 1.0019757688037138e-16,
       "threshold": 1e-12,
       "description": "Reeb field R maps to zero under d\u03c0 (vertical = annihilated)"
     },
@@ -194,7 +194,7 @@
     },
     "B4_large_batch_stability": {
       "pass": true,
-      "max_deviation": 1.7763568394002505e-15,
+      "max_deviation": 1.3322676295501878e-15,
       "n_valid": 100,
       "threshold": 1e-08,
       "description": "Bridge identity stable across 100 random points, no numerical blowup"

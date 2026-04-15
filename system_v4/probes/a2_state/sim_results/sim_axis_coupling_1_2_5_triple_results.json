@@ -1,0 +1,217 @@
+{
+  "name": "sim_axis_coupling_1_2_5_triple",
+  "classification": "classical_baseline",
+  "scope_note": "Triple-axis coupling: Axis1 (curvature) x Axis2 (scale) x Axis5 (torus/winding). Conformal rescaling g->\u03a9\u00b2g: uniform \u03a9 activates only Axis2; non-uniform \u03a9=exp(\u03b1x\u00b2) activates all three simultaneously. z3 UNSAT: \u03b1\u22600 (non-uniform) AND R=0 (no curvature) is impossible. Clifford: grade-0 scalar (Axis2) + grade-2 bivector (Axis1) + rotor (Axis5).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Position-dependent \u03a9(x)=exp(\u03b1*x\u00b2) as differentiable tensor field; Ricci scalar approximation R \u221d \u2207\u00b2(log \u03a9); torus period integral \u222b\u2080^L \u03a9(x)dx computed via quadrature; autograd for curvature derivatives"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to multi-shell coexistence"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: \u03a9 position-dependent (d\u03a9/dx \u2260 0) AND curvature=0 AND period=L*\u03a9_const \u2014 all three simultaneously impossible; non-uniform \u03a9 forces curvature and period changes"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to proof-layer expansion"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic conformal factor \u03a9(x)=exp(\u03b1*x\u00b2); symbolic Ricci scalar R = -4\u03b1*e^(-2\u03b1x\u00b2) + ... under conformal rescaling; period formula \u222b\u2080^L exp(\u03b1*x\u00b2) dx derived symbolically; axis activation conditions"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Axis 1 = bivector e12 (curvature plane); Axis 2 = scalar (scale); Axis 5 = rotor R=exp(\u03b8*e12) (torus winding); all three active simultaneously as single multivector; grade decomposition verifies independence"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to Riemannian geometry layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to equivariant layer"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Axis activation graph: nodes {Omega_uniform, Omega_nonuniform, Axis1_curvature, Axis2_scale, Axis5_torus}; directed edges encoding which axes activate under each conformal type"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hyperedge {Axis1, Axis2, Axis5} encoding the triple coupling; Hyperedge {nonuniform_Omega, curvature_change, period_change} for the non-uniform case; {uniform_Omega, no_curvature_change} for uniform"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to topology layer"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this triple-axis coupling probe; deferred to persistence layer"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_uniform_omega_scale_not_curvature": {
+      "pass": true,
+      "R_max_flat": 0.0,
+      "R_max_scaled": 0.0,
+      "period_flat": 6.283185,
+      "period_scaled": 15.707963,
+      "reason": "Uniform \u03a9=2.5: period changes by factor 2.5 (Axis 2), curvature stays 0 (Axis 1 inactive) \u2014 only scale axis fires"
+    },
+    "P2_pytorch_nonuniform_omega_changes_curvature_and_period": {
+      "pass": true,
+      "R_max_nonunif": 0.2,
+      "period_nonunif": 14.652766,
+      "period_flat": 6.283185,
+      "reason": "Non-uniform \u03a9=exp(\u03b1x\u00b2): R_max>0 (Axis 1 fires), period\u22602\u03c0 (Axis 5 changes) \u2014 all three axes simultaneously active"
+    },
+    "P3_pytorch_axis2_fires_for_both_omega_types": {
+      "pass": true,
+      "period_uniform_Omega2": 12.566371,
+      "period_nonunif": 49.848865,
+      "reason": "Axis 2 (scale) activates for both uniform and non-uniform \u03a9; uniform \u03a9=2 gives period=2L exactly"
+    },
+    "P4_sympy_ricci_scalar_nonuniform_omega": {
+      "pass": true,
+      "R_sym": "-4*alpha*exp(-2*alpha*x**2)",
+      "expected": "-4*alpha*exp(-2*alpha*x^2)",
+      "reason": "Symbolic R=-4\u03b1*exp(-2\u03b1x\u00b2) for \u03a9=exp(\u03b1x\u00b2): curvature is nonzero and position-dependent when \u03b1\u22600"
+    },
+    "P5_sympy_period_greater_than_L_for_positive_alpha": {
+      "pass": true,
+      "period_numeric": 14.632931,
+      "period_L": 6.283185,
+      "period_approx": 10.417356,
+      "reason": "Period = \u222b\u2080^L exp(\u03b1x\u00b2)dx > L for \u03b1>0: non-uniform \u03a9 increases effective torus circumference (Axis 5 changes)"
+    },
+    "P6_clifford_triple_axis_multivector": {
+      "pass": true,
+      "axis2_extracted": 2.0,
+      "axis1_extracted": 0.3,
+      "axis5_rotor_angle": 0.785398,
+      "reason": "Clifford: Axis2=scalar(2.0)+Axis1=e12(0.3) active simultaneously; Axis5 rotor exp(\u03b8/2 e12) encodes torus winding"
+    },
+    "P7_rustworkx_activation_graph": {
+      "pass": true,
+      "num_nodes": 5,
+      "num_edges": 4,
+      "reason": "Activation graph: uniform \u03a9 -> Axis2 only (1 edge); non-uniform \u03a9 -> Axis1+Axis2+Axis5 (3 edges); total 4 edges"
+    },
+    "P8_xgi_triple_axis_coupling_hyperedges": {
+      "pass": true,
+      "num_edges": 3,
+      "reason": "XGI: {Axis1,Axis2,Axis5} triple; {nonuniform,Axis1,Axis5} activation; {uniform,Axis2} single activation"
+    }
+  },
+  "negative": {
+    "N1_pytorch_uniform_omega_zero_curvature": {
+      "pass": true,
+      "tested_values": [
+        0.5,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "reason": "Uniform \u03a9=c for any c gives R=0: Axis 1 (curvature) does NOT activate under uniform conformal rescaling"
+    },
+    "N2_pytorch_nonuniform_omega_nonzero_curvature": {
+      "pass": true,
+      "R_max": 0.4,
+      "reason": "Non-uniform \u03a9=exp(0.1*x\u00b2) generates R\u22600; Axis 1 activates \u2014 contrast with N1 where uniform \u03a9 gives R=0"
+    },
+    "N3_z3_unsat_nonuniform_implies_curvature": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: \u03b1\u22600 (non-uniform) AND R(x=0)=-4\u03b1 AND R=0 \u2014 impossible; non-uniform \u03a9 always forces nonzero curvature"
+    },
+    "N4_sympy_axis1_axis5_coactivate": {
+      "pass": true,
+      "dOmega_dx_at_x1": "2*alpha*exp(alpha)",
+      "d2log_dx2": "2*alpha",
+      "reason": "d\u03a9/dx\u22600 and d\u00b2log\u03a9/dx\u00b2\u22600 simultaneously for non-uniform \u03a9: Axis1 and Axis5 co-activate \u2014 not independent"
+    },
+    "N5_clifford_scalar_bivector_grade_orthogonal": {
+      "pass": true,
+      "scalar_extracted": 3.0,
+      "biv_extracted": 0.7,
+      "reason": "Clifford grade-0 (Axis2 scale) and grade-2 (Axis1 curvature) are orthogonal: extracting one does not contaminate the other"
+    }
+  },
+  "boundary": {
+    "B1_pytorch_curvature_vanishes_as_alpha_to_zero": {
+      "pass": true,
+      "alphas": [
+        1.0,
+        0.1,
+        0.01,
+        0.001
+      ],
+      "R_maxes": [
+        4.0,
+        0.4,
+        0.04,
+        0.004
+      ],
+      "reason": "R_max \u2192 0 as \u03b1 \u2192 0: non-uniform \u03a9 continuously connects to flat case; Axis 1 deactivates smoothly"
+    },
+    "B2_pytorch_identity_omega_all_axes_trivial": {
+      "pass": true,
+      "R_max": 0.0,
+      "period": 6.283185,
+      "reason": "\u03a9=1 (identity): R=0, period=L=2\u03c0, scale=1 \u2014 all three axes at their trivial (inactive) values"
+    },
+    "B3_sympy_period_series_at_alpha_zero": {
+      "pass": true,
+      "period_series": "L**5*alpha**2/10 + L**3*alpha/3 + L",
+      "period_at_alpha0": "L",
+      "reason": "Period series \u222b\u2080^L exp(\u03b1x\u00b2)dx at \u03b1=0 equals L exactly; continuity of Axis 5 period at uniform-to-nonuniform boundary"
+    },
+    "B4_rustworkx_activation_graph_is_dag": {
+      "pass": true,
+      "num_nodes": 5,
+      "num_edges": 6,
+      "reason": "Activation graph is a DAG: Omega_type activates axes, axes feed constraint \u2014 no circular dependencies"
+    },
+    "B5_xgi_impossible_triple_hyperedge": {
+      "pass": true,
+      "num_edges": 2,
+      "reason": "XGI: {nonuniform,R=0,period=L} is the UNSAT triple; {nonuniform,alpha\u22600} is the consistent pair that forces Axis1+Axis5"
+    },
+    "B6_clifford_identity_rotor_zero_winding": {
+      "pass": true,
+      "scalar_part": 1.0,
+      "bivector_part": 0.0,
+      "reason": "Axis 5 rotor at \u03b8=0 gives identity: no torus winding corresponds to trivial Axis 5 state (rotor=1)"
+    }
+  },
+  "overall_pass": true
+}

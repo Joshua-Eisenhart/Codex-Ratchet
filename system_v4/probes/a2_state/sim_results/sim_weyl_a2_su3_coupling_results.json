@@ -1,0 +1,227 @@
+{
+  "name": "sim_weyl_a2_su3_coupling",
+  "classification": "classical_baseline",
+  "scope_note": "Coupling probe: W(A2) Weyl group <-> SU(3) G-tower. W(A2)=S3 IS the Weyl group of SU(3): acts on 2D weight space, permutes 6 roots, acts on Cartan subalgebra. Tests: Gell-Mann matrices, Weyl-Cartan action, root generator pairs, S3 orbit structure, Clifford reflections, Cayley/root graph isomorphism. z3 UNSAT: reflection cannot simultaneously fix and negate a root.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Gell-Mann matrices as complex128 tensors; verify traceless+Hermitian; compute commutators to verify su(3) algebra; S3 permutation matrices acting on Cartan elements; verify Weyl action stays in Cartan subalgebra"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to multi-shell coexistence"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: simple reflection \u03c3_\u03b1 maps positive root \u03b1 to -\u03b1 AND maps another positive root \u03b2 to a positive root (not -\u03b2) \u2014 structurally impossible since \u03c3_\u03b1 maps exactly \u03b1\u2192-\u03b1 and permutes all other positive roots or sends them to negative roots"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to proof-layer expansion"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Gell-Mann matrices as 3x3 complex matrices; verify commutation relations [T_a, T_b] = i*f_abc*T_c; Cartan subalgebra span{\u03bb3,\u03bb8}; symbolic permutation action on diag(a,b,-a-b)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "A2 root vectors in Cl(2,0); Weyl reflections as Clifford sandwich products; grade-1 roots map to grade-1 roots under all S3 actions; grade-2 bivector encodes the 2D weight space orientation of SU(3)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to geometry layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to equivariant layer"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "W(A2) Cayley graph (6 nodes, S3 structure); SU(3) adjoint representation weight diagram (8 nodes: 6 roots + 2 Cartan); verify S3 acts on root nodes of adjoint weight diagram by permutation \u2014 graph homomorphism"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hyperedge encoding: {\u03bb1,\u03bb2,\u03bb3} as isospin SU(2) subalgebra hyperedge; {\u03bb4,\u03bb5,\u03bb6,\u03bb7,\u03bb8} as remaining generators hyperedge; 3-way hyperedge {\u03b1-root-pair, \u03b2-root-pair, \u03b3-root-pair} for W(A2) orbit"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to topology layer"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Weyl-SU3 coupling probe; deferred to persistence layer"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_gellmann_traceless_hermitian": {
+      "pass": true,
+      "errors": [],
+      "reason": "All 8 Gell-Mann matrices are traceless (tr=0) and Hermitian (\u03bb=\u03bb\u2020); required generators of su(3)"
+    },
+    "P2_pytorch_weyl_action_stays_in_cartan": {
+      "pass": true,
+      "test_element": [
+        1.0,
+        -0.5,
+        -0.5
+      ],
+      "reason": "S3 permutation of diag(a,b,-a-b): all permuted vectors still sum to 0 \u2014 Weyl action preserves Cartan subalgebra"
+    },
+    "P3_pytorch_root_generators_single_entry": {
+      "pass": true,
+      "E12p_nonzero_entries": 1,
+      "E13p_nonzero_entries": 1,
+      "E23p_nonzero_entries": 1,
+      "reason": "Root generators E_12, E_13, E_23 are single-entry matrices; 6 root generators pair into 3 W(A2)-related pairs"
+    },
+    "P4_sympy_su3_commutator_cartan_root": {
+      "pass": true,
+      "comm_31": "Matrix([[0, 2, 0], [-2, 0, 0], [0, 0, 0]])",
+      "expected": "2i*\u03bb2",
+      "reason": "Commutator [\u03bb3, \u03bb1] = 2i*\u03bb2 verifies root structure: Cartan acts on root generators by eigenvalue (weight)"
+    },
+    "P5_sympy_permutation_preserves_traceless": {
+      "pass": true,
+      "orig": "Matrix([[a, b, -a - b]])",
+      "permuted": "Matrix([[b, a, -a - b]])",
+      "reason": "S3 permutation of Cartan element diag(a,b,-a-b) stays traceless; Weyl action preserved Cartan subalgebra symbolically"
+    },
+    "P6_clifford_a2_roots_reflect_to_roots": {
+      "pass": true,
+      "reason": "Clifford reflections in Cl(2,0) map all 6 A2 roots to other A2 roots \u2014 W(A2) acts on root system via Clifford sandwich"
+    },
+    "P7_rustworkx_cayley_and_root_diagram_isomorphic": {
+      "pass": true,
+      "cayley_nodes": 6,
+      "root_nodes": 6,
+      "both_strongly_connected": true,
+      "reason": "W(A2) Cayley graph and SU(3) root diagram both have 6 nodes and are strongly connected under S3 action"
+    },
+    "P8_xgi_su3_subalgebra_hyperedges": {
+      "pass": true,
+      "num_edges": 6,
+      "num_nodes": 8,
+      "reason": "XGI hyperedges: 3 SU(2) subalgebras (isospin/U/V-spin) + 3 W(A2) root-pair orbits encode SU(3) structure"
+    }
+  },
+  "negative": {
+    "N1_pytorch_su3_has_8_generators_not_3": {
+      "pass": true,
+      "count": 8,
+      "reason": "SU(3) has exactly 8 generators (Gell-Mann matrices), not 3 like SU(2); rank-2 vs rank-1 Lie algebra"
+    },
+    "N2_pytorch_weyl_a2_order_not_8": {
+      "pass": true,
+      "order": 6,
+      "reason": "W(A2)=S3 has order 6, not 8; contrast with W(B2)=Dih4 of order 8"
+    },
+    "N3_z3_unsat_reflection_cannot_fix_and_negate": {
+      "pass": true,
+      "z3_result": "unsat",
+      "reason": "UNSAT: \u03c3_\u03b1 fixes \u03b1 (root_fixed=T) AND negates \u03b1 (root_negated=T) AND fixed\u2260negated \u2014 for nonzero root, structurally impossible"
+    },
+    "N4_sympy_cartan_doesnt_commute_with_root": {
+      "pass": true,
+      "comm_31": "Matrix([[0, 2, 0], [-2, 0, 0], [0, 0, 0]])",
+      "reason": "[\u03bb3,\u03bb1] \u2260 0: Cartan generator \u03bb3 does NOT commute with root generator \u03bb1; Cartan acts nontrivially (eigenvalue = weight)"
+    },
+    "N5_clifford_reflection_nonzero": {
+      "pass": true,
+      "reflected_norm_sq": 1.0,
+      "reason": "Clifford reflection of nonzero root vector gives nonzero result (=-\u03b1); reflections are invertible"
+    }
+  },
+  "boundary": {
+    "B1_pytorch_weyl_faithful_on_asymmetric_cartan": {
+      "pass": true,
+      "distinct_images": 6,
+      "reason": "S3 acts faithfully on asymmetric Cartan element: all 6 permutations give distinct results"
+    },
+    "B2_pytorch_generic_weight_trivial_stabilizer": {
+      "pass": true,
+      "stabilizer_count": 1,
+      "reason": "Generic Cartan element has trivial stabilizer in W(A2): only identity fixes it (Weyl group acts freely on regular elements)"
+    },
+    "B3_sympy_regular_weight_orbit_size_6": {
+      "pass": true,
+      "orbit_size": 6,
+      "orbit": [
+        [
+          -1,
+          0,
+          1
+        ],
+        [
+          0,
+          -1,
+          1
+        ],
+        [
+          1,
+          0,
+          -1
+        ],
+        [
+          -1,
+          1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          0,
+          1,
+          -1
+        ]
+      ],
+      "reason": "Regular weight (1,-1,0) under W(A2)=S3 has orbit of size 6 \u2014 full transitive orbit (regular = trivial stabilizer)"
+    },
+    "B4_rustworkx_adjoint_8_weights_6_root_subgraph": {
+      "pass": true,
+      "num_nodes": 8,
+      "num_edges": 6,
+      "reason": "SU(3) adjoint rep: 8 weights total (6 roots + 2 Cartan zeros); W(A2) root subgraph has 6 nodes with S3 permutation edges"
+    },
+    "B5_xgi_root_pair_orbits": {
+      "pass": true,
+      "num_edges": 3,
+      "reason": "XGI: 3 root-pair hyperedges {\u03b1,-\u03b1} are the 3 W(A2) orbits on the set of root pairs (S3 acts on these 3 orbits by permutation)"
+    },
+    "B6_sympy_nonidentity_weyl_acts_nontrivially": {
+      "pass": true,
+      "orig": "(1, -1/2, -1/2)",
+      "perm": "(-1/2, 1, -1/2)",
+      "reason": "Non-identity Weyl element (12) maps (1,-1/2,-1/2) to (-1/2,1,-1/2): distinct Cartan elements \u2014 Weyl action is nontrivial"
+    }
+  },
+  "overall_pass": true
+}

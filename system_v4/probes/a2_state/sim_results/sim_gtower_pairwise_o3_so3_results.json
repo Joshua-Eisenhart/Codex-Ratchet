@@ -1,0 +1,177 @@
+{
+  "name": "sim_gtower_pairwise_o3_so3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "O(3) \u2194 SO(3)",
+  "constraint_imposed": "orientation (det = +1 only)",
+  "capability_summary": {
+    "CAN": [
+      "verify det map {-1,+1} identifies two O(3) components via pytorch",
+      "prove coset structure: ref\u00d7ref \u2208 SO(3), rot\u00d7ref \u2208 O(3)\\SO(3)",
+      "exclude O(3)\\SO(3) elements from SO(3) via z3 UNSAT",
+      "verify O(3)/SO(3) \u2245 Z_2 via sympy determinant algebra",
+      "identify Pin(3)/Spin(3) = Z_2 covers the O(3)/SO(3) split via Clifford",
+      "use e3nn parity (p=\u00b11) to distinguish O(3) vs SO(3) irreps",
+      "encode O(3)\u2192SO(3) edge in rustworkx tower DAG"
+    ],
+    "CANNOT": [
+      "add complex structure at this level (use SO(3)\u2194U(3) coupling)",
+      "require det=1 for complex matrices (use U(3)\u2194SU(3) coupling)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: pytorch det map det:O(3)\u2192{-1,+1} identifies two components; product of two O(3)\\SO(3) elements is in SO(3) (coset closure)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise O(3)\u2194SO(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves det=-1 is incompatible with SO membership; the orientation constraint strictly separates O(3) into two components."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise O(3)\u2194SO(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies that O(3)/SO(3) \u2245 Z_2 by showing the det map has image {-1,+1} and that SO(3) is a normal subgroup."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Pin(3) \u2282 Cl(3,0) double covers O(3); Spin(3) = Pin(3)^+ (even subalgebra) double covers SO(3); the O(3)/SO(3) split corresponds to Pin(3)/Spin(3) = Z_2."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SO(3) manifold is connected; O(3) has two connected components; the coupling exposes this topological difference."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn differentiates even/odd parity: D^l with p=+1 is SO(3) irrep, p=-1 is O(3) irrep including reflection; O(3)/SO(3) coupling controls which parity is accessible."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes O(3)\u2192SO(3) as a directed edge; verified via adjacency and path length between the two nodes."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise O(3)\u2194SO(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise O(3)\u2194SO(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise O(3)\u2194SO(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "two_reflections_compose_to_SO3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Product of two reflections has det=+1: in SO(3) (coset product rule)"
+    },
+    "rotation_times_reflection_is_O3_minus_SO3": {
+      "pass": true,
+      "det": -1.0,
+      "detail": "Rotation \u00d7 reflection has det=-1: stays in O(3)\\SO(3)"
+    },
+    "SO3_is_subgroup_of_O3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "SO(3) rotation has det=+1: SO(3) \u2282 O(3) confirmed"
+    },
+    "z3_O_minus_SO_excluded": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=-1 and det=+1 cannot both hold; O\\SO excluded from SO"
+    },
+    "z3_O_minus_SO_exists": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: O(1) has a det=-1 element (x=-1); SO(1) constraint excludes it"
+    },
+    "sympy_coset_Z2": {
+      "pass": true,
+      "detail": "O/SO coset structure: det(-1)*det(-1) = +1 (Z_2 group law)"
+    },
+    "sympy_so3_normal_in_o3": {
+      "pass": true,
+      "det_conjugate": -1,
+      "detail": "det(R * Ref * R^{-1}) = -1: O(3)\\SO(3) is preserved under SO(3) conjugation"
+    },
+    "clifford_spin3_even_covers_SO3": {
+      "pass": "True",
+      "grade0_coeff": 0.9238795325112867,
+      "detail": "Spin(3) rotor is in even subalgebra of Cl(3,0): covers SO(3)"
+    },
+    "clifford_pin3_odd_covers_O3_minus_SO3": {
+      "pass": true,
+      "detail": "Pin(3) odd versors (grade-1) double cover O(3)\\SO(3) reflections"
+    },
+    "e3nn_parity_distinguishes_O3_SO3": {
+      "pass": true,
+      "even_dim": 3,
+      "odd_dim": 3,
+      "detail": "e3nn: p=+1 and p=-1 are distinct irreps; O(3)/SO(3) coupling controls parity access"
+    },
+    "geomstats_so3_connected": {
+      "pass": true,
+      "detail": "geomstats SO(3): identity belongs; SO(3) is the connected component of O(3)"
+    },
+    "rustworkx_O3_SO3_edge": {
+      "pass": true,
+      "detail": "rustworkx: O(3)\u2192SO(3) directed edge exists (orientation ratchet step)"
+    },
+    "rustworkx_O3_before_SO3": {
+      "pass": true,
+      "o3_pos": 1,
+      "so3_pos": 2,
+      "detail": "Topological sort: O(3) precedes SO(3) (O(3) is less constrained)"
+    }
+  },
+  "negative": {
+    "coset_product_in_O3_minus_SO3": {
+      "pass": true,
+      "det": -1.0,
+      "detail": "Reflection \u00d7 Rotation stays in O(3)\\SO(3): det=-1"
+    }
+  },
+  "boundary": {
+    "SO3_in_O3_exact": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "SO(3) rotation is in both SO(3) and O(3): coupling is exact on SO(3)"
+    }
+  }
+}

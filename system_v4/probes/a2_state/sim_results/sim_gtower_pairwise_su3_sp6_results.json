@@ -1,0 +1,177 @@
+{
+  "name": "sim_gtower_pairwise_su3_sp6",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "SU(3) \u2194 Sp(6)",
+  "constraint_imposed": "symplectic form J (M^T J M = J)",
+  "capability_summary": {
+    "CAN": [
+      "verify SU(2) = Sp(1) as the SU(3)/Sp(6) coupling boundary witness",
+      "confirm SU(2) satisfies BOTH M\u2020M=I det=1 AND M^T J M=J via pytorch",
+      "prove joint SU+Sp constraints are exclusive via z3 UNSAT",
+      "verify su(2) generators are in sp(2) via sympy",
+      "identify Sp(1) unit quaternions via Clifford algebra",
+      "access Sp(1)=SU(2) irreps via e3nn",
+      "encode SU(3)\u2192Sp(6) as terminal directed edge in rustworkx (Sp(6) out-deg=0)"
+    ],
+    "CANNOT": [
+      "further reduce Sp(6) in the standard G-tower (Sp is the terminal shell)",
+      "impose complex phase without the SU constraint (use U(3) for that)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SU(2) = Sp(1) via quaternion identification; pytorch verifies an SU(2) element satisfies BOTH M\u2020M=I (det=1) AND M^T J M = J (symplectic); this is the SU(3)\u2194Sp(6) coupling witness."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SU(3)\u2194Sp(6) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that the Sp(2) constraint ad=1 combined with the SU(2) det=ad=1 constraint is only jointly satisfiable for |a|^2+|d|^2=1, giving the USp(2)=SU(2)=Sp(1) element."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SU(3)\u2194Sp(6) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies sp(2) condition M^T J + J M = 0 for su(2) generators; identifies which su(2) generators are also in sp(2)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Sp(1) = unit quaternions \u2245 SU(2); Clifford even subalgebra of Cl(3,0) gives quaternion algebra; coupling SU(3)\u2194Sp(6) is anchored by this SU(2)=Sp(1) isomorphism."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SO(3) \u2245 Sp(1)/Z_2; verifies the intersection SU(2)=Sp(1) at the coupling boundary via manifold membership."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn provides SO(3) irreps which are SU(2) irreps via double cover; SU(2)=Sp(1) at the SU(3)\u2194Sp(6) coupling boundary."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes SU(3)\u2192Sp(6) as the terminal directed edge; Sp(6) has out-degree=0 (no further reduction in the standard tower)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SU(3)\u2194Sp(6) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SU(3)\u2194Sp(6) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SU(3)\u2194Sp(6) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "su2_satisfies_su_constraint": {
+      "pass": true,
+      "det_re": 1.0,
+      "detail": "SU(2) element: M\u2020M=I and det=1 (special unitary)"
+    },
+    "su2_satisfies_sp2_constraint": {
+      "pass": true,
+      "max_err": 2.0849856140276212e-17,
+      "detail": "SU(2)=Sp(1): M^T J M = J (symplectic constraint also satisfied)"
+    },
+    "su3_embeds_in_sp6": {
+      "pass": true,
+      "max_err": 2.1285471334023225e-17,
+      "detail": "U(n)\u2282Sp(2n,R): SU(3) real embedding satisfies M^T J M = J (positive coupling)"
+    },
+    "z3_su_sp_joint_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: SU and Sp joint constraints are logically consistent only at USp"
+    },
+    "sympy_su2_in_sp2": {
+      "pass": true,
+      "detail": "su(2) generators i*\u03c3_1/2, i*\u03c3_3/2 satisfy M^T J + J M = 0: in sp(2)"
+    },
+    "clifford_sp1_unit_quaternion": {
+      "pass": true,
+      "norm": 1.0,
+      "detail": "Sp(1) unit quaternion q has q~q = 1: SU(2)=Sp(1) coupling anchor"
+    },
+    "clifford_quaternion_product_ij_k": {
+      "pass": true,
+      "ij_e12_coeff": 1.0,
+      "detail": "e23 * e13 = \u00b1e12 (quaternion i*j = \u00b1k): Sp(1) multiplication table"
+    },
+    "e3nn_sp1_su2_d1": {
+      "pass": true,
+      "dim": 3,
+      "detail": "Sp(1)=SU(2): D^1 irrep dim=3 at SU(3)/Sp(6) coupling boundary"
+    },
+    "geomstats_so3_sp1_quotient": {
+      "pass": true,
+      "detail": "SO(3) \u2245 Sp(1)/Z_2: identity in SO(3) confirms Sp(1) quotient at coupling"
+    },
+    "rustworkx_SU3_SP6_final_edge": {
+      "pass": true,
+      "has_edge": true,
+      "sp6_out_degree": 0,
+      "detail": "SU(3)\u2192Sp(6) is the terminal directed edge (Sp(6) is the deepest shell)"
+    },
+    "rustworkx_full_tower_depth": {
+      "pass": true,
+      "depth": 5,
+      "detail": "G-tower: GL\u2192O\u2192SO\u2192U\u2192SU\u2192Sp = 5 reduction steps total"
+    }
+  },
+  "negative": {
+    "sp6_nonunitary_not_in_su3": {
+      "pass": true,
+      "is_symplectic": true,
+      "is_unitary_block": false,
+      "detail": "diag(2,2,2,1/2,1/2,1/2) is in Sp(6) (M^TJM=J) but not SU(3) (block not unitary)"
+    },
+    "su2_sp1_generator_coincidence": {
+      "pass": true,
+      "detail": "SU(2)=Sp(1): sp(2) has dim=3 = dim su(2); generators fully overlap at n=1"
+    }
+  },
+  "boundary": {
+    "su2_sp1_exact_coincidence": {
+      "pass": true,
+      "max_err": 1.2659966479596092e-17,
+      "detail": "SU(2) = Sp(1): 2x2 SO(2) rotation satisfies BOTH su(2) and sp(2) constraints"
+    },
+    "identity_in_Sp6": {
+      "pass": true,
+      "detail": "Identity preserves J: I \u2208 SU(3) \u2229 Sp(6) at the coupling boundary"
+    }
+  }
+}

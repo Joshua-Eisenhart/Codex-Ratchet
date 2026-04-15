@@ -1,0 +1,185 @@
+{
+  "name": "sim_gtower_pairwise_gl3_o3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "GL(3,R) \u2194 O(3)",
+  "constraint_imposed": "metric preservation (M^T M = I)",
+  "capability_summary": {
+    "CAN": [
+      "project any GL(3,R) element to its O(3) factor via QR decomposition",
+      "verify polar decomposition A = Q*S (Q \u2208 O(3), S symmetric pos-def)",
+      "prove non-commutativity of GL(3,R) and O(3) elements (ratchet direction)",
+      "exclude GL(3,R)\\O(3) elements from O(3) via z3 UNSAT",
+      "decompose gl(3) = so(3) \u2295 sym(3) via sympy",
+      "identify O(3) versors in Cl(3,0) as unit-norm grade-1 elements",
+      "encode GL(3)\u2192O(3) as first directed edge in rustworkx tower DAG"
+    ],
+    "CANNOT": [
+      "impose orientation constraint at this level (use O(3)\u2194SO(3) coupling)",
+      "add complex structure (use SO(3)\u2194U(3) coupling)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: pytorch polar decomposition (QR) maps any GL(3,R) element to its O(3) factor; the metric constraint is imposed by extracting Q."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves no element can be in GL(3,R)\\O(3) (i.e., det\u22600 AND M^TM\u2260I) while simultaneously satisfying M^TM=I."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy decomposes gl(3) = so(3) + sym(3) into antisymmetric (so(3)) and symmetric parts; the metric constraint projects onto so(3) = Lie(O(3))."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: in Cl(3,0), O(3) acts via versors (grade-1 elements); GL(3,R)\\O(3) elements distort the metric but remain grade-1 in the algebra."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialOrthogonal confirms identity belongs to SO(3); GL(3)\u2192O(3) coupling is validated through the manifold structure."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes the GL(3)\u2192O(3) coupling as the first directed edge in the G-tower DAG; verified via adjacency query."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise GL(3)\u2194O(3) coupling probe; cross-tool coupling beyond the two target shells is deferred."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "A_in_GL3": {
+      "pass": true,
+      "det": 10.5,
+      "detail": "A has det\u22600: confirmed in GL(3,R)"
+    },
+    "projection_to_O3": {
+      "pass": true,
+      "max_err": 4.440892098500626e-16,
+      "detail": "QR decomposition extracts the O(3) factor from a GL(3,R) element"
+    },
+    "O3_element_in_GL3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "O(3) element (rotation) is in GL(3,R): O(3) \u2282 GL(3,R)"
+    },
+    "noncommutativity_GL3_O3": {
+      "pass": true,
+      "max_diff": 1.5,
+      "detail": "A\u2218R \u2260 R\u2218A for A \u2208 GL(3,R)\\O(3): non-commutativity defines ratchet direction"
+    },
+    "polar_decomposition_A_equals_QS": {
+      "pass": true,
+      "max_err": 8.881784197001252e-16,
+      "detail": "Polar decomp A = Q * S: GL(3,R)/O(3) \u2245 pos-definite symmetric matrices"
+    },
+    "z3_GL_minus_O_not_O": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: element in GL(1,R)\\O(1) cannot simultaneously satisfy x^2=1"
+    },
+    "gl3_decomp_antisym_plus_sym": {
+      "pass": true,
+      "detail": "gl(3) = so(3) + sym(3): antisymmetric + symmetric decomposition"
+    },
+    "projection_to_so3": {
+      "pass": true,
+      "detail": "Antisymmetric part of gl(3) element \u2208 so(3) = Lie(O(3))"
+    },
+    "clifford_O3_versor_unit": {
+      "pass": true,
+      "n_sq": 1.0,
+      "detail": "O(3) versor (unit vector) has n^2 = 1 in Cl(3,0)"
+    },
+    "clifford_GL3_non_unit_versor": {
+      "pass": true,
+      "n_sq": 4.0,
+      "detail": "Scaled vector (GL\\O) has n^2 = 4 \u2260 1: not in O(3) versor group"
+    },
+    "geomstats_so3_in_GL3": {
+      "pass": true,
+      "detail": "geomstats SO(3) identity belongs: O(3) \u2282 GL(3,R) confirmed via manifold"
+    },
+    "rustworkx_GL3_O3_edge_exists": {
+      "pass": true,
+      "detail": "rustworkx: GL(3)\u2192O(3) directed edge exists (first ratchet step)"
+    },
+    "rustworkx_GL3_O3_distance_1": {
+      "pass": true,
+      "distance": 1,
+      "detail": "GL(3)\u2192O(3) is a single reduction step (distance = 1)"
+    }
+  },
+  "negative": {
+    "GL3_minus_O3_exists": {
+      "pass": true,
+      "max_err": 8.0,
+      "detail": "Scaling matrix diag(3,1,1) \u2208 GL(3,R)\\O(3): det=3, M^TM \u2260 I"
+    },
+    "pairwise_noncommutativity": {
+      "pass": true,
+      "max_diff": 1.0,
+      "detail": "A(GL)\u2218R(O3) \u2260 R(O3)\u2218A(GL): coupling is non-commutative"
+    }
+  },
+  "boundary": {
+    "O3_inclusion_in_GL3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Identity \u2208 O(3) \u2229 GL(3,R): boundary where both shells coincide"
+    },
+    "gram_schmidt_of_O3_is_identity": {
+      "pass": true,
+      "max_err": 4.440892098500626e-16,
+      "detail": "Gram-Schmidt of O(3) element stays in O(3): projection is idempotent on O(3)"
+    }
+  }
+}

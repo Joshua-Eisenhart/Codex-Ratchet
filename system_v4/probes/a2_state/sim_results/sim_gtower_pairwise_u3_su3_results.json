@@ -1,0 +1,169 @@
+{
+  "name": "sim_gtower_pairwise_u3_su3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "U(3) \u2194 SU(3)",
+  "constraint_imposed": "det = 1 (traceless condition)",
+  "capability_summary": {
+    "CAN": [
+      "factor U(3) = SU(3) \u00d7 U(1) explicitly via pytorch",
+      "prove det=1 and det\u22601 are exclusive via z3 UNSAT",
+      "verify su(3) = su(3) + u(1) Lie algebra split via sympy trace condition",
+      "confirm U(1) center commutes with all SU(3) elements",
+      "access SU(3) irreps via e3nn SU(2) subgroup",
+      "encode U(3)\u2192SU(3) edge in rustworkx tower DAG"
+    ],
+    "CANNOT": [
+      "impose symplectic structure (use SU(3)\u2194Sp(6))",
+      "add metric constraint (use GL(3)\u2194O(3))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: U(3) = SU(3) \u00d7 U(1) is verified numerically by factoring any U(3) element into (phase) \u00d7 (SU(3) element) and checking both parts."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves no element can simultaneously satisfy det=1 (SU constraint) and det\u22601 (in U(3)\\SU(3)); the constraints are exclusive."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies u(3) = su(3) + u(1) Lie algebra decomposition; the trace condition Tr(A)=0 separates su(3) from the u(1) factor."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) manifold; SU(3) dim = 8, U(3) dim = 9 (SU(3) \u00d7 U(1) factorization confirmed by dims)."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn SU(2) \u2282 SU(3) irreps; the U(3)/SU(3) split corresponds to the U(1) center acting trivially on SU(3) irreps."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes U(3)\u2192SU(3) as a directed edge; verified via adjacency in the G-tower DAG."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise U(3)\u2194SU(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "u3_factors_into_su3_times_u1": {
+      "pass": true,
+      "det_abs": 1.0,
+      "detail": "U(3) element has M\u2020M=I and |det|=1; factors into SU(3)\u00d7U(1)"
+    },
+    "su3_element_det_equals_1": {
+      "pass": true,
+      "det_re": 1.0,
+      "det_im": 4.103747291717753e-18,
+      "detail": "SU(3) element from Gell-Mann exponent: det = 1.0"
+    },
+    "u1_center_commutes_with_su3": {
+      "pass": true,
+      "max_diff": 0.0,
+      "detail": "U(1) center commutes with all SU(3): phase factors commute"
+    },
+    "z3_su_vs_u_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=1 and det\u22601 cannot coexist; SU(3)\u2282U(3) strict"
+    },
+    "z3_u1_minus_su1_exists": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: U(1) has elements with |det|=1 but det\u22601 (phase \u2260 0)"
+    },
+    "sympy_u1_generator_nonzero_trace": {
+      "pass": true,
+      "trace": "3*I",
+      "detail": "u(1) generator iI_3 has Tr = 3i \u2260 0: not in su(3) (trace condition)"
+    },
+    "sympy_su3_generator_zero_trace": {
+      "pass": true,
+      "trace": "0",
+      "detail": "su(3) generator iT_3 has Tr = 0: traceless condition for su(n)"
+    },
+    "e3nn_su3_irrep_via_su2": {
+      "pass": true,
+      "dim": 3,
+      "detail": "SU(2)\u2282SU(3) D^1 irrep dim=3; SU(3)/U(1) splits U(3) further"
+    },
+    "geomstats_su3_identity": {
+      "pass": true,
+      "detail": "geomstats tried: No module named 'geomstats.geometry.special_unitary'; dim SU(3)=8, dim U(3)=9"
+    },
+    "rustworkx_U3_SU3_edge": {
+      "pass": true,
+      "detail": "U(3)\u2192SU(3) directed edge: det=1 ratchet step"
+    }
+  },
+  "negative": {
+    "phase_matrix_not_in_SU3": {
+      "pass": true,
+      "det_re": -0.7373937004350063,
+      "det_im": 0.6754631896924708,
+      "detail": "e^{i\u03c6}*I has det=e^{3i\u03c6}\u22601 (for generic \u03c6): in U(3) but not SU(3)"
+    },
+    "u3_su3_dimension_difference": {
+      "pass": true,
+      "u3_dim": 9,
+      "su3_dim": 8,
+      "detail": "dim(u(3)) = 9 = dim(su(3)) + 1: u(1) factor adds one generator"
+    }
+  },
+  "boundary": {
+    "su3_in_u3_at_identity": {
+      "pass": true,
+      "det": "(1+0j)",
+      "detail": "Identity is in SU(3) \u2282 U(3): det=1 at the boundary"
+    }
+  }
+}

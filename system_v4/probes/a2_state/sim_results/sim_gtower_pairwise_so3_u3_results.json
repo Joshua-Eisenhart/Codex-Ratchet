@@ -1,0 +1,163 @@
+{
+  "name": "sim_gtower_pairwise_so3_u3",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "coupling": "SO(3) \u2194 U(3)",
+  "constraint_imposed": "complex structure J (J^2 = -I)",
+  "capability_summary": {
+    "CAN": [
+      "embed SO(3) in U(3) as real unitary matrices",
+      "prove non-commutativity of SO(3) rotations and complex U(3) phases",
+      "exclude U(3)\\SO(3) elements from SO(3) via z3 UNSAT",
+      "verify J^2 = -I complex structure via sympy",
+      "identify U(1) phase as Cl(2,0) rotor (e12^2 = -1)",
+      "verify SO(3) Wigner D-matrix is real via e3nn",
+      "encode SO(3)\u2192U(3) complexification edge in rustworkx"
+    ],
+    "CANNOT": [
+      "impose det=1 on complex matrices at this level (use U(3)\u2194SU(3))",
+      "add symplectic structure (use SU(3)\u2194Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SO(3) rotations are real unitary matrices; pytorch complex128 verifies M\u2020M=I for the embedded SO(3) element; complex structure J (e^{i\u03b8}) distinguishes U(3) from SO(3)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SO(3)\u2194U(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that a number cannot be simultaneously purely real (imaginary part = 0) and have nonzero imaginary part; SO(3) and U(3)\\SO(3) are structurally separated."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SO(3)\u2194U(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies J^2 = -I (complex structure defining u(n) from so(2n)); the u(3) algebra contains so(3) plus imaginary generators."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Cl(2,0) has e12^2 = -1 \u2192 complex structure; U(1) phase rotation = Cl(2,0) rotor; SO(3)\u2194U(3) coupling adds this structure."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats confirms SO(3) dim=3, SU(3) dim=8; U(3) has dim=9 = SO(3) embedded + 6 complex directions."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn SO(3) irreps are real orthogonal representations; U(3) adds complex phase freedom; D^1 at identity vs phase rotation verified."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes SO(3)\u2192U(3) as a directed edge; this is the complexification step in the G-tower."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SO(3)\u2194U(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SO(3)\u2194U(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this pairwise SO(3)\u2194U(3) coupling probe; other cross-tool coupling deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "so3_embeds_in_u3": {
+      "pass": true,
+      "det_re": 1.0,
+      "detail": "SO(3) rotation as complex matrix: M\u2020M=I \u2192 SO(3) \u2282 U(3)"
+    },
+    "u3_minus_so3_has_complex_phase": {
+      "pass": true,
+      "detail": "Phase matrix diag(e^{i\u03c6},...) is in U(3) but not SO(3) (has imaginary entries)"
+    },
+    "so3_u3_noncommutativity": {
+      "pass": true,
+      "max_diff": 0.5179875781581823,
+      "detail": "R(SO3) \u2218 U(U3) \u2260 U \u2218 R in general: coupling is non-commutative"
+    },
+    "z3_so3_u3_imaginary_exclusion": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: SO(3) embedding (Im=0) and U(3)\\SO(3) (Im\u22600) are disjoint"
+    },
+    "sympy_J_squared_minus_I": {
+      "pass": true,
+      "detail": "J^2 = -I: J defines the complex structure mapping R^2 \u2192 C"
+    },
+    "sympy_u1_generator": {
+      "pass": true,
+      "detail": "u(1) generator iH is anti-Hermitian (u(n) Lie algebra element)"
+    },
+    "clifford_complex_structure_J": {
+      "pass": true,
+      "e12_sq": -1.0,
+      "detail": "e12^2 = -1 in Cl(2,0): e12 defines J (complex structure for SO\u2192U step)"
+    },
+    "e3nn_so3_real_at_identity": {
+      "pass": true,
+      "shape": [
+        3,
+        3
+      ],
+      "detail": "SO(3) D^1 Wigner matrix at identity = I: real, no complex phase"
+    },
+    "geomstats_dimension_difference": {
+      "pass": true,
+      "so3_lie_dim": 3,
+      "u3_lie_dim": 9,
+      "detail": "SO(3) Lie dim=3; U(3) Lie dim=9: complex structure adds 6 generators"
+    },
+    "rustworkx_SO3_U3_edge": {
+      "pass": true,
+      "detail": "SO(3)\u2192U(3) directed edge: complexification ratchet step"
+    }
+  },
+  "negative": {
+    "imaginary_matrix_not_in_SO3": {
+      "pass": true,
+      "imaginary_norm": 1.0,
+      "detail": "Matrix with pure imaginary entries is in U(3) but not SO(3) (not real)"
+    }
+  },
+  "boundary": {
+    "SO3_in_U3_intersection": {
+      "pass": true,
+      "detail": "Real rotation satisfies M\u2020M=I: SO(3) \u2282 U(3) at the boundary"
+    }
+  }
+}

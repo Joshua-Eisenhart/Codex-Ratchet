@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T07:47:55.477930+00:00",
+  "generated_at": "2026-04-15T09:52:44.354842+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 6,
@@ -76,20 +76,20 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 83,
+    "source_dirty_count": 86,
     "dirty_source_bucket_count": 4,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 59
+        "count": 60
       },
       {
         "label": "other_source",
-        "count": 20
+        "count": 19
       },
       {
         "label": "next_gen_system",
-        "count": 3
+        "count": 6
       },
       {
         "label": "skill_runtime",
@@ -99,34 +99,30 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 615
+        "count": 132
+      },
+      {
+        "prefix": "obsidian_vault",
+        "count": 54
+      },
+      {
+        "prefix": "system_v5",
+        "count": 6
       },
       {
         "prefix": "READ ONLY Legacy core_docs",
         "count": 6
       },
       {
-        "prefix": "system_v5",
+        "prefix": "scripts",
         "count": 3
       },
       {
-        "prefix": "sim_evidence_pack.txt",
-        "count": 1
-      },
-      {
-        "prefix": ".hermes_tmp",
-        "count": 1
-      },
-      {
-        "prefix": ".mplconfig",
-        "count": 1
-      },
-      {
-        "prefix": "a2_state",
-        "count": 1
-      },
-      {
         "prefix": "overnight_logs",
+        "count": 1
+      },
+      {
+        "prefix": "sim_evidence_pack.txt",
         "count": 1
       }
     ],
@@ -137,62 +133,62 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 9,
-    "largest_group_id": "probe_source__sim_family_qit",
+    "plan_group_count": 25,
+    "largest_group_id": "other_source__other_source",
     "next_code_only_manual": {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 3,
-      "untracked_count": 2,
+      "group_id": "probe_source__sim_family_gtower",
+      "file_count": 1,
+      "untracked_count": 0,
       "tracked_dirty_count": 1,
-      "safe_next_action": "archive_review",
-      "source_path": null,
-      "result_path": null
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json"
     },
     "recommended_code_only_order": [
       {
-        "group_id": "legacy_runtime__legacy_runtime",
-        "file_count": 3,
-        "untracked_count": 2,
+        "group_id": "probe_source__sim_family_gtower",
+        "file_count": 1,
+        "untracked_count": 0,
         "tracked_dirty_count": 1,
-        "safe_next_action": "archive_review",
-        "source_path": null,
-        "result_path": null
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_stoch",
-        "file_count": 3,
+        "group_id": "probe_source__sim_family_hypothesis",
+        "file_count": 1,
         "untracked_count": 0,
-        "tracked_dirty_count": 3,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
+        "source_path": "system_v4/probes/sim_hypothesis_property_admissibility_invariant.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/hypothesis_property_admissibility_invariant_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_engine",
-        "file_count": 5,
+        "group_id": "probe_source__sim_family_L10",
+        "file_count": 1,
         "untracked_count": 0,
-        "tracked_dirty_count": 5,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
+        "source_path": "system_v4/probes/sim_L10_engine_family_split.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/L10_engine_family_split_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_carnot",
-        "file_count": 7,
+        "group_id": "probe_source__sim_family_L11",
+        "file_count": 1,
         "untracked_count": 0,
-        "tracked_dirty_count": 7,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
+        "source_path": "system_v4/probes/sim_L11_placement_admissibility.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/L11_placement_admissibility_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_szilard",
-        "file_count": 9,
+        "group_id": "probe_source__sim_family_L12",
+        "file_count": 1,
         "untracked_count": 0,
-        "tracked_dirty_count": 9,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
+        "source_path": "system_v4/probes/sim_L12_geometry_negatives_triad.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/L12_geometry_negatives_triad_results.json"
       }
     ]
   },
@@ -204,7 +200,7 @@
     "selected_group_id": "skill_runtime__skill_runtime",
     "file_count": 1,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "code_only_fallback_group_id": "probe_source__sim_family_gtower",
     "active_actionable_lane_group_id": "skill_runtime__skill_runtime"
   },
   "maintenance_lanes": [
@@ -239,15 +235,15 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 59
+          "count": 60
         },
         {
           "label": "other_source",
-          "count": 20
+          "count": 19
         },
         {
           "label": "next_gen_system",
-          "count": 3
+          "count": 6
         },
         {
           "label": "skill_runtime",
@@ -341,15 +337,15 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 59
+          "count": 60
         },
         {
           "label": "other_source",
-          "count": 20
+          "count": 19
         },
         {
           "label": "next_gen_system",
-          "count": 3
+          "count": 6
         },
         {
           "label": "skill_runtime",
@@ -421,8 +417,8 @@
   ],
   "surface_status": {
     "truth": {
-      "hard_finding_count": 9,
-      "warning_finding_count": 5,
+      "hard_finding_count": 14,
+      "warning_finding_count": 36,
       "ok": false
     },
     "controller": {
@@ -447,15 +443,15 @@
       "blocker_count": 3,
       "advisory_count": 4,
       "repair_candidate_count": 3,
-      "primary_result_count": 1294,
+      "primary_result_count": 1832,
       "secondary_result_count": 29,
       "secondary_unique_result_count": 28,
       "secondary_duplicate_result_count": 1,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 1,
-      "source_dirty_count": 83,
-      "generated_dirty_count": 546,
-      "dirty_worktree_count": 629,
+      "source_dirty_count": 86,
+      "generated_dirty_count": 117,
+      "dirty_worktree_count": 203,
       "dirty_source_bucket_count": 4,
       "ok": false
     },
@@ -487,17 +483,17 @@
       "ok": false
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 83,
-      "plan_group_count": 9,
+      "dirty_source_count": 86,
+      "plan_group_count": 25,
       "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 8,
-      "code_only_manual_count": 8,
-      "largest_group_id": "probe_source__sim_family_qit",
-      "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
-      "next_code_only_manual_file_count": 3,
-      "next_code_only_manual_source_path": null,
-      "next_code_only_manual_result_path": null,
+      "manual_only_count": 24,
+      "code_only_manual_count": 24,
+      "largest_group_id": "other_source__other_source",
+      "next_code_only_manual_group_id": "probe_source__sim_family_gtower",
+      "next_code_only_manual_file_count": 1,
+      "next_code_only_manual_source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
@@ -505,7 +501,7 @@
       "file_count": 1,
       "safe_next_action": "checkpoint",
       "docs_opt_in_required": false,
-      "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+      "code_only_fallback_group_id": "probe_source__sim_family_gtower",
       "active_actionable_lane_group_id": "skill_runtime__skill_runtime",
       "executable_lane_group_id": "skill_runtime__skill_runtime",
       "ok": true

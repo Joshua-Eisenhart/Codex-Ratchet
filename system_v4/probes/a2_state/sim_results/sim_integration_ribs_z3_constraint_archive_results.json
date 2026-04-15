@@ -4,67 +4,67 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: MAP-Elites archive and SAT checks do not require tensor autograd or torch kernels"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: archive cells are indexed directly by ribs; no graph message-passing layer is involved"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "z3 Solver encodes constraint admissibility rules per MAP-Elites cell; UNSAT result is the primary exclusion signal \u2014 structurally impossible configurations identified via boolean constraint contradiction, not heuristic"
+      "reason": "load-bearing: z3 Solver encodes per-cell admissibility rules and returns SAT/UNSAT, which is the primary exclusion signal for the archive contents"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: z3 already covers the boolean admissibility proof obligation in this archive sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: the archive logic is boolean/numeric bookkeeping, not symbolic algebra"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: no rotor or multivector geometry appears in the archive-cell admissibility check"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: no manifold geometry is required for the 4x4 archive occupancy probe"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: there is no equivariant neural component in this MAP-Elites archive sim"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: graph reduction is unnecessary because ribs stores the archive directly"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: the archive contains pairwise cell coordinates, not hyperedges"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: no cell-complex topology is computed; the state space is a simple 4x4 grid"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: persistent homology is outside the scope of this archive coverage probe"
     },
     "ribs": {
       "tried": true,
       "used": true,
-      "reason": "ribs GridArchive stores one z3-checked formula per (depth, clause_count) cell; MAP-Elites coverage metric quantifies how densely the constraint-admissibility space is populated \u2014 coverage value directly drives the pass/fail assertion"
+      "reason": "load-bearing: ribs GridArchive stores the per-cell solutions and exposes the coverage metric that the main pass/fail claim depends on"
     }
   },
   "tool_integration_depth": {
@@ -319,5 +319,6 @@
     "boundary.full_archive_coverage_boundary": true
   },
   "all_pass": true,
+  "overall_pass": true,
   "classification": "canonical"
 }

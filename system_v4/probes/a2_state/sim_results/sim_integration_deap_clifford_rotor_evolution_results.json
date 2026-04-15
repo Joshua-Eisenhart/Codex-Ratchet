@@ -4,67 +4,67 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: the search is evolutionary over plain Python genomes, with no torch tensors or autograd"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: rotor evolution does not involve graph message-passing or edge-index structure"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: this sim optimizes a continuous rotor fit, not a SAT/SMT proof obligation"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: same reason as z3; there is no solver-driven constraint proof here"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: rotor fitness is evaluated numerically through clifford operations, not symbolic algebra"
     },
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "Clifford algebra Cl(3) provides the rotor sandwich product R\u2218probe\u2218~R and norm ||\u00b7|| that define the fitness landscape; GA genome parameters are directly interpreted as Cl(3) multivector coefficients \u2014 the geometry is computed by clifford, not numpy"
+      "reason": "load-bearing: clifford provides the Cl(3) multivector basis, rotor sandwich product, and residual norm that define the optimization target"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: the search space is handled directly as rotor coefficients, not as a Riemannian manifold problem"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: there is no equivariant neural architecture in the rotor-evolution loop"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: no graph routing or reduction structure is present in this sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: the search problem has no hypergraph structure"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: no cell-complex topology is computed in the rotor GA"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "not used: persistent homology is unrelated to the rotor residual objective"
     },
     "deap": {
       "tried": true,
       "used": true,
-      "reason": "DEAP GA (blend crossover + Gaussian mutation + tournament selection) evolves the rotor genome across 20 generations; convergence below clifford distance 0.1 is the primary claim and is achieved entirely through DEAP's evolutionary loop"
+      "reason": "load-bearing: DEAP supplies the evolutionary loop, mutation, crossover, and selection that actually drives convergence of the rotor genome"
     }
   },
   "tool_integration_depth": {
@@ -183,5 +183,6 @@
     "boundary.rotor_normalization_unit_constraint": true
   },
   "all_pass": true,
+  "overall_pass": true,
   "classification": "canonical"
 }

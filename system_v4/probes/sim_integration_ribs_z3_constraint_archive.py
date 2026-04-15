@@ -17,30 +17,32 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
-    "ribs": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: MAP-Elites archive and SAT checks do not require tensor autograd or torch kernels"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: archive cells are indexed directly by ribs; no graph message-passing layer is involved"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing: z3 Solver encodes per-cell admissibility rules and returns SAT/UNSAT, which is the primary exclusion signal for the archive contents"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: z3 already covers the boolean admissibility proof obligation in this archive sim"},
+    "sympy": {"tried": False, "used": False, "reason": "not used: the archive logic is boolean/numeric bookkeeping, not symbolic algebra"},
+    "clifford": {"tried": False, "used": False, "reason": "not used: no rotor or multivector geometry appears in the archive-cell admissibility check"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: no manifold geometry is required for the 4x4 archive occupancy probe"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: there is no equivariant neural component in this MAP-Elites archive sim"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: graph reduction is unnecessary because ribs stores the archive directly"},
+    "xgi": {"tried": False, "used": False, "reason": "not used: the archive contains pairwise cell coordinates, not hyperedges"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: no cell-complex topology is computed; the state space is a simple 4x4 grid"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: persistent homology is outside the scope of this archive coverage probe"},
+    "ribs": {"tried": True, "used": True, "reason": "load-bearing: ribs GridArchive stores the per-cell solutions and exposes the coverage metric that the main pass/fail claim depends on"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
     "pyg": None,
-    "z3": None,
+    "z3": "load_bearing",
     "cvc5": None,
     "sympy": None,
     "clifford": None,
@@ -50,8 +52,14 @@ TOOL_INTEGRATION_DEPTH = {
     "xgi": None,
     "toponetx": None,
     "gudhi": None,
-    "ribs": None,
+    "ribs": "load_bearing",
 }
+
+divergence_log = (
+    "Canonical integration sim: z3 provides the SAT/UNSAT admissibility proof per "
+    "archive cell, and ribs provides the archive occupancy/coverage surface; both are "
+    "required to substantiate the claimed coupling."
+)
 
 # --- Imports ---
 try:
@@ -392,22 +400,6 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
-    TOOL_MANIFEST["z3"]["used"] = True
-    TOOL_MANIFEST["z3"]["reason"] = (
-        "z3 Solver encodes constraint admissibility rules per MAP-Elites cell; "
-        "UNSAT result is the primary exclusion signal — structurally impossible configurations "
-        "identified via boolean constraint contradiction, not heuristic"
-    )
-    TOOL_MANIFEST["ribs"]["used"] = True
-    TOOL_MANIFEST["ribs"]["reason"] = (
-        "ribs GridArchive stores one z3-checked formula per (depth, clause_count) cell; "
-        "MAP-Elites coverage metric quantifies how densely the constraint-admissibility space "
-        "is populated — coverage value directly drives the pass/fail assertion"
-    )
-
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
-    TOOL_INTEGRATION_DEPTH["ribs"] = "load_bearing"
-
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
@@ -430,6 +422,7 @@ if __name__ == "__main__":
         "boundary": boundary,
         "all_checks": all_checks,
         "all_pass": all_pass,
+        "overall_pass": all_pass,
         "classification": "canonical",
     }
 

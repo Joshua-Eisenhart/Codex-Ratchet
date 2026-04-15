@@ -19,24 +19,26 @@ import random
 
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
-    "pyg": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn": {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
-    "gudhi": {"tried": False, "used": False, "reason": ""},
-    "deap": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": "not used: the search is evolutionary over plain Python genomes, with no torch tensors or autograd"},
+    "pyg": {"tried": False, "used": False, "reason": "not used: rotor evolution does not involve graph message-passing or edge-index structure"},
+    "z3": {"tried": False, "used": False, "reason": "not used: this sim optimizes a continuous rotor fit, not a SAT/SMT proof obligation"},
+    "cvc5": {"tried": False, "used": False, "reason": "not used: same reason as z3; there is no solver-driven constraint proof here"},
+    "sympy": {"tried": False, "used": False, "reason": "not used: rotor fitness is evaluated numerically through clifford operations, not symbolic algebra"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing: clifford provides the Cl(3) multivector basis, rotor sandwich product, and residual norm that define the optimization target"},
+    "geomstats": {"tried": False, "used": False, "reason": "not used: the search space is handled directly as rotor coefficients, not as a Riemannian manifold problem"},
+    "e3nn": {"tried": False, "used": False, "reason": "not used: there is no equivariant neural architecture in the rotor-evolution loop"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not used: no graph routing or reduction structure is present in this sim"},
+    "xgi": {"tried": False, "used": False, "reason": "not used: the search problem has no hypergraph structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "not used: no cell-complex topology is computed in the rotor GA"},
+    "gudhi": {"tried": False, "used": False, "reason": "not used: persistent homology is unrelated to the rotor residual objective"},
+    "deap": {"tried": True, "used": True, "reason": "load-bearing: DEAP supplies the evolutionary loop, mutation, crossover, and selection that actually drives convergence of the rotor genome"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -45,15 +47,21 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": None,
     "cvc5": None,
     "sympy": None,
-    "clifford": None,
+    "clifford": "load_bearing",
     "geomstats": None,
     "e3nn": None,
     "rustworkx": None,
     "xgi": None,
     "toponetx": None,
     "gudhi": None,
-    "deap": None,
+    "deap": "load_bearing",
 }
+
+divergence_log = (
+    "Canonical integration sim: DEAP drives the rotor search over genomes, while "
+    "clifford defines the underlying Cl(3) rotor geometry and residual norm; both "
+    "are required for the claimed convergence behavior."
+)
 
 # --- Imports ---
 try:
@@ -421,22 +429,6 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
-    TOOL_MANIFEST["clifford"]["used"] = True
-    TOOL_MANIFEST["clifford"]["reason"] = (
-        "Clifford algebra Cl(3) provides the rotor sandwich product R∘probe∘~R and norm ||·|| "
-        "that define the fitness landscape; GA genome parameters are directly interpreted as "
-        "Cl(3) multivector coefficients — the geometry is computed by clifford, not numpy"
-    )
-    TOOL_MANIFEST["deap"]["used"] = True
-    TOOL_MANIFEST["deap"]["reason"] = (
-        "DEAP GA (blend crossover + Gaussian mutation + tournament selection) evolves the "
-        "rotor genome across 20 generations; convergence below clifford distance 0.1 is the "
-        "primary claim and is achieved entirely through DEAP's evolutionary loop"
-    )
-
-    TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
-    TOOL_INTEGRATION_DEPTH["deap"] = "load_bearing"
-
     positive = run_positive_tests()
     negative = run_negative_tests()
     boundary = run_boundary_tests()
@@ -458,6 +450,7 @@ if __name__ == "__main__":
         "boundary": boundary,
         "all_checks": all_checks,
         "all_pass": all_pass,
+        "overall_pass": all_pass,
         "classification": "canonical",
     }
 

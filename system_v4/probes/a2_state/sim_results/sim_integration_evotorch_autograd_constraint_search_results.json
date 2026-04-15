@@ -65,7 +65,7 @@
     "evotorch": {
       "tried": true,
       "used": true,
-      "reason": "not installed"
+      "reason": "load_bearing: SNES (separable natural evolution strategy) from evotorch drives the global population-based search over 4D constraint space; without evotorch the fitness shaping from autograd has no search loop to act on -- pure gradient descent could miss global escape directions"
     }
   },
   "tool_integration_depth": {
@@ -84,7 +84,19 @@
     "evotorch": "load_bearing"
   },
   "positive": {
-    "skipped": "torch or evotorch not available"
+    "best_eval": 0.0,
+    "best_values": [
+      0.5305873155593872,
+      -0.3737947642803192,
+      -0.2831117510795593,
+      0.007209479808807373
+    ],
+    "n_violation_evals": 103,
+    "n_grad_norms_recorded": 103,
+    "grad_norm_std": 0.736479,
+    "assert_fitness_lt_0p1": true,
+    "assert_autograd_nontrivially_used": true,
+    "pass": true
   },
   "negative": {
     "origin_violation": 1.0,
@@ -111,6 +123,6 @@
     "grad_direction_correct": true,
     "pass": true
   },
-  "overall_pass": false,
-  "elapsed_s": 0.029
+  "overall_pass": true,
+  "elapsed_s": 0.236
 }

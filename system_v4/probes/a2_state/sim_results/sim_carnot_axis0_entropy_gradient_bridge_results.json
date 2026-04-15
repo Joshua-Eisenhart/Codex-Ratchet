@@ -1,0 +1,218 @@
+{
+  "name": "sim_carnot_axis0_entropy_gradient_bridge",
+  "classification": "classical_baseline",
+  "claim": "Carnot cycle delta-S at each step co-varies with Axis 0 (entropy gradient / distinguishability cost). Isothermal steps = signed Axis 0 moves; adiabatic steps = Axis 0 flat; full reversible cycle = closed loop on Axis 0 manifold.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd computes dS/dT (entropy gradient w.r.t. temperature); load-bearing for Axis-0 gradient test"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that T_H < T_C AND eta > 0 is impossible (Second Law as z3 constraint); load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of eta = 1 - T_C/T_H; d(eta)/d(T_C) = -1/T_H verified; load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Carnot cycle as closed path in Cl(2,0): +e1 (entropy up), -e1 (entropy down), e2 (adiabatic); closure verified; load-bearing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "directed graph of 4 Carnot steps; Axis-0-active nodes (step1, step3) identified by degree analysis; load-bearing"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge {step1, step3, axis0} \u2014 entropy-active steps form a hyperedge with Axis 0; load-bearing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_isothermal_expansion_dS_positive": {
+      "dS": 1.6666666666666667,
+      "axis0_direction": "uphill",
+      "pass": true,
+      "note": "Carnot step 1: system absorbs heat Q_H at T_H; dS = Q_H/T_H > 0 => Axis 0 uphill"
+    },
+    "P2_isothermal_compression_dS_negative": {
+      "dS": -1.6666666666666667,
+      "axis0_direction": "downhill",
+      "pass": true,
+      "note": "Carnot step 3: system expels heat Q_C at T_C; dS = -Q_C/T_C < 0 => Axis 0 downhill"
+    },
+    "P3_adiabatic_steps_dS_zero": {
+      "dS_step2": 0.0,
+      "dS_step4": 0.0,
+      "axis0_direction": "flat",
+      "pass": true,
+      "note": "Carnot steps 2,4: adiabatic, no heat exchange => dS = 0 => Axis 0 flat (constraint surface traversal)"
+    },
+    "P4_reversible_cycle_closure": {
+      "dS_total": 0.0,
+      "pass": true,
+      "note": "Reversible Carnot: total entropy change = 0 => closed loop on Axis 0 manifold"
+    },
+    "P5_pytorch_autograd_entropy_gradient": {
+      "dS_dTH": -0.00277777761220932,
+      "dS_dTC": 0.00555555522441864,
+      "pass": true,
+      "note": "autograd confirms dS/dT != 0 for both isothermal steps => Axis 0 gradient is real"
+    },
+    "P6_sympy_efficiency_gradient": {
+      "eta": "-T_C/T_H + 1",
+      "d_eta_dTC": "-1/T_H",
+      "expected": "-1/T_H",
+      "diff_zero": "0",
+      "pass": true,
+      "note": "d(eta)/d(T_C) = -1/T_H => lower cold reservoir = steeper Axis 0 gradient"
+    },
+    "P7_rustworkx_axis0_active_nodes": {
+      "num_nodes": 4,
+      "num_edges": 4,
+      "axis0_active_edge_count": 2,
+      "pass": true,
+      "note": "Steps 1 and 3 are Axis-0-active (entropy changes); steps 2 and 4 are inactive"
+    },
+    "P8_xgi_axis0_hyperedge": {
+      "num_nodes": 5,
+      "num_edges": 2,
+      "axis0_hyperedge_size": 3,
+      "pass": true,
+      "note": "Entropy-active steps {step1, step3} form a hyperedge with Axis 0"
+    },
+    "P9_clifford_cycle_closure": {
+      "cycle_sum_magnitude": 0.0,
+      "pass": true,
+      "note": "Carnot cycle as Cl(2,0) path: +e1 + e2 + (-e1) + (-e2) = 0 => closed loop"
+    }
+  },
+  "negative": {
+    "N1_z3_second_law_unsat": {
+      "verdict": "unsat",
+      "pass": true,
+      "note": "UNSAT: T_H < T_C AND eta > 0 is impossible \u2014 Second Law as z3 constraint"
+    },
+    "N2_irreversible_cycle_dS_positive": {
+      "eta_carnot": 0.5,
+      "eta_irr": 0.2,
+      "Q_H": 1000.0,
+      "Q_C_irr": 800.0,
+      "dS_universe": 0.9999999999999998,
+      "pass": true,
+      "note": "Irreversible cycle: dS_universe = -Q_H/T_H + Q_C/T_C > 0 => open trajectory on Axis 0 manifold"
+    },
+    "N3_intermediate_temp_degraded_efficiency": {
+      "eta_carnot": 0.5,
+      "eta_degraded_with_Twork": 0.25,
+      "pass": true,
+      "note": "Using intermediate T_work < T_C -> T_H degrades efficiency: excluded from Axis 0 maximum"
+    },
+    "N4_spurious_heat_in_adiabatic_breaks_flatness": {
+      "dS_spurious": 0.1111111111111111,
+      "pass": true,
+      "note": "Adiabatic step with Q != 0 produces dS != 0 => Axis 0 is not flat (breaks constraint)"
+    },
+    "N5_sympy_eta_increases_with_TH": {
+      "d_eta_dTH_symbolic": "T_C/T_H**2",
+      "d_eta_dTH_at_600_300": 0.0008333333333333334,
+      "pass": true,
+      "note": "eta increases with T_H (d_eta/dT_H > 0): higher hot reservoir = steeper positive Axis 0 gradient"
+    }
+  },
+  "boundary": {
+    "B1_Tc_to_zero_eta_to_one": {
+      "T_C_vals": [
+        100.0,
+        10.0,
+        1.0,
+        0.1,
+        0.01
+      ],
+      "etas": [
+        0.8333333333333334,
+        0.9833333333333333,
+        0.9983333333333333,
+        0.9998333333333334,
+        0.9999833333333333
+      ],
+      "pass": true,
+      "note": "T_C -> 0: eta -> 1 (Axis 0 maximally biased); never exactly 1 at finite T_C"
+    },
+    "B2_TH_eq_TC_eta_zero": {
+      "eta": 0.0,
+      "pass": true,
+      "note": "T_H = T_C: eta = 0 => Axis 0 gradient is zero (no distinguishability cost difference)"
+    },
+    "B3_pytorch_gradient_at_equal_temps": {
+      "grad_deta_dTH": 0.0016666667070239782,
+      "expected": 0.0016666666666666668,
+      "pass": true,
+      "note": "At T_C = T_H: d(eta)/d(T_H) = T_C/T_H^2 still nonzero (gradient exists, but efficiency = 0)"
+    },
+    "B4_clifford_isothermal_steps_antiparallel": {
+      "dot_step1_step3": -1.0,
+      "pass": true,
+      "note": "Isothermal steps 1 and 3 are anti-parallel in Cl(2,0): one is Axis 0 uphill, other is downhill"
+    },
+    "B5_xgi_adiabatic_steps_exclude_axis0_from_size2_edge": {
+      "edge_sizes": [
+        2,
+        3
+      ],
+      "pass": true,
+      "note": "Adiabatic pair forms size-2 hyperedge (no Axis 0); isothermal pair forms size-3 with Axis 0"
+    }
+  },
+  "overall_pass": true
+}

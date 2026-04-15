@@ -1,0 +1,299 @@
+{
+  "name": "sim_carnot_szilard_axis_correlation_matrix",
+  "classification": "classical_baseline",
+  "claim": "Systematic mapping from Carnot cycle steps and Szilard engine steps to Axes 0-6. Axis 0 is the master axis (activated by multiple steps); Axis 1 (curvature) is absent from reversible Carnot/Szilard; Axis 4 (loop ordering) only activates on the cycle closure step; Axis 6 (orientation) is Szilard-measurement-specific.",
+  "correlation_matrix": {
+    "carnot_step1_isothermal_H": {
+      "Axis0_entropy": 1,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 0,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    },
+    "carnot_step2_adiabatic_expand": {
+      "Axis0_entropy": 0,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 1,
+      "Axis3_phase": 0,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    },
+    "carnot_step3_isothermal_C": {
+      "Axis0_entropy": 1,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 1,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    },
+    "carnot_step4_adiabatic_compr": {
+      "Axis0_entropy": 0,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 0,
+      "Axis4_loop": 1,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    },
+    "szilard_measure": {
+      "Axis0_entropy": 0,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 0,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 1
+    },
+    "szilard_work": {
+      "Axis0_entropy": 1,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 0,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    },
+    "szilard_erase": {
+      "Axis0_entropy": 0,
+      "Axis1_curvature": 0,
+      "Axis2_scale": 0,
+      "Axis3_phase": 1,
+      "Axis4_loop": 0,
+      "Axis5_torus": 0,
+      "Axis6_orientation": 0
+    }
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "cosine similarity matrix between step vectors and axis vectors in axis-space; load-bearing for correlation matrix"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: a step activates Axis 1 (curvature) AND the cycle is reversible; reversible => zero curvature => Axis 1 inactive; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic entropy changes per step; identify dS != 0 (Axis 0 active) vs dS = 0 (Axis 0 inactive); load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "axis activation pattern as multivector in Cl(3,0): Axis0=e1, Axis3=e2, Axis4=e3; irreversible step adds bivector (curvature=Axis1=e12); load-bearing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "bipartite graph: steps on one side, axes on the other; edge = activation; axis node degree = number of activating steps; load-bearing"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "each mapping relationship is a hyperedge of cardinality >= 2 (step, axis, mechanism); full mapping is a hypergraph; load-bearing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_each_mapped_axis_activated_at_least_once": {
+      "activation_counts": {
+        "Axis0_entropy": 3,
+        "Axis1_curvature": 0,
+        "Axis2_scale": 1,
+        "Axis3_phase": 2,
+        "Axis4_loop": 1,
+        "Axis5_torus": 0,
+        "Axis6_orientation": 1
+      },
+      "mapped_axes": [
+        "Axis0_entropy",
+        "Axis2_scale",
+        "Axis3_phase",
+        "Axis4_loop",
+        "Axis6_orientation"
+      ],
+      "mapped_counts": [
+        3,
+        1,
+        2,
+        1,
+        1
+      ],
+      "pass": true,
+      "note": "Every axis in the canonical mapping (0,2,3,4,6) is activated by >= 1 step"
+    },
+    "P2_axis0_appears_multiple_steps": {
+      "axis0_activation_count": 3,
+      "pass": true,
+      "note": "Axis 0 (entropy gradient) appears in carnot_step1, carnot_step3, szilard_work \u2014 master axis"
+    },
+    "P3_axis4_activated_by_closure_step_only": {
+      "axis4_count": 1,
+      "step4_activates_axis4": true,
+      "other_steps_activating_axis4": [],
+      "pass": true,
+      "note": "Axis 4 (loop ordering) is activated by carnot_step4 (return step) and no other canonical step"
+    },
+    "P4_pytorch_step1_szilard_work_cosine_similarity": {
+      "cos_similarity": 1.0,
+      "pass": true,
+      "note": "carnot_step1 and szilard_work both activate only Axis 0 => cosine similarity = 1.0"
+    },
+    "P5_sympy_entropy_changes_per_step": {
+      "dS_step1": "Q_H/T_H",
+      "dS_step2": "0",
+      "dS_step3": "(Q_H*(-T_C/T_H + 1) - Q_H)/T_C",
+      "dS_step4": "0",
+      "step1_nonzero": true,
+      "step3_nonzero": true,
+      "step2_zero": true,
+      "step4_zero": true,
+      "pass": true,
+      "note": "Steps 1,3 have dS != 0 (Axis 0 active); Steps 2,4 have dS = 0 (Axis 0 inactive)"
+    },
+    "P6_rustworkx_axis0_degree": {
+      "axis0_in_degree": 3,
+      "expected": 3,
+      "pass": true,
+      "note": "Axis 0 in-degree in bipartite graph matches activation count from P2"
+    },
+    "P7_xgi_all_mapping_hyperedges_ge2": {
+      "edge_sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "all_ge2": true,
+      "pass": true,
+      "note": "Every mapping hyperedge has cardinality >= 2 (step + at least one axis)"
+    },
+    "P8_axis3_shared_by_step3_and_erase": {
+      "carnot_step3_activates_axis3": true,
+      "szilard_erase_activates_axis3": true,
+      "pass": true,
+      "note": "Axis 3 (phase/reset) is activated by both carnot_step3 (sign flip) and szilard_erase (memory reset)"
+    }
+  },
+  "negative": {
+    "N1_z3_reversible_implies_no_axis1": {
+      "verdict": "unsat",
+      "pass": true,
+      "note": "UNSAT: a step activates Axis 1 (curvature) AND cycle is reversible \u2014 contradicts zero-curvature reversibility"
+    },
+    "N2_no_canonical_step_activates_axis1": {
+      "steps_activating_axis1": [],
+      "pass": true,
+      "note": "Axis 1 (curvature) is a second-order effect; not activated by any canonical flat-space Carnot/Szilard step"
+    },
+    "N3_carnot_steps_dont_activate_axis6": {
+      "carnot_steps_with_axis6": [],
+      "pass": true,
+      "note": "Axis 6 (action orientation) is only activated by Szilard measurement, not by Carnot steps"
+    },
+    "N4_pytorch_axis0_and_axis6_steps_orthogonal": {
+      "cos_similarity": 0.0,
+      "pass": true,
+      "note": "carnot_step1 (Axis 0 only) and szilard_measure (Axis 6 only) are orthogonal in axis-space"
+    },
+    "N5_no_step_activates_axis5": {
+      "steps_activating_axis5": [],
+      "pass": true,
+      "note": "Axis 5 (torus coordinate/winding) is not activated by any Carnot/Szilard step in this classical baseline"
+    }
+  },
+  "boundary": {
+    "B1_irreversibility_activates_axis1": {
+      "irr_axis0": true,
+      "irr_axis1": true,
+      "pass": true,
+      "note": "Adding irreversibility activates Axis 1 (curvature) \u2014 adds curved trajectory to the otherwise flat entropy surface"
+    },
+    "B2_clifford_irreversible_step_adds_bivector": {
+      "reversible_e12_component_magnitude": 0.0,
+      "irreversible_e12_component_magnitude": 1.0,
+      "pass": true,
+      "note": "Irreversible step = e1 + e12 in Cl(3,0): the e12 bivector = Axis 1 (curvature) is nonzero; reversible step has no e12"
+    },
+    "B3_rustworkx_axis0_highest_degree": {
+      "axis_degrees": {
+        "Axis0_entropy": 3,
+        "Axis1_curvature": 0,
+        "Axis2_scale": 1,
+        "Axis3_phase": 2,
+        "Axis4_loop": 1,
+        "Axis5_torus": 0,
+        "Axis6_orientation": 1
+      },
+      "max_axis": "Axis0_entropy",
+      "pass": true,
+      "note": "Axis 0 has the highest in-degree in the bipartite activation graph (master axis)"
+    },
+    "B4_xgi_mapping_hypergraph_has_cycle_edge": {
+      "num_edges": 8,
+      "num_canonical_steps": 7,
+      "pass": true,
+      "note": "Hypergraph has more edges than steps: step-axis edges + full cycle closure edge"
+    },
+    "B5_sympy_axis3_phase_flip_sign_change": {
+      "dS_step1": "Q_H/T_H",
+      "dS_step3": "-Q_H/T_H",
+      "sum_cancels": "0",
+      "pass": true,
+      "note": "dS_step3 = -dS_step1 (sign flip = Axis 3 phase flip): isothermal steps are phase-conjugate"
+    }
+  },
+  "overall_pass": true
+}

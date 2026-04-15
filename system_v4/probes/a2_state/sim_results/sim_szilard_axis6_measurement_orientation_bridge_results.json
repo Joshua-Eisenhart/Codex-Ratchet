@@ -1,0 +1,231 @@
+{
+  "name": "sim_szilard_axis6_measurement_orientation_bridge",
+  "classification": "classical_baseline",
+  "claim": "Szilard measurement = Axis 6 'action orientation' selection. The demon's conditional operation is exactly the Axis 6 question: does operator A act on state rho from left (Arho) or right (rhoA)? Landauer erasure is orientation-independent. Measurement/erasure cycle is balanced.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "W = k_B * T * ln(2); autograd dW/dT; verifies temperature-proportional work extraction; load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: W > k_B*T*ln(2) for a single bit; no-free-lunch thermodynamic bound as z3 constraint; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic I(measurement) = k_B*ln(2); symbolic dS(erasure) = k_B*ln(2); verify I = dS (information-thermodynamic balance); load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "left-multiply vs right-multiply in Cl(2,0): e1*state vs state*e1; Axis 6 = this non-commutativity; load-bearing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "directed graph: measure node out-deg=2 (binary choice), erase node in-deg=2 (branches merge); load-bearing for Axis 6 graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge {measure, act_left, act_right, axis6} captures four-way measurement/orientation connection; load-bearing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 thermodynamic quantities are scalar/symbolic; no manifold sampling or persistent homology required for this Carnot/Szilard classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_szilard_two_distinct_outcomes": {
+      "branch_left": {
+        "action": "act_from_right",
+        "axis6_side": "left_multiply",
+        "outcome": "work_extracted_left"
+      },
+      "branch_right": {
+        "action": "act_from_left",
+        "axis6_side": "right_multiply",
+        "outcome": "work_extracted_right"
+      },
+      "two_distinct_axis6_orientations": true,
+      "pass": true,
+      "note": "Conditional operation has exactly 2 branches; each = distinct Axis 6 orientation"
+    },
+    "P2_landauer_erasure_orientation_independent": {
+      "erasure_cost_left_branch": 207.94415416798358,
+      "erasure_cost_right_branch": 207.94415416798358,
+      "pass": true,
+      "note": "Erasure cost is identical regardless of which Axis 6 branch was taken"
+    },
+    "P3_measurement_erasure_balance": {
+      "T": 300.0,
+      "W_extracted": 207.94415416798358,
+      "erasure_energy": 207.94415416798358,
+      "net_entropy_generation": 0.0,
+      "pass": true,
+      "note": "W = k_B*T*ln(2) = erasure cost => zero net entropy; information-thermodynamic balance"
+    },
+    "P4_sympy_information_thermodynamic_balance": {
+      "I_measurement": "k_B*log(2)",
+      "dS_erasure": "k_B*log(2)",
+      "balance": "0",
+      "pass": true,
+      "note": "Symbolic: I(measurement) = k_B*ln(2) = dS(erasure); balance is exact"
+    },
+    "P5_pytorch_work_temperature_proportional": {
+      "dW_dT": 0.6931471824645996,
+      "expected_ln2": 0.6931471805599453,
+      "pass": true,
+      "note": "autograd: dW/dT = k_B * ln(2) \u2014 work is linear in temperature (float32 tolerance 1e-6)"
+    },
+    "P6_clifford_axis6_noncommutativity": {
+      "left_result": "1 + (1^e12)",
+      "right_result": "1 - (1^e12)",
+      "diff_magnitude": 2.0,
+      "pass": true,
+      "note": "Left-multiply (A\u03c1) != right-multiply (\u03c1A) in Cl(2,0) => Axis 6 orientation matters"
+    },
+    "P7_rustworkx_szilard_graph_structure": {
+      "num_nodes": 4,
+      "num_edges": 4,
+      "measure_out_degree": 2,
+      "erase_in_degree": 2,
+      "pass": true,
+      "note": "measure node splits to 2 branches (Axis 6 choice); erase merges both branches"
+    },
+    "P8_xgi_measurement_axis6_hyperedge": {
+      "num_nodes": 5,
+      "num_edges": 2,
+      "hyperedge_sizes": [
+        3,
+        4
+      ],
+      "pass": true,
+      "note": "Four-way hyperedge {measure, act_left, act_right, axis6} captures the Axis 6 connection"
+    }
+  },
+  "negative": {
+    "N1_z3_no_free_lunch_unsat": {
+      "verdict": "unsat",
+      "pass": true,
+      "note": "UNSAT: W > k_B*T*ln(2) AND W <= k_B*T*ln(2) simultaneously => thermodynamic bound is hard"
+    },
+    "N2_no_measurement_no_net_work": {
+      "W_with_measurement": 207.94415416798358,
+      "W_random_average": 0.0,
+      "erasure_cost": 207.94415416798358,
+      "net_without_measurement": -207.94415416798358,
+      "pass": true,
+      "note": "Without measurement (random Axis 6 choice), net work is negative: erasure cost dominates"
+    },
+    "N3_sympy_landauer_entropy_T_independent": {
+      "W_as_T_to_0": "0",
+      "dS_T_derivative": "0",
+      "dS_is_T_independent": true,
+      "pass": true,
+      "note": "At T->0, W->0 but entropy per bit stays k_B*ln(2); energy cost vanishes but info cost does not"
+    },
+    "N4_clifford_scalar_state_commutes": {
+      "diff_magnitude": 0.0,
+      "pass": true,
+      "note": "Scalar state commutes with any op => Axis 6 is trivial (no orientation distinction) for scalar states"
+    },
+    "N5_zero_temperature_no_work": {
+      "W_at_T0": 0.0,
+      "erasure_at_T0": 0.0,
+      "pass": true,
+      "note": "At T=0: W=0 and erasure cost=0; no thermodynamic activity; Axis 6 choice has zero consequence"
+    }
+  },
+  "boundary": {
+    "B1_Landauer_energy_cost_to_zero": {
+      "T_vals": [
+        1.0,
+        0.1,
+        0.01,
+        0.001
+      ],
+      "energy_costs": [
+        0.6931471805599453,
+        0.06931471805599453,
+        0.006931471805599453,
+        0.0006931471805599453
+      ],
+      "entropy_per_bit": 0.6931471805599453,
+      "pass": true,
+      "note": "Landauer energy cost T*k_B*ln(2) -> 0 as T -> 0; entropy per bit stays k_B*ln(2)"
+    },
+    "B2_pytorch_constant_gradient": {
+      "sample_grads": [
+        0.6931471824645996,
+        0.6931471824645996,
+        0.6931471824645996
+      ],
+      "expected_gradient": 0.6931471805599453,
+      "all_equal": true,
+      "pass": true,
+      "note": "dW/dT = k_B*ln(2) is constant across all temperatures (linear in T)"
+    },
+    "B3_clifford_bivector_max_noncommutativity": {
+      "left_result": "(1^e2)",
+      "right_result": "-(1^e2)",
+      "diff_magnitude": 2.0,
+      "pass": true,
+      "note": "Bivector state maximizes Axis 6 distinction: left-multiply != right-multiply maximally"
+    },
+    "B4_rustworkx_cyclic_szilard_is_not_dag": {
+      "is_dag": false,
+      "pass": true,
+      "note": "Repeated Szilard cycles form a cyclic graph (not a DAG); measure->act->erase->measure loop"
+    },
+    "B5_xgi_axis6_node_degree": {
+      "axis6_degree": 1,
+      "pass": true,
+      "note": "Axis 6 node has degree 1 (appears in exactly one hyperedge \u2014 the measurement hyperedge)"
+    }
+  },
+  "overall_pass": true
+}

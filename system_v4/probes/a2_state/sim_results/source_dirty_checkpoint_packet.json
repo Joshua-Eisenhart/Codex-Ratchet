@@ -1,26 +1,38 @@
 {
-  "generated_at": "2026-04-14T11:17:50.525626+00:00",
-  "lane_id": "source_dirty__no_actionable_lanes",
-  "group_id": null,
-  "selected_group_id": null,
-  "owned_files": [],
+  "generated_at": "2026-04-15T07:39:39.565150+00:00",
+  "lane_id": "source_dirty__skill_runtime__skill_runtime",
+  "group_id": "skill_runtime__skill_runtime",
+  "selected_group_id": "skill_runtime__skill_runtime",
+  "owned_files": [
+    "system_v4/skills/llm_research_enforcement_validator 2.py"
+  ],
   "result_companions": [],
   "verification_snapshot": {
     "checks_run": [
       "lane_manifest_present",
-      "no_actionable_lane_state"
+      "truth_audit_green",
+      "result_companions_present",
+      "repo_hygiene_no_result_placement_drift",
+      "git_snapshot_collected"
     ],
     "checks_passed": [
       "lane_manifest_present",
-      "no_actionable_lane_state"
+      "result_companions_present",
+      "git_snapshot_collected"
     ],
-    "checks_failed": [],
+    "checks_failed": [
+      "truth_audit_green",
+      "repo_hygiene_no_result_placement_drift"
+    ],
     "notes": [
-      "No checkpoint-ready lane is available; manual-only residue remains outside packetized cleanup."
+      "Lane still includes untracked paths; checkpoint should stage full lane deliberately."
     ],
-    "git_status": []
+    "git_status": [
+      "?? \"system_v4/skills/llm_research_enforcement_validator 2.py\""
+    ]
   },
-  "required_git_paths_clean": [],
-  "ready_for_checkpoint": false,
-  "status": "no_actionable_lane"
+  "required_git_paths_clean": [
+    "system_v4/skills/llm_research_enforcement_validator 2.py"
+  ],
+  "ready_for_checkpoint": false
 }

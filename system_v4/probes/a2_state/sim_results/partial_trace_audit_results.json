@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T14:35:44.176371",
+  "timestamp": "2026-04-15T15:25:00.222429",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -645,6 +645,80 @@
       ],
       "has_bug": false
     },
+    "sim_ab_cut_specification_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_ab_cut_specification_canonical.py",
+          "line": 178,
+          "pattern": "abcb->ac",
+          "line_text": "return torch.einsum('abcb->ac', r)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_ab_cut_specification_canonical.py",
+          "line": 188,
+          "pattern": "abac->bc",
+          "line_text": "return torch.einsum('abac->bc', r)",
+          "classification": {
+            "pattern": "abac->bc",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "b",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_ab_cut_specification_canonical.py",
+          "line": 573,
+          "pattern": "abcb->ac",
+          "line_text": "rho_A_grad = torch.einsum('abcb->ac', rho_w_grad.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_adversarial_ratchet.py": {
       "patterns": [
         {
@@ -695,6 +769,164 @@
         }
       ],
       "has_bug": false
+    },
+    "sim_araki_lieb_z3_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 163,
+          "pattern": "ibjb->ij",
+          "line_text": "return torch.einsum('ibjb->ij', rho)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 169,
+          "pattern": "iajb->ab",
+          "line_text": "return torch.einsum('iajb->ab', rho)  # wait \u2014 should be: sum over i,j with i=j",
+          "classification": {
+            "pattern": "iajb->ab",
+            "contracted": [
+              "i",
+              "j"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'i' appears 1 times (need exactly 2)",
+              "index 'j' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 170,
+          "pattern": "iajb->ab",
+          "line_text": "# Correct: rho_B = sum_i <i|rho_AB|i> = einsum('iajb->ab', rho) where i=j index",
+          "classification": {
+            "pattern": "iajb->ab",
+            "contracted": [
+              "i",
+              "j"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'i' appears 1 times (need exactly 2)",
+              "index 'j' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 179,
+          "pattern": "iajb->ab",
+          "line_text": "return torch.einsum('iajb->ab', rho.permute(0, 2, 1, 3)).diagonal().diag()",
+          "classification": {
+            "pattern": "iajb->ab",
+            "contracted": [
+              "i",
+              "j"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'i' appears 1 times (need exactly 2)",
+              "index 'j' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 192,
+          "pattern": "ikjk->ij",
+          "line_text": "return torch.einsum('ikjk->ij', rho)",
+          "classification": {
+            "pattern": "ikjk->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_araki_lieb_z3_canonical.py",
+          "line": 195,
+          "pattern": "ikil->kl",
+          "line_text": "return torch.einsum('ikil->kl', rho)",
+          "classification": {
+            "pattern": "ikil->kl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "k",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
     },
     "sim_autograd_deep_nabla_Ic_admissibility.py": {
       "patterns": [
@@ -1382,6 +1614,57 @@
             "kept": [
               "i",
               "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_data_processing_inequality_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_data_processing_inequality_canonical.py",
+          "line": 171,
+          "pattern": "ikjk->ij",
+          "line_text": "return torch.einsum('ikjk->ij', rho)",
+          "classification": {
+            "pattern": "ikjk->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_data_processing_inequality_canonical.py",
+          "line": 173,
+          "pattern": "ikil->kl",
+          "line_text": "return torch.einsum('ikil->kl', rho)",
+          "classification": {
+            "pattern": "ikil->kl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "k",
+              "l"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -2974,6 +3257,57 @@
       ],
       "has_bug": false
     },
+    "sim_mutual_information_monotone_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_mutual_information_monotone_canonical.py",
+          "line": 170,
+          "pattern": "ikjk->ij",
+          "line_text": "return torch.einsum('ikjk->ij', rho)",
+          "classification": {
+            "pattern": "ikjk->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_mutual_information_monotone_canonical.py",
+          "line": 172,
+          "pattern": "ikil->kl",
+          "line_text": "return torch.einsum('ikil->kl', rho)",
+          "classification": {
+            "pattern": "ikil->kl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "k",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_numpy_capability.py": {
       "patterns": [
         {
@@ -3937,6 +4271,80 @@
         }
       ],
       "has_bug": true
+    },
+    "sim_shell_hist_unification_probe.py": {
+      "patterns": [
+        {
+          "file": "sim_shell_hist_unification_probe.py",
+          "line": 194,
+          "pattern": "abcb->ac",
+          "line_text": "return torch.einsum('abcb->ac', r)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_shell_hist_unification_probe.py",
+          "line": 204,
+          "pattern": "abac->bc",
+          "line_text": "return torch.einsum('abac->bc', r)",
+          "classification": {
+            "pattern": "abac->bc",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "b",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_shell_hist_unification_probe.py",
+          "line": 447,
+          "pattern": "abcb->ac",
+          "line_text": "rho_A_diff = torch.einsum('abcb->ac', r_diff)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
     },
     "sim_temporal_cascade.py": {
       "patterns": [
@@ -5122,6 +5530,57 @@
       ],
       "has_bug": false
     },
+    "sim_werner_state_ic_gradient_sweep.py": {
+      "patterns": [
+        {
+          "file": "sim_werner_state_ic_gradient_sweep.py",
+          "line": 161,
+          "pattern": "abcb->ac",
+          "line_text": "return torch.einsum('abcb->ac', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_werner_state_ic_gradient_sweep.py",
+          "line": 193,
+          "pattern": "abcb->ac",
+          "line_text": "rho_A = torch.einsum('abcb->ac', rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_werner_topology_boundary.py": {
       "patterns": [
         {
@@ -5274,9 +5733,335 @@
         }
       ],
       "has_bug": false
+    },
+    "sim_xi_3qubit_bridge_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_xi_3qubit_bridge_canonical.py",
+          "line": 16,
+          "pattern": "abcb->ac",
+          "line_text": "Partial trace: rho_A = einsum('abcb->ac', rho.reshape(2,4,2,4))",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_3qubit_bridge_canonical.py",
+          "line": 158,
+          "pattern": "abcb->ac",
+          "line_text": "return np.einsum(\"abcb->ac\", rho)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_3qubit_bridge_canonical.py",
+          "line": 223,
+          "pattern": "abcb->ac",
+          "line_text": "return torch.einsum(\"abcb->ac\", rho)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_3qubit_bridge_canonical.py",
+          "line": 336,
+          "pattern": "abcb->ac",
+          "line_text": "\"partial_trace_method\": \"torch.einsum('abcb->ac', rho.reshape(2,4,2,4))\",",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_3qubit_bridge_canonical.py",
+          "line": 613,
+          "pattern": "abcb->ac",
+          "line_text": "\"partial_trace_formula\": \"rho_A = einsum('abcb->ac', rho.reshape(2,4,2,4))\",",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_xi_shell_hist_bridge_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_xi_shell_hist_bridge_canonical.py",
+          "line": 152,
+          "pattern": "ibjb->ij",
+          "line_text": "return np.einsum(\"ibjb->ij\", rho)   # trace over B",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_shell_hist_bridge_canonical.py",
+          "line": 154,
+          "pattern": "aiba->ib",
+          "line_text": "return np.einsum(\"aiba->ib\", rho)   # wait \u2014 correct index",
+          "classification": {
+            "pattern": "aiba->ib",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "b"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"
+            ]
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_shell_hist_bridge_canonical.py",
+          "line": 160,
+          "pattern": "ijkj->ik",
+          "line_text": "return np.einsum(\"ijkj->ik\", rho)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_shell_hist_bridge_canonical.py",
+          "line": 166,
+          "pattern": "ijik->jk",
+          "line_text": "return np.einsum(\"ijik->jk\", rho)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_xi_shell_hist_bridge_canonical.py",
+          "line": 227,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
     }
   },
   "bugs_found": [
+    {
+      "file": "sim_araki_lieb_z3_canonical.py",
+      "line": 169,
+      "pattern": "iajb->ab",
+      "line_text": "return torch.einsum('iajb->ab', rho)  # wait \u2014 should be: sum over i,j with i=j",
+      "classification": {
+        "pattern": "iajb->ab",
+        "contracted": [
+          "i",
+          "j"
+        ],
+        "kept": [
+          "a",
+          "b"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'i' appears 1 times (need exactly 2)",
+          "index 'j' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_araki_lieb_z3_canonical.py",
+      "line": 170,
+      "pattern": "iajb->ab",
+      "line_text": "# Correct: rho_B = sum_i <i|rho_AB|i> = einsum('iajb->ab', rho) where i=j index",
+      "classification": {
+        "pattern": "iajb->ab",
+        "contracted": [
+          "i",
+          "j"
+        ],
+        "kept": [
+          "a",
+          "b"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'i' appears 1 times (need exactly 2)",
+          "index 'j' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_araki_lieb_z3_canonical.py",
+      "line": 179,
+      "pattern": "iajb->ab",
+      "line_text": "return torch.einsum('iajb->ab', rho.permute(0, 2, 1, 3)).diagonal().diag()",
+      "classification": {
+        "pattern": "iajb->ab",
+        "contracted": [
+          "i",
+          "j"
+        ],
+        "kept": [
+          "a",
+          "b"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'i' appears 1 times (need exactly 2)",
+          "index 'j' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['i', 'j'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
     {
       "file": "sim_bridge_z3_kernel_ordering.py",
       "line": 131,
@@ -5594,6 +6379,31 @@
         "matches_I_over_2": false,
         "trace": 0.9999999999999998
       }
+    },
+    {
+      "file": "sim_xi_shell_hist_bridge_canonical.py",
+      "line": 154,
+      "pattern": "aiba->ib",
+      "line_text": "return np.einsum(\"aiba->ib\", rho)   # wait \u2014 correct index",
+      "classification": {
+        "pattern": "aiba->ib",
+        "contracted": [
+          "a"
+        ],
+        "kept": [
+          "i",
+          "b"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' at positions [0, 3] -- must be (0,2) or (1,3) for valid partial trace"
+        ]
+      },
+      "bell_test": {
+        "pass": true,
+        "matches_I_over_2": true,
+        "trace": 0.9999999999999998
+      }
     }
   ],
   "np_trace_tests": {
@@ -5861,9 +6671,9 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 77,
-    "clean_files": 68,
-    "files_with_einsum_bugs": 9,
+    "total_files_with_einsum_ptrace": 85,
+    "clean_files": 74,
+    "files_with_einsum_bugs": 11,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
     "naming_swap_bugs": 2,

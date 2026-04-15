@@ -1,0 +1,190 @@
+{
+  "name": "sim_capability_scipy_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates scipy numerical routines; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "target_tool: eigvalsh for symmetric eigenvalues, minimize for scalar optimization, cdist for pairwise distances, entropy for information measures \u2014 all load-bearing for this isolation probe."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "scipy": "load_bearing"
+  },
+  "positive": {
+    "A_eigvalsh_positive": {
+      "computed_eigenvalues": [
+        1.0,
+        3.0
+      ],
+      "expected_eigenvalues": [
+        1.0,
+        3.0
+      ],
+      "max_abs_error": 0.0,
+      "sorted_ascending": true,
+      "pass": true,
+      "note": "eigvalsh([[2,1],[1,2]]) returns [1.0, 3.0] sorted ascending"
+    },
+    "B_minimize_positive": {
+      "x_optimum": 2.9999999840660854,
+      "abs_error_from_3": 1.593391463217131e-08,
+      "converged": true,
+      "pass": true,
+      "note": "minimize((x-3)^2, x0=0) converges to x\u22483.0 within 1e-5"
+    },
+    "C_cdist_positive": {
+      "computed_distances": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "expected_distances": [
+        0.0,
+        1.0,
+        1.0
+      ],
+      "max_abs_error": 0.0,
+      "pass": true,
+      "note": "cdist([[0,0],[1,0],[0,1]], [[0,0]]) returns [0, 1, 1]"
+    },
+    "D_entropy_positive": {
+      "computed_entropy": 1.3862943611198906,
+      "expected_entropy": 1.3862943611198906,
+      "abs_error": 0.0,
+      "pass": true,
+      "note": "entropy([0.25]*4) = ln(4) \u2248 1.386 (nats)"
+    }
+  },
+  "negative": {
+    "A_eigvalsh_negative": {
+      "eigvalsh_result": [
+        1.0,
+        2.0
+      ],
+      "full_eig_result_real": [
+        1.0,
+        2.0
+      ],
+      "eigvalsh_silently_symmetrizes": true,
+      "pass": true,
+      "note": "eigvalsh on non-symmetric matrix silently uses lower triangle; result may differ from full eig \u2014 caller must ensure symmetry"
+    },
+    "B_minimize_negative": {
+      "converged_flag": false,
+      "result_x": -4.559503400918983e-09,
+      "note": "Non-smooth |x|: BFGS may report success but x may not be exactly 0; success flag checked",
+      "pass": true
+    },
+    "C_cdist_negative": {
+      "error": "XA and XB must have the same number of columns (i.e. feature dimension.)",
+      "pass": true,
+      "note": "cdist with mismatched dimensions correctly raises ValueError"
+    },
+    "D_entropy_negative": {
+      "computed_entropy": 0.0,
+      "pass": true,
+      "note": "entropy([1,0,0,0]) = 0 (fully certain distribution)"
+    }
+  },
+  "boundary": {
+    "A_eigvalsh_boundary": {
+      "computed_eigenvalues": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "pass": true,
+      "note": "eigvalsh(I_3) returns [1, 1, 1]"
+    },
+    "B_minimize_boundary": {
+      "x_result": 3.0,
+      "nit": 0,
+      "pass": true,
+      "note": "minimize started at x0=3.0 (already at minimum); converges immediately with minimal iterations"
+    },
+    "C_cdist_boundary": {
+      "self_distance": 0.0,
+      "pass": true,
+      "note": "cdist of point with itself = 0.0 exactly"
+    },
+    "D_entropy_boundary": {
+      "result": 0.0,
+      "pass": true,
+      "note": "entropy([]) returns nan or 0 without crash"
+    }
+  }
+}

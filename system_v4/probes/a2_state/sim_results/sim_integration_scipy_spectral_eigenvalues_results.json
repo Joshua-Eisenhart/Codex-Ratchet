@@ -1,0 +1,194 @@
+{
+  "name": "sim_integration_scipy_spectral_eigenvalues",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.linalg.eigvalsh cross-validates scipy eigenvalues; both scipy and pytorch results must agree to within 1e-6, providing independent numerical verification of the Dirac operator spectrum."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: PyG targets graph neural network operations over node/edge features; spectral eigenvalue computation for the Dirac operator is a linear algebra problem, not a graph message-passing problem \u2014 deferred to spectral-graph integration sim."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 solver verifies the eigenvalue constraint \u03bb^2 - 1 = 0; proves \u03bb=1 SAT and \u03bb=-1 SAT, and proves \u03bb=2 UNSAT, confirming the algebraic constraint that defines the Dirac operator spectrum."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cvc5 provides extended SMT capabilities including transcendental arithmetic; the eigenvalue constraint \u03bb^2 = 1 is polynomial arithmetic fully handled by z3's Real arithmetic theory without requiring cvc5."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: sympy.Matrix.eigenvals() computes analytical eigenvalues of the 4x4 Dirac matrix and confirms \u00b11 with multiplicity 2, providing a symbolic ground truth that scipy and pytorch numerical results are validated against."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: the Cl(1,0) Dirac operator sim establishes the numerical baseline here; Clifford algebra operations on the full spinor bundle require the spectral baseline to be confirmed first \u2014 clifford integration deferred to spinor-coupling sim."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: geomstats handles curved Riemannian manifold computation; the Dirac operator eigenvalue probe operates in flat Euclidean matrix algebra as a baseline \u2014 curved-space spectral geometry deferred to a Riemannian spectral sim."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: e3nn provides SO(3)-equivariant operations for 3D rotation symmetry; the 4x4 Dirac matrix here is not a 3D rotation-equivariant object \u2014 equivariant spectral probes deferred to dedicated e3nn geometric sim."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: rustworkx builds and analyzes graph topology for adjacency/path problems; spectral triple eigenvalue computation is a linear algebra operation with no graph structure \u2014 rustworkx integration deferred to graph-spectral coupling sim."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: xgi handles higher-order hypergraph structures capturing multi-body interactions; the Dirac operator spectrum is a single-operator 2-body (matrix-vector) problem \u2014 hypergraph spectral integration deferred to multi-shell sim."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: toponetx computes topological invariants on cell complexes; the spectral triple probe establishes the algebraic eigenvalue baseline before topological spectral invariants are computed \u2014 toponetx integration deferred."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: gudhi computes persistent homology and filtrations; topological analysis of the eigenvalue manifold is a follow-on step after the flat-space spectral baseline is confirmed here \u2014 gudhi integration deferred."
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "target_tool load_bearing: scipy.linalg.eigvalsh is the primary numerical computation of Dirac operator eigenvalues; sorted eigenvalues compared against sympy analytical result and pytorch cross-validation."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "scipy": "load_bearing"
+  },
+  "positive": {
+    "positive_D4_eigenvalues": {
+      "scipy_eigenvalues": [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "pytorch_eigenvalues": [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "sympy_eigenvalues": [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "expected_eigenvalues": [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      "scipy_matches_expected": true,
+      "scipy_pytorch_agree_1e6": true,
+      "scipy_sympy_agree_1e6": true,
+      "z3_lambda_1_sat": "sat",
+      "z3_lambda_neg1_sat": "sat",
+      "pass": true,
+      "note": "scipy eigvalsh(D4) returns [-1,-1,1,1]; matches sympy analytical; pytorch agrees to 1e-6; z3 SAT for \u03bb=\u00b11"
+    },
+    "positive_D2_pauli_x": {
+      "scipy_eigenvalues": [
+        -1.0,
+        1.0
+      ],
+      "pytorch_eigenvalues": [
+        -1.0,
+        1.0
+      ],
+      "sympy_eigenvalues": [
+        -1.0,
+        1.0
+      ],
+      "expected": [
+        -1.0,
+        1.0
+      ],
+      "scipy_pytorch_agree": true,
+      "scipy_sympy_agree": true,
+      "pass": true,
+      "note": "Pauli-X Dirac: eigenvalues \u00b11; scipy, pytorch, sympy all agree"
+    }
+  },
+  "negative": {
+    "negative_z3_lambda2_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "z3 proves \u03bb=2 UNSAT for \u03bb^2-1=0; 2 is not an eigenvalue of D4"
+    },
+    "negative_z3_lambda05_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "z3 proves \u03bb=0.5 UNSAT for \u03bb^2-1=0; 0.5 is not an eigenvalue of D4"
+    },
+    "negative_scipy_pytorch_no_disagreement": {
+      "max_eigenvalue_difference": 0.0,
+      "pass": true,
+      "note": "scipy and pytorch eigenvalues do not disagree: max diff < 1e-6 (negative test for discrepancy)"
+    }
+  },
+  "boundary": {
+    "boundary_1x1_matrix_c_3.0": {
+      "c": 3.0,
+      "scipy_eigenvalue": 3.0,
+      "pass": true,
+      "note": "eigvalsh([[3.0]]) = 3.0"
+    },
+    "boundary_1x1_matrix_c_-7.5": {
+      "c": -7.5,
+      "scipy_eigenvalue": -7.5,
+      "pass": true,
+      "note": "eigvalsh([[-7.5]]) = -7.5"
+    },
+    "boundary_1x1_matrix_c_0.0": {
+      "c": 0.0,
+      "scipy_eigenvalue": 0.0,
+      "pass": true,
+      "note": "eigvalsh([[0.0]]) = 0.0"
+    },
+    "boundary_identity_2x2": {
+      "eigenvalues": [
+        1.0,
+        1.0
+      ],
+      "pass": true,
+      "note": "eigvalsh(I_2) = [1, 1]"
+    },
+    "boundary_z3_lambda0_unsat": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "z3 proves \u03bb=0 UNSAT for \u03bb^2-1=0; 0 is not on the unit circle eigenspectrum"
+    }
+  }
+}

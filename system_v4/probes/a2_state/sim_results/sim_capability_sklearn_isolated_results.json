@@ -1,0 +1,163 @@
+{
+  "name": "sim_capability_sklearn_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+    },
+    "sklearn": {
+      "tried": true,
+      "used": true,
+      "reason": "target_tool: KMeans clustering, PCA dimensionality reduction, StandardScaler preprocessing \u2014 all load-bearing for this isolation probe."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "sklearn": "load_bearing"
+  },
+  "capability_summary": {
+    "CAN": [
+      "clustering without knowing density structure (KMeans)",
+      "PCA for variance decomposition and dimensionality reduction",
+      "standard preprocessing: centering and scaling (StandardScaler)",
+      "silhouette score for cluster quality assessment"
+    ],
+    "CANNOT": [
+      "replace z3 for logical/formal proofs",
+      "replace gudhi for persistent homology / TDA",
+      "symbolic computation (use sympy instead)",
+      "non-commutative geometry or Clifford algebra operations"
+    ]
+  },
+  "positive": {
+    "A_clustering_positive": {
+      "silhouette_score": 0.6260185608088571,
+      "pass": true,
+      "note": "3 Gaussian clusters, KMeans(n_clusters=3), silhouette_score > 0.5 expected"
+    },
+    "B_pca_positive": {
+      "top3_explained_variance_ratio": 0.9997589948400077,
+      "total_variance_lt_1": true,
+      "top3_explain_gt_50pct": true,
+      "pass": true,
+      "note": "10D data, PCA(n_components=3), top-3 components explain >50% of variance"
+    },
+    "C_scaler_positive": {
+      "max_abs_mean": 1.0177442222314425e-13,
+      "max_std_deviation_from_1": 5.551115123125783e-16,
+      "pass": true,
+      "note": "StandardScaler fit+transform: mean\u22480, std\u22481 per feature"
+    }
+  },
+  "negative": {
+    "A_clustering_negative": {
+      "unique_labels": 1,
+      "silhouette_score": null,
+      "silhouette_le_0_or_undefined": true,
+      "pass": true,
+      "note": "All-same-point data: KMeans(n_clusters=2) produces degenerate labels, silhouette \u2264 0 or undefined"
+    },
+    "B_pca_negative": {
+      "error": "n_components=11 must be between 0 and min(n_samples, n_features)=10 with svd_solver='full'",
+      "pass": true,
+      "note": "PCA(n_components=11) on 10D data correctly raises ValueError"
+    },
+    "C_scaler_negative": {
+      "test_set_abs_mean_after_train_scaler": 203.95055859554722,
+      "pass": true,
+      "note": "Scaler fitted on train: transforming different-scale test data does NOT yield mean\u22480"
+    }
+  },
+  "boundary": {
+    "A_clustering_boundary": {
+      "inertia": 51.52679333277797,
+      "pass": true,
+      "note": "KMeans(n_clusters=1) always converges; inertia >= 0"
+    },
+    "B_pca_boundary": {
+      "total_explained_variance": 0.9999999999999999,
+      "pass": true,
+      "note": "PCA(n_components=10) on 10D data: all variance explained (sum\u22481.0)"
+    },
+    "C_scaler_boundary": {
+      "scaled_values": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "pass": true,
+      "note": "StandardScaler on 1-sample data: std=0 handled (no crash); output is zero-mean"
+    }
+  }
+}

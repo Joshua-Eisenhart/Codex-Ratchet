@@ -5,6 +5,7 @@
 set -u
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+RESEED_PIDFILE="/tmp/codex_ratchet_autonomous_reseed.pid"
 cd "$ROOT"
 CYCLE_SEC=${CYCLE_SEC:-300}   # 5 min
 IDLE_CYCLES=${IDLE_CYCLES:-4} # exit after 20 min idle
@@ -12,6 +13,27 @@ MAX_HOURS=${MAX_HOURS:-8}
 DEADLINE=$(( $(date +%s) + MAX_HOURS*3600 ))
 LOG="$ROOT/overnight_logs/autonomous_reseed_$(date +%Y%m%d_%H%M%S).log"
 mkdir -p "$ROOT/overnight_logs"
+
+clear_reseed_pidfile() {
+  if [ -f "$RESEED_PIDFILE" ] && [ "$(cat "$RESEED_PIDFILE" 2>/dev/null)" = "$$" ]; then
+    rm -f "$RESEED_PIDFILE"
+  fi
+}
+
+acquire_reseed_pidfile() {
+  for _ in 1 2; do
+    if ( set -o noclobber; printf '%s\n' "$$" > "$RESEED_PIDFILE" ) 2>/dev/null; then
+      trap clear_reseed_pidfile EXIT INT TERM
+      return 0
+    fi
+    existing=$(cat "$RESEED_PIDFILE" 2>/dev/null || true)
+    if [ -n "$existing" ] && kill -0 "$existing" 2>/dev/null; then
+      return 1
+    fi
+    rm -f "$RESEED_PIDFILE"
+  done
+  return 1
+}
 
 sim_running_under_pinned_python() {
   "$PY" - "$1" "$ROOT" "$PY" <<'PY'
@@ -46,6 +68,11 @@ PY
 }
 
 idle=0
+if ! acquire_reseed_pidfile; then
+  echo "[$(date)] existing reseed pidfile is alive; exiting duplicate" >> "$LOG"
+  exit 0
+fi
+
 while :; do
   [ "$(date +%s)" -ge "$DEADLINE" ] && echo "[$(date)] deadline reached, exit" >> "$LOG" && exit 0
 

@@ -16,6 +16,7 @@ Loops indefinitely unless --once. Cycle = CYCLE_SEC (default 300s).
 """
 
 import argparse
+import atexit
 import json
 import os
 import pathlib
@@ -33,6 +34,7 @@ QUEUE = PROBES / "a2_state/queue"
 LOGS = ROOT / "overnight_logs"
 SKILL_LOG = ROOT / "system_v4" / "a1_state" / "skill_invocation_log.jsonl"
 PY = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+CONTROLLER_PIDFILE = pathlib.Path("/tmp/codex_ratchet_adaptive_controller.pid")
 CYCLE_SEC = 300
 STUB_PATTERNS = {"not relevant", "n/a", "na", "tbd", "todo", "stub",
                  "schema compliance", "boilerplate", "placeholder"}
@@ -221,6 +223,36 @@ def target_running_under_pinned_python(target: str) -> bool:
     for line in proc.stdout.splitlines():
         _, _, cmd = line.partition(" ")
         if any(cmd.startswith(prefix) for prefix in prefixes):
+            return True
+    return False
+
+
+def _clear_controller_pidfile() -> None:
+    try:
+        if CONTROLLER_PIDFILE.exists():
+            pid = CONTROLLER_PIDFILE.read_text().strip()
+            if pid == str(os.getpid()):
+                CONTROLLER_PIDFILE.unlink(missing_ok=True)
+    except Exception:
+        pass
+
+
+def acquire_controller_pidfile() -> bool:
+    for _ in range(2):
+        try:
+            fd = os.open(str(CONTROLLER_PIDFILE), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644)
+        except FileExistsError:
+            try:
+                pid = int(CONTROLLER_PIDFILE.read_text().strip())
+                os.kill(pid, 0)
+                return False
+            except Exception:
+                CONTROLLER_PIDFILE.unlink(missing_ok=True)
+                continue
+        else:
+            with os.fdopen(fd, "w", encoding="utf-8") as handle:
+                handle.write(str(os.getpid()))
+            atexit.register(_clear_controller_pidfile)
             return True
     return False
 
@@ -431,6 +463,9 @@ def write_plane_snapshot(state: dict | None, integration: dict | None, out_path:
 # ── entry point ───────────────────────────────────────────────────────────────
 
 def main():
+    if not acquire_controller_pidfile():
+        print("[adaptive_controller] existing controller pidfile is alive; exiting duplicate instance")
+        return
     parser = argparse.ArgumentParser()
     parser.add_argument("--once", action="store_true", help="Run one cycle then exit")
     parser.add_argument("--dry", action="store_true", help="Triage only, no queue writes")

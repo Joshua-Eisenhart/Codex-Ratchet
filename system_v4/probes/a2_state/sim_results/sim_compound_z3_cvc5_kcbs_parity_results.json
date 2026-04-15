@@ -17,7 +17,7 @@
       "reason": "decided UNSAT on 5-cycle independence + sum>=3"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": true,
       "reason": "independently decided UNSAT on same instance"
     },
@@ -78,19 +78,19 @@
   },
   "positive": {
     "z3_result": "unsat",
-    "cvc5_result": "absent",
-    "both_unsat": false,
-    "pass": false
+    "cvc5_result": "unsat",
+    "both_unsat": true,
+    "pass": true
   },
   "negative": {
     "satisfiable_at_threshold_2": {
       "z3": "sat",
-      "cvc5": "absent",
-      "agree_sat": false
+      "cvc5": "sat",
+      "agree_sat": true
     },
     "ablation_z3_absent": {
       "z3_result": "absent",
-      "cvc5_result": "absent",
+      "cvc5_result": "unsat",
       "claim_holds": false
     },
     "ablation_cvc5_absent": {
@@ -99,36 +99,36 @@
       "claim_holds": false
     },
     "ablation_breaks_claim": true,
-    "pass": false
+    "pass": true
   },
   "boundary": {
     "k=0": {
       "z3": "sat",
-      "cvc5": "absent"
+      "cvc5": "sat"
     },
     "k=1": {
       "z3": "sat",
-      "cvc5": "absent"
+      "cvc5": "sat"
     },
     "k=2": {
       "z3": "sat",
-      "cvc5": "absent"
+      "cvc5": "sat"
     },
     "k=3": {
       "z3": "unsat",
-      "cvc5": "absent"
+      "cvc5": "unsat"
     },
     "k=4": {
       "z3": "unsat",
-      "cvc5": "absent"
+      "cvc5": "unsat"
     },
     "k=5": {
       "z3": "unsat",
-      "cvc5": "absent"
+      "cvc5": "unsat"
     },
-    "transition_ok": false,
-    "pass": false
+    "transition_ok": true,
+    "pass": true
   },
   "classification": "canonical",
-  "overall_pass": false
+  "overall_pass": true
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T11:13:19.633523+00:00",
+  "generated_at": "2026-04-15T07:33:59.735574+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 6,
@@ -12,7 +12,14 @@
   "runtime_hygiene_green": false,
   "state_dir_ownership_green": true,
   "lego_tool_reporting_green": false,
-  "active_actionable_lane": null,
+  "active_actionable_lane": {
+    "group_id": "skill_runtime__skill_runtime",
+    "file_count": 1,
+    "safe_next_action": "checkpoint",
+    "selection_mode": "default_prefer_probe_source_skip_docs",
+    "source_path": "system_v4/skills/llm_research_enforcement_validator 2.py",
+    "result_path": null
+  },
   "summary": {
     "missing_surface_count": 0,
     "repair_queue_count": 6,
@@ -69,7 +76,7 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 80,
+    "source_dirty_count": 83,
     "dirty_source_bucket_count": 4,
     "dirty_source_buckets": [
       {
@@ -78,7 +85,7 @@
       },
       {
         "label": "other_source",
-        "count": 17
+        "count": 20
       },
       {
         "label": "next_gen_system",
@@ -92,7 +99,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 522
+        "count": 615
       },
       {
         "prefix": "READ ONLY Legacy core_docs",
@@ -130,21 +137,75 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 0,
-    "largest_group_id": null,
-    "next_code_only_manual": null,
-    "recommended_code_only_order": []
+    "plan_group_count": 9,
+    "largest_group_id": "probe_source__sim_family_qit",
+    "next_code_only_manual": {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 3,
+      "untracked_count": 2,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "archive_review",
+      "source_path": null,
+      "result_path": null
+    },
+    "recommended_code_only_order": [
+      {
+        "group_id": "legacy_runtime__legacy_runtime",
+        "file_count": 3,
+        "untracked_count": 2,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "archive_review",
+        "source_path": null,
+        "result_path": null
+      },
+      {
+        "group_id": "probe_source__sim_family_stoch",
+        "file_count": 3,
+        "untracked_count": 0,
+        "tracked_dirty_count": 3,
+        "safe_next_action": "manual_split_required",
+        "source_path": null,
+        "result_path": null
+      },
+      {
+        "group_id": "probe_source__sim_family_engine",
+        "file_count": 5,
+        "untracked_count": 0,
+        "tracked_dirty_count": 5,
+        "safe_next_action": "manual_split_required",
+        "source_path": null,
+        "result_path": null
+      },
+      {
+        "group_id": "probe_source__sim_family_carnot",
+        "file_count": 7,
+        "untracked_count": 0,
+        "tracked_dirty_count": 7,
+        "safe_next_action": "manual_split_required",
+        "source_path": null,
+        "result_path": null
+      },
+      {
+        "group_id": "probe_source__sim_family_szilard",
+        "file_count": 9,
+        "untracked_count": 0,
+        "tracked_dirty_count": 9,
+        "safe_next_action": "manual_split_required",
+        "source_path": null,
+        "result_path": null
+      }
+    ]
   },
   "source_dirty_lane_manifest": {
     "present": true,
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": true,
-    "selected_group_id": null,
-    "file_count": 0,
+    "selected_group_id": "skill_runtime__skill_runtime",
+    "file_count": 1,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": null,
-    "active_actionable_lane_group_id": null
+    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "active_actionable_lane_group_id": "skill_runtime__skill_runtime"
   },
   "maintenance_lanes": [
     {
@@ -182,7 +243,7 @@
         },
         {
           "label": "other_source",
-          "count": 17
+          "count": 20
         },
         {
           "label": "next_gen_system",
@@ -284,7 +345,7 @@
         },
         {
           "label": "other_source",
-          "count": 17
+          "count": 20
         },
         {
           "label": "next_gen_system",
@@ -360,8 +421,8 @@
   ],
   "surface_status": {
     "truth": {
-      "hard_finding_count": 33,
-      "warning_finding_count": 48,
+      "hard_finding_count": 13,
+      "warning_finding_count": 5,
       "ok": false
     },
     "controller": {
@@ -386,15 +447,15 @@
       "blocker_count": 3,
       "advisory_count": 4,
       "repair_candidate_count": 3,
-      "primary_result_count": 1293,
+      "primary_result_count": 1294,
       "secondary_result_count": 29,
       "secondary_unique_result_count": 28,
       "secondary_duplicate_result_count": 1,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 1,
-      "source_dirty_count": 80,
-      "generated_dirty_count": 456,
-      "dirty_worktree_count": 536,
+      "source_dirty_count": 83,
+      "generated_dirty_count": 546,
+      "dirty_worktree_count": 629,
       "dirty_source_bucket_count": 4,
       "ok": false
     },
@@ -426,30 +487,28 @@
       "ok": false
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 0,
-      "plan_group_count": 0,
-      "checkpoint_candidate_count": 0,
+      "dirty_source_count": 83,
+      "plan_group_count": 9,
+      "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 0,
-      "code_only_manual_count": 0,
-      "largest_group_id": null,
-      "next_code_only_manual_group_id": null,
-      "next_code_only_manual_file_count": 0,
+      "manual_only_count": 8,
+      "code_only_manual_count": 8,
+      "largest_group_id": "probe_source__sim_family_qit",
+      "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+      "next_code_only_manual_file_count": 3,
       "next_code_only_manual_source_path": null,
       "next_code_only_manual_result_path": null,
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": null,
-      "file_count": 0,
-      "safe_next_action": null,
+      "selected_group_id": "skill_runtime__skill_runtime",
+      "file_count": 1,
+      "safe_next_action": "checkpoint",
       "docs_opt_in_required": false,
-      "code_only_fallback_group_id": null,
-      "active_actionable_lane_group_id": null,
-      "executable_lane_group_id": null,
-      "ok": true,
-      "status": "no_actionable_lanes",
-      "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
+      "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+      "active_actionable_lane_group_id": "skill_runtime__skill_runtime",
+      "executable_lane_group_id": "skill_runtime__skill_runtime",
+      "ok": true
     }
   }
 }

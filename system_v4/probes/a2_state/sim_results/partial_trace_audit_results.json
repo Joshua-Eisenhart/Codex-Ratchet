@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-14T04:07:02.687362",
+  "timestamp": "2026-04-15T00:24:08.722499",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -566,6 +566,85 @@
       ],
       "has_bug": false
     },
+    "sim_L14_joint_cut_state.py": {
+      "patterns": [
+        {
+          "file": "sim_L14_joint_cut_state.py",
+          "line": 54,
+          "pattern": "ijkj->ik",
+          "line_text": "return np.einsum('ijkj->ik', rho4)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_L18_axis0_kernel.py": {
+      "patterns": [
+        {
+          "file": "sim_L18_axis0_kernel.py",
+          "line": 45,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum('ijkj->ik', r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_L18_axis0_kernel.py",
+          "line": 49,
+          "pattern": "ijil->jl",
+          "line_text": "return torch.einsum('ijil->jl', r)",
+          "classification": {
+            "pattern": "ijil->jl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_adversarial_ratchet.py": {
       "patterns": [
         {
@@ -604,6 +683,108 @@
             "kept": [
               "j",
               "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_autograd_deep_nabla_Ic_admissibility.py": {
+      "patterns": [
+        {
+          "file": "sim_autograd_deep_nabla_Ic_admissibility.py",
+          "line": 80,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum('ijkj->ik', r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_autograd_deep_nabla_Ic_admissibility.py",
+          "line": 83,
+          "pattern": "ijil->jl",
+          "line_text": "return torch.einsum('ijil->jl', r)",
+          "classification": {
+            "pattern": "ijil->jl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_autograd_deep_second_order_couple_to_axis0.py": {
+      "patterns": [
+        {
+          "file": "sim_autograd_deep_second_order_couple_to_axis0.py",
+          "line": 74,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum('ijkj->ik', rho.reshape(dA,dB,dA,dB))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_autograd_deep_second_order_couple_to_axis0.py",
+          "line": 76,
+          "pattern": "ijil->jl",
+          "line_text": "return torch.einsum('ijil->jl', rho.reshape(dA,dB,dA,dB))",
+          "classification": {
+            "pattern": "ijil->jl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "l"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -697,6 +878,57 @@
             "pattern": "aiaj->ij",
             "contracted": [
               "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_baseline_partial_trace_2x2.py": {
+      "patterns": [
+        {
+          "file": "sim_baseline_partial_trace_2x2.py",
+          "line": 25,
+          "pattern": "ikjk->ij",
+          "line_text": "return np.einsum('ikjk->ij', r)",
+          "classification": {
+            "pattern": "ikjk->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_baseline_partial_trace_2x2.py",
+          "line": 29,
+          "pattern": "kikj->ij",
+          "line_text": "return np.einsum('kikj->ij', r)",
+          "classification": {
+            "pattern": "kikj->ij",
+            "contracted": [
+              "k"
             ],
             "kept": [
               "i",
@@ -1278,6 +1510,34 @@
       ],
       "has_bug": false
     },
+    "sim_geom_noncomm_partial_trace_then_rotor.py": {
+      "patterns": [
+        {
+          "file": "sim_geom_noncomm_partial_trace_then_rotor.py",
+          "line": 28,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum('ijkj->ik', r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_global_shell_cut_coherent_info.py": {
       "patterns": [
         {
@@ -1593,6 +1853,85 @@
         }
       ],
       "has_bug": true
+    },
+    "sim_holodeck_atom_3_reduction.py": {
+      "patterns": [
+        {
+          "file": "sim_holodeck_atom_3_reduction.py",
+          "line": 30,
+          "pattern": "ibjb->ij",
+          "line_text": "return torch.einsum(\"ibjb->ij\", R)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holodeck_atom_3_reduction.py",
+          "line": 35,
+          "pattern": "aibi->ab",
+          "line_text": "return torch.einsum(\"aibi->ab\", R)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holodeck_atom_7_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_holodeck_atom_7_coupling.py",
+          "line": 42,
+          "pattern": "ibjb->ij",
+          "line_text": "return torch.einsum(\"ibjb->ij\", R)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
     },
     "sim_information_geometry.py": {
       "patterns": [
@@ -1912,7 +2251,7 @@
       "patterns": [
         {
           "file": "sim_layer_coupling_matrix_v3.py",
-          "line": 288,
+          "line": 289,
           "pattern": "ijik->jk",
           "line_text": "rho_A = torch.einsum(\"ijik->jk\", r4)",
           "classification": {
@@ -1935,7 +2274,7 @@
         },
         {
           "file": "sim_layer_coupling_matrix_v3.py",
-          "line": 289,
+          "line": 290,
           "pattern": "ijkj->ik",
           "line_text": "rho_B = torch.einsum(\"ijkj->ik\", r4)",
           "classification": {
@@ -1958,7 +2297,7 @@
         },
         {
           "file": "sim_layer_coupling_matrix_v3.py",
-          "line": 305,
+          "line": 306,
           "pattern": "iaja->ij",
           "line_text": "rho_B0 = torch.einsum(\"iaja->ij\", r0.permute(1, 3, 0, 2))",
           "classification": {
@@ -1981,7 +2320,7 @@
         },
         {
           "file": "sim_layer_coupling_matrix_v3.py",
-          "line": 309,
+          "line": 310,
           "pattern": "iaja->ij",
           "line_text": "rho_B1 = torch.einsum(\"iaja->ij\", r1.permute(1, 3, 0, 2))",
           "classification": {
@@ -2422,7 +2761,7 @@
       "patterns": [
         {
           "file": "sim_numpy_capability.py",
-          "line": 65,
+          "line": 66,
           "pattern": "aiaj->ij",
           "line_text": "reduced = np.einsum(\"aiaj->ij\", rho.reshape(2, 2, 2, 2))",
           "classification": {
@@ -4571,7 +4910,7 @@
       "patterns": [
         {
           "file": "sim_weyl_bipartite_to_3q_coupling.py",
-          "line": 266,
+          "line": 267,
           "pattern": "ijik->jk",
           "line_text": "return np.einsum(\"ijik->jk\", r.transpose(0, 2, 1, 3))",
           "classification": {
@@ -4594,7 +4933,7 @@
         },
         {
           "file": "sim_weyl_bipartite_to_3q_coupling.py",
-          "line": 269,
+          "line": 270,
           "pattern": "kikj->ij",
           "line_text": "return np.einsum(\"kikj->ij\", r)",
           "classification": {
@@ -4622,7 +4961,7 @@
       "patterns": [
         {
           "file": "sim_weyl_chirality_bipartite.py",
-          "line": 173,
+          "line": 174,
           "pattern": "ibjb->ij",
           "line_text": "return np.einsum(\"ibjb->ij\", rho_r)",
           "classification": {
@@ -4645,7 +4984,7 @@
         },
         {
           "file": "sim_weyl_chirality_bipartite.py",
-          "line": 179,
+          "line": 180,
           "pattern": "ajai->ij",
           "line_text": "return np.einsum(\"ajai->ij\", rho_r)",
           "classification": {
@@ -5233,8 +5572,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 66,
-    "clean_files": 58,
+    "total_files_with_einsum_ptrace": 74,
+    "clean_files": 66,
     "files_with_einsum_bugs": 8,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,

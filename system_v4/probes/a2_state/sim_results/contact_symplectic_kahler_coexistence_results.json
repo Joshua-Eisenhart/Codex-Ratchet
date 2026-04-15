@@ -1,6 +1,6 @@
 {
   "name": "pure_lego_contact_symplectic_kahler_coexistence",
-  "timestamp": "2026-04-15T06:45:50.088411+00:00",
+  "timestamp": "2026-04-15T07:33:50.061829+00:00",
   "classification": "canonical",
   "classification_note": "Three-shell coexistence probe: S\u00b3 contact shell, S\u00b2 symplectic shell, CP\u00b9/S\u00b2 K\u00e4hler shell. Coupling Program step 3. Key novelty: verifies complex structure J_q(v)=q\u00d7v on S\u00b2, its J\u00b2=-Id property, g-compatibility g(Ju,Jv)=g(u,v), and K\u00e4hler positivity \u03c9_K(v,Jv)>0. Standard round K\u00e4hler: \u03c9_K=\u03c9_S\u00b2 (c\u2081\u2083=-2, c\u2082\u2083=1). Fubini-Study K\u00e4hler: \u03c9_FS=(1/4)\u03c9_S\u00b2 (c\u2081\u2083=-1/2, c\u2082\u2083=1/4). Distinct from: sim_geom_symplectic_kahler_contact.py (spherical-coordinate survey), sim_geom_cp1_u1_projective.py (Berry/Fubini-Study lego), sim_pure_lego_contact_symplectic_coupling.py (pairwise). Uses pytorch (load_bearing) + z3 UNSAT + sympy vector algebra.",
   "lego_ids": [
@@ -142,7 +142,7 @@
   "positive": {
     "P1_complex_structure_j_squared": {
       "pass": true,
-      "kahler_residual": 7.447602459741817e-16,
+      "kahler_residual": 5.900916318210354e-16,
       "threshold": 1e-12,
       "n_points": 50,
       "verdict": "compatible",
@@ -150,8 +150,8 @@
     },
     "P2_kahler_positivity": {
       "pass": true,
-      "kahler_residual": -3.9999999999999964,
-      "min_positivity_value": 3.9999999999999964,
+      "kahler_residual": -3.9999999999999947,
+      "min_positivity_value": 3.9999999999999947,
       "threshold": 0.1,
       "n_points": 50,
       "verdict": "compatible",
@@ -244,10 +244,10 @@
   "boundary": {
     "B1_antipodal_fiber_coexistence": {
       "pass": true,
-      "kahler_residual": -3.9999999999999964,
+      "kahler_residual": -3.999999999999997,
       "base_point_diff": 0.0,
-      "min_positivity_p": 3.9999999999999964,
-      "min_positivity_neg_p": 3.9999999999999964,
+      "min_positivity_p": 3.999999999999997,
+      "min_positivity_neg_p": 3.999999999999997,
       "verdict": "compatible",
       "description": "Antipodal pair (p,-p): \u03c0(p)=\u03c0(-p) confirmed, same J_q acts on both, K\u00e4hler positivity \u03c9_K(d\u03c0h,J(d\u03c0h))>0 holds at both antipodal preimages"
     },

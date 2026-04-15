@@ -1,71 +1,11 @@
 {
   "name": "sim_hypothesis_property_admissibility_invariant",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "tool_manifest": {
     "hypothesis": {
       "tried": true,
       "used": true,
       "reason": "randomized property-based generation of G-tower reduction sequences"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not relevant to this evolutionary/clustering probe; standard tool stub for canonical schema compliance"
     }
   },
   "tool_integration_depth": {
@@ -73,7 +13,7 @@
   },
   "positive": {
     "total_cases": 300,
-    "commutative_invariant": 55,
+    "commutative_invariant": 52,
     "commutative_violations": 0,
     "invariance_held": true
   },
@@ -93,10 +33,9 @@
   "boundary": {
     "len1_invariant": true,
     "noncomm_shift_stats": {
-      "noncomm_total": 245,
-      "noncomm_with_excluded_shift": 84
+      "noncomm_total": 248,
+      "noncomm_with_excluded_shift": 110
     }
   },
-  "passed": true,
-  "discipline_debt_note": "Demoted 2026-04-14: schema-stubbed manifest entries; awaiting upstream isolated tool capability probe before re-promotion to canonical."
+  "passed": true
 }

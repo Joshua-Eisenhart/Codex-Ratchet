@@ -3,9 +3,9 @@
   "classification": "canonical",
   "tool_manifest": {
     "pymoo": {
-      "tried": true,
-      "used": true,
-      "reason": "NSGA-II evolutionary search of Pareto front over admissibility/complexity objectives"
+      "tried": false,
+      "used": false,
+      "reason": "not installed: No module named 'pymoo'"
     },
     "numpy": {
       "tried": true,
@@ -14,15 +14,11 @@
     }
   },
   "tool_integration_depth": {
-    "pymoo": "load_bearing",
+    "pymoo": null,
     "numpy": "supportive"
   },
   "positive": {
-    "pareto_front_size": 40,
-    "hypervolume": 3.4499465962882763,
-    "pareto_size_ge_3": true,
-    "hypervolume_positive": true,
-    "surviving_min_violation": 0.0
+    "pymoo_available": false
   },
   "negative": {
     "interior_excluded": "True",
@@ -32,5 +28,5 @@
     "on_surface_violation": 0.0,
     "surface_admissible": true
   },
-  "passed": true
+  "passed": false
 }

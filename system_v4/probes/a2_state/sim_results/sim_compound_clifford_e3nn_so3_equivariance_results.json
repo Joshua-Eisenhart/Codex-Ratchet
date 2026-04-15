@@ -2,9 +2,9 @@
   "name": "sim_compound_clifford_e3nn_so3_equivariance",
   "tool_manifest": {
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not used in this sim scope"
+      "tried": true,
+      "used": true,
+      "reason": "tensor plumbing for e3nn D-matrix application"
     },
     "pyg": {
       "tried": false,
@@ -28,8 +28,8 @@
     },
     "clifford": {
       "tried": true,
-      "used": false,
-      "reason": "imported but not exercised in this sim"
+      "used": true,
+      "reason": "rotor sandwich produced rotated vector and bivector"
     },
     "geomstats": {
       "tried": false,
@@ -37,9 +37,9 @@
       "reason": "not used in this sim scope"
     },
     "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "irrep D-matrix (1o,1e) independently rotated same pair"
     },
     "rustworkx": {
       "tried": false,
@@ -63,31 +63,49 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
+    "pytorch": "supportive",
     "pyg": null,
     "z3": null,
     "cvc5": null,
     "sympy": null,
-    "clifford": null,
+    "clifford": "load_bearing",
     "geomstats": null,
-    "e3nn": null,
+    "e3nn": "load_bearing",
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
     "gudhi": null
   },
   "positive": {
-    "pass": false,
-    "reason": "required tool missing"
+    "max_vec_err": 8.664069763544089e-07,
+    "max_bivec_err": 1.3516594043073476e-06,
+    "tolerance": 1e-05,
+    "pass": true,
+    "n_trials": 10
   },
   "negative": {
-    "pass": false,
-    "reason": "required tool missing"
+    "wrong_angle_disagrees": true,
+    "ablate_clifford_disagrees": true,
+    "ablate_e3nn_disagrees": true,
+    "ablate_bivec_e3nn_disagrees": true,
+    "ablation_breaks_claim": true,
+    "pass": true
   },
   "boundary": {
-    "pass": false,
-    "reason": "required tool missing"
+    "identity": {
+      "err": 0.0,
+      "ok": true
+    },
+    "pi": {
+      "err": 2.6745153464259856e-07,
+      "ok": true
+    },
+    "two_pi": {
+      "err": 3.9099681708751226e-07,
+      "ok": true
+    },
+    "pass": true
   },
   "classification": "canonical",
-  "overall_pass": false
+  "overall_pass": true
 }

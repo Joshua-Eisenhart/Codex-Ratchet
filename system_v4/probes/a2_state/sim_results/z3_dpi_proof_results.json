@@ -103,14 +103,14 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies CPTP contraction AND D_after > D_before. DPI confirmed: relative entropy cannot increase under CPTP channels.",
-      "elapsed_s": 0.0197
+      "elapsed_s": 0.0049
     },
     "proof2_mutual_information_dpi": {
       "name": "mutual_information_dpi_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies local CPTP constraints AND I_after > I_before. MI DPI confirmed: local CPTP cannot increase mutual information.",
-      "elapsed_s": 0.0015
+      "elapsed_s": 0.0018
     },
     "sympy_derivation": {
       "status": "ok",
@@ -128,14 +128,14 @@
       "example_D_before": "0",
       "example_D_after": "1",
       "interpretation": "Without CPTP contraction constraint, D_after > D_before is SAT. Confirms that the CPTP axiom is the critical constraint that makes DPI UNSAT. Non-CPTP maps (e.g., non-trace-preserving, non-completely-positive) can violate DPI.",
-      "elapsed_s": 0.0021
+      "elapsed_s": 0.0027
     },
     "proof3b_identity_channel_dpi": {
       "name": "identity_channel_dpi_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Identity channel (lambda=1) also satisfies DPI -- trivially D_after <= D_before AND D_after > D_before is UNSAT.",
-      "elapsed_s": 0.0006
+      "elapsed_s": 0.0005
     }
   },
   "boundary": {
@@ -144,21 +144,21 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "lambda=0 (completely depolarizing) forces D_after=0. All states map to the same fixed point; relative entropy collapses to 0.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0004
     },
     "boundary2_identical_states": {
       "name": "identical_states_D_zero",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "D(rho||sigma)=0 iff rho=sigma. Under any CPTP channel, T(rho)=T(sigma), so D_after=0 is forced. Confirmed UNSAT for D_after > 0.",
-      "elapsed_s": 0.0011
+      "elapsed_s": 0.0004
     },
     "boundary3_equality_case": {
       "name": "equality_case_lambda1",
       "status": "PASS",
       "verdict": "SAT",
       "interpretation": "Equality in DPI is achievable (e.g., unitary channels, reversible maps). D_after = D_before is SAT under lambda=1 contraction.",
-      "elapsed_s": 0.0013
+      "elapsed_s": 0.001
     }
   }
 }

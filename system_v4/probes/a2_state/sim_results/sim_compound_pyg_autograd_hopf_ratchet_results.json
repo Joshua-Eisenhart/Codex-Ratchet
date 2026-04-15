@@ -2,14 +2,14 @@
   "name": "sim_compound_pyg_autograd_hopf_ratchet",
   "tool_manifest": {
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not used in this sim scope"
+      "tried": true,
+      "used": true,
+      "reason": "autograd through propagate() gave d/dtheta of node sum"
     },
     "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "MessagePassing.propagate over Hopf ring edge_index"
     },
     "z3": {
       "tried": false,
@@ -63,8 +63,8 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
     "z3": null,
     "cvc5": null,
     "sympy": null,
@@ -77,17 +77,38 @@
     "gudhi": null
   },
   "positive": {
-    "pass": false,
-    "reason": "required tool missing"
+    "grad_theta": -5.780077505870895,
+    "expected": -5.780077505870894,
+    "err": 8.881784197001252e-16,
+    "pass": true
   },
   "negative": {
-    "pass": false,
-    "reason": "required tool missing"
+    "ablate_autograd_grad_is_none": true,
+    "ablate_pyg_node_output_diff": 1.0357762572636553,
+    "ablate_pyg_breaks_structure": true,
+    "pyg_grad": -5.780077505870895,
+    "naive_grad": -5.780077505870894,
+    "ablation_breaks_claim": true,
+    "pass": true
   },
   "boundary": {
-    "pass": false,
-    "reason": "required tool missing"
+    "n=3": {
+      "grad": 2.745580416923228,
+      "expected": 2.745580416923228,
+      "ok": true
+    },
+    "n=4": {
+      "grad": -1.1729425565134926,
+      "expected": -1.1729425565134928,
+      "ok": true
+    },
+    "n=16": {
+      "grad": 5.870784135211018,
+      "expected": 5.87078413521102,
+      "ok": true
+    },
+    "pass": true
   },
   "classification": "canonical",
-  "overall_pass": false
+  "overall_pass": true
 }

@@ -1,0 +1,226 @@
+{
+  "name": "sim_gtower_so3_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "SO(3)",
+  "lie_algebra_dim": 3,
+  "tower_position": "third (between O(3) and U(3))",
+  "capability_summary": {
+    "CAN": [
+      "verify orientation constraint: det(M) = +1 only",
+      "exclude reflections via z3 UNSAT (det=-1 is impossible in SO(3))",
+      "verify so(3) structure constants [Li,Lj]=eps_ijk Lk via sympy",
+      "represent SO(3) rotations as Spin(3) rotors in Cl(3,0) (double cover)",
+      "access SO(3) irreps D^l via e3nn (l=0,1,2,...)",
+      "compute Wigner D-matrices for arbitrary Euler angles via e3nn",
+      "measure geodesic distance on SO(3) manifold via geomstats",
+      "encode tower position in rustworkx DAG (parent=O(3), child=U(3))"
+    ],
+    "CANNOT": [
+      "include reflections (det=-1 elements are in O(3) but excluded from SO(3))",
+      "represent complex rotations (use U(3) for that)",
+      "require det=1 complex (use SU(3))",
+      "preserve symplectic form (use Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SO(3) membership requires both M^T M = I AND det(M) = +1; torch.linalg verifies both constraints numerically for concrete rotations."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SO(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves no orthogonal matrix with det=-1 can be in SO(3); the orientation constraint det=+1 excludes all reflections."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SO(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies so(3) [Li,Lj]=eps_ijk Lk, Killing form negativity, and Casimir element for this shell."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Spin(3) \u2245 Cl(3,0)^+ even subalgebra rotors; SO(3) \u2245 Spin(3) / {\u00b11}; rotor sandwich product R v ~R gives SO(3) rotation."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialOrthogonal(n=3) gives the bi-invariant Riemannian metric on SO(3); geodesic distance and group exponential verified."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn provides SO(3) irreps D^l (spherical harmonics); this shell-local probe verifies D^1 (vector, 3D) and D^0 (scalar) irreps exist."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes SO(3) position in G-tower DAG: parent=O(3), child=U(3); betweenness centrality nonzero (interior node)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SO(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SO(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SO(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "rz_in_SO3": {
+      "pass": true,
+      "det": 1.0,
+      "orthogonal": true,
+      "detail": "Rz(pi/3): M^T M = I and det = +1: in SO(3)"
+    },
+    "so3_closed_under_composition": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Rz @ Rx: composition of SO(3) rotations is in SO(3)"
+    },
+    "z3_reflection_excluded_from_SO": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: no element can be both det=-1 (reflection) and det=+1 (special)"
+    },
+    "z3_O1_has_reflection": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: O(1) has det=-1 element (x=-1); SO(1) adds det=+1 constraint to exclude it"
+    },
+    "so3_L1L2_L3": {
+      "pass": true,
+      "detail": "[L1, L2] = L3"
+    },
+    "so3_L2L3_L1": {
+      "pass": true,
+      "detail": "[L2, L3] = L1"
+    },
+    "so3_L3L1_L2": {
+      "pass": true,
+      "detail": "[L3, L1] = L2"
+    },
+    "so3_killing_form_negative": {
+      "pass": true,
+      "B11": -2,
+      "detail": "Killing form B(L1,L1) = -2 < 0: so(3) is compact (negative definite)"
+    },
+    "clifford_spin3_rotation": {
+      "pass": true,
+      "e1_coeff": 2.220446049250313e-16,
+      "e2_coeff": 1.0,
+      "detail": "Spin(3) rotor rotates e1 \u2192 e2 (90-deg rotation about e3)"
+    },
+    "clifford_rotor_unit_norm": {
+      "pass": true,
+      "norm": 1.0,
+      "detail": "Spin(3) rotor R satisfies R ~R = 1"
+    },
+    "e3nn_D0_scalar_irrep": {
+      "pass": true,
+      "dim": 1,
+      "detail": "e3nn D^0 (scalar) irrep has dimension 1"
+    },
+    "e3nn_D1_vector_irrep": {
+      "pass": true,
+      "dim": 3,
+      "detail": "e3nn D^1 (vector) irrep has dimension 3"
+    },
+    "e3nn_D2_irrep": {
+      "pass": true,
+      "dim": 5,
+      "detail": "e3nn D^2 (rank-2 tensor) irrep has dimension 5"
+    },
+    "e3nn_wigner_D1_shape": {
+      "pass": true,
+      "shape": [
+        3,
+        3
+      ],
+      "detail": "Wigner D-matrix for D^1 at Euler angles (0.1,0.2,0.3): shape (3,3)"
+    },
+    "geomstats_so3_identity_belongs": {
+      "pass": true,
+      "detail": "geomstats: identity matrix belongs to SO(3) manifold"
+    },
+    "so3_tower_interior": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 1,
+      "detail": "SO(3) is an interior node (in=1, out=1) in the G-tower DAG"
+    },
+    "so3_after_o3_in_topo_sort": {
+      "pass": true,
+      "so3_pos": 2,
+      "o3_pos": 1,
+      "detail": "Topological sort: SO(3) comes after O(3) (orientation is a derived constraint)"
+    }
+  },
+  "negative": {
+    "reflection_excluded_from_SO3": {
+      "pass": true,
+      "is_orthogonal": true,
+      "det": -1.0,
+      "detail": "Reflection is in O(3) (M^T M=I) but NOT in SO(3) (det=-1)"
+    },
+    "scaling_not_in_SO3": {
+      "pass": true,
+      "max_err": 3.0,
+      "detail": "Scaling matrix violates M^T M = I: excluded from O(3) and SO(3)"
+    }
+  },
+  "boundary": {
+    "identity_in_SO3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Identity is in SO(3): det=1, M^T M = I"
+    },
+    "so3_inverse_equals_transpose": {
+      "pass": true,
+      "detail": "SO(3): R^{-1} = R^T (orthogonal group property)"
+    },
+    "e3nn_irrep_dims_first4": {
+      "pass": true,
+      "dims": {
+        "0": 1,
+        "1": 3,
+        "2": 5,
+        "3": 7
+      },
+      "detail": "e3nn D^l irrep dimensions: dim(D^l) = 2l+1 for l=0,1,2,3"
+    }
+  }
+}

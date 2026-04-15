@@ -1,0 +1,185 @@
+{
+  "name": "sim_gtower_o3_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "O(3)",
+  "lie_algebra_dim": 3,
+  "tower_position": "second (between GL(3) and SO(3))",
+  "capability_summary": {
+    "CAN": [
+      "verify metric-preservation constraint M^T M = I",
+      "identify two disconnected components by sign of det",
+      "verify so(3) structure constants symbolically via sympy",
+      "exclude non-orthogonal matrices via z3 UNSAT",
+      "represent O(3) action as versors in Cl(3,0) (Pin(3) double cover)",
+      "encode tower position in rustworkx DAG (parent=GL(3), child=SO(3))"
+    ],
+    "CANNOT": [
+      "eliminate the det=-1 component (use SO(3) for orientation constraint)",
+      "add complex structure (use U(3))",
+      "require det=1 (use SU(3))",
+      "preserve symplectic form (use Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: O(3) membership test M^T M = I and |det(M)| = 1 are verified numerically via torch.linalg operations."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves no matrix can satisfy both M^T M = I and |det| != 1; the orthogonality constraint forces |det| in {-1, +1}."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies so(3) structure constants [Li,Lj]=eps_ijk Lk and antisymmetry of generators symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Pin(3) \u2282 Cl(3,0) provides the double cover of O(3); unit vectors in Cl(3,0) are versors; reflection v -> -n v n^{-1} gives O(3) action."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialOrthogonal provides the Riemannian metric on SO(3) \u2282 O(3), confirming the group manifold structure."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx DAG encodes O(3) tower position: parent=GL(3,R), child=SO(3); in-degree=1, out-degree=1."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates O(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "rotation_in_O3": {
+      "pass": true,
+      "max_err": 1.0146536357569526e-17,
+      "det": 1.0,
+      "detail": "Rotation Rz(pi/4): M^T M = I, det = +1: in SO(3) \u2282 O(3)"
+    },
+    "reflection_in_O3": {
+      "pass": true,
+      "det": -1.0,
+      "detail": "Reflection diag(-1,1,1): M^T M = I, det = -1: in O(3) \\ SO(3)"
+    },
+    "two_components_by_det": {
+      "pass": true,
+      "det_rotation": 1.0,
+      "det_reflection": -1.0,
+      "detail": "O(3) has two components: det=+1 (SO(3)) and det=-1 (improper rotations)"
+    },
+    "z3_orthogonal_forces_det_pm1": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: orthogonality (M^T M=I) forces det in {-1, +1} for O(1)"
+    },
+    "z3_det_bounded": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: no orthogonal matrix has |det| > 1"
+    },
+    "so3_bracket_L1L2": {
+      "pass": true,
+      "detail": "[L1, L2] = L3: so(3) structure constant eps_12k = delta_3k"
+    },
+    "so3_bracket_L2L3": {
+      "pass": true,
+      "detail": "[L2, L3] = L1: so(3) structure constant"
+    },
+    "so3_antisymmetry": {
+      "pass": true,
+      "detail": "L1 is antisymmetric: L + L^T = 0 (so(n) generators)"
+    },
+    "so3_jacobi": {
+      "pass": true,
+      "detail": "Jacobi identity holds for so(3)"
+    },
+    "clifford_versor_reflection": {
+      "pass": true,
+      "e1_coeff": -1.0,
+      "e2_coeff": 1.0,
+      "n_sq": 1.0,
+      "detail": "Pin(3) versor reflects e1 \u2192 -e1, e2 \u2192 e2 in Cl(3,0)"
+    },
+    "geomstats_so3_identity": {
+      "pass": true,
+      "detail": "geomstats: identity belongs to SO(3) \u2282 O(3)"
+    },
+    "o3_tower_position": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 1,
+      "detail": "O(3) has one parent (GL(3)) and one child (SO(3)) in the tower"
+    }
+  },
+  "negative": {
+    "scaling_not_in_O3": {
+      "pass": true,
+      "max_err": 3.0,
+      "detail": "Scaling matrix (det=2) fails M^T M = I: excluded from O(3)"
+    },
+    "so3_antisymmetric_bracket": {
+      "pass": true,
+      "detail": "[L1,L2] + [L2,L1] = 0: so(3) bracket is antisymmetric"
+    }
+  },
+  "boundary": {
+    "identity_in_O3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Identity matrix is in O(3) with det=+1"
+    },
+    "O3_closed_under_product": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "O(3) closed under multiplication: product of two O(3) elements is in O(3)"
+    }
+  }
+}

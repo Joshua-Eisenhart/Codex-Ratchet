@@ -1,0 +1,211 @@
+{
+  "name": "sim_gtower_sp6_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "Sp(6)",
+  "lie_algebra_dim": 21,
+  "tower_position": "terminal leaf (most constrained shell)",
+  "capability_summary": {
+    "CAN": [
+      "verify symplectic form preservation M^T J M = J via pytorch",
+      "confirm J^2 = -I (complex structure from symplectic form)",
+      "exclude non-symplectic matrices via z3 UNSAT",
+      "verify sp(2) Lie algebra generators symbolically via sympy",
+      "identify Sp(1) \u2245 SU(2) \u2245 Spin(3) via Clifford quaternion algebra",
+      "access Sp(1) integer irreps via e3nn",
+      "encode Sp(6) as terminal leaf of G-tower in rustworkx DAG"
+    ],
+    "CANNOT": [
+      "contain non-symplectic matrices (M^T J M \u2260 J excluded)",
+      "be reduced further in the standard G-tower chain",
+      "operate on odd-dimensional spaces (symplectic requires even dimension)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Sp(6) membership requires M^T J M = J for the 6x6 symplectic form J; torch.linalg verifies this constraint numerically."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates Sp(6) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that a scaling matrix M=diag(2,2) cannot satisfy the Sp(2) symplectic constraint M^T J M = J."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates Sp(6) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy constructs sp(2) generators, verifies the symplectic condition M^T J + J M = 0 (Lie algebra condition) symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Sp(1) = unit quaternions \u2245 SU(2) \u2245 Spin(3); Cl(3,0) even subalgebra gives the quaternion algebra underlying Sp(1)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats provides Riemannian geometry for compact Lie groups; SO(3) \u2245 Sp(1)/Z_2 metric verified as adjacent to Sp geometry."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: Sp(1) = SU(2) = Spin(3); e3nn D^l are SU(2) irreps; the isomorphism chain Sp(1) \u2245 SU(2) \u2245 Spin(3) is verified via irrep dimensions."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes Sp(6) as the terminal leaf of the G-tower DAG; in-degree=1 (parent=SU(3)), out-degree=0 (no child: most constrained shell)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates Sp(6) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates Sp(6) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates Sp(6) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_in_Sp6": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "Identity is in Sp(6): I^T J I = J"
+    },
+    "block_diagonal_in_Sp6": {
+      "pass": true,
+      "detail": "Block diagonal [[R, 0], [0, R^{-T}]] is in Sp(6)"
+    },
+    "sp6_lie_algebra_dimension": {
+      "pass": true,
+      "dim": 21,
+      "detail": "sp(6) Lie algebra dimension = n(2n+1) = 3*7 = 21 for n=3"
+    },
+    "J_squared_is_minus_I": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "J^2 = -I: the symplectic form defines a complex structure"
+    },
+    "z3_scaling_not_symplectic": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: diag(2,2) satisfies ad=4\u22601: excluded from Sp(2)"
+    },
+    "z3_symplectic_element_sat": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: diag(3, 1/3) is in Sp(2) (ad=1 satisfied)"
+    },
+    "sp2_generator_e1": {
+      "pass": true,
+      "detail": "e1 = diag(1,-1) satisfies sp(2) condition M^T J + J M = 0"
+    },
+    "sp2_generator_e2": {
+      "pass": true,
+      "detail": "e2 = [[0,1],[0,0]] satisfies sp(2) condition"
+    },
+    "sp2_generator_e3": {
+      "pass": true,
+      "detail": "e3 = [[0,0],[1,0]] satisfies sp(2) condition"
+    },
+    "sp2_bracket_e1e2": {
+      "pass": true,
+      "detail": "[e1, e2] = 2*e2: sp(2) structure constant"
+    },
+    "clifford_quaternion_generators": {
+      "pass": true,
+      "i_sq": -1.0,
+      "j_sq": -1.0,
+      "k_sq": -1.0,
+      "detail": "Cl(3,0) bivectors satisfy i^2=j^2=k^2=-1: quaternion algebra \u2245 Sp(1)"
+    },
+    "clifford_ijk_minus_1": {
+      "pass": true,
+      "ijk": -1.0,
+      "detail": "i*j*k = -1: fundamental quaternion identity (Sp(1) structure)"
+    },
+    "e3nn_sp1_irrep_dims": {
+      "pass": true,
+      "dims": {
+        "D0": 1,
+        "D1": 3,
+        "D2": 5
+      },
+      "detail": "Sp(1)\u2245SU(2): D^j dimensions are 2j+1 (integer j coincide with SO(3))"
+    },
+    "geomstats_so3_sp1_quotient": {
+      "pass": true,
+      "detail": "geomstats SO(3) \u2245 Sp(1)/Z_2: identity belongs, confirming Sp(1) quotient structure"
+    },
+    "sp6_is_terminal_leaf": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 0,
+      "detail": "Sp(6) is the terminal leaf of the G-tower (most constrained shell)"
+    },
+    "sp6_last_in_topo_sort": {
+      "pass": true,
+      "sp6_pos": 5,
+      "total_nodes": 6,
+      "detail": "Topological sort: Sp(6) comes last (deepest constraint in tower)"
+    }
+  },
+  "negative": {
+    "scaling_not_in_Sp6": {
+      "pass": true,
+      "max_err": 3.0,
+      "detail": "Scaling 2*I fails M^T J M = J: excluded from Sp(6)"
+    },
+    "so3_dimension_not_sp6": {
+      "pass": true,
+      "detail": "SO(3) acts on R^3; Sp(6) acts on R^6: incompatible dimensions"
+    }
+  },
+  "boundary": {
+    "sp2_shear_in_Sp2": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "Shear matrix [[1,t],[0,1]] is in Sp(2): M^T J M = J"
+    },
+    "J_skew_symmetric": {
+      "pass": true,
+      "detail": "Symplectic form J is skew-symmetric: J^T = -J"
+    },
+    "J_nondegenerate": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "Symplectic form J is non-degenerate: det(J) \u2260 0"
+    }
+  }
+}

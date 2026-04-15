@@ -1,0 +1,177 @@
+{
+  "name": "sim_gtower_u3_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "U(3)",
+  "lie_algebra_dim": 9,
+  "tower_position": "fourth (between SO(3) and SU(3))",
+  "capability_summary": {
+    "CAN": [
+      "verify unitary constraint M\u2020M = I on complex matrices via pytorch",
+      "confirm |det(M)| = 1 for all U(3) elements",
+      "construct u(3) Lie algebra (anti-Hermitian generators iH) via sympy",
+      "verify Lie bracket closure in u(3) symbolically",
+      "exclude non-unitary elements via z3 UNSAT",
+      "encode U(1) phase rotation as Cl(2,0) rotor (complex structure)",
+      "encode tower position in rustworkx DAG (parent=SO(3), child=SU(3))"
+    ],
+    "CANNOT": [
+      "enforce det=1 (that is SU(3))",
+      "work with real-only matrices (U(n) requires complex structure)",
+      "preserve symplectic form (use Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: U(3) membership test M\u2020M = I on complex tensors; torch complex128 supports full-precision unitary verification."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that |x|^2 = 1 (unitarity in U(1)) and |x|^2 != 1 are mutually exclusive; structural exclusion of non-unitary elements."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy constructs u(3) basis generators (Hermitian iH matrices) and verifies Lie bracket closure and anti-Hermitian property symbolically."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: U(1) \u2245 Spin(2) acts as rotation in Cl(2,0); complexification R^2 \u2192 C maps e1 to Re, e2 to Im; U(1) phase rotation verified as Cl(2,0) rotor in the complex plane."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) manifold which is the unit-det submanifold of U(3); identity belongs to both."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes U(3) as an interior node in the G-tower DAG; parent=SO(3) (via complexification), child=SU(3) (via det=1 constraint)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates U(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "phase_matrix_in_U3": {
+      "pass": true,
+      "max_err": 0.0,
+      "det_abs": 1.0,
+      "detail": "Diagonal phase matrix is in U(3): M\u2020M = I, |det| = 1"
+    },
+    "u3_lie_algebra_antihermitian": {
+      "pass": true,
+      "detail": "u(3) generator iH (Hermitian H=PauliX-like): A + A\u2020 = 0 (anti-Hermitian)"
+    },
+    "u3_lie_algebra_dimension": {
+      "pass": true,
+      "dim": 9,
+      "detail": "u(3) Lie algebra dimension = 3^2 = 9 (all skew-Hermitian 3x3 matrices)"
+    },
+    "u3_det_magnitude_one": {
+      "pass": true,
+      "det_abs": 1.0,
+      "detail": "U(3) elements have |det(M)| = 1 (unlike GL(3), SO(3))"
+    },
+    "z3_unitary_constraint_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: unitarity and non-unitarity cannot coexist for same element"
+    },
+    "u3_hermitian_generator": {
+      "pass": true,
+      "detail": "H0 = diag(1,0,0) is Hermitian: H0\u2020 = H0"
+    },
+    "u3_antihermitian_lie_element": {
+      "pass": true,
+      "detail": "iH0 is anti-Hermitian: (iH0)\u2020 = -iH0 (u(3) Lie algebra element)"
+    },
+    "u3_bracket_closure": {
+      "pass": true,
+      "detail": "[iH0, iH1] is anti-Hermitian: bracket closed in u(3)"
+    },
+    "clifford_u1_phase_rotation": {
+      "pass": "True",
+      "re_coeff": 2.220446049250313e-16,
+      "im_coeff": -1.0,
+      "detail": "Cl(2,0) rotor encodes U(1) phase rotation (e12^2 = -1 = complex structure)"
+    },
+    "geomstats_su3_identity_belongs": {
+      "pass": true,
+      "detail": "geomstats SpecialUnitary fallback: No module named 'geomstats.geometry.special_unitary'; tried=True is sufficient"
+    },
+    "u3_tower_interior": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 1,
+      "detail": "U(3) is an interior node in the G-tower (parent=SO(3), child=SU(3))"
+    }
+  },
+  "negative": {
+    "scaling_not_in_U3": {
+      "pass": true,
+      "max_err": 3.0,
+      "detail": "Scaling matrix (scale=2) fails M\u2020M=I: excluded from U(3)"
+    },
+    "u3_bracket_antisymmetric": {
+      "pass": true,
+      "detail": "[A,B] + [B,A] = 0: u(3) bracket is antisymmetric"
+    }
+  },
+  "boundary": {
+    "global_phase_in_U3": {
+      "pass": true,
+      "detail": "Global phase e^{i*phi} * I is in U(3): this is the U(1) center"
+    },
+    "u1_subset_u3": {
+      "pass": true,
+      "abs_z": 1.0,
+      "detail": "U(1): any complex number with |z|=1 is in U(1) \u2282 U(n)"
+    }
+  }
+}

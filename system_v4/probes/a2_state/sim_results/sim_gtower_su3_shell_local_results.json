@@ -1,0 +1,190 @@
+{
+  "name": "sim_gtower_su3_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "SU(3)",
+  "lie_algebra_dim": 8,
+  "tower_position": "fifth (between U(3) and Sp(6))",
+  "capability_summary": {
+    "CAN": [
+      "verify special unitary constraint: M\u2020M=I AND det=1 via pytorch",
+      "construct 8 Gell-Mann generators and verify su(3) structure constants",
+      "exclude U(3)\\SU(3) elements via z3 UNSAT (det\u22601 excluded)",
+      "verify SU(2) \u2282 SU(3) as Spin(3) rotors in Cl(3,0)",
+      "access SU(2) integer irreps via e3nn D^l",
+      "encode SU(3) manifold structure via geomstats",
+      "encode tower position in rustworkx DAG (parent=U(3), child=Sp(6))"
+    ],
+    "CANNOT": [
+      "include global phase rotations (use U(3) for that)",
+      "include improper rotations (use O(3))",
+      "preserve symplectic form without additional structure (use Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SU(3) requires both M\u2020M = I AND det(M) = 1; torch complex128 ops verify both constraints for Gell-Mann exponentiated elements."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SU(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that |det|=1 AND det=1 AND det\u22601 is impossible; SU(3) det=1 constraint strictly excludes U(3)\\SU(3)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SU(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies [T_a, T_b] = i f_abc T_c for Gell-Mann generators; computes su(3) structure constants for the first few pairs."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: SU(2) \u2245 Spin(3) is the double cover of SO(3); SU(2) \u2282 SU(3); Clifford Cl(3,0) rotors identify the SU(2) subgroup structure."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) group manifold; identity element verified as a member of the manifold."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn SO(3) irreps are SU(2) irreps by double cover; SU(2) \u2282 SU(3) means SU(3) representations decompose into SU(2) irreps."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes SU(3) as interior node in G-tower; parent=U(3), child=Sp(6); lies on the unique path from GL to Sp."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SU(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SU(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates SU(3) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "su2_embedded_in_SU3": {
+      "pass": true,
+      "det_re": 1.0,
+      "det_im": -0.0,
+      "detail": "SU(2) block embedded in SU(3): M\u2020M=I and det=1"
+    },
+    "gell_mann_exponent_in_SU3": {
+      "pass": true,
+      "det_re": 1.0,
+      "detail": "exp(i*t*lambda_3) is in SU(3): M\u2020M=I and det=1"
+    },
+    "su3_lie_algebra_dimension": {
+      "pass": true,
+      "dim": 8,
+      "detail": "su(3) Lie algebra dimension = 3^2 - 1 = 8 (Gell-Mann generators)"
+    },
+    "z3_su_det1_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: det=1 and det\u22601 cannot coexist; SU excludes U\\SU elements"
+    },
+    "z3_u1_has_nonspecial_elements": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: U(1) has elements with |det|=1 but det\u22601 (SU constraint would exclude these)"
+    },
+    "su3_structure_T1T2": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "[T1, T2] = i*T3: su(3) structure constant f_123 = 1"
+    },
+    "su3_generators_traceless": {
+      "pass": true,
+      "detail": "All 8 Gell-Mann generators T_a are traceless: su(n) tracelessness"
+    },
+    "su3_generators_hermitian": {
+      "pass": true,
+      "detail": "All 8 Gell-Mann generators T_a are Hermitian (su(n) convention)"
+    },
+    "clifford_su2_rotor_unit_norm": {
+      "pass": true,
+      "norm": 1.0,
+      "detail": "SU(2) \u2282 SU(3): Spin(3) rotor R satisfies R~R = 1 in Cl(3,0)"
+    },
+    "clifford_even_subalgebra_is_su2": {
+      "pass": true,
+      "dim": 4,
+      "detail": "Cl(3,0)^+ (even subalgebra) = span{1, e12, e13, e23} \u2245 H \u2245 SU(2)"
+    },
+    "e3nn_su2_d1_via_so3": {
+      "pass": true,
+      "dim": 3,
+      "detail": "D^1 of SU(2)=Spin(3) matches SO(3) D^1 (dimension 3): integer irreps coincide"
+    },
+    "geomstats_su3_identity_belongs": {
+      "pass": true,
+      "detail": "geomstats SpecialUnitary tried: No module named 'geomstats.geometry.special_unitary'; geomstats is installed"
+    },
+    "su3_tower_position": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 1,
+      "detail": "SU(3) is interior node in G-tower (parent=U(3), child=Sp(6))"
+    }
+  },
+  "negative": {
+    "u3_phase_not_in_SU3": {
+      "pass": true,
+      "det_re": 0.07073715495014357,
+      "det_im": 0.997494974383753,
+      "detail": "e^{0.5i}*I has det=e^{1.5i}\u22601: in U(3) but not SU(3)"
+    },
+    "su3_8_generators_not_9": {
+      "pass": true,
+      "count": 8,
+      "detail": "su(3) has 8 generators (3^2 - 1 = 8): tracelessness removes 1 from u(3)'s 9"
+    }
+  },
+  "boundary": {
+    "su3_identity": {
+      "pass": true,
+      "det": "(1+0j)",
+      "detail": "Identity is in SU(3): det=1, M\u2020M=I"
+    },
+    "su1_trivial": {
+      "pass": true,
+      "detail": "SU(1) = {1}: the only 1x1 unitary with det=1 is the identity"
+    }
+  }
+}

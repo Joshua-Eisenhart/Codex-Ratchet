@@ -1,0 +1,184 @@
+{
+  "name": "sim_gtower_gl3_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "GL(3,R)",
+  "lie_algebra_dim": 9,
+  "tower_position": "root",
+  "capability_summary": {
+    "CAN": [
+      "represent all invertible 3x3 real matrices",
+      "verify invertibility via det(M) != 0",
+      "compute Lie bracket [Eij, Ekl] = delta_jk Eil - delta_li Ekj",
+      "prove singular matrices are excluded via z3 UNSAT",
+      "encode tower topology via rustworkx DAG (GL is the root)",
+      "verify GL(3) action preserves grade-1 subspace of Cl(3,0)",
+      "compute geodesic distance on GL(n,R) via geomstats"
+    ],
+    "CANNOT": [
+      "preserve metric (use O(3) for that constraint)",
+      "preserve orientation (use SO(3))",
+      "admit only phase factors (use U(3))",
+      "guarantee det=1 (use SU(3))",
+      "preserve symplectic form (use Sp(6))"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: GL(3,R) matrix operations (det, inverse, matmul) verify invertibility constraint directly via torch.linalg."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves that no matrix with det=0 can be in GL(3,R); singular matrices are structurally excluded by the invertibility constraint."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies Lie bracket identity [Eij,Ekl]=\u03b4jk*Eil - \u03b4li*Ekj symbolically for gl(3) elementary matrix basis."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: GL(3,R) acts on R^3 as linear maps; Clifford algebra Cl(3,0) contains the grade-1 subspace isomorphic to R^3; this probe verifies GL action preserves the grade-1 subspace."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: geomstats GeneralLinear group provides the Riemannian metric on GL(3,R) for geodesic distance computations."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx encodes the G-tower reduction graph; GL(3) is the root (no parent), with one child O(3) via metric constraint."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates GL(3,R) shell-local properties; cross-shell coupling is deferred per four-sim-kinds doctrine."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_in_GL3": {
+      "pass": true,
+      "det": 1.0,
+      "detail": "det(I) = 1.0: identity is in GL(3,R)"
+    },
+    "scaling_in_GL3": {
+      "pass": true,
+      "det": 30.0,
+      "detail": "det(diag(2,3,5)) = 30.0: non-unit-det matrix is in GL(3,R)"
+    },
+    "gl3_inverse": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "A @ A^{-1} = I: GL(3,R) inverse exists"
+    },
+    "gl3_lie_algebra_dimension": {
+      "pass": true,
+      "dim": 9,
+      "detail": "gl(3) Lie algebra has 9 basis generators Eij"
+    },
+    "z3_singular_excluded": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: no element with det=0 satisfies GL invertibility constraint"
+    },
+    "bracket_E01_E10": {
+      "pass": true,
+      "detail": "[E01, E10] = E00 - E11 (gl(3) bracket identity)"
+    },
+    "bracket_E00_E01": {
+      "pass": true,
+      "detail": "[E00, E01] = E01 (E00 raises weight of E01)"
+    },
+    "jacobi_identity": {
+      "pass": true,
+      "detail": "Jacobi identity holds for gl(3) basis elements"
+    },
+    "gl3_is_tower_root": {
+      "pass": true,
+      "in_degree": 0,
+      "out_degree": 1,
+      "detail": "GL(3) is the root of the G-tower reduction graph"
+    },
+    "tower_depth": {
+      "pass": true,
+      "depth": 5,
+      "detail": "G-tower has 5 reduction steps from GL(3) to Sp(6)"
+    },
+    "geomstats_gl3_identity_belongs": {
+      "pass": true,
+      "detail": "geomstats: identity matrix belongs to GL(3,R) manifold"
+    },
+    "clifford_grade1_preserved": {
+      "pass": true,
+      "e1_coeff": 2.0,
+      "detail": "GL(3) scaling map preserves grade-1 subspace of Cl(3,0)"
+    }
+  },
+  "negative": {
+    "singular_not_in_GL3": {
+      "pass": true,
+      "det": 0.0,
+      "detail": "det=0 matrix excluded from GL(3,R): not invertible"
+    },
+    "lie_bracket_noncommutative": {
+      "pass": true,
+      "detail": "[E01, E12] != [E12, E01]: Lie bracket is antisymmetric, not commutative"
+    }
+  },
+  "boundary": {
+    "gl1_nonzero": {
+      "pass": true,
+      "det": 3.0,
+      "detail": "GL(1,R): any nonzero scalar is invertible"
+    },
+    "gl3_closure_under_mult": {
+      "pass": true,
+      "max_err": 0.0,
+      "detail": "GL(3) closure: A @ A^{-1} = I (group axiom)"
+    }
+  }
+}

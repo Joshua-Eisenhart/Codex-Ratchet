@@ -61,6 +61,11 @@
       "tried": false,
       "used": false,
       "reason": "not used: this probe isolates the hypothesis property-based testing capability in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "hypothesis": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing isolated capability probe for property-based test generation and shrinking"
     }
   },
   "tool_integration_depth": {
@@ -75,7 +80,8 @@
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
-    "gudhi": null
+    "gudhi": null,
+    "hypothesis": "load_bearing"
   },
   "target_tool": {
     "name": "hypothesis",

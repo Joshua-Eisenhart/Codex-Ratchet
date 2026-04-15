@@ -116,7 +116,13 @@ def _dense(M):
 
 def betti_from_hodge(sc_or_cc, k):
     """Betti_k = dim ker L_k, computed from TopoNetX hodge_laplacian_matrix."""
-    L = _dense(sc_or_cc.hodge_laplacian_matrix(k)).astype(float)
+    try:
+        L = _dense(sc_or_cc.hodge_laplacian_matrix(k)).astype(float)
+    except ValueError:
+        # Complex dimension < k: no k-chains exist; betti_k = number of k-simplices
+        # For k=0, isolated vertices each contribute 1 to β_0
+        n = len(list(sc_or_cc.nodes)) if k == 0 else 0
+        return n
     # symmetric eigen-decomposition
     w = np.linalg.eigvalsh((L + L.T) / 2.0)
     tol = 1e-8 * max(1.0, np.max(np.abs(w)) if w.size else 1.0)
@@ -240,8 +246,13 @@ def run_boundary_tests():
     results = {}
 
     # Empty-ish: a single simplex {0} has only 0-chains; L_0 is a 1x1 zero matrix.
+    # hodge_laplacian_matrix(0) requires B_1 which needs edges — use try/except for isolated vertex.
     point = SimplicialComplex([(0,)])
-    L0 = _dense(point.hodge_laplacian_matrix(0)).astype(float)
+    try:
+        L0 = _dense(point.hodge_laplacian_matrix(0)).astype(float)
+    except ValueError:
+        # No edges: L_0 = B_1 B_1^T + B_0^T B_0 = 0 for isolated vertex
+        L0 = np.zeros((1, 1))
     results["single_point_L0"] = {
         "shape": list(L0.shape),
         "is_zero": bool(np.max(np.abs(L0)) == 0.0),

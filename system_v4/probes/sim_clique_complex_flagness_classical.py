@@ -9,17 +9,17 @@ classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "supportive cross-check of adjacency tensor"},
-    "pyg": {"tried": False, "used": False, "reason": "n/a"},
-    "z3": {"tried": False, "used": False, "reason": "n/a"},
-    "cvc5": {"tried": False, "used": False, "reason": "n/a"},
-    "sympy": {"tried": False, "used": False, "reason": "n/a"},
-    "clifford": {"tried": False, "used": False, "reason": "n/a"},
-    "geomstats": {"tried": False, "used": False, "reason": "n/a"},
-    "e3nn": {"tried": False, "used": False, "reason": "n/a"},
-    "rustworkx": {"tried": False, "used": False, "reason": "n/a"},
-    "xgi": {"tried": False, "used": False, "reason": "n/a"},
+    "pyg": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "z3": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "cvc5": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "sympy": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "clifford": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "geomstats": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "e3nn": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "xgi": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
     "toponetx": {"tried": False, "used": False, "reason": "manual enumeration suffices"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistence needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "no persistence or filtration in this sim"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"

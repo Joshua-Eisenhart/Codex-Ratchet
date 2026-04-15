@@ -6,20 +6,21 @@ adjacency corresponds to a single-axis flip.  Diagonals are double flips.
 """
 import json, os
 from _igt_common import CARRIERS, LABELS
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 TOOL_MANIFEST = {
-    "pytorch":  {"tried": False, "used": False, "reason": "n/a"},
-    "pyg":      {"tried": False, "used": False, "reason": "rustworkx sufficient"},
-    "z3":       {"tried": False, "used": False, "reason": ""},
-    "cvc5":     {"tried": False, "used": False, "reason": "z3 sufficient"},
-    "sympy":    {"tried": False, "used": False, "reason": "no symbolic work"},
-    "clifford": {"tried": False, "used": False, "reason": "geometry deferred"},
-    "geomstats":{"tried": False, "used": False, "reason": "n/a"},
-    "e3nn":     {"tried": False, "used": False, "reason": "n/a"},
-    "rustworkx":{"tried": False, "used": False, "reason": ""},
-    "xgi":      {"tried": False, "used": False, "reason": "no hypergraph"},
-    "toponetx": {"tried": False, "used": False, "reason": "no complex yet"},
-    "gudhi":    {"tried": False, "used": False, "reason": "n/a"},
+    "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "pyg":      {"tried": False, "used": False, "reason": "rustworkx graph tools are sufficient here"},
+    "z3":       {"tried": False, "used": False, "reason": "not used in this simulation"},
+    "cvc5":     {"tried": False, "used": False, "reason": "z3 handles all constraint checks here"},
+    "sympy":    {"tried": False, "used": False, "reason": "no symbolic algebra needed in this probe"},
+    "clifford": {"tried": False, "used": False, "reason": "geometry computation deferred to later sims"},
+    "geomstats":{"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "e3nn":     {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "rustworkx":{"tried": False, "used": False, "reason": "not used in this simulation"},
+    "xgi":      {"tried": False, "used": False, "reason": "no hypergraph structure in this probe"},
+    "toponetx": {"tried": False, "used": False, "reason": "no simplicial complex at this atom level"},
+    "gudhi":    {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
@@ -65,7 +66,7 @@ def run_positive_tests():
         cycles = rx.cycle_basis(g)
         r["rx_one_4cycle"] = (len(cycles) == 1 and len(cycles[0]) == 4)
         TOOL_MANIFEST["rustworkx"]["used"] = True
-        TOOL_MANIFEST["rustworkx"]["reason"] = "graph cycle verification"
+        TOOL_MANIFEST["rustworkx"]["reason"] = "graph cycle verification for IGT structure"
         TOOL_INTEGRATION_DEPTH["rustworkx"] = "load_bearing"
 
     # z3: prove every carrier pair has hamming in {0,1,2} and exactly 2 pairs have ham=2 (diagonals)

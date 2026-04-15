@@ -10,18 +10,18 @@ import numpy as np
 classification = "classical_baseline"  # auto-backfill
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "stub-level contract test"},
-    "pyg":       {"tried": False, "used": False, "reason": "no graph yet"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": "z3 suffices for schema"},
-    "sympy":     {"tried": False, "used": False, "reason": "schema-level"},
-    "clifford":  {"tried": False, "used": False, "reason": "no rotors at stub"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "no graph"},
-    "xgi":       {"tried": False, "used": False, "reason": "no hypergraph"},
-    "toponetx":  {"tried": False, "used": False, "reason": "no complex"},
-    "gudhi":     {"tried": False, "used": False, "reason": "no persistence"},
+    "pytorch":   {"tried": False, "used": False, "reason": "stub-level contract test, not active yet"},
+    "pyg":       {"tried": False, "used": False, "reason": "no graph structure in this atom probe"},
+    "z3":        {"tried": False, "used": False, "reason": "not used in this simulation"},
+    "cvc5":      {"tried": False, "used": False, "reason": "z3 suffices for all schema-level checks"},
+    "sympy":     {"tried": False, "used": False, "reason": "schema-level probe only, no rotors"},
+    "clifford":  {"tried": False, "used": False, "reason": "no rotor geometry at this stub level"},
+    "geomstats": {"tried": False, "used": False, "reason": "no manifold geometry in this sim scope"},
+    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance constraint in this probe"},
+    "rustworkx": {"tried": False, "used": False, "reason": "no graph structure in this probe scope"},
+    "xgi":       {"tried": False, "used": False, "reason": "no hypergraph structure in this probe"},
+    "toponetx":  {"tried": False, "used": False, "reason": "no simplicial complex in this sim scope"},
+    "gudhi":     {"tried": False, "used": False, "reason": "no filtration or persistence in this sim"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 

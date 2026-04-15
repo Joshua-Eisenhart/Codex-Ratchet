@@ -7,6 +7,7 @@ from the same admissibility class.
 """
 import json, os
 import rustworkx as rx
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 SCOPE_NOTE = (
     "Probe-relative structural equivalence: rustworkx VF2 isomorphism is "
@@ -17,8 +18,8 @@ SCOPE_NOTE = (
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "VF2 is_isomorphic decides structural exclusion (load-bearing)"},
-    "pytorch": {"tried": False, "used": False, "reason": "combinatorial"},
-    "z3": {"tried": False, "used": False, "reason": "VF2 sufficient"},
+    "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
+    "z3": {"tried": False, "used": False, "reason": "VF2 subgraph isomorphism is sufficient here"},
 }
 TOOL_INTEGRATION_DEPTH = {"rustworkx": "load_bearing"}
 

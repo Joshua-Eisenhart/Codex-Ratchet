@@ -9,17 +9,17 @@ classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "supportive: tensor summation cross-check"},
-    "pyg": {"tried": False, "used": False, "reason": "not needed"},
-    "z3": {"tried": False, "used": False, "reason": "no SAT"},
-    "cvc5": {"tried": False, "used": False, "reason": "no SMT"},
-    "sympy": {"tried": False, "used": False, "reason": "numeric"},
-    "clifford": {"tried": False, "used": False, "reason": "n/a"},
-    "geomstats": {"tried": False, "used": False, "reason": "n/a"},
-    "e3nn": {"tried": False, "used": False, "reason": "n/a"},
-    "rustworkx": {"tried": False, "used": False, "reason": "n/a"},
-    "xgi": {"tried": False, "used": False, "reason": "n/a"},
-    "toponetx": {"tried": False, "used": False, "reason": "hand-rolled SC is enough"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed for this simplicial sim scope"},
+    "z3": {"tried": False, "used": False, "reason": "no SAT/SMT needed for this fvector sim"},
+    "cvc5": {"tried": False, "used": False, "reason": "no SMT encoding needed for fvector count"},
+    "sympy": {"tried": False, "used": False, "reason": "numeric computation only, no algebra"},
+    "clifford": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "geomstats": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "e3nn": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "xgi": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "toponetx": {"tried": False, "used": False, "reason": "hand-rolled simplicial complex suffices here"},
+    "gudhi": {"tried": False, "used": False, "reason": "no filtration or persistence in this sim"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"

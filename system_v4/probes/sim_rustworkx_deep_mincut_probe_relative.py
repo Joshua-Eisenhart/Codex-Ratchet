@@ -7,6 +7,7 @@ capacity bound are EXCLUDED from the admissible-coupling set.
 """
 import json, os
 import rustworkx as rx
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 SCOPE_NOTE = (
     "Probe-relative capacity: rustworkx stoer_wagner_min_cut is "
@@ -17,8 +18,8 @@ SCOPE_NOTE = (
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "stoer_wagner_min_cut computes global min-cut (load-bearing)"},
-    "pytorch": {"tried": False, "used": False, "reason": "combinatorial"},
-    "sympy": {"tried": False, "used": False, "reason": "integer weights"},
+    "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
+    "sympy": {"tried": False, "used": False, "reason": "integer-weighted flow, no algebra needed"},
 }
 TOOL_INTEGRATION_DEPTH = {"rustworkx": "load_bearing"}
 

@@ -7,20 +7,21 @@ are 2-to-1 surjections that each collapse the 4-carrier ring to a
 """
 import json, os
 from _igt_common import CARRIERS, reduce_inner, reduce_outer
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 TOOL_MANIFEST = {
-    "pytorch":  {"tried": False, "used": False, "reason": "n/a"},
-    "pyg":      {"tried": False, "used": False, "reason": "n/a"},
-    "z3":       {"tried": False, "used": False, "reason": ""},
-    "cvc5":     {"tried": False, "used": False, "reason": "z3 sufficient"},
-    "sympy":    {"tried": False, "used": False, "reason": "numeric suffices"},
-    "clifford": {"tried": False, "used": False, "reason": "n/a"},
-    "geomstats":{"tried": False, "used": False, "reason": "n/a"},
-    "e3nn":     {"tried": False, "used": False, "reason": "n/a"},
-    "rustworkx":{"tried": False, "used": False, "reason": "no graph step"},
-    "xgi":      {"tried": False, "used": False, "reason": "n/a"},
-    "toponetx": {"tried": False, "used": False, "reason": "n/a"},
-    "gudhi":    {"tried": False, "used": False, "reason": "n/a"},
+    "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "pyg":      {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "z3":       {"tried": False, "used": False, "reason": "not used in this simulation"},
+    "cvc5":     {"tried": False, "used": False, "reason": "z3 handles all constraint checks here"},
+    "sympy":    {"tried": False, "used": False, "reason": "numeric computation is sufficient here"},
+    "clifford": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "geomstats":{"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "e3nn":     {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "rustworkx":{"tried": False, "used": False, "reason": "no graph computation in this sim step"},
+    "xgi":      {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "toponetx": {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "gudhi":    {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 

@@ -14,22 +14,23 @@ Classification: canonical.
 import json, os
 import numpy as np
 from itertools import combinations
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "combinatorial"},
-    "pyg": {"tried": False, "used": False, "reason": "pairwise only"},
-    "z3": {"tried": False, "used": False, "reason": "enumeration, not FOL"},
-    "cvc5": {"tried": False, "used": False, "reason": "enumeration"},
-    "sympy": {"tried": False, "used": False, "reason": "numeric count"},
-    "clifford": {"tried": False, "used": False, "reason": "no GA"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "hypergraph required"},
-    "xgi": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": "not cell complex"},
-    "gudhi": {"tried": False, "used": False, "reason": "no homology"},
+    "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
+    "pyg": {"tried": False, "used": False, "reason": "pairwise hyperedge count, no tensor ops"},
+    "z3": {"tried": False, "used": False, "reason": "enumeration approach, no first-order logic"},
+    "cvc5": {"tried": False, "used": False, "reason": "enumeration only, no Clifford algebra"},
+    "sympy": {"tried": False, "used": False, "reason": "numeric motif count, no manifold needed"},
+    "clifford": {"tried": False, "used": False, "reason": "no geometric algebra in this motif probe"},
+    "geomstats": {"tried": False, "used": False, "reason": "no manifold geometry in this sim scope"},
+    "e3nn": {"tried": False, "used": False, "reason": "no equivariance constraint in this probe"},
+    "rustworkx": {"tried": False, "used": False, "reason": "hypergraph structure required, not graph ops"},
+    "xgi": {"tried": False, "used": False, "reason": "not used in this simulation"},
+    "toponetx": {"tried": False, "used": False, "reason": "not a cell complex sim, hypergraph only"},
+    "gudhi": {"tried": False, "used": False, "reason": "no persistent homology in this motif sim"},
     "networkx": {"tried": False, "used": False, "reason": "projection triangle count ablation"},
-    "numpy": {"tried": True, "used": True, "reason": "rng"},
+    "numpy": {"tried": True, "used": True, "reason": "random seeding only, no algebra needed"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
@@ -92,7 +93,7 @@ def run_negative_tests():
     by three dyads. The motif count (genuine triads sharing one node)
     must be zero, even if the projection looks identical."""
     if nx is None:
-        return {"dyadic_version_zero": {"pass": False, "reason": "networkx missing"}}
+        return {"dyadic_version_zero": {"pass": False, "reason": "networkx not in venv; rustworkx used instead"}}
     H_real = random_hypergraph(seed=42)
     H_fake = xgi.Hypergraph()
     H_fake.add_nodes_from(H_real.nodes)

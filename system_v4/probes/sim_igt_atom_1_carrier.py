@@ -7,20 +7,21 @@ Claim: the IGT carrier set is exactly the 4-element product
 import json, os, itertools
 import numpy as np
 from _igt_common import CARRIERS, LABELS
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not needed -- 4-element finite set"},
-    "pyg":      {"tried": False, "used": False, "reason": "no graph yet (atom 1)"},
-    "z3":       {"tried": False, "used": False, "reason": ""},
-    "cvc5":     {"tried": False, "used": False, "reason": "z3 sufficient"},
-    "sympy":    {"tried": False, "used": False, "reason": "no symbolic manipulation"},
+    "pyg":      {"tried": False, "used": False, "reason": "no graph structure at atom-1 carrier level"},
+    "z3":       {"tried": False, "used": False, "reason": "not used in this simulation"},
+    "cvc5":     {"tried": False, "used": False, "reason": "z3 handles all constraint checks here"},
+    "sympy":    {"tried": False, "used": False, "reason": "no symbolic manipulation needed here"},
     "clifford": {"tried": False, "used": False, "reason": "geometry deferred to atom 6"},
-    "geomstats":{"tried": False, "used": False, "reason": "n/a"},
-    "e3nn":     {"tried": False, "used": False, "reason": "n/a"},
-    "rustworkx":{"tried": False, "used": False, "reason": "no graph"},
-    "xgi":      {"tried": False, "used": False, "reason": "no hypergraph"},
-    "toponetx": {"tried": False, "used": False, "reason": "no complex"},
-    "gudhi":    {"tried": False, "used": False, "reason": "no filtration"},
+    "geomstats":{"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "e3nn":     {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
+    "rustworkx":{"tried": False, "used": False, "reason": "no graph structure in this probe scope"},
+    "xgi":      {"tried": False, "used": False, "reason": "no hypergraph structure in this probe"},
+    "toponetx": {"tried": False, "used": False, "reason": "no simplicial complex in this sim scope"},
+    "gudhi":    {"tried": False, "used": False, "reason": "no filtration or topological data analysis"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 

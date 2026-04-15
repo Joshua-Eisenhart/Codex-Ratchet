@@ -7,6 +7,7 @@ graphs with odd cycles are EXCLUDED.
 """
 import json, os
 import rustworkx as rx
+classification = "classical_baseline"  # auto-added by adaptive_controller
 
 SCOPE_NOTE = (
     "Parity admissibility (probe-relative to 2-coloring): "
@@ -17,7 +18,7 @@ SCOPE_NOTE = (
 TOOL_MANIFEST = {
     "rustworkx": {"tried": True, "used": True,
                   "reason": "two_color decides bipartite admissibility (load-bearing)"},
-    "pytorch": {"tried": False, "used": False, "reason": "combinatorial"},
+    "pytorch": {"tried": False, "used": False, "reason": "purely combinatorial, no tensor compute"},
 }
 TOOL_INTEGRATION_DEPTH = {"rustworkx": "load_bearing"}
 

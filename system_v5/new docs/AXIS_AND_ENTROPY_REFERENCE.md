@@ -34,6 +34,10 @@ Short rule:
 ## Honesty Boundary
 
 - 7 active axes (0-6). Axes 7-12 are planned later mirror layer.
+- **Axes 7-12 are CANDIDATE EXTENDED STRUCTURES, NOT ESTABLISHED AXES.**
+  Sims referencing axis 7-12 probe candidate structures only.
+  Do not treat them as established until shell-local→pairwise→coexistence
+  evidence exists and bridge claims are formally earned.
 - Jung, IGT, trigram, hexagram, yin-yang, I-Ching labels are
   CORRELATION LAYERS, not primary mathematics.
 - Axis 0 is still open at bridge-and-cut level.
@@ -257,6 +261,32 @@ Constraint on distinguishability = actual primitive claim
 Entropy = a later admissible measure of distinguishability under constraint
 
 entropic monism ≠ "entropy is primitive"
+
+---
+
+## Candidate Extended Axis Table (Axes 7-12) — NOT ESTABLISHED
+
+**Status: CANDIDATE STRUCTURES ONLY**
+
+These are hypothesized extensions derived from the yin-yang / I-Ching mirror layer mapping.
+None are formally established. Sims probing these are `classical_baseline` shell-local probes.
+A candidate earns established status only after: shell-local → pairwise coupling →
+triple coexistence → bridge claim (same 5-step ladder as axes 0-6).
+
+| Candidate Axis | Physics/Math domain | Basis for candidacy | Status |
+|---|---|---|---|
+| 7 | spin / chirality | handedness of Weyl spinors; CW/CCW ring orientation already probed | candidate only |
+| 8 | local gauge invariance | U(1) Wilson loop invariance as constraint redundancy | candidate only |
+| 9 | topological winding number | homotopy π₁ classes; integer-valued invariant | candidate only |
+| 10 | entanglement structure (bipartite vs multipartite) | Schmidt rank; GHZ vs separable | candidate only |
+| 11 | CPT / discrete symmetry | CPT theorem; time-reversal + parity + charge conj | candidate only |
+| 12 | RG flow / scale dependence | renormalization group; coupling runs with energy scale | candidate only |
+
+**Rules for sims referencing candidate axes:**
+- File names MAY use `axis7`, `axis9`, etc. as shorthand
+- Sim docstrings MUST note "candidate axis N — not established"
+- Classification: `classical_baseline` until pairwise coupling evidence exists
+- Do NOT reference as "Axis N bridge" until step-5 evidence is in hand
 
 ---
 

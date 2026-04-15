@@ -72,3 +72,19 @@ system_v4/a2_state/refinery_batch_index.json
 # Regenerable runtime state (rebuilt on each run)
 system_v4/runtime_state/
 system_v4/probes/telemetry_logs/
+
+# Local workstation/controller spillover
+.claude/
+.hermes_tmp/
+.mplconfig/
+logs/
+a2_state/
+codex-ratchet-architecture.html
+
+# Live overnight worker spillover (tracked canonical artifacts still show normally)
+overnight_logs/
+system_v4/probes/a2_state/queue/claimed/
+system_v4/probes/a2_state/queue/done/
+system_v4/probes/a2_state/queue/lane_A/
+system_v4/probes/a2_state/queue/lane_B/
+system_v4/probes/a2_state/sim_results_archive/

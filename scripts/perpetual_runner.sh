@@ -4,11 +4,38 @@
 set -u
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
+PERPETUAL_PIDFILE="/tmp/codex_ratchet_perpetual_runner.pid"
 CONTROLLER_PIDFILE="/tmp/codex_ratchet_adaptive_controller.pid"
 RESEED_PIDFILE="/tmp/codex_ratchet_autonomous_reseed.pid"
 cd "$ROOT"
 LOG="$ROOT/overnight_logs/perpetual_$(date +%Y%m%d_%H%M%S).log"
 echo "[$(date)] perpetual runner started, pid=$$" >> "$LOG"
+
+clear_perpetual_pidfile() {
+  if [ -f "$PERPETUAL_PIDFILE" ] && [ "$(cat "$PERPETUAL_PIDFILE" 2>/dev/null)" = "$$" ]; then
+    rm -f "$PERPETUAL_PIDFILE"
+  fi
+}
+
+acquire_perpetual_pidfile() {
+  if [ ! -f "$PERPETUAL_PIDFILE" ]; then
+    echo "$$" > "$PERPETUAL_PIDFILE"
+    trap clear_perpetual_pidfile EXIT INT TERM
+    return 0
+  fi
+  pid=$(cat "$PERPETUAL_PIDFILE" 2>/dev/null || true)
+  if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+    echo "[$(date)] existing perpetual pidfile is alive; exiting duplicate" >> "$LOG"
+    return 1
+  fi
+  echo "$$" > "$PERPETUAL_PIDFILE"
+  trap clear_perpetual_pidfile EXIT INT TERM
+  return 0
+}
+
+if ! acquire_perpetual_pidfile; then
+  exit 0
+fi
 
 controller_running() {
   "$PY" - "$CONTROLLER_PIDFILE" <<'PY'

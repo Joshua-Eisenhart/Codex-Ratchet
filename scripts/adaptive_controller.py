@@ -114,14 +114,26 @@ def is_passing(r: dict) -> bool:
         return bool(r["overall_pass"])
     if "pass" in r:
         return bool(r["pass"])
+    if "all_pass" in r:
+        return bool(r["all_pass"])
+    if isinstance(r.get("summary"), dict):
+        summary = r["summary"]
+        if "all_pass" in summary:
+            return bool(summary["all_pass"])
+        if "all_passed" in summary:
+            return bool(summary["all_passed"])
     if r.get("result") == "PASS":
         return True
+    if r.get("result") == "FAIL":
+        return False
     # No known pass/fail field → legacy schema, not a real failure
     return None  # type: ignore  — caller must handle None = unknown
 
 def is_legacy_schema(r: dict) -> bool:
     """Pre-SIM_TEMPLATE result: has no overall_pass but has old-style fields."""
-    return ("overall_pass" not in r and "pass" not in r and
+    return ("overall_pass" not in r and "pass" not in r and "all_pass" not in r and
+            not (isinstance(r.get("summary"), dict) and
+                 any(k in r["summary"] for k in ("all_pass", "all_passed"))) and
             any(k in r for k in ("timestamp", "verdict", "axis", "evidence_ledger")))
 
 def has_stub_reasons(r: dict) -> bool:
@@ -173,6 +185,18 @@ def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
     return QUEUE / lane / f"{digest}.json"
 
 
+def canonicalize_queue_payload(data: dict, lane: str, normalized: str) -> dict:
+    bucket = str(data.get("plan_bucket") or plan_bucket(normalized))
+    canonical = dict(data)
+    canonical["sim_path"] = normalized
+    canonical["lane"] = lane
+    canonical["plan_bucket"] = bucket
+    canonical["plan_stage"] = plan_stage(normalized)
+    canonical["priority"] = canonical_priority(canonical.get("priority"), bucket)
+    canonical["enqueued_at"] = canonical.get("enqueued_at", int(time.time()))
+    return canonical
+
+
 def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
     normalized = normalize_sim_path(sim_path)
@@ -201,6 +225,74 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
         return
     with os.fdopen(fd, "w", encoding="utf-8") as handle:
         handle.write(json.dumps(payload, sort_keys=True))
+
+
+def normalize_queue_filenames() -> int:
+    removed = 0
+    for lane in ("lane_A", "lane_B"):
+        lane_dir = QUEUE / lane
+        if not lane_dir.exists():
+            continue
+        for item in list(lane_dir.iterdir()):
+            if not item.is_file():
+                continue
+            data = load_result(item)
+            sim_path = str(data.get("sim_path", ""))
+            if not sim_path:
+                continue
+            normalized = normalize_sim_path(sim_path)
+            canonical = canonicalize_queue_payload(data, lane, normalized)
+            target = queue_item_path(lane, normalized)
+            if item == target:
+                item.write_text(json.dumps(canonical, sort_keys=True))
+                continue
+            if target.exists():
+                existing = canonicalize_queue_payload(load_result(target), lane, normalized)
+                merged = dict(existing)
+                merged.update(canonical)
+                old_ts = existing.get("enqueued_at")
+                new_ts = canonical.get("enqueued_at")
+                if isinstance(old_ts, (int, float)) and isinstance(new_ts, (int, float)):
+                    merged["enqueued_at"] = min(old_ts, new_ts)
+                elif old_ts is not None:
+                    merged["enqueued_at"] = old_ts
+                elif new_ts is not None:
+                    merged["enqueued_at"] = new_ts
+                target.write_text(json.dumps(merged, sort_keys=True))
+                item.unlink(missing_ok=True)
+                removed += 1
+                continue
+            tmp = lane_dir / f".{target.name}.tmp"
+            tmp.write_text(json.dumps(canonical, sort_keys=True))
+            os.rename(tmp, target)
+            item.unlink(missing_ok=True)
+    return removed
+
+
+def remove_claimed_queue_overlaps() -> int:
+    claimed_dir = QUEUE / "claimed"
+    if not claimed_dir.exists():
+        return 0
+    claimed_sims = set()
+    for item in claimed_dir.glob("*.json.*"):
+        data = load_result(item)
+        sim_path = str(data.get("sim_path", ""))
+        if sim_path:
+            claimed_sims.add(normalize_sim_path(sim_path))
+    if not claimed_sims:
+        return 0
+    removed = 0
+    for lane in ("lane_A", "lane_B"):
+        lane_dir = QUEUE / lane
+        if not lane_dir.exists():
+            continue
+        for item in list(lane_dir.glob("*.json")):
+            data = load_result(item)
+            sim_path = str(data.get("sim_path", ""))
+            if sim_path and normalize_sim_path(sim_path) in claimed_sims:
+                item.unlink(missing_ok=True)
+                removed += 1
+    return removed
 
 
 def queue_counts() -> dict[str, int]:
@@ -393,6 +485,8 @@ def _resolve_blocked_entry(bf: pathlib.Path, data: dict, resolution: str) -> Non
 
 
 def dedupe_queue_entries() -> int:
+    removed = normalize_queue_filenames()
+    removed += remove_claimed_queue_overlaps()
     entries: list[tuple[pathlib.Path, pathlib.Path, dict, str]] = []
     for lane in ("lane_A", "lane_B"):
         lane_dir = QUEUE / lane
@@ -406,18 +500,13 @@ def dedupe_queue_entries() -> int:
             if not sim_path:
                 continue
             normalized = normalize_sim_path(sim_path)
-            data["sim_path"] = normalized
-            data["plan_bucket"] = str(data.get("plan_bucket") or plan_bucket(normalized))
-            data["plan_stage"] = str(data.get("plan_stage") or plan_stage(normalized))
-            data["priority"] = canonical_priority(data.get("priority"), str(data["plan_bucket"]))
-            data["lane"] = lane
+            data = canonicalize_queue_payload(data, lane, normalized)
             entries.append((item, lane_dir, data, normalized))
 
     groups: dict[str, list[tuple[pathlib.Path, pathlib.Path, dict]]] = {}
     for item, lane_dir, data, normalized in entries:
         groups.setdefault(normalized, []).append((item, lane_dir, data))
 
-    removed = 0
     for normalized, group in groups.items():
         sim_path = pathlib.Path(normalized)
         preferred_lane = infer_lane(sim_path) if sim_path.exists() else group[0][2].get("lane", "lane_B")

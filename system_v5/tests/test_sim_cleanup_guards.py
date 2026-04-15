@@ -468,9 +468,127 @@ def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
     assert len(remaining) == 1
     payload = json.loads(remaining[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == abs_sim
+    assert remaining[0].name == module.queue_item_path("lane_B", abs_sim).name
     assert payload["plan_bucket"] == "core_ladder"
     assert payload["plan_stage"] == "late_info"
     assert payload["priority"] == "high"
+
+
+def test_adaptive_controller_normalizes_legacy_queue_filename_without_duplicate(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_queue_normalize_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    queue_root = probes / "a2_state" / "queue"
+    lane_b = queue_root / "lane_B"
+    probes.mkdir(parents=True, exist_ok=True)
+    lane_b.mkdir(parents=True, exist_ok=True)
+
+    sim = probes / "sim_shannon_entropy.py"
+    sim.write_text("print('ok')\n", encoding="utf-8")
+    abs_sim = str(sim.resolve())
+    legacy = lane_b / "legacy.json"
+    legacy.write_text(
+        '{"sim_path":"%s","lane":"lane_B","priority":"normal"}\n' % abs_sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    removed = module.dedupe_queue_entries()
+
+    remaining = list(lane_b.glob("*.json"))
+    assert removed == 0
+    assert len(remaining) == 1
+    assert remaining[0].name == module.queue_item_path("lane_B", abs_sim).name
+    payload = json.loads(remaining[0].read_text(encoding="utf-8"))
+    assert payload["sim_path"] == abs_sim
+    assert payload["plan_stage"] == "late_info"
+
+
+def test_adaptive_controller_removes_queue_entries_for_claimed_sims(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_claim_overlap_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    queue_root = probes / "a2_state" / "queue"
+    lane_a = queue_root / "lane_A"
+    claimed = queue_root / "claimed"
+    probes.mkdir(parents=True, exist_ok=True)
+    lane_a.mkdir(parents=True, exist_ok=True)
+    claimed.mkdir(parents=True, exist_ok=True)
+
+    sim = probes / "sim_gerbe_admissibility_dixmier_douady.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    abs_sim = str(sim.resolve())
+    (lane_a / "legacy.json").write_text(
+        '{"sim_path":"%s","lane":"lane_A","priority":"high"}\n' % abs_sim,
+        encoding="utf-8",
+    )
+    (claimed / "claimed.json.123.host.laneA_w1").write_text(
+        '{"sim_path":"%s","lane":"lane_A","claimed_at":1}\n' % abs_sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    removed = module.dedupe_queue_entries()
+
+    assert removed == 1
+    assert list(lane_a.glob("*.json")) == []
+
+
+def test_adaptive_controller_accepts_all_pass_and_summary_all_passed() -> None:
+    module = _load_module(
+        "adaptive_controller_pass_schema_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+
+    assert module.is_passing({"all_pass": True}) is True
+    assert module.is_passing({"all_pass": False}) is False
+    assert module.is_passing({"summary": {"all_passed": True}}) is True
+    assert module.is_passing({"summary": {"all_pass": False}}) is False
+    assert module.is_legacy_schema({"timestamp": "x", "all_pass": True}) is False
+
+
+def test_perpetual_runner_declares_pidfile_singleton() -> None:
+    text = (REPO_ROOT / "scripts" / "perpetual_runner.sh").read_text(encoding="utf-8")
+
+    assert 'PERPETUAL_PIDFILE="/tmp/codex_ratchet_perpetual_runner.pid"' in text
+    assert "acquire_perpetual_pidfile()" in text
+    assert "existing perpetual pidfile is alive; exiting duplicate" in text
+
+
+def test_system_surface_audit_infers_legacy_pass_shapes() -> None:
+    module = _load_module(
+        "system_surface_audit_under_test",
+        REPO_ROOT / "scripts" / "system_surface_audit.py",
+    )
+
+    assert module._pass_state({"all_pass": True}) == "pass"
+    assert module._pass_state({"summary": {"all_passed": True}}) == "pass"
+    assert module._pass_state({
+        "evidence_ledger": [{"status": "PASS"}],
+        "results": {"check_a": True},
+    }) == "pass_inferred"
+    assert module._pass_state({
+        "positive": {"foo": {"passed": True}},
+        "negative": {"bar": {"pass": True}},
+        "boundary": {"baz": {"ok": True}},
+    }) == "pass_inferred"
+    assert module._pass_state({"summary": {"positive": "42/42", "boundary": "5/5"}}) == "pass_inferred"
 
 
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:

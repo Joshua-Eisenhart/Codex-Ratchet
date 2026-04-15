@@ -79,6 +79,47 @@ def queue_duplicate_summary() -> dict[str, dict[str, int]]:
     return summary
 
 
+def queue_noncanonical_summary() -> dict[str, dict[str, int]]:
+    summary: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B"):
+        mismatches = 0
+        lane_dir = QUEUE / lane
+        if lane_dir.exists():
+            for item in lane_dir.glob("*.json"):
+                data = adaptive_controller.load_result(item)
+                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                if not sim_path:
+                    continue
+                target = adaptive_controller.queue_item_path(lane, sim_path)
+                if item.name != target.name:
+                    mismatches += 1
+        summary[lane] = {"noncanonical_entries": mismatches}
+    return summary
+
+
+def queue_claimed_overlap_summary() -> dict[str, int]:
+    claimed_dir = QUEUE / "claimed"
+    claimed_sims = set()
+    if claimed_dir.exists():
+        for item in claimed_dir.glob("*.json.*"):
+            data = adaptive_controller.load_result(item)
+            sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+            if sim_path:
+                claimed_sims.add(sim_path)
+    summary: dict[str, int] = {}
+    for lane in ("lane_A", "lane_B"):
+        overlaps = 0
+        lane_dir = QUEUE / lane
+        if lane_dir.exists():
+            for item in lane_dir.glob("*.json"):
+                data = adaptive_controller.load_result(item)
+                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                if sim_path and sim_path in claimed_sims:
+                    overlaps += 1
+        summary[lane] = overlaps
+    return summary
+
+
 def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
     lane_dir = QUEUE / lane
     if not lane_dir.exists():
@@ -128,6 +169,8 @@ def main() -> int:
             "lane_B": next_queue_candidates("lane_B"),
         },
         "queue_duplicates": queue_duplicate_summary(),
+        "queue_noncanonical_names": queue_noncanonical_summary(),
+        "queue_claimed_overlaps": queue_claimed_overlap_summary(),
         "resolved_blocked": snapshot["control_plane"]["resolved_blocked"],
         "top_never_run_examples": [path.name for path in never_run[:12]],
         "top_never_run_families": top_families(never_run),

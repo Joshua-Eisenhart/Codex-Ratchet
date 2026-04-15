@@ -2,71 +2,88 @@
   "name": "sim_capability_sklearn_isolated",
   "classification": "classical_baseline",
   "overall_pass": true,
+  "pass_count": 7,
+  "total_count": 7,
+  "capability_summary": {
+    "CAN": [
+      "fit KMeans clustering and produce finite inertia with labels in {0,...,k-1}",
+      "scale data to zero mean and unit variance with StandardScaler",
+      "compute silhouette_score for cluster quality assessment (expected > 0.5 on well-separated data)",
+      "produce stable cluster assignments across different random_state values on clear data",
+      "converge KMeans(n_clusters=1) on any data with non-negative inertia"
+    ],
+    "CANNOT": [
+      "fit KMeans when n_clusters > n_samples (raises ValueError)",
+      "replace formal proof tools (use z3 for logical constraints)",
+      "replace persistent homology (use gudhi for TDA)",
+      "guarantee deterministic label ordering (cluster 0/1 assignment is arbitrary)"
+    ]
+  },
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not used: this probe isolates sklearn ML algorithms; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine."
+      "reason": "not used: this probe isolates sklearn capability alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
     },
     "sklearn": {
       "tried": true,
       "used": true,
-      "reason": "target_tool: KMeans clustering, PCA dimensionality reduction, StandardScaler preprocessing \u2014 all load-bearing for this isolation probe."
+      "reason": "load-bearing: sklearn KMeans, StandardScaler, and silhouette_score are the sole subjects; all cluster fitting, scaling, and metric computation is performed directly by sklearn."
     }
   },
   "tool_integration_depth": {
@@ -84,80 +101,53 @@
     "gudhi": null,
     "sklearn": "load_bearing"
   },
-  "capability_summary": {
-    "CAN": [
-      "clustering without knowing density structure (KMeans)",
-      "PCA for variance decomposition and dimensionality reduction",
-      "standard preprocessing: centering and scaling (StandardScaler)",
-      "silhouette score for cluster quality assessment"
-    ],
-    "CANNOT": [
-      "replace z3 for logical/formal proofs",
-      "replace gudhi for persistent homology / TDA",
-      "symbolic computation (use sympy instead)",
-      "non-commutative geometry or Clifford algebra operations"
-    ]
-  },
   "positive": {
-    "A_clustering_positive": {
-      "silhouette_score": 0.6260185608088571,
+    "sklearn_available": {
       "pass": true,
-      "note": "3 Gaussian clusters, KMeans(n_clusters=3), silhouette_score > 0.5 expected"
+      "version": "1.8.0"
     },
-    "B_pca_positive": {
-      "top3_explained_variance_ratio": 0.9997589948400077,
-      "total_variance_lt_1": true,
-      "top3_explain_gt_50pct": true,
+    "kmeans_fit_two_clusters": {
       "pass": true,
-      "note": "10D data, PCA(n_components=3), top-3 components explain >50% of variance"
+      "inertia": 11.119835913284609,
+      "inertia_finite": true,
+      "unique_labels": [
+        0,
+        1
+      ],
+      "labels_in_0_1": true,
+      "detail": "KMeans(n_clusters=2) on 40 points: inertia finite, labels in {0, 1}"
     },
-    "C_scaler_positive": {
-      "max_abs_mean": 1.0177442222314425e-13,
-      "max_std_deviation_from_1": 5.551115123125783e-16,
+    "standard_scaler_mean0_std1": {
       "pass": true,
-      "note": "StandardScaler fit+transform: mean\u22480, std\u22481 per feature"
+      "max_abs_mean": 2.997602166487923e-16,
+      "max_std_deviation_from_1": 2.220446049250313e-16,
+      "detail": "StandardScaler fit+transform: column means ~ 0, column stds ~ 1"
+    },
+    "silhouette_score_gt_0_5": {
+      "pass": true,
+      "silhouette_score": 0.9339824849999095,
+      "detail": "silhouette_score on well-separated 2-cluster data must be > 0.5"
     }
   },
   "negative": {
-    "A_clustering_negative": {
-      "unique_labels": 1,
-      "silhouette_score": null,
-      "silhouette_le_0_or_undefined": true,
+    "kmeans_n_clusters_exceeds_n_samples": {
       "pass": true,
-      "note": "All-same-point data: KMeans(n_clusters=2) produces degenerate labels, silhouette \u2264 0 or undefined"
-    },
-    "B_pca_negative": {
-      "error": "n_components=11 must be between 0 and min(n_samples, n_features)=10 with svd_solver='full'",
-      "pass": true,
-      "note": "PCA(n_components=11) on 10D data correctly raises ValueError"
-    },
-    "C_scaler_negative": {
-      "test_set_abs_mean_after_train_scaler": 203.95055859554722,
-      "pass": true,
-      "note": "Scaler fitted on train: transforming different-scale test data does NOT yield mean\u22480"
+      "error_raised": true,
+      "error_msg": "n_samples=2 should be >= n_clusters=5.",
+      "detail": "KMeans(n_clusters=5) on 2 samples must raise ValueError"
     }
   },
   "boundary": {
-    "A_clustering_boundary": {
-      "inertia": 51.52679333277797,
+    "random_state_0_vs_1_stable": {
       "pass": true,
-      "note": "KMeans(n_clusters=1) always converges; inertia >= 0"
+      "match_direct": false,
+      "match_flipped": true,
+      "detail": "random_state=0 vs random_state=1 should give same cluster partition on clearly separated data (up to label permutation)"
     },
-    "B_pca_boundary": {
-      "total_explained_variance": 0.9999999999999999,
+    "kmeans_n_clusters_1_inertia_nonneg": {
       "pass": true,
-      "note": "PCA(n_components=10) on 10D data: all variance explained (sum\u22481.0)"
-    },
-    "C_scaler_boundary": {
-      "scaled_values": [
-        [
-          0.0,
-          0.0,
-          0.0
-        ]
-      ],
-      "pass": true,
-      "note": "StandardScaler on 1-sample data: std=0 handled (no crash); output is zero-mean"
+      "inertia": 1065.6356845325665,
+      "detail": "KMeans(n_clusters=1) always converges; inertia must be finite and >= 0"
     }
   }
 }

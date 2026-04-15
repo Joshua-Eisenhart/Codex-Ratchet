@@ -4,6 +4,7 @@
 # No API calls, no tokens.
 set -u
 ROOT="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+PY="/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
 cd "$ROOT"
 CYCLE_SEC=${CYCLE_SEC:-300}   # 5 min
 IDLE_CYCLES=${IDLE_CYCLES:-4} # exit after 20 min idle
@@ -16,10 +17,12 @@ idle=0
 while :; do
   [ "$(date +%s)" -ge "$DEADLINE" ] && echo "[$(date)] deadline reached, exit" >> "$LOG" && exit 0
 
-  # enqueue any sim (excluding " 2.py" copies) missing a results file
+  # enqueue any sim (excluding " 2.py" copies and blacklisted meta-sims) missing a results file
+  BLACKLIST_PATTERN="sim_timing_benchmark.py|autoresearch_sim_harness.py|exploratory_process_cycle_stage_matrix_sim.py|stage_matrix_neg_lib.py"
   enq=0
   for sim in system_v4/probes/sim_*.py; do
     [[ "$sim" == *" 2.py" ]] && continue
+    echo "$(basename "$sim")" | grep -qE "^($BLACKLIST_PATTERN)$" && continue
     base=$(basename "$sim" .py)
     rj="system_v4/probes/a2_state/sim_results/${base}_results.json"
     [ -f "$rj" ] && continue
@@ -30,7 +33,7 @@ while :; do
     # classify: canonical sims (check for classification = "canonical") go lane_A, rest lane_B
     lane="lane_B"
     grep -q '^classification\s*=\s*"canonical"' "$sim" 2>/dev/null && lane="lane_A"
-    ID=$(python3 -c "import secrets; print(secrets.token_hex(8))")
+    ID=$("$PY" -c "import secrets; print(secrets.token_hex(8))")
     printf '{"enqueued_at": %s, "lane": "%s", "sim_path": "%s"}\n' "$(date +%s)" "$lane" "$sim" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
     enq=$((enq+1))
   done
@@ -46,16 +49,21 @@ while :; do
     mtime=$(stat -f %m "$cf" 2>/dev/null || echo "$now")
     age=$(( now - mtime ))
     [ "$age" -lt 300 ] && continue
-    pid=$(basename "$cf" | awk -F. '{print $3}')
-    kill -0 "$pid" 2>/dev/null && continue
-    # pid dead, claim stale: move back to lane
-    lane=$(python3 -c "import json; print(json.load(open('$cf')).get('lane','lane_B'))" 2>/dev/null || echo lane_B)
+    # Check liveness by sim_path, not the ephemeral claim subprocess PID.
+    # parts[3] in the filename is the queue_claim.py subprocess PID — always dead.
+    sim_path=$("$PY" -c "import json; print(json.load(open('$cf')).get('sim_path',''))" 2>/dev/null || echo "")
+    if [ -n "$sim_path" ] && pgrep -f "$sim_path" >/dev/null 2>&1; then
+      continue  # sim still running — do not release
+    fi
+    # sim not running and claim is stale: release back to lane
+    lane=$("$PY" -c "import json; print(json.load(open('$cf')).get('lane','lane_B'))" 2>/dev/null || echo lane_B)
     base=$(basename "$cf" | cut -d. -f1)
+    echo "[$(date)] releasing stale claim: $(basename $cf) -> $lane" >> "$LOG"
     mv "$cf" "system_v4/probes/a2_state/queue/${lane}/${base}.json" 2>/dev/null
   done
 
   # auto-retag: sims declared classical_baseline but depth marks a nonclassical tool load_bearing → canonical candidate (flag only, don't silently promote)
-  python3 -c "
+  "$PY" -c "
 import pathlib, re, json
 flagged = []
 for p in pathlib.Path('system_v4/probes').glob('sim_*.py'):
@@ -79,13 +87,13 @@ print(f'retag candidates flagged: {len(flagged)}')
   # run audits every cycle (free — local only)
   {
     echo "=== AUDIT [$(date)] ==="
-    python3 scripts/queue_claim.py 2>/dev/null
+    "$PY" scripts/queue_claim.py 2>/dev/null
     echo "copy_candidates=$copy_count"
-    python3 scripts/check_classification.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"classification: ok={d.get('ok',0)} missing={len(d.get('missing',[]))} invalid={len(d.get('invalid',[]))} parse_error={len(d.get('parse_errors',[]))} non_literal={len(d.get('non_literal',[]))}\")" 2>/dev/null
-    python3 scripts/check_witnesses.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"witnesses: checked={d.get('checked',0)} violations={d.get('violation_count',0)}\")" 2>/dev/null
-    python3 scripts/lint_sim_contract.py 2>/dev/null | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"contract: checked={d.get('checked',0)} sims_with_violations={d.get('sims_with_violations',0)} total={d.get('violation_total',0)} c6={d.get('violations_by_type',{}).get('C6_classical_has_load_bearing',0)}\")" 2>/dev/null
+    "$PY" scripts/check_classification.py 2>/dev/null | "$PY" -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"classification: ok={d.get('ok',0)} missing={len(d.get('missing',[]))} invalid={len(d.get('invalid',[]))} parse_error={len(d.get('parse_errors',[]))} non_literal={len(d.get('non_literal',[]))}\")" 2>/dev/null
+    "$PY" scripts/check_witnesses.py 2>/dev/null | "$PY" -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"witnesses: checked={d.get('checked',0)} violations={d.get('violation_count',0)}\")" 2>/dev/null
+    "$PY" scripts/lint_sim_contract.py 2>/dev/null | "$PY" -c "import json,sys; d=json.loads(sys.stdin.read()); print(f\"contract: checked={d.get('checked',0)} sims_with_violations={d.get('sims_with_violations',0)} total={d.get('violation_total',0)} c6={d.get('violations_by_type',{}).get('C6_classical_has_load_bearing',0)}\")" 2>/dev/null
     # blocked audit: reasons histogram
-    find system_v4/probes/a2_state/queue/blocked -type f -name '*.json*' 2>/dev/null | head -500 | xargs -I{} python3 -c "import json,sys; d=json.load(open('{}'));print(d.get('blocked_reason','?'))" 2>/dev/null | sort | uniq -c | sort -rn | head -5
+    find system_v4/probes/a2_state/queue/blocked -type f -name '*.json*' 2>/dev/null | head -500 | xargs -I{} "$PY" -c "import json,sys; d=json.load(open('{}'));print(d.get('blocked_reason','?'))" 2>/dev/null | sort | uniq -c | sort -rn | head -5
     echo "done_recent_5min=$(find system_v4/probes/a2_state/queue/done -type f -mmin -5 2>/dev/null | wc -l)"
   } >> "$LOG" 2>&1
 

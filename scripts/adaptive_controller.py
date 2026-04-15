@@ -31,10 +31,18 @@ PROBES = ROOT / "system_v4/probes"
 RESULTS = PROBES / "a2_state/sim_results"
 QUEUE = PROBES / "a2_state/queue"
 LOGS = ROOT / "overnight_logs"
+SKILL_LOG = ROOT / "system_v4" / "a1_state" / "skill_invocation_log.jsonl"
 PY = "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3"
 CYCLE_SEC = 300
 STUB_PATTERNS = {"not relevant", "n/a", "na", "tbd", "todo", "stub",
                  "schema compliance", "boilerplate", "placeholder"}
+# Meta-benchmarks/harnesses that must never enter the queue as regular sims.
+QUEUE_BLACKLIST = {
+    "sim_timing_benchmark",
+    "autoresearch_sim_harness",
+    "exploratory_process_cycle_stage_matrix_sim",
+    "stage_matrix_neg_lib",
+}
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -102,6 +110,81 @@ def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     }
     (QUEUE / lane / f"{uid}.json").write_text(json.dumps(payload))
 
+
+def queue_counts() -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for lane in ("lane_A", "lane_B", "claimed", "blocked", "done"):
+        d = QUEUE / lane
+        if not d.exists():
+            counts[lane] = 0
+            continue
+        counts[lane] = sum(1 for child in d.iterdir() if child.is_file())
+    return counts
+
+
+def recent_dispatch(limit: int = 8) -> list[dict]:
+    if limit <= 0 or not SKILL_LOG.exists():
+        return []
+    try:
+        lines = SKILL_LOG.read_text(encoding="utf-8").splitlines()
+    except Exception:
+        return []
+
+    recent: list[dict] = []
+    for line in reversed(lines):
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            item = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        recent.append({
+            "timestamp": item.get("timestamp"),
+            "batch_id": item.get("batch_id"),
+            "phase": item.get("phase"),
+            "layer_id": item.get("layer_id"),
+            "graph_family": item.get("graph_family"),
+            "selected_skill_id": item.get("selected_skill_id"),
+            "execution_runtime": item.get("execution_runtime"),
+        })
+        if len(recent) >= limit:
+            break
+    recent.reverse()
+    return recent
+
+
+def build_plane_snapshot(state: dict | None = None, integration: dict | None = None) -> dict:
+    triage = {
+        "failing": len((state or {}).get("failing", [])),
+        "schema_debt": len((state or {}).get("schema_debt", [])),
+        "never_run": len((state or {}).get("never_run", [])),
+        "stale": len((state or {}).get("stale", [])),
+        "passing": len((state or {}).get("passing", [])),
+    }
+    top_examples = {
+        "failing": (state or {}).get("failing", [])[:3],
+        "schema_debt": (state or {}).get("schema_debt", [])[:3],
+        "never_run": (state or {}).get("never_run", [])[:3],
+    }
+    return {
+        "ts": (state or {}).get("ts", datetime.now().isoformat()),
+        "control_plane": {
+            "queue": queue_counts(),
+            "released_claims": (state or {}).get("released_claims", 0),
+            "recent_dispatch": recent_dispatch(),
+        },
+        "state_plane": {
+            "triage": triage,
+            "integration": {
+                "canonical_passing": (integration or {}).get("canonical_passing", 0),
+                "total_passing": (integration or {}).get("total_passing", 0),
+                "rosetta_candidate_clusters": (integration or {}).get("rosetta_candidate_clusters", 0),
+            },
+            "top_examples": top_examples,
+        },
+    }
+
 def infer_lane(sim_path: pathlib.Path) -> str:
     try:
         text = sim_path.read_text()
@@ -123,19 +206,29 @@ def release_dead_claims():
         age = now - cf.stat().st_mtime
         if age < 300:
             continue
-        parts = cf.name.split(".")
-        if len(parts) >= 3:
-            try:
-                pid = int(parts[2])
-                os.kill(pid, 0)
-                continue  # still alive
-            except (ValueError, ProcessLookupError, PermissionError):
-                pass
         r = load_result(cf)
+        # ── liveness check: is the sim process still running? ──────────────
+        # The PID in parts[2] is the ephemeral queue_claim.py subprocess PID
+        # (exits immediately after rename) — never use that for liveness.
+        # Instead, check whether any Python process is running the sim_path.
+        sim_path = r.get("sim_path", "")
+        if sim_path:
+            try:
+                chk = subprocess.run(
+                    ["pgrep", "-f", sim_path],
+                    capture_output=True, timeout=5
+                )
+                if chk.returncode == 0:
+                    continue  # sim still running — do not release
+            except Exception:
+                pass  # pgrep failure → fall through to release
+        # Sim not running and claim is stale — release back to lane
         lane = r.get("lane", "lane_B")
-        (QUEUE / lane / (cf.stem.split(".")[0] + ".json")).write_text(cf.read_text())
+        dest = QUEUE / lane / (cf.stem.split(".")[0] + ".json")
+        dest.write_text(cf.read_text())
         cf.unlink(missing_ok=True)
         released += 1
+        print(f"[release_dead_claims] released stale claim: {cf.name} -> {lane}")
     return released
 
 # ── schema repair ─────────────────────────────────────────────────────────────
@@ -162,8 +255,8 @@ def auto_repair_classification(sim_path: pathlib.Path) -> bool:
 
 # ── integration pass ──────────────────────────────────────────────────────────
 
-def run_integration_pass(state: dict):
-    """After each triage cycle, update corpus stats + flag Rosetta candidates."""
+def build_integration_summary(state: dict) -> dict:
+    """Pure integration summary over current passing state."""
     passing = state.get("passing", [])
     canonical = [p for p in passing if load_result(
         RESULTS / (pathlib.Path(p).stem + "_results.json")
@@ -185,13 +278,18 @@ def run_integration_pass(state: dict):
     # Rosetta candidates: same load_bearing tool-signature, >=2 sims
     rosetta_candidates = {str(k): v for k, v in families.items() if len(v) >= 2}
 
-    integration_out = {
+    return {
         "ts": datetime.now().isoformat(),
         "total_passing": len(passing),
         "canonical_passing": len(canonical),
         "rosetta_candidate_clusters": len(rosetta_candidates),
         "top_clusters": dict(list(rosetta_candidates.items())[:5]),
     }
+
+
+def run_integration_pass(state: dict):
+    """After each triage cycle, update corpus stats + flag Rosetta candidates."""
+    integration_out = build_integration_summary(state)
     out_path = LOGS / f"integration_pass_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     out_path.write_text(json.dumps(integration_out, indent=2))
     return integration_out
@@ -232,7 +330,8 @@ def triage_cycle(dry: bool = False) -> dict:
 
     state["released_claims"] = release_dead_claims()
 
-    all_sims = [p for p in PROBES.glob("sim_*.py") if " 2" not in p.name]
+    all_sims = [p for p in PROBES.glob("sim_*.py")
+                if " 2" not in p.name and p.stem not in QUEUE_BLACKLIST]
 
     for sim in sorted(all_sims):
         stem = sim.stem
@@ -305,6 +404,12 @@ def health_report(state: dict, integration: dict) -> str:
     ]
     return "\n".join(lines)
 
+
+def write_plane_snapshot(state: dict | None, integration: dict | None, out_path: pathlib.Path) -> dict:
+    snapshot = build_plane_snapshot(state, integration)
+    out_path.write_text(json.dumps(snapshot, indent=2))
+    return snapshot
+
 # ── entry point ───────────────────────────────────────────────────────────────
 
 def main():
@@ -326,7 +431,9 @@ def main():
 
         # Write state JSON
         state_out = LOGS / f"controller_state_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        state_out.write_text(json.dumps({**state, "integration": integration}, indent=2))
+        plane_out = LOGS / f"controller_plane_snapshot_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        plane_snapshot = write_plane_snapshot(state, integration, plane_out)
+        state_out.write_text(json.dumps({**state, "integration": integration, "planes": plane_snapshot}, indent=2))
 
         with open(log_path, "a") as f:
             f.write(report + "\n\n")

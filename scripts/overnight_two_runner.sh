@@ -18,6 +18,10 @@ MINUTES=0
 K1=2
 K2=4
 DRY=0
+SIM_TIMEOUT=900  # seconds; kill any single sim that runs longer than this
+
+# Sims that must never enter the overnight queue (meta-benchmarks, harnesses).
+QUEUE_BLACKLIST="sim_timing_benchmark.py|autoresearch_sim_harness.py|exploratory_process_cycle_stage_matrix_sim.py|stage_matrix_neg_lib.py"
 
 usage() { echo "usage: $0 --minutes N [--lane-a-parallel K1] [--lane-b-parallel K2] [--dry]"; exit 2; }
 
@@ -80,6 +84,14 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
   [ -z "$claim_path" ] && return 1
   [ -z "$sim" ] && return 1
 
+  # Block blacklisted meta-sims (benchmarks/harnesses) that must never run as queue items.
+  sim_base=$(basename "$sim")
+  if echo "$sim_base" | grep -qE "^($QUEUE_BLACKLIST)$"; then
+    "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "blacklisted_meta_sim" >/dev/null 2>&1 || true
+    emit gate_denied "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"reason\":\"blacklisted\""
+    return 0
+  fi
+
   if [ "$gated" -eq 1 ]; then
     if ! "$PY" "$GATE" --sim "$sim" >/dev/null 2>&1; then
       "$PY" "$QUEUE_CLAIM" block --claim-path "$claim_path" --reason "gate_denied" >/dev/null 2>&1 || true
@@ -90,11 +102,18 @@ worker_once() { # $1=lane $2=queue_dir $3=gated(0/1) $4=worker_id
 
   artifact="$LOG_DIR/artifact_${wid}_$(basename "$sim" .py)_$(date +%s).log"
   MPLCONFIGDIR=/tmp/codex-mpl NUMBA_CACHE_DIR=/tmp/codex-numba \
-    "$PY" "$sim" >"$artifact" 2>&1
+    timeout "$SIM_TIMEOUT" "$PY" "$sim" >"$artifact" 2>&1
   exit_code=$?
+  if [ "$exit_code" -eq 124 ]; then
+    echo "[$(date -Iseconds)] TIMEOUT after ${SIM_TIMEOUT}s: $sim" >> "$artifact"
+    emit timeout "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"timeout_sec\":$SIM_TIMEOUT"
+  fi
   sha=$(shasum -a 256 "$artifact" | awk '{print $1}')
-  "$PY" "$QUEUE_CLAIM" complete --claim-path "$claim_path" --exit "$exit_code" --artifact "$artifact" >/dev/null 2>&1 || true
-  emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
+  if ! "$PY" "$QUEUE_CLAIM" complete --claim-path "$claim_path" --exit "$exit_code" --artifact "$artifact" 2>/dev/null; then
+    emit complete_error "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"msg\":\"complete_failed\""
+  else
+    emit claimed "\"lane\":\"$lane\",\"worker\":\"$wid\",\"sim\":\"$sim\",\"exit\":$exit_code,\"artifact\":\"$artifact\",\"sha256\":\"$sha\""
+  fi
   return 0
 }
 

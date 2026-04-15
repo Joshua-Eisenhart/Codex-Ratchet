@@ -1,0 +1,230 @@
+{
+  "name": "sim_axis7_spin_chirality_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 21,
+  "n_total": 21,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute det(R) for SO(3) and O(3) matrices; autograd confirms det is preserved under composition; distinguish proper (det=+1) from improper (det=-1) transformations"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 chirality bridge is algebraic/matrix level; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: det=+1 (proper rotation) AND chirality=-1 (flipped) \u2014 structural impossibility; SO(3) cannot invert chirality by definition"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification that pseudoscalar I=e123 commutes with all basis blades in Cl(3,0); confirm I^2=-1 and chirality eigenvalues are exactly +1/-1"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "compute pseudoscalar I=e123 in Cl(3,0); verify I commutes with all grade elements; chirality eigenvalue +1 for e_R (even grade) and -1 for e_L (odd grade); rotor double-cover"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SpecialOrthogonal(n=3) samples verify det=+1 throughout; confirm chirality-preserving property via determinant invariance under SO(3) composition"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 chirality bridge is Clifford algebraic; e3nn equivariant networks not required at this classical baseline level"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "G-tower DAG annotated with chirality-preserving status: SO(3) preserves chirality, O(3) does not; edge from O(3) to SO(3) marks det constraint"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 chirality bridge is matrix algebraic; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 chirality bridge is algebraic; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 chirality bridge is algebraic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_so3_det_plus_one": {
+      "pass": true,
+      "description": "SO(3) rotations all have det=+1 \u2014 chirality (+1) is preserved under proper rotations",
+      "det_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "P2_pytorch_reflection_det_minus_one": {
+      "pass": true,
+      "description": "Reflection diag(-1,1,1) has det=-1 \u2014 improper transformation inverts chirality to -1",
+      "det_reflection": -1.0
+    },
+    "P3_pytorch_so3_composition_preserves_det": {
+      "pass": true,
+      "description": "SO(3) composition R1@R2 preserves det=+1 \u2014 chirality is stable under arbitrary rotations",
+      "composed_dets": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "P4_clifford_pseudoscalar_commutes_all": {
+      "pass": true,
+      "description": "Clifford Cl(3,0): pseudoscalar I=e123 commutes with all basis blades \u2014 [I,blade]=0 for all grades",
+      "commutators": {
+        "e1": 0.0,
+        "e2": 0.0,
+        "e3": 0.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e23": 0.0
+      }
+    },
+    "P5_clifford_pseudoscalar_squares_minus_one": {
+      "pass": true,
+      "description": "Clifford Cl(3,0): I^2 = -1 \u2014 pseudoscalar defines a complex structure on the algebra",
+      "I_sq_scalar": -1.0,
+      "I_sq_other_components": 0.0
+    },
+    "P6_clifford_chirality_eigenvalues": {
+      "pass": true,
+      "description": "Clifford: gradeInvol(e12)=+e12 (even, right-handed); gradeInvol(e1)=-e1 (odd, left-handed)",
+      "alpha_e12_coeff": 1.0,
+      "alpha_e1_coeff": -1.0
+    },
+    "P7_sympy_rotation_det_equals_one": {
+      "pass": true,
+      "description": "Sympy: rotation matrix Rz(x) has det=1 symbolically \u2014 SO(3) always preserves chirality"
+    },
+    "P8_geomstats_so3_all_det_plus_one": {
+      "pass": true,
+      "description": "Geomstats SO(3) random samples all have det=+1 \u2014 chirality preserved throughout SO(3)",
+      "det_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "P9_rustworkx_so3_preserves_chirality": {
+      "pass": true,
+      "description": "G-tower DAG: SO(3) node preserves chirality; O(3) node does not \u2014 det constraint gates chirality",
+      "so3_chirality": "chirality_preserved",
+      "o3_chirality": "chirality_not_preserved"
+    }
+  },
+  "negative": {
+    "N1_pytorch_reflection_after_rotation_flips_chirality": {
+      "pass": true,
+      "description": "Negative: Refl @ SO(3) gives det=-1 \u2014 composition with reflection always flips chirality",
+      "det_improper": -1.0
+    },
+    "N2_z3_proper_rotation_cannot_flip_chirality": {
+      "pass": true,
+      "description": "Z3 UNSAT: det=+1 (proper rotation) AND chirality=-1 (flipped) \u2014 SO(3) cannot invert chirality",
+      "z3_result": "unsat"
+    },
+    "N3_clifford_rotor_preserves_grade": {
+      "pass": true,
+      "description": "Negative: Clifford rotor (even) sandwich R*e1*R_rev stays grade-1 \u2014 no chirality flip from proper rotation",
+      "grade1_content": 1.3660254,
+      "other_content": 0.0
+    },
+    "N4_sympy_reflection_det_minus_one": {
+      "pass": true,
+      "description": "Sympy: diag(-1,1,1) has det=-1 \u2014 reflections are definitionally chirality-inverting",
+      "det": -1
+    },
+    "N5_geomstats_so3_never_negative_det": {
+      "pass": true,
+      "description": "Negative: Geomstats SO(3) samples never yield det<0 \u2014 reflections are excluded from SO(3)",
+      "any_negative_det": false
+    },
+    "N6_rustworkx_so3_connected_to_right_handed_only": {
+      "pass": true,
+      "description": "Negative: SO(3) node connected only to det=+1 component \u2014 no path to det=-1 (left-handed) component",
+      "so3_neighbors": [
+        "det_plus1"
+      ]
+    }
+  },
+  "boundary": {
+    "B1_pytorch_rotation_pi_still_det_plus_one": {
+      "pass": true,
+      "description": "Boundary: rotation by pi has det=+1 \u2014 even at extreme angle, chirality is preserved",
+      "det": 1.0
+    },
+    "B2_clifford_double_cover_2pi_identity": {
+      "pass": true,
+      "description": "Boundary: Clifford rotor at theta=2pi gives R=-1, but R*e1*R_rev=e1 \u2014 double cover; chirality unchanged",
+      "e1_coefficient": 1.0
+    },
+    "B3_sympy_det_at_pi_over_2_equals_one": {
+      "pass": true,
+      "description": "Boundary sympy: det(Rz(pi/2))=1 exactly \u2014 chirality unchanged at any specific angle",
+      "det_at_pi2": "1"
+    },
+    "B4_pytorch_double_reflection_is_rotation": {
+      "pass": true,
+      "description": "Boundary: two reflections composed give det=+1 \u2014 double parity flip restores chirality",
+      "det_double_reflection": 1.0
+    },
+    "B5_z3_proper_rotation_consistent_chirality": {
+      "pass": true,
+      "description": "Boundary z3 SAT: det=+1 AND chirality=+1 is consistent \u2014 proper rotation preserving chirality has a model",
+      "z3_result": "sat"
+    },
+    "B6_rustworkx_path_to_so3_passes_through_o3": {
+      "pass": true,
+      "description": "Boundary: shortest path GL\u2192SO(3) always passes through O(3) \u2014 orthogonality is prior to chirality-fixing",
+      "paths": [
+        [
+          "GL(3)",
+          "O(3)",
+          "SO(3)"
+        ]
+      ]
+    }
+  }
+}

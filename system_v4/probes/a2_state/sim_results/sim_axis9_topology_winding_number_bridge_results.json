@@ -1,0 +1,262 @@
+{
+  "name": "sim_axis9_topology_winding_number_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 31,
+  "n_total": 31,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute winding number from angle sequence via cumulative sum; autograd confirms dW/d(continuous_deformation)=0 (topological invariance under smooth perturbation)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 winding number bridge is loop/angle based; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: winding_number changes continuously between integers 1 and 0 (must be integer-valued; no real value strictly between 0 and 1 can arise from continuous loop deformation)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic winding number integral (1/2pi)*\u222e d\u03b8 for parametric circle and figure-eight; confirm integer output and verify homotopy class invariance"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "rotor R=exp(\u03b8/2 e12) traverses S\u00b9; R^2=-1 at \u03b8=2\u03c0 confirms double-cover; winding number encodes how many times rotor circuit wraps the algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 winding number bridge uses angular arithmetic; geomstats Riemannian tools not required at this level"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 winding number bridge is topological/algebraic; equivariant networks not required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "homotopy class graph \u2014 loops in same class (same winding number) are connected nodes; loops in different classes are in disconnected components; graph structure encodes \u03c0\u2081(S\u00b9)=Z"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 winding number bridge is path-based; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 winding number bridge uses fundamental group; cell complex homology not required at this level"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology H1 of a circle (winding loops) detects the loop that generates \u03c0\u2081(S\u00b9); confirms topological distinction between winding classes via Betti number"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "P1_pytorch_winding_number_circle_is_1": {
+      "pass": true,
+      "description": "Pytorch: standard circle loop (0 to 2pi) has winding number = 1 (one full wrap)",
+      "winding_number": 1.0
+    },
+    "P2_pytorch_winding_number_double_loop_is_2": {
+      "pass": true,
+      "description": "Pytorch: double-wound circle loop (0 to 4pi) has winding number = 2",
+      "winding_number": 2.0
+    },
+    "P3_pytorch_winding_number_contractible_is_0": {
+      "pass": true,
+      "description": "Pytorch: constant (contractible) loop has winding number = 0",
+      "winding_number": 0.0
+    },
+    "P4_pytorch_continuous_deformation_preserves_winding": {
+      "pass": true,
+      "description": "Pytorch: small smooth perturbation of circle loop leaves winding number = 1 (topological invariance)",
+      "winding_perturbed": 1.0
+    },
+    "P5_sympy_winding_integral_unit_circle": {
+      "pass": true,
+      "description": "Sympy: (1/2pi)*\u222b\u2080^{2pi} d\u03b8 = 1 for unit circle \u2014 winding number is integer-valued by construction",
+      "W_symbolic": "1"
+    },
+    "P6_clifford_rotor_double_cover": {
+      "pass": true,
+      "description": "Clifford: R(2pi)=-1 and R(4pi)=+1 \u2014 rotor encodes Z\u2082 double-cover structure of SU(2)\u2192SO(3)",
+      "R_2pi_scalar": -1.0,
+      "R_4pi_scalar": 1.0
+    },
+    "P7_rustworkx_homotopy_class_graph_3_components": {
+      "pass": true,
+      "description": "Rustworkx: homotopy class graph has 3 connected components (W=0, W=1, W=2) \u2014 loops in different classes are disconnected",
+      "num_components": 3
+    },
+    "P8_gudhi_circle_betti_b1_equals_1": {
+      "pass": true,
+      "description": "Gudhi: Rips complex on circle samples has persistent b0=1, b1=1 \u2014 one topological loop, confirms \u03c0\u2081(S\u00b9)\u22600",
+      "persistent_betti_numbers_0_15_to_0_5": [
+        1,
+        1
+      ]
+    },
+    "P9_pytorch_reversed_loop_winding_minus_1": {
+      "pass": true,
+      "description": "Pytorch: reversed circle loop (clockwise) has winding number = -1 (\u03c0\u2081(S\u00b9)=Z includes negatives)",
+      "winding_number": -1.0
+    }
+  },
+  "negative": {
+    "N1_z3_winding_number_not_between_integers": {
+      "pass": true,
+      "description": "Z3 UNSAT: winding number strictly between 0 and 1 is impossible \u2014 W must be integer-valued for closed loops",
+      "z3_result": "unsat"
+    },
+    "N2_pytorch_unclosed_path_noninteger_winding": {
+      "pass": true,
+      "description": "Negative: unclosed path (3/4 circle) yields non-integer winding proxy ~ 0.75 \u2014 integrality requires closure",
+      "winding_proxy": 0.75
+    },
+    "N3_sympy_reparametrization_invariance": {
+      "pass": true,
+      "description": "Negative: winding number is invariant under reparametrization \u2014 different speed, same topological class",
+      "W_reparam": "1"
+    },
+    "N4_clifford_rotor_0_neq_rotor_2pi": {
+      "pass": true,
+      "description": "Negative: Clifford R(0)=+1 \u2260 R(2pi)=-1 despite both corresponding to identity in SO(3) \u2014 double cover is real",
+      "R_0_scalar": 1.0,
+      "R_2pi_scalar": -1.0
+    },
+    "N5_rustworkx_different_winding_not_connected": {
+      "pass": true,
+      "description": "Negative: loops with W=0 and W=1 have no edge in homotopy graph \u2014 topologically distinct, disconnected",
+      "num_components": 2
+    },
+    "N6_gudhi_two_circles_b0_equals_2": {
+      "pass": true,
+      "description": "Negative: two separate circles have persistent b0=2 (disconnected) \u2014 distinct topological classes",
+      "persistent_betti_0_2_to_0_4": [
+        2,
+        1
+      ]
+    }
+  },
+  "boundary": {
+    "B1_pytorch_winding_number_3": {
+      "pass": true,
+      "description": "Boundary: loop winding 3 times gives winding number = 3",
+      "computed": 3.0,
+      "expected": 3
+    },
+    "B1_pytorch_winding_number_5": {
+      "pass": true,
+      "description": "Boundary: loop winding 5 times gives winding number = 5",
+      "computed": 5.0,
+      "expected": 5
+    },
+    "B1_pytorch_winding_number_10": {
+      "pass": true,
+      "description": "Boundary: loop winding 10 times gives winding number = 10",
+      "computed": 10.0,
+      "expected": 10
+    },
+    "B2_sympy_winding_n_1": {
+      "pass": true,
+      "description": "Sympy boundary: n=1 winding integral gives W=1 exactly",
+      "W_symbolic": "1"
+    },
+    "B2_sympy_winding_n_2": {
+      "pass": true,
+      "description": "Sympy boundary: n=2 winding integral gives W=2 exactly",
+      "W_symbolic": "2"
+    },
+    "B2_sympy_winding_n_3": {
+      "pass": true,
+      "description": "Sympy boundary: n=3 winding integral gives W=3 exactly",
+      "W_symbolic": "3"
+    },
+    "B3_clifford_rotor_n_1_winding": {
+      "pass": true,
+      "description": "Clifford boundary: R(n*2pi) scalar = (-1)^n = -1 for n=1",
+      "scalar": -1.0,
+      "expected": -1.0
+    },
+    "B3_clifford_rotor_n_2_winding": {
+      "pass": true,
+      "description": "Clifford boundary: R(n*2pi) scalar = (-1)^n = 1 for n=2",
+      "scalar": 1.0,
+      "expected": 1.0
+    },
+    "B3_clifford_rotor_n_3_winding": {
+      "pass": true,
+      "description": "Clifford boundary: R(n*2pi) scalar = (-1)^n = -1 for n=3",
+      "scalar": -1.0,
+      "expected": -1.0
+    },
+    "B3_clifford_rotor_n_4_winding": {
+      "pass": true,
+      "description": "Clifford boundary: R(n*2pi) scalar = (-1)^n = 1 for n=4",
+      "scalar": 1.0,
+      "expected": 1.0
+    },
+    "B4_z3_integer_winding_0_is_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: winding number = 0 is consistent \u2014 all integers are valid homotopy classes",
+      "z3_result": "sat"
+    },
+    "B4_z3_integer_winding_1_is_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: winding number = 1 is consistent \u2014 all integers are valid homotopy classes",
+      "z3_result": "sat"
+    },
+    "B4_z3_integer_winding_-1_is_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: winding number = -1 is consistent \u2014 all integers are valid homotopy classes",
+      "z3_result": "sat"
+    },
+    "B4_z3_integer_winding_2_is_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: winding number = 2 is consistent \u2014 all integers are valid homotopy classes",
+      "z3_result": "sat"
+    },
+    "B5_rustworkx_z5_homotopy_graph_5_components": {
+      "pass": true,
+      "description": "Boundary: homotopy graph for W\u2208{-2,-1,0,1,2} has 5 components \u2014 encodes truncated Z",
+      "num_components": 5
+    },
+    "B6_gudhi_filled_disk_b1_equals_0": {
+      "pass": true,
+      "description": "Boundary: filled disk has persistent b1=0 \u2014 contractible, winding number always 0; contrast with circle b1=1",
+      "persistent_betti_0_3_to_0_5": [
+        1,
+        0
+      ]
+    }
+  }
+}

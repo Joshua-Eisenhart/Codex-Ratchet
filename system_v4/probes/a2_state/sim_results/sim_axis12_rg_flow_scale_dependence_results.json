@@ -1,0 +1,224 @@
+{
+  "name": "sim_axis12_rg_flow_scale_dependence",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 23,
+  "n_total": 23,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "integrate \u03b2(g) = -b*g\u00b2 via Euler steps along log-scale; autograd confirms dg/d(log \u03bc) matches \u03b2(g) numerically; verify asymptotic freedom and IR fixed points"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is a scalar ODE; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: g(\u03bc) = 0 AND g(\u03bc\u2080) > 0 with b > 0 at finite scale \u2014 coupling zero is only reached asymptotically; z3 encodes this impossibility structurally"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact one-loop solution g(\u03bc) = g\u2080/(1 + b*g\u2080*log(\u03bc/\u03bc\u2080)); verify UV limit, IR limit, fixed-point stability \u03b2'(g*)=0 symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "represent RG group element as Cl(1,0) rotor exp(t*e1) where t=log(\u03bc/\u03bc\u2080); composition law for scale transformations maps to rotor multiplication; confirms group structure of RG flow"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is a 1D ODE; Riemannian geometry tools not required at this level"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is scalar; equivariant networks not required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "RG fixed point graph: UV fixed points, IR fixed points, and marginal operators as nodes; flow direction edges encode which fixed points attract/repel at each scale"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is scalar ODE; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is scalar; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 RG flow bridge is analytic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_asymptotic_freedom_g_decreases": {
+      "pass": true,
+      "description": "Pytorch: \u03b2(g)=-b*g\u00b2 (b>0): coupling g decreases as \u03bc increases \u2014 asymptotic freedom",
+      "g_initial": 1.0,
+      "g_final_at_log_mu_5": 0.285201
+    },
+    "P2_pytorch_ir_fixed_point_g_decreases_in_ir": {
+      "pass": true,
+      "description": "Pytorch: \u03b2(g)=+b*g\u00b2 (b>0): g decreases toward IR (\u03bc\u21920) \u2014 IR attractive fixed point at g=0",
+      "g_initial": 1.0,
+      "g_final_ir": 0.285201
+    },
+    "P3_pytorch_beta_function_matches_derivative": {
+      "pass": true,
+      "description": "Pytorch: numeric dg/d(log \u03bc) matches \u03b2(g)=-b*g\u00b2 within 0.01 at all steps",
+      "max_discrepancy": 0.00046284
+    },
+    "P4_sympy_exact_one_loop_solution_verified": {
+      "pass": true,
+      "description": "Sympy: g(t)=g\u2080/(1+b*g\u2080*t) satisfies dg/dt=-b*g\u00b2 exactly \u2014 one-loop RG solution verified",
+      "ode_residual": "0"
+    },
+    "P5_sympy_uv_limit_g_to_zero": {
+      "pass": true,
+      "description": "Sympy: lim(t\u2192\u221e) g\u2080/(1+b*g\u2080*t) = 0 \u2014 asymptotic freedom confirmed: g\u21920 at UV",
+      "uv_limit": "0"
+    },
+    "P6_sympy_fixed_point_marginal": {
+      "pass": true,
+      "description": "Sympy: \u03b2'(g*)=\u03b2'(0)=0 \u2014 fixed point g*=0 is marginal (neither attractive nor repulsive at linear order)",
+      "beta_prime_at_0": "0"
+    },
+    "P7_clifford_rg_group_composition_law": {
+      "pass": true,
+      "description": "Clifford Cl(1,0): scale transformation rotors compose as R(t1)*R(t2)=R(t1+t2) \u2014 RG group law verified",
+      "diff_scalar": 0.0,
+      "diff_e1": 0.0
+    },
+    "P8_rustworkx_rg_fixed_point_graph": {
+      "pass": true,
+      "description": "Rustworkx: RG graph has UV fixed point (g*=0) with incoming flow edges \u2014 coupling flows toward g=0 at high energy",
+      "uv_in_degree": 1
+    },
+    "P9_pytorch_numeric_matches_exact": {
+      "pass": true,
+      "description": "Pytorch Euler integration matches exact sympy solution to < 0.005 for one-loop RG",
+      "g_numeric": 0.312472,
+      "g_exact": 0.3125,
+      "discrepancy": 2.756e-05
+    }
+  },
+  "negative": {
+    "N1_z3_coupling_cannot_reach_zero_at_finite_scale": {
+      "pass": true,
+      "description": "Z3 UNSAT: g(\u03bc)=0 with g\u2080>0, b>0, finite log scale \u2014 one-loop coupling never reaches zero at finite energy",
+      "z3_result": "unsat"
+    },
+    "N2_sympy_g_strictly_positive_for_all_finite_t": {
+      "pass": true,
+      "description": "Sympy: 1+b*g\u2080*t > 0 for all positive b,g\u2080,t \u2014 g(\u03bc) is strictly positive at all finite scales",
+      "denom_positive": true
+    },
+    "N3_pytorch_g_never_negative_under_rg_flow": {
+      "pass": true,
+      "description": "Negative: g remains > 0 throughout RG flow from \u03bc\u2080 to large \u03bc \u2014 coupling is positive definite",
+      "any_negative": false,
+      "g_min": 0.07496098
+    },
+    "N4_sympy_beta_nonzero_for_positive_g": {
+      "pass": true,
+      "description": "Negative: \u03b2(g)=-b*g\u00b2=0 has no solution for g>0 \u2014 coupling is always running; fixed point g*=0 is not in the positive-g domain",
+      "beta_zero_solutions_positive_domain": []
+    },
+    "N5_clifford_scale_transform_invertible": {
+      "pass": true,
+      "description": "Negative: Clifford R(t)*R(-t)=1 \u2014 scale transformations are invertible; RG flow can be run both UV and IR",
+      "identity_scalar": 1.0,
+      "identity_e1": 0.0
+    },
+    "N6_rustworkx_uv_ir_fixed_points_disconnected": {
+      "pass": true,
+      "description": "Negative: UV fixed point (g=0) has no path to IR fixed point \u2014 they are structurally distinct endpoints",
+      "has_path_uv_to_ir": false
+    }
+  },
+  "boundary": {
+    "B1_pytorch_slow_running_near_uv_fixed_point": {
+      "pass": true,
+      "description": "Boundary: near UV fixed point (small g), \u03b2(g) is much smaller than at g=O(1) \u2014 slow running",
+      "beta_at_small_g": 0.0001,
+      "beta_at_g_1": 1.0
+    },
+    "B2_sympy_landau_pole_exists_for_phi4": {
+      "pass": true,
+      "description": "Boundary: scalar \u03c6\u2074 has Landau pole at t* = 1/(b*g\u2080) \u2014 coupling diverges at finite UV scale",
+      "landau_pole_t": [
+        "1/(b_lp*g0_lp)"
+      ]
+    },
+    "B3_pytorch_b_0.1_final_g": {
+      "pass": true,
+      "description": "Boundary: b=0.1, larger b \u2192 faster decrease of g under RG flow",
+      "g_initial": 0.5,
+      "g_final": 0.45453756
+    },
+    "B3_pytorch_b_1.0_final_g": {
+      "pass": true,
+      "description": "Boundary: b=1.0, larger b \u2192 faster decrease of g under RG flow",
+      "g_initial": 0.5,
+      "g_final": 0.24982619
+    },
+    "B3_pytorch_b_5.0_final_g": {
+      "pass": true,
+      "description": "Boundary: b=5.0, larger b \u2192 faster decrease of g under RG flow",
+      "g_initial": 0.5,
+      "g_final": 0.08308373
+    },
+    "B4_z3_decreasing_g_is_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: g_final < g\u2080 with positive b,g\u2080,t is fully consistent \u2014 asymptotic freedom is self-consistent",
+      "z3_result": "sat"
+    },
+    "B5_clifford_identity_scale_is_unit_rotor": {
+      "pass": true,
+      "description": "Boundary: R(t=0) = 1 in Cl(1,0) \u2014 zero scale shift is the identity transformation",
+      "scalar": 1.0,
+      "e1": 0.0
+    },
+    "B6_rustworkx_rg_scale_hierarchy": {
+      "pass": true,
+      "description": "Boundary: RG flow DAG topological order has UV before IR \u2014 scale hierarchy is consistent",
+      "scale_order": [
+        "UV_inf",
+        "mu_high",
+        "mu_mid",
+        "mu_low",
+        "IR_zero"
+      ]
+    }
+  }
+}

@@ -155,6 +155,37 @@ def _queue_dir_freshness(path: Path) -> dict:
     }
 
 
+def _claimed_age_surface(claimed_dir: Path, limit: int = 5) -> dict:
+    now = time.time()
+    ages: list[dict[str, object]] = []
+    if claimed_dir.exists():
+        for path in claimed_dir.glob("*.json.*"):
+            try:
+                data = adaptive_controller.load_result(path)
+            except Exception:
+                data = {}
+            try:
+                fallback_ts = path.stat().st_mtime
+            except OSError:
+                fallback_ts = now
+            claimed_at = data.get("claimed_at") if isinstance(data, dict) else None
+            ts = claimed_at if isinstance(claimed_at, (int, float)) else fallback_ts
+            age = max(0.0, now - float(ts))
+            ages.append({
+                "file": path.name,
+                "sim": Path(str(data.get("sim_path", ""))).name if isinstance(data, dict) else "",
+                "age_sec": age,
+            })
+    ages.sort(key=lambda row: float(row["age_sec"]), reverse=True)
+    return {
+        "count": len(ages),
+        "oldest_age_sec": ages[0]["age_sec"] if ages else None,
+        "over_300s": sum(1 for row in ages if float(row["age_sec"]) >= 300),
+        "over_900s": sum(1 for row in ages if float(row["age_sec"]) >= 900),
+        "samples": ages[:limit],
+    }
+
+
 def _git_layer(path: str) -> str:
     if path.startswith("READ ONLY Legacy "):
         return "legacy_copies"
@@ -403,6 +434,62 @@ def _dirty_probe_source_paths() -> tuple[set[str], set[str]]:
     return dirty, untracked
 
 
+def _source_state_for_result(
+    root: Path,
+    result_path: Path,
+    dirty_probe_sources: set[str],
+    untracked_probe_sources: set[str],
+) -> dict[str, object] | None:
+    if root == REPO / "system_v4/a2_state/sim_results":
+        return None
+    if not result_path.name.endswith("_results.json"):
+        return None
+    stem = result_path.name[:-13]
+    candidates = [PROBES / f"{stem}.py"]
+    if not stem.startswith("sim_"):
+        candidates.append(PROBES / f"sim_{stem}.py")
+    source = next((candidate for candidate in candidates if candidate.exists()), candidates[0])
+    rel_source = str(source.relative_to(REPO))
+    state = {
+        "source_path": rel_source,
+        "source_exists": source.exists(),
+        "source_dirty": rel_source in dirty_probe_sources,
+        "source_untracked": rel_source in untracked_probe_sources,
+        "source_newer_than_result": False,
+        "result_newer_than_source": False,
+    }
+    if source.exists():
+        try:
+            source_mtime = source.stat().st_mtime
+            result_mtime = result_path.stat().st_mtime
+            if source_mtime > result_mtime:
+                state["source_newer_than_result"] = True
+            elif result_mtime > source_mtime:
+                state["result_newer_than_source"] = True
+        except OSError:
+            pass
+    return state
+
+
+def _source_state_label(state: dict[str, object] | None) -> str | None:
+    if state is None:
+        return None
+    if state["source_untracked"]:
+        prefix = "source_untracked"
+    elif state["source_dirty"]:
+        prefix = "source_dirty"
+    elif not state["source_exists"]:
+        prefix = "source_missing"
+    else:
+        prefix = "source_clean"
+    if state["source_exists"]:
+        if state["source_newer_than_result"]:
+            return f"{prefix}_source_newer"
+        if state["result_newer_than_source"]:
+            return f"{prefix}_result_newer"
+    return prefix
+
+
 def result_surface() -> dict:
     dirty_probe_sources, untracked_probe_sources = _dirty_probe_source_paths()
     roots = {}
@@ -412,17 +499,20 @@ def result_surface() -> dict:
         schema_counts: Counter[str] = Counter()
         fail_families: Counter[str] = Counter()
         fail_modes: Counter[str] = Counter()
+        fail_source_states: Counter[str] = Counter()
         unknown_families: Counter[str] = Counter()
         dirty_source_results = 0
         untracked_source_results = 0
         orphan_like = 0
         samples: defaultdict[str, list[str]] = defaultdict(list)
+        fail_details: list[dict[str, object]] = []
         for path in files:
             try:
                 data = json.loads(path.read_text(encoding="utf-8"))
             except Exception:
                 data = None
             pass_state = _pass_state(data)
+            source_state = _source_state_for_result(root, path, dirty_probe_sources, untracked_probe_sources)
             status_counts[pass_state] += 1
             if pass_state == "fail" and len(samples["fail"]) < 8:
                 samples["fail"].append(path.name)
@@ -434,6 +524,16 @@ def result_surface() -> dict:
             fail_mode = _result_fail_mode(data)
             if fail_mode:
                 fail_modes[fail_mode] += 1
+            source_label = _source_state_label(source_state)
+            if pass_state == "fail" and source_label:
+                fail_source_states[source_label] += 1
+                if len(fail_details) < 8:
+                    fail_details.append({
+                        "result": path.name,
+                        "source": source_state["source_path"],
+                        "fail_mode": fail_mode,
+                        "source_state": source_label,
+                    })
             if isinstance(data, dict):
                 if "overall_pass" in data:
                     schema_counts["overall_pass"] += 1
@@ -461,9 +561,8 @@ def result_surface() -> dict:
                 schema_counts["non_dict_json"] += 1
                 if len(samples["non_dict_json"]) < 8:
                     samples["non_dict_json"].append(path.name)
-            if root != REPO / "system_v4/a2_state/sim_results" and path.name.endswith("_results.json"):
-                stem = path.name[:-13]
-                rel_source = str((PROBES / f"{stem}.py").relative_to(REPO))
+            if source_state is not None:
+                rel_source = str(source_state["source_path"])
                 if rel_source in dirty_probe_sources:
                     dirty_source_results += 1
                     if len(samples["dirty_source_results"]) < 8:
@@ -472,7 +571,7 @@ def result_surface() -> dict:
                     untracked_source_results += 1
                     if len(samples["untracked_source_results"]) < 8:
                         samples["untracked_source_results"].append(path.name)
-                if not (PROBES / f"{stem}.py").exists():
+                if not source_state["source_exists"]:
                     orphan_like += 1
                     if len(samples["orphan_like"]) < 8:
                         samples["orphan_like"].append(path.name)
@@ -482,21 +581,28 @@ def result_surface() -> dict:
             "schema": dict(schema_counts),
             "fail_families": dict(fail_families.most_common(10)),
             "fail_modes": dict(fail_modes.most_common(10)),
+            "fail_source_states": dict(fail_source_states.most_common(10)),
             "unknown_families": dict(unknown_families.most_common(10)),
             "dirty_source_results": dirty_source_results,
             "untracked_source_results": untracked_source_results,
             "orphan_like": orphan_like,
+            "fail_details": fail_details,
             "samples": dict(samples),
         }
     return roots
 
 
-def _runner_health(queue_counts: dict, freshness: dict) -> dict:
+def _runner_health(queue_counts: dict, freshness: dict, claimed_age: dict | None = None) -> dict:
     claimed = int(queue_counts.get("claimed", 0) or 0)
     done_fresh = freshness.get("done", {}).get("active_within_60s") is True
     claimed_fresh = freshness.get("claimed", {}).get("active_within_60s") is True
     lane_b_fresh = freshness.get("lane_B", {}).get("active_within_60s") is True
     backlog = int(queue_counts.get("lane_A", 0) or 0) + int(queue_counts.get("lane_B", 0) or 0)
+    long_claims = int((claimed_age or {}).get("over_900s", 0) or 0)
+    if claimed > 0 and done_fresh and long_claims > 0:
+        return {"status": "draining_with_long_claims", "reason": "done surface is fresh but some claims exceed 15 minutes"}
+    if claimed > 0 and not done_fresh and long_claims > 0:
+        return {"status": "possibly_stuck", "reason": "claims exceed 15 minutes and done surface is stale"}
     if claimed > 0 and done_fresh:
         return {"status": "draining", "reason": "claimed and done surfaces are both fresh"}
     if claimed > 0 and not done_fresh:
@@ -514,12 +620,14 @@ def runner_surface() -> dict:
         lane: _queue_dir_freshness(adaptive_controller.QUEUE / lane)
         for lane in ("lane_A", "lane_B", "claimed", "done")
     }
+    claimed_age = _claimed_age_surface(adaptive_controller.QUEUE / "claimed")
     return {
         "pidfiles": {name: _pidfile_status(name, pidfile) for name, pidfile in PIDFILES.items()},
         "wrappers": _wrapper_processes(),
         "queue": queue_counts,
         "freshness": freshness,
-        "health": _runner_health(queue_counts, freshness),
+        "claimed_age": claimed_age,
+        "health": _runner_health(queue_counts, freshness, claimed_age),
         "claimed": _queue_claim_summary(),
     }
 

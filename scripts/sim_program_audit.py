@@ -14,6 +14,13 @@ PROBES = adaptive_controller.PROBES
 QUEUE = adaptive_controller.QUEUE
 
 
+def _queue_payload_sim_path(data: dict) -> str:
+    raw = str(data.get("sim_path", "")).strip()
+    if not raw:
+        return ""
+    return adaptive_controller.normalize_sim_path(raw)
+
+
 def all_sims() -> list[Path]:
     return sorted(
         path for path in PROBES.glob("sim_*.py")
@@ -68,7 +75,7 @@ def queue_duplicate_summary() -> dict[str, dict[str, int]]:
         if lane_dir.exists():
             for item in lane_dir.glob("*.json"):
                 data = adaptive_controller.load_result(item)
-                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                sim_path = _queue_payload_sim_path(data)
                 if sim_path:
                     counts[sim_path] += 1
         dup_counts = [count for count in counts.values() if count > 1]
@@ -87,7 +94,7 @@ def queue_noncanonical_summary() -> dict[str, dict[str, int]]:
         if lane_dir.exists():
             for item in lane_dir.glob("*.json"):
                 data = adaptive_controller.load_result(item)
-                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                sim_path = _queue_payload_sim_path(data)
                 if not sim_path:
                     continue
                 target = adaptive_controller.queue_item_path(lane, sim_path)
@@ -103,7 +110,7 @@ def queue_claimed_overlap_summary() -> dict[str, int]:
     if claimed_dir.exists():
         for item in claimed_dir.glob("*.json.*"):
             data = adaptive_controller.load_result(item)
-            sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+            sim_path = _queue_payload_sim_path(data)
             if sim_path:
                 claimed_sims.add(sim_path)
     summary: dict[str, int] = {}
@@ -113,10 +120,25 @@ def queue_claimed_overlap_summary() -> dict[str, int]:
         if lane_dir.exists():
             for item in lane_dir.glob("*.json"):
                 data = adaptive_controller.load_result(item)
-                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                sim_path = _queue_payload_sim_path(data)
                 if sim_path and sim_path in claimed_sims:
                     overlaps += 1
         summary[lane] = overlaps
+    return summary
+
+
+def queue_invalid_entry_summary() -> dict[str, int]:
+    summary: dict[str, int] = {}
+    for lane in ("lane_A", "lane_B"):
+        invalid = 0
+        lane_dir = QUEUE / lane
+        if lane_dir.exists():
+            for item in lane_dir.glob("*.json"):
+                data = adaptive_controller.load_result(item)
+                sim_path = _queue_payload_sim_path(data)
+                if not sim_path:
+                    invalid += 1
+        summary[lane] = invalid
     return summary
 
 
@@ -125,9 +147,11 @@ def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
     if not lane_dir.exists():
         return []
     out: list[dict] = []
-    for item in sorted(lane_dir.glob("*.json"), key=queue_claim._claim_order)[:limit]:
+    for item in sorted(lane_dir.glob("*.json"), key=queue_claim._claim_order):
         data = adaptive_controller.load_result(item)
-        sim_path = str(data.get("sim_path", ""))
+        sim_path = _queue_payload_sim_path(data)
+        if not sim_path:
+            continue
         bucket = str(data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path))
         stage = str(data.get("plan_stage") or queue_claim._plan_stage_from_sim_path(sim_path))
         out.append({
@@ -136,6 +160,8 @@ def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
             "plan_bucket": bucket,
             "plan_stage": stage,
         })
+        if len(out) >= limit:
+            break
     return out
 
 
@@ -170,6 +196,7 @@ def main() -> int:
         },
         "queue_duplicates": queue_duplicate_summary(),
         "queue_noncanonical_names": queue_noncanonical_summary(),
+        "queue_invalid_entries": queue_invalid_entry_summary(),
         "queue_claimed_overlaps": queue_claimed_overlap_summary(),
         "resolved_blocked": snapshot["control_plane"]["resolved_blocked"],
         "top_never_run_examples": [path.name for path in never_run[:12]],

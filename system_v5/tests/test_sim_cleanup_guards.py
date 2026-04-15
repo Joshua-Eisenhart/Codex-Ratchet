@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import sys
+import time
 from pathlib import Path
 
 
@@ -686,6 +688,7 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
         '{"summary": {"note": "unknown legacy shape"}}\n',
         encoding="utf-8",
     )
+    (probes / "sim_szilard_alpha.py").write_text("print('alpha')\n", encoding="utf-8")
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES", probes)
@@ -698,6 +701,7 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
     assert report["status"]["unknown"] == 1
     assert report["fail_families"] == {"szilard": 2}
     assert report["fail_modes"] == {"summary_gate_false": 2}
+    assert report["fail_source_states"] == {"source_clean_source_newer": 1, "source_missing": 1}
     assert report["unknown_families"] == {"axis": 1}
 
 
@@ -787,6 +791,8 @@ def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
         "print('probe')\n",
         encoding="utf-8",
     )
+    newer = time.time() + 5
+    os.utime(root / "sim_mera_weyl_pairwise_coupling_results.json", (newer, newer))
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES", probes)
@@ -802,6 +808,13 @@ def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
     assert report["dirty_source_results"] == 1
     assert report["untracked_source_results"] == 1
     assert report["samples"]["untracked_source_results"] == ["sim_mera_weyl_pairwise_coupling_results.json"]
+    assert report["fail_source_states"] == {"source_untracked_result_newer": 1}
+    assert report["fail_details"] == [{
+        "result": "sim_mera_weyl_pairwise_coupling_results.json",
+        "source": "system_v4/probes/sim_mera_weyl_pairwise_coupling.py",
+        "fail_mode": "summary_gate_false",
+        "source_state": "source_untracked_result_newer",
+    }]
 
 
 def test_system_surface_audit_runner_health_reports_draining() -> None:
@@ -827,6 +840,90 @@ def test_system_surface_audit_runner_health_reports_draining() -> None:
     )
 
     assert health["status"] == "draining"
+
+
+def test_system_surface_audit_runner_health_reports_long_claims() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_runner_health_long_claims_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    health = module._runner_health(
+        {"lane_A": 0, "lane_B": 5, "claimed": 2, "done": 10},
+        {
+            "lane_A": {"active_within_60s": False},
+            "lane_B": {"active_within_60s": True},
+            "claimed": {"active_within_60s": True},
+            "done": {"active_within_60s": True},
+        },
+        {"over_900s": 1},
+    )
+
+    assert health["status"] == "draining_with_long_claims"
+
+
+def test_system_surface_audit_claimed_age_surface_uses_claimed_at(tmp_path) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_claimed_age_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    claimed = tmp_path / "claimed"
+    claimed.mkdir()
+    (claimed / "sample.json.1.host.laneB_w1").write_text(
+        json.dumps({"sim_path": "/tmp/sim_alpha.py", "claimed_at": time.time() - 1200}),
+        encoding="utf-8",
+    )
+
+    report = module._claimed_age_surface(claimed)
+
+    assert report["count"] == 1
+    assert report["over_900s"] == 1
+    assert report["samples"][0]["sim"] == "sim_alpha.py"
+
+
+def test_sim_program_audit_skips_invalid_queue_candidates(tmp_path) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "sim_program_audit_invalid_queue_under_test",
+            REPO_ROOT / "scripts" / "sim_program_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    queue_root = tmp_path / "queue"
+    lane_b = queue_root / "lane_B"
+    lane_b.mkdir(parents=True, exist_ok=True)
+    (lane_b / "bad.json").write_text('{"plan_bucket":"exploratory"}\n', encoding="utf-8")
+    (lane_b / "good.json").write_text(
+        '{"sim_path":"system_v4/probes/sim_good_alpha.py","plan_bucket":"core_ladder","priority":"high"}\n',
+        encoding="utf-8",
+    )
+
+    module.QUEUE = queue_root
+
+    assert module.queue_invalid_entry_summary() == {"lane_A": 0, "lane_B": 1}
+    assert module.next_queue_candidates("lane_B", limit=5) == [{
+        "sim": "sim_good_alpha.py",
+        "priority": "high",
+        "plan_bucket": "core_ladder",
+        "plan_stage": "early_core",
+    }]
 
 
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:

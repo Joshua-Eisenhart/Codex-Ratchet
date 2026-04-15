@@ -65,7 +65,7 @@
     "datasketch": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: MinHash (128 permutations) and MinHashLSH determine which node pairs become edges in the PyG graph; the threshold=0.3 Jaccard gate filters dissimilar signatures so the edge_index is strictly a function of datasketch output, not random or fully-connected"
+      "reason": "not installed"
     }
   },
   "tool_integration_depth": {
@@ -84,126 +84,14 @@
     "datasketch": "load_bearing"
   },
   "positive": {
-    "lsh_n_edges": 23,
-    "lsh_max_possible_edges": 45,
-    "lsh_has_at_least_one_edge": true,
-    "lsh_not_fully_connected": true,
-    "mp_max_feature_diff": 3.0,
-    "mp_n_nodes_changed": 10,
-    "mp_changes_at_least_one_node": true,
-    "lsh_edges_found": [
-      [
-        0,
-        1
-      ],
-      [
-        0,
-        2
-      ],
-      [
-        0,
-        6
-      ],
-      [
-        0,
-        7
-      ],
-      [
-        0,
-        8
-      ],
-      [
-        0,
-        9
-      ],
-      [
-        1,
-        2
-      ],
-      [
-        1,
-        4
-      ],
-      [
-        1,
-        6
-      ],
-      [
-        1,
-        7
-      ],
-      [
-        1,
-        8
-      ],
-      [
-        1,
-        9
-      ],
-      [
-        2,
-        6
-      ],
-      [
-        2,
-        8
-      ],
-      [
-        3,
-        4
-      ],
-      [
-        3,
-        5
-      ],
-      [
-        4,
-        5
-      ],
-      [
-        4,
-        6
-      ],
-      [
-        4,
-        7
-      ],
-      [
-        5,
-        9
-      ],
-      [
-        6,
-        7
-      ],
-      [
-        6,
-        8
-      ],
-      [
-        7,
-        9
-      ]
-    ],
-    "pass": true
+    "skipped": "datasketch or torch or pyg not available"
   },
   "negative": {
-    "disjoint_jaccard_estimate": 0.0,
-    "disjoint_jaccard_below_threshold": true,
-    "disjoint_lsh_no_match": true,
-    "mp_empty_graph_max_diff": 0.0,
-    "mp_empty_graph_unchanged": true,
-    "pass": true
+    "skipped": "datasketch or torch or pyg not available"
   },
   "boundary": {
-    "identical_jaccard_estimate": 1.0,
-    "identical_jaccard_near_1": true,
-    "identical_lsh_admits_match": true,
-    "single_node_mp_diff": 0.0,
-    "single_node_mp_unchanged": true,
-    "minhash_small_num_perm_runs": true,
-    "pass": true
+    "skipped": "datasketch or torch or pyg not available"
   },
-  "overall_pass": true,
-  "elapsed_s": 0.109
+  "overall_pass": false,
+  "elapsed_s": 0.0
 }

@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -129,6 +130,29 @@ def _queue_claim_summary(limit: int = 8) -> dict:
                 "claimed_at": data.get("claimed_at"),
             })
     return {"count": adaptive_controller.queue_counts().get("claimed", 0), "samples": samples}
+
+
+def _queue_dir_freshness(path: Path) -> dict:
+    newest_name = None
+    newest_mtime = None
+    if path.exists():
+        for entry in path.iterdir():
+            if not entry.is_file():
+                continue
+            try:
+                mtime = entry.stat().st_mtime
+            except OSError:
+                continue
+            if newest_mtime is None or mtime > newest_mtime:
+                newest_mtime = mtime
+                newest_name = entry.name
+    age = None if newest_mtime is None else max(0.0, time.time() - newest_mtime)
+    return {
+        "newest_file": newest_name,
+        "newest_age_sec": age,
+        "active_within_60s": age is not None and age < 60,
+        "active_within_300s": age is not None and age < 300,
+    }
 
 
 def _git_layer(path: str) -> str:
@@ -281,6 +305,66 @@ def _looks_like_legacy_pass(data: dict) -> bool:
     return bool(section_votes) and all(section_votes)
 
 
+def _section_flag_counts(section: object) -> tuple[int, int]:
+    total = 0
+    failed = 0
+
+    def walk(value: object) -> None:
+        nonlocal total, failed
+        if isinstance(value, dict):
+            for key, nested in value.items():
+                if key in {"pass", "passed", "ok"}:
+                    flag = _boolish(nested)
+                    if flag is None:
+                        continue
+                    total += 1
+                    if not flag:
+                        failed += 1
+                else:
+                    walk(nested)
+            return
+        if isinstance(value, list):
+            for nested in value:
+                walk(nested)
+
+    walk(section)
+    return total, failed
+
+
+def _result_fail_mode(data: object) -> str | None:
+    if not isinstance(data, dict):
+        return None
+    if _pass_state(data) != "fail":
+        return None
+    if data.get("error") or data.get("failure_reason"):
+        return "explicit_error"
+    if isinstance(data.get("summary"), dict):
+        summary = data["summary"]
+        tests_failed = summary.get("tests_failed")
+        if isinstance(tests_failed, int) and tests_failed > 0:
+            return "tests_failed"
+        passed = summary.get("passed")
+        total = summary.get("total")
+        if isinstance(passed, int) and isinstance(total, int) and passed < total:
+            return "partial_pass"
+        for key in ("all_pass", "all_passed"):
+            verdict = _boolish(summary.get(key))
+            if verdict is False:
+                return "summary_gate_false"
+    top_all_pass = _boolish(data.get("all_pass"))
+    if top_all_pass is False:
+        return "top_level_gate_false"
+    total_flags = 0
+    failed_flags = 0
+    for key in ("positive", "negative", "boundary", "results"):
+        section_total, section_failed = _section_flag_counts(data.get(key))
+        total_flags += section_total
+        failed_flags += section_failed
+    if total_flags and failed_flags:
+        return "section_check_failed"
+    return "unclassified_fail"
+
+
 def _result_family(path: Path) -> str:
     stem = path.name
     if stem.endswith("_results.json"):
@@ -299,6 +383,7 @@ def result_surface() -> dict:
         status_counts: Counter[str] = Counter()
         schema_counts: Counter[str] = Counter()
         fail_families: Counter[str] = Counter()
+        fail_modes: Counter[str] = Counter()
         unknown_families: Counter[str] = Counter()
         orphan_like = 0
         samples: defaultdict[str, list[str]] = defaultdict(list)
@@ -316,6 +401,9 @@ def result_surface() -> dict:
                 fail_families[_result_family(path)] += 1
             elif pass_state == "unknown":
                 unknown_families[_result_family(path)] += 1
+            fail_mode = _result_fail_mode(data)
+            if fail_mode:
+                fail_modes[fail_mode] += 1
             if isinstance(data, dict):
                 if "overall_pass" in data:
                     schema_counts["overall_pass"] += 1
@@ -354,6 +442,7 @@ def result_surface() -> dict:
             "status": dict(status_counts),
             "schema": dict(schema_counts),
             "fail_families": dict(fail_families.most_common(10)),
+            "fail_modes": dict(fail_modes.most_common(10)),
             "unknown_families": dict(unknown_families.most_common(10)),
             "orphan_like": orphan_like,
             "samples": dict(samples),
@@ -367,6 +456,10 @@ def runner_surface() -> dict:
         "pidfiles": {name: _pidfile_status(name, pidfile) for name, pidfile in PIDFILES.items()},
         "wrappers": _wrapper_processes(),
         "queue": queue_counts,
+        "freshness": {
+            lane: _queue_dir_freshness(adaptive_controller.QUEUE / lane)
+            for lane in ("lane_A", "lane_B", "claimed", "done")
+        },
         "claimed": _queue_claim_summary(),
     }
 

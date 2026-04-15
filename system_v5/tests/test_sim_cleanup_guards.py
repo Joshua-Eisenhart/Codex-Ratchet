@@ -671,11 +671,11 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
     root.mkdir(parents=True, exist_ok=True)
 
     (root / "sim_szilard_alpha_results.json").write_text(
-        '{"overall_pass": false}\n',
+        '{"summary": {"all_pass": false}}\n',
         encoding="utf-8",
     )
     (root / "sim_szilard_beta_results.json").write_text(
-        '{"overall_pass": false}\n',
+        '{"summary": {"all_pass": false}}\n',
         encoding="utf-8",
     )
     (root / "sim_weyl_gamma_results.json").write_text(
@@ -697,7 +697,53 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
     assert report["status"]["pass"] == 1
     assert report["status"]["unknown"] == 1
     assert report["fail_families"] == {"szilard": 2}
+    assert report["fail_modes"] == {"summary_gate_false": 2}
     assert report["unknown_families"] == {"axis": 1}
+
+
+def test_system_surface_audit_classifies_fail_modes() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_fail_modes_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    assert module._result_fail_mode({"error": "ImportError", "overall_pass": False}) == "explicit_error"
+    assert module._result_fail_mode({"summary": {"tests_failed": 2}, "overall_pass": False}) == "tests_failed"
+    assert module._result_fail_mode({"summary": {"passed": 2, "total": 3}, "overall_pass": False}) == "partial_pass"
+    assert module._result_fail_mode({"summary": {"all_pass": False}, "overall_pass": False}) == "summary_gate_false"
+    assert module._result_fail_mode({"all_pass": False}) == "top_level_gate_false"
+    assert module._result_fail_mode({"positive": {"foo": {"pass": False}}, "overall_pass": False}) == "section_check_failed"
+
+
+def test_system_surface_audit_queue_freshness_detects_recent_activity(tmp_path) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_freshness_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    queue_dir = tmp_path / "queue"
+    queue_dir.mkdir()
+    item = queue_dir / "item.json"
+    item.write_text("{}", encoding="utf-8")
+
+    freshness = module._queue_dir_freshness(queue_dir)
+
+    assert freshness["newest_file"] == "item.json"
+    assert freshness["newest_age_sec"] is not None
+    assert freshness["active_within_60s"] is True
+    assert freshness["active_within_300s"] is True
 
 
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:

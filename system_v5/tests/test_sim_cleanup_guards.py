@@ -746,6 +746,89 @@ def test_system_surface_audit_queue_freshness_detects_recent_activity(tmp_path) 
     assert freshness["active_within_300s"] is True
 
 
+def test_system_surface_audit_git_layer_classifies_probe_sources() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_git_layer_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    assert module._git_layer("system_v4/probes/sim_mera_weyl_pairwise_coupling.py") == "probe_sources"
+
+
+def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_untracked_sources_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    root = probes / "a2_state" / "sim_results"
+    root.mkdir(parents=True, exist_ok=True)
+    (root / "sim_mera_weyl_pairwise_coupling_results.json").write_text(
+        '{"summary": {"all_pass": false}}\n',
+        encoding="utf-8",
+    )
+    (probes / "sim_mera_weyl_pairwise_coupling.py").write_text(
+        "print('probe')\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULT_ROOTS", [root])
+    monkeypatch.setattr(
+        module,
+        "_git_status_entries",
+        lambda: [{"status": "??", "path": "system_v4/probes/sim_mera_weyl_pairwise_coupling.py"}],
+    )
+
+    report = module.result_surface()["system_v4/probes/a2_state/sim_results"]
+
+    assert report["dirty_source_results"] == 1
+    assert report["untracked_source_results"] == 1
+    assert report["samples"]["untracked_source_results"] == ["sim_mera_weyl_pairwise_coupling_results.json"]
+
+
+def test_system_surface_audit_runner_health_reports_draining() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_runner_health_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    health = module._runner_health(
+        {"lane_A": 1, "lane_B": 2, "claimed": 3, "done": 10},
+        {
+            "lane_A": {"active_within_60s": False},
+            "lane_B": {"active_within_60s": True},
+            "claimed": {"active_within_60s": True},
+            "done": {"active_within_60s": True},
+        },
+    )
+
+    assert health["status"] == "draining"
+
+
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
     module = _load_module(
         "queue_claim_under_test",

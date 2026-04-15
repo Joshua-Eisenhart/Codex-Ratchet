@@ -162,6 +162,8 @@ def _git_layer(path: str) -> str:
         return "owner_vault"
     if path.startswith("system_v5/new docs/") or path.endswith(".md"):
         return "owner_docs"
+    if path.startswith("system_v4/probes/sim_") and path.endswith(".py"):
+        return "probe_sources"
     if path.startswith("system_v4/probes/a2_state/sim_results/") or path.startswith("system_v4/probes/sim_results/"):
         return "probe_results"
     if path.startswith("system_v4/a2_state/sim_results/") or path.startswith("system_v4/a2_state/audit_logs/"):
@@ -173,22 +175,33 @@ def _git_layer(path: str) -> str:
     return "other"
 
 
-def git_surface() -> dict:
+def _git_status_entries() -> list[dict[str, str]]:
     proc = _run(["git", "status", "--short", "--untracked-files=all"])
     if proc is None:
-        return {"total_entries": 0, "layers": {}, "samples": {}, "error": "git_status_unavailable"}
-    counts: Counter[str] = Counter()
-    samples: defaultdict[str, list[dict]] = defaultdict(list)
-    total = 0
+        return []
+    entries: list[dict[str, str]] = []
     for line in proc.stdout.splitlines():
         if not line:
             continue
-        total += 1
         status = line[:2]
         path = line[3:].strip()
         if " -> " in path:
             path = path.split(" -> ", 1)[1]
-        path = path.strip('"')
+        entries.append({"status": status, "path": path.strip('"')})
+    return entries
+
+
+def git_surface() -> dict:
+    entries = _git_status_entries()
+    if not entries:
+        return {"total_entries": 0, "layers": {}, "samples": {}, "error": "git_status_unavailable"}
+    counts: Counter[str] = Counter()
+    samples: defaultdict[str, list[dict]] = defaultdict(list)
+    total = 0
+    for entry in entries:
+        total += 1
+        status = entry["status"]
+        path = entry["path"]
         layer = _git_layer(path)
         counts[layer] += 1
         if len(samples[layer]) < 8:
@@ -200,6 +213,7 @@ def git_surface() -> dict:
         "cleanup_posture": {
             "code_and_tests": "KEEP_ACTIVE",
             "runner_logs": "KEEP_ACTIVE",
+            "probe_sources": "BLOCKED_REQUIRES_PREP",
             "probe_results": "KEEP_ACTIVE",
             "system_results": "KEEP_ACTIVE",
             "owner_vault": "BLOCKED_REQUIRES_PREP",
@@ -376,7 +390,21 @@ def _result_family(path: Path) -> str:
     return stem.split("_", 1)[0] if "_" in stem else stem
 
 
+def _dirty_probe_source_paths() -> tuple[set[str], set[str]]:
+    dirty: set[str] = set()
+    untracked: set[str] = set()
+    for entry in _git_status_entries():
+        path = entry["path"]
+        if _git_layer(path) != "probe_sources":
+            continue
+        dirty.add(path)
+        if entry["status"] == "??":
+            untracked.add(path)
+    return dirty, untracked
+
+
 def result_surface() -> dict:
+    dirty_probe_sources, untracked_probe_sources = _dirty_probe_source_paths()
     roots = {}
     for root in RESULT_ROOTS:
         files = list(root.glob("*.json")) if root.exists() else []
@@ -385,6 +413,8 @@ def result_surface() -> dict:
         fail_families: Counter[str] = Counter()
         fail_modes: Counter[str] = Counter()
         unknown_families: Counter[str] = Counter()
+        dirty_source_results = 0
+        untracked_source_results = 0
         orphan_like = 0
         samples: defaultdict[str, list[str]] = defaultdict(list)
         for path in files:
@@ -433,6 +463,15 @@ def result_surface() -> dict:
                     samples["non_dict_json"].append(path.name)
             if root != REPO / "system_v4/a2_state/sim_results" and path.name.endswith("_results.json"):
                 stem = path.name[:-13]
+                rel_source = str((PROBES / f"{stem}.py").relative_to(REPO))
+                if rel_source in dirty_probe_sources:
+                    dirty_source_results += 1
+                    if len(samples["dirty_source_results"]) < 8:
+                        samples["dirty_source_results"].append(path.name)
+                if rel_source in untracked_probe_sources:
+                    untracked_source_results += 1
+                    if len(samples["untracked_source_results"]) < 8:
+                        samples["untracked_source_results"].append(path.name)
                 if not (PROBES / f"{stem}.py").exists():
                     orphan_like += 1
                     if len(samples["orphan_like"]) < 8:
@@ -444,22 +483,43 @@ def result_surface() -> dict:
             "fail_families": dict(fail_families.most_common(10)),
             "fail_modes": dict(fail_modes.most_common(10)),
             "unknown_families": dict(unknown_families.most_common(10)),
+            "dirty_source_results": dirty_source_results,
+            "untracked_source_results": untracked_source_results,
             "orphan_like": orphan_like,
             "samples": dict(samples),
         }
     return roots
 
 
+def _runner_health(queue_counts: dict, freshness: dict) -> dict:
+    claimed = int(queue_counts.get("claimed", 0) or 0)
+    done_fresh = freshness.get("done", {}).get("active_within_60s") is True
+    claimed_fresh = freshness.get("claimed", {}).get("active_within_60s") is True
+    lane_b_fresh = freshness.get("lane_B", {}).get("active_within_60s") is True
+    backlog = int(queue_counts.get("lane_A", 0) or 0) + int(queue_counts.get("lane_B", 0) or 0)
+    if claimed > 0 and done_fresh:
+        return {"status": "draining", "reason": "claimed and done surfaces are both fresh"}
+    if claimed > 0 and not done_fresh:
+        return {"status": "possibly_stuck", "reason": "claims exist but done surface is stale"}
+    if claimed == 0 and backlog > 0 and lane_b_fresh:
+        return {"status": "feeding", "reason": "queue is active but workers are between claims"}
+    if claimed == 0 and backlog > 0:
+        return {"status": "idle_with_backlog", "reason": "backlog exists without fresh claim/done movement"}
+    return {"status": "idle", "reason": "no active claims and no material backlog"}
+
+
 def runner_surface() -> dict:
     queue_counts = adaptive_controller.queue_counts()
+    freshness = {
+        lane: _queue_dir_freshness(adaptive_controller.QUEUE / lane)
+        for lane in ("lane_A", "lane_B", "claimed", "done")
+    }
     return {
         "pidfiles": {name: _pidfile_status(name, pidfile) for name, pidfile in PIDFILES.items()},
         "wrappers": _wrapper_processes(),
         "queue": queue_counts,
-        "freshness": {
-            lane: _queue_dir_freshness(adaptive_controller.QUEUE / lane)
-            for lane in ("lane_A", "lane_B", "claimed", "done")
-        },
+        "freshness": freshness,
+        "health": _runner_health(queue_counts, freshness),
         "claimed": _queue_claim_summary(),
     }
 

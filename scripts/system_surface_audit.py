@@ -112,6 +112,8 @@ def _queue_claim_summary(limit: int = 8) -> dict:
 
 
 def _git_layer(path: str) -> str:
+    if path.startswith("READ ONLY Legacy "):
+        return "legacy_copies"
     if path.startswith("obsidian_vault/"):
         return "owner_vault"
     if path.startswith("system_v5/new docs/") or path.endswith(".md"):
@@ -124,8 +126,6 @@ def _git_layer(path: str) -> str:
         return "runner_logs"
     if path.startswith("scripts/") or path.startswith("system_v5/tests/"):
         return "code_and_tests"
-    if path.startswith("READ ONLY Legacy "):
-        return "legacy_copies"
     return "other"
 
 
@@ -244,7 +244,13 @@ def _looks_like_legacy_pass(data: dict) -> bool:
         statuses = [str(item.get("status", "")).upper() for item in data["evidence_ledger"] if isinstance(item, dict)]
         if statuses and all(status == "PASS" for status in statuses):
             return True
+    if data.get("ALL_PASS") is True:
+        return True
     if isinstance(data.get("summary"), dict) and _summary_counts_all_pass(data["summary"]):
+        return True
+    if isinstance(data.get("summary"), dict) and adaptive_controller._summary_bools_all_true(data["summary"]):
+        return True
+    if adaptive_controller._nested_statuses_all_ok(data):
         return True
     section_votes = []
     for key in ("positive", "negative", "boundary", "results"):
@@ -268,7 +274,10 @@ def result_surface() -> dict:
                 data = json.loads(path.read_text(encoding="utf-8"))
             except Exception:
                 data = None
-            status_counts[_pass_state(data)] += 1
+            pass_state = _pass_state(data)
+            status_counts[pass_state] += 1
+            if pass_state == "fail" and len(samples["fail"]) < 8:
+                samples["fail"].append(path.name)
             if isinstance(data, dict):
                 if "overall_pass" in data:
                     schema_counts["overall_pass"] += 1
@@ -276,10 +285,16 @@ def result_surface() -> dict:
                     schema_counts["passed_only"] += 1
                 elif "all_pass" in data:
                     schema_counts["all_pass"] += 1
+                elif "ALL_PASS" in data:
+                    schema_counts["ALL_PASS"] += 1
                 elif isinstance(data.get("summary"), dict) and "all_pass" in data["summary"]:
                     schema_counts["summary_all_pass"] += 1
                 elif isinstance(data.get("summary"), dict) and "all_passed" in data["summary"]:
                     schema_counts["summary_all_passed"] += 1
+                elif isinstance(data.get("summary"), dict) and adaptive_controller._summary_bools_all_true(data["summary"]):
+                    schema_counts["summary_bool_inferred"] += 1
+                elif adaptive_controller._nested_statuses_all_ok(data):
+                    schema_counts["nested_status_inferred"] += 1
                 elif _looks_like_legacy_pass(data):
                     schema_counts["legacy_pass_inferred"] += 1
                 else:

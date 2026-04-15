@@ -558,9 +558,23 @@ def test_adaptive_controller_accepts_all_pass_and_summary_all_passed() -> None:
 
     assert module.is_passing({"all_pass": True}) is True
     assert module.is_passing({"all_pass": False}) is False
+    assert module.is_passing({"ALL_PASS": True}) is True
+    assert module.is_passing({"ALL_PASS": False}) is False
     assert module.is_passing({"summary": {"all_passed": True}}) is True
     assert module.is_passing({"summary": {"all_pass": False}}) is False
+    assert module.is_passing({"summary": {"all_checks_pass": True}}) is True
+    assert module.is_passing({
+        "summary": {
+            "all_checks_pass": True,
+            "key_findings": {"one": True, "two": True},
+        }
+    }) is True
+    assert module.is_passing({
+        "positive": {"torch": {"status": "ok"}},
+        "negative": {"z3": {"status": "ok"}},
+    }) is True
     assert module.is_legacy_schema({"timestamp": "x", "all_pass": True}) is False
+    assert module.is_legacy_schema({"timestamp": "x", "ALL_PASS": True}) is False
 
 
 def test_perpetual_runner_declares_pidfile_singleton() -> None:
@@ -572,13 +586,29 @@ def test_perpetual_runner_declares_pidfile_singleton() -> None:
 
 
 def test_system_surface_audit_infers_legacy_pass_shapes() -> None:
-    module = _load_module(
-        "system_surface_audit_under_test",
-        REPO_ROOT / "scripts" / "system_surface_audit.py",
-    )
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
 
     assert module._pass_state({"all_pass": True}) == "pass"
+    assert module._pass_state({"ALL_PASS": True}) == "pass"
     assert module._pass_state({"summary": {"all_passed": True}}) == "pass"
+    assert module._pass_state({"summary": {"all_checks_pass": True}}) == "pass"
+    assert module._pass_state({
+        "summary": {"all_checks_pass": True, "key_findings": {"alpha": True, "beta": True}},
+    }) == "pass"
+    assert module._pass_state({
+        "positive": {"torch": {"status": "ok"}},
+        "negative": {"z3": {"status": "ok"}},
+        "boundary": {"sympy": {"status": "passed"}},
+    }) == "pass"
     assert module._pass_state({
         "evidence_ledger": [{"status": "PASS"}],
         "results": {"check_a": True},

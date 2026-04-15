@@ -106,6 +106,59 @@ def load_result(path: pathlib.Path) -> dict:
     except Exception:
         return {}
 
+
+def _boolish(value: object) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered == "true":
+            return True
+        if lowered == "false":
+            return False
+    return None
+
+
+def _summary_bools_all_true(section: object) -> bool:
+    bools: list[bool] = []
+
+    def walk(value: object) -> None:
+        if isinstance(value, bool):
+            bools.append(value)
+            return
+        if isinstance(value, dict):
+            for nested in value.values():
+                walk(nested)
+            return
+        if isinstance(value, list):
+            for nested in value:
+                walk(nested)
+
+    walk(section)
+    return bool(bools) and all(bools)
+
+
+def _nested_statuses_all_ok(section: object) -> bool:
+    statuses: list[str] = []
+
+    def walk(value: object) -> None:
+        if isinstance(value, dict):
+            for key, nested in value.items():
+                if key == "evidence_ledger":
+                    continue
+                if key == "status" and isinstance(nested, str):
+                    statuses.append(nested.strip().lower())
+                else:
+                    walk(nested)
+            return
+        if isinstance(value, list):
+            for nested in value:
+                walk(nested)
+
+    walk(section)
+    return bool(statuses) and all(s in {"ok", "pass", "passed", "success"} for s in statuses)
+
+
 def is_passing(r: dict) -> bool:
     # Only treat as failing if overall_pass is explicitly False.
     # Legacy JSONs (pre-SIM_TEMPLATE, no overall_pass field) are NOT failures —
@@ -116,12 +169,22 @@ def is_passing(r: dict) -> bool:
         return bool(r["pass"])
     if "all_pass" in r:
         return bool(r["all_pass"])
+    if "ALL_PASS" in r:
+        return bool(r["ALL_PASS"])
     if isinstance(r.get("summary"), dict):
         summary = r["summary"]
         if "all_pass" in summary:
             return bool(summary["all_pass"])
         if "all_passed" in summary:
             return bool(summary["all_passed"])
+        if "all_checks_pass" in summary:
+            verdict = _boolish(summary["all_checks_pass"])
+            if verdict is not None:
+                return verdict
+        if _summary_bools_all_true(summary):
+            return True
+    if _nested_statuses_all_ok(r):
+        return True
     if r.get("result") == "PASS":
         return True
     if r.get("result") == "FAIL":
@@ -132,6 +195,7 @@ def is_passing(r: dict) -> bool:
 def is_legacy_schema(r: dict) -> bool:
     """Pre-SIM_TEMPLATE result: has no overall_pass but has old-style fields."""
     return ("overall_pass" not in r and "pass" not in r and "all_pass" not in r and
+            "ALL_PASS" not in r and
             not (isinstance(r.get("summary"), dict) and
                  any(k in r["summary"] for k in ("all_pass", "all_passed"))) and
             any(k in r for k in ("timestamp", "verdict", "axis", "evidence_ledger")))

@@ -4,12 +4,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no tensor ops needed"
+      "reason": "no tensor ops needed; scalar \u00b11 involution requires no autograd"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "no graph structure in this sim; duality is a scalar operation"
     },
     "z3": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient"
+      "reason": "z3 sufficient for involution universality; cvc5 not required here"
     },
     "sympy": {
       "tried": true,
@@ -29,37 +29,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "involution is scalar \u00b11 here"
+      "reason": "involution is scalar \u00b11 here; no Clifford algebra needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no manifold"
+      "reason": "no manifold structure; duality is a discrete 2-element set"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariance"
+      "reason": "no equivariance needed; sim is over a discrete 2-carrier set"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph"
+      "reason": "no graph structure needed; yin/yang is a 2-element involution"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hyperedges"
+      "reason": "no hyperedges in this sim; structure is a single pair"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no complex"
+      "reason": "no simplicial complex; duality is a 0-dimensional carrier set"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistence"
+      "reason": "no persistent homology needed; yin/yang duality has no topological structure to compute"
     }
   },
   "tool_integration_depth": {
@@ -108,6 +108,6 @@
     },
     "ok": true
   },
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "all_ok": true
 }

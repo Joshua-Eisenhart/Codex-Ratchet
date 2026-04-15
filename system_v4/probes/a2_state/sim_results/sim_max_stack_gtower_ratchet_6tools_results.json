@@ -1,0 +1,220 @@
+{
+  "name": "sim_max_stack_gtower_ratchet_6tools",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed; clifford+numpy handle all rotor and matrix products for this lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph message-passing architecture not required for pairwise rotor non-commutativity probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes structural impossibility: proves UNSAT that reversed rotor order admits the same fixed-point witness; primary proof form per CLAUDE.md"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for bitvector + real-arithmetic UNSAT proof; cvc5 not needed for this ratchet claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes symbolic BCH commutator [A,B] = AB - BA over matrix algebra; provides analytic order obstruction independent of floating point"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes Clifford-algebra rotor products A\u2218B and B\u2218A in Cl(3,0); the non-commutativity magnitude |A\u2218B - B\u2218A| is the primary ratchet signal"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) Riemannian geometry not required; e3nn covers equivariance check at lower cost"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Checks SO(3) equivariance of the dominant rotor under D^1 Wigner matrix: confirms the non-commutative pair lives in a genuine SO(3) shell, not a numerical artifact"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "DAG ordering not needed; RIBS archive handles the (depth x commutator-norm) grid without graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not relevant for pairwise G-tower admissibility probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Cell-complex topology not needed; RIBS grid already captures the 2D parameter landscape"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology on admitted pairs covered in sim_max_stack_constraint_manifold_5tools.py; not duplicated here"
+    },
+    "ribs": {
+      "tried": true,
+      "used": true,
+      "reason": "Archives (G-depth, commutator-norm) grid solutions into quality-diversity archive; makes the non-commutativity landscape queryable as a structured lego output"
+    },
+    "optuna": {
+      "tried": true,
+      "used": true,
+      "reason": "Searches Cl(3,0) rotor parameter space to find the G-tower pair maximizing |A\u2218B - B\u2218A|; the found pair becomes the canonical ratchet witness"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "ribs": "load_bearing",
+    "optuna": "load_bearing"
+  },
+  "positive": {
+    "clifford_noncommutativity": {
+      "params_A": [
+        1.0471975511965976,
+        0.7853981633974483,
+        0.0
+      ],
+      "params_B": [
+        0.6283185307179586,
+        1.0471975511965976,
+        0.5235987755982988
+      ],
+      "noncommutativity_magnitude": 0.144529465,
+      "norm_A": 1.0,
+      "norm_B": 1.0,
+      "is_noncommutative": true,
+      "pass": true
+    },
+    "z3_unsat_reversed_order": {
+      "commutative_system_status": "unsat",
+      "witness_system_status": "sat",
+      "UNSAT_confirms_noncommutativity": true,
+      "SAT_witness_exists": true,
+      "pass": true
+    },
+    "sympy_bch_commutator": {
+      "commutator_is_zero": false,
+      "commutator_repr": "Matrix([[-2*I*sin(theta_B)*cos(theta_A), 0], [0, 2*I*sin(theta_B)*cos(theta_A)]])",
+      "nonzero_off_diag": true,
+      "pass": true
+    },
+    "e3nn_so3_equivariance": {
+      "D1_shape": [
+        3,
+        3
+      ],
+      "unitarity_residual": 1.10498e-05,
+      "equivariant": false,
+      "pass": false
+    },
+    "optuna_max_noncommutative": {
+      "best_noncommutativity": 1.9158741026,
+      "best_params": {
+        "a0": 3.111484,
+        "a1": 2.05316,
+        "a2": 0.481549,
+        "b0": 2.729153,
+        "b1": 0.731232,
+        "b2": 0.857941
+      },
+      "pass": true
+    },
+    "ribs_archive": {
+      "solutions_attempted": 80,
+      "archive_elites": 5,
+      "grid_dims": [
+        5,
+        5
+      ],
+      "measures": [
+        "gtower_depth",
+        "commutator_norm"
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "clifford_identity_is_commutative": {
+      "noncommutativity_with_identity": 0.0,
+      "expected": 0.0,
+      "pass": true
+    },
+    "z3_scalar_commutes": {
+      "status": "sat",
+      "pass": true
+    },
+    "sympy_diagonal_commutes": {
+      "commutator_is_zero": true,
+      "pass": true
+    },
+    "e3nn_trivial_rep_identity": {
+      "D0_value": 1.0,
+      "expected": 1.0,
+      "residual": 0.0,
+      "pass": true
+    },
+    "optuna_identical_pair_commutes": {
+      "best_value": 0.0,
+      "pass": true
+    },
+    "ribs_dominated_not_added": {
+      "elites_after_dominated_insert": 1,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "clifford_near_identity_boundary": {
+      "epsilon": 0.0001,
+      "noncommutativity_magnitude": 3.5355339e-05,
+      "pass": true
+    },
+    "z3_boundary_tiny_interval": {
+      "status": "sat",
+      "pass": true
+    },
+    "sympy_commutator_at_zero_params": {
+      "is_zero": true,
+      "pass": true
+    },
+    "e3nn_2pi_rotation_identity": {
+      "residual_from_identity": 0.0,
+      "pass": true
+    },
+    "ribs_single_cell_holds_one": {
+      "elites": 1,
+      "pass": true
+    },
+    "optuna_single_trial_nonzero": {
+      "best_value": 0.291601698785,
+      "pass": true
+    }
+  },
+  "summary": {
+    "n_tests": 18,
+    "n_pass": 17,
+    "n_fail": 1,
+    "pass": false
+  }
+}

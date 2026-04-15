@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T16:06:36.447050",
+  "timestamp": "2026-04-15T16:26:10.300137",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -3272,6 +3272,34 @@
             "kept": [
               "i",
               "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_mera_weyl_hopf_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_mera_weyl_hopf_bridge_claims_canonical.py",
+          "line": 148,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho)  # sum over j -> shape (dA, dA)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -6987,8 +7015,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 89,
-    "clean_files": 77,
+    "total_files_with_einsum_ptrace": 90,
+    "clean_files": 78,
     "files_with_einsum_bugs": 12,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,

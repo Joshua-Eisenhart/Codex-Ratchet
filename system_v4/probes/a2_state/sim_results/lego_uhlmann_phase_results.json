@@ -66,9 +66,9 @@
     "pure_equatorial_berry": {
       "uhlmann_phase": 3.1415926535897922,
       "expected_berry_phase": -3.1415926535897927,
-      "abs_error": 6.2831853071795845,
+      "abs_error": 1.7763568394002505e-15,
       "holonomy_abs": 0.9999999999999999,
-      "passed": false,
+      "passed": true,
       "note": "Pure-state equatorial loop: Uhlmann -> Berry phase = -pi"
     },
     "pure_cone_loops": {
@@ -128,7 +128,7 @@
       "passed": true,
       "note": "Sympy symbolic verification of Berry phase formula"
     },
-    "elapsed_s": 0.5335378646850586
+    "elapsed_s": 0.5098860263824463
   },
   "negative": {
     "maximally_mixed_zero_phase": {
@@ -151,7 +151,7 @@
       "passed": true,
       "note": "Uhlmann fidelity must always be in [0, 1]"
     },
-    "elapsed_s": 0.004692792892456055
+    "elapsed_s": 0.0049669742584228516
   },
   "boundary": {
     "purity_sweep": {
@@ -268,16 +268,16 @@
       "passed": true,
       "note": "Phase error decreases as loop discretisation gets finer (or is already at machine precision for all step counts)"
     },
-    "elapsed_s": 0.41626906394958496
+    "elapsed_s": 0.36382484436035156
   },
   "classification": "canonical",
   "summary": {
     "total_tests": 10,
-    "passed": 9,
-    "failed": 1,
-    "all_passed": false,
+    "passed": 10,
+    "failed": 0,
+    "all_passed": true,
     "test_names": {
-      "pure_equatorial_berry": "FAIL",
+      "pure_equatorial_berry": "PASS",
       "pure_cone_loops": "PASS",
       "autograd_fidelity": "PASS",
       "sympy_berry_crosscheck": "PASS",

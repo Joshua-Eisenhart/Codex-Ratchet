@@ -64,46 +64,46 @@
   },
   "positive": {
     "pure_equatorial_berry": {
-      "uhlmann_phase": -3.141592653589793,
+      "uhlmann_phase": 3.1415926535897922,
       "expected_berry_phase": -3.1415926535897927,
-      "abs_error": 4.440892098500626e-16,
-      "holonomy_abs": 0.9999999999999998,
-      "passed": true,
+      "abs_error": 6.2831853071795845,
+      "holonomy_abs": 0.9999999999999999,
+      "passed": false,
       "note": "Pure-state equatorial loop: Uhlmann -> Berry phase = -pi"
     },
     "pure_cone_loops": {
       "details": [
         {
           "theta_deg": 30,
-          "uhlmann_phase": -0.4207570338830928,
+          "uhlmann_phase": -0.4207570338830943,
           "expected_berry": -0.42089360723846625,
-          "error": 0.00013657335537331505,
+          "error": 0.00013657335537198279,
           "passed": true
         },
         {
           "theta_deg": 45,
-          "uhlmann_phase": -0.919928141001714,
+          "uhlmann_phase": -0.9199281410017129,
           "expected_berry": -0.92015118451061,
-          "error": 0.00022304350889612579,
+          "error": 0.00022304350889701396,
           "passed": true
         },
         {
           "theta_deg": 60,
-          "uhlmann_phase": -1.570559732047842,
+          "uhlmann_phase": -1.570559732047843,
           "expected_berry": -1.5707963267948961,
-          "error": 0.0002365947470543972,
+          "error": 0.00023659474705306494,
           "passed": true
         },
         {
           "theta_deg": 90,
-          "uhlmann_phase": -3.141592653589793,
+          "uhlmann_phase": 3.1415926535897922,
           "expected_berry": -3.1415926535897927,
-          "error": 4.440892098500626e-16,
+          "error": 1.7763568394002505e-15,
           "passed": true
         },
         {
           "theta_deg": 120,
-          "uhlmann_phase": 1.5705597320478422,
+          "uhlmann_phase": 1.5705597320478424,
           "expected_berry": -4.712388980384689,
           "error": 0.0002365947470543972,
           "passed": true
@@ -128,7 +128,7 @@
       "passed": true,
       "note": "Sympy symbolic verification of Berry phase formula"
     },
-    "elapsed_s": 0.26218390464782715
+    "elapsed_s": 0.242264986038208
   },
   "negative": {
     "maximally_mixed_zero_phase": {
@@ -139,8 +139,8 @@
       "note": "Maximally mixed (r=0): all rho = I/2, transport is trivial, phase = 0"
     },
     "non_closed_path_warning": {
-      "uhlmann_phase": -0.14538119941023483,
-      "holonomy_abs": 0.7626767926438596,
+      "uhlmann_phase": -0.14538119941023533,
+      "holonomy_abs": 0.7626767926438597,
       "is_closed": false,
       "passed": true,
       "note": "Non-closed path: phase is gauge-dependent, not physical. This is a negative test: the number itself is meaningless."
@@ -151,70 +151,70 @@
       "passed": true,
       "note": "Uhlmann fidelity must always be in [0, 1]"
     },
-    "elapsed_s": 0.005177974700927734
+    "elapsed_s": 0.005487203598022461
   },
   "boundary": {
     "purity_sweep": {
       "details": [
         {
           "r": 0.999,
-          "uhlmann_phase": -3.1415926535897927,
-          "deviation_from_berry": 0.0,
+          "uhlmann_phase": 3.1415926535897922,
+          "deviation_from_berry": 1.7763568394002505e-15,
           "holonomy_abs": 0.9901475963198969
         },
         {
           "r": 0.99,
-          "uhlmann_phase": -3.1415926535897927,
-          "deviation_from_berry": 0.0,
-          "holonomy_abs": 0.9033568288021017
+          "uhlmann_phase": 3.1415926535897873,
+          "deviation_from_berry": 7.105427357601002e-15,
+          "holonomy_abs": 0.9033568288021016
         },
         {
           "r": 0.95,
-          "uhlmann_phase": 3.141592653589791,
-          "deviation_from_berry": 3.552713678800501e-15,
-          "holonomy_abs": 0.5560755858768534
+          "uhlmann_phase": 3.1415926535897922,
+          "deviation_from_berry": 1.7763568394002505e-15,
+          "holonomy_abs": 0.5560755858768527
         },
         {
           "r": 0.9,
-          "uhlmann_phase": 3.1415926535897842,
-          "deviation_from_berry": 8.881784197001252e-15,
-          "holonomy_abs": 0.199830641345839
+          "uhlmann_phase": 3.141592653589773,
+          "deviation_from_berry": 2.1316282072803006e-14,
+          "holonomy_abs": 0.19983064134583955
         },
         {
           "r": 0.7,
-          "uhlmann_phase": 9.79642927622242e-16,
-          "deviation_from_berry": 3.141592653589793,
-          "holonomy_abs": 0.6233114600499591
+          "uhlmann_phase": -4.096688606420281e-15,
+          "deviation_from_berry": 3.1415926535897887,
+          "holonomy_abs": 0.6233114600499596
         },
         {
           "r": 0.5,
-          "uhlmann_phase": -5.777470390993643e-16,
+          "uhlmann_phase": -3.0407738899966524e-16,
           "deviation_from_berry": 3.1415926535897922,
-          "holonomy_abs": 0.9127799902168804
+          "holonomy_abs": 0.9127799902168809
         },
         {
           "r": 0.3,
-          "uhlmann_phase": -4.2072754379754986e-16,
-          "deviation_from_berry": 3.1415926535897922,
-          "holonomy_abs": 0.9895564014576843
+          "uhlmann_phase": 3.085335321182032e-16,
+          "deviation_from_berry": 3.141592653589793,
+          "holonomy_abs": 0.9895564014576844
         },
         {
           "r": 0.1,
-          "uhlmann_phase": -3.521924985477268e-16,
-          "deviation_from_berry": 3.1415926535897922,
+          "uhlmann_phase": 7.651078416726479e-16,
+          "deviation_from_berry": 3.141592653589793,
           "holonomy_abs": 0.9998761105798253
         },
         {
           "r": 0.01,
-          "uhlmann_phase": 9.20609628533613e-16,
+          "uhlmann_phase": -3.0791342078175294e-17,
           "deviation_from_berry": 3.141592653589793,
-          "holonomy_abs": 0.9999999876722829
+          "holonomy_abs": 0.9999999876722825
         },
         {
           "r": 0.001,
-          "uhlmann_phase": 3.5018364330697526e-16,
+          "uhlmann_phase": 3.976554989567826e-17,
           "deviation_from_berry": 3.141592653589793,
-          "holonomy_abs": 0.999999999998767
+          "holonomy_abs": 0.9999999999987671
         }
       ],
       "near_pure_matches_berry": true,
@@ -224,7 +224,7 @@
     },
     "tiny_r_stability": {
       "r": 1e-06,
-      "uhlmann_phase": -2.572168206417633e-16,
+      "uhlmann_phase": 7.246364031186961e-16,
       "is_finite": true,
       "near_zero": true,
       "passed": true,
@@ -244,22 +244,22 @@
         },
         {
           "N_steps": 64,
-          "phase": 3.1415926535897927,
+          "phase": 3.141592653589793,
           "error": 0.0
         },
         {
           "N_steps": 128,
-          "phase": -3.141592653589793,
-          "error": 4.440892098500626e-16
+          "phase": 3.1415926535897922,
+          "error": 1.7763568394002505e-15
         },
         {
           "N_steps": 256,
-          "phase": 3.1415926535897927,
-          "error": 0.0
+          "phase": -3.1415926535897922,
+          "error": 4.440892098500626e-16
         },
         {
           "N_steps": 512,
-          "phase": 3.141592653589792,
+          "phase": 3.1415926535897922,
           "error": 1.7763568394002505e-15
         }
       ],
@@ -268,16 +268,16 @@
       "passed": true,
       "note": "Phase error decreases as loop discretisation gets finer (or is already at machine precision for all step counts)"
     },
-    "elapsed_s": 0.16806721687316895
+    "elapsed_s": 0.15741491317749023
   },
   "classification": "canonical",
   "summary": {
     "total_tests": 10,
-    "passed": 10,
-    "failed": 0,
-    "all_passed": true,
+    "passed": 9,
+    "failed": 1,
+    "all_passed": false,
     "test_names": {
-      "pure_equatorial_berry": "PASS",
+      "pure_equatorial_berry": "FAIL",
       "pure_cone_loops": "PASS",
       "autograd_fidelity": "PASS",
       "sympy_berry_crosscheck": "PASS",

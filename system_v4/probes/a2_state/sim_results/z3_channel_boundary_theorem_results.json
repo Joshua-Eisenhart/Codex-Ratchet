@@ -157,13 +157,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of amplitude_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0102
+          "elapsed_s": 0.0218
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for amplitude_damping.",
-          "elapsed_s": 0.0026
+          "elapsed_s": 0.0136
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -175,13 +175,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of phase_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0036
+          "elapsed_s": 0.0133
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_damping.",
-          "elapsed_s": 0.0023
+          "elapsed_s": 0.0137
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -193,13 +193,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of depolarizing can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.003
+          "elapsed_s": 0.0035
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for depolarizing.",
-          "elapsed_s": 0.0018
+          "elapsed_s": 0.0161
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -211,13 +211,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of bit_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0022
+          "elapsed_s": 0.01
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for bit_flip.",
-          "elapsed_s": 0.0016
+          "elapsed_s": 0.0076
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -229,13 +229,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of phase_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0025
+          "elapsed_s": 0.0131
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_flip.",
-          "elapsed_s": 0.0018
+          "elapsed_s": 0.0108
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -251,14 +251,14 @@
       "example_lambda2": "3/4",
       "interpretation": "2-qubit depolarizing CAN have \u03bb1+\u03bb2 > 1 while still being admissible (product contraction >= 0). This VIOLATES the linear boundary theorem. Confirms: linear boundary only holds for SINGLE-parameter qubit channels. 2-qubit channels require a NONLINEAR (quadratic) boundary: admissibility condition involves \u03bb1*\u03bb2 cross-term.",
       "linear_boundary_fails_for_2qubit": true,
-      "elapsed_s": 0.0028
+      "elapsed_s": 0.0015
     },
     "test_single_qubit_boundary_strict": {
       "name": "single_qubit_linear_boundary_strict",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "\u03bb > 3/4 with |1-4\u03bb/3| <= 1 is UNSAT. Single-qubit depolarizing linear boundary \u03bb = 3/4 is strict -- no admissible channel exceeds it.",
-      "elapsed_s": 0.0007
+      "elapsed_s": 0.0004
     }
   },
   "boundary": {
@@ -307,6 +307,6 @@
     "synthesized_function": "(lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0))",
     "is_linear": true,
     "interpretation": "cvc5 synthesized: (lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0)). Boundary IS linear. Cross-check with z3 linear boundary proof: AGREES.",
-    "elapsed_s": 1.0822
+    "elapsed_s": 1.1245
   }
 }

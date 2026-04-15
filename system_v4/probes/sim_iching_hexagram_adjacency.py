@@ -8,7 +8,7 @@ Probes the adjacency graph induced by single-line (Hamming-1) changes.
 This sim treats the hexagram system as an independent combinatorial object.
 No QIT engines, Weyl spinors, axes, or system-internal framing.
 
-classification: classical_baseline
+classification: canonical
 """
 
 import json
@@ -319,7 +319,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_iching_hexagram_adjacency",
-        "classification": "classical_baseline",
+        "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

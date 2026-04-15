@@ -11,7 +11,7 @@ Tools:
   rustworkx  -- load_bearing: explicit enumeration of directed Hamiltonian cycles
   sympy      -- supportive: permutation group analysis of 4-ring symmetries
 
-Classification: classical_baseline
+Classification: canonical
 """
 
 import json
@@ -445,7 +445,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_igt_two_pattern_uniqueness",
-        "classification": "classical_baseline",
+        "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos_results,

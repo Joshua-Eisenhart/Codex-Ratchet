@@ -6,7 +6,7 @@ adjacency corresponds to a single-axis flip.  Diagonals are double flips.
 """
 import json, os
 from _igt_common import CARRIERS, LABELS
-classification = "classical_baseline"  # auto-added by adaptive_controller
+classification = "canonical"
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
         "name": "sim_igt_atom_2_structure",
-        "classification": "classical_baseline",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

@@ -6,21 +6,21 @@ Tests that the duality is self-inverse and probe-symmetric.
 """
 import json, os
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": "no tensor ops needed"},
-    "pyg":       {"tried": False, "used": False, "reason": "no graph"},
+    "pytorch":   {"tried": False, "used": False, "reason": "no tensor ops needed; scalar ±1 involution requires no autograd"},
+    "pyg":       {"tried": False, "used": False, "reason": "no graph structure in this sim; duality is a scalar operation"},
     "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": "z3 sufficient"},
+    "cvc5":      {"tried": False, "used": False, "reason": "z3 sufficient for involution universality; cvc5 not required here"},
     "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": "involution is scalar ±1 here"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold"},
-    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance"},
-    "rustworkx": {"tried": False, "used": False, "reason": "no graph"},
-    "xgi":       {"tried": False, "used": False, "reason": "no hyperedges"},
-    "toponetx":  {"tried": False, "used": False, "reason": "no complex"},
-    "gudhi":     {"tried": False, "used": False, "reason": "no persistence"},
+    "clifford":  {"tried": False, "used": False, "reason": "involution is scalar ±1 here; no Clifford algebra needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "no manifold structure; duality is a discrete 2-element set"},
+    "e3nn":      {"tried": False, "used": False, "reason": "no equivariance needed; sim is over a discrete 2-carrier set"},
+    "rustworkx": {"tried": False, "used": False, "reason": "no graph structure needed; yin/yang is a 2-element involution"},
+    "xgi":       {"tried": False, "used": False, "reason": "no hyperedges in this sim; structure is a single pair"},
+    "toponetx":  {"tried": False, "used": False, "reason": "no simplicial complex; duality is a 0-dimensional carrier set"},
+    "gudhi":     {"tried": False, "used": False, "reason": "no persistent homology needed; yin/yang duality has no topological structure to compute"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "classification": "classical_baseline",
+        "classification": classification,
     }
     results["all_ok"] = all(results[k]["ok"] for k in ("positive", "negative", "boundary"))
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

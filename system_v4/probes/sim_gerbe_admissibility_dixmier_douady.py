@@ -50,10 +50,10 @@ def run_negative_tests():
     s.add(2 * z3.Sum(f) == 1)  # no integer solution
     r["half_integer_DD_UNSAT"] = (s.check() == z3.unsat)
 
-    # incompatibility: integer fluxes with sum in [0.3, 0.7] -> UNSAT (no int)
+    # incompatibility: integer fluxes with sum in (0,1) -> UNSAT (no int in open interval)
     s2 = z3.Solver()
     g = [z3.Int(f"g{i}") for i in range(3)]
-    total = z3.Real("total"); s2.add(total == z3.Sum(g))
+    total = z3.Int("total"); s2.add(total == z3.Sum(g))
     s2.add(total > 0, total < 1)
     r["non_integer_total_UNSAT"] = (s2.check() == z3.unsat)
     return r

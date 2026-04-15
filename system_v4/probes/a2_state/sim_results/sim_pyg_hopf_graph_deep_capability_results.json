@@ -1,0 +1,134 @@
+{
+  "name": "sim_pyg_hopf_graph_deep_capability",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Tensor substrate for node features, edge indices, and GCN weight matrices; torch.linalg.norm used to compute Frobenius deltas between output tensors"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "GCNConv MessagePassing computes neighbourhood-aggregated node embeddings on the Hopf-fiber graph; the admitted node set is defined by thresholding GCN output norms, making PyG load-bearing for the admissibility claim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "numeric graph structure probe does not require SMT proof layer"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; admissibility criterion is empirical, not symbolic"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "Hopf fiber distance formula is closed-form; no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "quaternion operations implemented directly in torch; clifford not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S3 sampling done analytically; geomstats not required here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not the focus of this Hopf-graph structure probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph representation handled entirely by PyG edge_index tensors"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not needed; pairwise edges only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell-complex topology not needed; this probe targets graph-level structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for this graph-structure test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_a_structure_changes_admissibility": {
+      "pass": true,
+      "admitted_hopf_count": 19,
+      "admitted_none_count": 31,
+      "hopf_edge_count": 67,
+      "note": "GCN message passing over Hopf-fiber edges must change the admitted node set"
+    },
+    "pos_b_edge_removal_delta": {
+      "pass": true,
+      "relative_change": 0.8446670269706871,
+      "threshold": 0.1,
+      "note": "Frobenius-norm ratio |out_hopf - out_none| / |out_none| must exceed 10%"
+    },
+    "pos_c_sparse_vs_full_distinct": {
+      "pass": true,
+      "relative_diff_hopf_vs_full": 1.3131921072029398,
+      "admitted_hopf_count": 19,
+      "admitted_full_count": 0,
+      "note": "Hopf-sparse and fully-connected graphs must yield different admitted node sets"
+    },
+    "positive_all_pass": true
+  },
+  "negative": {
+    "neg_a_identity_gcn_no_delta": {
+      "pass": true,
+      "relative_change": 0.0,
+      "note": "Zero-weight GCN should not show >10% delta \u2014 confirms delta is due to message passing"
+    },
+    "neg_b_random_graph_differs": {
+      "pass": true,
+      "er_match_count": 0,
+      "er_trials": 5,
+      "note": "Random graphs at same density must not reproduce exact Hopf admissibility partition"
+    },
+    "negative_all_pass": true
+  },
+  "boundary": {
+    "boundary_a_near_zero_threshold": {
+      "pass": true,
+      "edge_count_at_tiny_thresh": 0,
+      "relative_change": 0.0,
+      "note": "Near-zero threshold yields disconnected graph; GCN degenerates to no-edge baseline"
+    },
+    "boundary_b_near_full_threshold": {
+      "pass": true,
+      "edge_count_at_large_thresh": 496,
+      "full_edge_count": 496,
+      "relative_diff_from_full": 0.0,
+      "note": "Large threshold approaches fully-connected; GCN output should converge to full-graph output"
+    },
+    "boundary_all_pass": true
+  }
+}

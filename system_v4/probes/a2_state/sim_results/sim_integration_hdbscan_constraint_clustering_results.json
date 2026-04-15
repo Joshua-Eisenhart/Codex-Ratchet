@@ -1,0 +1,145 @@
+{
+  "name": "sim_integration_hdbscan_constraint_clustering",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.tensor wraps state vectors for cluster centroid computation; torch.norm computes centroid distances as load-bearing tensor operations used throughout clustering validation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: graph neural network message passing is not needed for this 2D constraint-admissibility clustering sim; deferred to a coupling sim where graph structure emerges from multi-shell state interactions"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 Real arithmetic checks that cluster centroid (cx, cy) satisfies cx^2 + cy^2 < 1 (SAT=admissible) and that noise centroids satisfy cx^2 + cy^2 > 1 (SAT=excluded); structural impossibility is the primary proof form"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: z3 arithmetic is sufficient for unit-circle constraint checking here; cvc5 is reserved for nonlinear arithmetic or bitvector constraints that z3 cannot handle efficiently in later integration sims"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: symbolic algebra is not required for this numeric clustering probe; sympy would be load-bearing only if analytic constraint boundary derivations were part of the test, which is deferred to a geometry sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Clifford algebra rotor operations are not required for 2D Euclidean clustering; clifford is reserved for sims that compute rotation or reflection operators on the constraint manifold surface"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Riemannian geometry on Lie groups is not needed for this flat 2D constraint-admissibility test; geomstats integration is deferred to the G-tower projection sims where group structure matters"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: equivariant neural network layers are not needed for density-based clustering of 2D points; e3nn is reserved for sims where rotational symmetry of the state space must be enforced during learning"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: graph algorithms on adjacency structures are not part of this flat 2D clustering probe; rustworkx integration is deferred to sims where shell-coupling topology forms an explicit graph object"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: hypergraph higher-order interactions are not present in this pairwise clustering sim; xgi is reserved for multi-shell coexistence sims where states belong to multiple overlapping constraint sets simultaneously"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cell complex topology is not needed for 2D point clustering; toponetx integration is deferred to sims that compute the topological structure of the full constraint manifold across multiple shells"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: persistent homology is not the primary tool for this HDBSCAN integration sim; gudhi is load-bearing in the UMAP G-tower projection sim where Rips complex persistence validates embedding topology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "hdbscan",
+    "import": "import hdbscan; hdbscan.HDBSCAN",
+    "role": "load_bearing",
+    "description": "HDBSCAN identifies admissible clusters from raw state vectors without knowing k in advance; cluster labels separate admissible states from noise, which z3 and pytorch then validate"
+  },
+  "positive": {
+    "positive_admissible_clusters_z3_validated": {
+      "n_clusters_found": 2,
+      "cluster_ids": [
+        "0",
+        "1"
+      ],
+      "centroids": {
+        "0": [
+          -0.30637723207473755,
+          0.20743140578269958
+        ],
+        "1": [
+          0.30947333574295044,
+          0.19358786940574646
+        ]
+      },
+      "centroid_z3_admissible": {
+        "0": "sat",
+        "1": "sat"
+      },
+      "pass_clusters_ge_2": true,
+      "pass_centroids_admissible": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_noise_points_outside_unit_circle": {
+      "n_noise_points": 30,
+      "all_z3_inadmissible": true,
+      "all_z3_excluded": true,
+      "hdbscan_noise_count": 30,
+      "hdbscan_n_clusters": 0,
+      "sample_admissible_checks": [
+        "unsat",
+        "unsat",
+        "unsat",
+        "unsat",
+        "unsat"
+      ],
+      "sample_excluded_checks": [
+        "sat",
+        "sat",
+        "sat",
+        "sat",
+        "sat"
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_single_cluster_degenerate": {
+      "n_clusters_found": 0,
+      "centroid_z3_admissible": null,
+      "pass_z3_valid": true,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

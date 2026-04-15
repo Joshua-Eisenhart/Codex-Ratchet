@@ -1,0 +1,139 @@
+{
+  "name": "sim_capability_umap_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates umap nonlinear dimensionality reduction capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "umap",
+    "import": "import umap; umap.UMAP(n_components=2, random_state=42)",
+    "role": "load_bearing",
+    "can": [
+      "nonlinear dimensionality reduction preserving local topology of high-dim manifolds",
+      "work on high-dimensional data while maintaining cluster structure better than PCA",
+      "run faster than t-SNE on large datasets while preserving meaningful neighborhood structure"
+    ],
+    "cannot": [
+      "guarantee global structure preservation, only local neighborhood relationships are reliable",
+      "run fully deterministically without random_state because stochastic optimization is used",
+      "replace persistent homology tools like gudhi for formal topological analysis"
+    ]
+  },
+  "positive": {
+    "positive_3_clusters_5d_to_2d": {
+      "input_shape": [
+        90,
+        5
+      ],
+      "output_shape": [
+        90,
+        2
+      ],
+      "shape_pass": true,
+      "mean_inter_cluster_dist_2d": 14.3181,
+      "mean_intra_cluster_dist_2d": 0.7057,
+      "separation_preserved": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_too_few_points_default_neighbors": {
+      "n_samples": 2,
+      "n_neighbors_requested": 15,
+      "error_caught": true,
+      "error_msg": "zero-size array to reduction operation maximum which has no identity",
+      "completed_unexpectedly": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_2d_to_2d_no_reduction": {
+      "input_shape": [
+        30,
+        2
+      ],
+      "output_shape": [
+        30,
+        2
+      ],
+      "completed_without_error": true,
+      "shape_preserved": true,
+      "error": null,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

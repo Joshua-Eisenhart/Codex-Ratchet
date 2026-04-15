@@ -1,0 +1,146 @@
+{
+  "name": "sim_capability_hdbscan_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates hdbscan density-based clustering capability; cross-tool coupling deferred to a separate integration sim per the four-sim-kinds doctrine"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "hdbscan",
+    "import": "import hdbscan; hdbscan.HDBSCAN",
+    "role": "load_bearing",
+    "can": [
+      "density-based clustering that handles noise natively via -1 label",
+      "variable cluster sizes with no need to specify k in advance",
+      "cluster persistence scores quantify stability of each cluster"
+    ],
+    "cannot": [
+      "determine optimal number of clusters without running the algorithm",
+      "handle high-dimensional data well without dimensionality reduction preprocessing",
+      "replace z3 for logical constraint checking or formal proof"
+    ]
+  },
+  "positive": {
+    "positive_3_tight_clusters": {
+      "n_clusters_found": 3,
+      "cluster_labels": [
+        "0",
+        "1",
+        "2"
+      ],
+      "noise_count": 0,
+      "persistence_scores": [
+        0.7049525847687218,
+        0.5990952043958714,
+        0.6952179711366656
+      ],
+      "all_persistence_nonzero": true,
+      "pass_clusters_3": true,
+      "pass_noise_low": true,
+      "pass_persistence_nonzero": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_pure_noise": {
+      "n_clusters_found": 6,
+      "noise_count": 36,
+      "total_points": 100,
+      "persistence_scores": [
+        0.23696776443453157,
+        0.15741869611341025,
+        0.12481722955766798,
+        0.030937357786001443,
+        0.03448269428110928,
+        0.026260320682937977
+      ],
+      "pass_no_high_persistence": true,
+      "criterion": "no cluster persistence >= 0.3 (noise lacks true density structure)",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_2_points": {
+      "completed_without_error": true,
+      "labels": [
+        -1,
+        -1
+      ],
+      "error": null,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

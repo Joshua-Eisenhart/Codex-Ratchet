@@ -1,0 +1,135 @@
+{
+  "name": "sim_integration_umap_gtower_projection",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.tensor wraps the 8D feature matrix; torch pairwise distance computations verify cluster structure and nearest-neighbor label accuracy in load-bearing post-embedding analysis"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: graph neural message passing is not needed for G-tower feature projection; pyg is reserved for sims where shell-level state interactions form an explicit message-passing graph rather than a feature manifold"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 verifies that GL-level samples have strictly higher mean feature norm than SU-level samples (structural ordering preserved after UMAP); SAT result confirms the ordering is structurally consistent"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: z3 linear arithmetic is sufficient for the norm-ordering check here; cvc5 nonlinear arithmetic solvers are reserved for sims that require bitvector or array theory constraints beyond z3 capabilities"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: no symbolic algebra is needed for numeric UMAP embedding validation; sympy would be load-bearing only if analytic Lie algebra bracket relations were being formally derived rather than numerically sampled"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Clifford algebra rotors are not needed for Lie algebra dimension feature vectors; clifford integration is deferred to sims that compute spinor representations on the G-tower shells explicitly"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: Riemannian manifold operations on Lie groups are not performed in this probe; geomstats would be load-bearing in a sim that computes geodesics or exponential maps between G-tower group elements"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: equivariant network layers are not needed for this dimensionality reduction probe; e3nn is reserved for sims where SO(3) equivariance must be preserved through the network architecture during state evolution"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: explicit graph topology algorithms are not part of this manifold projection probe; rustworkx integration is deferred to sims where G-tower level transitions form a directed graph with edge-weight constraints"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: hypergraph interactions between G-tower levels are not tested here; xgi is reserved for multi-shell coexistence sims where states simultaneously belong to multiple group levels and share higher-order constraints"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: cell complex topology is not needed for 2D point cloud analysis; toponetx integration is deferred to sims that construct the full constraint manifold as a cell complex over all G-tower levels simultaneously"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "gudhi RipsComplex on 2D UMAP embedding verifies H0 persistence (connected components match 6 clusters at appropriate scale) and H1 persistence (finite bars confirm non-trivial but simple topological structure in the embedding)"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "target_tool": {
+    "name": "umap",
+    "import": "import umap; umap.UMAP(n_components=2, random_state=42)",
+    "role": "load_bearing",
+    "description": "UMAP is the primary dimensionality reduction tool; the entire test is about whether UMAP preserves G-tower level structure when reducing 8D Lie algebra feature vectors to 2D"
+  },
+  "positive": {
+    "positive_umap_gtower_2d_embedding": {
+      "input_shape": [
+        60,
+        8
+      ],
+      "output_shape": [
+        60,
+        2
+      ],
+      "shape_pass": true,
+      "nn_accuracy_2d": 1.0,
+      "nn_accuracy_pass_gt70": true,
+      "mean_intra_cluster_dist": 0.3294,
+      "gudhi_h0_bars_count": 60,
+      "gudhi_h1_bars_count": 6,
+      "gudhi_h0_exactly_one_inf": true,
+      "gudhi_h1_has_finite_bars": true,
+      "z3_gl_gt_su_ordering": "sat",
+      "z3_note": "z3 ordering check (supportive, not gating)",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_random_projection_worse_than_umap": {
+      "random_projection_nn_accuracy": 0.55,
+      "umap_nn_accuracy": 1.0,
+      "umap_better_than_random": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_reduce_to_1d": {
+      "n_components": 1,
+      "input_shape": [
+        60,
+        8
+      ],
+      "output_shape": [
+        60,
+        1
+      ],
+      "completed_without_error": true,
+      "shape_correct": true,
+      "error": null,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

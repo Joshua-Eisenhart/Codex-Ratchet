@@ -147,6 +147,25 @@ def check_file(filepath):
                         f"(must explain why tool was not attempted)"
                     )
 
+                # Anti-stub guard: reason must be substantive, not boilerplate
+                stub_patterns = (
+                    "not relevant",
+                    "n/a",
+                    "na",
+                    "tbd",
+                    "todo",
+                    "stub",
+                    "schema compliance",
+                    "boilerplate",
+                    "placeholder",
+                )
+                rl = reason.strip().lower()
+                if rl and (rl in stub_patterns or len(rl) < 25 or any(p in rl and len(rl) < 60 for p in stub_patterns)):
+                    violations.append(
+                        f"Tool '{tool_name}': reason is a stub ('{reason[:60]}'); "
+                        f"must give a substantive justification (>=25 chars, not boilerplate)"
+                    )
+
         # Determine if canonical file fully passes
         canonical_violations = [
             v for v in violations

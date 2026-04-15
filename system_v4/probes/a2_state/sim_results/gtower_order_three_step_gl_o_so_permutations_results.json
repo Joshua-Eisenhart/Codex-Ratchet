@@ -15,9 +15,9 @@
       "reason": "not exercised"
     },
     "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not exercised"
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: no integer matrix satisfying SO(1) non-trivially \u2014 proves SO(1) is trivial group"
     },
     "cvc5": {
       "tried": false,
@@ -26,8 +26,8 @@
     },
     "sympy": {
       "tried": true,
-      "used": true,
-      "reason": "symbolic solve over each of 3! permutations; ordering claim is set-comparison of admissible families"
+      "used": false,
+      "reason": "not used \u2014 sympy.solve fails on Abs() in orthogonality eqs; replaced with fence-set accumulation"
     },
     "clifford": {
       "tried": false,
@@ -68,9 +68,9 @@
   "tool_integration_depth": {
     "pytorch": null,
     "pyg": null,
-    "z3": null,
+    "z3": "load_bearing",
     "cvc5": null,
-    "sympy": "load_bearing",
+    "sympy": null,
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -80,24 +80,27 @@
     "gudhi": null
   },
   "positive": {
-    "canonical_order_result": "admitted_6_branches",
+    "canonical_order_result": "admitted_SO2_canonical",
     "all_orderings": {
-      "GL -> O -> SO": "admitted_6_branches",
-      "GL -> SO -> O": "admitted_6_branches",
-      "O -> GL -> SO": "admitted_6_branches",
-      "O -> SO -> GL": "admitted_6_branches",
-      "SO -> GL -> O": "admitted_6_branches",
-      "SO -> O -> GL": "admitted_6_branches"
+      "GL -> O -> SO": "admitted_SO2_canonical",
+      "GL -> SO -> O": "admitted_SO2_canonical",
+      "O -> GL -> SO": "admitted_SO2_canonical",
+      "O -> SO -> GL": "admitted_SO2_canonical",
+      "SO -> GL -> O": "admitted_SO2_canonical",
+      "SO -> O -> GL": "admitted_SO2_canonical"
     },
+    "n_orderings_reaching_SO2": 6,
     "pass": true
   },
   "negative": {
-    "vacuous_orderings": [],
-    "SO_first_then_O_still_rigid": true,
+    "SO_only_admits_shear_matrix": true,
+    "O_fence_excludes_shear": true,
+    "z3_UNSAT_no_third_square_root_of_unity": true,
     "pass": true
   },
   "boundary": {
-    "GL_fence_idempotent": true,
+    "total_orderings_enumerated": 6,
+    "GL_only_vacuous": {},
     "pass": true
   },
   "rigid_or_flexible": "partially_flexible",

@@ -43,6 +43,25 @@ def queue_blocked_reasons(limit: int = 8) -> dict[str, int]:
     return dict(counts.most_common(limit))
 
 
+def queue_duplicate_summary() -> dict[str, dict[str, int]]:
+    summary: dict[str, dict[str, int]] = {}
+    for lane in ("lane_A", "lane_B"):
+        counts: Counter[str] = Counter()
+        lane_dir = QUEUE / lane
+        if lane_dir.exists():
+            for item in lane_dir.glob("*.json"):
+                data = adaptive_controller.load_result(item)
+                sim_path = adaptive_controller.normalize_sim_path(str(data.get("sim_path", "")))
+                if sim_path:
+                    counts[sim_path] += 1
+        dup_counts = [count for count in counts.values() if count > 1]
+        summary[lane] = {
+            "duplicate_sims": len(dup_counts),
+            "extra_entries": sum(count - 1 for count in dup_counts),
+        }
+    return summary
+
+
 def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
     lane_dir = QUEUE / lane
     if not lane_dir.exists():
@@ -89,6 +108,7 @@ def main() -> int:
             "lane_A": next_queue_candidates("lane_A"),
             "lane_B": next_queue_candidates("lane_B"),
         },
+        "queue_duplicates": queue_duplicate_summary(),
         "top_never_run_examples": [path.name for path in never_run[:12]],
         "top_never_run_families": top_families(never_run),
         "top_never_run_buckets": top_buckets(never_run),

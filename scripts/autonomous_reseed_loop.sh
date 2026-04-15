@@ -111,13 +111,14 @@ while :; do
   for sim in system_v4/probes/sim_*.py; do
     [[ "$sim" == *" 2.py" ]] && continue
     echo "$(basename "$sim")" | grep -qE "^($BLACKLIST_PATTERN)$" && continue
+    sim_abs="$ROOT/${sim#./}"
     base=$(basename "$sim" .py)
     rj="system_v4/probes/a2_state/sim_results/${base}_results.json"
     [ -f "$rj" ] && continue
     # skip if already queued/claimed
-    if ls system_v4/probes/a2_state/queue/lane_A/*.json 2>/dev/null | xargs grep -l "\"$sim\"" >/dev/null 2>&1; then continue; fi
-    if ls system_v4/probes/a2_state/queue/lane_B/*.json 2>/dev/null | xargs grep -l "\"$sim\"" >/dev/null 2>&1; then continue; fi
-    if ls system_v4/probes/a2_state/queue/claimed/*.json* 2>/dev/null | xargs grep -l "\"$sim\"" >/dev/null 2>&1; then continue; fi
+    if ls system_v4/probes/a2_state/queue/lane_A/*.json 2>/dev/null | xargs grep -l -e "\"$sim\"" -e "\"$sim_abs\"" >/dev/null 2>&1; then continue; fi
+    if ls system_v4/probes/a2_state/queue/lane_B/*.json 2>/dev/null | xargs grep -l -e "\"$sim\"" -e "\"$sim_abs\"" >/dev/null 2>&1; then continue; fi
+    if ls system_v4/probes/a2_state/queue/claimed/*.json* 2>/dev/null | xargs grep -l -e "\"$sim\"" -e "\"$sim_abs\"" >/dev/null 2>&1; then continue; fi
     # classify: canonical sims (check for classification = "canonical") go lane_A, rest lane_B
     lane="lane_B"
     grep -q '^classification\s*=\s*"canonical"' "$sim" 2>/dev/null && lane="lane_A"
@@ -125,7 +126,7 @@ while :; do
     priority=$(priority_for_bucket "$bucket")
     ID=$("$PY" -c "import secrets; print(secrets.token_hex(8))")
     printf '{"enqueued_at": %s, "lane": "%s", "sim_path": "%s", "priority": "%s", "plan_bucket": "%s"}\n' \
-      "$(date +%s)" "$lane" "$sim" "$priority" "$bucket" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
+      "$(date +%s)" "$lane" "$sim_abs" "$priority" "$bucket" > "system_v4/probes/a2_state/queue/${lane}/${ID}.json"
     enq=$((enq+1))
   done
 

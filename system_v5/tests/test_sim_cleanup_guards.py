@@ -330,6 +330,73 @@ def test_adaptive_controller_dry_mode_skips_queue_mutation(tmp_path, monkeypatch
     assert blocked.exists()
 
 
+def test_adaptive_controller_is_queued_matches_relative_and_absolute_paths(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_is_queued_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    (queue_root / "lane_B").mkdir(parents=True, exist_ok=True)
+
+    sim_rel = "system_v4/probes/sim_alpha.py"
+    sim_abs = str((repo / sim_rel).resolve())
+    (queue_root / "lane_B" / "item.json").write_text(
+        '{"sim_path":"%s","lane":"lane_B"}\n' % sim_rel,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    assert module.is_queued(sim_abs) is True
+
+
+def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_dedupe_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    queue_root = probes / "a2_state" / "queue"
+    lane_a = queue_root / "lane_A"
+    lane_b = queue_root / "lane_B"
+    probes.mkdir(parents=True, exist_ok=True)
+    lane_a.mkdir(parents=True, exist_ok=True)
+    lane_b.mkdir(parents=True, exist_ok=True)
+
+    sim = probes / "sim_weyl_chirality_bipartite.py"
+    sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
+    abs_sim = str(sim.resolve())
+    rel_sim = "system_v4/probes/sim_weyl_chirality_bipartite.py"
+    (lane_b / "a.json").write_text(
+        '{"sim_path":"%s","lane":"lane_B","priority":"high"}\n' % rel_sim,
+        encoding="utf-8",
+    )
+    (lane_b / "b.json").write_text(
+        '{"sim_path":"%s","lane":"lane_B","priority":"normal"}\n' % abs_sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    removed = module.dedupe_queue_entries()
+
+    remaining = list(lane_b.glob("*.json"))
+    assert removed == 1
+    assert len(remaining) == 1
+    payload = json.loads(remaining[0].read_text(encoding="utf-8"))
+    assert payload["sim_path"] == abs_sim
+    assert payload["plan_bucket"] == "core_ladder"
+
+
 def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
     module = _load_module(
         "queue_claim_under_test",
@@ -388,6 +455,66 @@ def test_queue_claim_inferrs_priority_for_legacy_items(tmp_path) -> None:
     assert claimed is not None
     payload = json.loads(claimed.read_text(encoding="utf-8"))
     assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+
+
+def test_queue_claim_prefers_core_ladder_when_priority_ties(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_bucket_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    exploratory = lane / "a.json"
+    exploratory.write_text(
+        '{"sim_path":"sim_leviathan_control_surface.py","lane":"lane_B","priority":"normal","enqueued_at":1}\n',
+        encoding="utf-8",
+    )
+    core = lane / "b.json"
+    core.write_text(
+        '{"sim_path":"sim_weyl_chirality_bipartite.py","lane":"lane_B","priority":"normal","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+
+
+def test_queue_claim_prefers_older_items_when_rank_ties(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_fifo_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    newer = lane / "a.json"
+    newer.write_text(
+        '{"sim_path":"sim_probe_object.py","lane":"lane_B","priority":"normal","enqueued_at":20}\n',
+        encoding="utf-8",
+    )
+    older = lane / "z.json"
+    older.write_text(
+        '{"sim_path":"sim_characteristic_representation.py","lane":"lane_B","priority":"normal","enqueued_at":10}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_characteristic_representation.py"
 
 
 def test_controller_plane_snapshot_dry_mode_prints_snapshot(

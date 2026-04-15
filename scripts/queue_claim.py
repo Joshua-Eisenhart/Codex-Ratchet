@@ -31,6 +31,7 @@ QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
 
 LANES = ("lane_A", "lane_B")
 PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
+PLAN_BUCKET_RANK = {"core_ladder": 0, "exploratory": 1, "framework_doctrine": 2}
 CORE_LADDER_FAMILIES = {
     "axis",
     "axis0",
@@ -111,19 +112,26 @@ def _priority_for_bucket(bucket: str) -> str:
     return "normal"
 
 
-def _claim_order(item: Path) -> tuple[int, str]:
+def _claim_order(item: Path) -> tuple[int, int, float, str]:
     try:
         data = json.loads(item.read_text())
     except Exception:
-        return (PRIORITY_RANK["normal"], item.name)
+        return (PRIORITY_RANK["normal"], PLAN_BUCKET_RANK["exploratory"], 0.0, item.name)
+    bucket = str(data.get("plan_bucket") or _plan_bucket_from_sim_path(str(data.get("sim_path", ""))))
     priority = data.get("priority")
     if not priority:
-        bucket = data.get("plan_bucket")
-        if not bucket:
-            bucket = _plan_bucket_from_sim_path(str(data.get("sim_path", "")))
-        priority = _priority_for_bucket(str(bucket))
+        priority = _priority_for_bucket(bucket)
     priority = str(priority).lower()
-    return (PRIORITY_RANK.get(priority, PRIORITY_RANK["normal"]), item.name)
+    try:
+        enqueued_at = float(data.get("enqueued_at", 0))
+    except Exception:
+        enqueued_at = 0.0
+    return (
+        PRIORITY_RANK.get(priority, PRIORITY_RANK["normal"]),
+        PLAN_BUCKET_RANK.get(bucket, PLAN_BUCKET_RANK["exploratory"]),
+        enqueued_at,
+        item.name,
+    )
 
 
 def claim(lane: str, worker_id: str) -> Path | None:

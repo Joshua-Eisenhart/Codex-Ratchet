@@ -121,14 +121,27 @@ def has_stub_reasons(r: dict) -> bool:
 def result_age_days(path: pathlib.Path) -> float:
     return (time.time() - path.stat().st_mtime) / 86400
 
+
+def normalize_sim_path(sim_path: str | pathlib.Path) -> str:
+    path = pathlib.Path(str(sim_path))
+    if not path.is_absolute():
+        path = ROOT / path
+    try:
+        return str(path.resolve(strict=False))
+    except Exception:
+        return str(path)
+
+
 def is_queued(sim_path: str) -> bool:
+    wanted = normalize_sim_path(sim_path)
     for lane in ("lane_A", "lane_B", "claimed"):
         d = QUEUE / lane
         if not d.exists():
             continue
         for qf in d.iterdir():
             try:
-                if sim_path in qf.read_text():
+                queued = load_result(qf).get("sim_path", "")
+                if normalize_sim_path(str(queued)) == wanted:
                     return True
             except Exception:
                 pass
@@ -137,11 +150,12 @@ def is_queued(sim_path: str) -> bool:
 def enqueue(sim_path: pathlib.Path, lane: str, priority: str = "normal"):
     (QUEUE / lane).mkdir(parents=True, exist_ok=True)
     uid = secrets.token_hex(8)
-    bucket = plan_bucket(str(sim_path))
+    normalized = normalize_sim_path(sim_path)
+    bucket = plan_bucket(normalized)
     payload = {
         "enqueued_at": int(time.time()),
         "lane": lane,
-        "sim_path": str(sim_path),
+        "sim_path": normalized,
         "priority": priority,
         "plan_bucket": bucket,
     }
@@ -258,6 +272,65 @@ def queue_bucket_counts() -> dict[str, dict[str, int]]:
     return out
 
 
+def _queue_priority(data: dict) -> tuple[int, float]:
+    priority = str(data.get("priority") or default_priority_for_bucket(
+        str(data.get("plan_bucket") or plan_bucket(str(data.get("sim_path", ""))))
+    )).lower()
+    rank = {"high": 0, "normal": 1, "low": 2}.get(priority, 1)
+    try:
+        enqueued_at = float(data.get("enqueued_at", 0))
+    except Exception:
+        enqueued_at = 0.0
+    return rank, enqueued_at
+
+
+def dedupe_queue_entries() -> int:
+    entries: list[tuple[pathlib.Path, pathlib.Path, dict, str]] = []
+    for lane in ("lane_A", "lane_B"):
+        lane_dir = QUEUE / lane
+        if not lane_dir.exists():
+            continue
+        for item in lane_dir.iterdir():
+            if not item.is_file():
+                continue
+            data = load_result(item)
+            sim_path = str(data.get("sim_path", ""))
+            if not sim_path:
+                continue
+            normalized = normalize_sim_path(sim_path)
+            data["sim_path"] = normalized
+            data["plan_bucket"] = data.get("plan_bucket") or plan_bucket(normalized)
+            data["priority"] = data.get("priority") or default_priority_for_bucket(str(data["plan_bucket"]))
+            data["lane"] = lane
+            entries.append((item, lane_dir, data, normalized))
+
+    groups: dict[str, list[tuple[pathlib.Path, pathlib.Path, dict]]] = {}
+    for item, lane_dir, data, normalized in entries:
+        groups.setdefault(normalized, []).append((item, lane_dir, data))
+
+    removed = 0
+    for normalized, group in groups.items():
+        sim_path = pathlib.Path(normalized)
+        preferred_lane = infer_lane(sim_path) if sim_path.exists() else group[0][2].get("lane", "lane_B")
+        keep = sorted(
+            group,
+            key=lambda triple: (
+                0 if triple[2].get("lane") == preferred_lane else 1,
+                *_queue_priority(triple[2]),
+                triple[0].name,
+            ),
+        )[0]
+        keep_item, keep_lane_dir, keep_data = keep
+        keep_data["lane"] = preferred_lane if keep_data.get("lane") == preferred_lane else keep_data.get("lane")
+        keep_item.write_text(json.dumps(keep_data, sort_keys=True))
+        for item, lane_dir, data in group:
+            if item == keep_item:
+                continue
+            item.unlink(missing_ok=True)
+            removed += 1
+    return removed
+
+
 def build_plane_snapshot(state: dict | None = None, integration: dict | None = None) -> dict:
     triage = {
         "failing": len((state or {}).get("failing", [])),
@@ -275,6 +348,7 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
         "ts": (state or {}).get("ts", datetime.now().isoformat()),
         "control_plane": {
             "queue": queue_counts(),
+            "deduped_queue_entries": (state or {}).get("deduped_queue_entries", 0),
             "released_claims": (state or {}).get("released_claims", 0),
             "recent_dispatch": recent_dispatch(),
         },
@@ -516,10 +590,11 @@ def triage_cycle(dry: bool = False) -> dict:
         "failing": [], "schema_debt": [], "never_run": [],
         "stale": [], "passing": [],
         "enqueued": {"failing": 0, "schema_debt": 0, "never_run": 0, "stale": 0},
-        "repairs": 0, "released_claims": 0, "rescued_misrouted_blocked": 0,
+        "repairs": 0, "released_claims": 0, "rescued_misrouted_blocked": 0, "deduped_queue_entries": 0,
     }
 
     if not dry:
+        state["deduped_queue_entries"] = dedupe_queue_entries()
         state["released_claims"] = release_dead_claims()
         state["rescued_misrouted_blocked"] = rescue_misrouted_blocked()
 
@@ -590,6 +665,7 @@ def health_report(state: dict, integration: dict) -> str:
         f"  schema_debt       : {len(state['schema_debt'])} (repairs={state['repairs']})",
         f"  never_run         : {len(state['never_run'])} (+{state['enqueued']['never_run']})",
         f"  stale canonical   : {len(state['stale'])} (+{state['enqueued']['stale']})",
+        f"  deduped_queue     : {state.get('deduped_queue_entries', 0)}",
         f"  released_claims   : {state['released_claims']}",
         f"  rescued_blocked   : {state.get('rescued_misrouted_blocked', 0)}",
         f"  rosetta_clusters  : {integration.get('rosetta_candidate_clusters', 0)}",

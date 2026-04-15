@@ -1,0 +1,167 @@
+{
+  "name": "sim_max_stack_6tool_gtower_ratchet",
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Tensor representation for rotor coefficients and e3nn equivariance verification; torch.allclose used to confirm equivariance tolerance"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message-passing not required for rotor algebra probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT UNSAT proof that no assignment of encoded rotor coefficients can simultaneously satisfy A*B == B*A and the non-identity constraint; UNSAT is the primary structural-impossibility proof form"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers the UNSAT requirement; cvc5 not needed for this probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic BCH commutator [A,B] = AB - BA computed in the Clifford algebra basis; non-zero symbolic result confirms non-commutativity independently of numeric floating-point values"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) multivector rotor arithmetic: A*B and B*A computed as genuine geometric-algebra products; commutator norm directly measures non-commutativity in the multivector space"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold machinery not needed; Cl(3) handles the geometry"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "SO(3) equivariance check: rotate input rotors via e3nn D-matrices, then commute; must equal commute-then-rotate within 1e-5 tolerance, confirming the commutator transforms as a proper SO(3) tensor"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed for this algebra probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not needed; pairwise rotor commutators only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell-complex topology not required for G-tower algebra"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for this commutator probe"
+    },
+    "ribs": {
+      "tried": true,
+      "used": true,
+      "reason": "GridArchive stores (G-depth, commutator-norm) quality-diversity cells; archive occupancy confirms that non-commutativity varies meaningfully across the rotor pair space, not just at a single point"
+    },
+    "optuna": {
+      "tried": true,
+      "used": true,
+      "reason": "TPE sampler searches the 4D rotor parameter space to find the maximally non-commutative pair; objective is commutator norm; best trial value used as evidence that optima exist above threshold"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "ribs": "load_bearing",
+    "optuna": "load_bearing"
+  },
+  "positive": {
+    "pos_a_clifford_noncommutative": {
+      "pass": true,
+      "commutator_norm": 0.3826834323650897,
+      "note": "Cl(3) rotor A*B - B*A must have nonzero norm for generic rotors"
+    },
+    "pos_b_sympy_bch_nonzero": {
+      "pass": true,
+      "bch_commutator_e13_coeff": "-2*a*b",
+      "note": "Symbolic BCH leading commutator [e12, e23] coefficient must be nonzero"
+    },
+    "pos_c_z3_unsat_commutativity": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT confirms no unit non-trivial rotors in e12/e23 planes can commute"
+    },
+    "pos_d_e3nn_equivariance": {
+      "pass": true,
+      "equivariance_error": 0.0,
+      "note": "Commutator must transform equivariantly under SO(3) rotation (via e3nn matrix)"
+    },
+    "pos_e_ribs_archive_populated": {
+      "pass": true,
+      "num_elites": 12,
+      "note": "Archive must contain > 1 distinct (depth, norm) elite to confirm coverage"
+    },
+    "pos_f_optuna_tpe_finds_maximum": {
+      "pass": true,
+      "best_commutator_norm": 1.9718868769958224,
+      "target": 0.3,
+      "n_trials": 30,
+      "note": "TPE must find a pair with commutator norm exceeding target within 30 trials"
+    },
+    "positive_all_pass": true
+  },
+  "negative": {
+    "neg_a_identity_commutes": {
+      "pass": true,
+      "commutator_norm_with_identity": 0.0,
+      "note": "A * I - I * A must be zero for identity rotor"
+    },
+    "neg_b_z3_sat_for_identity": {
+      "pass": true,
+      "z3_result": "sat",
+      "note": "Identity case must be SAT (commuting) \u2014 confirms UNSAT in positive is specific to non-identity"
+    },
+    "neg_c_ribs_identity_zero_norm": {
+      "pass": true,
+      "commutator_norm_identity_pair": 0.0,
+      "note": "Identity pair has commutator norm ~0; confirms archive is sensitive to actual non-commutativity"
+    },
+    "negative_all_pass": true
+  },
+  "boundary": {
+    "boundary_a_near_identity_continuous": {
+      "pass": true,
+      "norms_at_angles": {
+        "0.001": 4.999999583333347e-07,
+        "0.01": 4.9999583334722215e-05,
+        "0.1": 0.004995834721974234,
+        "0.5": 0.1224174381096273,
+        "1.0": 0.4596976941318603
+      },
+      "monotone_increasing": true,
+      "note": "Commutator norm must grow monotonically from near-zero as angle increases"
+    },
+    "boundary_b_same_vs_diff_axis": {
+      "pass": true,
+      "commutator_norm_same_axis": 0.0,
+      "commutator_norm_diff_axis": 0.9999999999999998,
+      "note": "Same-axis rotors must commute (norm~0); different-axis must not (norm>0.5)"
+    },
+    "boundary_all_pass": true
+  }
+}

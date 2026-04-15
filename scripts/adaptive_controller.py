@@ -133,7 +133,7 @@ def release_dead_claims():
                 pass
         r = load_result(cf)
         lane = r.get("lane", "lane_B")
-        (QUEUE / lane / cf.stem.split(".")[0] + ".json").write_text(cf.read_text())
+        (QUEUE / lane / (cf.stem.split(".")[0] + ".json")).write_text(cf.read_text())
         cf.unlink(missing_ok=True)
         released += 1
     return released

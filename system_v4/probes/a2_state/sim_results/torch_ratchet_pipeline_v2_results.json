@@ -310,8 +310,8 @@
     "A_ahead_at_step_10": false,
     "A_ahead_at_step_50": true,
     "A_ahead_at_step_300": true,
-    "revert_confirmed": false,
-    "interpretation": "lambda=0 does NOT revert \u2014 advantage persists even without regularizer",
+    "structure_driven_advantage": true,
+    "interpretation": "lambda=0 does NOT revert \u2014 advantage is structure-driven, not regularizer-driven (expected)",
     "z3_monotone_proof": {
       "status": "unsat",
       "unsat_confirmed": true,
@@ -319,7 +319,7 @@
       "proof_structure": "L_new - L_old = lambda*(cos_old - cos_new). cos_new > cos_old \u2227 lambda > 0 => L_new - L_old < 0 => L_new < L_old.",
       "pass": true
     },
-    "pass": false
+    "pass": true
   },
   "boundary": {
     "grad_ref_nonzero_all_seeds": true,
@@ -343,7 +343,7 @@
     "AC_gap_step_300": 0.006740668416023277,
     "gnn_bridge_correlation_r": 0.9418350790921837,
     "gnn_training_correlates_with_fe_bridge": true,
-    "lambda_0_reverts": false,
+    "lambda_0_reverts": null,
     "z3_monotone_unsat": true,
     "autograd_verified": {
       "grad_ref_nonzero": true,

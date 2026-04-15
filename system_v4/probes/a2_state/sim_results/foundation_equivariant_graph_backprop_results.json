@@ -3,7 +3,7 @@
   "probe": "pure_math_foundation_equivariant_graph_backprop",
   "purpose": "Train a tiny graph-structured model on a two-qubit density matrix with autograd central and swap symmetry load-bearing.",
   "schema": "foundation_equivariant_graph_backprop/v1",
-  "classification": "exploratory_signal",
+  "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -330,7 +330,7 @@
       "bell_boundary_hits_expected_values": true,
       "exact_swap_symmetry_is_respected": true
     },
-    "pass": false
+    "pass": true
   },
   "negative": {
     "edge_removed_ablation_is_worse": {
@@ -364,14 +364,15 @@
       "product_swap_pass": true,
       "bell_swap_pass": true,
       "pass": true
-    }
+    },
+    "pass": true
   },
   "summary": {
     "tests_total": 6,
     "tests_passed": 6,
     "tests_failed": 0,
-    "all_pass": false,
-    "elapsed_s": 5.737178802490234,
+    "all_pass": true,
+    "elapsed_s": 5.1643290519714355,
     "full_model_mse": 0.05801160260406742,
     "full_model_swap_error": 0.001367921281325635,
     "ablation_mse": 0.7729555403394334,

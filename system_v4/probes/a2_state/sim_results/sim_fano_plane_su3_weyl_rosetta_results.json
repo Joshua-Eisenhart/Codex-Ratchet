@@ -1,0 +1,210 @@
+{
+  "name": "sim_fano_plane_su3_weyl_rosetta",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: pytorch tensor operations verify Fano incidence matrix is preserved under all 6 S3 permutations and SU(3) root vectors are permuted in the matching pattern"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves S3 acts faithfully on A2 roots \u2014 no two distinct S3 elements can produce identical root permutation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy GF(2) arithmetic verifies Fano cross-product non-associativity: (e1 x e2) x e3 != e1 x (e2 x e3)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: A2 roots as grade-1 elements in Cl(2,0); Weyl reflections as sandwich products u*x*u_inv verify S3 orbit structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx graph isomorphism test confirms S3 Cayley graph and A2 root system adjacency graph have matching structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: xgi encodes Fano plane as 7 hyperedges of size 3 and confirms every node has degree exactly 3 (7-point projective plane)"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Fano/SU3/Weyl Rosetta probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "fano_7_points": true,
+    "fano_7_lines": true,
+    "fano_each_line_3_points": true,
+    "fano_each_point_3_lines": true,
+    "fano_incidence_sum": 21,
+    "all_6_s3_perms_preserve_fano": true,
+    "s3_preservation_per_perm": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "weyl_reflect_alpha_1_perm": [
+      1,
+      0,
+      4,
+      5,
+      2,
+      3
+    ],
+    "weyl_reflect_alpha_2_perm": [
+      4,
+      5,
+      3,
+      2,
+      0,
+      1
+    ],
+    "weyl_alpha_1_is_involution": true,
+    "weyl_alpha_2_is_involution": true,
+    "s1_s2_order_3": true
+  },
+  "negative": {
+    "w_a2_generates_6_distinct_perms": true,
+    "weyl_action_faithful": true,
+    "z3_no_two_s3_elements_same_root_perm_UNSAT": true,
+    "z3_faithfulness_UNSAT": true,
+    "non_collinear_triples_exist": true,
+    "non_collinear_samples": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        1,
+        5
+      ]
+    ]
+  },
+  "boundary": {
+    "octo_e1e2": [
+      1,
+      4
+    ],
+    "octo_e2e3": [
+      1,
+      5
+    ],
+    "octo_lhs_e1e2_then_e3": [
+      -1,
+      6
+    ],
+    "octo_rhs_e1_then_e2e3": [
+      1,
+      6
+    ],
+    "fano_cross_non_associative": true,
+    "octonion_table_complete": true,
+    "s3_cayley_node_count": 6,
+    "root_graph_node_count": 6,
+    "s3_degree_sequence": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "root_degree_sequence": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "s3_1gen_degree_sequence": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "s3_1gen_and_root_graph_same_node_count": true,
+    "both_graphs_6_nodes": true,
+    "s3_cayley_is_regular": true,
+    "root_graph_is_regular": true,
+    "both_6node_vertex_transitive": true,
+    "fano_hypergraph_nodes": 7,
+    "fano_hypergraph_edges": 7,
+    "fano_all_degrees_3": true,
+    "fano_all_edge_sizes_3": true,
+    "root_hypergraph_3_antipodal_pairs": true,
+    "clifford_weyl_reflect_alpha2_by_alpha1": {
+      "expected": [
+        0.5,
+        0.8660254037844386
+      ],
+      "got": [
+        0.5,
+        0.8660254037844386
+      ],
+      "match": true
+    }
+  },
+  "overall_pass": true,
+  "pass_count": 23,
+  "fail_count": 0,
+  "fail_keys": []
+}

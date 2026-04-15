@@ -1,0 +1,149 @@
+{
+  "name": "sim_gerbe_z3_bounded_repair",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: autograd traces the holonomy function over integer B-field values and finds the boundary of the integrality constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: BitVec(8) variables guarantee finite search space; UNSAT proves fractional DD class impossible, SAT confirms integer class"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy verifies Cech cohomology coboundary formula and H^2(X,Z)=Z on the discrete 2-complex (one generator)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: B-field as grade-2 element in Cl(3,0); curvature dB as pseudoscalar; integer coefficient = integer DD class"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: 2-complex (V=4, E=6, F=3) encoded in rustworkx; Euler characteristic chi = V - E + F = 1 confirms topology"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed in this bounded gerbe DD class repair sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z3_integer_holonomy_2_SAT": true,
+    "z3_integer_solution": [
+      1,
+      0,
+      1
+    ],
+    "z3_integer_sum_correct": true,
+    "z3_trivial_gerbe_SAT": true,
+    "z3_all_zero_SAT": true,
+    "pytorch_all_holonomies_integer": true,
+    "pytorch_holonomy_min": -12,
+    "pytorch_holonomy_max": 11,
+    "pytorch_holonomy_sample_count": 100,
+    "pytorch_autograd_holonomy_gradient": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "pytorch_gradient_all_ones": true
+  },
+  "negative": {
+    "z3_half_integer_DD_UNSAT": true,
+    "z3_third_integer_DD_UNSAT": true,
+    "z3_two_fifths_DD_UNSAT": true
+  },
+  "boundary": {
+    "sympy_d1_shape": [
+      3,
+      6
+    ],
+    "sympy_d0_shape": [
+      6,
+      4
+    ],
+    "sympy_d1_rank": 3,
+    "sympy_d1_rank_expected_3": true,
+    "sympy_euler_characteristic": 1,
+    "sympy_euler_char_is_1": true,
+    "sympy_d1_d0_zero_mod2": true,
+    "clifford_B_grade_2": true,
+    "clifford_dB_pseudoscalar_coeff": 6.0,
+    "clifford_dB_coeff_is_integer": true,
+    "clifford_ps_from_integer_B": {
+      "b12": 2,
+      "b13": -1,
+      "b23": 3,
+      "ps_coeff": 6.0
+    },
+    "clifford_fractional_B_fractional_ps": true,
+    "rustworkx_vertex_count": 4,
+    "rustworkx_edge_count": 6,
+    "rustworkx_face_count": 3,
+    "rustworkx_euler_characteristic": 1,
+    "rustworkx_euler_char_is_1": true,
+    "rustworkx_is_K4_minus_one_face": true,
+    "rustworkx_complex_connected": true,
+    "rustworkx_degree_sequence": [
+      3,
+      3,
+      3,
+      3
+    ],
+    "rustworkx_all_degree_3": true
+  },
+  "overall_pass": true,
+  "pass_count": 19,
+  "fail_count": 0,
+  "fail_keys": []
+}

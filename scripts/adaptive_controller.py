@@ -78,6 +78,20 @@ FRAMEWORK_DOCTRINE_FAMILIES = {
     "igt",
     "leviathan",
 }
+LATE_INFO_KEYWORDS = (
+    "bipartite",
+    "partial_trace",
+    "mutual_information",
+    "coherent_information",
+    "concurrence",
+    "negativity",
+    "schmidt",
+    "entropy",
+    "carnot",
+    "szilard",
+    "landauer",
+    "thermo",
+)
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -231,9 +245,14 @@ def plan_bucket(name: str) -> str:
 
 
 def plan_stage(name: str) -> str:
+    stem = pathlib.Path(name).stem
+    if stem.startswith("sim_"):
+        stem = stem[4:]
     family = sim_family(name)
     if family in {"axis", "axis0"}:
         return "late_axis"
+    if any(token in stem for token in LATE_INFO_KEYWORDS):
+        return "late_info"
     return "early_core"
 
 

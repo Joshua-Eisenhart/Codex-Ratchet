@@ -438,7 +438,7 @@ def test_adaptive_controller_dedupes_queue_entries_and_normalizes_paths(
     payload = json.loads(remaining[0].read_text(encoding="utf-8"))
     assert payload["sim_path"] == abs_sim
     assert payload["plan_bucket"] == "core_ladder"
-    assert payload["plan_stage"] == "early_core"
+    assert payload["plan_stage"] == "late_info"
     assert payload["priority"] == "high"
 
 
@@ -577,6 +577,36 @@ def test_queue_claim_demotes_axis_stage_within_core_ladder(tmp_path) -> None:
     axis = lane / "a.json"
     axis.write_text(
         '{"sim_path":"sim_axis0_kernel_phi0.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
+        encoding="utf-8",
+    )
+    early = lane / "b.json"
+    early.write_text(
+        '{"sim_path":"sim_z3_negative_quasiprob_exclusion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":2}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_z3_negative_quasiprob_exclusion.py"
+
+
+def test_queue_claim_demotes_late_info_stage_within_core_ladder(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_late_info_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    late_info = lane / "a.json"
+    late_info.write_text(
+        '{"sim_path":"sim_qit_carnot_finite_time_companion.py","lane":"lane_B","priority":"high","plan_bucket":"core_ladder","enqueued_at":1}\n',
         encoding="utf-8",
     )
     early = lane / "b.json"

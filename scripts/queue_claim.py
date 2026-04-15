@@ -32,7 +32,7 @@ QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
 LANES = ("lane_A", "lane_B")
 PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
 PLAN_BUCKET_RANK = {"core_ladder": 0, "exploratory": 1, "framework_doctrine": 2}
-PLAN_STAGE_RANK = {"early_core": 0, "late_axis": 1}
+PLAN_STAGE_RANK = {"early_core": 0, "late_info": 1, "late_axis": 2}
 CORE_LADDER_FAMILIES = {
     "axis",
     "axis0",
@@ -59,6 +59,20 @@ CORE_LADDER_FAMILIES = {
     "z3",
 }
 FRAMEWORK_DOCTRINE_FAMILIES = {"fep", "holodeck", "iching", "igt", "leviathan"}
+LATE_INFO_KEYWORDS = (
+    "bipartite",
+    "partial_trace",
+    "mutual_information",
+    "coherent_information",
+    "concurrence",
+    "negativity",
+    "schmidt",
+    "entropy",
+    "carnot",
+    "szilard",
+    "landauer",
+    "thermo",
+)
 
 
 def _ensure_dirs() -> None:
@@ -114,9 +128,14 @@ def _priority_for_bucket(bucket: str) -> str:
 
 
 def _plan_stage_from_sim_path(sim_path: str) -> str:
+    stem = Path(sim_path).stem
+    if stem.startswith("sim_"):
+        stem = stem[4:]
     family = _sim_family(sim_path)
     if family in {"axis", "axis0"}:
         return "late_axis"
+    if any(token in stem for token in LATE_INFO_KEYWORDS):
+        return "late_info"
     return "early_core"
 
 

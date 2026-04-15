@@ -1,0 +1,114 @@
+{
+  "name": "sim_integration_pymoo_gudhi_pareto_persistence",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Pareto search is population-based, no gradient or autograd required for NSGA-II"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing in this sim; topology is computed directly via gudhi Rips complex"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no formal constraint encoding required; NSGA-II feasibility is implicit via bounded search space"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no quantifier reasoning over algebraic constraints"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- objective functions are numeric; no symbolic closed form required for persistence computation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- point cloud geometry is Euclidean R2, not a Clifford algebra rotor space"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Riemannian manifold structure not required; persistence is computed on flat Euclidean point cloud"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SO(3) equivariance in the 2D point cloud sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- graph structure is implicit in gudhi Rips complex, not an explicit rustworkx graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hyperedge topology; gudhi Rips complex handles simplicial structure directly"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- gudhi provides the required persistent homology; toponetx cell complex not needed for Rips filtration"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: computes H0 persistent homology via Rips complex filtration on each candidate point cloud; the persistence total lifetime is objective 1 of the Pareto search; result materially depends on gudhi's simplex tree and persistence diagram output"
+    },
+    "pymoo": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: NSGA-II (from pymoo) drives the multi-objective Pareto search over the 2D parameter space; pymoo's non-dominated sorting and crowding-distance selection produce the Pareto front that cannot be obtained by single-objective optimization alone"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing",
+    "pymoo": "load_bearing"
+  },
+  "positive": {
+    "pareto_front_size": 40,
+    "max_persistence_in_pareto": 1.4141083060843973,
+    "min_distance_in_pareto": 0.0007377645093363218,
+    "elapsed_s": 0.107,
+    "pareto_size_ge_3": true,
+    "gudhi_nonzero_persistence_exists": true,
+    "within_time_budget": true,
+    "pass": true
+  },
+  "negative": {
+    "gudhi_persistence_at_target": 1.4142135623730951,
+    "gudhi_at_target_non_negative": "True",
+    "gudhi_persistence_far_point": 4.8083261120685235,
+    "far_point_higher_persistence_than_target": "True",
+    "pass": "True"
+  },
+  "boundary": {
+    "gudhi_persistence_on_anchor": 1.4142135623730951,
+    "gudhi_handles_duplicate_point": "True",
+    "gudhi_persistence_corner": 4.949747468305833,
+    "gudhi_handles_corner_point": "True",
+    "nsga2_small_pop_n_solutions": 1,
+    "nsga2_small_pop_runs": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "elapsed_s": 0.114
+}

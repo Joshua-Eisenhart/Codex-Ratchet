@@ -1,0 +1,209 @@
+{
+  "name": "sim_integration_datasketch_pyg_lsh_graph",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing via PyG: PyG MessagePassing requires torch tensors for edge_index and node feature matrices; all feature propagation runs through torch.Tensor operations inside the MessagePassing layer"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: PyG MessagePassing propagates similarity scores across the LSH-constructed graph; node features after MessagePassing differ from initial features, demonstrating genuine graph computation that depends on the edge structure supplied by datasketch LSH"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- LSH graph construction and MessagePassing do not require formal constraint encoding or SAT/SMT reasoning"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no quantifier reasoning required for similarity graph"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Jaccard similarity and MinHash are numeric; no symbolic algebra required"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- node features are bag-of-tokens vectors, not Clifford algebra elements"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- graph topology is flat; no Riemannian manifold structure involved"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SO(3) equivariance in the token similarity graph"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- graph is passed directly to PyG as edge_index tensor; no separate graph library needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- LSH graph has pairwise edges only, no hyperedges"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex structure; sim uses simple graph message passing on LSH edges"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology; topology of the sim graph is captured by LSH adjacency"
+    },
+    "datasketch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: MinHash (128 permutations) and MinHashLSH determine which node pairs become edges in the PyG graph; the threshold=0.3 Jaccard gate filters dissimilar signatures so the edge_index is strictly a function of datasketch output, not random or fully-connected"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "datasketch": "load_bearing"
+  },
+  "positive": {
+    "lsh_n_edges": 23,
+    "lsh_max_possible_edges": 45,
+    "lsh_has_at_least_one_edge": true,
+    "lsh_not_fully_connected": true,
+    "mp_max_feature_diff": 3.0,
+    "mp_n_nodes_changed": 10,
+    "mp_changes_at_least_one_node": true,
+    "lsh_edges_found": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        9
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        9
+      ]
+    ],
+    "pass": true
+  },
+  "negative": {
+    "disjoint_jaccard_estimate": 0.0,
+    "disjoint_jaccard_below_threshold": true,
+    "disjoint_lsh_no_match": true,
+    "mp_empty_graph_max_diff": 0.0,
+    "mp_empty_graph_unchanged": true,
+    "pass": true
+  },
+  "boundary": {
+    "identical_jaccard_estimate": 1.0,
+    "identical_jaccard_near_1": true,
+    "identical_lsh_admits_match": true,
+    "single_node_mp_diff": 0.0,
+    "single_node_mp_unchanged": true,
+    "minhash_small_num_perm_runs": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "elapsed_s": 0.109
+}

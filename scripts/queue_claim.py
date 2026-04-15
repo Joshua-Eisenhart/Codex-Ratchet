@@ -31,6 +31,32 @@ QUEUE_ROOT = ROOT / "system_v4" / "probes" / "a2_state" / "queue"
 
 LANES = ("lane_A", "lane_B")
 PRIORITY_RANK = {"high": 0, "normal": 1, "low": 2}
+CORE_LADDER_FAMILIES = {
+    "axis",
+    "axis0",
+    "bridge",
+    "capability",
+    "clifford",
+    "cvc5",
+    "geom",
+    "geomstats",
+    "gerbe",
+    "gtower",
+    "gudhi",
+    "integration",
+    "lego",
+    "pure",
+    "pyg",
+    "qit",
+    "rustworkx",
+    "spectral",
+    "toponetx",
+    "torch",
+    "weyl",
+    "xgi",
+    "z3",
+}
+FRAMEWORK_DOCTRINE_FAMILIES = {"fep", "holodeck", "iching", "igt", "leviathan"}
 
 
 def _ensure_dirs() -> None:
@@ -60,12 +86,43 @@ def enqueue(lane: str, sim_path: str) -> Path:
     return target
 
 
+def _sim_family(sim_path: str) -> str:
+    stem = Path(sim_path).stem
+    if stem.startswith("sim_"):
+        stem = stem[4:]
+    head = stem.split("_", 1)[0]
+    return head or "other"
+
+
+def _plan_bucket_from_sim_path(sim_path: str) -> str:
+    family = _sim_family(sim_path)
+    if family in CORE_LADDER_FAMILIES:
+        return "core_ladder"
+    if family in FRAMEWORK_DOCTRINE_FAMILIES:
+        return "framework_doctrine"
+    return "exploratory"
+
+
+def _priority_for_bucket(bucket: str) -> str:
+    if bucket == "core_ladder":
+        return "high"
+    if bucket == "framework_doctrine":
+        return "low"
+    return "normal"
+
+
 def _claim_order(item: Path) -> tuple[int, str]:
     try:
         data = json.loads(item.read_text())
     except Exception:
         return (PRIORITY_RANK["normal"], item.name)
-    priority = str(data.get("priority", "normal")).lower()
+    priority = data.get("priority")
+    if not priority:
+        bucket = data.get("plan_bucket")
+        if not bucket:
+            bucket = _plan_bucket_from_sim_path(str(data.get("sim_path", "")))
+        priority = _priority_for_bucket(str(bucket))
+    priority = str(priority).lower()
     return (PRIORITY_RANK.get(priority, PRIORITY_RANK["normal"]), item.name)
 
 

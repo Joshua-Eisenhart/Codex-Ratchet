@@ -7,6 +7,7 @@ from collections import Counter
 from pathlib import Path
 
 import adaptive_controller
+import queue_claim
 
 
 PROBES = adaptive_controller.PROBES
@@ -42,6 +43,24 @@ def queue_blocked_reasons(limit: int = 8) -> dict[str, int]:
     return dict(counts.most_common(limit))
 
 
+def next_queue_candidates(lane: str, limit: int = 10) -> list[dict]:
+    lane_dir = QUEUE / lane
+    if not lane_dir.exists():
+        return []
+    out: list[dict] = []
+    for item in sorted(lane_dir.glob("*.json"), key=queue_claim._claim_order)[:limit]:
+        data = adaptive_controller.load_result(item)
+        sim_path = str(data.get("sim_path", ""))
+        out.append({
+            "sim": Path(sim_path).name,
+            "priority": data.get("priority") or queue_claim._priority_for_bucket(
+                str(data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path))
+            ),
+            "plan_bucket": data.get("plan_bucket") or queue_claim._plan_bucket_from_sim_path(sim_path),
+        })
+    return out
+
+
 def unresolved_sim_paths(sim_paths: list[Path]) -> list[Path]:
     unresolved: list[Path] = []
     for sim in sim_paths:
@@ -66,6 +85,10 @@ def main() -> int:
         },
         "triage": snapshot["state_plane"]["triage"],
         "program": snapshot["state_plane"]["program"],
+        "next_queue_candidates": {
+            "lane_A": next_queue_candidates("lane_A"),
+            "lane_B": next_queue_candidates("lane_B"),
+        },
         "top_never_run_examples": [path.name for path in never_run[:12]],
         "top_never_run_families": top_families(never_run),
         "top_never_run_buckets": top_buckets(never_run),

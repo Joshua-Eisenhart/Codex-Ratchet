@@ -360,6 +360,36 @@ def test_queue_claim_prefers_high_priority_items(tmp_path) -> None:
     assert payload["sim_path"] == "sim_high.py"
 
 
+def test_queue_claim_inferrs_priority_for_legacy_items(tmp_path) -> None:
+    module = _load_module(
+        "queue_claim_legacy_under_test",
+        REPO_ROOT / "scripts" / "queue_claim.py",
+    )
+    repo = tmp_path / "repo"
+    queue_root = repo / "system_v4" / "probes" / "a2_state" / "queue"
+    lane = queue_root / "lane_B"
+    lane.mkdir(parents=True, exist_ok=True)
+    (queue_root / "claimed").mkdir(parents=True, exist_ok=True)
+
+    module.QUEUE_ROOT = queue_root
+    exploratory = lane / "b.json"
+    exploratory.write_text(
+        '{"sim_path":"sim_leviathan_control_surface.py","lane":"lane_B"}\n',
+        encoding="utf-8",
+    )
+    core = lane / "a.json"
+    core.write_text(
+        '{"sim_path":"sim_weyl_chirality_bipartite.py","lane":"lane_B"}\n',
+        encoding="utf-8",
+    )
+
+    claimed = module.claim("lane_B", "w1")
+
+    assert claimed is not None
+    payload = json.loads(claimed.read_text(encoding="utf-8"))
+    assert payload["sim_path"] == "sim_weyl_chirality_bipartite.py"
+
+
 def test_controller_plane_snapshot_dry_mode_prints_snapshot(
     tmp_path, monkeypatch, capsys
 ) -> None:

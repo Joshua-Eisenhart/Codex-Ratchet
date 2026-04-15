@@ -1,0 +1,199 @@
+{
+  "name": "sim_integration_geomstats_constraint_manifold",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Gradient-based constraint optimization using autograd is deferred to a dedicated torch-native constraint manifold probe. This probe uses geomstats native Riemannian ops and sympy symbolic algebra for the primary claims."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph neural network message passing not applicable to continuous Riemannian manifold geometry. PyG integration deferred to graph-discretized manifold probes where nodes represent sampled admissible configurations."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 real arithmetic solver encodes x^2+y^2+z^2=1 as a quadratic constraint; checks SAT for admissible point (0,0,1) and UNSAT for excluded point (2,0,0); provides formal verification of constraint membership distinct from floating-point geomstats check."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is an alternative for nonlinear arithmetic; z3 covers the sphere membership verification. cvc5 is deferred to a dedicated solver-comparison probe on the same constraint."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verifies x^2+y^2+z^2-1=0 symbolically, computes the gradient of the constraint surface (2x, 2y, 2z), factors the polynomial, and confirms the manifold equation is satisfied at (0,0,1) symbolically -- load-bearing for the algebraic claim."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra encodes spinor geometry on S^2 via versor products; this probe uses standard Riemannian geometry through geomstats. Clifford integration deferred to a spinor-constraint coupling probe."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Hypersphere(dim=2) is the primary constraint manifold object; belongs() checks admissibility, exp() and log() test geodesic reachability, dist() computes Riemannian distance; the connectedness and exp/log roundtrip claims are load-bearing on geomstats."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant representations of SO(3) actions on S^2 are deferred to a symmetry-constraint coupling probe. This probe targets intrinsic Riemannian geometry, not equivariant neural network representations."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Rustworkx graph algorithms are not needed for continuous manifold geometry. DAG and topological sort are used in the G-tower filtration probe; graph structure of a discretized S^2 is deferred."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "XGI higher-order structures not applicable to smooth 2-sphere Riemannian geometry. Hypergraph encoding of constraint manifold deferred to a topology-manifold hybrid probe."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "TopoNetX simplicial complex boundary operators are load-bearing in the G-tower chain complex probe. The continuous S^2 manifold does not require discrete simplicial complex encoding in this probe."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi persistent homology operates on point clouds or filtrations; the continuous S^2 manifold is handled analytically by geomstats and sympy. gudhi integration deferred to a sampled-manifold TDA probe."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geomstats_north_pole_belongs": {
+      "value": true,
+      "expected": true,
+      "pass": true,
+      "interpretation": "North pole (0,0,1) is constraint-admissible (belongs to S^2 manifold)"
+    },
+    "geomstats_exp_lands_on_sphere": {
+      "exp_point": [
+        0.841471,
+        0.0,
+        0.540302
+      ],
+      "belongs": true,
+      "pass": true,
+      "interpretation": "exp map from north pole with unit tangent lands on S^2; geodesic flow stays on constraint manifold"
+    },
+    "geomstats_log_inverts_exp": {
+      "roundtrip_error": 0.0,
+      "pass": true,
+      "interpretation": "log(exp(v, p), p) = v roundtrip holds; constraint manifold geodesic ops are internally consistent"
+    },
+    "geomstats_orthogonal_distance": {
+      "distance": 1.57079633,
+      "expected": 1.57079633,
+      "pass": true,
+      "interpretation": "Geodesic distance between north pole and equatorial point = pi/2; Riemannian metric correctly measures quarter-great-circle arc"
+    },
+    "sympy_constraint_verification": {
+      "constraint_expr": "x**2 + y**2 + z**2 - 1",
+      "gradient": [
+        "2*x",
+        "2*y",
+        "2*z"
+      ],
+      "value_at_north_pole": 0,
+      "factored": "x**2 + y**2 + z**2 - 1",
+      "pass": true,
+      "interpretation": "sympy confirms x^2+y^2+z^2-1=0 evaluates to 0 at (0,0,1); algebraic constraint is satisfied symbolically (admissible)"
+    },
+    "z3_north_pole_sat": {
+      "result": "sat",
+      "expected": "sat",
+      "pass": true,
+      "interpretation": "z3 confirms (0,0,1) satisfies x^2+y^2+z^2=1; point is formally constraint-admissible"
+    },
+    "overall_pass": true
+  },
+  "negative": {
+    "geomstats_excluded_point_not_belongs": {
+      "point": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "belongs": false,
+      "pass": true,
+      "interpretation": "Point (2,0,0) with norm=2 is NOT constraint-admissible; excluded from S^2 manifold"
+    },
+    "z3_excluded_point_unsat": {
+      "result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "interpretation": "z3 returns UNSAT for (2,0,0): 4+0+0=4 != 1; excluded point fails constraint -- formal proof of exclusion"
+    },
+    "sympy_excluded_point_nonzero": {
+      "value_at_excluded": 3,
+      "expected_nonzero": true,
+      "pass": true,
+      "interpretation": "sympy evaluates x^2+y^2+z^2-1 at (2,0,0) = 3 (nonzero); algebraically excluded from constraint manifold"
+    },
+    "geomstats_zero_not_belongs": {
+      "point": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "belongs": false,
+      "pass": true,
+      "interpretation": "Zero vector (0,0,0) with norm=0 is excluded from S^2; origin is not constraint-admissible"
+    },
+    "overall_pass": true
+  },
+  "boundary": {
+    "geomstats_zero_tangent_same_point": {
+      "exp_result": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "distance_from_north_pole": 0.0,
+      "pass": true,
+      "interpretation": "exp(zero_tangent, north_pole) = north_pole; zero geodesic step stays at the same constraint-admissible point"
+    },
+    "geomstats_antipodal_distance_pi": {
+      "distance": 3.14159265,
+      "expected": 3.14159265,
+      "pass": true,
+      "interpretation": "Antipodal geodesic distance = pi (maximum); constraint manifold diameter is bounded by pi"
+    },
+    "z3_equatorial_point_sat": {
+      "result": "sat",
+      "expected": "sat",
+      "pass": true,
+      "interpretation": "(1,0,0) exactly satisfies x^2+y^2+z^2=1; constraint-admissible equatorial point confirmed by z3"
+    },
+    "sympy_gradient_at_north_pole": {
+      "gradient": [
+        "2*x",
+        "2*y",
+        "2*z"
+      ],
+      "pass": true,
+      "interpretation": "Gradient of x^2+y^2+z^2-1 is (2x,2y,2z); at (0,0,1) this gives (0,0,2), the outward normal to S^2"
+    },
+    "overall_pass": true
+  },
+  "overall_pass": true,
+  "summary": "Constraint manifold S^2: geomstats confirms north pole admissible, exp/log roundtrip holds, orthogonal geodesic dist=pi/2, antipodal dist=pi. z3: (0,0,1) SAT (admissible), (2,0,0) UNSAT (excluded). sympy: x^2+y^2+z^2-1=0 at (0,0,1), gradient=(2x,2y,2z) analytically verified."
+}

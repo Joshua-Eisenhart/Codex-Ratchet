@@ -1,0 +1,168 @@
+{
+  "name": "sim_integration_gudhi_gtower_filtration",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes pairwise Euclidean distances between G-tower node coordinates as torch tensors; autograd-compatible distance matrix used to confirm node separations are strictly positive (nodes are distinct points)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG is for message-passing graph neural networks; G-tower filtration is a TDA task handled by gudhi. PyG integration deferred to a dedicated graph-learning probe of the tower structure."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 SMT solver verifies the filtration ordering constraint: each consecutive tower level has strictly higher filtration parameter than the previous. Returns UNSAT if ordering is violated, confirming monotone filtration."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is an alternative SMT backend; z3 covers the ordering verification for this probe. cvc5 integration targeted for a dedicated proof-comparison sim."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "Symbolic Lie algebra dimension formulas are not needed here; dimensions are given as constants. Sympy integration deferred to a dedicated Lie algebra structure probe."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra is relevant for spinor representations within the tower; this probe targets topological filtration structure, not algebraic representation. Deferred to spinor-tower coupling sim."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry of individual groups is deferred to constraint manifold probes. This sim focuses on persistent homology of the reduction chain via gudhi."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks operate on group representations; the filtration topology probe does not require equivariant message passing. Integration deferred to representation-layer probes."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Rustworkx builds the G-tower as a directed acyclic graph and runs topological sort to confirm the linear chain is a valid DAG with no cycles, cross-checking the H1=0 result from gudhi."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "XGI handles higher-order hypergraph structure; the G-tower reduction chain is a 1-simplex path with no higher-order incidence. XGI integration reserved for multi-way coupling probes."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "TopoNetX boundary operators are the primary tool for the companion chain-complex sim. This sim focuses on gudhi persistence; using both would duplicate the topology computation."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "gudhi SimplexTree encodes the G-tower as a filtered simplicial complex; persistence() computes H0/H1 barcodes; the main claim (H0=1 infinite bar, H1=0 bars) is directly read from gudhi persistence diagrams."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "gudhi_h0_infinite_bars": {
+      "value": 1,
+      "expected": 1,
+      "pass": true,
+      "interpretation": "One connected component survives (G-tower is a single chain)"
+    },
+    "gudhi_h1_bars": {
+      "value": 0,
+      "expected": 0,
+      "pass": true,
+      "interpretation": "No 1-cycles survived; linear chain has H1=0 (no loops)"
+    },
+    "gudhi_simplex_count": {
+      "num_vertices": 6,
+      "num_edges": 5,
+      "pass": true,
+      "interpretation": "SimplexTree has 6 vertices + 5 edges = 11 simplices total"
+    },
+    "pytorch_pairwise_distances": {
+      "min_off_diagonal": 1.0,
+      "all_nodes_distinct": true,
+      "pass": true,
+      "interpretation": "All G-tower nodes are at distinct positions in R^2; distances computed via torch tensors"
+    },
+    "z3_monotone_filtration": {
+      "result": "sat",
+      "expected": "sat",
+      "pass": true,
+      "interpretation": "z3 confirms filtration values form a strictly increasing sequence (constraint-admissible ordering)"
+    },
+    "rustworkx_dag_check": {
+      "is_dag": true,
+      "num_nodes": 6,
+      "num_edges": 5,
+      "pass": true,
+      "interpretation": "G-tower is a directed acyclic graph; topological sort succeeded (no cycles survived)"
+    },
+    "overall_pass": true
+  },
+  "negative": {
+    "z3_scrambled_ordering_unsat": {
+      "result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "interpretation": "Scrambled tower (SO before GL) violates strict monotone ordering; z3 correctly returns UNSAT -- excluded configuration"
+    },
+    "gudhi_filled_triangle_creates_transient_h1": {
+      "h1_bars": 1,
+      "pass": true,
+      "interpretation": "Adding 2-simplex at filtration 2.0 to a 1-cycle (born at 1.0) creates a transient H1 bar [1.0, 2.0]; gudhi correctly detects and fills cycles via 2-simplices"
+    },
+    "pytorch_self_distance_zero": {
+      "max_diagonal": 0.0,
+      "pass": true,
+      "interpretation": "All self-distances are zero; if non-zero, distance computation would be excluded as incorrect"
+    },
+    "overall_pass": true
+  },
+  "boundary": {
+    "gudhi_single_node": {
+      "num_simplices": 1,
+      "persistence_empty": true,
+      "h1_bars": 0,
+      "pass": true,
+      "interpretation": "Single-node filtration (GL only): persistence()=[] means one implicit infinite H0 bar (no pairing); H1=0. Boundary case confirms single component with no finite death."
+    },
+    "gudhi_two_nodes": {
+      "h0_infinite_bars": 1,
+      "h1_bars": 0,
+      "pass": true,
+      "interpretation": "Two-node chain (GL->O) gives H0=1, H1=0 (boundary case for minimal chain)"
+    },
+    "z3_equal_filtration_unsat": {
+      "result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "interpretation": "Equal filtration values violate strict ordering; z3 returns UNSAT (boundary: equal is excluded)"
+    },
+    "pytorch_zero_distance_boundary": {
+      "distance": 0.0,
+      "pass": true,
+      "interpretation": "Zero-vector distance is exactly 0; boundary numerical check on torch distance computation"
+    },
+    "overall_pass": true
+  },
+  "overall_pass": true,
+  "summary": "G-tower filtration: gudhi H0=1 (one connected chain survived), H1=0 (no loops). z3 confirmed strict monotone ordering is SAT for canonical tower, UNSAT for scrambled. rustworkx DAG check passed (no cycles). pytorch pairwise distances confirm distinct nodes."
+}

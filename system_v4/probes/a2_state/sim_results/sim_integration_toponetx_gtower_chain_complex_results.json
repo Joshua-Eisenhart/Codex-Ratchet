@@ -1,0 +1,191 @@
+{
+  "name": "sim_integration_toponetx_gtower_chain_complex",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Converts sparse boundary matrices from scipy to torch tensors; performs B1@B2=0 matrix product check in torch float64; confirms chain complex property holds as a tensor operation."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG graph neural networks are not needed for boundary operator computation. The chain complex structure is encoded entirely by toponetx; PyG integration deferred to message-passing probes."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 encodes a shortcut edge (GL->SO skipping O) and checks if the strict-ordering reduction constraint is satisfiable. Returns UNSAT when the shortcut violates the required intermediate step, confirming the chain is excluded."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 SMT backend not needed; z3 handles the shortcut-exclusion verification. cvc5 is reserved for a dedicated proof-comparison sim where both solvers are compared on the same constraint."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "Symbolic boundary operator algebra deferred to a dedicated Lie algebra sim. This probe uses numerical sparse matrices from toponetx; sympy would add symbolic overhead without changing the chain complex result."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra encodes spinor representations in the tower; this probe focuses on topological chain structure via boundary operators, not spinor algebra. Deferred to spinor-geometry coupling sim."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian structure of individual groups is not needed for the chain complex boundary operator check. Deferred to the constraint manifold probe where geomstats is load-bearing."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant layers require group-representation data not encoded in the simplicial complex. This probe tests topological structure, not equivariance; e3nn deferred to representation probes."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Rustworkx DAG analysis is the primary graph tool in the gudhi filtration probe. Here the chain structure is verified directly through toponetx boundary operators; rustworkx would duplicate that check."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "XGI handles higher-order hypergraph structures. The G-tower chain complex is a 1-skeleton (vertices + edges only); no higher-order incidence is present, making XGI out of scope for this probe."
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "SimplicialComplex encodes the G-tower chain; boundary_matrix(rank=1) gives B1 (edges->vertices), boundary_matrix(rank=2) gives B2 (faces->edges); hodge_laplacian_matrix(rank=0) gives L0; B1@B2=0 check is the primary claim."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi persistent homology is the primary tool in the filtration probe. This probe targets chain complex boundary operators via toponetx; using both would duplicate the topology computation without adding new information."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "toponetx_simplicial_dim": {
+      "value": 1,
+      "expected": 1,
+      "pass": true,
+      "interpretation": "G-tower chain complex has dimension 1 (vertices + edges, no 2-faces); constraint-admissible simplicial structure"
+    },
+    "toponetx_node_edge_count": {
+      "num_nodes": 6,
+      "num_edges": 5,
+      "pass": true,
+      "interpretation": "6 tower groups (vertices) and 5 reduction steps (edges) survived as simplices"
+    },
+    "pytorch_B1_shape": {
+      "shape": [
+        6,
+        5
+      ],
+      "expected": [
+        6,
+        5
+      ],
+      "pass": true,
+      "interpretation": "B1 boundary matrix maps 5 edges to 6 vertices; shape (6,5) confirms 1-chain boundary structure"
+    },
+    "pytorch_B1_B2_zero": {
+      "max_abs_value": 0.0,
+      "pass": true,
+      "interpretation": "B1@B2=0 (chain complex property holds); no 2-simplices means product is trivially zero -- constraint-admissible chain"
+    },
+    "toponetx_L0_shape": {
+      "shape": [
+        6,
+        6
+      ],
+      "expected": [
+        6,
+        6
+      ],
+      "pass": true,
+      "interpretation": "Hodge Laplacian L0 is 6x6; encodes connectivity of the G-tower chain; correct shape confirms the boundary operator pipeline"
+    },
+    "toponetx_L0_connectivity": {
+      "zero_eigenvalues": 1,
+      "expected": 1,
+      "pass": true,
+      "interpretation": "L0 has exactly 1 zero eigenvalue = one connected component (G-tower chain is fully connected; one component survived)"
+    },
+    "z3_shortcut_excluded": {
+      "result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "interpretation": "GL->SO shortcut violates consecutive-step constraint; z3 returns UNSAT confirming shortcut is excluded from constraint-admissible reductions"
+    },
+    "overall_pass": true
+  },
+  "negative": {
+    "toponetx_triangle_changes_dim": {
+      "value": 2,
+      "expected": 2,
+      "pass": true,
+      "interpretation": "Adding GL-O-SO triangle (closed commutativity diagram) changes dim from 1 to 2; higher-order structure appears"
+    },
+    "toponetx_triangle_creates_B2": {
+      "B2_num_cols": 1,
+      "pass": true,
+      "interpretation": "Triangle (2-simplex) creates non-trivial B2; chain complex extends to dimension 2 -- the added commutativity diagram is detectable"
+    },
+    "pytorch_B1_B2_still_zero_with_triangle": {
+      "max_abs_value": 0.0,
+      "pass": true,
+      "interpretation": "B1@B2=0 still holds even with triangle added (chain complex property is preserved; the triangle is constraint-admissible as a closed diagram)"
+    },
+    "z3_valid_consecutive_edge_sat": {
+      "result": "sat",
+      "expected": "sat",
+      "pass": true,
+      "interpretation": "GL->O (consecutive, diff=1) is SAT under strict consecutive constraint; confirms valid edge survives while shortcut is excluded"
+    },
+    "overall_pass": true
+  },
+  "boundary": {
+    "toponetx_two_node_B1_shape": {
+      "shape": [
+        2,
+        1
+      ],
+      "expected": [
+        2,
+        1
+      ],
+      "pass": true,
+      "interpretation": "Two-node path (GL->O) has B1 shape (2,1); minimal chain complex boundary check"
+    },
+    "toponetx_single_vertex_no_edges": {
+      "B1_columns": 0,
+      "pass": true,
+      "interpretation": "Single vertex (dim=0) has no edges; incidence_matrix(rank=1) raises or returns empty -- correct boundary condition for degenerate complex"
+    },
+    "pytorch_empty_B2_product": {
+      "product_shape": [
+        3,
+        0
+      ],
+      "pass": true,
+      "interpretation": "B1 @ empty B2 produces empty matrix (0 columns); torch handles degenerate chain complex correctly at boundary"
+    },
+    "overall_pass": true
+  },
+  "overall_pass": true,
+  "summary": "G-tower chain complex: toponetx B1 shape=(6,5), B1@B2=0 (trivially, no 2-faces). L0 Hodge Laplacian has 1 zero eigenvalue (one connected component survived). z3 confirmed shortcut GL->SO is UNSAT (excluded). Adding triangle correctly changes dim to 2 and creates non-trivial B2."
+}

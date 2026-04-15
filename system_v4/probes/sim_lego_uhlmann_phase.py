@@ -245,9 +245,10 @@ def run_positive_tests():
         rho_loop = equatorial_loop(r=1.0, N_steps=128)
         phase, holonomy = uhlmann_phase_loop(rho_loop)
         expected = berry_phase_solid_angle(math.pi / 2)  # -pi
-        error = abs(phase.item() - expected)
-        # Berry phase for equatorial great circle = -pi (mod 2pi = pi)
-        # But arg gives values in [-pi, pi], so |phase| should be ~pi
+        raw_error = abs(phase.item() - expected)
+        # ±π are physically equivalent (same mod 2π); use mod-2π error
+        error = raw_error % (2 * math.pi)
+        error = min(error, 2 * math.pi - error)
         results["pure_equatorial_berry"] = {
             "uhlmann_phase": phase.item(),
             "expected_berry_phase": expected,

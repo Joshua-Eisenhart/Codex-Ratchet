@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T02:52:22.728184",
+  "timestamp": "2026-04-15T04:07:29.718785",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -895,6 +895,172 @@
       ],
       "has_bug": false
     },
+    "sim_axis10_entanglement_structure_bridge.py": {
+      "patterns": [
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 95,
+          "pattern": "ibjb->ij",
+          "line_text": "return torch.einsum('ibjb->ij', rho_mat)",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 176,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A_prod_c = torch.einsum('ibjb->ij', rho_prod_c.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 188,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A_bell = torch.einsum('ibjb->ij', rho_bell.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 202,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A_ghz = torch.einsum('ibjb->ij', rho_ghz.reshape(2, 4, 2, 4))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 214,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A_w = torch.einsum('ibjb->ij', rho_w.reshape(2, 4, 2, 4))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 450,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A_near = torch.einsum('ibjb->ij', rho_near.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis10_entanglement_structure_bridge.py",
+          "line": 477,
+          "pattern": "ibjb->ij",
+          "line_text": "rho_A0 = torch.einsum('ibjb->ij', rho_ghz.reshape(2, 4, 2, 4))",
+          "classification": {
+            "pattern": "ibjb->ij",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_baseline_partial_trace_2x2.py": {
       "patterns": [
         {
@@ -984,6 +1150,57 @@
             "kept": [
               "b",
               "d"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_bridge_prep_rho_ab_construction.py": {
+      "patterns": [
+        {
+          "file": "sim_bridge_prep_rho_ab_construction.py",
+          "line": 189,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_bridge_prep_rho_ab_construction.py",
+          "line": 197,
+          "pattern": "ijil->jl",
+          "line_text": "return torch.einsum(\"ijil->jl\", rho)",
+          "classification": {
+            "pattern": "ijil->jl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "l"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -5572,8 +5789,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 74,
-    "clean_files": 66,
+    "total_files_with_einsum_ptrace": 76,
+    "clean_files": 68,
     "files_with_einsum_bugs": 8,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,

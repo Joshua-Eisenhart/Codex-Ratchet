@@ -85,28 +85,47 @@
   },
   "target_tool": {
     "name": "pymoo",
-    "version": null,
+    "version": "0.6.1.6",
     "integration": "load_bearing"
   },
   "positive": {
     "pymoo_available": {
-      "pass": false,
-      "detail": "pymoo missing: No module named 'pymoo'"
+      "pass": true,
+      "version": "0.6.1.6"
+    },
+    "pareto_front_size_ge_3": {
+      "pass": true,
+      "pareto_size": 45
+    },
+    "hypervolume_positive": {
+      "pass": true,
+      "hypervolume": 0.36608183335460476
+    },
+    "objectives_nonnegative": {
+      "pass": true,
+      "f1_min": 2.0421769110375074e-07,
+      "f2_min": 0.3816980642507793
     }
   },
   "negative": {
-    "skip": {
-      "pass": false,
-      "detail": "pymoo missing"
+    "degenerate_single_obj_f1_near_zero": {
+      "pass": true,
+      "f1_best": 4.899415543277441e-05,
+      "f2_spread_note": 1.3180449196359028,
+      "note": "f1 best near 0 confirms optimizer still tracks f1; degenerate because f2 not separately minimized"
     }
   },
   "boundary": {
-    "skip": {
-      "pass": false,
-      "detail": "pymoo missing"
+    "pop_size_4_runs_without_crash": {
+      "pass": true,
+      "pareto_size": 4,
+      "f_shape": [
+        4,
+        2
+      ]
     }
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "capability_summary": {
     "can": "Run NSGA-II on ZDT1 (30 vars, 2 objectives) producing a Pareto front with >= 3 solutions and positive hypervolume relative to [1.1, 1.1]; handles pop_size=4 boundary without crashing.",
     "cannot": "Does not guarantee convergence to the true Pareto front in few generations; very small pop_size degrades diversity; no GPU acceleration for fitness evaluation by default."

@@ -61,6 +61,11 @@
       "tried": false,
       "used": false,
       "reason": "not used: this probe isolates the pymoo NSGA-II multi-objective optimizer in isolation; cross-tool integration is deferred to a dedicated integration sim per the four-sim-kinds doctrine (capability must precede integration)."
+    },
+    "pymoo": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing isolated capability probe for NSGA-II Pareto search and hypervolume evaluation"
     }
   },
   "tool_integration_depth": {
@@ -75,51 +80,33 @@
     "rustworkx": null,
     "xgi": null,
     "toponetx": null,
-    "gudhi": null
+    "gudhi": null,
+    "pymoo": "load_bearing"
   },
   "target_tool": {
     "name": "pymoo",
-    "version": "0.6.1.6",
+    "version": null,
     "integration": "load_bearing"
   },
   "positive": {
     "pymoo_available": {
-      "pass": true,
-      "version": "0.6.1.6"
-    },
-    "pareto_front_size_ge_3": {
-      "pass": true,
-      "pareto_size": 45
-    },
-    "hypervolume_positive": {
-      "pass": true,
-      "hypervolume": 0.36608183335460476
-    },
-    "objectives_nonnegative": {
-      "pass": true,
-      "f1_min": 2.0421769110375074e-07,
-      "f2_min": 0.3816980642507793
+      "pass": false,
+      "detail": "pymoo missing: No module named 'pymoo'"
     }
   },
   "negative": {
-    "degenerate_single_obj_f1_near_zero": {
-      "pass": true,
-      "f1_best": 4.899415543277441e-05,
-      "f2_spread_note": 1.3180449196359028,
-      "note": "f1 best near 0 confirms optimizer still tracks f1; degenerate because f2 not separately minimized"
+    "skip": {
+      "pass": false,
+      "detail": "pymoo missing"
     }
   },
   "boundary": {
-    "pop_size_4_runs_without_crash": {
-      "pass": true,
-      "pareto_size": 4,
-      "f_shape": [
-        4,
-        2
-      ]
+    "skip": {
+      "pass": false,
+      "detail": "pymoo missing"
     }
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "capability_summary": {
     "can": "Run NSGA-II on ZDT1 (30 vars, 2 objectives) producing a Pareto front with >= 3 solutions and positive hypervolume relative to [1.1, 1.1]; handles pop_size=4 boundary without crashing.",
     "cannot": "Does not guarantee convergence to the true Pareto front in few generations; very small pop_size degrades diversity; no GPU acceleration for fitness evaluation by default."

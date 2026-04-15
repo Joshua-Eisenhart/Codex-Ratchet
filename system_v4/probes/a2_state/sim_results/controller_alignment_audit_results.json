@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-15T08:40:01.789978+00:00",
+  "generated_at": "2026-04-15T09:17:55.947573+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "sys_executable": "/opt/homebrew/opt/python@3.13/bin/python3.13",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.11.0",
+      "installed_version": "2.8.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "sympy": {
       "distribution": "sympy",
@@ -30,11 +30,11 @@
     "z3-solver": {
       "distribution": "z3-solver",
       "import_name": "z3",
-      "installed_version": "4.16.0.0",
+      "installed_version": null,
       "import_ok": true,
       "import_error": null,
       "required_floor": "4.16.0.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "cvc5": {
       "distribution": "cvc5",
@@ -129,20 +129,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "3.0.2",
+      "installed_version": "2.2.3",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.6.1",
+      "installed_version": "3.5",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": true
+      "meets_floor": false
     }
   },
   "known_env_risks": {
@@ -311,13 +311,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 1446,
+    "files_with_manifest_or_depth": 1450,
     "per_tool": {
       "pytorch": {
-        "tried_count": 533,
-        "used_count": 422,
-        "load_bearing_count": 209,
-        "depth_present_count": 367,
+        "tried_count": 536,
+        "used_count": 425,
+        "load_bearing_count": 213,
+        "depth_present_count": 370,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -365,6 +365,7 @@
           "coherence_measure_canonical_results.json",
           "coherent_info_erasure_canonical_results.json",
           "constraint_shells_binding_crosscheck_results.json",
+          "contact_structure_s3_results.json",
           "contact_symplectic_coupling_results.json",
           "contact_symplectic_kahler_coexistence_results.json",
           "cross_shell_coupling_cp1_bures_results.json",
@@ -468,6 +469,9 @@
           "sim_gtower_so3_su2_sp1_triple_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_hopf_deep_berry_phase_admissibility_results.json",
           "sim_hopf_deep_s3_to_s2_partial_trace_consistency_results.json",
@@ -574,10 +578,10 @@
         ]
       },
       "z3": {
-        "tried_count": 555,
-        "used_count": 417,
-        "load_bearing_count": 328,
-        "depth_present_count": 395,
+        "tried_count": 559,
+        "used_count": 421,
+        "load_bearing_count": 332,
+        "depth_present_count": 399,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -792,6 +796,9 @@
           "sim_gtower_so_to_u_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_gtower_u_to_su_results.json",
           "sim_gtower_z3_unsat_nonreductive_chain_results.json",
@@ -829,6 +836,7 @@
           "sim_ladder_couple_L6_L11_engine_to_placement_results.json",
           "sim_max_stack_5tool_constraint_admissibility_results.json",
           "sim_max_stack_6tool_gtower_ratchet_results.json",
+          "sim_max_stack_constraint_manifold_5tools_results.json",
           "sim_max_stack_gtower_ratchet_6tools_results.json",
           "sim_motives_4_admissibility_results.json",
           "sim_motives_6_chirality_coupling_results.json",
@@ -971,10 +979,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 506,
-        "used_count": 341,
-        "load_bearing_count": 212,
-        "depth_present_count": 346,
+        "tried_count": 509,
+        "used_count": 344,
+        "load_bearing_count": 214,
+        "depth_present_count": 349,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -1002,7 +1010,6 @@
           "chiral_density_bookkeeping_results.json",
           "clifford_weyl_transport_results.json",
           "constraint_manifold_L0_L1_results.json",
-          "contact_structure_s3_results.json",
           "cptp_axioms_hardway_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "f01_compose_12_tensor_product_preserves_finiteness_results.json",
@@ -1123,6 +1130,9 @@
           "sim_gtower_su3_shell_local_results.json",
           "sim_gtower_su_to_sp_results.json",
           "sim_gtower_su_to_sp_symplectic_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_gtower_u_to_su_reduction_results.json",
           "sim_holonomy_spectral_coupling_results.json",
@@ -1196,10 +1206,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 327,
-        "used_count": 114,
-        "load_bearing_count": 97,
-        "depth_present_count": 116,
+        "tried_count": 330,
+        "used_count": 117,
+        "load_bearing_count": 100,
+        "depth_present_count": 119,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -1278,6 +1288,9 @@
           "sim_gtower_so3_su2_sp1_triple_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u1_hopf_fiber_reduction_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
@@ -1304,10 +1317,10 @@
         ]
       },
       "geomstats": {
-        "tried_count": 219,
-        "used_count": 62,
-        "load_bearing_count": 49,
-        "depth_present_count": 70,
+        "tried_count": 222,
+        "used_count": 65,
+        "load_bearing_count": 52,
+        "depth_present_count": 73,
         "anchor_stage_coverage": [
           "lego",
           "coexistence"
@@ -1355,6 +1368,9 @@
           "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_integration_geomstats_constraint_manifold_results.json",
           "tools_load_bearing_results.json",
@@ -1365,10 +1381,10 @@
         ]
       },
       "e3nn": {
-        "tried_count": 205,
-        "used_count": 44,
-        "load_bearing_count": 41,
-        "depth_present_count": 56,
+        "tried_count": 207,
+        "used_count": 46,
+        "load_bearing_count": 43,
+        "depth_present_count": 58,
         "anchor_stage_coverage": [
           "lego"
         ],
@@ -1407,6 +1423,8 @@
           "sim_gtower_so3_su2_sp1_triple_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
           "sim_hopf_deep_u1_holonomy_equivariance_results.json",
           "sim_integration_e3nn_spectral_triple_dirac_equivariance_results.json",
@@ -1417,10 +1435,10 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 250,
-        "used_count": 97,
-        "load_bearing_count": 73,
-        "depth_present_count": 92,
+        "tried_count": 253,
+        "used_count": 100,
+        "load_bearing_count": 76,
+        "depth_present_count": 95,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -1478,6 +1496,9 @@
           "sim_gtower_so3_shell_local_results.json",
           "sim_gtower_sp6_shell_local_results.json",
           "sim_gtower_su3_shell_local_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_igt_atom_2_structure_results.json",
           "sim_integration_networkx_rustworkx_crosscheck_results.json",
@@ -1505,10 +1526,10 @@
         ]
       },
       "xgi": {
-        "tried_count": 192,
-        "used_count": 40,
-        "load_bearing_count": 31,
-        "depth_present_count": 49,
+        "tried_count": 195,
+        "used_count": 43,
+        "load_bearing_count": 34,
+        "depth_present_count": 52,
         "anchor_stage_coverage": [
           "assembly",
           "topology",
@@ -1527,6 +1548,9 @@
           "qit_weyl_hypergraph_companion_results.json",
           "sim_capability_xgi_isolated_results.json",
           "sim_compound_clifford_pytorch_xgi_higher_order_rotor_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_so3_u3_su3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_integration_xgi_multishell_coexistence_results.json",
           "sim_xgi_deep_higher_order_contagion_results.json",
           "sim_xgi_deep_hyperedge_motif_count_results.json",
@@ -1595,10 +1619,10 @@
         ]
       },
       "gudhi": {
-        "tried_count": 196,
-        "used_count": 45,
-        "load_bearing_count": 33,
-        "depth_present_count": 49,
+        "tried_count": 199,
+        "used_count": 48,
+        "load_bearing_count": 36,
+        "depth_present_count": 52,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -1619,6 +1643,8 @@
           "sim_capability_gudhi_isolated_results.json",
           "sim_compound_pyg_toponetx_gudhi_hodge_pipeline_results.json",
           "sim_compound_torus_spinor_admissibility_results.json",
+          "sim_gtower_triple_gl3_o3_so3_results.json",
+          "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gudhi_deep_persistence_diagram_stability_under_probe_results.json",
           "sim_gudhi_deep_persistent_h1_excludes_trivial_homology_results.json",
           "sim_gudhi_deep_rips_vs_cech_admissibility_results.json",
@@ -1629,6 +1655,7 @@
           "sim_integration_pynndescent_state_similarity_results.json",
           "sim_integration_umap_gtower_projection_results.json",
           "sim_max_stack_5tool_constraint_admissibility_results.json",
+          "sim_max_stack_constraint_manifold_5tools_results.json",
           "sim_toponetx_gudhi_joint_same_complex_parity_results.json",
           "tools_load_bearing_results.json",
           "toponetx_gudhi_hodge_betti_cross_results.json",

@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T15:25:00.222429",
+  "timestamp": "2026-04-15T15:32:50.928728",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -1017,6 +1017,34 @@
             "kept": [
               "j",
               "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_axis0_axis6_coupling_seam.py": {
+      "patterns": [
+        {
+          "file": "sim_axis0_axis6_coupling_seam.py",
+          "line": 107,
+          "pattern": "iaja->ij",
+          "line_text": "return torch.einsum(\"iaja->ij\", rho)",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -6671,8 +6699,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 85,
-    "clean_files": 74,
+    "total_files_with_einsum_ptrace": 86,
+    "clean_files": 75,
     "files_with_einsum_bugs": 11,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,

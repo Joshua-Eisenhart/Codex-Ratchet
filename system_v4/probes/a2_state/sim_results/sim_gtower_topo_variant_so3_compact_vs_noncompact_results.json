@@ -1,0 +1,129 @@
+{
+  "name": "sim_gtower_topo_variant_so3_compact_vs_noncompact",
+  "classification": "classical_baseline",
+  "divergence_log": "Topology-variant rerun #1: tests that SO(3)<->U(3) pairwise coupling survives the compact vs non-compact topology distinction. Classical baseline, not yet nonclassical. Prior pairwise coupling used flat/Euclidean topology implicitly.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: one-parameter subgroups of SO(3) computed via matrix exponential; verified periodic (compact) at t=2\u03c0; SO\u2192U coupling survives compact topology \u2014 embedded real orthogonal matrix satisfies M\u2020M=I for all t. Sym+(3,R) non-compact subgroup grows without bound and is not periodic, confirming topology distinction."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof \u2014 no 2\u00d72 real orthogonal matrix can have a real eigenvalue with |\u03bb|>1. Orthogonal matrices have eigenvalues on the unit circle; this is the algebraic signature of compact topology vs non-compact (Sym+ eigenvalues are unbounded positive reals)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic eigenvalues of SO(2) rotation matrix are e^{\u00b1i\u03b8}; |\u03bb|=1 for both \u2014 unit circle constraint. Contrasts with Sym+(3,R) whose eigenvalues are positive reals (not on unit circle). This is the algebraic signature of compact vs non-compact topology."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Spin(3) rotor R=cos(t/2)+sin(t/2)\u00b7e12 is compact \u2014 periodic with period 4\u03c0 (double cover of SO(3) period 2\u03c0). This confirms compact topology via the Clifford algebra representation: the rotor always lies in S\u00b3 \u2282 Spin(3), bounded by definition."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: SO(3) random sample \u2014 all elements have Frobenius norm = \u221a3 (bounded, confirming compact topology). GL sample has unbounded norms, confirming non-compact topology of GL vs compact SO."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: G-tower DAG annotated with compact/non-compact flags for each node. GL(3) is the unique non-compact starting point; SO/U/SU/Sp are all compact. The topology-variant claim (compact coupling survives) is encoded as reachability in the compact subgraph."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_so3_opsg_periodic_2pi": true,
+    "P1_so3_opsg_always_orthogonal": true,
+    "P2_so3_embedded_in_u3_Mdag_M_eq_I": true,
+    "P2_so3_embedded_real_part_intact": true,
+    "P2_so3_embedded_imag_part_zero": true,
+    "P3_sym_plus_eigs_all_positive": true,
+    "P4_gram_schmidt_to_O_sample_0": true,
+    "P4_gram_schmidt_to_O_sample_1": true,
+    "P4_gram_schmidt_to_O_sample_2": true,
+    "P4_gram_schmidt_to_O_sample_3": true,
+    "P4_gram_schmidt_to_O_sample_4": true
+  },
+  "negative": {
+    "N1_noncompact_opsg_not_id_at_2pi": true,
+    "N1_noncompact_opsg_not_id_at_4pi": true,
+    "N1_noncompact_opsg_norm_grows": true,
+    "N2_sym_plus_not_orthogonal": true,
+    "N3_shear_in_GL_not_in_O": true,
+    "N4_noncompact_no_finite_period": true
+  },
+  "boundary": {
+    "B1_z3_ortho_no_eigenvalue_gt1": "unsat",
+    "B1_z3_unsat_ok": true,
+    "B2_sympy_so3_eigenvalues_on_unit_circle": true,
+    "B2_sympy_eigenvalue_note": "[-sqrt((cos(theta) - 1)*(cos(theta) + 1)) + cos(theta), sqrt((cos(theta) - 1)*(cos(theta) + 1)) + cos(theta)]",
+    "B3_sympy_sym_plus_eigs_positive": true,
+    "B4_clifford_spin3_rotor_periodic_4pi": true,
+    "B4_clifford_note": "R(4\u03c0)=1: True, R(2\u03c0) scalar=-1.0000 (expect -1)",
+    "B5_geomstats_so3_bounded_frob_norm": true,
+    "B5_geomstats_note": "SO(3) max_frob=1.7321 (\u2264\u221a3=1.7321); GL(3) max_frob=4.8730",
+    "B6_rustworkx_compact_annotation": true,
+    "B6_rustworkx_note": "compact=5, noncompact=1, edges=5",
+    "B7_so3_to_u3_coupling_t=0.10": true,
+    "B7_so3_to_u3_coupling_t=0.70": true,
+    "B7_so3_to_u3_coupling_t=1.50": true,
+    "B7_so3_to_u3_coupling_t=3.14": true,
+    "B7_so3_to_u3_coupling_t=6.28": true
+  },
+  "load_bearing_checks": {
+    "z3_unsat_ok": true,
+    "sympy_so3_unit_circle": true,
+    "clifford_rotor_periodic": true,
+    "geomstats_bounded_frob": true,
+    "rustworkx_compact_dag": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

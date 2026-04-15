@@ -1,0 +1,122 @@
+{
+  "name": "sim_gtower_topo_variant_cayley_graph",
+  "classification": "classical_baseline",
+  "divergence_log": "Topology-variant rerun #3: G-tower reductions tested via Cayley graph topology. SO(3) is connected (H0=1); O(3) with both det signs has H0=2; the det sign separates connected components. GL\u2192O Gram-Schmidt is a graph map. Classical baseline \u2014 Cayley graph topology variant.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: pairwise Frobenius distances within SO(3) sample and between SO(3) and det=-1 O(3) component. The two components are well-separated (min_cross > 0.5 * max_intra). GL\u2192O Gram-Schmidt projection verified as a graph map (all projected images are O(3)). Threshold=0 gives no edges; the graph structure encodes topology."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof \u2014 det(P)*det(A)=-1 is impossible when det(P)=+1 and det(A)=+1. This encodes the fact that SO(3) generators (det=+1) cannot flip the determinant: two matrices in the same Cayley graph component connected by SO(3) generators must have the same determinant sign. This is the algebraic basis for O(3) having two disconnected components in its Cayley graph."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Z_6 Cayley graph with generator g=1 is a 6-cycle: each node has degree 2, graph is connected. This is the finite group analog of SO(3) connectivity \u2014 compact groups have connected Cayley graphs while O(3) (which has two components) does not. Also verifies the symbolic structure of cyclic group adjacency."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: \u00b1rotor R and -R in Spin(3) both give the same SO(3) action via x\u21a6RxR\u207b\u00b9; confirmed for 4 sample angles. This is the 2-to-1 covering Spin(3)\u2192SO(3). In Cayley graph terms: each SO(3) node has exactly 2 Spin(3) preimages (+R and -R)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Frobenius-proximity Cayley graph on SO(3) sample gives 1 connected component (H0=1, compact connected); O(3) sample with both det=+1 and det=-1 gives exactly 2 components, each homogeneous in determinant sign. This confirms the G-tower step O(3)\u2192SO(3) is a topological disconnection: selecting the det=+1 subgraph isolates one connected component."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: xgi encodes the Spin(3)\u2192SO(3) covering map as hyperedges {SO3_t, Spin+_t, Spin-_t} for each rotation angle t. Each SO(3) element is the 'center' of a 3-node hyperedge containing its two Spin(3) preimages. This encodes the 2-to-1 topology of the covering map in the Cayley hypergraph structure."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Rips complex on 20 SO(3) samples (9D flattened) gives H0=1 (connected, compact topology); Rips complex on 40 O(3) samples with both det signs gives H0=2 (two connected components). This confirms the topological distinction between SO(3) and O(3) via persistent homology of the Cayley-graph point cloud."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "P1_so3_cayley_connected_H0_1": true,
+    "P2_gram_schmidt_lands_in_O3": true,
+    "P3_o3_cayley_components_det_homogeneous": true,
+    "P4_so3_subgraph_still_connected": true
+  },
+  "negative": {
+    "N1_o3_cayley_not_connected_has_ge2_comps": true,
+    "N2_det_neg_not_in_det_pos_component": true,
+    "N3_shear_far_from_O3_projection": true,
+    "N4_threshold0_no_edges": true
+  },
+  "boundary": {
+    "B1_z3_det_multiplicativity_unsat": "unsat",
+    "B1_z3_unsat_ok": true,
+    "B2_sympy_zn_cayley_is_cycle": true,
+    "B2_sympy_note": "Z_6 Cayley graph: all_degree_2=True, connected=True (visited 6/6)",
+    "B3_clifford_spin3_covers_so3_2to1": true,
+    "B3_clifford_note": "Cover checks (4 angles): all pass = True; \u00b1rotor give same SO(3) image: [True, True, True, True]",
+    "B4_gudhi_so3_h0_1": true,
+    "B4_gudhi_o3_h0_2": true,
+    "B4_gudhi_note": "SO(3) Rips H0=1 (expect 1); O(3) mixed Rips H0=2 (expect 2)",
+    "B5_rustworkx_o3_exactly_2_comps": true,
+    "B5_rustworkx_note": "O(3) comps=2, sizes=[20, 20], det_homogeneous=True",
+    "B6_xgi_covering_map_hyperedges": true,
+    "B6_xgi_note": "n_edges=3, all_size_3=True",
+    "B7_so3_and_neg_det_well_separated": true,
+    "B7_max_intra_dist": 2.809441031117602,
+    "B7_min_cross_dist": 2.0000276063706863
+  },
+  "load_bearing_checks": {
+    "z3_unsat_ok": true,
+    "sympy_zn_cycle": true,
+    "clifford_2to1_cover": true,
+    "gudhi_so3_h0_1": true,
+    "gudhi_o3_h0_2": true,
+    "rustworkx_2_comps": true,
+    "xgi_covering_hyperedges": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

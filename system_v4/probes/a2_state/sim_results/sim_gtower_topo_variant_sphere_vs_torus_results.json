@@ -1,0 +1,132 @@
+{
+  "name": "sim_gtower_topo_variant_sphere_vs_torus",
+  "classification": "classical_baseline",
+  "divergence_log": "Topology-variant rerun #2: SO(3)+U(3)+SU(3) triple coupling tested on two distinct topologies living inside SU(3): the maximal torus T\u00b2 and the SU(2) sphere S\u00b3. Classical baseline \u2014 coupling constraints survive both topology classes.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: maximal torus T\u00b2 parametrized as diag(e^{i\u03b8\u2081}, e^{i\u03b8\u2082}, e^{-i(\u03b8\u2081+\u03b8\u2082)}); verified M\u2020M=I and det=1 for all T\u00b2 elements. SU(2) sphere elements (block diagonal) also verified. Both topology classes pass SU(3) coupling simultaneously. Three-way coexistence T\u00b9\u2282T\u00b2\u2229SO-circle\u2229SU(3) confirmed at \u03b8\u2081=-\u03b8\u2082."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof \u2014 a diagonal matrix element of an SU(3) torus cannot simultaneously have |d|\u22601 and satisfy the unitarity constraint |d|=1. The torus is exactly the set of diagonal unitaries with det=1; any diagonal entry must have unit modulus. This is the defining algebraic constraint separating torus from non-torus elements."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cartan generators H1=diag(i,-i,0), H2=diag(0,i,-i) of su(3) commute ([H1,H2]=0 confirmed symbolically); they are linearly independent, confirming rank=2. The maximal torus T\u00b2=exp(su_Cartan) is 2-dimensional. This is the algebraic structure behind the T\u00b2 topology."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: two independent U(1) Clifford rotors R1=cos(\u03b81)+sin(\u03b81)\u00b7e12 and R2=cos(\u03b82)+sin(\u03b82)\u00b7e34 in Cl(4,0); they commute (independent U(1) factors), and their product generates T\u00b2=T\u00b9\u00d7T\u00b9. This confirms the T\u00b2 topology can be represented as two commuting compact rotors."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: geomstats SO(3) random sample \u2014 all 20 elements embedded as complex matrices pass SU(3) membership; 20 random T\u00b2 elements also pass SU(3) membership. Both sphere (SO(3)\u2282SU(2)\u2282SU(3)) and torus topology survive the SU(3) coupling constraints simultaneously."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: topology-variant DAG \u2014 two parallel paths from SO(3) to SU(3): one via the SU(2) sphere embedding, one via the T\u00b2 torus. Both paths terminate at SU(3), confirming the coupling survives on both sphere and torus topology classes."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: xgi hyperedge {T\u00b2, S\u00b3_SU2, SU(3)} encodes simultaneous coexistence of both topologies inside SU(3). Additional edges {SO3, T2} and {SO3, S3_SU2} confirm SO(3) is the common source. Hyperedge structure verifies the topology-variant coupling claim."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this topology-variant rerun; deferred to topology-specific tool sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_torus_element_0_in_SU3": true,
+    "P1_torus_element_1_in_SU3": true,
+    "P1_torus_element_2_in_SU3": true,
+    "P1_torus_element_3_in_SU3": true,
+    "P1_torus_element_4_in_SU3": true,
+    "P2_su2_sphere_element_0_in_SU3": true,
+    "P2_su2_sphere_element_1_in_SU3": true,
+    "P2_su2_sphere_element_2_in_SU3": true,
+    "P2_su2_sphere_element_3_in_SU3": true,
+    "P2_su2_sphere_element_4_in_SU3": true,
+    "P3_so_circle_in_torus_su3_theta=0.30": true,
+    "P3_so_circle_in_torus_su3_theta=0.79": true,
+    "P3_so_circle_in_torus_su3_theta=1.57": true,
+    "P3_so_circle_in_torus_su3_theta=3.14": true
+  },
+  "negative": {
+    "N1_torus_bad_modulus_fails_su3": true,
+    "N2_nontorus_element_not_diagonal": true,
+    "N3_su2_sphere_element_not_in_torus": true,
+    "N4_torus_is_abelian": true,
+    "N4_su2_sphere_is_nonabelian": true
+  },
+  "boundary": {
+    "B1_z3_torus_unit_modulus_unsat": "unsat",
+    "B1_z3_unsat_ok": true,
+    "B2_sympy_cartan_rank2_commutes": true,
+    "B2_sympy_note": "[H1,H2]=0: True; rank of Cartan = 2 (T\u00b2 is 2-dim)",
+    "B3_clifford_two_u1_factors_commute": true,
+    "B3_clifford_note": "R1*R2 commutation norm=0.00e+00 (<1e-10: True); ||R1||=1.0000, ||R2||=1.0000",
+    "B4_geomstats_sphere_and_torus_both_in_su3": true,
+    "B4_geomstats_note": "SO(3)-embedded-in-SU(3): 20/20 pass; T\u00b2 in SU(3): 20/20 pass",
+    "B5_rustworkx_two_paths_to_su3": true,
+    "B5_rustworkx_note": "SU3 reachable: True, paths_from_SO3: 2 (sphere+torus), nodes=4",
+    "B6_xgi_t2_s3_su3_hyperedge": true,
+    "B6_xgi_note": "hyperedge members: [['SU3', 'S3_SU2', 'T2'], ['SO3', 'T2'], ['SO3', 'S3_SU2']]",
+    "B7_triple_coexistence_T2_circle_SU3": true,
+    "B8_identity_in_torus": true,
+    "B8_identity_in_sphere": true,
+    "B8_both_identities_agree": true
+  },
+  "load_bearing_checks": {
+    "z3_unsat_ok": true,
+    "sympy_cartan_rank2": true,
+    "clifford_t2_factors": true,
+    "geomstats_sphere_torus_su3": true,
+    "rustworkx_two_paths": true,
+    "xgi_hyperedge": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

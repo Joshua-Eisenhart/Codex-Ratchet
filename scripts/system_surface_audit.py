@@ -453,6 +453,7 @@ def _source_state_for_result(
     state = {
         "source_path": rel_source,
         "source_exists": source.exists(),
+        "source_canonical_name": source.name.startswith("sim_"),
         "source_dirty": rel_source in dirty_probe_sources,
         "source_untracked": rel_source in untracked_probe_sources,
         "source_newer_than_result": False,
@@ -490,6 +491,27 @@ def _source_state_label(state: dict[str, object] | None) -> str | None:
     return prefix
 
 
+def _fail_action_bucket(
+    fail_mode: str | None,
+    source_state: dict[str, object] | None,
+) -> str | None:
+    if source_state is None:
+        return None
+    if not source_state["source_exists"]:
+        return "missing_source_repair"
+    if not source_state["source_canonical_name"]:
+        return "noncanonical_source_repair"
+    if source_state["source_untracked"] or source_state["source_dirty"]:
+        return "source_drift_review"
+    if source_state["source_newer_than_result"]:
+        return "rerun_candidate"
+    if source_state["result_newer_than_source"]:
+        if fail_mode == "summary_gate_false":
+            return "current_fail_review"
+        return "current_fail_review"
+    return "fail_review"
+
+
 def result_surface() -> dict:
     dirty_probe_sources, untracked_probe_sources = _dirty_probe_source_paths()
     roots = {}
@@ -500,6 +522,7 @@ def result_surface() -> dict:
         fail_families: Counter[str] = Counter()
         fail_modes: Counter[str] = Counter()
         fail_source_states: Counter[str] = Counter()
+        fail_actions: Counter[str] = Counter()
         unknown_families: Counter[str] = Counter()
         dirty_source_results = 0
         untracked_source_results = 0
@@ -527,12 +550,16 @@ def result_surface() -> dict:
             source_label = _source_state_label(source_state)
             if pass_state == "fail" and source_label:
                 fail_source_states[source_label] += 1
+                action = _fail_action_bucket(fail_mode, source_state)
+                if action:
+                    fail_actions[action] += 1
                 if len(fail_details) < 8:
                     fail_details.append({
                         "result": path.name,
                         "source": source_state["source_path"],
                         "fail_mode": fail_mode,
                         "source_state": source_label,
+                        "action": action,
                     })
             if isinstance(data, dict):
                 if "overall_pass" in data:
@@ -582,6 +609,7 @@ def result_surface() -> dict:
             "fail_families": dict(fail_families.most_common(10)),
             "fail_modes": dict(fail_modes.most_common(10)),
             "fail_source_states": dict(fail_source_states.most_common(10)),
+            "fail_actions": dict(fail_actions.most_common(10)),
             "unknown_families": dict(unknown_families.most_common(10)),
             "dirty_source_results": dirty_source_results,
             "untracked_source_results": untracked_source_results,

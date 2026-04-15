@@ -689,6 +689,11 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
         encoding="utf-8",
     )
     (probes / "sim_szilard_alpha.py").write_text("print('alpha')\n", encoding="utf-8")
+    (probes / "weyl_beta.py").write_text("print('beta')\n", encoding="utf-8")
+    (root / "weyl_beta_results.json").write_text(
+        '{"summary": {"all_pass": false}}\n',
+        encoding="utf-8",
+    )
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES", probes)
@@ -696,12 +701,13 @@ def test_system_surface_audit_reports_fail_and_unknown_families(
 
     report = module.result_surface()["system_v4/probes/a2_state/sim_results"]
 
-    assert report["status"]["fail"] == 2
+    assert report["status"]["fail"] == 3
     assert report["status"]["pass"] == 1
     assert report["status"]["unknown"] == 1
-    assert report["fail_families"] == {"szilard": 2}
-    assert report["fail_modes"] == {"summary_gate_false": 2}
-    assert report["fail_source_states"] == {"source_clean_source_newer": 1, "source_missing": 1}
+    assert report["fail_families"] == {"szilard": 2, "weyl": 1}
+    assert report["fail_modes"] == {"summary_gate_false": 3}
+    assert report["fail_source_states"] == {"source_clean_source_newer": 1, "source_missing": 1, "source_clean_result_newer": 1}
+    assert report["fail_actions"] == {"missing_source_repair": 1, "rerun_candidate": 1, "noncanonical_source_repair": 1}
     assert report["unknown_families"] == {"axis": 1}
 
 
@@ -814,6 +820,7 @@ def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
         "source": "system_v4/probes/sim_mera_weyl_pairwise_coupling.py",
         "fail_mode": "summary_gate_false",
         "source_state": "source_untracked_result_newer",
+        "action": "source_drift_review",
     }]
 
 

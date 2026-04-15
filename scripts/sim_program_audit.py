@@ -43,6 +43,18 @@ def queue_blocked_reasons(limit: int = 8) -> dict[str, int]:
     return dict(counts.most_common(limit))
 
 
+def resolved_blocked_reasons(limit: int = 8) -> dict[str, int]:
+    counts: Counter[str] = Counter()
+    resolved = QUEUE / "blocked" / "resolved"
+    if resolved.exists():
+        for item in resolved.iterdir():
+            if not item.is_file():
+                continue
+            data = adaptive_controller.load_result(item)
+            counts[str(data.get("resolution", "unknown"))] += 1
+    return dict(counts.most_common(limit))
+
+
 def queue_duplicate_summary() -> dict[str, dict[str, int]]:
     summary: dict[str, dict[str, int]] = {}
     for lane in ("lane_A", "lane_B"):
@@ -108,10 +120,12 @@ def main() -> int:
             "lane_B": next_queue_candidates("lane_B"),
         },
         "queue_duplicates": queue_duplicate_summary(),
+        "resolved_blocked": snapshot["control_plane"]["resolved_blocked"],
         "top_never_run_examples": [path.name for path in never_run[:12]],
         "top_never_run_families": top_families(never_run),
         "top_never_run_buckets": top_buckets(never_run),
         "blocked_reasons": queue_blocked_reasons(),
+        "resolved_blocked_reasons": resolved_blocked_reasons(),
         "top_failing": state.get("failing", [])[:12],
         "rosetta_candidate_clusters": integration.get("rosetta_candidate_clusters", 0),
     }

@@ -173,6 +173,13 @@ def queue_counts() -> dict[str, int]:
     return counts
 
 
+def resolved_blocked_count() -> int:
+    resolved = _resolved_blocked_dir()
+    if not resolved.exists():
+        return 0
+    return sum(1 for child in resolved.iterdir() if child.is_file())
+
+
 def recent_dispatch(limit: int = 8) -> list[dict]:
     if limit <= 0 or not SKILL_LOG.exists():
         return []
@@ -294,6 +301,23 @@ def _queue_priority(data: dict) -> tuple[int, float]:
     return rank, enqueued_at
 
 
+def _resolved_blocked_dir() -> pathlib.Path:
+    return QUEUE / "blocked" / "resolved"
+
+
+def _resolve_blocked_entry(bf: pathlib.Path, data: dict, resolution: str) -> None:
+    resolved_dir = _resolved_blocked_dir()
+    resolved_dir.mkdir(parents=True, exist_ok=True)
+    data["resolved_at"] = datetime.now().isoformat()
+    data["resolution"] = resolution
+    target = resolved_dir / bf.name
+    tmp = resolved_dir / f".{bf.name}.tmp"
+    target.unlink(missing_ok=True)
+    tmp.write_text(json.dumps(data, sort_keys=True))
+    os.rename(tmp, target)
+    bf.unlink(missing_ok=True)
+
+
 def dedupe_queue_entries() -> int:
     entries: list[tuple[pathlib.Path, pathlib.Path, dict, str]] = []
     for lane in ("lane_A", "lane_B"):
@@ -358,6 +382,7 @@ def build_plane_snapshot(state: dict | None = None, integration: dict | None = N
         "ts": (state or {}).get("ts", datetime.now().isoformat()),
         "control_plane": {
             "queue": queue_counts(),
+            "resolved_blocked": resolved_blocked_count(),
             "deduped_queue_entries": (state or {}).get("deduped_queue_entries", 0),
             "released_claims": (state or {}).get("released_claims", 0),
             "recent_dispatch": recent_dispatch(),
@@ -485,11 +510,13 @@ def rescue_misrouted_blocked() -> int:
         if not bf.is_file():
             continue
         data = load_result(bf)
+        if data.get("blocked_reason") == "blacklisted_meta_sim":
+            _resolve_blocked_entry(bf, data, "blacklisted_meta_sim")
+            rescued += 1
+            continue
         if data.get("blocked_reason") != "gate_denied":
             continue
         if data.get("lane") != "lane_A":
-            continue
-        if data.get("rescued_lane") == "lane_B":
             continue
         sim_path = pathlib.Path(str(data.get("sim_path", "")))
         if not sim_path.exists():
@@ -497,12 +524,18 @@ def rescue_misrouted_blocked() -> int:
         if infer_lane(sim_path) != "lane_B":
             continue
         result_json = RESULTS / f"{sim_path.stem}_results.json"
-        if result_json.exists() or is_queued(str(sim_path)):
-            continue
-        enqueue(sim_path, "lane_B", "normal")
+        priority = default_priority_for_bucket(plan_bucket(sim_path.name))
+        if not result_json.exists() and not is_queued(str(sim_path)):
+            enqueue(sim_path, "lane_B", priority)
         data["rescued_at"] = datetime.now().isoformat()
         data["rescued_lane"] = "lane_B"
-        bf.write_text(json.dumps(data, sort_keys=True))
+        data["rescued_priority"] = priority
+        if result_json.exists():
+            _resolve_blocked_entry(bf, data, "result_present")
+        elif is_queued(str(sim_path)):
+            _resolve_blocked_entry(bf, data, "requeued_lane_B")
+        else:
+            _resolve_blocked_entry(bf, data, "requeued_lane_B")
         rescued += 1
     return rescued
 

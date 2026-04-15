@@ -282,12 +282,55 @@ def test_adaptive_controller_rescues_misrouted_blocked_classical_baseline(
     rescued = module.rescue_misrouted_blocked()
 
     queued = list(lane_b.glob("*.json"))
+    resolved = list((blocked / "resolved").glob("*.json*"))
     assert rescued == 1
     assert len(queued) == 1
+    assert len(resolved) == 1
     queued_payload = json.loads(queued[0].read_text(encoding="utf-8"))
     assert queued_payload["sim_path"] == str(sim)
-    blocked_payload = json.loads(blocked_item.read_text(encoding="utf-8"))
-    assert blocked_payload["rescued_lane"] == "lane_B"
+    resolved_payload = json.loads(resolved[0].read_text(encoding="utf-8"))
+    assert resolved_payload["rescued_lane"] == "lane_B"
+    assert resolved_payload["rescued_priority"] == "normal"
+    assert blocked_item.exists() is False
+
+
+def test_adaptive_controller_resolves_blacklisted_blocked_items(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_blacklisted_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    queue_root = probes / "a2_state" / "queue"
+    blocked = queue_root / "blocked"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+
+    sim = probes / "sim_timing_benchmark.py"
+    sim.write_text('classification = "classical_baseline"\n', encoding="utf-8")
+    blocked_item = blocked / "meta.json"
+    blocked_item.write_text(
+        '{"lane":"lane_B","sim_path":"%s","blocked_reason":"blacklisted_meta_sim"}\n' % sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS", results)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    rescued = module.rescue_misrouted_blocked()
+
+    resolved = list((blocked / "resolved").glob("*.json*"))
+    assert rescued == 1
+    assert len(resolved) == 1
+    payload = json.loads(resolved[0].read_text(encoding="utf-8"))
+    assert payload["resolution"] == "blacklisted_meta_sim"
+    assert blocked_item.exists() is False
 
 
 def test_adaptive_controller_dry_mode_skips_queue_mutation(tmp_path, monkeypatch) -> None:

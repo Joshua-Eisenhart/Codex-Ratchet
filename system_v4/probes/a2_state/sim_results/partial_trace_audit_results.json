@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T12:53:14.829959",
+  "timestamp": "2026-04-15T12:57:09.170210",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -3888,6 +3888,56 @@
       ],
       "has_bug": true
     },
+    "sim_shell_entropy_signed_cut.py": {
+      "patterns": [
+        {
+          "file": "sim_shell_entropy_signed_cut.py",
+          "line": 108,
+          "pattern": "iaia->aa",
+          "line_text": "return np.einsum(\"iaia->aa\", rho.transpose(1, 0, 3, 2)).reshape(dimB, dimB)",
+          "classification": {
+            "pattern": "iaia->aa",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": null,
+            "trace": null
+          }
+        },
+        {
+          "file": "sim_shell_entropy_signed_cut.py",
+          "line": 116,
+          "pattern": "ijil->jl",
+          "line_text": "return np.einsum(\"ijil->jl\", rho)",
+          "classification": {
+            "pattern": "ijil->jl",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
+    },
     "sim_temporal_cascade.py": {
       "patterns": [
         {
@@ -5496,6 +5546,28 @@
       }
     },
     {
+      "file": "sim_shell_entropy_signed_cut.py",
+      "line": 108,
+      "pattern": "iaia->aa",
+      "line_text": "return np.einsum(\"iaia->aa\", rho.transpose(1, 0, 3, 2)).reshape(dimB, dimB)",
+      "classification": {
+        "pattern": "iaia->aa",
+        "contracted": [
+          "i"
+        ],
+        "kept": [
+          "a"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": null,
+        "trace": null
+      }
+    },
+    {
       "file": "sim_toponetx_bridge_seam.py",
       "line": 166,
       "pattern": "iajb->ab",
@@ -5789,9 +5861,9 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 76,
+    "total_files_with_einsum_ptrace": 77,
     "clean_files": 68,
-    "files_with_einsum_bugs": 8,
+    "files_with_einsum_bugs": 9,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
     "naming_swap_bugs": 2,

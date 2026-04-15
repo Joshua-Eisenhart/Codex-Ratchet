@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix_v3",
-  "timestamp": "2026-04-15T08:21:02.601636+00:00",
+  "timestamp": "2026-04-15T08:34:48.633503+00:00",
   "classification": "canonical",
   "token": "T_LAYER_COUPLING_MATRIX_V3",
   "tool_manifest": {
@@ -231,16 +231,16 @@
       ],
       [
         "L4",
-        "L2"
+        "L1"
       ],
       [
         "L4",
-        "L1"
+        "L2"
       ]
     ],
     "incoming_positive_to_L4": [
       [
-        "L4",
+        "L1",
         "L4"
       ],
       [
@@ -248,7 +248,7 @@
         "L4"
       ],
       [
-        "L1",
+        "L4",
         "L4"
       ]
     ],
@@ -271,6 +271,14 @@
     "isolation_proof": "NOT_PROVED",
     "all_positive_edges": [
       [
+        "L1",
+        "L4"
+      ],
+      [
+        "L5",
+        "L1"
+      ],
+      [
         "L5",
         "L2"
       ],
@@ -280,67 +288,59 @@
       ],
       [
         "L1",
-        "L5"
-      ],
-      [
-        "L4",
-        "L4"
-      ],
-      [
-        "L2",
-        "L4"
-      ],
-      [
-        "L2",
-        "L3"
-      ],
-      [
-        "L2",
-        "L5"
-      ],
-      [
-        "L1",
-        "L2"
+        "L1"
       ],
       [
         "L3",
         "L3"
       ],
       [
-        "L1",
-        "L1"
-      ],
-      [
-        "L4",
-        "L2"
-      ],
-      [
-        "L2",
-        "L2"
-      ],
-      [
-        "L4",
-        "L1"
-      ],
-      [
-        "L2",
-        "L1"
-      ],
-      [
         "L5",
         "L5"
+      ],
+      [
+        "L1",
+        "L2"
+      ],
+      [
+        "L1",
+        "L5"
+      ],
+      [
+        "L2",
+        "L4"
+      ],
+      [
+        "L2",
+        "L3"
+      ],
+      [
+        "L4",
+        "L4"
       ],
       [
         "L3",
         "L2"
       ],
       [
-        "L5",
+        "L2",
         "L1"
       ],
       [
-        "L1",
-        "L4"
+        "L2",
+        "L2"
+      ],
+      [
+        "L2",
+        "L5"
+      ],
+      [
+        "L4",
+        "L1"
+      ],
+      [
+        "L4",
+        "L2"
       ]
     ],
     "interpretation": "NOT_PROVED: L4 has mutual PRESERVE cycles with L1 and L2 (prior: L4_on_L1=PRESERVE, L1_on_L4=PRESERVE, L4_on_L2=PRESERVE, L2_on_L4=PRESERVE). New results: L3_on_L4=DEGRADE, L4_on_L5=DESTROY, L1_on_L4=PRESERVE, L2_on_L4=PRESERVE. L4 is NOT a total singleton -- it bridges to base cluster via L1/L2 PRESERVE pairs. L4 IS isolated from L3 (degrade) and L5 (destroy/degrade). Revised picture: L4 connects weakly to {L1,L2} but not to {L3,L5}.",

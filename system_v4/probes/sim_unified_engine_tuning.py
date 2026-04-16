@@ -23,6 +23,49 @@ import copy
 import numpy as np
 from collections import Counter
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this unified-engine tuning probe diagnoses traversal and "
+    "coupling behavior in the engine stack, not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "engine_pure_clifford": {
+        "used": True,
+        "reason": "core engine path, dephasing/coupling diagnostics, and operator-state evolution",
+    },
+    "toponetx": {
+        "used": True,
+        "reason": "cell-complex construction and path-blocking diagnosis for the engine mapping",
+    },
+    "toponetx_torus_bridge": {
+        "used": True,
+        "reason": "engine-to-complex mapping and shell-structure bridge logic",
+    },
+    "engine_core": {
+        "used": True,
+        "reason": "terrain ordering and stage/operator lookup semantics for the tuning probe",
+    },
+    "hopf_manifold": {
+        "used": True,
+        "reason": "torus geometry constants used to define the ambient routing surface",
+    },
+    "engine_unified": {
+        "used": True,
+        "reason": "unified-engine execution and entropy/correlation readout",
+    },
+    "bipartite_spinor_algebra": {
+        "used": True,
+        "reason": "density-matrix and concurrence bookkeeping in the tuning diagnostics",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "engine_pure_clifford": "supportive",
+    "toponetx": "supportive",
+    "toponetx_torus_bridge": "supportive",
+    "engine_core": "supportive",
+    "hopf_manifold": "supportive",
+    "engine_unified": "supportive",
+    "bipartite_spinor_algebra": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -917,6 +960,10 @@ def main():
     )
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, 'unified_engine_tuning_results.json')
+
+    results['divergence_log'] = divergence_log
+    results['tool_manifest'] = TOOL_MANIFEST
+    results['tool_integration_depth'] = TOOL_INTEGRATION_DEPTH
 
     with open(out_path, 'w') as f:
         json.dump(results, f, indent=2, default=str)

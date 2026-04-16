@@ -29,6 +29,34 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline: this Weyl overlay probe compares ambient geometry variation "
+    "and engine-overlay variation, not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "engine_core": {
+        "used": True,
+        "reason": "engine-state initialization and cycle evolution for the overlay discriminator",
+    },
+    "geometric_operators": {
+        "used": True,
+        "reason": "trace-distance and geometry-side comparison helpers for ambient vs overlay reads",
+    },
+    "hopf_manifold": {
+        "used": True,
+        "reason": "ambient torus coordinates, spinors, and density construction for the Weyl surface",
+    },
+    "proto_ratchet_sim_runner": {
+        "used": True,
+        "reason": "evidence-token emission for the result ledger",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+    "hopf_manifold": "supportive",
+    "proto_ratchet_sim_runner": "supportive",
+}
 
 from engine_core import GeometricEngine
 from geometric_operators import trace_distance_2x2
@@ -250,6 +278,9 @@ def main() -> int:
         "summary": summary,
         "verdict": verdict,
         "evidence_token": asdict(token),
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     with open(RESULTS_PATH, "w", encoding="utf-8") as f:

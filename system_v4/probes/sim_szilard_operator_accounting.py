@@ -32,6 +32,29 @@ description of operator behavior.
 import numpy as np
 import json, os, sys
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this Szilard-style accounting probe studies operator-level "
+    "information/work bookkeeping in the engine stack, not a literal Szilard engine."
+)
+TOOL_MANIFEST = {
+    "engine_core": {
+        "used": True,
+        "reason": "semantic engine-state evolution, terrain traversal, and operator access for the accounting probe",
+    },
+    "geometric_operators": {
+        "used": True,
+        "reason": "negentropy bookkeeping used in the operator accounting interpretation",
+    },
+    "hopf_manifold": {
+        "used": True,
+        "reason": "von Neumann entropy helper for the operator accounting comparisons",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+    "hopf_manifold": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -109,6 +132,9 @@ def run_operator_accounting(engine_type: int = 1, seed: int = 42,
         "seed": seed,
         "n_cycles": n_cycles,
         "op_stats": op_stats,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
 
@@ -238,6 +264,9 @@ def main():
             "engine_type": result["engine_type"],
             "seed": result["seed"],
             "operators": ops,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         }
 
     with open(out_file, "w") as f:

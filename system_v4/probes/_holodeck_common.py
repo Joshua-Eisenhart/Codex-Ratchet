@@ -7,6 +7,19 @@ its classification, integration depth, and test bodies.
 import json
 import os
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "sympy": {"tried": False, "used": False, "reason": "helper manifest for holodeck sim boilerplate"},
+    "clifford": {"tried": False, "used": False, "reason": "helper manifest for holodeck sim boilerplate"},
+    "geomstats": {"tried": False, "used": False, "reason": "helper manifest for holodeck sim boilerplate"},
+    "toponetx": {"tried": False, "used": False, "reason": "helper manifest for holodeck sim boilerplate"},
+    "gudhi": {"tried": False, "used": False, "reason": "helper manifest for holodeck sim boilerplate"},
+    "numpy": {"tried": True, "used": False, "reason": "baseline numeric helper utility"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 def build_manifest():
     manifest = {
         "sympy":     {"tried": False, "used": False, "reason": ""},

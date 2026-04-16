@@ -16,6 +16,16 @@ spinors.
 """
 import numpy as np
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": False, "used": False, "reason": "helper scaffolding only; no tool-dependent runtime in this module"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": None,
+}
+
 CARRIERS = [
     ( 1,  1),  # win WIN
     ( 1, -1),  # win LOSE

@@ -6,6 +6,38 @@ SIM_TEMPLATE without duplicating ~100 lines of boilerplate.
 import json
 import os
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "z3": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed in shared helper; sims decide actual usage"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 
 def build_manifest():
     tm = {k: {"tried": False, "used": False, "reason": ""} for k in [

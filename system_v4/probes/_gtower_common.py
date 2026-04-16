@@ -8,6 +8,25 @@ correct object' -- it means the probe cannot exclude it at this tier.
 """
 import numpy as np
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "shared helper only; tool usage is delegated to tower sims"},
+    "pyg": {"tried": False, "used": False, "reason": "shared helper only; tool usage is delegated to tower sims"},
+    "z3": {"tried": False, "used": False, "reason": "shared helper only; proof use is delegated to tower sims"},
+    "cvc5": {"tried": False, "used": False, "reason": "shared helper only; proof use is delegated to tower sims"},
+    "sympy": {"tried": False, "used": False, "reason": "shared helper only; symbolic use is delegated to tower sims"},
+    "clifford": {"tried": False, "used": False, "reason": "shared helper only; geometric algebra use is delegated to tower sims"},
+    "geomstats": {"tried": False, "used": False, "reason": "shared helper only; manifold use is delegated to tower sims"},
+    "e3nn": {"tried": False, "used": False, "reason": "shared helper only; equivariant use is delegated to tower sims"},
+    "rustworkx": {"tried": False, "used": False, "reason": "shared helper only; graph use is delegated to tower sims"},
+    "xgi": {"tried": False, "used": False, "reason": "shared helper only; hypergraph use is delegated to tower sims"},
+    "toponetx": {"tried": False, "used": False, "reason": "shared helper only; cell-complex use is delegated to tower sims"},
+    "gudhi": {"tried": False, "used": False, "reason": "shared helper only; persistence use is delegated to tower sims"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 TOL = 1e-9
 
 

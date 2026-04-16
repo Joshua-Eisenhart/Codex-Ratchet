@@ -32,6 +32,13 @@ Sections
 import json, pathlib, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures tomography and shadow numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and state-reconstruction diagnostics for tomography and shadows"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-14

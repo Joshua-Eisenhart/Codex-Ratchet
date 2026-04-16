@@ -17,6 +17,13 @@ Sections
 import json, pathlib, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures tensor-network numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and contraction diagnostics for tensor-network basics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-14

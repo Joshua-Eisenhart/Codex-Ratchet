@@ -30,6 +30,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bridge claims for Hopf×Dirac×Contact (23rd program). "
+    "Q_HDC = MI × H_hopf × H_dirac × H_contact. rho_HDC valid (8×8, "
+    "trace=1, PSD, float64). r(Q_HDC, MI) > 0.99 with fixed H "
+    "(proportional by construction). Axis 0 gradient: dephasing MERA gives "
+    "MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. "
+    "sympy: four-factor product collapse. pytorch: rho_HDC trace validated "
+    "(float64)."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -317,18 +327,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_dirac_contact_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for Hopf×Dirac×Contact (23rd program). "
-            f"Q_HDC = MI × H_hopf × H_dirac × H_contact. "
-            f"H_hopf={H_HOPF:.6f} (log(2)/2). H_dirac={H_DIRAC:.6f} (spectral gap seed=0). "
-            f"H_contact={H_CONTACT:.6f} (log(17)). "
-            "rho_HDC valid (8×8, trace=1, PSD, float64). "
-            "r(Q_HDC, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_HDC trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_dirac": H_DIRAC, "H_contact": H_CONTACT},

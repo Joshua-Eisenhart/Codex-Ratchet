@@ -20,6 +20,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence step of Hopf×Dirac×Contact (23rd program). "
+    "H_hopf, H_dirac, and H_contact are normalized via h/(1+h) and compared "
+    "through joint-vs-pairwise products without changing program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -269,15 +274,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_dirac_contact_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Triple coexistence step of Hopf×Dirac×Contact (23rd program). "
-            f"H_hopf={H_HOPF:.6f}, H_dirac={H_DIRAC:.6f}, H_contact={H_CONTACT:.6f}. "
-            f"Normalized: n_h={n_h:.6f}, n_d={n_d:.6f}, n_co={n_co:.6f}. "
-            "Joint normalized product ≤ all pairwise products (sub-multiplicativity). "
-            "z3 UNSAT: joint > pairwise impossible for (0,1) factors. "
-            "sympy: a*b - a*b*c = a*b*(1-c) > 0 for c<1. "
-            "pytorch: float64 tensor computation of normalized products."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_dirac": H_DIRAC, "H_contact": H_CONTACT},

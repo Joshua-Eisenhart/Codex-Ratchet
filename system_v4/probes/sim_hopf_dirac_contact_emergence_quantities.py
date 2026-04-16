@@ -23,6 +23,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Hopf×Dirac×Contact emergence probe: this file checks "
+    "scalar emergence quantities with z3 and sympy support where available, "
+    "but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -267,15 +273,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_dirac_contact_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence quantities step of Hopf×Dirac×Contact (23rd program). "
-            "E1-E6: single/pairwise shell quantities without MI all give Q=0. "
-            "E7: full Q_HDC = MI × H_hopf × H_dirac × H_contact > 0. "
-            f"MI={MI_VAL:.6f}, H_hopf={H_HOPF:.6f}, H_dirac={H_DIRAC:.6f}, H_contact={H_CONTACT:.6f}. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: MI factor gates the product. "
-            "pytorch: float64 tensor evaluation of E1-E7."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_dirac": H_DIRAC, "H_contact": H_CONTACT, "MI": MI_VAL},

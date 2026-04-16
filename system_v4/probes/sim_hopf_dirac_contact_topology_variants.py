@@ -20,6 +20,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Hopf×Dirac×Contact topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -283,6 +288,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_dirac_contact_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Topology variants step of Hopf×Dirac×Contact (23rd program). "
             f"T1(flat): H_hopf={H_HOPF_T1:.6f}. T2(S²): H_hopf={H_HOPF_T2:.6f}. "

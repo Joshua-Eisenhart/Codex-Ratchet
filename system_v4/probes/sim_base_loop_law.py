@@ -10,15 +10,15 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: base-loop law is validated here as a "
+    "pure numpy lego on one fixed sample, not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 
 EPS = 1e-10
-
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
-    "Canonical local lego for the base-loop law on one fixed sample, kept separate "
-    "from fiber-loop, Berry phase, holonomy, and transport rows."
-)
 
 LEGO_IDS = [
     "base_loop_law",
@@ -111,6 +111,7 @@ def main():
         "name": "base_loop_law",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -9,7 +9,7 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "HeteroData graph + message passing IS the ratchet dynamics"
     },
     "z3": {
       "tried": true,
@@ -19,27 +19,27 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not relevant to this sim"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not relevant to this sim"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "rustworkx": {
       "tried": true,
@@ -49,17 +49,17 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not relevant to this sim"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not relevant to this sim"
     }
   },
   "tool_integration_depth": {
@@ -102,7 +102,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.3341172933578491,
+          "min_eigenvalue": 2.086133044088001e-08,
           "psd_ok": true,
           "valid": true
         },
@@ -111,7 +111,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -8.607926815784595e-09,
+          "min_eigenvalue": 0.29747244715690613,
           "psd_ok": true,
           "valid": true
         },
@@ -120,7 +120,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 3.002653770067809e-08,
+          "min_eigenvalue": 1.402465699129607e-09,
           "psd_ok": true,
           "valid": true
         },
@@ -129,7 +129,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.020215967670083046,
+          "min_eigenvalue": 3.094844558404475e-08,
           "psd_ok": true,
           "valid": true
         }
@@ -139,33 +139,33 @@
       "passed": true,
       "has_grad": true,
       "grad_nonzero": true,
-      "grad_norm": 0.020306669175624847,
-      "ic_mean": -0.37337958812713623
+      "grad_norm": 0.04489957541227341,
+      "ic_mean": -0.2798588275909424
     },
     "optimization_increases_ic": {
       "passed": "True",
-      "ic_start_avg": -0.07950148582458497,
-      "ic_end_avg": 0.23128905594348909,
-      "ic_delta": 0.3107905417680741,
+      "ic_start_avg": -0.24372043907642366,
+      "ic_end_avg": 0.2519704759120941,
+      "ic_delta": 0.49569091498851775,
       "ic_history_sample": [
-        -0.25030648708343506,
-        0.083246611058712,
-        0.17455987632274628,
-        0.23663048446178436
+        -0.5940700769424438,
+        0.14403407275676727,
+        0.18616963922977448,
+        0.25745871663093567
       ],
       "n_steps": 50
     },
     "shell_constrains_params": {
       "passed": true,
       "raw_param_value": 5.0,
-      "max_gated_param": 0.8329753279685974,
-      "reduction_ratio": 0.16659506559371948
+      "max_gated_param": 0.7416684627532959,
+      "reduction_ratio": 0.14833369255065917
     }
   },
   "negative": {
     "no_shell_allows_unphysical": {
       "passed": true,
-      "max_operator_param": 5.110752582550049,
+      "max_operator_param": 5.051390647888184,
       "exceeds_physical_range": true
     },
     "disconnected_no_flow": {
@@ -181,14 +181,14 @@
         "trace_ok": true,
         "hermitian_error": 0.0,
         "hermitian_ok": true,
-        "min_eigenvalue": 1.3291153067029882e-08,
+        "min_eigenvalue": 0.060180071741342545,
         "psd_ok": true,
         "valid": true
       },
       "terrain_out": [
-        0.27990585565567017,
-        -0.15047825872898102,
-        0.9481608271598816
+        0.003492683172225952,
+        -0.4371975064277649,
+        0.763290524482727
       ]
     },
     "fully_connected_max_flow": {
@@ -197,21 +197,21 @@
       "n_operator": 6,
       "n_shell": 4,
       "terrain_norms": [
-        0.842123806476593,
+        0.9999999403953552,
+        0.9185150861740112,
         1.0,
-        0.31391459703445435,
-        0.6118776202201843,
-        0.9671842455863953,
         1.0,
-        0.45969608426094055,
+        0.7588106393814087,
+        0.9999999403953552,
+        1.0,
         1.0
       ]
     },
     "bloch_ball_containment": {
       "passed": true,
       "norms": [
-        0.9726585149765015,
-        1.0
+        0.6810780167579651,
+        0.8671095371246338
       ]
     }
   },

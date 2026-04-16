@@ -14,7 +14,7 @@ classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "numpy":    {"tried": True, "used": True, "reason": "pullback cochain arithmetic"},
-    "toponetx": {"tried": False,"used": False, "reason": ""},
+    "toponetx": {"tried": False,"used": False, "reason": "toponetx topological networks not needed; standard tensor ops sufficient"},
     "xgi":      {"tried": False,"used": False, "reason": "toponetx topological networks not needed; standard tensor ops sufficient"},
 }
 TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "toponetx": "load_bearing", "xgi": "supportive"}

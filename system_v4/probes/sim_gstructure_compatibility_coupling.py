@@ -57,7 +57,7 @@ classification = "classical_baseline"
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "pyg":       {"tried": False, "used": False, "reason": "not tried: graph message-passing is not relevant here; Hopf coupling is a fiber-base bundle map, not a graph connectivity computation"},
     "z3":        {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "cvc5":      {"tried": False, "used": False, "reason": "not tried: z3 covers all structural UNSAT proofs in this sim (P4, N1-N4); cvc5 cross-check would be redundant for this bounded claim"},

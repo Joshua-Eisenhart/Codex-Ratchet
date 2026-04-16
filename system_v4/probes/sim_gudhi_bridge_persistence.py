@@ -45,7 +45,7 @@ classification = "classical_baseline"
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
+    "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "pyg":       {"tried": False, "used": False, "reason": "not needed -- no graph message passing layer"},
     "z3":        {"tried": False, "used": False, "reason": "not needed -- no SMT/SAT constraints required"},
     "cvc5":      {"tried": False, "used": False, "reason": "not needed -- no synthesis constraints"},

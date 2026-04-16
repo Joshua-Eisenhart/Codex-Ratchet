@@ -24,7 +24,7 @@ import numpy as np
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": ""},
+    "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "pyg": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "z3": {"tried": False, "used": False, "reason": "PyG message passing not needed; geometry handled via tensor operations"},
     "cvc5": {"tried": False, "used": False, "reason": "z3 SMT solver not needed; pytorch autograd handles constraint satisfaction"},

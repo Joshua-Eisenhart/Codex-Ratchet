@@ -29,8 +29,14 @@ PIDFILES = {
     "overnight_lock": Path("/tmp/codex_ratchet_overnight.lock"),
 }
 IMPORT_TOOL_ALIASES = {
+    "numpy": "numpy",
+    "scipy": "scipy",
     "torch": "pytorch",
+    "torch_ga": "torch_ga",
     "torch_geometric": "pyg",
+    "qutip": "qutip",
+    "cirq": "cirq",
+    "pennylane": "pennylane",
     "z3": "z3",
     "cvc5": "cvc5",
     "sympy": "sympy",
@@ -54,12 +60,13 @@ IMPORT_TOOL_ALIASES = {
     "pymoo": "pymoo",
     "ribs": "ribs",
     "deap": "deap",
-    "networkx": "networkx",
-    "igraph": "igraph",
-    "scipy": "scipy",
     "cma": "cma",
 }
 TOOL_BUNDLES = {
+    "quantum_ga_bridge_stack": {
+        "goal": "classical numeric + Clifford/GA + quantum state bridge lane",
+        "tools": ["numpy", "scipy", "pytorch", "clifford", "torch_ga", "qutip", "cirq", "pennylane"],
+    },
     "symbolic_solver_stack": {
         "goal": "solver + symbolic + rotor reference lane",
         "tools": ["pytorch", "z3", "cvc5", "sympy", "clifford"],

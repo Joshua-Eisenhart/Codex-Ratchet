@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sim_numpy_capability.py -- Tool-capability isolation sim for numpy.
+sim_scipy_capability.py -- Tool-capability isolation sim for scipy.
 """
 
 from __future__ import annotations
@@ -9,16 +9,19 @@ import json
 import os
 
 import numpy as np
+from scipy import linalg
 
 
 classification = "canonical"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "capability under test -- dense array algebra"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive array surface for scipy capability checks"},
+    "scipy": {"tried": True, "used": True, "reason": "capability under test -- matrix exponential and linear solve"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "load_bearing",
 }
 
 
@@ -33,35 +36,40 @@ def _json_default(obj):
 
 
 def run_positive_tests() -> dict[str, dict[str, object]]:
-    vec = np.array([1.0, -2.0, 3.0], dtype=np.float64)
-    mat = np.array([[2.0, 0.0, 1.0], [0.0, 3.0, -1.0], [1.0, -1.0, 4.0]], dtype=np.float64)
-    eigvals = np.linalg.eigvalsh(mat)
-    solved = np.linalg.solve(mat, vec)
+    skew = np.array([[0.0, -1.0], [1.0, 0.0]], dtype=np.float64)
+    rot = linalg.expm(0.4 * skew)
+    vec = np.array([1.0, 0.0], dtype=np.float64)
+    rotated = rot @ vec
+    mat = np.array([[3.0, 1.0], [1.0, 2.0]], dtype=np.float64)
+    rhs = np.array([1.0, -1.0], dtype=np.float64)
+    solved = linalg.solve(mat, rhs)
     return {
-        "matvec_shape": {
-            "pass": np.allclose(mat @ vec, np.array([5.0, -9.0, 15.0])),
+        "rotation_orthogonal": {
+            "pass": np.allclose(rot.T @ rot, np.eye(2), atol=1e-10),
+        },
+        "rotation_norm_preserved": {
+            "pass": abs(np.linalg.norm(rotated) - 1.0) < 1e-10,
+            "rotated": rotated.tolist(),
         },
         "solve_residual": {
-            "pass": np.linalg.norm(mat @ solved - vec) < 1e-10,
-            "residual": float(np.linalg.norm(mat @ solved - vec)),
-        },
-        "eigenvalues_real": {
-            "pass": bool(np.all(np.isreal(eigvals))),
-            "eigenvalues": eigvals.tolist(),
+            "pass": np.linalg.norm(mat @ solved - rhs) < 1e-10,
+            "residual": float(np.linalg.norm(mat @ solved - rhs)),
         },
     }
 
 
 def run_negative_tests() -> dict[str, dict[str, object]]:
+    singular = np.array([[1.0, 1.0], [1.0, 1.0]], dtype=np.float64)
+    rhs = np.array([1.0, 2.0], dtype=np.float64)
     raised = False
     err = None
     try:
-        np.matmul(np.ones((2, 3)), np.ones((4, 2)))
+        linalg.solve(singular, rhs)
     except Exception as exc:  # pragma: no cover - exercised at runtime
         raised = True
         err = type(exc).__name__
     return {
-        "shape_mismatch_raises": {
+        "singular_solve_raises": {
             "pass": raised,
             "error_type": err,
         }
@@ -69,12 +77,12 @@ def run_negative_tests() -> dict[str, dict[str, object]]:
 
 
 def run_boundary_tests() -> dict[str, dict[str, object]]:
-    small = np.array([1e-12, -1e-12, 2e-12], dtype=np.float64)
-    norm = np.linalg.norm(small)
+    skew = np.array([[0.0, -1.0], [1.0, 0.0]], dtype=np.float64)
+    rot = linalg.expm(1e-8 * skew)
     return {
-        "small_norm_stable": {
-            "pass": np.isfinite(norm) and norm > 0.0,
-            "norm": float(norm),
+        "small_rotation_finite": {
+            "pass": np.all(np.isfinite(rot)),
+            "trace": float(np.trace(rot)),
         }
     }
 
@@ -90,7 +98,7 @@ if __name__ == "__main__":
     }
     summary["all_pass"] = all(summary.values())
     results = {
-        "name": "sim_numpy_capability",
+        "name": "sim_scipy_capability",
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -102,7 +110,7 @@ if __name__ == "__main__":
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "numpy_capability_results.json")
+    out_path = os.path.join(out_dir, "scipy_capability_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")

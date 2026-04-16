@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sim_numpy_capability.py -- Tool-capability isolation sim for numpy.
+sim_torch_ga_capability.py -- Tool-capability isolation sim for torch_ga.
 """
 
 from __future__ import annotations
@@ -8,17 +8,23 @@ from __future__ import annotations
 import json
 import os
 
-import numpy as np
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import torch
+import torch_ga
 
 
 classification = "canonical"
 
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "capability under test -- dense array algebra"},
+    "pytorch": {"tried": True, "used": True, "reason": "supportive tensor carrier for torch_ga capability"},
+    "torch_ga": {"tried": True, "used": True, "reason": "capability under test -- geometric tensor roundtrip"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "pytorch": "supportive",
+    "torch_ga": "load_bearing",
 }
 
 
@@ -33,30 +39,33 @@ def _json_default(obj):
 
 
 def run_positive_tests() -> dict[str, dict[str, object]]:
-    vec = np.array([1.0, -2.0, 3.0], dtype=np.float64)
-    mat = np.array([[2.0, 0.0, 1.0], [0.0, 3.0, -1.0], [1.0, -1.0, 4.0]], dtype=np.float64)
-    eigvals = np.linalg.eigvalsh(mat)
-    solved = np.linalg.solve(mat, vec)
+    algebra = torch_ga.GeometricAlgebra([1.0, 1.0, 1.0])
+    to_geo = torch_ga.TensorToGeometric(algebra, [1, 2, 3])
+    to_tensor = torch_ga.GeometricToTensor(algebra, [1, 2, 3])
+    vec = torch.tensor([[1.0, -2.0, 0.5]], dtype=torch.float32)
+    geo = to_geo(vec)
+    roundtrip = to_tensor(geo)
     return {
-        "matvec_shape": {
-            "pass": np.allclose(mat @ vec, np.array([5.0, -9.0, 15.0])),
+        "roundtrip_preserved": {
+            "pass": bool(torch.allclose(roundtrip, vec)),
+            "roundtrip": roundtrip.tolist(),
         },
-        "solve_residual": {
-            "pass": np.linalg.norm(mat @ solved - vec) < 1e-10,
-            "residual": float(np.linalg.norm(mat @ solved - vec)),
-        },
-        "eigenvalues_real": {
-            "pass": bool(np.all(np.isreal(eigvals))),
-            "eigenvalues": eigvals.tolist(),
+        "blade_width_matches_algebra": {
+            "pass": int(geo.shape[-1]) == int(algebra.num_blades),
+            "blade_width": int(geo.shape[-1]),
+            "num_blades": int(algebra.num_blades),
         },
     }
 
 
 def run_negative_tests() -> dict[str, dict[str, object]]:
+    algebra = torch_ga.GeometricAlgebra([1.0, 1.0, 1.0])
+    to_geo = torch_ga.TensorToGeometric(algebra, [1, 2, 3])
+    bad = torch.tensor([[1.0, 2.0]], dtype=torch.float32)
     raised = False
     err = None
     try:
-        np.matmul(np.ones((2, 3)), np.ones((4, 2)))
+        to_geo(bad)
     except Exception as exc:  # pragma: no cover - exercised at runtime
         raised = True
         err = type(exc).__name__
@@ -69,12 +78,14 @@ def run_negative_tests() -> dict[str, dict[str, object]]:
 
 
 def run_boundary_tests() -> dict[str, dict[str, object]]:
-    small = np.array([1e-12, -1e-12, 2e-12], dtype=np.float64)
-    norm = np.linalg.norm(small)
+    algebra = torch_ga.GeometricAlgebra([1.0, 1.0, 1.0])
+    to_geo = torch_ga.TensorToGeometric(algebra, [1, 2, 3])
+    tiny = torch.tensor([[1e-10, -1e-10, 2e-10]], dtype=torch.float32)
+    geo = to_geo(tiny)
     return {
-        "small_norm_stable": {
-            "pass": np.isfinite(norm) and norm > 0.0,
-            "norm": float(norm),
+        "tiny_tensor_finite": {
+            "pass": bool(torch.isfinite(geo).all()),
+            "norm": float(torch.linalg.norm(geo)),
         }
     }
 
@@ -90,7 +101,7 @@ if __name__ == "__main__":
     }
     summary["all_pass"] = all(summary.values())
     results = {
-        "name": "sim_numpy_capability",
+        "name": "sim_torch_ga_capability",
         "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
@@ -102,7 +113,7 @@ if __name__ == "__main__":
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "numpy_capability_results.json")
+    out_path = os.path.join(out_dir, "torch_ga_capability_results.json")
     with open(out_path, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=2, default=_json_default)
     print(f"Results written to {out_path}")

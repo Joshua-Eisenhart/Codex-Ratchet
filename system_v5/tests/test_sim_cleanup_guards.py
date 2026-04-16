@@ -1860,6 +1860,96 @@ def test_system_surface_audit_reports_equivariant_symbolic_graph_manifold_search
     assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 22
 
 
+def test_system_surface_audit_reports_quantum_ga_bridge_bundle_witness(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_quantum_ga_bridge_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "numpy": ("sim_numpy_capability.py", "numpy_capability_results.json"),
+        "scipy": ("sim_scipy_capability.py", "scipy_capability_results.json"),
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
+        "torch_ga": ("sim_torch_ga_capability.py", "torch_ga_capability_results.json"),
+        "qutip": ("sim_qutip_capability.py", "qutip_capability_results.json"),
+        "cirq": ("sim_cirq_capability.py", "cirq_capability_results.json"),
+        "pennylane": ("sim_pennylane_capability.py", "pennylane_capability_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_quantum_ga_bridge_stack.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import torch",
+                "import torch_ga",
+                "from clifford import Cl",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'dense state lane'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'matrix exponential lane'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'bloch tensor lane'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'clifford embedding lane'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'torch GA lane'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'density witness lane'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'circuit witness lane'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'qnode witness lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'load_bearing',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["quantum_ga_bridge_stack"]
+
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_quantum_ga_bridge_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 8
+
+
 def test_system_surface_audit_handles_nonliteral_manifest_and_depth_updates(
     tmp_path, monkeypatch
 ) -> None:

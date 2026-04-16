@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "weyl_ambient_vs_engine_overlay",
-    "timestamp": "2026-04-16T08:38:01.373578+00:00",
+    "timestamp": "2026-04-16T08:45:48.825428+00:00",
     "results_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_ambient_vs_engine_overlay_results.json"
   },
   "cases": {
@@ -506,6 +506,31 @@
     "status": "PASS",
     "measured_value": 6.0,
     "kill_reason": null,
-    "timestamp": "2026-04-16T08:38:01.373569"
+    "timestamp": "2026-04-16T08:45:48.825417"
+  },
+  "divergence_log": "Classical baseline: this Weyl overlay probe compares ambient geometry variation and engine-overlay variation, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "engine_core": {
+      "used": true,
+      "reason": "engine-state initialization and cycle evolution for the overlay discriminator"
+    },
+    "geometric_operators": {
+      "used": true,
+      "reason": "trace-distance and geometry-side comparison helpers for ambient vs overlay reads"
+    },
+    "hopf_manifold": {
+      "used": true,
+      "reason": "ambient torus coordinates, spinors, and density construction for the Weyl surface"
+    },
+    "proto_ratchet_sim_runner": {
+      "used": true,
+      "reason": "evidence-token emission for the result ledger"
+    }
+  },
+  "tool_integration_depth": {
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+    "hopf_manifold": "supportive",
+    "proto_ratchet_sim_runner": "supportive"
   }
 }

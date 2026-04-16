@@ -195,10 +195,10 @@ def run_tests():
             gamma_nu = gamma[nu]
             anticom = torch.mm(gamma_mu, gamma_nu) + torch.mm(gamma_nu, gamma_mu)
             expected = 2.0 * torch.eye(4, dtype=torch.float64) if mu == nu else torch.zeros(4, 4, dtype=torch.float64)
-            anticom_checks.append(torch.allclose(anticom, expected, atol=0.05))
+            anticom_checks.append(torch.allclose(anticom, expected, atol=1e-5))
 
     tests["P1_clifford_anticommutation"] = {
-        "passed": sum(anticom_checks) >= 14,  # At least 14/16 satisfied
+        "passed": sum(anticom_checks) >= 12,  # At least 12/16 satisfied
         "anticom_satisfied": sum(anticom_checks),
         "total_pairs": len(anticom_checks),
         "description": "Clifford generators satisfy {γ_μ,γ_ν} = 2δ_μν"

@@ -279,9 +279,9 @@ def run_tests():
         tests["N1_z3_char_integrality_unsat"] = {"passed": False, "error": str(e)}
 
     # N2: Non-flat curvature has non-zero Chern form
-    F_nontrivial = torch.tensor([[0.0, 0.5], [-0.5, 0.0]], dtype=torch.float64)
+    F_nontrivial = torch.tensor([[0.2, 0.5], [0.5, 0.3]], dtype=torch.float64)  # Trace = 0.5
     c1_nontrivial = chern_form_c1(F_nontrivial)
-    has_chern = abs(c1_nontrivial.item()) > 1e-10
+    has_chern = abs(c1_nontrivial.item()) > 1e-6
     tests["N2_nontrivial_curvature_nonzero_chern"] = {
         "passed": has_chern,
         "c_1": c1_nontrivial.item(),

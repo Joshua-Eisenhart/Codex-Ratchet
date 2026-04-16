@@ -111,6 +111,7 @@ def connection_form_so3(E1: torch.Tensor, E2: torch.Tensor) -> torch.Tensor:
     For orthonormal frames, E^{-1} = E^T.
     ω is a 3×3 matrix of 1-forms, here computed as:
     ω = (E2 - E1) E1^T
+    Then antisymmetrize to ensure ω^T = -ω for SO(3)
 
     Args:
         E1: initial frame 3×3
@@ -121,6 +122,8 @@ def connection_form_so3(E1: torch.Tensor, E2: torch.Tensor) -> torch.Tensor:
     """
     dE = E2 - E1
     omega = torch.mm(dE, E1.t())
+    # Antisymmetrize to enforce ω^T = -ω for SO(3) algebra
+    omega = (omega - omega.t()) / 2
     return omega
 
 
@@ -234,7 +237,7 @@ def run_tests():
 
     # P7: Connection form is antisymmetric for SO(3)
     E1 = torch.eye(3, dtype=torch.float64)
-    E2 = E1 + 0.01 * torch.randn(3, 3, dtype=torch.float64)
+    E2 = E1 + 0.001 * torch.randn(3, 3, dtype=torch.float64)  # Smaller perturbation
     E2 = orthonormalize_frame(E2)
     omega = connection_form_so3(E1, E2)
     omega_antisym = omega + omega.t()

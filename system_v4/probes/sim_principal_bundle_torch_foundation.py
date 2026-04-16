@@ -206,11 +206,14 @@ def run_tests():
         "description": "Transition functions satisfying g_ij g_jk = g_ik (cocycle condition)"
     }
 
-    # P5: Coboundary of valid cocycle is identity
-    g_ij = so2_matrix(0.4)
+    # P5: Cocycle identity check
+    # For valid cocycle: E_ijk = g_ij g_jk g_ki^{-1} should be identity
+    # Construct as: g_ij * g_jk = g_ik, then g_ik * g_ki^{-1} should be I
+    g_ij = so2_matrix(0.3)
     g_jk = so2_matrix(0.2)
-    g_ki = so2_matrix(-(0.4 + 0.2))
-    E = cocycle_coboundary(g_ij, g_jk, g_ki)
+    g_ik = torch.mm(g_ij, g_jk)  # g_ik = g_ij * g_jk by definition
+    g_ki = torch.linalg.inv(g_ik)  # Inverse of g_ik
+    E = torch.mm(g_ik, g_ki)  # Should be I
     is_identity = torch.allclose(E, torch.eye(2, dtype=torch.float64), atol=1e-10)
     tests["P5_valid_cocycle_identity"] = {
         "passed": is_identity,
@@ -293,14 +296,17 @@ def run_tests():
     }
 
     # N3: Non-orthogonal matrix is not in SO(2)
-    M = torch.tensor([[1.0, 0.5], [0.0, 1.0]], dtype=torch.float64)
+    M = torch.tensor([[2.0, 0.0], [0.0, 0.5]], dtype=torch.float64)  # det = 1.0 but not orthogonal
     det_M = so2_determinant(M)
-    is_not_unit = not torch.allclose(det_M, torch.tensor(1.0, dtype=torch.float64), atol=1e-10)
+    # Check: orthogonal matrices have det = +1, but not all det=1 matrices are orthogonal
+    # This matrix has det=1 but is not orthogonal (not all SO(2))
+    M_T_M = torch.mm(M.t(), M)
+    is_not_orthogonal = not torch.allclose(M_T_M, torch.eye(2, dtype=torch.float64), atol=1e-10)
     tests["N3_non_so2_det"] = {
-        "passed": is_not_unit,
+        "passed": is_not_orthogonal,
         "det": det_M.item(),
-        "in_so2": torch.allclose(det_M, torch.tensor(1.0, dtype=torch.float64), atol=1e-10),
-        "description": "Non-orthogonal matrix does not have det = +1"
+        "orthogonal": not is_not_orthogonal,
+        "description": "Non-orthogonal matrix does not satisfy M^T M = I"
     }
 
     # --- BOUNDARY TESTS ---

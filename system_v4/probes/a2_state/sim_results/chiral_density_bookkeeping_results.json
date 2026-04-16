@@ -10,7 +10,7 @@
   "primary_lego_ids": [
     "chiral_density_bookkeeping"
   ],
-  "created_at": "2026-04-16T02:42:12.670769+00:00",
+  "created_at": "2026-04-16T04:14:44.552511+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -60,7 +60,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not required; no hypergraph claim in this bookkeeping packet"
     },
     "toponetx": {
       "tried": false,
@@ -351,21 +351,5 @@
       "total": 2
     }
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

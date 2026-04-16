@@ -1,7 +1,7 @@
 {
   "probe": "sim_constrain_legos_L6_L7",
   "purpose": "L6: irreversibility (ratchet). L7: dual-type structure (chirality sensitivity).",
-  "timestamp": "2026-04-16T02:45:09.532840+00:00",
+  "timestamp": "2026-04-16T04:14:46.892242+00:00",
   "L6_irreversibility": {
     "killed": [
       "schmidt",
@@ -1357,75 +1357,12 @@
     }
   },
   "summary": {
-    "runtime_seconds": 0.25,
+    "runtime_seconds": 0.15,
     "errors": [],
     "L6_kills": 5,
     "L6_survived": 43,
     "L7_type_sensitive": 21,
     "L7_type_blind": 27,
     "headline": "L6+L7 complete. L6 killed 5 reversible legos. L7 identified 21 type-sensitive legos. Deepest dynamical constraints applied."
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

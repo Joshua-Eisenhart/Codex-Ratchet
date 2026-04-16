@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "z3": {
       "tried": true,
@@ -19,12 +19,12 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "clifford": {
       "tried": true,
@@ -39,22 +39,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not relevant to this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "gudhi": {
       "tried": true,
@@ -232,21 +232,5 @@
     "clifford_hopf_map_exact": "True",
     "z3_unsat_contractibility": true,
     "interpretation": "Hopf torus (pre-image of \u03b8=\u03c0/4 latitude on S\u00b2) has \u03b21=2 as measured by GUDHI. This non-trivial topology (two independent loops) is absent in the phase-damping fixed-point manifold (\u03b21=0, contractible). The non-trivial topology lives in the Hopf S\u00b3 layer. Clifford Cl(3) rotor sandwich q\u00b7e3\u00b7q\u2020 reproduces the Hopf map exactly (|h(q)|=1, z=cos(\u03b8), r=sin(\u03b8)). z3 proves contractibility UNSAT."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

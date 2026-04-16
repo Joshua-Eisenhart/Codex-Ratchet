@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix_v3",
-  "timestamp": "2026-04-16T02:48:26.572071+00:00",
+  "timestamp": "2026-04-16T04:15:06.684059+00:00",
   "classification": "canonical",
   "token": "T_LAYER_COUPLING_MATRIX_V3",
   "tool_manifest": {
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no message passing"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 covers UNSAT proofs"
     },
     "sympy": {
       "tried": true,
@@ -32,37 +32,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": ""
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed -- Hopf geometry via Cl(3)"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- equivariance via Clifford"
     },
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "Full 25-cell SCC analysis and partial order"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- directed graph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- layer topology via rustworkx"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- no persistence required"
     }
   },
   "tool_integration_depth": {
@@ -227,11 +227,11 @@
     "outgoing_positive_from_L4": [
       [
         "L4",
-        "L4"
+        "L2"
       ],
       [
         "L4",
-        "L2"
+        "L4"
       ],
       [
         "L4",
@@ -271,76 +271,76 @@
     "isolation_proof": "NOT_PROVED",
     "all_positive_edges": [
       [
-        "L1",
-        "L4"
+        "L2",
+        "L3"
+      ],
+      [
+        "L5",
+        "L5"
+      ],
+      [
+        "L4",
+        "L2"
+      ],
+      [
+        "L2",
+        "L1"
+      ],
+      [
+        "L3",
+        "L2"
       ],
       [
         "L1",
         "L5"
+      ],
+      [
+        "L2",
+        "L2"
+      ],
+      [
+        "L1",
+        "L4"
+      ],
+      [
+        "L5",
+        "L2"
+      ],
+      [
+        "L4",
+        "L4"
+      ],
+      [
+        "L1",
+        "L3"
+      ],
+      [
+        "L1",
+        "L1"
+      ],
+      [
+        "L5",
+        "L1"
+      ],
+      [
+        "L2",
+        "L5"
+      ],
+      [
+        "L2",
+        "L4"
       ],
       [
         "L3",
         "L3"
       ],
       [
-        "L3",
-        "L2"
-      ],
-      [
-        "L2",
-        "L3"
-      ],
-      [
-        "L4",
-        "L4"
-      ],
-      [
-        "L1",
-        "L2"
-      ],
-      [
-        "L2",
-        "L2"
-      ],
-      [
-        "L1",
-        "L3"
-      ],
-      [
-        "L5",
-        "L5"
-      ],
-      [
-        "L2",
-        "L1"
-      ],
-      [
-        "L1",
-        "L1"
-      ],
-      [
-        "L5",
-        "L2"
-      ],
-      [
-        "L4",
-        "L2"
-      ],
-      [
         "L4",
         "L1"
       ],
       [
-        "L2",
-        "L4"
-      ],
-      [
-        "L2",
-        "L5"
-      ],
-      [
-        "L5",
-        "L1"
+        "L1",
+        "L2"
       ]
     ],
     "interpretation": "NOT_PROVED: L4 has mutual PRESERVE cycles with L1 and L2 (prior: L4_on_L1=PRESERVE, L1_on_L4=PRESERVE, L4_on_L2=PRESERVE, L2_on_L4=PRESERVE). New results: L3_on_L4=DEGRADE, L4_on_L5=DESTROY, L1_on_L4=PRESERVE, L2_on_L4=PRESERVE. L4 is NOT a total singleton -- it bridges to base cluster via L1/L2 PRESERVE pairs. L4 IS isolated from L3 (degrade) and L5 (destroy/degrade). Revised picture: L4 connects weakly to {L1,L2} but not to {L3,L5}.",
@@ -402,21 +402,5 @@
       "L5_on_L3": "NULL"
     },
     "note": "All 25 cells included. SCCs computed on directed coupling graph. Edges weighted: ENHANCE=2, PRESERVE=1, NULL=0, DEGRADE=-1, DESTROY=-2. An SCC of size >1 means mutual PRESERVE/ENHANCE cycle between layers."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

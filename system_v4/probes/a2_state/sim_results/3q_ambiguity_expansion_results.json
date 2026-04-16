@@ -6,17 +6,17 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "pure-math numpy ambiguity expansion"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph layer is needed for this focused expansion"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "no symbolic satisfiability claim is required here"
     },
     "cvc5": {
       "tried": false,
@@ -26,7 +26,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "all calculations are numerical and finite-dimensional"
     },
     "clifford": {
       "tried": false,
@@ -41,17 +41,17 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant learning is outside scope"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph kernel is needed here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph layer is needed here"
     },
     "toponetx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "no persistence computation is needed here"
     }
   },
   "positive": {
@@ -192,24 +192,8 @@
     "tests_passed": 6,
     "tests_failed": 0,
     "all_pass": true,
-    "elapsed_s": 0.10783910751342773,
+    "elapsed_s": 0.10313606262207031,
     "selected_ambiguous_packets": 2,
     "ambiguity_threshold": 0.08
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

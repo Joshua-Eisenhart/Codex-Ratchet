@@ -1,7 +1,7 @@
 {
   "probe": "sim_constrain_legos_L1",
   "purpose": "L1 constraint layer: dependency DAG, cross-partition coupling, minimal generating set, CPTP survival",
-  "timestamp": "2026-04-16T02:45:00.005819+00:00",
+  "timestamp": "2026-04-16T04:14:45.486882+00:00",
   "part1_dependency_dag": {
     "edges": [
       {
@@ -1243,7 +1243,7 @@
     "key_finding": "ALL 56 L0 survivors are CPTP-compatible. CPTP kills NOTHING but RESHAPES everything: 16 legos are DEFINED by CPTP, 8 are REDUCED (monotonicity), 17 are ENHANCED (contractivity/validity)."
   },
   "summary": {
-    "runtime_seconds": 0.05,
+    "runtime_seconds": 0.04,
     "errors": [],
     "all_passed": true,
     "dependency_dag": {
@@ -1312,68 +1312,5 @@
       "cptp_neutral": 15
     },
     "headline": "L1 constraint layer complete. Dependency DAG built, cross-partition emergences confirmed, minimal generating set found, CPTP survival verified."
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

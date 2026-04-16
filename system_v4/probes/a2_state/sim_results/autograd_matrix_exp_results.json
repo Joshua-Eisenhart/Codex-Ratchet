@@ -9,57 +9,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
@@ -78,28 +78,28 @@
   },
   "positive": {
     "seed0_dpsi_dt": {
-      "autograd": -1.5720670195161128,
-      "analytic": -1.5720670195161066,
-      "rel_err": 3.954824355904772e-15,
+      "autograd": 2.5681445856602885,
+      "analytic": 2.5681445856602827,
+      "rel_err": 2.2479885907842133e-15,
       "passed": true
     },
     "seed1_dpsi_dt": {
-      "autograd": 4.638457786401101,
-      "analytic": 4.638457786401098,
-      "rel_err": 7.659256249384187e-16,
+      "autograd": -1.9939030470054482,
+      "analytic": -1.9939030470054462,
+      "rel_err": 1.0022560762548556e-15,
       "passed": true
     },
     "seed2_dpsi_dt": {
-      "autograd": -3.130485558675189,
-      "analytic": -3.1304855586751854,
-      "rel_err": 1.1348762395514345e-15,
+      "autograd": 2.370257373555493,
+      "analytic": 2.3702573735554924,
+      "rel_err": 1.873590669116753e-16,
       "passed": true
     }
   },
   "negative": {
     "nonhermitian_breaks_unitarity": {
-      "n0": 1.0341996306162529,
-      "n1": 0.7826169127115248,
+      "n0": 1.5333087467989701,
+      "n1": 1.2531704727259105,
       "passed": true
     }
   },
@@ -113,21 +113,5 @@
       "passed": true
     }
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

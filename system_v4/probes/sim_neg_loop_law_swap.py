@@ -25,6 +25,13 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical negative-loop baseline: this probe measures loop-law swapping numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and geometry diagnostics for the loop-law swap test"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 from hopf_manifold import (
     TORUS_CLIFFORD,

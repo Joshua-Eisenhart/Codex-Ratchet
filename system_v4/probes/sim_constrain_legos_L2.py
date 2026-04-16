@@ -43,6 +43,21 @@ from sympy import Matrix, symbols, sqrt, pi, cos, sin, exp, I, conjugate
 from sympy import simplify, trigsimp, diff, atan2, Rational
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical baseline: this L2 probe checks Hopf-structured dimension/topology constraints numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix and vector numerics for qubit density and Hopf map checks"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots, logs, and exponentials for density and channel tests"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic reductions for the L2 proof steps"},
+    "z3": {"tried": True, "used": True, "reason": "constraint checks for dimension and topology logic"},
+    "clifford": {"tried": True, "used": True, "reason": "auxiliary Clifford algebra checks for the L2 constraint layer"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive",
+    "clifford": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal, If,
@@ -65,6 +80,9 @@ RESULTS = {
         "fiber_group": "U(1)",
         "structure_group": "SU(2)",
     },
+    "divergence_log": divergence_log,
+    "tool_manifest": TOOL_MANIFEST,
+    "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     "specific_tests": {},
     "survival_table": [],
     "new_legos_created_by_L2": [],

@@ -39,6 +39,19 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical baseline: this L3 probe checks fiber/base transport and chirality constraints numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix and vector numerics for fiber/base and chirality checks"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots, logs, and exponentials for transport and concurrence checks"},
+    "z3": {"tried": True, "used": True, "reason": "constraint checks for chirality and transport logic"},
+    "clifford": {"tried": True, "used": True, "reason": "auxiliary Clifford algebra checks for the L3 constraint layer"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+    "clifford": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal, If,
@@ -65,6 +78,9 @@ RESULTS = {
             "bipartition": "L/R creates natural 2-subsystem split for entanglement.",
         },
     },
+    "divergence_log": divergence_log,
+    "tool_manifest": TOOL_MANIFEST,
+    "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     "specific_tests": {},
     "survival_table": [],
     "new_legos_created_by_L3": [],

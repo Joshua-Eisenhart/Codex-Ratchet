@@ -1,153 +1,38 @@
 {
-  "generated_at": "2026-04-16T00:28:05.909123+00:00",
-  "lane_id": "source_dirty__skill_runtime__skill_runtime",
+  "generated_at": "2026-04-16T18:46:08.497824+00:00",
+  "lane_id": "source_dirty__no_actionable_lanes",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "default_prefer_probe_source_skip_docs",
+  "selection_mode": "no_checkpoint_ready_groups",
   "allow_docs": false,
   "docs_opt_in_required": false,
   "code_only_fallback": {
-    "group_id": "probe_source__sim_family_gtower",
+    "group_id": "probe_source__sim_family_cvc5",
     "file_count": 1,
-    "untracked_count": 0,
-    "tracked_dirty_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json"
+    "source_path": "system_v4/probes/sim_cvc5_equivariant_homotopy_fixed_point_constraint.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/cvc5_equivariant_homotopy_fixed_point_constraint_results.json"
   },
-  "code_only_fallback_group_id": "probe_source__sim_family_gtower",
-  "active_actionable_lane": {
-    "group_id": "skill_runtime__skill_runtime",
-    "file_count": 1,
-    "safe_next_action": "checkpoint",
-    "selection_mode": "default_prefer_probe_source_skip_docs",
-    "source_path": "system_v4/skills/llm_research_enforcement_validator 2.py",
-    "result_path": null
-  },
-  "selected_group_id": "skill_runtime__skill_runtime",
-  "file_count": 1,
-  "safe_next_action": "checkpoint",
-  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+  "active_actionable_lane": null,
+  "selected_group_id": null,
+  "file_count": 0,
+  "safe_next_action": null,
+  "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
+  "code_only_fallback_group_id": "probe_source__sim_family_cvc5",
+  "active_actionable_lane_group_id": null,
   "summary": {
-    "selected_group_id": "skill_runtime__skill_runtime",
-    "file_count": 1,
-    "safe_next_action": "checkpoint",
+    "selected_group_id": null,
+    "file_count": 0,
+    "safe_next_action": null,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": "probe_source__sim_family_gtower",
-    "active_actionable_lane_group_id": "skill_runtime__skill_runtime",
-    "executable_lane_group_id": "skill_runtime__skill_runtime",
-    "ok": true
+    "code_only_fallback_group_id": "probe_source__sim_family_cvc5",
+    "active_actionable_lane_group_id": null,
+    "executable_lane_group_id": null,
+    "ok": true,
+    "status": "no_actionable_lanes",
+    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
   },
-  "lane": {
-    "group_id": "skill_runtime__skill_runtime",
-    "display_name": "Runtime and skill support",
-    "bucket": "skill_runtime",
-    "notes": "Small bounded runtime-support cluster suitable for a scoped checkpoint.",
-    "blocking_reason": "bounded_human_checkpoint",
-    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
-    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
-    "verification_commands": [
-      "make source-dirty-checkpoint-plan",
-      "make maintenance-report"
-    ],
-    "result_companions": [],
-    "required_git_paths_clean": [
-      "system_v4/skills/llm_research_enforcement_validator 2.py"
-    ],
-    "docs_opt_in_required": false,
-    "code_only_fallback": {
-      "group_id": "probe_source__sim_family_gtower",
-      "file_count": 1,
-      "untracked_count": 0,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_gtower_so3_su2_sp1_triple.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/gtower_so3_su2_sp1_triple_results.json"
-    },
-    "active_actionable_lane": {
-      "group_id": "skill_runtime__skill_runtime",
-      "file_count": 1,
-      "safe_next_action": "checkpoint",
-      "selection_mode": "default_prefer_probe_source_skip_docs",
-      "source_path": "system_v4/skills/llm_research_enforcement_validator 2.py",
-      "result_path": null
-    },
-    "files": [
-      "system_v4/skills/llm_research_enforcement_validator 2.py"
-    ]
-  },
-  "executable_lane": {
-    "group_id": "skill_runtime__skill_runtime",
-    "files": [
-      "system_v4/skills/llm_research_enforcement_validator 2.py"
-    ],
-    "result_companions": [],
-    "required_git_paths_clean": [
-      "system_v4/skills/llm_research_enforcement_validator 2.py"
-    ],
-    "goal": "Execute the currently actionable bounded lane without widening scope.",
-    "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
-  }
+  "lane": null,
+  "executable_lane": null
 }

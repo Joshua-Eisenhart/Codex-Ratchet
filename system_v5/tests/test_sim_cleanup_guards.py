@@ -1713,6 +1713,153 @@ def test_system_surface_audit_reports_symbolic_graph_manifold_search_bundle_witn
     assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 20
 
 
+def test_system_surface_audit_reports_equivariant_symbolic_graph_manifold_search_bundle_witness(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_equivariant_symbolic_graph_manifold_search_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "z3": ("sim_z3_capability.py", "z3_capability_results.json"),
+        "cvc5": ("sim_cvc5_capability.py", "cvc5_capability_results.json"),
+        "sympy": ("sim_sympy_capability.py", "sympy_capability_results.json"),
+        "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
+        "e3nn": ("sim_e3nn_capability.py", "e3nn_capability_results.json"),
+        "geomstats": ("sim_geomstats_capability.py", "geomstats_capability_results.json"),
+        "pyg": ("sim_pyg_capability.py", "pyg_capability_results.json"),
+        "rustworkx": ("sim_rustworkx_capability.py", "rustworkx_capability_results.json"),
+        "xgi": ("sim_xgi_capability.py", "xgi_capability_results.json"),
+        "toponetx": ("sim_toponetx_capability.py", "toponetx_capability_results.json"),
+        "gudhi": ("sim_gudhi_capability.py", "gudhi_capability_results.json"),
+        "datasketch": ("sim_datasketch_capability.py", "datasketch_capability_results.json"),
+        "pynndescent": ("sim_pynndescent_capability.py", "pynndescent_capability_results.json"),
+        "umap": ("sim_umap_capability.py", "umap_capability_results.json"),
+        "hdbscan": ("sim_hdbscan_capability.py", "hdbscan_capability_results.json"),
+        "sklearn": ("sim_sklearn_capability.py", "sklearn_capability_results.json"),
+        "optuna": ("sim_optuna_capability.py", "optuna_capability_results.json"),
+        "pymoo": ("sim_pymoo_capability.py", "pymoo_capability_results.json"),
+        "ribs": ("sim_ribs_capability.py", "ribs_capability_results.json"),
+        "deap": ("sim_deap_capability.py", "deap_capability_results.json"),
+        "evotorch": ("sim_evotorch_capability.py", "evotorch_capability_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_equivariant_symbolic_graph_manifold_search_stack.py").write_text(
+        "\n".join(
+            [
+                "import cvc5",
+                "import gudhi",
+                "import hdbscan",
+                "import optuna",
+                "import rustworkx",
+                "import sympy",
+                "import torch",
+                "import umap",
+                "import xgi",
+                "import geomstats.backend as gs",
+                "from clifford import Cl",
+                "from datasketch import MinHash",
+                "from deap import base",
+                "from e3nn import o3",
+                "from evotorch import Problem",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from pymoo.algorithms.moo.nsga2 import NSGA2",
+                "from pynndescent import NNDescent",
+                "from ribs.archives import GridArchive",
+                "from sklearn.metrics import adjusted_rand_score",
+                "from toponetx.classes import SimplicialComplex",
+                "from torch_geometric.data import Data",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'solver cross-check'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic lane'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'rotor lane'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'equivariant lane'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'riemannian lane'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'graph lane'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'diameter lane'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'hypergraph lane'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'simplicial lane'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'persistence lane'},",
+                "    'datasketch': {'tried': True, 'used': True, 'reason': 'signature lane'},",
+                "    'pynndescent': {'tried': True, 'used': True, 'reason': 'ann lane'},",
+                "    'umap': {'tried': True, 'used': True, 'reason': 'embedding lane'},",
+                "    'hdbscan': {'tried': True, 'used': True, 'reason': 'cluster lane'},",
+                "    'sklearn': {'tried': True, 'used': True, 'reason': 'metric lane'},",
+                "    'optuna': {'tried': True, 'used': True, 'reason': 'search lane'},",
+                "    'pymoo': {'tried': True, 'used': True, 'reason': 'moo lane'},",
+                "    'ribs': {'tried': True, 'used': True, 'reason': 'archive lane'},",
+                "    'deap': {'tried': True, 'used': True, 'reason': 'ga lane'},",
+                "    'evotorch': {'tried': True, 'used': True, 'reason': 'es lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'datasketch': 'load_bearing',",
+                "    'pynndescent': 'load_bearing',",
+                "    'umap': 'load_bearing',",
+                "    'hdbscan': 'load_bearing',",
+                "    'sklearn': 'load_bearing',",
+                "    'optuna': 'load_bearing',",
+                "    'pymoo': 'load_bearing',",
+                "    'ribs': 'load_bearing',",
+                "    'deap': 'load_bearing',",
+                "    'evotorch': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["equivariant_symbolic_graph_manifold_search_stack"]
+
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_equivariant_symbolic_graph_manifold_search_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 22
+
+
 def test_system_surface_audit_handles_nonliteral_manifest_and_depth_updates(
     tmp_path, monkeypatch
 ) -> None:

@@ -8,6 +8,12 @@ import json, os, itertools
 import numpy as np
 from _igt_common import CARRIERS, LABELS
 classification = "classical_baseline"  # auto-added by adaptive_controller
+divergence_log = (
+    "IGT atom 1 carrier probe. It stays in a classical_baseline posture "
+    "while testing the finite carrier set and its exhaustive coverage."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not needed -- 4-element finite set"},
@@ -99,7 +105,8 @@ if __name__ == "__main__":
     all_pass = all(pos.values()) and all(neg.values()) and all(bnd.values())
     results = {
         "name": "sim_igt_atom_1_carrier",
-        "classification": "classical_baseline",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

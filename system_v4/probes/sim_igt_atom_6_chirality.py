@@ -9,6 +9,11 @@ flip) can.  This is the IGT handedness.
 import json, os
 from _igt_common import CARRIERS, cw_next, ccw_next
 classification = "classical_baseline"  # auto-added by adaptive_controller
+divergence_log = (
+    "IGT atom 6 handedness baseline. The file stays classical and uses z3 "
+    "plus a bounded clifford rotor check to verify CW/CCW chirality on the "
+    "4-ring without broadening scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
@@ -161,6 +166,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_igt_atom_6_chirality",
         "classification": "classical_baseline",
+        "classification_note": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

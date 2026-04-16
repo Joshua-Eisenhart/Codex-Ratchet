@@ -9,6 +9,12 @@ a 2-element set reachable from either side by single inner flip.
 import json, os
 from _igt_common import CARRIERS, LABELS
 classification = "classical_baseline"  # auto-added by adaptive_controller
+divergence_log = (
+    "IGT atom 4 admissibility is a classical baseline outer-axis constraint "
+    "check; it stays within the admissible carrier sub-ring and does not "
+    "claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
@@ -94,6 +100,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_igt_atom_4_admissibility",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

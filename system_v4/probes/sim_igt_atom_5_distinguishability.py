@@ -9,6 +9,11 @@ import json, os
 from itertools import combinations
 from _igt_common import CARRIERS, distinguishable
 classification = "classical_baseline"  # auto-added by adaptive_controller
+divergence_log = (
+    "IGT atom 5 distinguishability probe. This remains a classical baseline "
+    "partial-probe comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
@@ -113,6 +118,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_igt_atom_5_distinguishability",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

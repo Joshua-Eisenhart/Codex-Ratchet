@@ -11,6 +11,11 @@ import json, os
 from itertools import product
 from _igt_common import CARRIERS
 classification = "classical_baseline"  # auto-added by adaptive_controller
+divergence_log = (
+    "Classical foundation baseline: IGT atom 7 coupling is validated here as "
+    "a bounded symbolic/proof lego, not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":  {"tried": False, "used": False, "reason": "not applicable to this sim scope"},
@@ -129,6 +134,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_igt_atom_7_coupling",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

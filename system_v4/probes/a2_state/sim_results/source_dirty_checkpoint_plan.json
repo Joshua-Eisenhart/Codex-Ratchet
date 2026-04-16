@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-04-16T18:46:08.450792+00:00",
+  "generated_at": "2026-04-16T19:10:32.493820+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 15,
-  "plan_group_count": 13,
+  "dirty_source_count": 77,
+  "plan_group_count": 12,
   "checkpoint_candidate_count": 0,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 13,
-  "code_only_manual_count": 13,
-  "largest_group_id": "probe_source__sim_family_axis0",
+  "manual_only_count": 12,
+  "code_only_manual_count": 12,
+  "largest_group_id": "other_source__other_source",
   "next_code_only_manual_group_id": "probe_source__sim_family_cvc5",
   "next_code_only_manual_file_count": 1,
   "next_code_only_manual_source_path": "system_v4/probes/sim_cvc5_equivariant_homotopy_fixed_point_constraint.py",
   "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/cvc5_equivariant_homotopy_fixed_point_constraint_results.json",
   "summary": {
-    "dirty_source_count": 15,
-    "plan_group_count": 13,
+    "dirty_source_count": 77,
+    "plan_group_count": 12,
     "checkpoint_candidate_count": 0,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 13,
-    "code_only_manual_count": 13,
-    "largest_group_id": "probe_source__sim_family_axis0",
+    "manual_only_count": 12,
+    "code_only_manual_count": 12,
+    "largest_group_id": "other_source__other_source",
     "next_code_only_manual_group_id": "probe_source__sim_family_cvc5",
     "next_code_only_manual_file_count": 1,
     "next_code_only_manual_source_path": "system_v4/probes/sim_cvc5_equivariant_homotopy_fixed_point_constraint.py",
@@ -37,23 +37,18 @@
   "recommended_checkpoint_order": [],
   "recommended_manual_split_order": [
     {
+      "group_id": "other_source__other_source",
+      "file_count": 31,
+      "safe_next_action": "manual_split_required"
+    },
+    {
       "group_id": "probe_source__sim_family_axis0",
       "file_count": 21,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "other_source__other_source",
-      "file_count": 18,
-      "safe_next_action": "manual_split_required"
-    },
-    {
       "group_id": "probe_source__probe_misc",
-      "file_count": 18,
-      "safe_next_action": "manual_split_required"
-    },
-    {
-      "group_id": "probe_source__sim_family_leviathan",
-      "file_count": 6,
+      "file_count": 20,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -93,6 +88,11 @@
     },
     {
       "group_id": "probe_source__sim_family_harish",
+      "file_count": 1,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_riemannian",
       "file_count": 1,
       "safe_next_action": "manual_split_required"
     }
@@ -180,28 +180,28 @@
       "result_path": null
     },
     {
-      "group_id": "probe_source__sim_family_leviathan",
-      "file_count": 6,
+      "group_id": "probe_source__probe_misc",
+      "file_count": 20,
+      "untracked_count": 3,
+      "tracked_dirty_count": 17,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__sim_family_axis0",
+      "file_count": 21,
       "untracked_count": 0,
-      "tracked_dirty_count": 6,
+      "tracked_dirty_count": 21,
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 18,
-      "untracked_count": 14,
-      "tracked_dirty_count": 4,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 18,
-      "untracked_count": 2,
-      "tracked_dirty_count": 16,
+      "file_count": 31,
+      "untracked_count": 25,
+      "tracked_dirty_count": 6,
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
@@ -247,14 +247,25 @@
       "path_prefixes": [
         ".tmp/",
         "overnight_logs/retag_candidates.json",
+        "system_v4/tests/test_viz_action_bundle.py",
+        "system_v4/tests/test_viz_action_commands.py",
+        "system_v4/tests/test_viz_action_plan.py",
+        "system_v4/tests/test_viz_action_runner.py",
         "system_v4/tests/test_viz_batch_report.py",
         "system_v4/tests/test_viz_compare.py",
         "system_v4/tests/test_viz_dedupe_report.py",
         "system_v4/tests/test_viz_inspect.py",
         "system_v4/tests/test_viz_multi_batch_report.py",
         "system_v4/tests/test_viz_report.py",
+        "system_v4/tests/test_viz_scrubber_load.py",
+        "system_v4/tests/test_viz_status_report.py",
         "system_v4/tests/test_viz_triage_report.py",
         "system_v4/tests/test_viz_validator.py",
+        "system_v4/tests/test_viz_viewer_launcher.py",
+        "system_v4/visualization/action_bundle.py",
+        "system_v4/visualization/action_commands.py",
+        "system_v4/visualization/action_plan.py",
+        "system_v4/visualization/action_runner.py",
         "system_v4/visualization/batch_reporting.py",
         "system_v4/visualization/cli.py",
         "system_v4/visualization/comparison.py",
@@ -262,20 +273,22 @@
         "system_v4/visualization/reporting.py",
         "system_v4/visualization/status.py",
         "system_v4/visualization/triage.py",
-        "system_v4/visualization/validator.py"
+        "system_v4/visualization/validator.py",
+        "system_v4/visualization/viewer_launcher.py",
+        "system_v4/visualization/viewers"
       ],
-      "file_count": 18,
-      "tracked_dirty_count": 4,
-      "untracked_count": 14,
+      "file_count": 31,
+      "tracked_dirty_count": 6,
+      "untracked_count": 25,
       "sample_paths": [
         "overnight_logs/retag_candidates.json",
+        "system_v4/tests/test_viz_scrubber_load.py",
         "system_v4/tests/test_viz_validator.py",
         "system_v4/visualization/cli.py",
         "system_v4/visualization/validator.py",
+        "system_v4/visualization/viewers/scrubber_pyvista.py",
         ".tmp/",
-        "system_v4/tests/test_viz_batch_report.py",
-        "system_v4/tests/test_viz_compare.py",
-        "system_v4/tests/test_viz_dedupe_report.py"
+        "system_v4/tests/test_viz_action_bundle.py"
       ],
       "dominant_kinds": [
         "untracked",
@@ -292,6 +305,8 @@
       "label": "probe_misc",
       "display_name": "Misc active probes",
       "path_prefixes": [
+        "system_v4/probes/_classical_baseline_common.py",
+        "system_v4/probes/axis0_bridge_owner_alignment_contract.py",
         "system_v4/probes/axis0_lambda_crosslane_semantic_core.py",
         "system_v4/probes/axis0_result_loader.py",
         "system_v4/probes/axis0_xi_law_fingerprint.py",
@@ -311,18 +326,18 @@
         "system_v4/probes/validate_pre_entropy_packet.py",
         "system_v4/probes/validate_root_emergence_packet.py"
       ],
-      "file_count": 18,
-      "tracked_dirty_count": 16,
-      "untracked_count": 2,
+      "file_count": 20,
+      "tracked_dirty_count": 17,
+      "untracked_count": 3,
       "sample_paths": [
+        "system_v4/probes/_classical_baseline_common.py",
         "system_v4/probes/axis0_lambda_crosslane_semantic_core.py",
         "system_v4/probes/axis0_xi_strict_bakeoff_sim.py",
         "system_v4/probes/run_axis0_stack_packet.py",
         "system_v4/probes/run_carrier_selection_packet.py",
         "system_v4/probes/run_pre_entropy_packet.py",
         "system_v4/probes/validate_attractor_basin_boundary_search.py",
-        "system_v4/probes/validate_axis0_attractor_basin_boundary_search.py",
-        "system_v4/probes/validate_axis0_stack_packet.py"
+        "system_v4/probes/validate_axis0_attractor_basin_boundary_search.py"
       ],
       "dominant_kinds": [
         "modified",
@@ -543,38 +558,6 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'harish' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_leviathan",
-      "bucket": "probe_source",
-      "label": "sim_family_leviathan",
-      "display_name": "Probe sim family: leviathan",
-      "path_prefixes": [
-        "system_v4/probes/sim_leviathan_atom_1_carrier.py",
-        "system_v4/probes/sim_leviathan_atom_2_structure.py",
-        "system_v4/probes/sim_leviathan_atom_3_reduction.py",
-        "system_v4/probes/sim_leviathan_atom_4_admissibility.py",
-        "system_v4/probes/sim_leviathan_atom_5_distinguishability.py",
-        "system_v4/probes/sim_leviathan_atom_6_chirality.py"
-      ],
-      "file_count": 6,
-      "tracked_dirty_count": 6,
-      "untracked_count": 0,
-      "sample_paths": [
-        "system_v4/probes/sim_leviathan_atom_1_carrier.py",
-        "system_v4/probes/sim_leviathan_atom_2_structure.py",
-        "system_v4/probes/sim_leviathan_atom_3_reduction.py",
-        "system_v4/probes/sim_leviathan_atom_4_admissibility.py",
-        "system_v4/probes/sim_leviathan_atom_5_distinguishability.py",
-        "system_v4/probes/sim_leviathan_atom_6_chirality.py"
-      ],
-      "dominant_kinds": [
-        "modified"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'leviathan' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_riemannian",

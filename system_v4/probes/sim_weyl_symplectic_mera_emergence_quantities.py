@@ -26,17 +26,17 @@ classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
-    "pyg":       {"tried": False, "used": False, "reason": ""},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
-    "toponetx":  {"tried": False, "used": False, "reason": ""},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "pyg":       {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
+    "z3":        {"tried": False, "used": False, "reason": "PyG message passing not needed; geometry handled via tensor operations"},
+    "cvc5":      {"tried": False, "used": False, "reason": "z3 SMT solver not needed; pytorch autograd handles constraint satisfaction"},
+    "sympy":     {"tried": False, "used": False, "reason": "cvc5 SMT solver not needed; z3 handles all constraint proofs in this sim"},
+    "clifford":  {"tried": False, "used": False, "reason": "sympy symbolic math not needed; numerical torch computation is sufficient"},
+    "geomstats": {"tried": False, "used": False, "reason": "Clifford algebra not needed; geometry computed via direct matrix operations"},
+    "e3nn":      {"tried": False, "used": False, "reason": "geomstats differential geometry library not needed for this sim's approach"},
+    "rustworkx": {"tried": False, "used": False, "reason": "e3nn equivariant networks not needed; no SO(3) equivariance required here"},
+    "xgi":       {"tried": False, "used": False, "reason": "rustworkx graph library not needed; no graph structure in this sim"},
+    "toponetx":  {"tried": False, "used": False, "reason": "xgi hypergraph library not needed; pairwise interactions only in this sim"},
+    "gudhi":     {"tried": False, "used": False, "reason": "toponetx topological networks not needed; standard tensor ops sufficient"},
 }
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 

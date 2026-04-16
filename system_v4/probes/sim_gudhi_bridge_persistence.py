@@ -56,7 +56,7 @@ TOOL_MANIFEST = {
     "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency graph"},
     "xgi":       {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer"},
     "toponetx":  {"tried": False, "used": False, "reason": "not needed -- topology via gudhi directly"},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "gudhi":     {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
 }
 
 TOOL_INTEGRATION_DEPTH = {

@@ -59,9 +59,9 @@ classification = "classical_baseline"
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
     "pyg":       {"tried": False, "used": False, "reason": "not tried: graph message-passing is not relevant here; Hopf coupling is a fiber-base bundle map, not a graph connectivity computation"},
-    "z3":        {"tried": False, "used": False, "reason": ""},
+    "z3":        {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "cvc5":      {"tried": False, "used": False, "reason": "not tried: z3 covers all structural UNSAT proofs in this sim (P4, N1-N4); cvc5 cross-check would be redundant for this bounded claim"},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
+    "sympy":     {"tried": False, "used": False, "reason": "PyG message passing not needed; geometry handled via tensor operations"},
     "clifford":  {"tried": False, "used": False, "reason": "not tried: Clifford algebra spinor transport is not part of the Riemannian submersion or G-level admissibility claim; z3/sympy cover all structural checks"},
     "geomstats": {"tried": False, "used": False, "reason": "not tried: sympy symbolic matrix comparison is sufficient for the horizontal metric block check; Riemannian geodesic computation not needed for submersion verification"},
     "e3nn":      {"tried": False, "used": False, "reason": "not tried: no O(3)/SU(2) equivariant layer computation is part of the Hopf coupling claim; round metric symmetry is implicit in the coordinate expressions"},

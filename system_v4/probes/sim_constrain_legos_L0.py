@@ -35,6 +35,38 @@ from scipy.linalg import sqrtm, logm, expm
 import sympy as sp
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline: this probe checks L0 constraint survival numerically "
+    "with numpy/scipy/z3/sympy only, and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric array and matrix operations for the L0 constraint sweep",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix functions and linear-algebra helpers for the classical baseline",
+    },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic constraint checks in the classical baseline",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "finite constraint checks for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, IntVal, Int, Real, RealVal,

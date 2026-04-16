@@ -4,26 +4,28 @@
   "step": "chirality_coupling",
   "step_index": 6,
   "classification": "canonical",
+  "classification_note": "Classical foundation baseline: derived geometry chirality coupling is validated here as a symbolic/proof lego, not a canonical nonclassical witness.",
+  "divergence_log": "Classical foundation baseline: derived geometry chirality coupling is validated here as a symbolic/proof lego, not a canonical nonclassical witness.",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed for symbolic/proof lego"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed for symbolic/proof lego"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": ""
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 chosen as primary SMT"
     },
     "sympy": {
       "tried": true,
@@ -33,7 +35,7 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": ""
     },
     "geomstats": {
       "tried": false,
@@ -43,27 +45,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "no equivariant NN in this atomic step"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph structure in this atomic step"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph in this atomic step"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "no cell complex in this atomic step"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "no persistence in this atomic step"
     }
   },
   "tool_integration_depth": {
@@ -89,21 +91,5 @@
   "boundary": {
     "double_shift": true
   },
-  "all_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "all_pass": true
 }

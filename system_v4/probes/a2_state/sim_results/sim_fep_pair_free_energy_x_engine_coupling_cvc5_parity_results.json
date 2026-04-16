@@ -2,6 +2,8 @@
   "name": "sim_fep_pair_free_energy_x_engine_coupling_cvc5_parity",
   "scope_note": "redundant-SMT parity for system_v4/probes/sim_fep_pair_free_energy_x_engine_coupling.py",
   "classification": "canonical",
+  "classification_note": "Classical foundation baseline: this cvc5 parity sibling rechecks the free-energy versus engine-coupling UNSAT claim with bounded SMT parity, not a canonical nonclassical witness.",
+  "divergence_log": "Classical foundation baseline: this cvc5 parity sibling rechecks the free-energy versus engine-coupling UNSAT claim with bounded SMT parity, not a canonical nonclassical witness.",
   "tool_manifest": {
     "z3": {
       "tried": true,
@@ -11,57 +13,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "load-bearing UNSAT parity witness"
     }
   },
   "tool_integration_depth": {
@@ -79,21 +31,5 @@
   "boundary": {
     "k_zero_edge_still_unsat": true
   },
-  "PASS": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "PASS": true
 }

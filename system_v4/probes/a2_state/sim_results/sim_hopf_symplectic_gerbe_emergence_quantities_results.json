@@ -1,0 +1,151 @@
+{
+  "name": "sim_hopf_symplectic_gerbe_emergence_quantities",
+  "classification": "canonical",
+  "divergence_log": "Step 4 emergence quantities for Hopf\u00d7Symplectic\u00d7Gerbe (27th program). E1-E3 single shell: Q=0 (absent shells zero out product). E4-E6 pairwise without MI: Q=0. E7 full triple+MI: Q_HSG > 0 \u2014 emergence confirmed. Q_HSG = MI \u00d7 H_hopf \u00d7 H_symp \u00d7 H_gerbe. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor zero-collapse verified.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for emergence quantity tests; E1-E7 are scalar products"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required in HSG emergence quantity scalar tests"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 with Q_HSG>0 impossible \u2014 MI factor required for emergence; encodes E1-E6 Q=0 necessity constraint (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for UNSAT emergence factor=0 impossibility proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic four-factor product zero-collapse: a*b*c*d=0 if any factor=0, encodes HSG emergence gating algebraically (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra rotor not invoked; H_hopf is analytic log(2)/2"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in scalar HSG emergence product tests"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar emergence quantity tests"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required in HSG emergence scalar quantity tests"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in HSG emergence E1-E7 scalar tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex topology exercised in other steps; not needed in emergence scalar tests"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed in HSG emergence E1-E7 scalar product tests"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "Q_HSG": 0.08362745505109372,
+  "positive": {
+    "E1_single_hopf_Q0": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E2_single_symplectic_Q0": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E3_single_gerbe_Q0": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E4_pair_HS_no_MI": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E5_pair_HG_no_MI": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E6_pair_SG_no_MI": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E7_full_triple_MI_Q_positive": {
+      "MI": 0.10814930452367744,
+      "H_hopf": 0.34657359027997264,
+      "H_symp": 1.6094379124341003,
+      "H_gerbe": 1.3862943611198906,
+      "Q_HSG": 0.08362745505109372,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_factor0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_factor": {
+      "passed": true
+    },
+    "N3_E1_to_E6_all_zero": {
+      "Qs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_Q_full_finite_positive": {
+      "Q_HSG": 0.08362745505109372,
+      "passed": true
+    },
+    "B2_E7_strictly_gt_E1_to_E6": {
+      "Q_E7": 0.08362745505109372,
+      "Q_singles_and_pairs_all_zero": true,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

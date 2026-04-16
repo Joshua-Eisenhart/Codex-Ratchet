@@ -1,0 +1,181 @@
+{
+  "name": "sim_holo_mera_clifford_bridge_claims_canonical",
+  "classification": "canonical",
+  "coupling_program_step": 6,
+  "requires_steps_1_to_5": true,
+  "gap_fill": "MERA\u00d7Holographic pair",
+  "Q_HMC_form": "MI \u00d7 H_holo \u00d7 H_mera \u00d7 H_clifford",
+  "H_holo": 1.3862943611198906,
+  "H_mera": 0.6931471805599453,
+  "H_clifford": 0.7071067811865475,
+  "clifford_load_bearing": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "BC1: rho_HMC PSD + trace=1 via torch float64 eigenvalues; BC2: Q_HMC positivity for 20 seeds via torch tensor; BC3: Pearson r(MI, Q_HMC) > 0.99 computed via torch; BC4: Axis 0 gradient validated via torch cumulative ops \u2014 load-bearing throughout"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA DAG is fixed 4-layer; no dynamic message-passing required for bridge claims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "BC5: UNSAT proof Q_HMC > 0 with any of MI/H_holo/H_mera/H_clifford = 0 is impossible; load-bearing: structural impossibility proof for all four product factors"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs in this program"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "BC6: symbolic identity a*b*c*m = 0 when any factor = 0; load-bearing: algebraic proof of product-zero for Q_HMC factorization"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "H_clifford: real Cl(3,0) rotor bivector norm at theta=pi/4 used in Q_HMC product; load-bearing if clifford importable \u2014 determines H_clifford shell entropy value"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed for bridge claims"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "shell coupling graph is small and fixed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "BC1_trace": 1.0000000000000002,
+    "BC1_min_eigenvalue": -3.448595148947745e-17,
+    "BC1_shape": [
+      8,
+      8
+    ],
+    "BC1_pass": true,
+    "BC2_Q_HMC_by_seed": {
+      "seed_0": 0.07348346910825344,
+      "seed_1": 0.0622088221676262,
+      "seed_2": 0.07913124981113011,
+      "seed_3": 0.14539914208991567,
+      "seed_4": 0.12488159796258554,
+      "seed_5": 0.06725222073217184,
+      "seed_6": 0.11374602044987744,
+      "seed_7": 0.08719765398364814,
+      "seed_8": 0.08275145627617837,
+      "seed_9": 0.09805947812876548,
+      "seed_10": 0.059820379309445566,
+      "seed_11": 0.099100373904063,
+      "seed_12": 0.08995316928328723,
+      "seed_13": 0.08326208315946851,
+      "seed_14": 0.059273809354891946,
+      "seed_15": 0.07303539788967545,
+      "seed_16": 0.0739877532884735,
+      "seed_17": 0.07679191136174547,
+      "seed_18": 0.08543975571384807,
+      "seed_19": 0.06498901546518202
+    },
+    "BC2_pass": true,
+    "BC3_Pearson_r": 1.0,
+    "BC3_pass": true,
+    "BC4_axis0_seeds_passing": 20,
+    "BC4_pass": true,
+    "pass": true
+  },
+  "negative": {
+    "BC5_z3_all_factors_unsat": {
+      "MI_zero_unsat": true,
+      "H_holo_zero_unsat": true,
+      "H_mera_zero_unsat": true,
+      "H_clifford_zero_unsat": true
+    },
+    "BC5_all_unsat": true,
+    "BC5_pass": true,
+    "BC6_sympy_MI_zero": true,
+    "BC6_sympy_H_holo_zero": true,
+    "BC6_sympy_H_mera_zero": true,
+    "BC6_sympy_H_clifford_zero": true,
+    "BC6_pass": true,
+    "BC7_MI_bell": 1.3862943611198906,
+    "BC7_MI_eps03": 0.10814930452367744,
+    "BC7_MI_eps09": 5.8599870351727645e-06,
+    "BC7_grad_03": 1.2781450565962131,
+    "BC7_grad_09": 1.3862885011328554,
+    "BC7_eps09_steeper": true,
+    "BC7_pass": true,
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_HMC_hermitian": true,
+    "B1_pass": true,
+    "B2_shape": [
+      8,
+      8
+    ],
+    "B2_pass": true,
+    "B3_Q_HMC_seed0": 0.07348346910825344,
+    "B3_XI_times_MI": 0.07348346910825344,
+    "B3_pass": true,
+    "pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 20,
+    "total_bool_count": 20
+  },
+  "divergence_log": [
+    "canonical: pytorch + z3 + sympy all load_bearing",
+    "clifford Cl(3,0) rotor bivector is load_bearing when importable",
+    "H_holo = 2*log(2) fixed; H_mera = log(2) fixed; H_clifford from Cl(3,0) rotor at pi/4",
+    "MI from mera_MI_dephasing Bell state 4-layer eps=0.3 (spec-exact)",
+    "Q_HMC = MI \u00d7 H_holo \u00d7 H_mera \u00d7 H_clifford",
+    "rho_HMC = kron of 3 pure qubit states (8x8)",
+    "BC5: z3 UNSAT on all four factors independently",
+    "BC6: sympy algebraic product-zero identity",
+    "BC7: eps=0.9 gradient > eps=0.3 gradient confirmed",
+    "Float64 used throughout for numerical precision"
+  ]
+}

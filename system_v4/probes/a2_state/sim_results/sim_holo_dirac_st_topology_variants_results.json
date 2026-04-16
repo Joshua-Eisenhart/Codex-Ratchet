@@ -1,0 +1,199 @@
+{
+  "name": "sim_holo_dirac_st_topology_variants",
+  "description": "Gap-fill coupling Step 3: Topology variants T1/T2/T3; H_holo stable (AdS); DPI + z3 UNSAT",
+  "Q_form": "Q_HDS = MI x H_holo x H_dirac x H_st",
+  "topology_variants": {
+    "T1_flat_eps": 0.3,
+    "T2_ring_eps": 0.2,
+    "T3_complete_eps": 0.4
+  },
+  "shell_values_T1": {
+    "H_holo": 1.3862943611198906,
+    "H_dirac": 1.2959014798662492,
+    "H_st": 1.193901960813626,
+    "MI_T1": 0.10814930452367744,
+    "Q_HDS_T1": 0.23196359931204502
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Guards topology-invariance of H_holo: UNSAT proves AdS-fixed entropy cannot differ under topology change"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_holo_stable_T1_flat": {
+      "H_holo": 1.3862943611198906,
+      "stable": true,
+      "pass": true
+    },
+    "P_dirac_stable_T1_flat": {
+      "H_dirac": 1.2959014798662492,
+      "stable": true,
+      "pass": true
+    },
+    "P_st_stable_T1_flat": {
+      "H_st": 1.193901960813626,
+      "stable": true,
+      "pass": true
+    },
+    "P_Q_nonzero_T1_flat": {
+      "MI": 0.10814930452367744,
+      "Q_HDS": 0.23196359931204502,
+      "pass": true
+    },
+    "P_holo_stable_T2_ring": {
+      "H_holo": 1.3862943611198906,
+      "stable": true,
+      "pass": true
+    },
+    "P_dirac_stable_T2_ring": {
+      "H_dirac": 1.2959014798662492,
+      "stable": true,
+      "pass": true
+    },
+    "P_st_stable_T2_ring": {
+      "H_st": 1.193901960813626,
+      "stable": true,
+      "pass": true
+    },
+    "P_Q_nonzero_T2_ring": {
+      "MI": 0.259468128694762,
+      "Q_HDS": 0.5565191686056654,
+      "pass": true
+    },
+    "P_holo_stable_T3_complete": {
+      "H_holo": 1.3862943611198906,
+      "stable": true,
+      "pass": true
+    },
+    "P_dirac_stable_T3_complete": {
+      "H_dirac": 1.2959014798662492,
+      "stable": true,
+      "pass": true
+    },
+    "P_st_stable_T3_complete": {
+      "H_st": 1.193901960813626,
+      "stable": true,
+      "pass": true
+    },
+    "P_Q_nonzero_T3_complete": {
+      "MI": 0.0405622777996506,
+      "Q_HDS": 0.0869998378273628,
+      "pass": true
+    },
+    "P_DPI_T1_ge_T3": {
+      "MI_T1": 0.10814930452367744,
+      "MI_T3": 0.0405622777996506,
+      "pass": true,
+      "reason": "Data Processing Inequality: more dephasing in T3 cannot increase MI"
+    }
+  },
+  "negative": {
+    "N1_z3_holo_topology_invariant": {
+      "z3_result": "unsat",
+      "pass": true,
+      "reason": "H_holo is AdS-fixed; z3 UNSAT confirms no topology variant can change it"
+    },
+    "N2_max_dephasing_MI_zero": {
+      "MI": 1.3718423086395148e-07,
+      "pass": true,
+      "reason": "Full dephasing (eps=1) destroys all correlations; MI collapses to 0"
+    }
+  },
+  "boundary": {
+    "B1_Q_positive_T1": {
+      "Q_HDS": 0.23196359931204502,
+      "pass": true
+    },
+    "B1_Q_positive_T2": {
+      "Q_HDS": 0.5565191686056654,
+      "pass": true
+    },
+    "B1_Q_positive_T3": {
+      "Q_HDS": 0.0869998378273628,
+      "pass": true
+    },
+    "B2_MI_ordering_T2_ge_T1_ge_T3": {
+      "MI_T1": 0.10814930452367744,
+      "MI_T2": 0.259468128694762,
+      "MI_T3": 0.0405622777996506,
+      "T2_ge_T1": true,
+      "T1_ge_T3": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "all_pass": true
+  }
+}

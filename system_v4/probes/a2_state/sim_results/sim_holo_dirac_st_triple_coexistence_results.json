@@ -1,0 +1,149 @@
+{
+  "name": "sim_holo_dirac_st_triple_coexistence",
+  "description": "Gap-fill coupling Step 2: Triple coexistence of Holographic, Dirac, SpectralTriple",
+  "Q_form": "Q_HDS = MI x H_holo x H_dirac x H_st",
+  "shell_values": {
+    "H_holo": 1.3862943611198906,
+    "H_dirac": 1.2959014798662492,
+    "H_st": 1.193901960813626,
+    "MI": 0.10814930452367744,
+    "Q_HDS": 0.23196359931204502
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proves Q_HDS=0 is structurally impossible to be nonzero when any single factor vanishes"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that Q_HDS = MI*H_h*H_d*H_s factorizes correctly under coexistence"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_coexistence_no_mutual_exclusion": {
+      "H_holo": 1.3862943611198906,
+      "H_dirac": 1.2959014798662492,
+      "H_st": 1.193901960813626,
+      "MI": 0.10814930452367744,
+      "pass": true
+    },
+    "P2_Q_HDS_full_nonzero": {
+      "value": 0.23196359931204502,
+      "pass": true
+    },
+    "P3_sympy_symbolic_product": {
+      "symbolic_form": "H_d*H_h*H_s*MI",
+      "numeric": 0.23196359931204502,
+      "match": true,
+      "pass": true
+    },
+    "P4_dirac_st_distinct_seeds": {
+      "H_dirac": 1.2959014798662492,
+      "H_st": 1.193901960813626,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_any_factor_zero": {
+      "z3_result": "unsat",
+      "pass": true,
+      "reason": "z3 UNSAT confirms Q_HDS=0 is forced when any factor is zero; structural gate"
+    },
+    "N2_remove_holo": {
+      "value": 0.0,
+      "pass": true
+    },
+    "N2_remove_dirac": {
+      "value": 0.0,
+      "pass": true
+    },
+    "N2_remove_st": {
+      "value": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_Q_reproducible": {
+      "q1": 0.23196359931204502,
+      "q2": 0.23196359931204502,
+      "pass": true
+    },
+    "B2_shell_entropy_ordering": {
+      "H_holo": 1.3862943611198906,
+      "H_dirac": 1.2959014798662492,
+      "H_st": 1.193901960813626,
+      "H_holo_largest": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "all_pass": true
+  }
+}

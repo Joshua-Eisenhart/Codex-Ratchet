@@ -845,7 +845,7 @@
   },
   "summary": {
     "all_pass": true,
-    "elapsed_seconds": 0.289,
+    "elapsed_seconds": 0.177,
     "num_channels": 10,
     "num_test_states": 10,
     "num_z3_proofs": 4,
@@ -857,5 +857,69 @@
       "5_stinespring (isometry, reconstruction)",
       "6_z3_proofs (4 structural theorems)"
     ]
-  }
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor operations and autograd used for numerical probe computations; load-bearing for gradient and matrix computations",
+      "load_bearing": true
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "probe operates on fixed algebraic or matrix structures; no graph message passing or node embedding required"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "probe checks numerical properties; no structural impossibility claim requiring SMT encoding"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 or numeric check sufficient; cvc5 would not add a distinct theory for this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "all computations are finite-dimensional numerical; symbolic algebra would duplicate without adding to proof"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "torch matrix representations used for operators; Clifford algebra package not needed for this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian metric computation needed; probe operates on algebraic or density matrix structures"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3) equivariant layers needed; probe tests algebraic properties without learned equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal needed; probe operates on fixed matrix or algebraic structures"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hyperedge structure needed; probe tests pairwise or scalar algebraic properties"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex or chain map needed; probe operates on algebraic or density matrix structures"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology needed; probe tests algebraic or entropy properties without topological features"
+    }
+  },
+  "classification": "classical_baseline"
 }

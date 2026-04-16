@@ -1,0 +1,150 @@
+{
+  "name": "sim_holo_dirac_st_bridge_claims_canonical",
+  "description": "Gap-fill coupling Step 5 (canonical): Bridge claims for Holographic x Dirac x SpectralTriple. pytorch+z3+sympy load_bearing. float64.",
+  "Q_form": "Q_HDS = MI x H_holo x H_dirac x H_st",
+  "bridge_claims": [
+    "BC1: torch float64 Q_HDS > 0 with autograd",
+    "BC2: sympy dQ/dMI = H_holo*H_dirac*H_st",
+    "BC3: z3 UNSAT Q_HDS>0 when MI<=0",
+    "BC4: universal Q-product form Q = MI * prod(H_i)",
+    "BC5: torch grad dQ/dH_holo matches sympy symbolic derivative"
+  ],
+  "shell_values": {
+    "H_holo": 1.3862943611198906,
+    "H_dirac": 1.2959014798662492,
+    "H_st": 1.193901960813626,
+    "MI": 0.10814930452367744,
+    "Q_HDS": 0.23196359931204502
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "float64 autograd over Q_HDS = MI*H_holo*H_dirac*H_st; gradient computation is load-bearing for bridge claim BC1 and BC5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing proof: z3 UNSAT on Q_HDS > 0 with MI <= 0 is the structural impossibility gate for bridge claim BC3"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic differentiation proves dQ_HDS/dMI = H_holo*H_dirac*H_st; load-bearing for bridge claims BC2 and BC4 (universal Q-product form)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_BC1_torch_Q_HDS_float64": {
+      "Q_HDS": 0.23196359931204502,
+      "dtype": "float64",
+      "has_grad_mi": true,
+      "pass": true
+    },
+    "P_BC2_sympy_dQ_dMI": {
+      "dQ_dMI_symbolic": "H_d*H_h*H_s",
+      "expected": "H_d*H_h*H_s",
+      "symbolic_match": true,
+      "numeric_value": 2.1448459639540314,
+      "pass": true
+    },
+    "P_BC4_universal_Q_product_form": {
+      "Q_symbolic": "H_d*H_h*H_s*MI",
+      "factored": "H_d*H_h*H_s*MI",
+      "n_factors": 4,
+      "pass": true
+    },
+    "P_BC5_torch_grad_holo_matches_sympy": {
+      "torch_grad_dQ_dHholo": 0.16732636719712093,
+      "sympy_expected_dQ_dHholo": 0.16732636719712096,
+      "match": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N_BC3_z3_unsat_mi_nonpositive": {
+      "z3_result": "unsat",
+      "pass": true,
+      "reason": "z3 UNSAT: Q_HDS > 0 is structurally impossible when MI <= 0; this is the load-bearing proof guard for the bridge claim"
+    },
+    "N2_torch_Q_zero_when_MI_zero": {
+      "Q_value": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_float64_np_torch_match": {
+      "Q_numpy": 0.23196359931204502,
+      "Q_torch": 0.23196359931204502,
+      "diff": 0.0,
+      "pass": true
+    },
+    "B2_sympy_Q_at_unit_MI": {
+      "Q_unit_MI": 2.1448459639540314,
+      "expected": 2.1448459639540314,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "all_pass": true
+  }
+}

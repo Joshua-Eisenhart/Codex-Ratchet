@@ -1,0 +1,179 @@
+{
+  "name": "sim_holo_dirac_st_pairwise_coupling",
+  "description": "Gap-fill coupling program Step 1: Holographic x Dirac x SpectralTriple pairwise",
+  "Q_form": "Q_HDS = MI x H_holo x H_dirac x H_st",
+  "shell_values": {
+    "H_holo": 1.3862943611198906,
+    "H_dirac": 1.2959014798662492,
+    "H_st": 1.193901960813626,
+    "MI": 0.10814930452367744,
+    "Q_HDS": 0.23196359931204502
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proves Q_HDS=0 is forced when MI=0; structural impossibility gate"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_h_holo_positive": {
+      "value": 1.3862943611198906,
+      "pass": true
+    },
+    "P2_h_dirac_positive": {
+      "value": 1.2959014798662492,
+      "pass": true
+    },
+    "P3_h_st_positive": {
+      "value": 1.193901960813626,
+      "pass": true
+    },
+    "P4_MI_positive": {
+      "value": 0.10814930452367744,
+      "pass": true
+    },
+    "P5_Q_HDS_full_nonzero": {
+      "value": 0.23196359931204502,
+      "pass": true
+    },
+    "P6_pair_holo_dirac": {
+      "value": 1.7965009141055026,
+      "pass": true
+    },
+    "P7_pair_holo_st": {
+      "value": 1.6550995560059105,
+      "pass": true
+    },
+    "P8_pair_dirac_st": {
+      "value": 1.5471793178335946,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_mi_zero": {
+      "z3_result": "unsat",
+      "pass": true,
+      "reason": "Q_HDS=0 when MI=0; z3 confirms UNSAT for Q!=0 with MI=0"
+    },
+    "N2_Q_holo_zero": {
+      "value": 0.0,
+      "pass": true
+    },
+    "N3_Q_dirac_zero": {
+      "value": 0.0,
+      "pass": true
+    },
+    "N4_Q_st_zero": {
+      "value": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_all_inactive": {
+      "value": 0,
+      "pass": true
+    },
+    "B2_only_holo": {
+      "value": 0.0,
+      "pass": true
+    },
+    "B2_only_dirac": {
+      "value": 0.0,
+      "pass": true
+    },
+    "B2_only_st": {
+      "value": 0.0,
+      "pass": true
+    },
+    "B3_MI_layer_sweep": {
+      "values": [
+        1.386294,
+        0.653159,
+        0.428734,
+        0.211669,
+        0.108149
+      ],
+      "monotone_check": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "covered_pairs": [
+    "Dirac x Holographic",
+    "Holographic x SpectralTriple",
+    "Dirac x SpectralTriple"
+  ],
+  "summary": {
+    "all_pass": true
+  }
+}

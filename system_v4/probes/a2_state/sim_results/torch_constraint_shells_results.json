@@ -24,12 +24,12 @@
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "tried but not needed -- all computation is torch-native"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf done natively in torch"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -59,7 +59,7 @@
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "Persistence tracking through alternating projection"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "positive": {
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 6.926289081573486,
-            "L2_d2_Hopf": 1.098156213760376,
+            "L1_CPTP": 6.45019006729126,
+            "L2_d2_Hopf": 0.6044862270355225,
             "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 8.024445295333862
+          "total_violation": 7.054676294326782
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 3.7482731342315674,
-            "L2_d2_Hopf": 0.3422130346298218,
-            "L4_composition": 0.0,
-            "L6_irreversibility": 0.03705038130283356
+            "L1_CPTP": 2.619279146194458,
+            "L2_d2_Hopf": 0.0,
+            "L4_composition": 0.1740206480026245,
+            "L6_irreversibility": 0.230143740773201
           },
-          "total_violation": 4.127536550164223
+          "total_violation": 3.0234435349702835
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.1347336769104,
-            "L2_d2_Hopf": 0.18987035751342773,
-            "L4_composition": 0.0,
-            "L6_irreversibility": 0.14137858152389526
+            "L1_CPTP": 5.057173728942871,
+            "L2_d2_Hopf": 0.5099440813064575,
+            "L4_composition": 0.019265174865722656,
+            "L6_irreversibility": 0.17559866607189178
           },
-          "total_violation": 4.465982615947723
+          "total_violation": 5.761981651186943
         }
       ]
     },

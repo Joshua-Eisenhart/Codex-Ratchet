@@ -1,0 +1,157 @@
+{
+  "name": "sim_holo_mera_clifford_topology_variants",
+  "classification": "canonical",
+  "coupling_program_step": 4,
+  "topologies": {
+    "T1_planar": 0.0,
+    "T2_cylindrical": 0.7853981633974483,
+    "T3_toroidal": 1.5707963267948966
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "P1: H_holo/H_mera topology invariance via torch tensor comparison; P2: H_clifford theta variation computed via torch; P3: Q_HMC monotonicity via torch cumulative product; P4: DPI check via torch tensor ops \u2014 load-bearing throughout"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "topology variant shells use fixed analytical entropy schedules; no dynamic graph edges or learned node features required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof H_holo is topology-invariant constant \u2014 cannot change; load-bearing structural impossibility proof"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for UNSAT proof"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "numerical checks sufficient here; symbolic at bridge step"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "H_clifford computed from Cl(3,0) rotor bivector for T2/T3; load-bearing if importable \u2014 determines topology variant ordering"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian computation needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "topology variant probe uses analytic entropy schedule not graph traversal; path computation not applicable to scalar shell invariants"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex not needed here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_H_holo_by_topology": {
+      "T1_planar": 1.3862943611198906,
+      "T2_cylindrical": 1.3862943611198906,
+      "T3_toroidal": 1.3862943611198906
+    },
+    "P1_H_mera_by_topology": {
+      "T1_planar": 0.6931471805599453,
+      "T2_cylindrical": 0.6931471805599453,
+      "T3_toroidal": 0.6931471805599453
+    },
+    "P1_holo_invariant": true,
+    "P1_mera_invariant": true,
+    "P1_pass": true,
+    "P2_H_clifford_by_topology": {
+      "T1_planar": 0.0,
+      "T2_cylindrical": 0.7071067811865475,
+      "T3_toroidal": 1.0
+    },
+    "P2_T1_zero": true,
+    "P2_T2_positive": true,
+    "P2_T3_max": true,
+    "P2_order_ok": true,
+    "P2_pass": true,
+    "P3_Q_HMC_by_topology": {
+      "T1_planar": 0.0,
+      "T2_cylindrical": 0.07348346910825344,
+      "T3_toroidal": 0.10392131862311639
+    },
+    "P3_monotone": true,
+    "P3_pass": true,
+    "P4_DPI": {
+      "T1_planar": {
+        "MI_layer0": 1.3862943611198906,
+        "MI_layer4": 0.10814930452367744,
+        "DPI_ok": true
+      },
+      "T2_cylindrical": {
+        "MI_layer0": 1.3862943611198906,
+        "MI_layer4": 0.10814930452367744,
+        "DPI_ok": true
+      },
+      "T3_toroidal": {
+        "MI_layer0": 1.3862943611198906,
+        "MI_layer4": 0.10814930452367744,
+        "DPI_ok": true
+      }
+    },
+    "P4_pass": true,
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_holo_topology_invariant_unsat": true,
+    "N1_z3_result": "unsat",
+    "N1_pass": true,
+    "pass": true
+  },
+  "boundary": {
+    "B1_H_clifford_T1": 0.0,
+    "B1_Q_HMC_T1": 0.0,
+    "B1_pass": true,
+    "pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 17,
+    "total_bool_count": 17
+  }
+}

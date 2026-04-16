@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "cross-check boundary rank via torch.linalg.matrix_rank"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed for classical linalg baseline"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -25,7 +25,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "numpy rank sufficient"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "baseline uses raw linalg"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

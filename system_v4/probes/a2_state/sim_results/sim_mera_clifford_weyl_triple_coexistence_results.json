@@ -16,7 +16,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "MERA causal cone is a fixed DAG; no dynamic graph needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -26,7 +26,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
@@ -51,12 +51,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "MERA DAG fixed and small"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph not needed"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

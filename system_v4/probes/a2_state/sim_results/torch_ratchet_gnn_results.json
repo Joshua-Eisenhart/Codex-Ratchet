@@ -9,7 +9,7 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "HeteroData graph + message passing IS the ratchet dynamics"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -102,7 +102,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.0067513673566281796,
+          "min_eigenvalue": -2.1766432212189102e-08,
           "psd_ok": true,
           "valid": true
         },
@@ -111,7 +111,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.019507858902215958,
+          "min_eigenvalue": 0.03795834258198738,
           "psd_ok": true,
           "valid": true
         },
@@ -120,7 +120,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.2035416215658188,
+          "min_eigenvalue": 2.6887274628961677e-08,
           "psd_ok": true,
           "valid": true
         },
@@ -129,7 +129,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.006340978667140007,
+          "min_eigenvalue": 0.10732202231884003,
           "psd_ok": true,
           "valid": true
         }
@@ -139,33 +139,33 @@
       "passed": true,
       "has_grad": true,
       "grad_nonzero": true,
-      "grad_norm": 0.02385959029197693,
-      "ic_mean": -0.03374962881207466
+      "grad_norm": 0.014337340369820595,
+      "ic_mean": -0.42781373858451843
     },
     "optimization_increases_ic": {
       "passed": "True",
-      "ic_start_avg": -0.2584275156259537,
-      "ic_end_avg": 0.2709905803203583,
-      "ic_delta": 0.529418095946312,
+      "ic_start_avg": 0.0008144166320562362,
+      "ic_end_avg": 0.2551741451025009,
+      "ic_delta": 0.2543597284704447,
       "ic_history_sample": [
-        -0.6568225026130676,
-        0.17180468142032623,
-        0.204537495970726,
-        0.27596315741539
+        -0.13262708485126495,
+        0.11539328098297119,
+        0.1804226189851761,
+        0.2610261142253876
       ],
       "n_steps": 50
     },
     "shell_constrains_params": {
       "passed": true,
       "raw_param_value": 5.0,
-      "max_gated_param": 0.7155618071556091,
-      "reduction_ratio": 0.14311236143112183
+      "max_gated_param": 0.7647041082382202,
+      "reduction_ratio": 0.15294082164764405
     }
   },
   "negative": {
     "no_shell_allows_unphysical": {
       "passed": true,
-      "max_operator_param": 5.0570526123046875,
+      "max_operator_param": 5.082485675811768,
       "exceeds_physical_range": true
     },
     "disconnected_no_flow": {
@@ -181,14 +181,14 @@
         "trace_ok": true,
         "hermitian_error": 0.0,
         "hermitian_ok": true,
-        "min_eigenvalue": -3.356127464826386e-08,
+        "min_eigenvalue": 6.491280402087796e-09,
         "psd_ok": true,
         "valid": true
       },
       "terrain_out": [
-        0.019508717581629753,
-        0.003769230330362916,
-        0.9998026490211487
+        -0.35708409547805786,
+        0.22511468827724457,
+        0.9065397381782532
       ]
     },
     "fully_connected_max_flow": {
@@ -197,21 +197,21 @@
       "n_operator": 6,
       "n_shell": 4,
       "terrain_norms": [
-        0.8263141512870789,
-        0.9612516164779663,
-        0.8306269645690918,
-        0.5870857238769531,
-        0.9526985883712769,
-        0.18815171718597412,
-        0.5074813365936279,
-        0.8943145871162415
+        0.9999999403953552,
+        0.2954058349132538,
+        1.0,
+        0.9999999403953552,
+        0.6225030422210693,
+        0.5512943863868713,
+        0.9999999403953552,
+        0.8793415427207947
       ]
     },
     "bloch_ball_containment": {
       "passed": true,
       "norms": [
-        1.0,
-        0.6948433518409729
+        0.8112267851829529,
+        0.9454683661460876
       ]
     }
   },

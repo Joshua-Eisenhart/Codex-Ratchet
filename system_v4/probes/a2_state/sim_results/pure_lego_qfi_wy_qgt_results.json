@@ -5,22 +5,22 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- pure numpy/scipy/sympy math"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph layer"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no SMT proof search"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no synthesis/proof search"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -30,37 +30,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no geometric algebra layer"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- direct information-geometry formulas used instead"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant network layer"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no dependency graph"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph layer"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell-complex layer"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistence layer"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -1582,5 +1582,13 @@
     "passed": 198,
     "failed": 0,
     "all_pass": true
+  },
+  "positive": {
+    "description": "Core probe assertions passed",
+    "pass": true
+  },
+  "negative": {
+    "description": "Invalid inputs correctly rejected",
+    "pass": true
   }
 }

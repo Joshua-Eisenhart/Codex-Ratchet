@@ -7,12 +7,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; fence logic is pure combinatorics, no tensor autodiff required"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph message-passing over the fence-set lattice is required"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; z3 integer arithmetic is sufficient for SO(1) exhaustiveness proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -32,37 +32,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; GL/O/SO fence logic operates on 2x2 numpy matrices, no Clifford algebra required"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Riemannian geometry is not invoked; fences are algebraic not metric-geometric"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; equivariance networks are not the subject; pure fence-set combinatorics"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; fence ordering is enumerated via itertools, no graph library required"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph structure in fence permutation enumeration"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; topological cell complexes are not involved in GL/O/SO fence ordering"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; persistent homology is irrelevant to discrete fence-set classification"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

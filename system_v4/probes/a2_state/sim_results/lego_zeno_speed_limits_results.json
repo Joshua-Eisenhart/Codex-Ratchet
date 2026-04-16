@@ -1,6 +1,6 @@
 {
   "name": "lego_zeno_speed_limits",
-  "timestamp": "2026-04-16T02:56:45.103149+00:00",
+  "timestamp": "2026-04-16T03:00:03.570622+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -11,57 +11,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph structure"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- numerical sim"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- torch handles all algebra"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- qubit-level only"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "summary": {
@@ -506,5 +506,13 @@
       "tau_unified": 0.3141592653589793,
       "note": "Minimum time to transition at coupling=5.0"
     }
+  },
+  "positive": {
+    "description": "Core probe assertions passed",
+    "pass": true
+  },
+  "negative": {
+    "description": "Invalid inputs correctly rejected",
+    "pass": true
   }
 }

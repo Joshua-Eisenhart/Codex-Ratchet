@@ -1,6 +1,6 @@
 {
   "name": "sim_pure_lego_wilczek_zee_holonomy",
-  "timestamp": "2026-04-16T02:57:09Z",
+  "timestamp": "2026-04-16T02:57:46Z",
   "lego_ids": [
     "wilczek_zee_holonomy",
     "nonabelian_berry_phase",
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph/message-passing structure; sim is 2D finite-dimensional matrix transport"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -54,12 +54,12 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph; sim operates on 4D Hilbert space with 2D degenerate subspace"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure; sim is a closed-loop matrix transport"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -442,7 +442,7 @@
     "total_tests": 12,
     "passed": 12,
     "failed": 0,
-    "elapsed_seconds": 6.85,
+    "elapsed_seconds": 6.16,
     "model": "4-level H(\u03b8,\u03c6) = W diag(-1,-1,+1,+1) W\u2020, 2D degenerate subspace at -1",
     "bridge_claim": "Wilczek-Zee holonomy for the transported 2D degenerate subspace is a non-trivial SU(2) matrix; it satisfies the U(2) gauge-covariance law U \u2192 g\u207b\u00b9Ug under constant subspace rotations; and its abelian diagonal reduction cross-validates the scalar Berry connection A_\u03c6 = -sin\u00b2(\u03b8/2) established by prior standalone Berry-phase probes."
   }

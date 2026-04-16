@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nn.Module, not GNN"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 sufficient for nesting proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -34,12 +34,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant layers here"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -49,12 +49,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nested, not hypergraph"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topology tracked via GUDHI"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 2.210643768310547,
-            "L2_d2_Hopf": 0.5186352729797363,
+            "L1_CPTP": 3.5976080894470215,
+            "L2_d2_Hopf": 0.23275423049926758,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.0
+            "L6_irreversibility": 0.14571906626224518
           },
-          "total_violation": 2.729279041290283
+          "total_violation": 3.9760813862085342
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 1.6865220069885254,
-            "L2_d2_Hopf": 0.0,
-            "L4_composition": 0.014248251914978027,
+            "L1_CPTP": 7.562135696411133,
+            "L2_d2_Hopf": 2.7731542587280273,
+            "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 1.7007702589035034
+          "total_violation": 10.33528995513916
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.543943405151367,
-            "L2_d2_Hopf": 2.8182244300842285,
+            "L1_CPTP": 5.812167167663574,
+            "L2_d2_Hopf": 2.057011842727661,
             "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 7.362167835235596
+          "total_violation": 7.869179010391235
         }
       ]
     },

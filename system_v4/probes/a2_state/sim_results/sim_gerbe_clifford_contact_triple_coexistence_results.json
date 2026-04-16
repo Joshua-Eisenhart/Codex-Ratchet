@@ -1,0 +1,150 @@
+{
+  "name": "sim_gerbe_clifford_contact_triple_coexistence",
+  "classification": "canonical",
+  "divergence_log": "Step 2 triple coexistence for Gerbe\u00d7Clifford\u00d7Contact (21st program). Normalize H via h/(1+h). Joint product \u2264 each pairwise product confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). sympy: a*b*(1-c) \u2265 0 for c \u2264 1.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: joint > pairwise impossible for values in (0,1) (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 is sufficient for UNSAT proof here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic coexistence inequality a*b*c \u2264 a*b when c \u2264 1 (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor to compute H_clifford for normalization (load-bearing)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariance not invoked here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence homology not in coexistence scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_clifford": 1.0,
+    "H_gerbe": 1.3862943611198906,
+    "H_contact": 2.833213344056216
+  },
+  "positive": {
+    "P1_normalized_values": {
+      "Hg_n": 0.5809402158035948,
+      "Hc_n": 0.5,
+      "Hco_n": 0.7391222689051209,
+      "passed": true
+    },
+    "P2_joint_le_pair_GC": {
+      "joint": 0.21469292520149177,
+      "pair_GC": 0.2904701079017974,
+      "passed": true
+    },
+    "P3_joint_le_pair_GCo": {
+      "joint": 0.21469292520149177,
+      "pair_GCo": 0.42938585040298355,
+      "passed": true
+    },
+    "P4_joint_le_pair_CCo": {
+      "joint": 0.21469292520149177,
+      "pair_CCo": 0.36956113445256045,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_joint_gt_pair": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_joint_le_pair": {
+      "diff_expr": "a*b*(1 - c)",
+      "numeric_check": 0.27999999999999997,
+      "passed": true
+    },
+    "N3_joint_zero_if_any_factor_zero": {
+      "joint": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_normalized_H_clifford_in_unit": {
+      "raw": 1.0,
+      "normalized": 0.5,
+      "passed": true
+    },
+    "B1_normalized_H_gerbe_in_unit": {
+      "raw": 1.3862943611198906,
+      "normalized": 0.5809402158035948,
+      "passed": true
+    },
+    "B1_normalized_H_contact_in_unit": {
+      "raw": 2.833213344056216,
+      "normalized": 0.7391222689051209,
+      "passed": true
+    },
+    "B2_joint_strictly_lt_max_pair": {
+      "joint": 0.21469292520149177,
+      "max_pair": 0.42938585040298355,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

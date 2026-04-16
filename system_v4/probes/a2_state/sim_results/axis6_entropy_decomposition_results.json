@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph message passing in this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 UNSAT proof is sufficient"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -39,27 +39,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- confirmed in axis6_e3nn_fe_bridge"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- routing DAG confirmed in rank_coherence sim"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph layer"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex layer"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- persistence not in scope"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

@@ -5,57 +5,57 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; sampling is numpy-only"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph msg-passing in this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Betti numbers are numeric not SAT"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no SMT constraint here"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed; numeric sampling"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Hopf param given explicitly"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; S^3 sampled via Gaussian-normalize"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no equivariant layer"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; simplex adjacency via gudhi"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; not a hypergraph problem"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; gudhi handles simplicial complex"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,

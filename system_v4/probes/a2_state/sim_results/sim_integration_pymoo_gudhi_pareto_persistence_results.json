@@ -5,57 +5,57 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Pareto search is population-based, no gradient or autograd required for NSGA-II"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph message passing in this sim; topology is computed directly via gudhi Rips complex"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no formal constraint encoding required; NSGA-II feasibility is implicit via bounded search space"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no quantifier reasoning over algebraic constraints"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- objective functions are numeric; no symbolic closed form required for persistence computation"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- point cloud geometry is Euclidean R2, not a Clifford algebra rotor space"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Riemannian manifold structure not required; persistence is computed on flat Euclidean point cloud"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no SO(3) equivariance in the 2D point cloud sim"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- graph structure is implicit in gudhi Rips complex, not an explicit rustworkx graph"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hyperedge topology; gudhi Rips complex handles simplicial structure directly"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- gudhi provides the required persistent homology; toponetx cell complex not needed for Rips filtration"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,

@@ -11,57 +11,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph layer in this bridge constructor"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- this sim uses exact matrix checks, not satisfiability search"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no synthesis or SMT constraints are required"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no symbolic derivation beyond exact matrix formulas"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no geometric algebra layer in this lego"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no manifold geometry or statistics here"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant neural network layer here"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no dependency graph or lattice graph computation here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex or filtration layer here"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistent homology or filtration computation here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -385,6 +385,6 @@
     "negative": "4/4",
     "boundary": "3/3",
     "all_pass": true,
-    "total_time_s": 0.004479885101318359
+    "total_time_s": 0.0045909881591796875
   }
 }

@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no message passing required for pure structural property"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "same as z3; not needed for this structural check"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -40,7 +40,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariant feature computation"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistence computation required"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

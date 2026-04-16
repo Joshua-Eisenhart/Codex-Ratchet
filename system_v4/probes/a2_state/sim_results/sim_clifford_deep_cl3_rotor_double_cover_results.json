@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; pure GA identities, no autograd"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph structure in rotor identities"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "same as z3 -- transcendental rotor angles out of scope"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,

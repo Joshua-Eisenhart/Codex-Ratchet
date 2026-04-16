@@ -91,42 +91,42 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -141,12 +141,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -199,14 +199,14 @@
         "L7": 3
       },
       "clique_eigenvector_centrality": {
-        "L0": 0.06113234702826038,
-        "L1": 0.045411216248936244,
+        "L0": 0.061132347028260335,
+        "L1": 0.04541121624893623,
         "L2": 0.1585714751268718,
-        "L3": 0.1204549981348974,
-        "L4": 0.16682866620509437,
-        "L5": 0.10289725857976559,
-        "L6": 0.16832608099943117,
-        "L7": 0.17637795767674297
+        "L3": 0.12045499813489749,
+        "L4": 0.1668286662050944,
+        "L5": 0.1028972585797656,
+        "L6": 0.16832608099943122,
+        "L7": 0.17637795767674294
       },
       "node_edge_centrality": {
         "L0": 0.07852842200750365,
@@ -267,15 +267,15 @@
       "clique_eigenvector_centrality": [
         {
           "shell": "L7",
-          "value": 0.17637795767674297
+          "value": 0.17637795767674294
         },
         {
           "shell": "L6",
-          "value": 0.16832608099943117
+          "value": 0.16832608099943122
         },
         {
           "shell": "L4",
-          "value": 0.16682866620509437
+          "value": 0.1668286662050944
         },
         {
           "shell": "L2",
@@ -283,19 +283,19 @@
         },
         {
           "shell": "L3",
-          "value": 0.1204549981348974
+          "value": 0.12045499813489749
         },
         {
           "shell": "L5",
-          "value": 0.10289725857976559
+          "value": 0.1028972585797656
         },
         {
           "shell": "L0",
-          "value": 0.06113234702826038
+          "value": 0.061132347028260335
         },
         {
           "shell": "L1",
-          "value": 0.045411216248936244
+          "value": 0.04541121624893623
         }
       ],
       "node_edge_centrality": [
@@ -489,24 +489,8 @@
         "L5"
       ],
       [
-        "L4",
-        "L7"
-      ],
-      [
-        "L0",
-        "L1"
-      ],
-      [
-        "L3",
-        "L5"
-      ],
-      [
-        "L5",
-        "L7"
-      ],
-      [
-        "L4",
-        "L6"
+        "L1",
+        "L4"
       ],
       [
         "L2",
@@ -514,39 +498,55 @@
       ],
       [
         "L2",
-        "L4"
+        "L6"
       ],
       [
-        "L3",
-        "L7"
-      ],
-      [
-        "L2",
-        "L7"
-      ],
-      [
-        "L3",
-        "L4"
+        "L0",
+        "L1"
       ],
       [
         "L6",
         "L7"
       ],
       [
-        "L2",
-        "L6"
-      ],
-      [
-        "L1",
-        "L4"
+        "L3",
+        "L7"
       ],
       [
         "L0",
         "L2"
       ],
       [
+        "L5",
+        "L7"
+      ],
+      [
         "L0",
         "L5"
+      ],
+      [
+        "L2",
+        "L7"
+      ],
+      [
+        "L4",
+        "L7"
+      ],
+      [
+        "L4",
+        "L6"
+      ],
+      [
+        "L3",
+        "L5"
+      ],
+      [
+        "L3",
+        "L4"
+      ],
+      [
+        "L2",
+        "L4"
       ]
     ],
     "pairwise_centrality": {
@@ -562,21 +562,21 @@
       },
       "clique_eigenvector_centrality": {
         "L0": 0.08195726777523932,
-        "L1": 0.05251618318598782,
-        "L2": 0.17664791344781697,
-        "L3": 0.1406366894802427,
-        "L4": 0.1472068288585654,
+        "L1": 0.05251618318598777,
+        "L2": 0.17664791344781694,
+        "L3": 0.14063668948024266,
+        "L4": 0.14720682885856542,
         "L5": 0.1284716280678872,
-        "L6": 0.11119560489099117,
-        "L7": 0.16136788429326945
+        "L6": 0.11119560489099116,
+        "L7": 0.16136788429326948
       },
       "node_edge_centrality": {
-        "L0": 0.09082191380935627,
-        "L1": 0.06421630775345244,
-        "L2": 0.17651531554595315,
-        "L3": 0.13312700492490193,
-        "L4": 0.14599278731436793,
-        "L5": 0.1249197780928619,
+        "L0": 0.09082191380935628,
+        "L1": 0.06421630775345247,
+        "L2": 0.17651531554595312,
+        "L3": 0.13312700492490195,
+        "L4": 0.145992787314368,
+        "L5": 0.12491977809286191,
         "L6": 0.11099678450512399,
         "L7": 0.15341010805398236
       },
@@ -629,19 +629,19 @@
       "clique_eigenvector_centrality": [
         {
           "shell": "L2",
-          "value": 0.17664791344781697
+          "value": 0.17664791344781694
         },
         {
           "shell": "L7",
-          "value": 0.16136788429326945
+          "value": 0.16136788429326948
         },
         {
           "shell": "L4",
-          "value": 0.1472068288585654
+          "value": 0.14720682885856542
         },
         {
           "shell": "L3",
-          "value": 0.1406366894802427
+          "value": 0.14063668948024266
         },
         {
           "shell": "L5",
@@ -649,7 +649,7 @@
         },
         {
           "shell": "L6",
-          "value": 0.11119560489099117
+          "value": 0.11119560489099116
         },
         {
           "shell": "L0",
@@ -657,13 +657,13 @@
         },
         {
           "shell": "L1",
-          "value": 0.05251618318598782
+          "value": 0.05251618318598777
         }
       ],
       "node_edge_centrality": [
         {
           "shell": "L2",
-          "value": 0.17651531554595315
+          "value": 0.17651531554595312
         },
         {
           "shell": "L7",
@@ -671,15 +671,15 @@
         },
         {
           "shell": "L4",
-          "value": 0.14599278731436793
+          "value": 0.145992787314368
         },
         {
           "shell": "L3",
-          "value": 0.13312700492490193
+          "value": 0.13312700492490195
         },
         {
           "shell": "L5",
-          "value": 0.1249197780928619
+          "value": 0.12491977809286191
         },
         {
           "shell": "L6",
@@ -687,11 +687,11 @@
         },
         {
           "shell": "L0",
-          "value": 0.09082191380935627
+          "value": 0.09082191380935628
         },
         {
           "shell": "L1",
-          "value": 0.06421630775345244
+          "value": 0.06421630775345247
         }
       ],
       "katz_centrality": [

@@ -9,12 +9,12 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; not a GNN task"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed; topological claims proved by TopoNetX"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
@@ -49,7 +49,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; hypergraph sim separate"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -59,7 +59,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; persistence sim separate"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

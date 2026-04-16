@@ -19,7 +19,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; pairwise geometric coupling has no graph structure"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -29,7 +29,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; transcendental values preclude SMT verification here"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -39,37 +39,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no spinor structure in scalar curvature-Jacobi coupling"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; coupling functionals computed directly from analytic formulas"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no equivariant structure in CP^1 scalar coupling"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph structure in pairwise geometric coupling"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph structure"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Euler characteristic \u03c7=2 used as known S\u00b2 fact, no complex construction"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no persistent homology"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -351,5 +351,5 @@
     ],
     "scope_note": "First pairwise shell coupling probe: step 2 of coupling program. Tests explicit pairwise compatibility of CP^1 shell-local ingredients via bounded, falsifiable coupling functionals. Out of scope: multi-shell coexistence (step 3), bridge claims (step 6), full N\u00d7N layer coupling matrix, Berry phase, QFI/killpoint, Axis 6."
   },
-  "timestamp": "2026-04-16T02:54:56.701130+00:00"
+  "timestamp": "2026-04-16T02:57:42.680468+00:00"
 }

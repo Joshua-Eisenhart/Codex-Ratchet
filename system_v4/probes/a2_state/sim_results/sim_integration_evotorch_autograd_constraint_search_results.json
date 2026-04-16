@@ -10,57 +10,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph message-passing structure in this 4D constraint search; graph layers would not add coverage here"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- constraint is a smooth ellipsoidal inequality, not a Boolean/integer distinguishability axiom; z3 Real arithmetic is not the right tool for continuous evolutionary search"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- same reason as z3; continuous ellipsoidal constraint does not benefit from an SMT solver in this integration sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- constraint gradient is computed numerically via autograd; symbolic differentiation would produce the same expression but adds no additional coverage for the evotorch integration claim"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- the forbidden zone is a Euclidean ellipsoid, not a geometric algebra object; Cl(3) rotors are not invoked here"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no Riemannian manifold structure required for this flat-space ellipsoidal constraint search"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no SE(3)/E(3) equivariance constraint in this sim; the forbidden ellipsoid has no rotational symmetry to exploit"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph or dependency structure in the 4D constraint search; population graph is internal to evotorch"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hyperedge or higher-order interaction structure in this constraint violation search"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex topology in the ellipsoidal constraint; topological tools are not load-bearing for continuous SNES search"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistent homology computation in this sim; the forbidden zone boundary is a single smooth manifold"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     },
     "evotorch": {
       "tried": true,

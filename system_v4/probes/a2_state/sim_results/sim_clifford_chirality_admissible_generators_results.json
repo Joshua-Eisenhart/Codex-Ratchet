@@ -12,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: chirality admissibility is a matrix algebra problem, not a graph message-passing problem; no graph structure present"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: z3 is sufficient for the integer matrix impossibility proof; cvc5 not required for this claim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -37,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: this is a Lie algebra commutator check, not a Riemannian geometry computation"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: e3nn handles 3D equivariant networks; chirality here is a 2-qubit algebraic property, not 3D rotation equivariance"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: admissibility classification is algebraic, not graph-theoretic; no graph required"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: hypergraph structure not relevant to Clifford generator commutation"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: topological cell complex not relevant to this algebraic chirality test"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "Not needed: persistent homology not relevant to generator commutation"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

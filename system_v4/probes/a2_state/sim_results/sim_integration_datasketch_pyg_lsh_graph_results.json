@@ -15,52 +15,52 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- LSH graph construction and MessagePassing do not require formal constraint encoding or SAT/SMT reasoning"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no quantifier reasoning required for similarity graph"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Jaccard similarity and MinHash are numeric; no symbolic algebra required"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- node features are bag-of-tokens vectors, not Clifford algebra elements"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- graph topology is flat; no Riemannian manifold structure involved"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no SO(3) equivariance in the token similarity graph"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- graph is passed directly to PyG as edge_index tensor; no separate graph library needed for this sim"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- LSH graph has pairwise edges only, no hyperedges"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex structure; sim uses simple graph message passing on LSH edges"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistent homology; topology of the sim graph is captured by LSH adjacency"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     },
     "datasketch": {
       "tried": true,

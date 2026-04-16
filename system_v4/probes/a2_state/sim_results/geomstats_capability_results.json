@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed for isolated geomstats capability probe"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph message passing in manifold capability test"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -41,17 +41,17 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariant NN required"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph structure probed here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph / multi-way interaction"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

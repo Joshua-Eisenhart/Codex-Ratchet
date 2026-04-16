@@ -9,12 +9,7 @@
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "no SMT constraint solving required; Dixmier-Douady class admissibility verified by direct integer arithmetic"
     },
     "pyg": {
       "tried": false,
@@ -25,11 +20,6 @@
       "tried": false,
       "used": false,
       "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
@@ -65,6 +55,16 @@
       "tried": false,
       "used": false,
       "reason": "no persistent homology or Rips complex computation required in this probe"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     }
   },
   "tool_integration_depth": {

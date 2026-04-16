@@ -419,9 +419,9 @@ def run_boundary_tests():
             diff = solver.mkTerm(cvc5.Kind.SUB, time_avg_bound, space_avg_bound)
 
             # Simplified: assert convergence condition
-            zero = solver.mkInteger(0)
+            zero_real = solver.mkReal("0")
             solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, epsilon, zero))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, epsilon, zero))  # Perfect convergence
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, epsilon, zero_real))  # Perfect convergence
 
             is_sat = solver.checkSat().isSat()
 

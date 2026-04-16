@@ -67,13 +67,33 @@ TOOL_BUNDLES = {
         "goal": "classical numeric + Clifford/GA + quantum state bridge lane",
         "tools": ["numpy", "scipy", "pytorch", "clifford", "torch_ga", "qutip", "cirq", "pennylane"],
     },
+    "quantum_open_entangle_correlator_mega_stack": {
+        "goal": "entangled 2-qubit state + open-system decay + correlator geometry bridge lane",
+        "tools": ["numpy", "scipy", "qutip", "cirq", "pennylane", "pytorch", "clifford", "torch_ga"],
+    },
     "qutip_open_system_stack": {
         "goal": "classical open-system + qutip Lindblad bridge lane",
         "tools": ["numpy", "scipy", "qutip"],
     },
+    "quantum_open_entanglement_stack": {
+        "goal": "classical Bell entanglement + bounded open-system bridge lane",
+        "tools": ["numpy", "scipy", "qutip", "cirq", "pennylane"],
+    },
+    "classical_nonclassical_entropy_stack": {
+        "goal": "classical-vs-quantum entropy gap bridge lane",
+        "tools": ["numpy", "scipy", "torch", "clifford", "qutip", "pennylane", "torch_ga"],
+    },
     "cirq_pennylane_entanglement_stack": {
         "goal": "classical 2-qubit entanglement bridge lane for cirq and pennylane",
         "tools": ["numpy", "scipy", "cirq", "pennylane"],
+    },
+    "quantum_ga_correlator_stack": {
+        "goal": "quantum + GA correlator bridge lane",
+        "tools": ["numpy", "scipy", "pytorch", "clifford", "torch_ga", "qutip", "cirq", "pennylane"],
+    },
+    "thermo_open_system_bridge_stack": {
+        "goal": "thermal relaxation + open-system bridge lane",
+        "tools": ["numpy", "scipy", "qutip", "cirq", "pennylane"],
     },
     "torch_clifford_ga_rotor_stack": {
         "goal": "rotor geometry bridge lane for pytorch + clifford + torch_ga",

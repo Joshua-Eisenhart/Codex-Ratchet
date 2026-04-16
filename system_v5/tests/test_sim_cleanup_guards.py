@@ -2010,6 +2010,32 @@ def test_system_surface_audit_reports_additional_quantum_bridge_bundle_witnesses
         ) + "\n",
         encoding="utf-8",
     )
+    (probes / "sim_integration_quantum_open_entanglement_stack.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'state arithmetic'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'matrix witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'open-system witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'entanglement circuit witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'entanglement qnode witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'supportive',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
 
     (probes / "sim_integration_cirq_pennylane_entanglement_bridge.py").write_text(
         "\n".join(
@@ -2029,6 +2055,41 @@ def test_system_surface_audit_reports_additional_quantum_bridge_bundle_witnesses
                 "    'scipy': 'supportive',",
                 "    'cirq': 'load_bearing',",
                 "    'pennylane': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_integration_quantum_ga_correlator_stack.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import torch",
+                "import torch_ga",
+                "from clifford import Cl",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'dense correlator arithmetic'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'matrix exponential witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'supportive density witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'circuit witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'qnode witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'correlator fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'geometric carrier witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga roundtrip witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'supportive',",
+                "    'qutip': 'supportive',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
                 "}",
             ]
         ) + "\n",
@@ -2070,18 +2131,211 @@ def test_system_surface_audit_reports_additional_quantum_bridge_bundle_witnesses
 
     qutip_bundle = report["bundles"]["qutip_open_system_stack"]
     assert qutip_bundle["capability_gap_tools"] == []
-    assert qutip_bundle["full_bundle_witness_count"] == 1
-    assert qutip_bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_qutip_open_system_bridge.py"
+    assert qutip_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_qutip_open_system_bridge.py"
+        for witness in qutip_bundle["best_existing_witnesses"]
+    )
+
+    open_ent_bundle = report["bundles"]["quantum_open_entanglement_stack"]
+    assert open_ent_bundle["capability_gap_tools"] == []
+    assert open_ent_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_quantum_open_entanglement_stack.py"
+        for witness in open_ent_bundle["best_existing_witnesses"]
+    )
 
     ent_bundle = report["bundles"]["cirq_pennylane_entanglement_stack"]
     assert ent_bundle["capability_gap_tools"] == []
-    assert ent_bundle["full_bundle_witness_count"] == 1
-    assert ent_bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_cirq_pennylane_entanglement_bridge.py"
+    assert ent_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_cirq_pennylane_entanglement_bridge.py"
+        for witness in ent_bundle["best_existing_witnesses"]
+    )
+
+    ga_bundle = report["bundles"]["quantum_ga_correlator_stack"]
+    assert ga_bundle["capability_gap_tools"] == []
+    assert ga_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_quantum_ga_correlator_stack.py"
+        for witness in ga_bundle["best_existing_witnesses"]
+    )
 
     rotor_bundle = report["bundles"]["torch_clifford_ga_rotor_stack"]
     assert rotor_bundle["capability_gap_tools"] == []
-    assert rotor_bundle["full_bundle_witness_count"] == 1
-    assert rotor_bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_torch_clifford_ga_rotor_bridge.py"
+    assert rotor_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_torch_clifford_ga_rotor_bridge.py"
+        for witness in rotor_bundle["best_existing_witnesses"]
+    )
+
+
+def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_entropy_thermo_bundles_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "numpy": ("sim_numpy_capability.py", "numpy_capability_results.json"),
+        "scipy": ("sim_scipy_capability.py", "scipy_capability_results.json"),
+        "torch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
+        "torch_ga": ("sim_torch_ga_capability.py", "torch_ga_capability_results.json"),
+        "qutip": ("sim_qutip_capability.py", "qutip_capability_results.json"),
+        "cirq": ("sim_cirq_capability.py", "cirq_capability_results.json"),
+        "pennylane": ("sim_pennylane_capability.py", "pennylane_capability_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_quantum_open_entangle_correlator_mega_stack.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import torch",
+                "import torch_ga",
+                "from clifford import Cl",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'state and correlator arithmetic'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'matrix exponential witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'open-system witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'entangling circuit witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'qnode entangling witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'correlator geometry witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'geometric carrier witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga roundtrip witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'supportive',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_integration_classical_nonclassical_entropy_stack.py").write_text(
+        "\n".join(
+            [
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import torch",
+                "import torch_ga",
+                "from clifford import Cl",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'entropy arithmetic'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'state-preparation witness'},",
+                "    'torch': {'tried': True, 'used': True, 'reason': 'entropy-gap autograd witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'bloch carrier witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'density entropy witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'statevector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga roundtrip witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'supportive',",
+                "    'torch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'qutip': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_integration_thermo_open_system_bridge_stack.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "from scipy.linalg import expm",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'thermal populations and rate equations'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'thermal matrix exponential witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'master-equation witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'density-simulator witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'mixed-state witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'load_bearing',",
+                "    'scipy': 'load_bearing',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+
+    mega_bundle = report["bundles"]["quantum_open_entangle_correlator_mega_stack"]
+    assert mega_bundle["capability_gap_tools"] == []
+    assert mega_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_quantum_open_entangle_correlator_mega_stack.py"
+        for witness in mega_bundle["best_existing_witnesses"]
+    )
+
+    entropy_bundle = report["bundles"]["classical_nonclassical_entropy_stack"]
+    assert entropy_bundle["capability_gap_tools"] == []
+    assert entropy_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_classical_nonclassical_entropy_stack.py"
+        for witness in entropy_bundle["best_existing_witnesses"]
+    )
+
+    thermo_bundle = report["bundles"]["thermo_open_system_bridge_stack"]
+    assert thermo_bundle["capability_gap_tools"] == []
+    assert thermo_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_integration_thermo_open_system_bridge_stack.py"
+        for witness in thermo_bundle["best_existing_witnesses"]
+    )
 
 
 def test_system_surface_audit_handles_nonliteral_manifest_and_depth_updates(

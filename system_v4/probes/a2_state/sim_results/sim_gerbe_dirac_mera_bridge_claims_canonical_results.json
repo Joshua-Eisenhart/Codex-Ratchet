@@ -1,0 +1,161 @@
+{
+  "name": "sim_gerbe_dirac_mera_bridge_claims_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "P1: \u03c1_GDM density matrix validity (PSD, Tr=1, Hermitian); P2: I_c co-varies with Q3 via autograd; P3: Axis 0 \u2202I_c/\u2202layer < 0 under gerbe coupling"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "P4: UNSAT proof \u03c1_GDM cannot have negative eigenvalues; N1: UNSAT proof I_c > log(\u03c7) holographic bound"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "B1: Symbolic proof I_c(A:BC) = S(A) for pure tripartite state"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_gdm_valid": {
+      "layer_tests": [
+        {
+          "layer": 0,
+          "min_eigenvalue": 0.00020222111956524902,
+          "trace": 1.0,
+          "hermitian": true,
+          "valid": true
+        },
+        {
+          "layer": 1,
+          "min_eigenvalue": 0.07232948812851335,
+          "trace": 1.0,
+          "hermitian": true,
+          "valid": true
+        },
+        {
+          "layer": 2,
+          "min_eigenvalue": 0.3775406687981454,
+          "trace": 1.0,
+          "hermitian": true,
+          "valid": true
+        }
+      ],
+      "pass": true,
+      "note": "\u03c1_GDM valid (PSD, Tr=1, Hermitian) at all MERA layers under gerbe coupling"
+    },
+    "P2_ic_covaries_q3": {
+      "d_ic_d_dd_autograd": 0.011597275873399145,
+      "q3_layer1": 2.909856291689895e-16,
+      "both_nonzero": true,
+      "pass": true,
+      "note": "I_c gradient (autograd) and Q3 both nonzero \u2014 I_c co-varies with Q3"
+    },
+    "P3_axis0_gradient_negative": {
+      "ic_per_layer": [
+        1.7775388764051547,
+        1.320888343149318,
+        0.6890092384766566
+      ],
+      "ic_diffs": [
+        -0.4566505332558368,
+        -0.6318791046726613
+      ],
+      "all_negative_or_zero": true,
+      "pass": true,
+      "note": "\u2202I_c/\u2202layer < 0: inner layers have lower I_c even with gerbe coupling"
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "P4_z3_negative_eigenvalue_UNSAT": {
+      "claim": "rho_eval < 0 given rho_eval = exp(-lam)/Z with exp(-lam)>0 and Z>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Negative eigenvalues in Gibbs \u03c1_GDM are UNSAT (exp always positive)"
+    },
+    "N1_z3_holographic_bound_UNSAT": {
+      "claim": "I_c > log(chi) given I_c <= log(chi)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "I_c > log(\u03c7) violates entropy bound \u2014 UNSAT; holographic bound preserved"
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_sympy_pure_tripartite_ic": {
+      "formula_I_ABC": "SA - SABC + SBC",
+      "after_pure_constraints": "2*SA",
+      "simplified": "2*SA",
+      "expected": "2*SA",
+      "identity_holds": true,
+      "pass": true,
+      "note": "Pure tripartite state: I(A:BC) = 2*S(A) \u2014 symbolic identity confirmed. Convention I_c = I(A:BC)/2 = S(A) follows."
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

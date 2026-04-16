@@ -1,0 +1,170 @@
+{
+  "name": "sim_dirac_symplectic_weyl_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "MI tensor for each topology variant; partial trace via torch for topology-dependent rho"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "topology graph structure not required at topology variant baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3: different topology classes give structurally distinct Q_DSW; collapse to single value is UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for topology distinctness proof; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic: topology shift as parameter delta_k in spectral gap; gap varies with topology"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not primary target for topology variant baseline; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian structure not needed for topology variant baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to topology variants; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "topology variant graph: three variant nodes with distinct Q_DSW edge weights"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "three topology variants as hyperedge with different weights; topology-dependent coupling"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex rank distinguishes T1 (flat), T2 (sphere), T3 (twisted) topology classes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for topology variant baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "P1_T1_flat_all_positive_Q_nonzero": {
+      "passed": true,
+      "topology": "flat",
+      "H_dirac": 0.33678336703714473,
+      "H_symp": 1.3862943611198906,
+      "H_weyl": 0.6931471805599453,
+      "MI": 0.21166885730683282,
+      "Q_DSW": 0.06849967604135061,
+      "interpretation": "T1 flat topology: all shells active and Q_DSW > 0 survived"
+    },
+    "P2_T2_sphere_all_positive_Q_nonzero": {
+      "passed": true,
+      "topology": "sphere",
+      "H_dirac": 0.567110959090245,
+      "H_symp": 1.3862943611198906,
+      "H_weyl": 0.6931471805599453,
+      "MI": 0.21166885730683282,
+      "Q_DSW": 0.11534689886539704,
+      "interpretation": "T2 sphere topology: all shells survive positive curvature, Q_DSW > 0"
+    },
+    "P3_T3_twisted_all_positive_Q_nonzero": {
+      "passed": true,
+      "topology": "twisted",
+      "H_dirac": 0.33678336703714473,
+      "H_symp": 1.3862943611198906,
+      "H_weyl": 0.6931471805599453,
+      "MI": 0.21166885730683282,
+      "Q_DSW": 0.06849967604135061,
+      "interpretation": "T3 twisted topology: all shells survive Z2 holonomy, Q_DSW > 0"
+    },
+    "P4_Q_DSW_differs_across_topology_variants": {
+      "passed": true,
+      "Q_flat": 0.06849967604135061,
+      "Q_sphere": 0.11534689886539704,
+      "Q_twisted": 0.06849967604135061,
+      "interpretation": "Q_DSW differs across T1/T2/T3; topology variants are not degenerate"
+    },
+    "P5_rustworkx_topology_variant_graph": {
+      "passed": true,
+      "n_nodes": 3,
+      "n_edges": 2,
+      "interpretation": "Topology variant graph (T1-T2-T3) with Q_DSW ratio edges survived"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_all_topology_Q_same": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "All topology variants having same Q_DSW when delta_k>0 is z3 UNSAT"
+    },
+    "N2_sympy_topology_shift_nonzero": {
+      "passed": true,
+      "gap_sphere_minus_flat": "delta_k",
+      "interpretation": "Sphere topology shifts spectral gap by delta_k > 0; flat = sphere excluded"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_sphere_gap_gt_flat_gap": {
+      "passed": true,
+      "gap_flat": 0.33678336703714473,
+      "gap_sphere": 0.567110959090245,
+      "interpretation": "Sphere curvature shifts eigenvalues up, increasing spectral gap above flat baseline"
+    },
+    "B2_all_topologies_H_weyl_log2": {
+      "passed": true,
+      "H_weyl_flat": 0.6931471805599453,
+      "H_weyl_sphere": 0.6931471805599453,
+      "H_weyl_twisted": 0.6931471805599453,
+      "log2": 0.6931471805599453,
+      "interpretation": "H_weyl = log(2) preserved across all topology variants; Z2 chirality is topology-invariant"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  },
+  "divergence_log": [
+    "T1 flat, T2 sphere, T3 twisted: all shells active, Q_DSW > 0 in all three",
+    "Q_DSW differs across T1/T2/T3 \u2014 topology variants are non-degenerate",
+    "Sphere gap > flat gap (positive curvature lifts eigenvalues)",
+    "H_weyl = log(2) preserved across all topology variants",
+    "z3 UNSAT: all variants equal with delta_k>0 excluded",
+    "sympy: topology shift gap_sphere = gap_flat + delta_k confirmed"
+  ]
+}

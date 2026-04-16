@@ -1,0 +1,167 @@
+{
+  "name": "sim_mera_weyl_pairwise_coupling",
+  "classification": "classical_baseline",
+  "coupling_program_step": 2,
+  "parent_sims": [
+    "sim_mera_shell_axis0",
+    "sim_gtower_weyl_geometry_entropy_coupling"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "2-layer MERA with Weyl P_L/P_R chirality projectors (Z\u2297Z structure); I_c computed at each layer boundary via partial trace and autograd; load-bearing for P1 (monotonicity with chirality) and P2 (log(2) cost)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA causal cone is a fixed DAG; no message-passing over dynamic graph needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs for P3 (monotonicity preserved under Weyl coupling) and N1 (P_L and P_R states cannot have identical entropy at same layer); load-bearing: structural impossibility is the primary proof form"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; chirality projector algebra verified numerically via pytorch"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Weyl projectors encoded as 4x4 numpy/torch matrices"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed for this coupling test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA DAG is small and fixed; no rustworkx graph operations needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not required for pairwise coupling test"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for this coupling test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_ic_monotone_layer01_L": true,
+    "P1_ic_monotone_layer12_L": true,
+    "P1_ic_layer0_positive_L": true,
+    "P1_ic_values_L": [
+      0.6931471805599458,
+      0.0,
+      0.0
+    ],
+    "P1_ic_monotone_layer01_R": true,
+    "P1_ic_monotone_layer12_R": true,
+    "P1_ic_layer0_positive_R": true,
+    "P1_ic_values_R": [
+      0.6931471805599456,
+      2.220446049250313e-16,
+      0.0
+    ],
+    "P1_pass": true,
+    "P2_p_L0": 0.5,
+    "P2_p_R0": 0.49999999999999994,
+    "P2_shannon_layer0": 0.6931471805579452,
+    "P2_cost_near_log2_layer0": true,
+    "P2_p_L1": 0.4999999999999999,
+    "P2_p_R1": 0.5000000000000001,
+    "P2_shannon_layer1": 0.6931471805579453,
+    "P2_cost_near_log2_layer1": true,
+    "P2_log2_reference": 0.6931471805599453,
+    "P2_pass": true
+  },
+  "negative": {
+    "P3_z3_weyl_mera_monotonicity_unsat": true,
+    "P3_z3_result": "unsat",
+    "N1_z3_chirality_distinguishes_lr_unsat": true,
+    "N1_z3_result": "unsat"
+  },
+  "boundary": {
+    "B1_plain_ic_values": [
+      1.3862943611198906,
+      0.6931471805599453,
+      0.0
+    ],
+    "B1_plain_monotone_01": true,
+    "B1_plain_monotone_12": true,
+    "B1_plain_ic0_positive": true,
+    "B1_projectors_produce_different_states": true,
+    "B1_pass": true,
+    "B2_chirality_cost_per_layer": {
+      "layer_0": {
+        "layer": 0,
+        "p_L": 0.5,
+        "p_R": 0.49999999999999994,
+        "shannon": 0.6931471805579452,
+        "near_log2": true
+      },
+      "layer_1": {
+        "layer": 1,
+        "p_L": 0.4999999999999999,
+        "p_R": 0.5000000000000001,
+        "shannon": 0.6931471805579453,
+        "near_log2": true
+      }
+    },
+    "B2_cost_at_every_layer": true,
+    "B2_log2_ref": 0.6931471805599453,
+    "B2_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 19,
+    "total_bool_count": 19
+  },
+  "divergence_log": [
+    "classical_baseline: coarse-graining is QR-isometry, not optimised MERA tensor",
+    "Weyl chirality projector \u03b3 = Z\u2297Z is a classical Z\u2082 labeling, not spin-1/2 Weyl spinor",
+    "log(2) chirality cost is a Shannon entropy signal, not a genuine Z\u2082 gauge charge",
+    "I_c monotonicity follows from data-processing inequality (classical), not holographic bound",
+    "chirality cost \u2248 log(2) is verified up to finite-state tolerance (\u00b10.35); not exact",
+    "UNSAT proofs are algebraic over real-valued proxies; not full quantum proof"
+  ]
+}

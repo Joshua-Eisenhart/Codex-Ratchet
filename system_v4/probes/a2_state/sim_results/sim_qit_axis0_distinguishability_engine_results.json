@@ -1,0 +1,348 @@
+{
+  "name": "sim_qit_axis0_distinguishability_engine",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "trace distance \u2016\u03c1-\u03c3\u2016\u2081 via torch.linalg.eigvalsh; autograd \u2202D/\u2202\u03c1 (sensitivity of distinguishability to state); data processing inequality numeric verification \u2014 load-bearing computation layer"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: D > 1 (upper bound violation) and UNSAT: D < 0 (non-negativity); also D=0 AND \u03c1\u2260\u03c3 is UNSAT under identity axiom \u2014 load-bearing proof layer"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: for diagonal matrices p=diag(p1,p2), q=diag(q1,q2): D=(1/2)(|p1-q1|+|p2-q2|) = classical total variation; verify equals trace distance \u2014 load-bearing symbolic layer"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "density matrix as Bloch vector r in Cl(3,0): \u03c1=(I+r\u00b7\u03c3)/2; D(\u03c1,\u03c3)=|r1-r2|/2 (half Bloch distance); Axis 0 gradient = direction in Bloch sphere where distinguishability increases \u2014 load-bearing geometry"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "space of density matrices as SPD manifold; geodesic between two density matrices; verify geodesic length agrees with Riemannian distance; manifold structure confirms density matrices form a metric space \u2014 load-bearing manifold layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "QIT-Axis0 correspondence graph: nodes {trace_distance, total_variation, I_c, Axis0, data_processing}; edges = equivalence/bounds; verify all QIT concepts connected to Axis0 \u2014 load-bearing structure layer"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_trace_distance_bounds_and_values": {
+      "zero_one_orthogonal": {
+        "D": 1.0,
+        "in_01": true,
+        "matches_expected": true,
+        "ok": true
+      },
+      "identical": {
+        "D": 0.0,
+        "in_01": true,
+        "matches_expected": true,
+        "ok": true
+      },
+      "zero_mixed": {
+        "D": 0.5,
+        "in_01": true,
+        "matches_expected": true,
+        "ok": true
+      },
+      "plus_zero": {
+        "D": 0.70710678,
+        "in_01": true,
+        "matches_expected": true,
+        "ok": true
+      },
+      "pass": true
+    },
+    "P2_classical_total_variation_equals_trace_distance": {
+      "test_cases": [
+        {
+          "tv": 0.4,
+          "td": 0.4,
+          "match": true
+        },
+        {
+          "tv": 0.4,
+          "td": 0.4,
+          "match": true
+        },
+        {
+          "tv": 0.0,
+          "td": 0.0,
+          "match": true
+        }
+      ],
+      "pass": true
+    },
+    "P3_Ic_monotone_minimized_at_axis0": {
+      "D_vals": [
+        0.0,
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        0.99
+      ],
+      "I_c_vals": [
+        -0.0,
+        0.01005,
+        0.094311,
+        0.287682,
+        0.673345,
+        1.660731,
+        3.917036
+      ],
+      "monotone_increasing": true,
+      "minimum_at_D_zero": true,
+      "pass": true
+    },
+    "P4_data_processing_inequality": {
+      "tests": [
+        {
+          "p": 0.05,
+          "D_before": 0.743303,
+          "D_after": 0.706138,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.05,
+          "D_before": 1.0,
+          "D_after": 0.95,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.05,
+          "D_before": 0.282843,
+          "D_after": 0.268701,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.1,
+          "D_before": 0.743303,
+          "D_after": 0.668973,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.1,
+          "D_before": 1.0,
+          "D_after": 0.9,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.1,
+          "D_before": 0.282843,
+          "D_after": 0.254558,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.2,
+          "D_before": 0.743303,
+          "D_after": 0.594643,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.2,
+          "D_before": 1.0,
+          "D_after": 0.8,
+          "dpi_holds": true
+        },
+        {
+          "p": 0.2,
+          "D_before": 0.282843,
+          "D_after": 0.226274,
+          "dpi_holds": true
+        }
+      ],
+      "all_dpi_holds": true,
+      "pass": true
+    },
+    "P5_bloch_vector_cl3_trace_distance": {
+      "pairs": [
+        {
+          "pair": "zero_one",
+          "D_cl3": 1.0,
+          "expected": 1.0,
+          "ok": true
+        },
+        {
+          "pair": "zero_plus",
+          "D_cl3": 0.70710678,
+          "expected": 0.70710678,
+          "ok": true
+        },
+        {
+          "pair": "identical",
+          "D_cl3": 0.0,
+          "expected": 0.0,
+          "ok": true
+        }
+      ],
+      "pass": true
+    },
+    "P6_axis0_gradient_direction_in_bloch_sphere": {
+      "grad_D_at_r_test": [
+        0.252538,
+        0.151523,
+        -0.404061
+      ],
+      "alignment_with_radial_direction": 1.0,
+      "is_radially_aligned": true,
+      "pass": true
+    },
+    "P7_geomstats_spd_geodesic_density_matrices": {
+      "dist_rho_sigma": 6.253033,
+      "dist_rho_mid": 3.126516,
+      "dist_mid_sigma": 3.126516,
+      "geodesic_additive": true,
+      "pass": true
+    },
+    "P8_qit_axis0_correspondence_graph_connected": {
+      "node_count": 7,
+      "edge_count": 6,
+      "axis0_reachable_from_total_variation": true,
+      "axis0_reachable_from_bloch": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_D_exceeds_1": {
+      "check_D_gt1_with_axiom_D_le1": "unsat",
+      "is_unsat": true,
+      "interpretation": "D > 1 AND D \u2264 1 is UNSAT \u2014 trace distance upper bound is structural",
+      "pass": true
+    },
+    "N2_z3_unsat_D_negative": {
+      "check_D_lt0_with_axiom_D_ge0": "unsat",
+      "is_unsat": true,
+      "interpretation": "D < 0 AND D \u2265 0 is UNSAT \u2014 trace distance non-negativity is structural",
+      "pass": true
+    },
+    "N3_z3_unsat_zero_distance_unequal_states": {
+      "check": "unsat",
+      "is_unsat": true,
+      "interpretation": "D=0 AND x\u2260y AND D\u2265|x-y| is UNSAT \u2014 zero distance forces identical states",
+      "pass": true
+    },
+    "N4_non_cptp_map_can_increase_distance": {
+      "D_original": 0.743303,
+      "D_after_bad_channel": 0.860233,
+      "dpi_violated": true,
+      "confirms_cptp_required_for_dpi": true,
+      "pass": true
+    },
+    "N5_wrong_total_variation_formula_rejected": {
+      "correct_tv": 0.4,
+      "wrong_tv": 0.8,
+      "differ": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_orthogonal_states_max_distance": {
+      "D": 1.0,
+      "is_one": true,
+      "pass": true
+    },
+    "B2_identical_states_zero_distance": {
+      "D": 0.0,
+      "is_zero": true,
+      "pass": true
+    },
+    "B3_Ic_diverges_at_D_one": {
+      "D": 0.9999,
+      "I_c": 8.5172,
+      "large_positive": true,
+      "pass": true
+    },
+    "B4_cl3_pure_states_unit_bloch_vectors": {
+      "states": [
+        {
+          "name": "north_pole",
+          "magnitude": 1.0,
+          "is_unit": true
+        },
+        {
+          "name": "south_pole",
+          "magnitude": 1.0,
+          "is_unit": true
+        },
+        {
+          "name": "equator_x",
+          "magnitude": 1.0,
+          "is_unit": true
+        },
+        {
+          "name": "equator_y",
+          "magnitude": 1.0,
+          "is_unit": true
+        }
+      ],
+      "all_unit_vectors": true,
+      "pass": true
+    },
+    "B5_geomstats_geodesic_endpoints": {
+      "start_matches_rho": true,
+      "end_matches_sigma": true,
+      "pass": true
+    },
+    "B6_autograd_trace_distance_sensitivity": {
+      "D_base": 0.316228,
+      "grad_norm": 0.707107,
+      "sensitive_to_rho": true,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

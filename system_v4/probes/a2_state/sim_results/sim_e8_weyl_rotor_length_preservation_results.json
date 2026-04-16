@@ -1,0 +1,180 @@
+{
+  "name": "sim_e8_weyl_rotor_length_preservation",
+  "classification": "classical_baseline",
+  "claim": "SO(8)/Weyl rotor action on E8 roots preserves the length\u00b2=2 constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.matrix_exp used to generate SO(8) rotations; torch tensor operations verify length\u00b2 preservation for E8 roots"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT check: negation of 'orthogonal R preserves length\u00b2=2' is unsatisfiable \u2014 proves tautology structurally"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy symbolic algebra confirms |Rr|\u00b2 = r^T R^T R r = r^T r = 2 for any orthogonal R and vector with |r|\u00b2=2"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_so8_length_preservation": {
+      "description": "SO(8) rotation preserves length\u00b2=2 for 20 E8 roots",
+      "pass": true,
+      "details": [
+        {
+          "seed": 0,
+          "max_err": 8.881784197001252e-15,
+          "pass": true
+        },
+        {
+          "seed": 1,
+          "max_err": 5.329070518200751e-15,
+          "pass": true
+        },
+        {
+          "seed": 2,
+          "max_err": 5.329070518200751e-15,
+          "pass": true
+        },
+        {
+          "seed": 3,
+          "max_err": 2.6645352591003757e-15,
+          "pass": true
+        },
+        {
+          "seed": 4,
+          "max_err": 2.6645352591003757e-15,
+          "pass": true
+        }
+      ]
+    },
+    "P2_inner_product_preservation": {
+      "description": "Inner product \u27e8Rr\u2081,Rr\u2082\u27e9 = \u27e8r\u2081,r\u2082\u27e9 for SO(8) rotation",
+      "pass": true,
+      "details": [
+        {
+          "seed": 0,
+          "ip_before": 0.0,
+          "ip_after": -2.983724378680108e-16,
+          "err": 2.983724378680108e-16,
+          "pass": true
+        },
+        {
+          "seed": 1,
+          "ip_before": 0.0,
+          "ip_after": -1.887379141862766e-15,
+          "err": 1.887379141862766e-15,
+          "pass": true
+        },
+        {
+          "seed": 2,
+          "ip_before": 0.0,
+          "ip_after": 1.1102230246251565e-16,
+          "err": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "seed": 3,
+          "ip_before": 0.0,
+          "ip_after": 3.3306690738754696e-16,
+          "err": 3.3306690738754696e-16,
+          "pass": true
+        },
+        {
+          "seed": 4,
+          "ip_before": 0.0,
+          "ip_after": -1.6653345369377348e-15,
+          "err": 1.6653345369377348e-15,
+          "pass": true
+        }
+      ]
+    },
+    "P3_z3_orthogonal_tautology": {
+      "description": "z3 UNSAT on: \u00ac(|Rr|\u00b2=2) given ortho R + |r|\u00b2=2 \u2014 confirms tautology",
+      "z3_result": "unsat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_scaling_breaks_length": {
+      "description": "z3 UNSAT: R=2I with |r|\u00b2=2 cannot give |Rr|\u00b2=2 \u2014 non-orthogonal breaks constraint",
+      "z3_result": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_identity_rotation": {
+      "description": "Identity SO(8) matrix leaves all 20 E8 roots unchanged",
+      "max_deviation": 0.0,
+      "pass": true
+    },
+    "B2_sympy_symbolic": {
+      "description": "sympy confirms |Rr|\u00b2 = r^T R^T R r = |r|\u00b2 = 2 for orthogonal R",
+      "expression": "2",
+      "pass": true
+    }
+  },
+  "all_pass": true
+}

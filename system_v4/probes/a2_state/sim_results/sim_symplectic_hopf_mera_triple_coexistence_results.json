@@ -1,0 +1,150 @@
+{
+  "name": "sim_symplectic_hopf_mera_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "rho construction and trace check via torch"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph layer not needed for triple coexistence"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: H_symp=0 AND Q_SHM>0 impossible"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for product-zero constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic a*b*c with factor=0 gives 0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "spinors deferred to canonical sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "manifold metrics deferred to topology sim"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariance deferred to canonical sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure not needed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph not needed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex deferred to topology sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence deferred to topology sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_all_active_nonzero": {
+      "Q_SHM": 0.06547139042668398,
+      "H_symp": 1.3862943611198906,
+      "H_hopf": 0.34657359027997264,
+      "I_c": 0.13627012117740755,
+      "pass": true
+    },
+    "P2_symp_inactive_zero": {
+      "H_symp": 0.0,
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "P3_hopf_inactive_zero": {
+      "H_hopf": 0.0,
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "P4_mera_inactive_zero": {
+      "I_c": 0.0,
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "P5_all_inactive_zero": {
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "P6_z3_unsat_triple_zero": {
+      "z3_result": "UNSAT",
+      "pass": true
+    },
+    "P7_sympy_triple_product_zero": {
+      "pass": true
+    },
+    "P8_pytorch_rho_shm_trace": {
+      "pass": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_symp_only_gives_zero": {
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "N1_hopf_only_gives_zero": {
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "N1_mera_only_gives_zero": {
+      "Q_SHM": 0.0,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_shm_shape_64x64": {
+      "shape": [
+        64,
+        64
+      ],
+      "pass": true
+    },
+    "B2_product_commutes": {
+      "Q_SHM_abc": 0.06547139042668398,
+      "Q_SHM_alt": 0.06547139042668398,
+      "pass": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

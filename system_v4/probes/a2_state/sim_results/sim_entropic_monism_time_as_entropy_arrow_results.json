@@ -1,0 +1,294 @@
+{
+  "name": "sim_entropic_monism_time_as_entropy_arrow",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "simulate entropy production dS/dt for irreversible vs equilibrium systems; autograd \u2202(dS/dt)/\u2202t to find where entropy production accelerates \u2014 load-bearing for time-as-entropy-rate claim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: dS/dt > 0 AND perfect time reversibility; entropy production AND time symmetry structurally incompatible \u2014 load-bearing proof layer"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: dS/dt = \u03a3_i \u03c3_i \u2265 0; verify sum=0 iff all \u03c3_i=0 iff equilibrium; Second Law as algebraic identity \u2014 load-bearing symbolic layer"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "time direction t = \u2207S / |\u2207S| as unit grade-1 vector in Cl(3,0); time stops when \u2207S = 0; verify grade-1 extraction \u2014 load-bearing geometry layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "time-entropy DAG: nodes {Big_Bang, expansion, heat_death, entropy_production, time_arrow}; verify topological sort matches entropy ordering \u2014 load-bearing structure layer"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this entropic monism / QIT engine probe; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_irreversible_process_forward_time": {
+      "t_vals": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0
+      ],
+      "S_vals": [
+        0.0,
+        0.4055,
+        0.6931,
+        1.0986,
+        1.7918,
+        2.3979
+      ],
+      "dS_dt_vals": [
+        1.0,
+        0.6667,
+        0.5,
+        0.3333,
+        0.1667,
+        0.0909
+      ],
+      "S_strictly_increasing": true,
+      "all_rates_positive": true,
+      "pass": true
+    },
+    "P2_reversible_no_time_arrow": {
+      "S_values_constant": true,
+      "dS_dt_all_zero": true,
+      "no_preferred_direction": true,
+      "pass": true
+    },
+    "P3_time_rate_proportional_to_entropy_production": {
+      "k_fast": 2.0,
+      "k_slow": 0.5,
+      "dS_dt_fast": 1.0,
+      "dS_dt_slow": 0.25,
+      "fast_rate_gt_slow": true,
+      "ratio_matches_k_ratio": true,
+      "pass": true
+    },
+    "P4_axis0_time_direction_cl3": {
+      "dS_dt": 0.5,
+      "time_vector_e1_component": 1.0,
+      "is_unit_vector": true,
+      "time_is_grade1_vector": true,
+      "pass": true
+    },
+    "P5_dark_energy_as_entropy_increase_expansion": {
+      "t_vals": [
+        0.1,
+        1.0,
+        5.0,
+        10.0,
+        50.0,
+        100.0
+      ],
+      "S_vals": [
+        1.0953,
+        1.6931,
+        2.7918,
+        3.3979,
+        4.9318,
+        5.6151
+      ],
+      "scale_factor_a": [
+        1.0,
+        1.5458,
+        2.5488,
+        3.1022,
+        4.5027,
+        5.1265
+      ],
+      "scale_factor_increasing": true,
+      "dS_dt_all_positive_expansion": true,
+      "pass": true
+    },
+    "P6_pytorch_autograd_entropy_rate": {
+      "dS_dt_autograd": 0.5,
+      "expected": 0.5,
+      "matches": true,
+      "positive_rate_confirms_time_arrow": true,
+      "pass": true
+    },
+    "P7_time_deceleration_second_entropy_derivative": {
+      "d2S_dt2_autograd": -0.25,
+      "expected": -0.25,
+      "matches": true,
+      "negative_means_decelerating_entropy_rate": true,
+      "pass": true
+    },
+    "P8_sympy_entropy_production_sum": {
+      "sum_with_positive_terms": 1.5,
+      "sum_all_zero": 0.0,
+      "sum_positive_when_any_nonzero": true,
+      "sum_zero_only_at_equilibrium": true,
+      "second_law_algebraic": true,
+      "pass": true
+    },
+    "P9_time_entropy_dag_topological_order": {
+      "topo_order_labels": [
+        "Big_Bang",
+        "early_universe",
+        "star_formation",
+        "present",
+        "heat_death"
+      ],
+      "entropy_order": [
+        0.0,
+        1.0,
+        2.0,
+        3.0,
+        100.0
+      ],
+      "entropy_nondecreasing": true,
+      "dag_consistent_with_time_arrow": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_entropy_production_and_time_symmetry": {
+      "check": "unsat",
+      "is_unsat": true,
+      "interpretation": "dS/dt>0 AND time_reversible is UNSAT \u2014 Second Law breaks time symmetry",
+      "pass": true
+    },
+    "N2_zero_entropy_production_no_time_arrow": {
+      "dS_dt": 0.0,
+      "time_vector_magnitude": 0.0,
+      "no_time_direction": true,
+      "pass": true
+    },
+    "N3_time_reversed_entropy_decreases_unphysical": {
+      "S_back": [
+        1.7918,
+        1.6094,
+        1.3863,
+        1.0986,
+        0.6931
+      ],
+      "entropy_decreasing_in_reverse": true,
+      "confirms_no_background_time": true,
+      "pass": true
+    },
+    "N4_sympy_entropy_production_cannot_be_negative": {
+      "can_be_negative": "False",
+      "expected_false": true,
+      "second_law_holds": true,
+      "pass": true
+    },
+    "N5_reversed_dag_contradicts_time_arrow": {
+      "entropy_rev_order": [
+        100.0,
+        3.0,
+        0.0
+      ],
+      "entropy_decreasing": true,
+      "confirms_time_arrow_is_entropy_increase": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_big_bang_max_entropy_production": {
+      "dS_dt_big_bang": 1.0,
+      "dS_dt_present": 0.5,
+      "big_bang_rate_larger": true,
+      "pass": true
+    },
+    "B2_heat_death_time_stops": {
+      "dS_dt_heat_death": 9.99999999999e-13,
+      "rate_near_zero": true,
+      "pass": true
+    },
+    "B3_cl3_time_vector_zero_at_equilibrium": {
+      "time_vector_magnitude": 0.0,
+      "is_zero": true,
+      "time_stops_at_equilibrium": true,
+      "pass": true
+    },
+    "B4_pytorch_rate_at_t_near_zero": {
+      "dS_dt_near_zero": 0.99999999,
+      "expected_near_1": true,
+      "pass": true
+    },
+    "B5_z3_equilibrium_time_symmetric": {
+      "check": "sat",
+      "is_sat": true,
+      "interpretation": "at dS/dt=0, both time directions satisfy constraints = no preferred direction",
+      "pass": true
+    },
+    "B6_time_ordering_equals_entropy_ordering": {
+      "time_order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "entropy_order": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "orderings_identical": true,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

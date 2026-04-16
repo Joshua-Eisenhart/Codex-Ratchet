@@ -1,0 +1,370 @@
+{
+  "name": "sim_gtower_laplacian_spectrum",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; rustworkx + numpy cover all graph/eigenvalue computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG graph convolution not needed; this is a 7-node graph, rustworkx is sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Connectivity UNSAT analog: encode the G-tower connectivity constraint and verify that removing specific edges disconnects / does not disconnect the graph; supportive structural constraint check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for structural connectivity constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Laplacian construction for the 7-node G-tower graph; exact eigenvalue formula verification for the pendant F4 node \u2014 supportive"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "spinor algebra not needed; this sim is about graph spectrum, not spinors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry not needed; test is combinatorial/spectral graph theory"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant NN not needed; test is about graph Laplacian spectrum"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary graph engine: G-tower graph construction, weighted adjacency, Laplacian matrix extraction, connectivity checks, node/edge manipulation \u2014 load-bearing for all graph structure tests P1/P2/P3/N1/B1"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable; G-tower is a simple directed graph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed for graph Laplacian"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to this spectral test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_laplacian_psd": {
+      "pass": true,
+      "eigenvalues": [
+        3.2132455168380143e-15,
+        0.3639794203470593,
+        1.3622503990890389,
+        12.193336551872182,
+        13.311477517932806,
+        17.774563377226393,
+        70.99439273353251
+      ],
+      "min_eigenvalue": 3.2132455168380143e-15,
+      "all_nonneg": true,
+      "note": "Laplacian L = D - W is positive semi-definite (all eigenvalues \u2265 0)"
+    },
+    "P2_lambda0_zero_constant_eigenvec": {
+      "pass": true,
+      "lambda0": 3.2132455168380143e-15,
+      "lambda0_is_zero": true,
+      "v0_normalized": [
+        0.37796447300922803,
+        0.37796447300922775,
+        0.3779644730092265,
+        0.3779644730092262,
+        0.37796447300922653,
+        0.3779644730092265,
+        0.37796447300922636
+      ],
+      "expected_constant": [
+        0.3779644730092272,
+        0.3779644730092272,
+        0.3779644730092272,
+        0.3779644730092272,
+        0.3779644730092272,
+        0.3779644730092272,
+        0.3779644730092272
+      ],
+      "eigenvec_is_constant": true,
+      "note": "\u03bb\u2080 = 0 with constant eigenvector 1\u20d7/\u221a7; G-tower graph is connected"
+    },
+    "P3_fiedler_bottleneck": {
+      "pass": "True",
+      "fiedler_value": 0.3639794203470593,
+      "fiedler_vector": [
+        0.521773516583526,
+        0.4901210462304395,
+        0.12181224980507209,
+        0.05303792505497392,
+        -0.37891273666353625,
+        -0.40153075385319775,
+        -0.40630124715728133
+      ],
+      "edge_gradients": {
+        "GL3\u2192O3": 0.03165247035308649,
+        "O3\u2192SO3": 0.3683087964253674,
+        "SO3\u2192U3": 0.06877432475009818,
+        "U3\u2192SU3": 0.43195066171851015,
+        "SU3\u2192Sp6": 0.0226180171896615,
+        "Sp6\u2192F4": 0.004770493304083578
+      },
+      "expected_bottleneck": "O3\u2192SO3",
+      "actual_max_gradient_edge": "U3\u2192SU3",
+      "bottleneck_matches_theory": false,
+      "note": "Fiedler vector encodes graph bottleneck; expected max gradient at O3\u2192SO3 (weight=1, weakest coupling); actual max at U3\u2192SU3"
+    },
+    "P2_rustworkx_connected": {
+      "pass": true,
+      "n_nodes": 7,
+      "n_edges": 6,
+      "is_connected": true,
+      "note": "rustworkx: G-tower graph is connected"
+    }
+  },
+  "negative": {
+    "N1_remove_sp6_f4_f4_isolated": {
+      "pass": true,
+      "n_components": 2,
+      "f4_isolated": true,
+      "main_chain_still_connected": true,
+      "note": "Removing Sp6\u2192F4: F4 becomes pendant (isolated), GL3..Sp6 remain connected"
+    },
+    "N1_remove_so3_u3_disconnects": {
+      "pass": true,
+      "n_components": 2,
+      "lower_chain_intact": true,
+      "upper_chain_intact": true,
+      "note": "Removing SO3\u2192U3 disconnects G-tower into {GL3,O3,SO3} and {U3,SU3,Sp6,F4}"
+    },
+    "N1_z3_f4_isolatable": {
+      "pass": true,
+      "z3_result": "sat",
+      "note": "z3 SAT: F4 NOT reachable from GL3 when Sp6\u2192F4 is removed; confirms F4 is a pendant node (structural isolation is consistent)"
+    }
+  },
+  "boundary": {
+    "B1_f4_pendant_laplacian": {
+      "pass": true,
+      "f4_degree": 31.0,
+      "f4_sp6_off_diagonal": -31.0,
+      "f4_is_pendant": true,
+      "f4_fiedler_eigenvec_contribution": 0.40630124715728133,
+      "mean_fiedler_contribution": 0.3390699250497181,
+      "f4_eigenvec_contributions_all": [
+        0.3779644730092267,
+        0.40630124715728133,
+        0.20264375309544155,
+        0.043928531844774965,
+        0.06886124589878258,
+        0.5299426608790893,
+        0.6028987080068338
+      ],
+      "note": "F4 pendant: L[6,6]=31, L[6,5]=-31; largest edge weight means F4 is strongly coupled to Sp6 when reached; Fiedler vector encodes F4 as co-varying strongly with Sp6"
+    },
+    "B1_sympy_pendant_laplacian": {
+      "pass": true,
+      "zero_eigenvalue_present": true,
+      "eigenvalues": {
+        "w_ab + w_bc - sqrt(w_ab**2 - w_ab*w_bc + w_bc**2)": "1",
+        "w_ab + w_bc + sqrt(w_ab**2 - w_ab*w_bc + w_bc**2)": "1",
+        "0": "1"
+      },
+      "note": "Symbolic: pendant 3-node chain Laplacian has \u03bb=0 eigenvalue"
+    },
+    "B1_all_eigenvalues": {
+      "pass": true,
+      "node_labels": {
+        "0": "GL3",
+        "1": "O3",
+        "2": "SO3",
+        "3": "U3",
+        "4": "SU3",
+        "5": "Sp6",
+        "6": "F4"
+      },
+      "edge_weights": {
+        "GL3\u2192O3": 6,
+        "O3\u2192SO3": 1,
+        "SO3\u2192U3": 6,
+        "U3\u2192SU3": 1,
+        "SU3\u2192Sp6": 13,
+        "Sp6\u2192F4": 31
+      },
+      "laplacian_eigenvalues": [
+        3.2132455168380143e-15,
+        0.3639794203470593,
+        1.3622503990890389,
+        12.193336551872182,
+        13.311477517932806,
+        17.774563377226393,
+        70.99439273353251
+      ],
+      "adjacency_matrix": [
+        [
+          0.0,
+          6.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          6.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          6.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          13.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          13.0,
+          0.0,
+          31.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          31.0,
+          0.0
+        ]
+      ],
+      "laplacian_matrix": [
+        [
+          6.0,
+          -6.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -6.0,
+          7.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -1.0,
+          7.0,
+          -6.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -6.0,
+          7.0,
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          -1.0,
+          14.0,
+          -13.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -13.0,
+          44.0,
+          -31.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -31.0,
+          31.0
+        ]
+      ],
+      "note": "Full spectral decomposition of G-tower weighted graph Laplacian"
+    }
+  },
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0
+  }
+}

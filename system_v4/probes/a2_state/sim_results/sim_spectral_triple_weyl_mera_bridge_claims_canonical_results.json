@@ -1,0 +1,146 @@
+{
+  "name": "sim_spectral_triple_weyl_mera_bridge_claims_canonical",
+  "classification": "canonical",
+  "divergence_log": "Bridge claims: rho_STW valid (64\u00d764, trace=1, PSD); r(Q_STW, gap) > 0.99 with fixed I_c (proportional by construction); Axis 0 gradient: dephasing MERA gives input_Ic > final_Ic, 20/20 seeds; z3 UNSAT: I_c=0 with Q_STW>0 impossible; sympy: product-zero collapse analytical proof; pytorch: rho_STW trace validated.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct rho_STW via torch.outer; validate trace via pytorch (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in bridge claims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Ic=0 (product state) with Q_STW>0 impossible \u2014 entanglement required (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for separability UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Pearson r: well-defined iff denominator nonzero; Q=a*b*c zero-factor collapse (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor in bridge canonical"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold in bridge claims"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal in bridge"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence not in bridge scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_STW_valid": {
+      "trace": 1.0,
+      "min_eval": -4.638144549387436e-16,
+      "shape": [
+        64,
+        64
+      ],
+      "passed": true
+    },
+    "P2_pearson_r_Q_vs_gap": {
+      "Ic_fixed": -0.589624307770628,
+      "r": -0.9999999999999997,
+      "passed": true
+    },
+    "P3_axis0_gradient_input_gt_final": {
+      "seeds_confirmed": 20,
+      "total": 20,
+      "passed": true
+    },
+    "P4_pytorch_rho_trace": {
+      "trace": 1.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Ic0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "c=0": "0",
+      "passed": true
+    },
+    "N3_high_dephasing_steeper_gradient": {
+      "diffs": [
+        1.3823,
+        1.3861,
+        1.3861,
+        1.3826,
+        1.3862
+      ],
+      "note": "high eps=0.9 dephasing produces steeper Axis 0 gradient than standard eps=0.3",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_hermitian": {
+      "max_err": 1.4304896245381992e-17,
+      "passed": true
+    },
+    "B2_rho_shape_64x64": {
+      "shape": [
+        64,
+        64
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

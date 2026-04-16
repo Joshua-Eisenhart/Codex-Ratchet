@@ -1,0 +1,163 @@
+{
+  "name": "sim_mutual_information_monotone_canonical",
+  "description": "Canonical: I(A;B)>=0 always (z3+cvc5+pytorch); I_c<=I(A;B) always; I(A;B)=2*S(A) for pure states; boundary Bell and product state checks. Step 6 bridge prerequisites established.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: random density matrix generation via Ginibre ensemble, partial trace via einsum, von Neumann entropy via eigvalsh, Schmidt decomposition for pure state identity I(A;B)=2*S(A), Bell state boundary checks."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: P3 UNSAT proof that I(A;B)<0 is structurally impossible (strong subadditivity axiom encoded as linear constraint); N1 UNSAT proof that I_c > I(A;B) forces S(B)<0 which contradicts S(B)>=0."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: N2 independent cross-check of I(A;B)>=0 via strong subadditivity in QF_LRA logic, confirming z3 result with separate solver."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic derivation of I(A;B) = I_c + S(B) relation, and pure-state identity I(A;B) = 2*S(A) when S(AB)=0."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_MI_nonnegative_random_sweep": {
+      "pass": true,
+      "n_trials": 20,
+      "violations": [],
+      "note": "I(A;B) = S(A)+S(B)-S(AB) >= 0 for 20 random 4x4 density matrices"
+    },
+    "P2_pure_state_MI_equals_2SA": {
+      "pass": true,
+      "cases": {
+        "bell_state": {
+          "S_AB": 8.289328539239056e-11,
+          "S_A": 0.6931471805599454,
+          "I_AB": 1.3862943610369975,
+          "expected_2SA": 1.3862943611198908,
+          "diff": 8.289324782140284e-11,
+          "pass": true
+        },
+        "partial_entangle_0.8_0.2": {
+          "S_AB": 8.28931743700881e-11,
+          "S_A": 0.500402423538188,
+          "I_AB": 1.0008048469934827,
+          "expected_2SA": 1.000804847076376,
+          "diff": 8.289324782140284e-11,
+          "pass": true
+        },
+        "product_00": {
+          "S_AB": 8.289306334778563e-11,
+          "S_A": 2.7631021115928546e-11,
+          "I_AB": -2.7631021115928543e-11,
+          "expected_2SA": 5.526204223185709e-11,
+          "diff": 8.289306334778563e-11,
+          "pass": true
+        }
+      },
+      "note": "For pure |psi>_AB: S(AB)=0 and I(A;B)=2*S(A) via Schmidt symmetry"
+    },
+    "P3_z3_MI_negative_impossible": {
+      "pass": true,
+      "z3_status": "unsat",
+      "note": "UNSAT: I(A;B)<0 requires S(AB)>S(A)+S(B), which contradicts subadditivity S(A)+S(B)>=S(AB)"
+    }
+  },
+  "negative": {
+    "N1_z3_Ic_gt_MI_impossible": {
+      "pass": true,
+      "z3_status": "unsat",
+      "note": "UNSAT: I_c > I(A;B) requires S(B)<0, which contradicts entropy non-negativity S(B)>=0. Since I(A;B) = I_c + S(B) and S(B)>=0, I_c <= I(A;B) always."
+    },
+    "N2_cvc5_MI_nonnegative_crosscheck": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "cvc5 UNSAT: cross-check confirms I(A;B)<0 impossible via subadditivity"
+    }
+  },
+  "boundary": {
+    "B1_product_state_MI_zero": {
+      "pass": true,
+      "note": "Product state: I(A;B)=0, I_c=-S(B)<0 (no coherent info to transmit)",
+      "I_AB": 0.0,
+      "I_c": -0.6931471805599453,
+      "S_B": 0.6931471805599453,
+      "expected_I_c": -0.6931471805599453
+    },
+    "B2_bell_state_MI_and_Ic": {
+      "pass": true,
+      "note": "Bell state: I(A;B)=2*log(2), I_c=log(2); gap=S(B)=log(2)",
+      "I_AB": 1.3862943610369975,
+      "expected_I_AB": 1.3862943611198906,
+      "I_c": 0.6931471804770521,
+      "expected_I_c": 0.6931471805599453,
+      "diff_MI": 8.289302577679791e-11,
+      "diff_Ic": 8.289313679910038e-11
+    },
+    "B3_sympy_decomposition_identity": {
+      "pass": true,
+      "note": "sympy: I(A;B)=I_c+S(B) confirmed; pure state I(A;B)=2*S(A) confirmed",
+      "decomp_diff": "0",
+      "pure_state_MI": "2*S_A"
+    }
+  },
+  "all_pass": true
+}

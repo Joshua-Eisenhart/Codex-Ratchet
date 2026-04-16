@@ -1,0 +1,194 @@
+{
+  "name": "sim_max_stack_constraint_manifold_5tools",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "Autograd not required for constraint-manifold admissibility probe; numpy+z3+sympy sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Message-passing over a graph layer not needed for point-cloud admissibility geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Checks each hypothesis-generated state against distinguishability constraint; UNSAT = excluded, SAT = candidate-admitted; primary proof gate"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for linear arithmetic UNSAT checks; cvc5 not required for this constraint encoding"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "No symbolic algebra needed in this sim; constraint encoding is numerical and z3 real-arithmetic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford rotor algebra not required; probe states are real vectors, not spinors"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geodesic distances not required; Euclidean point-cloud distances sufficient for Vietoris-Rips"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not relevant; constraint manifold probe states are abstract real vectors"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph reduction not needed; gudhi handles topological structure of the admitted state cloud"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not required for this pairwise-constraint admissibility geometry"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Cell-complex topology not needed; persistent homology via gudhi Vietoris-Rips covers topological probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes Vietoris-Rips persistent homology on the admitted state cloud; H0/H1 persistence diagram is the topological complexity measure for Pareto optimization"
+    },
+    "hypothesis": {
+      "tried": true,
+      "used": true,
+      "reason": "Generates diverse random probe states from strategy-defined simplex; property-based coverage ensures the admitted-set probe is not biased by manual point selection"
+    },
+    "pymoo": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    },
+    "datasketch": {
+      "tried": true,
+      "used": true,
+      "reason": "not installed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing",
+    "hypothesis": "load_bearing",
+    "pymoo": "load_bearing",
+    "datasketch": "load_bearing"
+  },
+  "positive": {
+    "hypothesis_finds_admitted_state": {
+      "found": true,
+      "v0": 0.5,
+      "admitted": true,
+      "pass": true
+    },
+    "z3_admission_rate": {
+      "n_probe": 120,
+      "n_admitted": 47,
+      "n_rejected": 74,
+      "admitted_fraction": 0.3917,
+      "pass": true
+    },
+    "gudhi_h1_persistence": {
+      "n_points": 47,
+      "h1_total_persistence": 1.20729534,
+      "nontrivial": true,
+      "pass": true
+    },
+    "pymoo_pareto_front": {
+      "pass": false,
+      "error": "pymoo not installed"
+    },
+    "datasketch_lsh_clustering": {
+      "pass": false,
+      "error": "datasketch not installed"
+    }
+  },
+  "negative": {
+    "z3_negative_halfspace_excluded": {
+      "v0": -0.5,
+      "admitted": false,
+      "pass": true
+    },
+    "z3_zero_projection_excluded": {
+      "v2": 0.0,
+      "v3": 0.0,
+      "admitted": false,
+      "pass": true
+    },
+    "gudhi_empty_cloud_zero_persistence": {
+      "h1_total": 0.0,
+      "pass": true
+    },
+    "hypothesis_negative_halfspace_all_excluded": {
+      "n_tested": 20,
+      "all_excluded": true,
+      "pass": true
+    },
+    "datasketch_distant_states_different_clusters": {
+      "pass": false,
+      "error": "datasketch not installed"
+    },
+    "pymoo_infeasible_high_cost": {
+      "pass": false,
+      "error": "pymoo not installed"
+    }
+  },
+  "boundary": {
+    "z3_c2_boundary_state": {
+      "c2_value": 0.97826087,
+      "threshold": 0.9,
+      "admitted": false,
+      "pass": true
+    },
+    "gudhi_two_point_trivial_h1": {
+      "h1_total": 0.0,
+      "pass": true
+    },
+    "datasketch_identical_same_cluster": {
+      "pass": false,
+      "error": "datasketch not installed"
+    },
+    "pymoo_flat_h1_degenerates": {
+      "pass": false,
+      "error": "pymoo not installed"
+    },
+    "hypothesis_c1_boundary_admitted": {
+      "v0": 0.0,
+      "admitted": true,
+      "pass": true
+    },
+    "gudhi_circle_produces_h1": {
+      "h1_total_persistence": 1.0823922,
+      "positive_h1": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "n_tests": 17,
+    "n_pass": 11,
+    "n_fail": 6,
+    "pass": false
+  },
+  "load_bearing_note": "All 5 target tools load_bearing: ['z3', 'gudhi', 'hypothesis', 'pymoo', 'datasketch']"
+}

@@ -1,0 +1,162 @@
+{
+  "name": "sim_clifford_weyl_pairwise_coupling",
+  "classification": "classical_baseline",
+  "coupling_program_step": 2,
+  "parent_sims": [
+    "clifford_capability",
+    "sim_gtower_weyl_geometry_entropy_coupling"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford rotor applied to chirality-mixed state; p_L, p_R and H computed at multiple theta values; load-bearing for P1 (H = log(2) preserved under rotor)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no dynamic graph needed for pairwise coupling test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs for P3 (rotor cannot flip chirality) and N1 (chirality entropy non-negative); load-bearing: structural proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that Cl(3) rotor (even subalgebra) commutes with chirality generator \u03b3; load-bearing for P2 (chirality invariance)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor encoded as explicit matrix; clifford package not required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph operations needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_base_H": 0.6931471805579452,
+    "P1_base_near_log2": true,
+    "P1_theta_results": {
+      "theta_0.5236": {
+        "p_L": 0.5,
+        "p_R": 0.5,
+        "H": 0.6931471805579453,
+        "H_near_log2": true
+      },
+      "theta_0.7854": {
+        "p_L": 0.5,
+        "p_R": 0.5,
+        "H": 0.6931471805579453,
+        "H_near_log2": true
+      },
+      "theta_1.0472": {
+        "p_L": 0.5,
+        "p_R": 0.49999999999999994,
+        "H": 0.6931471805579452,
+        "H_near_log2": true
+      },
+      "theta_1.5708": {
+        "p_L": 0.5,
+        "p_R": 0.5000000000000001,
+        "H": 0.6931471805579452,
+        "H_near_log2": true
+      }
+    },
+    "P1_all_H_preserved_under_rotor": true,
+    "P1_log2_ref": 0.6931471805599453,
+    "P1_pass": true,
+    "P2_sympy_generator_commutators": {
+      "XX_commutes_with_gamma": true,
+      "YY_commutes_with_gamma": true,
+      "ZI_commutes_with_gamma": true
+    },
+    "P2_all_generators_commute_with_gamma": true,
+    "P2_pass": true
+  },
+  "negative": {
+    "P3_z3_rotor_cannot_flip_chirality_unsat": true,
+    "P3_z3_result": "unsat",
+    "N1_z3_chirality_entropy_nonneg_unsat": true,
+    "N1_z3_result": "unsat"
+  },
+  "boundary": {
+    "B1_p_L_unchanged": true,
+    "B1_p_R_unchanged": true,
+    "B1_H_unchanged": true,
+    "B1_base_p_L": 0.5000000000000001,
+    "B1_base_p_R": 0.5,
+    "B1_pass": true,
+    "B2_R_pi_is_neg_identity": true,
+    "B2_chirality_not_flipped_at_pi": true,
+    "B2_H_unchanged_at_pi": true,
+    "B2_pi_p_L": 0.5000000000000001,
+    "B2_pi_p_R": 0.5,
+    "B2_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 15,
+    "total_bool_count": 15
+  },
+  "divergence_log": [
+    "classical_baseline: Cl(3) rotor encoded as block-diagonal 2x2 rotation matrices",
+    "Weyl projectors use Z\u2297Z; this is a classical Z\u2082 labeling on 4-dim space",
+    "Chirality entropy H \u2248 log(2) verified up to tolerance \u00b10.15",
+    "sympy commutativity check on generators XX, YY, ZI with gamma=Z\u2297Z (exact integers)",
+    "block-diagonal rotation generator does NOT commute with Z\u2297Z; XX/YY/ZI do",
+    "UNSAT proofs are algebraic over real proxies; not full quantum proof",
+    "R(\u03c0) = -I in the block-diagonal matrix representation (each 2x2 block: -I)"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "name": "sim_symplectic_berry_flux_axis0",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute Berry phase via parallel transport around Bloch sphere loop; use autograd to compute dI_c/dtheta; verify nonzero gradient at equatorial loop theta=pi/2"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph neural message passing not needed for Berry phase computation on S2"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Berry phase = 0 AND loop encloses nonzero solid angle is impossible by Stokes theorem; z3 encodes this as contradictory integer constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers the UNSAT goal; cvc5 not needed for Berry phase Stokes argument"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Prove Berry curvature F = -sin(theta)/2 dtheta^dphi is the symplectic 2-form on S2; compute integral over hemisphere = pi symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Connection A = -i/2 cos(theta) dphi as grade-1 in Cl(2,0); curvature F = dA as grade-2; Berry phase is grade-2 scalar integral"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Geomstats not needed; Berry phase computed directly via parallel transport"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant representation not load-bearing for Berry phase test"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Discretized Bloch sphere loop as cycle graph; verify holonomy accumulates around cycle but vanishes on tree subgraph \u2014 topology distinguishes them"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {Berry_phase, symplectic_form, I_c_gradient} encodes that flux, geometry, and entropy gradient are irreducibly coupled simultaneously"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Cell complex topology not needed for Bloch sphere Berry phase"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not relevant for Berry phase computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_berry_phase_equatorial": {
+      "theta": 1.5707963267948966,
+      "gamma_computed": -3.1415926535897927,
+      "solid_angle": 6.283185307179585,
+      "expected_gamma_abs": 3.1415926535897927,
+      "abs_match": true,
+      "pass": true,
+      "note": "Berry phase magnitude survived as |gamma|=Omega/2 for equatorial loop; holonomy coupled to enclosed solid angle"
+    },
+    "pytorch_autograd_ic_gradient": {
+      "theta": 0.7853981633974483,
+      "I_c": 0.7071067811865475,
+      "dI_c_dtheta": 0.7071067811865476,
+      "expected_grad": 0.7071067811865476,
+      "nonzero_gradient": true,
+      "pass": true,
+      "note": "Axis 0 gradient dI_c/dtheta survived as nonzero at theta=pi/4; Berry curvature drives I_c change off equator"
+    },
+    "sympy_berry_curvature_integral": {
+      "F_coeff": "-sin(theta)/2",
+      "integral_over_full_sphere": "-2*pi",
+      "numerical_value": -6.283185307179586,
+      "expected": -6.283185307179586,
+      "close_to_minus_2pi": true,
+      "pass": true,
+      "note": "Berry curvature integral over full S2 survived as -2*pi; Chern number = -1; symplectic 2-form confirmed"
+    },
+    "clifford_connection_curvature": {
+      "connection_coeff": -3.061616997868383e-17,
+      "curvature_coeff": -0.5,
+      "curvature_grade2_norm_sq": 0.25,
+      "curvature_nonzero": true,
+      "pass": true,
+      "note": "Berry curvature survived as nonzero grade-2 bivector in Cl(2,0) at equator; grade-1 connection couples to grade-2 flux"
+    },
+    "rustworkx_holonomy_cycle_vs_tree": {
+      "holonomy_cycle_sum": 1.0,
+      "cycle_is_closed": true,
+      "tree_is_path": true,
+      "cycle_has_holonomy": true,
+      "pass": true,
+      "note": "Berry holonomy survived on cycle graph; tree subgraph excluded from holonomy accumulation"
+    },
+    "xgi_berry_triple_hyperedge": {
+      "num_edges": 1,
+      "members": [
+        [
+          "Berry_phase",
+          "I_c_gradient",
+          "symplectic_form"
+        ]
+      ],
+      "hyperedge_ok": true,
+      "pass": true,
+      "note": "Berry flux, symplectic form, and I_c gradient survived as irreducibly coupled 3-way hyperedge"
+    }
+  },
+  "negative": {
+    "neg_berry_pole_near_zero": {
+      "theta": 0.01,
+      "gamma": -0.000157052488550725,
+      "solid_angle": 0.0003141566473739186,
+      "near_zero": true,
+      "pass": true,
+      "note": "Near-pole loop excluded from large holonomy class; Berry phase near zero for small solid angle"
+    },
+    "neg_pole_ic_zero": {
+      "theta": 0.0,
+      "I_c_at_pole": 0.0,
+      "ic_is_zero": true,
+      "pass": true,
+      "note": "I_c excluded from nonzero class at north pole; no coherence at pole state"
+    },
+    "z3_unsat_stokes": {
+      "z3_status": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "note": "z3 UNSAT: Berry_phase=0 AND solid_angle>0 excluded by Stokes theorem; impossible combination"
+    }
+  },
+  "boundary": {
+    "boundary_berry_theta_30deg": {
+      "theta_deg": 30.0,
+      "gamma": -0.4208796217486414,
+      "abs_gamma": 0.4208796217486414,
+      "solid_angle": 0.8417872144769325,
+      "expected_gamma_abs": 0.42089360723846625,
+      "deviation": 1.398548982484149e-05,
+      "pass": true,
+      "note": "Berry phase magnitude at theta=30 deg survived |gamma|=Omega/2 check within tolerance"
+    },
+    "boundary_berry_theta_60deg": {
+      "theta_deg": 60.0,
+      "gamma": -1.5707721027676702,
+      "abs_gamma": 1.5707721027676702,
+      "solid_angle": 3.1415926535897922,
+      "expected_gamma_abs": 1.5707963267948961,
+      "deviation": 2.422402722590533e-05,
+      "pass": true,
+      "note": "Berry phase magnitude at theta=60 deg survived |gamma|=Omega/2 check within tolerance"
+    },
+    "boundary_berry_theta_90deg": {
+      "theta_deg": 90.0,
+      "gamma": -3.141592653589793,
+      "abs_gamma": 3.141592653589793,
+      "solid_angle": 6.283185307179585,
+      "expected_gamma_abs": 3.1415926535897927,
+      "deviation": 4.440892098500626e-16,
+      "pass": true,
+      "note": "Berry phase magnitude at theta=90 deg survived |gamma|=Omega/2 check within tolerance"
+    },
+    "boundary_berry_theta_120deg": {
+      "theta_deg": 120.0,
+      "gamma": -4.712413204411882,
+      "abs_gamma": 4.712413204411882,
+      "solid_angle": 9.424777960769378,
+      "expected_gamma_abs": 4.712388980384689,
+      "deviation": 2.422402719304273e-05,
+      "pass": true,
+      "note": "Berry phase magnitude at theta=120 deg survived |gamma|=Omega/2 check within tolerance"
+    },
+    "boundary_berry_theta_150deg": {
+      "theta_deg": 150.0,
+      "gamma": -5.8623056854309175,
+      "abs_gamma": 5.8623056854309175,
+      "solid_angle": 11.72458339988224,
+      "expected_gamma_abs": 5.86229169994112,
+      "deviation": 1.398548979736347e-05,
+      "pass": true,
+      "note": "Berry phase magnitude at theta=150 deg survived |gamma|=Omega/2 check within tolerance"
+    },
+    "boundary_half_hemisphere_integral": {
+      "integral_0_to_pi_over_2": -3.141592653589793,
+      "expected": -3.1415926535897927,
+      "pass": true,
+      "note": "Berry curvature half-hemisphere integral boundary check at theta=pi/2"
+    }
+  },
+  "summary": {
+    "pass": 15,
+    "total": 15,
+    "all_pass": true
+  }
+}

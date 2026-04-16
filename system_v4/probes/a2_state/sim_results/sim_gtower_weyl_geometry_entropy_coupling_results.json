@@ -1,0 +1,183 @@
+{
+  "name": "sim_gtower_weyl_geometry_entropy_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Tensor encoding of conformal metric family and dimensional count verification; load-bearing for P3 dimensional ladder check via torch tensor shapes and Lie algebra dimension sums"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing needed; coupling test is algebraic/geometric"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guard N1: proves that Weyl connection + flat curvature + nontrivial holonomy cannot coexist \u2014 structural impossibility is load-bearing for the negative test"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic conformal factor algebra: verify that g_\u03bc\u03bd \u2192 e^{2\u03c3}g_\u03bc\u03bd preserves cosine formula (angle invariance) \u2014 load-bearing for P1"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(6) spin group algebra: verify SU(3) and SO(6) as sub-structures of Weyl Cl(6); supportive cross-check for P3"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats SO(6) manifold not needed; algebraic count suffices"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariance check not needed; Weyl coupling is conformal, not SO(3)"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this conformal geometry coupling sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not used; test is algebraic/symbolic"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to conformal/Weyl geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_weyl_conformal_angle_invariance": {
+      "pass": true,
+      "cos_theta_diff_zero": true,
+      "trace_invariant": true,
+      "cos_before": "guv/(sqrt(guu)*sqrt(gvv))",
+      "cos_after": "guv/(sqrt(guu)*sqrt(gvv))",
+      "omega_cancelled": true,
+      "note": "sympy: g_\u03bc\u03bd \u2192 \u03a9\u00b2g_\u03bc\u03bd leaves cosine angle formula invariant; conformal factor \u03a9\u00b2 cancels in numerator and denominator"
+    },
+    "P2_weyl_chirality_entropy_log2": {
+      "pass": true,
+      "entropy": 0.6931471805599453,
+      "log2": 0.6931471805599453,
+      "matches_log2": true,
+      "z2_pair": [
+        "L",
+        "R"
+      ],
+      "probabilities": [
+        0.5,
+        0.5
+      ],
+      "note": "Z\u2082 pair {L, R} with equal probability \u2192 Shannon entropy = log(2); same Rosetta constant as SU(2)\u2192SO(3) double-cover ratchet"
+    },
+    "P3_gtower_dimension_chain": {
+      "pass": true,
+      "dims_tensor": [
+        8,
+        15,
+        21
+      ],
+      "labels": [
+        "SU(3)",
+        "SO(6)",
+        "Sp(6)/Weyl-spin"
+      ],
+      "strict_ascending": true,
+      "su3_in_so6": true,
+      "so6_in_weyl": true,
+      "su3_dim": 8,
+      "so6_dim": 15,
+      "sp6_dim": 21,
+      "counts_correct": true,
+      "note": "pytorch tensor: SU(3)=8 < SO(6)=15 < Sp(6)/Weyl=21; strict dimensional hierarchy consistent with G-tower embedding"
+    },
+    "P3_clifford_cl6_grade2": {
+      "pass": true,
+      "grade2_count": 15,
+      "expected_15": true,
+      "note": "Cl(6) grade-2 sector = C(6,2) = 15 elements = dim(SO(6)); confirms SO(6) lives in Cl(6) bivector sector"
+    }
+  },
+  "negative": {
+    "N1_z3_weyl_flat_holonomy_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "z3 UNSAT: Weyl connection + flat curvature (R=0) + nontrivial holonomy simultaneously impossible; Ambrose-Singer: zero curvature \u2192 trivial holonomy"
+    }
+  },
+  "boundary": {
+    "B1_flat_weyl_trivial_holonomy": {
+      "pass": true,
+      "alphas": [
+        0.0,
+        0.01,
+        0.1,
+        0.5,
+        1.0
+      ],
+      "holonomy_angles": [
+        0.0,
+        0.01,
+        0.1,
+        0.5,
+        1.0
+      ],
+      "flat_limit_angle": 0.0,
+      "flat_limit_trivial": "True",
+      "monotone_with_curvature": true,
+      "note": "Boundary: flat Weyl (\u03b1=0) gives trivial holonomy (angle=0); Weyl geometry \u2192 Riemannian in flat limit; holonomy grows with scale gauge \u03b1"
+    },
+    "B1_sympy_flat_limit": {
+      "pass": true,
+      "conformal_factor_at_sigma_0": "1",
+      "is_one": true,
+      "dcos_dOmega_zero": true,
+      "note": "sympy: e^{2\u03c3} \u2192 1 as \u03c3\u21920 (Riemannian limit); d(cos \u03b8)/d\u03a9 = 0 (angle formula independent of conformal factor)"
+    },
+    "B1_pytorch_flat_limit_entropy": {
+      "pass": true,
+      "entropy_degenerate": 2.7631020735330303e-11,
+      "log2": 0.6931471805599453,
+      "entropy_below_log2": true,
+      "note": "pytorch: in Riemannian flat limit, L/R chirality collapses to degenerate distribution \u2192 entropy \u2192 0, NOT log(2); log(2) signal only present when Weyl scale gauge is active"
+    }
+  },
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "all_pass": true
+  }
+}

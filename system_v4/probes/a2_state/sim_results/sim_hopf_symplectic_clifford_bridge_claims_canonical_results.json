@@ -1,0 +1,162 @@
+{
+  "name": "sim_hopf_symplectic_clifford_bridge_claims_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "P1: rho_HSC 64x64 density matrix PSD+Tr=1+Hermitian; P2: Pearson r(MI, Q_HSC) > 0.99 via torch; P3: Axis 0 gradient input_MI > final_MI for 20 seeds; P4: torch rho trace = 1"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT \u2014 MI=0 AND Q_HSC>0 impossible (MI is the first factor in 4-way product)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: Symbolic proof \u2014 Q_HSC = a*b*c*d: any factor=0 \u2192 Q_HSC=0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_hsc_valid": {
+      "shape": [
+        64,
+        64
+      ],
+      "trace": 1.0000000000000004,
+      "min_eigenvalue": -1.2936103326841534e-16,
+      "hermitian_max_err": 1.4304896245381992e-17,
+      "valid": true,
+      "pass": true,
+      "note": "rho_HSC 64\u00d764 via kron of 3 pure 4-dim states: PSD, Tr=1, Hermitian"
+    },
+    "P4_pytorch_trace": {
+      "trace_torch": 1.0000000000000004,
+      "pass": true,
+      "note": "pytorch torch.trace(rho_HSC) = 1 confirmed"
+    },
+    "P2_pearson_r_gt_099": {
+      "pearson_r": 1.0000000000000002,
+      "abs_r": 1.0000000000000002,
+      "threshold": 0.99,
+      "H_hopf_fixed": 0.34657359027997264,
+      "H_symp_fixed": 0.6931471805599453,
+      "H_cliff_fixed": 0.7071067811865472,
+      "pass": true,
+      "note": "abs(r(MI, Q_HSC)) > 0.99 \u2014 Q co-varies linearly with MI (const shell factors)"
+    },
+    "P3_axis0_gradient": {
+      "seeds_passed": 20,
+      "seeds_total": 20,
+      "all_input_gt_final": true,
+      "pass": true,
+      "note": "Axis 0: input_MI > final_MI for all 20 seeds (local unitaries + dephasing)"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_mi_zero_UNSAT": {
+      "claim": "MI=0, H_hopf>0, H_symp>0, H_cliff>0, Q_HSC>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "MI=0 with Q_HSC>0 is UNSAT \u2014 MI is factor in 4-way product"
+    },
+    "N2_sympy_four_factor_zero": {
+      "formula": "Q_HSC = MI * H_hopf * H_symp * H_cliff",
+      "all_zero_when_any_factor_zero": true,
+      "pass": true,
+      "note": "sympy confirms 4-factor product zero property: any zero factor kills Q_HSC"
+    },
+    "N3_eps09_larger_drop_than_eps03": {
+      "avg_MI_drop_eps03": 1.181335304491865,
+      "avg_MI_drop_eps09": 1.3829767653017497,
+      "eps09_gt_eps03": true,
+      "pass": true,
+      "note": "eps=0.9 gives larger average MI drop than eps=0.3 (steeper Axis 0 gradient)"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_hsc_hermitian": {
+      "max_hermitian_err": 1.5515838457795457e-17,
+      "threshold": 1e-12,
+      "pass": true,
+      "note": "rho_HSC hermitian: max|rho - rho\u2020| < 1e-12"
+    },
+    "B2_rho_hsc_shape": {
+      "shape": [
+        64,
+        64
+      ],
+      "expected": [
+        64,
+        64
+      ],
+      "pass": true,
+      "note": "rho_HSC shape = (64, 64) as required by 3-shell kron construction"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

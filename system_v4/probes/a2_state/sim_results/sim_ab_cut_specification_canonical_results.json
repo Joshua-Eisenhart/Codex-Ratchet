@@ -1,0 +1,268 @@
+{
+  "name": "sim_ab_cut_specification_canonical",
+  "description": "A|B cut specification: I_c = S(A) - S(AB) sign and well-definedness. Tests that the cut choice (which subsystem is A vs B) determines the sign and value of coherent information. UNSAT proofs for product-state positivity and S(A) bound via z3. Autograd of I_c w.r.t. Werner parameter via pytorch.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: partial_trace_B/A via torch tensor reshape and sum, vn_entropy via torch.linalg.eigvalsh + torch.log, coherent_information_AB/BA computed end-to-end in torch. Autograd of I_c w.r.t. Werner state p via p_tensor.backward() confirms d(I_c)/dp > 0."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no graph layer in this cut-specification sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: N1 UNSAT proves product state cannot have I_c > 0 (SAB=SA+SB => Ic=-SB <= 0, Ic>0 is UNSAT). N2 UNSAT proves I_c cannot exceed S(A) (SAB>=0 => Ic=SA-SAB <= SA, Ic>SA is UNSAT). Both proofs are structural impossibilities."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- z3 is sufficient for these linear arithmetic UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: formal I_c = SA - SAB expression, product-state simplification (Ic = -SB), Schmidt state I_c = log(d), bound verification I_c <= S(A)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer in this entropy sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no Riemannian manifold layer here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no dependency graph here"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no cell complex layer here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed -- no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_ic_sign_under_cut_swap": {
+      "bell_state_ic_AB": {
+        "I_c_AB": 0.6931471805589482,
+        "expected": 0.6931471805599453,
+        "diff": 9.97091298415853e-13,
+        "pass": true
+      },
+      "bell_state_ic_BA": {
+        "I_c_BA": 0.6931471805589482,
+        "expected": 0.6931471805599453,
+        "diff": 9.97091298415853e-13,
+        "pass": true
+      },
+      "pure_state_symmetry_check": {
+        "diff_AB_BA": 0.0,
+        "pass": true,
+        "note": "For pure state I_c(A;B) == I_c(B;A) because S(A)=S(B)"
+      },
+      "werner_p099_ic_AB": {
+        "I_c_AB": 0.6407393920339997,
+        "pass": true,
+        "note": "I_c(A;B) > 0 for highly entangled Werner state"
+      },
+      "werner_p099_ic_BA": {
+        "I_c_BA": 0.6407393920339997,
+        "pass": true,
+        "note": "I_c(B;A) > 0 for highly entangled Werner state"
+      },
+      "werner_AB_BA_equal": {
+        "diff": 0.0,
+        "pass": true,
+        "note": "Werner state is symmetric under swap so I_c(A;B)=I_c(B;A)"
+      },
+      "product_state_asymmetric_cut": {
+        "I_c_AB": -0.6730116670092563,
+        "I_c_BA": -0.3250829733914483,
+        "expected_ic_AB": -0.6730116670092565,
+        "expected_ic_BA": -0.3250829733914482,
+        "diff_AB": 2.220446049250313e-16,
+        "diff_BA": 1.1102230246251565e-16,
+        "ic_AB_ne_ic_BA": true,
+        "pass": true,
+        "note": "Product state: I_c(A;B)=-S(B), I_c(B;A)=-S(A); they differ when S(A)!=S(B)"
+      }
+    },
+    "P2_schmidt_ic_equals_log_bond_dim": {
+      "d=2": {
+        "I_c": 0.6931471805589482,
+        "expected_log_d": 0.6931471805599453,
+        "diff": 9.97091298415853e-13,
+        "pass": true
+      },
+      "d=3": {
+        "I_c": 1.0986122886654508,
+        "expected_log_d": 1.0986122886681098,
+        "diff": 2.65898414397725e-12,
+        "pass": true
+      },
+      "d=4": {
+        "I_c": 1.3862943611149052,
+        "expected_log_d": 1.3862943611198906,
+        "diff": 4.985345469776803e-12,
+        "pass": true
+      }
+    },
+    "P3_cut_determines_ic_value": {
+      "S_A_qubit": 0.42270908780599076,
+      "S_B_qutrit": 0.818808456222877,
+      "ic_A_inside": {
+        "I_c_AB": -0.1881552142502077,
+        "note": "A=qubit is inside"
+      },
+      "ic_B_inside": {
+        "I_c_BA": 0.20794415416667855,
+        "note": "B=qutrit is inside"
+      },
+      "cut_changes_ic": {
+        "diff": 0.39609936841688625,
+        "pass": true,
+        "note": "Same physical state rho_AB; swapping which subsystem is 'A' (inside) changes I_c from I_c(A;B)=S(A)-S(AB) to I_c(B;A)=S(B)-S(AB). Since S(A) != S(B) for this mixed state, the cut IS the observable."
+      }
+    }
+  },
+  "negative": {
+    "N1_product_state_ic_positive_unsat": {
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "note": "Product state: SAB=SA+SB => Ic=SA-SAB=-SB <= 0. UNSAT proves no product state can have I_c > 0."
+    },
+    "N2_ic_exceeds_sa_unsat": {
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "note": "Ic=SA-SAB > SA requires SAB < 0, impossible since SAB >= 0. UNSAT proves I_c is bounded above by S(A)."
+    }
+  },
+  "boundary": {
+    "B1_maximal_ic_for_pure_maximally_entangled": {
+      "d=2": {
+        "I_c": 0.6931471805589482,
+        "S_AB": 9.970617607223497e-13,
+        "expected_I_c": 0.6931471805599453,
+        "diff": 9.97091298415853e-13,
+        "pass": true,
+        "note": "Pure state: S(AB)~0, S(A)=log(2), I_c=log(2)"
+      },
+      "d=3": {
+        "I_c": 1.0986122886654508,
+        "S_AB": 2.65883136192614e-12,
+        "expected_I_c": 1.0986122886681098,
+        "diff": 2.65898414397725e-12,
+        "pass": true,
+        "note": "Pure state: S(AB)~0, S(A)=log(3), I_c=log(3)"
+      },
+      "d=4": {
+        "I_c": 1.3862943611149052,
+        "S_AB": 4.985308803611179e-12,
+        "expected_I_c": 1.3862943611198906,
+        "diff": 4.985345469776803e-12,
+        "pass": true,
+        "note": "Pure state: S(AB)~0, S(A)=log(4), I_c=log(4)"
+      }
+    },
+    "B2_trivial_cut_pure_B": {
+      "product_with_pure_B": {
+        "I_c": -6.508127370352668e-13,
+        "S_B": 3.323539202407896e-13,
+        "expected_I_c": 0.0,
+        "diff": 6.508127370352668e-13,
+        "pass": true,
+        "note": "I_c = -S(B) = 0 when B is pure"
+      }
+    },
+    "B3_werner_transition_and_gradient": {
+      "p=0.1": {
+        "I_c": -0.6789971426770435
+      },
+      "p=0.2": {
+        "I_c": -0.6390318596501771
+      },
+      "p=0.33": {
+        "I_c": -0.5520401750036411
+      },
+      "p=0.4": {
+        "I_c": -0.48936716305429273
+      },
+      "p=0.5": {
+        "I_c": -0.380395665848578
+      },
+      "p=0.6": {
+        "I_c": -0.24730080809538124
+      },
+      "p=0.7": {
+        "I_c": -0.08720442512767812
+      },
+      "p=0.9": {
+        "I_c": 0.34436679564191675
+      },
+      "transition_check": {
+        "ic_at_p01_negative": true,
+        "ic_at_p09_positive": true,
+        "pass": true,
+        "note": "I_c transitions from negative (separable regime) to positive (entangled regime)"
+      },
+      "autograd_dIc_dp_at_p07": {
+        "dIc_dp": 1.7515311868627772,
+        "positive": true,
+        "pass": true,
+        "note": "I_c increases with p (more entanglement -> higher coherent information)"
+      }
+    },
+    "B_sympy_formal_expressions": {
+      "Ic_formal": "SA - SAB",
+      "Ic_product_state": "-SB",
+      "Ic_product_equals_neg_SB": "True",
+      "Ic_schmidt_uniform": "log(d)",
+      "Ic_bound_SA": "SAB",
+      "sympy_pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "total_tests": 19,
+    "total_pass": 19,
+    "all_pass": true
+  }
+}

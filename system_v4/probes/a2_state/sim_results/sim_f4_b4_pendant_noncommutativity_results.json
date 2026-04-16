@@ -1,0 +1,139 @@
+{
+  "name": "sim_f4_b4_pendant_noncommutativity",
+  "classification": "classical_baseline",
+  "claim": "F4 and B4=SO(9) generators form a genuine non-commuting pair (ratchet doctrine)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Computed mean Frobenius norm of [F4_extra, random_SO9] over 10 pairs as numerical cross-validation of non-commutativity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encoded the commutator entry as a Real constraint; asserting both c==1 (from sympy) and c==0 (commutativity) is UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Constructed SO(9) antisymmetric generator and F4 extra symmetric generator; computed [F4_extra, SO9] symbolically to verify non-zero"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_f4_extra_so9_noncommutativity": {
+      "test": "commutator [F4_extra(0,1), SO9(1,2)] != 0",
+      "commutator_nonzero": true,
+      "frobenius_norm_sq": 2.0,
+      "pass": true
+    },
+    "P2_b4_lie_algebra_structure": {
+      "test": "[e_12, e_23] proportional to e_13 (SO(9) Lie algebra)",
+      "is_proportional": true,
+      "proportionality_constant": 1.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "P3_z3_commutativity_unsat": {
+      "test": "z3 UNSAT: F4_extra and SO9 generator cannot commute",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true
+    },
+    "N1_self_commutator_zero_unsat": {
+      "test": "z3 UNSAT: self-commutator [A,A] entry cannot be nonzero",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_nonoverlapping_so9_commute": {
+      "test": "[e_12, e_34] = 0 (non-overlapping SO(9) generators)",
+      "commutator_is_zero": true,
+      "pass": true
+    },
+    "B2_pytorch_frob_norm_nonzero": {
+      "test": "mean Frobenius norm of [F4_extra, random_SO9] over 10 pairs > 0.01",
+      "mean_frobenius_norm": 0.565685424949238,
+      "individual_norms": [
+        0.0,
+        0.0,
+        1.4142135623730951,
+        1.4142135623730951,
+        1.4142135623730951,
+        0.0,
+        0.0,
+        0.0,
+        1.4142135623730951,
+        0.0
+      ],
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "total_tests": 6,
+    "passed": 6,
+    "failed": 0
+  }
+}

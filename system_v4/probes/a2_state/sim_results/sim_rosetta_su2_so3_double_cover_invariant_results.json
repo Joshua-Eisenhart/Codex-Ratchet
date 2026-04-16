@@ -1,0 +1,146 @@
+{
+  "name": "sim_rosetta_su2_so3_double_cover_invariant",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no autograd or gradient flow required"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph neural net structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; orbit geometry handled by clifford"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; SU(2) handled by clifford directly"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no DAG or routing structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistence filtration"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "scipy": "load_bearing"
+  },
+  "positive": {
+    "P1_orbit_quotient": {
+      "S_su2": 6.907755278982134,
+      "S_so3": 6.214608098422188,
+      "gap": 0.6931471805599463,
+      "expected_gap": 0.6931471805599453,
+      "gap_error": 9.992007221626409e-16,
+      "pass": true,
+      "interpretation": "SU(2) orbit entropy exceeds SO(3) orbit entropy by log(2) because the 2:1 map identifies two SU(2) elements per SO(3) class"
+    },
+    "P2_clifford_bivector": {
+      "N_su2_rotors": 1000,
+      "N_so3_classes": 500,
+      "S_su2": 6.907755278982134,
+      "S_so3": 6.214608098422188,
+      "gap": 0.6931471805599463,
+      "expected_gap": 0.6931471805599453,
+      "gap_error": 9.992007221626409e-16,
+      "pass": true,
+      "interpretation": "Clifford rotor R(theta)=exp(theta/2*e12) over [0,4pi) has 1000 distinct SU(2) elements. SO(3) identification collapses them to 500 classes. Entropy drops by log(2)."
+    },
+    "P3_sympy_spectral": {
+      "symbolic_gap_expression": "log(2)",
+      "gap_at_N1000": 0.6931471805599453,
+      "expected_gap": 0.6931471805599453,
+      "gap_error": 0.0,
+      "pass": true,
+      "interpretation": "Sympy confirms symbolically: S(SU2) - S(SO3) = log(N) - log(N/2) = log(2) regardless of N. The gap is structural, not a numerical artifact."
+    },
+    "P4_rosetta_cross_check": {
+      "gap_path1": 0.6931471805599463,
+      "gap_path2": 0.6931471805599463,
+      "gap_path3": 0.6931471805599453,
+      "d12": 0.0,
+      "d13": 9.992007221626409e-16,
+      "d23": 9.992007221626409e-16,
+      "rosetta_r4_confirmed": true,
+      "pass": true,
+      "interpretation": "Three independent paths (scipy orbit, clifford bivector, sympy spectral) all agree on the log(2) entropy gap from the SU(2)->SO(3) double cover. Rosetta R4: the invariant is path-independent."
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_entropy_preservation": {
+      "z3_result": "unsat",
+      "pass": true,
+      "interpretation": "z3 UNSAT: it is structurally impossible for a 2:1 group homomorphism to preserve orbit entropy. S_G = S_H + delta with delta > 0 (the kernel contributes log(2) entropy), so S_G = S_H is unsatisfiable. The entropy gap is not optional."
+    }
+  },
+  "boundary": {
+    "B1_z4_z2_cover_gap": {
+      "group_G": "Z4",
+      "group_H": "Z2",
+      "kernel": "{0, 2} in Z4, size=2",
+      "gap_symbolic": "log(2)",
+      "gap_numerical": 0.6931471805599453,
+      "expected_log2": 0.6931471805599453,
+      "gap_error": 0.0,
+      "pass": true,
+      "interpretation": "B1: log(2) gap is not specific to SU(2)->SO(3). Any 2:1 cover produces the same gap. Z4->Z2 (kernel = {0,2}, size 2) gives gap = log(4) - log(2) = log(2). The invariant is: gap = log(|ker(f)|). For 2:1 covers, |ker| = 2, so gap = log(2)."
+    }
+  },
+  "summary": {
+    "claim": "The SU(2)->SO(3) double cover creates an entropy gap of exactly log(2). This is confirmed by three independent evidence paths (scipy orbit quotient, clifford bivector rotor, sympy spectral triple) and refuted by z3 UNSAT as necessary.",
+    "rosetta_r4_status": "CONFIRMED: All three paths agree on log(2) gap to within 1e-10. Rosetta R4 is: the entropy gap from a 2:1 group cover = log(|kernel|)."
+  }
+}

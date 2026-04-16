@@ -1,0 +1,231 @@
+{
+  "name": "Shell / History-Window Unification Probe",
+  "probe": "sim_shell_hist_unification_probe",
+  "purpose": "Test whether shell cut (spatial: inside vs outside constraint surface) and history-window cut (temporal: current vs history) reduce to the same mathematical object I_c(A;B) = S(A) - S(AB). Bridge object Xi_hist: I_c(current; history) = I_c(inside-shell; outside-shell).",
+  "coupling_program_step": 6,
+  "bridge_claim": "shell/history unification via I_c bipartition equivalence",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: partial trace via reshape, VNE via eigvalsh, autograd for dI_c/dk in P3"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph message passing in this entropy sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: UNSAT proof that pure-state shell/hist sign contradiction is impossible (N1); UNSAT proof that product state I_c > 0 is impossible (N2)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for these linear arithmetic UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: formal I_c = S(A) - S(AB) expression confirms that shell and history cut labels produce identical algebraic objects"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no geometric algebra layer in this entropy sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold layer here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no dependency graph here"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no cell complex layer here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_markov_chain_shell_vs_history_cut": {
+      "bell_state_shell_cut": {
+        "I_c_shell": 0.6931471805589482,
+        "I_c_hist": 0.6931471805589482,
+        "expected": 0.6931471805599453,
+        "shell_diff": 9.97091298415853e-13,
+        "hist_diff": 9.97091298415853e-13,
+        "pass": true,
+        "note": "Pure Bell state: I_c(shell cut) = I_c(history cut) = log(2)"
+      },
+      "werner_markov_chain_cut_equivalence": {
+        "rho_01_ic_shell": 0.34436679564191675,
+        "rho_01_ic_hist": 0.34436679564191675,
+        "rho_01_cuts_agree": true,
+        "rho_12_ic_shell": -0.08720442512767812,
+        "rho_12_ic_hist": -0.08720442512767812,
+        "rho_12_cuts_agree": true,
+        "pass": true,
+        "note": "Werner state is symmetric under A<->B swap; shell cut and history cut agree exactly"
+      }
+    },
+    "P2_shell_permutation_symmetry": {
+      "bell_state_permutation": {
+        "I_c_AB": 0.6931471805589482,
+        "I_c_BA": 0.6931471805589482,
+        "S_AB": 9.970617607223499e-13,
+        "diff": 0.0,
+        "pass": true,
+        "note": "Pure state: S(AB)=0 and S(A)=S(B), so I_c(A;B)=I_c(B;A)"
+      },
+      "asymmetric_pure_2x3": {
+        "I_c_AB": 0.636514168293151,
+        "I_c_BA": 0.636514168293477,
+        "S_AB": 1.6617696012038845e-12,
+        "diff_ic": 3.2596148002994596e-13,
+        "pass": true,
+        "note": "Pure state 2x3: S(A)=S(B) still holds (Schmidt), so I_c(A;B)=I_c(B;A) regardless of dimension"
+      }
+    },
+    "P3_ic_gradient_history_dimension": {
+      "ic_values_by_memory_depth": {
+        "k0": -6.508127370352668e-13,
+        "k1": 0.056633012264480476,
+        "k2": 0.2425859716929848,
+        "k3": 0.6931471805589482,
+        "increments": [
+          0.05663301226513129,
+          0.18595295942850432,
+          0.4505612088659634
+        ],
+        "monotone_increase": true,
+        "pass": true,
+        "note": "I_c increases monotonically with memory depth k: k=0 is product, k=3 is Bell"
+      },
+      "autograd_dIc_dk_at_k1p5": {
+        "k": 1.5,
+        "I_c": 0.13081203594048352,
+        "dI_c_dk": 0.18310204811134792,
+        "grad_positive": true,
+        "pass": true,
+        "note": "autograd confirms dI_c/dk > 0 at k=1.5; history depth increases coherent information"
+      }
+    }
+  },
+  "negative": {
+    "N1_z3_shell_hist_sign_contradiction_unsat": {
+      "z3_pure_state_sign_contradiction": {
+        "encoding": "pure_state(S_AB=0) AND S_A=S_B(Schmidt) AND S_A>=0 AND S_B>=0 AND I_c_shell>0 AND I_c_hist<0",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "interpretation": "UNSAT: For pure state, S_A=S_B and both are nonneg, so I_c_shell and I_c_hist cannot have opposite signs. Shell/history unification is structurally enforced.",
+        "pass": true
+      },
+      "z3_negative_control_mixed_state_sign_differs": {
+        "encoding": "mixed_state(S_AB>0) AND S_AB<=S_A+S_B AND S_A>=0 AND S_B>=0 AND I_c_shell=S_A-S_AB>0 AND I_c_hist=S_B-S_AB<0 (NO pure/symmetry constraint)",
+        "z3_result": "sat",
+        "is_sat": true,
+        "interpretation": "SAT: For mixed state without Schmidt symmetry, I_c(shell) > 0 and I_c(hist) < 0 is achievable. N1 UNSAT relies on BOTH pure_state AND S_A=S_B (Schmidt) \u2014 removing either allows sign disagreement.",
+        "pass": true
+      }
+    },
+    "N2_z3_product_state_ic_positive_unsat": {
+      "z3_product_state_ic_positive_unsat": {
+        "encoding": "product_state(S_AB=S_A+S_B) AND S_A>=0 AND S_B>=0 AND I_c=S_A-S_AB AND I_c>0",
+        "z3_result": "unsat",
+        "is_unsat": true,
+        "interpretation": "UNSAT: For product state, I_c = -S_B <= 0 always. This is cut-independent: whether labelled 'shell' or 'history', a product state cannot have positive I_c. Cut-independence IS the shell/history unification claim.",
+        "pass": true
+      },
+      "z3_entangled_state_negative_control": {
+        "encoding": "entangled(S_AB < S_A+S_B) AND S_A>=0 AND S_B>=0 AND I_c=S_A-S_AB AND S_A>S_AB AND I_c>0",
+        "z3_result": "sat",
+        "is_sat": true,
+        "interpretation": "SAT: Entangled state can have I_c > 0. Product-state UNSAT is not trivially true for all states.",
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_k0_memoryless_zero_ic": {
+      "k0_memoryless_shell_ic": {
+        "I_c_shell": -6.508127370352668e-13,
+        "I_c_hist": -6.508127370352668e-13,
+        "both_near_zero": true,
+        "pass": true,
+        "note": "k=0 product state: I_c=0 for both cuts; shell and history cuts agree at boundary"
+      }
+    },
+    "B2_kmax_full_memory_ic_equals_SA": {
+      "kmax_full_memory_shell_ic": {
+        "I_c_shell": 0.6931471805589482,
+        "I_c_hist": 0.6931471805589482,
+        "S_A": 0.6931471805599453,
+        "expected_ic": 0.6931471805599453,
+        "shell_diff": 9.97091298415853e-13,
+        "hist_diff": 9.97091298415853e-13,
+        "both_equal_SA": true,
+        "pass": true,
+        "note": "k=3 Bell state: I_c = log(2) = S(A) for both cuts; shell and history cuts agree at maximal memory"
+      }
+    },
+    "B3_sympy_formal_cut_label_independence": {
+      "sympy_formal_expression": {
+        "I_c_shell_general": "S_A - S_AB",
+        "I_c_hist_general": "S_A - S_AB",
+        "expressions_identical": true,
+        "I_c_pure_state": "S_A",
+        "pure_state_equal": true,
+        "I_c_product_state": "-S_B",
+        "product_state_nonpositive": true,
+        "pass": true,
+        "note": "Sympy confirms: I_c(shell) and I_c(hist) are the same algebraic expression S_A - S_AB with different semantic labels. The structural equivalence is a tautology once cuts are defined as bipartitions."
+      }
+    }
+  },
+  "classification": "classical_baseline",
+  "caveat": "Step 6 bridge. Shell/history cuts are candidate-equivalent; this is not promoted to canonical without Steps 1-5 evidence. Structural impossibility proofs (z3 UNSAT) are load-bearing; numeric tests are candidate witnesses.",
+  "summary": {
+    "positive_pass": 6,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

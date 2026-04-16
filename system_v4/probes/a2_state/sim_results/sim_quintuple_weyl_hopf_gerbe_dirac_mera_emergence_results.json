@@ -1,0 +1,253 @@
+{
+  "name": "sim_quintuple_weyl_hopf_gerbe_dirac_mera_emergence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT H_weyl=0 with Q\u22600; N2: sympy 5-factor product zero"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: symbolic proof that 5-factor product = 0 when any factor = 0"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "E_single_weyl": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_single_hopf": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_single_gerbe": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_single_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_single_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_weyl_hopf": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_weyl_gerbe": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_weyl_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_pair_weyl_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_hopf_gerbe": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_hopf_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_pair_hopf_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_gerbe_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_pair_gerbe_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_pair_dirac_mera": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_triple_weyl_hopf_gerbe": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_triple_weyl_hopf_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_triple_weyl_hopf_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_triple_weyl_gerbe_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_triple_weyl_gerbe_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_quad_weyl_hopf_gerbe_dirac": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_quad_weyl_hopf_gerbe_mera": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "E_quad_weyl_hopf_dirac_mera": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_quad_weyl_gerbe_dirac_mera": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_quad_hopf_gerbe_dirac_mera": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "E_full_Q_nonzero": {
+      "Q": 0.3475274246268086,
+      "pass": "True"
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "N1_z3_hweyl0_Q_nonzero_UNSAT": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "N2_sympy_5factor_zero": {
+      "checks": {
+        "MI": {
+          "value": "0",
+          "pass": true
+        },
+        "Hw": {
+          "value": "0",
+          "pass": true
+        },
+        "Hh": {
+          "value": "0",
+          "pass": true
+        },
+        "Hg": {
+          "value": "0",
+          "pass": true
+        },
+        "Hd": {
+          "value": "0",
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_all_inactive": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "B2_stable_5_seeds": {
+      "seeds": {
+        "seed_0": {
+          "Q": 0.3475274246268086,
+          "pass": "True"
+        },
+        "seed_1": {
+          "Q": 0.5599949533665656,
+          "pass": "True"
+        },
+        "seed_2": {
+          "Q": 0.47458379420603375,
+          "pass": "True"
+        },
+        "seed_3": {
+          "Q": 0.6672814611028673,
+          "pass": "True"
+        },
+        "seed_4": {
+          "Q": 0.649971468286352,
+          "pass": "True"
+        }
+      },
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

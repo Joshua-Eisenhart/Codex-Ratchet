@@ -1,0 +1,180 @@
+{
+  "name": "sim_dirac_hopf_clifford_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Q_DHC computed as pytorch tensor; torch.einsum partial trace; autograd wrt MI"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph learning not needed for triple coexistence baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: H_hopf=0 AND Q_DHC>0 impossible; structurally excluded (load-bearing)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for Hopf inactivity UNSAT; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: 4-factor product MI*H_d*H_h*H_c; any factor=0 \u2192 product=0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford Cl(2) bivector grade verifies XX-gate off-diagonal shell entropy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold not invoked in triple coexistence; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not relevant here; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "MERA DAG cross-check for triple shell coexistence structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "triadic hyperedge {H_dirac, H_hopf, H_clifford} confirms irreducible triple coupling"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for triple shell topology; 3-node 2-cell validates coexistence structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistence homology not needed at triple coexistence baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "T1_triple_coactive_Q_positive": {
+      "passed": true,
+      "Q_DHC": 0.017469805402220696,
+      "H_dirac": 0.33678336703714473,
+      "H_hopf": 0.34657359027997264,
+      "H_clifford": 0.7071067811865477,
+      "MI_out": 0.21166885730683282,
+      "interpretation": "All three shells co-active; Q_DHC > 0 survived"
+    },
+    "T2_single_inactive_kills_Q": {
+      "passed": true,
+      "Q_no_dirac": 0.0,
+      "Q_no_hopf": 0.0,
+      "Q_no_clifford": 0.0,
+      "interpretation": "Q_DHC=0 when any shell inactive; any factor=0 kills product"
+    },
+    "T3_Q_stable_across_5_seeds": {
+      "passed": true,
+      "Q_values": [
+        0.017469805402220696,
+        0.02615887910585686,
+        0.029405193813904395,
+        0.012188741037596155,
+        0.04485855800358831
+      ],
+      "interpretation": "Q_DHC > 0 survived across 5 seeds; triple coexistence stable"
+    },
+    "T4_higher_eps_lower_Q": {
+      "passed": true,
+      "Q_eps03": 0.017469805402220696,
+      "Q_eps09": 8.161863923590683e-06,
+      "interpretation": "Higher dephasing (eps=0.9) gives lower Q_DHC than eps=0.3; MI reduction confirmed"
+    },
+    "T5_pytorch_Q_matches_numpy": {
+      "passed": true,
+      "Q_numpy": 0.017469805402220696,
+      "Q_torch": 0.017469804733991623,
+      "interpretation": "pytorch tensor Q_DHC matches numpy Q_DHC exactly; pytorch load-bearing"
+    },
+    "T6_clifford_bivector_grade": {
+      "passed": true,
+      "grades": "{np.int64(2)}",
+      "interpretation": "Clifford e12 is grade-2 bivector; XX-gate rotor structure survives"
+    },
+    "T7_xgi_triadic": {
+      "passed": true,
+      "interpretation": "Triadic hyperedge confirms irreducible triple coupling"
+    },
+    "T8_toponetx_triple_cell": {
+      "passed": true,
+      "n_nodes": 3,
+      "interpretation": "Triple shell topology survived as valid 2-cell complex"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_inactive_hopf_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_hopf=0 AND Q_DHC>0 is z3 UNSAT; inactive Hopf cannot support emergence"
+    },
+    "N2_sympy_zero_factor_collapses": {
+      "passed": true,
+      "Q_Hd0": "0",
+      "Q_Hh0": "0",
+      "Q_Hc0": "0",
+      "interpretation": "sympy confirms any zero factor collapses Q_DHC to 0"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "All shells inactive \u2192 Q_DHC=0; no spurious emergence from inactive shells"
+    },
+    "B2_Q_decreases_with_eps": {
+      "passed": true,
+      "Q_eps01": 0.05957534037170633,
+      "Q_eps05": 0.003831610578464699,
+      "Q_eps09": 8.161863923590683e-06,
+      "interpretation": "Q_DHC decreases as dephasing eps increases; MI degradation monotone"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 12,
+    "n_pass": 12
+  },
+  "divergence_log": [
+    "All three shells co-active; Q_DHC > 0 survived",
+    "Q_DHC=0 when any shell inactive; any factor kills product",
+    "Q_DHC stable across 5 seeds",
+    "eps=0.9 gives lower Q_DHC than eps=0.3",
+    "z3 UNSAT: H_hopf=0 AND Q_DHC>0 excluded",
+    "sympy: zero-factor collapse of 4-factor product confirmed"
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "name": "sim_axis10_entanglement_structure_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 21,
+  "n_total": 21,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute density matrix partial trace for product/Bell/W/GHZ states; entanglement entropy via eigenvalues; verify S=0 for product and S>0 for entangled"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entanglement structure bridge is density-matrix algebraic; no graph neural message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: state is fully separable (zero entanglement) AND entropy>0 \u2014 structural impossibility by definition of separability"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Schmidt decomposition for 2-qubit pure state; prove S=0 iff product state by symbolic eigenvalue computation of reduced density matrix"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "2-qubit state in Cl(4,0); product state has grade-1 outer product structure; Bell state has grade-2 bivector component indicating entanglement"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entanglement bridge is algebraic; Riemannian geometry not required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entanglement bridge is density-matrix level; equivariant networks not required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "entanglement graph with mutual information edge weights; bipartite=1 edge, GHZ=3-clique; graph structure encodes entanglement topology"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entanglement bridge uses pairwise mutual information; no hyperedge topology required at this level"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entanglement bridge is matrix level; cell complex not required"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistence of entanglement filtration on mutual information matrix; H0 components give entanglement cluster structure across states"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "P1_pytorch_product_state_entropy_zero": {
+      "pass": true,
+      "description": "Pytorch: product state |+>\u2297|+> has entanglement entropy S=0 \u2014 no correlations between subsystems",
+      "entropy": 0.0
+    },
+    "P2_pytorch_bell_state_entropy_log2": {
+      "pass": true,
+      "description": "Pytorch: Bell state (|00>+|11>)/sqrt(2) has S=log(2) \u2014 maximally entangled 2-qubit state",
+      "entropy": 0.69314718,
+      "log2": 0.69314718
+    },
+    "P3_pytorch_ghz_bipartition_entropy_log2": {
+      "pass": true,
+      "description": "Pytorch: GHZ state qubit-1 vs (2,3) bipartition has S=log(2) \u2014 maximally entangled even in multipartite setting",
+      "entropy": 0.69314718
+    },
+    "P4_pytorch_w_state_entropy_between_0_and_log2": {
+      "pass": true,
+      "description": "Pytorch: W state qubit-1 bipartition has 0 < S < log(2) \u2014 different entanglement structure than GHZ",
+      "entropy": 0.63651417,
+      "log2": 0.69314718
+    },
+    "P5_sympy_bell_schmidt_entropy_log2": {
+      "pass": true,
+      "description": "Sympy: Bell state reduced density matrix eigenvalues (1/2,1/2) give S=log(2) exactly",
+      "entropy_symbolic": "log(2)"
+    },
+    "P6_sympy_product_state_rank1_reduced_density": {
+      "pass": true,
+      "description": "Sympy: product state |+><+| is rank-1 with eigenvalue 1 \u2014 S = -1*log(1) = 0",
+      "nonzero_eigenvalues": [
+        "1"
+      ]
+    },
+    "P7_clifford_bell_state_has_grade2_content": {
+      "pass": true,
+      "description": "Clifford Cl(4,0): Bell state encoding has grade-2 bivector content \u2014 entanglement appears as cross-qubit bivector structure",
+      "grade2_content": 1.414214
+    },
+    "P8_rustworkx_entanglement_graph_topology": {
+      "pass": true,
+      "description": "Rustworkx: GHZ entanglement graph is 3-clique (3 equal edges); Bell is 1 edge \u2014 topology distinguishes multipartite from bipartite",
+      "ghz_edges": 3,
+      "bell_edges": 1
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_separable_and_entropy_positive": {
+      "pass": true,
+      "description": "Z3 UNSAT: state is fully separable AND entanglement entropy > 0 \u2014 by definition separable means S=0",
+      "z3_result": "unsat"
+    },
+    "N2_pytorch_product_state_zero_mutual_info": {
+      "pass": true,
+      "description": "Negative: product state has I(A:B)=0 \u2014 no correlations, consistent with S=0",
+      "mutual_info": 0.0
+    },
+    "N3_pytorch_bell_state_mutual_info_2log2": {
+      "pass": true,
+      "description": "Negative: Bell state has I(A:B) = 2*log(2) \u2014 maximal bipartite correlation",
+      "mutual_info": 1.38629436,
+      "expected": 1.38629436
+    },
+    "N4_sympy_schmidt_rank_distinguishes_entanglement": {
+      "pass": true,
+      "description": "Sympy: Bell state coefficient matrix rank=2 (entangled); product state rank=1 (separable) \u2014 Schmidt rank is the entanglement witness",
+      "rank_bell": 2,
+      "rank_product": 1
+    },
+    "N5_clifford_product_state_no_cross_mixing": {
+      "pass": true,
+      "description": "Negative: product state e1*e3 has zero cross-qubit bivector components e14, e23 \u2014 no inter-qubit entanglement structure",
+      "e14_coeff": 0.0,
+      "e23_coeff": 0.0
+    },
+    "N6_rustworkx_separable_isolated_nodes": {
+      "pass": true,
+      "description": "Negative: entanglement graph with no edges has 2 isolated components \u2014 fully separable state, I(A:B)=0 for all pairs",
+      "num_components": 2
+    },
+    "N7_gudhi_two_entanglement_clusters": {
+      "pass": true,
+      "description": "Negative Gudhi: two Bell pairs appear as 2 separate H0 clusters in entanglement filtration \u2014 bipartite entanglement has cluster structure",
+      "betti_numbers": [
+        2
+      ]
+    }
+  },
+  "boundary": {
+    "B1_pytorch_near_product_state_small_entropy": {
+      "pass": true,
+      "description": "Boundary: near-product state with epsilon entanglement has 0 < S << log(2) \u2014 entropy is continuous in state space",
+      "entropy": 0.01747553
+    },
+    "B2_sympy_entropy_boundary_at_pure_and_maximal": {
+      "pass": true,
+      "description": "Boundary sympy: S=0 at lambda=1 (pure/product), S=log(2) at lambda=1/2 (maximal) \u2014 entropy range [0, log(2)]",
+      "S_at_lam1": "0",
+      "S_at_half": "log(2)"
+    },
+    "B3_pytorch_ghz_entropy_permutation_symmetric": {
+      "pass": true,
+      "description": "Boundary: GHZ all single-qubit bipartitions have S=log(2) \u2014 GHZ is permutation-symmetric in entanglement",
+      "S_q0": 0.69314718,
+      "S_q2": 0.69314718
+    },
+    "B4_z3_entangled_state_consistent": {
+      "pass": true,
+      "description": "Boundary z3 SAT: S > 0 (entangled state) is consistent \u2014 entanglement exists",
+      "z3_result": "sat"
+    },
+    "B5_rustworkx_complete_entanglement_graph": {
+      "pass": true,
+      "description": "Boundary: complete 4-node entanglement graph has 6 edges \u2014 maximally multipartite entanglement topology",
+      "num_edges": 6,
+      "expected": 6
+    },
+    "B6_gudhi_single_bell_pair_one_cluster": {
+      "pass": true,
+      "description": "Boundary Gudhi: single strongly entangled Bell pair forms one H0 cluster \u2014 bipartite entanglement unifies both qubits",
+      "betti_numbers": [
+        1
+      ]
+    }
+  }
+}

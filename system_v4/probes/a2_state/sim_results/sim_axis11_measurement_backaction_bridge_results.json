@@ -1,0 +1,202 @@
+{
+  "name": "sim_axis11_measurement_backaction_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 21,
+  "n_total": 21,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "2-qubit state rho; measure qubit 1 in Z basis; compute post-measurement state; verify qubit 2 expectation values updated when qubits are entangled"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 measurement backaction is density-matrix level; no graph neural message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: observable A causes no backaction on B AND [A,B]!=0 \u2014 incompatible observables always have mutual backaction by quantum mechanics"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "prove [sigma_z\u2297I, I\u2297sigma_x]!=0 symbolically; commutator computation confirms measuring qubit 1 disturbs qubit 2 X-observable"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "observables as Clifford basis elements; commutator [A,B]=A*B-B*A as grade-2 component; zero grade-2 content = zero backaction condition"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 measurement backaction is algebraic; Riemannian geometry not required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 measurement backaction is density-matrix algebraic; equivariant networks not required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "measurement backaction graph: nodes=observables, edges=nonzero commutator; isolated nodes=simultaneously measurable; components=mutually-backaction-free sets"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 backaction graph uses pairwise commutators; hyperedge topology not required at this level"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 measurement backaction is algebraic; cell complex not required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 measurement backaction is algebraic; persistent homology not required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_bell_measurement_backaction_on_qubit2": {
+      "pass": true,
+      "description": "Pytorch: measuring qubit 1 in Bell state updates qubit 2 \u2014 sz_before=0, sz_post_0=+1, sz_post_1=-1 (backaction)",
+      "sz_before": 0.0,
+      "sz_post_outcome_0": 1.0,
+      "sz_post_outcome_1": -1.0
+    },
+    "P2_pytorch_product_state_no_backaction": {
+      "pass": true,
+      "description": "Pytorch: measuring qubit 1 of product state |+>|+> does not change qubit 2 expectations \u2014 no backaction for separable state",
+      "sz_q2_before": 0.0,
+      "sz_q2_post0": 0.0,
+      "sz_q2_post1": 0.0
+    },
+    "P3_sympy_sz_sx_same_qubit_commutator_nonzero": {
+      "pass": true,
+      "description": "Sympy: [sigma_z, sigma_x] \u2260 0 on same qubit \u2014 incompatible single-qubit observables cause backaction; also [sz\u2297I, sx\u2297I] \u2260 0",
+      "single_qubit_comm_is_zero": false,
+      "two_qubit_comm_is_zero": false
+    },
+    "P4_sympy_sz_z_commutes_with_itself": {
+      "pass": true,
+      "description": "Sympy: [sigma_z\u2297I, sigma_z\u2297I] = 0 \u2014 observable commutes with itself, repeated measurement causes no additional backaction"
+    },
+    "P5_clifford_sz_sx_commutator_grade2_nonzero": {
+      "pass": true,
+      "description": "Clifford: [e1, e2] = 2*e12 has nonzero grade-2 component \u2014 backaction encoded as bivector part of algebra commutator",
+      "grade2_magnitude": 2.0
+    },
+    "P6_clifford_sz_commutes_with_itself_zero_backaction": {
+      "pass": true,
+      "description": "Clifford: [e1, e1] = 0 \u2014 same observable has zero commutator, no backaction on repeated measurement",
+      "commutator_magnitude": 0.0
+    },
+    "P7_rustworkx_backaction_graph_structure": {
+      "pass": true,
+      "description": "Rustworkx: backaction graph has 2 edges ([sz,sx] and [sz,sy] nonzero); sigma_z_q2 isolated \u2014 compatible with sigma_z_q1",
+      "num_edges": 2,
+      "num_components": 2
+    },
+    "P8_pytorch_measurement_probabilities_sum_one": {
+      "pass": true,
+      "description": "Pytorch: measurement probabilities for Bell state sum to 1 \u2014 POVM completeness",
+      "prob_0": 0.5,
+      "prob_1": 0.5,
+      "sum": 1.0
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_no_backaction_with_nonzero_commutator": {
+      "pass": true,
+      "description": "Z3 UNSAT: no backaction AND [A,B]!=0 \u2014 incompatible observables always cause mutual backaction",
+      "z3_result": "unsat"
+    },
+    "N2_pytorch_maximally_mixed_no_backaction": {
+      "pass": true,
+      "description": "Negative: maximally mixed 2-qubit state \u2014 measuring qubit 1 does not disturb qubit 2 (no entanglement to carry backaction)",
+      "sz_q2_before": 0.0,
+      "sz_q2_post0": 0.0
+    },
+    "N3_sympy_same_observable_commutes": {
+      "pass": true,
+      "description": "Negative sympy: [I\u2297sz, I\u2297sz] = 0 \u2014 same observable on same qubit commutes, no backaction on repeat measurement"
+    },
+    "N4_sympy_sz_i_commutes_with_itself": {
+      "pass": true,
+      "description": "Negative sympy: [sz\u2297I, sz\u2297I] = 0 \u2014 commuting observable, no backaction"
+    },
+    "N5_clifford_e1_commutes_with_e1": {
+      "pass": true,
+      "description": "Negative Clifford: [e1, e1] = 0 \u2014 grade-2 commutator is zero, same Pauli measured twice has no backaction",
+      "commutator_norm": 0.0
+    },
+    "N6_rustworkx_different_qubit_observables_commute": {
+      "pass": true,
+      "description": "Negative: sigma_z\u2297I and I\u2297sigma_x commute (different qubits) \u2014 no backaction between observables on separate subsystems",
+      "commutator_norm": 0.0
+    }
+  },
+  "boundary": {
+    "B1_pytorch_z_eigenstate_no_disturbance": {
+      "pass": true,
+      "description": "Boundary: eigenstate |00> of sigma_z measurement \u2014 no disturbance, prob_0=1, prob_1=0",
+      "prob_0": 1.0,
+      "prob_1": 0.0
+    },
+    "B2_pytorch_product_measurement_qubit2_unchanged": {
+      "pass": true,
+      "description": "Boundary: |+>|0> product state \u2014 measuring qubit 1 in Z does not change qubit 2 (still |0>)",
+      "sz_q2_outcome0": 1.0,
+      "sz_q2_outcome1": 1.0
+    },
+    "B3_sympy_sz_commutes_with_sz_boundary": {
+      "pass": true,
+      "description": "Boundary sympy: repeated sigma_z measurement commutes with itself \u2014 no backaction on same observable"
+    },
+    "B4_z3_sat_compatible_observables_no_backaction": {
+      "pass": true,
+      "description": "Boundary z3 SAT: [A,B]=0 AND no backaction is consistent \u2014 compatible observables can be jointly measured",
+      "z3_result": "sat"
+    },
+    "B5_clifford_commutator_lives_in_grade2": {
+      "pass": true,
+      "description": "Boundary Clifford: [e1,e2] = 2*e12 \u2014 backaction (commutator) lives purely in grade-2 bivector subspace",
+      "e12_coeff": 2.0,
+      "grade1_content": 0.0
+    },
+    "B6_rustworkx_all_pauli_pairs_have_backaction_edge": {
+      "pass": true,
+      "description": "Boundary: all 3 Pauli pairs have nonzero commutator \u2014 3-clique in backaction graph; no Pauli pair is compatible",
+      "num_edges": 3
+    },
+    "B7_pytorch_measurement_channel_trace_preserving": {
+      "pass": true,
+      "description": "Boundary: averaged post-measurement state has Tr=1 \u2014 measurement channel is trace-preserving",
+      "trace_after": 1.0
+    }
+  }
+}

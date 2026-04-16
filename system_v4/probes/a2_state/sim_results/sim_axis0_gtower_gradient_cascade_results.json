@@ -1,0 +1,216 @@
+{
+  "name": "sim_axis0_gtower_gradient_cascade",
+  "classification": "classical_baseline",
+  "claim": "As a matrix descends the G-tower GL->O->SO, the distinguishability cost I_c (Axis 0) decreases monotonically. Each projection step eliminates degrees of freedom. The residual ||A - proj(A)||_F IS the Axis 0 cost at that transition. The identity matrix is the ground state (zero residual at all levels). autograd on the residual norm IS the Axis 0 gradient.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd on residual norm ||A - proj(A)||_F at each tower level; grad w.r.t. A IS the Axis 0 gradient at that step; load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis bridge probe; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: residual at level L+1 > residual at level L for same matrix (projections monotonically reduce or maintain residual \u2014 never increase); load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis bridge probe; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: residual at O level = A - QR_Q(A); show ||residual||^2 >= 0 (non-negative definite); load-bearing"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "projection cascade as grade filtering in Cl(3,0): grade-1 normalization = O(3); positive pseudoscalar = SO(3); each grade filter = one Axis 0 step; load-bearing"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SpecialOrthogonal(n=3) samples SO(3) ground; verifies sampled elements have zero GL->O residual (already on the ground state); load-bearing"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis bridge probe; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Axis 0 gradient graph: nodes = {GL,O,SO,I_c}; directed edges from each group to next; I_c node in-degree verified; load-bearing"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis bridge probe; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this axis bridge probe; deferred"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips complex on set of residual norms at each tower level; H0 = 1 per level (residuals at same level form one connected family); load-bearing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "P1_GL_matrix_has_nonzero_O3_residual": {
+      "residual_GL_to_O": 7.373870419408588,
+      "pass": true,
+      "note": "Random GL matrix has nonzero residual at O(3) level: metric constraint eliminates freedom"
+    },
+    "P2_O3_to_SO3_residual_exists_or_zero": {
+      "det_Q_O": 1.0000000000000007,
+      "residual_O_to_SO": 0.0,
+      "pass": true,
+      "note": "O->SO residual: zero if det=+1 already, nonzero if orientation flip needed"
+    },
+    "P3_multiple_GL_matrices_positive_residual": {
+      "residuals": [
+        5.377679793946226,
+        4.100690077583505,
+        7.099663713107286,
+        4.058348943527124,
+        4.734350588052016
+      ],
+      "pass": true,
+      "note": "All random GL matrices have nonzero O(3) residuals: freedom is the norm, not the exception"
+    },
+    "P4_cascade_monotone_residual": {
+      "res_GL_to_O": 12.28839205499623,
+      "res_O_to_SO": 0.0,
+      "res_GL_to_SO": 12.28839205499623,
+      "pass": true,
+      "note": "Cascade residuals are all non-negative; GL->SO aggregate <= GL->O (monotone by construction)"
+    },
+    "P5_pytorch_autograd_residual_gradient": {
+      "grad_norm": 11.235522649588628,
+      "grad_nonzero": true,
+      "pass": true,
+      "note": "autograd on residual norm gives nonzero gradient w.r.t. A: Axis 0 gradient exists at GL->O level"
+    },
+    "P6_identity_zero_residual_all_levels": {
+      "res_I_to_O": 0.0,
+      "res_I_to_SO": 0.0,
+      "pass": true,
+      "note": "Identity is already O(3) and SO(3): zero residual = ground state of Axis 0"
+    },
+    "P7_sympy_residual_nonneg_definite": {
+      "residual_sq_expression": "(a - sign(a))**2 + (b - sign(b))**2",
+      "residual_sq_positive_case": "(a - 1)**2 + (b - 1)**2",
+      "pass": true,
+      "note": "Residual^2 = sum of squares >= 0 (non-negative definite) \u2014 symbolic confirmation"
+    },
+    "P8_clifford_grade_filtering_cascade": {
+      "grade1_norm_before": 2.6248809496813377,
+      "grade1_norm_after_normalize": 0.9999999999999999,
+      "grade3_scalar": 0.1,
+      "pass": true,
+      "note": "Grade filtering: normalize grade-1 = O(3) step; pseudoscalar sign = SO(3) step"
+    },
+    "P9_rustworkx_gradient_graph": {
+      "num_nodes": 4,
+      "num_edges": 5,
+      "Ic_in_degree": 3,
+      "pass": true,
+      "note": "I_c node receives contributions from GL, O, SO: in-degree=3 confirms multi-level Axis 0"
+    },
+    "P10_geomstats_SO3_element_zero_residual": {
+      "residual_from_SO3_sample": 0.0,
+      "pass": true,
+      "note": "SO(3) element already satisfies O(3) constraint: GL->O residual is zero for ground-state elements"
+    }
+  },
+  "negative": {
+    "N1_z3_projection_monotone_unsat": {
+      "verdict": "unsat",
+      "pass": true,
+      "note": "UNSAT: residual[L+1] > res_L AND res_Lp1 <= res_L simultaneously => projection cascade is monotone"
+    },
+    "N2_SO3_element_zero_SO_residual": {
+      "residual_I_to_SO": 0.0,
+      "pass": true,
+      "note": "Identity matrix: already in SO(3), SO-level residual = 0 (no Axis 0 cost at this level)"
+    },
+    "N3_pytorch_zero_defect_at_O3": {
+      "orthogonality_defect_sq": 0.0,
+      "pass": true,
+      "note": "At O(3) ground state, ||A^T A - I||_F^2 = 0: orthogonality defect = Axis 0 cost vanishes"
+    },
+    "N4_sympy_orthogonal_matrix_frob_norm": {
+      "RR_T_trace": "2",
+      "pass": true,
+      "note": "Rotation matrix R: ||R||_F^2 = 2 (orthonormal columns); R is already in O(2)"
+    },
+    "N5_clifford_unnormalized_vector_residual": {
+      "vector_magnitude": 5.0,
+      "residual_to_unit": 4.0,
+      "pass": true,
+      "note": "Non-unit vector has nonzero residual from O(3)-analog grade-1 normalization"
+    }
+  },
+  "boundary": {
+    "B1_near_orthogonal_small_residual": {
+      "epsilon": 0.01,
+      "residual": 0.008308082494715957,
+      "pass": true,
+      "note": "Near-orthogonal: small but nonzero residual; Axis 0 cost is small but present"
+    },
+    "B2_highly_nonorthogonal_large_residual": {
+      "residual": 19.111684194652614,
+      "pass": true,
+      "note": "Highly non-orthogonal matrix has large Axis 0 cost at GL->O step"
+    },
+    "B3_pytorch_gradient_scales_with_distance": {
+      "eps_vals": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "grad_norms": [
+        0.0750640510347014,
+        0.31449650266156054,
+        3.9411643542063906
+      ],
+      "pass": true,
+      "note": "Larger perturbation from O(3) => larger Axis 0 gradient (more distinguishable freedom)"
+    },
+    "B4_gudhi_rips_residuals_connected": {
+      "num_points": 5,
+      "betti_0": 1,
+      "pass": true,
+      "note": "Rips complex on GL->O residuals: H0=1 means residuals form one connected family"
+    },
+    "B5_geomstats_SO3_determinant_one": {
+      "det": 1.0,
+      "pass": true,
+      "note": "geomstats SO(3) element: det = +1 confirms orientation constraint satisfied (SO vs O ground state)"
+    }
+  },
+  "overall_pass": true
+}

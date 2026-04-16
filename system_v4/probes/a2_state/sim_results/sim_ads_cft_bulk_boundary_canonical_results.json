@@ -1,0 +1,137 @@
+{
+  "name": "sim_ads_cft_bulk_boundary_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "MERA layer density matrices built via torch; entropy computed via torch.linalg.eigvalsh; I_c gradient via autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MERA causal cone is fixed DAG, no message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "P3: UNSAT proof that S_bulk > S_boundary is impossible; N1: UNSAT proof that I_c_bulk < I_c_boundary is impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient for UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "B2: symbolic N-site boundary entropy S=N*log(chi)/2 and bulk O(log N) causal cone"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Clifford algebra for MERA entropy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no Riemannian manifold required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers in MERA"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MERA DAG handled by pytorch"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- simplicial structure not required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1": {
+      "S_boundary": 2.2353777862830535,
+      "S_layer1": 1.3534952465302044,
+      "S_bulk": 1.3534952465302044,
+      "entropy_decreases_monotonically": true,
+      "S_boundary_gt_S_bulk": true,
+      "pass": true,
+      "note": "2-layer MERA coarse-graining reduces entropy boundary\u2192bulk"
+    },
+    "P2": {
+      "I_c_norm_boundary": 0.0,
+      "I_c_norm_bulk": 0.9999999998505132,
+      "I_c_norm_increases_toward_bulk": true,
+      "autograd_dIc_dt_at_t0": 2.6561375100527025,
+      "autograd_positive": true,
+      "pass": true,
+      "note": "Axis 0 gradient: boundary=maximally-mixed (I_c_norm=0), bulk=pure-state (I_c_norm=1); autograd \u2202I_c/\u2202t>0 at t=0.5 midpoint"
+    },
+    "P3": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "interpretation": "S_bulk > S_boundary is structurally impossible under MERA coarse-graining",
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "interpretation": "I_c_bulk < I_c_boundary contradicts MERA coarse-graining; bulk always has MORE coherent information",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1": {
+      "S_boundary": 2.7631021115928546e-11,
+      "S_bulk": 2.7631021115928546e-11,
+      "both_zero": true,
+      "pass": true,
+      "note": "Single-site pure state: trivial MERA, entropy = 0"
+    },
+    "B2": {
+      "S_boundary_formula": "N*log(chi)/2",
+      "S_bulk_formula": "log(N)*log(chi)/log(2)",
+      "ratio_S_boundary_over_S_bulk": "N*log(2)/(2*log(N))",
+      "limit_as_N_to_inf": "oo",
+      "ratio_diverges_confirming_bulk_boundary_hierarchy": true,
+      "pass": true,
+      "note": "Symbolic: boundary entropy N*log(chi)/2 >> bulk O(log N * log chi)"
+    }
+  },
+  "all_pass": true,
+  "connected_sims": [
+    "sim_mera_shell_axis0",
+    "sim_holographic_entropy_bound_canonical"
+  ]
+}

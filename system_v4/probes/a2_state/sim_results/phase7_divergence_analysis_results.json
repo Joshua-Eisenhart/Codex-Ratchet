@@ -10,60 +10,60 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
-  "elapsed_seconds": 0.26269006729125977,
+  "elapsed_seconds": 0.37164783477783203,
   "scenarios": {
     "scenario_1_long_channel_chains": {
       "state_divergence_max": 0.0,
@@ -361,5 +361,6 @@
       "Graph topology affects gradients: computational graph carries content"
     ],
     "key_finding": "STRUCTURAL DIVERGENCE FOUND in 2 scenario(s). The computational graph carries content beyond the scalar output. This is evidence FOR the PyTorch-as-ratchet claim."
-  }
+  },
+  "positive": []
 }

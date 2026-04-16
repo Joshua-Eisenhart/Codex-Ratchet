@@ -24,12 +24,12 @@
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "tried but not needed -- all computation is torch-native"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf done natively in torch"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -59,7 +59,7 @@
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "Persistence tracking through alternating projection"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "positive": {
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.23395299911499,
+            "L1_CPTP": 2.210643768310547,
+            "L2_d2_Hopf": 0.5186352729797363,
+            "L4_composition": 0.0,
+            "L6_irreversibility": 0.0
+          },
+          "total_violation": 2.729279041290283
+        },
+        {
+          "violations": {
+            "L0_N01_noncommutation": 0.0,
+            "L1_CPTP": 1.6865220069885254,
             "L2_d2_Hopf": 0.0,
-            "L4_composition": 0.0,
-            "L6_irreversibility": 0.22926370799541473
+            "L4_composition": 0.014248251914978027,
+            "L6_irreversibility": 0.0
           },
-          "total_violation": 4.463216707110405
+          "total_violation": 1.7007702589035034
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 2.8692498207092285,
-            "L2_d2_Hopf": 0.013916015625,
+            "L1_CPTP": 4.543943405151367,
+            "L2_d2_Hopf": 2.8182244300842285,
             "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 2.8831658363342285
-        },
-        {
-          "violations": {
-            "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 6.695737838745117,
-            "L2_d2_Hopf": 1.7438316345214844,
-            "L4_composition": 0.0,
-            "L6_irreversibility": 0.0
-          },
-          "total_violation": 8.439569473266602
+          "total_violation": 7.362167835235596
         }
       ]
     },

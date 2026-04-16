@@ -1,0 +1,199 @@
+{
+  "name": "sim_igt_ring_topology_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no tensor learning in graph-embedding coupling sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; rustworkx handles all graph operations directly"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that no edge-preserving embedding of the IGT 4-ring into the checkerboard 8-ring can reverse chirality (CW\u2192CCW embedding blocked)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed; z3 sufficient for UNSAT chirality claim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: dihedral group order calculation confirms D4 \u2282 D8 index-2 embedding, cross-checking the 4-ring / 8-ring compatibility"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no Clifford algebra required for ring embedding"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Riemannian geometry not required for discrete rings"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: PyGraph construction and edge/degree queries determine graph structure for embedding and cycle-count tests"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hyperedges in ring coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; graph structure sufficient here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_igt_embeds_into_checkerboard_even_positions": {
+      "pass": true,
+      "embedding": {
+        "0": 0,
+        "1": 2,
+        "3": 4,
+        "2": 6
+      },
+      "embedded_positions": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "even_positions_of_checkerboard": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "no_overlap": true,
+      "lands_on_even_positions": true,
+      "all_in_checkerboard": true
+    },
+    "P2_chirality_alignment_cw_cw_ccw_ccw": {
+      "pass": true,
+      "igt_cw_cycle": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "mapped_to_cb_positions": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "cb_traversal_direction": "CW",
+      "igt_ccw_cycle": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "mapped_ccw_to_cb_positions": [
+        0,
+        6,
+        4,
+        2
+      ],
+      "cb_ccw_traversal_direction": "CCW",
+      "embedding_used": {
+        "0": 0,
+        "1": 2,
+        "3": 4,
+        "2": 6
+      },
+      "note": "Cycle-order embedding: IGT_CW[k] \u2192 2k in CB. CW on IGT [0,1,3,2] \u2192 CB [0,2,4,6] (all +2 mod 8 steps). CCW on IGT [0,2,3,1] \u2192 CB [0,6,4,2] (all +6 mod 8 steps)."
+    },
+    "P3_both_have_exactly_2_directed_hamiltonian_cycles": {
+      "pass": true,
+      "igt_ring_size": 4,
+      "igt_directed_ham_cycles": 2,
+      "checkerboard_ring_size": 8,
+      "checkerboard_directed_ham_cycles": 2,
+      "note": "Cn always has exactly 2 directed Hamiltonian cycles (CW, CCW) up to rotation"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_chirality_reversing_embedding_blocked": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: no injective edge-preserving embedding of IGT 4-ring into C8 can map a CW cycle to a CCW cycle; chirality reversal is structurally blocked. The +1 step constraint from edge-preservation conflicts with the -1 (CCW) step constraint, making the system unsatisfiable."
+    }
+  },
+  "boundary": {
+    "B1_intermediate_node_insertion_yields_checkerboard_ring": {
+      "pass": true,
+      "igt_4_nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "inserted_nodes": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "expanded_8_cycle": [
+        0,
+        4,
+        1,
+        5,
+        3,
+        6,
+        2,
+        7
+      ],
+      "all_edges_cross_color_classes": true,
+      "correct_edge_count_8": true,
+      "all_8_nodes_present": true,
+      "alternating_color_pattern": true,
+      "note": "Inserting one intermediate node on each IGT 4-ring edge recovers C8 with perfect alternating-color structure = checkerboard ring. Intermediate nodes are structurally required: without them the IGT 4-ring and checkerboard 8-ring are incompatible in size."
+    },
+    "B2_dihedral_group_embedding_d4_in_d8": {
+      "pass": true,
+      "aut_C4_dihedral_order": 8,
+      "aut_C8_dihedral_order": 16,
+      "index_of_D4_in_D8": 2,
+      "note": "D4 (Aut(C4)) embeds in D8 (Aut(C8)) with index 2; the IGT 4-ring automorphism group is a proper subgroup of the checkerboard 8-ring automorphism group, consistent with the 4-ring being a sublattice of the 8-ring."
+    }
+  },
+  "all_pass": true,
+  "pass_count": 6,
+  "total_count": 6
+}

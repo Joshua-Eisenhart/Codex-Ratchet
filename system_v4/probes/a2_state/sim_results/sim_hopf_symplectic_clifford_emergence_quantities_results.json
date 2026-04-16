@@ -1,0 +1,209 @@
+{
+  "name": "sim_hopf_symplectic_clifford_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT \u2014 H_hopf=0 AND Q_HSC>0 impossible (Hopf is factor in 4-way product)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: Symbolic proof \u2014 Q_HSC = a*b*c*d: any factor=0 \u2192 Q_HSC=0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "E1_single_hopf": {
+      "MI": 0.0,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Single shell: MI=0 (MERA absent) \u2192 Q_HSC=0"
+    },
+    "E2_single_symp": {
+      "MI": 0.0,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Single shell: MI=0 (MERA absent) \u2192 Q_HSC=0"
+    },
+    "E3_single_cliff": {
+      "MI": 0.0,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Single shell: MI=0 (MERA absent) \u2192 Q_HSC=0"
+    },
+    "E4a_hopf_symp_no_cliff": {
+      "MI": 0.22125199262736306,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Pairwise with missing shell: Q_HSC=0 (zero factor in product)"
+    },
+    "E4b_hopf_cliff_no_symp": {
+      "MI": 0.22125199262736306,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Pairwise with missing shell: Q_HSC=0 (zero factor in product)"
+    },
+    "E4c_symp_cliff_no_hopf": {
+      "MI": 0.22125199262736306,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Pairwise with missing shell: Q_HSC=0 (zero factor in product)"
+    },
+    "E4d_symp_only_no_hopf_cliff": {
+      "MI": 0.22125199262736306,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "Pairwise with missing shell: Q_HSC=0 (zero factor in product)"
+    },
+    "E5_full_quad_Q_HSC_nonzero": {
+      "seeds": [
+        {
+          "seed": 0,
+          "MI": 0.22125199262736306,
+          "Q_HSC": 0.03758314497947802,
+          "nonzero": true
+        },
+        {
+          "seed": 1,
+          "MI": 0.16438730479171237,
+          "Q_HSC": 0.027923779738237203,
+          "nonzero": true
+        },
+        {
+          "seed": 2,
+          "MI": 0.19634599310720247,
+          "Q_HSC": 0.033352467643154485,
+          "nonzero": true
+        }
+      ],
+      "pass": true,
+      "note": "Full quad (all 3 shells + MERA): Q_HSC > 0 for 3 seeds"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_hopf_zero_UNSAT": {
+      "claim": "H_hopf=0, MI>0, H_symp>0, H_cliff>0, Q_HSC>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "H_hopf=0 with Q_HSC>0 is UNSAT \u2014 Hopf is factor in 4-way product"
+    },
+    "N2_sympy_four_factor_zero": {
+      "formula": "Q_HSC = MI * H_hopf * H_symp * H_cliff",
+      "all_zero_when_any_factor_zero": true,
+      "pass": true,
+      "note": "sympy confirms 4-factor product zero property"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_zero": {
+      "H_hopf_inactive": 0.0,
+      "H_symp_inactive": 0.0,
+      "H_cliff_inactive": 0.0,
+      "Q_HSC": 0.0,
+      "pass": true,
+      "note": "All shells inactive \u2192 Q_HSC = 0 (all shell entropies = 0)"
+    },
+    "B2_full_quad_stable_5seeds": {
+      "seeds": [
+        {
+          "seed": 0,
+          "Q_HSC": 0.03758314497947802,
+          "positive": true
+        },
+        {
+          "seed": 1,
+          "Q_HSC": 0.027923779738237203,
+          "positive": true
+        },
+        {
+          "seed": 2,
+          "Q_HSC": 0.033352467643154485,
+          "positive": true
+        },
+        {
+          "seed": 3,
+          "Q_HSC": 0.03849434624882209,
+          "positive": true
+        },
+        {
+          "seed": 4,
+          "Q_HSC": 0.03568668175921732,
+          "positive": true
+        }
+      ],
+      "all_positive": true,
+      "pass": true,
+      "note": "Q_HSC > 0 for seeds 0-4 in full quad"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

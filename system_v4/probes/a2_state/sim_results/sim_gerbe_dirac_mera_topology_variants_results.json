@@ -1,0 +1,209 @@
+{
+  "name": "sim_gerbe_dirac_mera_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "P1: spectral gap monotone across topologies; P2: I_c monotone across topologies"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "P3: UNSAT proof gap increase under MERA+gerbe; N1: UNSAT proof DD=0 produces non-zero spectral shift"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_gap_monotone_all_topologies": {
+      "dd": 1.0,
+      "topology_details": {
+        "T1_torus": {
+          "gaps": [
+            7.999999999999998,
+            2.0,
+            0.5
+          ],
+          "monotone": true
+        },
+        "T2_sphere": {
+          "gaps": [
+            7.517540966287266,
+            1.6180339887498953,
+            0.25
+          ],
+          "monotone": true
+        },
+        "T3_twist": {
+          "gaps": [
+            7.391036260090294,
+            1.4142135623730956,
+            0.0
+          ],
+          "monotone": true
+        }
+      },
+      "pass": true,
+      "note": "Spectral gap monotone decreasing for all 3 topologies under MERA+gerbe"
+    },
+    "P2_ic_monotone_all_topologies": {
+      "dd": 1.0,
+      "topology_details": {
+        "T1_torus": {
+          "ic_vals": [
+            1.7775388764051547,
+            1.320888343149318,
+            0.6890092384766566
+          ],
+          "monotone": true
+        },
+        "T2_sphere": {
+          "ic_vals": [
+            1.9437847770459111,
+            1.3381996585404508,
+            0.6921137666782062
+          ],
+          "monotone": true
+        },
+        "T3_twist": {
+          "ic_vals": [
+            1.9910162982791677,
+            1.322422443087028,
+            0.6931471805599433
+          ],
+          "monotone": true
+        }
+      },
+      "pass": true,
+      "note": "I_c monotone decreasing for all 3 topologies under MERA+gerbe"
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "P3_z3_gap_increase_UNSAT": {
+      "claim": "g1 > g0 given g1 = g0 - dd and dd > 0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Spectral gap increase under MERA+gerbe is UNSAT regardless of topology"
+    },
+    "N1_z3_trivial_gerbe_shift_UNSAT": {
+      "claim": "h1 != h0 given h1 = h0 - dd2 and dd2 = 0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "DD=0 trivial gerbe produces zero spectral shift; non-zero is UNSAT"
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_dd0_zero_shift_all_topologies": {
+      "topology_details": {
+        "T1_torus": {
+          "gap_layer0": 7.999999999999998,
+          "gap_layer1": 7.999999999999998,
+          "shift": 0.0,
+          "zero_shift": true
+        },
+        "T2_sphere": {
+          "gap_layer0": 7.517540966287266,
+          "gap_layer1": 7.517540966287266,
+          "shift": 0.0,
+          "zero_shift": true
+        },
+        "T3_twist": {
+          "gap_layer0": 7.391036260090294,
+          "gap_layer1": 7.391036260090294,
+          "shift": 0.0,
+          "zero_shift": true
+        }
+      },
+      "pass": true,
+      "note": "DD=0: gerbe contributes zero spectral shift for all topologies"
+    },
+    "B2_topologies_differ_absolute_gap": {
+      "topology_gaps": {
+        "T1_torus": {
+          "gap_layer0_dd1": 7.999999999999998
+        },
+        "T2_sphere": {
+          "gap_layer0_dd1": 7.517540966287266
+        },
+        "T3_twist": {
+          "gap_layer0_dd1": 7.391036260090294
+        }
+      },
+      "T1_torus_gap": 7.999999999999998,
+      "T2_sphere_gap": 7.517540966287266,
+      "T3_twist_gap": 7.391036260090294,
+      "topologies_differ": true,
+      "pass": true,
+      "note": "T2/T3 produce different absolute spectral gaps from T1 \u2014 topology is active"
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

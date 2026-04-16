@@ -1,0 +1,248 @@
+{
+  "name": "sim_holographic_gerbe_hopf_bridge_claims_canonical",
+  "classification": "canonical",
+  "coupling_program": "Holographic x Gerbe x Hopf",
+  "coupling_program_step": "5",
+  "positive_section_pass": true,
+  "negative_section_pass": true,
+  "boundary_section_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: rho_HGH constructed via np.kron of rand_pure states then validated as PSD via torch.linalg.eigvalsh (P1/P4); MI layerwise computed via torch einsum/eigvalsh for P3 Axis-0 gradient; Pearson correlation computed via torch for P2"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: N1 UNSAT proof that negative eigenvalue of rho_HGH is inadmissible; PSD constraint encoded as z3 hard constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for N1 PSD UNSAT proof; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: N2 symbolic verification of Q_HGH factorization; confirms product form MI*H_h*H_g*H_hf is the unique irreducible form"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "No Cl(3) rotor needed for bridge claim density matrix test"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "No Riemannian manifold computation needed for bridge claims"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant layers not required for bridge claim test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "No graph operations needed for bridge claim density matrix"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hyperedge structure not needed for bridge claim test"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Cell complex topology not required for bridge claim probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not required for bridge claim test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_min_eigenvalue": -2.132224799782795e-16,
+    "P1_trace": 0.9999999999999997,
+    "P1_psd": true,
+    "P1_trace_one": true,
+    "P1_pass": true,
+    "P2_pearson_r": 0.99999999999999,
+    "P2_abs_r": 0.99999999999999,
+    "P2_pass": true,
+    "P3_axis0_results": [
+      {
+        "seed": 0,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.2116688573068326,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 1,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.17281299579029086,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 2,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.2307471806074639,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 3,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.4327354760814377,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 4,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.349813532043427,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 5,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.18648825518105783,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 6,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.2567513900748428,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 7,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.20609792854485787,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 8,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.24116483762716512,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 9,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.2759621219428865,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 10,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.17273866443625807,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 11,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.2877229808627013,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 12,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.26547851848137016,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 13,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.23470188634139078,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 14,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.17083492027415192,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 15,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.18115264896622563,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 16,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.1755085780173291,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 17,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.21962721637882465,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 18,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.24443020992488718,
+        "layer0_gt_layer3": true
+      },
+      {
+        "seed": 19,
+        "layer0": 1.3862943611198906,
+        "layer3": 0.17509976848627007,
+        "layer0_gt_layer3": true
+      }
+    ],
+    "P3_all_20_seeds_layer0_gt_layer3": true,
+    "P3_pass": true,
+    "P4_pytorch_used": true,
+    "P4_pass": true
+  },
+  "negative": {
+    "N1_z3_negative_eigenvalue_unsat": true,
+    "N1_z3_result": "unsat",
+    "N1_pass": true,
+    "N2_sympy_reduced_zero": true,
+    "N2_pass": true,
+    "N3_avg_drop_eps09": 1.377005253683569,
+    "N3_avg_drop_eps03": 1.151717462751407,
+    "N3_pass": true
+  },
+  "boundary": {
+    "B1_hermitian_error": 1.4304896245381992e-17,
+    "B1_pass": true,
+    "B2_shape": [
+      64,
+      64
+    ],
+    "B2_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 15,
+    "total_bool_count": 15
+  }
+}

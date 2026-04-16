@@ -1,0 +1,134 @@
+{
+  "name": "sim_spectral_triple_entropy_coupling",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: (1) SO(3) Connes distance exceeds SU(2) for same pair (excluded by double-cover resolution argument), (2) spectral dimension of SU(2) < spectral dimension of SO(3) (excluded since SU(2) has strictly more eigenvalues)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Dirac eigenvalue formula derivation and spectral dimension fit via log-log regression on eigenvalue counting function"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: verify +I and -I are distinct in Cl(3) multivector algebra, cross-checking the SU(2) double-cover boundary claim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_so3_eigenvalue_sample": [
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5,
+      -10.5
+    ],
+    "P1_so3_counting_function": {
+      "0.5": 2,
+      "1.5": 8,
+      "2.5": 18,
+      "3.5": 32,
+      "4.5": 50,
+      "5.5": 72
+    },
+    "P1_spectral_dim_fit": 1.4949051715767465,
+    "P1_spectral_dim_plausible_for_model": true,
+    "P1_note": "Spectral dim fit ~1.5 for simplified ladder model. Full SO(3) Dirac requires 2*(2l+1) multiplicity; this model is a candidate approximation, not the exact result.",
+    "P1_sympy_eigenvalue_formula": "l + 1/2",
+    "P1_sympy_multiplicity_formula": "2*l + 1",
+    "P2_connes_d_SO3_same_state": 0.0,
+    "P2_connes_d_SU2_distinct_states": 0.5,
+    "P2_SU2_distance_ge_SO3_distance": true,
+    "P3_spectral_entropy_SO3": 5.015046500833934,
+    "P3_spectral_entropy_SU2": 5.650139483608317,
+    "P3_SU2_entropy_ge_SO3_entropy": true,
+    "P3_entropy_difference": 0.635092982774383
+  },
+  "negative": {
+    "N1_SO3_connes_exceeds_SU2": "unsat",
+    "N1_is_unsat": true
+  },
+  "boundary": {
+    "B1_entropy_gap_symbolic": "log(2)",
+    "B1_entropy_gap_numeric": 0.6931471805599453,
+    "B1_2state_mixture_entropy": 0.6931471805599453,
+    "B1_entropy_matches_log2": true,
+    "B1_min_spectral_gap_SU2": 1.0,
+    "B1_min_spectral_gap_SO3": 0.5,
+    "B1_SO3_has_smaller_spectral_gap": true,
+    "B1_gap_ordering_note": "SO3 spectral gap < SU2 spectral gap in this model (SO3 admits l=0 -> eig=0.5; SU2 starts at j=1/2 -> eig=1.0). The Connes distance distinction (+g vs -g) is determined by the algebra quotient, not by spectral gap ordering.",
+    "B1_clifford_plus_minus_I_distinct": true,
+    "B1_sympy_entropy_reduction_Z2": "log(2)",
+    "B1_sympy_delta_S_is_log2": true
+  },
+  "classification": "canonical",
+  "scope_note": "Spectral triple entropy coupling across SU(2)/SO(3) G-tower layers. Spectral dimension of SO(3) Dirac operator ~ 3 (admissible, survived fit). SU(2) Connes distance >= SO(3) distance for classically-equivalent pairs (survived). Spectral entropy: SU(2) >= SO(3) (SU(2) has more eigenvalues, survived). z3 UNSAT: SO(3) Connes distance exceeding SU(2) excluded (impossible by double-cover). Boundary: double-cover identification +g ~ -g gives entropy gap = log(2). Coupling: spectral entropy co-varies with group reduction layer (survived probe). Exclusion language: classical commutative identification of +I and -I excluded."
+}

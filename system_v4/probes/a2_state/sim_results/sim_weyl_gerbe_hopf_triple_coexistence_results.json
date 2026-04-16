@@ -1,0 +1,173 @@
+{
+  "name": "sim_weyl_gerbe_hopf_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT proves joint admissibility count cannot exceed min pairwise count"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "T1_joint_admissibility_tighter": {
+      "count_weyl_gerbe": 20,
+      "count_weyl_hopf": 20,
+      "count_gerbe_hopf": 20,
+      "count_triple": 20,
+      "joint_leq_all_pairwise": true,
+      "pass": true,
+      "note": "Joint admissible count <= each pairwise count (triple is strictest constraint)"
+    },
+    "T2_mi_monotone_triple": {
+      "seeds_tested": 5,
+      "layer_results": [
+        {
+          "seed": 0,
+          "MI_layers": [
+            1.3862943611198906,
+            0.6531588588174636,
+            0.38113548210924786,
+            0.22125199262736306
+          ],
+          "monotone": true
+        },
+        {
+          "seed": 1,
+          "MI_layers": [
+            1.3862943611198906,
+            0.6611480873882154,
+            0.3271469617975147,
+            0.16438730479171237
+          ],
+          "monotone": true
+        },
+        {
+          "seed": 2,
+          "MI_layers": [
+            1.3862943611198906,
+            0.6070161760352405,
+            0.3038765313101619,
+            0.19634599310720247
+          ],
+          "monotone": true
+        },
+        {
+          "seed": 3,
+          "MI_layers": [
+            1.3862943611198906,
+            0.7419478126882364,
+            0.43218096456123767,
+            0.22661623493962946
+          ],
+          "monotone": true
+        },
+        {
+          "seed": 4,
+          "MI_layers": [
+            1.3862943611198906,
+            0.6063213979674034,
+            0.4195719240621658,
+            0.21008751273467974
+          ],
+          "monotone": true
+        }
+      ],
+      "all_monotone": true,
+      "pass": true,
+      "note": "MI monotone non-increasing across 3 MERA layers (local unitaries + dephasing)"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_joint_tighter_UNSAT": {
+      "claim": "c_joint > c_WG given c_joint <= c_WG (triple subset of pairwise)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Joint admissibility cannot exceed pairwise \u2014 UNSAT (c_joint <= c_WG AND c_joint > c_WG)"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_single_shell_identity": {
+      "H_weyl_solo": 0.6931471805599453,
+      "H_weyl_expected": 0.6931471805599453,
+      "H_hopf_solo": 0.34657359027997264,
+      "H_hopf_expected": 0.34657359027997264,
+      "H_gerbe_solo": 2.70805020110221,
+      "pass": true,
+      "note": "Single active shell produces same entropy as standalone definition"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

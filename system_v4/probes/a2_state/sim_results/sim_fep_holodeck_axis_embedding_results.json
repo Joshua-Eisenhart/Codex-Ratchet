@@ -1,0 +1,208 @@
+{
+  "name": "sim_fep_holodeck_axis_embedding",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute F, KL, log p(o), Fisher information as torch tensors; verify \u0394F correlates with Axis 0 gradient magnitude via autograd; verify KL aligns with Axis 1 curvature (Fisher info); load-bearing axis correspondence"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: F = KL + (-log p(o)); KL >= 0, (-log p(o)) >= 0; F = 0 requires both terms = 0; KL > 0 contradicts this; UNSAT confirms F=0 => KL=0"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Fisher information = E[(d/dtheta log p)^2] = 1/sigma^2; verified symbolically as curvature of KL w.r.t. parameter theta; load-bearing for Axis 1 correspondence claim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "FEP axis embedding in Cl(3,0): F=grade-0 scalar (Axis 0), KL=grade-2 bivector (Axis 1 curvature), phase=grade-1 vector (Axis 3), loop direction=pseudoscalar sign (Axis 4); grade assignments are the load-bearing claim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Axis-FEP correspondence graph: 7 axis nodes and 7 FEP quantity nodes; verify each FEP quantity maps to exactly one primary axis (1-to-1 correspondence)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hyperedge {F, Axis_0, entropy_gradient}: F = Axis 0 is a 3-way claim (FEP free energy, axis system, and entropy gradient all point to same structure); hyperedge {KL, Axis_1, Fisher_info} similarly 3-way"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_axis0_F_descent": {
+      "pass": true,
+      "delta_F": 1.5999969185120886,
+      "initial_gradient": 2.0,
+      "gradient_decreases": true,
+      "note": "\u0394F > 0 during perception; gradient decreases to 0 at minimum \u2014 Axis 0 descent confirmed"
+    },
+    "P2_axis1_kl_curvature_fisher": {
+      "pass": true,
+      "d2_KL_dmu2": 0.4999999969612645,
+      "fisher_info": 0.5,
+      "relative_error": 6.07747097092215e-09,
+      "note": "Axis 1: d\u00b2KL/dmu\u00b2 = Fisher info = 1/sigma\u00b2 \u2014 KL curvature equals Fisher information"
+    },
+    "P3_axis2_logpo_scale": {
+      "pass": true,
+      "log_p_likely_obs": -1.723657489421723,
+      "log_p_unlikely_obs": -4.223657489421723,
+      "note": "Axis 2 (scale): log p(o) is larger for likely obs \u2014 surprise scales with prior probability"
+    },
+    "P4_axis4_loop_ordering": {
+      "pass": true,
+      "mu_post_forward": 1.6,
+      "mu_post_reversed": 1.2000000000000002,
+      "F_forward": 2.048657489421723,
+      "F_reversed": 1.9486574894217226,
+      "noncommutative": true,
+      "note": "Axis 4: perception-then-action \u2260 action-then-perception; loop direction matters"
+    },
+    "P5_sympy_fisher_equals_kl_curvature": {
+      "pass": true,
+      "fisher_symbolic": "1/sigma2",
+      "fisher_expected": "1/sigma2",
+      "fisher_at_sigma2_2": 0.5,
+      "note": "Fisher info = 1/sigma^2 = curvature of KL w.r.t. mean parameter \u2014 Axis 1 confirmed"
+    },
+    "P6_axis6_left_vs_right": {
+      "pass": true,
+      "left_minus_right_norm": 0.05656854249492379,
+      "note": "Axis 6: perception = left action (A\u03c1) \u2260 world action = right action (\u03c1A)"
+    },
+    "P7_clifford_fep_grade_embedding": {
+      "pass": true,
+      "F_grade": [
+        "0"
+      ],
+      "KL_grade": [
+        "2"
+      ],
+      "phase_grade": [
+        "1"
+      ],
+      "loop_grade": [
+        "3"
+      ],
+      "loop_cancels": true,
+      "note": "Cl(3,0) grade assignments: F=scalar, KL=bivector, phase=vector, loop=pseudoscalar"
+    },
+    "P8_rustworkx_axis_fep_correspondence": {
+      "pass": true,
+      "all_one_to_one": true,
+      "all_axes_covered": true,
+      "num_correspondences": 7,
+      "note": "axis-FEP graph: 7 FEP quantities map 1-to-1 to 7 axes"
+    },
+    "P9_xgi_axis_fep_hyperedges": {
+      "pass": true,
+      "has_F_triple": true,
+      "has_KL_triple": true,
+      "triple_count": 2,
+      "note": "3-way hyperedges encode that F=Axis0=entropy_gradient and KL=Axis1=Fisher_info"
+    }
+  },
+  "negative": {
+    "N1_axis0_axis1_independent": {
+      "pass": true,
+      "delta_F": -1.19521854378295,
+      "delta_KL": 0.4047314562170501,
+      "difference": 1.59995,
+      "note": "\u0394F \u2260 \u0394KL \u2014 Axis 0 and Axis 1 change independently; they are distinct axes"
+    },
+    "N2_z3_unsat_F_zero_KL_positive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: F=0 AND KL>0 is impossible; F=0 requires KL=0 (Axis 0 minimum implies Axis 1 minimum)"
+    },
+    "N3_logpo_and_kl_independent": {
+      "pass": true,
+      "log_po": -1.823657489421723,
+      "KL_at_true_posterior": 0.4847189562170502,
+      "KL_at_prior": 0.0,
+      "note": "same log p(o) but different KL \u2014 Axis 2 and Axis 1 are independent"
+    }
+  },
+  "boundary": {
+    "B1_F_minimum_equals_neg_log_po": {
+      "pass": true,
+      "F_at_true_posterior": 2.123657489421723,
+      "neg_log_po": 2.123657489421723,
+      "H_post": 1.3073667575475678,
+      "note": "at true posterior, F = -log p(o) (ELBO tight); Axis 0 at its minimum"
+    },
+    "B2_kl_zero_boundary": {
+      "pass": true,
+      "kl_at_prior": 0.0,
+      "kl_shifted": 0.0012499999999999734,
+      "note": "Axis 1 boundary: KL = 0 iff q = p exactly; any deviation gives KL > 0"
+    },
+    "B3_axis4_commutes_trivial_action": {
+      "pass": true,
+      "mu_post_fwd": 1.6,
+      "mu_post_rev": 1.6,
+      "note": "Axis 4 boundary: when action = 0, loop direction doesn't matter (commutes); non-trivial action breaks symmetry"
+    },
+    "B4_axis6_commutative_boundary": {
+      "pass": true,
+      "diagonal_commutes": true,
+      "offdiagonal_breaks": true,
+      "note": "Axis 6 boundary: diagonal operators commute (left=right), non-diagonal breaks symmetry"
+    }
+  },
+  "summary": {
+    "n_total": 16,
+    "n_pass": 16,
+    "overall_pass": true
+  },
+  "overall_pass": true
+}

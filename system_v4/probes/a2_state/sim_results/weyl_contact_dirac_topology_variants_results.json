@@ -1,0 +1,156 @@
+{
+  "name": "sim_weyl_contact_dirac_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensor density matrix; hermitian and trace checks across topology variants (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "contact structure graph not needed at topology-variant baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: degenerate topology (n_reeb=0) \u2192 H_contact=0 \u2192 Q_WCD=0 structurally impossible if Q>0 (load-bearing)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for topology-degeneracy UNSAT; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic H_contact=log(1+n_reeb) monotone in n_reeb; topology ordering proof (supportive)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) e12 bivector for H_weyl; confirms topology-invariant Weyl chiral split (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "S\u00b3 and torus Riemannian metrics could generalize; not load-bearing for baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "E(3) equivariance not needed for topology-variant baseline; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "topology class DAG: flat\u2192S\u00b3\u2192torus ordering encoded as rustworkx directed graph (supportive)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge for topology-variant coupling comparison not needed here; excluded"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for contact manifold; S\u00b3 and torus cell complexes verify topology class (supportive)"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for topology-variant baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "TV1_flat_Q_WCD_gt0": {
+      "passed": true,
+      "topology": "flat_R3",
+      "n_reeb": 16,
+      "H_contact": 2.833213344056216,
+      "Q_WCD": 0.5386835217301602,
+      "interpretation": "Flat topology: Q_WCD>0 with H_contact=log(17); baseline triple coupling admitted"
+    },
+    "TV2_s3_Q_WCD_gt0": {
+      "passed": true,
+      "topology": "S3_3sphere",
+      "n_reeb": 8,
+      "H_contact": 2.1972245773362196,
+      "Q_WCD": 0.4177619295188709,
+      "interpretation": "S\u00b3 topology: Q_WCD>0 with H_contact=log(9); triple coupling admitted on 3-sphere"
+    },
+    "TV3_torus_Q_WCD_gt0": {
+      "passed": true,
+      "topology": "torus_T3",
+      "n_reeb": 24,
+      "H_contact": 3.2188758248682006,
+      "Q_WCD": 0.6120101647091748,
+      "interpretation": "Torus topology: Q_WCD>0 with H_contact=log(25); triple coupling admitted on T\u00b3"
+    },
+    "TV4_H_contact_distinct_per_topology": {
+      "passed": true,
+      "H_contact_flat": 2.833213344056216,
+      "H_contact_s3": 2.1972245773362196,
+      "H_contact_torus": 3.2188758248682006,
+      "interpretation": "H_contact takes three distinct values; topology class distinguishes contact entropy"
+    },
+    "TV5_H_weyl_H_dirac_topology_invariant": {
+      "passed": true,
+      "H_weyl": 0.6931471805599453,
+      "H_dirac": 1.2959014798662492,
+      "interpretation": "H_weyl=log(2) and H_dirac deterministic; not sensitive to contact topology class"
+    },
+    "TV6_Q_WCD_ordering_torus_gt_flat_gt_s3": {
+      "passed": true,
+      "Q_torus": 0.6120101647091748,
+      "Q_flat": 0.5386835217301602,
+      "Q_s3": 0.4177619295188709,
+      "interpretation": "Q_WCD ordered by n_reeb: torus(24)>flat(16)>S\u00b3(8); contact topology controls Q magnitude"
+    },
+    "RX_topology_class_dag_ordering": {
+      "passed": true,
+      "order_length": 3,
+      "interpretation": "Topology class DAG: S\u00b3\u2192flat\u2192torus ordered by increasing n_reeb; rustworkx confirms"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_degenerate_topology": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "n_reeb=0 \u2192 H_contact=0 \u2192 Q_WCD=0: z3 UNSAT confirms degenerate topology excluded"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_extreme_topology_Q_finite": {
+      "passed": true,
+      "n_reeb": 1000,
+      "H_contact": 6.90875477931522,
+      "Q_WCD": 1.3135729305734045,
+      "interpretation": "n_reeb=1000 gives H_contact=log(1001); Q_WCD finite and positive; extreme topology admitted"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  }
+}

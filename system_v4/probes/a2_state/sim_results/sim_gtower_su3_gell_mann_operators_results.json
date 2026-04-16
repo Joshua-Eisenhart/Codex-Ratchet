@@ -1,0 +1,222 @@
+{
+  "name": "sim_gtower_su3_gell_mann_operators",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: (N1) su(3) has no 9th independent generator; (N2) coset operators lambda_4..8 cannot be in su(2) subalgebra"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed / not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Gell-Mann commutation [l1,l2]=2i*l3 verified exactly; Casimir [C1,l3]=0 proven symbolically; Cartan [l8,l3]=0 confirmed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_orthonormality": {
+      "diagonal_passes": 8,
+      "offdiagonal_passes": 28,
+      "expected_diagonal": 8,
+      "expected_offdiagonal": 28,
+      "failures": [],
+      "pass": true
+    },
+    "P2_structure_constants": {
+      "numeric_passes": 9,
+      "numeric_total": 9,
+      "sympy_lambda12_commutator_ok": true,
+      "details": [
+        {
+          "indices": [
+            1,
+            2,
+            3
+          ],
+          "expected": 1.0,
+          "computed": 1.0,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            1,
+            4,
+            7
+          ],
+          "expected": 0.5,
+          "computed": 0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            1,
+            5,
+            6
+          ],
+          "expected": -0.5,
+          "computed": -0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            2,
+            4,
+            6
+          ],
+          "expected": 0.5,
+          "computed": 0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            2,
+            5,
+            7
+          ],
+          "expected": 0.5,
+          "computed": 0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            3,
+            4,
+            5
+          ],
+          "expected": 0.5,
+          "computed": 0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            3,
+            6,
+            7
+          ],
+          "expected": -0.5,
+          "computed": -0.5,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            4,
+            5,
+            8
+          ],
+          "expected": 0.8660254037844386,
+          "computed": 0.8660254037844388,
+          "pass": "True"
+        },
+        {
+          "indices": [
+            6,
+            7,
+            8
+          ],
+          "expected": 0.8660254037844386,
+          "computed": 0.8660254037844388,
+          "pass": "True"
+        }
+      ],
+      "pass": true
+    },
+    "P3_casimir_commutes": {
+      "generators_commuting_with_C1": 8,
+      "total_generators": 8,
+      "sympy_spot_check_l3_ok": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_no_9th_su3_generator": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "N2_z3_coset_ops_not_in_su2_sub": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_cartan_subalgebra_structure": {
+      "lambda8_commutes_with_su2_generators": true,
+      "lambda8_does_not_commute_with_lambda4": true,
+      "comm_l8_l1_norm": 0.0,
+      "comm_l8_l2_norm": 0.0,
+      "comm_l8_l3_norm": 0.0,
+      "comm_l8_l4_norm": 2.4494897427831788,
+      "sympy_comm_l8_l3_zero": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "pass": 6,
+    "total": 6
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "name": "octonion_g2_autogroup_rosetta",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute octonion multiplication table; verify non-associativity via associator norm > 0"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph structure covered by rustworkx; PyG message passing not needed for Fano combinatorics"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: no associative normed division algebra of dimension 8 with integer structure constants"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for bounded integer associativity constraint; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "G2 Cartan matrix det=1 computation; verify G2 simplicity via rank argument on Lie algebra ideals"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "7 imaginary octonion units as grade-1 elements in Cl(7,0); verify anti-commutativity e_i*e_j=-e_j*e_i"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "root system geometry handled directly; geomstats not needed for G2/octonion coupling"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not the target; G2 automorphism tested directly via Fano structure"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Fano plane as 7-node graph; verify each node has in-degree 2 and out-degree 2"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "7 Fano lines as size-3 hyperedges; verify each pair appears in exactly one hyperedge"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial topology not required for Fano/octonion coupling at this stage"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for octonion non-associativity verification"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_octonion_nonassociativity_assoc_norm_positive": true,
+    "pytorch_octonion_assoc_norm_value": 2.0,
+    "pytorch_octonion_norm_multiplicative": "True",
+    "sympy_G2_cartan_det_equals_1": true,
+    "sympy_G2_cartan_indecomposable": true,
+    "rustworkx_fano_each_node_indegree_2": true,
+    "rustworkx_fano_each_node_outdegree_2": true,
+    "xgi_fano_each_pair_in_exactly_one_hyperedge": true
+  },
+  "negative": {
+    "pytorch_real_unit_associative_norm_zero": true,
+    "pytorch_imag_unit_sq_is_neg1_not_pos1": true,
+    "z3_unsat_cannot_be_both_associative_and_nonassociative": true,
+    "sympy_G2_cartan_asymmetric_excludes_outer_aut": true,
+    "rustworkx_extra_edge_breaks_degree_regularity": true
+  },
+  "boundary": {
+    "pytorch_quaternion_subalgebra_associative": true,
+    "clifford_imag_units_anti_commute_in_Cl70": true,
+    "clifford_eiej_product_grade2_not_grade01": true,
+    "pytorch_unit_imag_product_has_norm1": "True"
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "Octonion non-associativity survived: associator norm > 0 for (e1*e2)*e4 vs e1*(e2*e4)",
+    "Norm-multiplicativity survived: |a*b| = |a|*|b| confirmed for non-unit octonions",
+    "G2 Cartan matrix det=1 survived; indecomposability confirmed (both off-diagonal nonzero)",
+    "Fano plane degree regularity survived: each node has in-degree 2 and out-degree 2",
+    "Projective plane property survived: each pair of nodes in exactly one Fano hyperedge",
+    "z3 excluded simultaneous associativity + non-associativity (UNSAT as expected)",
+    "Quaternion subalgebra H survives as associative sub-structure; full O is not",
+    "classical baseline: G2 spinor/exceptional geometry excluded from this sim"
+  ]
+}

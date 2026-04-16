@@ -1,0 +1,146 @@
+{
+  "name": "sim_weyl_gerbe_hopf_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT proves MI < 0 is impossible regardless of topology class"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "T1_flat_torus": {
+      "topology": "flat_torus",
+      "dd_class": 0,
+      "H_weyl": 0.6931471805599453,
+      "H_gerbe": 2.70805020110221,
+      "H_hopf": 0.34657359027997264,
+      "MI": 1.3862943611198906,
+      "all_positive": true,
+      "pass": true,
+      "note": "flat_torus: all shell entropies and MI positive"
+    },
+    "T2_sphere_s2": {
+      "topology": "sphere_s2",
+      "dd_class": 0,
+      "H_weyl": 0.6931471805599453,
+      "H_gerbe": 2.5649493574615367,
+      "H_hopf": 0.34657359027997264,
+      "MI": 1.3862943611198906,
+      "all_positive": true,
+      "pass": true,
+      "note": "sphere_s2: all shell entropies and MI positive"
+    },
+    "T3_twisted": {
+      "topology": "twisted",
+      "dd_class": 1,
+      "H_weyl": 0.6931471805599453,
+      "H_gerbe": 0.6931471805599453,
+      "H_hopf": 0.34657359027997264,
+      "MI": 1.3862943611198906,
+      "all_positive": true,
+      "pass": true,
+      "note": "twisted: all shell entropies and MI positive"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_mi_violation_UNSAT": {
+      "claim": "MI < 0 given S_A>=0, S_B>=0, S_AB<=S_A+S_B (subadditivity)",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "MI < 0 violates subadditivity \u2014 UNSAT regardless of topology"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_twisted_lower_gerbe": {
+      "H_gerbe_flat": 2.70805020110221,
+      "H_gerbe_sphere": 2.5649493574615367,
+      "H_gerbe_twisted": 0.6931471805599453,
+      "twisted_leq_both": true,
+      "pass": true,
+      "note": "Twisted (dd_class=1, single cell) has lower or equal H_gerbe than other topologies"
+    },
+    "B2_weyl_topology_independent": {
+      "H_weyl_flat": 0.6931471805599453,
+      "H_weyl_sphere": 0.6931471805599453,
+      "H_weyl_twisted": 0.6931471805599453,
+      "all_equal_log2": true,
+      "pass": true,
+      "note": "H_weyl = log(2) in all topology classes \u2014 chirality is topology-agnostic"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

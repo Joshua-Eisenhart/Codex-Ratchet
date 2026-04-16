@@ -1,0 +1,193 @@
+{
+  "name": "sim_shell_entropy_signed_cut",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute density matrices and von Neumann entropy for Bell, product, and Werner states via torch; verify sign of S(A|B)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph neural pass not needed for bipartite entropy sign test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: bounded-Int encoding shows S(A|B)<0 AND separable is impossible; separable states have non-negative conditional entropy always"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for this UNSAT goal; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof that S(A|B)=S(AB)-S(B); for pure entangled state S(AB)=0 and S(B)>0 so S(A|B)=-S(B)<0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Bipartite state as grade-2 element of Cl(4,0); product state factorizes as grade-1 tensor grade-1 while entangled state has nonzero grade-2 residual after partial trace"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry not needed for entropy sign test"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant networks not load-bearing here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "3-node DAG encoding chain rule S_AB -> S_B -> S_A_given_B; verify acyclicity and correct edge directions"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {state, cut, conditional_entropy} encodes that signed entropy requires all three simultaneously; tests hyperedge membership"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Cell complex topology not needed for this bipartite test"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_bell_signed_cut": {
+      "S_AB": 2.220446049250313e-16,
+      "S_B": 0.6931471805599454,
+      "S_A_given_B": -0.6931471805599452,
+      "sign_negative": true,
+      "pass": true,
+      "note": "Bell state survived as entangled: S(A|B)<0; consistent with I_c>0"
+    },
+    "pytorch_product_signed_cut": {
+      "S_A_given_B": 0.0,
+      "sign_nonneg": true,
+      "pass": true,
+      "note": "Product state survived as classical: S(A|B)>=0; settled information"
+    },
+    "sympy_chain_rule_proof": {
+      "S_A_given_B_expr": "S_AB - S_B",
+      "pure_entangled_S_AB": "0",
+      "pure_entangled_S_A_given_B": "-S_B_pure",
+      "is_negative": true,
+      "pass": true,
+      "note": "Symbolic proof: S(AB)=0 for pure state and S(B)>0 so S(A|B)=-S(B)<0 \u2014 entangled structure excluded from classical"
+    },
+    "clifford_grade2_entanglement": {
+      "product_grade2_inner": 1.0,
+      "entangled_grade2_inner": 2.0,
+      "entangled_has_grade2": true,
+      "pass": true,
+      "note": "Entangled state survived as grade-2 structure in Cl(4,0); product factorizes differently"
+    },
+    "rustworkx_chain_rule_dag": {
+      "nodes": 3,
+      "edges": 2,
+      "is_acyclic": true,
+      "pass": true,
+      "note": "Chain rule DAG survived acyclicity check; entropy dependency flows one way"
+    },
+    "xgi_hyperedge_signed_entropy": {
+      "num_edges": 1,
+      "members": [
+        [
+          "cut",
+          "state",
+          "conditional_entropy"
+        ]
+      ],
+      "hyperedge_ok": true,
+      "pass": true,
+      "note": "Signed entropy coupled to all three nodes simultaneously via hyperedge; cannot decompose pairwise"
+    }
+  },
+  "negative": {
+    "neg_product_state_not_negative": {
+      "S_A_given_B": 0.0,
+      "wrongly_negative": false,
+      "pass": true,
+      "note": "Product state excluded from S(A|B)<0 class; settled information cannot masquerade as entangled"
+    },
+    "neg_werner_p0_not_negative": {
+      "p": 0.0,
+      "S_A_given_B": 0.6931471805599453,
+      "wrongly_negative": false,
+      "pass": true,
+      "note": "Werner p=0 (identity/4) excluded from entangled class; fully mixed state has no coherence"
+    },
+    "z3_unsat_separable_negative": {
+      "z3_status": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "note": "z3 UNSAT proves: S(A|B)<0 AND separable is impossible; separability is excluded from negative-entropy class"
+    }
+  },
+  "boundary": {
+    "boundary_werner_p_0.3300": {
+      "p": 0.33,
+      "S_A_given_B": 0.5520401750036413,
+      "sign": "positive",
+      "pass": true,
+      "note": "Werner p=0.3300 boundary measurement; sign of S(A|B) near threshold p=1/3"
+    },
+    "boundary_werner_p_0.3333": {
+      "p": 0.3333333333333333,
+      "S_A_given_B": 0.5493061443340549,
+      "sign": "positive",
+      "pass": true,
+      "note": "Werner p=0.3333 boundary measurement; sign of S(A|B) near threshold p=1/3"
+    },
+    "boundary_werner_p_0.3400": {
+      "p": 0.34,
+      "S_A_given_B": 0.5437630820573475,
+      "sign": "positive",
+      "pass": true,
+      "note": "Werner p=0.3400 boundary measurement; sign of S(A|B) near threshold p=1/3"
+    },
+    "boundary_bell_exact_value": {
+      "S_A_given_B": -0.6931471805599452,
+      "expected": -0.6931471805599453,
+      "deviation": 1.1102230246251565e-16,
+      "pass": true,
+      "note": "Bell state S(A|B) survived with value -log(2) to numerical precision"
+    },
+    "boundary_maximally_mixed": {
+      "S_A_given_B": 0.6931471805599453,
+      "expected_approx": 0.6931471805599453,
+      "pass": true,
+      "note": "Maximally mixed state has S(A|B)>0; excluded from coherent shell class"
+    }
+  },
+  "summary": {
+    "pass": 14,
+    "total": 14,
+    "all_pass": true
+  }
+}

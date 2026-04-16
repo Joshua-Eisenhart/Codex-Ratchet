@@ -1,0 +1,216 @@
+{
+  "name": "sim_weyl_gerbe_hopf_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT \u2014 H_weyl=0 with Q_WGH>0 impossible (zero factor kills product)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: Symbolic proof \u2014 4-factor product a*b*c*d: any factor=0 \u2192 product=0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "E1_weyl_alone": {
+      "H_weyl": 0.6931471805599453,
+      "H_gerbe": 0.0,
+      "H_hopf": 0.0,
+      "MI": 0.22125199262736306,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Weyl alone: H_gerbe=0, H_hopf=0 \u2192 Q_WGH=0 by product rule"
+    },
+    "E2_gerbe_alone": {
+      "H_weyl": 0.0,
+      "H_gerbe": 2.70805020110221,
+      "H_hopf": 0.0,
+      "MI": 0.22125199262736306,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Gerbe alone: H_weyl=0, H_hopf=0 \u2192 Q_WGH=0"
+    },
+    "E3_hopf_alone": {
+      "H_weyl": 0.0,
+      "H_gerbe": 0.0,
+      "H_hopf": 0.34657359027997264,
+      "MI": 0.22125199262736306,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Hopf alone: H_weyl=0, H_gerbe=0 \u2192 Q_WGH=0"
+    },
+    "E4a_weyl_gerbe_no_mera": {
+      "MI": 0.0,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Weyl+Gerbe pairwise, MERA absent \u2192 MI=0 \u2192 Q_WGH=0"
+    },
+    "E4b_weyl_hopf_no_mera": {
+      "MI": 0.0,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Weyl+Hopf pairwise, MERA absent \u2192 MI=0 \u2192 Q_WGH=0"
+    },
+    "E4c_gerbe_hopf_no_mera": {
+      "MI": 0.0,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "Gerbe+Hopf pairwise, MERA absent \u2192 MI=0 \u2192 Q_WGH=0"
+    },
+    "E4d_all_shells_no_mera": {
+      "MI": 0.0,
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "All shells active, MERA absent \u2192 MI=0 \u2192 Q_WGH=0"
+    },
+    "E5_full_quad_nonzero": {
+      "seeds": [
+        {
+          "seed": 0,
+          "MI": 0.22125199262736306,
+          "Q_WGH": 0.14393447500099477,
+          "nonzero": true
+        },
+        {
+          "seed": 1,
+          "MI": 0.16438730479171237,
+          "Q_WGH": 0.10129033238417431,
+          "nonzero": true
+        },
+        {
+          "seed": 2,
+          "MI": 0.19634599310720247,
+          "Q_WGH": 0.12773199057254042,
+          "nonzero": true
+        }
+      ],
+      "all_nonzero": true,
+      "pass": true,
+      "note": "Full quad (all 3 shells + MERA): Q_WGH \u2260 0 for all 3 seeds"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_weyl_zero_UNSAT": {
+      "claim": "MI>0, H_weyl=0, H_gerbe>0, H_hopf>0, Q_WGH=product>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "H_weyl=0 with Q_WGH>0 is UNSAT \u2014 zero factor kills 4-way product"
+    },
+    "N2_sympy_four_factor_zero": {
+      "formula": "a*b*c*d",
+      "all_factors_zero_when_any_zero": true,
+      "pass": true,
+      "note": "sympy: a*b*c*d=0 whenever any factor=0 \u2014 4-way product zero property"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_zero": {
+      "Q_WGH": 0.0,
+      "pass": true,
+      "note": "All shells inactive \u2192 Q_WGH = 0"
+    },
+    "B2_full_quad_stable_5seeds": {
+      "seeds": [
+        {
+          "seed": 0,
+          "Q_WGH": 0.14393447500099477,
+          "positive": true
+        },
+        {
+          "seed": 1,
+          "Q_WGH": 0.10129033238417431,
+          "positive": true
+        },
+        {
+          "seed": 2,
+          "Q_WGH": 0.12773199057254042,
+          "positive": true
+        },
+        {
+          "seed": 3,
+          "Q_WGH": 0.14366823981836577,
+          "positive": true
+        },
+        {
+          "seed": 4,
+          "Q_WGH": 0.13318950061301063,
+          "positive": true
+        }
+      ],
+      "all_positive": true,
+      "pass": true,
+      "note": "Full quad Q_WGH > 0 across 5 seeds \u2014 stable emergence"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

@@ -1,0 +1,123 @@
+{
+  "name": "sim_gtower_so3_angular_momentum_operators",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: (N1) so(3) has no 4th independent generator; (N2) parity P cannot be in SO(3) connected component"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed / not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic su(2) commutation relations verified exactly; Casimir [J^2, Ji]=0 proven symbolically for all generators"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_su2_commutation_relations": {
+      "numpy_ok": true,
+      "sympy_ok": true,
+      "pass": true
+    },
+    "P2_casimir_commutes": {
+      "numpy_ok": true,
+      "sympy_ok": true,
+      "pass": true,
+      "J2_eigenvalue_j1": 2.0
+    },
+    "P3_ladder_operator": {
+      "pass": true,
+      "overlap_Jplus_m0_with_m1": 0.9999999999999998,
+      "J_plus_kills_top_state": true
+    }
+  },
+  "negative": {
+    "N1_z3_no_4th_so3_generator": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    },
+    "N2_z3_parity_not_in_SO3": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_irrep_structure": {
+      "j1_J2_eigenvalue_is_2": true,
+      "j0_generators_trivial": true,
+      "j_half_picks_up_minus_sign_under_2pi": true,
+      "j1_no_sign_under_2pi": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "pass": 6,
+    "total": 6
+  }
+}

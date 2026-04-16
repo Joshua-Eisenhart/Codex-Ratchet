@@ -1,0 +1,190 @@
+{
+  "name": "sim_classical_nonclassical_entropy_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 18,
+  "n_total": 18,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute Von Neumann entropy via eigvalsh; autograd on DeltaS w.r.t. off-diagonal amplitude; load-bearing for numerical sweep"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: off_diag=0 AND gap>0 is structurally impossible \u2014 no coherences means no gap"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; z3 covers the proof layer"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic eigenvalue derivation for rho=[[a,c],[c*,b]]; show |c|>0 implies S_VN > S_diag"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Bloch vector rho=(1+r.sigma)/2 in Cl(3,0); classical=r along e3 only; coherences=transverse r_x,r_y; bridge signal is transverse blade activation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no manifold sampling required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "bridge graph: nodes {classical, nonclassical}, edge weight = commutator norm |[A,B]|; edge present iff commutator nonzero"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_diagonal_VN_equals_Shannon": {
+      "pass": true,
+      "description": "Diagonal density matrix: S_VN = S_shannon (classical is special case)"
+    },
+    "P2_coherences_create_entropy_gap": {
+      "pass": true,
+      "description": "Off-diagonal coherences \u2192 |S_VN - S_shannon| > 0; gap signals nonclassical regime"
+    },
+    "P3_noncommutativity_is_bridge_signal": {
+      "pass": true,
+      "description": "DeltaS~0 for diagonal (commuting) state; DeltaS>0 for coherent state with nonzero commutator",
+      "comm_norm_ZX": 2.828427,
+      "gap_diagonal": 3.92e-08,
+      "gap_coherent": 0.3680642091
+    },
+    "P4_sympy_gap_zero_at_c0": {
+      "pass": true,
+      "description": "Symbolic: gap = S_VN - S_diag is numerically zero at c=0 for all tested a values",
+      "max_gap": 2.3190468138462996e-17
+    },
+    "P5_autograd_gap_gradient_nonzero": {
+      "pass": true,
+      "description": "Autograd: d(gap)/dc is nonzero at c=0.3 \u2014 gap is differentiable in off-diagonal amplitude",
+      "grad_c": 1.38629436
+    },
+    "P6_clifford_transverse_blade_bridge": {
+      "pass": true,
+      "description": "Classical state has zero transverse Cl(3,0) blades; coherent state activates e1/e2 blades",
+      "transverse_classical": 0.0,
+      "transverse_coherent": 0.09
+    },
+    "P7_rustworkx_bridge_graph_edge": {
+      "pass": true,
+      "description": "Bridge graph has 1 directed edge with commutator-norm weight > 0",
+      "edge_weight": 2.8284
+    },
+    "P8_gap_monotone_in_c": {
+      "pass": true,
+      "description": "Entropy gap |S_VN - S_shannon| is monotonically non-decreasing with |c|",
+      "gaps": [
+        0.0,
+        0.00500837,
+        0.02013552,
+        0.04570054,
+        0.08228288,
+        0.19274476,
+        0.36806421
+      ]
+    }
+  },
+  "negative": {
+    "N1_diagonal_gap_always_zero": {
+      "pass": true,
+      "description": "Negative: purely diagonal state has DeltaS=0 for all diagonal mixtures"
+    },
+    "N2_z3_no_gap_without_coherences": {
+      "pass": true,
+      "description": "Z3 UNSAT: off_diag=0 AND gap>0 is structurally impossible",
+      "z3_result": "unsat"
+    },
+    "N3_commuting_observables_no_bridge": {
+      "pass": true,
+      "description": "Diagonal observables commute: commutator norm = 0, no bridge edge warranted",
+      "comm_norm": 0.0
+    },
+    "N4_sympy_gap_exactly_zero_at_c0_half": {
+      "pass": true,
+      "description": "Sympy: for a=1/2, c=0 \u2014 S_VN = S_shannon exactly = log(2)",
+      "gap": "0"
+    },
+    "N5_clifford_no_transverse_no_bridge": {
+      "pass": true,
+      "description": "Clifford: state with zero transverse blades is purely classical \u2014 no bridge",
+      "transverse_norm": 0.0
+    }
+  },
+  "boundary": {
+    "B1_max_coherence_pure_state_svn_zero": {
+      "pass": true,
+      "description": "Boundary: |+> state (max coherence) has S_VN=0 (pure state); S_shannon=log(2) \u2192 maximal gap",
+      "S_VN": 0.0,
+      "S_shannon": 0.69314718
+    },
+    "B2_near_pure_gap_approaches_max": {
+      "pass": true,
+      "description": "Near-maximally coherent state: gap approaches log(2) from below",
+      "gap": 0.68523993,
+      "log2": 0.69314718
+    },
+    "B3_maximally_mixed_both_equal_log2": {
+      "pass": true,
+      "description": "Maximally mixed diagonal state: S_VN = S_shannon = log(2); no gap",
+      "S_VN": 0.6931471806,
+      "S_shannon": 0.6931471825
+    },
+    "B4_z3_unsat_even_tiny_gap_without_coherence": {
+      "pass": true,
+      "description": "Z3 UNSAT: even a tiny gap of 1e-5 is impossible without coherences",
+      "z3_result": "unsat"
+    },
+    "B5_isolated_classical_node_no_edges": {
+      "pass": true,
+      "description": "Boundary: classical node with no coherences has out-degree 0 in bridge graph",
+      "out_degree": 0
+    }
+  }
+}

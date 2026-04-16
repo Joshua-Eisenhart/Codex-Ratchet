@@ -1,0 +1,171 @@
+{
+  "name": "sim_gtower_e6_exceptional_geometry",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: E6 cannot be smaller than SU3 it contains"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check of dimension formula rank + 2*n_pos_roots"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_e6_dimension": {
+      "description": "dim(E6) = 6 + 2*36 = 78 via root formula",
+      "rank": 6,
+      "num_positive_roots": 36,
+      "computed_dim": 78,
+      "expected_dim": 78,
+      "pass": true,
+      "sympy_cross_check": 78,
+      "sympy_agrees": true
+    },
+    "P2_su3_containment": {
+      "description": "E6 contains SU(3): dim(SU3)=8 < dim(E6)=78 \u2014 dimensional containment",
+      "dim_su3": 8,
+      "dim_e6": 78,
+      "containment_satisfied": true,
+      "pass": true
+    },
+    "P3_cartan_matrix": {
+      "description": "E6 Cartan matrix: det=6 (this ordering), first row [2,-1,0,0,0,0]",
+      "det": 6,
+      "expected_det": 6,
+      "first_row": [
+        2,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_first_row": [
+        2,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "det_pass": true,
+      "first_row_pass": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_containment_contradiction": {
+      "description": "z3 UNSAT: E6_dim=78 AND SU3_dim=8 AND E6_dim < SU3_dim \u2014 contradiction",
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N2_z3_simply_laced": {
+      "description": "z3 UNSAT: no off-diagonal Cartan entry outside {0,-1} in E6 \u2014 simply-laced verified",
+      "off_diagonal_values": [
+        -1,
+        0
+      ],
+      "bad_values_found": [],
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "UNSAT confirms E6 is simply-laced: all off-diag in {0,-1}"
+    }
+  },
+  "boundary": {
+    "B1_exceptional_ordering_g2_f4_e6": {
+      "description": "G2(14) < F4(52) < E6(78): exceptional group dimensional ordering",
+      "dims": {
+        "G2": 14,
+        "F4": 52,
+        "E6": 78
+      },
+      "g2_lt_f4": true,
+      "f4_lt_e6": true,
+      "all_exceptional": true,
+      "pass": true
+    },
+    "B2_e_series_ordering": {
+      "description": "E6(78) < E7(133) < E8(248): E-series dimensional ordering",
+      "dims": {
+        "E6": 78,
+        "E7": 133,
+        "E8": 248
+      },
+      "e6_lt_e7": true,
+      "e7_lt_e8": true,
+      "pass": true,
+      "e7_dim_formula_check": 133,
+      "e8_dim_formula_check": 248,
+      "e7_formula_pass": true,
+      "e8_formula_pass": true
+    }
+  },
+  "all_pass": true
+}

@@ -1,0 +1,148 @@
+{
+  "name": "sim_gtower_so3_hopf_base_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; geomstats and clifford cover all geometry here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing in this bundle coupling sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guard: (N1) proves that an orientation-reversing O(3) transformation (det=-1) applied to the Hopf base cannot yield a valid Hopf fiber map \u2014 Hopf bundle requires orientation-preserving (det=+1) base symmetries; load-bearing for the negative test"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for UNSAT proofs here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Hopf map formula: \u03c0(q) = q * i * q\u207b\u00b9 derived and verified; confirms quaternion \u2192 S\u00b2 projection formula analytically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Hopf map via Cl(3) spinor-to-S\u00b2 projection: spinor s \u2192 s*e1*~s gives the Hopf map in geometric algebra language; confirms geomstats result via independent method \u2014 supportive"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S\u00b2 Riemannian geometry: point manipulation, SO(3) rotation action, geodesic distance, degree-of-freedom counting via tangent space dimension \u2014 load-bearing for P1/P2/B1"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) irrep labeling not needed here; test is geometric not representation-theoretic"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this bundle/geometry sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not used; test is smooth/differential geometry"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to this bundle coupling test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_so3_acts_on_s2": {
+      "pass": true,
+      "n_tested": 12,
+      "all_stay_on_sphere": true,
+      "note": "SO(3) (G-tower layer) acts on S\u00b2 as isometries; all rotated points stay on S\u00b2"
+    },
+    "P2_dof_reduction_hopf_projection": {
+      "pass": true,
+      "so3_dimension": 3,
+      "s2_dimension": 2,
+      "dof_reduced": true,
+      "note": "Hopf projection SO(3)\u2192S\u00b2: from 3 DOF to 2 DOF; the U(1) fiber direction is the lost degree of freedom"
+    },
+    "P3_u1_fiber_gtower_correspondence": {
+      "pass": true,
+      "phi_values_tested": [
+        0.0,
+        0.5235987755982988,
+        0.7853981633974483,
+        1.0471975511965976,
+        1.5707963267948966,
+        3.141592653589793,
+        6.283185307179586
+      ],
+      "all_phases_match": true,
+      "note": "Hopf fiber U(1) and G-tower U(3)/SU(3) U(1) are parameterized by the same angle; isomorphic as U(1) groups"
+    },
+    "P1_sympy_hopf_formula": {
+      "pass": true,
+      "hopf_output_is_unit_on_unit_sphere": true,
+      "norm_sq_simplified": "1",
+      "note": "Symbolic: Hopf map of unit quaternion lands on unit sphere"
+    }
+  },
+  "negative": {
+    "N1_z3_reflection_hopf_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "z3 UNSAT: orientation-reversing O(3) transformation (det=-1) cannot produce a valid Hopf fiber map; Hopf bundle consistency requires det=+1 (i.e., SO(3) is the correct structure group, not O(3))"
+    },
+    "N1_numeric_reflection_fiber": {
+      "pass": true,
+      "note": "Numeric: quaternion reflection (w,-x,y,z) maps Hopf fibers to reflected fibers; structural orientation flip is the bundle-breaking inconsistency (see z3 UNSAT)"
+    }
+  },
+  "boundary": {
+    "B1_so3_sees_only_s2_base": {
+      "pass": true,
+      "s3_dim": 3,
+      "s2_dim": 2,
+      "fiber_dim": 1,
+      "distinct_s3_points_same_hopf_image": true,
+      "n_fiber_points_tested": 5,
+      "note": "S\u00b3 has dim 3 = S\u00b2 dim 2 + U(1) fiber dim 1; at G-tower SO(3) level only the 2D base S\u00b2 is accessible; the fiber U(1) requires the SU(2) double cover (one rung up in G-tower)"
+    },
+    "B1_clifford_hopf_fiber": {
+      "pass": true,
+      "n_spinors_tested": 20,
+      "all_double_cover_same_image": true,
+      "note": "Cl(3) sandwich Hopf map: s and -s give the same S\u00b2 base point; SU(2) double cover property confirmed \u2014 SO(3) identifies both spinors, losing the fiber distinction"
+    }
+  },
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  }
+}

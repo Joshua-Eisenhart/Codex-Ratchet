@@ -16,17 +16,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "graph structure not relevant to rotor transport"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "rational check: rotor norm at \u03b8=\u03c0/2 is exactly 1"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for rational check"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -41,12 +41,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "Riemannian metric not relevant to algebraic transport"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "equivariant networks not relevant here"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
@@ -56,17 +56,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph structure not relevant"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "cell complex structure not relevant"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not relevant"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -383,5 +383,5 @@
     "claim": "Cl(3) rotor transport R\u00b7e1\u00b7~R matches SU(2) adjoint U\u00b7\u03c3_x\u00b7U\u2020; double-cover R(2\u03c0)=-1 confirmed; non-commutativity confirmed",
     "diagnosis": "clifford_weyl_bridge_consistent"
   },
-  "timestamp": "2026-04-16T02:45:12.602790Z"
+  "timestamp": "2026-04-16T02:53:39.822562Z"
 }

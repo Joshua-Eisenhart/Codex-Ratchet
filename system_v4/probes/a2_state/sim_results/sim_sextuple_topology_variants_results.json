@@ -1,0 +1,127 @@
+{
+  "name": "sim_sextuple_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof Q_6 != 0 impossible when H_hopf = 0"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_T1_full_sextuple_Q_positive": {
+      "Q": 0.24573899860191314,
+      "MI": 0.20352653927719988,
+      "pass": "True"
+    },
+    "P2_T2_full_sextuple_Q_positive": {
+      "Q": 0.05338162361450555,
+      "MI": 0.044211855574696646,
+      "pass": "True"
+    },
+    "P3_T3_full_sextuple_Q_positive": {
+      "Q": 1.27508665030544,
+      "MI": 1.05605530539182,
+      "pass": "True"
+    },
+    "P4_T1_quintuple_no_clifford_Q_zero": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "P5_T2_quintuple_no_weyl_Q_zero": {
+      "Q": 0.0,
+      "pass": "True"
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "N1_z3_hopf_zero_Q_nonzero_UNSAT": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Q_6 with H_hopf=0 must be 0 regardless of topology variant"
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_T1_all_inactive_Q_zero": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "B2_T3_MI_positive": {
+      "MI": 1.05605530539182,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

@@ -1,0 +1,276 @@
+{
+  "name": "sim_rosetta_cartan_a21_ladder",
+  "description": "Cartan A21 entry {-1,-2,-3} is a monotone Rosetta ladder across A2/B2/G2; angle formula proven symbolically; UNSAT for wrong angle-entry combinations; Clifford rotor grade-0 recovers A21; ladder graph is a DAG; Rosetta hyperedge is 3-way triadic",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute A21 numerically from root angle using torch tensors; verify monotone sequence |A21_A2|<|A21_B2|<|A21_G2| via abs values; autograd on angle-to-A21 formula confirms gradient flows correctly"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in Cartan ladder; graph handled by rustworkx"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: A21=-2 AND angle=120deg is structurally impossible; B2 Cartan entry -2 forces cos(theta)=-sqrt(2)/2 hence 135deg, not 120deg; z3 encodes this arithmetic constraint and returns UNSAT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for this arithmetic UNSAT; cvc5 deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Prove angle formula theta=arccos(A21*A12/4) symbolically for each rank-2 Cartan matrix; verify 120deg, 135deg, 150deg; length ratio from A21/A12 ratio"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Root vectors in Cl(2,0) as grade-1 multivectors; rotor between pairs of root reflections carries A21 as grade-0 scalar component of rotor product; grade-2 component encodes angle between roots"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Cartan ladder probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Cartan ladder probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "3-node directed ladder graph with nodes A2/B2/G2 and edge weights equal to A21 differences; verify graph is a monotone directed path with no cross-edges or cycles"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge links Cartan_A21, root_angle, length_ratio as an irreducibly triadic Rosetta signal; hyperedge membership verified for all three algebra types jointly"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Cartan ladder probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this Cartan ladder probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_cartan_numerics": {
+      "A2": {
+        "A21": -1,
+        "angle_deg": 120.0,
+        "cos_from_cartan": -0.5,
+        "cos_direct": -0.49999999999999983,
+        "cos_match": true,
+        "autograd_dcosdt": -0.8660254037844387,
+        "expected_grad": -0.8660254037844387,
+        "grad_match": true,
+        "pass": true
+      },
+      "B2": {
+        "A21": -2,
+        "angle_deg": 135.0,
+        "cos_from_cartan": -0.7071067811865476,
+        "cos_direct": -0.7071067811865475,
+        "cos_match": true,
+        "autograd_dcosdt": -0.7071067811865476,
+        "expected_grad": -0.7071067811865476,
+        "grad_match": true,
+        "pass": true
+      },
+      "G2": {
+        "A21": -3,
+        "angle_deg": 150.0,
+        "cos_from_cartan": -0.8660254037844386,
+        "cos_direct": -0.8660254037844387,
+        "cos_match": true,
+        "autograd_dcosdt": -0.49999999999999994,
+        "expected_grad": -0.49999999999999994,
+        "grad_match": true,
+        "pass": true
+      },
+      "monotone_ladder": {
+        "abs_A2": 1,
+        "abs_B2": 2,
+        "abs_G2": 3,
+        "monotone": true,
+        "pass": true
+      },
+      "pass": true
+    },
+    "sympy_angle_proof": {
+      "A2": {
+        "A21": -1,
+        "A12": -1,
+        "cos_val": "-1/2",
+        "theta_deg_symbolic": "120",
+        "expected_deg": 120,
+        "angle_match": true,
+        "pass": true
+      },
+      "B2": {
+        "A21": -2,
+        "A12": -1,
+        "cos_val": "-sqrt(2)/2",
+        "theta_deg_symbolic": "135",
+        "expected_deg": 135,
+        "angle_match": true,
+        "pass": true
+      },
+      "G2": {
+        "A21": -3,
+        "A12": -1,
+        "cos_val": "-sqrt(3)/2",
+        "theta_deg_symbolic": "150",
+        "expected_deg": 150,
+        "angle_match": true,
+        "pass": true
+      },
+      "all_angles_proven": true,
+      "pass": true
+    },
+    "clifford_rotor_a21": {
+      "A2": {
+        "angle_deg": 120.0,
+        "ratio": 1.0,
+        "grade0_rotor_alpha2_alpha1": -0.49999999999999983,
+        "expected_grade0": -0.49999999999999983,
+        "A21_from_clifford": -1.0,
+        "A21_expected": -1,
+        "match": true,
+        "pass": true
+      },
+      "B2": {
+        "angle_deg": 135.0,
+        "ratio": 1.4142135623730951,
+        "grade0_rotor_alpha2_alpha1": -1.0,
+        "expected_grade0": -1.0,
+        "A21_from_clifford": -2.0,
+        "A21_expected": -2,
+        "match": true,
+        "pass": true
+      },
+      "G2": {
+        "angle_deg": 150.0,
+        "ratio": 1.7320508075688772,
+        "grade0_rotor_alpha2_alpha1": -1.5,
+        "expected_grade0": -1.5,
+        "A21_from_clifford": -3.0,
+        "A21_expected": -3,
+        "match": true,
+        "pass": true
+      },
+      "all_pass": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "z3_b2_entry_not_a2_angle": {
+      "claim": "A21=-2 AND angle=120deg (A2-type angle with B2-type entry)",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "explanation": "cos_theta^2=0.5 (from A21=-2,A12=-1) contradicts cos_theta=-0.5 (120 degrees); 0.25 != 0.5 => UNSAT",
+      "pass": true
+    },
+    "z3_g2_entry_not_b2_angle": {
+      "claim": "A21=-3 AND angle=135deg (B2-type angle with G2-type entry)",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "explanation": "cos^2=0.75 (from A21=-3) contradicts cos^2=0.5 (135 degrees); 3/4 != 1/2 => UNSAT",
+      "pass": true
+    },
+    "z3_unsat_tests_pass": true,
+    "z3_pass": true,
+    "sympy_invalid_a21_excluded": {
+      "A21_-1.5": {
+        "value": -1.5,
+        "valid_cartan_entry": false,
+        "correctly_excluded": true,
+        "pass": true
+      },
+      "A21_-4": {
+        "value": -4,
+        "valid_cartan_entry": false,
+        "correctly_excluded": true,
+        "pass": true
+      },
+      "A21_-0.5": {
+        "value": -0.5,
+        "valid_cartan_entry": false,
+        "correctly_excluded": true,
+        "pass": true
+      },
+      "A21_2": {
+        "value": 2,
+        "valid_cartan_entry": false,
+        "correctly_excluded": true,
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rustworkx_ladder_graph": {
+      "node_count": 3,
+      "edge_count": 2,
+      "is_dag": true,
+      "has_forward_path_A2_to_G2": true,
+      "no_reverse_path_G2_to_A2": true,
+      "A21_values": [
+        -1,
+        -2,
+        -3
+      ],
+      "monotone_check": true,
+      "pass": true
+    },
+    "xgi_rosetta_hyperedge": {
+      "algebras": [
+        "A2",
+        "B2",
+        "G2"
+      ],
+      "num_hyperedges": 3,
+      "num_nodes": 9,
+      "all_hyperedges_triadic": true,
+      "edge_sizes": [
+        3,
+        3,
+        3
+      ],
+      "pass": true
+    },
+    "sympy_a21_zero_orthogonal": {
+      "A21": 0,
+      "cos_val": "0",
+      "angle_deg": "90",
+      "is_90_degrees": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "overall_pass": true
+}

@@ -1,0 +1,185 @@
+{
+  "name": "sim_rosetta_log2_cross_family_invariant",
+  "classification": "classical_baseline",
+  "description": "Rosetta R4 cross-check: log(2) is the structural entropy cost of any Z\u2082 quotient action on a uniform measure, verified across 6 independent mathematical families.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numpy sufficient for matrix orbit computations"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph message passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs N1 and N2: structurally impossible configurations for Z\u2082 orbit entropy"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 covers UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification: log(6)-log(3)=log(2) in B3"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy SU(2) matrix rep sufficient for P2"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; manual adjoint map used"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_su2_so3_orbit_entropy": {
+      "n_samples": 200,
+      "mismatches_in_double_cover": 0,
+      "mean_orbit_entropy": 0.6931471805599452,
+      "expected": 0.6931471805599453,
+      "delta": 1.1102230246251565e-16,
+      "pass": true
+    },
+    "P2_cl3_bivector_rotor_quotient": {
+      "n_bivectors": 100,
+      "mismatches": 0,
+      "mean_orbit_entropy": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "delta": 0.0,
+      "pass": true
+    },
+    "P3_sp6_su3_bond_expansion": {
+      "log6_minus_log3": 0.6931471805599452,
+      "expected": 0.6931471805599453,
+      "delta": 1.1102230246251565e-16,
+      "pass": "True"
+    },
+    "P4_igt_z4_doubling_map": {
+      "log4_minus_log2": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "delta": 0.0,
+      "pass": "True"
+    },
+    "P5_fep_markov_blanket_boundary": {
+      "MI_IE": 0.6931471805599453,
+      "CMI_IE_given_B": 0.0,
+      "gap_MI_IE_minus_CMI": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "delta": 0.0,
+      "pass": true
+    },
+    "P6_unified_agreement": {
+      "all_values": {
+        "P1_su2_so3": 0.6931471805599452,
+        "P2_cl3_bivector": 0.6931471805599453,
+        "P3_sp6_su3": 0.6931471805599452,
+        "P4_igt_z4": 0.6931471805599453,
+        "P5_fep_markov": 0.6931471805599453,
+        "math_log2": 0.6931471805599453
+      },
+      "deltas_from_log2": {
+        "P1_su2_so3": 1.1102230246251565e-16,
+        "P2_cl3_bivector": 0.0,
+        "P3_sp6_su3": 1.1102230246251565e-16,
+        "P4_igt_z4": 0.0,
+        "P5_fep_markov": 0.0,
+        "math_log2": 0.0
+      },
+      "all_six_agree": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_zero_delta_nontrivial_map": {
+      "z3_available": true,
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "interpretation": "A 2:1 coarsening that is non-trivial (S_before > S_after) cannot simultaneously have zero entropy change."
+    },
+    "N2_z3_unsat_orbit_size_contradiction": {
+      "z3_available": true,
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true,
+      "interpretation": "An orbit cannot have size 1 (trivial fixed point) and size 2 (non-trivial Z\u2082 pair) simultaneously."
+    }
+  },
+  "boundary": {
+    "B1_trivial_z2_action": {
+      "S_before": 2.0794415416798357,
+      "S_after": 2.0794415416798357,
+      "delta": 0.0,
+      "is_zero": true,
+      "is_not_log2": true,
+      "pass": true
+    },
+    "B2_z3_action_costs_log3": {
+      "S_before": 2.1972245773362196,
+      "S_after": 1.0986122886681098,
+      "delta": 1.0986122886681098,
+      "expected_log3": 1.0986122886681098,
+      "is_log3": true,
+      "is_not_log2": true,
+      "pass": true
+    },
+    "B3_sympy_log6_minus_log3_eq_log2": {
+      "sympy_simplify": "0",
+      "is_zero": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "all_six_agree": true,
+    "z3_unsat_n1": true,
+    "z3_unsat_n2": true
+  }
+}

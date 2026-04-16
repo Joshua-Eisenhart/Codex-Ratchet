@@ -1,0 +1,196 @@
+{
+  "name": "sim_dirac_hopf_clifford_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Q_DHC tensor product via pytorch; torch.tensor ops; autograd gradient of Q wrt MI"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "emergence graph not needed at classical baseline level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: H_dirac=0 AND Q_DHC>0 is structurally impossible (load-bearing negative test)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for product-zero exclusion; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: 4-factor product MI*H_d*H_h*H_c; any factor=0 \u2192 product=0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford Cl(2) bivector grade confirms XX-gate off-diagonal structure of H_clifford"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian structure not needed for emergence baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not relevant; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "emergence isolation graph: nodes = activation combos, edges = Q suppression arrows"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "triadic hyperedge {H_dirac, H_hopf, H_clifford} encodes minimal emergence requirement"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for emergence topology; 3-node 2-cell confirms triple shell requirement"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for emergence baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "E1_dirac_alone_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Dirac alone (Hopf+Clifford inactive): Q_DHC=0; single shell cannot emerge"
+    },
+    "E2_hopf_alone_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Hopf alone (Dirac+Clifford inactive): Q_DHC=0; single shell cannot emerge"
+    },
+    "E3_clifford_alone_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Clifford alone (Dirac+Hopf inactive): Q_DHC=0; single shell cannot emerge"
+    },
+    "E4a_dirac_hopf_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Dirac \u00d7 Hopf without Clifford: Q_DHC=0; pairwise insufficient for emergence"
+    },
+    "E4b_dirac_clifford_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Dirac \u00d7 Clifford without Hopf: Q_DHC=0; pairwise insufficient"
+    },
+    "E4c_hopf_clifford_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "Hopf \u00d7 Clifford without Dirac: Q_DHC=0; pairwise insufficient"
+    },
+    "E5_full_triple_Q_nonzero_3seeds": {
+      "passed": true,
+      "Q_values": [
+        0.017469805402220696,
+        0.02615887910585686,
+        0.029405193813904395
+      ],
+      "interpretation": "Full triple active: Q_DHC != 0 for 3 seeds; emergence requires all three shells"
+    },
+    "E_pytorch_Q_tensor": {
+      "passed": true,
+      "Q_torch": 0.017469804733991623,
+      "Q_numpy": 0.017469805402220696,
+      "interpretation": "pytorch Q_DHC tensor matches numpy; pytorch load-bearing"
+    },
+    "E_clifford_grade_check": {
+      "passed": true,
+      "grades": "{np.int64(2)}",
+      "interpretation": "Clifford e12 grade-2 verified; XX-gate bivector structure survives"
+    },
+    "E_rustworkx_emergence_graph": {
+      "passed": true,
+      "n_nodes": 3,
+      "interpretation": "Emergence isolation graph: single < pairwise < triple requirement"
+    },
+    "E_xgi_emergence_hyperedge": {
+      "passed": true,
+      "interpretation": "Triadic hyperedge encodes minimal emergence requirement"
+    },
+    "E_toponetx_triple_cell": {
+      "passed": true,
+      "n_nodes": 3,
+      "interpretation": "Triple shell topology survived as valid 2-cell; coexistence structure confirmed"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_dirac_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_dirac=0 AND Q_DHC>0 is z3 UNSAT; inactive Dirac cannot support emergence"
+    },
+    "N2_sympy_zero_factor_collapses_all": {
+      "passed": true,
+      "interpretation": "sympy confirms zero-factor collapse for all three shell factors"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_zero": {
+      "passed": true,
+      "Q_DHC": 0.0,
+      "interpretation": "All shells inactive \u2192 Q_DHC=0; no spurious emergence"
+    },
+    "B2_Q_stable_5_seeds": {
+      "passed": true,
+      "Q_values": [
+        0.017469805402220696,
+        0.02615887910585686,
+        0.029405193813904395,
+        0.012188741037596155,
+        0.04485855800358831
+      ],
+      "interpretation": "Q_DHC > 0 survived across 5 seeds; emergence stable"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "section_pass": {
+    "positive": true,
+    "negative": true,
+    "boundary": true
+  },
+  "summary": {
+    "all_pass": true,
+    "n_tests": 16,
+    "n_pass": 16
+  },
+  "divergence_log": [
+    "E1-E3: single shell alone \u2192 Q_DHC=0",
+    "E4a-E4c: pairwise without third shell \u2192 Q_DHC=0",
+    "E5: full triple \u2192 Q_DHC != 0 for 3 seeds",
+    "z3 UNSAT: H_dirac=0 AND Q_DHC>0 excluded",
+    "sympy: zero-factor collapse of 4-factor product confirmed"
+  ]
+}

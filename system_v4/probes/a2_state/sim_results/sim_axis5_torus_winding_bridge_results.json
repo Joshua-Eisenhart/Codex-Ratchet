@@ -1,0 +1,217 @@
+{
+  "name": "sim_axis5_torus_winding_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 21,
+  "n_total": 21,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "parametrize SO(3) circle R(theta)=exp(theta*L3); compute ||R(2*pi)-I||~0 (period); winding proxy via angle tracking"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 torus winding is matrix-parametric; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: winding number = 0 AND path is non-contractible (non-contractible torus path must have nonzero winding)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: eigenvalues of R(theta)=exp(theta*L3) are e^{+-i*theta},1; period 2pi; SU(3) torus det=1 symbolic verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford torus in Cl(4,0): R1=cos(t1)+sin(t1)*e12, R2=cos(t2)+sin(t2)*e34; they commute; independent product IS the T^2 torus"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 torus winding is handled by sympy/clifford/torch; no manifold sampling needed for this test"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 torus winding is matrix algebraic; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "torus winding graph: nodes labeled by (w1,w2) torus position; edges=single winding step; verify graph is periodic"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge {T1_circle, T2_torus, Axis5} connecting the SO(3) circle and SU(3) torus to Axis 5 \u2014 topology of the torus bundle"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 torus structure is handled by xgi hyperedges; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 torus winding is algebraic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_so3_circle_period_2pi": {
+      "pass": true,
+      "description": "T^1 in SO(3): R(2*pi) = I exactly \u2014 circle has period 2*pi (one full winding)",
+      "dist_from_I": 0.0
+    },
+    "P2_pytorch_so3_circle_constant_norm": {
+      "pass": true,
+      "description": "R(theta) has constant Frobenius norm = sqrt(3) for all theta \u2014 uniform circle",
+      "sample_norms": [
+        1.73205081,
+        1.73205081,
+        1.73205081,
+        1.73205081,
+        1.73205081
+      ]
+    },
+    "P3_pytorch_su3_torus_det1": {
+      "pass": true,
+      "description": "SU(3) maximal torus T^2: det(diag(e^it1, e^it2, e^{-i(t1+t2)})) = 1 for all (t1,t2)",
+      "torus_dets": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "P4_pytorch_so3_angle_one_full_winding": {
+      "pass": true,
+      "description": "R(theta)[0,0] = cos(theta) crosses zero exactly 2 times in [0,2pi] \u2014 one full winding",
+      "sign_changes": 2
+    },
+    "P5_sympy_so3_circle_eigenvalues": {
+      "pass": true,
+      "description": "Sympy: R(theta)=exp(theta*L3) has eigenvalue 1 (fixed axis) plus complex pair e^{+-i*theta}",
+      "has_unit_eigenvalue": true,
+      "eigenvalues": [
+        "1",
+        "-sqrt(cos(theta)**2 - 1) + cos(theta)",
+        "sqrt(cos(theta)**2 - 1) + cos(theta)"
+      ]
+    },
+    "P6_sympy_su3_torus_det1_symbolic": {
+      "pass": true,
+      "description": "Sympy: det(diag(e^it1, e^it2, e^{-i(t1+t2)})) = 1 symbolically verified",
+      "det": "1"
+    },
+    "P7_clifford_torus_rotors_commute": {
+      "pass": true,
+      "description": "Clifford torus: R1=cos(t1)+sin(t1)*e12 and R2=cos(t2)+sin(t2)*e34 commute ([R1,R2]=0)",
+      "commutator_norm": 0.0
+    },
+    "P8_clifford_torus_product_traces_T2": {
+      "pass": true,
+      "description": "Clifford torus: R1(t1=0)*R2 = R2 exactly; product traces T^2 as (t1,t2) vary independently",
+      "diff_at_t1_0": 0.0
+    },
+    "P9_rustworkx_torus_winding_graph_periodic": {
+      "pass": true,
+      "description": "Torus winding graph: 4 nodes for (w1,w2) in {0,1}^2; 4 edges for w1-stepping \u2014 periodic Z structure",
+      "n_nodes": 4,
+      "n_edges": 4
+    }
+  },
+  "negative": {
+    "N1_pytorch_half_winding_not_closed": {
+      "pass": true,
+      "description": "Negative: R(pi) != I \u2014 path of half-winding does not close; winding number = 1/2 is not an integer",
+      "dist_R_pi_from_I": 2.828427
+    },
+    "N2_z3_noncontractible_path_nonzero_winding": {
+      "pass": true,
+      "description": "Z3 UNSAT: winding=0 AND path is non-contractible \u2014 non-contractible loop must have nonzero winding",
+      "z3_result": "unsat"
+    },
+    "N3_sympy_so3_circle_basepoint_identity": {
+      "pass": true,
+      "description": "Sympy: R(theta=0) = I (base point of the circle T^1 in SO(3)); winding = 0 at base"
+    },
+    "N4_clifford_same_rotor_trivially_commutes": {
+      "pass": true,
+      "description": "Negative control: R1*R1 - R1*R1 = 0 trivially; T^2 requires TWO independent e12 and e34 planes",
+      "commutator_norm": 0.0
+    },
+    "N5_rustworkx_base_winding_no_incoming": {
+      "pass": true,
+      "description": "Negative: base point (winding=0) has no incoming edges \u2014 it is the start of the winding sequence",
+      "base_in_degree": 0
+    }
+  },
+  "boundary": {
+    "B1_pytorch_theta_2pi_full_winding": {
+      "pass": true,
+      "description": "Boundary: theta=2*pi completes exactly one winding; R(2*pi)=I within numerical precision",
+      "dist_from_I": 0.0
+    },
+    "B2_sympy_su3_torus_basepoint_identity": {
+      "pass": true,
+      "description": "Sympy boundary: SU(3) torus at (t1=0, t2=0) = I \u2014 base point of T^2 has winding (0,0)"
+    },
+    "B3_pytorch_winding0_vs_1_both_close": {
+      "pass": true,
+      "description": "Boundary: both winding=0 (constant) and winding=1 (full circle) paths close at base point; topology distinguishes them",
+      "dist_w0": 0.0,
+      "dist_w1": 0.0
+    },
+    "B4_clifford_torus_basepoint_is_scalar1": {
+      "pass": true,
+      "description": "Clifford torus at (t1=0, t2=0): R1*R2 = 1 (scalar) \u2014 base point winding=(0,0)",
+      "scalar_part": 1.0,
+      "other_parts": 0.0
+    },
+    "B5_z3_winding1_noncontractible_sat": {
+      "pass": true,
+      "description": "Z3 SAT: winding=1 AND non-contractible is consistent \u2014 the T^1 circle has exactly this property",
+      "z3_result": "sat"
+    },
+    "B6_xgi_torus_axis5_hyperedge": {
+      "pass": true,
+      "description": "XGI hyperedge {T1_circle, T2_torus, Axis5} connects the SO(3) circle and SU(3) torus to Axis 5",
+      "hyperedge_members": [
+        [
+          "Axis5_winding",
+          "T2_torus_SU3",
+          "T1_circle_SO3"
+        ]
+      ]
+    },
+    "B7_rustworkx_period4_ring_has_path": {
+      "pass": true,
+      "description": "Boundary: 4-node ring graph has a path from node 0 to node 3 \u2014 the winding sequence is periodic",
+      "n_paths_0_to_3": 1
+    }
+  }
+}

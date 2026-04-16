@@ -1,0 +1,310 @@
+{
+  "name": "sim_sou_complexification_entropy_gap_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 22,
+  "n_total": 22,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute Delta_S via sym(Im(M)) density matrix for each tower level; autograd d(Delta_S)/d(Im content); verify Delta_S=0 for real, >0 for complex"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entropy gap bridge is matrix-level; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: M is real AND Delta_S > 0 \u2014 real matrices have Im(M)=0 so sym(Im)=0; rho=I/n; Delta_S=0 structurally"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: for real M, Im(M)=0, rho=I/n; S_VN=S_shannon=log(n); gap=0 algebraically; for complex M, sym(Im) causes off-diagonal rho"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "e12^2=-1 IS the complex structure; before SO->U no e12 needed; at U level e12 activates; entropy gap IS the e12 activation"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "sample SO(3) (real) and verify Delta_S=0; construct U(3)-like complex matrices and verify Delta_S>0"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entropy gap bridge is matrix algebraic; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "entropy-gap activation graph: annotate each G-tower level with Delta_S=0 or Delta_S>0; SO->U edge is unique transition"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entropy gap bridge is matrix algebraic; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entropy gap bridge is matrix algebraic; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 entropy gap bridge is matrix algebraic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_so3_entropy_gap_zero": {
+      "pass": true,
+      "description": "SO(3) matrices have Im(M)=0; rho=I/3; S_VN=S_shannon=log(3); Delta_S=0",
+      "so3_gaps": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "P2_pytorch_u3_entropy_gap_nonzero": {
+      "pass": true,
+      "description": "U(3) matrices have Im(M) with symmetric component; rho off-diagonal; Delta_S > 0",
+      "u3_gaps": [
+        0.1306822,
+        0.09344235,
+        0.18456463,
+        0.05408024,
+        0.17626572
+      ]
+    },
+    "P3_pytorch_gl3_real_gap_zero": {
+      "pass": true,
+      "description": "GL(3,R) real matrices: Im(M)=0; rho=I/3; Delta_S=0",
+      "gl_gaps": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "P4_pytorch_gap_scales_with_imag_content": {
+      "pass": true,
+      "description": "Delta_S increases monotonically with ||Im(M)||_F (non-antisymmetric perturbation)",
+      "gap_vs_imag": [
+        {
+          "alpha": 0.0,
+          "imag_fn": 0.0,
+          "gap": 0.0
+        },
+        {
+          "alpha": 0.1,
+          "imag_fn": 0.265138,
+          "gap": 0.00558669
+        },
+        {
+          "alpha": 0.3,
+          "imag_fn": 0.795414,
+          "gap": 0.05057769
+        },
+        {
+          "alpha": 0.5,
+          "imag_fn": 1.325691,
+          "gap": 0.14831851
+        },
+        {
+          "alpha": 1.0,
+          "imag_fn": 2.651381,
+          "gap": 0.37583107
+        }
+      ]
+    },
+    "P5_pytorch_so_to_u_first_gap_level": {
+      "pass": true,
+      "description": "GL/O/SO have Delta_S=0; U/SU have Delta_S>0; SO->U is the FIRST level where gap appears",
+      "level_gaps": {
+        "GL": 0.0,
+        "O": 0.0,
+        "SO": 0.0,
+        "U": 0.17626572,
+        "SU": 0.09798647
+      }
+    },
+    "P6_sympy_real_orthogonal_gap_zero_symbolic": {
+      "pass": true,
+      "description": "Sympy: O(n) rho=I/n has S_VN=S_shannon=log(n); gap=0 symbolically verified",
+      "gap": "0"
+    },
+    "P7_sympy_complex_rho_gap_nonzero": {
+      "pass": true,
+      "description": "Sympy 2x2: rho with off-diagonal c=0.2 has S_VN != S_shannon; gap > 0",
+      "gap_numeric": 0.08228288,
+      "eigenvalues_numeric": [
+        0.3,
+        0.7
+      ]
+    },
+    "P8_clifford_e12_activation_boundary": {
+      "pass": true,
+      "description": "Clifford: e12 blade=0 at t=0 (SO regime); nonzero at t=0.7 (U regime); co-activates with entropy gap",
+      "e12_before": 0.0,
+      "e12_after": 0.64421769
+    },
+    "P9_geomstats_so3_gap0_u3_gap_positive": {
+      "pass": true,
+      "description": "Geomstats SO(3) samples have Delta_S=0; U(3) complex matrices have Delta_S>0",
+      "so3_gaps": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "u3_gaps": [
+        0.16205395,
+        0.01317859,
+        0.02274402,
+        0.04718231,
+        0.03013623
+      ]
+    }
+  },
+  "negative": {
+    "N1_pytorch_any_real_matrix_gap_zero": {
+      "pass": true,
+      "description": "Negative: any real matrix has Im(M)=0; rho=I/n; Delta_S=0",
+      "real_gaps": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "N2_z3_real_matrix_no_entropy_gap": {
+      "pass": true,
+      "description": "Z3 UNSAT: M is real AND Delta_S > 0 \u2014 real matrices have Im=0; rho=I/n; gap=0 structurally",
+      "z3_result": "unsat"
+    },
+    "N3_pytorch_so3_embedded_u3_gap_zero": {
+      "pass": true,
+      "description": "Negative: real SO(3) embedded in U(3) with Im=0 still has Delta_S=0 (transition is sharp)",
+      "gap_embedded": 0.0
+    },
+    "N4_pytorch_diagonal_unitary_gap_zero": {
+      "pass": true,
+      "description": "Negative: diagonal unitary diag(e^it) has diagonal Im; sym(Im) diagonal; rho=I/n; Delta_S=0",
+      "gap_diagonal_unitary": 0.0
+    },
+    "N5_clifford_no_e12_no_complex_structure": {
+      "pass": true,
+      "description": "Clifford: pure grade-1 vector has zero e12 content \u2014 no complex structure; entropy gap absent",
+      "e12_content": 0.0
+    },
+    "N6_rustworkx_real_tower_levels_gap_zero": {
+      "pass": true,
+      "description": "Rustworkx: GL/O/SO annotated as gap_status=zero; only U/SU as positive",
+      "zero_gap_nodes": [
+        "GL",
+        "O",
+        "SO"
+      ]
+    }
+  },
+  "boundary": {
+    "B1_pytorch_sharp_gap_transition_at_so_u": {
+      "pass": true,
+      "description": "Boundary: Delta_S=0 at alpha=0 (Im=0, real SO); immediately nonzero for any alpha>0 non-antisymmetric imaginary perturbation",
+      "gaps_by_alpha": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0001,
+          5.043e-09
+        ],
+        [
+          0.01,
+          4.9997028e-05
+        ],
+        [
+          0.1,
+          0.004657068796
+        ],
+        [
+          1.0,
+          0.201528107601
+        ]
+      ]
+    },
+    "B2_sympy_diagonal_rho_exact_boundary": {
+      "pass": true,
+      "description": "Sympy: rho=I/n gives S_VN=S_shannon=log(n) exactly; gap=0 is the SO boundary condition"
+    },
+    "B3_pytorch_gap_gradient_at_transition": {
+      "pass": true,
+      "description": "Boundary: d(Delta_S)/d(Im_content) is nonzero at the SO->U transition \u2014 gap is differentiable",
+      "dgap_dalpha": 0.1231052
+    },
+    "B4_clifford_e12_boundary_so_vs_u": {
+      "pass": true,
+      "description": "Clifford: SO regime has e12=0; U regime has e12=sin(pi/4)>0; this IS the gap activation boundary",
+      "e12_so": 0.0,
+      "e12_u": 0.70710678
+    },
+    "B5_z3_complex_gap_positive_sat": {
+      "pass": true,
+      "description": "Z3 SAT: M is complex AND Delta_S > 0 is consistent \u2014 U/SU level has this property",
+      "z3_result": "sat"
+    },
+    "B6_rustworkx_so_u_unique_gap_activation_edge": {
+      "pass": true,
+      "description": "Rustworkx: exactly 1 gap-activation edge in G-tower DAG \u2014 SO->U is unique transition",
+      "activation_edges": [
+        [
+          "SO",
+          "U"
+        ]
+      ]
+    },
+    "B7_geomstats_so3_complex_embedded_gap_zero": {
+      "pass": true,
+      "description": "Geomstats SO(3) matrices embedded in complex space (Im=0) still have Delta_S=0",
+      "embedded_gaps": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+}

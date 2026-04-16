@@ -1,0 +1,223 @@
+{
+  "name": "sim_gerbe_dixmier_douady_class",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "Gerbe / Dixmier-Douady class over S^3",
+  "H3_S3_Z": "Z (generator = DD class)",
+  "capability_summary": {
+    "CAN": [
+      "verify gerbe holonomy over S^3 is integer-valued via pytorch",
+      "prove integral(H)/vol(S^3) = n via sympy (Stokes theorem)",
+      "exclude dd=0 AND holonomy!=1 via z3 Int UNSAT",
+      "encode B-field as grade-2 and H as grade-3 pseudoscalar in Cl(3,0) via clifford",
+      "verify S^3 triangulation Euler characteristic chi=0 via rustworkx",
+      "confirm S^3 topology via gudhi max dimension=3 and chi=0"
+    ],
+    "CANNOT": [
+      "admit non-integer holonomy winding numbers (excluded from gerbe admissibility)",
+      "have nontrivial DD class on S^2 (H^3(S^2,Z)=0; trivial only)",
+      "have dd=0 with holonomy!=1 (excluded by z3 UNSAT)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: simulate discretized holonomy of gerbe connection over S^3; verify holonomy is integer-valued"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 Int UNSAT proves dd_class=0 AND holonomy!=1 is impossible; trivial gerbe forces holonomy=1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy proves integral of H=dB over S^3 equals integer n via Stokes theorem on 3-sphere"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: B-field as grade-2 element in Cl(3,0); H=dB extracted as grade-3 pseudoscalar; integer coefficient read off"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: S^3 triangulation as simplicial complex; nodes=vertices, edges=1-simplices; verify Euler characteristic chi=0"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this gerbe Dixmier-Douady shell-local probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: filtration of S^3 triangulation; dimension=3 confirms 3-sphere topology; Euler chi=0 from simplex counts"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "pytorch_holonomy_integer_winding": {
+      "pass": true,
+      "detail": "Gerbe holonomy winding number n=integral(H)/vol(S^3) is integer for all dd classes n in Z: survived integer constraint"
+    },
+    "pytorch_trivial_gerbe_holonomy_1": {
+      "pass": true,
+      "holonomy": 1.0,
+      "detail": "dd=0 gerbe (trivial) has holonomy=1: survived triviality constraint"
+    },
+    "pytorch_nontrivial_gerbe_winding_1": {
+      "pass": true,
+      "holonomy_real": 1.0,
+      "dd_class": 1,
+      "detail": "dd=1 gerbe holonomy has winding number 1: survived nontrivial class check"
+    },
+    "sympy_dd_class_is_integer": {
+      "pass": true,
+      "dd_class": "n",
+      "detail": "integral(H)/vol(S^3) = n: Dixmier-Douady class is an integer; survived Stokes theorem proof"
+    },
+    "sympy_integral_n1": {
+      "pass": true,
+      "integral": "2*pi**2",
+      "detail": "For n=1: integral(H) = 2*pi^2 = vol(S^3); survived unit class check"
+    },
+    "sympy_integral_n0_trivial": {
+      "pass": true,
+      "integral": "0",
+      "detail": "For n=0: integral(H)=0; trivial gerbe has zero curvature integral; survived triviality check"
+    },
+    "clifford_B_field_grade2": {
+      "pass": true,
+      "detail": "B-field as grade-2 element of Cl(3,0): survived grade classification as 2-form"
+    },
+    "clifford_H_field_pseudoscalar": {
+      "pass": true,
+      "pseudoscalar_coeff": 1.0,
+      "detail": "H=dB is grade-3 pseudoscalar in Cl(3,0): survived grade-3 identification as 3-form curvature"
+    },
+    "clifford_integer_coefficient_extracted": {
+      "pass": true,
+      "extracted_n": 2.0,
+      "detail": "n=2 coefficient extracted from grade-3 pseudoscalar: survived integer DD class extraction"
+    },
+    "rustworkx_S3_euler_characteristic": {
+      "pass": true,
+      "chi": 0,
+      "n_vertices": 5,
+      "n_edges": 10,
+      "n_triangles": 10,
+      "n_tetrahedra": 5,
+      "detail": "S^3 triangulation: chi = 5-10+10-5 = 0: survived Euler characteristic check (chi(S^3)=0)"
+    },
+    "rustworkx_S3_vertex_edge_counts": {
+      "pass": true,
+      "n_vertices": 5,
+      "n_edges": 10,
+      "detail": "S^3 (boundary Delta^4): 5 vertices, 10 edges; survived triangulation count check"
+    },
+    "gudhi_S3_dimension_3": {
+      "pass": true,
+      "dimension": 3,
+      "detail": "gudhi filtration confirms max simplex dimension=3: S^3 topology survived as 3-manifold"
+    },
+    "gudhi_S3_euler_chi_zero": {
+      "pass": true,
+      "chi": 0,
+      "simplex_counts": {
+        "0": 5,
+        "1": 10,
+        "2": 10,
+        "3": 5
+      },
+      "detail": "gudhi: chi(S^3) = 5-10+10-5 = 0 from simplex counts: survived Euler characteristic verification"
+    },
+    "gudhi_S3_simplex_count": {
+      "pass": true,
+      "n_simplices": 30,
+      "detail": "S^3 triangulation has 30 simplices: survived count check for boundary Delta^4"
+    }
+  },
+  "negative": {
+    "z3_dd0_holonomy_neq1_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 Int UNSAT: dd_class=0 AND holonomy!=1 is excluded; trivial gerbe forces holonomy=1"
+    },
+    "z3_dd1_holonomy1_sat": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 encodes dd=1 case: holonomy on U(1) is exp(2*pi*i)=1 for integer dd classes"
+    },
+    "pytorch_half_integer_winding_excluded": {
+      "pass": true,
+      "winding": 0.5,
+      "detail": "Winding number 0.5 is not integer: excluded from gerbe admissibility (must be in Z)"
+    },
+    "sympy_S2_gerbe_trivial": {
+      "pass": true,
+      "detail": "S^2 is a 2-manifold: H^3(S^2,Z)=0; all gerbes over S^2 are trivial; S^2 excluded from nontrivial DD class"
+    }
+  },
+  "boundary": {
+    "pytorch_dd_class_boundary_0_and_1": {
+      "pass": true,
+      "detail": "DD classes n=0 (trivial) and n=1 (generator of Z) both survived as admissible integer classes"
+    },
+    "clifford_pseudoscalar_grade3_boundary": {
+      "pass": true,
+      "e123_sq": -1.0,
+      "detail": "e123^2 = \u00b11 in Cl(3,0): pseudoscalar (grade-3) is maximal grade; survived as 3-form boundary"
+    },
+    "gudhi_S3_chi_is_topological_invariant": {
+      "pass": true,
+      "chi": 0,
+      "detail": "chi(S^3)=0 is a topological invariant: survived as boundary condition between S^2 (chi=2) and higher spheres"
+    },
+    "rustworkx_S2_vs_S3_euler": {
+      "pass": true,
+      "chi_S2": 2,
+      "chi_S3": 0,
+      "detail": "chi(S^2)=2 vs chi(S^3)=0: boundary test distinguishes 2-sphere from 3-sphere by Euler characteristic"
+    }
+  }
+}

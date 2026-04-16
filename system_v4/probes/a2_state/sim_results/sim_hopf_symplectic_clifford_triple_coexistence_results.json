@@ -1,0 +1,150 @@
+{
+  "name": "sim_hopf_symplectic_clifford_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "P3: z3 sat confirms triple simultaneous nonzero; N1: z3 UNSAT \u2014 degenerate Clifford (H_cliff=0) kills triple product"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: Symbolic \u2014 3-factor product zero if any factor zero"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_triple_all_positive": {
+      "H_hopf": 0.34657359027997264,
+      "H_symplectic": 0.6931471805599453,
+      "H_clifford": 0.7071067811865472,
+      "all_positive": true,
+      "pass": true,
+      "note": "All three shells simultaneously active \u2014 all entropies positive"
+    },
+    "P2_MI_monotone_3layers": {
+      "MI_values": [
+        1.3862943611198906,
+        0.6531588588174636,
+        0.38113548210924786,
+        0.22125199262736306
+      ],
+      "monotone_decreasing": true,
+      "pass": true,
+      "note": "MI decreases monotonically across 3 MERA layers (dephasing reduces correlations)"
+    },
+    "P3_z3_triple_sat": {
+      "H_hopf": 0.34657359027997264,
+      "H_symplectic": 0.6931471805599453,
+      "H_clifford": 0.7071067811865472,
+      "z3_result": "sat",
+      "pass": true,
+      "note": "z3 confirms all three shell entropies simultaneously positive"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_degenerate_cliff_UNSAT": {
+      "claim": "H_cliff=0 AND H_hopf>0 AND H_symp>0 AND product>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Degenerate Clifford cannot produce positive triple product \u2014 UNSAT"
+    },
+    "N2_sympy_triple_zero": {
+      "formula": "H_hopf * H_symp * H_cliff",
+      "all_zero_when_any_factor_zero": true,
+      "pass": true,
+      "note": "sympy confirms 3-factor product zero property"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_zero": {
+      "H_hopf_inactive": 0.0,
+      "H_symplectic_inactive": 0.0,
+      "H_clifford_inactive": 0.0,
+      "pass": true,
+      "note": "All shells inactive \u2192 all entropies = 0"
+    },
+    "B2_only_clifford_active": {
+      "H_clifford_active": 0.7071067811865472,
+      "H_hopf_inactive": 0.0,
+      "H_symp_inactive": 0.0,
+      "pass": true,
+      "note": "Only Clifford active \u2192 only H_clifford > 0"
+    },
+    "B3_triple_product_zero_if_symp_inactive": {
+      "H_symp_inactive": 0.0,
+      "triple_product": 0.0,
+      "pass": true,
+      "note": "H_symp=0 kills triple product H_hopf * H_symp * H_cliff = 0"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

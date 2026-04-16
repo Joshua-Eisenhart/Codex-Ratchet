@@ -1,0 +1,145 @@
+{
+  "name": "sim_mera_clifford_pairwise_coupling",
+  "classification": "classical_baseline",
+  "coupling_program_step": 2,
+  "parent_sims": [
+    "sim_mera_shell_axis0",
+    "clifford_capability"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "2-layer MERA with Cl(3) rotor applied at each layer; I_c computed via partial trace; eigenvalue spectrum comparison; load-bearing for P1 (monotonicity after rotor) and P2 (spectrum preservation)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA causal cone is a fixed DAG; no dynamic graph needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs for P3 (monotonicity preserved under Clifford rotor) and N1 (unitary cannot change trace); load-bearing: structural impossibility proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; rotor algebra verified numerically via pytorch"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor encoded as explicit matrix; clifford package not required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed for this coupling test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA DAG is small and fixed; no graph operations needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_theta": 0.7853981633974483,
+    "P1_ic_values": [
+      1.3862943611198901,
+      0.6931471805599458,
+      0.0
+    ],
+    "P1_ic_monotone_layer01": true,
+    "P1_ic_monotone_layer12": true,
+    "P1_ic_layer0_positive": true,
+    "P1_pass": true,
+    "P2_spectrum_preserved": true,
+    "P2_rotor_orthogonal": true,
+    "P2_pass": true
+  },
+  "negative": {
+    "P3_z3_mera_clifford_monotonicity_unsat": true,
+    "P3_z3_result": "unsat",
+    "N1_z3_rotor_trace_invariant_unsat": true,
+    "N1_z3_result": "unsat"
+  },
+  "boundary": {
+    "B1_identity_rotor_ic_matches_baseline": true,
+    "B1_identity_ic_values": [
+      1.3862943611198906,
+      0.6931471805599453,
+      0.0
+    ],
+    "B1_baseline_ic_values": [
+      1.3862943611198906,
+      0.6931471805599453,
+      0.0
+    ],
+    "B1_pass": true,
+    "B2_rotor_2pi_is_identity": true,
+    "B2_spectrum_preserved_2pi": true,
+    "B2_ic_unchanged_2pi": true,
+    "B2_ic_values_2pi": [
+      1.386294361119891,
+      0.6931471805599453,
+      0.0
+    ],
+    "B2_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 15,
+    "total_bool_count": 15
+  },
+  "divergence_log": [
+    "classical_baseline: coarse-graining is QR-isometry, not optimised MERA tensor",
+    "Cl(3) rotor encoded as block-diagonal 2x2 rotation matrices in d-dim space",
+    "R(theta) = cos(theta)*I + sin(theta)*gen is exact only for block-diagonal generators",
+    "Orthogonality (R R^T = I) verified numerically; not Clifford package rotor",
+    "I_c monotonicity follows from data-processing inequality (classical)",
+    "UNSAT proofs are algebraic over real-valued proxies; not full quantum proof"
+  ]
+}

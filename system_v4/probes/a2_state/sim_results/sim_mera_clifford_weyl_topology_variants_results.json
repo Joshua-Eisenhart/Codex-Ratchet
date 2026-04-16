@@ -1,0 +1,154 @@
+{
+  "name": "sim_mera_clifford_weyl_topology_variants",
+  "classification": "classical_baseline",
+  "coupling_program_step": 4,
+  "parent_sims": [
+    "sim_mera_clifford_weyl_triple_coexistence"
+  ],
+  "topology_variants": {
+    "T1": "flat torus (periodic boundary MPS)",
+    "T2": "open chain (no periodic boundary)",
+    "T3": "Mobius twist (bond sign flip at interior site)"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "State construction and MERA coarse-graining for all three topology variants; Clifford rotor application; chirality entropy computation; load-bearing throughout"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA DAG fixed and small; no dynamic graph message-passing needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs N1-N3: I_c monotonicity violation impossible for each topology variant; algebraic encoding of unitary+projection+isometry chain; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for UNSAT proofs; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "algebra verified numerically; no symbolic computation needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor encoded as explicit matrix; package not required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA DAG fixed and small; no graph library needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_T1_ic_values": [
+      0.6930474733871381,
+      0.0,
+      -8.881784197001252e-16
+    ],
+    "P_T1_ic_monotone": true,
+    "P_T1_H_layer0": 0.6931430137508614,
+    "P_T1_H_layer1": 0.5945499300213473,
+    "P_T1_H_layer0_near_log2": true,
+    "P_T1_H_layer1_near_log2": true,
+    "P_T1_pass": true,
+    "P_T2_ic_values": [
+      0.6931471805599453,
+      0.0,
+      2.220446049250313e-16
+    ],
+    "P_T2_ic_monotone": true,
+    "P_T2_H_layer0": 0.6931471805579452,
+    "P_T2_H_layer1": 0.5945456184192472,
+    "P_T2_H_layer0_near_log2": true,
+    "P_T2_H_layer1_near_log2": true,
+    "P_T2_pass": true,
+    "P_T3_ic_values": [
+      0.6931471805599452,
+      0.0,
+      6.66133814775094e-16
+    ],
+    "P_T3_ic_monotone": true,
+    "P_T3_H_layer0": 0.6931471805579452,
+    "P_T3_H_layer1": 0.5945456184192474,
+    "P_T3_H_layer0_near_log2": true,
+    "P_T3_H_layer1_near_log2": true,
+    "P_T3_pass": true
+  },
+  "negative": {
+    "N1_T1_z3_unsat_monotonicity_violated": true,
+    "N1_T1_pass": true,
+    "N2_T2_z3_unsat_monotonicity_violated": true,
+    "N2_T2_pass": true,
+    "N3_T3_z3_unsat_monotonicity_violated": true,
+    "N3_T3_pass": true
+  },
+  "boundary": {
+    "B1_T1_ic_layer0": 0.6930474733871381,
+    "B1_T2_ic_layer0": 0.6931471805599453,
+    "B1_both_positive": true,
+    "B1_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 20,
+    "total_bool_count": 20
+  },
+  "divergence_log": [
+    "classical_baseline: coarse-graining is QR-isometry, not optimised MERA tensor",
+    "T1 periodic boundary: implemented as extra rank-1 wrap correction term",
+    "T3 Mobius twist: sign flip on middle Schmidt coefficient breaks Z2 bond symmetry",
+    "Chirality tolerance \u00b10.15 around log(2); classical Z2 labeling",
+    "UNSAT proof is algebraic over real proxies; not full quantum proof",
+    "I_c monotonicity follows from data-processing inequality across all topologies"
+  ]
+}

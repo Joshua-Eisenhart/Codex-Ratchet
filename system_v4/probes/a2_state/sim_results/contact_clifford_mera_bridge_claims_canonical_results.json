@@ -1,0 +1,162 @@
+{
+  "name": "sim_contact_clifford_mera_bridge_claims_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct rho_CCM (64\u00d764) via torch.kron of three rand_pure(4) density matrices; validate trace=1 via pytorch; hermitian check (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in bridge claims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: H_contact=0 AND Q_CCM>0 impossible \u2014 degenerate contact cannot support emergence observable; entanglement required (load-bearing)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for separability UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Pearson r: well-defined iff denominator nonzero; Q=MI*Hc*Hcl zero-factor collapse; product formula verified (load-bearing)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford rotor exp(i*pi/4*e12) used for H_clifford in bridge canonical; Cl(3,0) (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold in bridge claims"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal in bridge"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked here"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence not in bridge scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_CCM_64x64_trace1_PSD": {
+      "passed": true,
+      "shape": [
+        64,
+        64
+      ],
+      "trace": 1.0,
+      "min_eigenvalue": -2.583387120172818e-16,
+      "interpretation": "rho_CCM is 64\u00d764, trace=1, PSD: valid tripartite quantum state survived"
+    },
+    "P2_Pearson_r_Q_CCM_MI_gt_099": {
+      "passed": true,
+      "r": 1.0,
+      "n_points": 20,
+      "interpretation": "|r(Q_CCM, MI)| > 0.99 when H_contact/H_clifford fixed; Q_CCM co-varies linearly with MI"
+    },
+    "P3_axis0_gradient_20_20_seeds": {
+      "passed": true,
+      "n_pass": 20,
+      "n_total": 20,
+      "interpretation": "MI_layerwise[0]>MI_layerwise[-1] for 20/20 seeds; Axis 0 gradient survived"
+    },
+    "P4_pytorch_rho_CCM_trace_validated": {
+      "passed": true,
+      "trace_real": 1.0,
+      "trace_imag": 0.0,
+      "interpretation": "rho_CCM trace=1 validated via pytorch; load-bearing pytorch check"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_contact_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_contact=0 AND Q_CCM>0 is z3 UNSAT; degenerate contact cannot support emergence"
+    },
+    "N2_sympy_product_zero_factor_collapse": {
+      "passed": true,
+      "Q_a0": "0",
+      "Q_b0": "0",
+      "Q_c0": "0",
+      "interpretation": "a*b*c with any factor=0 gives product=0 \u2014 zero-in-subshell invariant proved"
+    },
+    "N3_high_dephasing_larger_MI_drop": {
+      "passed": true,
+      "mean_drop_eps09": 1.3770052536835695,
+      "mean_drop_eps03": 1.1517174627514073,
+      "interpretation": "eps=0.9 produces larger avg MI drop than eps=0.3; high dephasing is more destructive"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_CCM_hermitian": {
+      "passed": true,
+      "interpretation": "rho_CCM is hermitian (rho = rho\u2020) \u2014 valid density matrix boundary condition"
+    },
+    "B2_rho_CCM_shape_64x64": {
+      "passed": true,
+      "shape": [
+        64,
+        64
+      ],
+      "interpretation": "rho_CCM shape is (64,64) = 4\u22974\u22974; correct tripartite Hilbert space dimension"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  },
+  "divergence_log": [
+    "rho_CCM (64\u00d764) is trace=1, PSD \u2014 valid tripartite quantum state",
+    "|r(Q_CCM, MI)| > 0.99 \u2014 Q_CCM co-varies linearly with MI when Hc/Hcl fixed",
+    "Axis 0 gradient: MI_layerwise[0] > MI_layerwise[-1] confirmed 20/20 seeds",
+    "z3 UNSAT: H_contact=0 AND Q_CCM>0 impossible",
+    "sympy: product-zero factor collapse proved",
+    "pytorch: rho_CCM trace=1 validated via torch",
+    "N3: eps=0.9 dephasing produces larger MI drop than eps=0.3"
+  ]
+}

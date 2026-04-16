@@ -1,0 +1,233 @@
+{
+  "name": "sim_igt_leviathan_game_theoretic_bridge",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: simulate repeated Prisoner's Dilemma; Tit-for-Tat vs Always-Defect; compute cumulative payoffs; verify TfT dominates Defect long-run but not one-shot"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that one-shot game AND cooperation is Nash (impossible in PD); cooperation requires iteration"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Folk Theorem condition delta > (T-R)/(T-P); derive cooperation threshold symbolically; verify condition on canonical PD parameters"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: one-shot=grade-0 scalar; repeated=grade-1 vector (time-directed); infinitely-repeated=grade-3 pseudoscalar; Folk Theorem activates at grade-3"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: IGT-Leviathan bridge DAG; nodes {one_shot_PD, TfT, Folk_Theorem, social_contract, Leviathan}; Leviathan is terminal node"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: triple hyperedge {Nash_equilibrium, social_contract, Leviathan}; the Leviathan is simultaneously Nash equilibrium AND social contract at three scales"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this IGT/Leviathan lego probe; deferred to integration sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_tft_survives_iesds_repeated_game": {
+      "pass": true,
+      "tft_vs_tft": 150.0,
+      "tft_vs_defect": 49.0,
+      "defect_vs_tft": 54.0,
+      "defect_vs_defect": 50.0,
+      "note": "TfT outperforms D when facing TfT opponent (not dominated)"
+    },
+    "P2_tft_equilibrium_higher_welfare": {
+      "pass": true,
+      "welfare_tft_sustained": 3.0,
+      "welfare_defect_sustained": 1.0,
+      "note": "TfT equilibrium (C,C) has higher welfare than (D,D) Nash in one-shot"
+    },
+    "P3_defection_increases_variance_entropy": {
+      "pass": true,
+      "variance_after_defection": 2.560000000000001,
+      "variance_sustained_coop": 0.0,
+      "note": "defection creates variance (entropy) in the payoff stream"
+    },
+    "P4_folk_theorem_cooperation_threshold": {
+      "pass": true,
+      "delta_threshold": 0.5,
+      "cooperation_supportable_at_high_delta": true,
+      "cooperation_unsupportable_at_low_delta": true,
+      "note": "Folk Theorem threshold = (T-R)/(T-P); cooperation needs delta > threshold"
+    },
+    "P5_pytorch_tft_dominates_defect_long_run": {
+      "pass": true,
+      "tft_npv": 29.999197006225586,
+      "defect_npv": 13.99973201751709,
+      "delta_gradient": 299.90338134765625,
+      "note": "TfT NPV > Defect NPV at delta=0.9; gradient > 0 (higher delta favors TfT)"
+    },
+    "P6_sympy_folk_theorem_condition": {
+      "pass": true,
+      "threshold_formula": "(-R + T)/(-P + T)",
+      "threshold_at_canonical_pd": 0.5,
+      "coop_at_delta_0.9": true,
+      "coop_at_delta_0.1": false,
+      "note": "Folk Theorem: delta >= (T-R)/(T-P) enables cooperation as Nash"
+    },
+    "P7_rosetta_igt_leviathan_agree_on_all_properties": {
+      "pass": true,
+      "shared_properties": [
+        "constraint_narrowing",
+        "irreversibility",
+        "minimum_entropy_at_convergence",
+        "iteration_required",
+        "cooperation_is_equilibrium"
+      ],
+      "igt_properties": {
+        "constraint_narrowing": true,
+        "irreversibility": true,
+        "minimum_entropy_at_convergence": true,
+        "iteration_required": true,
+        "cooperation_is_equilibrium": true
+      },
+      "leviathan_properties": {
+        "constraint_narrowing": true,
+        "irreversibility": true,
+        "minimum_entropy_at_convergence": true,
+        "iteration_required": true,
+        "cooperation_is_equilibrium": true
+      },
+      "note": "Rosetta: IGT and Leviathan agree on all 5 structural properties"
+    }
+  },
+  "negative": {
+    "N1_one_shot_pd_no_cooperation_nash": {
+      "pass": true,
+      "nash_equilibria": [
+        [
+          1,
+          1
+        ]
+      ],
+      "pd_matrix_row0_is_C_row1_is_D": true,
+      "note": "(C,C) is NOT Nash in one-shot PD; (D,D) is the unique Nash"
+    },
+    "N2_z3_unsat_oneshot_and_coop_nash": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: in one-shot PD, cooperation is never a Nash equilibrium"
+    },
+    "N3_tft_loses_to_defect_in_one_shot": {
+      "pass": "True",
+      "tft_payoff_vs_defector": 0.0,
+      "defect_payoff_vs_cooperator": 5.0,
+      "note": "in one-shot: D beats TfT (T > S); Leviathan requires iteration"
+    },
+    "N4_low_discount_kills_cooperation": {
+      "pass": true,
+      "delta_low": 0.05,
+      "delta_threshold": 0.5,
+      "cooperation_supportable": false,
+      "note": "myopic agents (low delta) cannot sustain cooperation as Nash"
+    },
+    "N5_one_shot_game_is_state_of_nature": {
+      "pass": true,
+      "one_shot_welfare_dd": 1.0,
+      "leviathan_welfare_cc": 3.0,
+      "note": "state of nature (one-shot) welfare < Leviathan (repeated cooperation) welfare"
+    }
+  },
+  "boundary": {
+    "B1_folk_theorem_boundary": {
+      "pass": true,
+      "delta_threshold": 0.5,
+      "note": "at exactly delta=threshold, cooperation is just barely Nash"
+    },
+    "B2_clifford_grade_progression_one_to_infinite": {
+      "pass": true,
+      "one_shot_grade": 0,
+      "repeated_grade": 1,
+      "infinite_grade": 3,
+      "note": "grade progression: one-shot=0, repeated=1, infinite=3 (pseudoscalar)"
+    },
+    "B3_rustworkx_leviathan_terminal_node": {
+      "pass": true,
+      "leviathan_out_degree": 0,
+      "one_shot_in_degree": 0,
+      "topological_order": [
+        "one_shot_PD",
+        "Tit_for_Tat",
+        "Folk_Theorem",
+        "social_contract",
+        "Leviathan"
+      ],
+      "note": "Leviathan is the terminal node; one_shot_PD is the source"
+    },
+    "B4_xgi_rosetta_triple_hyperedge": {
+      "pass": true,
+      "num_hyperedges": 3,
+      "note": "triple hyperedge: Nash_equilibrium+social_contract+Leviathan are one object at three scales"
+    },
+    "B5_pytorch_tft_beats_defect_above_threshold": {
+      "pass": true,
+      "delta_tested": 0.550000011920929,
+      "delta_threshold": 0.5,
+      "tft_npv": 6.6666669845581055,
+      "defect_npv": 6.222222328186035,
+      "note": "at delta just above threshold, TfT NPV > Defect NPV (Folk Theorem activates)"
+    },
+    "B6_sympy_indifference_equals_folk_theorem_threshold": {
+      "pass": true,
+      "threshold_derived": "(R - T)/(P - T)",
+      "threshold_formula": "(T-R)/(T-P)",
+      "note": "symbolic indifference condition matches Folk Theorem threshold exactly"
+    }
+  },
+  "overall_pass": true
+}

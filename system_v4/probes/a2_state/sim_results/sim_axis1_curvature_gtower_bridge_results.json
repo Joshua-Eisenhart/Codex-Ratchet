@@ -1,0 +1,257 @@
+{
+  "name": "sim_axis1_curvature_gtower_bridge",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 21,
+  "n_total": 21,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute ||M^T M - I||_F (distance-to-O3) and its gradient via autograd; gradient magnitude IS the curvature signal of the constraint surface"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 curvature bridge is a matrix-level test; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: curvature > 0 AND matrix is in GL\\O (flat region) \u2014 structural impossibility; flat GL space cannot carry O(3) constraint curvature"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic: constraint f(M)=M^T M - I = 0 for 2x2 case; compute gradient df/dM and Hessian Hf at an O(2) point; Hessian is nonzero (curved)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "O(3) in Cl(3,0) is the versor group (unit vectors); curvature proxy = bivector content of commutator [n1,n2] for unit vectors n1,n2 in S^2; nonzero unless parallel"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SpecialOrthogonal(n=3): sample points; verify they satisfy M^T M = I; proxy sectional curvature via parallel transport"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 curvature bridge is matrix algebraic; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "G-tower DAG annotated with Axis 1 status: {GL: flat, O: curved, SO: curved, U: curved+complex, SU: curved+complex+det, Sp: curved+symplectic}; GL is unique flat node"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 curvature bridge is matrix algebraic; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 curvature bridge is matrix algebraic; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 curvature bridge is matrix algebraic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pytorch_gl3_flat_large_constraint_distance": {
+      "pass": true,
+      "description": "GL(3,R) matrices are NOT on O(3) \u2014 constraint distance ||M^T M - I||_F > 0.5 for random GL\\O matrices",
+      "distances": [
+        40.735221,
+        15.352093,
+        11.439515,
+        18.02901,
+        43.341912
+      ]
+    },
+    "P2_pytorch_o3_on_constraint_surface": {
+      "pass": true,
+      "description": "O(3)/SO(3) matrices satisfy M^T M = I exactly \u2014 they lie on the constraint surface",
+      "distances": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "P3_pytorch_constraint_gradient_nonzero_at_O3": {
+      "pass": true,
+      "description": "Gradient of M^T M - I constraint is nonzero near O(3) \u2014 embedding curvature signal",
+      "gradient_norms": [
+        2.000003,
+        1.999998,
+        1.999998,
+        2.000002,
+        2.000002
+      ]
+    },
+    "P4_pytorch_gl3_constraint_gradient_nonzero": {
+      "pass": true,
+      "description": "GL\\O matrices also have nonzero constraint gradient \u2014 pointing toward the O(3) curved surface",
+      "gradient_norms": [
+        9.57945,
+        6.052323,
+        5.144607,
+        6.283201,
+        9.80004
+      ]
+    },
+    "P5_pytorch_so3_same_curvature_as_o3_locally": {
+      "pass": true,
+      "description": "SO(3) has det=+1 and satisfies M^T M=I exactly \u2014 same curved constraint as O(3) locally",
+      "so3_stats": [
+        {
+          "dist": 0.0,
+          "det": 1.0
+        },
+        {
+          "dist": 0.0,
+          "det": 1.0
+        },
+        {
+          "dist": 0.0,
+          "det": 1.0
+        },
+        {
+          "dist": 0.0,
+          "det": 1.0
+        },
+        {
+          "dist": 0.0,
+          "det": 1.0
+        }
+      ]
+    },
+    "P6_sympy_constraint_gradient_nonzero_at_O2": {
+      "pass": true,
+      "description": "Sympy 2x2 case: gradient of f11=a^2+c^2-1 at SO(2) point is nonzero \u2014 curved constraint surface",
+      "gradient_at_so2": [
+        "2*cos(t)",
+        "0",
+        "2*sin(t)",
+        "0"
+      ]
+    },
+    "P7_clifford_versor_commutator_nonzero": {
+      "pass": true,
+      "description": "O(3) versors: [n1,n2] for non-parallel unit vectors has nonzero bivector content (curvature); zero for parallel",
+      "bivector_nonparallel": 2.0,
+      "bivector_parallel": 0.0
+    },
+    "P8_geomstats_so3_on_curved_constraint": {
+      "pass": true,
+      "description": "Geomstats SO(3) samples satisfy M^T M=I to < 1e-10 \u2014 they are on the curved constraint surface",
+      "max_constraint_violation": 8.47616999654658e-16
+    },
+    "P9_rustworkx_gl_unique_flat_node": {
+      "pass": true,
+      "description": "G-tower DAG: GL is the unique flat node; O/SO/U/SU/Sp are all curved",
+      "flat_nodes": [
+        "GL"
+      ],
+      "curved_nodes": [
+        "O",
+        "SO",
+        "U",
+        "SU",
+        "Sp"
+      ]
+    }
+  },
+  "negative": {
+    "N1_pytorch_gl3_off_constraint_surface": {
+      "pass": true,
+      "description": "Negative: GL\\O matrices have large constraint distance \u2014 not on O(3) curved surface"
+    },
+    "N2_z3_flat_gl_no_o3_curvature": {
+      "pass": true,
+      "description": "Z3 UNSAT: O(3) constraint curvature > 0 AND matrix in flat GL\\O \u2014 structural impossibility",
+      "z3_result": "unsat"
+    },
+    "N3_sympy_identity_constraint_off_diag_zero": {
+      "pass": true,
+      "description": "Sympy: at identity M=I, off-diagonal constraint term f12 = a*b+c*d = 0 exactly"
+    },
+    "N4_clifford_parallel_versors_zero_commutator": {
+      "pass": true,
+      "description": "Clifford: parallel unit vectors n1=n2=e1 \u2192 commutator [n1,n2] = 0 \u2014 no curvature signal",
+      "bivector_content": 0.0
+    },
+    "N5_geomstats_random_gl_violates_constraint": {
+      "pass": true,
+      "description": "Negative: random GL matrix has large M^T M - I residual \u2014 not on curved constraint surface",
+      "constraint_violation": 20.498495
+    },
+    "N6_rustworkx_gl_no_incoming_edges": {
+      "pass": true,
+      "description": "G-tower DAG: GL has in-degree 0 \u2014 no parent constraint above it; flat space is the base",
+      "gl_in_degree": 0
+    }
+  },
+  "boundary": {
+    "B1_pytorch_polar_decomp_reaches_O3": {
+      "pass": true,
+      "description": "Boundary: polar decomp M=Q*S brings GL matrix onto O(3) constraint surface exactly",
+      "dist_before": 22.43585,
+      "dist_after": 0.0
+    },
+    "B2_sympy_so2_exactly_on_constraint": {
+      "pass": true,
+      "description": "Sympy: SO(2) rotation R(t) satisfies R^T R = I exactly \u2014 on the curved constraint surface"
+    },
+    "B3_pytorch_second_fundamental_form_nonzero": {
+      "pass": true,
+      "description": "Boundary: O(3) constraint distance grows as O(epsilon^2) under perturbation \u2014 nonzero second fundamental form (curvature)",
+      "curvature_proxy": 19215.7577
+    },
+    "B4_clifford_versor_triple_is_pseudoscalar": {
+      "pass": true,
+      "description": "Clifford boundary: e1*e2*e3 = e123 (pseudoscalar) \u2014 O(3) versors close into pseudoscalar at boundary"
+    },
+    "B5_rustworkx_curvature_activation_order": {
+      "pass": true,
+      "description": "Topo sort: GL (flat) comes before O (first curved) \u2014 curvature activates exactly at GL\u2192O step",
+      "topo_order": [
+        "GL",
+        "O",
+        "SO",
+        "U",
+        "SU"
+      ]
+    },
+    "B6_geomstats_exp_log_inverse_curved_space": {
+      "pass": true,
+      "description": "Geomstats SO(3): exp then log recovers tangent vector \u2014 Riemannian structure (curvature) is well-defined",
+      "recovery_error": 0.0
+    }
+  }
+}

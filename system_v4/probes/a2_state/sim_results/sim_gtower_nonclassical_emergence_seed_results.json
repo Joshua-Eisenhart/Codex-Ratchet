@@ -1,0 +1,262 @@
+{
+  "name": "sim_gtower_nonclassical_emergence_seed",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "n_pass": 20,
+  "n_total": 20,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "compute |Im([A,B])|_F for matrix pairs at each tower level; verify zero for GL/O/SO, nonzero for U/SU/Sp \u2014 load-bearing numerical sweep"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 G-tower emergence is a matrix-level test; no graph message-passing required"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: A is real AND anti-Hermitian AND has nonzero imaginary off-diagonal \u2014 structural impossibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 z3 covers the proof layer for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "so(3) generators are real antisymmetric; u(3) generators are complex anti-Hermitian; prove so(3) generators have zero imaginary parts symbolically"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "e12^2=-1 is the complex structure; before SO level no e12 needed; at U level e12 is essential; the boundary is exactly e12 blade activation"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "sample SO(3) via SpecialOrthogonal(n=3); compute |Im(M)|_F \u2192 0; verify U(3)-like matrices have Im > 0"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 G-tower emergence is matrix algebraic; no equivariant network required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "G-tower DAG: nodes annotated classical/nonclassical_seed; SO\u2192U edge is unique classical\u2192nonclassical_seed transition"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 G-tower emergence is matrix algebraic; no hypergraph topology required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 G-tower emergence is matrix algebraic; no cell complex required"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used \u2014 G-tower emergence is matrix algebraic; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_so3_real_commutator": {
+      "pass": true,
+      "description": "SO(3) matrices are real \u2192 commutator is real; Im([A,B])=0 by definition",
+      "details": {
+        "seed_0": {
+          "imag_comm_norm": 0.0
+        },
+        "seed_1": {
+          "imag_comm_norm": 0.0
+        },
+        "seed_2": {
+          "imag_comm_norm": 0.0
+        },
+        "seed_3": {
+          "imag_comm_norm": 0.0
+        },
+        "seed_4": {
+          "imag_comm_norm": 0.0
+        }
+      }
+    },
+    "P2_u3_complex_commutator_nonzero": {
+      "pass": true,
+      "description": "U(3) anti-Hermitian generators \u2192 Im([A,B])_F > 0; nonclassical seed present",
+      "details": {
+        "trial_0": {
+          "imag_comm_norm": 1.906703
+        },
+        "trial_1": {
+          "imag_comm_norm": 3.079128
+        },
+        "trial_2": {
+          "imag_comm_norm": 3.046177
+        },
+        "trial_3": {
+          "imag_comm_norm": 1.802265
+        },
+        "trial_4": {
+          "imag_comm_norm": 1.816296
+        }
+      }
+    },
+    "P3_so_to_u_is_first_complex_level": {
+      "pass": true,
+      "description": "GL/SO commutators are real; U/SU commutators have nonzero imaginary part",
+      "level_results": {
+        "GL": {
+          "is_real": true,
+          "imag_norm": 0.0
+        },
+        "SO": {
+          "is_real": true,
+          "imag_norm": 0.0
+        },
+        "U": {
+          "is_real": false,
+          "imag_norm": 2.310709
+        },
+        "SU": {
+          "is_real": false,
+          "imag_norm": 2.310709
+        }
+      }
+    },
+    "P4_sympy_so3_generators_real": {
+      "pass": true,
+      "description": "so(3) generators are real antisymmetric; commutators are real \u2014 symbolic verification",
+      "generators_real": true,
+      "commutator_real": true
+    },
+    "P5_sympy_u3_generators_complex": {
+      "pass": true,
+      "description": "u(3) Gell-Mann lam2 has imaginary entries; [lam1,lam2] commutator is imaginary \u2014 absent in so(3)",
+      "lam2_has_imag": true,
+      "T3_has_imag": true,
+      "comm_lam12_has_imag": true
+    },
+    "P6_clifford_e12_squared_minus_one": {
+      "pass": true,
+      "description": "e12^2 = -1 in Cl(3,0) \u2014 this is the complex structure J; activates at SO\u2192U transition",
+      "e12_sq_scalar": -1.0
+    },
+    "P7_geomstats_so3_samples_real": {
+      "pass": true,
+      "description": "Geomstats SO(3) samples are real matrices \u2014 Im(M)_F = 0 confirmed",
+      "n_samples": 5
+    },
+    "P8_rustworkx_gtower_dag_so_to_u_transition": {
+      "pass": true,
+      "description": "G-tower DAG: exactly 1 classical\u2192nonclassical_seed edge, which is SO\u2192U",
+      "transition_edges": [
+        [
+          "SO",
+          "U"
+        ]
+      ]
+    }
+  },
+  "negative": {
+    "N1_so3_commutators_real": {
+      "pass": true,
+      "description": "Negative: SO(3) rotation matrices are real; their commutators are real \u2014 confirmed"
+    },
+    "N2_z3_real_antiH_no_imag": {
+      "pass": true,
+      "description": "Z3 UNSAT: real matrix cannot have nonzero imaginary entries \u2014 structural impossibility",
+      "z3_result": "unsat"
+    },
+    "N3_sympy_so3_structure_constants_real": {
+      "pass": true,
+      "description": "Negative: so(3) structure [L1,L2]=L3 is real \u2014 complex extension would break this"
+    },
+    "N4_geomstats_so3_zero_imaginary": {
+      "pass": true,
+      "description": "Geomstats: all SO(3) samples have imaginary norm < 1e-12 \u2014 confirmed real",
+      "max_imag": 0.0
+    },
+    "N5_clifford_e1_squared_plus_one": {
+      "pass": true,
+      "description": "e1^2 = +1 in Cl(3,0): grade-1 vectors are NOT complex structures (only e12-type bivectors are)",
+      "e1_sq_scalar": 1.0
+    },
+    "N6_rustworkx_classical_chain_count": {
+      "pass": true,
+      "description": "Rustworkx: exactly 2 classical\u2192classical edges (GL\u2192O, O\u2192SO) before the transition",
+      "classical_edges": [
+        [
+          "GL",
+          "O"
+        ],
+        [
+          "O",
+          "SO"
+        ]
+      ]
+    }
+  },
+  "boundary": {
+    "B1_clifford_all_bivectors_minus_one": {
+      "pass": true,
+      "description": "Boundary: all unit bivectors e_ij^2 = -1; complex structure enters at bivector level",
+      "e12_sq": -1.0,
+      "e13_sq": -1.0,
+      "e23_sq": -1.0
+    },
+    "B2_sp2_inherits_imaginary_structure": {
+      "pass": true,
+      "description": "Sp(2) via U(2) embedding: commutator has nonzero imaginary part \u2014 inherits nonclassical seed",
+      "imag_comm_norm": 2.828427
+    },
+    "B3_z3_real_matrix_satisfiable": {
+      "pass": true,
+      "description": "Z3 SAT: real matrix (Im=0) is consistent \u2014 classical regime exists at boundary",
+      "z3_result": "sat"
+    },
+    "B4_sympy_u3_has_generator_not_in_so3": {
+      "pass": true,
+      "description": "Sympy: u(3) has anti-Hermitian generators with imaginary entries not present in so(3)",
+      "has_imag": true,
+      "is_anti_hermitian": true
+    },
+    "B5_rustworkx_topo_sort_classical_before_nonclassical": {
+      "pass": true,
+      "description": "Topo sort: all classical nodes appear before U (nonclassical_seed) \u2014 ordering is preserved",
+      "topo_order": [
+        "GL",
+        "O",
+        "SO",
+        "U",
+        "SU"
+      ]
+    },
+    "B6_geomstats_exp_imaginary_gen_complex": {
+      "pass": "True",
+      "description": "exp(i*t*H) for Hermitian H gives a complex unitary with nonzero imaginary part",
+      "imag_norm": 0.686005
+    }
+  }
+}

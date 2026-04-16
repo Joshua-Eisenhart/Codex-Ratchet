@@ -1,0 +1,220 @@
+{
+  "name": "sim_yinyang_gtower_correspondence",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "claim": "Each G-tower level corresponds to a distinct yin-yang geometric feature on S\u00b3/Clifford torus",
+  "mapping": {
+    "GL(3,R)": "whole S\u00b3 \u00d7 R+ (unconstrained field, all scales/orientations)",
+    "O(3)": "unit sphere S\u00b2 (metric constraint removes scale)",
+    "SO(3)": "RP\u00b3 = S\u00b3/Z\u2082 (orientation constraint \u2014 antipodal identification)",
+    "U(3)": "Clifford torus at \u03b7=\u03c0/4 in S\u00b3 (complexification)",
+    "SU(3)": "S-curve on torus (det=1 slices torus into yin/yang boundary)",
+    "Sp(6)": "whole S\u00b3 symplectic manifold (black dot = maximum constraint terminal node)"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: parametrizes Clifford torus; computes yin/yang membership; verifies equal areas; tests antipodal identification for RP\u00b3"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing: no graph neural net needed for this geometric correspondence"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: UNSAT proves yin and yang regions are mutually exclusive (a point cannot be in both regions simultaneously)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: z3 covers all UNSAT requirements here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: S-curve as algebraic locus; det(M) = e^{i*2\u03b8\u2081} on the torus; SU(3) condition det=1 iff \u03b8\u2081 \u2208 {0, \u03c0}"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: RP\u00b3 = Spin(3)/Z\u2082 in Cl(3,0); quaternions q and -q give same rotation; Clifford torus = intersection of S\u00b3 with equal-norm constraint"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing: geomstats not needed; RP3/Clifford torus handled by pytorch+clifford"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing: e3nn SO3 equivariance not the primary test here"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: G-tower DAG with yin-yang feature annotations on each node; verify one-to-one correspondence between G-tower levels and yin-yang features"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: hyperedges connecting {G-tower-level, yin-yang-feature, axis}; e.g. {SO3, RP3, Axis3} (chirality)"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing: CW complex not needed; graph structure via rustworkx is sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing: TDA not the primary claim here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "clifford_torus_on_S3": {
+      "pass": true,
+      "max_err": 1.7881393432617188e-07,
+      "detail": "Clifford torus q(\u03b8\u2081,\u03b8\u2082) at \u03b7=\u03c0/4 satisfies |q|\u00b2=1: lies on S\u00b3"
+    },
+    "yin_yang_equal_areas": {
+      "pass": true,
+      "yin_count": 494,
+      "yang_count": 506,
+      "imbalance_fraction": 0.012,
+      "detail": "S-curve \u03b8\u2081=\u03b8\u2082 divides torus into equal yin/yang areas by symmetry"
+    },
+    "antipodal_RP3_identification": {
+      "pass": true,
+      "detail": "SO(3) \u2245 RP\u00b3: q and -q give same rotation R(q) = R(-q) (antipodal identification preserved under rotation)"
+    },
+    "cw_ccw_different_compositions": {
+      "pass": true,
+      "cw_cw_angle": 1.0,
+      "ccw_ccw_angle": -1.0,
+      "detail": "CW*CW maps to +2\u03b4 rotation; CCW*CCW maps to -2\u03b4: distinct compositions (Axis 4)"
+    },
+    "black_dot_eta_zero_degenerate": {
+      "pass": true,
+      "max_second_norm": 0.0099998340010643,
+      "detail": "\u03b7\u21920: torus degenerates to circle; black dot = Sp(6) terminal node (maximum constraint)"
+    },
+    "scurve_algebraic_locus": {
+      "pass": true,
+      "detail": "S-curve \u03b8\u2081=\u03b8\u2082 is the zero locus of (\u03b8\u2081-\u03b8\u2082): valid algebraic characterization"
+    },
+    "su3_slice_det_equals_1": {
+      "pass": true,
+      "det_at_0": "1",
+      "det_at_pi": "1",
+      "detail": "det=e^{i*2\u03b8\u2081} on S-curve; det=1 iff \u03b8\u2081\u2208{0,\u03c0} \u2014 exactly the SU(3) slices"
+    },
+    "gtower_yinyang_dag_structure": {
+      "pass": true,
+      "n_nodes": 6,
+      "n_edges": 5,
+      "detail": "G-tower DAG has 6 nodes (GL3\u2192O3\u2192SO3\u2192U3\u2192SU3\u2192Sp6) with yin-yang feature annotations"
+    },
+    "gtower_yinyang_one_to_one": {
+      "pass": true,
+      "features": [
+        "whole S\u00b3 \u00d7 R+ (unconstrained field)",
+        "unit sphere S\u00b2 (metric constraint)",
+        "RP\u00b3 = S\u00b3/Z\u2082 (orientation constraint)",
+        "Clifford torus at \u03b7=\u03c0/4 (complexification)",
+        "S-curve on torus (det=1 yin/yang boundary)",
+        "whole S\u00b3 symplectic (black dot = max constraint)"
+      ],
+      "detail": "Each G-tower level maps to a distinct yin-yang geometric feature"
+    },
+    "so3_rp3_midpoint": {
+      "pass": true,
+      "in_deg": 1,
+      "out_deg": 1,
+      "detail": "SO(3) \u2245 RP\u00b3: midpoint of G-tower chain (1 parent, 1 child)"
+    },
+    "clifford_rp3_antipodal": {
+      "pass": true,
+      "v_pos": [
+        0.5000000000000002,
+        -0.8660254037844386,
+        0.0
+      ],
+      "v_neg": [
+        0.5000000000000002,
+        -0.8660254037844386,
+        0.0
+      ],
+      "detail": "Cl(3,0) rotors R and -R give same rotation: RP\u00b3 antipodal identification"
+    },
+    "clifford_rotor_unit_norm": {
+      "pass": true,
+      "norm_sq": 1.0,
+      "detail": "Cl(3,0) unit rotor |R|\u00b2=1: consistent with Clifford torus constraint on S\u00b3"
+    },
+    "xgi_gtower_yinyang_axis_hyperedges": {
+      "pass": true,
+      "n_edges": 6,
+      "all_size_3": true,
+      "detail": "XGI hyperedges {G-tower-level, yin-yang-feature, axis}: 6 triples, each of size 3"
+    }
+  },
+  "negative": {
+    "o3_cannot_preserve_yin_yang_partition": {
+      "pass": true,
+      "yin_before": 1.0,
+      "yang_after_reflection": 1.0,
+      "detail": "O(3) reflection swaps yin\u2194yang: metric alone cannot distinguish the regions"
+    },
+    "z3_yin_yang_mutually_exclusive": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: no point satisfies both yin (0<diff<\u03c0) AND yang (\u03c0<diff<2\u03c0) simultaneously"
+    },
+    "gl3_scaled_not_on_S3": {
+      "pass": true,
+      "norm_sq_at_2": "4",
+      "detail": "GL(3,R) scaling \u03bb=2: |\u03bbq|\u00b2=4\u22601; GL3 level cannot be placed on Clifford torus (S\u00b3)"
+    }
+  },
+  "boundary": {
+    "scurve_is_boundary_not_region": {
+      "pass": true,
+      "detail": "S-curve \u03b8\u2081=\u03b8\u2082 \u2192 diff=0: these points are on the boundary, not inside yin or yang"
+    },
+    "su3_boundary_det_check": {
+      "pass": true,
+      "det_at_0": "1",
+      "det_at_pi": "1",
+      "det_at_halfpi": "-1",
+      "detail": "SU(3) slice: det=1 at \u03b8={0,\u03c0}; det=-1 at \u03b8=\u03c0/2: only 2 SU(3) points on S-curve"
+    },
+    "clifford_torus_equal_radii": {
+      "pass": true,
+      "r1": 0.7071067811865476,
+      "r2": 0.7071067811865475,
+      "detail": "Clifford torus at \u03b7=\u03c0/4: cos(\u03c0/4)=sin(\u03c0/4)=1/\u221a2 \u2192 equal radii \u2192 the yin-yang balanced case"
+    },
+    "clifford_gl3_identity_no_constraint": {
+      "pass": true,
+      "norm_sq": 1.0,
+      "detail": "Cl(3,0) scalar 1 has norm 1: identity element = GL(3,R) origin with no constraint yet"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "name": "sim_gtower_g2_f4_spectral_gap_coupling",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Eigenvalue computation of Cartan matrices to derive spectral gaps"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof that equal spectral gaps for G2 and F4 Cartan proxies is inadmissible"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Dynkin diagram graph construction for G2 and F4 rank cross-check"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_cartan_dets": {
+      "g2_det": 1,
+      "f4_det": 1,
+      "note": "Both det=1 (simply-laced in reduced sense) but dimension differs",
+      "pass": true
+    },
+    "spectral_gap_g2": {
+      "eigenvalues": [
+        -0.9999999999999998,
+        5.0
+      ],
+      "gap": 6.0,
+      "pass": true
+    },
+    "spectral_gap_f4": {
+      "eigenvalues": [
+        0.381966011250105,
+        1.381966011250105,
+        2.618033988749895,
+        3.6180339887498953
+      ],
+      "gap": 1.0,
+      "pass": true
+    },
+    "gaps_differ": {
+      "g2_gap": 6.0,
+      "f4_gap": 1.0,
+      "differ": true,
+      "pass": true
+    },
+    "dynkin_rank_check": {
+      "g2_rank": 2,
+      "f4_rank": 4,
+      "pass": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "z3_unsat_equal_gaps": {
+      "claim": "equal spectral gaps for G2 and F4 Cartan proxies is inadmissible (z3 UNSAT)",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "trivial_1x1_gap_zero": {
+      "eigenvalues": [
+        2.0
+      ],
+      "gap": 0.0,
+      "note": "1x1 Cartan has no second eigenvalue; gap is 0 by convention",
+      "pass": true
+    },
+    "identity_2x2_gap_zero": {
+      "eigenvalues": [
+        1.0,
+        1.0
+      ],
+      "gap": 0.0,
+      "pass": true
+    },
+    "pass": true
+  }
+}

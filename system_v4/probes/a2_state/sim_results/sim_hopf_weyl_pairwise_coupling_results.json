@@ -1,0 +1,192 @@
+{
+  "name": "sim_hopf_weyl_pairwise_coupling",
+  "classification": "classical_baseline",
+  "scope_note": "Pairwise coupling sim (Coupling Program Step 2): Hopf holonomy shell + Weyl chirality shell. Tests holonomy phase survival under L-projection (P1), ordering sensitivity preservation under coupling (P2), L-projector non-commutativity with holonomy (P3). z3 UNSAT: simultaneous triviality impossible on non-trivial loop (N1); coupled admissible set strictly smaller than either shell alone (N2). Boundary: trivial loop (B1) and SU(2) double-cover at Omega=4*pi (B2). Ref: ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Cl(3) rotor + geomstats cover all geometry here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not relevant to spinor/holonomy coupling test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guards: (N1) proves no assignment satisfies both shells trivial on non-trivial loop; (N2) proves coupled admissible set strictly smaller than either shell alone \u2014 load-bearing for both negative tests"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Analytic holonomy formula verification: exp(i*Omega/2) symbolically; confirms numeric clifford result matches closed-form expression"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor holonomy computation and Weyl grade projectors; coupled action on spinors: holonomy rotor applied before/after L-projection; grade decomposition of coupled output states \u2014 load-bearing for P1/P2/P3/B1/B2"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S2 loop construction and solid angle computation; provides geometric Omega values feeding clifford holonomy rotors \u2014 load-bearing for loop geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) irrep labeling not needed for pairwise coupling test; covered in shell-local sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure involved in holonomy/spinor coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not used; test is algebraic/geometric"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to holonomy/spinor coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geomstats_solid_angle_agrees": {
+      "pass": true,
+      "omega_analytic": 3.1415926535897922,
+      "omega_geomstats": 3.1415926535897922,
+      "note": "geomstats S2 metric gives same solid angle as 2*pi*(1-cos(theta))"
+    },
+    "P1_holonomy_phase_correct": {
+      "pass": true,
+      "omega": 3.1415926535897922,
+      "holonomy_phase_Omega_over_2": 1.5707963267948961,
+      "Hol_scalar_computed": 5.053215498074303e-16,
+      "Hol_scalar_expected": 5.053215498074303e-16,
+      "Hol_e12_computed": 1.0,
+      "Hol_e12_expected": 1.0,
+      "note": "Hol(gamma) = cos(Omega/2) + e12*sin(Omega/2) confirmed"
+    },
+    "P1_sympy_holonomy_crosscheck": {
+      "pass": true,
+      "sympy_scalar": 0.0,
+      "sympy_imag": 1.0,
+      "clifford_scalar": 5.053215498074303e-16,
+      "clifford_e12": 1.0,
+      "note": "sympy exp(i*Omega/2) matches clifford rotor components"
+    },
+    "P2_ordering_sensitivity_preserved": {
+      "pass": true,
+      "path_HW_grade0": -0.29999999999999966,
+      "path_HW_grade2_e12": 0.0,
+      "path_WH_grade0": 3.537250848652012e-16,
+      "path_WH_grade2_e12": 0.7,
+      "note": "Hopf-then-Weyl vs Weyl-then-Hopf give distinguishably different outputs; coupling preserves ordering sensitivity from both shells"
+    },
+    "P3_L_projector_does_not_commute_with_holonomy": {
+      "pass": true,
+      "grade0_diff": 0.3,
+      "grade2_diff": 0.7,
+      "note": "P_L does not commute with Hol multiplication: P_L(Hol*s) \u2260 Hol*P_L(s) because Hol has grade-2 (e12) component that mixes grades under left action"
+    },
+    "P2_ordering_difference_consistent_across_loops": {
+      "pass": true,
+      "min_diff": 0.22406259631455944,
+      "max_diff": 0.7550285121483749,
+      "note": "ordering sensitivity is non-zero for all non-trivial loop sizes tested"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_simultaneous_triviality": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: sin_half != 0 (non-trivial loop) directly contradicts Hopf trivial condition sin_half = 0; both shells cannot simultaneously be identity on a non-trivial loop \u2014 structural impossibility proven"
+    },
+    "N2_weyl_alone_admits_pure_grade2": {
+      "pass": true,
+      "z3_result": "sat",
+      "note": "SAT: Weyl shell alone admits pure grade-2 spinors (a0=0, a2!=0)"
+    },
+    "N2_z3_unsat_pure_grade2_excluded_from_coupled": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: a0=0 AND sin_half*a0 != 0 is impossible; pure grade-2 spinors are Weyl-alone admissible but excluded from the coupled distinguishable set \u2014 coupling strictly restricts admissible states"
+    },
+    "N2_hopf_alone_admits_zero_a0": {
+      "pass": true,
+      "z3_result": "sat",
+      "note": "SAT: Hopf shell alone admits a0=0 spinors (loop non-trivial, no grade constraint)"
+    }
+  },
+  "boundary": {
+    "B1_trivial_loop_orderings_agree": {
+      "pass": true,
+      "note": "Omega=0: identity holonomy makes both orderings trivially equivalent"
+    },
+    "B1_weyl_reduces_grade_independently": {
+      "pass": true,
+      "input_grade2_e12": 0.3,
+      "output_grade2_e12": 0.0,
+      "note": "Omega=0: Weyl-L projection still eliminates grade-2 content; both shells degenerate independently (holonomy trivial, grade reduced)"
+    },
+    "B2_su2_sign_flip_at_2pi_loop": {
+      "pass": true,
+      "Hol_scalar_at_Omega_2pi": -1.0,
+      "Hol_e12_at_Omega_2pi": 1.2246467991473532e-16,
+      "expected_scalar": -1.0,
+      "note": "Omega=2*pi (half sphere): SU(2) holonomy = -1 (the non-trivial double-cover element); scalar=-1, e12=0 confirms -I in SU(2)"
+    },
+    "B2_su2_identity_return_at_4pi_loop": {
+      "pass": true,
+      "Hol_scalar_at_Omega_4pi": 1.0,
+      "Hol_e12_at_Omega_4pi": -2.4492935982947064e-16,
+      "note": "Omega=4*pi (full sphere): SU(2) holonomy = +1 (identity); double cover requires 4*pi not 2*pi to return to identity"
+    },
+    "B2_su2_sign_preserved_under_weyl_at_2pi": {
+      "pass": true,
+      "HW_grade0": -0.7,
+      "WH_grade0": -0.7,
+      "expected_sign_flip_of_a0": -0.7,
+      "note": "Omega=2*pi: both orderings preserve the SU(2) -1 sign in the grade-0 output; Weyl coupling does NOT erase the SU(2) double-cover sign"
+    },
+    "B2_orderings_agree_at_2pi_loop": {
+      "pass": true,
+      "note": "At Omega=2*pi: Hol=-1 (scalar), so Hol*P_L(s) = -P_L(s) AND P_L(Hol*s) = P_L(-s) = -P_L(s); orderings agree when holonomy is a pure scalar (no grade mixing)"
+    },
+    "B2_geomstats_south_pole_solid_angle_is_4pi": {
+      "pass": true,
+      "omega_geomstats": 12.566370614359172,
+      "expected": 12.566370614359172,
+      "note": "geomstats confirms: south pole loop (theta=pi) encloses full sphere solid angle 4*pi"
+    }
+  },
+  "all_pass": true
+}

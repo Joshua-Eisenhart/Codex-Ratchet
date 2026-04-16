@@ -1,0 +1,206 @@
+{
+  "name": "sim_gtower_sp6_weyl_shell_local",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "shell": "Sp(6) / W(C3) Weyl group",
+  "weyl_order": 48,
+  "root_count": 18,
+  "capability_summary": {
+    "CAN": [
+      "build all 18 C3 root vectors and verify Cartan integrality via pytorch",
+      "prove |W(C3)|=48 via type-C order formula via sympy",
+      "exclude norm^2=1 roots from C3 via z3 UNSAT",
+      "perform Weyl reflection as Clifford sandwich product sigma_alpha(x)=-alpha*x*alpha^{-1}",
+      "verify root graph has 18 nodes via rustworkx",
+      "partition long/short roots into two type-hyperedges via xgi"
+    ],
+    "CANNOT": [
+      "contain roots with norm^2=1 (excluded by z3 UNSAT)",
+      "have Weyl group order 24 (that is W(A3), not W(C3))",
+      "have non-integer Cartan matrix entries (excluded by root system integrality)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: build all 18 C3 root vectors as tensors; verify Cartan integrality 2*<alpha,beta>/<beta,beta> in Z for all root pairs"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 UNSAT proves no C3 root can have norm^2=1; C3 norms are exclusively in {2,4}"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy proves |W(C3)|=48 via type-C Weyl group order formula 2^n * n! for n=3"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: roots as grade-1 in Cl(3,0); Weyl reflection sigma_alpha(x)=-alpha*x*alpha^{-1} verified as sandwich product"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: root graph with 18 nodes (one per root); edges between non-orthogonal pairs; verify 18 nodes and edge structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: long roots (norm^2=4) and short roots (norm^2=2) as two distinct type-hyperedges in C3 root system"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not load-bearing for this Sp(6) Weyl group shell-local probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_C3_root_count": {
+      "pass": true,
+      "count": 18,
+      "detail": "C3 root system has exactly 18 roots: 6 long (\u00b12e_i) + 12 short (\u00b1e_i\u00b1e_j); survived root counting"
+    },
+    "pytorch_C3_root_norms": {
+      "pass": true,
+      "norm_sq_values": [
+        2.0,
+        4.0
+      ],
+      "detail": "All C3 roots have norm^2 in {2, 4}: survived norm classification"
+    },
+    "pytorch_cartan_integrality": {
+      "pass": true,
+      "failures": 0,
+      "detail": "Cartan integrality 2*<alpha,beta>/<beta,beta> in Z holds for all 18x18 C3 root pairs: survived integrality constraint"
+    },
+    "pytorch_C3_long_short_split": {
+      "pass": true,
+      "n_long": 6,
+      "n_short": 12,
+      "detail": "C3: 6 long roots (norm^2=4) and 12 short roots (norm^2=2): survived type classification"
+    },
+    "sympy_weyl_C3_order": {
+      "pass": true,
+      "order": 48,
+      "formula": "2^3 * 3! = 8 * 6 = 48",
+      "detail": "|W(C3)| = 2^3 * 3! = 48: survived symbolic order computation"
+    },
+    "sympy_weyl_C3_prime_factors": {
+      "pass": true,
+      "factors": "{2: 4, 3: 1}",
+      "detail": "48 = 2^4 * 3: Weyl group order factored; survived prime decomposition check"
+    },
+    "clifford_weyl_reflection_root_negated": {
+      "pass": true,
+      "reflected_e1_coeff": -1.0,
+      "detail": "Weyl reflection sigma_alpha(e1) = -e1: root direction negated by sandwich product; survived Clifford reflection test"
+    },
+    "clifford_weyl_reflection_perpendicular_preserved": {
+      "pass": true,
+      "reflected_e2_coeff": 1.0,
+      "detail": "Weyl reflection sigma_e1(e2) = e2: perpendicular vector preserved; survived Clifford reflection test"
+    },
+    "rustworkx_C3_root_graph_nodes": {
+      "pass": true,
+      "n_nodes": 18,
+      "detail": "Root graph has exactly 18 nodes: one per C3 root; survived node count check"
+    },
+    "rustworkx_C3_root_graph_has_edges": {
+      "pass": true,
+      "n_edges": 105,
+      "detail": "Root graph has non-orthogonal edges: root pairs are coupled; survived connectivity check"
+    },
+    "xgi_C3_long_short_hyperedges": {
+      "pass": true,
+      "hyperedge_sizes": [
+        6,
+        12
+      ],
+      "detail": "C3 long (6) and short (12) roots as two distinct type-hyperedges: survived type partitioning"
+    }
+  },
+  "negative": {
+    "z3_C3_root_norm1_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: C3 root norm^2=1 is impossible; C3 admissibility excludes norm^2=1 roots"
+    },
+    "pytorch_norm1_not_C3_root": {
+      "pass": true,
+      "detail": "Vector (1,0,0) with norm^2=1 is not in C3 root system: excluded from root admissibility"
+    },
+    "sympy_WC3_not_WA3": {
+      "pass": true,
+      "W_C3": 48,
+      "W_A3": 24,
+      "detail": "|W(C3)|=48 \u2260 |W(A3)|=24: Weyl groups for C3 and A3 are distinct; C3 not reducible to A3 order"
+    }
+  },
+  "boundary": {
+    "pytorch_C3_simple_roots_norms": {
+      "pass": true,
+      "norms_sq": [
+        2.0,
+        2.0,
+        4.0
+      ],
+      "detail": "C3 simple roots: alpha_1,alpha_2 have norm^2=2 (short), alpha_3 has norm^2=4 (long); boundary case for root types"
+    },
+    "clifford_weyl_reflection_involution": {
+      "pass": true,
+      "r2_e2": 1.0,
+      "detail": "sigma_alpha^2(e2) = e2: Weyl reflection is an involution; survived double-reflection boundary test"
+    },
+    "sympy_cartan_diagonal_is_2": {
+      "pass": true,
+      "diagonal": [
+        2,
+        2,
+        2
+      ],
+      "detail": "C3 Cartan matrix diagonal entries are all 2: survived Cartan matrix normalization boundary"
+    }
+  }
+}

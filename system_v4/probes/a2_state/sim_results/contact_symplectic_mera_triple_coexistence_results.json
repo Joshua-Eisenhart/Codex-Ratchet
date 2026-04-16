@@ -1,0 +1,194 @@
+{
+  "name": "sim_contact_symplectic_mera_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "rho tensor for triple coexistence state; I_c via torch partial trace"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "triple-shell constraint graph not required at coexistence baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT: I_c increase while contact+symplectic both active is structurally impossible (DPI)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for triple coexistence monotonicity constraint; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic monotone bound: coarse I_c <= fine I_c under all three constraints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not primary target for triple coexistence; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian structure not needed for triple coexistence baseline; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to triple coexistence; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "triple-layer coexistence DAG: three shell nodes + joint constraint edge"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "triadic hyperedge {Contact, Symplectic, MERA} \u2014 triple coexistence as irreducible 3-edge"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex for triple shell topology; verifies triple coexistence structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for triple coexistence baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "P1_triple_joint_fewer_than_min_pairwise": {
+      "passed": true,
+      "n_triple": 4,
+      "pairwise_AB": 7,
+      "pairwise_AC": 20,
+      "pairwise_BC": 12,
+      "min_pairwise": 7,
+      "H_contact": 3.044522437723423,
+      "H_symp": 2.5649493574615367,
+      "final_Ic": 0.1449416212505401,
+      "interpretation": "Triple coexistence count survived as strictly fewer than all pairwise counts; triple >= any pairwise excluded"
+    },
+    "P2_Ic_monotone_under_triple_coexistence": {
+      "passed": true,
+      "ic_layers": [
+        1.3862943611198906,
+        0.3785173070726703,
+        0.3185443386801743,
+        0.19195454538754597
+      ],
+      "interpretation": "I_c survived as monotone decreasing across all MERA layers under triple coexistence; I_c increase under triple coupling excluded"
+    },
+    "P3_rustworkx_triple_coexistence_graph": {
+      "passed": true,
+      "n_nodes": 3,
+      "n_edges": 3,
+      "interpretation": "Triple coexistence graph survived as fully connected triangle"
+    },
+    "P4_xgi_triple_coexistence_hyperedge": {
+      "passed": true,
+      "interpretation": "Triple coexistence as irreducible 3-hyperedge survived"
+    },
+    "P5_pytorch_Ic_input_gt_final_5_seeds": {
+      "passed": true,
+      "passes_per_seed": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "ic_input_final": [
+        [
+          1.3862943611198906,
+          0.1657056356519062
+        ],
+        [
+          1.3862943611198906,
+          0.11774862726153024
+        ],
+        [
+          1.3862943611198906,
+          0.169353895230552
+        ],
+        [
+          1.3862943611198906,
+          0.1362537774778636
+        ],
+        [
+          1.3862943611198906,
+          0.023714281221153266
+        ]
+      ],
+      "interpretation": "I_c input > final (overall) across 5 seeds confirmed via pytorch; net I_c increase under triple coexistence excluded"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Ic_increase_under_triple_impossible": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "I_c increase while contact+symplectic both active is z3 UNSAT; DPI violation under triple coexistence is structurally excluded"
+    },
+    "N2_sympy_monotone_bound_contradiction": {
+      "passed": true,
+      "simplified": "False",
+      "interpretation": "DPI monotone contradiction simplified to False by sympy"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_joint_zero": {
+      "passed": true,
+      "n_reeb": 0,
+      "n_joint": 0,
+      "interpretation": "All shells inactive gives 0 joint-admissible states; non-zero joint count for inactive shells excluded"
+    },
+    "B2_Ic_input_gt_final_5_seeds": {
+      "passed": true,
+      "passes_per_seed": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "interpretation": "I_c input > final confirmed across 5 seeds; I_c non-decreasing under dephasing excluded"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  },
+  "divergence_log": [
+    "Triple joint-admissible count survived as strictly fewer than all pairwise counts",
+    "I_c monotone decreasing under triple coexistence",
+    "z3 UNSAT: I_c increase under triple coupling excluded",
+    "sympy: DPI contradiction simplified to False",
+    "Boundary: degenerate shells give 0 joint count; 5-seed I_c monotone confirmed"
+  ]
+}

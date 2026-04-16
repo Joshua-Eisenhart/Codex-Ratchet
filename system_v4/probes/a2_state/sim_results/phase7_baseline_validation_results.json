@@ -12,57 +12,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -831,8 +831,8 @@
         "forward_best_obs": 0.9268022157853117,
         "backward_best_obs": 0.6956354807904173,
         "backward_beats_forward": false,
-        "forward_time_s": 0.0027707908302545547,
-        "backward_time_s": 0.006149832624942064,
+        "forward_time_s": 0.0034563341177999973,
+        "backward_time_s": 0.010690291877835989,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -1031,8 +1031,8 @@
         "forward_best_obs": 0.9452008378013919,
         "backward_best_obs": 0.6448982559181684,
         "backward_beats_forward": false,
-        "forward_time_s": 0.00545083312317729,
-        "backward_time_s": 0.016880167182534933,
+        "forward_time_s": 0.0027957921847701073,
+        "backward_time_s": 0.021605707705020905,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -1231,8 +1231,8 @@
         "forward_best_obs": 0.7778075658508641,
         "backward_best_obs": 0.6988236978541779,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004579540807753801,
-        "backward_time_s": 0.01047766674309969,
+        "forward_time_s": 0.00455104187130928,
+        "backward_time_s": 0.010184625163674355,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -1380,26 +1380,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.2566039811576832,
-            "std_grad_norm": 0.1629680252616339,
+            "mean_grad_norm": 0.513004835468794,
+            "std_grad_norm": 0.1611781753620964,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3869858229939258,
-            "std_grad_norm": 0.3001916166534268,
+            "mean_grad_norm": 0.4796928722266253,
+            "std_grad_norm": 0.2237012204769552,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.45718910899043913,
-            "std_grad_norm": 0.25606249995384356,
+            "mean_grad_norm": 0.305259155063732,
+            "std_grad_norm": 0.18064306933459934,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.20058512783275595,
+        "grad_range_across_topologies": 0.20774568040506203,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -1412,11 +1412,11 @@
         "forward_best_obs": 0.8823108807549302,
         "backward_best_obs": 0.5135372933230076,
         "backward_beats_forward": false,
-        "forward_time_s": 0.010831458028405905,
-        "backward_time_s": 0.009065083228051662,
+        "forward_time_s": 0.004181416239589453,
+        "backward_time_s": 0.00862391572445631,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": true,
+        "backward_cheaper": false,
         "same_precision": false,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -1612,8 +1612,8 @@
         "forward_best_obs": 0.8093871054110964,
         "backward_best_obs": 0.745030668679251,
         "backward_beats_forward": false,
-        "forward_time_s": 0.003367041703313589,
-        "backward_time_s": 0.005673334002494812,
+        "forward_time_s": 0.0032480419613420963,
+        "backward_time_s": 0.005462083965539932,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -1761,26 +1761,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.35910482694525325,
-            "std_grad_norm": 0.18560337142868713,
+            "mean_grad_norm": 0.5078701835424275,
+            "std_grad_norm": 0.23389009371573144,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.4542696455392157,
-            "std_grad_norm": 0.19021821700665378,
+            "mean_grad_norm": 0.4933917752636075,
+            "std_grad_norm": 0.1500347683753225,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.4408459143697309,
-            "std_grad_norm": 0.20997800909834546,
+            "mean_grad_norm": 0.3833047707917394,
+            "std_grad_norm": 0.15415654029507805,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.09516481859396247,
+        "grad_range_across_topologies": 0.12456541275068811,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -1793,8 +1793,8 @@
         "forward_best_obs": 0.9396713911957255,
         "backward_best_obs": 0.5827825806967,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004687540698796511,
-        "backward_time_s": 0.009627874940633774,
+        "forward_time_s": 0.004563000053167343,
+        "backward_time_s": 0.008927791845053434,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -1974,8 +1974,8 @@
         "forward_best_obs": 0.9106126756233139,
         "backward_best_obs": 0.7682200524411394,
         "backward_beats_forward": false,
-        "forward_time_s": 0.00464325025677681,
-        "backward_time_s": 0.032618416007608175,
+        "forward_time_s": 0.004480250179767609,
+        "backward_time_s": 0.008530375082045794,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -2123,26 +2123,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3966969928119529,
-            "std_grad_norm": 0.2788435686145451,
+            "mean_grad_norm": 0.4486975726397795,
+            "std_grad_norm": 0.1750429441133686,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3636512293441957,
-            "std_grad_norm": 0.24757205612767136,
+            "mean_grad_norm": 0.3159244037281841,
+            "std_grad_norm": 0.16551020317753617,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.3704803972608411,
-            "std_grad_norm": 0.16818360691953957,
+            "mean_grad_norm": 0.3916297378879079,
+            "std_grad_norm": 0.21520115713013402,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.03304576346775723,
+        "grad_range_across_topologies": 0.1327731689115954,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -2155,8 +2155,8 @@
         "forward_best_obs": 0.8763527815149521,
         "backward_best_obs": 0.5906278708619933,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004146999679505825,
-        "backward_time_s": 0.008724957704544067,
+        "forward_time_s": 0.004065125249326229,
+        "backward_time_s": 0.008143000304698944,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -2336,8 +2336,8 @@
         "forward_best_obs": 0.8562987339200099,
         "backward_best_obs": 0.5375279761162407,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004289582837373018,
-        "backward_time_s": 0.019195500295609236,
+        "forward_time_s": 0.004164958838373423,
+        "backward_time_s": 0.00861616712063551,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -2485,26 +2485,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.44278906661758166,
-            "std_grad_norm": 0.24303235382951507,
+            "mean_grad_norm": 0.4977470197135729,
+            "std_grad_norm": 0.2234195394951336,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.4195970372973653,
-            "std_grad_norm": 0.28869167059735806,
+            "mean_grad_norm": 0.4715834331070683,
+            "std_grad_norm": 0.19428063791477757,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.30680215006405953,
-            "std_grad_norm": 0.24521084919946587,
+            "mean_grad_norm": 0.3886787600414715,
+            "std_grad_norm": 0.26202471606255606,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.13598691655352213,
+        "grad_range_across_topologies": 0.10906825967210138,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -2517,8 +2517,8 @@
         "forward_best_obs": 0.8565442147621759,
         "backward_best_obs": 0.5007749797065068,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004218208137899637,
-        "backward_time_s": 0.03315599961206317,
+        "forward_time_s": 0.00428108312189579,
+        "backward_time_s": 0.008474749978631735,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -2666,26 +2666,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.47038801357121707,
-            "std_grad_norm": 0.25146396351878636,
+            "mean_grad_norm": 0.3060268327921249,
+            "std_grad_norm": 0.18136170981578215,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3094676031334427,
-            "std_grad_norm": 0.23974421400760007,
+            "mean_grad_norm": 0.2844179142896748,
+            "std_grad_norm": 0.19070277222486515,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.34126341324192966,
-            "std_grad_norm": 0.2509173029100022,
+            "mean_grad_norm": 0.4507178930182619,
+            "std_grad_norm": 0.297949061392641,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.16092041043777439,
+        "grad_range_across_topologies": 0.1662999787285871,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -2698,8 +2698,8 @@
         "forward_best_obs": 0.9481426508862139,
         "backward_best_obs": 0.8012767623404551,
         "backward_beats_forward": false,
-        "forward_time_s": 0.0038549997843801975,
-        "backward_time_s": 0.0072168330661952496,
+        "forward_time_s": 0.0037499996833503246,
+        "backward_time_s": 0.042706208769232035,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -2898,8 +2898,8 @@
         "forward_best_obs": 0.7382834810483875,
         "backward_best_obs": 0.4915046965476291,
         "backward_beats_forward": false,
-        "forward_time_s": 0.0031744162552058697,
-        "backward_time_s": 0.006862707901746035,
+        "forward_time_s": 0.0031861672177910805,
+        "backward_time_s": 0.014714416116476059,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -3047,26 +3047,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.17302190773798026,
-            "std_grad_norm": 0.16080600675380255,
+            "mean_grad_norm": 0.23019313396526933,
+            "std_grad_norm": 0.22881657509921186,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.21223694334731477,
-            "std_grad_norm": 0.14941375879303664,
+            "mean_grad_norm": 0.4229767448177052,
+            "std_grad_norm": 0.3558256757933378,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.23983011324592107,
-            "std_grad_norm": 0.13700618949168644,
+            "mean_grad_norm": 0.3034839600408583,
+            "std_grad_norm": 0.18216867738838435,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.06680820550794081,
+        "grad_range_across_topologies": 0.19278361085243587,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -3079,11 +3079,11 @@
         "forward_best_obs": 0.7831014484625238,
         "backward_best_obs": 0.6715500171744643,
         "backward_beats_forward": false,
-        "forward_time_s": 0.014976708218455315,
-        "backward_time_s": 0.0204050000756979,
+        "forward_time_s": 0.034740499686449766,
+        "backward_time_s": 0.012220291886478662,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": false,
+        "backward_cheaper": true,
         "same_precision": false,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -3228,26 +3228,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.26455632618820313,
-            "std_grad_norm": 0.3383159491827105,
+            "mean_grad_norm": 0.3409632715695726,
+            "std_grad_norm": 0.11033518928221217,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.23872766357867542,
-            "std_grad_norm": 0.19828574124201462,
+            "mean_grad_norm": 0.30596365258788727,
+            "std_grad_norm": 0.21860474224932014,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.38965854179207116,
-            "std_grad_norm": 0.22800409081620301,
+            "mean_grad_norm": 0.29633106058959824,
+            "std_grad_norm": 0.32188436944501897,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.15093087821339574,
+        "grad_range_across_topologies": 0.044632210979974385,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -3260,8 +3260,8 @@
         "forward_best_obs": 0.7872678482796795,
         "backward_best_obs": 0.40949392974831533,
         "backward_beats_forward": false,
-        "forward_time_s": 0.005059957969933748,
-        "backward_time_s": 0.010901375208050013,
+        "forward_time_s": 0.0051881251856684685,
+        "backward_time_s": 0.013031666167080402,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -3409,26 +3409,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.17418402886343032,
-            "std_grad_norm": 0.12147224738108152,
+            "mean_grad_norm": 0.3312875976877205,
+            "std_grad_norm": 0.2281900661379098,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3425591778600017,
-            "std_grad_norm": 0.14788705448927938,
+            "mean_grad_norm": 0.22118571289091177,
+            "std_grad_norm": 0.167406780182814,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.3111802480529125,
-            "std_grad_norm": 0.16775441211894143,
+            "mean_grad_norm": 0.3956541915583437,
+            "std_grad_norm": 0.27019829408837276,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.16837514899657136,
+        "grad_range_across_topologies": 0.17446847866743193,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -3441,11 +3441,11 @@
         "forward_best_obs": 0.837278698325657,
         "backward_best_obs": 0.46079452659568093,
         "backward_beats_forward": false,
-        "forward_time_s": 0.023110500071197748,
-        "backward_time_s": 0.01164087513461709,
+        "forward_time_s": 0.005042749922722578,
+        "backward_time_s": 0.010806124657392502,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": true,
+        "backward_cheaper": false,
         "same_precision": false,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -3590,26 +3590,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.38622559728469563,
-            "std_grad_norm": 0.29806745527295764,
+            "mean_grad_norm": 0.19748289045449385,
+            "std_grad_norm": 0.16336764377393145,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.4196160366666245,
-            "std_grad_norm": 0.42544602534555814,
+            "mean_grad_norm": 0.22675093661320056,
+            "std_grad_norm": 0.20047622312993044,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.374458377519575,
-            "std_grad_norm": 0.3210151996018439,
+            "mean_grad_norm": 0.4062416710348395,
+            "std_grad_norm": 0.28486646160761003,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.0451576591470495,
+        "grad_range_across_topologies": 0.20875878058034564,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -3622,11 +3622,11 @@
         "forward_best_obs": 0.7706072491120165,
         "backward_best_obs": 0.4059150477518856,
         "backward_beats_forward": false,
-        "forward_time_s": 0.012558999937027693,
-        "backward_time_s": 0.01157916709780693,
+        "forward_time_s": 0.005171000026166439,
+        "backward_time_s": 0.04786466620862484,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": true,
+        "backward_cheaper": false,
         "same_precision": false,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -3822,8 +3822,8 @@
         "forward_best_obs": 0.9509725121543695,
         "backward_best_obs": 0.6332210287027409,
         "backward_beats_forward": false,
-        "forward_time_s": 0.003160207998007536,
-        "backward_time_s": 0.006757334340363741,
+        "forward_time_s": 0.003270166926085949,
+        "backward_time_s": 0.016470749862492085,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -4022,11 +4022,11 @@
         "forward_best_obs": 0.9443326519885212,
         "backward_best_obs": 0.5998190057559514,
         "backward_beats_forward": false,
-        "forward_time_s": 0.010352166835218668,
-        "backward_time_s": 0.00850187474861741,
+        "forward_time_s": 0.03943516593426466,
+        "backward_time_s": 0.05141449999064207,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": true,
+        "backward_cheaper": false,
         "same_precision": false,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -4171,26 +4171,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.03716031709661509,
-            "std_grad_norm": 0.03161117550606121,
+            "mean_grad_norm": 0.07078416782735861,
+            "std_grad_norm": 0.03426724391778628,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.022194204193627998,
-            "std_grad_norm": 0.0194694991737019,
+            "mean_grad_norm": 0.05579703155012834,
+            "std_grad_norm": 0.036402042359604425,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.02359124873183615,
-            "std_grad_norm": 0.01762714774822742,
+            "mean_grad_norm": 0.029599380458927762,
+            "std_grad_norm": 0.0326033401288675,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.014966112902987092,
+        "grad_range_across_topologies": 0.04118478736843084,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -4203,8 +4203,8 @@
         "forward_best_obs": 0.7281598670119961,
         "backward_best_obs": 0.3852683024679005,
         "backward_beats_forward": false,
-        "forward_time_s": 0.012979667168110609,
-        "backward_time_s": 0.026016791816800833,
+        "forward_time_s": 0.007437916938215494,
+        "backward_time_s": 0.020454084035009146,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -4403,8 +4403,8 @@
         "forward_best_obs": 0.42890539953445406,
         "backward_best_obs": 0.2012805278090804,
         "backward_beats_forward": false,
-        "forward_time_s": 0.006584084127098322,
-        "backward_time_s": 0.009426416829228401,
+        "forward_time_s": 0.0027883746661245823,
+        "backward_time_s": 0.005766957998275757,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -4552,26 +4552,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.2686529562819813,
-            "std_grad_norm": 0.1891086433845243,
+            "mean_grad_norm": 0.3551061754106004,
+            "std_grad_norm": 0.16618016435385352,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 0.3180756217076506,
-            "std_grad_norm": 0.12939115254636105,
+            "mean_grad_norm": 0.23881770921371845,
+            "std_grad_norm": 0.1509817326841841,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 0.3545462053460229,
-            "std_grad_norm": 0.17321710095593845,
+            "mean_grad_norm": 0.453325641160521,
+            "std_grad_norm": 0.16567475264474887,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 0.08589324906404155,
+        "grad_range_across_topologies": 0.21450793194680254,
         "threshold": 1e-06,
         "topology_matters": true,
         "verdict": "NON_NULL_topology",
@@ -4584,8 +4584,8 @@
         "forward_best_obs": 0.2947680393443144,
         "backward_best_obs": 0.14667308940875867,
         "backward_beats_forward": false,
-        "forward_time_s": 0.006571374833583832,
-        "backward_time_s": 0.00687437504529953,
+        "forward_time_s": 0.003429375123232603,
+        "backward_time_s": 0.006649540737271309,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -4784,8 +4784,8 @@
         "forward_best_obs": 0.9153330928921336,
         "backward_best_obs": 0.3870047993269887,
         "backward_beats_forward": false,
-        "forward_time_s": 0.002948166336864233,
-        "backward_time_s": 0.005715124774724245,
+        "forward_time_s": 0.0029429998248815536,
+        "backward_time_s": 0.005736624822020531,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -4984,8 +4984,8 @@
         "forward_best_obs": 0.6926235102224743,
         "backward_best_obs": 0.1468234781887856,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004390082787722349,
-        "backward_time_s": 0.009724417235702276,
+        "forward_time_s": 0.004316791892051697,
+        "backward_time_s": 0.009643415920436382,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -5184,8 +5184,8 @@
         "forward_best_obs": 0.4130748432186634,
         "backward_best_obs": 0.011138161875426211,
         "backward_beats_forward": false,
-        "forward_time_s": 0.004935207776725292,
-        "backward_time_s": 0.006606250070035458,
+        "forward_time_s": 0.0034427084028720856,
+        "backward_time_s": 0.045129249803721905,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -5384,8 +5384,8 @@
         "forward_best_obs": 1.0000000000000002,
         "backward_best_obs": 1.0,
         "backward_beats_forward": false,
-        "forward_time_s": 0.0034606661647558212,
-        "backward_time_s": 0.009009166155010462,
+        "forward_time_s": 0.003766458947211504,
+        "backward_time_s": 0.009340958669781685,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -5584,11 +5584,11 @@
         "forward_best_obs": 0.0,
         "backward_best_obs": 0.0,
         "backward_beats_forward": false,
-        "forward_time_s": 0.008370375260710716,
-        "backward_time_s": 0.00747841689735651,
+        "forward_time_s": 0.002966708969324827,
+        "backward_time_s": 0.007830209098756313,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": true,
+        "backward_cheaper": false,
         "same_precision": true,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -5733,26 +5733,26 @@
           "chain": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 6.403569081242511e-19,
-            "std_grad_norm": 6.622649395925669e-19,
+            "mean_grad_norm": 7.364951476376141e-19,
+            "std_grad_norm": 6.917037993528487e-19,
             "n_valid_grads": 8
           },
           "star": {
             "n_edges": 3,
             "n_trials": 8,
-            "mean_grad_norm": 1.2976544751935881e-18,
-            "std_grad_norm": 1.0302093717593936e-18,
+            "mean_grad_norm": 9.452887691357992e-19,
+            "std_grad_norm": 6.649634836317765e-19,
             "n_valid_grads": 8
           },
           "skip_connect": {
             "n_edges": 4,
             "n_trials": 8,
-            "mean_grad_norm": 8.809142651444724e-19,
-            "std_grad_norm": 6.071471663263996e-19,
+            "mean_grad_norm": 1.060485249962384e-18,
+            "std_grad_norm": 8.473784662252833e-19,
             "n_valid_grads": 8
           }
         },
-        "grad_range_across_topologies": 6.572975670693371e-19,
+        "grad_range_across_topologies": 3.239901023247699e-19,
         "threshold": 1e-06,
         "topology_matters": false,
         "verdict": "NULL_topology",
@@ -5765,11 +5765,11 @@
         "forward_best_obs": 6.661338147750939e-16,
         "backward_best_obs": -2.220446049250313e-16,
         "backward_beats_forward": false,
-        "forward_time_s": 0.007056000176817179,
-        "backward_time_s": 0.03254675026983023,
+        "forward_time_s": 0.042854500003159046,
+        "backward_time_s": 0.03824950009584427,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
-        "backward_cheaper": false,
+        "backward_cheaper": true,
         "same_precision": true,
         "verdict": "NULL_forward_sufficient",
         "substrate_matters_for_selection": false
@@ -5965,8 +5965,8 @@
         "forward_best_obs": 1.6653345369377348e-15,
         "backward_best_obs": 2.220446049250313e-16,
         "backward_beats_forward": false,
-        "forward_time_s": 0.011748250108212233,
-        "backward_time_s": 0.04187308298423886,
+        "forward_time_s": 0.013627083972096443,
+        "backward_time_s": 0.03500441601499915,
         "forward_flops_relative": 50,
         "backward_flops_relative": 100,
         "backward_cheaper": false,
@@ -5987,5 +5987,7 @@
       }
     }
   },
-  "classification": "canonical"
+  "classification": "canonical",
+  "positive": [],
+  "negative": []
 }

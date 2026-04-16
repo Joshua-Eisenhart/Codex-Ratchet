@@ -1,0 +1,216 @@
+{
+  "name": "sim_ryu_takayanagi_mera_geodesic_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Tensor-computed S(A) = n_cut * log(chi); autograd used in P2"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Proves structural impossibility: n_cut < 0 is UNSAT; RT lower bound violation is UNSAT (N2/P3)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic validation of RT formula S = n_cut * log(chi) for chi in {2,3,4} and n_cut in {1,2,3}"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mera_rt_formula": {
+      "pass": true,
+      "N": 8,
+      "chi": 2.0,
+      "region_size": 4,
+      "n_cut": 6,
+      "S_computed": 4.158883094787598,
+      "S_expected": 4.158883094787598,
+      "diff": 0.0,
+      "tool": "pytorch"
+    },
+    "P2_autograd_ds_dchi": {
+      "pass": true,
+      "chi": 3.0,
+      "n_cut": 6,
+      "autograd_dS_dchi": 2.0,
+      "symbolic_dS_dchi": 2.0,
+      "diff": 0.0,
+      "axis0_connection": "dS/dchi is the I_c gradient direction under chi parametrization",
+      "tool": "pytorch+autograd"
+    }
+  },
+  "negative": {
+    "N1_z3_ncut_nonnegative": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "n_cut_min < 0 is UNSAT (violates geometric bond count constraint)",
+      "tool": "z3"
+    },
+    "P3_z3_rt_lower_bound_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "S(A) < n_cut_min * log(chi) given RT formula is UNSAT",
+      "tool": "z3"
+    }
+  },
+  "boundary": {
+    "B1_empty_region": {
+      "pass": true,
+      "n_cut": 0,
+      "S": 0.0,
+      "tool": "pytorch"
+    },
+    "B2_full_region": {
+      "pass": true,
+      "n_cut": 0,
+      "S": 0.0,
+      "tool": "pytorch"
+    },
+    "B3_sympy_formula_check": {
+      "pass": true,
+      "cases": [
+        {
+          "chi": 2,
+          "n_cut": 1,
+          "sympy": 0.6931471805599453,
+          "expected": 0.6931471805599453,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 2,
+          "n_cut": 2,
+          "sympy": 1.3862943611198906,
+          "expected": 1.3862943611198906,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 2,
+          "n_cut": 3,
+          "sympy": 2.0794415416798357,
+          "expected": 2.0794415416798357,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 3,
+          "n_cut": 1,
+          "sympy": 1.0986122886681098,
+          "expected": 1.0986122886681098,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 3,
+          "n_cut": 2,
+          "sympy": 2.1972245773362196,
+          "expected": 2.1972245773362196,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 3,
+          "n_cut": 3,
+          "sympy": 3.295836866004329,
+          "expected": 3.295836866004329,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 4,
+          "n_cut": 1,
+          "sympy": 1.3862943611198906,
+          "expected": 1.3862943611198906,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 4,
+          "n_cut": 2,
+          "sympy": 2.772588722239781,
+          "expected": 2.772588722239781,
+          "diff": 0.0,
+          "ok": true
+        },
+        {
+          "chi": 4,
+          "n_cut": 3,
+          "sympy": 4.1588830833596715,
+          "expected": 4.1588830833596715,
+          "diff": 0.0,
+          "ok": true
+        }
+      ],
+      "formula": "S(A) = n_cut * log(chi)",
+      "tool": "sympy"
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "name": "sim_holodeck_observer_projection_operator",
+  "classification": "classical_baseline",
+  "scope_note": "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; Holodeck observer as projection operator family: idempotency, self-adjointness, entropy compression. z3 UNSAT excludes non-idempotent operators.",
+  "exclusion_claim": "Non-idempotent operators are excluded from valid observer families (z3 UNSAT). Rank-1 observer maximally compresses: S=0. Identity observer makes no distinction: S unchanged.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numpy+scipy sufficient for projection and entropy tests"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for observer operator family; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that non-idempotent operators cannot be valid observers; encodes O^2=O AND O^dag=O as necessary conditions"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 covers the UNSAT claims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of projection idempotency for general rank-k case; confirms O^2=O symbolically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for rank-k projection operator; deferred to geometry layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for projection operator family; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; projection is not a rotation/reflection operator"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for observer operator; deferred"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for observer operator; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for observer operator; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for observer operator; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_idempotent_rank1": {
+      "frobenius_error": 9.916793725054143e-17,
+      "pass": true
+    },
+    "P1_idempotent_rank2": {
+      "frobenius_error": 5.286781470603808e-16,
+      "pass": true
+    },
+    "P1_idempotent_rank3": {
+      "frobenius_error": 3.097392364882552e-16,
+      "pass": true
+    },
+    "P2_self_adjoint_rank1": {
+      "frobenius_error": 0.0,
+      "pass": true
+    },
+    "P2_self_adjoint_rank2": {
+      "frobenius_error": 0.0,
+      "pass": true
+    },
+    "P2_self_adjoint_rank3": {
+      "frobenius_error": 0.0,
+      "pass": true
+    },
+    "P3_entropy_compression_world0": {
+      "S_full": 1.2369562472079279,
+      "S_projected": 0.8161146916099378,
+      "pass": true
+    },
+    "P3_entropy_compression_world1": {
+      "S_full": 1.2282378968739103,
+      "S_projected": 0.6831871978823403,
+      "pass": true
+    },
+    "P3_entropy_compression_world2": {
+      "S_full": 1.2903241323528902,
+      "S_projected": 0.8825190684864699,
+      "pass": true
+    },
+    "P3_entropy_compression_world3": {
+      "S_full": 1.2948199289996212,
+      "S_projected": 0.9772372057834418,
+      "pass": true
+    },
+    "P3_entropy_compression_world4": {
+      "S_full": 1.5236528958090643,
+      "S_projected": 1.056589218021753,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_nonidempotent_not_valid_observer_UNSAT": {
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N2_nontrivial_observer_strict_entropy_reduction": {
+      "S_full": 1.1813037995946016,
+      "S_rank1": 1.7768988558536578e-13,
+      "strictly_less": true,
+      "pass": true
+    },
+    "N2b_identity_observer_no_entropy_change": {
+      "S_full": 1.1813037995946016,
+      "S_identity_proj": 1.1813037995946019,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_rank1_entropy_zero_seed0": {
+      "S_projected": 1.7768988558536578e-13,
+      "pass": true
+    },
+    "B1_rank1_entropy_zero_seed1": {
+      "S_projected": 1.7768988558536583e-13,
+      "pass": true
+    },
+    "B1_rank1_entropy_zero_seed2": {
+      "S_projected": 1.7768988558536583e-13,
+      "pass": true
+    },
+    "B1_rank1_entropy_zero_seed3": {
+      "S_projected": 1.7768988558536583e-13,
+      "pass": true
+    },
+    "B1_rank1_entropy_zero_seed4": {
+      "S_projected": 1.7768988558536578e-13,
+      "pass": true
+    },
+    "B2_sympy_rank1_idempotent_up_to_norm": {
+      "all_zero": true,
+      "pass": true
+    },
+    "B3_z3_rank1_projection_SAT": {
+      "z3_result": "sat",
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

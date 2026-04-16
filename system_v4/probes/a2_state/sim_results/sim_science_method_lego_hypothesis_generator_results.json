@@ -1,0 +1,144 @@
+{
+  "name": "sim_science_method_lego_hypothesis_generator",
+  "classification": "classical_baseline",
+  "scope_note": "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method as physical process \u2014 hypothesis generation step",
+  "exclusion_claim": "constraint manifold excludes hypotheses with P=0 prior; Bayesian update cannot resurrect excluded candidates; posterior > 1 is UNSAT",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: hypothesis space as probability simplex; Bayesian update as differentiable function; autograd dP(h|o)/dP(o|h) sensitivity"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that P(h|o) > 1 is structurally impossible; probability axiom enforcement"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic Bayes theorem normalization proof; symbolic posterior sum = 1 identity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: hypothesis space as grade-1 sphere in Cl(3,0); Bayesian update as rotation toward data-consistent hemisphere; refutation as zero projection"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: hypothesis graph where refuted hypotheses have out-degree=0; graph structure encodes constraint exclusion"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: hyperedge {prior, likelihood, posterior, Bayes_theorem} \u2014 Bayes update is a 4-way relationship"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method hypothesis-generator lego; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pairwise_distinguishable": true,
+    "P1_sample_distances": {
+      "h0_h1": 1.0,
+      "h0_h2": 1.0,
+      "h0_h3": 1.0,
+      "h1_h0": 1.0,
+      "h1_h2": 1.0,
+      "h1_h3": 1.0
+    },
+    "P2_prior_sums_to_1": true,
+    "P2_prior_all_positive": true,
+    "P2_prior_values": [
+      0.4000000059604645,
+      0.30000001192092896,
+      0.20000000298023224,
+      0.10000000149011612
+    ],
+    "P3_posterior_sums_to_1": true,
+    "P3_posterior_non_negative": true,
+    "P3_posterior_values": [
+      0.8767123818397522,
+      0.08219178020954132,
+      0.027397261932492256,
+      0.013698630966246128
+    ],
+    "P4_refuted_excluded": true,
+    "P4_refuted_posterior_zero": 0.0,
+    "P5_autograd_sensitivity_nonzero": true,
+    "P5_dPost_dLik": 0.3305785357952118
+  },
+  "negative": {
+    "N1_impossible_hyp_prior_zero": true,
+    "N1_impossible_stays_zero": true,
+    "N2_z3_posterior_gt1_UNSAT": true,
+    "N2_z3_result": "unsat",
+    "N3_sympy_posterior_sum_equals_1": true,
+    "N3_sympy_total_expr": "1",
+    "N4_clifford_orthogonal_refutation": true,
+    "N4_dot_product": 0.0,
+    "N5_refuted_out_degree_zero": true,
+    "N5_refuted_out_degree": 0
+  },
+  "boundary": {
+    "B1_uniform_likelihood_posterior_equals_prior": true,
+    "B1_max_diff_post_prior": 0.0,
+    "B2_sympy_uniform_lik_post_equals_prior": true,
+    "B3_xgi_bayes_hyperedge_size_4": true,
+    "B3_xgi_hyperedge_members": [
+      "Bayes_theorem",
+      "likelihood",
+      "posterior",
+      "prior"
+    ],
+    "B4_clifford_aligned_nonzero": true,
+    "B4_dot_aligned": 1.0,
+    "B5_z3_valid_posterior_SAT": true,
+    "B5_z3_result": "sat",
+    "B6_admissible_connected": true,
+    "B6_reachable_count": 2
+  },
+  "overall_pass": true
+}

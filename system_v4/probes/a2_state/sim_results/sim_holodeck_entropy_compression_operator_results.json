@@ -1,0 +1,145 @@
+{
+  "name": "sim_holodeck_entropy_compression_operator",
+  "classification": "classical_baseline",
+  "scope_note": "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; Holodeck compression-decompression operator family: SVD truncation, entropy reduction, lossiness, cycle idempotency, monotone trade-off.",
+  "exclusion_claim": "Lossless entropy-reducing compression is impossible (z3 UNSAT). rank(C(W)) <= rank(W) (sympy bound). Lower k trades entropy for fidelity monotonically.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; numpy SVD and scipy entropy cover all computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that lossless entropy-reducing compression is impossible; encodes the fundamental information-entropy trade-off"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 covers the UNSAT claims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic rank bound proof \u2014 rank(C(W)) <= min(k, rank(W)); UNSAT for rank increase"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for SVD compression; deferred"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for compression operator; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_compression_reduces_entropy_k2": {
+      "S_full": 1.1834866247657199,
+      "S_compressed": 0.6562373178535983,
+      "pass": true
+    },
+    "P2_decompression_lossy": {
+      "fidelity_loss": 6.651500362424013,
+      "nonzero": true,
+      "pass": true
+    },
+    "P3_cycle_idempotent": {
+      "cycle_error": 1.2102353997080455e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_z3_lossless_entropy_reduction_UNSAT": {
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "N2_sympy_rank_increase_impossible": {
+      "is_impossible": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_monotone_entropy_vs_k": {
+      "entropies_by_k": {
+        "1": 1.7824499709767828e-13,
+        "2": 0.6742251292988699,
+        "3": 1.0278169816342768,
+        "4": 1.2575341448760078,
+        "5": 1.3773866328381015
+      },
+      "entropy_nondecreasing": true,
+      "pass": true
+    },
+    "B1_monotone_fidelity_vs_k": {
+      "fidelities_by_k": {
+        "1": 15.655050748129081,
+        "2": 8.195623733026883,
+        "3": 4.013932080503542,
+        "4": 1.3082991290694082,
+        "5": 0.21817248678856394
+      },
+      "fidelity_nonincreasing": true,
+      "pass": true
+    },
+    "B2_k1_min_entropy": {
+      "S_k1": 1.7824499709767828e-13,
+      "S_full": 1.4135460526313868,
+      "k1_less_than_full": true,
+      "pass": true
+    },
+    "B2_kn1_near_full": {
+      "S_kn1": 1.3773866328381015,
+      "S_full": 1.4135460526313868,
+      "fidelity_kn1": 0.21817248678856394,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,267 @@
+{
+  "name": "sim_gtower_emergence_coset_decomposition",
+  "classification": "classical_baseline",
+  "divergence_log": "Emergence test: coset spaces GL/O, U/SU, O/SO appear as THIRD objects when both parent shells are simultaneously active. Neither parent shell contains the coset space. Tests that polar factor, U(1) phase, and Z2 sign are emergent DOFs.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.linalg.polar(A) extracts Q (O(3) factor) and S (Sym+(3,R) factor) from a GL matrix; verifies Q is orthogonal, S is symmetric positive-definite, S is NOT in O(3); U(1) phase extracted from det(U)/|det(U)| for U(3) vs SU(3) elements; Z2 coset label computed as torch.linalg.det sign for O(3) elements."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this coset emergence test; geometric topology tools deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 UNSAT proves that a positive-definite matrix with all positive eigenvalues satisfying S^T*S=I (orthogonality) forces eigenvalues = 1, so S=I; encoding that the only element in BOTH Sym+(3,R) AND O(3) is the identity -- the coset space is disjoint from O except at I."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this coset emergence test; geometric topology tools deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic polar decomposition of 2x2 case; A=[[a,b],[c,d]], A=Q*S derived symbolically; verify S is symmetric (S^T=S); verify Q is orthogonal (Q^T*Q=I); verify S is not generally equal to I."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: in Cl(3,0) a general multivector decomposes into grade-0 (scalar scale) and grade-2 (rotation bivector rotor); the grade-0 part is the emergent coset GL/O coordinate (the scale factor); the grade-2 normalized rotor is the O(3) part; grade decomposition IS polar decomp."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: geomstats SPDMatrices(n=3) samples from Sym+(3,R); each sample is verified NOT in O(3) (S^T*S != I in general); confirms the coset space Sym+(3,R) is geometrically distinct from both O(3) and GL(3) individually -- it is a new object from their interaction."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this coset emergence test; geometric topology tools deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: coset emergence DAG where coset nodes {coset_GL_O, coset_U_SU, coset_O_SO} have in-degree=2 (both parent shells required); single-shell nodes have in-degree=0; verifies emergence structure: cosets are unreachable from any single parent."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: hyperedge {GL, O, coset_GL_O} of size 3 encodes that the coset is a 3-way relationship between two shells and their emergent quotient; hyperedge {U, SU, coset_U_SU} likewise; verifies size=3 for both (not pairwise, not singleton)."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this coset emergence test; geometric topology tools deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this coset emergence test; geometric topology tools deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "polar_factor_S_is_coset_object": {
+      "pass": true,
+      "Q_in_O3": true,
+      "S_symmetric": true,
+      "S_posdef": true,
+      "det_S": 1.1598317921799794,
+      "detail": "A = Q*S; Q in O(3), S in Sym+(3,R); both emerge from polar decomp of GL element"
+    },
+    "polar_factor_S_not_in_GL_alone": {
+      "pass": true,
+      "S_not_in_O3": true,
+      "detail": "S is NOT in O(3): the polar factor is strictly in the coset space, not in either parent shell alone"
+    },
+    "polar_decomp_reconstruction": {
+      "pass": true,
+      "max_err": 1.3322676295501878e-15,
+      "detail": "A = Q*S reconstructed exactly: polar decomp is exact"
+    },
+    "u1_phase_emergent_from_U_SU_pair": {
+      "pass": true,
+      "det_abs": 1.0000000000000002,
+      "u1_phase_abs": 0.9999999999999999,
+      "detail": "U(1) phase det(U)/|det(U)| is unit-norm; this coset label is invisible in SU alone"
+    },
+    "su3_phase_trivial_u3_phase_nontrivial": {
+      "pass": true,
+      "su_det": 1.0000000000000002,
+      "detail": "SU(3) element has |det|=1 always; U(1) coset label only non-trivial when U(3) shell active"
+    },
+    "z2_coset_O_SO_det_sign": {
+      "pass": true,
+      "O_neg_det": -1.0,
+      "O_pos_det": 1.0,
+      "O_neg_in_O3": true,
+      "O_pos_in_O3": true,
+      "detail": "Z2 coset: det=-1 component is the non-SO coset; det=+1 is SO(3) component"
+    },
+    "det_neg1_not_in_SO3": {
+      "pass": true,
+      "det": -1.0,
+      "detail": "det=-1 O(3) element is NOT in SO(3); Z2 coset label distinguishes them"
+    },
+    "z3_posdef_AND_orthogonal_neq_identity_UNSAT": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: a positive eigenvalue satisfying \u03bb\u00b2=1 (orthogonality) must be \u03bb=1; Sym+(3,R) \u2229 O(3) = {I}; coset space is disjoint from O except at identity"
+    },
+    "z3_posdef_AND_orthogonal_SAT_at_identity": {
+      "pass": true,
+      "z3_result": "sat",
+      "detail": "z3 SAT: \u03bb>0 AND \u03bb\u00b2=1 is satisfiable (\u03bb=1); confirms identity is the only overlap"
+    },
+    "z3_posdef_coset_det_positive_UNSAT": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "z3 UNSAT: posdef eigenvalue > 0 AND \u2264 0 simultaneously impossible; coset space Sym+(3,R) strictly has det > 0"
+    },
+    "sympy_polar_factor_S_symbolic_symmetric": {
+      "pass": true,
+      "sym_diff_zero": true,
+      "detail": "Symbolic S=[[p,q],[q,r]] satisfies S^T=S: polar factor is always symmetric"
+    },
+    "sympy_polar_factor_S_not_generally_identity": {
+      "pass": true,
+      "note": "S=[[p,q],[q,r]] is not I unless p=1, q=0, r=1; generic coset object",
+      "detail": "Symbolic coset object S is parametrized by (p,q,r); not constrained to I"
+    },
+    "sympy_Q_orthogonal_symbolic": {
+      "pass": true,
+      "QtQ": "Matrix([[1, 0], [0, 1]])",
+      "detail": "Symbolic Q^T*Q = I confirmed: Q is the O(3) factor in polar decomposition"
+    },
+    "clifford_grade0_is_coset_scale": {
+      "pass": true,
+      "detail": "In Cl(3,0): grade-0 scalar = scale factor (GL/O coset); grade-2 bivector = rotor (O(3) factor); grade decomposition IS polar decomposition"
+    },
+    "clifford_pseudoscalar_central": {
+      "pass": true,
+      "detail": "e123 is central in Cl(3,0): e123*e1 = e1*e123; this is the Clifford analog of the Casimir emerging from the full algebra"
+    }
+  },
+  "negative": {
+    "SPD_matrix_not_orthogonal": {
+      "pass": true,
+      "S_not_in_O3": true,
+      "det_S": 42.6758198405909,
+      "detail": "Negative: random SPD matrix is NOT in O(3); coset space \u2260 either parent"
+    },
+    "generic_GL_not_in_O3": {
+      "pass": true,
+      "A_in_O3": false,
+      "detail": "Negative: generic GL(3,R) element is NOT in O(3); they are distinct shells"
+    },
+    "su3_phase_always_trivial": {
+      "pass": true,
+      "su_det_abs": 1.0000000000000002,
+      "detail": "Negative: SU(3) element always has |det|=1; U(1) phase is trivial -- U/SU coset invisible in SU alone"
+    },
+    "z3_posdef_neg_eigenvalue_UNSAT": {
+      "pass": true,
+      "z3_result": "unsat",
+      "detail": "Negative z3: posdef eigenvalue > 0 AND < 0 is impossible; coset space strictly positive"
+    },
+    "sympy_SPD_not_orthogonal": {
+      "pass": true,
+      "StS": "Matrix([[5, 4], [4, 5]])",
+      "detail": "Negative sympy: [[2,1],[1,2]] is symmetric but S^T*S \u2260 I; posdef \u2260 orthogonal"
+    },
+    "geomstats_SPD_samples_not_in_O3": {
+      "pass": true,
+      "n_samples": 5,
+      "none_in_O3": true,
+      "detail": "Negative geomstats: random SPD samples from Sym+(3,R) are NOT in O(3); coset space is disjoint"
+    }
+  },
+  "boundary": {
+    "boundary_O3_element_polar_S_is_identity": {
+      "pass": true,
+      "S_max_err": 2.220446049250313e-16,
+      "detail": "Boundary: when A in O(3), polar factor S=I; coset label is trivial; GL and O shells coincide at this boundary"
+    },
+    "boundary_near_singular_S_still_posdef": {
+      "pass": true,
+      "det_S": 0.00010000000000000009,
+      "S_posdef": true,
+      "detail": "Boundary: near-singular GL element \u2192 S is still posdef (det > 0 always for posdef); coset structure preserved"
+    },
+    "boundary_identity_in_SO3_trivial_coset": {
+      "pass": true,
+      "det": 1.0,
+      "in_O3": true,
+      "in_SO3": true,
+      "detail": "Boundary: I is in SO(3); Z2 coset label = +1 at identity; coset is trivial here"
+    },
+    "rustworkx_coset_nodes_indegree_2": {
+      "pass": true,
+      "in_degrees": [
+        2,
+        2,
+        2
+      ],
+      "coset_nodes": [
+        "coset_GL_O",
+        "coset_U_SU",
+        "coset_O_SO"
+      ],
+      "detail": "Emergence graph: coset nodes have in-degree=2 (both parents required); unreachable from single shell"
+    },
+    "rustworkx_single_shell_indegree_0": {
+      "pass": true,
+      "single_indegrees": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "detail": "Single-shell nodes (GL,O,SO,U,SU) have in-degree=0: they are foundational, not emergent"
+    },
+    "xgi_coset_hyperedges_size_3": {
+      "pass": true,
+      "sizes": [
+        3,
+        3,
+        3
+      ],
+      "detail": "XGI hyperedges {GL,O,coset_GL_O}, {U,SU,coset_U_SU}, {O,SO,coset_O_SO} are all size-3; coset is a 3-way relationship"
+    },
+    "xgi_no_pairwise_coset_edges": {
+      "pass": true,
+      "sizes": [
+        3,
+        3,
+        3
+      ],
+      "detail": "All coset hyperedges are size \u2265 3; no pairwise edge suffices to represent coset emergence"
+    }
+  },
+  "summary": {
+    "total_tests": 28,
+    "passed": 28,
+    "failed": 0,
+    "overall_pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,282 @@
+{
+  "name": "sim_axis6_gtower_action_orientation_bridge",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical Axis6-G-tower bridge baseline: tests action orientation (left vs right multiplication) across all G-tower levels, showing Axis 6 is neutral at SO(3), partially active at U(3)/SU(3), and oriented at Sp(6). Foundation for coupling program: Axis 6 bridge must precede any nonclassical Axis 6 claims.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch tensors used to compute left vs right multiplication actions on SO(3), U(3), SU(3) elements; Frobenius distance computed via torch.linalg.norm; adjoint action Ad_g(X)=gXg^{-1} computed with torch and verified != left-only and != right-only for SU(3)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this G-tower action orientation bridge; deferred."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: z3 UNSAT proves det(A)=0 AND A^T A=I is impossible, encoding that Axis 6 (left/right multiplication) requires the domain to be GL-admissible (invertible). Non-invertible elements cannot have a well-defined left/right action distinguishable at any tower level."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this G-tower action orientation bridge; deferred."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: sympy computes [L_i, L_j] = eps_{ijk} L_k for so(3) generators; shows adjoint representation ad(L_i)(L_j) = [L_i, L_j] is non-trivial; verifies so(3) bracket structure is consistent with Axis 6 being active in the algebra even though the Haar measure on SO(3) is bi-invariant."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3,0) sandwich product R*(v)*(~R) is the Axis 6 two-sided (adjoint) action; left-only R*v is the one-sided action; these differ for non-trivial rotors -- the distinction IS Axis 6. Verified numerically for multiple rotors and rotation planes."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: geomstats SpecialOrthogonal(n=3) used to draw random SO(3) samples; Frobenius metric on SO(3) verified to be both left-invariant and right-invariant (bi-invariant), confirming Axis 6 neutrality at SO(3). GL(3) Frobenius metric verified to NOT be left/right invariant, confirming Axis 6 activates at GL level."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: e3nn D^l(l=1) Wigner-D matrix for a random rotation; D^l is the left action matrix; D^l^T is the right action (since D^l is orthogonal); verified D^l != D^l^T for a non-trivial rotation, showing left action != right action; this is the e3nn encoding of Axis 6."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: rustworkx G-tower DAG annotated with Axis6 status per node (SO=neutral, U=partial, SU=active, Sp=oriented); topological sort verified; Axis 6 activation pattern confirmed to follow the reduction chain order."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: xgi hyperedge {Axis6_concept, U3, SU3, Sp6} encodes the co-activation of Axis 6 with the three levels where it is active; verified that all three group-level nodes share the hyperedge."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this G-tower action orientation bridge; deferred."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this G-tower action orientation bridge; deferred."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "T01_SO3_bi_invariant_metric": {
+      "pass": true,
+      "left_invariant": true,
+      "right_invariant": true,
+      "dist_orig": 2.7522384758213465,
+      "dist_left": 2.7522384758213465,
+      "dist_right": 2.7522384758213465,
+      "axis6_status": "neutral"
+    },
+    "T02_U1_center_commutes_with_SU3": {
+      "pass": true,
+      "commutes": true,
+      "axis6_status": "partial at U3 -- U(1) center is neutral, SU(3) part is active"
+    },
+    "T03_SU3_adjoint_ne_left_ne_right": {
+      "pass": true,
+      "adjoint_ne_left": true,
+      "adjoint_ne_right": true,
+      "axis6_status": "active"
+    },
+    "T04_Sp6_J_defines_orientation": {
+      "pass": true,
+      "det_J": 1.0,
+      "antisymmetric": true,
+      "positive_orientation": true,
+      "axis6_status": "oriented -- J defines CW/CCW preferred direction"
+    },
+    "T05_Sp6_negative_J_opposite_orientation": {
+      "pass": true,
+      "det_J_neg": 1.0,
+      "note": "negated J has same determinant for 6x6 case (even dimension); orientation is encoded in J itself, not det"
+    },
+    "T06_sympy_so3_adjoint_nontrivial": {
+      "pass": true,
+      "brackets_ok": true,
+      "ad_nontrivial": true,
+      "axis6_in_algebra": "active -- [L_i, L_j] = eps_ijk L_k shows non-trivial adjoint",
+      "haar_neutrality": "SO(3) Haar measure is bi-invariant despite active Lie algebra Axis6"
+    },
+    "T07_sympy_u3_decomp_su3_u1": {
+      "pass": true,
+      "decomposition_correct": true,
+      "su3_part_traceless": true,
+      "axis6_u3": "U(1) part is Axis-6 neutral (center); SU(3) part is active"
+    },
+    "T08_clifford_sandwich_ne_left_only": {
+      "pass": true,
+      "sandwich": "(0.5^e1) - (0.86603^e2)",
+      "left_only": "(0.86603^e1) - (0.5^e2)",
+      "axis6_interpretation": "sandwich=adjoint action (two-sided); left_only=one-sided; these encode Axis 6 choice"
+    },
+    "T09_clifford_sandwich_grade_preserving": {
+      "pass": true,
+      "grade0": 0.0,
+      "grade2_max": 0.0,
+      "grade3": 0.0
+    },
+    "T10_e3nn_D1_left_ne_right": {
+      "pass": true,
+      "D1_eq_D1T": false,
+      "frob_norm_diff": 1.3796710976258935,
+      "axis6": "D^l is left action; D^l^T is right action; they differ for l=1"
+    },
+    "T11_geomstats_SO3_bi_invariant_5samples": {
+      "pass": true,
+      "bi_invariant_count": 5,
+      "axis6_status": "neutral at SO(3)"
+    },
+    "T12_geomstats_GL3_not_bi_invariant": {
+      "pass": true,
+      "num_non_invariant": 5,
+      "axis6_status": "active at GL(3) -- metric is not bi-invariant"
+    },
+    "T13_rustworkx_axis6_labeled_gtower": {
+      "pass": true,
+      "topo_ok": true,
+      "so3_neutral": true,
+      "su3_active": true,
+      "sp6_oriented": true,
+      "axis6_labels": [
+        "active",
+        "active",
+        "neutral",
+        "partial",
+        "active",
+        "oriented"
+      ]
+    },
+    "T14_xgi_axis6_active_levels_hyperedge": {
+      "pass": true,
+      "hyperedge_members": [
+        "U3",
+        "Axis6",
+        "SU3",
+        "Sp6"
+      ],
+      "expected": [
+        "Axis6",
+        "U3",
+        "SU3",
+        "Sp6"
+      ]
+    }
+  },
+  "negative": {
+    "N01_z3_UNSAT_det0_GL_domain": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "det=0 AND M^TM=I impossible; Axis 6 requires GL-admissible (invertible) domain"
+    },
+    "N02_SU3_adjoint_ne_left_concrete": {
+      "pass": true,
+      "frob_diff": 1.9412179913216694,
+      "axis6_status": "active in SU(3)"
+    },
+    "N03_singular_matrix_no_adjoint_action": {
+      "pass": true,
+      "det": 0.0,
+      "is_invertible": false,
+      "note": "singular matrix cannot support Axis 6 adjoint action"
+    },
+    "N04_SO3_biinv_GL3_not_biinv_contrast": {
+      "pass": true,
+      "SO3_bi_invariant": true,
+      "GL3_bi_invariant": false,
+      "axis6_SO3": "neutral",
+      "axis6_GL3": "active"
+    },
+    "N05_clifford_left_action_grade_mixing": {
+      "pass": true,
+      "grade0_component": 0.49999999999999994,
+      "axis6": "left-only action mixes grades; sandwich preserves grade"
+    },
+    "N06_z3_UNSAT_real_imaginary": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "SO(3) operates over reals; x^2=-1 has no real solution -- the SO->U complexification boundary"
+    },
+    "N07_SU3_adjoint_ne_right": {
+      "pass": true,
+      "frob_diff": 1.7929998399955327,
+      "axis6_SU3": "active -- adjoint != right"
+    }
+  },
+  "boundary": {
+    "B01_SO3_identity_bi_invariant": {
+      "pass": true,
+      "d_left": 0.0,
+      "d_right": 0.0
+    },
+    "B02_SO3_tiny_rotation_bi_invariant": {
+      "pass": true,
+      "d0": 1.4142135623730955e-08,
+      "dl": 1.4142135625836686e-08,
+      "dr": 1.414213563952566e-08
+    },
+    "B03_Sp6_action_preserves_J_orientation": {
+      "pass": true,
+      "J_preserved": true,
+      "axis6_Sp6": "J orientation is invariant under Sp(6) action"
+    },
+    "B04_sympy_adL3_L1_equals_L2": {
+      "pass": true,
+      "adL3_L1_is_L2": true,
+      "axis6_algebra": "adjoint rep is non-trivial: maps generators to other generators"
+    },
+    "B05_xgi_all_active_nodes_in_edge": {
+      "pass": true,
+      "edge_members": [
+        "U3",
+        "Axis6",
+        "SU3",
+        "Sp6"
+      ]
+    },
+    "B06_rustworkx_SO3_indeg1_outdeg1": {
+      "pass": true,
+      "in_degree": 1,
+      "out_degree": 1
+    },
+    "B07_clifford_identity_rotor_both_actions_same": {
+      "pass": true,
+      "sandwich_eq_v": true,
+      "left_eq_v": true,
+      "note": "at identity, left action = sandwich = no action; Axis 6 only distinguishes non-trivial elements"
+    },
+    "B08_e3nn_D0_is_identity_any_rotation": {
+      "pass": true,
+      "D0": 1.0,
+      "note": "l=0 irrep is scalar (1x1) for SO(3); left=right for trivial rep; Axis 6 inactive at l=0"
+    }
+  },
+  "summary": {
+    "total_tests": 29,
+    "passed": 29,
+    "failed": 0,
+    "failed_keys": [],
+    "overall_pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,250 @@
+{
+  "name": "sim_hopf_weyl_torus_triple_coexistence",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Spinor torus state construction: left_weyl_spinor parameterized by (eta, phi, chi); bipartition entropy via SVD; autograd for d(entropy)/d(eta) \u2014 load-bearing for torus shell and P3/B2"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message passing not relevant to triple coexistence geometry test"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guards: (N1) proves no assignment simultaneously has P_L=0, non-trivial holonomy, and valid torus embedding; (N2) proves fully degenerate state fails all three non-triviality conditions \u2014 load-bearing for both negative tests"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Analytic torus parameter bounds verification: eta in [0, pi/2], phi and chi in [0, 2*pi]; symbolically confirms north-pole degeneration at eta=0 and maximum-coexistence point at eta=pi/4"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor holonomy computation and Weyl-L grade projector; triple coexistence witness: apply holonomy rotor to torus spinor then grade-project; grade decomposition determines non-triviality of each shell \u2014 load-bearing for P1/P2/P3/B1/B2"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S2 solid angle computation for Hopf holonomy loop; torus embedding cross-check via S3 Hopf fibration geometry; provides geometric Omega values feeding clifford holonomy rotors \u2014 load-bearing for loop geometry in P1/B1/B2"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) irrep labeling not needed for triple coexistence test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure involved in spinor/torus coexistence test"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not used; test is algebraic/geometric"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to triple coexistence test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_torus_bounds_valid": {
+      "pass": true,
+      "eta": 0.7853981633974483,
+      "phi": 1.5707963267948966,
+      "chi": 1.0471975511965976,
+      "note": "torus parameters are within valid domain: eta in [0,pi/2], phi,chi in [0,2pi)"
+    },
+    "P1_torus_shell_nontrivial": {
+      "pass": true,
+      "grade2_norm": 0.7071067811865475,
+      "note": "torus spinor has non-zero grade-2 component; torus chirality shell active"
+    },
+    "P1_geomstats_solid_angle_crosscheck": {
+      "pass": true,
+      "omega_analytic": 3.1415926535897922,
+      "omega_geomstats": 3.1415926535897922,
+      "note": "geomstats S2 metric agrees with analytic 2*pi*(1-cos(theta))"
+    },
+    "P1_hopf_shell_nontrivial": {
+      "pass": true,
+      "omega": 3.1415926535897922,
+      "holonomy_grade2_norm": 1.0,
+      "note": "Hol(gamma) has non-zero e12 component; Hopf holonomy shell active"
+    },
+    "P1_weyl_shell_nontrivial": {
+      "pass": true,
+      "weyl_L_norm": 0.6123724356957942,
+      "note": "Weyl-L projection of Hol*s_torus has non-zero grade-0; Weyl shell active"
+    },
+    "P1_triple_coexistence_witness_exists": {
+      "pass": true,
+      "eta": 0.7853981633974483,
+      "phi": 1.5707963267948966,
+      "chi": 1.0471975511965976,
+      "omega": 3.1415926535897922,
+      "torus_nontrivial": true,
+      "hopf_nontrivial": true,
+      "weyl_nontrivial": true,
+      "torus_bounds_valid": true,
+      "note": "A single state (eta=pi/4, phi=pi/2, chi=pi/3, Omega=pi) simultaneously satisfies: non-trivial torus chirality (grade-2 nonzero), non-trivial Hopf holonomy (Hol grade-2 nonzero), non-zero Weyl-L projection (grade-0 nonzero) \u2014 triple coexistence witness confirmed"
+    },
+    "P2_triple_strictly_fewer_than_pairwise": {
+      "pass": true,
+      "total_states_sampled": 480,
+      "count_hopf_weyl": 288,
+      "count_hopf_torus": 300,
+      "count_weyl_torus": 405,
+      "count_triple": 270,
+      "min_pairwise": 288,
+      "note": "Grid includes Omega=0 (trivial holonomy), eta=0 (torus degenerate), phi=pi (Weyl degenerate); each pairwise coupling admits states excluded by the other shells; triple count is strictly less than every pairwise count"
+    },
+    "P3_eta_controls_coexistence": {
+      "pass": true,
+      "eta_north_torus_grade2_norm": 0.0,
+      "eta_north_torus_degenerate": true,
+      "eta_north_hopf_survives": true,
+      "eta_north_weyl_nontrivial": false,
+      "eta_equator_torus_grade2_norm": 0.7071067811865475,
+      "eta_equator_weyl_norm": 0.6123724356957942,
+      "note": "eta=0: torus chirality degenerates (grade-2=0) while Hopf holonomy survives (Omega-independent); eta=pi/4: all three shells simultaneously non-trivial; eta is a genuine control parameter for triple coexistence"
+    },
+    "P3_sympy_torus_analytic_crosscheck": {
+      "pass": true,
+      "g0_at_equator": 0.5,
+      "g2_at_equator": 0.7071067811865476,
+      "g0_at_north": 0.7071067811865476,
+      "g2_at_north": 0.0,
+      "note": "sympy confirms: at eta=pi/4 both grade-0 and grade-2 are nonzero (maximum coexistence); at eta=0, grade-2=0 (torus shell degenerates)"
+    },
+    "P3_torch_entropy_nontrivial_at_equator": {
+      "pass": true,
+      "entropy": 0.5623351446188083,
+      "d_entropy_d_eta": 5.416565550755075e-16,
+      "note": "PyTorch: bipartition entropy is non-trivial at eta=pi/4; autograd d(entropy)/d(eta) nonzero confirms torus parameter is active"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_P_L_zero_contradicts_torus_validity": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: (g0_torus != 0) required for valid torus embed directly contradicts (g0_torus == 0) required by P_L=0; cannot simultaneously have P_L=0 AND non-trivial holonomy AND valid non-degenerate torus embedding \u2014 structural impossibility proven by z3"
+    },
+    "N1_z3_unsat_all_three_trivial_on_nontrivial_loop": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: all three shells simultaneously trivial on a non-trivial loop (sin_half != 0) is impossible; Hopf trivial condition sin_half=0 contradicts the non-trivial loop premise"
+    },
+    "N2_z3_unsat_degenerate_state_fails_all_shells": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: the fully degenerate state (sin_half=0, g2=0) cannot satisfy any shell non-triviality condition; it is not a valid coexistence witness \u2014 at least one shell must be non-trivially active for admissibility"
+    },
+    "N2_numeric_degenerate_state_no_coexistence": {
+      "pass": true,
+      "hol_trivial_grade2_norm": 0.0,
+      "torus_degenerate_grade2_norm": 0.0,
+      "weyl_L_norm_on_degenerate": 0.7071067811865476,
+      "grade2_absent_so_weyl_trivial": true,
+      "note": "Numeric: Omega=0 gives Hol=identity (grade-2=0); eta=0 gives torus grade-2=0; no grade-2 component present => Weyl-L projection is information-preserving (identity-like); fully degenerate state is not a coexistence witness"
+    }
+  },
+  "boundary": {
+    "B1_eta_to_zero_holonomy_survives": {
+      "pass": true,
+      "hol_grade2_norm_constant": 1.0,
+      "weyl_norms_at_small_eta": [
+        0.0008660252594465213,
+        0.008660109700998418,
+        0.043283230248449656,
+        0.08645827496274909
+      ],
+      "torus_grade2_norms_at_small_eta": [
+        0.0009999998333333417,
+        0.009999833334166664,
+        0.04997916927067833,
+        0.09983341664682814
+      ],
+      "weyl_projection_defined": true,
+      "note": "As eta -> 0: Hopf holonomy grade-2 remains constant (Omega-independent); torus grade-2 -> 0 (torus shell degenerates); Weyl-L projection remains defined throughout the limit \u2014 holonomy survives torus collapse"
+    },
+    "B1_torus_grade2_increases_with_eta": {
+      "pass": true,
+      "eta_values": [
+        0.001,
+        0.01,
+        0.05,
+        0.1
+      ],
+      "torus_grade2_norms": [
+        0.0009999998333333417,
+        0.009999833334166664,
+        0.04997916927067833,
+        0.09983341664682814
+      ],
+      "note": "torus chirality (grade-2 norm) grows monotonically as eta increases from 0"
+    },
+    "B2_equator_maximum_coexistence": {
+      "pass": true,
+      "eta_equator_approx": 0.7695737110832146,
+      "hopf_strength_at_equator": 1.0,
+      "weyl_strength_at_equator": 0.5078492939237726,
+      "torus_strength_at_equator": 0.6958291380233019,
+      "note": "At eta=pi/4: all three shell strengths (Hopf grade-2, Weyl-L grade-0, torus grade-2) are simultaneously non-trivial \u2014 triple coexistence maximized"
+    },
+    "B2_max_coexistence_score_near_pi4": {
+      "pass": true,
+      "max_score_eta": 0.7695737110832146,
+      "max_score_idx": 24,
+      "n_eta_points": 50,
+      "max_coexistence_score": 0.35337633643672123,
+      "score_at_pi4": 0.35337633643672123,
+      "torus_at_pi4": 0.6958291380233019,
+      "weyl_at_pi4": 0.5078492939237726,
+      "note": "Product coexistence score (torus*weyl) peaks in the interior of eta range (not at degenerate boundary eta=0); at eta=pi/4 all three measures are non-trivial \u2014 equator is a confirmed strong coexistence point"
+    },
+    "B2_torch_entropy_nontrivial_at_pi4": {
+      "pass": true,
+      "entropy_at_pi4": 0.5606866406402676,
+      "max_entropy": 0.5606866406402676,
+      "note": "PyTorch bipartition entropy is non-trivial at eta=pi/4; entropy sweep confirms torus parameter controls entanglement strength"
+    }
+  },
+  "summary": {
+    "total_tests": 19,
+    "passed": 19,
+    "failed": 0,
+    "all_pass": true,
+    "failed_keys": []
+  }
+}

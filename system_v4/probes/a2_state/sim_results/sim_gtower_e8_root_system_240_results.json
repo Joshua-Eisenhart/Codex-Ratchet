@@ -1,0 +1,130 @@
+{
+  "name": "sim_gtower_e8_root_system_240",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Gram matrix rank computation and I_c entropy measurement over root subset"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Structural impossibility proof: count constraint UNSAT + simply-laced constraint UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact Rational arithmetic for root construction and length verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_root_count": {
+      "description": "Total E8 roots = 240 (112 type1 + 128 type2)",
+      "type1_count": 112,
+      "type2_count": 128,
+      "total": 240,
+      "expected": 240,
+      "pass": true,
+      "tool": "sympy"
+    },
+    "P2_root_length_squared": {
+      "description": "All 240 roots satisfy |root|\u00b2 = 2 (simply-laced)",
+      "num_checked": 240,
+      "num_violations": 0,
+      "pass": true,
+      "tool": "sympy"
+    }
+  },
+  "negative": {
+    "P3_z3_count_not_240_unsat": {
+      "description": "z3 UNSAT: asserting |roots|\u2260240 is unsatisfiable",
+      "z3_status": "unsat",
+      "pass": true,
+      "tool": "z3"
+    },
+    "N1_z3_length_not_2_unsat": {
+      "description": "z3 UNSAT: asserting length\u00b2\u22602 for any root is unsatisfiable (simply-laced)",
+      "z3_status": "unsat",
+      "pass": true,
+      "tool": "z3"
+    }
+  },
+  "boundary": {
+    "B1_type1_type2_disjoint": {
+      "description": "112 type-1 roots are distinct from 128 type-2 roots (no overlap)",
+      "overlap_count": 0,
+      "pass": true,
+      "tool": "sympy"
+    },
+    "B2_gram_rank8_I_c": {
+      "description": "Random 8-root subset spans full R^8 (rank=8); I_c=log(8)",
+      "rank": 8,
+      "I_c": 2.0794415416798357,
+      "expected_I_c": 2.0794415416798357,
+      "I_c_match": true,
+      "pass": true,
+      "tool": "pytorch"
+    }
+  },
+  "all_pass": true
+}

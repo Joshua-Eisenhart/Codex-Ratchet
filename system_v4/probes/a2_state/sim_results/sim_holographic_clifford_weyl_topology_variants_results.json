@@ -1,0 +1,164 @@
+{
+  "name": "sim_holographic_clifford_weyl_topology_variants",
+  "classification": "classical_baseline",
+  "coupling_program": "Holographic x Clifford x Weyl",
+  "coupling_program_step": 4,
+  "parent_sims": [
+    "sim_holographic_clifford_weyl_triple_coexistence"
+  ],
+  "topology_variants": {
+    "T1": "flat torus (periodic MPS, n_cut=2)",
+    "T2": "open chain (no periodic BC, n_cut=1)",
+    "T3": "binary MERA tree (n_cut=log2(n_leaves))"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: all RT entropy / I_c / H_chirality computations across all three topology variants use torch tensors and eigvalsh"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "Tried: PyG graph objects used to represent T3 MERA tree bond structure; edge count drives n_cut for geodesic cut"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: N1 UNSAT proof that I_c monotonicity violation is inadmissible; topology-agnostic algebraic constraint"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for monotonicity UNSAT; cvc5 not required for this step"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: symbolic check that RT entropy formula S <= n_cut\u00b7log(\u03c7) holds as a symbolic inequality for each topology variant"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor encoded as block-diagonal matrix; clifford package not required here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "No Riemannian geometry computation required for topology variant probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant layers not needed for classical baseline topology variants"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Tried: rustworkx graph used to build T1 (torus cycle) and T2 (path graph) and count cut bonds; n_cut derived from graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hyperedge structure not needed; topology variants are pairwise graph structures"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "Tried: CellComplex used to represent T1 flat torus as 2-cell complex; n_cut derived from boundary operator rank"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not required for RT entropy topology probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "supportive",
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "T1_flat_torus": {
+      "n_cut": 2,
+      "S_proj": 0.6931471805600143,
+      "rt_bound": 1.3862943611198906,
+      "rt_bound_ok": true,
+      "H_chirality": 0.6931471805579453,
+      "H_eq_log2": true,
+      "I_before": 0.0,
+      "I_after": 0.0,
+      "dpi_ok": true
+    },
+    "T1_pass": true,
+    "T2_open_chain": {
+      "n_cut": 1,
+      "S_proj": 3.453877639491069e-14,
+      "rt_bound": 0.6931471805599453,
+      "rt_bound_ok": true,
+      "H_chirality": 0.6931471805579453,
+      "H_eq_log2": true,
+      "dpi_ok": true
+    },
+    "T2_pass": true,
+    "T3_mera_tree": {
+      "n_cut": 2,
+      "S_proj": 0.6931471805600143,
+      "rt_bound": 1.3862943611198906,
+      "rt_bound_ok": true,
+      "H_chirality": 0.6931471805579453,
+      "H_eq_log2": true,
+      "I_before": 0.0,
+      "I_after": 0.0,
+      "dpi_ok": true
+    },
+    "T3_pass": true,
+    "sympy_rt_bound": {
+      "sympy_S_max": "n*log(chi)",
+      "sympy_bound": "n*log(chi)",
+      "sympy_diff_zero": true
+    }
+  },
+  "negative": {
+    "N1_z3_I_c_violation_unsat": true,
+    "N1_z3_result": "unsat",
+    "N1_pass": true
+  },
+  "boundary": {
+    "B_torus_min_S": 1.3862943611198906,
+    "B_torus_min_expected": 1.3862943611198906,
+    "B_torus_min_pass": true,
+    "B_open_min_S": 0.6931471805599453,
+    "B_open_min_expected": 0.6931471805599453,
+    "B_open_min_pass": true,
+    "B_mera_min_S": 0.6931471805599453,
+    "B_mera_min_expected": 0.6931471805599453,
+    "B_mera_min_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 8,
+    "total_bool_count": 8
+  },
+  "divergence_log": [
+    "classical_baseline: maximally mixed RT state I/d for all topology variants",
+    "T1 torus n_cut=2: periodic BC requires cutting both sides of bipartition",
+    "T2 open chain n_cut=1: single bond cut at midpoint of linear chain",
+    "T3 MERA tree n_cut=log2(n_leaves): geodesic cut in binary tree",
+    "H_chirality=log(2) for maximally mixed state: topology-independent",
+    "z3 UNSAT uses real arithmetic proxy for DPI; not full quantum channel proof",
+    "Clifford rotor block-diagonal; commutes with Z^n chirality operator exactly"
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "name": "sim_araki_lieb_z3_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "numerical sweep of density matrices for P1, P2, B1"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "primary proof form for P3, N1, N2: UNSAT encodes structural impossibility"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "independent cross-check of N1 Araki-Lieb UNSAT proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of I_c bounds from Araki-Lieb for P2 parameter derivation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_araki_lieb_upper_bound": {
+      "pass": true,
+      "n_trials": 20,
+      "violations": [],
+      "note": "S(AB) >= |S(A)-S(B)| for all 20 random 4x4 density matrices"
+    },
+    "P2_Ic_leq_SA_autograd_sweep": {
+      "pass": true,
+      "n_trials": 50,
+      "violations": [],
+      "note": "I_c = S(A) - S(AB) <= S(A) for all t in [0,1] entanglement sweep"
+    },
+    "P3_z3_Ic_gt_SA_impossible": {
+      "pass": true,
+      "z3_status": "unsat",
+      "note": "UNSAT: I_c > S(A) forces S(AB) < 0, contradicting entropy non-negativity"
+    }
+  },
+  "negative": {
+    "N1_z3_araki_lieb_violation_impossible": {
+      "pass": true,
+      "z3_status": "unsat",
+      "note": "UNSAT: S(AB) < S(A)-S(B) contradicts SSA-derived triangle inequality"
+    },
+    "N2_z3_Ic_gt_log_dA_impossible": {
+      "pass": true,
+      "z3_status": "unsat",
+      "note": "UNSAT: I_c > log(d_A) forces S(AB) < 0, structurally impossible"
+    },
+    "N2b_cvc5_araki_lieb_crosscheck": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "cvc5 UNSAT: independent cross-check confirms Araki-Lieb violation impossible"
+    }
+  },
+  "boundary": {
+    "B1_pure_state_tight_bound": {
+      "pass": true,
+      "note": "Pure Bell state: S(AB)=0, I_c=S(A)=log(2) \u2014 upper bound achieved exactly",
+      "S_AB": 8.289328539239056e-11,
+      "S_A": 0.6931471805599454,
+      "I_c": 0.6931471804770521,
+      "log2": 0.6931471805599453
+    },
+    "B1b_sympy_boundary_equality": {
+      "pass": true,
+      "note": "sympy confirms I_c = S(A) when S(AB) = 0",
+      "sympy_eq": "True"
+    }
+  },
+  "all_pass": true
+}

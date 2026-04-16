@@ -1,0 +1,156 @@
+{
+  "name": "sim_spectral_triple_weyl_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "build Dirac matrix D and Weyl projectors P_L/P_R as torch tensors; compute spectral gap before and after Weyl projection via torch.linalg.eigvalsh; chirality entropy computed from projected spectrum via torch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no message-passing graph structure required for spectral/projector coupling; node/edge structure not the target at pairwise level"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: spectral gap after any projector is negative is excluded (gap is defined as smallest positive eigenvalue magnitude; cannot be negative); UNSAT proof: exact commutativity [P_L,D]=0 violated simultaneously with P_L^2=P_L encodes structural impossibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices for bounded algebraic constraints on projectors and spectral gap; cvc5 not needed at this coupling depth"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification that [P_L, D] = 0 when D is block-diagonal in chirality basis; sympy Matrix commutator computed to confirm zero for chirality-preserving D"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "chirality grading gamma is the Cl(n) pseudoscalar; P_L = (1 - gamma)/2 in Cl(1,0); confirmed gamma^2 = +/-1 grade structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian metric on projective space not needed at pairwise coupling level; excluded from this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not the target; chirality is a Z2 grading not a rotation; excluded from this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "bipartite graph: left nodes = D eigenvalues, right nodes = Weyl sectors (L/R); edges encode which eigenvalues survive each projection; bipartite structure verifies sector separation"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {D_spectrum, P_L, chirality_entropy} represents the irreducibly triadic coupling being probed; coupling is not pairwise-reducible"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed for Weyl/spectral-triple projector coupling; excluded at this pairwise step"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not required for Dirac spectral gap under Weyl projection; excluded from this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_spectral_gap_preserved_under_weyl_projection": {
+      "passed": true,
+      "gap_original": 1.0,
+      "gaps_at_5_angles": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "interpretation": "spectral gap survived Weyl L-projection at 5 angles within 10%; gap < 0 is excluded by construction (eigenvalues are real)"
+    },
+    "P2_chirality_entropy_survives_weyl_projection": {
+      "passed": true,
+      "H_equal_D": 0.6931471805599453,
+      "H_generic_D": 0.6365141682948128,
+      "log2": 0.6931471805599453,
+      "interpretation": "chirality entropy = log(2) survived for equal-weight D in spectral triple Weyl context; H=0 (complete sector collapse) is excluded for non-degenerate D"
+    },
+    "P3_PL_commutes_with_chirality_preserving_D": {
+      "passed": true,
+      "commutator": "Matrix([[0, 0], [0, 0]])",
+      "interpretation": "[P_L, D] = 0 survived symbolically for block-diagonal D; non-zero commutator is excluded when D is chirality-preserving"
+    },
+    "rustworkx_bipartite_sector_separation": {
+      "passed": true,
+      "interpretation": "eigenvalue-sector bipartite graph survived; L\u2194R cross-edges excluded for chirality-preserving D"
+    },
+    "xgi_triadic_hyperedge": {
+      "passed": true,
+      "interpretation": "triadic coupling D/P_L/H survived as non-reducible hyperedge"
+    },
+    "clifford_PL_idempotent": {
+      "passed": true,
+      "interpretation": "P_L^2 = P_L survived in Cl(1,0); non-idempotent projectors excluded"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_negative_spectral_gap_excluded": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "spectral gap < 0 after Weyl projection is excluded by z3 UNSAT; gap is |eigenvalue| which is non-negative by construction"
+    },
+    "N1b_z3_unsat_non_idempotent_projector_excluded": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "non-idempotent projector (delta in (0,1) with delta^2=delta) is excluded by z3 UNSAT; Weyl projectors must be idempotent"
+    }
+  },
+  "boundary": {
+    "B1_identity_projection_preserves_gap": {
+      "passed": true,
+      "gap_original": 1.0,
+      "gap_identity_proj": 1.0,
+      "interpretation": "identity projector leaves spectral gap invariant; gap change excluded"
+    },
+    "B2_zero_projector_collapses_D": {
+      "passed": true,
+      "interpretation": "zero projector collapses D to 0; degenerate boundary survived; non-zero D with zero P excluded"
+    }
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 10,
+    "n_pass": 10
+  },
+  "divergence_log": [
+    "spectral gap survived Weyl L-projection at 5 angles within 10%; gap < 0 excluded",
+    "chirality entropy H ~ log(2) co-varied with spectral triple Weyl projection",
+    "[P_L, D] = 0 survived symbolically for chirality-preserving D in spectral triple",
+    "z3 UNSAT: negative spectral gap after projection is structurally excluded",
+    "z3 UNSAT: non-idempotent Weyl projectors excluded (delta in (0,1) with delta^2=delta impossible)",
+    "identity projector boundary: gap invariant, survived as degenerate limit"
+  ]
+}

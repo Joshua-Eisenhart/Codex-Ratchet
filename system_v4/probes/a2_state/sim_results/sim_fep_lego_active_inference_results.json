@@ -1,0 +1,197 @@
+{
+  "name": "sim_fep_lego_active_inference",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Gradient descent on F (perception) and EFE (action) simultaneously using autograd; verifies F decreases during perception steps and EFE decreases during action steps"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: EFE = KL + preference_cost; KL >= 0 always (Gibbs), preference_cost = (o-o*)^2 >= 0 always; therefore EFE >= 0 and EFE < 0 is UNSAT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic EFE decomposition; derive dEFE/da symbolically for Gaussian action model; verify gradient is 2*(o+a)/sigma2 \u2014 the load-bearing action gradient claim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Perception = grade-1 rotation in e1-e2 plane; action = grade-2 rotation in e1-e3 plane; inner product e12|e13 = 0 verifies geometric orthogonality of the two operations in Cl(3,0)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Active inference graph with two parallel descent paths: perception (F path) and action (EFE path); verify both paths reach holodeck fixed point"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not used in this FEP/Holodeck lego probe; deferred to integration sims"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_perception_reduces_F": {
+      "pass": true,
+      "F_before": 4.918938533204672,
+      "F_after": 3.5439385332046727,
+      "mu_q_before": 0.0,
+      "mu_q_after": 1.0,
+      "mu_true": 1.6,
+      "note": "gradient step on q toward true posterior reduces F"
+    },
+    "P2_action_reduces_preference_cost": {
+      "pass": true,
+      "cost_before": 9.0,
+      "cost_after": 1.4400000000000004,
+      "action_applied": -1.7999999999999998,
+      "note": "gradient step on action parameter reduces distance to preferred observation"
+    },
+    "P3_efe_decomposition": {
+      "pass": true,
+      "ambiguity": 1.4189385332046727,
+      "info_gain": 0.45814536593707755,
+      "kl_preference": 1.575693855665945,
+      "EFE": 2.53648702293354,
+      "note": "EFE = ambiguity - information_gain + preference_KL; each term well-defined"
+    },
+    "P4_pytorch_dual_descent": {
+      "pass": true,
+      "F_initial": 4.918938533204672,
+      "F_final": 3.3189385332069907,
+      "EFE_initial": 4.0,
+      "EFE_final": 3.323202011848965e-23,
+      "perception_F_decreases": true,
+      "action_EFE_decreases": true,
+      "note": "pytorch autograd: perception path (F) and action path (EFE) both decrease under gradient descent"
+    },
+    "P5_sympy_efe_gradient": {
+      "pass": true,
+      "dEFE_da": "2*(a + o)/sigma2",
+      "expected": "(2*a + 2*o)/sigma2",
+      "diff": "0",
+      "note": "dEFE/da = 2*(o+a)/sigma2 confirmed symbolically"
+    },
+    "P6_preferred_obs_exists": {
+      "pass": true,
+      "kl_current_to_preferred": 4.547267445945918,
+      "note": "KL from current obs distribution to preferred p*(o) is positive \u2014 action has gradient to follow"
+    },
+    "P7_clifford_perception_action_orthogonal": {
+      "pass": true,
+      "inner_e12_e13": 0.0,
+      "note": "perception (e12 plane) and action (e13 plane) are orthogonal bivectors in Cl(3,0)"
+    },
+    "P8_rustworkx_dual_paths": {
+      "pass": true,
+      "has_perception_path": true,
+      "has_action_path": true,
+      "both_reach_fixedpoint": true,
+      "num_nodes": 7,
+      "num_edges": 7,
+      "note": "two parallel descent paths converge to holodeck fixed point"
+    }
+  },
+  "negative": {
+    "N1_passive_perception_leaves_preference_cost": {
+      "pass": true,
+      "obs_actual": 3.0,
+      "obs_preferred": 0.0,
+      "preference_cost": 9.0,
+      "note": "without action, preference cost = (3-0)^2 = 9 persists even after perfect perception"
+    },
+    "N2_z3_unsat_efe_negative": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "UNSAT: EFE = KL + preference_cost >= 0 + 0 = 0; cannot be negative"
+    },
+    "N3_no_preference_no_action_gradient": {
+      "pass": true,
+      "gradient_no_pref": 0.0,
+      "gradient_with_pref": 6.0,
+      "note": "without a preferred observation, the action gradient is 0; preference is necessary for directed action"
+    }
+  },
+  "boundary": {
+    "B1_efe_zero_at_fixedpoint": {
+      "pass": true,
+      "KL_at_fixedpoint": 0.0,
+      "pref_cost_at_fixedpoint": 0.0,
+      "EFE_at_fixedpoint": 0.0,
+      "note": "EFE = 0 exactly at holodeck fixed point: accurate beliefs + preferred obs"
+    },
+    "B2_large_action_for_far_obs": {
+      "pass": true,
+      "obs_far": 10.0,
+      "optimal_action": -10.0,
+      "cost_before": 100.0,
+      "cost_after": 0.0,
+      "note": "far obs requires large action; optimal action = -(obs - o*)"
+    },
+    "B3_both_priors_converge": {
+      "pass": true,
+      "steps_wide_prior": 15,
+      "steps_narrow_prior": 4,
+      "note": "boundary: both wide and narrow priors converge in finite steps under gradient descent"
+    },
+    "B4_true_posterior_minimizes_F": {
+      "pass": true,
+      "F_at_prior": 4.918938533204672,
+      "F_at_true_posterior": 2.123657489421723,
+      "note": "F at true posterior < F at prior \u2014 true posterior minimizes free energy"
+    }
+  },
+  "summary": {
+    "n_total": 15,
+    "n_pass": 15,
+    "overall_pass": true
+  },
+  "overall_pass": true
+}

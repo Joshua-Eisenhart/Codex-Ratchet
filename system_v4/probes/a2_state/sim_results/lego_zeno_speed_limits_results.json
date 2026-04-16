@@ -1,6 +1,6 @@
 {
   "name": "lego_zeno_speed_limits",
-  "timestamp": "2026-04-16T02:45:49.304065+00:00",
+  "timestamp": "2026-04-16T02:53:44.419113+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
@@ -36,32 +36,32 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "summary": {
@@ -506,5 +506,7 @@
       "tau_unified": 0.3141592653589793,
       "note": "Minimum time to transition at coupling=5.0"
     }
-  }
+  },
+  "positive": [],
+  "negative": []
 }

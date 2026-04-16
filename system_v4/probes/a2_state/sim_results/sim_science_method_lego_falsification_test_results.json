@@ -1,0 +1,123 @@
+{
+  "name": "sim_science_method_lego_falsification_test",
+  "classification": "classical_baseline",
+  "scope_note": "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method \u2014 falsification step as physical constraint on hypothesis admissibility",
+  "exclusion_claim": "hypothesis with P(o*|h)=0 cannot survive observation o*; unfalsifiable hypothesis has no structure distinguishing it from prior; Modus Tollens is exact at P(o*|h)=1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: soft falsification score P(h|~o*)/P(h); autograd on score w.r.t. prediction sharpness; decisive for falsifiability gradient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proofs \u2014 P(o*|h)=0 AND P(h|o*)>0 is impossible; I(H;O)>0 AND P(o|h)=P(o) is impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic Modus Tollens \u2014 if P(o*|h)=1 then P(h|~o*)=0; limit derivation confirms hard falsification boundary"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: falsification in Cl(3,0) \u2014 hypothesis as grade-1 vector; test = projection; falsification = orthogonal hypothesis maps to zero"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: falsification lattice \u2014 more specific hypotheses (falsifiable by more observations) have higher out-degree; maximal element = unfalsifiable"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this science-method falsification-test lego; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_falsifiable_h_predicts_ostar": true,
+    "P1_p_ostar_given_h": 0.9,
+    "P1_p_ostar_given_noth": 0.1,
+    "P2_confirmation_posterior_increases": true,
+    "P2_prior": 0.5,
+    "P2_posterior_given_ostar": 0.9,
+    "P3_partial_falsification_posterior_decreases": true,
+    "P3_posterior_given_not_ostar": 0.09999999999999998,
+    "P4_unfalsifiable_MI_zero": true,
+    "P4_MI_value": 0.0,
+    "P5_sharpness_decreases_score": true,
+    "P5_grad_score_wrt_sharpness": -1.4876034259796143
+  },
+  "negative": {
+    "N1_hard_falsification_zero_posterior": true,
+    "N1_posterior_value": 0.0,
+    "N2_z3_zero_lik_nonzero_post_UNSAT": true,
+    "N2_z3_result": "unsat",
+    "N3_sympy_modus_tollens_limit_zero": true,
+    "N3_sympy_limit_expr": "0",
+    "N4_z3_flat_predictions_MI_zero_UNSAT": true,
+    "N4_z3_result": "unsat",
+    "N5_clifford_orthogonal_projection_zero": true,
+    "N5_projection_value": 0.0,
+    "N6_tautology_no_outgoing_edges": true,
+    "N6_tautology_out_degree": 0
+  },
+  "boundary": {
+    "B1_required_prediction_hard_falsification": true,
+    "B1_posterior_given_not_ostar": 0.0,
+    "B2_sympy_complement_identity": true,
+    "B3_uniform_prediction_score_one": true,
+    "B3_score_value": 1.0,
+    "B4_clifford_aligned_max_projection": true,
+    "B4_projection_value": 1.0,
+    "B5_falsification_lattice_is_dag": true,
+    "B6_z3_hard_falsification_SAT": true,
+    "B6_z3_result": "sat"
+  },
+  "overall_pass": true
+}

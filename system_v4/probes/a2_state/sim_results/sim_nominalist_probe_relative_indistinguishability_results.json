@@ -1,0 +1,194 @@
+{
+  "name": "sim_nominalist_probe_relative_indistinguishability",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: probe battery for SO(3) matrices \u2014 random test vectors, max-deviation metric, indistinguishability criterion"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that (R1 != R2) AND all_probes_agree(R1,R2) is contradictory \u2014 structural impossibility"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic proof that (R1-R2)*v=0 for all v iff R1-R2=0 \u2014 probe-relative and abstract definitions are identical"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Cl(3,0) grade-1 action probe \u2014 two multivectors are the same iff their action on all grade-1 vectors is identical"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: probe graph \u2014 nodes = objects + probes + equivalence; in-degree of equivalence node = agreement count; all probes must agree"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: indistinguishability hyperedge {R1, R2, probe_battery, result_match} \u2014 all four together establish equivalence"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this nominalist probe-relative indistinguishability sim; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "PT1_identical_matrices_zero_deviation": {
+      "pass": true,
+      "max_probe_deviation": 0.0,
+      "description": "Two identical SO(3) matrices have zero max probe deviation"
+    },
+    "PT2_distinct_matrices_nonzero_deviation": {
+      "pass": true,
+      "max_probe_deviation": 1.1359156889831878,
+      "description": "Two distinct SO(3) matrices have nonzero max probe deviation"
+    },
+    "PT3_2pi_rotation_equiv_to_identity_by_probes": {
+      "pass": true,
+      "max_probe_deviation": 2.498001805406602e-16,
+      "description": "R(2pi) and I are probe-indistinguishable (same equivalence class)"
+    },
+    "PT4_more_probes_no_false_merge": {
+      "pass": true,
+      "dev_10_probes": 1.1359156889831878,
+      "dev_50_probes": 1.1360503049083923,
+      "description": "Probes can only distinguish, never falsely merge distinct matrices"
+    },
+    "PT5_same_distribution_ks_indistinguishable": {
+      "pass": true,
+      "ks_pval": 0.34112475112661245,
+      "description": "Same distribution: KS test fails to distinguish (high p-value)"
+    },
+    "PT6_sympy_abstract_eq_implies_probe_eq": {
+      "pass": true,
+      "description": "sympy: A=B (abstractly) \u2192 (A-B)*v=0 for all v \u2014 probe-relative equals abstract"
+    },
+    "PT7_sympy_probe_eq_on_basis_implies_abstract_eq": {
+      "pass": true,
+      "description": "sympy: (A-B)*e\u1d62=0 for all basis vectors iff A=B \u2014 equivalences are the same"
+    },
+    "PT8_clifford_identical_rotors_same_grade1_action": {
+      "pass": true,
+      "description": "Cl(3,0): identical rotors produce identical grade-1 actions on all basis vectors"
+    },
+    "PT9_rustworkx_all_probes_agree_full_indegree": {
+      "pass": true,
+      "equiv_in_degree": 5,
+      "num_probes": 5,
+      "description": "rustworkx: all probes agree on identical matrices \u2192 equivalence node has full in-degree"
+    },
+    "PT10_xgi_hyperedge_four_members_for_equivalence": {
+      "pass": true,
+      "members": [
+        "probe_battery",
+        "R1",
+        "R2",
+        "result_match"
+      ],
+      "description": "xgi: indistinguishability hyperedge requires all four: R1, R2, probe_battery, result_match"
+    }
+  },
+  "negative": {
+    "NT1_same_frobenius_norm_different_eigenvectors_distinguishable": {
+      "pass": true,
+      "frobenius_norms_equal": true,
+      "eigenvec_probe_deviation": 1.0,
+      "description": "Same Frobenius norm != same object; eigenvector probe distinguishes them"
+    },
+    "NT2_different_distributions_ks_distinguishes": {
+      "pass": true,
+      "ks_pval": 0.0,
+      "description": "Different distributions: KS test distinguishes them (low p-value)"
+    },
+    "NT3_rustworkx_distinct_matrices_not_fully_connected": {
+      "pass": true,
+      "equiv_in_degree": 0,
+      "num_probes": 5,
+      "description": "rustworkx: distinct matrices have partial probe agreement \u2014 not all probes agree"
+    },
+    "NT4_z3_unsat_abstract_inequality_with_probe_equality": {
+      "pass": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: (x != y) AND (x == y) is unsatisfiable \u2014 probe equality IS abstract equality"
+    },
+    "NT5_clifford_distinct_rotors_distinct_grade1_action": {
+      "pass": true,
+      "action_difference_norm": 0.36602540378443826,
+      "description": "Cl(3,0): distinct rotors produce distinct grade-1 actions on e1"
+    }
+  },
+  "boundary": {
+    "BT1_identity_matrix_fixed_point_of_all_probes": {
+      "pass": true,
+      "max_deviation_from_v": 0.0,
+      "description": "Identity: I*v = v for all probe vectors v (ground object)"
+    },
+    "BT2_identity_zero_self_probe_deviation": {
+      "pass": true,
+      "self_deviation": 0.0,
+      "description": "Identity: max probe deviation against itself is 0 (maximally self-indistinguishable)"
+    },
+    "BT3_z3_probe_agreement_is_consistent": {
+      "pass": true,
+      "z3_result": "sat",
+      "description": "z3 SAT: multiple probes all agreeing is consistent (not contradictory)"
+    },
+    "BT4_xgi_singleton_hyperedge_cannot_establish_equivalence": {
+      "pass": true,
+      "num_members": 1,
+      "description": "xgi: singleton hyperedge cannot establish equivalence \u2014 need at least R1 and R2"
+    },
+    "BT5_clifford_identity_rotor_acts_as_identity": {
+      "pass": true,
+      "description": "Cl(3,0): identity rotor R=1 satisfies R*v*~R = v for all grade-1 vectors"
+    }
+  },
+  "overall_pass": true,
+  "passed": 20,
+  "total": 20
+}

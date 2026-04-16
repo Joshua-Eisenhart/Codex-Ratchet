@@ -1,0 +1,136 @@
+{
+  "name": "sim_gerbe_weyl_spectral_triple_triple_coexistence",
+  "classification": "classical_baseline",
+  "coupling_program_step": 3,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "rho_GWS triple-active density matrix PSD check via torch; supportive cross-validation of coexistence Q values"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "fixed 3-shell graph; no dynamic message-passing needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof that Q_GWS>0 requires all three H>0 simultaneously; N2: UNSAT proof two-shell zero implies Q=0; load-bearing"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "triple product identity verified algebraically; supportive"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Weyl Z2 chirality does not require Clifford algebra package"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian geometry computation needed for triple coexistence"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "shell adjacency graph is small and fixed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not needed for 3-shell coexistence"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_H_gerbe": 2.5649493574615367,
+    "P1_H_weyl": 0.6931471805599453,
+    "P1_H_st": 2.9853472028498773,
+    "P1_Q_GWS": 5.307611222556859,
+    "P1_pass": true,
+    "P2_Q_values": [
+      5.307611222556859,
+      4.564836219291551,
+      3.0341417973917237,
+      3.708707504043091,
+      5.319928281598802,
+      5.896486025364764,
+      5.640155891967173,
+      3.802392532295392,
+      1.2641025429247277,
+      6.69087567678947
+    ],
+    "P2_all_positive": true,
+    "P2_pass": true,
+    "P3_H_gerbe_s0": 2.5649493574615367,
+    "P3_H_gerbe_s5": 2.5649493574615367,
+    "P3_H_st_s0": 2.9853472028498773,
+    "P3_H_st_s5": 3.316568852604485,
+    "P3_seed_varying": true,
+    "P3_pass": true,
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_triple_needs_all_nonzero": true,
+    "N1_z3_result": "unsat",
+    "N2_z3_two_zero_shells_impossible": true,
+    "N2_z3_result": "unsat",
+    "pass": true
+  },
+  "boundary": {
+    "B1_Q_all_inactive": 0.0,
+    "B1_pass": true,
+    "B2_Q_no_gerbe": 0.0,
+    "B2_Q_no_weyl": 0.0,
+    "B2_Q_no_st": 0.0,
+    "B2_pass": true,
+    "B3_H_weyl": 0.6931471805599453,
+    "B3_log2": 0.6931471805599453,
+    "B3_pass": true,
+    "pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 13,
+    "total_bool_count": 13
+  }
+}

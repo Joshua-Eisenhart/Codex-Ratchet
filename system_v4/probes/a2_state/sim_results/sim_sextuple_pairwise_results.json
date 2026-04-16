@@ -1,0 +1,189 @@
+{
+  "name": "sim_sextuple_pairwise",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof that Q_6 != 0 with any single shell active (5 factors = 0)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_h_weyl_positive": {
+      "value": 0.6931471805599453,
+      "pass": true
+    },
+    "P2_h_hopf_positive": {
+      "value": 0.34657359027997264,
+      "pass": true
+    },
+    "P3_h_gerbe_positive": {
+      "value": 2.3978952727983707,
+      "pass": true
+    },
+    "P4_h_dirac_positive": {
+      "value": 2.964264111659107,
+      "pass": "True"
+    },
+    "P5_h_clifford_positive": {
+      "value": 0.7071067811865476,
+      "pass": true
+    },
+    "P6_mi_positive": {
+      "value": 0.20352653927719988,
+      "pass": true
+    },
+    "P7_all_pairs_Q_zero": {
+      "pairs": {
+        "pair_weyl_hopf": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_weyl_gerbe": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_weyl_dirac": {
+          "Q": 0.0,
+          "pass": "True"
+        },
+        "pair_weyl_clifford": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_weyl_mera": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_hopf_gerbe": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_hopf_dirac": {
+          "Q": 0.0,
+          "pass": "True"
+        },
+        "pair_hopf_clifford": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_hopf_mera": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_gerbe_dirac": {
+          "Q": 0.0,
+          "pass": "True"
+        },
+        "pair_gerbe_clifford": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_gerbe_mera": {
+          "Q": 0.0,
+          "pass": true
+        },
+        "pair_dirac_clifford": {
+          "Q": 0.0,
+          "pass": "True"
+        },
+        "pair_dirac_mera": {
+          "Q": 0.0,
+          "pass": "True"
+        },
+        "pair_clifford_mera": {
+          "Q": 0.0,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "N1_z3_single_shell_Q_nonzero_UNSAT": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Q_6 with only 1 shell active must be 0 (5 factors absent)"
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_zero": {
+      "Q": 0.0,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

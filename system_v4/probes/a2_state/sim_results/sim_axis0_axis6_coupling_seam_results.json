@@ -1,0 +1,132 @@
+{
+  "name": "sim_axis0_axis6_coupling_seam",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Computed I_c = S(A) - S(AB) on Bell state before and after chirality flip"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 proves UNSAT: I_c changes under involutory flip is structurally impossible; double-flip would imply delta=0 \u2014 contradicts delta>0"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotors used to verify chirality flip preserves bivector e12 component magnitude \u2014 the bipartition structure underlying I_c"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_bell_chirality_flip": {
+      "pass": true,
+      "Ic_before": 0.69314718,
+      "Ic_after": 0.69314718,
+      "expected": 0.69314718,
+      "Ic_unchanged": true,
+      "note": "I_c = log(2) before and after L\u2192R flip \u2014 Axis 0 independent of Axis 6"
+    },
+    "P2_gradient_orthogonality": {
+      "pass": true,
+      "dIc_dtheta": 0.0,
+      "dS_chir_dtheta": 0.0,
+      "dot_product": 0.0,
+      "note": "At \u03b8=\u03c0/4 (Bell state), dI_c/d\u03b8\u00b7dS_chir/d\u03b8 \u2248 0 \u2014 axes gradient-orthogonal at max-entanglement point"
+    },
+    "P3_clifford_bivector_bipartition": {
+      "pass": true,
+      "L_e12_component": 1.0,
+      "R_e12_component": 1.0,
+      "both_nonzero": true,
+      "magnitude_preserved": true,
+      "note": "Cl(3) chirality flip (L\u2194R rotor) preserves |e12| \u2014 I_c carrier intact"
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_flip_changes_Ic": {
+      "pass": true,
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "note": "If flip is involution and changes I_c by delta>0, double-flip gives I_c+2delta=I_c \u2192 delta=0 \u2192 UNSAT"
+    }
+  },
+  "boundary": {
+    "B1_product_state": {
+      "pass": true,
+      "Ic_before": -0.0,
+      "Ic_after": -0.0,
+      "chirality_entropy_cost": 0.69314718,
+      "expected_chir_cost": 0.69314718,
+      "note": "Product state: flip doesn't create entanglement; chirality cost = log(2)"
+    },
+    "B2_max_entangled_flip": {
+      "pass": true,
+      "Ic_before": 0.69314718,
+      "Ic_after": 0.69314718,
+      "expected": 0.69314718,
+      "note": "Bell state: chirality flip preserves I_c = log(2) exactly"
+    }
+  },
+  "all_pass": true,
+  "summary": "Axis 0 (I_c) and Axis 6 (chirality seam) are orthogonal: chirality flip does not change coherent information. z3 UNSAT confirms structural impossibility of flip-induced I_c change."
+}

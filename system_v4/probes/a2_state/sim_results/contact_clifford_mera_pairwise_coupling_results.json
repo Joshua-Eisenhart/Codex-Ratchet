@@ -1,0 +1,178 @@
+{
+  "name": "sim_contact_clifford_mera_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "density matrix via torch tensors; partial trace for MI computation (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure not required at pairwise coupling level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: degenerate contact (H_contact=0) AND H_clifford>0 structurally impossible in coupled shell"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for pairwise degeneracy check; cvc5 not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic product Q_CCM=MI*H_contact*H_clifford; zero-factor collapse verified (supportive)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford algebra rotor exp(i*pi/4*e12) applied to 2-qubit state; chirality-admissible (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold not needed for pairwise baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to Contact/Clifford/MERA pairwise; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "MERA layer DAG encoded as rustworkx directed graph; verifies layer ordering (supportive)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "triadic hyperedge {H_contact, H_clifford, MI} encodes irreducible pairwise coupling (supportive)"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for contact manifold topology verification (supportive)"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required for pairwise baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "A1_contact_active_H_contact_gt0": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "n_reeb": 16,
+      "interpretation": "H_contact=log(17)>0 when contact form \u03b1\u2227d\u03b1\u22600 on all 16 grid points"
+    },
+    "A2_clifford_active_H_clifford_gt0": {
+      "passed": true,
+      "H_clifford": 0.7071067811865477,
+      "theta": 0.7853981633974483,
+      "interpretation": "H_clifford>0 after exp(i*pi/4*XX) rotor changes off-diagonal Frobenius norm"
+    },
+    "A3_contact_clifford_both_nonzero": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "H_clifford": 0.7071067811865477,
+      "interpretation": "Contact and Clifford shells both active simultaneously; pairwise coexistence admitted"
+    },
+    "B1_mera_active_MI_gt0": {
+      "passed": true,
+      "MI": 0.21166885730683282,
+      "interpretation": "MI>0 after 3 dephasing layers; MERA shell active"
+    },
+    "B2_contact_mera_both_nonzero": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "MI": 0.21166885730683282,
+      "interpretation": "Contact and MERA both nonzero; pairwise coupling B admitted"
+    },
+    "B3_contact_mera_product_gt0": {
+      "passed": true,
+      "product": 0.5997030310428498,
+      "interpretation": "H_contact * MI > 0 when both shells active; partial Q_CCM nonzero"
+    },
+    "C1_clifford_mera_both_nonzero": {
+      "passed": true,
+      "H_clifford": 0.7071067811865477,
+      "MI": 0.21166885730683282,
+      "interpretation": "Clifford and MERA both nonzero; pairwise coupling C admitted"
+    },
+    "C2_clifford_mera_product_gt0": {
+      "passed": true,
+      "product": 0.14967248436766922,
+      "interpretation": "H_clifford * MI > 0 when both shells active"
+    },
+    "C3_Q_CCM_gt0_all_active": {
+      "passed": true,
+      "Q_CCM": 0.42405407994852584,
+      "MI": 0.21166885730683282,
+      "H_contact": 2.833213344056216,
+      "H_clifford": 0.7071067811865477,
+      "interpretation": "Q_CCM=MI*H_contact*H_clifford>0 when all three shells active; triple coupling admitted"
+    },
+    "RX_mera_dag_layer_count": {
+      "passed": true,
+      "n_layers": 4,
+      "interpretation": "MERA DAG has 4 nodes (input + 3 layers); rustworkx topological sort correct"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_contact_inactive_H_zero": {
+      "passed": true,
+      "H_contact": 0.0,
+      "interpretation": "H_contact=0 when contact form degenerate (inactive shell)"
+    },
+    "N2_clifford_theta0_H_zero": {
+      "passed": true,
+      "H_clifford": 0.0,
+      "interpretation": "H_clifford=0 when theta=0; rotor is identity, no change in off-diagonal norm"
+    },
+    "N3_z3_unsat_H_contact_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_contact=0 AND Q_CCM>0 is z3 UNSAT; degenerate contact structurally excludes emergence"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_fully_dephased_Q_near_zero": {
+      "passed": true,
+      "MI": 0.0,
+      "Q_CCM": 0.0,
+      "interpretation": "Fully dephased MERA (eps=1.0, 20 layers) drives MI\u21920, so Q_CCM\u21920"
+    },
+    "B2_sympy_product_zero_factor": {
+      "passed": true,
+      "interpretation": "a*b*c=0 when any factor=0; zero-in-subshell invariant"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 15,
+    "n_pass": 15
+  }
+}

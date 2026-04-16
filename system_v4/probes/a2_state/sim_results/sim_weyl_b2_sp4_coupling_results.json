@@ -1,0 +1,211 @@
+{
+  "name": "sim_weyl_b2_sp4_coupling",
+  "description": "W(B2) Weyl group coupled to Sp(4) Lie algebra; B2 root system {8 roots} verified as sp(4) roots; symplectic condition checked; W(B2)=D4 order 8; double Dynkin bond distinguishes B2 from A2; B2=C2 duality confirmed",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify symplectic condition M^T J M = J for Sp(4) root-space generators; W(B2) signed permutation matrices act on B2 root vectors and stay in root system; compute gram matrix of all 8 B2 roots to verify root system closure"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in B2-Sp4 coupling; graph handled by rustworkx"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: a W(B2) reflection maps a root to a vector that is NOT in the B2 root system \u2014 structurally impossible since reflections by definition preserve the root system; z3 encodes root membership as disjunction and proves the negation is unsatisfiable"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for root-system membership UNSAT; cvc5 deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that B2 root system {\u00b1e1, \u00b1e2, \u00b1e1\u00b1e2} equals the roots of sp(4) exactly; symplectic Lie bracket [X,Y] in sp(4) checks root space decomposition; sp(4) dimension = 10 confirmed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "B2 root vectors in Cl(4,0) as grade-1 multivectors; W(B2) reflections as Clifford sandwich products preserve grade-1 structure; symplectic form J encoded as grade-2 bivector e1^e3 + e2^e4; B2 reflections preserve it"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in B2-Sp4 coupling probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in B2-Sp4 coupling probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "B2 Dynkin diagram: 2-node graph with edge weight 2 (double bond); W(B2) Cayley graph: 8 nodes (dihedral D4 order 8); verify both graph structures and that B2 double bond distinguishes it from A2 (single bond)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "3-way hyperedge {B2_root_system, sp4_Lie_algebra, W_B2_Weyl_group} encodes the irreducible triadic correspondence; each pairwise link is a strict structural identity, not just isomorphism"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in B2-Sp4 coupling probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in B2-Sp4 coupling probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_sp4_symplectic_condition": {
+      "generators": {
+        "E_e1+e2": {
+          "max_error": 0.0,
+          "pass": true
+        },
+        "E_e1-e2": {
+          "max_error": 0.0,
+          "pass": true
+        },
+        "E_2e1": {
+          "max_error": 0.0,
+          "pass": true
+        }
+      },
+      "all_pass": true,
+      "pass": true
+    },
+    "pytorch_weyl_b2_root_action": {
+      "actions": {
+        "s1_swap": {
+          "all_roots_stay_in_B2": true,
+          "pass": true
+        },
+        "s2_flip_e2": {
+          "all_roots_stay_in_B2": true,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sympy_b2_root_structure": {
+      "total_roots": 8,
+      "short_roots_count": 4,
+      "long_roots_count": 4,
+      "sp4_dimension": 10,
+      "rank": 2,
+      "cartan_generators": 2,
+      "root_generators": 8,
+      "total_generators_match": true,
+      "pass": true
+    },
+    "sympy_cartan_b2_entries": {
+      "A12": -1,
+      "A21": -2,
+      "A12_expected": -1,
+      "A21_expected": -2,
+      "pass": true
+    },
+    "clifford_b2_reflections": {
+      "reflect_e1_in_alpha2_correct": true,
+      "reflect_e2_in_alpha1_gives_e1": true,
+      "grade1_preserved_e1": {
+        "e1": 1.0,
+        "e2": 0.0,
+        "e3": 0.0,
+        "e4": 0.0
+      },
+      "grade1_preserved_e2": {
+        "e1": 1.0,
+        "e2": 0.0,
+        "e3": 0.0,
+        "e4": 0.0
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "z3_reflection_preserves_b2_roots": {
+      "claim": "W(B2) reflection of a B2 root leaves B2 root system",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "explanation": "Swap (r1,r2)->(r2,r1) of any B2 root stays in B2; UNSAT",
+      "pass": true
+    },
+    "z3_s2_reflection_preserves_b2_roots": {
+      "claim": "W(B2) reflection by alpha2 of a B2 root stays in B2",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "explanation": "Negate r2: (r1,-r2) of any B2 root stays in B2; UNSAT",
+      "pass": true
+    },
+    "z3_pass": true,
+    "sympy_weyl_groups_differ": {
+      "W_A2_order": 6,
+      "W_B2_order": 8,
+      "A2_root_count": 6,
+      "B2_root_count": 8,
+      "orders_differ": true,
+      "A2_not_isomorphic_to_B2": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rustworkx_dynkin_and_weyl": {
+      "b2_bond_order": [
+        2
+      ],
+      "a2_bond_order": [
+        1
+      ],
+      "b2_is_double_bond": true,
+      "a2_is_single_bond": true,
+      "b2_differs_from_a2": true,
+      "weyl_b2_order": 8,
+      "weyl_b2_order_correct": true,
+      "pass": true
+    },
+    "xgi_b2_sp4_triadic_hyperedge": {
+      "num_nodes": 3,
+      "num_edges": 1,
+      "edge_sizes": [
+        3
+      ],
+      "all_triadic": true,
+      "pass": true
+    },
+    "sympy_b2_c2_duality": {
+      "B2_cartan": "[[2, -1], [-2, 2]]",
+      "C2_cartan": "[[2, -2], [-1, 2]]",
+      "B2_det": 2,
+      "C2_det": 2,
+      "are_transposes": true,
+      "same_determinant": true,
+      "note": "B2 and C2 are dual (transpose Cartan matrices) hence same Weyl group",
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "overall_pass": true
+}

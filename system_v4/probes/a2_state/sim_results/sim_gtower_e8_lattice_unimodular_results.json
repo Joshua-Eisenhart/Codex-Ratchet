@@ -1,0 +1,204 @@
+{
+  "name": "sim_gtower_e8_lattice_unimodular",
+  "classification": "classical_baseline",
+  "all_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guard: assert E8 Cartan det \u2260 1 contradicts computed det=1; confirms self-dual uniqueness in E-series"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute Cartan matrix determinants for G2,F4,E6,E7,E8"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_cartan_dets": {
+      "name": "P1_cartan_dets_exceptional_series",
+      "pass": true,
+      "computed_dets": {
+        "G2": 1,
+        "F4": 1,
+        "E6": 3,
+        "E7": 2,
+        "E8": 1
+      },
+      "expected_dets": {
+        "G2": 1,
+        "F4": 1,
+        "E6": 3,
+        "E7": 2,
+        "E8": 1
+      },
+      "per_group_match": {
+        "G2": true,
+        "F4": true,
+        "E6": true,
+        "E7": true,
+        "E8": true
+      },
+      "note": "Two sub-series: unimodular {G2,F4,E8} (det=1) vs non-unimodular {E6=3, E7=2}"
+    },
+    "P2_e8_simply_laced": {
+      "name": "P2_e8_simply_laced",
+      "pass": true,
+      "diagonal": [
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2",
+        "2"
+      ],
+      "off_diagonal_nonzero_values": [
+        -1
+      ],
+      "all_diagonal_eq_2": true,
+      "simply_laced": true,
+      "note": "Simply-laced (all roots same length) confirmed by all-2 diagonal and all off-diagonal nonzero = -1"
+    },
+    "P3_z3_unsat_e8_det_neq_1": {
+      "name": "P3_z3_unsat_e8_det_neq_1",
+      "pass": true,
+      "e8_det_computed": 1,
+      "z3_outcome": "unsat",
+      "note": "UNSAT confirms det=1 is necessary; negation is structurally impossible"
+    }
+  },
+  "negative": {
+    "N1_z3_all_e_series_unimodular": {
+      "name": "N1_z3_unsat_all_e_series_unimodular",
+      "pass": true,
+      "e6_det": 3,
+      "e7_det": 2,
+      "e8_det": 1,
+      "z3_outcome": "unsat",
+      "note": "UNSAT: E6 (det=3) and E7 (det=2) cannot simultaneously be unimodular; E8 uniqueness in E-series confirmed"
+    }
+  },
+  "boundary": {
+    "B1_unimodular_exceptional_dimensions": {
+      "name": "B1_unimodular_exceptional_dimensions",
+      "pass": true,
+      "per_group": {
+        "G2": {
+          "rank": 2,
+          "det": 1,
+          "is_unimodular": true,
+          "rank_correct": true,
+          "unimodular_label_correct": true
+        },
+        "F4": {
+          "rank": 4,
+          "det": 1,
+          "is_unimodular": true,
+          "rank_correct": true,
+          "unimodular_label_correct": true
+        },
+        "E8": {
+          "rank": 8,
+          "det": 1,
+          "is_unimodular": true,
+          "rank_correct": true,
+          "unimodular_label_correct": true
+        },
+        "E6": {
+          "rank": 6,
+          "det": 3,
+          "is_unimodular": false,
+          "rank_correct": true,
+          "unimodular_label_correct": true
+        },
+        "E7": {
+          "rank": 7,
+          "det": 2,
+          "is_unimodular": false,
+          "rank_correct": true,
+          "unimodular_label_correct": true
+        }
+      },
+      "note": "Unimodular subset {G2,F4,E8} has correct ranks 2,4,8; non-unimodular {E6,E7} correctly labeled"
+    },
+    "B2_e8_unique_unimodular_e_series": {
+      "name": "B2_e8_unique_unimodular_in_e_series",
+      "pass": true,
+      "e_series_dets": {
+        "E6": 3,
+        "E7": 2,
+        "E8": 1
+      },
+      "unimodular_members": [
+        "E8"
+      ],
+      "note": "E8 is the unique member of the E-series with det=1 (self-dual lattice)"
+    }
+  }
+}

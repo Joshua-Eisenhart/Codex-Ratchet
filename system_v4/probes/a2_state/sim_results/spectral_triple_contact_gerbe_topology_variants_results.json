@@ -1,0 +1,156 @@
+{
+  "name": "sim_spectral_triple_contact_gerbe_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensor density matrix construction for topology variant states (load-bearing)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure not required for topology variants baseline; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT: degenerate topology (H_contact=0) AND Q_SCG>0 impossible for any topology class (load-bearing)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for topology variant degeneracy check; cvc5 excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic contact form alpha^dalpha non-degeneracy condition; topology variant formula (supportive)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford Cl(3,0) vol element for SpectralTriple; topology does not change Clifford structure (load-bearing)"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold not required for topology variant baseline; excluded"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "E(3) equivariance not needed for topology variant baseline; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "topology variant adjacency graph encoded via rustworkx; T1/T2/T3 node counts (supportive)"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge not required for topology variant tests; excluded"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell complex for T1/T2/T3 topology verification; Betti numbers (supportive)"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent homology for open book topology; H1 class verification (supportive)"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": "supportive",
+    "gudhi": "supportive"
+  },
+  "positive": {
+    "TV1_T1_flat_H_contact_gt0_Q_gt0": {
+      "passed": true,
+      "H_contact": 2.833213344056216,
+      "Q_SCG": 0.5722241161464569,
+      "topology": "T1_flat_R3",
+      "n_reeb": 16,
+      "interpretation": "T1 flat contact (n_reeb=16): H_contact>0, Q_SCG>0; coupling admitted"
+    },
+    "TV2_T2_S3_H_contact_gt0_Q_gt0": {
+      "passed": true,
+      "H_contact": 1.6094379124341003,
+      "Q_SCG": 0.32505818485829074,
+      "topology": "T2_S3",
+      "n_reeb": 4,
+      "interpretation": "T2 S^3 contact (n_reeb=4): H_contact>0, Q_SCG>0; coupling admitted"
+    },
+    "TV3_T3_open_book_H_contact_gt0_Q_gt0": {
+      "passed": true,
+      "H_contact": 2.302585092994046,
+      "Q_SCG": 0.4650531250866442,
+      "topology": "T3_open_book",
+      "n_reeb": 9,
+      "interpretation": "T3 open book (n_reeb=9): H_contact>0, Q_SCG>0; coupling admitted"
+    },
+    "TV4_H_contact_differs_across_topologies": {
+      "passed": true,
+      "H_contact_T1": 2.833213344056216,
+      "H_contact_T2": 1.6094379124341003,
+      "H_contact_T3": 2.302585092994046,
+      "interpretation": "H_contact distinct for T1/T2/T3; topology class controls contact entropy"
+    },
+    "TV5_Q_SCG_differs_across_topologies": {
+      "passed": true,
+      "Q_T1": 0.5722241161464569,
+      "Q_T2": 0.32505818485829074,
+      "Q_T3": 0.4650531250866442,
+      "interpretation": "Q_SCG distinct across T1/T2/T3 (MI fixed); topology changes observable"
+    },
+    "TV6_MI_unchanged_across_topologies": {
+      "passed": true,
+      "MI_T1": 0.21166885730683282,
+      "MI_T2": 0.21166885730683282,
+      "MI_T3": 0.21166885730683282,
+      "interpretation": "MI identical across T1/T2/T3 (same seed/eps); MERA is topology-independent"
+    },
+    "TNX_T1_flat_cell_complex": {
+      "passed": true,
+      "n_cells": 2,
+      "interpretation": "Cell complex for T1 flat topology: >= 2 cells (two triangles); topology admitted"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_degenerate_topology_H_contact_zero": {
+      "passed": true,
+      "H_contact": 0.0,
+      "Q_SCG": 0.0,
+      "interpretation": "Degenerate topology n_reeb=0: H_contact=log(1)=0, Q_SCG=0; structurally excluded"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_z3_unsat_H_contact_zero_Q_nonzero_all_topologies": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_contact=0 AND Q_SCG>0 is z3 UNSAT regardless of topology class"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 9,
+    "n_pass": 9
+  }
+}

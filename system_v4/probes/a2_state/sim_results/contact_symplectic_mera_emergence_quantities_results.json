@@ -1,0 +1,192 @@
+{
+  "name": "sim_contact_symplectic_mera_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Q_CSM computed as pytorch tensor product; gradient of Q_CSM wrt I_c via autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "emergence graph structure not needed at baseline level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT: H_contact=0 AND Q_CSM>0 is structurally impossible (load-bearing negative test)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for product-zero exclusion; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic: a*b*c with any factor=0 forces product=0 (load-bearing proof of emergence zero-in-subshell)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for Q_CSM emergence quantity; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold not needed for product emergence quantity; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to Q_CSM; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "emergence DAG: shell nodes with Q_CSM edge activated only in triple"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge gating: Q_CSM only non-zero for 3-edge; pairwise 2-edges give Q=0"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex rank check: Q_CSM is rank-3 observable; lower-rank gives 0"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for Q_CSM baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "E1_Q_CSM_zero_contact_alone": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for Contact alone (H_symp=0, I_c=0); emergence requires all three shells"
+    },
+    "E2_Q_CSM_zero_symplectic_alone": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for Symplectic alone (H_contact=0, I_c=0)"
+    },
+    "E3_Q_CSM_zero_mera_alone": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for MERA alone (H_contact=0, H_symp=0)"
+    },
+    "E4a_Q_CSM_zero_contact_symp_pairwise": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for Contact+Symplectic pairwise (no MERA, I_c=0)"
+    },
+    "E4b_Q_CSM_zero_contact_mera_pairwise": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for Contact+MERA pairwise (no Symplectic, H_symp=0)"
+    },
+    "E4c_Q_CSM_zero_symp_mera_pairwise": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "Q_CSM=0 for Symplectic+MERA pairwise (no Contact, H_contact=0)"
+    },
+    "E5_Q_CSM_nonzero_full_triple_3_seeds": {
+      "passed": true,
+      "Q_CSM_values": [
+        1.1318557688779194,
+        1.498981849966182,
+        0.6528079720454366
+      ],
+      "Hc": 3.044522437723423,
+      "Hs": 2.5649493574615367,
+      "interpretation": "Q_CSM > 0 in full triple across 3 seeds; emergence observable active only when all shells present"
+    },
+    "pytorch_Q_CSM_autograd": {
+      "passed": true,
+      "Q_CSM": 1.1318557688779194,
+      "dQ_dIc": 7.809045870415925,
+      "interpretation": "Q_CSM autograd gradient wrt I_c is finite positive; load-bearing pytorch validation"
+    },
+    "rustworkx_emergence_dag": {
+      "passed": true,
+      "interpretation": "Q_CSM emergence DAG: 3 shell inputs to Q_CSM node survived"
+    },
+    "xgi_pairwise_vs_triple_hyperedges": {
+      "passed": true,
+      "n_edges": 4,
+      "interpretation": "Pairwise 2-edges (Q=0) and triple 3-edge (Q!=0) represented correctly"
+    },
+    "toponetx_Q_CSM_rank_structure": {
+      "passed": true,
+      "n_nodes": 3,
+      "interpretation": "Q_CSM triple shell topology survived as rank-2 cell complex face"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_contact_zero_Q_nonzero_impossible": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_contact=0 AND Q_CSM>0 is z3 UNSAT; degenerate contact cannot support emergence"
+    },
+    "N2_sympy_product_zero_factor_collapse": {
+      "passed": true,
+      "Q_a0": "0",
+      "Q_b0": "0",
+      "Q_c0": "0",
+      "interpretation": "a*b*c with any factor=0 gives product=0 confirmed symbolically; zero-in-subshell invariant proved"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_CSM_zero": {
+      "passed": true,
+      "Q_CSM": 0.0,
+      "interpretation": "All shells inactive gives Q_CSM=0; non-zero Q_CSM without active shells excluded"
+    },
+    "B2_Q_CSM_stable_5_seeds": {
+      "passed": true,
+      "Q_CSM_values": [
+        1.2940029097921641,
+        0.9195044314637968,
+        1.3224923361889933,
+        1.0640119983420813,
+        0.18518590983992883
+      ],
+      "interpretation": "Q_CSM > 0 for full triple across 5 seeds; stability confirmed"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 15,
+    "n_pass": 15
+  },
+  "divergence_log": [
+    "Q_CSM = 0 for all single-shell and pairwise configurations",
+    "Q_CSM > 0 in full triple across 3 seeds",
+    "z3 UNSAT: degenerate contact cannot support Q_CSM>0",
+    "sympy: product-zero factor collapse proved symbolically",
+    "pytorch autograd: dQ_CSM/dI_c is finite positive",
+    "Q_CSM stable (>0) across 5 seeds for full triple"
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "name": "tn_gtower_bond_dimension",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- I_c = log(chi) is a simple numpy computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- G-tower is a fixed chain, no message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof that bond dimension decreases at SU3->Sp6 step (chi(SU3)=3, chi(Sp6)=6 -- Sp6 strictly expands, shrinkage is excluded). N2: UNSAT proof that I_c(Sp6) < I_c(SU3) (log(6) > log(3) by construction)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient for bond dimension ordering proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic log computation and ordering proof: log(6) > log(3) and log(6) - log(3) = log(2). Verifies the entropy gap at the symplectic expansion step to symbolic precision. Used in P3, N2, B1."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- G-tower reps do not require Clifford algebra structure"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- group geometry not needed for bond dim counting"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers in this bond dim test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- G-tower chain is fixed linear ordering"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hyperedge structure required"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no simplicial complex structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology structure required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_layer_ic_values": {
+      "GL3": {
+        "chi": 3,
+        "ic_numerical": 1.0986122886681096,
+        "ic_expected_log_chi": 1.0986122886681098,
+        "match": true
+      },
+      "O3": {
+        "chi": 3,
+        "ic_numerical": 1.0986122886681096,
+        "ic_expected_log_chi": 1.0986122886681098,
+        "match": true
+      },
+      "SO3": {
+        "chi": 3,
+        "ic_numerical": 1.0986122886681096,
+        "ic_expected_log_chi": 1.0986122886681098,
+        "match": true
+      },
+      "U3": {
+        "chi": 3,
+        "ic_numerical": 1.0986122886681096,
+        "ic_expected_log_chi": 1.0986122886681098,
+        "match": true
+      },
+      "SU3": {
+        "chi": 3,
+        "ic_numerical": 1.0986122886681096,
+        "ic_expected_log_chi": 1.0986122886681098,
+        "match": true
+      },
+      "Sp6": {
+        "chi": 6,
+        "ic_numerical": 1.791759469228055,
+        "ic_expected_log_chi": 1.791759469228055,
+        "match": true
+      }
+    },
+    "P1_all_layers_ic_match_log_chi": true,
+    "P1_chi3_layers_ic_approx_log3": true,
+    "P1_chi3_ic_value": 1.0986122886681098,
+    "P1_Sp6_ic_approx_log6": true,
+    "P1_chi6_ic_value": 1.791759469228055,
+    "P2_GL3_to_SU3_chi_leq_3": true,
+    "P2_Sp6_chi_equals_6": true,
+    "P2_Sp6_expands_chi_from_SU3": true,
+    "P3_entropy_gap_Sp6_minus_SU3": 0.6931471805599454,
+    "P3_entropy_gap_equals_log2": true,
+    "P3_expected_gap_log2": 0.6931471805599453,
+    "P3_sympy_log6_minus_log3_equals_log2": true
+  },
+  "negative": {
+    "N1_z3_unsat_Sp6_bond_dim_less_than_SU3": true,
+    "N1_z3_result": "unsat",
+    "N1_Sp6_chi_gt_SU3_chi": true,
+    "N1_chi_SU3": 3,
+    "N1_chi_Sp6": 6,
+    "N2_z3_unsat_Sp6_ic_less_than_SU3": true,
+    "N2_z3_result": "unsat",
+    "N2_sympy_log6_gt_log3": true,
+    "N2_sympy_log6_minus_log3": 0.6931471805599452
+  },
+  "boundary": {
+    "B1_GL3_chi1_ic_zero": true,
+    "B1_O3_chi1_ic_zero": true,
+    "B1_SO3_chi1_ic_zero": true,
+    "B1_U3_chi1_ic_zero": true,
+    "B1_SU3_chi1_ic_zero": true,
+    "B1_Sp6_chi1_ic_zero": true,
+    "B1_sympy_log1_equals_0": true,
+    "B1_ic_log1_is_zero": true,
+    "B1_chi3_layers_equal_ic": true,
+    "B1_Sp6_ic_strictly_greater_than_chi3": true,
+    "B1_sympy_Sp6_jump_is_log2": true,
+    "B1_sympy_jump_positive": true
+  },
+  "all_pass": true,
+  "errors": [],
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical bond dimension assignment: chi values are counts from representation theory, not computed group actions",
+    "I_c = log(chi) holds exactly for uniform Schmidt states -- generic states have different I_c profiles",
+    "G-tower reduction chain is a labeling; group constraints on MPS tensors not enforced or tested here",
+    "Sp6 expansion step is an arithmetic fact about representation dimensions, not a quantum phase transition",
+    "z3 UNSAT proofs are over Real arithmetic encoding of specific chi values, not group theory axioms"
+  ]
+}

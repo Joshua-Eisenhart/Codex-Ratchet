@@ -1,0 +1,193 @@
+{
+  "name": "sim_mera_weyl_hopf_bridge_claims_canonical",
+  "classification": "canonical",
+  "coupling_program_step": 6,
+  "prerequisites_satisfied": [
+    "Step 1: shell-local legos (MERA, Weyl, Hopf)",
+    "Step 2: pairwise coupling (MERA\u00d7Weyl)",
+    "Step 3: triple coexistence (6/6)",
+    "Step 4: topology variants (7/7)",
+    "Step 5: emergence quantities (6/6)"
+  ],
+  "bridge_claims": {
+    "Claim_A": "rho_ABC excluded from density-matrix-violation (eigenvalues >= 0, Tr=1, Hermitian)",
+    "Claim_B": "I_c excluded from Q2 co-variation failure and DPI monotone violation",
+    "Claim_C": "Axis 0 I_c gradient excluded from sign-flip under triple-shell activation"
+  },
+  "language_discipline": "All claims stated as 'excluded from violation' \u2014 never 'proven.' Surviving candidates remain candidates.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrix construction, eigendecomposition, autograd for I_c gradient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: negative eigenvalue forbidden, I_c > log(chi) forbidden"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed; z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic purification identity: I_c(A:BC) = 2*S(A) for pure state"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_rho_ABC_validity": {
+      "claim": "Claim A: rho_ABC excluded from density-matrix-violation",
+      "min_eigenvalue": 0.003124999999999917,
+      "trace": 1.0000000000000002,
+      "hermitian_max_err": 0.0,
+      "eigenvalues_nonneg": true,
+      "trace_is_one": true,
+      "is_hermitian": true,
+      "pass": true,
+      "tool": "pytorch"
+    },
+    "P2_Ic_covariation_and_DPI": {
+      "claim": "Claim B: I_c excluded from co-variation failure and DPI monotone violation",
+      "chi_values": [
+        0.3,
+        0.5,
+        0.7,
+        0.9
+      ],
+      "Ic_values": [
+        -0.862267775762307,
+        -0.3613127439267325,
+        0.19608338204553766,
+        0.8114838379250207
+      ],
+      "Q2_values": [
+        0.10421875,
+        0.26171875000000006,
+        0.49796874999999985,
+        0.8129687500000002
+      ],
+      "Ic_covarying_with_chi": true,
+      "Q2_covarying_with_chi": true,
+      "Ic_before_MERA_channel": 0.4951665124999005,
+      "Ic_after_MERA_channel": -1.3155555504868106,
+      "DPI_monotone_satisfied": true,
+      "pass": true,
+      "tool": "pytorch+autograd"
+    },
+    "P3_Axis0_gradient_persistence": {
+      "claim": "Claim C: Axis 0 I_c gradient excluded from sign-flip under triple-shell",
+      "layer_depths": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "Ic_per_layer_outer_to_inner": [
+        -0.8622677757623065,
+        -0.3613127439267325,
+        0.1960833820455381,
+        0.8114838379250214
+      ],
+      "gradient_monotone_outer_to_inner": true,
+      "net_gradient_inner_minus_outer": 1.6737516136873278,
+      "gradient_positive": true,
+      "interpretation": "Inner MERA layers co-vary with higher I_c; gradient persists under Weyl+Hopf triple-shell activation",
+      "pass": true,
+      "tool": "pytorch+autograd"
+    }
+  },
+  "negative": {
+    "P4_z3_negative_eigenvalue_UNSAT": {
+      "claim": "Claim A negative test: rho_ABC with eigenvalue < 0 is structurally UNSAT",
+      "z3_result": "unsat",
+      "is_UNSAT": true,
+      "interpretation": "lam >= 0 AND lam < 0 is unsatisfiable; negative eigenvalue excluded from any valid density matrix",
+      "pass": true,
+      "tool": "z3"
+    },
+    "N1_z3_holographic_bound_UNSAT": {
+      "claim": "Claim B negative test: I_c > log(chi) excluded by holographic bound",
+      "chi": 4,
+      "log_chi": 1.3862943611198906,
+      "z3_result": "unsat",
+      "is_UNSAT": true,
+      "interpretation": "I_c <= log(chi) AND I_c > log(chi) is unsatisfiable; coherent information excluded from exceeding holographic bound",
+      "pass": true,
+      "tool": "z3"
+    }
+  },
+  "boundary": {
+    "B1_sympy_purification_identity": {
+      "claim": "Boundary: pure tripartite state satisfies I_c(A:BC) = S(A) and I(A:BC) = 2*S(A)",
+      "S_A_symbolic": "log(dA)",
+      "S_ABC_symbolic": "0",
+      "I_c_coherent_symbolic": "log(dA)",
+      "I_mutual_symbolic": "2*log(dA)",
+      "Ic_equals_SA": true,
+      "Mutual_equals_2SA": true,
+      "Ic_numerical_dA4": 1.3862943611198906,
+      "expected_log_dA4": 1.3862943611198906,
+      "numerical_match": true,
+      "pass": true,
+      "tool": "sympy"
+    }
+  },
+  "all_pass": true
+}

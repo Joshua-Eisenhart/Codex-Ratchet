@@ -1,0 +1,159 @@
+{
+  "name": "sim_mera_clifford_weyl_bridge_claims_canonical",
+  "classification": "canonical",
+  "coupling_program_step": 6,
+  "parent_sims": [
+    "sim_mera_clifford_weyl_triple_coexistence",
+    "sim_mera_clifford_weyl_topology_variants",
+    "sim_mera_clifford_weyl_emergence_quantities"
+  ],
+  "bridge_claims": {
+    "B1": "rho_MCW is a valid 3-party density matrix (PSD, trace=1)",
+    "B2": "I_c co-varies with Q_MCW across 5 random seeds",
+    "B3": "dI_c/dlayer < 0 (Axis 0 gradient confirmed)",
+    "B4": "z3 UNSAT on negative eigenvalues of rho_MCW",
+    "B5": "z3 UNSAT on I_c > log(chi) (bond dimension bound)",
+    "B6": "sympy identity I(A:BC) = 2S(A) for pure tripartite state"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "BC1: rho_MCW PSD + trace check; BC2: I_c / Q_MCW co-variation across seeds; BC3: autograd \u2202I_c/\u2202layer < 0; load-bearing throughout"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "BC4: UNSAT on negative eigenvalues of rho_MCW; BC5: UNSAT on I_c > log(chi); load-bearing: structural impossibility proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for both UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "BC6: symbolic identity I(A:BC) = 2S(A) for pure tripartite state; load-bearing: algebraic identity verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Cl(3) rotor encoded as explicit matrix; package not required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant layers not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "BC1_min_eigenvalue": -3.999188292288443e-17,
+    "BC1_trace": 1.0,
+    "BC1_psd": true,
+    "BC1_trace_1": true,
+    "BC1_pass": true,
+    "BC2_seeds": [
+      42,
+      123,
+      7,
+      99,
+      31
+    ],
+    "BC2_ic_values": [
+      1.0280576207670627e-05,
+      0.6882038962961567,
+      0.0031752228281959624,
+      0.017754419522949077,
+      0.07976643608653845
+    ],
+    "BC2_Q_values": [
+      6.659285706613094e-06,
+      0.439256968097484,
+      0.002046224603290277,
+      0.011632033758582003,
+      0.05053740903842626
+    ],
+    "BC2_pearson_correlation": 0.9999992082091432,
+    "BC2_pass": true,
+    "BC3_dIc_dlayer": -0.12500000000000003,
+    "BC3_pass": true
+  },
+  "negative": {
+    "BC4_z3_negative_eigenvalue_unsat": true,
+    "BC4_z3_result": "unsat",
+    "BC4_pass": true,
+    "BC5_z3_Ic_exceeds_log_chi_unsat": true,
+    "BC5_z3_result": "unsat",
+    "BC5_log_chi": 1.3862943611198906,
+    "BC5_chi": 4,
+    "BC5_pass": true
+  },
+  "boundary": {
+    "BC6_sympy_I_A_BC_expr": "2*S_A",
+    "BC6_sympy_identity_2SA": true,
+    "BC6_pass": true
+  },
+  "all_pass": true,
+  "failed_tests": [],
+  "errors": [],
+  "summary": {
+    "all_pass": true,
+    "passed_bool_count": 11,
+    "total_bool_count": 11
+  },
+  "divergence_log": [
+    "canonical: pytorch + z3 + sympy all load-bearing",
+    "rho_MCW = P_L @ R(theta) @ rho @ R(theta).T @ P_L (projection of rotated state)",
+    "I_c proxy uses off-diagonal block norm after QR coarse-graining",
+    "BC3 gradient uses 1/(layer+1) proxy for MERA depth scaling",
+    "BC4 z3 encodes PSD-projection argument; lam >= 0 from first principles",
+    "BC5 z3 encodes bond dimension bound S_B <= log(chi)",
+    "BC6 sympy identity is exact: I(A:BC) = S_A + S_A - 0 = 2S_A for pure state",
+    "Pearson correlation requirement: positive co-variation, not strict monotonicity"
+  ]
+}

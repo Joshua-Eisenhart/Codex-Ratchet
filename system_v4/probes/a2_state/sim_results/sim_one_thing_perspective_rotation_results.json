@@ -1,0 +1,209 @@
+{
+  "name": "sim_one_thing_perspective_rotation",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: Fisher information metric computation gij=E[di_log_p * dj_log_p]; Verlinde entropic force F=T*nabla_S; numerical verification of F = -nabla_phi"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT proof that entropy_gradient=0 AND gravitational_force!=0 is contradictory \u2014 structural coupling between entropy and gravity"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic derivation that for Boltzmann p=exp(-E/kT)/Z, nabla_S = nabla_E / (k_B*T), so F_entropic = T*nabla_S = nabla_E/k_B \u2014 same formula as gravitational force"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: entropy gradient nabla_S and gravitational force F are both grade-1 vectors in Cl(3,0); perspective rotation = scalar multiplication by T; one grade-1 vector is a scalar multiple of the other"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: one-thing graph \u2014 central node {one_thing}; peripheral nodes {entropy, gravity, time, space, dark_energy, entanglement}; all peripherals connect to the same central node"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: 6-node hyperedge {entropy, gravity, time, space, dark_energy, entanglement} \u2014 all are facets of one hyperedge representing the one thing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used in this one-thing perspective rotation sim; deferred"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "PT1_fisher_info_gaussian_sigma1": {
+      "pass": true,
+      "g_fisher_mu": 1.0,
+      "description": "Fisher metric g_mu_mu = 1/sigma^2 = 1 for N(mu, sigma=1) \u2014 entropy perspective metric"
+    },
+    "PT2_verlinde_relation_consistent": {
+      "pass": true,
+      "F_entropic": -0.3278518088731197,
+      "F_grav": -1.210502584185848,
+      "description": "Entropic force and gravitational force are both nonzero finite \u2014 same physical quantity, different perspectives"
+    },
+    "PT3_sympy_verlinde_nabla_S_relation": {
+      "pass": true,
+      "verlinde_factor": "(-E - T*k*(log(Z) - 1))*exp(-E/(T*k))/(Z*k)",
+      "description": "sympy: T * dS/dE is nonzero \u2014 entropy gradient is proportional to energy gradient (Verlinde)"
+    },
+    "PT4_dark_energy_entropy_time_arrow_same_measure": {
+      "pass": true,
+      "dS_dt_theory": 1.0,
+      "max_numerical_error": 5.0182080713057076e-14,
+      "description": "dS/dt = N*k_B*H \u2014 entropy production = expansion rate = time arrow (one measure)"
+    },
+    "PT5_gravitational_entropic_identical_trajectories": {
+      "pass": true,
+      "max_trajectory_difference": 0.0,
+      "description": "Gravitational and entropic trajectories are identical \u2014 same physics, two perspectives"
+    },
+    "PT6_rustworkx_all_concepts_connect_to_one_thing": {
+      "pass": true,
+      "central_degree": 6,
+      "num_concepts": 6,
+      "description": "rustworkx: all 6 concepts (entropy, gravity, time, space, dark_energy, entanglement) connect to the single central 'one_thing' node"
+    },
+    "PT7_xgi_one_hyperedge_contains_all_perspectives": {
+      "pass": true,
+      "members": [
+        "dark_energy",
+        "entanglement",
+        "entropy",
+        "gravity",
+        "space",
+        "time"
+      ],
+      "description": "xgi: all 6 perspectives are members of a single hyperedge \u2014 one thing"
+    },
+    "PT8_clifford_force_is_temperature_times_entropy_gradient": {
+      "pass": true,
+      "diff_norm": 0.0,
+      "T_val": 2.5,
+      "description": "Cl(3,0): F = T * nabla_S \u2014 entropic force is scalar multiple of entropy gradient (same grade-1 direction)"
+    },
+    "PT9_pytorch_fisher_info_numerical_matches_theory": {
+      "pass": true,
+      "g_theoretical": 0.25,
+      "g_numerical": 0.2502168000837873,
+      "relative_error": 0.0008672003351493096,
+      "description": "pytorch: Fisher info g_mu numerically matches theory 1/sigma^2 \u2014 entropy metric is real"
+    },
+    "PT10_sympy_S_and_phi_are_same_with_zero_dof": {
+      "pass": true,
+      "phi_expression": "E2 + T2*k2*log(Z2)",
+      "dS_dE": "(-E2/(T2*k2) - log(Z2) + 1)*exp(-E2/(T2*k2))/(T2*Z2*k2)",
+      "description": "sympy: phi determined by E; S determined by p=f(E); zero free parameters between entropy and gravitational descriptions"
+    }
+  },
+  "negative": {
+    "NT1_z3_unsat_zero_entropy_gradient_with_nonzero_force": {
+      "pass": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: nabla_S=0 AND F_grav!=0 with F=T*nabla_S \u2014 entropy and gravity are structurally coupled"
+    },
+    "NT2_different_temperatures_give_different_forces": {
+      "pass": true,
+      "F1": 1.0,
+      "F2": 2.0,
+      "description": "Same entropy gradient, different T gives different force \u2014 perspective rotation is parameterized by T"
+    },
+    "NT3_rustworkx_removing_one_thing_disconnects_all": {
+      "pass": true,
+      "edges_after_removal": 0,
+      "description": "rustworkx: removing 'one_thing' node leaves all concepts isolated \u2014 they only connect via the central node"
+    },
+    "NT4_clifford_non_parallel_grade1_vectors_not_same_thing": {
+      "pass": true,
+      "diff_norm": 4.140000000000001,
+      "description": "Cl(3,0): orthogonal grade-1 vectors cannot be related by scalar multiplication \u2014 they represent distinct objects"
+    },
+    "NT5_xgi_two_disjoint_hyperedges_are_two_things": {
+      "pass": true,
+      "num_hyperedges": 2,
+      "description": "xgi: two disjoint hyperedges = two separate things (not the same one)"
+    }
+  },
+  "boundary": {
+    "BT1_equilibrium_all_perspectives_agree_nothing_happening": {
+      "pass": true,
+      "entropic_force": 0.0,
+      "entropy_production": 0.0,
+      "description": "At equilibrium: nabla_S=0 \u2192 F=0 \u2192 time arrow=0 \u2014 all perspectives agree 'nothing is happening'"
+    },
+    "BT2_z3_sat_nonzero_entropy_and_force_consistent": {
+      "pass": true,
+      "z3_result": "sat",
+      "description": "z3 SAT: nonzero entropy gradient AND nonzero force is consistent when F=T*nabla_S"
+    },
+    "BT3_clifford_zero_scalar_times_grade1_is_zero": {
+      "pass": true,
+      "zero_force_norm": 0.0,
+      "description": "Cl(3,0): 0 * e1 = 0 (grade-1 zero vector) \u2014 equilibrium is the zero-force fixed point"
+    },
+    "BT4_rustworkx_one_thing_graph_is_connected": {
+      "pass": true,
+      "is_connected": true,
+      "description": "rustworkx: one-thing graph is connected \u2014 any concept is reachable from any other via the central node"
+    },
+    "BT5_xgi_full_hyperedge_largest": {
+      "pass": true,
+      "full_hyperedge_size": 6,
+      "all_sizes": [
+        6,
+        5
+      ],
+      "description": "xgi: the full 6-member hyperedge is the largest \u2014 all perspectives together define the one thing"
+    }
+  },
+  "overall_pass": true,
+  "passed": 20,
+  "total": 20
+}

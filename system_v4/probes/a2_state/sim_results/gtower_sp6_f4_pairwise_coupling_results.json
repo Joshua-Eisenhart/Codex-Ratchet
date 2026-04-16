@@ -1,0 +1,123 @@
+{
+  "name": "gtower_sp6_f4_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "build F4 long/short root tensors; verify root counts and Cartan integrality 2<a,b>/<b,b> in Z"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph coupling covered by rustworkx; PyG message passing not needed for root geometry"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: no F4 root with norm-squared equal to 3 (only 1 and 2 are admissible)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 is sufficient for bounded integer norm constraint; cvc5 adds no new information here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "compute |W(F4)|=1152=2^7*3^2 symbolically; verify F4 outer-automorphism group is trivial"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "embed F4 long and short roots as grade-1 elements in Cl(4,0); verify Weyl reflection preserves grade"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "root system geometry handled directly via pytorch/numpy; geomstats not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3) equivariance not the target; F4/C3 root coupling tested directly"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "build F4 Dynkin diagram as 4-node graph; verify connectivity and exactly one double bond"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "encode {long_roots, short_roots, W_F4_generators} as 3-way hyperedge; C3 sub-hyperedge for coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "simplicial topology not required for Dynkin/root coupling at this stage"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for root system pairwise coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pytorch_long_root_count_24": true,
+    "pytorch_short_root_count_24": true,
+    "pytorch_total_root_count_48": true,
+    "pytorch_long_root_norms_sq_are_2": true,
+    "pytorch_short_root_norms_sq_are_1": true,
+    "pytorch_cartan_integrality_20x20_sample": true,
+    "sympy_W_F4_order_1152": true,
+    "sympy_W_F4_factorization_2pow7_3pow2": true,
+    "sympy_F4_outer_automorphism_trivial": true,
+    "rustworkx_F4_Dynkin_is_connected": true,
+    "rustworkx_F4_exactly_one_double_bond": true,
+    "xgi_F4_triadic_hyperedge_exists": true,
+    "xgi_C3_coupling_sub_hyperedge_exists": true
+  },
+  "negative": {
+    "pytorch_no_F4_root_with_norm_sq_3": true,
+    "z3_unsat_no_integer_F4_root_norm_sq_3": true,
+    "sympy_W_C3_order_48_lt_W_F4_order_1152": true,
+    "pytorch_C3_long_roots_subset_of_F4_long_roots": true,
+    "pytorch_F4_strictly_larger_than_C3": true,
+    "rustworkx_F4_without_double_bond_disconnected": true
+  },
+  "boundary": {
+    "pytorch_weyl_reflection_long_by_short_stays_norm2": "True",
+    "pytorch_weyl_reflection_short_by_long_stays_norm1": "True",
+    "clifford_F4_long_root_grade1_in_Cl40": "True",
+    "clifford_F4_short_root_grade1_in_Cl40": "True",
+    "pytorch_C3_reflection_involution": true
+  },
+  "all_pass": true,
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "F4 root system survived count check: 24 long + 24 short = 48 total",
+    "Cartan integrality 2<a,b>/<b,b> in Z survived for 20x20 sample pairs",
+    "Norm-squared=3 root excluded from F4 by z3 UNSAT (only 1 and 2 are admissible)",
+    "F4 outer automorphism group survived as trivial: double bond breaks all diagram symmetry",
+    "C3 long roots survived as strict subset of F4 long roots (embedded in 4D)",
+    "Grade-1 structure survived for both long and short F4 roots in Cl(4,0)",
+    "classical baseline: spinor phases, quantum amplitudes excluded from this sim"
+  ]
+}

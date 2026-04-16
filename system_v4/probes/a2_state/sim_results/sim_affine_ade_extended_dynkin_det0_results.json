@@ -1,0 +1,159 @@
+{
+  "name": "sim_affine_ade_extended_dynkin_det0",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; symbolic/proof computation only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: asserting det\u22600 on affine ADE is unsatisfiable; asserting det=0 on finite E8 is unsatisfiable; load-bearing for P4, N1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Constructs affine \u00c3_2, D\u0303_4, \u1ebc_8 Cartan matrices symbolically; computes det and rank; load-bearing for P1\u2013P3 and B1"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_affine_A2_det0": {
+      "passed": true,
+      "det": 0,
+      "matrix_size": [
+        3,
+        3
+      ],
+      "note": "Affine \u00c3_2 (SU(3) extended): det must be 0",
+      "tool": "sympy"
+    },
+    "P2_affine_D4_det0": {
+      "passed": true,
+      "det": 0,
+      "matrix_size": [
+        5,
+        5
+      ],
+      "note": "Affine D\u0303_4 extended: det must be 0",
+      "tool": "sympy"
+    },
+    "P3_affine_E8_det0": {
+      "passed": true,
+      "det": 0,
+      "matrix_size": [
+        9,
+        9
+      ],
+      "note": "Affine \u1ebc_8 extended: det must be 0; finite E_8 had det=1",
+      "tool": "sympy"
+    },
+    "P4_z3_affine_A2_det_neq0_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "note": "UNSAT proves det=0 is necessary; det\u22600 assertion is impossible",
+      "tool": "z3"
+    }
+  },
+  "negative": {
+    "N1_z3_finite_E8_det_not_zero": {
+      "passed": true,
+      "sympy_det": 1,
+      "z3_result": "unsat",
+      "note": "Finite E_8 det=1 (unimodular). Asserting det=0 is UNSAT. Extension boundary: adding one node sends det 1\u21920.",
+      "tool": "z3+sympy"
+    }
+  },
+  "boundary": {
+    "B1_affine_ADE_rank_is_size_minus_1": {
+      "passed": true,
+      "details": {
+        "affine_A2": {
+          "size": 3,
+          "rank": 2,
+          "expected_rank": 2,
+          "passed": true,
+          "null_space_dim": 1
+        },
+        "affine_D4": {
+          "size": 5,
+          "rank": 4,
+          "expected_rank": 4,
+          "passed": true,
+          "null_space_dim": 1
+        },
+        "affine_E8": {
+          "size": 9,
+          "rank": 8,
+          "expected_rank": 8,
+          "passed": true,
+          "null_space_dim": 1
+        }
+      },
+      "note": "1-dimensional null space = imaginary root direction \u03b4. This is the hallmark of the affine extension: the Cartan matrix becomes singular with a unique (up to scale) null vector.",
+      "tool": "sympy"
+    }
+  },
+  "all_pass": true,
+  "summary": "Affine ADE Cartan matrices (\u00c3_2, D\u0303_4, \u1ebc_8) all have det=0 and rank=size-1. Finite E_8 has det=1 (unimodular). The boundary det 1\u21920 at the affine extension marks the onset of infinite-dimensional Kac-Moody structure. z3 UNSAT proofs confirm these are necessary structural facts, not numerical accidents."
+}

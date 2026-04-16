@@ -1,0 +1,119 @@
+{
+  "name": "sim_hopf_connection_curvature_operators",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proofs: (1) c_1=0 on Hopf bundle is impossible, (2) holonomy=1 for 2pi loop is impossible"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic integration of the curvature 2-form over S^2 to compute Chern number c_1=1"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S^3 random_point generation and parallel transport on S^2 for horizontal lift verification"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_connection_on_vertical_gives_1": true,
+    "P1_values": [
+      1.0,
+      1.0,
+      1.0000000000000002,
+      1.0,
+      1.0
+    ],
+    "P2_chern_integral_symbolic": "4*pi",
+    "P2_c1_equals_1": true,
+    "P2_c1_value": 1.0,
+    "P3_A_on_horizontal_is_zero": true,
+    "P3_A_value": 6.071532165918825e-18,
+    "P3_horizontal_is_tangent": true
+  },
+  "negative": {
+    "N1_c1_zero_on_hopf_bundle": "unsat",
+    "N1_is_unsat": true,
+    "N2_holonomy_2pi_loop_equals_1": "unsat",
+    "N2_is_unsat": true,
+    "N2_expected_holonomy_real_part": -1.0
+  },
+  "boundary": {
+    "B1_equatorial_omega": 6.283185307179586,
+    "B1_holonomy_angle": 3.141592653589793,
+    "B1_holonomy_real": -1.0,
+    "B1_holonomy_imag": 1.2246467991473532e-16,
+    "B1_holonomy_is_minus_one": true,
+    "B1_full_sphere_holonomy_is_plus_one": true,
+    "B1_half_vs_full_sphere_different": true,
+    "B1_geomstats_parallel_transport_ran": true,
+    "B1_transported_vector": [
+      6.123233995736766e-17,
+      0.0,
+      -0.9999999999999999
+    ]
+  },
+  "classification": "canonical",
+  "scope_note": "Hopf bundle S^1->S^3->S^2 connection operators. Principal connection A evaluated on vertical tangent = 1 (admissible). Chern number c_1=1 via sympy integration (survived). z3 UNSAT on c_1=0 (excluded as structurally impossible). Holonomy for 2*pi loop = -1 (survived SU(2) sign-flip probe). Exclusion language: c_1=0 excluded, holonomy=+1 for 2pi loop excluded."
+}

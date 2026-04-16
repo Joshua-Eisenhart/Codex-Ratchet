@@ -1,0 +1,136 @@
+{
+  "name": "sim_weyl_gerbe_hopf_pairwise_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "P1/P2/P3: z3 confirms each shell pair can have both entropies simultaneously nonzero; N1: z3 UNSAT proves degenerate Weyl (H_weyl=0) cannot contribute to coupling"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: Symbolic proof \u2014 product of two factors, any zero \u2192 product zero"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_weyl_gerbe_pairwise": {
+      "H_weyl": 0.6931471805599453,
+      "H_gerbe": 2.70805020110221,
+      "z3_result": "sat",
+      "both_positive": true,
+      "pass": true,
+      "note": "Weyl and Gerbe shells simultaneously active \u2014 both entropies positive"
+    },
+    "P2_weyl_hopf_pairwise": {
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.34657359027997264,
+      "z3_result": "sat",
+      "both_positive": true,
+      "pass": true,
+      "note": "Weyl and Hopf shells simultaneously active \u2014 both entropies positive"
+    },
+    "P3_gerbe_hopf_pairwise": {
+      "H_gerbe": 2.70805020110221,
+      "H_hopf": 0.34657359027997264,
+      "z3_result": "sat",
+      "both_positive": true,
+      "pass": true,
+      "note": "Gerbe and Hopf shells simultaneously active \u2014 both entropies positive"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_degenerate_weyl_UNSAT": {
+      "claim": "H_weyl=0 AND H_gerbe>0 AND product_WG>0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "Degenerate Weyl (H_weyl=0) cannot produce nonzero pairwise coupling \u2014 UNSAT"
+    },
+    "N2_sympy_product_zero": {
+      "product_formula": "a*b",
+      "a_zero_gives": "0",
+      "b_zero_gives": "0",
+      "pass": true,
+      "note": "sympy confirms: product a*b=0 when a=0 or b=0"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_zero": {
+      "H_weyl_inactive": 0.0,
+      "H_gerbe_inactive": 0.0,
+      "H_hopf_inactive": 0.0,
+      "all_zero": true,
+      "pass": true,
+      "note": "All shells inactive \u2192 all shell entropies = 0"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

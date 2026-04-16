@@ -1,0 +1,146 @@
+{
+  "name": "sim_hopf_symplectic_clifford_topology_variants",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: z3 UNSAT \u2014 MI < 0 impossible in any topology (VN entropy non-negativity of MI)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "N2: sympy \u2014 log(1+n) >= 0 for n >= 0 (Lagrangian count entropy non-negative)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_T1_all_positive": {
+      "topology": "T1",
+      "H_hopf": 0.34657359027997264,
+      "H_symplectic": 0.6931471805599453,
+      "H_clifford": 0.7071067811865472,
+      "MI": 0.22125199262736306,
+      "pass": true,
+      "note": "T1: all shell entropies and MI positive"
+    },
+    "P2_T2_all_positive": {
+      "topology": "T2",
+      "H_hopf": 0.6931471805599453,
+      "H_symplectic": 0.6931471805599453,
+      "H_clifford": 0.6123724356957944,
+      "MI": 0.22125199262736306,
+      "pass": true,
+      "note": "T2: all shell entropies and MI positive"
+    },
+    "P3_T3_all_positive": {
+      "topology": "T3",
+      "H_hopf": 0.23104906018664842,
+      "H_symplectic": 0.6931471805599453,
+      "H_clifford": 0.6123724356957941,
+      "MI": 0.22125199262736306,
+      "pass": true,
+      "note": "T3: all shell entropies and MI positive"
+    },
+    "P4_MI_topology_agnostic": {
+      "MI_seed0": 0.22125199262736306,
+      "pass": true,
+      "note": "MI > 0 independent of topology (Bell state initial condition)"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_MI_negative_UNSAT": {
+      "claim": "S_A>=0, S_B>=0, S_AB<=S_A+S_B, MI=S_A+S_B-S_AB<0",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "MI < 0 impossible under subadditivity \u2014 topology-agnostic UNSAT"
+    },
+    "N2_sympy_log_entropy_nonneg": {
+      "formula": "H_symp = log(1 + n_lagrangian)",
+      "at_n_0": "0",
+      "derivative": "1/(n + 1)",
+      "pass": true,
+      "note": "log(1+n)>=0 for n>=0; min at n=0 gives H_symp=0 (inactive), strictly increasing"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_zero": {
+      "pass": true,
+      "note": "All shells inactive (base helpers) \u2192 all entropies = 0"
+    },
+    "B2_T1_T3_H_hopf_distinct": {
+      "H_hopf_T1": 0.34657359027997264,
+      "H_hopf_T3": 0.23104906018664842,
+      "pass": true,
+      "note": "T1 (pi/2) and T3 (pi/3) give distinct H_hopf values"
+    },
+    "pass": true
+  },
+  "all_pass": true
+}

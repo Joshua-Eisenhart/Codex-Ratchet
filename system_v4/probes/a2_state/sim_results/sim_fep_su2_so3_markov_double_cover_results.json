@@ -1,0 +1,169 @@
+{
+  "name": "sim_fep_su2_so3_markov_double_cover",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no autograd or gradient flow"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; hypergraph handled by XGI"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; quotient structure computed analytically"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no Riemannian metric required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant layers needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; blanket graph handled by XGI"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; hypergraph (not cell complex) is correct"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistence filtration"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_markov_blanket_entropy_gap": {
+      "I_IE": 0.6931471805599453,
+      "I_IE_given_B": 0.0,
+      "blanket_gap": 0.6931471805599453,
+      "expected_gap": 0.6931471805599453,
+      "gap_error": 0.0,
+      "blanket_hyperedge_present": true,
+      "xgi_nodes": 4,
+      "xgi_edges": 3,
+      "pass": true,
+      "interpretation": "The Markov blanket boundary introduces an entropy gap of log(2). I(I;E) = log(2) (internal and external are correlated), but I(I;E|B) = 0 (conditionally independent given blanket). XGI hyperedge {S,A} encodes the multi-way blanket relation structurally."
+    },
+    "P2_z2_quotient_entropy": {
+      "N_su2": 1000,
+      "N_so3": 500,
+      "S_su2_numerical": 6.907755278982134,
+      "S_so3_numerical": 6.214608098422192,
+      "gap_numerical": 0.6931471805599418,
+      "gap_error_numerical": 3.4416913763379853e-15,
+      "sympy_gap_symbolic": "log(2)",
+      "sympy_gap_numerical": 0.6931471805599453,
+      "sympy_pass": true,
+      "expected_gap": 0.6931471805599453,
+      "pass": true,
+      "interpretation": "SU(2)->SO(3) Z2 quotient collapses N elements to N/2 orbits. Entropy drop = log(N) - log(N/2) = log(2). Confirmed numerically (numpy) and symbolically (sympy). The gap is structural: log(|ker|) = log(2)."
+    },
+    "P3_structural_equivalence": {
+      "blanket_gap": 0.6931471805599453,
+      "z2_quotient_gap": 0.6931471805599418,
+      "gap_difference": 3.4416913763379853e-15,
+      "both_equal_log2": true,
+      "gaps_equal_each_other": "True",
+      "pass": true,
+      "interpretation": "Markov blanket boundary gap and Z2 quotient entropy gap are both log(2) and equal each other to within 1e-9. This is the Rosetta candidate: the 2:1 identification pattern (blanket separation / Z2 quotient) costs exactly log(2) entropy in both cases."
+    }
+  },
+  "negative": {
+    "N1_z3_unsat_blanket_crossed_and_independent": {
+      "z3_result": "unsat",
+      "pass": true,
+      "interpretation": "z3 UNSAT: I(I;E|B) = 0 (conditional independence, Markov blanket) AND I(I;E|B) > 0 (information leakage through blanket) cannot both hold. The blanket boundary is structurally exclusive: either it exists or it doesn't."
+    },
+    "N2_z3_unsat_z2_quotient_injective": {
+      "z3_result": "unsat",
+      "pass": true,
+      "interpretation": "z3 UNSAT: the SU(2)->SO(3) map cannot be injective when psi != -psi as SU(2) elements but both map to the same SO(3) point. Structural impossibility: distinct domain points with equal images => not injective."
+    }
+  },
+  "boundary": {
+    "B1_blanket_size_boundary": {
+      "gap_2node_blanket": 0.6931471805599453,
+      "gap_0node_blanket": 0.0,
+      "I_IE_bare": 0.6931471805599453,
+      "expected_gap_2node": 0.6931471805599453,
+      "expected_I_IE_bare": 0.6931471805599453,
+      "blanket_present_bare": false,
+      "xgi_confirms_no_blanket": true,
+      "pass": true,
+      "interpretation": "2-node blanket: gap = log(2) (blanket absorbs all I-E correlation). 0-node blanket: no gap (I(I;E|empty) = I(I;E)), but direct cost = log(2). The blanket turns an exposed log(2) cost into a shielded boundary."
+    },
+    "B2_trivial_z2_action": {
+      "gap_nontrivial_symbolic": "log(2)",
+      "gap_nontrivial_numerical": 0.6931471805599453,
+      "gap_trivial_symbolic": "0",
+      "gap_trivial_numerical": 0.0,
+      "expected_nontrivial": 0.6931471805599453,
+      "expected_trivial": 0.0,
+      "pass": true,
+      "interpretation": "Non-trivial Z2 action (genuine pair swaps): entropy gap = log(2). Trivial Z2 action (self-paired, no identification): entropy gap = 0. The log(2) cost is earned only when Z2 acts non-trivially (as in SU(2)->SO(3))."
+    }
+  },
+  "summary": {
+    "claim": "The FEP Markov blanket boundary and the SU(2)->SO(3) Z2 quotient share the same entropy cost (log(2)) and the same z3 UNSAT constraint signature. Both arise from a 2:1 identification: blanket separates I/E states, Z2 quotient identifies {U,-U} pairs. Both gaps are structural, not numerical.",
+    "rosetta_candidate": "Rosetta R4 extension: log(2) gap appears in at least two independent structural domains (FEP Markov blanket, SU(2)->SO(3) double cover). Both are forbidden-by-z3-UNSAT from being 'crossed without cost'."
+  },
+  "all_pass": true,
+  "pass_count": 7,
+  "fail_count": 0,
+  "passed_tests": [
+    "P1_markov_blanket_entropy_gap",
+    "P2_z2_quotient_entropy",
+    "P3_structural_equivalence",
+    "N1_z3_unsat_blanket_crossed_and_independent",
+    "N2_z3_unsat_z2_quotient_injective",
+    "B1_blanket_size_boundary",
+    "B2_trivial_z2_action"
+  ],
+  "failed_tests": []
+}

@@ -1,0 +1,187 @@
+{
+  "name": "sim_dirac_symplectic_weyl_emergence_quantities",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Q_DSW computed as pytorch tensor product; gradient of Q_DSW wrt MI via autograd (load-bearing)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "emergence graph structure not needed at baseline level; excluded"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT: H_dirac=0 AND Q_DSW>0 is structurally impossible (load-bearing negative test)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for product-zero exclusion; excluded"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic: a*b*c*d with any factor=0 forces product=0 (load-bearing proof of emergence zero-in-subshell)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for Q_DSW emergence quantity; excluded"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian manifold not needed for product emergence quantity; excluded"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "E(3) equivariance not relevant to Q_DSW; excluded"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "emergence DAG: shell nodes with Q_DSW edge activated only in full quad"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hyperedge gating: Q_DSW only non-zero for 4-edge (MI + 3 shells); sub-combos give Q=0"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex rank check: Q_DSW is rank-4 observable; lower-rank gives 0"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not needed for Q_DSW baseline; excluded"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "supportive",
+    "toponetx": "supportive",
+    "gudhi": null
+  },
+  "positive": {
+    "E1_dirac_alone_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "H_dirac": 0.33678336703714473,
+      "H_symp": 0.0,
+      "H_weyl": 0.0,
+      "interpretation": "Dirac alone: H_symp=0, H_weyl=0 \u2192 Q_DSW=0; single shell cannot support emergence"
+    },
+    "E2_symplectic_alone_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "H_dirac": 0.0,
+      "H_symp": 1.3862943611198906,
+      "H_weyl": 0.0,
+      "interpretation": "Symplectic alone: H_dirac=0, H_weyl=0 \u2192 Q_DSW=0; single shell cannot support emergence"
+    },
+    "E3_weyl_alone_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "H_dirac": 0.0,
+      "H_symp": 0.0,
+      "H_weyl": 0.6931471805599453,
+      "interpretation": "Weyl alone: H_dirac=0, H_symp=0 \u2192 Q_DSW=0; single shell cannot support emergence"
+    },
+    "E4a_dirac_symplectic_no_weyl_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "interpretation": "Dirac \u00d7 Symplectic without Weyl: Q_DSW=0; Weyl required for emergence"
+    },
+    "E4b_dirac_weyl_no_symp_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "interpretation": "Dirac \u00d7 Weyl without Symplectic: Q_DSW=0; Symplectic required for emergence"
+    },
+    "E4c_symplectic_weyl_no_dirac_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "interpretation": "Symplectic \u00d7 Weyl without Dirac: Q_DSW=0; Dirac required for emergence"
+    },
+    "E5_full_quad_Q_nonzero_3_seeds": {
+      "passed": true,
+      "Q_vals": [
+        0.06849967604135061,
+        0.10256981707010164,
+        0.1152987227854029
+      ],
+      "n_nonzero": 3,
+      "interpretation": "Full quad (MI \u00d7 Dirac \u00d7 Symplectic \u00d7 Weyl) > 0 for 3/3 seeds; emergence requires all factors"
+    },
+    "P_pytorch_Q_DSW_autograd": {
+      "passed": true,
+      "grad_MI": 0.32361716746103203,
+      "expected": 0.32361716746103203,
+      "interpretation": "dQ_DSW/dMI = H_dirac * H_symp * H_weyl confirmed via pytorch autograd"
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_H_dirac_zero_Q_nonzero": {
+      "passed": true,
+      "z3_result": "unsat",
+      "interpretation": "H_dirac=0 AND Q_DSW>0 is z3 UNSAT; inactive Dirac cannot support emergence"
+    },
+    "N2_sympy_product_zero_any_factor": {
+      "passed": true,
+      "Q_a0": "0",
+      "Q_b0": "0",
+      "Q_c0": "0",
+      "Q_d0": "0",
+      "interpretation": "a*b*c*d with any factor=0 gives product=0 \u2014 zero-in-subshell invariant proved"
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive_Q_zero": {
+      "passed": true,
+      "Q_DSW": 0.0,
+      "interpretation": "All inactive shells give Q_DSW=0; inactive state cannot support emergence"
+    },
+    "B2_Q_DSW_stable_5_seeds": {
+      "passed": true,
+      "Q_vals": [
+        0.06849967604135061,
+        0.10256981707010164,
+        0.1152987227854029,
+        0.04779245064293159,
+        0.1758918671490944
+      ],
+      "interpretation": "Q_DSW > 0 confirmed stable across 5 seeds in full quad"
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "summary": {
+    "all_pass": true,
+    "n_tests": 12,
+    "n_pass": 12
+  },
+  "divergence_log": [
+    "E1-E3: single shells give Q_DSW=0; emergence requires all three",
+    "E4a/b/c: pairwise combos give Q_DSW=0; all three required",
+    "E5: full quad Q_DSW > 0 for 3/3 seeds",
+    "z3 UNSAT: H_dirac=0 AND Q_DSW>0 excluded",
+    "sympy: a*b*c*d with any factor=0 gives 0 \u2014 proved",
+    "pytorch autograd: dQ_DSW/dMI = H_dirac * H_symp * H_weyl confirmed"
+  ]
+}

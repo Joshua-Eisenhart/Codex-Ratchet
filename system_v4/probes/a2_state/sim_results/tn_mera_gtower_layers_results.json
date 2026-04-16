@@ -1,0 +1,136 @@
+{
+  "name": "tn_mera_gtower_layers",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numpy/scipy sufficient for MERA contraction baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MERA causal cone is fixed DAG, no message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof that an O(3)-constrained disentangler (det=+-1) has equal I_c to a GL(3)-constrained disentangler (det=anything). The parity constraint of O(3) strictly reduces the allowed operations set -- equal I_c for all inputs is excluded because O(3) is a proper subgroup of GL(3) with strictly fewer degrees of freedom. Encoded as: fewer_dof AND equal_entropy is UNSAT."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient for UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Dimension counting for GL3 vs SU3: dim(GL(3,C)) = 9 real params for 3x3 matrices; dim(SU(3)) = 8 (9 - 1 for det=1 constraint). Verifies that SU3 has strictly fewer free parameters than GL3, confirming the compression claim in P3."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- group constraint structure does not require Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- group dimension counting is combinatorial, not Riemannian"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layer structure tested here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MERA layer DAG is fixed and small"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- MERA layer coupling does not require hyperedge structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no simplicial complex structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology structure required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_GL3_disentangler_is_unitary": "True",
+    "P1_SU3_disentangler_det_equals_1": true,
+    "P1_SU3_det_value": 0.9999999999999996,
+    "P1_GL3_det_value": 0.9999999999999996,
+    "P1_SO3_disentangler_det_pos1": true,
+    "P1_SO3_is_orthogonal": "True",
+    "P2_ic_layer0": 1.0986122886681096,
+    "P2_ic_layer1": 0.28759600439326216,
+    "P2_ic_layer2": -0.0,
+    "P2_ic_decreases_layer0_to_1": true,
+    "P2_ic_decreases_layer1_to_2": true,
+    "P2_monotone_ic_profile": true,
+    "P3_dim_GL3": 9,
+    "P3_dim_SU3": 8,
+    "P3_SU3_fewer_params_than_GL3": true,
+    "P3_param_reduction": 1,
+    "P3_sympy_GL3_dim": 9,
+    "P3_sympy_SU3_dim": 8,
+    "P3_sympy_SU3_lt_GL3": true
+  },
+  "negative": {
+    "N1_z3_unsat_O3_GL3_equal_entropy_all_inputs": true,
+    "N1_z3_result": "unsat",
+    "N1_unitary_disentangler_ic_invariant_O3": true,
+    "N1_unitary_disentangler_ic_invariant_GL3": true,
+    "N1_ic_input": 1.0986122886681096,
+    "N1_ic_O3": 1.0986122886681096,
+    "N1_ic_GL3": 1.0986122886681098
+  },
+  "boundary": {
+    "B1_ic_depth0": 1.3862943611198906,
+    "B1_ic_depth1": 1.3862943611198906,
+    "B1_ic_depth2": 0.6931471805599454,
+    "B1_ic_depth3": -0.0,
+    "B1_ic_depth0_gt_depth1": true,
+    "B1_ic_depth1_gt_depth2": true,
+    "B1_ic_depth2_gt_depth3": true,
+    "B1_monotone_profile": true,
+    "B1_fully_coarsegrained_ic_near_zero": true,
+    "B1_sympy_SU3_dim_8": true,
+    "B1_sympy_GL3_dim_9": true
+  },
+  "all_pass": true,
+  "errors": [],
+  "summary": {
+    "all_pass": true
+  },
+  "divergence_log": [
+    "classical MERA baseline: isometries via QR, no genuine RG fixed points or variational optimization",
+    "G-tower assignment is a labeling convention -- no group action enforcement on MERA tensors",
+    "I_c monotone decrease is algebraic rank reduction under isometry, not quantum renormalization group flow",
+    "disentanglers (unitaries) never change I_c for pure bipartite states -- group constraint matters only for coarse-graining depth",
+    "SU3 parameter count (8) vs GL3 (9) is a combinatorial fact -- not tested as a computational compression gain",
+    "N1 UNSAT via z3 encodes DOF argument, not quantum group representation theory"
+  ]
+}

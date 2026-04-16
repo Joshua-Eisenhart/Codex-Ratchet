@@ -1,0 +1,155 @@
+{
+  "name": "sim_quintuple_weyl_hopf_gerbe_dirac_mera_topology",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "N1: UNSAT proof H_weyl = log(2) > 0 under any topology"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_T1_H_values_positive": {
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.34657359027997264,
+      "H_gerbe": 2.3978952727983707,
+      "H_dirac": 4.0483572040362885,
+      "MI": 0.2392617423653851,
+      "pass": true
+    },
+    "P_T1_Q_nonzero": {
+      "Q": 0.5579602037659508,
+      "pass": "True"
+    },
+    "P_T2_H_values_positive": {
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.3812309493079699,
+      "H_gerbe": 2.3978952727983707,
+      "H_dirac": 4.048357204036288,
+      "MI": 0.2392617423653851,
+      "pass": true
+    },
+    "P_T2_Q_nonzero": {
+      "Q": 0.6137562241425457,
+      "pass": "True"
+    },
+    "P_T3_H_values_positive": {
+      "H_weyl": 0.6931471805599453,
+      "H_hopf": 0.34657359027997264,
+      "H_gerbe": 2.4849066497880004,
+      "H_dirac": 4.0483572040362885,
+      "MI": 0.2392617423653851,
+      "pass": true
+    },
+    "P_T3_Q_nonzero": {
+      "Q": 0.5782066616433345,
+      "pass": "True"
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "N1_z3_hweyl_topology_zero_UNSAT": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "pass": true,
+      "note": "H_weyl = log(2) > 0 is topologically invariant \u2014 H_weyl=0 is UNSAT"
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "B1_topology_no_sign_flip": {
+      "signs_per_topology": [
+        [
+          true,
+          true,
+          true,
+          "True"
+        ],
+        [
+          true,
+          true,
+          true,
+          "True"
+        ],
+        [
+          true,
+          true,
+          true,
+          "True"
+        ]
+      ],
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "all_pass": true
+}

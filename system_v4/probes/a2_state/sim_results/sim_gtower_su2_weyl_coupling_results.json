@@ -1,0 +1,150 @@
+{
+  "name": "sim_gtower_su2_weyl_coupling",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "not needed; Cl(3) rotors handle all SU(2) spinor algebra here"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph message-passing in this spinor coupling sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT guards: (N1) proves no SO(3)-level state can have non-trivial P_L; (N2) proves P_L and P_R projectors have zero intersection \u2014 load-bearing for both negative tests"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all UNSAT proofs here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of projection algebra: P_L^2 = P_L, P_R^2 = P_R, P_L*P_R = 0 as matrix identities; cross-checks clifford numeric results"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) even-subalgebra: SU(2) rotor action on spinors, grade-0/2 decomposition for P_L/P_R, joint constraint space enumeration \u2014 load-bearing for P1/P2/P3/B1"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S2/SO3 manifold not needed; coupling test is purely algebraic on Cl(3)"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "Equivariance check: surviving states under joint constraint mapped to SO(3) irrep labels (0e scalar, 1e pseudovector) via e3nn spherical harmonics \u2014 supportive cross-check for P3"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in this spinor coupling sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not applicable here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex topology not used; test is algebraic"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable to spinor chirality"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": "supportive",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_su2_rotor_action": {
+      "pass": true,
+      "rotor_norm": 1.0,
+      "Rs_grade1_norm": 0.0,
+      "Rs_grade3_norm": 0.0,
+      "even_subalgebra_preserved": true,
+      "note": "SU(2) left action on Cl(3) spinor stays in even subalgebra"
+    },
+    "P2_weyl_L_proper_subspace": {
+      "pass": true,
+      "subspace_tests": [
+        true,
+        true,
+        true
+      ],
+      "note": "P_L projects to grade-0 sub-space; grade-0 + grade-2 = full even spinor"
+    },
+    "P3_joint_constraint_restrictive": {
+      "pass": true,
+      "count_gtower_admissible": 200,
+      "count_pl_admissible": 200,
+      "count_joint_admissible": 200,
+      "joint_le_min": true,
+      "note": "Joint (G-tower SU(2) AND P_L\u22600) admissible count \u2264 either individual; coupling is restrictive, not additive"
+    },
+    "P3_sympy_projection_algebra": {
+      "pass": true,
+      "PL_idempotent_zero": true,
+      "PR_idempotent_zero": true,
+      "PL_PR_orthogonal_zero": true,
+      "completeness_zero": true,
+      "note": "Symbolic: P_L^2=P_L, P_R^2=P_R, P_L*P_R=0, P_L+P_R=I"
+    }
+  },
+  "negative": {
+    "N1_z3_so3_no_weyl_split": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "z3 UNSAT: SO(3)-ratcheted state (grade-2=0) cannot have simultaneously P_R\u22600; the Weyl split requires SU(2) double cover"
+    },
+    "N2_z3_pl_pr_orthogonal": {
+      "pass": true,
+      "z3_result": "unsat",
+      "note": "z3 UNSAT: P_L\u2218P_R = 0; left-chiral and right-chiral projectors are grade-orthogonal; no SU(2) eigenstate has both non-zero simultaneously"
+    }
+  },
+  "boundary": {
+    "B1_half_angle_ratchet": {
+      "pass": true,
+      "n_tested": 50,
+      "all_mixed_spinors_have_half_angle": true,
+      "ratchet_destroys_grade2_in_all": true,
+      "note": "Half-angle states (P_L\u22600 AND P_R\u22600) cannot survive SU(2)\u2192SO(3) ratchet; ratchet zeros grade-2, so P_R=0 after ratchet \u2014 Weyl split destroyed"
+    },
+    "B1_e3nn_scalar_irrep": {
+      "pass": true,
+      "D_shape": [
+        1,
+        1
+      ],
+      "D_is_1x1_identity": true,
+      "note": "e3nn: grade-0 ratcheted spinor maps to spin-0 (scalar) irrep; invariant under SO(3)"
+    }
+  },
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  }
+}

@@ -26,6 +26,8 @@ cvc5=load_bearing, sympy=supportive
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

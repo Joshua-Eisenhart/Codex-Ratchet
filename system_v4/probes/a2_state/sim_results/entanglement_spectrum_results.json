@@ -1,7 +1,8 @@
 {
   "name": "entanglement_spectrum",
   "classification": "canonical",
-  "classification_note": "Canonical local lego for entanglement spectrum on a tiny bipartite family, kept separate from entropy scalars, negativity, and truncation workflows.",
+  "classification_note": "Canonical reduced-spectrum bridge on a tiny bipartite carrier. The theorem stays local: the reduced entanglement spectrum is the object, and qutip/cirq/pennylane only witness the same carrier instead of collapsing it to a scalar entropy story.",
+  "divergence_log": "The entanglement spectrum is the sorted reduced-density spectrum of a two-qubit carrier. QuTiP, Cirq, and PennyLane all prepare the same product, Bell, and partially entangled states; they witness the reduced spectrum, but they do not change the theorem or broaden the carrier.",
   "lego_ids": [
     "entanglement_spectrum"
   ],
@@ -9,109 +10,583 @@
     "entanglement_spectrum"
   ],
   "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing reduced-spectrum algebra, sorting, and serialization"
     },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator and reduced-spectrum witness"
     },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing two-qubit circuit witness for the same carrier states"
     },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing state-preparation witness for the same carrier states"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing"
   },
   "positive": {
     "product_state_has_rank_one_reduced_spectrum": {
-      "spectrum": [
+      "expected_spectrum": [
         1.0,
         0.0
       ],
+      "numpy": {
+        "state": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          1.0,
+          0.0
+        ]
+      },
+      "qutip": {
+        "reduced_spectrum": [
+          1.0,
+          0.0
+        ],
+        "rho": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "reduced_density": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "cirq": {
+        "state": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          1.0,
+          0.0
+        ]
+      },
+      "pennylane": {
+        "state": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          1.0,
+          0.0
+        ]
+      },
       "pass": true
     },
     "bell_state_has_flat_reduced_spectrum": {
-      "spectrum": [
-        0.4999999999999999,
-        0.4999999999999999
+      "expected_spectrum": [
+        0.5,
+        0.5
       ],
+      "numpy": {
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.4999999999999999,
+          0.4999999999999999
+        ]
+      },
+      "qutip": {
+        "reduced_spectrum": [
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "rho": [
+          [
+            [
+              0.4999999999999999,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.4999999999999999,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.4999999999999999,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.4999999999999999,
+              0.0
+            ]
+          ]
+        ],
+        "reduced_density": [
+          [
+            [
+              0.4999999999999999,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.4999999999999999,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "cirq": {
+        "state": [
+          [
+            0.7071067690849304,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.7071067690849304,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.4999999828857291,
+          0.4999999828857291
+        ]
+      },
+      "pennylane": {
+        "state": [
+          [
+            0.7071067811865475,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.7071067811865475,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.4999999999999999,
+          0.4999999999999999
+        ]
+      },
       "pass": true
     },
-    "partially_entangled_state_has_nonflat_nonntrivial_reduced_spectrum": {
-      "spectrum": [
+    "partially_entangled_state_has_nonflat_reduced_spectrum": {
+      "expected_spectrum": [
         0.8824210936422442,
         0.11757890635775578
       ],
+      "numpy": {
+        "state": [
+          [
+            0.9393727128473789,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.34289780745545134,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.8824210936422442,
+          0.11757890635775578
+        ]
+      },
+      "qutip": {
+        "reduced_spectrum": [
+          0.8824210936422442,
+          0.11757890635775578
+        ],
+        "rho": [
+          [
+            [
+              0.8824210936422442,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.3221088436188455,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.3221088436188455,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.11757890635775578,
+              0.0
+            ]
+          ]
+        ],
+        "reduced_density": [
+          [
+            [
+              0.8824210936422442,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.11757890635775578,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "cirq": {
+        "state": [
+          [
+            0.939372718334198,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.34289780259132385,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.8824211039505805,
+          0.1175789030219585
+        ]
+      },
+      "pennylane": {
+        "state": [
+          [
+            0.9393727128473789,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.34289780745545134,
+            0.0
+          ]
+        ],
+        "reduced_spectrum": [
+          0.8824210936422442,
+          0.11757890635775578
+        ]
+      },
       "pass": true
     }
   },
   "negative": {
-    "entanglement_spectrum_is_not_collapsed_to_single_entropy_scalar": {
+    "entanglement_spectrum_is_not_scalarized_to_entropy": {
       "pass": true
     },
-    "spectrum_row_does_not_require_partial_transpose_witness_logic": {
+    "product_and_bell_spectra_are_distinct": {
       "pass": true
     }
   },
@@ -119,7 +594,7 @@
     "all_reduced_spectra_are_probability_vectors": {
       "pass": true
     },
-    "reduced_spectrum_ordering_is_descending": {
+    "all_tool_witnesses_agree_on_the_same_carrier": {
       "pass": true
     }
   },

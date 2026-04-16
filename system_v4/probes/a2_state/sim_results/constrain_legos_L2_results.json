@@ -1,7 +1,7 @@
 {
   "probe": "sim_constrain_legos_L2",
   "purpose": "L2 constraint layer: C\u00b2 Hopf structure S\u00b9\u2192S\u00b3\u2192S\u00b2, dimension lock d=2, topology lock S\u00b3/S\u00b2",
-  "timestamp": "2026-04-16T07:36:24.743406+00:00",
+  "timestamp": "2026-04-16T09:56:18.756628+00:00",
   "L2_constraints": {
     "carrier": "C\u00b2",
     "pure_state_manifold": "S\u00b3",
@@ -9,6 +9,41 @@
     "fiber_bundle": "S\u00b9 \u2192 S\u00b3 \u2192 S\u00b2 (Hopf fibration)",
     "fiber_group": "U(1)",
     "structure_group": "SU(2)"
+  },
+  "divergence_log": "Classical baseline: this L2 probe checks Hopf-structured dimension/topology constraints numerically, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix and vector numerics for qubit density and Hopf map checks"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix square roots, logs, and exponentials for density and channel tests"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic reductions for the L2 proof steps"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint checks for dimension and topology logic"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "auxiliary Clifford algebra checks for the L2 constraint layer"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive",
+    "clifford": "supportive"
   },
   "specific_tests": {
     "a_channel_collapse": {
@@ -1036,7 +1071,7 @@
     }
   },
   "summary": {
-    "runtime_seconds": 1.19,
+    "runtime_seconds": 1.64,
     "errors": [],
     "all_passed": true,
     "total_legos_tested": 61,

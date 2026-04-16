@@ -14,12 +14,14 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promoted QIT-aligned Szilard reverse/recovery lane built from the strict "
-    "bidirectional base and the strict reverse/recovery companion. It is a "
-    "translation-ready lane, not a canonical owner row."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "QIT-aligned Szilard reverse/recovery translation lane built from the "
+    "strict bidirectional base and the strict reverse/recovery companion. It "
+    "keeps the reverse-vs-open comparison explicit, reuses the existing result "
+    "files, and stays a translation surface rather than a broadened theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

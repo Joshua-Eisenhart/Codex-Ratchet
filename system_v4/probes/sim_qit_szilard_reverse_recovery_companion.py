@@ -15,7 +15,7 @@ import pathlib
 import sys
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -25,12 +25,14 @@ if str(PROBE_DIR) not in sys.path:
 import sim_qit_szilard_bidirectional_protocol as base  # noqa: E402
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Finite two-qubit companion row for Szilard erase / naive reverse / designed "
-    "recovery mechanics. It stays in exact density-operator bookkeeping and is "
-    "meant for QIT-aligned comparison, not canonical admission."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Finite two-qubit Szilard reverse-recovery companion: exact density-operator "
+    "bookkeeping stays intact for erase, naive reverse, and designed recovery, "
+    "and the row remains a bridge companion over the same bounded carrier rather "
+    "than a broader demon theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

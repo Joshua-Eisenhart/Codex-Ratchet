@@ -1,5 +1,83 @@
 {
-  "timestamp": "2026-04-16T10:15:16.037025+00:00",
+  "timestamp": "2026-04-16T10:24:40.848584+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this sweeps candidate Axis-0 i-scalar functionals numerically. The option sweep is now grounded in the same deep Axis 0 shell contract used elsewhere: history-driven shell bridge per config, plus a graph/topology/solver/manifold witness over the aggregate option ranking.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "functional sweep, perturbation arrays, and aggregate option numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential propagator for option-ranking expansion updates"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness over option-level shell-alignment features"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winner summary vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winner summary vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered option DAG witness over the ranked i-scalar candidates"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order perturbation-option coupling witness"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for the ranked option surface"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the option-ranking complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for option expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing option ranking order and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for aggregate option geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
   "parameters": {
     "eps": 0.05,
     "kraus_branches": 16
@@ -87,6 +165,100 @@
             "pert_val": 0.240648
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06584523240642737,
+        "jk_fuzz_dynamic": 1.2806899705580403,
+        "lambda_density_mean": 1.8814495059322884,
+        "dark_energy_pressure_mean": 2.3266493269543793,
+        "gravity_response_mean": 2.32664932695438,
+        "final_scale_factor": 6.032341318752867,
+        "mean_hubble_proxy": 1.7036718080709,
+        "mean_acceleration_proxy": -1.3234408619847282,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.3711343076481544,
+          "symbolic_acceleration_mid": 115.69880825350992,
+          "symbolic_dark_energy_mid": 0.928398911108161
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7508667101431425,
+          "max_geodesic_distance": 1.6574064179008405,
+          "mean_norm": 0.9999999999999998
+        },
+        "torch_fit": {
+          "weights": [
+            0.24399717381012648,
+            -0.1035374702245272
+          ],
+          "bias": 1.3768712823888383,
+          "loss": 0.77685672421338,
+          "max_gap": 1.8320695109529126
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0045956111426335e-07,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     },
     {
@@ -171,6 +343,100 @@
             "pert_val": 1.028975
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.9333333333343334,
+          "symbolic_acceleration_mid": 7.242907463109005e-12,
+          "symbolic_dark_energy_mid": 1.0000000000010234
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     },
     {
@@ -255,6 +521,100 @@
             "pert_val": 0.241574
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06731448067275725,
+        "jk_fuzz_dynamic": 1.2810930191169831,
+        "lambda_density_mean": 1.9079525240672277,
+        "dark_energy_pressure_mean": 2.366219053788939,
+        "gravity_response_mean": 2.36621905378894,
+        "final_scale_factor": 6.122786408660432,
+        "mean_hubble_proxy": 1.7163724249406735,
+        "mean_acceleration_proxy": -1.3278209636374916,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.3756399166539368,
+          "symbolic_acceleration_mid": 118.84673535749607,
+          "symbolic_dark_energy_mid": 0.9313557169944033
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531727997365836,
+          "max_geodesic_distance": 1.6625367838305087,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            0.24401101149261128,
+            -0.10397519660782226
+          ],
+          "bias": 1.3850170073699244,
+          "loss": 0.8026861512808962,
+          "max_gap": 1.8723996409726633
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 5.422076387873176e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     },
     {
@@ -339,6 +699,100 @@
             "pert_val": 0.24822
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06763326530450664,
+        "jk_fuzz_dynamic": 1.2808028297269445,
+        "lambda_density_mean": 1.9073019202537687,
+        "dark_energy_pressure_mean": 2.3654696925304055,
+        "gravity_response_mean": 2.3654696925304064,
+        "final_scale_factor": 6.121073582926641,
+        "mean_hubble_proxy": 1.7161336052799605,
+        "mean_acceleration_proxy": -1.3277392287556,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.3777604518605986,
+          "symbolic_acceleration_mid": 118.99945933914569,
+          "symbolic_dark_energy_mid": 0.927731005609985
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7534037745133855,
+          "max_geodesic_distance": 1.6628845284748983,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.2430247394896452,
+            -0.10305986989596638
+          ],
+          "bias": 1.385050945109927,
+          "loss": 0.8016749634826282,
+          "max_gap": 1.8702178282864368
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0767021052515702e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     },
     {
@@ -423,6 +877,100 @@
             "pert_val": 2.213767
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.9333333333343334,
+          "symbolic_acceleration_mid": 7.242907463109005e-12,
+          "symbolic_dark_energy_mid": 1.0000000000010234
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     },
     {
@@ -507,6 +1055,100 @@
             "pert_val": 0.250872
           }
         }
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06746887517386846,
+        "jk_fuzz_dynamic": 1.2807414011977087,
+        "lambda_density_mean": 1.9040553745293285,
+        "dark_energy_pressure_mean": 2.36063224132325,
+        "gravity_response_mean": 2.3606322413232506,
+        "final_scale_factor": 6.110016551596,
+        "mean_hubble_proxy": 1.7145903534510465,
+        "mean_acceleration_proxy": -1.3272104810270569,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.3773155693246069,
+          "symbolic_acceleration_mid": 118.62392718312913,
+          "symbolic_dark_energy_mid": 0.9272131275433821
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531410953714981,
+          "max_geodesic_distance": 1.6622917353554945,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.24297965304754882,
+            -0.10296501279095542
+          ],
+          "bias": 1.3840672753112442,
+          "loss": 0.7984898093550097,
+          "max_gap": 1.86525114227644
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 6.015564801842288e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
       }
     }
   ],
@@ -556,6 +1198,169 @@
       "A_mi_diversity"
     ],
     "winner": "C_coherent_info",
-    "winner_rationale": "Option C_coherent_info wins with composite score 0.833 (consistency=1.000, signal=2.1341, doctrine_fit=0.500)"
-  }
+    "winner_rationale": "Option C_coherent_info wins with composite score 0.833 (consistency=1.000, signal=2.1341, doctrine_fit=0.500)",
+    "deep_contract": {
+      "pass": true,
+      "winner": "C_coherent_info",
+      "shell_bridge_pass_fraction": 1.0,
+      "option_rows": [
+        {
+          "option": "C_coherent_info",
+          "mean_abs_a0": 2.134071666666667,
+          "mean_signed_a0": -2.134071666666667,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 1.0,
+          "shell_alignment": -0.5640724669482333,
+          "shell_alignment_abs": 0.5640724669482333,
+          "scale_factor": 1.0,
+          "hubble_proxy": 3.242836702271154
+        },
+        {
+          "option": "D_jk_path_entropy",
+          "mean_abs_a0": 4.857739833333333,
+          "mean_signed_a0": 4.857739833333333,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 1.0,
+          "shell_alignment": -0.4846559495256756,
+          "shell_alignment_abs": 0.4846559495256756,
+          "scale_factor": 2.9474652609530025,
+          "hubble_proxy": 1.7838171133111995
+        },
+        {
+          "option": "B_mi_variance",
+          "mean_abs_a0": 0.2557236111111111,
+          "mean_signed_a0": -0.2557236111111111,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.25535080439814495,
+          "shell_alignment_abs": 0.25535080439814495,
+          "scale_factor": 3.2844900661227547,
+          "hubble_proxy": 0.2783285083121163
+        },
+        {
+          "option": "A_mi_diversity",
+          "mean_abs_a0": 0.03374261111111111,
+          "mean_signed_a0": -0.010671722222222223,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 0.778,
+          "shell_alignment": 0.2579989921596066,
+          "shell_alignment_abs": 0.2579989921596066,
+          "scale_factor": 3.5484039338796607,
+          "hubble_proxy": 0.23185949227298772
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 5,
+        "longest_path_length": 3,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 3,
+        "max_hyperedge_size": 3,
+        "connected_components": 2,
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "6.91798283266682*lam**3 - 14.1649648836914*lam**2 + 9.79538598490428*lam + 1.0",
+        "expansion_drive_polynomial": "54.3940270726728*lam**3 - 88.0341056473452*lam**2 + 31.2336760443282*lam + 3.1981441336149",
+        "scale_poly_degree": 3,
+        "drive_poly_degree": 3,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.25422461222259796,
+        "symbolic_acceleration_mid": -7.575981269382446,
+        "symbolic_drive_mid": 3.605709128026799
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.07099247313847223,
+          0.0,
+          0.9974768512390066
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.6305618754362663,
+        "max_geodesic_distance": 0.8245646848280415
+      },
+      "torch_fit": {
+        "weights": [
+          -0.20992433588917736,
+          -0.6221275678230875,
+          11.066433641140426
+        ],
+        "bias": -2.2442551356461746,
+        "loss": 0.0018808491167450572,
+        "max_gap": 0.0615073050196171
+      },
+      "winner_vector": [
+        2.134071666666667,
+        0.5,
+        0.5640724669482333
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 7.815043145953382e-08,
+      "scale_factors": [
+        1.0,
+        2.9474652609530025,
+        3.2844900661227547,
+        3.5484039338796607
+      ],
+      "hubble_proxy": [
+        3.242836702271154,
+        1.7838171133111995,
+        0.2783285083121163,
+        0.23185949227298772
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "winner": "C_coherent_info",
+    "all_pass": true,
+    "deep_contract_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

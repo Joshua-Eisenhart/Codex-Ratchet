@@ -47,6 +47,33 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical foundation baseline: this constraint-layer probe uses "
+    "numeric numpy/scipy/z3 checks for classical lego survival, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and linear-algebra checks for constraint-layer tests",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root, logarithm, and exponential routines for the cycle checks",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic constraint checks for composition and survival conditions",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,

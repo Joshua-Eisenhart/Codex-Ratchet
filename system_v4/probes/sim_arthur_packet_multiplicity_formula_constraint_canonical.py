@@ -14,6 +14,8 @@ sympy: Arthur multiplicity trace formula Σ_{π ∈ Π(ψ)} m(π) · tr(π(f))
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

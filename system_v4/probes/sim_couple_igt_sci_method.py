@@ -9,6 +9,19 @@ this is genuinely additive (admissible_joint == intersection).
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_igt_sci_method"
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "vacuous coupling clause is witnessed by z3 under the minimal additive axioms",
+    },
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "z3": "load_bearing",
+}
 
 def coupling_py(e):
     return True  # no cross-clause under minimal axioms
@@ -23,5 +36,8 @@ if __name__ == "__main__":
         coupling_py, coupling_z3(),
         "vacuous coupling clause; pair is additive under minimal axioms",
     )
+    r["classification"] = classification
+    r["tool_manifest"] = TOOL_MANIFEST
+    r["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
     p = write_results(NAME, r)
     print(f"{NAME}: pass={r['overall_pass']} interacting={r['interacting']} additive={r['additive']} -> {p}")

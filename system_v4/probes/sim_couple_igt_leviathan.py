@@ -9,6 +9,17 @@ with a strictly dominating payoff, so 'coalition_stable' requires
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_igt_leviathan"
+classification = "classical_baseline"
+divergence_log = (
+    "coalition_stable AND not_strictly_dominated => no_blocking_subcoalition "
+    "(blocking subcoalition excludes the joint survival)"
+)
+CLASSIFICATION_NOTE = divergence_log
+
+TOOL_MANIFEST = {
+    "z3": {"tried": False, "used": False, "reason": "z3 implication witness for the coalition-stability coupling"}
+}
+TOOL_INTEGRATION_DEPTH = {"z3": None}
 
 EXTRA = ["no_blocking_subcoalition"]
 
@@ -17,13 +28,17 @@ def coupling_py(e):
 
 def coupling_z3():
     from z3 import Implies, And
+    TOOL_MANIFEST["z3"]["tried"] = True
+    TOOL_MANIFEST["z3"]["used"] = True
+    TOOL_MANIFEST["z3"]["reason"] = "coalition-stability implication witness"
+    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
     return [lambda e: Implies(And(e["coalition_stable"], e["not_strictly_dominated"]), e["no_blocking_subcoalition"])]
 
 if __name__ == "__main__":
     r = run_pair(
         NAME, "igt", "leviathan",
         coupling_py, coupling_z3(),
-        "coalition_stable AND not_strictly_dominated => no_blocking_subcoalition (blocking subcoalition excludes the joint survival)",
+        divergence_log,
         extra_atoms=EXTRA,
     )
     p = write_results(NAME, r)

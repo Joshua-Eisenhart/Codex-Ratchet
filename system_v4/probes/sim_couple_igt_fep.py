@@ -9,6 +9,19 @@ gradient dominates the payoff margin). So:
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_igt_fep"
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "Load-bearing coupling witness: z3 proves the joint admissibility implication.",
+    }
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "z3": "load_bearing",
+}
 
 EXTRA = ["payoff_gradient_aligned_with_surprise_gradient"]
 

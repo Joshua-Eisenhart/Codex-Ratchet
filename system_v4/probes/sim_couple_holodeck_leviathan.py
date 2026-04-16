@@ -9,6 +9,16 @@ distinguishable to the observer). So:
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_holodeck_leviathan"
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing implication proof for the holodeck/leviathan coupling axiom",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
 
 EXTRA = ["observer_aligned_with_sovereign"]
 
@@ -27,4 +37,7 @@ if __name__ == "__main__":
         extra_atoms=EXTRA,
     )
     p = write_results(NAME, r)
+    r["classification"] = classification
+    r["tool_manifest"] = TOOL_MANIFEST
+    r["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
     print(f"{NAME}: pass={r['overall_pass']} interacting={r['interacting']} additive={r['additive']} -> {p}")

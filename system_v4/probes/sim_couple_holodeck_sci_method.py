@@ -9,6 +9,22 @@ collapses. So:
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_holodeck_sci_method"
+classification = "classical_baseline"
+divergence_log = (
+    "Holodeck and science-method coupling is a classical baseline wrapper around "
+    "projection-quotient falsifiability; the pair only composes when the observer "
+    "window is active, and the unobservable test remains excluded."
+)
+CLASSIFICATION_NOTE = divergence_log
+
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "pair construction and result marshaling in the coupling wrapper"},
+    "z3": {"tried": True, "used": True, "reason": "witnesses the coupling implication under the observer window"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "z3": "supportive",
+}
 
 EXTRA = ["test_in_observer_window"]
 
@@ -23,7 +39,7 @@ if __name__ == "__main__":
     r = run_pair(
         NAME, "holodeck", "sci_method",
         coupling_py, coupling_z3(),
-        "projection_quotient AND falsifiable => test_in_observer_window (unobservable test excluded)",
+        CLASSIFICATION_NOTE,
         extra_atoms=EXTRA,
     )
     p = write_results(NAME, r)

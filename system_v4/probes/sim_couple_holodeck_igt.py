@@ -10,6 +10,18 @@ Candidates violating this are 'excluded'; remainder 'survived'.
 from _couple_common import run_pair, write_results
 
 NAME = "sim_couple_holodeck_igt"
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing coupling witness for the pairwise quotient exclusion clause",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "z3": "load_bearing",
+}
 
 EXTRA = ["observer_sees_equilibrium"]
 
@@ -29,5 +41,8 @@ if __name__ == "__main__":
         "projection_quotient AND pareto_non_minimal => observer_sees_equilibrium (hidden payoff asymmetry excluded)",
         extra_atoms=EXTRA,
     )
+    r["classification"] = classification
+    r["tool_manifest"] = TOOL_MANIFEST
+    r["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
     p = write_results(NAME, r)
     print(f"{NAME}: pass={r['overall_pass']} interacting={r['interacting']} additive={r['additive']} -> {p}")

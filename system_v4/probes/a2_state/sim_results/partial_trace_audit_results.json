@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-16T06:03:52.389575",
+  "timestamp": "2026-04-16T15:16:13.422117",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -785,7 +785,7 @@
       "patterns": [
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 163,
+          "line": 165,
           "pattern": "ibjb->ij",
           "line_text": "return torch.einsum('ibjb->ij', rho)",
           "classification": {
@@ -808,7 +808,7 @@
         },
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 169,
+          "line": 171,
           "pattern": "iajb->ab",
           "line_text": "return torch.einsum('iajb->ab', rho)  # wait \u2014 should be: sum over i,j with i=j",
           "classification": {
@@ -836,7 +836,7 @@
         },
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 170,
+          "line": 172,
           "pattern": "iajb->ab",
           "line_text": "# Correct: rho_B = sum_i <i|rho_AB|i> = einsum('iajb->ab', rho) where i=j index",
           "classification": {
@@ -864,7 +864,7 @@
         },
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 179,
+          "line": 181,
           "pattern": "iajb->ab",
           "line_text": "return torch.einsum('iajb->ab', rho.permute(0, 2, 1, 3)).diagonal().diag()",
           "classification": {
@@ -892,7 +892,7 @@
         },
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 192,
+          "line": 194,
           "pattern": "ikjk->ij",
           "line_text": "return torch.einsum('ikjk->ij', rho)",
           "classification": {
@@ -915,7 +915,7 @@
         },
         {
           "file": "sim_araki_lieb_z3_canonical.py",
-          "line": 195,
+          "line": 197,
           "pattern": "ikil->kl",
           "line_text": "return torch.einsum('ikil->kl', rho)",
           "classification": {
@@ -1096,7 +1096,7 @@
       "patterns": [
         {
           "file": "sim_axis0_axis6_coupling_seam.py",
-          "line": 157,
+          "line": 165,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum(\"iaja->ij\", rho)",
           "classification": {
@@ -1119,7 +1119,7 @@
         },
         {
           "file": "sim_axis0_axis6_coupling_seam.py",
-          "line": 163,
+          "line": 171,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum(\"aiaj->ij\", rho)",
           "classification": {
@@ -1147,7 +1147,7 @@
       "patterns": [
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 182,
+          "line": 190,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho)",
           "classification": {
@@ -1170,7 +1170,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 188,
+          "line": 196,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho)",
           "classification": {
@@ -1193,7 +1193,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 545,
+          "line": 553,
           "pattern": "iaja->ij",
           "line_text": "rho_A = np.einsum('iaja->ij', rho_np.reshape(2, 2, 2, 2))",
           "classification": {
@@ -1216,7 +1216,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 546,
+          "line": 554,
           "pattern": "aiaj->ij",
           "line_text": "rho_B = np.einsum('aiaj->ij', rho_np.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3205,7 +3205,7 @@
       "patterns": [
         {
           "file": "sim_coupling_141_25shell_fisherinfo_classical.py",
-          "line": 76,
+          "line": 78,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3228,7 +3228,7 @@
         },
         {
           "file": "sim_coupling_141_25shell_fisherinfo_classical.py",
-          "line": 81,
+          "line": 83,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3256,7 +3256,7 @@
       "patterns": [
         {
           "file": "sim_coupling_142_25shell_kktmultiplier_classical.py",
-          "line": 76,
+          "line": 78,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3279,7 +3279,7 @@
         },
         {
           "file": "sim_coupling_142_25shell_kktmultiplier_classical.py",
-          "line": 81,
+          "line": 83,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3307,7 +3307,7 @@
       "patterns": [
         {
           "file": "sim_coupling_143_25shell_jordanblock_classical.py",
-          "line": 63,
+          "line": 65,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3330,7 +3330,7 @@
         },
         {
           "file": "sim_coupling_143_25shell_jordanblock_classical.py",
-          "line": 66,
+          "line": 68,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3358,7 +3358,7 @@
       "patterns": [
         {
           "file": "sim_coupling_144_25shell_characterorthog_classical.py",
-          "line": 63,
+          "line": 65,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3381,7 +3381,7 @@
         },
         {
           "file": "sim_coupling_144_25shell_characterorthog_classical.py",
-          "line": 66,
+          "line": 68,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3409,7 +3409,7 @@
       "patterns": [
         {
           "file": "sim_coupling_145_26shell_brownianvariance_classical.py",
-          "line": 64,
+          "line": 66,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3432,7 +3432,7 @@
         },
         {
           "file": "sim_coupling_145_26shell_brownianvariance_classical.py",
-          "line": 67,
+          "line": 69,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3460,7 +3460,7 @@
       "patterns": [
         {
           "file": "sim_coupling_146_26shell_nasheq_classical.py",
-          "line": 64,
+          "line": 66,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -3483,7 +3483,7 @@
         },
         {
           "file": "sim_coupling_146_26shell_nasheq_classical.py",
-          "line": 67,
+          "line": 69,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -7944,6 +7944,567 @@
       ],
       "has_bug": false
     },
+    "sim_coupling_234_48shell_randommatrix_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_234_48shell_randommatrix_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_234_48shell_randommatrix_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_235_48shell_matroid_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_235_48shell_matroid_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_235_48shell_matroid_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_236_48shell_hochschild_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_236_48shell_hochschild_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_236_48shell_hochschild_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_237_49shell_kazhdanlusztig_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_237_49shell_kazhdanlusztig_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_237_49shell_kazhdanlusztig_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_238_49shell_schubert_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_238_49shell_schubert_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_238_49shell_schubert_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_239_49shell_padic_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_239_49shell_padic_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_239_49shell_padic_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_240_49shell_chowgroup_classical.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_240_49shell_chowgroup_classical.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_240_49shell_chowgroup_classical.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_program_405_enriched_category_91shell.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_program_405_enriched_category_91shell.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_program_405_enriched_category_91shell.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_program_406_bicategory_91shell.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_program_406_bicategory_91shell.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_program_406_bicategory_91shell.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_program_407_formal_group_law_quillen_91shell.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_program_407_formal_group_law_quillen_91shell.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_program_407_formal_group_law_quillen_91shell.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_coupling_program_408_k_theory_localization_91shell.py": {
+      "patterns": [
+        {
+          "file": "sim_coupling_program_408_k_theory_localization_91shell.py",
+          "line": 63,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_coupling_program_408_k_theory_localization_91shell.py",
+          "line": 66,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_data_processing_inequality_canonical.py": {
       "patterns": [
         {
@@ -10090,7 +10651,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_14shell_coupling_canonical.py",
-          "line": 90,
+          "line": 92,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10113,7 +10674,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_14shell_coupling_canonical.py",
-          "line": 95,
+          "line": 97,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10141,7 +10702,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_15shell_coupling_canonical.py",
-          "line": 91,
+          "line": 93,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10164,7 +10725,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_15shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10192,7 +10753,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_crystallinecoho_16shell_coupling_canonical.py",
-          "line": 92,
+          "line": 94,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10215,7 +10776,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_crystallinecoho_16shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10243,7 +10804,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_16shell_coupling_canonical.py",
-          "line": 92,
+          "line": 94,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10266,7 +10827,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_16shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10294,7 +10855,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_adsboundary_17shell_coupling_canonical.py",
-          "line": 93,
+          "line": 95,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10317,7 +10878,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_adsboundary_17shell_coupling_canonical.py",
-          "line": 98,
+          "line": 100,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10345,7 +10906,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_bpsmass_17shell_coupling_canonical.py",
-          "line": 93,
+          "line": 95,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10368,7 +10929,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_bpsmass_17shell_coupling_canonical.py",
-          "line": 98,
+          "line": 100,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10396,7 +10957,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_instantonnumber_17shell_coupling_canonical.py",
-          "line": 93,
+          "line": 95,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10419,7 +10980,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_instantonnumber_17shell_coupling_canonical.py",
-          "line": 98,
+          "line": 100,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10447,7 +11008,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_17shell_coupling_canonical.py",
-          "line": 93,
+          "line": 95,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10470,7 +11031,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_17shell_coupling_canonical.py",
-          "line": 98,
+          "line": 100,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10498,7 +11059,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_bellstate_19shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10521,7 +11082,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_bellstate_19shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10549,7 +11110,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_fluxquant_19shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10572,7 +11133,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_fluxquant_19shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10600,7 +11161,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_19shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10623,7 +11184,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_19shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10651,7 +11212,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_dbranecharge_20shell_coupling_canonical.py",
-          "line": 95,
+          "line": 97,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10674,7 +11235,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_dbranecharge_20shell_coupling_canonical.py",
-          "line": 100,
+          "line": 102,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10702,7 +11263,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_isingcritical_20shell_coupling_canonical.py",
-          "line": 95,
+          "line": 97,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10725,7 +11286,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_isingcritical_20shell_coupling_canonical.py",
-          "line": 100,
+          "line": 102,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10753,7 +11314,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_knotalexander_20shell_coupling_canonical.py",
-          "line": 95,
+          "line": 97,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10776,7 +11337,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_knotalexander_20shell_coupling_canonical.py",
-          "line": 100,
+          "line": 102,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10804,7 +11365,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_20shell_coupling_canonical.py",
-          "line": 95,
+          "line": 97,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10827,7 +11388,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_20shell_coupling_canonical.py",
-          "line": 100,
+          "line": 102,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10855,7 +11416,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_21shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10878,7 +11439,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_21shell_coupling_canonical.py",
-          "line": 101,
+          "line": 103,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10906,7 +11467,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_banachcontraction_22shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10929,7 +11490,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_banachcontraction_22shell_coupling_canonical.py",
-          "line": 102,
+          "line": 104,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10957,7 +11518,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_ellipticregularity_22shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -10980,7 +11541,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_ellipticregularity_22shell_coupling_canonical.py",
-          "line": 102,
+          "line": 104,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11008,7 +11569,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_22shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11031,7 +11592,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_22shell_coupling_canonical.py",
-          "line": 102,
+          "line": 104,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11059,7 +11620,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_gaussbonnetgenus_23shell_coupling_canonical.py",
-          "line": 78,
+          "line": 80,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11082,7 +11643,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_gaussbonnetgenus_23shell_coupling_canonical.py",
-          "line": 83,
+          "line": 85,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11110,7 +11671,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_godelssentence_23shell_coupling_canonical.py",
-          "line": 78,
+          "line": 80,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11133,7 +11694,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_godelssentence_23shell_coupling_canonical.py",
-          "line": 83,
+          "line": 85,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11212,7 +11773,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_maxflowcut_23shell_coupling_canonical.py",
-          "line": 78,
+          "line": 80,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11235,7 +11796,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_maxflowcut_23shell_coupling_canonical.py",
-          "line": 83,
+          "line": 85,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11263,7 +11824,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_ramseyclique_23shell_coupling_canonical.py",
-          "line": 78,
+          "line": 80,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11286,7 +11847,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_homotopywinding_ramseyclique_23shell_coupling_canonical.py",
-          "line": 83,
+          "line": 85,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11314,7 +11875,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_largedeviation_22shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11337,7 +11898,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_kahlermoduli_largedeviation_22shell_coupling_canonical.py",
-          "line": 102,
+          "line": 104,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11365,7 +11926,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_martindalegrading_21shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11388,7 +11949,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_martindalegrading_21shell_coupling_canonical.py",
-          "line": 101,
+          "line": 103,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11416,7 +11977,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_sobolevindex_21shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11439,7 +12000,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_sobolevindex_21shell_coupling_canonical.py",
-          "line": 101,
+          "line": 103,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11467,7 +12028,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_yonedahom_21shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11490,7 +12051,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mirrorsym_riemannzeta_yonedahom_21shell_coupling_canonical.py",
-          "line": 101,
+          "line": 103,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11518,7 +12079,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mtheoryflux_18shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11541,7 +12102,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_mtheoryflux_18shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11569,7 +12130,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_qeccode_19shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11592,7 +12153,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_qeccode_19shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11620,7 +12181,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_stringmode_18shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11643,7 +12204,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_stringmode_18shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11671,7 +12232,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_susygrading_18shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11694,7 +12255,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_susygrading_18shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11722,7 +12283,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_topoinsulator_18shell_coupling_canonical.py",
-          "line": 94,
+          "line": 96,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11745,7 +12306,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_topoinsulator_18shell_coupling_canonical.py",
-          "line": 99,
+          "line": 101,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11773,7 +12334,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_noncommgeom_16shell_coupling_canonical.py",
-          "line": 92,
+          "line": 94,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11796,7 +12357,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_noncommgeom_16shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11824,7 +12385,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_wallcrossing_16shell_coupling_canonical.py",
-          "line": 92,
+          "line": 94,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11847,7 +12408,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_wallcrossing_16shell_coupling_canonical.py",
-          "line": 97,
+          "line": 99,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11875,7 +12436,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_fukayacategory_15shell_coupling_canonical.py",
-          "line": 91,
+          "line": 93,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11898,7 +12459,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_fukayacategory_15shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11926,7 +12487,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_motiviccohomology_15shell_coupling_canonical.py",
-          "line": 91,
+          "line": 93,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11949,7 +12510,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_motiviccohomology_15shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -11977,7 +12538,7 @@
       "patterns": [
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_pervershef_15shell_coupling_canonical.py",
-          "line": 91,
+          "line": 93,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -12000,7 +12561,7 @@
         },
         {
           "file": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_pervershef_15shell_coupling_canonical.py",
-          "line": 96,
+          "line": 98,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -13234,7 +13795,7 @@
       "patterns": [
         {
           "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
-          "line": 379,
+          "line": 381,
           "pattern": "akbk->ab",
           "line_text": "rho_A_np = np.einsum(\"akbk->ab\", T)",
           "classification": {
@@ -13257,7 +13818,7 @@
         },
         {
           "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
-          "line": 381,
+          "line": 383,
           "pattern": "kikj->ij",
           "line_text": "rho_BC_np = np.einsum(\"kikj->ij\", T)",
           "classification": {
@@ -13280,7 +13841,7 @@
         },
         {
           "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
-          "line": 397,
+          "line": 399,
           "pattern": "akbk->ab",
           "line_text": "rho_A2_np = np.einsum(\"akbk->ab\", T2)",
           "classification": {
@@ -13303,7 +13864,7 @@
         },
         {
           "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
-          "line": 398,
+          "line": 400,
           "pattern": "kikj->ij",
           "line_text": "rho_B2_np = np.einsum(\"kikj->ij\", T2)",
           "classification": {
@@ -13331,7 +13892,7 @@
       "patterns": [
         {
           "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
-          "line": 405,
+          "line": 410,
           "pattern": "iajb->ij",
           "line_text": "rho_A = torch.einsum(\"iajb->ij\", rho_rot.reshape(dA, dB, dA, dB))",
           "classification": {
@@ -13359,7 +13920,7 @@
         },
         {
           "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
-          "line": 406,
+          "line": 411,
           "pattern": "aibj->ij",
           "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_rot.reshape(dA, dB, dA, dB))",
           "classification": {
@@ -13392,7 +13953,7 @@
       "patterns": [
         {
           "file": "sim_holographic_gerbe_hopf_bridge_claims_canonical.py",
-          "line": 196,
+          "line": 198,
           "pattern": "akbk->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13415,7 +13976,7 @@
         },
         {
           "file": "sim_holographic_gerbe_hopf_bridge_claims_canonical.py",
-          "line": 196,
+          "line": 198,
           "pattern": "kakb->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13443,7 +14004,7 @@
       "patterns": [
         {
           "file": "sim_holographic_gerbe_hopf_emergence_quantities.py",
-          "line": 178,
+          "line": 185,
           "pattern": "akbk->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13466,7 +14027,7 @@
         },
         {
           "file": "sim_holographic_gerbe_hopf_emergence_quantities.py",
-          "line": 178,
+          "line": 185,
           "pattern": "kakb->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13494,7 +14055,7 @@
       "patterns": [
         {
           "file": "sim_holographic_gerbe_hopf_pairwise_coupling.py",
-          "line": 187,
+          "line": 192,
           "pattern": "akbk->ab",
           "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
@@ -13517,7 +14078,7 @@
         },
         {
           "file": "sim_holographic_gerbe_hopf_pairwise_coupling.py",
-          "line": 188,
+          "line": 193,
           "pattern": "kakb->ab",
           "line_text": "rho_B = np.einsum(\"kakb->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
@@ -13545,7 +14106,7 @@
       "patterns": [
         {
           "file": "sim_holographic_gerbe_hopf_topology_variants.py",
-          "line": 205,
+          "line": 210,
           "pattern": "akbk->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13568,7 +14129,7 @@
         },
         {
           "file": "sim_holographic_gerbe_hopf_topology_variants.py",
-          "line": 205,
+          "line": 210,
           "pattern": "kakb->ab",
           "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
           "classification": {
@@ -13596,7 +14157,7 @@
       "patterns": [
         {
           "file": "sim_holographic_gerbe_hopf_triple_coexistence.py",
-          "line": 179,
+          "line": 184,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r)",
           "classification": {
@@ -13619,7 +14180,7 @@
         },
         {
           "file": "sim_holographic_gerbe_hopf_triple_coexistence.py",
-          "line": 180,
+          "line": 185,
           "pattern": "kakb->ab",
           "line_text": "rB = np.einsum(\"kakb->ab\", r)",
           "classification": {
@@ -15188,6 +15749,62 @@
         {
           "file": "sim_integration_cirq_pennylane_entanglement_bridge.py",
           "line": 124,
+          "pattern": "abcb->ac",
+          "line_text": "return np.einsum(\"abcb->ac\", reshaped)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_integration_cirq_qutip_entanglement_bridge.py": {
+      "patterns": [
+        {
+          "file": "sim_integration_cirq_qutip_entanglement_bridge.py",
+          "line": 133,
+          "pattern": "abcb->ac",
+          "line_text": "return np.einsum(\"abcb->ac\", reshaped)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_integration_pennylane_qutip_entanglement_bridge.py": {
+      "patterns": [
+        {
+          "file": "sim_integration_pennylane_qutip_entanglement_bridge.py",
+          "line": 134,
           "pattern": "abcb->ac",
           "line_text": "return np.einsum(\"abcb->ac\", reshaped)",
           "classification": {
@@ -17779,7 +18396,7 @@
       "patterns": [
         {
           "file": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical.py",
-          "line": 84,
+          "line": 86,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -17802,7 +18419,7 @@
         },
         {
           "file": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical.py",
-          "line": 89,
+          "line": 91,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -17830,7 +18447,7 @@
       "patterns": [
         {
           "file": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_yang_mills_ricci_spin_11shell_coupling_canonical.py",
-          "line": 87,
+          "line": 89,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -17853,7 +18470,7 @@
         },
         {
           "file": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_yang_mills_ricci_spin_11shell_coupling_canonical.py",
-          "line": 92,
+          "line": 94,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -19132,7 +19749,7 @@
       "patterns": [
         {
           "file": "sim_spinor_riemannian_hopf_coupling_canonical.py",
-          "line": 93,
+          "line": 95,
           "pattern": "akbk->ab",
           "line_text": "return torch.einsum(\"akbk->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -19155,7 +19772,7 @@
         },
         {
           "file": "sim_spinor_riemannian_hopf_coupling_canonical.py",
-          "line": 98,
+          "line": 100,
           "pattern": "kakb->ab",
           "line_text": "return torch.einsum(\"kakb->ab\", rho_AB.reshape(2, 2, 2, 2))",
           "classification": {
@@ -23717,7 +24334,7 @@
   "bugs_found": [
     {
       "file": "sim_araki_lieb_z3_canonical.py",
-      "line": 169,
+      "line": 171,
       "pattern": "iajb->ab",
       "line_text": "return torch.einsum('iajb->ab', rho)  # wait \u2014 should be: sum over i,j with i=j",
       "classification": {
@@ -23745,7 +24362,7 @@
     },
     {
       "file": "sim_araki_lieb_z3_canonical.py",
-      "line": 170,
+      "line": 172,
       "pattern": "iajb->ab",
       "line_text": "# Correct: rho_B = sum_i <i|rho_AB|i> = einsum('iajb->ab', rho) where i=j index",
       "classification": {
@@ -23773,7 +24390,7 @@
     },
     {
       "file": "sim_araki_lieb_z3_canonical.py",
-      "line": 179,
+      "line": 181,
       "pattern": "iajb->ab",
       "line_text": "return torch.einsum('iajb->ab', rho.permute(0, 2, 1, 3)).diagonal().diag()",
       "classification": {
@@ -24013,7 +24630,7 @@
     },
     {
       "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
-      "line": 405,
+      "line": 410,
       "pattern": "iajb->ij",
       "line_text": "rho_A = torch.einsum(\"iajb->ij\", rho_rot.reshape(dA, dB, dA, dB))",
       "classification": {
@@ -24041,7 +24658,7 @@
     },
     {
       "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
-      "line": 406,
+      "line": 411,
       "pattern": "aibj->ij",
       "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_rot.reshape(dA, dB, dA, dB))",
       "classification": {
@@ -24545,8 +25162,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 438,
-    "clean_files": 424,
+    "total_files_with_einsum_ptrace": 451,
+    "clean_files": 437,
     "files_with_einsum_bugs": 14,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,

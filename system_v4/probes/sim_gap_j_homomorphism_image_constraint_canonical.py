@@ -152,7 +152,7 @@ def run_positive_tests():
         order = solver.mkInteger(24)
         one = solver.mkInteger(1)
 
-        constraint_order_positive = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint_order_positive = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         solver.assertFormula(constraint_order_positive)
 
         result = solver.checkSat()
@@ -178,7 +178,7 @@ def run_positive_tests():
 
         order = solver.mkInteger(240)
         one = solver.mkInteger(1)
-        constraint = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -203,7 +203,7 @@ def run_positive_tests():
 
         order = solver.mkInteger(504)
         one = solver.mkInteger(1)
-        constraint = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -244,10 +244,10 @@ def run_negative_tests():
         one = solver.mkInteger(1)
 
         # Constraint 1: order ≥ 1 (J nontrivial)
-        constraint_nontrivial = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint_nontrivial = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         # Constraint 2: order = 0 (negation)
         zero = solver.mkInteger(0)
-        constraint_zero = solver.mkTerm(cvc5.Kind.EQUAL, [order, zero])
+        constraint_zero = solver.mkTerm(cvc5.Kind.EQUAL, order, zero)
 
         solver.assertFormula(constraint_nontrivial)
         solver.assertFormula(constraint_zero)
@@ -275,7 +275,7 @@ def run_negative_tests():
         order = solver.mkInteger(-1)
         one = solver.mkInteger(1)
 
-        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         solver.assertFormula(constraint_nonneg)
 
         result = solver.checkSat()
@@ -301,7 +301,7 @@ def run_negative_tests():
         order = solver.mkInteger(-24)
         one = solver.mkInteger(1)
 
-        constraint = solver.mkTerm(cvc5.Kind.GEQ, [order, one])
+        constraint = solver.mkTerm(cvc5.Kind.GEQ, order, one)
         solver.assertFormula(constraint)
 
         result = solver.checkSat()

@@ -149,7 +149,7 @@ def run_positive_tests():
         # Test 1: degree = 4 (valid cobordism class)
         degree = solver.mkInteger(4)
         zero = solver.mkInteger(0)
-        constraint_pos = solver.mkTerm(cvc5.Kind.GEQ, [degree, zero])
+        constraint_pos = solver.mkTerm(cvc5.Kind.GEQ, degree, zero)
         solver.assertFormula(constraint_pos)
 
         result_pos = solver.checkSat()
@@ -195,7 +195,7 @@ def run_positive_tests():
 
         degree = solver.mkInteger(2)
         zero = solver.mkInteger(0)
-        constraint = solver.mkTerm(cvc5.Kind.GEQ, [degree, zero])
+        constraint = solver.mkTerm(cvc5.Kind.GEQ, degree, zero)
         solver.assertFormula(constraint)
 
         result = solver.checkSat()
@@ -234,9 +234,9 @@ def run_negative_tests():
         zero = solver.mkInteger(0)
 
         # Constraint 1: degree ≥ 0 (cobordism requirement)
-        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, [degree, zero])
+        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, degree, zero)
         # Constraint 2: degree < 0 (test negation)
-        constraint_neg = solver.mkTerm(cvc5.Kind.LT, [degree, zero])
+        constraint_neg = solver.mkTerm(cvc5.Kind.LT, degree, zero)
 
         solver.assertFormula(constraint_nonneg)
         solver.assertFormula(constraint_neg)
@@ -263,7 +263,7 @@ def run_negative_tests():
         degree = solver.mkInteger(-5)
         zero = solver.mkInteger(0)
 
-        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, [degree, zero])
+        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, degree, zero)
         solver.assertFormula(constraint_nonneg)
 
         result = solver.checkSat()
@@ -288,7 +288,7 @@ def run_negative_tests():
         degree = solver.mkInteger(-2)
         zero = solver.mkInteger(0)
 
-        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, [degree, zero])
+        constraint_nonneg = solver.mkTerm(cvc5.Kind.GEQ, degree, zero)
         solver.assertFormula(constraint_nonneg)
 
         result = solver.checkSat()

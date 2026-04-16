@@ -1,153 +1,130 @@
 {
   "name": "axis0_stack_packet_run",
-  "timestamp": "2026-04-16T15:44:16.075491+00:00",
-  "all_ok": true,
+  "timestamp": "2026-04-16T20:57:52.058285+00:00",
+  "all_ok": false,
   "steps": [
     {
       "label": "formal_geometry",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_formal_geometry_packet.py",
       "returncode": 0,
-      "elapsed_sec": 9.968560934066772,
-      "stdout_tail": "========================================================================\nFORMAL GEOMETRY PACKET RUN\n========================================================================\nPASS  geometry_truth           rc=0  t=0.22s\nPASS  weyl_geometry_ladder     rc=0  t=0.63s\nPASS  weyl_ambient_overlay     rc=0  t=0.78s\nPASS  engine_chirality         rc=0  t=7.01s\nPASS  dual_weyl_cycle          rc=0  t=0.27s\nPASS  neg_torus_scrambled      rc=0  t=0.44s\nPASS  neg_no_chirality         rc=0  t=0.42s\nPASS  neg_loop_law_swap        rc=0  t=0.14s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/formal_geometry_packet_run_results.json\n",
+      "elapsed_sec": 14.373390913009644,
+      "stdout_tail": "========================================================================\nFORMAL GEOMETRY PACKET RUN\n========================================================================\nPASS  geometry_truth           rc=0  t=0.48s\nPASS  weyl_geometry_ladder     rc=0  t=0.96s\nPASS  weyl_ambient_overlay     rc=0  t=0.96s\nPASS  engine_chirality         rc=0  t=9.97s\nPASS  dual_weyl_cycle          rc=0  t=0.38s\nPASS  neg_torus_scrambled      rc=0  t=0.61s\nPASS  neg_no_chirality         rc=0  t=0.57s\nPASS  neg_loop_law_swap        rc=0  t=0.34s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/formal_geometry_packet_run_results.json\n",
       "stderr_tail": "",
       "ok": true
     },
     {
       "label": "root_emergence",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_root_emergence_packet.py",
-      "returncode": 0,
-      "elapsed_sec": 42.33863663673401,
-      "stdout_tail": "========================================================================\nROOT EMERGENCE PACKET RUN\n========================================================================\nPASS  nonclassical_guard       rc=0  t=0.67s\nPASS  ec3_identity             rc=0  t=0.10s\nPASS  missing_axis_search      rc=0  t=0.53s\nPASS  bridge_search            rc=0  t=6.55s\nPASS  carrier_rank             rc=0  t=5.75s\nPASS  history_mispair_counterfeit rc=0  t=5.09s\nPASS  coarising_stress         rc=0  t=11.08s\nPASS  orbit_phase_alignment    rc=0  t=5.63s\nPASS  attractor_basin_boundary rc=0  t=6.87s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/root_emergence_packet_run_results.json\n",
+      "returncode": 1,
+      "elapsed_sec": 18.229033946990967,
+      "stdout_tail": "========================================================================\nROOT EMERGENCE PACKET RUN\n========================================================================\nPASS  nonclassical_guard       rc=0  t=0.91s\nPASS  ec3_identity             rc=0  t=0.12s\nPASS  missing_axis_search      rc=0  t=0.62s\nFAIL  bridge_search            rc=1  t=3.12s\nFAIL  carrier_rank             rc=1  t=2.18s\nFAIL  history_mispair_counterfeit rc=1  t=2.55s\nFAIL  coarising_stress         rc=1  t=3.71s\nFAIL  orbit_phase_alignment    rc=1  t=2.42s\nFAIL  attractor_basin_boundary rc=1  t=2.54s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/root_emergence_packet_run_results.json\n",
       "stderr_tail": "",
-      "ok": true
+      "ok": false
     },
     {
       "label": "carrier_selection",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_carrier_selection_packet.py",
-      "returncode": 0,
-      "elapsed_sec": 18.588512897491455,
-      "stdout_tail": "========================================================================\nCARRIER SELECTION PACKET RUN\n========================================================================\nPASS  missing_axis_search      rc=0  t=0.55s\nPASS  bridge_search            rc=0  t=6.38s\nPASS  xi_strict_bakeoff        rc=0  t=0.74s\nPASS  carrier_rank             rc=0  t=5.69s\nPASS  history_mispair_counterfeit rc=0  t=5.16s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carrier_selection_packet_run_results.json\n",
+      "returncode": 1,
+      "elapsed_sec": 8.290045976638794,
+      "stdout_tail": "========================================================================\nCARRIER SELECTION PACKET RUN\n========================================================================\nPASS  missing_axis_search      rc=0  t=0.85s\nFAIL  bridge_search            rc=1  t=1.80s\nPASS  xi_strict_bakeoff        rc=0  t=0.93s\nFAIL  carrier_rank             rc=1  t=1.78s\nFAIL  history_mispair_counterfeit rc=1  t=2.86s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carrier_selection_packet_run_results.json\n",
       "stderr_tail": "",
-      "ok": true
+      "ok": false
     },
     {
       "label": "pre_entropy",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_pre_entropy_packet.py",
-      "returncode": 0,
-      "elapsed_sec": 33.14359378814697,
-      "stdout_tail": "========================================================================\nPRE-ENTROPY PACKET RUN\n========================================================================\nPASS  xi_bakeoff               rc=0  t=0.43s\nPASS  xi_strict_bakeoff        rc=0  t=0.77s\nPASS  bridge_search            rc=0  t=6.83s\nPASS  phase5b_stability        rc=0  t=8.90s\nPASS  fe_indexed_history       rc=0  t=9.79s\nPASS  dynamic_shell            rc=0  t=6.34s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pre_entropy_packet_run_results.json\n",
+      "returncode": 1,
+      "elapsed_sec": 13.272171020507812,
+      "stdout_tail": "========================================================================\nPRE-ENTROPY PACKET RUN\n========================================================================\nPASS  xi_bakeoff               rc=0  t=0.57s\nPASS  xi_strict_bakeoff        rc=0  t=0.92s\nFAIL  bridge_search            rc=1  t=2.66s\nFAIL  phase5b_stability        rc=1  t=2.85s\nFAIL  fe_indexed_history       rc=1  t=3.65s\nFAIL  dynamic_shell            rc=1  t=2.53s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pre_entropy_packet_run_results.json\n",
       "stderr_tail": "",
-      "ok": true
+      "ok": false
     },
     {
       "label": "c1_bridge_object",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/validate_c1_bridge_object_packet.py",
       "returncode": 0,
-      "elapsed_sec": 0.0647890567779541,
-      "stdout_tail": "\"downstream_readout_only\",\n        \"consumer_status\": \"allowed_for_entropy_readout_not_final_owner_xi\",\n        \"read\": \"Xi_chiral_entangle is the current admitted bridge object for downstream readout use. It is not a final Xi owner law, shell doctrine, history-law replacement, or entropy-family owner doctrine.\",\n        \"evidence\": {\n          \"bridge_winner\": \"Xi_chiral_entangle\",\n          \"winner_mean_mi\": 0.8232542855942899,\n          \"winner_mean_i_c\": 0.028504810872339026,\n          \"runner_up\": \"Xi_chiral_hist_entangle\",\n          \"runner_up_mean_mi\": 0.5126433115412764,\n          \"runner_up_mean_i_c\": -0.07773004558064106,\n          \"lr_direct_mean_mi\": 1.6653345369377348e-16,\n          \"counterfeit_status\": \"counterfeit_beats_mi_but_loses_signed_honesty\",\n          \"counterfeit_mean_live_I_c\": 0.028504810872339026,\n          \"counterfeit_mean_counterfeit_I_c\": -0.06070342631953977,\n          \"counterfeit_mean_I_c_gap\": 0.08920823719187879\n        }\n      }\n    },\n    {\n      \"name\": \"C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object\",\n      \"pass\": true,\n      \"detail\": {\n        \"bridge_winner\": \"Xi_chiral_entangle\",\n        \"winner_mean_mi\": 0.8232542855942899,\n        \"winner_mean_i_c\": 0.028504810872339026,\n        \"runner_up\": \"Xi_chiral_hist_entangle\",\n        \"runner_up_mean_mi\": 0.5126433115412764,\n        \"runner_up_mean_i_c\": -0.07773004558064106,\n        \"lr_direct_mean_mi\": 1.6653345369377348e-16,\n        \"counterfeit_status\": \"counterfeit_beats_mi_but_loses_signed_honesty\",\n        \"counterfeit_mean_live_I_c\": 0.028504810872339026,\n        \"counterfeit_mean_counterfeit_I_c\": -0.06070342631953977,\n        \"counterfeit_mean_I_c_gap\": 0.08920823719187879\n      }\n    },\n    {\n      \"name\": \"C1B3_bridge_object_is_bound_to_the_existing_support_contract\",\n      \"pass\": true,\n      \"detail\": {\n        \"c1_search_closed\": true,\n        \"carrier_handoff\": {\n          \"object\": \"c1_signed_bridge_candidate_handoff\",\n          \"candidate\": \"Xi_chiral_entangle\",\n          \"status\": \"provisional_handoff_ready\",\n          \"placement_contract\": \"downstream_axis_internal_bridge_candidate_only\",\n          \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n          \"forbidden_reclassification\": \"not_owner_derived_not_final_owner_xi\",\n          \"positive_witness_gate\": \"C3_live_carrier_wins_and_honesty_signal_stays_unique\",\n          \"bridge_separation_gate\": \"C4_bridge_search_separates_winning_bridges_from_controls\",\n          \"counterfeit_guard_gate\": \"C7_counterfeit_history_games_mi_but_not_coherent_info\",\n          \"signed_metric\": \"I_c\",\n          \"consumer_status\": \"allowed_for_entropy_readout_not_final_owner_xi\",\n          \"read\": \"Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law.\"\n        },\n        \"pre_entropy_mapping\": \"axis_internal_candidate_not_final_owner_law\",\n        \"pre_entropy_relation\": \"downstream_of_xi_hist_signed_law_not_alternate_owner_law\",\n        \"pre_entropy_placement\": \"downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law\",\n        \"entropy_gate_name\": \"E10_current_bridge_candidate_is_explicit_and_provisional\",\n        \"entropy_gate_status\": \"admitted_executable_candidate_not_final_owner_law\"\n      }\n    },\n    {\n      \"name\": \"C1B4_bridge_object_keeps_owner_doctrine_questions_open\",\n      \"pass\": true,\n      \"detail\": {\n        \"status\": \"explicit_non_owner_reservation\",\n        \"final_xi_owner_law\": \"reserved_for_future_owner_doctrine_not_claimed_by_c1\",\n        \"shell_doctrine\": \"reserved_for_future_shell_doctrine_not_claimed_by_c1\",\n        \"history_law_replacement\": \"reserved_for_future_history_law_replacement_not_claimed_by_c1\",\n        \"entropy_family_owner_doctrine\": \"reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1\",\n        \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n        \"consumer_scope\": \"downstream_readout_only\"\n      }\n    }\n  ]\n}\n",
+      "elapsed_sec": 0.08416986465454102,
+      "stdout_tail": "nt_relation\": \"downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law\",\n          \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n          \"forbidden_reclassification\": \"not_owner_derived_not_final_owner_xi\",\n          \"strict_owner_read\": \"late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry\",\n          \"canonical_anchor_label\": \"8_23\",\n          \"canonical_prefix_drop\": \"8_15\",\n          \"canonical_early_width\": \"0_7\",\n          \"winner\": \"Xi_chiral_entangle\",\n          \"runner_up\": \"Xi_chiral_hist_entangle\",\n          \"winner_mean_mi\": 0.8232542855942899,\n          \"runner_up_mean_mi\": 0.5126433115412764,\n          \"winner_mean_i_c\": 0.028504810872339026,\n          \"runner_up_mean_i_c\": -0.07773004558064106,\n          \"deep_contract_winner\": \"Xi_chiral_entangle\"\n        },\n        \"carrier_handoff\": {\n          \"candidate\": \"Xi_chiral_entangle\",\n          \"status\": \"provisional_handoff_ready\",\n          \"placement_contract\": \"downstream_axis_internal_bridge_candidate_only\",\n          \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n          \"forbidden_reclassification\": \"not_owner_derived_not_final_owner_xi\",\n          \"consumer_status\": \"allowed_for_entropy_readout_not_final_owner_xi\",\n          \"bridge_owner_alignment\": {\n            \"pass\": true,\n            \"status\": \"axis_internal_candidate_not_final_owner_law\",\n            \"placement_relation\": \"downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law\",\n            \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n            \"forbidden_reclassification\": \"not_owner_derived_not_final_owner_xi\",\n            \"strict_owner_read\": \"late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry\",\n            \"canonical_anchor_label\": \"8_23\",\n            \"canonical_prefix_drop\": \"8_15\",\n            \"canonical_early_width\": \"0_7\",\n            \"winner\": \"Xi_chiral_entangle\",\n            \"runner_up\": \"Xi_chiral_hist_entangle\",\n            \"winner_mean_mi\": 0.8232542855942899,\n            \"runner_up_mean_mi\": 0.5126433115412764,\n            \"winner_mean_i_c\": 0.028504810872339026,\n            \"runner_up_mean_i_c\": -0.07773004558064106,\n            \"deep_contract_winner\": \"Xi_chiral_entangle\"\n          },\n          \"object\": \"c1_signed_bridge_candidate_handoff\",\n          \"origin_surface\": \"sim_c1_signed_bridge_candidate_search\",\n          \"support_chain_gate\": \"C1S3_support_chain_is_closed_before_candidate_packaging\",\n          \"signed_metric\": \"I_c\",\n          \"read\": \"Xi_chiral_entangle remains the current downstream signed bridge candidate handoff for readout use, but it is not a final owner law.\"\n        },\n        \"carrier_selection_handoff_matches_search\": true,\n        \"pre_entropy_mapping\": \"axis_internal_candidate_not_final_owner_law\",\n        \"pre_entropy_relation\": \"downstream_of_xi_hist_signed_law_not_alternate_owner_law\",\n        \"pre_entropy_placement\": \"downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law\",\n        \"entropy_gate_name\": \"E10_current_bridge_candidate_is_explicit_and_provisional\",\n        \"entropy_gate_status\": \"admitted_executable_candidate_not_final_owner_law\"\n      }\n    },\n    {\n      \"name\": \"C1B4_bridge_object_keeps_owner_doctrine_questions_open\",\n      \"pass\": true,\n      \"detail\": {\n        \"status\": \"explicit_non_owner_reservation\",\n        \"final_xi_owner_law\": \"reserved_for_future_owner_doctrine_not_claimed_by_c1\",\n        \"shell_doctrine\": \"reserved_for_future_shell_doctrine_not_claimed_by_c1\",\n        \"history_law_replacement\": \"reserved_for_future_history_law_replacement_not_claimed_by_c1\",\n        \"entropy_family_owner_doctrine\": \"reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1\",\n        \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n        \"consumer_scope\": \"downstream_readout_only\"\n      }\n    }\n  ]\n}\n",
       "stderr_tail": "",
       "ok": true
     },
     {
       "label": "matched_marginal",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_matched_marginal_packet.py",
-      "returncode": 0,
-      "elapsed_sec": 56.55357885360718,
-      "stdout_tail": "========================================================================\nMATCHED MARGINAL PACKET RUN\n========================================================================\nPASS  phase4_bridge_landscape      rc=0  t=6.82s\nPASS  phase5a_marginal_preserving  rc=0  t=35.76s\nPASS  phase6_point_reference       rc=0  t=7.22s\nPASS  fe_indexed_history           rc=0  t=6.69s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/matched_marginal_packet_run_results.json\n",
+      "returncode": 1,
+      "elapsed_sec": 9.227404117584229,
+      "stdout_tail": "========================================================================\nMATCHED MARGINAL PACKET RUN\n========================================================================\nFAIL  phase4_bridge_landscape      rc=1  t=3.67s\nFAIL  phase5a_marginal_preserving  rc=1  t=1.66s\nFAIL  phase6_point_reference       rc=1  t=1.84s\nFAIL  fe_indexed_history           rc=1  t=1.99s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/matched_marginal_packet_run_results.json\n",
       "stderr_tail": "",
-      "ok": true
+      "ok": false
     },
     {
       "label": "entropy_readout",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_entropy_readout_packet.py",
-      "returncode": 0,
-      "elapsed_sec": 19.432010173797607,
-      "stdout_tail": "========================================================================\nENTROPY READOUT PACKET RUN\n========================================================================\nPASS  entropy_negative_battery     rc=0  t=1.09s\nPASS  axis0_full_spectrum          rc=0  t=10.57s\nPASS  axis0_fep_compression        rc=0  t=7.72s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/entropy_readout_packet_run_results.json\n",
+      "returncode": 1,
+      "elapsed_sec": 16.37358593940735,
+      "stdout_tail": "========================================================================\nENTROPY READOUT PACKET RUN\n========================================================================\nPASS  entropy_negative_battery     rc=0  t=1.30s\nPASS  axis0_full_spectrum          rc=0  t=12.42s\nFAIL  axis0_fep_compression        rc=1  t=2.58s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/entropy_readout_packet_run_results.json\n",
       "stderr_tail": "",
-      "ok": true
+      "ok": false
     }
   ],
-  "xi_hist_law_fingerprints": {
+  "xi_hist_law_fingerprints": {},
+  "constraint_family_profiles": {
+    "formal_geometry": {
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
+    },
+    "root_emergence": {
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
+    },
     "carrier_selection": {
-      "law_name": "Xi_hist signed law",
-      "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
-      "placement_label": "8_23",
-      "equivalent_anchor_labels": [
-        "16_31",
-        "8_15"
-      ],
-      "canonical_prefix_drop": "8_15",
-      "canonical_early_width": "0_7",
-      "comparison_width": "0_3",
-      "total_rows": 6,
-      "off_clifford_rows": 4,
-      "clifford_rows": 2,
-      "placement_8_23_equals_16_31": true,
-      "placement_8_23_equals_prefix_8_15_on_mi": true,
-      "placement_8_23_equals_prefix_8_15_on_ic": true,
-      "placement_8_23_equals_prefix_8_15_on_signed_cut": true,
-      "best_prefix_drop_by_ic_is_8_15": true,
-      "best_early_width_by_ic_is_0_7_majority": true,
-      "late_anchor_beats_0_3_globally_on_ic": true,
-      "front_half_signed_cut_preference_all_seats": true,
-      "clifford_mi_0_7_vs_0_15_is_tied": true,
-      "placement_8_23_beats_0_3_on_ic_count": 6,
-      "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-      "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
-      "best_early_width_by_ic_counts": {
-        "0_3": 1,
-        "0_7": 5,
-        "0_11": 0,
-        "0_15": 0
-      },
-      "best_prefix_drop_by_ic_counts": {
-        "0_15": 0,
-        "1_15": 0,
-        "2_15": 0,
-        "4_15": 0,
-        "8_15": 6
-      }
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
     },
     "pre_entropy": {
-      "law_name": "Xi_hist signed law",
-      "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
-      "placement_label": "8_23",
-      "equivalent_anchor_labels": [
-        "16_31",
-        "8_15"
-      ],
-      "canonical_prefix_drop": "8_15",
-      "canonical_early_width": "0_7",
-      "comparison_width": "0_3",
-      "total_rows": 6,
-      "off_clifford_rows": 4,
-      "clifford_rows": 2,
-      "placement_8_23_equals_16_31": true,
-      "placement_8_23_equals_prefix_8_15_on_mi": true,
-      "placement_8_23_equals_prefix_8_15_on_ic": true,
-      "placement_8_23_equals_prefix_8_15_on_signed_cut": true,
-      "best_prefix_drop_by_ic_is_8_15": true,
-      "best_early_width_by_ic_is_0_7_majority": true,
-      "late_anchor_beats_0_3_globally_on_ic": true,
-      "front_half_signed_cut_preference_all_seats": true,
-      "clifford_mi_0_7_vs_0_15_is_tied": true,
-      "placement_8_23_beats_0_3_on_ic_count": 6,
-      "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-      "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
-      "best_early_width_by_ic_counts": {
-        "0_3": 1,
-        "0_7": 5,
-        "0_11": 0,
-        "0_15": 0
-      },
-      "best_prefix_drop_by_ic_counts": {
-        "0_15": 0,
-        "1_15": 0,
-        "2_15": 0,
-        "4_15": 0,
-        "8_15": 6
-      }
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
+    },
+    "c1_bridge_object": {
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
+    },
+    "matched_marginal": {
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
+    },
+    "entropy_readout": {
+      "observational": 1.0,
+      "admissible": 1.0,
+      "stable": 1.0,
+      "entropy_conditioned": 1.0,
+      "topology_conditioned": 1.0
     }
   },
-  "xi_hist_law_fingerprints_consistent": true
+  "constraint_family_profile": {
+    "observational": 1.0,
+    "admissible": 1.0,
+    "stable": 1.0,
+    "entropy_conditioned": 1.0,
+    "topology_conditioned": 1.0
+  },
+  "xi_hist_law_fingerprints_consistent": false
 }

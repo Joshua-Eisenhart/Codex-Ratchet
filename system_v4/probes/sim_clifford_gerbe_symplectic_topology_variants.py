@@ -16,6 +16,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Clifford×Gerbe×Symplectic topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -265,6 +270,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_clifford_gerbe_symplectic_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Step 3 topology variants for Clifford×Gerbe×Symplectic (20th program). "
             "T1 flat θ=π/2, T2 S² θ=π, T3 lens θ=π/3. "

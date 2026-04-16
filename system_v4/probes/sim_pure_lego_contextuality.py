@@ -16,6 +16,11 @@ Sections
 import json, pathlib, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this pure lego contextuality probe checks finite-dimensional witness numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "observable matrices, commutators, and finite-context sweep numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 np.random.seed(42)
 EPS = 1e-10
@@ -819,6 +824,9 @@ if __name__ == "__main__":
             "4_kcbs_contextuality": p4,
         },
     }
+    RESULTS["divergence_log"] = divergence_log
+    RESULTS["tool_manifest"] = TOOL_MANIFEST
+    RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
     print(f"\n  Total time: {elapsed:.1f}s")
     print(f"  ALL PASS: {RESULTS['meta']['all_sections_pass']}")

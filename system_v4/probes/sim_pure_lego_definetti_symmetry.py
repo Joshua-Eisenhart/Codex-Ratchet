@@ -30,6 +30,15 @@ import numpy as np
 from scipy.linalg import sqrtm
 
 classification = "classical_baseline"
+divergence_log = "Classical baseline: this pure lego de Finetti probe checks exchangeability and symmetry numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state construction, swap tests, and reduced-state numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "fidelity and reduced-state linear algebra for the de Finetti checks"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ─── output path ──────────────────────────────────────────────────────
 RESULTS_DIR = os.path.join(
@@ -556,6 +565,9 @@ def main():
     # ── Summary ───────────────────────────────────────────────────────
     all_pass = all(v == "PASS" for v in report["verdicts"].values())
     report["overall"] = "ALL PASS" if all_pass else "SOME FAIL"
+    report["divergence_log"] = divergence_log
+    report["tool_manifest"] = TOOL_MANIFEST
+    report["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
     print("\n" + "=" * 70)
     print(f"  OVERALL: {report['overall']}")

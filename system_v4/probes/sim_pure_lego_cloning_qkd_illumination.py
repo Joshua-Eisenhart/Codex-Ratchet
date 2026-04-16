@@ -27,6 +27,11 @@ Sections
 import json, pathlib, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this pure lego probe checks cloning, QKD, and illumination numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state vectors, density matrices, and numerical sweeps for the pure lego tests"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 np.random.seed(42)
 EPS = 1e-10
@@ -611,6 +616,9 @@ summary = {
 all_pass = all(summary.values())
 RESULTS["summary"] = summary
 RESULTS["ALL_PASS"] = all_pass
+RESULTS["divergence_log"] = divergence_log
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
 print(f"\n{'=' * 60}")
 print(f"PURE LEGO CLONING/QKD/ILLUMINATION -- ALL PASS: {all_pass}")

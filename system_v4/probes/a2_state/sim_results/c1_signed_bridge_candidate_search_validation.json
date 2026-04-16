@@ -1,9 +1,9 @@
 {
   "name": "c1_signed_bridge_candidate_search_validation",
-  "timestamp": "2026-04-16T15:06:18.762900+00:00",
-  "passed_gates": 3,
+  "timestamp": "2026-04-16T15:10:31.887798+00:00",
+  "passed_gates": 4,
   "total_gates": 4,
-  "score": 0.75,
+  "score": 1.0,
   "gates": [
     {
       "name": "C1S1_current_signed_bridge_candidate_is_explicit",
@@ -49,9 +49,33 @@
     },
     {
       "name": "C1S3_support_chain_is_closed_before_candidate_packaging",
-      "pass": false,
+      "pass": true,
       "detail": {
-        "matched_marginal_closed": false,
+        "matched_marginal_closed": true,
+        "matched_marginal_contract_scope": "xi_downstream_handoff_and_honesty_layer",
+        "matched_marginal_required_gates": [
+          "M1_phase4_and_phase5a_execute_cleanly",
+          "M2_phase4_winner_fails_matched_marginal_filter",
+          "M3_phase5a_certifies_marginal_preserving_family",
+          "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+          "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+          "M6_exact_preserving_point_reference_stays_discriminator_only",
+          "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+          "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"
+        ],
+        "matched_marginal_required_passes": {
+          "M1_phase4_and_phase5a_execute_cleanly": true,
+          "M2_phase4_winner_fails_matched_marginal_filter": true,
+          "M3_phase5a_certifies_marginal_preserving_family": true,
+          "M4_preserving_mi_collapses_while_chiral_mi_stays_large": true,
+          "M5_optimizer_finds_no_nonproduct_preserving_advantage": true,
+          "M6_exact_preserving_point_reference_stays_discriminator_only": true,
+          "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract": true,
+          "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping": true
+        },
+        "matched_marginal_excluded_failures": [
+          "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"
+        ],
         "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
         "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
         "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",

@@ -13,16 +13,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Promoted QIT-aligned Weyl/Hopf carrier translation lane built from the "
     "open carrier-array row and the strict finite-state companion. It keeps "
     "the carrier/readout gap explicit and bounded; it does not claim "
     "equivalence or canonical geometry admission."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",

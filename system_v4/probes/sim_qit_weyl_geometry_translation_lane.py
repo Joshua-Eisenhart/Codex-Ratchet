@@ -13,15 +13,16 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promoted open-vs-strict Weyl/Hopf translation lane built from the open "
-    "composed geometry stack and the strict finite-state geometry companion. "
-    "It is a comparison surface, not canonical owner math."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Open-vs-strict Weyl/Hopf translation lane built from the open composed "
+    "geometry stack and the strict finite-state geometry companion. It is a "
+    "comparison surface, not canonical owner math."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_hopf_pauli_composed_stack",
@@ -143,6 +144,7 @@ def main() -> None:
         "name": "qit_weyl_geometry_translation_lane",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

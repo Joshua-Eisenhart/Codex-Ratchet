@@ -14,16 +14,18 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Bounded open-vs-strict translation lane for the Weyl geometry carrier "
     "compare row. It compares the open comparison surface against the strict "
     "finite-state companion without claiming equivalence or canonical owner "
     "math."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",

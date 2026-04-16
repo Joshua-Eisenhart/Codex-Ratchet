@@ -10,52 +10,52 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "PyG message passing not needed; geometry handled via tensor operations"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "z3 SMT solver not needed; pytorch autograd handles constraint satisfaction"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "cvc5 SMT solver not needed; z3 handles all constraint proofs in this sim"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "sympy symbolic math not needed; numerical torch computation is sufficient"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Clifford algebra not needed; geometry computed via direct matrix operations"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "geomstats differential geometry library not needed for this sim's approach"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "e3nn equivariant networks not needed; no SO(3) equivariance required here"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "rustworkx graph library not needed; no graph structure in this sim"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "xgi hypergraph library not needed; pairwise interactions only in this sim"
     },
     "gudhi": {
       "tried": true,

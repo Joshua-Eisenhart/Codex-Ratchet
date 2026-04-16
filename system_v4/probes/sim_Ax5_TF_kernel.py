@@ -28,6 +28,14 @@ import os, sys, json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: this validates the locked Ax5 kernel split against the ledger math, not as a canonical nonclassical proof object."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "density matrices, Bloch vectors, and trace-distance numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "locked matrix exponentials for the Ax5 gamma5 branch test"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density, von_neumann_entropy_2x2
@@ -356,6 +364,9 @@ def run_Ax5_validation():
             ),
             "verdict": verdict,
             "evidence_token": token_name,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "results": results,
         }, f, indent=2, default=str)
     print(f"  Results saved: {outpath}")

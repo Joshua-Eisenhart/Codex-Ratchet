@@ -24,6 +24,10 @@ import os, sys, json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: this checks the Ax3 density-path distinction on the geometry spine, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "vectorized density-path numerics for the Ax3 geometry spine"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import von_neumann_entropy_2x2
@@ -282,6 +286,9 @@ def run_Ax3_validation():
             "source": "AXIS_3_4_5_6_QIT_MATH.md",
             "verdict": verdict,
             "evidence_token": token_name,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "results": results,
         }, f, indent=2, default=str)
     print(f"  Results saved: {outpath}")

@@ -26,6 +26,11 @@ from datetime import datetime, UTC
 import numpy as np
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical foundation baseline: this operator-cut analysis stays on the numeric bridge surface and does not claim a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "density matrices, traces, and cut entropies for bridge-cut analysis"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -292,6 +297,9 @@ def main():
         "investigation_1_operator_per_cut": inv1_output,
         "investigation_2_initial_states": inv2_output,
         "finding": finding_text,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "timestamp": datetime.now(UTC).strftime("%Y-%m-%d"),
     }
 

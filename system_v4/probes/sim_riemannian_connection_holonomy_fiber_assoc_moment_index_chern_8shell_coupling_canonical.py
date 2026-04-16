@@ -16,7 +16,7 @@ This program couples eight geometric shells with torch-native operations:
 
 Q_RCHFAMICH = MI × H_riemannian × H_connection × H_holonomy × H_fiber × H_assoc × H_moment × H_index × H_chern
 
-classification: classical_baseline
+classification = "canonical"
 """
 
 import json
@@ -24,6 +24,8 @@ import math
 import os
 import torch
 import numpy as np
+
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -497,7 +499,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_riemannian_connection_holonomy_fiber_assoc_moment_index_chern_8shell_coupling_canonical",
         "description": "Coupling Program #70: Riemannian×Connection×Holonomy×Fiber×Associate×Moment×Index×Chern — 8-shell coupling with torch-native MI and eight entropy shells. Q_RCHFAMICH = MI × log(3) × log(2) × log(4) × log(2) × log(2) × log(3) × log(2) × log(4); autograd Axis 0 confirmed.",
-        "classification": "classical_baseline",
+        "classification": classification,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

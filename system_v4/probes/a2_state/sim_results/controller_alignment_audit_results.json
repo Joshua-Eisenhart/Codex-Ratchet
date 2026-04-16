@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-16T00:35:54.143711+00:00",
+  "generated_at": "2026-04-16T01:34:31.335503+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "sys_executable": "/opt/homebrew/opt/python@3.13/bin/python3.13",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.11.0",
+      "installed_version": "2.8.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "sympy": {
       "distribution": "sympy",
@@ -30,11 +30,11 @@
     "z3-solver": {
       "distribution": "z3-solver",
       "import_name": "z3",
-      "installed_version": "4.16.0.0",
+      "installed_version": null,
       "import_ok": true,
       "import_error": null,
       "required_floor": "4.16.0.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "cvc5": {
       "distribution": "cvc5",
@@ -129,20 +129,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "3.0.2",
+      "installed_version": "2.2.3",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.6.1",
+      "installed_version": "3.5",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": true
+      "meets_floor": false
     }
   },
   "known_env_risks": {
@@ -272,13 +272,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 1668,
+    "files_with_manifest_or_depth": 1701,
     "per_tool": {
       "pytorch": {
-        "tried_count": 712,
-        "used_count": 589,
-        "load_bearing_count": 367,
-        "depth_present_count": 534,
+        "tried_count": 745,
+        "used_count": 618,
+        "load_bearing_count": 394,
+        "depth_present_count": 563,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -329,6 +329,11 @@
           "coherence_measure_canonical_results.json",
           "coherent_info_erasure_canonical_results.json",
           "constraint_shells_binding_crosscheck_results.json",
+          "contact_clifford_mera_bridge_claims_canonical_results.json",
+          "contact_clifford_mera_emergence_quantities_results.json",
+          "contact_clifford_mera_pairwise_coupling_results.json",
+          "contact_clifford_mera_topology_variants_results.json",
+          "contact_clifford_mera_triple_coexistence_results.json",
           "contact_structure_s3_results.json",
           "contact_symplectic_coupling_results.json",
           "contact_symplectic_kahler_coexistence_results.json",
@@ -347,6 +352,16 @@
           "density_hopf_geometry_results.json",
           "derived_stack_bv_formalism_results.json",
           "derived_stack_gerbe_coupling_results.json",
+          "dirac_hopf_clifford_bridge_claims_canonical_results.json",
+          "dirac_hopf_clifford_emergence_quantities_results.json",
+          "dirac_hopf_clifford_pairwise_coupling_results.json",
+          "dirac_hopf_clifford_topology_variants_results.json",
+          "dirac_hopf_clifford_triple_coexistence_results.json",
+          "dirac_symplectic_weyl_bridge_claims_canonical_results.json",
+          "dirac_symplectic_weyl_emergence_quantities_results.json",
+          "dirac_symplectic_weyl_pairwise_coupling_results.json",
+          "dirac_symplectic_weyl_topology_variants_results.json",
+          "dirac_symplectic_weyl_triple_coexistence_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "e3nn_hopf_spinor_equivariance_results.json",
           "e3nn_ic_invariance_results.json",
@@ -483,6 +498,7 @@
           "sim_gerbe_dirac_mera_triple_coexistence_results.json",
           "sim_gerbe_dixmier_douady_class_results.json",
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
+          "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical_results.json",
           "sim_gerbe_z3_bounded_repair_results.json",
           "sim_gtower_emergence_casimir_invariants_results.json",
           "sim_gtower_emergence_commutator_structure_results.json",
@@ -520,6 +536,11 @@
           "sim_holographic_clifford_weyl_topology_variants_results.json",
           "sim_holographic_clifford_weyl_triple_coexistence_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_holographic_gerbe_hopf_bridge_claims_canonical_results.json",
+          "sim_holographic_gerbe_hopf_emergence_quantities_results.json",
+          "sim_holographic_gerbe_hopf_pairwise_coupling_results.json",
+          "sim_holographic_gerbe_hopf_topology_variants_results.json",
+          "sim_holographic_gerbe_hopf_triple_coexistence_results.json",
           "sim_holographic_weyl_pairwise_coupling_results.json",
           "sim_hopf_deep_berry_phase_admissibility_results.json",
           "sim_hopf_deep_s3_to_s2_partial_trace_consistency_results.json",
@@ -592,6 +613,7 @@
           "sim_weyl_b2_sp4_coupling_results.json",
           "sim_weyl_g2_exceptional_emergence_results.json",
           "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_gerbe_hopf_bridge_claims_canonical_results.json",
           "sim_weyl_group_a2_root_system_results.json",
           "sim_weyl_group_bc2_root_system_results.json",
           "sim_weyl_group_g2_shell_local_results.json",
@@ -605,6 +627,11 @@
           "sim_yinyang_axis7_12_extended_mapping_results.json",
           "sim_yinyang_carnot_szilard_geometry_results.json",
           "sim_yinyang_gtower_correspondence_results.json",
+          "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
+          "spectral_triple_contact_gerbe_emergence_quantities_results.json",
+          "spectral_triple_contact_gerbe_pairwise_coupling_results.json",
+          "spectral_triple_contact_gerbe_topology_variants_results.json",
+          "spectral_triple_contact_gerbe_triple_coexistence_results.json",
           "spectral_triple_mera_pairwise_coupling_results.json",
           "spectral_triple_weyl_coupling_results.json",
           "spectral_triple_weyl_mera_bridge_claims_canonical_results.json",
@@ -657,7 +684,7 @@
         ]
       },
       "pyg": {
-        "tried_count": 234,
+        "tried_count": 251,
         "used_count": 31,
         "load_bearing_count": 26,
         "depth_present_count": 41,
@@ -694,10 +721,10 @@
         ]
       },
       "z3": {
-        "tried_count": 774,
-        "used_count": 630,
-        "load_bearing_count": 544,
-        "depth_present_count": 612,
+        "tried_count": 807,
+        "used_count": 659,
+        "load_bearing_count": 577,
+        "depth_present_count": 645,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -736,6 +763,11 @@
           "chiral_density_bookkeeping_results.json",
           "constraint_manifold_L0_L1_results.json",
           "constraint_manifold_L2_L3_results.json",
+          "contact_clifford_mera_bridge_claims_canonical_results.json",
+          "contact_clifford_mera_emergence_quantities_results.json",
+          "contact_clifford_mera_pairwise_coupling_results.json",
+          "contact_clifford_mera_topology_variants_results.json",
+          "contact_clifford_mera_triple_coexistence_results.json",
           "contact_structure_s3_results.json",
           "contact_symplectic_coupling_results.json",
           "contact_symplectic_kahler_coexistence_results.json",
@@ -766,6 +798,16 @@
           "cvc5_shells_crosscheck_results.json",
           "derived_stack_bv_formalism_results.json",
           "derived_stack_gerbe_coupling_results.json",
+          "dirac_hopf_clifford_bridge_claims_canonical_results.json",
+          "dirac_hopf_clifford_emergence_quantities_results.json",
+          "dirac_hopf_clifford_pairwise_coupling_results.json",
+          "dirac_hopf_clifford_topology_variants_results.json",
+          "dirac_hopf_clifford_triple_coexistence_results.json",
+          "dirac_symplectic_weyl_bridge_claims_canonical_results.json",
+          "dirac_symplectic_weyl_emergence_quantities_results.json",
+          "dirac_symplectic_weyl_pairwise_coupling_results.json",
+          "dirac_symplectic_weyl_topology_variants_results.json",
+          "dirac_symplectic_weyl_triple_coexistence_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "distinguishability_relation_results.json",
           "engine_protocol_dag_results.json",
@@ -964,7 +1006,10 @@
           "sim_gerbe_dirac_pairwise_coupling_results.json",
           "sim_gerbe_dixmier_douady_class_results.json",
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
+          "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical_results.json",
+          "sim_gerbe_spectral_triple_clifford_emergence_quantities_results.json",
           "sim_gerbe_spectral_triple_clifford_pairwise_coupling_results.json",
+          "sim_gerbe_spectral_triple_clifford_topology_variants_results.json",
           "sim_gerbe_spectral_triple_clifford_triple_coexistence_results.json",
           "sim_gerbe_z3_bounded_repair_results.json",
           "sim_gtower_cvc5_parity_on_reduction_results.json",
@@ -1035,6 +1080,11 @@
           "sim_holographic_clifford_weyl_topology_variants_results.json",
           "sim_holographic_clifford_weyl_triple_coexistence_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_holographic_gerbe_hopf_bridge_claims_canonical_results.json",
+          "sim_holographic_gerbe_hopf_emergence_quantities_results.json",
+          "sim_holographic_gerbe_hopf_pairwise_coupling_results.json",
+          "sim_holographic_gerbe_hopf_topology_variants_results.json",
+          "sim_holographic_gerbe_hopf_triple_coexistence_results.json",
           "sim_holographic_weyl_pairwise_coupling_results.json",
           "sim_holonomy_connes_bridge_results.json",
           "sim_holonomy_group_classifies_gtower_shell_results.json",
@@ -1171,6 +1221,11 @@
           "sim_weyl_deep_pauli_joint_commute_unsat_results.json",
           "sim_weyl_g2_exceptional_emergence_results.json",
           "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_gerbe_hopf_bridge_claims_canonical_results.json",
+          "sim_weyl_gerbe_hopf_emergence_quantities_results.json",
+          "sim_weyl_gerbe_hopf_pairwise_coupling_results.json",
+          "sim_weyl_gerbe_hopf_topology_variants_results.json",
+          "sim_weyl_gerbe_hopf_triple_coexistence_results.json",
           "sim_weyl_group_a2_root_system_results.json",
           "sim_weyl_group_bc2_root_system_results.json",
           "sim_weyl_group_g2_shell_local_results.json",
@@ -1187,6 +1242,11 @@
           "sim_z3_deep_no_classical_stochastic_under_dephasing_weyl_commute_results.json",
           "spectral_triple_admissibility_first_order_results.json",
           "spectral_triple_connes_distance_results.json",
+          "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
+          "spectral_triple_contact_gerbe_emergence_quantities_results.json",
+          "spectral_triple_contact_gerbe_pairwise_coupling_results.json",
+          "spectral_triple_contact_gerbe_topology_variants_results.json",
+          "spectral_triple_contact_gerbe_triple_coexistence_results.json",
           "spectral_triple_gtower_reduction_spectrum_results.json",
           "spectral_triple_hopf_dirac_spectrum_results.json",
           "spectral_triple_mera_pairwise_coupling_results.json",
@@ -1253,7 +1313,7 @@
         ]
       },
       "cvc5": {
-        "tried_count": 261,
+        "tried_count": 278,
         "used_count": 61,
         "load_bearing_count": 47,
         "depth_present_count": 74,
@@ -1311,10 +1371,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 712,
-        "used_count": 535,
-        "load_bearing_count": 366,
-        "depth_present_count": 544,
+        "tried_count": 745,
+        "used_count": 562,
+        "load_bearing_count": 380,
+        "depth_present_count": 575,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -1345,6 +1405,8 @@
           "chiral_density_bookkeeping_results.json",
           "clifford_weyl_transport_results.json",
           "constraint_manifold_L0_L1_results.json",
+          "contact_clifford_mera_bridge_claims_canonical_results.json",
+          "contact_clifford_mera_emergence_quantities_results.json",
           "contact_symplectic_mera_bridge_claims_canonical_results.json",
           "contact_symplectic_mera_emergence_quantities_results.json",
           "coupling_fep_igt_results.json",
@@ -1356,6 +1418,10 @@
           "cptp_axioms_hardway_results.json",
           "derived_stack_bv_formalism_results.json",
           "derived_stack_gerbe_coupling_results.json",
+          "dirac_hopf_clifford_bridge_claims_canonical_results.json",
+          "dirac_hopf_clifford_emergence_quantities_results.json",
+          "dirac_symplectic_weyl_bridge_claims_canonical_results.json",
+          "dirac_symplectic_weyl_emergence_quantities_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "f01_compose_12_tensor_product_preserves_finiteness_results.json",
           "f01_compose_13_partial_trace_preserves_distinguishability_bound_results.json",
@@ -1495,6 +1561,8 @@
           "sim_gerbe_dixmier_douady_class_results.json",
           "sim_gerbe_higher_gauge_multishell_results.json",
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
+          "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical_results.json",
+          "sim_gerbe_spectral_triple_clifford_emergence_quantities_results.json",
           "sim_gerbe_z3_bounded_repair_results.json",
           "sim_gtower_couple_su2_x_pauli_algebra_results.json",
           "sim_gtower_deep_gl_invariant_volume_form_results.json",
@@ -1555,6 +1623,7 @@
           "sim_holodeck_lego_mutual_generation_results.json",
           "sim_holographic_clifford_weyl_bridge_claims_canonical_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_holographic_gerbe_hopf_bridge_claims_canonical_results.json",
           "sim_holonomy_connes_bridge_results.json",
           "sim_holonomy_spectral_coupling_results.json",
           "sim_hopf_connection_curvature_operators_results.json",
@@ -1635,6 +1704,9 @@
           "sim_weyl_deep_cross_cl3_vs_sympy_pauli_decomp_results.json",
           "sim_weyl_g2_exceptional_emergence_results.json",
           "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_gerbe_hopf_bridge_claims_canonical_results.json",
+          "sim_weyl_gerbe_hopf_emergence_quantities_results.json",
+          "sim_weyl_gerbe_hopf_pairwise_coupling_results.json",
           "sim_weyl_group_a2_root_system_results.json",
           "sim_weyl_group_bc2_root_system_results.json",
           "sim_weyl_group_g2_shell_local_results.json",
@@ -1648,6 +1720,8 @@
           "sim_yinyang_gtower_correspondence_results.json",
           "spectral_triple_chirality_grading_results.json",
           "spectral_triple_connes_distance_results.json",
+          "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
+          "spectral_triple_contact_gerbe_emergence_quantities_results.json",
           "spectral_triple_hopf_dirac_spectrum_results.json",
           "spectral_triple_noncomm_order_results.json",
           "spectral_triple_weyl_coupling_results.json",
@@ -1690,10 +1764,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 487,
-        "used_count": 239,
-        "load_bearing_count": 201,
-        "depth_present_count": 241,
+        "tried_count": 508,
+        "used_count": 253,
+        "load_bearing_count": 211,
+        "depth_present_count": 256,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -1722,6 +1796,11 @@
           "clifford_weyl_transport_results.json",
           "compound_operator_geometry_results.json",
           "constraint_manifold_L2_L3_results.json",
+          "contact_clifford_mera_bridge_claims_canonical_results.json",
+          "contact_clifford_mera_emergence_quantities_results.json",
+          "contact_clifford_mera_pairwise_coupling_results.json",
+          "contact_clifford_mera_topology_variants_results.json",
+          "contact_clifford_mera_triple_coexistence_results.json",
           "coupling_fep_igt_results.json",
           "coupling_fep_leviathan_results.json",
           "coupling_fep_sci_method_deep_results.json",
@@ -1893,6 +1972,11 @@
           "sim_yinyang_carnot_szilard_geometry_results.json",
           "sim_yinyang_gtower_correspondence_results.json",
           "spectral_triple_chirality_grading_results.json",
+          "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
+          "spectral_triple_contact_gerbe_emergence_quantities_results.json",
+          "spectral_triple_contact_gerbe_pairwise_coupling_results.json",
+          "spectral_triple_contact_gerbe_topology_variants_results.json",
+          "spectral_triple_contact_gerbe_triple_coexistence_results.json",
           "spectral_triple_gtower_reduction_spectrum_results.json",
           "spectral_triple_weyl_coupling_results.json",
           "spectral_triple_weyl_hopf_coupling_results.json",
@@ -1902,7 +1986,7 @@
         ]
       },
       "geomstats": {
-        "tried_count": 294,
+        "tried_count": 311,
         "used_count": 92,
         "load_bearing_count": 74,
         "depth_present_count": 100,
@@ -1988,7 +2072,7 @@
         ]
       },
       "e3nn": {
-        "tried_count": 262,
+        "tried_count": 279,
         "used_count": 55,
         "load_bearing_count": 50,
         "depth_present_count": 67,
@@ -2049,10 +2133,10 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 419,
-        "used_count": 223,
+        "tried_count": 444,
+        "used_count": 234,
         "load_bearing_count": 175,
-        "depth_present_count": 223,
+        "depth_present_count": 239,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -2239,10 +2323,10 @@
         ]
       },
       "xgi": {
-        "tried_count": 322,
-        "used_count": 130,
+        "tried_count": 347,
+        "used_count": 138,
         "load_bearing_count": 100,
-        "depth_present_count": 143,
+        "depth_present_count": 155,
         "anchor_stage_coverage": [
           "assembly",
           "topology",
@@ -2353,10 +2437,10 @@
         ]
       },
       "toponetx": {
-        "tried_count": 249,
-        "used_count": 42,
+        "tried_count": 274,
+        "used_count": 50,
         "load_bearing_count": 35,
-        "depth_present_count": 59,
+        "depth_present_count": 72,
         "anchor_stage_coverage": [
           "topology",
           "assembly"
@@ -2400,10 +2484,10 @@
         ]
       },
       "gudhi": {
-        "tried_count": 267,
-        "used_count": 70,
+        "tried_count": 285,
+        "used_count": 72,
         "load_bearing_count": 55,
-        "depth_present_count": 73,
+        "depth_present_count": 76,
         "anchor_stage_coverage": [
           "coexistence"
         ],

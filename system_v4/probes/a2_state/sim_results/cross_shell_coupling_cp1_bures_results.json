@@ -19,7 +19,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "Not relevant: pairwise coupling, no graph structure"
     },
     "z3": {
       "tried": true,
@@ -29,7 +29,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "Not relevant: z3 sufficient for scalar arithmetic UNSAT"
     },
     "sympy": {
       "tried": true,
@@ -44,32 +44,32 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Not relevant: torch eigendecomposition used directly"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "Not relevant: no SO(3) equivariance required"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "Not relevant: no graph"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "Not relevant: no hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "Not relevant: no simplicial/CW complex"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "Not relevant: no persistent homology"
     }
   },
   "tool_integration_depth": {
@@ -318,5 +318,5 @@
     },
     "interpretation": "CP1 and Bures geometry are pairwise compatible. The Fubini-Study metric on CP1 (holomorphic sectional curvature K=4) coincides with the Bures (quantum) metric restricted to pure qubit states. Three independent coupling functionals vanish simultaneously, establishing genuine cross-shell coupling not coincidental agreement. CF2 is exact: d_B=2sin(d_FS/2) follows from the half-angle identity applied to the Uhlmann fidelity. Mixing breaks CF1 continuously (F_Q=4r^2), providing a smooth witness for shell membership degradation."
   },
-  "timestamp": "2026-04-16T05:13:47.438853+00:00"
+  "timestamp": "2026-04-16T05:20:57.862041+00:00"
 }

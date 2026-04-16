@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T03:50:58.573248+00:00",
+  "timestamp": "2026-04-16T05:22:22.445569+00:00",
   "probe": "sim_negative_topology_graphs",
   "description": "Negative battery: topology + graph edge cases and failure modes",
   "n_tests": 10,
@@ -135,40 +135,40 @@
     {
       "description": "Negative edge weights in message passing",
       "positive_norms": [
-        3.0167,
-        4.5237,
-        7.3332,
-        12.1164,
-        20.2586,
-        34.3437,
-        59.231,
-        104.2424,
-        187.5506,
-        344.9576
+        4.2671,
+        7.1859,
+        12.8623,
+        23.6561,
+        44.4201,
+        84.8458,
+        164.2534,
+        321.1891,
+        632.616,
+        1252.2881
       ],
       "negative_norms": [
-        3.0167,
-        4.5237,
-        7.3332,
-        12.1164,
-        20.2586,
-        34.3437,
-        59.231,
-        104.2424,
-        187.5506,
-        344.9576
+        4.2671,
+        7.1859,
+        12.8623,
+        23.6561,
+        44.4201,
+        84.8458,
+        164.2534,
+        321.1891,
+        632.616,
+        1252.2881
       ],
       "mixed_norms": [
-        3.2076,
-        5.1338,
-        8.9629,
-        16.4284,
-        30.7863,
-        58.2196,
-        110.4926,
-        209.9892,
-        399.2922,
-        759.4037
+        3.7175,
+        5.761,
+        9.8411,
+        17.8406,
+        33.2747,
+        62.806,
+        119.1089,
+        226.3,
+        430.2603,
+        818.267
       ],
       "positive_converges": true,
       "negative_converges": true,
@@ -179,7 +179,7 @@
     },
     {
       "description": "No edges: isolated nodes. Message passing = zero output.",
-      "input_features_norm": 3.736936,
+      "input_features_norm": 3.569,
       "output_features_norm": 0.0,
       "output_is_zero": true,
       "status": "PASS",
@@ -198,68 +198,5 @@
       "verdict": "TopoNetX DEDUPLICATES identical faces (safe)",
       "test": "10_overlapping_faces"
     }
-  ],
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
-    }
-  }
+  ]
 }

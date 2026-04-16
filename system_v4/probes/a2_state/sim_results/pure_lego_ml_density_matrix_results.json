@@ -146,7 +146,7 @@
       "rbf"
     ],
     "all_entropy_computed": true,
-    "elapsed_s": 0.0010831356048583984
+    "elapsed_s": 0.0014331340789794922
   },
   "2_information_bottleneck": {
     "original_mi_bits": 0.15356065532886923,
@@ -197,7 +197,7 @@
     "quantum_mi_bits": 0.15356065532898455,
     "classical_vs_quantum_mi_match": "True",
     "mi_difference": 1.1532441668293814e-13,
-    "elapsed_s": 0.41647911071777344
+    "elapsed_s": 0.4951338768005371
   },
   "3_attention_density": {
     "row_stochastic": true,
@@ -225,7 +225,7 @@
     "is_unitary_channel": false,
     "trace_preserved_as_channel": true,
     "better_model": "CHANNEL",
-    "elapsed_s": 0.0003101825714111328
+    "elapsed_s": 0.00025773048400878906
   },
   "4_diffusion_open_system": {
     "quantum_entropy_monotone": true,
@@ -430,7 +430,7 @@
       }
     ],
     "max_entropy_bits": 2.0,
-    "elapsed_s": 0.0006380081176757812
+    "elapsed_s": 0.016549110412597656
   },
   "5_loss_hamiltonian": {
     "eigenvalues": [
@@ -474,7 +474,7 @@
     "temperature_ordering_ok": true,
     "anneal_converged_to_ground": true,
     "anneal_final_energy": -2.024495757749583,
-    "elapsed_s": 0.0013589859008789062
+    "elapsed_s": 0.008680105209350586
   },
   "6_representation_partial_trace": {
     "product_repr_valid": {
@@ -511,7 +511,7 @@
     "concurrence_entangled": 0.9999999937348322,
     "product_C_zero": true,
     "entangled_C_high": true,
-    "elapsed_s": 0.0011446475982666016
+    "elapsed_s": 0.014828920364379883
   },
   "name": "pure_lego_ml_density_matrix",
   "classification": "supporting",
@@ -535,62 +535,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- pure numpy/scipy compression probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no graph-native computation"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed -- no SMT proof layer in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- no second-solver layer here"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- no symbolic derivation in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- no geometric algebra in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- no manifold-statistics layer"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant network layer"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed -- no dependency DAG or routing graph"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph structure"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- no cell-complex topology"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- no persistent homology"
     }
   },
   "tool_integration_depth": {

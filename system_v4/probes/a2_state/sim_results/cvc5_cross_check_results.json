@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not relevant"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not relevant"
     },
     "z3": {
       "tried": true,
@@ -25,77 +25,77 @@
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not relevant"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not relevant"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not relevant"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not relevant"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not relevant"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not relevant"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not relevant"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not relevant"
     }
   },
   "positive": {
     "no_cloning": {
       "z3_result": "unsat",
-      "z3_time_s": 0.004506,
+      "z3_time_s": 0.007073,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.006758,
+      "cvc5_time_s": 0.015277,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "bloch_contraction": {
       "z3_result": "unsat",
-      "z3_time_s": 0.00153,
+      "z3_time_s": 0.002505,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.000948,
+      "cvc5_time_s": 0.001176,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "entanglement_death": {
       "z3_result": "unsat",
-      "z3_time_s": 0.000591,
+      "z3_time_s": 0.000861,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.000789,
+      "cvc5_time_s": 0.000909,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "noncommutation": {
       "z3_result": "unsat",
-      "z3_time_s": 0.000614,
+      "z3_time_s": 0.000894,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.00762,
+      "cvc5_time_s": 0.009515,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
@@ -105,36 +105,36 @@
     "no_cloning_closed_interval": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.011083,
+      "z3_time_s": 0.038611,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.078121,
+      "cvc5_time_s": 0.063741,
       "solvers_agree": true,
       "pass": true
     },
     "bloch_low_threshold": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.041437,
+      "z3_time_s": 0.037284,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.001107,
+      "cvc5_time_s": 0.01141,
       "solvers_agree": true,
       "pass": true
     },
     "entanglement_low_threshold": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.001914,
+      "z3_time_s": 0.016266,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.002193,
+      "cvc5_time_s": 0.002984,
       "solvers_agree": true,
       "pass": true
     },
     "noncommutation_degenerate_eigs": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.004426,
+      "z3_time_s": 0.00096,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.001173,
+      "cvc5_time_s": 0.00242,
       "solvers_agree": true,
       "pass": true
     }

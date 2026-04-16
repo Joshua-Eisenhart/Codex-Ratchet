@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- shells are nn.Module projectors"
     },
     "z3": {
       "tried": true,
@@ -19,27 +19,27 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 sufficient"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- all computation torch-native"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- Hopf done natively in torch"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- shell metrics computed directly"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant layers"
     },
     "rustworkx": {
       "tried": true,
@@ -49,12 +49,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- shells are nested DAG"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- topology via GUDHI"
     },
     "gudhi": {
       "tried": true,
@@ -334,7 +334,7 @@
     "v1_gudhi_was_trivial": "v1 embedded 2 points from 2x2 matrix; v2 uses trajectory cloud",
     "v1_z3_was_symbolic_only": "v1 checked Boolean implications; v2 checks actual state values"
   },
-  "elapsed_seconds": 1.554332971572876,
+  "elapsed_seconds": 2.490032911300659,
   "summary": {
     "total_tests": 13,
     "pass": 13,

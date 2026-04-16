@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "pairwise coupling graph not required at baseline level; excluded"
     },
     "z3": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient for product-zero pairwise exclusion; cvc5 not needed"
     },
     "sympy": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian manifold not needed for pairwise coupling baseline; excluded"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "E(3) equivariance not relevant to SSM pairwise coupling; excluded"
     },
     "rustworkx": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required for pairwise baseline coupling; excluded"
     }
   },
   "tool_integration_depth": {

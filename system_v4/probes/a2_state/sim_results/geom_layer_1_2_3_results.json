@@ -10,17 +10,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "sympy": {
       "tried": true,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "geomstats": {
       "tried": true,
@@ -40,27 +40,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for geometric constraint layers 1-3"
     }
   },
   "layer_1_density_matrices": {
@@ -579,11 +579,5 @@
       "note": "phi is fiber coord -> no gradient path through Hopf projection (correct)"
     }
   },
-  "all_pass": true,
-  "positive": {
-    "stub": "positive tests embedded in probe output above"
-  },
-  "negative": {
-    "stub": "negative tests embedded in probe output above"
-  }
+  "all_pass": true
 }

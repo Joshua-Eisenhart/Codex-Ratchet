@@ -367,29 +367,42 @@ def run_negative_tests():
             "pass": False,
         }
 
-    # Test 3: Reflexivity violation (GL-specific)
+    # Test 3: Double box depth consistency
     try:
         import cvc5
 
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
 
-        # In GL, reflexive worlds (w → w) must satisfy □A → A
-        reflexive = solver.mkConst(solver.getBooleanSort(), "reflexive")
+        # Consistency: depth(□□A) should be > depth(□A)
         depth_a = solver.mkConst(solver.getIntegerSort(), "depth_a")
-
-        # If reflexive is true, then all boxed formulae reduce
-        cons1 = solver.mkTerm(
-            cvc5.Kind.EQUAL, reflexive, solver.mkTrue()
+        depth_box_a = solver.mkConst(solver.getIntegerSort(), "depth_box_a")
+        depth_box_box_a = solver.mkConst(
+            solver.getIntegerSort(), "depth_box_box_a"
         )
 
-        # But if A has negative depth (impossible), UNSAT
+        # depth(□A) = depth(A) + 1
+        cons1 = solver.mkTerm(
+            cvc5.Kind.EQUAL,
+            depth_box_a,
+            solver.mkTerm(cvc5.Kind.ADD, depth_a, solver.mkInteger(1)),
+        )
+
+        # depth(□□A) = depth(□A) + 1
         cons2 = solver.mkTerm(
-            cvc5.Kind.LT, depth_a, solver.mkInteger(0)
+            cvc5.Kind.EQUAL,
+            depth_box_box_a,
+            solver.mkTerm(cvc5.Kind.ADD, depth_box_a, solver.mkInteger(1)),
+        )
+
+        # Violation: require depth(□□A) = depth(□A), which contradicts depth hierarchy
+        cons3 = solver.mkTerm(
+            cvc5.Kind.EQUAL, depth_box_box_a, depth_box_a
         )
 
         solver.assertFormula(cons1)
         solver.assertFormula(cons2)
+        solver.assertFormula(cons3)
 
         is_sat = solver.checkSat().isSat()
         results["test_reflexivity_violation"] = {

@@ -4,6 +4,21 @@ import subprocess
 import time
 import json
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical timing benchmark harness: this file measures SIM runtime plumbing only and is not a load-bearing math witness."
+TOOL_MANIFEST = {
+    "os": {"tried": True, "used": True, "reason": "filesystem traversal and output-path creation for the benchmark harness"},
+    "glob": {"tried": True, "used": True, "reason": "probe file discovery for the benchmark harness"},
+    "subprocess": {"tried": True, "used": True, "reason": "launching each sim as a child process for timing"},
+    "time": {"tried": True, "used": True, "reason": "wall-clock duration measurement for each sim run"},
+    "json": {"tried": True, "used": True, "reason": "serializing benchmark results to JSON"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "os": "supportive",
+    "glob": "supportive",
+    "subprocess": "supportive",
+    "time": "supportive",
+    "json": "supportive",
+}
 
 PROBES_DIR = "system_v4/probes"
 EXCLUDES = ["sim_timing_benchmark.py", "autoresearch_sim_harness.py", "exploratory_process_cycle_stage_matrix_sim.py", "stage_matrix_neg_lib.py"]

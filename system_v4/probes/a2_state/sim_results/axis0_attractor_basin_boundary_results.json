@@ -1,6 +1,84 @@
 {
-  "timestamp": "2026-04-16T11:48:16.832193+00:00",
+  "timestamp": "2026-04-16T12:02:08.098989+00:00",
   "probe": "sim_axis0_attractor_basin_boundary",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this probes Axis-0 attractor boundary behavior numerically on the engine trajectory. The trajectory-boundary verdicts are preserved, and a deep contract now binds the boundary surfaces to the same shell bridge, graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "trajectory statistics and boundary-surface numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "boundary-surface expansion propagator witness"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness over boundary surfaces"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "deep attractor-boundary winner-vector carrier check"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "deep attractor-boundary winner-vector roundtrip witness in geometric algebra space"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "deep ordered DAG witness over attractor-boundary surfaces"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "deep hypergraph witness over attractor-boundary surfaces"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "deep cell-complex witness over attractor-boundary surfaces"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "deep topology witness over attractor-boundary surfaces"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "deep symbolic attractor-boundary witness over shell expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "deep attractor-boundary ordering constraint witness"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "deep manifold witness over attractor-boundary surfaces"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
   "q1_trajectory_lr_asym": {
     "configs": [
       {
@@ -357,12 +435,14 @@
           {
             "step_idx": 5,
             "lr_asym": 0.9710414016600907,
-            "norm_cyz": -0.9976793389408442
+            "norm_cyz": -0.9976793389408442,
+            "isolated_delta_lr_asym": -0.08963058430861537
           },
           {
             "step_idx": 6,
             "lr_asym": 0.9759537283910251,
-            "norm_cyz": -0.9999662998821437
+            "norm_cyz": -0.9999662998821437,
+            "isolated_delta_lr_asym": -0.06481538360388395
           }
         ]
       },
@@ -374,12 +454,14 @@
           {
             "step_idx": 5,
             "lr_asym": 0.9771921374635161,
-            "norm_cyz": -0.9973361340154078
+            "norm_cyz": -0.9973361340154078,
+            "isolated_delta_lr_asym": -0.06632706625909279
           },
           {
             "step_idx": 6,
             "lr_asym": 0.9828727831927354,
-            "norm_cyz": -0.9999580685685008
+            "norm_cyz": -0.9999580685685008,
+            "isolated_delta_lr_asym": -0.043628950719431625
           }
         ]
       },
@@ -391,16 +473,319 @@
           {
             "step_idx": 5,
             "lr_asym": 0.9830274544373856,
-            "norm_cyz": -0.9965834498377752
+            "norm_cyz": -0.9965834498377752,
+            "isolated_delta_lr_asym": -0.04432539197922991
           },
           {
             "step_idx": 6,
             "lr_asym": 0.9897354608347569,
-            "norm_cyz": -0.9999089184794687
+            "norm_cyz": -0.9999089184794687,
+            "isolated_delta_lr_asym": -0.022542418313904244
           }
         ]
       }
     ]
+  },
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.0,
+    "jk_fuzz_dynamic": 2.999999937788565,
+    "lambda_density_mean": 1.0,
+    "dark_energy_pressure_mean": 1.0,
+    "gravity_response_mean": 1.0,
+    "final_scale_factor": 2.999999999999999,
+    "mean_hubble_proxy": 1.115022328076172,
+    "mean_acceleration_proxy": -1.0208993632849026,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 1.0000000000008598,
+      "symbolic_acceleration_mid": 8.043343768804334e-12,
+      "symbolic_dark_energy_mid": 1.0000000000006184
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.0,
+      "max_geodesic_distance": 0.0,
+      "mean_norm": 1.0
+    },
+    "torch_fit": {
+      "weights": [
+        0.5383407760253907,
+        0.5383407760253907
+      ],
+      "bias": 0.038340776025390697,
+      "loss": 0.13623975858108436,
+      "max_gap": 0.6441786698901701
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 2.640228280448298e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "ti_boundary_surface",
+      "candidate_universe_size": 6,
+      "frontier_size": 6,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "ti_boundary_surface",
+          "mean_abs_a0": 0.9344761904761905,
+          "mean_signed_a0": 0.1674775152504076,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 1.0,
+          "composite_score": 0.8,
+          "mean_signal": 0.9344761904761905,
+          "scale_factor": 1.0,
+          "hubble_proxy": 1.622918825687006
+        },
+        {
+          "option": "trajectory_variation_surface",
+          "mean_abs_a0": 0.9172734202551106,
+          "mean_signed_a0": 0.11608078912014363,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.981591002107487,
+          "composite_score": 0.7935568507376205,
+          "mean_signal": 0.9172734202551106,
+          "scale_factor": 1.383454684051022,
+          "hubble_proxy": 1.3111101035610153
+        },
+        {
+          "option": "attractor_margin_surface",
+          "mean_abs_a0": 0.5303230021906318,
+          "mean_signed_a0": 0.5303230021906318,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.5675083084999627,
+          "composite_score": 0.6486279079749869,
+          "mean_signal": 0.5303230021906318,
+          "scale_factor": 1.6895192844891485,
+          "hubble_proxy": 0.8902572240431599
+        },
+        {
+          "option": "forward_bridge_surface",
+          "mean_abs_a0": 0.42857142857142855,
+          "mean_signed_a0": 0.42857142857142855,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.4586220953933958,
+          "composite_score": 0.6105177333876886,
+          "mean_signal": 0.42857142857142855,
+          "scale_factor": 1.9752335702034343,
+          "hubble_proxy": 0.6480949337745576
+        },
+        {
+          "option": "cross_temporal_gap_surface",
+          "mean_abs_a0": 0.07142857142857142,
+          "mean_signed_a0": 0.07142857142857142,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.0764370158988993,
+          "composite_score": 0.4767529555646148,
+          "mean_signal": 0.07142857142857142,
+          "scale_factor": 2.1895192844891485,
+          "hubble_proxy": 0.48754014951450686
+        },
+        {
+          "option": "te_sequence_surface",
+          "mean_abs_a0": 0.05521163253069298,
+          "mean_signed_a0": -0.05521163253069298,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.05908297406973872,
+          "composite_score": 0.47067904092440854,
+          "mean_signal": 0.05521163253069298,
+          "scale_factor": 2.400561610995287,
+          "hubble_proxy": 0.46010349813119256
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 9,
+        "longest_path_length": 5,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "path_budget": 4
+      },
+      "hypergraph_surface": {
+        "num_edges": 1,
+        "max_hyperedge_size": 3,
+        "connected_components": 4,
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true,
+        "loop_budget": 3
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "5.92139234238311*lam**5 - 14.6583582679377*lam**4 + 12.8569660976639*lam**3 - 5.28778246982301*lam**2 + 2.56834390870883*lam + 1.0",
+        "expansion_drive_polynomial": "60.7407278644574*lam**5 - 152.615221881457*lam**4 + 136.042256982638*lam**3 - 50.8038250045522*lam**2 + 5.75679748096805*lam + 1.93447619047619",
+        "scale_poly_degree": 5,
+        "drive_poly_degree": 5,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.7858274525196279,
+        "symbolic_acceleration_mid": -1.176260594509813,
+        "symbolic_drive_mid": 1.4768971808251266
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.29051940594111464,
+          0.0,
+          0.956869100123743
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.6070592080810214,
+        "max_geodesic_distance": 1.27602671556457
+      },
+      "torch_fit": {
+        "weights": [
+          1.1683332107366786,
+          0.41569150011462586,
+          0.5
+        ],
+        "bias": -0.08430849988537413,
+        "loss": 0.015885225984065304,
+        "max_gap": 0.19975625748172665
+      },
+      "winner_vector": [
+        0.9344761904761905,
+        1.0,
+        0.0
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 6.289709197915272e-09,
+      "scale_factors": [
+        1.0,
+        1.383454684051022,
+        1.6895192844891485,
+        1.9752335702034343,
+        2.1895192844891485,
+        2.400561610995287
+      ],
+      "hubble_proxy": [
+        1.622918825687006,
+        1.3111101035610153,
+        0.8902572240431599,
+        0.6480949337745576,
+        0.48754014951450686,
+        0.46010349813119256
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
   },
   "summary": {
     "q1_lr_asym_varies": "lr_asym is NOT constant on the trajectory. Mean ~0.94, std ~0.10, min ~0.62. Instantaneous MI changes ARE non-zero. But lr_asym stays far above the Ti failure boundary.",
@@ -410,5 +795,7 @@
     "te_inversion_resolution": "Te steps on attractor: norm_cyz = -1 (anti-parallel y-z Bloch), \u0394lr_asym < 0 in isolation. Te DECREASES lr_asym when applied alone. But forward MI co-arising for Te is 75-87.5%. Resolution: the forward bridge is MI(rho_L_Te_output, rho_R[t+1]) where rho_R[t+1] is the NEXT step's Fi-processed right spinor. The co-arising emerges from the SEQUENCE property: Fi follows Te, and the Fi-processed right spinor at t+1 maintains high lr_asym with the Te-processed left spinor, allowing forward MI to track ga0 changes.",
     "unified_attractor_mechanism": "The 87-90% forward co-arising is an attractor SEQUENCE property: (1) High baseline lr_asym (~0.94 mean) keeps instantaneous MI near maximum. (2) Ti never fails on the attractor (lr_asym >> failure threshold 0.05). (3) Forward MI MI(L[t], R[t+1]) tracks the periodic Ti/Fe/Te/Fi orbit \u2014 the next step's right spinor is always the 'right' complement for the current left. (4) The 4-step EC-3 structure (Ti\u2192Fe\u2192Te\u2192Fi) creates a periodic pattern where the forward pairing is systematically aligned with the ga0 trajectory.",
     "open_proof": "OPEN: Prove the forward pairing produces 100% co-arising on the periodic orbit. Current result: ~87-90% per step (4 failures per 32-step cycle, all at Fe/Te/Fi). The 12/12 T3 cross-correlation result is a weaker claim \u2014 peak at lag=0 \u2014 not per-step universal co-arising. The per-step failures are not contradictions."
-  }
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

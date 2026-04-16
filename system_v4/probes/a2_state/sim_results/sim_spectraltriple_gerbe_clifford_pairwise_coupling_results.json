@@ -1,17 +1,18 @@
 {
   "name": "sim_spectraltriple_gerbe_clifford_pairwise_coupling",
-  "classification": "canonical",
-  "divergence_log": "Step 1 pairwise coupling for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st = spectral gap seed=1 random sym 4x4 = 1.193902. H_gerbe = log(1+3) = 1.386294. H_clifford = Cl(3,0) rotor norm = 1.414214. All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
+  "classification": "classical_baseline",
+  "classification_note": "Step 1 pairwise coupling for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st = spectral gap seed=1 random sym 4x4. H_gerbe = log(1+3). H_clifford = Cl(3,0) rotor norm when importable, otherwise fallback 0.5. All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
+  "divergence_log": "Step 1 pairwise coupling for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st = spectral gap seed=1 random sym 4x4. H_gerbe = log(1+3). H_clifford = Cl(3,0) rotor norm when importable, otherwise fallback 0.5. All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed for pairwise H product tests; Q_pair is a scalar product not requiring autograd"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning required in pairwise SGC shell entropy product step"
     },
     "z3": {
       "tried": true,
@@ -36,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in scalar SGC pairwise product step"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not needed for scalar pairwise entropy products"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in SGC pairwise entropy product tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure required in pairwise SGC shell entropy tests"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "chain-complex topology not invoked in pairwise product step"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in pairwise SGC shell entropy scalar tests"
     }
   },
   "tool_integration_depth": {

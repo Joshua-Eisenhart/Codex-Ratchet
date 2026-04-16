@@ -1,6 +1,7 @@
 {
   "name": "sim_hopf_dirac_contact_topology_variants",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "Hopf\u00d7Dirac\u00d7Contact topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
   "divergence_log": "Topology variants step of Hopf\u00d7Dirac\u00d7Contact (23rd program). T1(flat): H_hopf=0.346574. T2(S\u00b2): H_hopf=0.693147. T3(lens): H_hopf=0.231049. H_dirac=0.336783 (stable). H_contact=2.833213 (stable). DPI: Q_T2 > Q_T1 > Q_T3 confirmed. z3 UNSAT: equal Q with different H_hopf impossible. sympy: dQ/dh = MI*Hd*Hc > 0 (monotone). pytorch: float64 Q per variant.",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph learning not required in topology variant entropy computation; deferred to emergence step"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 UNSAT is sufficient for topology-sensitivity proof; cvc5 not needed at variants step"
     },
     "sympy": {
       "tried": true,
@@ -31,27 +32,27 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "Hopf holonomy captured as scalar H_hopf per variant; Cl(3,0) rotors not invoked here"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "Riemannian geometry not needed for scalar topology-variant entropy product tests"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not required for topology label to entropy scalar mapping"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal required in per-topology Q computation"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure required for topology-variant entropy variants"
     },
     "toponetx": {
       "tried": true,
@@ -61,22 +62,22 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not needed for T1/T2/T3 Euler-class scalar encoding"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": "supportive",
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_hopf_T1": 0.34657359027997264,
@@ -146,21 +147,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

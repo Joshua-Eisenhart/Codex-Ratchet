@@ -1,7 +1,19 @@
 {
   "name": "Axis 0 Through Constraint Shells -- Differentiable Dykstra",
   "classification": "canonical",
+  "classification_backfill": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this probes differentiable Dykstra shell mechanics numerically. The gradient-through-shells verdicts are preserved, and a deep contract now binds the shell-mechanics surfaces to the same shell bridge, graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "shell-mechanics aggregates and candidate-surface scoring"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "expansion propagator witness for shell-mechanics ordering"
+    },
     "pytorch": {
       "tried": true,
       "used": true,
@@ -14,8 +26,8 @@
     },
     "z3": {
       "tried": true,
-      "used": false,
-      "reason": "post-hoc check that projected state satisfies shell constraints"
+      "used": true,
+      "reason": "legacy shell verification plus deep shell-ordering constraint witness"
     },
     "cvc5": {
       "tried": false,
@@ -23,19 +35,24 @@
       "reason": "not needed -- z3 sufficient"
     },
     "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- all computation torch-native"
+      "tried": true,
+      "used": true,
+      "reason": "symbolic shell-mechanics witness over the Dykstra frontier"
     },
     "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- Bloch/Pauli done in torch"
+      "tried": true,
+      "used": true,
+      "reason": "deep shell-mechanics winner-vector carrier check"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "deep shell-mechanics winner-vector roundtrip witness in geometric algebra space"
     },
     "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "tried": true,
+      "used": true,
+      "reason": "deep manifold witness over shell-mechanics surfaces"
     },
     "e3nn": {
       "tried": false,
@@ -48,22 +65,386 @@
       "reason": "topological sort drives shell projection order"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- shells are nested DAG"
+      "tried": true,
+      "used": true,
+      "reason": "deep hypergraph witness over shell-mechanics surfaces"
     },
     "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no cell complex here"
+      "tried": true,
+      "used": true,
+      "reason": "deep cell-complex witness over shell-mechanics surfaces"
     },
     "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- persistence not the focus"
+      "tried": true,
+      "used": true,
+      "reason": "deep topology witness over shell-mechanics surfaces"
     }
   },
-  "elapsed_seconds": 0.34706974029541016,
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "clifford": "load_bearing",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": "load_bearing",
+    "torch_ga": "load_bearing",
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "elapsed_seconds": 1.584151029586792,
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.02947145190205047,
+    "jk_fuzz_dynamic": 2.261127732148754,
+    "lambda_density_mean": 1.1487705626936435,
+    "dark_energy_pressure_mean": 1.2302859252067226,
+    "gravity_response_mean": 1.231754320473392,
+    "final_scale_factor": 3.5280652941727944,
+    "mean_hubble_proxy": 1.254510768736992,
+    "mean_acceleration_proxy": -1.1283938575615544,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 1.2484526912751694,
+      "symbolic_acceleration_mid": 2.9585926544132235,
+      "symbolic_dark_energy_mid": 1.3877848664811268
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.390792850991338,
+      "max_geodesic_distance": 1.4101744445799922,
+      "mean_norm": 1.0
+    },
+    "torch_fit": {
+      "weights": [
+        1.0806688293525586,
+        -0.6099682808696066
+      ],
+      "bias": 0.6763101876256176,
+      "loss": 0.16199624694697431,
+      "max_gap": 0.6835416107574266
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 4.22568935398715e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "extreme_stability_surface",
+      "candidate_universe_size": 8,
+      "frontier_size": 8,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "extreme_stability_surface",
+          "mean_abs_a0": 2.5103922550616686,
+          "mean_signed_a0": 2.5103922550616686,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 1.0,
+          "composite_score": 0.8,
+          "mean_signal": 2.5103922550616686,
+          "scale_factor": 1.0,
+          "hubble_proxy": 1.9674662834194936
+        },
+        {
+          "option": "gradient_survival_surface",
+          "mean_abs_a0": 1.2717928188714471,
+          "mean_signed_a0": -0.1621351512386512,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.506611194448656,
+          "composite_score": 0.6273139180570296,
+          "mean_signal": 1.2717928188714471,
+          "scale_factor": 1.3245418312673496,
+          "hubble_proxy": 1.6673763582533774
+        },
+        {
+          "option": "z3_projection_surface",
+          "mean_abs_a0": 1.0,
+          "mean_signed_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.39834412251062123,
+          "composite_score": 0.5894204428787174,
+          "mean_signal": 1.0,
+          "scale_factor": 1.6102561169816352,
+          "hubble_proxy": 1.2553246349051423
+        },
+        {
+          "option": "shell_identity_surface",
+          "mean_abs_a0": 0.9999999999999992,
+          "mean_signed_a0": -7.771561172376096e-16,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.3983441225106209,
+          "composite_score": 0.5894204428787173,
+          "mean_signal": 0.9999999999999992,
+          "scale_factor": 1.8959704026959208,
+          "hubble_proxy": 1.062963517544109
+        },
+        {
+          "option": "mixed_state_null_surface",
+          "mean_abs_a0": 0.9999959708684357,
+          "mean_signed_a0": -4.029178192020052e-06,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.39834251752974376,
+          "composite_score": 0.5894198811354103,
+          "mean_signal": 0.9999959708684357,
+          "scale_factor": 2.181684112819983,
+          "hubble_proxy": 0.7132717090328895
+        },
+        {
+          "option": "shell_difference_surface",
+          "mean_abs_a0": 1.9984014443252818e-15,
+          "mean_signed_a0": 7.401486830834377e-17,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 7.960514697637124e-16,
+          "composite_score": 0.4500000000000003,
+          "mean_signal": 1.9984014443252818e-15,
+          "scale_factor": 2.324541255677126,
+          "hubble_proxy": 0.4307352288204105
+        },
+        {
+          "option": "dykstra_refinement_surface",
+          "mean_abs_a0": 0.0,
+          "mean_signed_a0": 0.0,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.0,
+          "composite_score": 0.45,
+          "mean_signal": 0.0,
+          "scale_factor": 2.467398398534269,
+          "hubble_proxy": 0.35752029223528936
+        },
+        {
+          "option": "constraint_awareness_surface",
+          "mean_abs_a0": 0.0,
+          "mean_signed_a0": -0.0001514779719444177,
+          "doctrine_fit": 0.75,
+          "sign_consistency": 0.75,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.0,
+          "composite_score": 0.3375,
+          "mean_signal": 0.0,
+          "scale_factor": 2.574541255677126,
+          "hubble_proxy": 0.2975493465303428
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 13,
+        "longest_path_length": 7,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            5,
+            6,
+            7
+          ]
+        ],
+        "path_budget": 6
+      },
+      "hypergraph_surface": {
+        "num_edges": 1,
+        "max_hyperedge_size": 3,
+        "connected_components": 6,
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true,
+        "loop_budget": 4
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-232.919963529088*lam**7 + 785.786697416544*lam**6 - 1032.91291678899*lam**5 + 667.008774529088*lam**4 - 219.48899890599*lam**3 + 33.727158505661*lam**2 + 0.373790028447672*lam + 1.0",
+        "expansion_drive_polynomial": "-2427.76906134503*lam**7 + 8080.63650067652*lam**6 - 10540.4308994665*lam**5 + 6858.20144104186*lam**4 - 2356.34687486387*lam**3 + 419.527359555663*lam**2 - 36.5788578536934*lam + 3.51039225506167",
+        "scale_poly_degree": 7,
+        "drive_poly_degree": 7,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.0060358738703938,
+        "symbolic_acceleration_mid": -4.626042567771606,
+        "symbolic_drive_mid": 2.101567847247921
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.18245864558359956,
+          0.009393208722853066,
+          0.9831686581058651
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.5538809589025677,
+        "max_geodesic_distance": 1.3871630654482454
+      },
+      "torch_fit": {
+        "weights": [
+          0.6596792545211588,
+          0.5129991222311573,
+          0.5
+        ],
+        "bias": -0.08719999533487512,
+        "loss": 0.043468678127062,
+        "max_gap": 0.4026018926986159
+      },
+      "winner_vector": [
+        2.5103922550616686,
+        1.0,
+        0.0
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 6.6035789725305e-08,
+      "scale_factors": [
+        1.0,
+        1.3245418312673496,
+        1.6102561169816352,
+        1.8959704026959208,
+        2.181684112819983,
+        2.324541255677126,
+        2.467398398534269,
+        2.574541255677126
+      ],
+      "hubble_proxy": [
+        1.9674662834194936,
+        1.6673763582533774,
+        1.2553246349051423,
+        1.062963517544109,
+        0.7132717090328895,
+        0.4307352288204105,
+        0.35752029223528936,
+        0.2975493465303428
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  },
+  "legacy_all_pass": true,
+  "overall_pass": true,
   "all_pass": true,
   "positive": {
     "P1_gradient_exists_after_shells": {

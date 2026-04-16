@@ -1,17 +1,18 @@
 {
   "name": "sim_spectraltriple_gerbe_clifford_triple_coexistence",
-  "classification": "canonical",
-  "divergence_log": "Step 2 triple coexistence for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st = spectral gap seed=1 = 1.193902. H_gerbe = log(1+3) = 1.386294. H_clifford = Cl(3,0) rotor = 1.414214. Normalize H via h/(1+h). Joint product \u2264 each pairwise product confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). sympy: a*b*(1-c) \u2265 0 for c \u2264 1.",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence step of SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st, H_gerbe, and H_clifford are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "divergence_log": "Triple coexistence step of SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). H_st, H_gerbe, and H_clifford are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed for coexistence normalization test; H values are scalar floats"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning required in SGC triple coexistence normalization step"
     },
     "z3": {
       "tried": true,
@@ -36,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in scalar normalization coexistence test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not needed for scalar normalized product coexistence"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in SGC coexistence normalization step"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure required in triple coexistence normalized product test"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "chain-complex topology not invoked in coexistence normalization inequality step"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in triple coexistence scalar normalization test"
     }
   },
   "tool_integration_depth": {

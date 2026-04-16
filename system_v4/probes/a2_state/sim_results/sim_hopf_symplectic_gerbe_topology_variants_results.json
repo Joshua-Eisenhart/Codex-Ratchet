@@ -1,17 +1,18 @@
 {
   "name": "sim_hopf_symplectic_gerbe_topology_variants",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "Hopf\u00d7Symplectic\u00d7Gerbe topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
   "divergence_log": "Step 3 topology variants for Hopf\u00d7Symplectic\u00d7Gerbe (27th program). T1 S\u00b3 H_hopf=log(2)/2, T2 S\u00b2 H_hopf=log(2), T3 lens H_hopf=log(2)/3. H_symp and H_gerbe topology-stable (fixed parameters). H_hopf topology-variant: T3 < T1 < T2 ordering confirmed. DPI confirmed: MI_input > MI_final (eps=0.3, seed=0). z3 UNSAT: MI=1 AND Q=0 impossible given all H > 0. sympy: four-factor zero-collapse verified.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed for topology variant Hopf holonomy entropy tests; values are analytic"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning required in HSG topology variant step"
     },
     "z3": {
       "tried": true,
@@ -31,37 +32,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "Clifford algebra rotor not invoked; H_hopf varies analytically by topology class"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in Hopf holonomy topology variant entropy test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not needed for Hopf topology variant entropy scalars"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in HSG topology variant entropy tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure required in Hopf topology variant shell entropy tests"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "CellComplex exercised in other steps; not needed for analytic Hopf holonomy variants"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in HSG Hopf topology variant entropy scalar tests"
     }
   },
   "tool_integration_depth": {

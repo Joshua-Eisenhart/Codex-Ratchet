@@ -1,17 +1,18 @@
 {
   "name": "sim_spectraltriple_gerbe_clifford_emergence_quantities",
-  "classification": "canonical",
-  "divergence_log": "Step 4 emergence quantities for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). E1-E3 single shell: Q=0 (absent shells zero out product). E4-E6 pairwise without MI: Q=0. E7 full triple+MI: Q_SGC > 0 \u2014 emergence confirmed. Q_SGC = MI \u00d7 H_st \u00d7 H_gerbe \u00d7 H_clifford. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor zero-collapse verified.",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline SpectralTriple\u00d7Gerbe\u00d7Clifford emergence probe: this file checks scalar emergence quantities with z3, sympy, and clifford support where available, but it does not claim a canonical nonclassical witness.",
+  "divergence_log": "Classical baseline SpectralTriple\u00d7Gerbe\u00d7Clifford emergence probe: this file checks scalar emergence quantities with z3, sympy, and clifford support where available, but it does not claim a canonical nonclassical witness.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed for emergence quantity tests; E1-E7 are scalar products"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning required in SGC emergence quantity scalar tests"
     },
     "z3": {
       "tried": true,
@@ -36,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in scalar SGC emergence product tests"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not needed for scalar emergence quantity tests"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in SGC emergence scalar quantity tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure required in SGC emergence E1-E7 scalar tests"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "chain-complex topology exercised in other steps; not needed in emergence scalar tests"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in SGC emergence E1-E7 scalar product tests"
     }
   },
   "tool_integration_depth": {

@@ -1,17 +1,18 @@
 {
   "name": "sim_spectraltriple_gerbe_clifford_topology_variants",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "SpectralTriple\u00d7Gerbe\u00d7Clifford topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
   "divergence_log": "Step 3 topology variants for SpectralTriple\u00d7Gerbe\u00d7Clifford (28th program). T1 \u03b8=\u03c0/4, T2 \u03b8=\u03c0/2, T3 \u03b8=\u03c0/6 \u2014 H_clifford varies with rotor angle. H_st = 1.193902 (topology-stable, spectral gap seed=1). H_gerbe = 1.386294 (topology-stable, log(1+3)). H_clifford topology-variant: varies with \u03b8 via Cl(3,0) rotor norm. DPI confirmed: MI_input > MI_final (eps=0.3, seed=0). z3 UNSAT: MI=1 AND Q=0 impossible given all H > 0. sympy: four-factor zero-collapse verified.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed for topology variant Clifford angle entropy tests; values are analytic"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning required in SGC topology variant step"
     },
     "z3": {
       "tried": true,
@@ -36,17 +37,17 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in Clifford angle topology variant entropy test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariant networks not needed for Clifford topology variant entropy scalars"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in SGC topology variant entropy tests"
     },
     "xgi": {
       "tried": true,
@@ -56,12 +57,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "CellComplex exercised in other steps; not needed for Clifford angle variants"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in SGC Clifford topology variant entropy scalar tests"
     }
   },
   "tool_integration_depth": {

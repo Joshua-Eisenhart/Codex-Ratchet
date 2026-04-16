@@ -13,6 +13,12 @@ from _coupling_template import (
     run_positive_tests, run_negative_tests, run_boundary_tests, main,
 )
 
+classification = "canonical"
+TOOL_MANIFEST = {
+    "z3": {"tried": True, "used": True, "reason": "joint admissibility SMT (load-bearing)"},
+}
+TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
+
 A, B = "holodeck", "igt"
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 try:
     import sympy as sp
@@ -33,7 +33,6 @@ except ImportError:  # pragma: no cover
 
 EPS = 1e-10
 
-CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Canonical local lego for a finite admissible probe object represented by a "
     "bounded family of effect operators on a qubit carrier."
@@ -52,9 +51,9 @@ PRIMARY_LEGO_IDS = [
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed -- bounded linear-algebra probe lego"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
-    "z3": {"tried": Solver is not None, "used": Solver is not None, "reason": "bounded scalar witness for nontrivial two-outcome probe separation" if Solver is not None else "not installed"},
+    "z3": {"tried": False, "used": False, "reason": "not installed"},
     "cvc5": {"tried": False, "used": False, "reason": "not needed for this smallest local probe admission lego"},
-    "sympy": {"tried": sp is not None, "used": sp is not None, "reason": "exact symbolic identity-resolution check" if sp is not None else "not installed"},
+    "sympy": {"tried": False, "used": False, "reason": "not installed"},
     "clifford": {"tried": False, "used": False, "reason": "not needed"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed"},
     "e3nn": {"tried": False, "used": False, "reason": "not needed"},
@@ -65,10 +64,22 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 if Solver is not None:
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+    TM["z3"] = {
+        "tried": True,
+        "used": True,
+        "reason": "bounded scalar witness for nontrivial two-outcome probe separation",
+    }
+    DEPTH["z3"] = "load_bearing"
 if sp is not None:
-    TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
+    TM["sympy"] = {
+        "tried": True,
+        "used": True,
+        "reason": "exact symbolic identity-resolution check",
+    }
+    DEPTH["sympy"] = "supportive"
 
 
 def is_hermitian(m):
@@ -208,12 +219,12 @@ def main():
 
     results = {
         "name": "probe_object",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": classification if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "tool_manifest": TOOL_MANIFEST,
-        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TM,
+        "tool_integration_depth": DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

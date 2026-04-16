@@ -207,18 +207,23 @@ def run_negative_tests() -> Dict[str, Any]:
 
     # Negative test 1: Negative cell count
     # Claim: ∃ CW complex with c_0 = -1.
+    # Constraint: c_k ≥ 0 for all k (can't have negative cells).
     # cvc5 should prove this UNSAT.
     solver1 = cvc5.Solver()
     solver1.setLogic("QF_LIA")
 
     c0 = solver1.mkConst(solver1.getIntegerSort(), "c0")
+    # Mandatory constraint: c_0 ≥ 0
+    constraint1 = solver1.mkTerm(Kind.GEQ, c0, solver1.mkInteger(0))
+    # Violating assertion: c_0 = -1
     assertion1 = solver1.mkTerm(Kind.EQUAL, c0, solver1.mkInteger(-1))
+    solver1.assertFormula(constraint1)
     solver1.assertFormula(assertion1)
 
     result1 = solver1.checkSat()
     test1 = {
         "name": "CW negative test: c_0 < 0",
-        "claim": "∃ CW complex with c_0 = -1",
+        "claim": "∃ CW complex with c_0 = -1 (violates c_0 ≥ 0)",
         "cvc5_result": str(result1),
         "passes": result1.isUnsat(),
     }
@@ -227,7 +232,7 @@ def run_negative_tests() -> Dict[str, Any]:
     # Negative test 2: Euler characteristic mismatch
     # Claim: For a finite CW complex, χ ≠ Σ (-1)^k c_k.
     # This violates the fundamental CW structure invariant.
-    # cvc5 should prove this UNSAT if we assert both the cell counts AND χ as independent.
+    # Constraint: χ = Σ (-1)^k c_k (must be equal).
     solver2 = cvc5.Solver()
     solver2.setLogic("QF_LIA")
 
@@ -237,23 +242,23 @@ def run_negative_tests() -> Dict[str, Any]:
 
     sum_alt = solver2.mkTerm(Kind.ADD, c0_2, solver2.mkTerm(Kind.MULT, solver2.mkInteger(-1), c1_2))
 
-    # Assert: c_0 = 1, c_1 = 1, but χ = 5 (mismatch)
+    # CW complex invariant: χ = Σ (-1)^k c_k
+    chi_constraint = solver2.mkTerm(Kind.EQUAL, chi, sum_alt)
+    # Assertion: c_0 = 1, c_1 = 1, but χ = 5 (violates constraint)
     assertion_2 = solver2.mkTerm(Kind.AND,
         solver2.mkTerm(Kind.EQUAL, c0_2, solver2.mkInteger(1)),
         solver2.mkTerm(Kind.AND,
             solver2.mkTerm(Kind.EQUAL, c1_2, solver2.mkInteger(1)),
-            solver2.mkTerm(Kind.AND,
-                solver2.mkTerm(Kind.EQUAL, chi, solver2.mkInteger(5)),
-                solver2.mkTerm(Kind.NOT, solver2.mkTerm(Kind.EQUAL, chi, sum_alt))
-            )
+            solver2.mkTerm(Kind.EQUAL, chi, solver2.mkInteger(5))
         )
     )
+    solver2.assertFormula(chi_constraint)
     solver2.assertFormula(assertion_2)
 
     result2 = solver2.checkSat()
     test2 = {
         "name": "CW negative test: χ ≠ Σ (-1)^k c_k",
-        "claim": "∃ CW complex with c=[1,1] but χ ≠ 0",
+        "claim": "∃ CW complex with c=[1,1], χ=5 (violates χ = Σ(-1)^k c_k)",
         "cvc5_result": str(result2),
         "passes": result2.isUnsat(),
     }
@@ -262,7 +267,7 @@ def run_negative_tests() -> Dict[str, Any]:
     # Negative test 3: Inconsistent cell dimensions
     # For a CW complex, higher-dimensional cells must be attached to lower skeletons.
     # If we have a 2-cell but no 0 or 1-skeleton, that's structurally invalid.
-    # (We model this as: if c_2 > 0, then c_0 > 0 and c_1 > 0 is a constraint.)
+    # Constraint: if c_2 > 0, then c_0 > 0 and c_1 > 0 must hold.
     solver3 = cvc5.Solver()
     solver3.setLogic("QF_LIA")
 
@@ -270,8 +275,17 @@ def run_negative_tests() -> Dict[str, Any]:
     c1_3 = solver3.mkConst(solver3.getIntegerSort(), "c1")
     c2_3 = solver3.mkConst(solver3.getIntegerSort(), "c2")
 
-    # Implication: c_2 > 0 => (c_0 > 0 ∧ c_1 > 0)
-    # We test the violation: c_2 > 0, c_0 = 0, c_1 = 0
+    # Skeleton constraint: c_2 > 0 => (c_0 > 0 ∧ c_1 > 0)
+    has_2cells = solver3.mkTerm(Kind.GT, c2_3, solver3.mkInteger(0))
+    has_base = solver3.mkTerm(Kind.AND,
+        solver3.mkTerm(Kind.GT, c0_3, solver3.mkInteger(0)),
+        solver3.mkTerm(Kind.GT, c1_3, solver3.mkInteger(0))
+    )
+    skeleton_constraint = solver3.mkTerm(Kind.OR,
+        solver3.mkTerm(Kind.NOT, has_2cells),
+        has_base
+    )
+    # Violating assertion: c_2 = 1, c_0 = 0, c_1 = 0
     assertion_3 = solver3.mkTerm(Kind.AND,
         solver3.mkTerm(Kind.EQUAL, c2_3, solver3.mkInteger(1)),
         solver3.mkTerm(Kind.AND,
@@ -279,16 +293,15 @@ def run_negative_tests() -> Dict[str, Any]:
             solver3.mkTerm(Kind.EQUAL, c1_3, solver3.mkInteger(0))
         )
     )
-    # For a valid CW complex, this should be UNSAT.
+    solver3.assertFormula(skeleton_constraint)
     solver3.assertFormula(assertion_3)
 
     result3 = solver3.checkSat()
     test3 = {
         "name": "CW negative test: invalid skeleton",
-        "claim": "CW complex with 2-cell but no 0 or 1-skeleton is invalid",
+        "claim": "CW complex with 2-cell but no 0 or 1-skeleton (violates skeleton constraint)",
         "cvc5_result": str(result3),
-        "note": "depends on CW attaching map constraint; SAT if skeleton constraint not enforced",
-        "passes": result3.isUnsat(),  # Should be UNSAT for valid CW
+        "passes": result3.isUnsat(),
     }
     results["negative_3_invalid_skeleton"] = test3
 

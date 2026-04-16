@@ -209,28 +209,27 @@ def run_negative_tests() -> Dict[str, Any]:
     # Two strata: Y (lower dimension) and X (higher dimension) adjacent.
     # If dim(Y) = 1, dim(X) = 2, Whitney-A requires lim T_Y ⊇ T_X.
     # But a 1-dim tangent space can't contain a 2-dim tangent space: CONTRADICTION.
-    # Model: dim_Y = 1, dim_X = 2, requires dim_Y >= dim_X (contradiction).
+    # Constraint: dim_Y >= dim_X for Whitney-A to hold (necessary condition).
     solver1 = cvc5.Solver()
     solver1.setLogic("QF_LIA")
 
     dim_Y = solver1.mkConst(solver1.getIntegerSort(), "dim_Y")
     dim_X = solver1.mkConst(solver1.getIntegerSort(), "dim_X")
 
-    # Whitney-A: dim_Y >= dim_X for limit tangent containment
-    # Assert: dim_Y = 1, dim_X = 2, and dim_Y >= dim_X
+    # Whitney-A constraint: dim_Y >= dim_X
+    whitney_a_constraint = solver1.mkTerm(Kind.GEQ, dim_Y, dim_X)
+    # Violating assertion: dim_Y = 1, dim_X = 2
     assertion1 = solver1.mkTerm(Kind.AND,
         solver1.mkTerm(Kind.EQUAL, dim_Y, solver1.mkInteger(1)),
-        solver1.mkTerm(Kind.AND,
-            solver1.mkTerm(Kind.EQUAL, dim_X, solver1.mkInteger(2)),
-            solver1.mkTerm(Kind.GEQ, dim_Y, dim_X)
-        )
+        solver1.mkTerm(Kind.EQUAL, dim_X, solver1.mkInteger(2))
     )
+    solver1.assertFormula(whitney_a_constraint)
     solver1.assertFormula(assertion1)
 
     result1 = solver1.checkSat()
     test1 = {
         "name": "Whitney negative test: dimension violation",
-        "claim": "∃ Whitney stratification with dim(Y)=1, dim(X)=2, lim T_Y ⊇ T_X",
+        "claim": "∃ Whitney stratification with dim(Y)=1, dim(X)=2 (violates dim(Y)≥dim(X))",
         "cvc5_result": str(result1),
         "passes": result1.isUnsat(),
     }
@@ -240,27 +239,27 @@ def run_negative_tests() -> Dict[str, Any]:
     # For Whitney-A: if Y → X and x_i ∈ Y → y ∈ X, then lim T_{x_i} Y ⊇ T_y X.
     # Model: T_Y has rank r_Y, T_X has rank r_X.
     # If r_Y < r_X, then lim T_Y cannot contain T_X: CONTRADICTION.
+    # Constraint: rank_Y >= rank_X for Whitney-A.
     solver2 = cvc5.Solver()
     solver2.setLogic("QF_LIA")
 
     rank_Y = solver2.mkConst(solver2.getIntegerSort(), "rank_Y")
     rank_X = solver2.mkConst(solver2.getIntegerSort(), "rank_X")
 
-    # Whitney-A: rank_Y >= rank_X
-    # Assert: rank_Y = 1, rank_X = 3, contradiction
+    # Whitney-A constraint: rank_Y >= rank_X
+    whitney_rank_constraint = solver2.mkTerm(Kind.GEQ, rank_Y, rank_X)
+    # Violating assertion: rank_Y = 1, rank_X = 3
     assertion2 = solver2.mkTerm(Kind.AND,
         solver2.mkTerm(Kind.EQUAL, rank_Y, solver2.mkInteger(1)),
-        solver2.mkTerm(Kind.AND,
-            solver2.mkTerm(Kind.EQUAL, rank_X, solver2.mkInteger(3)),
-            solver2.mkTerm(Kind.GEQ, rank_Y, rank_X)
-        )
+        solver2.mkTerm(Kind.EQUAL, rank_X, solver2.mkInteger(3))
     )
+    solver2.assertFormula(whitney_rank_constraint)
     solver2.assertFormula(assertion2)
 
     result2 = solver2.checkSat()
     test2 = {
         "name": "Whitney negative test: tangent rank incompatibility",
-        "claim": "∃ Whitney stratification with rank(T_Y)=1, rank(T_X)=3, Whitney-A holds",
+        "claim": "∃ Whitney stratification with rank(T_Y)=1, rank(T_X)=3 (violates rank≥constraint)",
         "cvc5_result": str(result2),
         "passes": result2.isUnsat(),
     }
@@ -270,33 +269,39 @@ def run_negative_tests() -> Dict[str, Any]:
     # A stratum Y at bottom of stratification (lower in closure order) cannot have
     # a stratum X in its closure unless Whitney-A is satisfied everywhere in between.
     # Model: if Y has no intermediate strata, and dim(Y) << dim(X), then it's invalid.
+    # Constraint: if has_intermediate = False and X in cl(Y), then dim_Y >= dim_X.
     solver3 = cvc5.Solver()
     solver3.setLogic("QF_LIA")
 
     dim_Y_3 = solver3.mkConst(solver3.getIntegerSort(), "dim_Y")
     dim_X_3 = solver3.mkConst(solver3.getIntegerSort(), "dim_X")
     has_intermediate = solver3.mkConst(solver3.getBooleanSort(), "has_intermediate")
+    x_in_closure = solver3.mkConst(solver3.getBooleanSort(), "x_in_closure")
 
-    # Constraint: if no intermediate stratum exists and dim_Y << dim_X,
-    # and X is in closure of Y, then Whitney-A must hold directly.
-    # We assert: no intermediate (False), dim_Y=0, dim_X=3.
+    # Constraint: (¬has_intermediate ∧ x_in_closure) => dim_Y >= dim_X
+    no_intermediate = solver3.mkTerm(Kind.NOT, has_intermediate)
+    closure_implication = solver3.mkTerm(Kind.OR,
+        solver3.mkTerm(Kind.OR, has_intermediate, solver3.mkTerm(Kind.NOT, x_in_closure)),
+        solver3.mkTerm(Kind.GEQ, dim_Y_3, dim_X_3)
+    )
+    # Violating assertion: no intermediate, X in closure, dim_Y=0, dim_X=3
     assertion3 = solver3.mkTerm(Kind.AND,
         solver3.mkTerm(Kind.EQUAL, has_intermediate, solver3.mkFalse()),
         solver3.mkTerm(Kind.AND,
-            solver3.mkTerm(Kind.EQUAL, dim_Y_3, solver3.mkInteger(0)),
+            solver3.mkTerm(Kind.EQUAL, x_in_closure, solver3.mkTrue()),
             solver3.mkTerm(Kind.AND,
-                solver3.mkTerm(Kind.EQUAL, dim_X_3, solver3.mkInteger(3)),
-                # For Whitney: with no intermediate, dim_Y=0 must dominate dim_X=3
-                solver3.mkTerm(Kind.GEQ, dim_Y_3, dim_X_3)
+                solver3.mkTerm(Kind.EQUAL, dim_Y_3, solver3.mkInteger(0)),
+                solver3.mkTerm(Kind.EQUAL, dim_X_3, solver3.mkInteger(3))
             )
         )
     )
+    solver3.assertFormula(closure_implication)
     solver3.assertFormula(assertion3)
 
     result3 = solver3.checkSat()
     test3 = {
         "name": "Whitney negative test: isolated low-dim stratum with high-dim closure",
-        "claim": "∃ Whitney stratification: dim(Y)=0, dim(X)=3, no intermediate, X in cl(Y)",
+        "claim": "∃ Whitney stratification: dim(Y)=0, dim(X)=3, no intermediate, X in cl(Y) (violates constraint)",
         "cvc5_result": str(result3),
         "passes": result3.isUnsat(),
     }

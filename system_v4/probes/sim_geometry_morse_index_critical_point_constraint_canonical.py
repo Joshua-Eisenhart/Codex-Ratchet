@@ -202,18 +202,23 @@ def run_negative_tests() -> Dict[str, Any]:
 
     # Negative test 1: c_k < 0 is inadmissible
     # Claim: ∃ Morse function where c_0 = -1 on a connected manifold.
+    # Constraint: c_0 ≥ 0 for any Morse critical point count.
     # cvc5 should prove this UNSAT.
     solver1 = cvc5.Solver()
     solver1.setLogic("QF_LIA")
 
     c0 = solver1.mkConst(solver1.getIntegerSort(), "c0")
+    # Assert mandatory constraint: c_0 ≥ 0
+    constraint1 = solver1.mkTerm(Kind.GEQ, c0, solver1.mkInteger(0))
+    # Also assert the violating claim: c_0 = -1
     assertion1 = solver1.mkTerm(Kind.EQUAL, c0, solver1.mkInteger(-1))
+    solver1.assertFormula(constraint1)
     solver1.assertFormula(assertion1)
 
     result1 = solver1.checkSat()
     test1 = {
         "name": "Morse negative test: c_0 < 0",
-        "claim": "∃ Morse with c_0 = -1",
+        "claim": "∃ Morse with c_0 = -1 (violates c_0 ≥ 0)",
         "cvc5_result": str(result1),
         "passes": result1.isUnsat(),  # Should be UNSAT
     }
@@ -221,25 +226,30 @@ def run_negative_tests() -> Dict[str, Any]:
 
     # Negative test 2: c_0 = 0 on connected manifold is inadmissible
     # A connected manifold must have at least one global minimum.
+    # Constraint: for connected manifold, c_0 ≥ 1.
     solver2 = cvc5.Solver()
     solver2.setLogic("QF_LIA")
 
     c0_2 = solver2.mkConst(solver2.getIntegerSort(), "c0")
-    c1_2 = solver2.mkConst(solver2.getIntegerSort(), "c1")
-    chi = solver2.mkInteger(0)  # Example: torus
+    is_connected = solver2.mkConst(solver2.getBooleanSort(), "is_connected")
 
-    # Constraints: on a connected manifold, c_0 ≥ 1
-    # We assert c_0 = 0 and chi = 0 (torus-like)
-    # and ask if this is satisfiable for a connected space.
+    # Constraint: if connected, then c_0 ≥ 1
+    connected_implication = solver2.mkTerm(Kind.OR,
+        solver2.mkTerm(Kind.NOT, is_connected),
+        solver2.mkTerm(Kind.GEQ, c0_2, solver2.mkInteger(1))
+    )
+    # Assertion: we claim the space IS connected, and c_0 = 0
     assertion_c0_zero = solver2.mkTerm(Kind.EQUAL, c0_2, solver2.mkInteger(0))
-    assertion_connected = solver2.mkTerm(Kind.GEQ, solver2.mkInteger(1), solver2.mkInteger(1))  # tautology
+    assertion_is_conn = solver2.mkTerm(Kind.EQUAL, is_connected, solver2.mkTrue())
+
+    solver2.assertFormula(connected_implication)
     solver2.assertFormula(assertion_c0_zero)
-    solver2.assertFormula(assertion_connected)
+    solver2.assertFormula(assertion_is_conn)
 
     result2 = solver2.checkSat()
     test2 = {
         "name": "Morse negative test: c_0 = 0 on connected manifold",
-        "claim": "∃ Morse on connected space with c_0 = 0",
+        "claim": "∃ Morse on connected space with c_0 = 0 (violates connectivity constraint)",
         "cvc5_result": str(result2),
         "passes": result2.isUnsat(),
     }
@@ -248,6 +258,7 @@ def run_negative_tests() -> Dict[str, Any]:
     # Negative test 3: Morse inequality violated
     # Claim: c_0 = 1, c_1 = 0, c_2 = 0, χ(S^2) = 2
     # Morse: 1 - 0 + 0 = 1 < 2. Violates Morse inequality.
+    # Constraint: Σ (-1)^k c_k ≥ χ(M).
     solver3 = cvc5.Solver()
     solver3.setLogic("QF_LIA")
 
@@ -258,7 +269,9 @@ def run_negative_tests() -> Dict[str, Any]:
     sum_alt = solver3.mkTerm(Kind.ADD, c0_3, solver3.mkTerm(Kind.MULT, solver3.mkInteger(-1), c1_3), c2_3)
     chi_s2 = solver3.mkInteger(2)
 
-    # Assert: Σ (-1)^k c_k < χ(S^2)
+    # Morse inequality constraint: sum >= chi
+    morse_constraint = solver3.mkTerm(Kind.GEQ, sum_alt, chi_s2)
+    # Assertion: specific critical counts
     assertion_c_vals = solver3.mkTerm(Kind.AND,
         solver3.mkTerm(Kind.EQUAL, c0_3, solver3.mkInteger(1)),
         solver3.mkTerm(Kind.AND,
@@ -266,14 +279,13 @@ def run_negative_tests() -> Dict[str, Any]:
             solver3.mkTerm(Kind.EQUAL, c2_3, solver3.mkInteger(0))
         )
     )
-    assertion_bad_morse = solver3.mkTerm(Kind.LT, sum_alt, chi_s2)
+    solver3.assertFormula(morse_constraint)
     solver3.assertFormula(assertion_c_vals)
-    solver3.assertFormula(assertion_bad_morse)
 
     result3 = solver3.checkSat()
     test3 = {
         "name": "Morse negative test: inequality violation (S^2)",
-        "claim": "Morse inequality violated on S^2: 1 - 0 + 0 < 2",
+        "claim": "Morse inequality violated: c=[1,0,0], Σ=1 < χ=2",
         "cvc5_result": str(result3),
         "passes": result3.isUnsat(),
     }

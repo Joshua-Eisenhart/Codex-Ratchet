@@ -5,6 +5,8 @@ Exclusion: coupling excludes entropy-gradient invariance under loop-order permut
 """
 import json, os, torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"pytorch": {"tried": True, "used": True,
     "reason": "autograd entropy gradient compared across UEUE vs EUEU op sequences; load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}

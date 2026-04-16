@@ -7,6 +7,8 @@ Exclusion: coupling excludes commutation of curvature reversal with loop-order p
 import json, os
 import sympy as sp
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"sympy": {"tried": True, "used": True,
     "reason": "symbolic commutator on curvature-signed matrix algebra; load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"sympy": "load_bearing"}
@@ -41,7 +43,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_1_4_curvature_x_loop",
-               "classification": "canonical",
+               "classification": classification,
                "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4)",
                "exclusion_claim": "coupling excludes commutation of Axis 1 curvature reversal with Axis 4 loop-order",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

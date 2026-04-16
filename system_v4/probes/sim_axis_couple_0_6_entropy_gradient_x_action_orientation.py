@@ -12,6 +12,8 @@ is invariant under Axis 6 precedence reordering.
 import json, os
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},
     "z3": {"tried": False, "used": False, "reason": ""},
@@ -77,7 +79,7 @@ if __name__ == "__main__":
     all_pass = bool(pos.get("coupling_detected")) and all(neg.values()) and all(bnd.values())
     results = {
         "name": "axis_couple_0_6_entropy_gradient_x_action_orientation",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0 and 6)",
         "exclusion_claim": "coupling excludes Axis 0 I_c-sign invariance under Axis 6 precedence reordering",
         "tool_manifest": TOOL_MANIFEST,

@@ -6,6 +6,8 @@ Se/Ni vs Ne/Si terrain branch (curvature sign).
 """
 import json, os, torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"pytorch": {"tried": True, "used": True,
     "reason": "autograd entropy gradient evaluated on both curvature branches; decisive"}}
 TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}

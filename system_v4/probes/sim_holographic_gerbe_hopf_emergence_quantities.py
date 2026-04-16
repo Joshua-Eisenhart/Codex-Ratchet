@@ -35,6 +35,13 @@ from itertools import product as iproduct
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic×gerbe×hopf emergence probe: this file "
+    "checks only the three-shell product emergence structure and does not "
+    "claim a canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -398,6 +405,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_holographic_gerbe_hopf_emergence_quantities",
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "coupling_program": "Holographic x Gerbe x Hopf",
         "coupling_program_step": "4",
         "positive_section_pass": pos_section_pass,

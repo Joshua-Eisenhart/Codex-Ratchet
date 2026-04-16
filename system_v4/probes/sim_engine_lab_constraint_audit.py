@@ -17,12 +17,14 @@ from typing import Any
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
-    "Constraint audit over the engine lab. It compares open-lab rows against "
-    "strict QIT anchors and companion readout surfaces to identify repairable "
-    "rows, topology-only rows, and rows that are still too open."
+CLASSIFICATION = "classical_baseline"
+divergence_log = (
+    "Classical baseline: this is a constraint audit over the engine lab. "
+    "It compares open-lab rows against strict QIT anchors and companion "
+    "readout surfaces to identify repairable rows, topology-only rows, and "
+    "rows that are still too open."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -200,6 +202,7 @@ def main() -> None:
         "name": "engine_lab_constraint_audit",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

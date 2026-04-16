@@ -10,15 +10,16 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "classical_baseline"
 
 
-CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "classical_baseline"
+divergence_log = (
     "Controller ranking surface over repairable engine-lab rows. It combines "
     "route class, direct open-vs-QIT pair data, and clean-run status to produce "
     "the next strict-alignment queue."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -205,6 +206,7 @@ def main() -> None:
         "name": "engine_lab_repair_priority",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

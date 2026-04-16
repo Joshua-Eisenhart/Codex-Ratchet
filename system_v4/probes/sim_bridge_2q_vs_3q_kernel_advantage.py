@@ -26,6 +26,12 @@ DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 EPS = 1e-12
 
+divergence_log = (
+    "Canonical local lego for the 2q vs 3q kernel advantage comparison, "
+    "kept as a bounded numpy witness rather than a canonical nonclassical claim."
+)
+CLASSIFICATION_NOTE = divergence_log
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pure-math numpy baseline"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for this bounded comparison sim"},
@@ -351,6 +357,8 @@ def main() -> None:
         "negative": negative,
         "boundary": boundary,
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "caveat": "Bounded comparison only. Extra 3-qubit discrimination is treated as coverage/localization/tripartite companion structure, not final canon.",
         "summary": {
             "positive_pass": pos["passed"],

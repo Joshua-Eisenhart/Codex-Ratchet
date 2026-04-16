@@ -13,6 +13,12 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Weyl×Holo×Symplectic pairwise coupling probe: this "
+    "file checks pairwise entropy products and drop-one guards, but it does "
+    "not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {
@@ -257,6 +263,8 @@ def main():
     all_passed = all(v.get("passed", False) for v in results.values())
     summary = {
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "total": len(results),
         "passed": sum(1 for v in results.values() if v.get("passed", False)),
         "all_passed": all_passed,

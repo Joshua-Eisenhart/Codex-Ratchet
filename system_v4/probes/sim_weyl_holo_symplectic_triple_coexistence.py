@@ -12,6 +12,11 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "3-way ADDS: triple coexistence is the joint shell constraint; pairwise "
+    "checks preserve the monotone normalized ordering but do not substitute for the tri."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {
@@ -267,6 +272,8 @@ def main():
         "H_SYMP_norm": normalize(H_SYMP),
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "results": results,
     }
 

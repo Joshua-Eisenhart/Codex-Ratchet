@@ -13,14 +13,17 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Direct local carrier/probe compatibility lego on bounded qubit carriers. "
+    "Checks projective and noisy probe families, rejects wrong-dimension and "
+    "non-resolving probes, and confirms bounded probabilities with a separating state pair."
+)
 
 
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
-    "Canonical local lego for carrier/probe compatibility on bounded qubit carriers."
-)
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "carrier_probe_support",
@@ -175,7 +178,7 @@ def main():
         "boundary": boundary,
         "summary": {
             "all_pass": all_pass,
-            "scope_note": "Direct local carrier/probe compatibility lego on bounded qubit carriers.",
+            "scope_note": CLASSIFICATION_NOTE,
         },
     }
 

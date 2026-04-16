@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Carrier probe support classical baseline. The file stays numpy-only and "
+    "uses trace/support arithmetic to record whether a probe POVM element has "
+    "support on a carrier state, without broadening scope."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "trace/support arithmetic"},
@@ -58,6 +63,8 @@ if __name__ == "__main__":
     results = {
         "name": "carrier_probe_support_classical",
         "classification": "classical_baseline",
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

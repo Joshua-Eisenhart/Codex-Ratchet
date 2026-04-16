@@ -14,6 +14,12 @@ import json, math, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Weyl×Holographic×Symplectic emergence quantities: subshells give Q=0; "
+    "full triple with MI yields Q_WHS > 0. z3 and sympy witness the collapse/"
+    "emergence structure; torch validates the numerical E7 witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {
@@ -283,6 +289,7 @@ def main():
     q_full = Q_WHS(mi_val)
     summary = {
         "classification": classification,
+        "divergence_log": divergence_log,
         "total": len(results),
         "passed": sum(1 for v in results.values() if v.get("passed", False)),
         "all_passed": all_passed,

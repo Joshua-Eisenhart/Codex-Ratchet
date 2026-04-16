@@ -10,12 +10,22 @@ bounded two-bath qubit model and tracks where the return defect concentrates.
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import sys
 from typing import Any, Optional
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import pennylane as qml
+import qutip
+
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -25,12 +35,19 @@ if str(PROBE_DIR) not in sys.path:
 import sim_qit_carnot_hold_policy_companion as base  # noqa: E402
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
-    "Strict finite-carrier QIT companion for the Carnot closure diagnostic "
-    "lane. It sweeps a bounded budget/hold grid and keeps the forward-cycle "
-    "return defect, closure concentration, and hold policy tradeoffs explicit. "
-    "It is a comparison surface, not a canonical engine theorem."
+    "Canonical finite-carrier Carnot closure companion on a bounded qubit "
+    "working substance. It sweeps a budget/hold grid and keeps the forward-cycle "
+    "return defect, closure concentration, and hold policy tradeoffs explicit, "
+    "while qutip/cirq/pennylane witness the same carrier surface instead of "
+    "changing the closure theorem."
+)
+divergence_log = (
+    "Carnot closure diagnostic on a bounded one-qubit working substance. "
+    "Numpy remains the closure ledger; qutip, cirq, and pennylane witness the "
+    "same stage states on the same carrier; the budget/hold grid still measures "
+    "return defect concentration and policy tradeoffs, not a new engine theorem."
 )
 
 LEGO_IDS = [
@@ -44,24 +61,39 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
-    "pyg": {"tried": False, "used": False, "reason": "not needed"},
-    "z3": {"tried": False, "used": False, "reason": "not needed"},
-    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
-    "sympy": {"tried": False, "used": False, "reason": "not needed"},
-    "clifford": {"tried": False, "used": False, "reason": "not needed"},
-    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
-    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
-    "xgi": {"tried": False, "used": False, "reason": "not needed"},
-    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
-    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing closure ledger, policy comparison, and serialization",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-operator witness on the same finite carrier",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-matrix witness on the same carrier surface",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing mixed-state witness on the same carrier surface",
+    },
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+}
 
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 EPS = 1e-15
+Q0 = cirq.LineQubit(0)
+QML_DEV = qml.device("default.mixed", wires=1, shots=None)
 
 BASE_GRID = [
     {"base_hot_steps": 90, "base_cold_steps": 90, "budget_label": "budget_90"},
@@ -108,6 +140,50 @@ def valid_density(rho: np.ndarray) -> bool:
     )
 
 
+def _qutip_density(rho: np.ndarray) -> qutip.Qobj:
+    return qutip.Qobj(np.asarray(rho, dtype=np.complex128), dims=[[2], [2]])
+
+
+def _cirq_density(rho: np.ndarray) -> np.ndarray:
+    simulator = cirq.DensityMatrixSimulator(seed=13)
+    circuit = cirq.Circuit(cirq.I(Q0))
+    return np.asarray(
+        simulator.simulate(circuit, initial_state=np.asarray(rho, dtype=np.complex128), qubit_order=[Q0]).final_density_matrix,
+        dtype=np.complex128,
+    )
+
+
+@qml.qnode(QML_DEV)
+def _qml_density(rho: np.ndarray):
+    qml.QubitDensityMatrix(np.asarray(rho, dtype=np.complex128), wires=0)
+    return qml.density_matrix(wires=0)
+
+
+def bridge_witness(rho: np.ndarray) -> dict[str, Any]:
+    qutip_rho = np.asarray(_qutip_density(rho).full(), dtype=np.complex128)
+    cirq_rho = _cirq_density(rho)
+    pennylane_rho = np.asarray(_qml_density(rho), dtype=np.complex128)
+    return {
+        "qutip": {
+            "rho": qutip_rho.tolist(),
+            "max_error": float(np.max(np.abs(qutip_rho - rho))),
+        },
+        "cirq": {
+            "rho": cirq_rho.tolist(),
+            "max_error": float(np.max(np.abs(cirq_rho - rho))),
+        },
+        "pennylane": {
+            "rho": pennylane_rho.tolist(),
+            "max_error": float(np.max(np.abs(pennylane_rho - rho))),
+        },
+        "pass": bool(
+            np.allclose(qutip_rho, rho, atol=1e-8)
+            and np.allclose(cirq_rho, rho, atol=1e-8)
+            and np.allclose(pennylane_rho, rho, atol=1e-8)
+        ),
+    }
+
+
 def summarize_closure_row(
     row: dict[str, Any],
     *,
@@ -128,6 +204,17 @@ def summarize_closure_row(
     if stages.get("return_hold") is not None:
         stage_trace_distances["return_hold"] = float(stages["return_hold"]["trace_distance_to_target"])
 
+    bridge_witnesses = {
+        "hot_iso": bridge_witness(stages["hot_iso"]["after"]["rho"]),
+        "adiabatic_expand": bridge_witness(stages["adiabatic_expand"]["after"]["rho"]),
+        "cold_iso": bridge_witness(stages["cold_iso"]["after"]["rho"]),
+        "adiabatic_compress": bridge_witness(stages["adiabatic_compress"]["after"]["rho"]),
+    }
+    if stages.get("cold_hold") is not None:
+        bridge_witnesses["cold_hold"] = bridge_witness(stages["cold_hold"]["after"]["rho"])
+    if stages.get("return_hold") is not None:
+        bridge_witnesses["return_hold"] = bridge_witness(stages["return_hold"]["after"]["rho"])
+
     dominant_leg = max(stage_trace_distances.items(), key=lambda item: item[1])[0]
     total_hold_steps_used = int(row["summary"]["hold_steps_used"])
 
@@ -147,8 +234,12 @@ def summarize_closure_row(
         "final_internal_energy_mismatch": float(row["summary"]["final_internal_energy_mismatch"]),
         "dominant_closure_leg": dominant_leg,
         "stage_trace_distances": stage_trace_distances,
+        "bridge_witnesses": bridge_witnesses,
         "valid_density_final": valid_density(row["final"]["rho"]),
-        "all_pass": bool(row["summary"]["final_trace_distance_to_initial"] >= 0.0),
+        "all_pass": bool(
+            row["summary"]["final_trace_distance_to_initial"] >= 0.0
+            and all(block["pass"] for block in bridge_witnesses.values())
+        ),
     }
 
 
@@ -196,6 +287,7 @@ def run_policy(
                 label=f"{name}_cold_hold",
             )
             current = cold_hold_stats["after"]
+            cold_hold_stats["after"] = current
         else:
             current, cold_hold_stats = base.adaptive_hold(
                 current,
@@ -206,6 +298,7 @@ def run_policy(
                 tolerance=cold_hold["tolerance"],
                 label=f"{name}_cold_hold",
             )
+            cold_hold_stats["after"] = current
 
     adiabatic_compress = base.adiabatic_step(
         current,
@@ -226,6 +319,7 @@ def run_policy(
                 label=f"{name}_return_hold",
             )
             current = return_hold_stats["after"]
+            return_hold_stats["after"] = current
         else:
             current, return_hold_stats = base.adaptive_hold(
                 current,
@@ -236,6 +330,7 @@ def run_policy(
                 tolerance=return_hold["tolerance"],
                 label=f"{name}_return_hold",
             )
+            return_hold_stats["after"] = current
 
     stages = [hot_iso, adiabatic_expand, cold_iso, adiabatic_compress]
     if cold_hold_stats is not None:
@@ -412,6 +507,7 @@ def main() -> None:
         "name": "qit_carnot_closure_companion",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

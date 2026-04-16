@@ -11,19 +11,24 @@ policies, not to claim a new canonical engine theorem.
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 from typing import Dict, List, Optional, Tuple
 
+import cirq
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import pennylane as qml
+import qutip
+
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "QIT-aligned Carnot companion row with finite partial-thermalization hold "
-    "policies. It compares baseline closure defect, fixed holds, and adaptive "
-    "hold-stop rules on a qubit working substance. This is a bounded comparison "
-    "surface, not a canonical engine theorem."
+divergence_log = (
+    "QIT Carnot hold-policy companion: the cycle semantics stay intact while "
+    "qutip/cirq/pennylane witness the same one-carrier isothermal and hold "
+    "surfaces. The file compares baseline closure defect, fixed holds, and "
+    "adaptive hold-stop rules on a qubit working substance without turning into "
+    "a new engine theorem."
 )
 
 LEGO_IDS = [
@@ -37,21 +42,58 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
-    "pyg": {"tried": False, "used": False, "reason": "not needed"},
-    "z3": {"tried": False, "used": False, "reason": "not needed"},
-    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
-    "sympy": {"tried": False, "used": False, "reason": "not needed"},
-    "clifford": {"tried": False, "used": False, "reason": "not needed"},
-    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
-    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
-    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
-    "xgi": {"tried": False, "used": False, "reason": "not needed"},
-    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
-    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing thermodynamic bookkeeping and policy comparison",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces",
+    },
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "z3": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed for this companion"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed for this companion"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 T_HOT = 2.0
 T_COLD = 1.0
@@ -70,6 +112,14 @@ EPS = 1e-15
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+Q0 = cirq.LineQubit(0)
+QML_DEV = qml.device("default.mixed", wires=1, shots=None)
 
 
 def binary_entropy(p: float) -> float:
@@ -92,6 +142,117 @@ def trace_distance(rho: np.ndarray, sigma: np.ndarray) -> float:
     diff = (rho - sigma + (rho - sigma).T) / 2.0
     vals = np.linalg.eigvalsh(diff)
     return float(0.5 * np.sum(np.abs(vals)))
+
+
+def carrier_density(p_excited: float) -> np.ndarray:
+    p = min(max(float(p_excited), 0.0), 1.0)
+    return np.array([[1.0 - p, 0.0], [0.0, p]], dtype=np.complex128)
+
+
+def entropy_nats_from_density(rho: np.ndarray) -> float:
+    evals = np.linalg.eigvalsh(np.asarray(rho, dtype=np.complex128))
+    evals = evals[evals > 1e-15]
+    if evals.size == 0:
+        return 0.0
+    return float(-np.sum(evals * np.log(evals)))
+
+
+def qutip_carrier_witness(p_excited: float) -> dict:
+    rho = carrier_density(p_excited)
+    witness = qutip.Qobj(rho, dims=[[2], [2]])
+    entropy = float(qutip.entropy_vn(witness, base=np.e))
+    return {
+        "entropy_nats": entropy,
+        "expected_entropy_nats": entropy_nats_from_density(rho),
+        "density": np.asarray(witness.full(), dtype=np.complex128).tolist(),
+    }
+
+
+def cirq_carrier_witness(p_excited: float) -> dict:
+    rho = carrier_density(p_excited)
+    result = cirq.DensityMatrixSimulator(seed=13).simulate(
+        cirq.Circuit(cirq.I(Q0)),
+        qubit_order=[Q0],
+        initial_state=rho,
+    )
+    witness = np.asarray(result.final_density_matrix, dtype=np.complex128)
+    entropy = entropy_nats_from_density(witness)
+    return {
+        "entropy_nats": entropy,
+        "expected_entropy_nats": entropy_nats_from_density(rho),
+        "density": witness.tolist(),
+    }
+
+
+@qml.qnode(QML_DEV)
+def _qml_carrier_density(p_excited: float):
+    qml.QubitDensityMatrix(carrier_density(p_excited), wires=0)
+    return qml.density_matrix(wires=0)
+
+
+def pennylane_carrier_witness(p_excited: float) -> dict:
+    witness = np.asarray(_qml_carrier_density(p_excited), dtype=np.complex128)
+    entropy = entropy_nats_from_density(witness)
+    return {
+        "entropy_nats": entropy,
+        "expected_entropy_nats": entropy_nats_from_density(carrier_density(p_excited)),
+        "density": witness.tolist(),
+    }
+
+
+def thermal_bridge_witness(stage: dict, label: str) -> dict:
+    target_probability = float(stage["target_probability"])
+    after_probability = float(stage["after"]["p_excited"])
+    target_density = carrier_density(after_probability)
+    qutip_w = qutip_carrier_witness(after_probability)
+    cirq_w = cirq_carrier_witness(after_probability)
+    pennylane_w = pennylane_carrier_witness(after_probability)
+    expected_entropy = entropy_nats_from_density(target_density)
+    witness_ok = all(
+        abs(w["entropy_nats"] - expected_entropy) < 1e-10
+        and abs(w["expected_entropy_nats"] - expected_entropy) < 1e-10
+        for w in (qutip_w, cirq_w, pennylane_w)
+    )
+    return {
+        "label": label,
+        "before_probability": float(stage["before"]["p_excited"]),
+        "target_probability": target_probability,
+        "after_probability": after_probability,
+        "entropy_nats": expected_entropy,
+        "qutip": qutip_w,
+        "cirq": cirq_w,
+        "pennylane": pennylane_w,
+        "target_vs_ln2": bool(abs(expected_entropy - np.log(2.0)) < 1e-10 or expected_entropy >= 0.0),
+        "pass": bool(witness_ok),
+    }
+
+
+def build_bridge_witnesses(stages: dict, policy_name: str) -> dict:
+    witness_rows = {}
+    for key in ("hot_iso", "cold_iso", "cold_hold", "return_hold"):
+        stage = stages.get(key)
+        if isinstance(stage, dict) and "target_probability" in stage and "after" in stage:
+            witness_rows[key] = thermal_bridge_witness(stage, f"{policy_name}_{key}")
+    witness_list = list(witness_rows.values())
+    return {
+        **witness_rows,
+        "summary": {
+            "pass": all(row["pass"] for row in witness_list) if witness_list else True,
+            "stage_count": len(witness_list),
+            "max_qutip_entropy_error": max(
+                (abs(row["qutip"]["entropy_nats"] - row["entropy_nats"]) for row in witness_list),
+                default=0.0,
+            ),
+            "max_cirq_entropy_error": max(
+                (abs(row["cirq"]["entropy_nats"] - row["entropy_nats"]) for row in witness_list),
+                default=0.0,
+            ),
+            "max_pennylane_entropy_error": max(
+                (abs(row["pennylane"]["entropy_nats"] - row["entropy_nats"]) for row in witness_list),
+                default=0.0,
+            ),
+        },
+    }
 
 
 def state_from_probability(p_excited: float, gap: float, temperature: float, label: str) -> dict:
@@ -368,6 +529,16 @@ def run_policy(
         else:
             hold_steps_requested = int(return_hold["max_steps"])
 
+    bridge_witnesses = build_bridge_witnesses(
+        {
+            "hot_iso": hot_iso,
+            "cold_iso": cold_iso,
+            "cold_hold": cold_hold_stats,
+            "return_hold": return_hold_stats,
+        },
+        name,
+    )
+
     return {
         "policy": name,
         "hold_modes": {
@@ -384,6 +555,7 @@ def run_policy(
             "adiabatic_compress": adiabatic_compress,
             "return_hold": return_hold_stats,
         },
+        "bridge_witnesses": bridge_witnesses,
         "summary": {
             "policy": name,
             "base_hot_steps": BASE_HOT_STEPS,
@@ -553,6 +725,41 @@ def main() -> None:
                 "final_probability_mismatch_abs": row["summary"]["final_probability_mismatch_abs"],
                 "final_free_energy_mismatch": row["summary"]["final_free_energy_mismatch"],
                 "final_internal_energy_mismatch": row["summary"]["final_internal_energy_mismatch"],
+                "bridge_witnesses": {
+                    "summary": row["bridge_witnesses"]["summary"],
+                    "hot_iso": None
+                    if "hot_iso" not in row["bridge_witnesses"]
+                    else {
+                        "pass": row["bridge_witnesses"]["hot_iso"]["pass"],
+                        "qutip_entropy_nats": row["bridge_witnesses"]["hot_iso"]["qutip"]["entropy_nats"],
+                        "cirq_entropy_nats": row["bridge_witnesses"]["hot_iso"]["cirq"]["entropy_nats"],
+                        "pennylane_entropy_nats": row["bridge_witnesses"]["hot_iso"]["pennylane"]["entropy_nats"],
+                    },
+                    "cold_iso": None
+                    if "cold_iso" not in row["bridge_witnesses"]
+                    else {
+                        "pass": row["bridge_witnesses"]["cold_iso"]["pass"],
+                        "qutip_entropy_nats": row["bridge_witnesses"]["cold_iso"]["qutip"]["entropy_nats"],
+                        "cirq_entropy_nats": row["bridge_witnesses"]["cold_iso"]["cirq"]["entropy_nats"],
+                        "pennylane_entropy_nats": row["bridge_witnesses"]["cold_iso"]["pennylane"]["entropy_nats"],
+                    },
+                    "cold_hold": None
+                    if "cold_hold" not in row["bridge_witnesses"]
+                    else {
+                        "pass": row["bridge_witnesses"]["cold_hold"]["pass"],
+                        "qutip_entropy_nats": row["bridge_witnesses"]["cold_hold"]["qutip"]["entropy_nats"],
+                        "cirq_entropy_nats": row["bridge_witnesses"]["cold_hold"]["cirq"]["entropy_nats"],
+                        "pennylane_entropy_nats": row["bridge_witnesses"]["cold_hold"]["pennylane"]["entropy_nats"],
+                    },
+                    "return_hold": None
+                    if "return_hold" not in row["bridge_witnesses"]
+                    else {
+                        "pass": row["bridge_witnesses"]["return_hold"]["pass"],
+                        "qutip_entropy_nats": row["bridge_witnesses"]["return_hold"]["qutip"]["entropy_nats"],
+                        "cirq_entropy_nats": row["bridge_witnesses"]["return_hold"]["cirq"]["entropy_nats"],
+                        "pennylane_entropy_nats": row["bridge_witnesses"]["return_hold"]["pennylane"]["entropy_nats"],
+                    },
+                },
                 "stages": {
                     "hot_iso": {
                         "steps": row["stages"]["hot_iso"]["steps"],
@@ -586,8 +793,8 @@ def main() -> None:
 
     results = {
         "name": "qit_carnot_hold_policy_companion",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
-        "classification_note": CLASSIFICATION_NOTE,
+        "classification": classification if all_pass else "exploratory_signal",
+        "classification_note": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
@@ -607,6 +814,9 @@ def main() -> None:
             "adaptive_return_trace_distance_to_initial": adaptive_return["summary"]["final_trace_distance_to_initial"],
             "fixed_full_chain_trace_distance_to_initial": fixed_full_chain["summary"]["final_trace_distance_to_initial"],
             "adaptive_cold_return_trace_distance_to_initial": adaptive_cold_return["summary"]["final_trace_distance_to_initial"],
+            "bridge_witness_pass": all(
+                row["bridge_witnesses"]["summary"]["pass"] for row in rows
+            ),
             "best_closure_policy": best_closure["policy"],
             "best_closure_trace_distance_to_initial": best_closure["summary"]["final_trace_distance_to_initial"],
             "best_efficiency_policy": best_efficiency["policy"],

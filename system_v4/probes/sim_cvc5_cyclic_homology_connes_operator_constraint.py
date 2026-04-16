@@ -182,16 +182,16 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NIA")
 
-        # B is non-zero
-        B = solver.mkVar(solver.getIntegerSort(), "B")
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, B, solver.mkInteger(3)))
+        # B = 3
+        B = solver.mkInteger(3)
 
         # B² must equal 0 for Connes structure
         B_squared = solver.mkTerm(Kind.MULT, B, B)
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, B_squared, solver.mkInteger(9)))
         solver.assertFormula(solver.mkTerm(Kind.EQUAL, B_squared, solver.mkInteger(0)))
 
         sat = solver.checkSat()
-        # Should be UNSAT (3*3 ≠ 0)
+        # Should be UNSAT (9 ≠ 0)
         results[test_name] = {
             "sat": str(sat),
             "unsat": not sat.isSat(),
@@ -206,23 +206,19 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NIA")
 
-        # Operators
-        B = solver.mkVar(solver.getIntegerSort(), "B")
-        d = solver.mkVar(solver.getIntegerSort(), "d")
-
-        # Set B and d to non-zero, incompatible values
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, B, solver.mkInteger(2)))
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, d, solver.mkInteger(3)))
+        # Operators: B = 2, d = 3
+        B = solver.mkInteger(2)
+        d = solver.mkInteger(3)
 
         # Mixed complex requires: Bd + dB = 0
         Bd = solver.mkTerm(Kind.MULT, B, d)
         dB = solver.mkTerm(Kind.MULT, d, B)
         sum_terms = solver.mkTerm(Kind.ADD, Bd, dB)
 
-        # Force non-zero result (should be UNSAT)
+        # Force contradiction (should be UNSAT)
+        # 2*3 + 3*2 = 12, but assert it equals both 12 and 0
         solver.assertFormula(solver.mkTerm(Kind.EQUAL, sum_terms, solver.mkInteger(12)))
-        solver.assertFormula(solver.mkTerm(Kind.NOT,
-                                          solver.mkTerm(Kind.EQUAL, sum_terms, solver.mkInteger(12))))
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, sum_terms, solver.mkInteger(0)))
 
         sat = solver.checkSat()
         results[test_name] = {
@@ -239,13 +235,11 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NIA")
 
-        # B has order 3: B³ = 0 (not allowed in Connes; need order 2)
-        B_order = solver.mkVar(solver.getIntegerSort(), "B_order")
+        # B has order 3
+        B_order = solver.mkInteger(3)
 
-        # Try to assert B has order 3
+        # But Connes requires B_order = 2 (contradiction)
         solver.assertFormula(solver.mkTerm(Kind.EQUAL, B_order, solver.mkInteger(3)))
-
-        # But Connes requires B_order = 2
         solver.assertFormula(solver.mkTerm(Kind.EQUAL, B_order, solver.mkInteger(2)))
 
         sat = solver.checkSat()

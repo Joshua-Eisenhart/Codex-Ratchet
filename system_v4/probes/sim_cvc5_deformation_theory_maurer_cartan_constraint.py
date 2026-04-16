@@ -82,27 +82,19 @@ def run_positive_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NIA")
 
-        # Deformation parameter γ
-        gamma = solver.mkVar(solver.getIntegerSort(), "gamma")
-
-        # γ = 0 (trivial deformation)
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, gamma, solver.mkInteger(0)))
+        # Deformation parameter γ = 0 (trivial deformation)
+        gamma = solver.mkInteger(0)
 
         # Maurer-Cartan: dγ + (1/2)[γ,γ] = 0
         # d(0) = 0
         d_gamma = solver.mkInteger(0)
 
         # (1/2)[0,0] = 0
-        bracket_gamma_gamma = solver.mkInteger(0)
-        bracket_term = solver.mkTerm(Kind.MULT, solver.mkInteger(1),
-                                     solver.mkTerm(Kind.MULT, bracket_gamma_gamma,
-                                                  solver.mkRational(1, 2)))
+        bracket_term = solver.mkInteger(0)
 
         # Sum: 0 + 0 = 0 (satisfied)
-        maurer_cartan = solver.mkTerm(Kind.EQUAL,
-                                     solver.mkTerm(Kind.ADD, d_gamma, bracket_term),
-                                     solver.mkInteger(0))
-        solver.assertFormula(maurer_cartan)
+        maurer_cartan = solver.mkTerm(Kind.ADD, d_gamma, bracket_term)
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, maurer_cartan, solver.mkInteger(0)))
 
         sat = solver.checkSat()
         results[test_name] = {
@@ -216,20 +208,16 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NIA")
 
-        # Differential term
-        d_gamma = solver.mkVar(solver.getIntegerSort(), "d_gamma")
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, d_gamma, solver.mkInteger(3)))
-
-        # Bracket term
-        bracket_term = solver.mkVar(solver.getIntegerSort(), "bracket_term")
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, bracket_term, solver.mkInteger(4)))
+        # Differential term d_gamma = 3, bracket_term = 4
+        d_gamma = solver.mkInteger(3)
+        bracket_term = solver.mkInteger(4)
 
         # Sum must be zero
         total = solver.mkTerm(Kind.ADD, d_gamma, bracket_term)
 
-        # Force both sum = 0 AND sum ≠ 0
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, total, solver.mkInteger(0)))
+        # Force contradiction: sum = 7 and sum = 0
         solver.assertFormula(solver.mkTerm(Kind.EQUAL, total, solver.mkInteger(7)))
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, total, solver.mkInteger(0)))
 
         sat = solver.checkSat()
         results[test_name] = {

@@ -19,6 +19,24 @@ from itertools import permutations
 import numpy as np
 from scipy.linalg import expm, sqrtm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this symplectic/Kahler/Weyl probe checks geometry numerics, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "used": True,
+        "reason": "matrix construction, random draws, and geometric bookkeeping for the classical baseline",
+    },
+    "scipy": {
+        "used": True,
+        "reason": "matrix exponentials and square roots for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-10
@@ -740,6 +758,9 @@ summary["total_pass"] = total_pass
 summary["all_pass"] = total_pass == total_tests
 
 RESULTS["summary"] = summary
+RESULTS["divergence_log"] = divergence_log
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
 for sec_name, sec_data in summary.items():
     if isinstance(sec_data, dict) and "tests" in sec_data:

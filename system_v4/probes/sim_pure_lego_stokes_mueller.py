@@ -25,6 +25,19 @@ import json
 import os
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this Stokes/Mueller probe checks single-qubit channel numerics, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "used": True,
+        "reason": "linear algebra and channel bookkeeping for the classical baseline",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ---------------------------------------------------------------------------
 # Pauli matrices
@@ -355,6 +368,9 @@ def run_stokes_mueller_sim():
         "overall_pass": all_pass,
         "channels": results,
         "sufficiency_analysis": sufficiency,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

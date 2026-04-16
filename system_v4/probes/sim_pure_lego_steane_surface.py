@@ -35,6 +35,19 @@ from itertools import combinations
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this Steane/surface-code probe checks code-theory numerics, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "used": True,
+        "reason": "dense linear-algebra and stabilizer bookkeeping for the classical baseline",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -645,6 +658,9 @@ def main():
     )
     report["overall_pass"] = overall
     report["code_distance_verified"] = has_uncorrectable
+    report["divergence_log"] = divergence_log
+    report["tool_manifest"] = TOOL_MANIFEST
+    report["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
     print("\n" + "=" * 70)
     print(f"OVERALL PASS: {overall}")

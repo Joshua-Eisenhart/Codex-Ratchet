@@ -19,6 +19,15 @@ import numpy as np
 from scipy.linalg import sqrtm
 from scipy.optimize import minimize
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures process tomography numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, spectral diagnostics, and density-matrix algebra for tomography"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots and numerical optimization for tomography and diamond-norm checks"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-12

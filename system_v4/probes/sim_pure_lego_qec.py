@@ -17,6 +17,13 @@ import sys
 import numpy as np
 from pathlib import Path
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures QEC numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and fidelity diagnostics for the bit-flip code"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ── Pauli matrices ──────────────────────────────────────────────────────────
 I2 = np.eye(2, dtype=complex)

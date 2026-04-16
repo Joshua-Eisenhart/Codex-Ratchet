@@ -23,6 +23,15 @@ import time
 import numpy as np
 from scipy import linalg as la
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures QCA, Lieb-Robinson, and OTOC numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and state diagnostics for QCA and scrambling tests"},
+    "scipy": {"tried": True, "used": True, "reason": "linear algebra routines for unitary evolution and commutator checks"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ---------------------------------------------------------------------------
 # Constants

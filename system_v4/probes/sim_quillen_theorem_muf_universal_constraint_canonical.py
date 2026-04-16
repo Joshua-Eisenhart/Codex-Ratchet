@@ -22,6 +22,8 @@ import os
 import sympy as sp
 from sympy import symbols, expand
 
+classification = "canonical"
+
 try:
     import cvc5
     from cvc5 import Kind
@@ -36,7 +38,7 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for Lazard ring rank verification"},
     "pyg": {"tried": False, "used": False, "reason": "not needed for Lazard ring rank verification"},
     "z3": {"tried": False, "used": False, "reason": "cvc5 chosen for integer rank constraints"},
-    "cvc5": {"tried": cvc5 is not None, "used": False, "reason": ""},
+    "cvc5": {"tried": False, "used": False, "reason": ""},
     "sympy": {"tried": True, "used": False, "reason": ""},
     "clifford": {"tried": False, "used": False, "reason": "not needed for ring theory constraints"},
     "geomstats": {"tried": False, "used": False, "reason": "not needed for ring theory constraints"},
@@ -430,7 +432,7 @@ if __name__ == "__main__":
 
     output = {
         "name": "sim_quillen_theorem_muf_universal_constraint_canonical",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive_tests": test_results["positive"],

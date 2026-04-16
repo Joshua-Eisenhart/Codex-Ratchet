@@ -169,14 +169,14 @@
       "status": "PASS",
       "verdict": "SAT",
       "interpretation": "Q = I_c = 1 for identity channel is SAT. The identity is degradable, so Q = I_c = 1 (maximum capacity). This is the upper boundary of the quantum capacity for qubit channels.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0006
     },
     "boundary3_completely_depolarizing_Q_0": {
       "name": "completely_depolarizing_Q_0",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Completely depolarizing channel forces I_c = -1. Combined with Q >= 0 and hashing bound Q <= I_c = -1: Q > 0 is UNSAT. The completely depolarizing channel has Q = 0.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0006
     }
   },
   "cvc5_crosscheck": {
@@ -184,6 +184,6 @@
     "status": "PASS",
     "synthesized_Q_bound": "(lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0))",
     "interpretation": "cvc5 synthesized Q_bound(I_c) = (lambda ((Ic Real)) (ite (<= (/ 1 2) Ic) Ic 0.0)). This confirms the hashing bound is a function of I_c alone. For I_c > 0: Q_bound = I_c (linear). For I_c <= 0: Q_bound = 0.",
-    "elapsed_s": 0.1883
+    "elapsed_s": 0.1713
   }
 }

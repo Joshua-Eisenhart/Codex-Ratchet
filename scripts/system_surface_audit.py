@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import ast
 import json
 import os
 import subprocess
@@ -24,6 +25,29 @@ PIDFILES = {
     "adaptive_controller": Path("/tmp/codex_ratchet_adaptive_controller.pid"),
     "autonomous_reseed": Path("/tmp/codex_ratchet_autonomous_reseed.pid"),
     "overnight_lock": Path("/tmp/codex_ratchet_overnight.lock"),
+}
+IMPORT_TOOL_ALIASES = {
+    "torch": "pytorch",
+    "torch_geometric": "pyg",
+    "z3": "z3",
+    "cvc5": "cvc5",
+    "sympy": "sympy",
+    "clifford": "clifford",
+    "geomstats": "geomstats",
+    "e3nn": "e3nn",
+    "rustworkx": "rustworkx",
+    "xgi": "xgi",
+    "toponetx": "toponetx",
+    "gudhi": "gudhi",
+    "networkx": "networkx",
+    "igraph": "igraph",
+    "hypothesis": "hypothesis",
+    "optuna": "optuna",
+    "evotorch": "evotorch",
+    "datasketch": "datasketch",
+    "pymoo": "pymoo",
+    "ribs": "ribs",
+    "deap": "deap",
 }
 
 
@@ -294,6 +318,95 @@ def git_surface() -> dict:
             "legacy_copies": "MOVE_TO_QUARANTINE",
             "other": "BLOCKED_REQUIRES_PREP",
         },
+    }
+
+
+def _module_literal(tree: ast.AST, name: str):
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id == name:
+                try:
+                    return ast.literal_eval(node.value)
+                except Exception:
+                    return None
+    return None
+
+
+def _imported_tools(path: Path) -> tuple[set[str], bool]:
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+    except Exception:
+        return set(), False
+    tools: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                head = alias.name.split(".", 1)[0]
+                tool = IMPORT_TOOL_ALIASES.get(head)
+                if tool:
+                    tools.add(tool)
+        elif isinstance(node, ast.ImportFrom):
+            if not node.module:
+                continue
+            head = node.module.split(".", 1)[0]
+            tool = IMPORT_TOOL_ALIASES.get(head)
+            if tool:
+                tools.add(tool)
+    return tools, True
+
+
+def tool_integration_surface(limit: int = 12) -> dict:
+    missing_depth: Counter[str] = Counter()
+    missing_manifest: Counter[str] = Counter()
+    samples: list[dict[str, object]] = []
+    parse_failures = 0
+    audited = 0
+
+    for path in sorted(PROBES.glob("sim_*.py")):
+        if " 2" in path.name:
+            continue
+        imported_tools, parsed = _imported_tools(path)
+        if not parsed:
+            parse_failures += 1
+            continue
+        if not imported_tools:
+            continue
+        audited += 1
+        try:
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+        except Exception:
+            parse_failures += 1
+            continue
+        manifest = _module_literal(tree, "TOOL_MANIFEST")
+        depth = _module_literal(tree, "TOOL_INTEGRATION_DEPTH")
+        missing_manifest_tools = sorted(
+            tool for tool in imported_tools
+            if not isinstance(manifest, dict) or tool not in manifest
+        )
+        missing_depth_tools = sorted(
+            tool for tool in imported_tools
+            if not isinstance(depth, dict) or tool not in depth
+        )
+        for tool in missing_manifest_tools:
+            missing_manifest[tool] += 1
+        for tool in missing_depth_tools:
+            missing_depth[tool] += 1
+        if (missing_manifest_tools or missing_depth_tools) and len(samples) < limit:
+            samples.append({
+                "sim": path.name,
+                "imported_tools": sorted(imported_tools),
+                "missing_manifest_tools": missing_manifest_tools,
+                "missing_depth_tools": missing_depth_tools,
+            })
+
+    return {
+        "audited_sims_with_tool_imports": audited,
+        "parse_failures": parse_failures,
+        "missing_manifest_by_tool": dict(missing_manifest),
+        "missing_depth_by_tool": dict(missing_depth),
+        "samples": samples,
     }
 
 
@@ -824,6 +937,7 @@ def main() -> int:
         "git": git,
         "runner": runner,
         "program": program_surface(),
+        "tool_integration": tool_integration_surface(),
         "results": results,
         "maintenance_queue": maintenance_queue_surface(git, runner, results),
     }

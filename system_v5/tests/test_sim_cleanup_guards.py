@@ -337,6 +337,135 @@ def test_adaptive_controller_resolves_blacklisted_blocked_items(
     assert blocked_item.exists() is False
 
 
+def test_adaptive_controller_triage_skips_enqueue_for_active_blocked_sim(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_blocked_skip_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    queue_root = probes / "a2_state" / "queue"
+    blocked = queue_root / "blocked"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+
+    sim = probes / "sim_clifford_holo_dirac_pairwise_coupling.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    (blocked / "gate.json.1.host.w1").write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied","blocked_at":1}\n' % sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS", results)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+    monkeypatch.setattr(module, "gate_allows_sim", lambda path: False)
+
+    state = module.triage_cycle(dry=False)
+
+    assert "sim_clifford_holo_dirac_pairwise_coupling" in state["never_run"]
+    assert state["enqueued"]["never_run"] == 0
+    assert list((queue_root / "lane_A").glob("*.json")) == []
+
+
+def test_adaptive_controller_dedupes_blocked_entries_and_queue_overlaps(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_blocked_dedupe_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    queue_root = probes / "a2_state" / "queue"
+    blocked = queue_root / "blocked"
+    lane_a = queue_root / "lane_A"
+    probes.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+    lane_a.mkdir(parents=True)
+
+    sim = probes / "sim_alpha.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    abs_sim = str(sim.resolve())
+    (blocked / "dup1.json.1.host.w1").write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied","blocked_at":1}\n' % abs_sim,
+        encoding="utf-8",
+    )
+    (blocked / "dup2.json.2.host.w2").write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied","blocked_at":2}\n' % abs_sim,
+        encoding="utf-8",
+    )
+    (lane_a / "queued.json").write_text(
+        '{"lane":"lane_A","sim_path":"%s","priority":"high"}\n' % abs_sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+
+    removed = module.dedupe_queue_entries()
+
+    active_blocked = list(blocked.glob("*.json.*"))
+    resolved = list((blocked / "resolved").glob("*.json*"))
+    assert removed == 2
+    assert len(active_blocked) == 1
+    assert len(resolved) == 1
+    assert list(lane_a.glob("*.json")) == []
+    payload = json.loads(resolved[0].read_text(encoding="utf-8"))
+    assert payload["resolution"] == "deduped_duplicate_block"
+
+
+def test_adaptive_controller_rescues_gate_ready_blocked_canonical(
+    tmp_path, monkeypatch
+) -> None:
+    module = _load_module(
+        "adaptive_controller_gate_ready_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    queue_root = probes / "a2_state" / "queue"
+    blocked = queue_root / "blocked"
+    lane_a = queue_root / "lane_A"
+    probes.mkdir(parents=True)
+    results.mkdir(parents=True)
+    blocked.mkdir(parents=True)
+    lane_a.mkdir(parents=True)
+
+    sim = probes / "sim_clifford_holo_dirac_pairwise_coupling.py"
+    sim.write_text('classification = "canonical"\n', encoding="utf-8")
+    blocked_item = blocked / "gate.json.123.host.w1"
+    blocked_item.write_text(
+        '{"lane":"lane_A","sim_path":"%s","blocked_reason":"gate_denied"}\n' % sim,
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "ROOT", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS", results)
+    monkeypatch.setattr(module, "QUEUE", queue_root)
+    monkeypatch.setattr(module, "gate_allows_sim", lambda path: True)
+
+    rescued = module.rescue_misrouted_blocked()
+
+    queued = list(lane_a.glob("*.json"))
+    resolved = list((blocked / "resolved").glob("*.json*"))
+    assert rescued == 1
+    assert len(queued) == 1
+    assert len(resolved) == 1
+    payload = json.loads(resolved[0].read_text(encoding="utf-8"))
+    assert payload["rescued_lane"] == "lane_A"
+    assert payload["resolution"] == "requeued_lane_A"
+    assert blocked_item.exists() is False
+
+
 def test_adaptive_controller_dry_mode_skips_queue_mutation(tmp_path, monkeypatch) -> None:
     module = _load_module(
         "adaptive_controller_dry_under_test",
@@ -825,6 +954,60 @@ def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
         "fail_mode": "summary_gate_false",
         "source_state": "source_untracked_result_newer",
         "action": "source_drift_review",
+    }]
+
+
+def test_system_surface_audit_tool_integration_flags_missing_torch_headers(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_tool_integration_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    probes.mkdir(parents=True, exist_ok=True)
+    (probes / "sim_torch_missing_headers.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "",
+                "classification = 'canonical'",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_torch_declared_headers.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "TOOL_MANIFEST = {'pytorch': {'tried': True, 'used': True, 'reason': 'declared'}}",
+                "TOOL_INTEGRATION_DEPTH = {'pytorch': 'load_bearing'}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+
+    report = module.tool_integration_surface()
+
+    assert report["audited_sims_with_tool_imports"] == 2
+    assert report["missing_manifest_by_tool"] == {"pytorch": 1}
+    assert report["missing_depth_by_tool"] == {"pytorch": 1}
+    assert report["samples"] == [{
+        "sim": "sim_torch_missing_headers.py",
+        "imported_tools": ["pytorch"],
+        "missing_manifest_tools": ["pytorch"],
+        "missing_depth_tools": ["pytorch"],
     }]
 
 

@@ -228,12 +228,21 @@ def normalize_sim_path(sim_path: str | pathlib.Path) -> str:
 
 
 def is_queued(sim_path: str) -> bool:
+    return is_tracked(sim_path, include_blocked=False)
+
+
+def is_tracked(sim_path: str, include_blocked: bool = False) -> bool:
     wanted = normalize_sim_path(sim_path)
-    for lane in ("lane_A", "lane_B", "claimed"):
+    lanes = ["lane_A", "lane_B", "claimed"]
+    if include_blocked:
+        lanes.append("blocked")
+    for lane in lanes:
         d = QUEUE / lane
         if not d.exists():
             continue
         for qf in d.iterdir():
+            if not qf.is_file():
+                continue
             try:
                 queued = load_result(qf).get("sim_path", "")
                 if normalize_sim_path(str(queued)) == wanted:
@@ -241,6 +250,22 @@ def is_queued(sim_path: str) -> bool:
             except Exception:
                 pass
     return False
+
+
+def active_blocked_entries() -> dict[str, list[tuple[pathlib.Path, dict]]]:
+    blocked = QUEUE / "blocked"
+    groups: dict[str, list[tuple[pathlib.Path, dict]]] = {}
+    if not blocked.exists():
+        return groups
+    for bf in blocked.iterdir():
+        if not bf.is_file():
+            continue
+        data = load_result(bf)
+        sim_path = str(data.get("sim_path", ""))
+        if not sim_path:
+            continue
+        groups.setdefault(normalize_sim_path(sim_path), []).append((bf, data))
+    return groups
 
 
 def queue_item_path(lane: str, sim_path: str | pathlib.Path) -> pathlib.Path:
@@ -354,6 +379,24 @@ def remove_claimed_queue_overlaps() -> int:
             data = load_result(item)
             sim_path = str(data.get("sim_path", ""))
             if sim_path and normalize_sim_path(sim_path) in claimed_sims:
+                item.unlink(missing_ok=True)
+                removed += 1
+    return removed
+
+
+def remove_blocked_queue_overlaps() -> int:
+    blocked_sims = set(active_blocked_entries())
+    if not blocked_sims:
+        return 0
+    removed = 0
+    for lane in ("lane_A", "lane_B"):
+        lane_dir = QUEUE / lane
+        if not lane_dir.exists():
+            continue
+        for item in list(lane_dir.glob("*.json")):
+            data = load_result(item)
+            sim_path = str(data.get("sim_path", ""))
+            if sim_path and normalize_sim_path(sim_path) in blocked_sims:
                 item.unlink(missing_ok=True)
                 removed += 1
     return removed
@@ -548,9 +591,43 @@ def _resolve_blocked_entry(bf: pathlib.Path, data: dict, resolution: str) -> Non
     bf.unlink(missing_ok=True)
 
 
+def dedupe_blocked_entries() -> int:
+    removed = 0
+    grouped: dict[tuple[str, str], list[tuple[pathlib.Path, dict]]] = {}
+    for normalized, entries in active_blocked_entries().items():
+        for bf, data in entries:
+            reason = str(data.get("blocked_reason") or data.get("reason") or "unknown")
+            grouped.setdefault((normalized, reason), []).append((bf, data))
+    for (_normalized, _reason), entries in grouped.items():
+        if len(entries) <= 1:
+            continue
+        def sort_key(entry: tuple[pathlib.Path, dict]) -> tuple[float, str]:
+            bf, data = entry
+            try:
+                ts = float(data.get("blocked_at", 0) or 0)
+            except Exception:
+                ts = 0.0
+            if ts <= 0:
+                try:
+                    ts = bf.stat().st_mtime
+                except OSError:
+                    ts = 0.0
+            return (-ts, bf.name)
+
+        keep_bf, _keep_data = sorted(entries, key=sort_key)[0]
+        for bf, data in entries:
+            if bf == keep_bf:
+                continue
+            _resolve_blocked_entry(bf, data, "deduped_duplicate_block")
+            removed += 1
+    return removed
+
+
 def dedupe_queue_entries() -> int:
     removed = normalize_queue_filenames()
     removed += remove_claimed_queue_overlaps()
+    removed += dedupe_blocked_entries()
+    removed += remove_blocked_queue_overlaps()
     entries: list[tuple[pathlib.Path, pathlib.Path, dict, str]] = []
     for lane in ("lane_A", "lane_B"):
         lane_dir = QUEUE / lane
@@ -677,6 +754,19 @@ def target_running_under_pinned_python(target: str) -> bool:
     return False
 
 
+def gate_allows_sim(sim_path: pathlib.Path) -> bool:
+    try:
+        proc = subprocess.run(
+            [PY, str(ROOT / "scripts" / "verify_load_bearing_has_capability_probe.py"), "--sim", str(sim_path)],
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+    except Exception:
+        return False
+    return proc.returncode == 0
+
+
 def _clear_controller_pidfile() -> None:
     try:
         if CONTROLLER_PIDFILE.exists():
@@ -752,10 +842,22 @@ def rescue_misrouted_blocked() -> int:
         sim_path = pathlib.Path(str(data.get("sim_path", "")))
         if not sim_path.exists():
             continue
-        if infer_lane(sim_path) != "lane_B":
-            continue
         result_json = RESULTS / f"{sim_path.stem}_results.json"
         priority = default_priority_for_bucket(plan_bucket(sim_path.name))
+        if gate_allows_sim(sim_path):
+            if not result_json.exists() and not is_queued(str(sim_path)):
+                enqueue(sim_path, "lane_A", priority)
+            data["rescued_at"] = datetime.now().isoformat()
+            data["rescued_lane"] = "lane_A"
+            data["rescued_priority"] = priority
+            if result_json.exists():
+                _resolve_blocked_entry(bf, data, "result_present")
+            else:
+                _resolve_blocked_entry(bf, data, "requeued_lane_A")
+            rescued += 1
+            continue
+        if infer_lane(sim_path) != "lane_B":
+            continue
         if not result_json.exists() and not is_queued(str(sim_path)):
             enqueue(sim_path, "lane_B", priority)
         data["rescued_at"] = datetime.now().isoformat()
@@ -881,7 +983,7 @@ def triage_cycle(dry: bool = False) -> dict:
 
         if not rj.exists():
             state["never_run"].append(stem)
-            if not dry and not is_queued(str(sim)):
+            if not dry and not is_tracked(str(sim), include_blocked=True):
                 enqueue(sim, infer_lane(sim), default_priority_for_bucket(plan_bucket(sim.name)))
                 state["enqueued"]["never_run"] += 1
             continue
@@ -898,7 +1000,7 @@ def triage_cycle(dry: bool = False) -> dict:
 
         if passing is False:
             state["failing"].append(stem)
-            if not dry and not is_queued(str(sim)):
+            if not dry and not is_tracked(str(sim), include_blocked=True):
                 enqueue(sim, infer_lane(sim), "high")
                 state["enqueued"]["failing"] += 1
             continue
@@ -915,7 +1017,7 @@ def triage_cycle(dry: bool = False) -> dict:
         classification = r.get("classification", "")
         if classification == "canonical" and age > 7:
             state["stale"].append(stem)
-            if not dry and not is_queued(str(sim)):
+            if not dry and not is_tracked(str(sim), include_blocked=True):
                 priority = "normal" if plan_bucket(sim.name) == "core_ladder" else "low"
                 enqueue(sim, infer_lane(sim), priority)
                 state["enqueued"]["stale"] += 1

@@ -491,6 +491,28 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    # Set proper reasons for tools that were tried but not used
+    if not TOOL_MANIFEST["pytorch"]["used"]:
+        TOOL_MANIFEST["pytorch"]["reason"] = "not needed for SDP duality analysis"
+    if not TOOL_MANIFEST["pyg"]["used"]:
+        TOOL_MANIFEST["pyg"]["reason"] = "not needed for semidefinite programming"
+    if not TOOL_MANIFEST["z3"]["used"]:
+        TOOL_MANIFEST["z3"]["reason"] = "cvc5 used instead for duality gap proving"
+    if not TOOL_MANIFEST["clifford"]["used"]:
+        TOOL_MANIFEST["clifford"]["reason"] = "not needed for SDP constraint geometry"
+    if not TOOL_MANIFEST["geomstats"]["used"]:
+        TOOL_MANIFEST["geomstats"]["reason"] = "not needed for semidefinite matrices"
+    if not TOOL_MANIFEST["e3nn"]["used"]:
+        TOOL_MANIFEST["e3nn"]["reason"] = "not needed for duality structure"
+    if not TOOL_MANIFEST["rustworkx"]["used"]:
+        TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for SDP problem structure"
+    if not TOOL_MANIFEST["xgi"]["used"]:
+        TOOL_MANIFEST["xgi"]["reason"] = "not needed for strong duality"
+    if not TOOL_MANIFEST["toponetx"]["used"]:
+        TOOL_MANIFEST["toponetx"]["reason"] = "not needed for Slater condition"
+    if not TOOL_MANIFEST["gudhi"]["used"]:
+        TOOL_MANIFEST["gudhi"]["reason"] = "not needed for primal-dual geometry"
+
     results = {
         "name": "SDP Duality and Strong Duality Gap Constraint",
         "tool_manifest": TOOL_MANIFEST,

@@ -526,6 +526,28 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    # Set proper reasons for tools that were tried but not used
+    if not TOOL_MANIFEST["pytorch"]["used"]:
+        TOOL_MANIFEST["pytorch"]["reason"] = "not needed for KKT optimization constraints"
+    if not TOOL_MANIFEST["pyg"]["used"]:
+        TOOL_MANIFEST["pyg"]["reason"] = "not needed for constrained optimization analysis"
+    if not TOOL_MANIFEST["z3"]["used"]:
+        TOOL_MANIFEST["z3"]["reason"] = "cvc5 used instead for constraint proving"
+    if not TOOL_MANIFEST["clifford"]["used"]:
+        TOOL_MANIFEST["clifford"]["reason"] = "not needed for optimization KKT conditions"
+    if not TOOL_MANIFEST["geomstats"]["used"]:
+        TOOL_MANIFEST["geomstats"]["reason"] = "not needed for Lagrangian geometry"
+    if not TOOL_MANIFEST["e3nn"]["used"]:
+        TOOL_MANIFEST["e3nn"]["reason"] = "not needed for KKT multiplier structure"
+    if not TOOL_MANIFEST["rustworkx"]["used"]:
+        TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for constraint network"
+    if not TOOL_MANIFEST["xgi"]["used"]:
+        TOOL_MANIFEST["xgi"]["reason"] = "not needed for KKT system"
+    if not TOOL_MANIFEST["toponetx"]["used"]:
+        TOOL_MANIFEST["toponetx"]["reason"] = "not needed for stationarity conditions"
+    if not TOOL_MANIFEST["gudhi"]["used"]:
+        TOOL_MANIFEST["gudhi"]["reason"] = "not needed for optimization topology"
+
     results = {
         "name": "KKT Second-Order Conditions Constraint",
         "tool_manifest": TOOL_MANIFEST,

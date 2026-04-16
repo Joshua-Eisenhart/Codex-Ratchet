@@ -491,6 +491,28 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    # Set proper reasons for tools that were tried but not used
+    if not TOOL_MANIFEST["pytorch"]["used"]:
+        TOOL_MANIFEST["pytorch"]["reason"] = "not needed for convex conjugate algebra"
+    if not TOOL_MANIFEST["pyg"]["used"]:
+        TOOL_MANIFEST["pyg"]["reason"] = "not needed for Fenchel duality structure"
+    if not TOOL_MANIFEST["z3"]["used"]:
+        TOOL_MANIFEST["z3"]["reason"] = "cvc5 used instead for biconjugate proving"
+    if not TOOL_MANIFEST["clifford"]["used"]:
+        TOOL_MANIFEST["clifford"]["reason"] = "not needed for convex conjugacy"
+    if not TOOL_MANIFEST["geomstats"]["used"]:
+        TOOL_MANIFEST["geomstats"]["reason"] = "not needed for conjugate function geometry"
+    if not TOOL_MANIFEST["e3nn"]["used"]:
+        TOOL_MANIFEST["e3nn"]["reason"] = "not needed for Legendre transformation"
+    if not TOOL_MANIFEST["rustworkx"]["used"]:
+        TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for duality structure"
+    if not TOOL_MANIFEST["xgi"]["used"]:
+        TOOL_MANIFEST["xgi"]["reason"] = "not needed for biconjugate property"
+    if not TOOL_MANIFEST["toponetx"]["used"]:
+        TOOL_MANIFEST["toponetx"]["reason"] = "not needed for convex analysis topology"
+    if not TOOL_MANIFEST["gudhi"]["used"]:
+        TOOL_MANIFEST["gudhi"]["reason"] = "not needed for conjugate space geometry"
+
     results = {
         "name": "Fenchel Conjugate and Biconjugate Theorem Constraint",
         "tool_manifest": TOOL_MANIFEST,

@@ -1914,6 +1914,147 @@ def test_system_surface_audit_handles_nonliteral_manifest_and_depth_updates(
     assert report["per_tool"]["optuna"]["missing_depth"] == 0
 
 
+def test_system_surface_audit_reports_top_stack_cover_and_companions(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_stack_cover_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "z3": ("sim_z3_capability.py", "z3_capability_results.json"),
+        "sympy": ("sim_sympy_capability.py", "sympy_capability_results.json"),
+        "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
+        "optuna": ("sim_optuna_capability.py", "optuna_capability_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_stack_anchor.py").write_text(
+        "\n".join(
+            [
+                "import optuna",
+                "import sympy",
+                "import torch",
+                "from clifford import Cl",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic lane'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'rotor lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_stack_search_bridge.py").write_text(
+        "\n".join(
+            [
+                "import optuna",
+                "import torch",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "    'optuna': {'tried': True, 'used': True, 'reason': 'search lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'optuna': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_stack_partial.py").write_text(
+        "\n".join(
+            [
+                "import optuna",
+                "import sympy",
+                "import torch",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_stack_solver_only.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface(limit=5)
+
+    assert report["max_stack_sims"][0]["sim"] == "sim_stack_anchor.py"
+    assert report["max_stack_sims"][0]["load_bearing_tool_count"] == 4
+
+    greedy_cover = report["greedy_declared_cover"]
+    assert greedy_cover["target_tool_count"] == 5
+    assert greedy_cover["covered_tool_count"] == 5
+    assert greedy_cover["uncovered_tools"] == []
+    assert [row["sim"] for row in greedy_cover["selected_sims"][:2]] == [
+        "sim_stack_anchor.py",
+        "sim_stack_search_bridge.py",
+    ]
+
+    pytorch_companions = report["per_tool_best_companions"]["pytorch"]
+    assert pytorch_companions["best_companions"][0]["tool"] == "z3"
+    assert pytorch_companions["best_companions"][0]["co_load_bearing_sims"] == 3
+    assert pytorch_companions["best_anchor_sims"][0]["sim"] == "sim_stack_anchor.py"
+
+
 def test_system_surface_audit_runner_health_reports_draining() -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)

@@ -665,11 +665,17 @@ def tool_integration_surface(limit: int = 12) -> dict:
             if isinstance(depth, dict)
             else set()
         )
+        declared_tools = (
+            set(imported_tools)
+            & {_canonical_tool(str(tool)) for tool in manifest_tools}
+            & {_canonical_tool(str(tool)) for tool in depth_tools}
+        )
         sim_rows.append({
             "sim": path.name,
             "imported_tools": set(imported_tools),
             "manifest_tools": {_canonical_tool(str(tool)) for tool in manifest_tools},
             "depth_tools": {_canonical_tool(str(tool)) for tool in depth_tools},
+            "declared_tools": declared_tools,
             "load_bearing_tools": load_bearing_tools,
         })
         if isinstance(depth, dict):
@@ -721,6 +727,150 @@ def tool_integration_surface(limit: int = 12) -> dict:
         row = dict(per_tool[tool])
         row.update(_capability_probe_status(tool))
         per_tool_report[tool] = row
+
+    max_stack_sims = []
+    for row in sim_rows:
+        imported_tools = sorted(set(row["imported_tools"]))
+        declared_tools = sorted(set(row["declared_tools"]))
+        load_bearing_tools = sorted(set(row["load_bearing_tools"]))
+        max_stack_sims.append({
+            "sim": row["sim"],
+            "imported_tool_count": len(imported_tools),
+            "header_declared_tool_count": len(declared_tools),
+            "load_bearing_tool_count": len(load_bearing_tools),
+            "imported_tools": imported_tools,
+            "header_declared_tools": declared_tools,
+            "load_bearing_tools": load_bearing_tools,
+        })
+    max_stack_sims.sort(
+        key=lambda row: (
+            -int(row["load_bearing_tool_count"]),
+            -int(row["header_declared_tool_count"]),
+            -int(row["imported_tool_count"]),
+            str(row["sim"]),
+        )
+    )
+
+    declared_target_tools = sorted(
+        {
+            tool
+            for row in sim_rows
+            for tool in set(row["declared_tools"])
+        }
+    )
+    remaining_declared_tools = set(declared_target_tools)
+    greedy_cover_rows = []
+    cover_candidates = list(sim_rows)
+    while remaining_declared_tools:
+        best = None
+        best_new_tools: set[str] = set()
+        for row in cover_candidates:
+            row_declared_tools = set(row["declared_tools"])
+            new_tools = row_declared_tools & remaining_declared_tools
+            if not new_tools:
+                continue
+            if best is None:
+                best = row
+                best_new_tools = new_tools
+                continue
+            best_key = (
+                len(best_new_tools),
+                len(set(best["load_bearing_tools"]) & remaining_declared_tools),
+                len(set(best["declared_tools"])),
+                len(set(best["imported_tools"])),
+                -len(str(best["sim"])),
+            )
+            row_key = (
+                len(new_tools),
+                len(set(row["load_bearing_tools"]) & remaining_declared_tools),
+                len(set(row["declared_tools"])),
+                len(set(row["imported_tools"])),
+                -len(str(row["sim"])),
+            )
+            if row_key > best_key or (row_key == best_key and str(row["sim"]) < str(best["sim"])):
+                best = row
+                best_new_tools = new_tools
+        if best is None:
+            break
+        greedy_cover_rows.append({
+            "sim": best["sim"],
+            "new_header_declared_tools": sorted(best_new_tools),
+            "new_load_bearing_tools": sorted(set(best["load_bearing_tools"]) & remaining_declared_tools),
+            "header_declared_tool_count": len(set(best["declared_tools"])),
+            "load_bearing_tool_count": len(set(best["load_bearing_tools"])),
+            "imported_tool_count": len(set(best["imported_tools"])),
+        })
+        remaining_declared_tools -= best_new_tools
+        cover_candidates = [row for row in cover_candidates if row["sim"] != best["sim"]]
+
+    companion_stats: defaultdict[str, defaultdict[str, dict[str, object]]] = defaultdict(
+        lambda: defaultdict(
+            lambda: {
+                "co_import_sims": 0,
+                "co_declared_sims": 0,
+                "co_load_bearing_sims": 0,
+                "sample_sims": [],
+            }
+        )
+    )
+    tool_anchor_rows: defaultdict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in sim_rows:
+        imported_tools = sorted(set(row["imported_tools"]))
+        declared_tools = sorted(set(row["declared_tools"]))
+        load_bearing_tools = sorted(set(row["load_bearing_tools"]))
+        imported_set = set(imported_tools)
+        declared_set = set(declared_tools)
+        load_bearing_set = set(load_bearing_tools)
+        for tool in imported_tools:
+            tool_anchor_rows[tool].append({
+                "sim": row["sim"],
+                "imported_tool_count": len(imported_set),
+                "header_declared_tool_count": len(declared_set),
+                "load_bearing_tool_count": len(load_bearing_set),
+            })
+        for tool in imported_tools:
+            for companion in imported_set - {tool}:
+                companion_row = companion_stats[tool][companion]
+                companion_row["co_import_sims"] = int(companion_row["co_import_sims"]) + 1
+                if companion in declared_set and tool in declared_set:
+                    companion_row["co_declared_sims"] = int(companion_row["co_declared_sims"]) + 1
+                if companion in load_bearing_set and tool in load_bearing_set:
+                    companion_row["co_load_bearing_sims"] = int(companion_row["co_load_bearing_sims"]) + 1
+                if len(companion_row["sample_sims"]) < 5:
+                    companion_row["sample_sims"].append(str(row["sim"]))
+
+    per_tool_best_companions: dict[str, dict[str, object]] = {}
+    for tool in all_tools:
+        anchor_rows = tool_anchor_rows.get(tool, [])
+        anchor_rows.sort(
+            key=lambda row: (
+                -int(row["load_bearing_tool_count"]),
+                -int(row["header_declared_tool_count"]),
+                -int(row["imported_tool_count"]),
+                str(row["sim"]),
+            )
+        )
+        companion_rows = []
+        for companion, stats in companion_stats.get(tool, {}).items():
+            companion_rows.append({
+                "tool": companion,
+                "co_import_sims": int(stats["co_import_sims"]),
+                "co_declared_sims": int(stats["co_declared_sims"]),
+                "co_load_bearing_sims": int(stats["co_load_bearing_sims"]),
+                "sample_sims": list(stats["sample_sims"])[:5],
+            })
+        companion_rows.sort(
+            key=lambda row: (
+                -int(row["co_load_bearing_sims"]),
+                -int(row["co_declared_sims"]),
+                -int(row["co_import_sims"]),
+                str(row["tool"]),
+            )
+        )
+        per_tool_best_companions[tool] = {
+            "best_companions": companion_rows[:limit],
+            "best_anchor_sims": anchor_rows[:limit],
+        }
 
     bundle_report: dict[str, dict[str, object]] = {}
     for bundle_name, spec in TOOL_BUNDLES.items():
@@ -808,6 +958,14 @@ def tool_integration_surface(limit: int = 12) -> dict:
         "missing_manifest_by_tool": dict(missing_manifest),
         "missing_depth_by_tool": dict(missing_depth),
         "per_tool": per_tool_report,
+        "max_stack_sims": max_stack_sims[:limit],
+        "greedy_declared_cover": {
+            "target_tool_count": len(declared_target_tools),
+            "covered_tool_count": len(declared_target_tools) - len(remaining_declared_tools),
+            "uncovered_tools": sorted(remaining_declared_tools),
+            "selected_sims": greedy_cover_rows[:limit],
+        },
+        "per_tool_best_companions": per_tool_best_companions,
         "bundles": bundle_report,
         "samples": samples,
     }

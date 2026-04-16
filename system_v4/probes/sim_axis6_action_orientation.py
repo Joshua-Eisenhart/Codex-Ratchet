@@ -32,6 +32,19 @@ import numpy as np
 from datetime import datetime, UTC
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical foundation baseline: this axis-6 action-orientation check "
+    "is a numeric numpy-only probe over the Clifford engine, not a canonical "
+    "nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric vector and trace-distance calculations for the axis-6 baseline",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -1041,9 +1041,11 @@ def classical_surface(limit: int = 12) -> dict:
     missing_depth: Counter[str] = Counter()
     lint_counts: Counter[str] = Counter()
     lint_samples: defaultdict[str, list[str]] = defaultdict(list)
+    lint_rule_sets: dict[str, set[str]] = {}
     result_samples: defaultdict[str, list[str]] = defaultdict(list)
     tool_samples: list[dict[str, object]] = []
     sim_rows: list[dict[str, object]] = []
+    result_repair_queue: defaultdict[str, list[dict[str, object]]] = defaultdict(list)
     per_tool: defaultdict[str, dict[str, object]] = defaultdict(
         lambda: {
             "imported_in_sims": 0,
@@ -1071,6 +1073,11 @@ def classical_surface(limit: int = 12) -> dict:
                 no_result_families[_result_family(path)] += 1
                 if len(result_samples["no_result"]) < limit:
                     result_samples["no_result"].append(path.name)
+                if len(result_repair_queue["no_result"]) < limit:
+                    result_repair_queue["no_result"].append({
+                        "sim": path.name,
+                        "family": _result_family(path),
+                    })
             else:
                 try:
                     data = json.loads(result_path.read_text(encoding="utf-8"))
@@ -1086,12 +1093,24 @@ def classical_surface(limit: int = 12) -> dict:
                     unknown_families[_result_family(path)] += 1
                     if len(result_samples["unknown"]) < limit:
                         result_samples["unknown"].append(path.name)
+                    if len(result_repair_queue["unknown"]) < limit:
+                        result_repair_queue["unknown"].append({
+                            "sim": path.name,
+                            "result": _rel_or_abs(result_path),
+                            "family": _result_family(path),
+                        })
                 try:
                     if path.stat().st_mtime > result_path.stat().st_mtime:
                         state_counts["stale_source_newer"] += 1
                         stale_families[_result_family(path)] += 1
                         if len(result_samples["stale_source_newer"]) < limit:
                             result_samples["stale_source_newer"].append(path.name)
+                        if len(result_repair_queue["stale_source_newer"]) < limit:
+                            result_repair_queue["stale_source_newer"].append({
+                                "sim": path.name,
+                                "result": _rel_or_abs(result_path),
+                                "family": _result_family(path),
+                            })
                 except OSError:
                     pass
 
@@ -1107,6 +1126,7 @@ def classical_surface(limit: int = 12) -> dict:
                     if rule not in seen_rules and len(lint_samples[rule]) < limit:
                         lint_samples[rule].append(path.name)
                     seen_rules.add(rule)
+                lint_rule_sets[path.name] = seen_rules
 
             imported_tools, parsed = _imported_tools(path)
             if not parsed or not imported_tools:
@@ -1193,6 +1213,22 @@ def classical_surface(limit: int = 12) -> dict:
         row.update(_capability_probe_status(tool))
         per_tool_report[tool] = row
     relationship_surface = _integration_relationship_surface(sim_rows, all_tools, limit)
+    manifest_rules = {"C2_manifest_missing", "C2_manifest_malformed"}
+    depth_rules = {"C3_depth_missing", "C3_depth_malformed", "C3_depth_invalid_value"}
+    divergence_rules = {"C4_divergence_log_missing", "C4_divergence_log_empty"}
+    contract_priority_buckets: defaultdict[str, list[str]] = defaultdict(list)
+    for sim, rules in lint_rule_sets.items():
+        if rules & manifest_rules and rules & depth_rules and rules & divergence_rules:
+            bucket = "three_rule_header_backfill"
+        elif "C6_classical_has_load_bearing" in rules:
+            bucket = "classical_load_bearing_leakage"
+        elif rules & manifest_rules or rules & depth_rules:
+            bucket = "manifest_depth_normalization"
+        elif rules & divergence_rules:
+            bucket = "divergence_log_backfill"
+        else:
+            bucket = "other_contract_debt"
+        contract_priority_buckets[bucket].append(sim)
     return {
         "count": len(classical_paths),
         "result_states": dict(state_counts),
@@ -1212,6 +1248,22 @@ def classical_surface(limit: int = 12) -> dict:
             "greedy_declared_cover": relationship_surface["greedy_declared_cover"],
             "per_tool_best_companions": relationship_surface["per_tool_best_companions"],
             "samples": tool_samples,
+        },
+        "repair_queues": {
+            "results": {
+                key: {
+                    "count": len(entries),
+                    "samples": entries,
+                }
+                for key, entries in result_repair_queue.items()
+            },
+            "contract": {
+                key: {
+                    "count": len(entries),
+                    "samples": entries[:limit],
+                }
+                for key, entries in contract_priority_buckets.items()
+            },
         },
         "samples": dict(result_samples),
     }
@@ -1720,14 +1772,42 @@ def _results_maintenance_queue(results: dict) -> dict:
 def _classical_maintenance_queue(classical: dict) -> dict:
     lint = classical.get("lint", {})
     tool_integration = classical.get("tool_integration", {})
+    samples = classical.get("samples", {})
+    result_states = classical.get("result_states", {})
     return {
         "count": int(classical.get("count", 0) or 0),
-        "result_states": dict(classical.get("result_states", {})),
-        "stale_samples": list(classical.get("samples", {}).get("stale_source_newer", []))[:5],
-        "no_result_samples": list(classical.get("samples", {}).get("no_result", []))[:5],
+        "result_states": dict(result_states),
+        "freshness_queue": {
+            "count": int(result_states.get("stale_source_newer", 0) or 0),
+            "families": dict(classical.get("stale_families", {})),
+            "samples": list(samples.get("stale_source_newer", []))[:5],
+        },
+        "no_result_queue": {
+            "count": int(result_states.get("no_result", 0) or 0),
+            "families": dict(classical.get("no_result_families", {})),
+            "samples": list(samples.get("no_result", []))[:5],
+        },
+        "unknown_queue": {
+            "count": int(result_states.get("unknown", 0) or 0),
+            "families": dict(classical.get("unknown_families", {})),
+            "samples": list(samples.get("unknown", []))[:5],
+        },
         "lint_counts": dict(lint.get("counts", {})),
+        "contract_queue": {
+            "violating_sims": int(lint.get("counts", {}).get("violating_sims", 0) or 0),
+            "top_rules": {
+                key: int(value)
+                for key, value in lint.get("counts", {}).items()
+                if key not in {"clean", "violating_sims"}
+            },
+            "samples": dict(lint.get("samples", {})),
+        },
         "top_tool_manifest_gaps": dict(Counter(tool_integration.get("missing_manifest_by_tool", {})).most_common(10)),
         "top_tool_depth_gaps": dict(Counter(tool_integration.get("missing_depth_by_tool", {})).most_common(10)),
+        "tool_queue": {
+            "top_anchor_sims": list(tool_integration.get("max_stack_sims", []))[:5],
+            "cover": dict(tool_integration.get("greedy_declared_cover", {})),
+        },
     }
 
 

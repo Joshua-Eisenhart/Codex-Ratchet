@@ -2441,6 +2441,33 @@ def test_system_surface_audit_maintenance_queue_groups_actions() -> None:
                 "untracked_source_results": 0,
             }
         },
+        {
+            "count": 12,
+            "result_states": {
+                "pass": 7,
+                "stale_source_newer": 2,
+                "no_result": 2,
+                "unknown": 1,
+            },
+            "stale_families": {"gtower": 2},
+            "no_result_families": {"pure": 2},
+            "unknown_families": {"fep": 1},
+            "samples": {
+                "stale_source_newer": ["sim_alpha.py"],
+                "no_result": ["sim_beta.py"],
+                "unknown": ["sim_gamma.py"],
+            },
+            "lint": {
+                "counts": {"clean": 3, "violating_sims": 9, "C6_classical_has_load_bearing": 4},
+                "samples": {"C6_classical_has_load_bearing": ["sim_alpha.py"]},
+            },
+            "tool_integration": {
+                "missing_manifest_by_tool": {"scipy": 3},
+                "missing_depth_by_tool": {"scipy": 4},
+                "max_stack_sims": [{"sim": "sim_anchor.py", "load_bearing_tool_count": 5}],
+                "greedy_declared_cover": {"target_tool_count": 6, "covered_tool_count": 5},
+            },
+        },
     )
 
     assert queue["git"]["blocked_entries"] == 3
@@ -2450,6 +2477,24 @@ def test_system_surface_audit_maintenance_queue_groups_actions() -> None:
     assert queue["runner"]["blocked"]["duplicate_entries"] == 3
     assert queue["results"]["fail_actions"] == {"rerun_candidate": 2, "missing_source_repair": 1}
     assert queue["results"]["fail_action_samples"]["rerun_candidate"] == [{"result": "a.json", "action": "rerun_candidate"}]
+    assert queue["classical"]["freshness_queue"] == {
+        "count": 2,
+        "families": {"gtower": 2},
+        "samples": ["sim_alpha.py"],
+    }
+    assert queue["classical"]["no_result_queue"] == {
+        "count": 2,
+        "families": {"pure": 2},
+        "samples": ["sim_beta.py"],
+    }
+    assert queue["classical"]["unknown_queue"] == {
+        "count": 1,
+        "families": {"fep": 1},
+        "samples": ["sim_gamma.py"],
+    }
+    assert queue["classical"]["contract_queue"]["violating_sims"] == 9
+    assert queue["classical"]["top_tool_manifest_gaps"] == {"scipy": 3}
+    assert queue["classical"]["top_tool_depth_gaps"] == {"scipy": 4}
 
 
 def test_sim_program_audit_skips_invalid_queue_candidates(tmp_path) -> None:

@@ -27,6 +27,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "SU(2) rotation R(θ,n̂) via Pauli matrices σ, spinor ψ action, 2π/4π periodic behavior — all torch float64 with autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed"},
@@ -489,7 +491,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_spinor_torch_foundation",
         "description": "Torch-native Spinor geometry foundation: SU(2) rotation matrices, Weyl spinors ψ∈ℂ², spin-½ periodicity (2π→-I, 4π→I), Weyl projections — all torch float64 with autograd. numpy→torch migration proof-of-concept.",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

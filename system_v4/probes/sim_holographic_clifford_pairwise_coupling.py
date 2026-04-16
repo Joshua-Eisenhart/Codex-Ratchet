@@ -38,6 +38,8 @@ import traceback
 
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -422,7 +424,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_clifford_pairwise_coupling",
-        "classification": "classical_baseline",
+        "classification": classification,
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": "2a",
         "parent_sims": [

@@ -12,6 +12,10 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "no unitary oscillation of distance; only monotone contraction; no BLP non-Markovianity "
+    "signature (information backflow); cannot distinguish dephasing from amplitude-damping via TV alone."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix arithmetic"},
@@ -72,11 +76,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "no unitary oscillation of distance; only monotone contraction",
-            "no BLP non-Markovianity signature (information backflow)",
-            "cannot distinguish dephasing from amplitude-damping via TV alone",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "trace_norm_dynamics_classical_results.json")

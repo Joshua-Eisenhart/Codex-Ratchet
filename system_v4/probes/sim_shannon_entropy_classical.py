@@ -12,6 +12,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "cannot encode noncommuting observable families; presumes fixed classical alphabet with "
+    "distinguishable outcomes; blind to probe-relative indistinguishability classes; no shell-"
+    "coupling or admissibility structure."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "log/sum on discrete pmf"},
@@ -59,12 +64,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "cannot encode noncommuting observable families",
-            "presumes fixed classical alphabet with distinguishable outcomes",
-            "blind to probe-relative indistinguishability classes",
-            "no shell-coupling or admissibility structure",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "shannon_entropy_classical_results.json")

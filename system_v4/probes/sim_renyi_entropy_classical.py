@@ -4,6 +4,13 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "classical Renyi acts on a single-basis pmf; misses sandwiched/Petz quantum Renyi divergences "
+    "(distinct for noncommuting rho, sigma). no data-processing contraction distinguishing alpha<1 "
+    "vs alpha>1 under nonunital channels. cannot detect coherence spectrum (majorization on "
+    "eigenvalues); classical sees only a diagonal. lacks min/max entropy smoothing in the one-shot "
+    "quantum sense (purified distance unavailable)."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf power sums and log"},
@@ -64,11 +71,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical Renyi acts on a single-basis pmf; misses sandwiched/Petz quantum Renyi divergences (distinct for noncommuting rho, sigma)",
-                "no data-processing contraction distinguishing alpha<1 vs alpha>1 under nonunital channels",
-                "cannot detect coherence spectrum (majorization on eigenvalues); classical sees only a diagonal",
-                "lacks min/max entropy smoothing in the one-shot quantum sense (purified distance unavailable)",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

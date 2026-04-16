@@ -10,6 +10,15 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical SSA is elementary: I(A;C|B) is an expected KL divergence over B and therefore "
+    "nonneg by Gibbs. The quantum analog (Lieb-Ruskai) requires operator-convexity of x log x "
+    "and is the nontrivial backbone of quantum information theory. The baseline cannot reveal "
+    "the non-monotone, basis-dependent quantum conditional mutual information, nor detect "
+    "approximate-Markov-chain failure modes (Fawzi-Renner recovery map), because the very "
+    "notion of a conditional state sigma_{AC|B} that recovers ABC under a local map on B does "
+    "not arise for commuting classical observables."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Shannon entropy on marginals"},
@@ -89,15 +98,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": (
-            "Classical SSA is elementary: I(A;C|B) is an expected KL divergence over B and therefore "
-            "nonneg by Gibbs. The quantum analog (Lieb-Ruskai) requires operator-convexity of x log x "
-            "and is the nontrivial backbone of quantum information theory. The baseline cannot reveal "
-            "the non-monotone, basis-dependent quantum conditional mutual information, nor detect "
-            "approximate-Markov-chain failure modes (Fawzi-Renner recovery map), because the very "
-            "notion of a conditional state sigma_{AC|B} that recovers ABC under a local map on B does "
-            "not arise for commuting classical observables."
-        ),
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "strong_subadditivity_classical_results.json")

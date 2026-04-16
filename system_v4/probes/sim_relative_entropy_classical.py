@@ -4,6 +4,12 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "classical KL assumes a shared sample space; misses noncommuting-basis D(rho||sigma). "
+    "classical KL finite only if supp(p) subseteq supp(q); quantum relative entropy has analogous "
+    "but basis-dependent kernel structure. no Umegaki/Petz monotonicity distinctions; only DPI in "
+    "one stochastic form. cannot capture quantum hypothesis-testing strengthening."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "log arithmetic on pmfs"},
@@ -55,11 +61,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical KL assumes a shared sample space; misses noncommuting-basis D(rho||sigma)",
-                "classical KL finite only if supp(p) subseteq supp(q); quantum relative entropy has analogous but basis-dependent kernel structure",
-                "no Umegaki/Petz monotonicity distinctions; only DPI in one (stochastic) form",
-                "cannot capture quantum hypothesis-testing (Stein lemma) strengthening",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

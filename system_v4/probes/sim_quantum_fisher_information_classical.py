@@ -11,6 +11,14 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Fisher information cannot express the symmetric-logarithmic-derivative (SLD) "
+    "term that raises QFI above classical Fisher for noncommuting parametric quantum families. "
+    "The baseline captures only diagonal (commuting) eigenvalue variation under theta; for "
+    "parametric families whose eigenbasis rotates with theta (e.g., rotated qubit Bloch states), "
+    "the basis-rotation contribution is innately absent, so the classical sim cannot detect the "
+    "4x QFI enhancement for pure-state estimation nor the Heisenberg-scaling metrology regime."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "finite-difference Fisher computation on pmfs"},
@@ -77,14 +85,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": (
-            "Classical Fisher information cannot express the symmetric-logarithmic-derivative (SLD) "
-            "term that raises QFI above classical Fisher for noncommuting parametric quantum families. "
-            "The baseline captures only diagonal (commuting) eigenvalue variation under theta; for "
-            "parametric families whose eigenbasis rotates with theta (e.g., rotated qubit Bloch states), "
-            "the basis-rotation contribution is innately absent, so the classical sim cannot detect the "
-            "4x QFI enhancement for pure-state estimation nor the Heisenberg-scaling metrology regime."
-        ),
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "quantum_fisher_information_classical_results.json")

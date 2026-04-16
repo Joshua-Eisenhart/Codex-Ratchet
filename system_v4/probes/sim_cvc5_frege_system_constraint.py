@@ -101,24 +101,24 @@ def positive_test_cvc5_modus_ponens_sound():
     zero = solver.mkReal(0)
     one = solver.mkReal(1)
 
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-        solver.mkTerm(cvc5.Kind.Equal, p, zero),
-        solver.mkTerm(cvc5.Kind.Equal, p, one)
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+        solver.mkTerm(cvc5.Kind.EQUAL, p, zero),
+        solver.mkTerm(cvc5.Kind.EQUAL, p, one)
     ))
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-        solver.mkTerm(cvc5.Kind.Equal, q, zero),
-        solver.mkTerm(cvc5.Kind.Equal, q, one)
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+        solver.mkTerm(cvc5.Kind.EQUAL, q, zero),
+        solver.mkTerm(cvc5.Kind.EQUAL, q, one)
     ))
 
     # Assert: p = 1 (p is true)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, p, one))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p, one))
 
     # Assert: p → q (i.e., ¬p ∨ q, i.e., p ≤ q in terms of 0/1)
     # Equivalently: if p = 1, then q = 1
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, p, q))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, p, q))
 
     # Deny: q = 1 (q is false)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, q, zero))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, q, zero))
 
     result = solver.checkSat()
     is_unsat = str(result) == "unsat"
@@ -192,15 +192,15 @@ def positive_test_cvc5_tautology_p_to_p():
     one = solver.mkReal(1)
 
     # p is 0 or 1
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-        solver.mkTerm(cvc5.Kind.Equal, p, zero),
-        solver.mkTerm(cvc5.Kind.Equal, p, one)
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+        solver.mkTerm(cvc5.Kind.EQUAL, p, zero),
+        solver.mkTerm(cvc5.Kind.EQUAL, p, one)
     ))
 
     # Deny p → p: assert p ∧ ¬p
     # p = 1 and p = 0 (contradiction)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, p, one))
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, p, zero))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p, one))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p, zero))
 
     result = solver.checkSat()
     is_unsat = str(result) == "unsat"
@@ -234,23 +234,23 @@ def negative_test_cvc5_invalid_modus_ponens_premise():
     one = solver.mkReal(1)
 
     # p, q are 0 or 1
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-        solver.mkTerm(cvc5.Kind.Equal, p, zero),
-        solver.mkTerm(cvc5.Kind.Equal, p, one)
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+        solver.mkTerm(cvc5.Kind.EQUAL, p, zero),
+        solver.mkTerm(cvc5.Kind.EQUAL, p, one)
     ))
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-        solver.mkTerm(cvc5.Kind.Equal, q, zero),
-        solver.mkTerm(cvc5.Kind.Equal, q, one)
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+        solver.mkTerm(cvc5.Kind.EQUAL, q, zero),
+        solver.mkTerm(cvc5.Kind.EQUAL, q, one)
     ))
 
     # Assert: ¬p (p = 0)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, p, zero))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p, zero))
 
     # Assert: p → q (p ≤ q)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, p, q))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, p, q))
 
     # Assert: ¬q (q = 0)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, q, zero))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, q, zero))
 
     result = solver.checkSat()
     is_sat = str(result) == "sat"
@@ -289,22 +289,22 @@ def boundary_test_cvc5_chain_modus_ponens():
 
     # p, q, r are 0 or 1
     for var in [p, q, r]:
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-            solver.mkTerm(cvc5.Kind.Equal, var, zero),
-            solver.mkTerm(cvc5.Kind.Equal, var, one)
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+            solver.mkTerm(cvc5.Kind.EQUAL, var, zero),
+            solver.mkTerm(cvc5.Kind.EQUAL, var, one)
         ))
 
     # Assert: p = 1
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, p, one))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p, one))
 
     # Assert: p → q (p ≤ q)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, p, q))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, p, q))
 
     # Assert: q → r (q ≤ r)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, q, r))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, q, r))
 
     # Deny: r = 0
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, r, zero))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, r, zero))
 
     result = solver.checkSat()
     is_unsat = str(result) == "unsat"

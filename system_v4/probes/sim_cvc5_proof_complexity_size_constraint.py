@@ -118,7 +118,7 @@ def positive_test_cvc5_php_2_3_unsat():
 
     # Type 1: each pigeon goes into some hole
     for i in range(3):
-        clause = solver.mkTerm(cvc5.Kind.Or, vars_dict[(i, 0)], vars_dict[(i, 1)])
+        clause = solver.mkTerm(cvc5.Kind.OR, vars_dict[(i, 0)], vars_dict[(i, 1)])
         solver.assertFormula(clause)
 
     # Type 2: at most one pigeon per hole
@@ -126,9 +126,9 @@ def positive_test_cvc5_php_2_3_unsat():
         for i1 in range(3):
             for i2 in range(i1 + 1, 3):
                 clause = solver.mkTerm(
-                    cvc5.Kind.Or,
-                    solver.mkTerm(cvc5.Kind.Not, vars_dict[(i1, j)]),
-                    solver.mkTerm(cvc5.Kind.Not, vars_dict[(i2, j)])
+                    cvc5.Kind.OR,
+                    solver.mkTerm(cvc5.Kind.NOT, vars_dict[(i1, j)]),
+                    solver.mkTerm(cvc5.Kind.NOT, vars_dict[(i2, j)])
                 )
                 solver.assertFormula(clause)
 
@@ -202,16 +202,16 @@ def negative_test_cvc5_polynomial_proof_claim():
             vars_dict[(i, j)] = solver.mkConst(solver.getBooleanSort(), f"x_{i}_{j}")
 
     for i in range(3):
-        clause = solver.mkTerm(cvc5.Kind.Or, vars_dict[(i, 0)], vars_dict[(i, 1)])
+        clause = solver.mkTerm(cvc5.Kind.OR, vars_dict[(i, 0)], vars_dict[(i, 1)])
         solver.assertFormula(clause)
 
     for j in range(2):
         for i1 in range(3):
             for i2 in range(i1 + 1, 3):
                 clause = solver.mkTerm(
-                    cvc5.Kind.Or,
-                    solver.mkTerm(cvc5.Kind.Not, vars_dict[(i1, j)]),
-                    solver.mkTerm(cvc5.Kind.Not, vars_dict[(i2, j)])
+                    cvc5.Kind.OR,
+                    solver.mkTerm(cvc5.Kind.NOT, vars_dict[(i1, j)]),
+                    solver.mkTerm(cvc5.Kind.NOT, vars_dict[(i2, j)])
                 )
                 solver.assertFormula(clause)
 
@@ -257,7 +257,7 @@ def boundary_test_cvc5_php_1_2_sat():
 
     # At most one pigeon per hole
     solver.assertFormula(
-        solver.mkTerm(cvc5.Kind.Or, solver.mkTerm(cvc5.Kind.Not, x_0_0), solver.mkTerm(cvc5.Kind.Not, x_1_0))
+        solver.mkTerm(cvc5.Kind.OR, solver.mkTerm(cvc5.Kind.NOT, x_0_0), solver.mkTerm(cvc5.Kind.NOT, x_1_0))
     )
 
     result = solver.checkSat()

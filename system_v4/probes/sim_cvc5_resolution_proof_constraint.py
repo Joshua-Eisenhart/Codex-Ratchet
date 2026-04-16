@@ -109,10 +109,10 @@ def positive_test_cvc5_phi_formula():
     r = solver.mkConst(solver.getBooleanSort(), "r")
 
     # Clauses: p ∨ q, ¬p ∨ r, ¬q ∨ r, ¬r
-    clause1 = solver.mkTerm(cvc5.Kind.Or, p, q)
-    clause2 = solver.mkTerm(cvc5.Kind.Or, solver.mkTerm(cvc5.Kind.Not, p), r)
-    clause3 = solver.mkTerm(cvc5.Kind.Or, solver.mkTerm(cvc5.Kind.Not, q), r)
-    clause4 = solver.mkTerm(cvc5.Kind.Not, r)
+    clause1 = solver.mkTerm(cvc5.Kind.OR, p, q)
+    clause2 = solver.mkTerm(cvc5.Kind.OR, solver.mkTerm(cvc5.Kind.NOT, p), r)
+    clause3 = solver.mkTerm(cvc5.Kind.OR, solver.mkTerm(cvc5.Kind.NOT, q), r)
+    clause4 = solver.mkTerm(cvc5.Kind.NOT, r)
 
     # Add all clauses
     solver.assertFormula(clause1)
@@ -197,10 +197,10 @@ def negative_test_cvc5_incomplete_refutation():
     q = solver.mkConst(solver.getBooleanSort(), "q")
     r = solver.mkConst(solver.getBooleanSort(), "r")
 
-    clause1 = solver.mkTerm(cvc5.Kind.Or, p, q)
-    clause2 = solver.mkTerm(cvc5.Kind.Or, solver.mkTerm(cvc5.Kind.Not, p), r)
-    clause3 = solver.mkTerm(cvc5.Kind.Or, solver.mkTerm(cvc5.Kind.Not, q), r)
-    clause4 = solver.mkTerm(cvc5.Kind.Not, r)
+    clause1 = solver.mkTerm(cvc5.Kind.OR, p, q)
+    clause2 = solver.mkTerm(cvc5.Kind.OR, solver.mkTerm(cvc5.Kind.NOT, p), r)
+    clause3 = solver.mkTerm(cvc5.Kind.OR, solver.mkTerm(cvc5.Kind.NOT, q), r)
+    clause4 = solver.mkTerm(cvc5.Kind.NOT, r)
 
     solver.assertFormula(clause1)
     solver.assertFormula(clause2)
@@ -235,7 +235,7 @@ def boundary_test_cvc5_single_clause_unsat():
 
     # Enforce both p and ¬p
     solver.assertFormula(p)
-    solver.assertFormula(solver.mkTerm(cvc5.Kind.Not, p))
+    solver.assertFormula(solver.mkTerm(cvc5.Kind.NOT, p))
 
     result = solver.checkSat()
     is_unsat = str(result) == "unsat"
@@ -264,7 +264,7 @@ def boundary_test_cvc5_satisfiable_formula():
     p = solver.mkConst(solver.getBooleanSort(), "p")
     q = solver.mkConst(solver.getBooleanSort(), "q")
 
-    clause1 = solver.mkTerm(cvc5.Kind.Or, p, q)
+    clause1 = solver.mkTerm(cvc5.Kind.OR, p, q)
     solver.assertFormula(clause1)
 
     result = solver.checkSat()

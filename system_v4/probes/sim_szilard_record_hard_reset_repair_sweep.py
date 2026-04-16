@@ -18,11 +18,12 @@ classification = "classical_baseline"  # auto-backfill
 
 
 CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Hard-reset repair sweep for the weak open Szilard record/reset lane. It "
     "adds reset-duration and reset-barrier axes to test whether the stochastic "
     "carrier can approach the strict reset-effect regime."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "stochastic_thermodynamics",

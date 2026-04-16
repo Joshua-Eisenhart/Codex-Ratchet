@@ -15,14 +15,15 @@ import numpy as np
 
 import sim_szilard_record_hard_reset_repair_sweep as hard_base
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline refinement sweep over Szilard record ordering on a "
+    "hard-reset carrier; this narrows a controller-facing search surface and "
+    "does not claim a canonical nonclassical witness."
+)
 
 
 CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
-    "Second-order ordering refinement sweep on top of the hard-reset Szilard "
-    "record carrier. It narrows the search around the best ordering-amplified "
-    "setting and adds feedback duration and barrier depth as explicit axes."
-)
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "stochastic_thermodynamics",
@@ -348,6 +349,7 @@ def main() -> None:
         "name": "szilard_record_ordering_refinement_sweep",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
@@ -368,11 +370,7 @@ def main() -> None:
             "best_measurement_mutual_information": best_row["measurement_mutual_information"],
             "best_record_survival_fraction": best_row["record_survival_fraction"],
             "best_reset_stage_entropy": best_row["reset_stage_entropy"],
-            "scope_note": (
-                "Local refinement sweep around the best ordering-amplified hard-reset Szilard carrier. "
-                "It adds feedback duration and barrier depth to test whether ordering can be pushed "
-                "past the remaining gap without losing measurement or survival quality."
-            ),
+            "scope_note": divergence_log,
         },
         "rows": rows,
     }

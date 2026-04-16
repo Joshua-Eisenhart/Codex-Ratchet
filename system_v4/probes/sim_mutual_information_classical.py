@@ -11,6 +11,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical mutual information over a commuting joint pmf: this baseline "
+    "cannot represent noncommuting observables, probe-conditional "
+    "admissibility, or entanglement-driven quantum mutual information."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "marginal/joint pmf log arithmetic"},
@@ -66,11 +72,8 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "classical MI bounded by min(H(X),H(Y)); quantum MI can reach 2 S(A) via entanglement",
-            "assumes commuting joint pmf; cannot encode noncommuting observable families",
-            "no probe-conditional admissibility; every joint outcome presumed measurable",
-        ],
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "mutual_information_classical_results.json")

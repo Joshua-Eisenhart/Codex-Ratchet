@@ -25,14 +25,16 @@ import numpy as np
 
 import sim_stoch_doublewell_landauer_erasure as base
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Exploratory Szilard sweep on record lifetime and reset strength over a "
+    "finite double-well carrier; this is a controller-facing baseline sweep, "
+    "not a canonical engine theorem."
+)
 
 
 CLASSIFICATION = "exploratory"
 CLASSIFICATION_NOTE = (
-    "Exploratory Szilard sweep over record lifetime, record reliability, and "
-    "reset strength on a finite double-well carrier. The probe checks whether "
-    "a longer-lived record materially improves ordered-vs-scrambled separation "
-    "and whether stronger reset lowers residual memory entropy."
+    divergence_log
 )
 
 LEGO_IDS = [

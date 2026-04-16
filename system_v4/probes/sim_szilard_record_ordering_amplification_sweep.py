@@ -15,6 +15,12 @@ import numpy as np
 
 import sim_szilard_record_hard_reset_repair_sweep as hard_base
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline Szilard record ordering amplification sweep: the "
+    "probe varies feedback asymmetry and record-wait duration while keeping "
+    "the hard-reset carrier fixed, but it does not claim a canonical "
+    "nonclassical witness."
+)
 
 
 CLASSIFICATION = "exploratory"
@@ -310,6 +316,7 @@ def main() -> None:
         "name": "szilard_record_ordering_amplification_sweep",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

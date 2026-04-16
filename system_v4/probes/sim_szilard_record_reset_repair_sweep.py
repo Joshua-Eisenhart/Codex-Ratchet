@@ -22,14 +22,15 @@ import numpy as np
 
 import sim_szilard_record_reset_sweep as base
 classification = "classical_baseline"  # auto-backfill
-
-
-CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Expanded repair sweep for the weak open Szilard record/reset lane. It "
     "widens feedback, lifetime, and reset controls and scores closeness to the "
     "strict QIT companion without treating the result as admission."
 )
+
+
+CLASSIFICATION = "exploratory"
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "stochastic_thermodynamics",
@@ -272,11 +273,7 @@ def main() -> None:
             "qit_target_measurement_mutual_information": qit_summary["mean_measurement_mutual_information"],
             "qit_target_record_survival_fraction": qit_summary["mean_record_survival_fraction"],
             "qit_target_reset_swing": qit_reset_swing,
-            "scope_note": (
-                "Expanded repair sweep for the weak open Szilard record/reset lane. "
-                "It widens lifetime, reset, and feedback controls and scores closeness "
-                "to the strict QIT companion."
-            ),
+            "scope_note": divergence_log,
         },
         "rows": rows,
     }

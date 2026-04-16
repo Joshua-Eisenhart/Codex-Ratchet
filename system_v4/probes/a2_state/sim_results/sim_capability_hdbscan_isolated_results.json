@@ -1,9 +1,9 @@
 {
   "name": "sim_capability_hdbscan_isolated",
   "classification": "classical_baseline",
-  "overall_pass": true,
-  "pass_count": 8,
-  "total_count": 8,
+  "overall_pass": false,
+  "pass_count": 1,
+  "total_count": 2,
   "capability_summary": {
     "CAN": [
       "import and instantiate HDBSCAN clusterer",
@@ -105,54 +105,20 @@
   },
   "positive": {
     "hdbscan_available": {
-      "pass": true,
-      "version": "unknown"
-    },
-    "labels_are_integers": {
-      "pass": true,
-      "n_points": 20,
-      "unique_labels": [
-        0,
-        1
-      ],
-      "detail": "HDBSCAN.labels_ must be integer-typed for all points"
-    },
-    "core_distances_computed": {
-      "pass": true,
-      "attribute_used": "outlier_scores_",
-      "length": 20,
-      "all_nonnegative": true,
-      "detail": "outlier_scores_ (GLOSH) must be non-None, length==n_samples, all >= 0 (replaces core_distances_ in newer hdbscan)"
-    },
-    "not_all_noise": {
-      "pass": true,
-      "n_clustered": 20,
-      "n_noise": 0,
-      "detail": "on two well-separated blobs at least some points must be cluster-assigned"
+      "pass": false,
+      "detail": "hdbscan not importable"
     }
   },
   "negative": {
-    "single_point_all_noise": {
+    "hdbscan_unavailable": {
       "pass": true,
-      "detail": "raised exception (also acceptable for single point): k must be less than or equal to the number of training points"
+      "detail": "skip: hdbscan not installed"
     }
   },
   "boundary": {
-    "min_cluster_size_2": {
+    "hdbscan_unavailable": {
       "pass": true,
-      "n_clusters": 2,
-      "detail": "min_cluster_size=2 on 20-point two-blob data should yield >= 1 cluster"
-    },
-    "min_cluster_size_20": {
-      "pass": true,
-      "n_clusters": 0,
-      "detail": "min_cluster_size=20 on 20 total points yields <= 1 cluster"
-    },
-    "min_cluster_size_changes_result": {
-      "pass": true,
-      "n_clusters_size2": 2,
-      "n_clusters_size20": 0,
-      "detail": "min_cluster_size=2 vs min_cluster_size=20 must differ in cluster count"
+      "detail": "skip: hdbscan not installed"
     }
   }
 }

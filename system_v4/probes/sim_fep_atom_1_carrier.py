@@ -14,6 +14,8 @@ unit total mass and finite E_q[log q]).
 
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "autograd enters at reduction atom"},
     "pyg":       {"tried": False, "used": False, "reason": "no graph at carrier atom"},
@@ -83,7 +85,7 @@ if __name__ == "__main__":
     all_pass = (pos.get("gaussian_carrier",{}).get("pass",False)
                 and neg.get("improper_carrier_rejected",{}).get("pass",False)
                 and bnd.get("zero_carrier_degenerate",{}).get("pass",False))
-    out = {"name":"fep_atom_1_carrier","classification":"canonical",
+    out = {"name":"fep_atom_1_carrier","classification":classification,
            "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
            "positive":pos,"negative":neg,"boundary":bnd,
            "status":"PASS" if all_pass else "FAIL"}

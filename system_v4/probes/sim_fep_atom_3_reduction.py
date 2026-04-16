@@ -14,6 +14,8 @@ of q; gradient-descent step decreases F).
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "autograd of F and gradient flow"},
     "pyg":       {"tried": False, "used": False, "reason": "no edge aggregation"},

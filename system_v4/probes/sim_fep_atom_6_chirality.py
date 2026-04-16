@@ -15,6 +15,8 @@ equals both forward and reverse KL when they differ).
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "numeric forward/reverse KL asymmetry"},
     "pyg":       {"tried": False, "used": False, "reason": "not used"},
@@ -112,7 +114,7 @@ if __name__ == "__main__":
     all_pass = (pos.get("kl_asymmetric",{}).get("pass",False)
                 and neg.get("symmetric_scalar_unsat",{}).get("pass",False)
                 and bnd.get("achiral_equal_distributions",{}).get("pass",False))
-    out = {"name":"fep_atom_6_chirality","classification":"canonical",
+    out = {"name":"fep_atom_6_chirality","classification":classification,
            "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
            "positive":pos,"negative":neg,"boundary":bnd,
            "status":"PASS" if all_pass else "FAIL"}

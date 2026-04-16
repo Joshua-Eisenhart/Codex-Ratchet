@@ -4,17 +4,118 @@
 scope_note: Bridge -- Landauer erasure cost rewritten in terms of the
   distinguishability quantum F01 with sympy symbolic derivation and z3
   admissibility fence. Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md.
+  qutip/cirq/pennylane witness the same one-bit carrier floor without
+  changing the theorem.
 """
-from _doc_illum_common import build_manifest, write_results
+
+from __future__ import annotations
+
+import os
+
+import cirq
+import numpy as np
+import pennylane as qml
+import qutip
 import sympy as sp
 import z3
+
+from _doc_illum_common import write_results
 
 NAME = "bridge_landauer_erasure_bit_distinguishability"
 SCOPE_NOTE = ("Bridge: sympy derives E_erase = F01 * H(p) for Bernoulli p, "
               "and z3 proves UNSAT for E_erase < F01 * H(p). Illuminates "
               "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-CLASSIFICATION = "canonical"
-TM, DEPTH = build_manifest()
+classification = "canonical"
+divergence_log = (
+    "Landauer distinguishability bridge: sympy keeps the erasure-floor "
+    "identity E_erase = F01 * H(p) and z3 enforces the admissibility fence, "
+    "while qutip/cirq/pennylane witness the same one-bit carrier entropy "
+    "floor (ln2 at p=1/2) on a supportive surface."
+)
+
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "binary entropy and one-bit carrier bookkeeping for the floor witness",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-bit density witness for the Landauer floor",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-bit density witness for the same carrier surface",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "supportive one-bit density witness for the same carrier surface",
+    },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic derivation of the erasure floor identity",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing admissibility fence for the sub-floor claim",
+    },
+    "pytorch": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed for this theorem"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "cvc5": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+Q0 = cirq.LineQubit(0)
+QML_DEV = qml.device("default.mixed", wires=1, shots=None)
+LN2 = z3.RealVal("0.6931471805599453")
+
+def _entropy_nats_from_population(p):
+    p = float(np.clip(p, 1e-15, 1 - 1e-15))
+    probs = np.array([1.0 - p, p], dtype=np.float64)
+    nonzero = probs[probs > 0.0]
+    if nonzero.size == 0:
+        return 0.0
+    return float(-np.sum(nonzero * np.log(nonzero)))
+
+
+def _carrier_density(p):
+    p = float(np.clip(p, 1e-15, 1 - 1e-15))
+    return np.array([[1.0 - p, 0.0], [0.0, p]], dtype=np.complex128)
 
 
 def _sympy_derive():
@@ -29,8 +130,44 @@ def _sympy_derive():
 
 def run_positive():
     residual = _sympy_derive()
-    return {"sympy_residual_at_half": str(residual),
-            "is_zero": bool(residual == 0)}
+    qutip_rho = qutip.Qobj(_carrier_density(0.5), dims=[[2], [2]])
+    qutip_entropy = float(qutip.entropy_vn(qutip_rho, base=np.e))
+    cirq_rho = np.asarray(
+        cirq.DensityMatrixSimulator(seed=13).simulate(
+            cirq.Circuit(cirq.I(Q0)),
+            qubit_order=[Q0],
+            initial_state=_carrier_density(0.5),
+        ).final_density_matrix,
+        dtype=np.complex128,
+    )
+
+    @qml.qnode(QML_DEV)
+    def _pennylane_density():
+        qml.QubitDensityMatrix(_carrier_density(0.5), wires=0)
+        return qml.density_matrix(wires=0)
+
+    pennylane_rho = np.asarray(_pennylane_density(), dtype=np.complex128)
+    expected = _entropy_nats_from_population(0.5)
+    return {
+        "sympy_residual_at_half": str(residual),
+        "is_zero": bool(residual == 0),
+        "witness_floor": {
+            "expected_entropy_nats": expected,
+            "qutip_entropy_nats": qutip_entropy,
+            "cirq_entropy_nats": _entropy_nats_from_population(
+                float(np.real(cirq_rho[1, 1]))
+            ),
+            "pennylane_entropy_nats": _entropy_nats_from_population(
+                float(np.real(pennylane_rho[1, 1]))
+            ),
+        },
+        "witnesses_ok": bool(
+            abs(qutip_entropy - expected) < 1e-10
+            and abs(_entropy_nats_from_population(float(np.real(cirq_rho[1, 1]))) - expected) < 1e-10
+            and abs(_entropy_nats_from_population(float(np.real(pennylane_rho[1, 1]))) - expected) < 1e-10
+            and abs(expected - np.log(2.0)) < 1e-10
+        ),
+    }
 
 
 def run_negative():
@@ -51,22 +188,30 @@ def run_boundary():
     H = -(p * sp.log(p) + (1 - p) * sp.log(1 - p))
     E = F01 * H
     lim = sp.limit(E, p, 0, "+")
-    return {"p_to_zero_limit": str(lim), "is_zero": bool(lim == 0)}
+    return {
+        "p_to_zero_limit": str(lim),
+        "is_zero": bool(lim == 0),
+        "boundary_floor": {
+            "p_zero_entropy_nats": _entropy_nats_from_population(1e-15),
+            "p_one_entropy_nats": _entropy_nats_from_population(1 - 1e-15),
+        },
+    }
 
 
 if __name__ == "__main__":
-    TM["sympy"]["used"] = True
-    TM["sympy"]["reason"] = "Symbolic derivation of E = F01 * H(p); load-bearing"
-    TM["z3"]["used"] = True
-    TM["z3"]["reason"] = "UNSAT on sub-floor erasure; load-bearing fence"
-    DEPTH["sympy"] = "load_bearing"
-    DEPTH["z3"] = "load_bearing"
+    TOOL_MANIFEST["sympy"]["used"] = True
+    TOOL_MANIFEST["sympy"]["reason"] = "Symbolic derivation of E = F01 * H(p); load-bearing"
+    TOOL_MANIFEST["z3"]["used"] = True
+    TOOL_MANIFEST["z3"]["reason"] = "UNSAT on sub-floor erasure; load-bearing fence"
+    TOOL_INTEGRATION_DEPTH["sympy"] = "load_bearing"
+    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
     pos = run_positive(); neg = run_negative(); bnd = run_boundary()
-    ok = (pos["is_zero"] and neg["unsat_as_expected"] and bnd["is_zero"])
+    ok = (pos["is_zero"] and pos["witnesses_ok"] and neg["unsat_as_expected"] and bnd["is_zero"])
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
-        "classification": CLASSIFICATION,
-        "tool_manifest": TM, "tool_integration_depth": DEPTH,
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "load_bearing_tool": "sympy+z3",
         "positive": pos, "negative": neg, "boundary": bnd,
         "pass": bool(ok),

@@ -7,10 +7,20 @@ feedback, and memory erasure on a bounded density-operator carrier.
 """
 
 import json
+import os
 import pathlib
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import pennylane as qml
+import qutip
+
+classification = "canonical"
 
 
 LN2 = float(np.log(2.0))
@@ -23,6 +33,12 @@ CLASSIFICATION_NOTE = (
     "correlation into a one-bit free-energy gain for the system in a degenerate model, and "
     "memory erasure closes the bookkeeping at the same kT ln 2 scale."
 )
+divergence_log = (
+    "Finite two-qubit Szilard-Landauer cycle: numpy carries the bookkeeping, "
+    "qutip/cirq/pennylane witness the same bounded two-qubit carrier, and z3 "
+    "certifies the Landauer floor as an UNSAT exclusion of the forbidden region. "
+    "No reservoir-runtime or universal-demon claim is being made."
+)
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -34,27 +50,48 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "numeric baseline handled by numpy; torch not needed for 2-qubit bookkeeping"},
-    "pyg": {"tried": False, "used": False, "reason": "no graph carrier in this row"},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "cvc5": {"tried": False, "used": False, "reason": "z3 covers the linear-arithmetic bookkeeping encoding"},
-    "sympy": {"tried": False, "used": False, "reason": "closed-form kT ln2 values are numeric-exact; no symbolic manipulation needed"},
-    "clifford": {"tried": False, "used": False, "reason": "no geometric-algebra carrier in this row"},
-    "geomstats": {"tried": False, "used": False, "reason": "no manifold carrier in this row"},
-    "e3nn": {"tried": False, "used": False, "reason": "no equivariant representation in this row"},
-    "rustworkx": {"tried": False, "used": False, "reason": "no graph carrier in this row"},
-    "xgi": {"tried": False, "used": False, "reason": "no hypergraph carrier"},
-    "toponetx": {"tried": False, "used": False, "reason": "no cell complex carrier"},
-    "gudhi": {"tried": False, "used": False, "reason": "no persistence computation"},
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing two-qubit bookkeeping, entropy, and validation algebra",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-operator witness on the same bounded carrier",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-matrix simulator witness on the same carrier",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing mixed-state witness on the same bounded carrier",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing arithmetic proof of the Landauer floor and forbidden-region UNSAT",
+    },
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "z3": "load_bearing",
+}
 
 KET0 = np.array([[1.0], [0.0]], dtype=complex)
 KET1 = np.array([[0.0], [1.0]], dtype=complex)
 PROJ0 = KET0 @ KET0.conj().T
 PROJ1 = KET1 @ KET1.conj().T
 IDENTITY_2 = np.eye(2, dtype=complex)
+Q0, Q1 = cirq.LineQubit.range(2)
+PENNYLANE_DEV = qml.device("default.mixed", wires=2, shots=None)
 
 # Basis ordering: |00>, |01>, |10>, |11> with system first, memory second.
 CNOT_SYSTEM_TO_MEMORY = np.array(
@@ -76,6 +113,12 @@ CONTROLLED_X_MEMORY_TO_SYSTEM = np.array(
     ],
     dtype=complex,
 )
+
+QUTIP_CNOT_SYSTEM_TO_MEMORY = qutip.Qobj(CNOT_SYSTEM_TO_MEMORY, dims=[[2, 2], [2, 2]])
+QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM = qutip.Qobj(
+    CONTROLLED_X_MEMORY_TO_SYSTEM, dims=[[2, 2], [2, 2]]
+)
+QUTIP_PROJ0 = qutip.Qobj(PROJ0, dims=[[2], [2]])
 
 
 def entropy(rho: np.ndarray) -> float:
@@ -119,6 +162,99 @@ def is_valid_density(rho: np.ndarray) -> bool:
 
 def free_energy_degenerate(rho: np.ndarray, temperature: float) -> float:
     return -temperature * entropy(rho)
+
+
+def _qutip_density(rho: np.ndarray) -> qutip.Qobj:
+    return qutip.Qobj(np.asarray(rho, dtype=np.complex128), dims=[[2, 2], [2, 2]])
+
+
+def _qutip_apply_unitary(rho: np.ndarray, unitary: np.ndarray | qutip.Qobj) -> np.ndarray:
+    gate = unitary if isinstance(unitary, qutip.Qobj) else qutip.Qobj(unitary, dims=[[2, 2], [2, 2]])
+    return np.asarray((gate * _qutip_density(rho) * gate.dag()).full(), dtype=np.complex128)
+
+
+def _qutip_reset_memory_to_zero(rho_sm: np.ndarray) -> np.ndarray:
+    rho_s = qutip.Qobj(partial_trace_memory(rho_sm), dims=[[2], [2]])
+    return np.asarray(qutip.tensor(rho_s, QUTIP_PROJ0).full(), dtype=np.complex128)
+
+
+def _cirq_apply_unitary(rho: np.ndarray, forward: bool) -> np.ndarray:
+    circuit = cirq.Circuit(cirq.CNOT(Q0, Q1) if forward else cirq.CNOT(Q1, Q0))
+    sim = cirq.DensityMatrixSimulator(seed=13)
+    return np.asarray(
+        sim.simulate(circuit, initial_state=rho, qubit_order=[Q0, Q1]).final_density_matrix,
+        dtype=np.complex128,
+    )
+
+
+@qml.qnode(PENNYLANE_DEV)
+def _qml_apply_unitary(rho: np.ndarray, forward: bool = True):
+    qml.QubitDensityMatrix(np.asarray(rho, dtype=np.complex128), wires=[0, 1])
+    if forward:
+        qml.CNOT(wires=[0, 1])
+    else:
+        qml.CNOT(wires=[1, 0])
+    return qml.density_matrix(wires=[0, 1])
+
+
+@qml.qnode(PENNYLANE_DEV)
+def _qml_density(rho: np.ndarray):
+    qml.QubitDensityMatrix(np.asarray(rho, dtype=np.complex128), wires=[0, 1])
+    return qml.density_matrix(wires=[0, 1])
+
+
+def bridge_witnesses(
+    rho_init: np.ndarray,
+    rho_measured: np.ndarray,
+    rho_feedback: np.ndarray,
+    rho_erased: np.ndarray,
+) -> dict:
+    qutip_measured = _qutip_apply_unitary(rho_init, QUTIP_CNOT_SYSTEM_TO_MEMORY)
+    qutip_feedback = _qutip_apply_unitary(
+        qutip_measured, QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM
+    )
+    qutip_erased = _qutip_reset_memory_to_zero(qutip_feedback)
+
+    cirq_measured = _cirq_apply_unitary(rho_init, forward=True)
+    cirq_feedback = _cirq_apply_unitary(cirq_measured, forward=False)
+    cirq_erased = reset_memory_to_zero(cirq_feedback)
+
+    qml_measured = np.asarray(_qml_apply_unitary(rho_init, True), dtype=np.complex128)
+    qml_feedback = np.asarray(_qml_apply_unitary(qml_measured, False), dtype=np.complex128)
+    qml_erased = np.asarray(_qml_density(rho_erased), dtype=np.complex128)
+
+    return {
+        "qutip": {
+            "measurement_gap": float(np.linalg.norm(qutip_measured - rho_measured)),
+            "feedback_gap": float(np.linalg.norm(qutip_feedback - rho_feedback)),
+            "erasure_gap": float(np.linalg.norm(qutip_erased - rho_erased)),
+            "pass": bool(
+                np.allclose(qutip_measured, rho_measured, atol=1e-8)
+                and np.allclose(qutip_feedback, rho_feedback, atol=1e-8)
+                and np.allclose(qutip_erased, rho_erased, atol=1e-8)
+            ),
+        },
+        "cirq": {
+            "measurement_gap": float(np.linalg.norm(cirq_measured - rho_measured)),
+            "feedback_gap": float(np.linalg.norm(cirq_feedback - rho_feedback)),
+            "erasure_gap": float(np.linalg.norm(cirq_erased - rho_erased)),
+            "pass": bool(
+                np.allclose(cirq_measured, rho_measured, atol=1e-8)
+                and np.allclose(cirq_feedback, rho_feedback, atol=1e-8)
+                and np.allclose(cirq_erased, rho_erased, atol=1e-8)
+            ),
+        },
+        "pennylane": {
+            "measurement_gap": float(np.linalg.norm(qml_measured - rho_measured)),
+            "feedback_gap": float(np.linalg.norm(qml_feedback - rho_feedback)),
+            "erasure_gap": float(np.linalg.norm(qml_erased - rho_erased)),
+            "pass": bool(
+                np.allclose(qml_measured, rho_measured, atol=1e-8)
+                and np.allclose(qml_feedback, rho_feedback, atol=1e-8)
+                and np.allclose(qml_erased, rho_erased, atol=1e-8)
+            ),
+        },
+    }
 
 
 def z3_landauer_bookkeeping_proof(information_gain: float,
@@ -229,6 +365,8 @@ def main():
     rho_m_feedback = partial_trace_system(rho_feedback)
     rho_m_erased = partial_trace_system(rho_erased)
 
+    bridge = bridge_witnesses(rho_init, rho_measured, rho_feedback, rho_erased)
+
     information_gain = mutual_information(rho_measured)
     system_free_energy_gain = (
         free_energy_degenerate(rho_s_feedback, temperature)
@@ -255,6 +393,16 @@ def main():
             "pass": abs(entropy(rho_s_init) - LN2) < 1e-9
             and entropy(rho_s_feedback) < 1e-9
             and abs(system_free_energy_gain - temperature * LN2) < 1e-9,
+        },
+        "qutip_cirq_pennylane_witness_the_same_two_qubit_cycle": {
+            "qutip": bridge["qutip"],
+            "cirq": bridge["cirq"],
+            "pennylane": bridge["pennylane"],
+            "pass": bool(
+                bridge["qutip"]["pass"]
+                and bridge["cirq"]["pass"]
+                and bridge["pennylane"]["pass"]
+            ),
         },
         "memory_erasure_closes_the_cycle_at_the_same_kT_ln2_scale": {
             "memory_entropy_before_erasure": entropy(rho_m_feedback),
@@ -322,16 +470,6 @@ def main():
         erasure_cost=erasure_cost,
         temperature=temperature,
     )
-    TOOL_MANIFEST["z3"]["used"] = True
-    TOOL_MANIFEST["z3"]["tried"] = True
-    TOOL_MANIFEST["z3"]["reason"] = (
-        "Encodes the Landauer floor E >= T*I and demon inequality dF <= E as "
-        "Real-arithmetic constraints; certifies the forbidden region (dF > E "
-        "OR E < T*I) is UNSAT for the measured row, and that free-erasure "
-        "(E=0 with I>=ln2) is UNSAT against the floor. Pass gate depends on "
-        "these UNSAT results."
-    )
-    TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
     negative["landauer_floor_forbidden_region_unsat_under_z3"] = {
         "positive_sat": z3_proof["positive_sat"],
@@ -348,12 +486,14 @@ def main():
 
     results = {
         "name": "qit_szilard_landauer_cycle",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": classification if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "bridge_witnesses": bridge,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

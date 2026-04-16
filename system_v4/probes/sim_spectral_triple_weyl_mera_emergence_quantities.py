@@ -17,6 +17,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Q_STW=I_c×H_chirality×spectral_gap. Zero for all single/pairwise. "
+    "Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. "
+    "sympy: any factor=0 analytically collapses product."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -250,11 +256,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectral_triple_weyl_mera_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Q_STW=I_c×H_chirality×spectral_gap. Zero for all single/pairwise. "
-            "Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. "
-            "sympy: any factor=0 analytically collapses product."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

@@ -19,6 +19,16 @@ import numpy as np
 
 classification = "classical_baseline"
 
+divergence_log = (
+    "Bridge claims: rho_STW valid (64×64, trace=1, PSD); "
+    "r(Q_STW, gap) > 0.99 with fixed I_c (proportional by construction); "
+    "Axis 0 gradient: dephasing MERA gives input_Ic > final_Ic, 20/20 seeds; "
+    "z3 UNSAT: I_c=0 with Q_STW>0 impossible; "
+    "sympy: product-zero collapse analytical proof; "
+    "pytorch: rho_STW trace validated."
+)
+CLASSIFICATION_NOTE = divergence_log
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
     "pyg":       {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -289,14 +299,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectral_triple_weyl_mera_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims: rho_STW valid (64×64, trace=1, PSD); "
-            "r(Q_STW, gap) > 0.99 with fixed I_c (proportional by construction); "
-            "Axis 0 gradient: dephasing MERA gives input_Ic > final_Ic, 20/20 seeds; "
-            "z3 UNSAT: I_c=0 with Q_STW>0 impossible; "
-            "sympy: product-zero collapse analytical proof; "
-            "pytorch: rho_STW trace validated."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

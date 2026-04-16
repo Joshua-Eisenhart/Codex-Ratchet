@@ -19,10 +19,11 @@ classification = "classical_baseline"  # auto-backfill
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical local lego for repeatable probe-relative identity preservation on "
     "bounded qubit states."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "probe_identity_preservation",
@@ -135,6 +136,8 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

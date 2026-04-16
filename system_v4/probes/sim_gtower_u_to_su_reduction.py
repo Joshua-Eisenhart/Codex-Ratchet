@@ -26,6 +26,12 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline G-tower U(n) to SU(n) reduction probe: this file "
+    "checks determinant trivialization and symbolic root witnesses, but it "
+    "does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -232,6 +238,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gtower_u_to_su_reduction",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": _backfill_reasons(TOOL_MANIFEST),
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

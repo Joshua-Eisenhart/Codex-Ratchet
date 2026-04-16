@@ -13,6 +13,12 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "U(n) -> SU(n) admissibility probe: determinant-one candidates admit the "
+    "SU reduction, while phase or determinant-violating GL templates are "
+    "excluded; the z3 witness encodes the unitary-phase obstruction."
+)
+CLASSIFICATION_NOTE = divergence_log
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {
@@ -106,7 +112,8 @@ if __name__ == "__main__":
                 and _t(bnd.get("z3_phase_trivial_ok")))
     results = {
         "name": "sim_gtower_u_to_su",
-        "classification": "canonical",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

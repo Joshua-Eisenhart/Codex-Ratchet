@@ -1,8 +1,8 @@
 {
   "name": "axis0_kernel_phi0",
   "classification": "canonical",
-  "classification_note": "Canonical late-layer lego for a signed Axis-0 kernel Phi0 on one bounded point-bridge family, kept separate from bridge search, unsigned entropy bundles, and final selector promotion.",
-  "divergence_log": "Canonical late-layer lego for a signed Axis-0 kernel Phi0 on one bounded point-bridge family, kept separate from bridge search, unsigned entropy bundles, and final selector promotion.",
+  "classification_note": "Canonical late-layer Axis 0 kernel Phi0 remains isolated to one bounded point-bridge family. The legacy signed-kernel claims are preserved, and the same bounded family is now bound to the deep Axis 0 shell/topology/symbolic/solver/manifold contract instead of living as a shallow leaf.",
+  "divergence_log": "Canonical late-layer Axis 0 kernel Phi0 remains isolated to one bounded point-bridge family. The legacy signed-kernel claims are preserved, and the same bounded family is now bound to the deep Axis 0 shell/topology/symbolic/solver/manifold contract instead of living as a shallow leaf.",
   "lego_ids": [
     "axis0_kernel_phi0"
   ],
@@ -10,80 +10,80 @@
     "axis0_kernel_phi0"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "kernel bridge numerics, Bloch-state construction, and family aggregation"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix-exponential propagator witness for kernel scale history"
+    },
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "fit witness over kernel deep-surface features"
     },
     "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winning kernel surface vector"
     },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning kernel surface vector"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "ordered kernel-surface DAG witness"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "higher-order kernel-surface coupling witness"
     },
     "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for kernel-surface closure"
     },
     "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the kernel-surface complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for kernel expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing ordered kernel-surface ranking and scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for kernel-surface aggregation"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
   },
   "positive": {
     "phi0_vanishes_on_symmetric_reference_case": {
@@ -106,6 +106,8 @@
       "pass": true
     },
     "phi0_is_not_collapsed_to_unsigned_entropy_family": {
+      "phi0_abs_forward": 0.8767470929795835,
+      "mi_forward": 0.3668559845571647,
       "pass": true
     }
   },
@@ -117,8 +119,554 @@
       "pass": true
     }
   },
+  "kernel_family": {
+    "rows": [
+      {
+        "coupling": 0.16,
+        "t": 0.2,
+        "phi_forward": 0.02624364329146156,
+        "phi_reverse": -0.02624364329146156,
+        "mi_forward": 0.42485585579329416,
+        "mi_reverse": 0.4248558557932939,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.02624364329146156,
+        "companion_gap": 2.7755575615628914e-16,
+        "signed_unsigned_gap": 0.3986122125018326,
+        "sign_flip_ok": true,
+        "min_density_eig": -2.092633527596135e-17,
+        "trace_error": 4.440892098500626e-16
+      },
+      {
+        "coupling": 0.16,
+        "t": 0.35,
+        "phi_forward": 0.1110257802245388,
+        "phi_reverse": -0.11102578022453868,
+        "mi_forward": 0.4104273075536903,
+        "mi_reverse": 0.41042730755368967,
+        "antisymmetry_error": 1.1102230246251565e-16,
+        "antisymmetry_signal": 0.11102578022453874,
+        "companion_gap": 6.106226635438361e-16,
+        "signed_unsigned_gap": 0.2994015273291515,
+        "sign_flip_ok": true,
+        "min_density_eig": -1.7551159961768624e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.16,
+        "t": 0.5,
+        "phi_forward": 0.28408584688197847,
+        "phi_reverse": -0.28408584688197847,
+        "mi_forward": 0.38154995661456914,
+        "mi_reverse": 0.38154995661456936,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.28408584688197847,
+        "companion_gap": 2.220446049250313e-16,
+        "signed_unsigned_gap": 0.09746410973259068,
+        "sign_flip_ok": true,
+        "min_density_eig": -8.455542220730804e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.16,
+        "t": 0.65,
+        "phi_forward": 0.5162724497285176,
+        "phi_reverse": -0.5162724497285176,
+        "mi_forward": 0.34390791521562725,
+        "mi_reverse": 0.3439079152156269,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.5162724497285176,
+        "companion_gap": 3.3306690738754696e-16,
+        "signed_unsigned_gap": 0.17236453451289035,
+        "sign_flip_ok": true,
+        "min_density_eig": -3.4646940721163835e-17,
+        "trace_error": 1.1102230246251565e-16
+      },
+      {
+        "coupling": 0.16,
+        "t": 0.8,
+        "phi_forward": 0.7342147016979057,
+        "phi_reverse": -0.7342147016979046,
+        "mi_forward": 0.3096013176996316,
+        "mi_reverse": 0.3096013176996304,
+        "antisymmetry_error": 1.1102230246251565e-15,
+        "antisymmetry_signal": 0.7342147016979051,
+        "companion_gap": 1.2212453270876722e-15,
+        "signed_unsigned_gap": 0.4246133839982741,
+        "sign_flip_ok": true,
+        "min_density_eig": -2.4173844935267807e-17,
+        "trace_error": 4.440892098500626e-16
+      },
+      {
+        "coupling": 0.22,
+        "t": 0.2,
+        "phi_forward": 0.0243690973420716,
+        "phi_reverse": -0.0243690973420716,
+        "mi_forward": 0.5422200303953523,
+        "mi_reverse": 0.5422200303953517,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.0243690973420716,
+        "companion_gap": 5.551115123125783e-16,
+        "signed_unsigned_gap": 0.5178509330532807,
+        "sign_flip_ok": true,
+        "min_density_eig": -1.4827801436945632e-18,
+        "trace_error": 1.1102230246251565e-16
+      },
+      {
+        "coupling": 0.22,
+        "t": 0.35,
+        "phi_forward": 0.10309536735135727,
+        "phi_reverse": -0.10309536735135727,
+        "mi_forward": 0.525024217815082,
+        "mi_reverse": 0.5250242178150831,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.10309536735135727,
+        "companion_gap": 1.1102230246251565e-15,
+        "signed_unsigned_gap": 0.42192885046372475,
+        "sign_flip_ok": true,
+        "min_density_eig": -2.4143588214198552e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.22,
+        "t": 0.5,
+        "phi_forward": 0.2637940006761226,
+        "phi_reverse": -0.2637940006761227,
+        "mi_forward": 0.49063458101880075,
+        "mi_reverse": 0.49063458101879986,
+        "antisymmetry_error": 1.1102230246251565e-16,
+        "antisymmetry_signal": 0.26379400067612263,
+        "companion_gap": 8.881784197001252e-16,
+        "signed_unsigned_gap": 0.22684058034267818,
+        "sign_flip_ok": true,
+        "min_density_eig": -4.29390673015338e-17,
+        "trace_error": 0.0
+      },
+      {
+        "coupling": 0.22,
+        "t": 0.65,
+        "phi_forward": 0.47939584617648023,
+        "phi_reverse": -0.4793958461764805,
+        "mi_forward": 0.4458566192919393,
+        "mi_reverse": 0.4458566192919394,
+        "antisymmetry_error": 2.7755575615628914e-16,
+        "antisymmetry_signal": 0.47939584617648034,
+        "companion_gap": 1.1102230246251565e-16,
+        "signed_unsigned_gap": 0.03353922688454092,
+        "sign_flip_ok": true,
+        "min_density_eig": -8.752806252446219e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.22,
+        "t": 0.8,
+        "phi_forward": 0.6817707944337692,
+        "phi_reverse": -0.6817707944337695,
+        "mi_forward": 0.40509196861420915,
+        "mi_reverse": 0.40509196861420904,
+        "antisymmetry_error": 3.3306690738754696e-16,
+        "antisymmetry_signal": 0.6817707944337694,
+        "companion_gap": 1.1102230246251565e-16,
+        "signed_unsigned_gap": 0.27667882581956005,
+        "sign_flip_ok": true,
+        "min_density_eig": -5.0675843103034773e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.28,
+        "t": 0.2,
+        "phi_forward": 0.022494551392681417,
+        "phi_reverse": -0.022494551392681306,
+        "mi_forward": 0.651371343657349,
+        "mi_reverse": 0.6513713436573492,
+        "antisymmetry_error": 1.1102230246251565e-16,
+        "antisymmetry_signal": 0.02249455139268136,
+        "companion_gap": 2.220446049250313e-16,
+        "signed_unsigned_gap": 0.6288767922646675,
+        "sign_flip_ok": true,
+        "min_density_eig": -1.3575742145447498e-17,
+        "trace_error": 4.440892098500626e-16
+      },
+      {
+        "coupling": 0.28,
+        "t": 0.35,
+        "phi_forward": 0.09516495447817597,
+        "phi_reverse": -0.09516495447817608,
+        "mi_forward": 0.6320941920949092,
+        "mi_reverse": 0.6320941920949088,
+        "antisymmetry_error": 1.1102230246251565e-16,
+        "antisymmetry_signal": 0.09516495447817602,
+        "companion_gap": 4.440892098500626e-16,
+        "signed_unsigned_gap": 0.5369292376167333,
+        "sign_flip_ok": true,
+        "min_density_eig": -2.0126357362188523e-17,
+        "trace_error": 2.220446049250313e-16
+      },
+      {
+        "coupling": 0.28,
+        "t": 0.5,
+        "phi_forward": 0.24350215447026713,
+        "phi_reverse": -0.24350215447026713,
+        "mi_forward": 0.5935616378944456,
+        "mi_reverse": 0.5935616378944457,
+        "antisymmetry_error": 0.0,
+        "antisymmetry_signal": 0.24350215447026713,
+        "companion_gap": 1.1102230246251565e-16,
+        "signed_unsigned_gap": 0.3500594834241785,
+        "sign_flip_ok": true,
+        "min_density_eig": -1.3924026316814983e-17,
+        "trace_error": 1.1102230246251565e-16
+      },
+      {
+        "coupling": 0.28,
+        "t": 0.65,
+        "phi_forward": 0.44251924262444353,
+        "phi_reverse": -0.44251924262444364,
+        "mi_forward": 0.5434261144864468,
+        "mi_reverse": 0.5434261144864474,
+        "antisymmetry_error": 1.1102230246251565e-16,
+        "antisymmetry_signal": 0.4425192426244436,
+        "companion_gap": 5.551115123125783e-16,
+        "signed_unsigned_gap": 0.10090687186200331,
+        "sign_flip_ok": true,
+        "min_density_eig": -7.496670479015171e-17,
+        "trace_error": 4.440892098500626e-16
+      },
+      {
+        "coupling": 0.28,
+        "t": 0.8,
+        "phi_forward": 0.6293268871696331,
+        "phi_reverse": -0.6293268871696328,
+        "mi_forward": 0.4978179490788498,
+        "mi_reverse": 0.4978179490788499,
+        "antisymmetry_error": 3.3306690738754696e-16,
+        "antisymmetry_signal": 0.6293268871696329,
+        "companion_gap": 1.1102230246251565e-16,
+        "signed_unsigned_gap": 0.13150893809078334,
+        "sign_flip_ok": true,
+        "min_density_eig": -2.312214416173955e-18,
+        "trace_error": 1.1102230246251565e-16
+      }
+    ],
+    "sample_ts": [
+      0.2,
+      0.35,
+      0.5,
+      0.65,
+      0.8
+    ],
+    "couplings": [
+      0.16,
+      0.22,
+      0.28
+    ],
+    "mean_abs_phi_forward": 0.3104850211959602,
+    "phi_forward_std": 0.2435141782870575,
+    "mean_mi_forward": 0.4798294004816131,
+    "mean_antisymmetry_error": 1.7393494052460786e-16,
+    "mean_companion_gap": 4.588921835117314e-16,
+    "mean_signed_unsigned_gap": 0.30783836719312596,
+    "sign_flip_fraction": 1.0,
+    "min_density_eig": -8.752806252446219e-17,
+    "max_trace_error": 4.440892098500626e-16
+  },
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.11051396434233551,
+    "jk_fuzz_dynamic": 2.4501587396149938,
+    "lambda_density_mean": 1.1831099508650094,
+    "dark_energy_pressure_mean": 1.5044713562925587,
+    "gravity_response_mean": 1.492770669773802,
+    "final_scale_factor": 3.8245777560121033,
+    "mean_hubble_proxy": 1.2661227640766757,
+    "mean_acceleration_proxy": -0.5118757668661594,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 2.666120100499431,
+      "symbolic_acceleration_mid": 14.371085584152752,
+      "symbolic_dark_energy_mid": 1.0728190421780255
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.7315761142450036,
+      "max_geodesic_distance": 1.817711945495694,
+      "mean_norm": 1.0000000000000002
+    },
+    "torch_fit": {
+      "weights": [
+        -0.04422224926652688,
+        0.1573446618072798
+      ],
+      "bias": 1.0977743594974787,
+      "loss": 0.16074208904649273,
+      "max_gap": 0.6673996318999735
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 5.426008797826398e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "bounded_bridge_family_surface",
+      "frontier_count": 6,
+      "frontier_size": 6,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "bounded_bridge_family_surface",
+          "mean_abs_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.5813590647101645,
+          "shell_alignment_abs": 0.5813590647101645,
+          "composite_score": 0.8604530215700548,
+          "scale_factor": 1.0,
+          "hubble_proxy": 2.080648196095242
+        },
+        {
+          "option": "symmetric_reference_surface",
+          "mean_abs_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.5804119993478154,
+          "shell_alignment_abs": 0.5804119993478154,
+          "composite_score": 0.8601373331159384,
+          "scale_factor": 1.5160823998695632,
+          "hubble_proxy": 1.6311410134573043
+        },
+        {
+          "option": "density_validity_surface",
+          "mean_abs_a0": 0.49999999999999895,
+          "doctrine_fit": 0.9999955591079015,
+          "shell_alignment": 0.5208522298917996,
+          "shell_alignment_abs": 0.5208522298917996,
+          "composite_score": 0.6736159296665667,
+          "scale_factor": 1.9202519576695032,
+          "hubble_proxy": 1.0498148671239338
+        },
+        {
+          "option": "signed_unsigned_separation_surface",
+          "mean_abs_a0": 0.30783836719312596,
+          "doctrine_fit": 0.6415579512634854,
+          "shell_alignment": 0.9855852053077944,
+          "shell_alignment_abs": 0.9855852053077944,
+          "composite_score": 0.6449938412548019,
+          "scale_factor": 2.3072482624223842,
+          "hubble_proxy": 0.8424202187373493
+        },
+        {
+          "option": "mi_companion_invariance_surface",
+          "mean_abs_a0": 0.3668559845571646,
+          "doctrine_fit": 0.999999999999999,
+          "shell_alignment": 0.5453331700178724,
+          "shell_alignment_abs": 0.5453331700178724,
+          "composite_score": 0.6373963848583454,
+          "scale_factor": 2.6896860933373916,
+          "hubble_proxy": 0.6784533882449084
+        },
+        {
+          "option": "reversal_antisymmetry_surface",
+          "mean_abs_a0": 0.3104850211959602,
+          "doctrine_fit": 0.9999999999999994,
+          "shell_alignment": 0.37404008314399273,
+          "shell_alignment_abs": 0.37404008314399273,
+          "composite_score": 0.5615083681133174,
+          "scale_factor": 3.026591114205382,
+          "hubble_proxy": 0.5900622424436198
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 9,
+        "longest_path_length": 5,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 3,
+        "max_hyperedge_size": 3,
+        "connected_components": 1,
+        "hyperedges": [
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "0.743117041537776*lam**5 - 3.6249010052989*lam**4 + 5.58050560279082*lam**3 - 3.82141565104568*lam**2 + 3.14928512622125*lam + 1.0",
+        "expansion_drive_polynomial": "41.2921252901234*lam**5 - 120.160790662681*lam**4 + 124.407387882148*lam**3 - 52.9371806908747*lam**2 + 6.50162422091456*lam + 2.58135906471016",
+        "scale_poly_degree": 5,
+        "drive_poly_degree": 5,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 0.9145994025237828,
+        "symbolic_acceleration_mid": 0.08177509422885443,
+        "symbolic_drive_mid": 1.9291289866160355
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.10158840092708371,
+          0.017405169646653985,
+          0.9946742466087324
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.27106102636469415,
+        "max_geodesic_distance": 0.5262288390467222
+      },
+      "torch_fit": {
+        "weights": [
+          1.7860688723003275,
+          -0.4364021643706699,
+          0.1400353887824639
+        ],
+        "bias": 0.4345612150448665,
+        "loss": 0.018559163652842593,
+        "max_gap": 0.2343651294998983
+      },
+      "winner_vector": [
+        1.0,
+        1.0,
+        0.5813590647101645
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 2.3710703400681155e-08,
+      "scale_factors": [
+        1.0,
+        1.5160823998695632,
+        1.9202519576695032,
+        2.3072482624223842,
+        2.6896860933373916,
+        3.026591114205382
+      ],
+      "hubble_proxy": [
+        2.080648196095242,
+        1.6311410134573043,
+        1.0498148671239338,
+        0.8424202187373493,
+        0.6784533882449084,
+        0.5900622424436198
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "signed_kernel_snapshot": {
+        "phi0_same": 0.0,
+        "phi0_forward": 0.8767470929795835,
+        "phi0_reverse": -0.8767470929795822,
+        "mi_forward": 0.3668559845571647,
+        "mi_reverse": 0.3668559845571645
+      }
+    }
+  },
   "summary": {
+    "legacy_all_pass": true,
+    "deep_all_pass": true,
     "all_pass": true,
-    "scope_note": "Direct late-layer signed kernel row on one bounded point-bridge family with MI kept as an unsigned companion."
-  }
+    "scope_note": "Direct late-layer signed kernel row on one bounded point-bridge family with MI kept as an unsigned companion, now also grounded in the deep Axis 0 shell contract."
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

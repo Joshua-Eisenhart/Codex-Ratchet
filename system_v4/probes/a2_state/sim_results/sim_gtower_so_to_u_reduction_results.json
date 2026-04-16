@@ -1,16 +1,18 @@
 {
   "name": "sim_gtower_so_to_u_reduction",
   "classification": "classical_baseline",
+  "classification_note": "classical baseline reduction from SO(2n) to U(n); numeric numpy baseline with sympy and z3 witnesses for the reduction identities",
+  "divergence_log": "classical baseline reduction from SO(2n) to U(n); numeric numpy baseline with sympy and z3 witnesses for the reduction identities",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- reduction is algebraic, numeric baseline uses numpy"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "z3": {
       "tried": true,
@@ -20,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "sympy": {
       "tried": true,
@@ -30,37 +32,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not applicable -- reduction is a closed linear-algebra/decidable-algebra problem"
     }
   },
   "tool_integration_depth": {

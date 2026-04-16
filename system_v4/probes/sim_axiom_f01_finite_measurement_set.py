@@ -9,6 +9,11 @@ load-bearing: we require each measurement to be a distinct index in
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: F01 finite measurement set is validated "
+    "here as a bounded SMT/numeric lego, not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -90,6 +95,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_axiom_f01_finite_measurement_set",
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": ok,

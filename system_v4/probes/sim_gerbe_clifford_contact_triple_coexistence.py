@@ -13,6 +13,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence for Gerbe×Clifford×Contact (21st program). "
+    "Normalize H via h/(1+h). Joint product ≤ each pairwise product "
+    "confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). "
+    "sympy: a*b*(1-c) ≥ 0 for c ≤ 1."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -238,12 +244,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_gerbe_clifford_contact_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Step 2 triple coexistence for Gerbe×Clifford×Contact (21st program). "
-            "Normalize H via h/(1+h). Joint product ≤ each pairwise product confirmed. "
-            "z3 UNSAT: joint > pair impossible for values in (0,1). "
-            "sympy: a*b*(1-c) ≥ 0 for c ≤ 1."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_clifford": H_CLIFFORD, "H_gerbe": H_GERBE, "H_contact": H_CONTACT},

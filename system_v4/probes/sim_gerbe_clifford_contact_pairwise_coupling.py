@@ -18,6 +18,15 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for Gerbe×Clifford×Contact (21st program). "
+    "H_clifford=Cl(3,0) rotor off-diagonal change (fallback 0.5). "
+    "H_gerbe=log(1+3). H_contact=log(17). "
+    "All three pairs Q_pair > 0 confirmed. "
+    "z3 UNSAT: positive factors cannot multiply to zero. "
+    "sympy: zero-factor collapse verified."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -226,14 +235,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_gerbe_clifford_contact_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Step 1 pairwise coupling for Gerbe×Clifford×Contact (21st program). "
-            "H_clifford = Cl(3,0) rotor off-diagonal change (fallback 0.5). "
-            "H_gerbe = log(1+3). H_contact = log(17). "
-            "All three pairs Q_pair > 0 confirmed. "
-            "z3 UNSAT: positive factors cannot multiply to zero. "
-            "sympy: zero-factor collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_clifford": H_CLIFFORD, "H_gerbe": H_GERBE, "H_contact": H_CONTACT},

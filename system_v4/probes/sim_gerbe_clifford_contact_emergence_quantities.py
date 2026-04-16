@@ -18,6 +18,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Gerbe×Clifford×Contact emergence probe: this file "
+    "checks scalar emergence quantities with clifford, z3, and sympy support "
+    "where available, but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -267,14 +273,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_gerbe_clifford_contact_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Step 4 emergence quantities for Gerbe×Clifford×Contact (21st program). "
-            "E1-E3 single shell: Q=0 (absent shells). "
-            "E4-E6 pairwise without MI: Q=0. "
-            "E7 full triple+MI: Q_GCC > 0 — emergence confirmed. "
-            "z3 UNSAT: any factor=0 with Q>0 impossible. "
-            "sympy: four-factor zero-collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "Q_GCC": MI_FIXED * H_GERBE * H_CLIFFORD * H_CONTACT,

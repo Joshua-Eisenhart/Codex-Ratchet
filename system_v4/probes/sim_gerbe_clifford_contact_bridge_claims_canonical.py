@@ -30,6 +30,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bridge claims for Gerbe×Clifford×Contact (21st program). "
+    "Q_GCC = MI × H_gerbe × H_clifford × H_contact. rho_GCC valid (64×64, "
+    "trace=1, PSD, float64). r(Q_GCC, MI) > 0.99 with fixed H "
+    "(proportional by construction). Axis 0 gradient: dephasing MERA gives "
+    "MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. "
+    "sympy: four-factor product collapse. pytorch: rho_GCC trace validated "
+    "(float64)."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -323,18 +333,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_gerbe_clifford_contact_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for Gerbe×Clifford×Contact (21st program). "
-            f"Q_GCC = MI × H_clifford × H_gerbe × H_contact. "
-            f"H_clifford={H_CLIFFORD:.6f} (Cl(3,0) rotor, fallback 0.5). "
-            f"H_gerbe={H_GERBE:.6f} (log(1+3)). H_contact={H_CONTACT:.6f} (log(17)). "
-            "rho_GCC valid (64×64, trace=1, PSD, float64). "
-            "r(Q_GCC, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_GCC trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_clifford": H_CLIFFORD, "H_gerbe": H_GERBE, "H_contact": H_CONTACT},

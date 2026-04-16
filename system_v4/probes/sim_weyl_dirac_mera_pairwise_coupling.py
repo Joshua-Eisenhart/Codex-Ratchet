@@ -15,7 +15,7 @@ Pairwise coupling tests:
 import json, math, os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 def spectral_gap_sym(seed, size=4):
     rng = np.random.default_rng(seed)

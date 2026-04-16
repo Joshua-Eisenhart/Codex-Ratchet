@@ -16,7 +16,7 @@ Classification: canonical
 import json, os, math
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},

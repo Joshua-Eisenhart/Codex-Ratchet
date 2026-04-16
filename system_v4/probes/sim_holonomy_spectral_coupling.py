@@ -22,7 +22,7 @@ classification="canonical"
 import json
 import os
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""}
                  for k in ["pytorch", "pyg", "z3", "cvc5", "sympy", "clifford",

@@ -18,7 +18,7 @@ Pairwise coupling tests:
 import json, math, os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # Shell entropy values
 H_HOPF_T1 = math.log(2) / 2          # ≈ 0.347 (T1 default)

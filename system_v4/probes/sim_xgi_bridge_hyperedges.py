@@ -14,7 +14,7 @@ import json
 import os
 import numpy as np
 from collections import Counter
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST

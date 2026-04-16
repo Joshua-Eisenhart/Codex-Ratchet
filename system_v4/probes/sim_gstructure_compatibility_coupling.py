@@ -50,7 +50,7 @@ import json
 import math
 import os
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST

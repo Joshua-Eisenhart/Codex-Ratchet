@@ -37,7 +37,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # SIM CONTRACT METADATA
 # =====================================================================
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch":    {"tried": True,  "used": True,  "reason": "load_bearing: d=8 density-matrix algebra, partial-trace reductions, and coherent-information evaluations driving the Axis-0 bridge prototype across all three bipartitions"},

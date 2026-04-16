@@ -21,7 +21,7 @@ Classification: canonical
 import json, math, os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 H_HOPF_T1 = math.log(2) / 2          # ≈ 0.347 (T1 default)
 H_HOPF_T2 = math.log(2)              # ≈ 0.693 (T2)

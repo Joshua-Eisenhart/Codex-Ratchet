@@ -16,7 +16,7 @@ import json
 import os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "Canonical spectral-triple sim: torch/sympy/clifford construct and solve the "
     "Dirac spectrum while z3 provides the exclusion guard; the remaining topology "

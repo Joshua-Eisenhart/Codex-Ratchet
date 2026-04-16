@@ -17,7 +17,7 @@ import json
 import os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 divergence_log = (
     "Canonical gerbe coupling sim: S^2 gerbe curvature and T^2 holonomy remain "
     "non-trivial under pairwise coupling; torch/z3/sympy carry the primary witness "

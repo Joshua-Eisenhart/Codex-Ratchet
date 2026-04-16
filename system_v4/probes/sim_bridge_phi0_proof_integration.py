@@ -56,7 +56,7 @@ import time
 import traceback
 
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST

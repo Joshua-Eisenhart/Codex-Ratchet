@@ -28,7 +28,7 @@ import os
 import math
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST (12 entries, all with non-empty reasons)

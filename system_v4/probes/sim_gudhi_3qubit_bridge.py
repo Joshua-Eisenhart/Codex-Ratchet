@@ -13,7 +13,7 @@ If so, the relay is topologically load-bearing.
 import json
 import os
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": ""},

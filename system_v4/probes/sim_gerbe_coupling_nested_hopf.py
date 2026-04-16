@@ -10,7 +10,7 @@ Includes chirality: orientation-reversal of S^2 negates the class.
 import json, os
 import numpy as np
 
-classification = "canonical"
+classification = "classical_baseline"
 
 TOOL_MANIFEST = {
     "numpy":    {"tried": True, "used": True, "reason": "pullback cochain arithmetic"},

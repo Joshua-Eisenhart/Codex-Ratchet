@@ -23,7 +23,7 @@ import os
 import numpy as np
 from scipy.stats import pearsonr
 
-classification = "canonical"
+classification = "classical_baseline"
 
 # =====================================================================
 # TOOL MANIFEST

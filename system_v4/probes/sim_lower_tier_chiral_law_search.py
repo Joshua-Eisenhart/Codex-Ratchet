@@ -19,6 +19,20 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this lower-tier chiral-law search is a numeric "
+    "comparison over existing repo evidence and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric evidence aggregation and comparison for the chiral-law search",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 
 ROOT = Path(__file__).resolve().parent

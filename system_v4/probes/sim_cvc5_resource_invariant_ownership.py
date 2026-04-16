@@ -91,7 +91,7 @@ def run_positive_tests():
         # Thread 1 owns the resource
         slv.assertFormula(thread1_owns)
         # Thread 2 does not
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, thread2_owns))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, thread2_owns))
 
         is_sat = slv.checkSat()
         results["test_1_exclusive_ownership"] = {
@@ -113,7 +113,7 @@ def run_positive_tests():
         # Invariant holds before critical section
         slv.assertFormula(inv_before)
         # Invariant must be maintained
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, inv_before, inv_after))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, inv_before, inv_after))
         # Invariant holds after critical section
         slv.assertFormula(inv_after)
 
@@ -136,14 +136,14 @@ def run_positive_tests():
         shared_cells = tm.mkConst(tm.getIntegerSort(), "shared_cells")
 
         # Thread 1: 3 local cells
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, h1_cells, tm.mkInteger(3)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, h1_cells, tm.mkInteger(3)))
         # Thread 2: 2 local cells
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, h2_cells, tm.mkInteger(2)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, h2_cells, tm.mkInteger(2)))
         # Shared: 1 cell
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, shared_cells, tm.mkInteger(1)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, shared_cells, tm.mkInteger(1)))
         # Disjointness: h1 ∩ h2 = ∅ (no overlap)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal,
-                                    tm.mkTerm(cvc5.Kind.Add, h1_cells, h2_cells),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL,
+                                    tm.mkTerm(cvc5.Kind.ADD, h1_cells, h2_cells),
                                     tm.mkInteger(5)))
 
         is_sat = slv.checkSat()
@@ -184,8 +184,8 @@ def run_negative_tests():
         slv.assertFormula(thread1_owns)
         slv.assertFormula(thread2_owns)
         # But exclusivity requires at most one
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not,
-                                    tm.mkTerm(cvc5.Kind.And, thread1_owns, thread2_owns)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT,
+                                    tm.mkTerm(cvc5.Kind.AND, thread1_owns, thread2_owns)))
 
         is_sat = slv.checkSat()
         results["negative_1_exclusive_violation"] = {
@@ -208,9 +208,9 @@ def run_negative_tests():
         # Invariant holds before
         slv.assertFormula(inv_before)
         # Invariant does NOT hold after (violated)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, inv_after))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, inv_after))
         # Claim: invariant is preserved (false)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, inv_before, inv_after))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, inv_before, inv_after))
 
         is_sat = slv.checkSat()
         results["negative_2_invariant_broken"] = {
@@ -234,12 +234,12 @@ def run_negative_tests():
         # Claim disjointness: h1 + h2 = total (no overlap)
         # But allow overlap explicitly: (h1 + h2 - overlap) = total
         # For simplicity, directly check: h1 + h2 > total (overlap)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Greater,
-                                    tm.mkTerm(cvc5.Kind.Add, h1_cells, h2_cells),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.GT,
+                                    tm.mkTerm(cvc5.Kind.ADD, h1_cells, h2_cells),
                                     tm.mkInteger(4)))  # 3+2=5 > 4 means overlap
         # Require disjointness: h1 + h2 <= total (5 <= 4 is false)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.LessEqual,
-                                    tm.mkTerm(cvc5.Kind.Add, h1_cells, h2_cells),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ,
+                                    tm.mkTerm(cvc5.Kind.ADD, h1_cells, h2_cells),
                                     tm.mkInteger(4)))
 
         is_sat = slv.checkSat()
@@ -276,10 +276,10 @@ def run_boundary_tests():
         h2_cells = tm.mkInteger(2)
         shared = tm.mkInteger(0)
 
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal,
-                                    tm.mkTerm(cvc5.Kind.Add, h1_cells, h2_cells),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL,
+                                    tm.mkTerm(cvc5.Kind.ADD, h1_cells, h2_cells),
                                     tm.mkInteger(5)))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, shared, tm.mkInteger(0)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, shared, tm.mkInteger(0)))
 
         is_sat = slv.checkSat()
         results["boundary_1_no_shared"] = {
@@ -300,10 +300,10 @@ def run_boundary_tests():
         shared_inv = tm.mkConst(tm.getBooleanSort(), "shared_inv")
 
         # Mutual exclusion: at most one holds lock
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not,
-                                    tm.mkTerm(cvc5.Kind.And, lock_held_t1, lock_held_t2)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT,
+                                    tm.mkTerm(cvc5.Kind.AND, lock_held_t1, lock_held_t2)))
         # Shared invariant held when accessing via lock
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Implies,
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES,
                                     tm.mkTerm(cvc5.Kind.Or, lock_held_t1, lock_held_t2),
                                     shared_inv))
 

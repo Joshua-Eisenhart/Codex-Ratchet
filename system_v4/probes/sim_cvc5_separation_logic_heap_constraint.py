@@ -89,12 +89,12 @@ def run_positive_tests():
         p_footprint = tm.mkConst(tm.getIntegerSort(), "p_footprint")
         q_footprint = tm.mkConst(tm.getIntegerSort(), "q_footprint")
 
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, h_total, tm.mkInteger(5)))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, p_footprint, tm.mkInteger(2)))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Equal, q_footprint, tm.mkInteger(3)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, h_total, tm.mkInteger(5)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, p_footprint, tm.mkInteger(2)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.EQUAL, q_footprint, tm.mkInteger(3)))
         # Disjoint: p_footprint + q_footprint <= h_total
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.LessEqual,
-                                    tm.mkTerm(cvc5.Kind.Add, p_footprint, q_footprint),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ,
+                                    tm.mkTerm(cvc5.Kind.ADD, p_footprint, q_footprint),
                                     h_total))
 
         is_sat = slv.checkSat()
@@ -115,9 +115,9 @@ def run_positive_tests():
         x = tm.mkConst(tm.getIntegerSort(), "x")
         y = tm.mkConst(tm.getIntegerSort(), "y")
 
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, tm.mkTerm(cvc5.Kind.Equal, x, y)))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Leq, tm.mkInteger(0), x))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Leq, tm.mkInteger(0), y))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, tm.mkTerm(cvc5.Kind.EQUAL, x, y)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, tm.mkInteger(0), x))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, tm.mkInteger(0), y))
 
         is_sat = slv.checkSat()
         results["test_2_pointsto_distinct"] = {
@@ -156,8 +156,8 @@ def run_negative_tests():
 
         # Claim: P * Q holds (requires disjoint split)
         # Constraint: p + q <= h (must fail for 3+3 > 5)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.LessEqual,
-                                    tm.mkTerm(cvc5.Kind.Add, p_footprint, q_footprint),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ,
+                                    tm.mkTerm(cvc5.Kind.ADD, p_footprint, q_footprint),
                                     h_total))
 
         is_sat = slv.checkSat()
@@ -182,8 +182,8 @@ def run_negative_tests():
         slv.assertFormula(p_owns_x)
         slv.assertFormula(q_owns_x)
         # Disjointness: at most one can own x
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not,
-                                    tm.mkTerm(cvc5.Kind.And, p_owns_x, q_owns_x)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT,
+                                    tm.mkTerm(cvc5.Kind.AND, p_owns_x, q_owns_x)))
 
         is_sat = slv.checkSat()
         results["negative_2_domain_overlap"] = {
@@ -209,8 +209,8 @@ def run_negative_tests():
         slv.assertFormula(mod_c)  # C modifies x
         slv.assertFormula(in_r)   # x is in R's footprint
         # Disjointness: cannot have both
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not,
-                                    tm.mkTerm(cvc5.Kind.And, mod_c, in_r)))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT,
+                                    tm.mkTerm(cvc5.Kind.AND, mod_c, in_r)))
 
         is_sat = slv.checkSat()
         results["negative_3_frame_violation"] = {
@@ -246,8 +246,8 @@ def run_boundary_tests():
         p_footprint = tm.mkInteger(0)
         q_footprint = tm.mkInteger(0)
 
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.LessEqual,
-                                    tm.mkTerm(cvc5.Kind.Add, p_footprint, q_footprint),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ,
+                                    tm.mkTerm(cvc5.Kind.ADD, p_footprint, q_footprint),
                                     h_total))
 
         is_sat = slv.checkSat()
@@ -268,8 +268,8 @@ def run_boundary_tests():
         p_footprint = tm.mkInteger(1)
         q_footprint = tm.mkInteger(0)
 
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.LessEqual,
-                                    tm.mkTerm(cvc5.Kind.Add, p_footprint, q_footprint),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.LEQ,
+                                    tm.mkTerm(cvc5.Kind.ADD, p_footprint, q_footprint),
                                     h_total))
 
         is_sat = slv.checkSat()

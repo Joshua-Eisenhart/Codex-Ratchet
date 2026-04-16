@@ -101,8 +101,8 @@ def run_positive_tests():
 
         # Subset conditions: G1 ⊆ R2 and G2 ⊆ R1
         # (simplified as: if thread 1 increments x, thread 2 must allow it)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Implies, g1_inc_x, r2_allow_inc_x))
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Implies, g2_inc_y, r1_allow_inc_y))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES, g1_inc_x, r2_allow_inc_x))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES, g2_inc_y, r1_allow_inc_y))
 
         is_sat = slv.checkSat()
         results["test_1_valid_rg"] = {
@@ -164,11 +164,11 @@ def run_negative_tests():
 
         # But we claim G1 ⊆ R2 (false: inc_by_2 ⊈ inc_by_1)
         # Constraint: if g1 does inc_by_2, then r2 must allow inc_by_2 (contradiction)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Implies,
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES,
                                     g1_inc_x_by_2,
-                                    tm.mkTerm(cvc5.Kind.And,
+                                    tm.mkTerm(cvc5.Kind.AND,
                                               r2_inc_x_by_1,
-                                              tm.mkTerm(cvc5.Kind.Not, g1_inc_x_by_2))))
+                                              tm.mkTerm(cvc5.Kind.NOT, g1_inc_x_by_2))))
 
         is_sat = slv.checkSat()
         results["negative_1_guarantee_not_subset"] = {
@@ -189,7 +189,7 @@ def run_negative_tests():
         # Claim: R is reflexive (allows identity)
         slv.assertFormula(identity_in_r)
         # But also claim: R does NOT allow identity
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, identity_in_r))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, identity_in_r))
 
         is_sat = slv.checkSat()
         results["negative_2_rely_not_reflexive"] = {
@@ -216,10 +216,10 @@ def run_negative_tests():
 
         slv.assertFormula(p_before)      # P holds before
         slv.assertFormula(r_inc_y)       # R allows inc_y
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, p_after))  # P doesn't hold after
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, p_after))  # P doesn't hold after
         # Stability requires: if P and R transition, then P still holds
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Implies,
-                                    tm.mkTerm(cvc5.Kind.And, p_before, r_inc_y),
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.IMPLIES,
+                                    tm.mkTerm(cvc5.Kind.AND, p_before, r_inc_y),
                                     p_after))
 
         is_sat = slv.checkSat()
@@ -313,12 +313,12 @@ def run_boundary_tests():
 
         # Stability: if in P and R-transition, then in P after
         # s1 ∈ P and s1→s2 ∈ R but s2 ∉ P → unstable
-        stability_violated = tm.mkTerm(cvc5.Kind.And,
+        stability_violated = tm.mkTerm(cvc5.Kind.AND,
                                        in_p_s1,
                                        s1_to_s2_in_r,
-                                       tm.mkTerm(cvc5.Kind.Not, in_p_s2))
+                                       tm.mkTerm(cvc5.Kind.NOT, in_p_s2))
         # Stability requires: ¬(in_p_s1 ∧ transition ∧ ¬in_p_s2)
-        slv.assertFormula(tm.mkTerm(cvc5.Kind.Not, stability_violated))
+        slv.assertFormula(tm.mkTerm(cvc5.Kind.NOT, stability_violated))
         slv.assertFormula(in_p_s1)
         slv.assertFormula(s1_to_s2_in_r)
 

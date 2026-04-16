@@ -1,16 +1,17 @@
 {
   "name": "sim_igt_atom_1_carrier",
   "classification": "classical_baseline",
+  "classification_note": "IGT atom 1 carrier probe. It stays in a classical_baseline posture while testing the finite carrier set and its exhaustive coverage.",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- 4-element finite set"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph structure at atom-1 carrier level"
     },
     "z3": {
       "tried": true,
@@ -35,17 +36,17 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not applicable to this sim scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not applicable to this sim scope"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph structure in this probe scope"
     },
     "xgi": {
       "tried": false,
@@ -60,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "no filtration or topological data analysis"
     }
   },
   "tool_integration_depth": {

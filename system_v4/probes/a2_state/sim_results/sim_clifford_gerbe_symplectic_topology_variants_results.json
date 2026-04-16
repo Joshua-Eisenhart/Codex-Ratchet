@@ -1,17 +1,18 @@
 {
   "name": "sim_clifford_gerbe_symplectic_topology_variants",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "Clifford\u00d7Gerbe\u00d7Symplectic topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
   "divergence_log": "Step 3 topology variants for Clifford\u00d7Gerbe\u00d7Symplectic (20th program). T1 flat \u03b8=\u03c0/2, T2 S\u00b2 \u03b8=\u03c0, T3 lens \u03b8=\u03c0/3. H_gerbe topology-stable (DD_count=3 fixed). H_clifford topology-variant (varies with \u03b8 via Cl(3,0) rotor). DPI confirmed: MI_input > MI_final. z3 UNSAT: MI=1 AND Q=0 impossible.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed for topology variant tests"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient"
     },
     "sympy": {
       "tried": true,
@@ -36,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not invoked"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not invoked"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not invoked"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not invoked"
     }
   },
   "tool_integration_depth": {
@@ -146,21 +147,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

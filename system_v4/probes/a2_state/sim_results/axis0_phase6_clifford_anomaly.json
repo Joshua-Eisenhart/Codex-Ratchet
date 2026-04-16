@@ -1,5 +1,83 @@
 {
-  "timestamp": "2026-04-16T11:20:57.943093+00:00",
+  "timestamp": "2026-04-16T11:30:16.456512+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this probes the Axis-0 Clifford anomaly and composite i-scalar numerically. The legacy anomaly verdict is preserved, and a deep contract now binds the anomaly surfaces to the same shell bridge, graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "epsilon sweeps and composite i-scalar numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "anomaly-surface propagator witness"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness over the anomaly frontier"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winning anomaly vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning anomaly vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered DAG witness over the ranked anomaly frontier"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order config-to-anomaly coupling witness"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for anomaly closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the anomaly complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for anomaly expansion"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing anomaly rank order and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for aggregate anomaly geometry"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
   "goal1_clifford_eps_sweep": [
     {
       "eps": 0.01,
@@ -218,5 +296,946 @@
     }
   ],
   "goal4_t1_mean_abs_a0": 2.196098566986792,
-  "goal4_t2_mean_abs_a0": 2.072044732126854
+  "goal4_t2_mean_abs_a0": 2.072044732126854,
+  "config_records": [
+    {
+      "config": "T1/inner",
+      "engine_type": 1,
+      "torus": "inner",
+      "g2": {
+        "config": "T1/inner",
+        "d_a0": 3.471657038739849,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T1/inner",
+        "engine_type": 1,
+        "torus": "inner",
+        "depolarizing": -3.0266459506779375,
+        "dephasing": -2.1840175607561996,
+        "amplitude_damp": -1.9588298458264841,
+        "mean_abs_a0": 2.3898311190868737
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06584523240642737,
+        "jk_fuzz_dynamic": 1.2806899705580403,
+        "lambda_density_mean": 1.8814495059322884,
+        "dark_energy_pressure_mean": 2.3266493269543793,
+        "gravity_response_mean": 2.32664932695438,
+        "final_scale_factor": 6.032341318752867,
+        "mean_hubble_proxy": 1.7036718080709,
+        "mean_acceleration_proxy": -1.3234408619847282,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.09332963082997472,
+          "symbolic_acceleration_mid": 2.879550909754471,
+          "symbolic_dark_energy_mid": 4.791803471156982
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7508667101431425,
+          "max_geodesic_distance": 1.6574064179008405,
+          "mean_norm": 0.9999999999999998
+        },
+        "torch_fit": {
+          "weights": [
+            0.24399717381012648,
+            -0.1035374702245272
+          ],
+          "bias": 1.3768712823888383,
+          "loss": 0.77685672421338,
+          "max_gap": 1.8320695109529126
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0045956111426335e-07,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "config": "T1/clifford",
+      "engine_type": 1,
+      "torus": "clifford",
+      "g2": {
+        "config": "T1/clifford",
+        "d_a0": 3.1645180255584138,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T1/clifford",
+        "engine_type": 1,
+        "torus": "clifford",
+        "depolarizing": -2.1782831476202027,
+        "dephasing": -2.1776972109575676,
+        "amplitude_damp": -1.0955777592114657,
+        "mean_abs_a0": 1.8171860392630788
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "config": "T1/outer",
+      "engine_type": 1,
+      "torus": "outer",
+      "g2": {
+        "config": "T1/outer",
+        "d_a0": 3.469972155606185,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T1/outer",
+        "engine_type": 1,
+        "torus": "outer",
+        "depolarizing": -3.0269441293438115,
+        "dephasing": -2.184828269789243,
+        "amplitude_damp": -1.9320632286982153,
+        "mean_abs_a0": 2.3812785426104233
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06731448067275725,
+        "jk_fuzz_dynamic": 1.2810930191169831,
+        "lambda_density_mean": 1.9079525240672277,
+        "dark_energy_pressure_mean": 2.366219053788939,
+        "gravity_response_mean": 2.36621905378894,
+        "final_scale_factor": 6.122786408660432,
+        "mean_hubble_proxy": 1.7163724249406735,
+        "mean_acceleration_proxy": -1.3278209636374916,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.0813459926249822,
+          "symbolic_acceleration_mid": 2.7606382897793083,
+          "symbolic_dark_energy_mid": 4.906119305471748
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531727997365836,
+          "max_geodesic_distance": 1.6625367838305087,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            0.24401101149261128,
+            -0.10397519660782226
+          ],
+          "bias": 1.3850170073699244,
+          "loss": 0.8026861512808962,
+          "max_gap": 1.8723996409726633
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 5.422076387873176e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "config": "T2/inner",
+      "engine_type": 2,
+      "torus": "inner",
+      "g2": {
+        "config": "T2/inner",
+        "d_a0": 2.898960522540004,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T2/inner",
+        "engine_type": 2,
+        "torus": "inner",
+        "depolarizing": -2.973145802819457,
+        "dephasing": -2.1055626471707845,
+        "amplitude_damp": -1.9500765304828893,
+        "mean_abs_a0": 2.3429283268243766
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06763326530450664,
+        "jk_fuzz_dynamic": 1.2808028297269445,
+        "lambda_density_mean": 1.9073019202537687,
+        "dark_energy_pressure_mean": 2.3654696925304055,
+        "gravity_response_mean": 2.3654696925304064,
+        "final_scale_factor": 6.121073582926641,
+        "mean_hubble_proxy": 1.7161336052799605,
+        "mean_acceleration_proxy": -1.3277392287556,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.07919192018811852,
+          "symbolic_acceleration_mid": 2.906411784613738,
+          "symbolic_dark_energy_mid": 4.903100578531848
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7534037745133855,
+          "max_geodesic_distance": 1.6628845284748983,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.2430247394896452,
+            -0.10305986989596638
+          ],
+          "bias": 1.385050945109927,
+          "loss": 0.8016749634826282,
+          "max_gap": 1.8702178282864368
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0767021052515702e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "config": "T2/clifford",
+      "engine_type": 2,
+      "torus": "clifford",
+      "g2": {
+        "config": "T2/clifford",
+        "d_a0": 4.632352690904287,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T2/clifford",
+        "engine_type": 2,
+        "torus": "clifford",
+        "depolarizing": -1.8447604906693877,
+        "dephasing": -1.84445162097842,
+        "amplitude_damp": -0.9308697917966102,
+        "mean_abs_a0": 1.5400273011481393
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    },
+    {
+      "config": "T2/outer",
+      "engine_type": 2,
+      "torus": "outer",
+      "g2": {
+        "config": "T2/outer",
+        "d_a0": 2.8936820412910844,
+        "polarity": "allostatic"
+      },
+      "g4": {
+        "config": "T2/outer",
+        "engine_type": 2,
+        "torus": "outer",
+        "depolarizing": -2.9745390381193215,
+        "dephasing": -2.1055302423414,
+        "amplitude_damp": -1.9194664247634186,
+        "mean_abs_a0": 2.3331785684080466
+      },
+      "clifford_goal1": {
+        "eps": 0.05,
+        "T1_C": -2.1782831476202027,
+        "T1_D": 3.1645180255584138,
+        "T2_C": -1.8447604906693877,
+        "T2_D": 4.632352690904287
+      },
+      "shell_bridge": {
+        "dynamic_vs_frozen_gap": 0.06746887517386846,
+        "jk_fuzz_dynamic": 1.2807414011977087,
+        "lambda_density_mean": 1.9040553745293285,
+        "dark_energy_pressure_mean": 2.36063224132325,
+        "gravity_response_mean": 2.3606322413232506,
+        "final_scale_factor": 6.110016551596,
+        "mean_hubble_proxy": 1.7145903534510465,
+        "mean_acceleration_proxy": -1.3272104810270569,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.08053304608873205,
+          "symbolic_acceleration_mid": 2.9272390695405193,
+          "symbolic_dark_energy_mid": 4.8890878962329225
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531410953714981,
+          "max_geodesic_distance": 1.6622917353554945,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.24297965304754882,
+            -0.10296501279095542
+          ],
+          "bias": 1.3840672753112442,
+          "loss": 0.7984898093550097,
+          "max_gap": 1.86525114227644
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 6.015564801842288e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      }
+    }
+  ],
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "option_c_homeostatic_surface",
+      "candidate_universe_size": 5,
+      "frontier_size": 5,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "option_c_homeostatic_surface",
+          "mean_abs_a0": 2.6707197598750194,
+          "mean_signed_a0": -2.6707197598750194,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.977854638390944,
+          "shell_alignment_abs": 0.977854638390944,
+          "signal_score": 0.6624989855070922,
+          "composite_score": 0.8774455726056711,
+          "mean_signal": 2.6707197598750194,
+          "scale_factor": 1.0,
+          "hubble_proxy": 3.241956301682407
+        },
+        {
+          "option": "option_d_allostatic_surface",
+          "mean_abs_a0": 3.421857079106637,
+          "mean_signed_a0": 3.421857079106637,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": -0.5741735293264693,
+          "shell_alignment_abs": 0.5741735293264693,
+          "signal_score": 0.8488261769420897,
+          "composite_score": 0.8619238677950253,
+          "mean_signal": 3.421857079106637,
+          "scale_factor": 2.2490076521082765,
+          "hubble_proxy": 2.574968315387579
+        },
+        {
+          "option": "clifford_split_surface",
+          "mean_abs_a0": 4.0312812823868525,
+          "mean_signed_a0": 6.092576838981657,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 0.5,
+          "shell_alignment": -0.9673222083970687,
+          "shell_alignment_abs": 0.9673222083970687,
+          "signal_score": 1.0,
+          "composite_score": 0.7684644416794137,
+          "mean_signal": 4.0312812823868525,
+          "scale_factor": 3.6236585248042568,
+          "hubble_proxy": 1.397908404142195
+        },
+        {
+          "option": "magnitude_split_surface",
+          "mean_abs_a0": 2.134071649556823,
+          "mean_signed_a0": 2.220446049250313e-16,
+          "doctrine_fit": 0.5,
+          "sign_consistency": 0.5,
+          "shell_alignment": 0.9681397023030992,
+          "shell_alignment_abs": 0.9681397023030992,
+          "signal_score": 0.5293780066602735,
+          "composite_score": 0.6039102427917156,
+          "mean_signal": 2.134071649556823,
+          "scale_factor": 4.524211362769237,
+          "hubble_proxy": 0.7274113756459069
+        },
+        {
+          "option": "composite_fit_surface",
+          "mean_abs_a0": 1.1169298385826194,
+          "mean_signed_a0": -0.959791220321701,
+          "doctrine_fit": 0.6666666666666666,
+          "sign_consistency": 0.6666666666666666,
+          "shell_alignment": 0.9722741080345224,
+          "shell_alignment_abs": 0.9722741080345224,
+          "signal_score": 0.2770657169130367,
+          "composite_score": 0.5914278225264673,
+          "mean_signal": 1.1169298385826194,
+          "scale_factor": 5.213179016090189,
+          "hubble_proxy": 0.5669862721001744
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 7,
+        "longest_path_length": 4,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        "path_budget": 3
+      },
+      "hypergraph_surface": {
+        "num_edges": 6,
+        "max_hyperedge_size": 3,
+        "connected_components": 3,
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true,
+        "loop_budget": 2
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "9.19737712432723*lam**4 - 20.1933057432236*lam**3 + 12.1262725802262*lam**2 + 3.08283505476041*lam + 1.0",
+        "expansion_drive_polynomial": "64.0330465608661*lam**4 - 123.293107904856*lam**3 + 65.6963064357327*lam**2 - 8.32894887672461*lam + 4.64857439826596",
+        "scale_poly_degree": 4,
+        "drive_poly_degree": 4,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.2867704994317632,
+        "symbolic_acceleration_mid": -8.735240696236616,
+        "symbolic_drive_mid": 5.4986034907839
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.06574895110184273,
+          0.06196604048919177,
+          0.9959102797215716
+        ],
+        "mean_norm": 0.9999999999999999,
+        "mean_geodesic_distance": 0.2894689793453224,
+        "max_geodesic_distance": 0.36525207372282686
+      },
+      "torch_fit": {
+        "weights": [
+          0.5381120510899199,
+          4.750922041653953,
+          2.503396530468263
+        ],
+        "bias": -5.454509627861729,
+        "loss": 0.02085773684295903,
+        "max_gap": 0.23445273841063274
+      },
+      "winner_vector": [
+        2.6707197598750194,
+        1.0,
+        0.977854638390944
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 1.021092335129481e-07,
+      "scale_factors": [
+        1.0,
+        2.2490076521082765,
+        3.6236585248042568,
+        4.524211362769237,
+        5.213179016090189
+      ],
+      "hubble_proxy": [
+        3.241956301682407,
+        2.574968315387579,
+        1.397908404142195,
+        0.7274113756459069,
+        0.5669862721001744
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "best_alpha": 0.5,
+    "best_fit": 0.6666666666666666,
+    "deep_contract_pass": true,
+    "deep_contract_winner": "option_c_homeostatic_surface"
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

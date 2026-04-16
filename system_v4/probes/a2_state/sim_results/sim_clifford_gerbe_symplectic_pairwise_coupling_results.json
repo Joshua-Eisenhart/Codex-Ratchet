@@ -1,17 +1,18 @@
 {
   "name": "sim_clifford_gerbe_symplectic_pairwise_coupling",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "Step 1 pairwise coupling for Clifford\u00d7Gerbe\u00d7Symplectic (20th program). H_clifford = Cl(3,0) rotor off-diagonal change (fallback 0.5). H_gerbe = log(1+3). H_symp = log(1+4). All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
   "divergence_log": "Step 1 pairwise coupling for Clifford\u00d7Gerbe\u00d7Symplectic (20th program). H_clifford = Cl(3,0) rotor off-diagonal change (fallback 0.5). H_gerbe = log(1+3). H_symp = log(1+4). All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed for pairwise H product tests"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning in pairwise step"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient"
     },
     "sympy": {
       "tried": true,
@@ -36,32 +37,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "Riemannian geometry not invoked here"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariance not needed"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "chain-complex not invoked"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistence not in pairwise scope"
     }
   },
   "tool_integration_depth": {
@@ -133,21 +134,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

@@ -48,17 +48,55 @@ def forward_su_then_sp_then_so():
 
 def reverse_ortho_then_sp():
     # Impose orthogonal first -> O(2), then symplectic preservation
-    a,b,c,d = sp.symbols('a b c d', real=True)
-    A = sp.Matrix([[a,b],[c,d]])
-    ortho_eqs = list((A.T*A - sp.eye(2)).values())
-    o_sol = sp.solve(ortho_eqs, [a,b,c,d], dict=True)
+    # Use fence-set accumulation: test specific d values that satisfy orthogonality
+    # For A = [[a,b],[c,d]] with A^T A = I:
+    # a^2 + c^2 = 1, b^2 + d^2 = 1, ab + cd = 0
+    # Parametrize: a = cos(θ), c = sin(θ), b = cos(φ), d = sin(φ)
+    # Then ab + cd = 0 -> cos(θ)cos(φ) + sin(θ)sin(φ) = 0 -> cos(θ-φ) = 0 -> φ = θ ± π/2
+
+    import numpy as np
     om = omega2()
+    o_sol = []
     final = []
-    for s in o_sol:
-        As = A.subs(s)
-        resid = sp.simplify(As.T*om*As - om)
-        if all(e == 0 for e in resid):
-            final.append(s)
+
+    # Test specific orthogonal matrices parametrized by angle theta
+    for theta_deg in range(0, 360, 15):
+        theta = np.radians(theta_deg)
+        a_val = float(np.cos(theta))
+        c_val = float(np.sin(theta))
+
+        # Case 1: φ = θ + π/2
+        phi = theta + np.pi / 2
+        b_val = float(np.cos(phi))
+        d_val = float(np.sin(phi))
+        A_test = sp.Matrix([[a_val, b_val], [c_val, d_val]])
+        det_val = float(a_val * d_val - b_val * c_val)
+
+        # Check if orthogonal and collect
+        if abs(float((A_test.T * A_test - sp.eye(2)).norm())) < 1e-6:
+            o_sol.append({"a": a_val, "b": b_val, "c": c_val, "d": d_val, "det": det_val})
+
+            # Check if also symplectic-preserving
+            resid = A_test.T * om * A_test - om
+            if all(abs(float(e)) < 1e-6 for e in resid):
+                final.append({"a": a_val, "b": b_val, "c": c_val, "d": d_val, "det": det_val})
+
+        # Case 2: φ = θ - π/2
+        phi = theta - np.pi / 2
+        b_val = float(np.cos(phi))
+        d_val = float(np.sin(phi))
+        A_test = sp.Matrix([[a_val, b_val], [c_val, d_val]])
+        det_val = float(a_val * d_val - b_val * c_val)
+
+        if abs(float((A_test.T * A_test - sp.eye(2)).norm())) < 1e-6:
+            if not any(abs(s["a"] - a_val) < 1e-6 and abs(s["d"] - d_val) < 1e-6 for s in o_sol):
+                o_sol.append({"a": a_val, "b": b_val, "c": c_val, "d": d_val, "det": det_val})
+
+                resid = A_test.T * om * A_test - om
+                if all(abs(float(e)) < 1e-6 for e in resid):
+                    if not any(abs(s["a"] - a_val) < 1e-6 and abs(s["d"] - d_val) < 1e-6 for s in final):
+                        final.append({"a": a_val, "b": b_val, "c": c_val, "d": d_val, "det": det_val})
+
     # Reflections (det=-1) in O(2) invert omega -> excluded
     reflections_excluded = len(final) < len(o_sol)
     return len(o_sol), len(final), reflections_excluded

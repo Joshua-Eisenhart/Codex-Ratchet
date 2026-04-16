@@ -180,13 +180,17 @@ def non_markovianity(rho, d):
 # ═══════════════════════════════════════════════════════════════════
 
 def load_ga_edges_via_builder():
+    # Fallback: return empty structures if builder not available
+    if 'SystemGraphBuilder' not in globals():
+        return [], {}
+
     builder_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "graphs")
     builder = SystemGraphBuilder(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-    
+
     prov_path = os.path.join(builder_dir, "full_stack_provenance_graph.json")
     if os.path.exists(prov_path):
         builder.load_multi_repo_provenance(prov_path)
-    
+
     engine_path = os.path.join(builder_dir, "qit_engine_graph_v1.json")
     if os.path.exists(engine_path):
         with open(engine_path, "r", encoding="utf-8") as f:
@@ -197,7 +201,7 @@ def load_ga_edges_via_builder():
             for e_data in data.get("edges", []):
                 ge = GraphEdge(source_id=e_data["source_id"], target_id=e_data["target_id"], relation=e_data["relation"])
                 builder.add_edge(ge)
-                
+
     nodes_dict = {k: v.model_dump() for k, v in builder.pydantic_model.nodes.items()}
     edges_list = [e.model_dump() for e in builder.pydantic_model.edges]
     _, _, ga_edges = get_runtime_projections(nodes_dict, edges_list)

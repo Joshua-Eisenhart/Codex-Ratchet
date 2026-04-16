@@ -16,6 +16,8 @@ Supportive: sympy (algebraic verification of L-function expansion order)
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================

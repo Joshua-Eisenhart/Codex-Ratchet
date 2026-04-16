@@ -13,6 +13,8 @@ Classification: canonical (cvc5 proof as load-bearing)
 import json
 import os
 import numpy as np
+
+classification = "canonical"
 from typing import Dict, Any
 
 # =====================================================================

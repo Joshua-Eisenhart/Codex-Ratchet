@@ -97,7 +97,7 @@
     "xgi": "load_bearing",
     "z3": "load_bearing"
   },
-  "elapsed_seconds": 0.7440187931060791,
+  "elapsed_seconds": 1.122284173965454,
   "shell_bridge": {
     "dynamic_vs_frozen_gap": 0.02947145190205047,
     "jk_fuzz_dynamic": 2.261127732148754,
@@ -199,6 +199,20 @@
       "candidate_universe_size": 8,
       "frontier_size": 8,
       "shell_bridge_pass_fraction": 1.0,
+      "distinguishability_surface": {
+        "type": "distinguishability_constraint",
+        "pass": true,
+        "gate_fraction": 1.0,
+        "pass_threshold": 0.8,
+        "gates": {
+          "observational": true,
+          "admissible": true,
+          "stable": true,
+          "entropy_conditioned": true,
+          "topology_conditioned": true
+        },
+        "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
+      },
       "semantic_row_surface": {
         "lane": "through_shells",
         "symbolic_hubble_mid": 1.0060358738703938,
@@ -207,20 +221,20 @@
         "bridge_owner_pass": true,
         "bridge_owner_gate_fraction": 1.0,
         "distinguishability_pass": true,
-        "distinguishability_gate_fraction": 0.8,
+        "distinguishability_gate_fraction": 1.0,
         "graph_longest_path_length": 7,
         "manifold_distance": 0.5538809589025677,
         "pyg_mean_aggregate_norm": 1.3589480460718129,
         "distinguishability_surface": {
           "type": "distinguishability_constraint",
           "pass": true,
-          "gate_fraction": 0.8,
+          "gate_fraction": 1.0,
           "pass_threshold": 0.8,
           "gates": {
             "observational": true,
             "admissible": true,
             "stable": true,
-            "entropy_conditioned": false,
+            "entropy_conditioned": true,
             "topology_conditioned": true
           },
           "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."

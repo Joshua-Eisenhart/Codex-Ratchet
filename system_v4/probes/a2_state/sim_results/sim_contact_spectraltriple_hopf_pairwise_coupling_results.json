@@ -1,6 +1,7 @@
 {
   "name": "sim_contact_spectraltriple_hopf_pairwise_coupling",
-  "classification": "canonical",
+  "classification": "classical_baseline",
+  "classification_note": "Pairwise coupling: Contact\u00d7SpectralTriple, Contact\u00d7Hopf, SpectralTriple\u00d7Hopf. Q_pair = H_i * H_j (no MI factor). All pairs > 0 confirmed. z3 UNSAT: Q=0 with H_i>0, H_j>0 impossible. sympy: product zero iff one factor zero.",
   "divergence_log": "Pairwise coupling: Contact\u00d7SpectralTriple, Contact\u00d7Hopf, SpectralTriple\u00d7Hopf. Q_pair = H_i * H_j (no MI factor). All pairs > 0 confirmed. z3 UNSAT: Q=0 with H_i>0, H_j>0 impossible. sympy: product zero iff one factor zero.",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning in pairwise step"
     },
     "z3": {
       "tried": true,
@@ -46,7 +47,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal in pairwise"
     },
     "xgi": {
       "tried": true,
@@ -56,7 +57,7 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "chain-complex not invoked in pairwise"
     },
     "gudhi": {
       "tried": true,
@@ -65,18 +66,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "P1_contact_spectraltriiple_pair": {

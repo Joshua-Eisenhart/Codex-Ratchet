@@ -1,7 +1,8 @@
 {
   "name": "sim_contact_spectraltriple_hopf_emergence_quantities",
-  "classification": "canonical",
-  "divergence_log": "Emergence: Q_CSH = MI * H_contact * H_st * H_hopf. E1-E3 single shells Q=0; E4-E6 pairs Q=0 (no MI). E7 all three + MI \u2192 Q>0 (emergent quantity). z3 UNSAT: any factor=0 with Q>0 impossible. sympy: four-factor product collapse analytical proof.",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline Contact\u00d7SpectralTriple\u00d7Hopf emergence probe: this file checks scalar emergence quantities with torch, z3, sympy, and clifford helpers where available, but it does not claim a canonical nonclassical witness.",
+  "divergence_log": "Classical baseline Contact\u00d7SpectralTriple\u00d7Hopf emergence probe: this file checks scalar emergence quantities with torch, z3, sympy, and clifford helpers where available, but it does not claim a canonical nonclassical witness.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning in emergence step"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient for emergence UNSAT"
     },
     "sympy": {
       "tried": true,
@@ -31,52 +32,52 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "no Clifford algebra in emergence"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "no Riemannian manifold in emergence"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "no SO(3) equivariance in emergence"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal in emergence"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph in emergence"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "chain-complex not invoked in emergence"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistence not in emergence scope"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "E1_contact_alone_Q_zero": {
@@ -163,21 +164,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

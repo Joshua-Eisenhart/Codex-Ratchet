@@ -15,6 +15,8 @@ admissibility).
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not a proof tool"},
     "pyg":       {"tried": False, "used": False, "reason": "not used"},
@@ -87,7 +89,7 @@ if __name__ == "__main__":
     all_pass = (pos.get("two_shells_coexist",{}).get("pass",False)
                 and neg.get("destructive_coupling_unsat",{}).get("pass",False)
                 and bnd.get("trivial_coupling_sat",{}).get("pass",False))
-    out = {"name":"fep_atom_7_coupling","classification":"canonical",
+    out = {"name":"fep_atom_7_coupling","classification":classification,
            "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
            "positive":pos,"negative":neg,"boundary":bnd,
            "status":"PASS" if all_pass else "FAIL"}

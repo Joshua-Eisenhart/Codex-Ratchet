@@ -11,11 +11,37 @@ import torch
 from e3nn import o3
 from _doc_illum_common import build_manifest, write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["e3nn"] = {"tried": True, "used": True, "reason": "o3 Wigner D/rotations"}
-TOOL_INTEGRATION_DEPTH["e3nn"] = "load_bearing"
-TOOL_MANIFEST["pytorch"] = {"tried": True, "used": True, "reason": "tensor backend for e3nn"}
-TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def hopf(z1, z2):
@@ -71,13 +97,17 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    TM["e3nn"] = {"tried": True, "used": True, "reason": "o3 Wigner D/rotations"}
+    DEPTH["e3nn"] = "load_bearing"
+    TM["pytorch"] = {"tried": True, "used": True, "reason": "tensor backend for e3nn"}
+    DEPTH["pytorch"] = "supportive"
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     allp = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {
         "name": "bridge_hopf_u1_equivariance_e3nn",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "ENGINE_MATH_REFERENCE.md Hopf; LADDERS_FENCES_ADMISSION_REFERENCE.md fibration",
-        "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": allp,
     }
     write_results("bridge_hopf_u1_equivariance_e3nn", results)

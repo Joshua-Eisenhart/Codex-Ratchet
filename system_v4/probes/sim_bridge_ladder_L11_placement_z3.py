@@ -10,9 +10,37 @@ placement; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md structural admissibilit
 from z3 import Solver, Int, And, Or, Distinct, sat, unsat, Not
 from _doc_illum_common import build_manifest, write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["z3"] = {"tried": True, "used": True, "reason": "SAT/UNSAT placement proof"}
-TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def placement_solver(n=4, forbid_adjacent=True):
@@ -56,13 +84,15 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    TM["z3"] = {"tried": True, "used": True, "reason": "SAT/UNSAT placement proof"}
+    DEPTH["z3"] = "load_bearing"
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     allp = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {
         "name": "bridge_ladder_L11_placement_z3",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md L11; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md admissibility",
-        "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": allp,
     }
     write_results("bridge_ladder_L11_placement_z3", results)

@@ -9,9 +9,37 @@ import numpy as np
 import torch
 from _doc_illum_common import build_manifest, write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["pytorch"] = {"tried": True, "used": True, "reason": "autograd dS/dp"}
-TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def grad_autograd(p_np):
@@ -55,11 +83,13 @@ def run_boundary_tests():
 if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     allp = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
+    TM["pytorch"] = {"tried": True, "used": True, "reason": "autograd dS/dp"}
+    DEPTH["pytorch"] = "load_bearing"
     results = {
         "name": "bridge_axis0_gradient_autograd",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "AXIS_AND_ENTROPY_REFERENCE.md Axis 0; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md entropy",
-        "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": allp,
     }
     write_results("bridge_axis0_gradient_autograd", results)

@@ -13,8 +13,37 @@ NAME = "bridge_szilard_landauer_floor"
 SCOPE_NOTE = ("Bridge: Landauer floor as admissibility constraint. "
               "z3 UNSAT for Ev < F01 * ln2 under F01 > 0, Ev >= 0. "
               "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-CLASSIFICATION = "canonical"
-TM, DEPTH = build_manifest()
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def run_positive():
@@ -51,15 +80,14 @@ def run_boundary():
 
 
 if __name__ == "__main__":
-    TM["z3"]["used"] = True
-    TM["z3"]["reason"] = "UNSAT on sub-Landauer erasure; load-bearing admissibility floor"
+    TM["z3"] = {"tried": True, "used": True, "reason": "UNSAT on sub-Landauer erasure; load-bearing admissibility floor"}
     DEPTH["z3"] = "load_bearing"
     pos = run_positive(); neg = run_negative(); bnd = run_boundary()
     ok = (pos["unsat_as_expected"] and neg["sat_as_expected"]
           and bnd["sat_as_expected"])
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
-        "classification": CLASSIFICATION,
+        "classification": classification,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "z3",
         "positive": pos, "negative": neg, "boundary": bnd,

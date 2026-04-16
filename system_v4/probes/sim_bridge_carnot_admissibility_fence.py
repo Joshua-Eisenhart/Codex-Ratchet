@@ -14,8 +14,37 @@ SCOPE_NOTE = ("Bridge: Carnot as admissibility fence; z3 UNSAT that an engine "
               "with eta > 1 - Tc/Th is admissible under Tc<Th, Qh>0, Qc>=0, "
               "W=Qh-Qc, second law Qc/Tc >= Qh/Th. "
               "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-CLASSIFICATION = "canonical"
-TM, DEPTH = build_manifest()
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 import z3
 
@@ -64,8 +93,7 @@ def run_boundary():
 
 
 if __name__ == "__main__":
-    TM["z3"]["used"] = True
-    TM["z3"]["reason"] = "Proves UNSAT for super-Carnot; load-bearing admissibility fence"
+    TM["z3"] = {"tried": True, "used": True, "reason": "Proves UNSAT for super-Carnot; load-bearing admissibility fence"}
     DEPTH["z3"] = "load_bearing"
     DEPTH["pytorch"] = None
     pos = run_positive(); neg = run_negative(); bnd = run_boundary()
@@ -73,7 +101,7 @@ if __name__ == "__main__":
           and bnd["unsat_as_expected"])
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
-        "classification": CLASSIFICATION,
+        "classification": classification,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "z3",
         "positive": pos, "negative": neg, "boundary": bnd,

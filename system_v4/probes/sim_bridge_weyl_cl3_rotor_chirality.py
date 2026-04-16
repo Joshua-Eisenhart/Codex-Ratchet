@@ -10,9 +10,37 @@ import numpy as np
 from clifford import Cl
 from _doc_illum_common import build_manifest, write_results
 
-TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH = build_manifest()
-TOOL_MANIFEST["clifford"] = {"tried": True, "used": True, "reason": "Cl(3) rotor algebra"}
-TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 layout, blades = Cl(3)
 e1, e2, e3 = blades['e1'], blades['e2'], blades['e3']
@@ -56,13 +84,15 @@ def run_boundary_tests():
 
 
 if __name__ == "__main__":
+    TM["clifford"] = {"tried": True, "used": True, "reason": "Cl(3) rotor algebra"}
+    DEPTH["clifford"] = "load_bearing"
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     allp = all(v["pass"] for v in {**pos, **neg, **bnd}.values())
     results = {
         "name": "bridge_weyl_cl3_rotor_chirality",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "ENGINE_MATH_REFERENCE.md Weyl; LADDERS_FENCES_ADMISSION_REFERENCE.md chirality",
-        "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd, "pass": allp,
     }
     write_results("bridge_weyl_cl3_rotor_chirality", results)

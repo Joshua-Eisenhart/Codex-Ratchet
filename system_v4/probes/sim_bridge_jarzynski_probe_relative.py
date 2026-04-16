@@ -13,8 +13,37 @@ NAME = "bridge_jarzynski_probe_relative"
 SCOPE_NOTE = ("Bridge: sympy proves Jarzynski identity symbolically under the "
               "probe-relative Gaussian work shift. Illuminates "
               "CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.")
-CLASSIFICATION = "canonical"
-TM, DEPTH = build_manifest()
+classification = "canonical"
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+TM = TOOL_MANIFEST
+DEPTH = TOOL_INTEGRATION_DEPTH
 
 
 def _identity_residual():
@@ -51,15 +80,14 @@ def run_boundary():
 
 
 if __name__ == "__main__":
-    TM["sympy"]["used"] = True
-    TM["sympy"]["reason"] = "Symbolic proof of Jarzynski identity; load-bearing"
+    TM["sympy"] = {"tried": True, "used": True, "reason": "Symbolic proof of Jarzynski identity; load-bearing"}
     DEPTH["sympy"] = "load_bearing"
     pos = run_positive(); neg = run_negative(); bnd = run_boundary()
     ok = (pos["is_zero"] and neg["nonzero_as_expected"]
           and bnd["delta_limit_equal"])
     results = {
         "name": NAME, "scope_note": SCOPE_NOTE,
-        "classification": CLASSIFICATION,
+        "classification": classification,
         "tool_manifest": TM, "tool_integration_depth": DEPTH,
         "load_bearing_tool": "sympy",
         "positive": pos, "negative": neg, "boundary": bnd,

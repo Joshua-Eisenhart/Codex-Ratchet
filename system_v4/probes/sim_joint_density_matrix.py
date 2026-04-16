@@ -18,10 +18,11 @@ classification = "classical_baseline"  # auto-backfill
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical local lego for bounded two-qubit joint density matrices before "
     "derived witness or entropy layers."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "joint_density_matrix",

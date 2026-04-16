@@ -15,10 +15,11 @@ classification = "classical_baseline"  # auto-backfill
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical local lego for operator-coordinate state representation on bounded qubit "
     "states, kept separate from Bloch-vector, Stokes, and generic density-object rows."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "operator_coordinate_representation",

@@ -14,6 +14,12 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "classical baseline operator-coordinate representation; numeric numpy "
+    "matrix basis-change witnesses only, with no nonclassical rotor/gauge "
+    "surface"
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix basis change"},
@@ -63,6 +69,8 @@ if __name__ == "__main__":
     results = {
         "name": "operator_coordinate_representation_classical",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

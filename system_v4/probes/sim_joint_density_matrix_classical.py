@@ -12,6 +12,12 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "no off-diagonal coherences; only diagonal joint pmf. "
+    "every classical joint is separable; cannot represent entangled joint states. "
+    "no PPT / negativity witness structure; partial-transpose map undefined."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf arithmetic"},
@@ -58,16 +64,13 @@ if __name__ == "__main__":
     results = {
         "name": "joint_density_matrix_classical",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "no off-diagonal coherences; only diagonal joint pmf",
-            "every classical joint is separable; cannot represent entangled joint states",
-            "no PPT / negativity witness structure; partial-transpose map undefined",
-        ],
+        "divergence_log": CLASSIFICATION_NOTE,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "joint_density_matrix_classical_results.json")

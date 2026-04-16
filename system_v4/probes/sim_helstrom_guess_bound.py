@@ -15,10 +15,11 @@ classification = "classical_baseline"  # auto-backfill
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical local lego for the Helstrom optimal-guess bound on bounded qubit state "
     "pairs, tying trace distance to operational discrimination."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "helstrom_guess_bound",
@@ -124,7 +125,7 @@ def main():
     results = {
         "name": "helstrom_guess_bound",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
-        "classification_note": CLASSIFICATION_NOTE,
+        "classification_note": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

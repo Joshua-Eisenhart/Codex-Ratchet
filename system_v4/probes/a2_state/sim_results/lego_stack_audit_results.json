@@ -1,6 +1,6 @@
 {
   "name": "lego_stack_audit",
-  "generated_at": "2026-04-15T09:08:26.297225+00:00",
+  "generated_at": "2026-04-16T01:06:55.557571+00:00",
   "docs_scanned": [
     "system_v5/new docs/07_model_math_geometry_sim_plan.md",
     "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md",
@@ -296,42 +296,29 @@
         "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md"
       ],
       "matching_probe_files": [
+        "sim_fep_xgi_markov_blanket_hypergraph.py",
+        "sim_gtower_xgi_hypergraph_layers.py",
+        "sim_leviathan_xgi_coalition_hypergraph.py",
         "sim_xgi_deep_hypergraph_clustering.py",
         "sim_xgi_dual_hypergraph.py",
-        "sim_xgi_family_hypergraph.py",
-        "sim_xgi_shell_hypergraph.py",
-        "sim_compound_cvc5_rustworkx_toponetx_graph_topology.py",
-        "sim_dual_hypergraph_geometry.py"
+        "sim_xgi_family_hypergraph.py"
       ],
       "matching_result_files": [
+        "leviathan_xgi_coalition_hypergraph_results.json",
+        "sim_fep_xgi_markov_blanket_hypergraph_results.json",
+        "sim_gtower_xgi_hypergraph_layers_results.json",
         "sim_xgi_deep_hypergraph_clustering_results.json",
         "xgi_dual_hypergraph_results.json",
-        "xgi_family_hypergraph_results.json",
-        "xgi_shell_hypergraph_results.json",
-        "dual_hypergraph_geometry_results.json",
-        "hypergraph_geometry_results.json"
+        "xgi_family_hypergraph_results.json"
       ],
       "recommended_probe_files": [
-        "sim_dual_hypergraph_geometry.py",
-        "sim_hypergraph_geometry.py",
         "sim_xgi_dual_hypergraph.py",
         "sim_xgi_family_hypergraph.py",
-        "sim_sim_xgi_deep_hypergraph_clustering.py",
-        "sim_xgi_shell_hypergraph.py"
+        "sim_leviathan_xgi_coalition_hypergraph.py",
+        "sim_sim_gtower_xgi_hypergraph_layers.py",
+        "sim_sim_xgi_deep_hypergraph_clustering.py"
       ],
       "result_rankings": [
-        {
-          "probe_file": "sim_dual_hypergraph_geometry.py",
-          "result_file": "dual_hypergraph_geometry_results.json",
-          "score": 5,
-          "reason": "canonical"
-        },
-        {
-          "probe_file": "sim_hypergraph_geometry.py",
-          "result_file": "hypergraph_geometry_results.json",
-          "score": 5,
-          "reason": "canonical"
-        },
         {
           "probe_file": "sim_xgi_dual_hypergraph.py",
           "result_file": "xgi_dual_hypergraph_results.json",
@@ -345,16 +332,28 @@
           "reason": "canonical"
         },
         {
+          "probe_file": "sim_leviathan_xgi_coalition_hypergraph.py",
+          "result_file": "leviathan_xgi_coalition_hypergraph_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_sim_gtower_xgi_hypergraph_layers.py",
+          "result_file": "sim_gtower_xgi_hypergraph_layers_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
           "probe_file": "sim_sim_xgi_deep_hypergraph_clustering.py",
           "result_file": "sim_xgi_deep_hypergraph_clustering_results.json",
           "score": 3,
           "reason": "canonical"
         },
         {
-          "probe_file": "sim_xgi_shell_hypergraph.py",
-          "result_file": "xgi_shell_hypergraph_results.json",
-          "score": 3,
-          "reason": "canonical"
+          "probe_file": "sim_sim_fep_xgi_markov_blanket_hypergraph.py",
+          "result_file": "sim_fep_xgi_markov_blanket_hypergraph_results.json",
+          "score": 0,
+          "reason": "weak"
         }
       ],
       "already_simulated": true,
@@ -382,25 +381,32 @@
         "system_v5/new docs/FALSIFICATION_SIM_DESIGNS.md"
       ],
       "matching_probe_files": [
+        "sim_clifford_chirality_admissible_generators.py",
         "sim_compound_z3_clifford_e3nn_so3_chirality.py",
         "sim_L13_entangling_operator.py",
         "sim_L3_operators_on_stages.py",
         "sim_L4_engine_chirality.py",
-        "sim_SA5_curvature_commutator.py",
-        "sim_a1_homotopy_6_chirality_coupling.py"
+        "sim_SA5_curvature_commutator.py"
       ],
       "matching_result_files": [
         "bridge_igt_chirality_clifford_results.json",
+        "sim_clifford_chirality_admissible_generators_results.json",
         "sim_compound_z3_clifford_e3nn_so3_chirality_results.json",
         "L3_operators_results.json",
         "L4_engine_chirality_results.json",
-        "axis_7_12_commutator_results.json",
-        "baseline_dephasing_channel_results.json"
+        "axis_7_12_commutator_results.json"
       ],
       "recommended_probe_files": [
+        "sim_sim_clifford_chirality_admissible_generators.py",
         "sim_sim_compound_z3_clifford_e3nn_so3_chirality.py"
       ],
       "result_rankings": [
+        {
+          "probe_file": "sim_sim_clifford_chirality_admissible_generators.py",
+          "result_file": "sim_clifford_chirality_admissible_generators_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
         {
           "probe_file": "sim_sim_compound_z3_clifford_e3nn_so3_chirality.py",
           "result_file": "sim_compound_z3_clifford_e3nn_so3_chirality_results.json",
@@ -430,16 +436,10 @@
           "result_file": "axis_7_12_commutator_results.json",
           "score": 0,
           "reason": "weak"
-        },
-        {
-          "probe_file": "sim_baseline_dephasing_channel.py",
-          "result_file": "baseline_dephasing_channel_results.json",
-          "score": 0,
-          "reason": "weak"
         }
       ],
       "already_simulated": true,
-      "needs_deeper_lego_work": true
+      "needs_deeper_lego_work": false
     },
     {
       "id": "bipartite_structure_local",
@@ -704,12 +704,12 @@
         "system_v5/new docs/08_aligned_sim_backlog_and_build_order.md"
       ],
       "matching_probe_files": [
+        "sim_axis0_axis6_coupling_seam.py",
         "sim_axis0_bridge_search.py",
         "sim_axis0_kernel_phi0.py",
         "sim_axis0_phase4_final_bridge.py",
         "sim_axis6_e3nn_fe_bridge.py",
-        "sim_bridge_axis0_gradient_autograd.py",
-        "sim_bridge_phi0_cross_consistency_audit.py"
+        "sim_axis6_gtower_action_orientation_bridge.py"
       ],
       "matching_result_files": [
         "axis0_bridge_search_results.json",
@@ -783,22 +783,23 @@
         "sim_gtower_order_u1_gauge_then_chirality_vs_reverse.py",
         "sim_gtower_triple_su2_u1_spin_ordering.py",
         "sim_holodeck_deep_carrier_shell_u1_gauge.py",
+        "sim_su3_gauge_invariant_tensor_contraction.py",
         "sim_L1_loop_families.py",
-        "sim_SA5_curvature_commutator.py",
-        "sim_axiom_n01_indiscernibility_implies_identity.py"
+        "sim_SA5_curvature_commutator.py"
       ],
       "matching_result_files": [
         "gtower_order_u1_gauge_then_chirality_vs_reverse_results.json",
         "gtower_triple_su2_u1_spin_ordering_results.json",
         "holodeck_deep_carrier_shell_u1_gauge_results.json",
+        "su3_gauge_invariant_tensor_contraction_results.json",
         "L1_loop_families_results.json",
-        "axis_7_12_commutator_results.json",
-        "axis_lie_closure_results.json"
+        "axis_7_12_commutator_results.json"
       ],
       "recommended_probe_files": [
         "sim_gtower_order_u1_gauge_then_chirality_vs_reverse.py",
         "sim_gtower_triple_su2_u1_spin_ordering.py",
-        "sim_holodeck_deep_carrier_shell_u1_gauge.py"
+        "sim_holodeck_deep_carrier_shell_u1_gauge.py",
+        "sim_su3_gauge_invariant_tensor_contraction.py"
       ],
       "result_rankings": [
         {
@@ -820,6 +821,12 @@
           "reason": "canonical"
         },
         {
+          "probe_file": "sim_su3_gauge_invariant_tensor_contraction.py",
+          "result_file": "su3_gauge_invariant_tensor_contraction_results.json",
+          "score": 2,
+          "reason": "weak"
+        },
+        {
           "probe_file": "sim_L1_loop_families.py",
           "result_file": "L1_loop_families_results.json",
           "score": 0,
@@ -828,12 +835,6 @@
         {
           "probe_file": "sim_axis_7_12_commutator.py",
           "result_file": "axis_7_12_commutator_results.json",
-          "score": 0,
-          "reason": "weak"
-        },
-        {
-          "probe_file": "sim_axis_lie_closure.py",
-          "result_file": "axis_lie_closure_results.json",
           "score": 0,
           "reason": "weak"
         }
@@ -862,9 +863,9 @@
         "sim_viability_vs_attractor.py",
         "sim_axis0_attractor_basin_boundary.py",
         "sim_bridge_cut_perturbation_stability.py",
+        "sim_carnot_axis4_cycle_ordering_bridge.py",
         "sim_geomstats_ratchet_trajectory.py",
-        "sim_igt_nested_WIN_LOSE_attractor.py",
-        "sim_leviathan_zero_sum_authoritarian_attractor.py"
+        "sim_igt_nested_WIN_LOSE_attractor.py"
       ],
       "matching_result_files": [
         "viability_vs_attractor_results.json",
@@ -940,23 +941,22 @@
       ],
       "matching_probe_files": [
         "sim_bottleneck_distance_classical.py",
+        "sim_bridge_prep_rho_ab_construction.py",
         "sim_bures_geometry.py",
         "sim_carnot_asymmetric_isotherm_sweep.py",
         "sim_carnot_reverse_asymmetric_sweep.py",
-        "sim_cl3_e3nn_rotor_vs_wignerD_vector.py",
-        "sim_connes_distance_gtower_bridge.py"
+        "sim_cl3_e3nn_rotor_vs_wignerD_vector.py"
       ],
       "matching_result_files": [
         "bottleneck_distance_classical_results.json",
+        "bridge_prep_rho_ab_construction_results.json",
         "bures_geometry_results.json",
         "carnot_asymmetric_isotherm_sweep_results.json",
         "carnot_reverse_asymmetric_sweep_results.json",
-        "classical_baseline_wigner_semicircle_results.json",
-        "cross_shell_coupling_cp1_bures_results.json"
+        "classical_baseline_wigner_semicircle_results.json"
       ],
       "recommended_probe_files": [
         "sim_bures_geometry.py",
-        "sim_cross_shell_coupling_cp1_bures.py",
         "sim_bottleneck_distance_classical.py"
       ],
       "result_rankings": [
@@ -964,12 +964,6 @@
           "probe_file": "sim_bures_geometry.py",
           "result_file": "bures_geometry_results.json",
           "score": 5,
-          "reason": "canonical"
-        },
-        {
-          "probe_file": "sim_cross_shell_coupling_cp1_bures.py",
-          "result_file": "cross_shell_coupling_cp1_bures_results.json",
-          "score": 3,
           "reason": "canonical"
         },
         {
@@ -983,6 +977,12 @@
           "result_file": "classical_baseline_wigner_semicircle_results.json",
           "score": 0,
           "reason": "weak"
+        },
+        {
+          "probe_file": "sim_bridge_prep_rho_ab_construction.py",
+          "result_file": "bridge_prep_rho_ab_construction_results.json",
+          "score": -2,
+          "reason": "late_stage_name"
         },
         {
           "probe_file": "sim_carnot_asymmetric_isotherm_sweep.py",
@@ -1013,12 +1013,12 @@
     "sim_fubini_study_geometry.py",
     "sim_berry_qfi_entangled_path.py",
     "sim_berry_qfi_shell_paths.py",
-    "sim_dual_hypergraph_geometry.py",
-    "sim_hypergraph_geometry.py",
     "sim_xgi_dual_hypergraph.py",
     "sim_xgi_family_hypergraph.py",
+    "sim_leviathan_xgi_coalition_hypergraph.py",
+    "sim_sim_gtower_xgi_hypergraph_layers.py",
     "sim_sim_xgi_deep_hypergraph_clustering.py",
-    "sim_xgi_shell_hypergraph.py",
+    "sim_sim_clifford_chirality_admissible_generators.py",
     "sim_sim_compound_z3_clifford_e3nn_so3_chirality.py",
     "sim_concurrence_measure.py",
     "sim_logarithmic_negativity_werner_canonical.py",
@@ -1028,15 +1028,15 @@
     "sim_gtower_order_u1_gauge_then_chirality_vs_reverse.py",
     "sim_gtower_triple_su2_u1_spin_ordering.py",
     "sim_holodeck_deep_carrier_shell_u1_gauge.py",
+    "sim_su3_gauge_invariant_tensor_contraction.py",
     "sim_bures_geometry.py",
-    "sim_cross_shell_coupling_cp1_bures.py",
     "sim_bottleneck_distance_classical.py"
   ],
   "summary": {
     "candidate_count": 12,
     "lego_candidate_count": 9,
     "already_simulated_count": 12,
-    "needs_deeper_lego_work_count": 2,
+    "needs_deeper_lego_work_count": 1,
     "useful_if_rejected_count": 12
   }
 }

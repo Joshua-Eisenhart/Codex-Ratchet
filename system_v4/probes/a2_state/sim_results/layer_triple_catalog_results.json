@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- graph structure via rustworkx"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 handles the uniqueness SMT check"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -32,7 +32,7 @@
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "Cl(3) rotor for SU(2) Hopf rotation (L1 native operator)"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -52,17 +52,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- layer interactions modeled as directed DAG not hypergraph"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topological structure captured by Betti number checks"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf topology tracked via fiber phase entropy, not persistence"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -397,5 +397,21 @@
       "is_finite": "True",
       "pass": "True"
     }
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

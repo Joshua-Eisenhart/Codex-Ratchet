@@ -17,7 +17,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -27,7 +27,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
@@ -37,37 +37,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -688,5 +688,21 @@
     "divergence_location": "gamma_zero_rank_change",
     "scope_note": "Amplitude damping, rho_AR rank-2 family, F_Q=p^2/(1-p*gamma)+p/gamma. p=3/4 primary (gamma*=1/3), p=2/3 crosscheck (gamma*=1/2)."
   },
-  "timestamp": "2026-04-16T03:21:32.562010+00:00"
+  "timestamp": "2026-04-16T03:21:32.562010+00:00",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

@@ -1,0 +1,157 @@
+{
+  "name": "sim_clifford_weyl_contact_pairwise_coupling",
+  "classification": "canonical",
+  "divergence_log": "Pairwise coupling for Clifford\u00d7Weyl\u00d7Contact (26th program). H_clifford=1.414214 (Cl(3,0) rotor norm). H_weyl=0.693147 (log(2)). H_contact=2.833213 (log(17)). Q_pair=H_i\u00d7H_j>0 for all three CWC pairs. z3 UNSAT: zero factor makes product zero \u2014 no positive Q from zero entropy. sympy: two-factor product collapse. pytorch: scalar entropy tensor positivity check.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct shell-entropy tensors as float64 torch scalars; validate positivity of Q_pair products for all three CWC pairs via torch arithmetic (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not required for scalar pairwise coupling entropy products in CWC program; no graph structure invoked"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: for any CWC pair, if either shell entropy is zero then Q_pair=0 \u2014 impossibility of positive product with zero factor (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT is sufficient for zero-factor impossibility in CWC pairwise coupling; cvc5 adds no new information here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic two-factor product: a*b=0 if a=0 or b=0 \u2014 encodes pairwise Q_pair zero-gate for Clifford\u00d7Weyl\u00d7Contact algebraically (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct Cl(3,0) rotor e1*e2 and compute norm as H_clifford; real geometric algebra product used to gate pairwise coupling positivity (load-bearing)."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not needed for scalar entropy product pairwise coupling tests in CWC program"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar CWC shell-entropy pairwise product tests"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required for pairwise scalar entropy product computation in CWC program"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for pairwise CWC shell-entropy product tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex topology variants deferred to topology-variants step; not needed in pairwise coupling"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for scalar pairwise CWC shell-entropy product tests"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_clifford": 1.4142135623730951,
+    "H_weyl": 0.6931471805599453,
+    "H_contact": 2.833213344056216
+  },
+  "positive": {
+    "P_pair_Cl_x_W_Q_positive": {
+      "H_i": 1.4142135623730951,
+      "H_j": 0.6931471805599453,
+      "Q_pair": 0.9802581434685472,
+      "passed": true
+    },
+    "P_pair_Cl_x_Co_Q_positive": {
+      "H_i": 1.4142135623730951,
+      "H_j": 2.833213344056216,
+      "Q_pair": 4.006768736260731,
+      "passed": true
+    },
+    "P_pair_W_x_Co_Q_positive": {
+      "H_i": 0.6931471805599453,
+      "H_j": 2.833213344056216,
+      "Q_pair": 1.9638338413573804,
+      "passed": true
+    },
+    "P_pytorch_all_pairs_positive": {
+      "products": [
+        0.9802581434685472,
+        4.006768736260731,
+        1.9638338413573804
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Hi_zero_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N1_z3_unsat_Hj_zero_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_pair_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "passed": true
+    },
+    "N3_zero_clifford_gives_zero_Q": {
+      "H_clifford_forced": 0.0,
+      "Q_pair_Cl_x_W": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_H_clifford_positive": {
+      "H_clifford": 1.4142135623730951,
+      "source": "clifford_rotor_norm",
+      "passed": true
+    },
+    "B2_H_weyl_log2": {
+      "H_weyl": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "err": 0.0,
+      "passed": true
+    },
+    "B3_H_contact_log17": {
+      "H_contact": 2.833213344056216,
+      "expected": 2.833213344056216,
+      "err": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

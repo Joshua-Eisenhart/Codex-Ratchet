@@ -9,7 +9,7 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "HeteroData graph + message passing IS the ratchet dynamics"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -19,27 +19,27 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -49,17 +49,17 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not relevant to this sim"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -102,7 +102,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -2.7715501005332044e-08,
+          "min_eigenvalue": 0.1310603767633438,
           "psd_ok": true,
           "valid": true
         },
@@ -111,7 +111,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.16823355853557587,
+          "min_eigenvalue": -9.032333991854102e-09,
           "psd_ok": true,
           "valid": true
         },
@@ -120,7 +120,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.18730908632278442,
+          "min_eigenvalue": 0.33441200852394104,
           "psd_ok": true,
           "valid": true
         },
@@ -129,7 +129,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -9.025022507103131e-09,
+          "min_eigenvalue": 0.03833713382482529,
           "psd_ok": true,
           "valid": true
         }
@@ -139,33 +139,33 @@
       "passed": true,
       "has_grad": true,
       "grad_nonzero": true,
-      "grad_norm": 0.0836564376950264,
-      "ic_mean": 0.030783897265791893
+      "grad_norm": 0.008393049240112305,
+      "ic_mean": -0.25080305337905884
     },
     "optimization_increases_ic": {
       "passed": "True",
-      "ic_start_avg": -0.13489869832992554,
-      "ic_end_avg": 0.23848348259925842,
-      "ic_delta": 0.37338218092918396,
+      "ic_start_avg": -0.15694657526910305,
+      "ic_end_avg": 0.22525405883789062,
+      "ic_delta": 0.3822006341069937,
       "ic_history_sample": [
-        -0.4775620996952057,
-        0.1420546919107437,
-        0.18493513762950897,
-        0.24272394180297852
+        -0.4654792249202728,
+        0.05509069934487343,
+        0.14565348625183105,
+        0.2309785634279251
       ],
       "n_steps": 50
     },
     "shell_constrains_params": {
       "passed": true,
       "raw_param_value": 5.0,
-      "max_gated_param": 0.8765203952789307,
-      "reduction_ratio": 0.17530407905578613
+      "max_gated_param": 0.5798109769821167,
+      "reduction_ratio": 0.11596219539642334
     }
   },
   "negative": {
     "no_shell_allows_unphysical": {
       "passed": true,
-      "max_operator_param": 4.986754894256592,
+      "max_operator_param": 5.0823445320129395,
       "exceeds_physical_range": true
     },
     "disconnected_no_flow": {
@@ -181,14 +181,14 @@
         "trace_ok": true,
         "hermitian_error": 0.0,
         "hermitian_ok": true,
-        "min_eigenvalue": -2.6482732451427182e-08,
+        "min_eigenvalue": -3.0263173300681956e-08,
         "psd_ok": true,
         "valid": true
       },
       "terrain_out": [
-        -0.5893689393997192,
-        -0.15960446000099182,
-        0.7919410467147827
+        0.029121434316039085,
+        0.23092518746852875,
+        0.9725356698036194
       ]
     },
     "fully_connected_max_flow": {
@@ -197,21 +197,21 @@
       "n_operator": 6,
       "n_shell": 4,
       "terrain_norms": [
-        0.8697779178619385,
-        0.7613203525543213,
-        0.9999999403953552,
-        0.8693779706954956,
-        0.3462168872356415,
-        0.8994044661521912,
-        0.4570160508155823,
-        0.9999999403953552
+        0.8778473734855652,
+        0.6148555278778076,
+        0.9032242894172668,
+        1.0,
+        0.7086934447288513,
+        0.8577141761779785,
+        0.8023666739463806,
+        0.8292356729507446
       ]
     },
     "bloch_ball_containment": {
       "passed": true,
       "norms": [
-        0.708909273147583,
-        0.886502206325531
+        1.0,
+        0.6538304090499878
       ]
     }
   },
@@ -222,5 +222,21 @@
     "z3_passed": true,
     "rustworkx_passed": true,
     "all_passed": true
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

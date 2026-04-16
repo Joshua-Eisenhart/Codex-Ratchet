@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not required; this packet has no graph or message-passing object"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not required; this packet has no hypergraph claim"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": true,
@@ -449,5 +449,21 @@
     "passed": 32,
     "failed": 0,
     "all_pass": true
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

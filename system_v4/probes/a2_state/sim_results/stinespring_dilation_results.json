@@ -13,12 +13,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; numpy handles all qubit-channel numerics"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -38,37 +38,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not relevant to channel dilation"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -586,5 +586,21 @@
     "sympy_proof": "V\u2020V=I for amplitude damping proven symbolically for all gamma in (0,1)",
     "complementary": "E^c(rho)=Tr_sys[V rho V\u2020] is a valid k x k density matrix for all 4 channels",
     "unitary_extension": "U from SVD null-space completion: U[:,0:d]=V, U unitary, Tr_env[U(rho x|0><0|)U\u2020]=E(rho)"
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

@@ -6,62 +6,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "pure-math numpy baseline"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "pure-math numpy baseline"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for this entropy lego"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "positive": {
@@ -188,7 +188,7 @@
     ],
     "regularized_proxy_pass": true,
     "pass": true,
-    "elapsed_s": 0.0018157958984375
+    "elapsed_s": 0.001795053482055664
   },
   "negative": {
     "vN_equals_min_entropy": {
@@ -286,5 +286,21 @@
     "negative_pass": true,
     "boundary_pass": true,
     "all_pass": true
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

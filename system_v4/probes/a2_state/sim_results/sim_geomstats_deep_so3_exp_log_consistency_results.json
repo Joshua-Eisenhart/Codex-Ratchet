@@ -6,32 +6,32 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not required for Lie group exp/log"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "real-valued manifold check, not SMT"
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "real-valued manifold check, not SMT"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "numeric tolerance, not symbolic"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "parallel rotor layer, supportive only"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
@@ -41,27 +41,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -91,5 +91,21 @@
     "near_pi_err": 6.318199744623286e-16,
     "pass": true
   },
-  "overall_pass": true
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

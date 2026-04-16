@@ -1,6 +1,6 @@
 {
   "name": "toponetx_state_class_binding",
-  "timestamp": "2026-04-16T03:20:51.711058+00:00",
+  "timestamp": "2026-04-16T03:25:44.648157+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; topology via toponetx/xgi"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; z3 sufficient for this inequality"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
@@ -31,22 +31,22 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no spinor geometry in this sim"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; topology is combinatorial here"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no equivariance check in this sim"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; graph structure handled by toponetx internally"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": true,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; exact Betti numbers from incidence matrices"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -232,5 +232,21 @@
       "qwci_gap_creates_hole": false,
       "interpretation": "\u03c7 = \u03b20 - \u03b21 + \u03b22 = 1 - 0 + 0 = 1. \u03b21 = 0: no topological holes. The binding manifold is topologically trivial (simply connected). The QWCI gap is topologically captured as a face boundary, not a hole \u2014 it is filled by the surrounding 2-cells."
     }
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

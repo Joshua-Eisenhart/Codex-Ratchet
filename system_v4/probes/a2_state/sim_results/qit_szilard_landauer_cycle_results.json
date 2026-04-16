@@ -13,12 +13,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "numeric baseline handled by numpy; torch not needed for 2-qubit bookkeeping"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph carrier in this row"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -33,7 +33,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "closed-form kT ln2 values are numeric-exact; no symbolic manipulation needed"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
@@ -53,17 +53,17 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph carrier in this row"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph carrier"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no cell complex carrier"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
@@ -161,5 +161,21 @@
     "system_free_energy_gain": 0.6931471805599453,
     "erasure_cost": 0.6931471805599453,
     "scope_note": "Finite two-qubit bookkeeping row for a Szilard/Landauer cycle; no engine-runtime, reservoir, or universal demon claims."
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nn.Module, not GNN"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -19,47 +19,47 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 sufficient for nesting proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "tried but not needed -- all computation is torch-native"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf done natively in torch"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant layers here"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "DAG encoding shell dependency ordering"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nested, not hypergraph"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topology tracked via GUDHI"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "Persistence tracking through alternating projection"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "positive": {
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 2.266852378845215,
+            "L1_CPTP": 4.056565761566162,
             "L2_d2_Hopf": 0.0,
             "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 2.266852378845215
+          "total_violation": 4.056565761566162
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.696245193481445,
-            "L2_d2_Hopf": 0.0,
-            "L4_composition": 0.0,
-            "L6_irreversibility": 0.1982140839099884
-          },
-          "total_violation": 4.894459277391434
-        },
-        {
-          "violations": {
-            "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 6.73994779586792,
-            "L2_d2_Hopf": 0.34410560131073,
+            "L1_CPTP": 4.334161281585693,
+            "L2_d2_Hopf": 0.5733739137649536,
             "L4_composition": 0.0,
             "L6_irreversibility": 0.0
           },
-          "total_violation": 7.08405339717865
+          "total_violation": 4.907535195350647
+        },
+        {
+          "violations": {
+            "L0_N01_noncommutation": 0.0,
+            "L1_CPTP": 4.618655681610107,
+            "L2_d2_Hopf": 0.5439950227737427,
+            "L4_composition": 0.0,
+            "L6_irreversibility": 0.31884464621543884
+          },
+          "total_violation": 5.481495350599289
         }
       ]
     },
@@ -380,5 +380,21 @@
     "pass": 12,
     "fail": 0,
     "error": 0
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

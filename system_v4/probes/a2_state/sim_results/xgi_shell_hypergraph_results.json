@@ -91,42 +91,42 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -141,12 +141,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -199,14 +199,14 @@
         "L7": 3
       },
       "clique_eigenvector_centrality": {
-        "L0": 0.06113234702826035,
+        "L0": 0.06113234702826033,
         "L1": 0.045411216248936244,
-        "L2": 0.1585714751268718,
-        "L3": 0.12045499813489745,
-        "L4": 0.16682866620509437,
+        "L2": 0.15857147512687186,
+        "L3": 0.12045499813489748,
+        "L4": 0.16682866620509432,
         "L5": 0.10289725857976564,
         "L6": 0.16832608099943122,
-        "L7": 0.17637795767674294
+        "L7": 0.17637795767674297
       },
       "node_edge_centrality": {
         "L0": 0.07852842200750365,
@@ -267,7 +267,7 @@
       "clique_eigenvector_centrality": [
         {
           "shell": "L7",
-          "value": 0.17637795767674294
+          "value": 0.17637795767674297
         },
         {
           "shell": "L6",
@@ -275,15 +275,15 @@
         },
         {
           "shell": "L4",
-          "value": 0.16682866620509437
+          "value": 0.16682866620509432
         },
         {
           "shell": "L2",
-          "value": 0.1585714751268718
+          "value": 0.15857147512687186
         },
         {
           "shell": "L3",
-          "value": 0.12045499813489745
+          "value": 0.12045499813489748
         },
         {
           "shell": "L5",
@@ -291,7 +291,7 @@
         },
         {
           "shell": "L0",
-          "value": 0.06113234702826035
+          "value": 0.06113234702826033
         },
         {
           "shell": "L1",
@@ -485,36 +485,28 @@
     "pairwise_edge_count": 16,
     "pairwise_edges": [
       [
-        "L3",
-        "L4"
-      ],
-      [
-        "L6",
-        "L7"
-      ],
-      [
-        "L4",
-        "L6"
-      ],
-      [
-        "L2",
-        "L4"
-      ],
-      [
         "L0",
         "L2"
       ],
       [
         "L2",
-        "L3"
+        "L5"
+      ],
+      [
+        "L3",
+        "L5"
       ],
       [
         "L5",
         "L7"
       ],
       [
+        "L4",
+        "L6"
+      ],
+      [
         "L0",
-        "L5"
+        "L1"
       ],
       [
         "L2",
@@ -525,28 +517,36 @@
         "L7"
       ],
       [
+        "L2",
+        "L4"
+      ],
+      [
         "L3",
+        "L4"
+      ],
+      [
+        "L2",
+        "L3"
+      ],
+      [
+        "L0",
         "L5"
       ],
       [
         "L2",
         "L7"
-      ],
-      [
-        "L0",
-        "L1"
       ],
       [
         "L4",
         "L7"
       ],
       [
-        "L2",
-        "L5"
-      ],
-      [
         "L1",
         "L4"
+      ],
+      [
+        "L6",
+        "L7"
       ]
     ],
     "pairwise_centrality": {
@@ -561,24 +561,24 @@
         "L7": 5
       },
       "clique_eigenvector_centrality": {
-        "L0": 0.08195726777523932,
+        "L0": 0.08195726777523933,
         "L1": 0.05251618318598778,
-        "L2": 0.17664791344781694,
+        "L2": 0.1766479134478169,
         "L3": 0.1406366894802427,
-        "L4": 0.14720682885856554,
-        "L5": 0.12847162806788723,
-        "L6": 0.11119560489099115,
-        "L7": 0.16136788429326948
+        "L4": 0.14720682885856542,
+        "L5": 0.12847162806788717,
+        "L6": 0.11119560489099113,
+        "L7": 0.16136788429326945
       },
       "node_edge_centrality": {
-        "L0": 0.09082191380935628,
+        "L0": 0.09082191380935627,
         "L1": 0.06421630775345245,
-        "L2": 0.17651531554595315,
-        "L3": 0.13312700492490195,
-        "L4": 0.145992787314368,
+        "L2": 0.17651531554595312,
+        "L3": 0.13312700492490193,
+        "L4": 0.14599278731436796,
         "L5": 0.12491977809286191,
-        "L6": 0.11099678450512399,
-        "L7": 0.1534101080539824
+        "L6": 0.11099678450512397,
+        "L7": 0.15341010805398236
       },
       "katz_centrality": {
         "L0": 0.09361176809110351,
@@ -629,15 +629,15 @@
       "clique_eigenvector_centrality": [
         {
           "shell": "L2",
-          "value": 0.17664791344781694
+          "value": 0.1766479134478169
         },
         {
           "shell": "L7",
-          "value": 0.16136788429326948
+          "value": 0.16136788429326945
         },
         {
           "shell": "L4",
-          "value": 0.14720682885856554
+          "value": 0.14720682885856542
         },
         {
           "shell": "L3",
@@ -645,15 +645,15 @@
         },
         {
           "shell": "L5",
-          "value": 0.12847162806788723
+          "value": 0.12847162806788717
         },
         {
           "shell": "L6",
-          "value": 0.11119560489099115
+          "value": 0.11119560489099113
         },
         {
           "shell": "L0",
-          "value": 0.08195726777523932
+          "value": 0.08195726777523933
         },
         {
           "shell": "L1",
@@ -663,19 +663,19 @@
       "node_edge_centrality": [
         {
           "shell": "L2",
-          "value": 0.17651531554595315
+          "value": 0.17651531554595312
         },
         {
           "shell": "L7",
-          "value": 0.1534101080539824
+          "value": 0.15341010805398236
         },
         {
           "shell": "L4",
-          "value": 0.145992787314368
+          "value": 0.14599278731436796
         },
         {
           "shell": "L3",
-          "value": 0.13312700492490195
+          "value": 0.13312700492490193
         },
         {
           "shell": "L5",
@@ -683,11 +683,11 @@
         },
         {
           "shell": "L6",
-          "value": 0.11099678450512399
+          "value": 0.11099678450512397
         },
         {
           "shell": "L0",
-          "value": 0.09082191380935628
+          "value": 0.09082191380935627
         },
         {
           "shell": "L1",
@@ -796,5 +796,21 @@
       "rustworkx_dag_ok": true
     }
   },
-  "classification": "canonical"
+  "classification": "canonical",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

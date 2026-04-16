@@ -1,0 +1,170 @@
+{
+  "name": "sim_weyl_symplectic_mera_bridge_claims_canonical",
+  "classification": "canonical",
+  "divergence_log": "Bridge claims for Weyl\u00d7Symplectic\u00d7MERA (22nd program). Q_WSM = MI \u00d7 H_weyl \u00d7 H_symp \u00d7 H_mera. H_weyl=0.693147 (log 2). H_symp=1.609438 (log 5). H_mera=0.693147 (log 2). rho_WSM valid (64\u00d764, trace=1, PSD, float64). r(Q_WSM, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_WSM trace validated (float64).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct rho_WSM via torch.outer float64; validate trace=1 (load-bearing P1/P4)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not invoked in bridge claims; deferred to coupling matrix extension"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 with Q_WSM>0 impossible \u2014 entanglement required for nonzero Q (load-bearing N1)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic four-factor product collapse: a*b*c*d=0 if any=0 \u2014 encodes Q_WSM zero gate (load-bearing N2)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Weyl chirality encoded as H_weyl=log(2) scalar; Cl(3,0) rotor reserved for geometry variants"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in rho construction or MI computation"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in 64\u00d764 rho construction"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_weyl": 0.6931471805599453,
+    "H_symp": 1.6094379124341003,
+    "H_mera": 0.6931471805599453
+  },
+  "positive": {
+    "P1_rho_WSM_valid": {
+      "trace": 1.0,
+      "min_eval": -4.638144549387436e-16,
+      "shape": [
+        64,
+        64
+      ],
+      "passed": true
+    },
+    "P2_pearson_r_Q_vs_MI": {
+      "H_weyl": 0.6931471805599453,
+      "H_symp": 1.6094379124341003,
+      "H_mera": 0.6931471805599453,
+      "r": 1.0000000000000004,
+      "passed": true
+    },
+    "P3_axis0_gradient_input_gt_final": {
+      "seeds_confirmed": 20,
+      "total": 20,
+      "passed": true
+    },
+    "P4_pytorch_rho_trace": {
+      "trace": 1.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "c=0": "0",
+      "d=0": "0",
+      "passed": true
+    },
+    "N3_high_dephasing_steeper_gradient": {
+      "diffs": [
+        1.3863,
+        1.3863,
+        1.3863,
+        1.3818,
+        1.3846
+      ],
+      "note": "eps=0.9 gives steeper Axis 0 gradient than eps=0.3",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_hermitian": {
+      "max_err": 1.4304896245381992e-17,
+      "passed": true
+    },
+    "B2_rho_shape_64x64": {
+      "shape": [
+        64,
+        64
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

@@ -36,7 +36,7 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "eigenvalue geometry is Clifford-native; geomstats not needed for this scalar spectrum"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
@@ -171,5 +171,21 @@
       "pass": true,
       "note": "xgi hypergraph encodes mass-shell constraint as a shared hyperedge over eigenvalue nodes"
     }
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

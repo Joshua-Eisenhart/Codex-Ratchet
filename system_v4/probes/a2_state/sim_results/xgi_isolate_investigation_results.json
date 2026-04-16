@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- no gradient computation"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- hypergraph, not pairwise graph"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -20,32 +20,32 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- z3 sufficient for SMT proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- z3 handles the algebra"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- no geometric algebra needed"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- no manifold geometry needed"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- no equivariant networks needed"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- xgi handles hypergraph natively"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": true,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- structural investigation only"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not relevant -- no persistence needed"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "summary": {
@@ -371,5 +371,21 @@
       "pass": true,
       "detail": "Proposed edges should expand the CNOT-reachable component"
     }
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

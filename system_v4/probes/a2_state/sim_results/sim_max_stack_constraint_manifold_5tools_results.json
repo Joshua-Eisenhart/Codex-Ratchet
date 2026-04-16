@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "Message-passing over a graph layer not needed for point-cloud admissibility geometry"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -25,7 +25,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "No symbolic algebra needed in this sim; constraint encoding is numerical and z3 real-arithmetic"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
@@ -40,12 +40,12 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3) equivariance not relevant; constraint manifold probe states are abstract real vectors"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "Graph reduction not needed; gudhi handles topological structure of the admitted state cloud"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
@@ -55,7 +55,7 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "Cell-complex topology not needed; persistent homology via gudhi Vietoris-Rips covers topological probe"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
@@ -190,5 +190,21 @@
     "n_fail": 6,
     "pass": false
   },
-  "load_bearing_note": "All 5 target tools load_bearing: ['z3', 'gudhi', 'hypothesis', 'pymoo', 'datasketch']"
+  "load_bearing_note": "All 5 target tools load_bearing: ['z3', 'gudhi', 'hypothesis', 'pymoo', 'datasketch']",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

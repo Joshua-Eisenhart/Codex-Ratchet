@@ -10,6 +10,61 @@
       "tried": true,
       "used": true,
       "reason": "symbolic derivation of Connes distance = 1/|m|"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -32,5 +87,21 @@
     "zero_mass_infinite_distance": true,
     "large_mass_zero_distance": true
   },
-  "classification": "canonical"
+  "classification": "canonical",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

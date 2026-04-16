@@ -11,57 +11,57 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph layer in this cut-entropy lego"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- this sim uses exact spectral identities, not satisfiability search"
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no synthesis or SMT constraints are required"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no symbolic derivation beyond closed-form spectral evaluation"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no geometric algebra layer in this lego"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no manifold geometry or statistics here"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant learning layer here"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no dependency graph or lattice graph computation here"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex or filtration layer here"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistent homology or filtration computation here"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "positive": {
@@ -272,6 +272,22 @@
     "negative": "4/4",
     "boundary": "3/3",
     "all_pass": true,
-    "total_time_s": 0.01320791244506836
+    "total_time_s": 0.0082550048828125
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

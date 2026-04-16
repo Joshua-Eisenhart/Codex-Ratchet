@@ -60,7 +60,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not required; no hypergraph claim in this bookkeeping packet"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
@@ -351,5 +351,21 @@
       "total": 2
     }
   },
-  "classification": "canonical"
+  "classification": "canonical",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

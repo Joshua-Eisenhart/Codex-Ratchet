@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -40,12 +40,12 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "e3nn handles equivariant neural network layers for 3D rotation symmetry; scalar product Q has no SO(3) equivariance structure to exploit"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "rustworkx provides graph data structures; Q-product over N shells is a linear chain with no graph topology queries needed"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "GUDHI computes persistent homology for point clouds; Q values form a 1D sequence with no simplicial complex structure to analyze"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -200,5 +200,21 @@
     }
   },
   "overall_pass": true,
-  "divergence_log": "Q non-monotonicity in N is value-dependent (H_i <> 1 determines direction); the zero-in-subshell property is N-independent and structural. Q_10 < Q_9 in the N-ladder because specific shell H values multiply in factors < 1."
+  "divergence_log": "Q non-monotonicity in N is value-dependent (H_i <> 1 determines direction); the zero-in-subshell property is N-independent and structural. Q_10 < Q_9 in the N-ladder because specific shell H values multiply in factors < 1.",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

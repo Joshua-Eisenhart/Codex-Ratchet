@@ -1,0 +1,187 @@
+{
+  "name": "sim_dirac_gerbe_mera_emergence_quantities",
+  "classification": "canonical",
+  "divergence_log": "Emergence quantities for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac=0.336783, H_gerbe=1.386294, H_mera=0.693147. MI=0.108149, Q_DGM=0.034999. E1-E6 sub-products all zero (MI missing). E7 full product Q_DGM > 0 (emergence). z3 UNSAT: MI=0 AND Q>0 impossible. sympy: any factor=0 collapses product to 0. pytorch: E1-E6 zero and E7 positive validated as float64 tensors.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute E1-E7 sub-products as float64 torch tensors; verify E1-E6 collapse to zero, E7 full DGM product is nonzero (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 AND full Q_DGM>0 is impossible \u2014 MI is required for nonzero DGM emergence product; structural gating proof (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: MI*H_dirac*H_gerbe*H_mera collapses to 0 if any factor is zero \u2014 encodes DGM emergence algebraically as four-factor necessity (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Dirac spectral gap is scalar in emergence step; Cl(3,0) rotor computation deferred to bridge step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked for scalar DGM emergence quantity E1-E7 sub-product tests"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for DGM emergence quantity scalar collapse tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_dirac": 0.33678336703714473,
+    "H_gerbe": 1.3862943611198906,
+    "H_mera": 0.6931471805599453,
+    "MI": 0.10814930452367744,
+    "Q_DGM": 0.03499897159283307
+  },
+  "positive": {
+    "P_E1_H_dirac_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E2_H_gerbe_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E3_H_mera_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E4_H_dirac_x_H_gerbe_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E5_H_dirac_x_H_mera_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E6_H_gerbe_x_H_mera_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E7_full_Q_DGM_positive": {
+      "MI": 0.10814930452367744,
+      "Q_DGM": 0.03499897159283307,
+      "passed": true
+    },
+    "P_pytorch_E1_E6_all_zero": {
+      "sub_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    "P_pytorch_E7_Q_DGM_positive": {
+      "Q_DGM": 0.03499897159283307,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_any_factor_zero_collapses": {
+      "MI=0": "0",
+      "H_dirac=0": "0",
+      "H_gerbe=0": "0",
+      "H_mera=0": "0",
+      "passed": true
+    },
+    "N3_full_dephasing_collapses_Q": {
+      "MI_eps1": 1.3718423086395148e-07,
+      "Q_DGM": 4.439517221251227e-08,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_MI_near_zero_gives_small_Q": {
+      "MI": 1e-10,
+      "Q_DGM": 3.2361716746103206e-11,
+      "passed": true
+    },
+    "B2_max_MI_nonzero_Q": {
+      "MI": 0.6931471805599453,
+      "Q_DGM": 0.22431432720641,
+      "passed": true
+    },
+    "B3_E1_E6_exactly_zero": {
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

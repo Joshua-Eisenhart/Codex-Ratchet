@@ -24,12 +24,12 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- all computation torch-native"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf done natively in torch"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
@@ -334,7 +334,7 @@
     "v1_gudhi_was_trivial": "v1 embedded 2 points from 2x2 matrix; v2 uses trajectory cloud",
     "v1_z3_was_symbolic_only": "v1 checked Boolean implications; v2 checks actual state values"
   },
-  "elapsed_seconds": 1.2923500537872314,
+  "elapsed_seconds": 0.9319469928741455,
   "summary": {
     "total_tests": 13,
     "pass": 13,

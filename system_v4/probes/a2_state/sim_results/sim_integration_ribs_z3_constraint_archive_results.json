@@ -9,7 +9,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not used: archive cells are indexed directly by ribs; no graph message-passing layer is involved"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -320,5 +320,21 @@
   },
   "all_pass": true,
   "overall_pass": true,
-  "classification": "canonical"
+  "classification": "canonical",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

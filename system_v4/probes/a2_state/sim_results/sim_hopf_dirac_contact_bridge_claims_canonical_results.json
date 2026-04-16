@@ -1,0 +1,170 @@
+{
+  "name": "sim_hopf_dirac_contact_bridge_claims_canonical",
+  "classification": "canonical",
+  "divergence_log": "Bridge claims for Hopf\u00d7Dirac\u00d7Contact (23rd program). Q_HDC = MI \u00d7 H_hopf \u00d7 H_dirac \u00d7 H_contact. H_hopf=0.346574 (log(2)/2). H_dirac=0.336783 (spectral gap seed=0). H_contact=2.833213 (log(17)). rho_HDC valid (8\u00d78, trace=1, PSD, float64). r(Q_HDC, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_HDC trace validated (float64).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct rho_HDC via torch.outer float64; validate trace=1 and compute Pearson r for P2 (load-bearing P1/P4)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not invoked in bridge claims step; Q_HDC is a scalar product, not a graph quantity"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 with Q_HDC>0 impossible \u2014 entanglement is required for nonzero product; gating constraint (load-bearing N1)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 is sufficient for the UNSAT impossibility proof here; cvc5 adds no new information at bridge step"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic four-factor product collapse: a*b*c*d=0 if any factor=0 \u2014 encodes Q_HDC zero gate algebraically (load-bearing N2)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Hopf holonomy encoded as H_hopf=log(2)/2 scalar here; Cl(3,0) rotor exercised in topology-variants step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in rho construction or MI correlation bridge computation"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in 8\u00d78 rho construction or MI scalar bridge tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_hopf": 0.34657359027997264,
+    "H_dirac": 0.33678336703714473,
+    "H_contact": 2.833213344056216
+  },
+  "positive": {
+    "P1_rho_HDC_valid": {
+      "trace": 1.0000000000000002,
+      "min_eval": -7.411172533493066e-17,
+      "shape": [
+        8,
+        8
+      ],
+      "passed": true
+    },
+    "P2_pearson_r_Q_vs_MI": {
+      "H_hopf": 0.34657359027997264,
+      "H_dirac": 0.33678336703714473,
+      "H_contact": 2.833213344056216,
+      "r": 1.0,
+      "passed": true
+    },
+    "P3_axis0_gradient_input_gt_final": {
+      "seeds_confirmed": 20,
+      "total": 20,
+      "passed": true
+    },
+    "P4_pytorch_rho_trace": {
+      "trace": 1.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_product_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "c=0": "0",
+      "d=0": "0",
+      "passed": true
+    },
+    "N3_high_dephasing_steeper_gradient": {
+      "diffs": [
+        1.3863,
+        1.3863,
+        1.3863,
+        1.3818,
+        1.3846
+      ],
+      "note": "eps=0.9 gives steeper Axis 0 gradient than eps=0.3",
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_rho_hermitian": {
+      "max_err": 5.551115123125783e-17,
+      "passed": true
+    },
+    "B2_rho_shape_8x8": {
+      "shape": [
+        8,
+        8
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

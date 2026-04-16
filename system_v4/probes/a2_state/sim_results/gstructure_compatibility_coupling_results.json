@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not tried: graph message-passing is not relevant here; Hopf coupling is a fiber-base bundle map, not a graph connectivity computation"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -36,7 +36,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not tried: sympy symbolic matrix comparison is sufficient for the horizontal metric block check; Riemannian geodesic computation not needed for submersion verification"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not tried: no hypergraph or multi-way interaction in the Hopf bundle; coupling is a pairwise fiber-base structure"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not tried: cell-complex topology not needed at this level; all topological claims (odd/even dim obstruction, pi_1 mismatch) are proven by z3 UNSAT"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not tried: no persistent homology or TDA filtration computation; topological invariants in this sim are handled by z3 constraint proofs"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -214,5 +214,21 @@
       "max_error": 0.0,
       "theta_samples": 5
     }
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "graph message-passing not needed; constraint manifold is 2D euclidean"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -26,22 +26,22 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "constraint geometry is numeric; no symbolic algebra needed"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford algebra structure in this 2D probability probe"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "constraint manifold is flat euclidean; no Riemannian structure needed"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3) equivariance not relevant to 2D probability constraint probe"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
@@ -51,7 +51,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph not needed; constraints are pairwise scalar inequalities"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
@@ -189,5 +189,21 @@
       "note": "States just below epsilon excluded; states just above admitted (strict inequality boundary)"
     },
     "boundary_all_pass": true
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

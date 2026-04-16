@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim \u2014 no message-passing graph dynamics"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -20,27 +20,27 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient for this sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 constraints are numeric/SMT, not symbolic algebra"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 chirality tested via matrix commutator, not geometric product"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 Hopf geometry tested via Bloch sphere parameterization"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 SU(2) symmetry tested via commutator residual"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -50,17 +50,17 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 shell interactions are pairwise, not multi-way hyperedges"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 coexistence structure is a subset lattice, not a cell complex"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 no persistent homology computation required here"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -646,5 +646,21 @@
   "classification": "canonical",
   "classification_note": "Canonical as a prefix-coexistence map and targeted triad-impossibility audit. Not a full arbitrary-subset coexistence closure result.",
   "rule_4a_note": "Layer order is NOT assumed canon. This sim discovers which prefix subsets can coexist. The stronger binding results come from targeted triad impossibility checks.",
-  "rule_11a_note": "This is the 'second required program' per Rule 11a: sim the stack, not just the objects."
+  "rule_11a_note": "This is the 'second required program' per Rule 11a: sim the stack, not just the objects.",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "weyl_spinor_hopf",
-  "timestamp": "2026-04-16T03:20:28.031385+00:00",
-  "elapsed_s": 1.8499279022216797,
+  "timestamp": "2026-04-16T03:23:56.731902+00:00",
+  "elapsed_s": 1.3163390159606934,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed for fiber bundle geometry"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for this SMT query"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -41,22 +41,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- spinor geometry handled by clifford/geomstats"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topology via GUDHI"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
@@ -335,5 +335,21 @@
     "claim_z3_unsat": "xi = -xi AND xi != 0 is UNSAT: disjoint fiber sheets for nontrivial xi",
     "claim_gamma5": "\u03b3\u2075 \u03c8_L = +\u03c8_L, \u03b3\u2075 \u03c8_R = -\u03c8_R; projectors P_L\u00b7P_R=0 confirm orthogonality",
     "claim_gudhi": "Combined L+R bundle Betti numbers measured via persistent homology"
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

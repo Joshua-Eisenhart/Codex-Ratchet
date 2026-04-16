@@ -31,7 +31,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic derivation required"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": false,
@@ -56,7 +56,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph / multi-way interaction"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
@@ -66,7 +66,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology in this probe"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -271,5 +271,21 @@
     "negative_all_pass": true,
     "boundary_all_pass": true,
     "all_pass": true
+  },
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
   }
 }

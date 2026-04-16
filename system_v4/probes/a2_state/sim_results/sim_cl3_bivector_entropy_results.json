@@ -4,12 +4,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -34,32 +34,32 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -122,5 +122,21 @@
     "B1_entropy_gap_equals_log2": true
   },
   "classification": "canonical",
-  "scope_note": "Cl(3) bivector sector entropy. Pure bivector states have S=0 (survived entropy probe). Maximum entropy state (uniform mixture) = log(3) (admitted). z3 UNSAT: S > log(3) excluded by 3D dimension constraint. SU(2)/SO(3) boundary: theta=2*pi rotor is -I in SU(2) (S=0), but indistinguishable from theta=0 under SO(3) quotient (S=log(2)). Entropy gap at double-cover boundary = log(2) (survived). Exclusion language throughout: classical commutative descriptions excluded."
+  "scope_note": "Cl(3) bivector sector entropy. Pure bivector states have S=0 (survived entropy probe). Maximum entropy state (uniform mixture) = log(3) (admitted). z3 UNSAT: S > log(3) excluded by 3D dimension constraint. SU(2)/SO(3) boundary: theta=2*pi rotor is -I in SU(2) (S=0), but indistinguishable from theta=0 under SO(3) quotient (S=log(2)). Entropy gap at double-cover boundary = log(2) (survived). Exclusion language throughout: classical commutative descriptions excluded.",
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
 }

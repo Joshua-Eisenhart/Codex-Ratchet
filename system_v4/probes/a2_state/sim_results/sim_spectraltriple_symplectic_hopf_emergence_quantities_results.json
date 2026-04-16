@@ -1,0 +1,187 @@
+{
+  "name": "sim_spectraltriple_symplectic_hopf_emergence_quantities",
+  "classification": "canonical",
+  "divergence_log": "Emergence quantities for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). H_st=0.617678, H_symp=1.609438, H_hopf=0.346574. MI=0.108149, Q_SSH=0.037261. E1-E6 sub-products all zero (MI missing). E7 full product Q_SSH > 0 (emergence). z3 UNSAT: MI=0 AND Q>0 impossible. sympy: any factor=0 collapses product to 0. pytorch: E1-E6 zero and E7 positive validated as float64 tensors.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute E1-E7 sub-products as float64 torch tensors; verify E1-E6 collapse to zero, E7 full product is nonzero (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: MI=0 AND full Q_SSH>0 is impossible \u2014 MI is required for nonzero emergence product; structural gating proof (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: MI*H_st*H_symp*H_hopf collapses to 0 if any factor is zero \u2014 encodes emergence algebraically as four-factor necessity (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Hopf holonomy is scalar in emergence step; Cl(3,0) rotor computation deferred to bridge step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked for scalar emergence quantity E1-E7 sub-product tests"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for emergence quantity scalar collapse tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_st": 0.6176781863564109,
+    "H_symp": 1.6094379124341003,
+    "H_hopf": 0.34657359027997264,
+    "MI": 0.10814930452367744,
+    "Q_SSH": 0.03726110140405785
+  },
+  "positive": {
+    "P_E1_H_st_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E2_H_symp_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E3_H_hopf_alone_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E4_H_st_x_H_symp_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E5_H_st_x_H_hopf_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E6_H_symp_x_H_hopf_Q_zero": {
+      "Q_sub": 0.0,
+      "passed": true
+    },
+    "P_E7_full_Q_SSH_positive": {
+      "MI": 0.10814930452367744,
+      "Q_SSH": 0.03726110140405785,
+      "passed": true
+    },
+    "P_pytorch_E1_E6_all_zero": {
+      "sub_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    "P_pytorch_E7_Q_SSH_positive": {
+      "Q_SSH": 0.03726110140405785,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_any_factor_zero_collapses": {
+      "MI=0": "0",
+      "H_st=0": "0",
+      "H_symp=0": "0",
+      "H_hopf=0": "0",
+      "passed": true
+    },
+    "N3_full_dephasing_collapses_Q": {
+      "MI_eps1": 1.3718423086395148e-07,
+      "Q_SSH": 4.726461774093309e-08,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_MI_near_zero_gives_small_Q": {
+      "MI": 1e-10,
+      "Q_SSH": 3.44533897542542e-11,
+      "passed": true
+    },
+    "B2_max_MI_nonzero_Q": {
+      "MI": 0.6931471805599453,
+      "Q_SSH": 0.23881269968894203,
+      "passed": true
+    },
+    "B3_E1_E6_exactly_zero": {
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

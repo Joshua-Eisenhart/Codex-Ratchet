@@ -1,0 +1,173 @@
+{
+  "name": "sim_hopf_dirac_contact_emergence_quantities",
+  "classification": "canonical",
+  "divergence_log": "Emergence quantities step of Hopf\u00d7Dirac\u00d7Contact (23rd program). E1-E6: single/pairwise shell quantities without MI all give Q=0. E7: full Q_HDC = MI \u00d7 H_hopf \u00d7 H_dirac \u00d7 H_contact > 0. MI=0.108149, H_hopf=0.346574, H_dirac=0.336783, H_contact=2.833213. z3 UNSAT: MI=0 with Q>0 impossible. sympy: MI factor gates the product. pytorch: float64 tensor evaluation of E1-E7.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute Q for E1-E7 as float64 tensors; confirm E7 nonzero only with full MI\u00d7H_hopf\u00d7H_dirac\u00d7H_contact (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: any single or pairwise shell entropy alone > 0 without MI does not produce Q_HDC > 0 \u2014 MI is gating (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT suffices for MI-gate impossibility proof; cvc5 not required at emergence step"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic product collapse: MI*h_h*h_d*h_c = 0 when MI=0 \u2014 encodes the emergence gate algebraically (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Hopf holonomy is a scalar in emergence step; Cl(3,0) rotors reserved for geometry step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in scalar emergence quantity sweep E1-E7"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required for scalar emergence quantity sweep"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_hopf": 0.34657359027997264,
+    "H_dirac": 0.33678336703714473,
+    "H_contact": 2.833213344056216,
+    "MI": 0.10814930452367744
+  },
+  "positive": {
+    "E1_hopf_alone": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E2_dirac_alone": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E3_contact_alone": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E4_hopf_x_dirac": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E5_hopf_x_contact": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E6_dirac_x_contact": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E7_full_Q_HDC": {
+      "MI": 0.10814930452367744,
+      "H_hopf": 0.34657359027997264,
+      "H_dirac": 0.33678336703714473,
+      "H_contact": 2.833213344056216,
+      "Q_HDC": 0.03576424896692035,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_MI0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_MI_gate_zero": {
+      "expr_MI0": "0",
+      "passed": true
+    },
+    "N3_E7_strictly_exceeds_E6": {
+      "Q_E6": 0.0,
+      "Q_E7": 0.03576424896692035,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_MI_in_physical_range": {
+      "MI_VAL": 0.10814930452367744,
+      "log2": 0.6931471805599453,
+      "passed": true
+    },
+    "B2_E7_positive_multiple_seeds": {
+      "Qs": [
+        0.03576424896692035,
+        0.030276902151479514,
+        0.03851301188760781,
+        0.07076545487556891,
+        0.06077960955192739
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

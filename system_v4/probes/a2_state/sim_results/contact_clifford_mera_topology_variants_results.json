@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph structure not required for topology variants baseline; excluded"
     },
     "z3": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient; cvc5 not needed for topology variant tests"
     },
     "sympy": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian manifold not required for topology variant baseline; excluded"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "E(3) equivariance not needed for topology variant baseline; excluded"
     },
     "rustworkx": {
       "tried": true,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "hyperedge not required for topology variant tests; excluded"
     },
     "toponetx": {
       "tried": true,
@@ -64,18 +64,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
+    "clifford": null,
     "cvc5": null,
-    "sympy": "supportive",
-    "clifford": "load_bearing",
-    "geomstats": null,
     "e3nn": null,
-    "rustworkx": "supportive",
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
     "xgi": null,
-    "toponetx": "supportive",
-    "gudhi": "supportive"
+    "z3": null
   },
   "positive": {
     "TV1_flat_H_contact_Q_CCM": {

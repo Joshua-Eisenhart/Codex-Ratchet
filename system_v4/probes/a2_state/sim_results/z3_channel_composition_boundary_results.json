@@ -63,18 +63,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": "load_bearing",
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": "load_bearing",
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "sympy_families": {
@@ -141,7 +141,7 @@
       },
       "compositionality_theorem_proved": true,
       "status": "ok",
-      "elapsed_sec": 0.026
+      "elapsed_sec": 0.039
     },
     "pytorch_autograd": {
       "ic_boundary_linearity": {
@@ -216,7 +216,7 @@
         "interpretation": "Composed channel T1\u2218T2 has contraction theta_c = theta1 * theta2. The boundary locus (theta_c + p \u2248 1) is LINEAR in (theta_c, p). Compositionality confirmed numerically via PyTorch."
       },
       "status": "ok",
-      "elapsed_sec": 0.096
+      "elapsed_sec": 0.161
     }
   },
   "negative": {
@@ -233,7 +233,7 @@
         "interpretation": "SAT confirms: there exist points on the quadratic boundary theta^2 + p^2 = 1/4 that do NOT lie on any linear function theta + p = const. The non-CPTP map (partial transpose) has a NONLINEAR admissibility boundary. This contrasts with all CPTP channel families which have linear boundaries."
       },
       "status": "ok",
-      "elapsed_sec": 0.007
+      "elapsed_sec": 0.034
     }
   },
   "boundary": {

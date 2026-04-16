@@ -7,12 +7,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "available; not used (numpy suffices for 2x2 density)"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "available; no graph structure at L8"
     },
     "z3": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "available; no equivariant nets at L8"
     },
     "rustworkx": {
       "tried": true,
@@ -57,27 +57,27 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "available; no cell complex at L8"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "available; no persistence question here"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "supportive",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "supportive",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "P1_rho_L_is_density": {

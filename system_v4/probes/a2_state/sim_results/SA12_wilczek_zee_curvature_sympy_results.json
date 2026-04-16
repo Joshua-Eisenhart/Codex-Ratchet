@@ -11,17 +11,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed \u2014 no graph structure"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed \u2014 algebraic identity, not constraint sat"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": true,
@@ -31,52 +31,52 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
-    "sympy": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "S1_trace_commutator_zero": {
@@ -89,7 +89,7 @@
       "residual_matrix": "Matrix([[0, 0], [0, 0]])",
       "interpretation": "[A,B]\u2020=-[A,B] confirmed: F_\u03b8\u03c6 \u2208 u(2) when A_\u03b8,A_\u03c6 \u2208 u(2)"
     },
-    "elapsed_s": 0.024741172790527344
+    "elapsed_s": 0.026736974716186523
   },
   "negative": {
     "N1_tr_AB_not_identically_zero": {
@@ -102,7 +102,7 @@
       "residual_sample": "-2*b + 2*conjugate(c)",
       "note": "General A does not guarantee [A,B]\u2020 = -[A,B]"
     },
-    "elapsed_s": 0.24605202674865723
+    "elapsed_s": 0.13038420677185059
   },
   "boundary": {
     "B1_numerical_trace_curvature": {
@@ -116,7 +116,7 @@
       "pass": true,
       "tr_F_su2": 0.0
     },
-    "elapsed_s": 0.01115107536315918
+    "elapsed_s": 0.06319904327392578
   },
   "classification": "canonical",
   "summary": {

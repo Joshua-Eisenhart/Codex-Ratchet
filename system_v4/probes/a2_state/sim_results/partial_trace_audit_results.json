@@ -1,7 +1,7 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T21:59:29.104621",
-  "classification": "supporting",
+  "timestamp": "2026-04-15T22:57:51.601117",
+  "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
   "known_pattern_tests": {
@@ -473,7 +473,7 @@
       "patterns": [
         {
           "file": "sim_3qubit_full_cascade.py",
-          "line": 198,
+          "line": 213,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho)",
           "classification": {
@@ -496,7 +496,7 @@
         },
         {
           "file": "sim_3qubit_full_cascade.py",
-          "line": 204,
+          "line": 219,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho)",
           "classification": {
@@ -519,7 +519,7 @@
         },
         {
           "file": "sim_3qubit_full_cascade.py",
-          "line": 210,
+          "line": 225,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho)",
           "classification": {
@@ -542,7 +542,7 @@
         },
         {
           "file": "sim_3qubit_full_cascade.py",
-          "line": 216,
+          "line": 231,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho)",
           "classification": {
@@ -570,7 +570,7 @@
       "patterns": [
         {
           "file": "sim_L14_joint_cut_state.py",
-          "line": 56,
+          "line": 60,
           "pattern": "ijkj->ik",
           "line_text": "return np.einsum('ijkj->ik', rho4)",
           "classification": {
@@ -598,7 +598,7 @@
       "patterns": [
         {
           "file": "sim_L18_axis0_kernel.py",
-          "line": 47,
+          "line": 49,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum('ijkj->ik', r)",
           "classification": {
@@ -621,7 +621,7 @@
         },
         {
           "file": "sim_L18_axis0_kernel.py",
-          "line": 51,
+          "line": 53,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum('ijil->jl', r)",
           "classification": {
@@ -723,7 +723,7 @@
       "patterns": [
         {
           "file": "sim_adversarial_ratchet.py",
-          "line": 101,
+          "line": 116,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -746,7 +746,7 @@
         },
         {
           "file": "sim_adversarial_ratchet.py",
-          "line": 107,
+          "line": 122,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho_r)",
           "classification": {
@@ -932,7 +932,7 @@
       "patterns": [
         {
           "file": "sim_autograd_deep_nabla_Ic_admissibility.py",
-          "line": 80,
+          "line": 88,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum('ijkj->ik', r)",
           "classification": {
@@ -955,7 +955,7 @@
         },
         {
           "file": "sim_autograd_deep_nabla_Ic_admissibility.py",
-          "line": 83,
+          "line": 91,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum('ijil->jl', r)",
           "classification": {
@@ -983,7 +983,7 @@
       "patterns": [
         {
           "file": "sim_autograd_deep_second_order_couple_to_axis0.py",
-          "line": 74,
+          "line": 82,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum('ijkj->ik', rho.reshape(dA,dB,dA,dB))",
           "classification": {
@@ -1006,7 +1006,7 @@
         },
         {
           "file": "sim_autograd_deep_second_order_couple_to_axis0.py",
-          "line": 76,
+          "line": 84,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum('ijil->jl', rho.reshape(dA,dB,dA,dB))",
           "classification": {
@@ -1062,7 +1062,7 @@
       "patterns": [
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 110,
+          "line": 125,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho)",
           "classification": {
@@ -1085,7 +1085,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 116,
+          "line": 131,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho)",
           "classification": {
@@ -1108,7 +1108,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 473,
+          "line": 488,
           "pattern": "iaja->ij",
           "line_text": "rho_A = np.einsum('iaja->ij', rho_np.reshape(2, 2, 2, 2))",
           "classification": {
@@ -1131,7 +1131,7 @@
         },
         {
           "file": "sim_axis0_through_shells.py",
-          "line": 474,
+          "line": 489,
           "pattern": "aiaj->ij",
           "line_text": "rho_B = np.einsum('aiaj->ij', rho_np.reshape(2, 2, 2, 2))",
           "classification": {
@@ -1376,7 +1376,7 @@
       "patterns": [
         {
           "file": "sim_bridge_finite_blocklength_cut_states.py",
-          "line": 103,
+          "line": 118,
           "pattern": "abcb->ac",
           "line_text": "return torch.einsum(\"abcb->ac\", rho)",
           "classification": {
@@ -1399,7 +1399,7 @@
         },
         {
           "file": "sim_bridge_finite_blocklength_cut_states.py",
-          "line": 108,
+          "line": 123,
           "pattern": "abad->bd",
           "line_text": "return torch.einsum(\"abad->bd\", rho)",
           "classification": {
@@ -1608,7 +1608,7 @@
       "patterns": [
         {
           "file": "sim_clifford_gerbe_symplectic_bridge_claims_canonical.py",
-          "line": 107,
+          "line": 120,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -1631,7 +1631,7 @@
         },
         {
           "file": "sim_clifford_gerbe_symplectic_bridge_claims_canonical.py",
-          "line": 108,
+          "line": 121,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2016,7 +2016,7 @@
       "patterns": [
         {
           "file": "sim_clifford_weyl_contact_bridge_claims_canonical.py",
-          "line": 127,
+          "line": 140,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2039,7 +2039,7 @@
         },
         {
           "file": "sim_clifford_weyl_contact_bridge_claims_canonical.py",
-          "line": 128,
+          "line": 141,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2067,7 +2067,7 @@
       "patterns": [
         {
           "file": "sim_clifford_weyl_contact_emergence_quantities.py",
-          "line": 117,
+          "line": 130,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2090,7 +2090,7 @@
         },
         {
           "file": "sim_clifford_weyl_contact_emergence_quantities.py",
-          "line": 118,
+          "line": 131,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2118,7 +2118,7 @@
       "patterns": [
         {
           "file": "sim_clifford_weyl_contact_topology_variants.py",
-          "line": 132,
+          "line": 145,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2141,7 +2141,7 @@
         },
         {
           "file": "sim_clifford_weyl_contact_topology_variants.py",
-          "line": 133,
+          "line": 146,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2169,7 +2169,7 @@
       "patterns": [
         {
           "file": "sim_clifford_weyl_contact_triple_coexistence.py",
-          "line": 115,
+          "line": 128,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2192,7 +2192,7 @@
         },
         {
           "file": "sim_clifford_weyl_contact_triple_coexistence.py",
-          "line": 116,
+          "line": 129,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2220,7 +2220,7 @@
       "patterns": [
         {
           "file": "sim_coherent_info_erasure_canonical.py",
-          "line": 100,
+          "line": 108,
           "pattern": "ijkj->ik",
           "line_text": "rho_R = torch.einsum(\"ijkj->ik\", rho_RA.reshape(2, 2, 2, 2))",
           "classification": {
@@ -2243,7 +2243,7 @@
         },
         {
           "file": "sim_coherent_info_erasure_canonical.py",
-          "line": 116,
+          "line": 124,
           "pattern": "ijkj->ik",
           "line_text": "rho_B = torch.einsum(\"ijkj->ik\", rho_RA_ext_r.permute(1, 0, 3, 2)).T",
           "classification": {
@@ -2271,7 +2271,7 @@
       "patterns": [
         {
           "file": "sim_contact_clifford_mera_bridge_claims_canonical.py",
-          "line": 194,
+          "line": 207,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2712,7 +2712,7 @@
       "patterns": [
         {
           "file": "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py",
-          "line": 99,
+          "line": 112,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2735,7 +2735,7 @@
         },
         {
           "file": "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py",
-          "line": 100,
+          "line": 113,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2763,7 +2763,7 @@
       "patterns": [
         {
           "file": "sim_contact_spectraltriple_hopf_emergence_quantities.py",
-          "line": 98,
+          "line": 111,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2786,7 +2786,7 @@
         },
         {
           "file": "sim_contact_spectraltriple_hopf_emergence_quantities.py",
-          "line": 99,
+          "line": 112,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2814,7 +2814,7 @@
       "patterns": [
         {
           "file": "sim_contact_spectraltriple_hopf_topology_variants.py",
-          "line": 94,
+          "line": 107,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2837,7 +2837,7 @@
         },
         {
           "file": "sim_contact_spectraltriple_hopf_topology_variants.py",
-          "line": 95,
+          "line": 108,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2916,7 +2916,7 @@
       "patterns": [
         {
           "file": "sim_dirac_contact_mera_bridge_claims_canonical.py",
-          "line": 124,
+          "line": 137,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -2939,7 +2939,7 @@
         },
         {
           "file": "sim_dirac_contact_mera_bridge_claims_canonical.py",
-          "line": 125,
+          "line": 138,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3069,7 +3069,7 @@
       "patterns": [
         {
           "file": "sim_dirac_gerbe_mera_bridge_claims_canonical.py",
-          "line": 123,
+          "line": 136,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3092,7 +3092,7 @@
         },
         {
           "file": "sim_dirac_gerbe_mera_bridge_claims_canonical.py",
-          "line": 124,
+          "line": 137,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3120,7 +3120,7 @@
       "patterns": [
         {
           "file": "sim_dirac_gerbe_mera_emergence_quantities.py",
-          "line": 113,
+          "line": 126,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3143,7 +3143,7 @@
         },
         {
           "file": "sim_dirac_gerbe_mera_emergence_quantities.py",
-          "line": 114,
+          "line": 127,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3171,7 +3171,7 @@
       "patterns": [
         {
           "file": "sim_dirac_gerbe_mera_topology_variants.py",
-          "line": 115,
+          "line": 128,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3194,7 +3194,7 @@
         },
         {
           "file": "sim_dirac_gerbe_mera_topology_variants.py",
-          "line": 116,
+          "line": 129,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3222,7 +3222,7 @@
       "patterns": [
         {
           "file": "sim_dirac_gerbe_mera_triple_coexistence.py",
-          "line": 111,
+          "line": 124,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3245,7 +3245,7 @@
         },
         {
           "file": "sim_dirac_gerbe_mera_triple_coexistence.py",
-          "line": 112,
+          "line": 125,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3273,7 +3273,7 @@
       "patterns": [
         {
           "file": "sim_dirac_hopf_clifford_bridge_claims_canonical.py",
-          "line": 205,
+          "line": 218,
           "pattern": "akbk->ab",
           "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
           "classification": {
@@ -3459,7 +3459,7 @@
       "patterns": [
         {
           "file": "sim_dirac_symplectic_weyl_bridge_claims_canonical.py",
-          "line": 203,
+          "line": 216,
           "pattern": "akbk->ab",
           "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
           "classification": {
@@ -3880,7 +3880,7 @@
       "patterns": [
         {
           "file": "sim_foundation_equivariant_graph_backprop.py",
-          "line": 128,
+          "line": 143,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho)",
           "classification": {
@@ -3903,7 +3903,7 @@
         },
         {
           "file": "sim_foundation_equivariant_graph_backprop.py",
-          "line": 133,
+          "line": 148,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho)",
           "classification": {
@@ -3959,7 +3959,7 @@
       "patterns": [
         {
           "file": "sim_gerbe_clifford_contact_bridge_claims_canonical.py",
-          "line": 114,
+          "line": 127,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -3982,7 +3982,7 @@
         },
         {
           "file": "sim_gerbe_clifford_contact_bridge_claims_canonical.py",
-          "line": 115,
+          "line": 128,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -4298,7 +4298,7 @@
       "patterns": [
         {
           "file": "sim_global_shell_cut_coherent_info.py",
-          "line": 61,
+          "line": 76,
           "pattern": "abcb->ac",
           "line_text": "return np.einsum(\"abcb->ac\", reshaped)",
           "classification": {
@@ -4869,7 +4869,7 @@
       "patterns": [
         {
           "file": "sim_holo_dirac_st_bridge_claims_canonical.py",
-          "line": 88,
+          "line": 101,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -4892,7 +4892,7 @@
         },
         {
           "file": "sim_holo_dirac_st_bridge_claims_canonical.py",
-          "line": 89,
+          "line": 102,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5175,7 +5175,7 @@
       "patterns": [
         {
           "file": "sim_holo_mera_clifford_emergence_quantities.py",
-          "line": 132,
+          "line": 140,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5198,7 +5198,7 @@
         },
         {
           "file": "sim_holo_mera_clifford_emergence_quantities.py",
-          "line": 133,
+          "line": 141,
           "pattern": "kakb->ab",
           "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5221,7 +5221,7 @@
         },
         {
           "file": "sim_holo_mera_clifford_emergence_quantities.py",
-          "line": 249,
+          "line": 257,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5244,7 +5244,7 @@
         },
         {
           "file": "sim_holo_mera_clifford_emergence_quantities.py",
-          "line": 250,
+          "line": 258,
           "pattern": "kakb->ab",
           "line_text": "rB = np.einsum(\"kakb->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5323,7 +5323,7 @@
       "patterns": [
         {
           "file": "sim_holo_mera_clifford_topology_variants.py",
-          "line": 139,
+          "line": 147,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5346,7 +5346,7 @@
         },
         {
           "file": "sim_holo_mera_clifford_topology_variants.py",
-          "line": 140,
+          "line": 148,
           "pattern": "kakb->ab",
           "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5374,7 +5374,7 @@
       "patterns": [
         {
           "file": "sim_holo_mera_clifford_triple_coexistence.py",
-          "line": 119,
+          "line": 127,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5397,7 +5397,7 @@
         },
         {
           "file": "sim_holo_mera_clifford_triple_coexistence.py",
-          "line": 120,
+          "line": 128,
           "pattern": "kakb->ab",
           "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -5425,7 +5425,7 @@
       "patterns": [
         {
           "file": "sim_holodeck_atom_3_reduction.py",
-          "line": 30,
+          "line": 32,
           "pattern": "ibjb->ij",
           "line_text": "return torch.einsum(\"ibjb->ij\", R)",
           "classification": {
@@ -5448,7 +5448,7 @@
         },
         {
           "file": "sim_holodeck_atom_3_reduction.py",
-          "line": 35,
+          "line": 37,
           "pattern": "aibi->ab",
           "line_text": "return torch.einsum(\"aibi->ab\", R)",
           "classification": {
@@ -5476,7 +5476,7 @@
       "patterns": [
         {
           "file": "sim_holodeck_atom_7_coupling.py",
-          "line": 42,
+          "line": 44,
           "pattern": "ibjb->ij",
           "line_text": "return torch.einsum(\"ibjb->ij\", R)",
           "classification": {
@@ -6172,7 +6172,7 @@
       "patterns": [
         {
           "file": "sim_hopf_dirac_contact_bridge_claims_canonical.py",
-          "line": 125,
+          "line": 138,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6195,7 +6195,7 @@
         },
         {
           "file": "sim_hopf_dirac_contact_bridge_claims_canonical.py",
-          "line": 126,
+          "line": 139,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6223,7 +6223,7 @@
       "patterns": [
         {
           "file": "sim_hopf_dirac_contact_emergence_quantities.py",
-          "line": 114,
+          "line": 127,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6246,7 +6246,109 @@
         },
         {
           "file": "sim_hopf_dirac_contact_emergence_quantities.py",
-          "line": 115,
+          "line": 128,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_mera_gerbe_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_mera_gerbe_bridge_claims_canonical.py",
+          "line": 218,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_mera_gerbe_bridge_claims_canonical.py",
+          "line": 219,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_mera_gerbe_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_mera_gerbe_emergence_quantities.py",
+          "line": 187,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_mera_gerbe_emergence_quantities.py",
+          "line": 188,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6298,6 +6400,57 @@
         {
           "file": "sim_hopf_mera_gerbe_pairwise_coupling.py",
           "line": 208,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_mera_gerbe_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_mera_gerbe_topology_variants.py",
+          "line": 191,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_mera_gerbe_topology_variants.py",
+          "line": 192,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6488,7 +6641,7 @@
       "patterns": [
         {
           "file": "sim_hopf_symplectic_gerbe_bridge_claims_canonical.py",
-          "line": 115,
+          "line": 128,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6511,7 +6664,7 @@
         },
         {
           "file": "sim_hopf_symplectic_gerbe_bridge_claims_canonical.py",
-          "line": 116,
+          "line": 129,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -6641,7 +6794,7 @@
       "patterns": [
         {
           "file": "sim_information_geometry.py",
-          "line": 191,
+          "line": 206,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho_reshaped)",
           "classification": {
@@ -7080,7 +7233,7 @@
       "patterns": [
         {
           "file": "sim_layered_foundation.py",
-          "line": 191,
+          "line": 206,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho_ab.reshape(2, 2, 2, 2))",
           "classification": {
@@ -7103,7 +7256,7 @@
         },
         {
           "file": "sim_layered_foundation.py",
-          "line": 196,
+          "line": 211,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_ab.reshape(2, 2, 2, 2))",
           "classification": {
@@ -7182,7 +7335,7 @@
       "patterns": [
         {
           "file": "sim_lego_dynamical_decoupling.py",
-          "line": 247,
+          "line": 262,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -7210,7 +7363,7 @@
       "patterns": [
         {
           "file": "sim_lego_entanglement_distillation.py",
-          "line": 191,
+          "line": 206,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum('ijik->jk', rho_r)",
           "classification": {
@@ -7238,7 +7391,7 @@
       "patterns": [
         {
           "file": "sim_lego_entropy_bipartite_cut.py",
-          "line": 117,
+          "line": 132,
           "pattern": "abcb->ac",
           "line_text": "return torch.einsum(\"abcb->ac\", rho)",
           "classification": {
@@ -7261,7 +7414,7 @@
         },
         {
           "file": "sim_lego_entropy_bipartite_cut.py",
-          "line": 119,
+          "line": 134,
           "pattern": "abad->bd",
           "line_text": "return torch.einsum(\"abad->bd\", rho)",
           "classification": {
@@ -7289,7 +7442,7 @@
       "patterns": [
         {
           "file": "sim_lego_qit_batch.py",
-          "line": 148,
+          "line": 163,
           "pattern": "ijkj->ik",
           "line_text": "return np.einsum('ijkj->ik', rho)",
           "classification": {
@@ -7312,7 +7465,7 @@
         },
         {
           "file": "sim_lego_qit_batch.py",
-          "line": 154,
+          "line": 169,
           "pattern": "ijil->jl",
           "line_text": "return np.einsum('ijil->jl', rho)",
           "classification": {
@@ -7340,7 +7493,7 @@
       "patterns": [
         {
           "file": "sim_lego_stinespring_complementary.py",
-          "line": 132,
+          "line": 147,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho)",
           "classification": {
@@ -7363,7 +7516,7 @@
         },
         {
           "file": "sim_lego_stinespring_complementary.py",
-          "line": 144,
+          "line": 159,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum('ijil->jl', rho)",
           "classification": {
@@ -7386,7 +7539,7 @@
         },
         {
           "file": "sim_lego_stinespring_complementary.py",
-          "line": 292,
+          "line": 307,
           "pattern": "ijil->jl",
           "line_text": "E_eij = torch.einsum('ijil->jl', full.reshape(k, d, k, d))",
           "classification": {
@@ -7409,7 +7562,7 @@
         },
         {
           "file": "sim_lego_stinespring_complementary.py",
-          "line": 293,
+          "line": 308,
           "pattern": "iaja->ij",
           "line_text": "Ec_eij = torch.einsum('iaja->ij', full.reshape(k, d, k, d))",
           "classification": {
@@ -7437,7 +7590,7 @@
       "patterns": [
         {
           "file": "sim_lorentzian_geometry.py",
-          "line": 118,
+          "line": 133,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho_reshaped)",
           "classification": {
@@ -8118,7 +8271,7 @@
       "patterns": [
         {
           "file": "sim_phase7_divergence_analysis.py",
-          "line": 130,
+          "line": 145,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum('ijkj->ik', rho)",
           "classification": {
@@ -8141,7 +8294,7 @@
         },
         {
           "file": "sim_phase7_divergence_analysis.py",
-          "line": 132,
+          "line": 147,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum('ijik->jk', rho)",
           "classification": {
@@ -8169,7 +8322,7 @@
       "patterns": [
         {
           "file": "sim_phase_transition_sweep.py",
-          "line": 93,
+          "line": 108,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -8192,7 +8345,7 @@
         },
         {
           "file": "sim_phase_transition_sweep.py",
-          "line": 99,
+          "line": 114,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho_r)",
           "classification": {
@@ -8220,7 +8373,7 @@
       "patterns": [
         {
           "file": "sim_phi0_ic_vs_mi_regime_map.py",
-          "line": 150,
+          "line": 165,
           "pattern": "abcb->ac",
           "line_text": "return torch.einsum(\"abcb->ac\", rho)",
           "classification": {
@@ -8243,7 +8396,7 @@
         },
         {
           "file": "sim_phi0_ic_vs_mi_regime_map.py",
-          "line": 155,
+          "line": 170,
           "pattern": "abad->bd",
           "line_text": "return torch.einsum(\"abad->bd\", rho)",
           "classification": {
@@ -8271,7 +8424,7 @@
       "patterns": [
         {
           "file": "sim_phi0_integrated_bakeoff.py",
-          "line": 101,
+          "line": 116,
           "pattern": "abcb->ac",
           "line_text": "return torch.einsum(\"abcb->ac\", rho)",
           "classification": {
@@ -8294,7 +8447,7 @@
         },
         {
           "file": "sim_phi0_integrated_bakeoff.py",
-          "line": 106,
+          "line": 121,
           "pattern": "abad->bd",
           "line_text": "return torch.einsum(\"abad->bd\", rho)",
           "classification": {
@@ -8322,7 +8475,7 @@
       "patterns": [
         {
           "file": "sim_phi0_matched_packet_head_to_head.py",
-          "line": 153,
+          "line": 168,
           "pattern": "abcb->ac",
           "line_text": "return torch.einsum(\"abcb->ac\", rho)",
           "classification": {
@@ -8345,7 +8498,7 @@
         },
         {
           "file": "sim_phi0_matched_packet_head_to_head.py",
-          "line": 158,
+          "line": 173,
           "pattern": "abad->bd",
           "line_text": "return torch.einsum(\"abad->bd\", rho)",
           "classification": {
@@ -8470,7 +8623,7 @@
       "patterns": [
         {
           "file": "sim_qec_ratchet.py",
-          "line": 101,
+          "line": 116,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -8493,7 +8646,7 @@
         },
         {
           "file": "sim_qec_ratchet.py",
-          "line": 107,
+          "line": 122,
           "pattern": "ijil->jl",
           "line_text": "return torch.einsum(\"ijil->jl\", rho_r)",
           "classification": {
@@ -8623,7 +8776,7 @@
       "patterns": [
         {
           "file": "sim_quantum_mutual_info_superadditivity_canonical.py",
-          "line": 65,
+          "line": 73,
           "pattern": "ijkj->ik",
           "line_text": "rho_a = torch.einsum(\"ijkj->ik\", r)",
           "classification": {
@@ -8646,7 +8799,7 @@
         },
         {
           "file": "sim_quantum_mutual_info_superadditivity_canonical.py",
-          "line": 66,
+          "line": 74,
           "pattern": "ijil->jl",
           "line_text": "rho_b = torch.einsum(\"ijil->jl\", r)",
           "classification": {
@@ -8669,7 +8822,7 @@
         },
         {
           "file": "sim_quantum_mutual_info_superadditivity_canonical.py",
-          "line": 76,
+          "line": 84,
           "pattern": "ijij->ij",
           "line_text": "diag = torch.einsum(\"ijij->ij\", r).real  # shape (2,2)",
           "classification": {
@@ -8690,7 +8843,7 @@
         },
         {
           "file": "sim_quantum_mutual_info_superadditivity_canonical.py",
-          "line": 84,
+          "line": 92,
           "pattern": "ijij->ij",
           "line_text": "diag = torch.einsum(\"ijij->ij\", r_x).real",
           "classification": {
@@ -8716,7 +8869,7 @@
       "patterns": [
         {
           "file": "sim_ratchet_optimizer.py",
-          "line": 108,
+          "line": 123,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho_r)",
           "classification": {
@@ -8739,7 +8892,7 @@
         },
         {
           "file": "sim_ratchet_optimizer.py",
-          "line": 114,
+          "line": 129,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -8767,7 +8920,7 @@
       "patterns": [
         {
           "file": "sim_relative_entropy_of_entanglement_canonical.py",
-          "line": 90,
+          "line": 98,
           "pattern": "ijkj->ik",
           "line_text": "rho_a = torch.einsum(\"ijkj->ik\", r)",
           "classification": {
@@ -8790,7 +8943,7 @@
         },
         {
           "file": "sim_relative_entropy_of_entanglement_canonical.py",
-          "line": 91,
+          "line": 99,
           "pattern": "ijil->jl",
           "line_text": "rho_b = torch.einsum(\"ijil->jl\", r)",
           "classification": {
@@ -9197,7 +9350,7 @@
       "patterns": [
         {
           "file": "sim_spectral_triple_contact_gerbe_bridge_claims_canonical.py",
-          "line": 194,
+          "line": 207,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9429,7 +9582,7 @@
       "patterns": [
         {
           "file": "sim_spectral_triple_weyl_mera_emergence_quantities.py",
-          "line": 95,
+          "line": 108,
           "pattern": "akbk->ab",
           "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -9457,7 +9610,7 @@
       "patterns": [
         {
           "file": "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical.py",
-          "line": 141,
+          "line": 154,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9480,7 +9633,7 @@
         },
         {
           "file": "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical.py",
-          "line": 142,
+          "line": 155,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9610,7 +9763,7 @@
       "patterns": [
         {
           "file": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical.py",
-          "line": 123,
+          "line": 136,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9633,7 +9786,7 @@
         },
         {
           "file": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical.py",
-          "line": 124,
+          "line": 137,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9661,7 +9814,7 @@
       "patterns": [
         {
           "file": "sim_spectraltriple_symplectic_hopf_emergence_quantities.py",
-          "line": 113,
+          "line": 126,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9684,7 +9837,7 @@
         },
         {
           "file": "sim_spectraltriple_symplectic_hopf_emergence_quantities.py",
-          "line": 114,
+          "line": 127,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9712,7 +9865,7 @@
       "patterns": [
         {
           "file": "sim_spectraltriple_symplectic_hopf_topology_variants.py",
-          "line": 115,
+          "line": 128,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9735,7 +9888,7 @@
         },
         {
           "file": "sim_spectraltriple_symplectic_hopf_topology_variants.py",
-          "line": 116,
+          "line": 129,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9763,7 +9916,7 @@
       "patterns": [
         {
           "file": "sim_spectraltriple_symplectic_hopf_triple_coexistence.py",
-          "line": 106,
+          "line": 119,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -9786,7 +9939,7 @@
         },
         {
           "file": "sim_spectraltriple_symplectic_hopf_triple_coexistence.py",
-          "line": 107,
+          "line": 120,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -10880,7 +11033,7 @@
       "patterns": [
         {
           "file": "sim_symplectic_spectral_triple_mera_bridge_claims_canonical.py",
-          "line": 198,
+          "line": 211,
           "pattern": "akbk->ab",
           "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
           "classification": {
@@ -11020,7 +11173,7 @@
       "patterns": [
         {
           "file": "sim_temporal_cascade.py",
-          "line": 102,
+          "line": 117,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -11048,7 +11201,7 @@
       "patterns": [
         {
           "file": "sim_temporal_cascade_flipped.py",
-          "line": 92,
+          "line": 107,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -11784,11 +11937,108 @@
       ],
       "has_bug": false
     },
+    "sim_torch_mi_dephasing_primitive.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_mi_dephasing_primitive.py",
+          "line": 12,
+          "pattern": "akbk->ab",
+          "line_text": "3. Partial trace: pt_A = einsum(\"akbk->ab\", rho.reshape(2,2,2,2)) \u2014 torch",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mi_dephasing_primitive.py",
+          "line": 85,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = sum_k <k_B| rho_AB |k_B> = einsum(\"akbk->ab\", rho.reshape(2,2,2,2))\"\"\"",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mi_dephasing_primitive.py",
+          "line": 87,
+          "pattern": "akbk->ab",
+          "line_text": "return torch.einsum(\"akbk->ab\", rho_r)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mi_dephasing_primitive.py",
+          "line": 94,
+          "pattern": "kakb->ab",
+          "line_text": "return torch.einsum(\"kakb->ab\", rho_r)",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_torch_mutual_info.py": {
       "patterns": [
         {
           "file": "sim_torch_mutual_info.py",
-          "line": 104,
+          "line": 119,
           "pattern": "ijik->jk",
           "line_text": "return torch.einsum(\"ijik->jk\", rho_reshaped)",
           "classification": {
@@ -11811,7 +12061,7 @@
         },
         {
           "file": "sim_torch_mutual_info.py",
-          "line": 110,
+          "line": 125,
           "pattern": "ijkj->ik",
           "line_text": "return torch.einsum(\"ijkj->ik\", rho_reshaped)",
           "classification": {
@@ -11834,7 +12084,7 @@
         },
         {
           "file": "sim_torch_mutual_info.py",
-          "line": 140,
+          "line": 155,
           "pattern": "ijik->jk",
           "line_text": "return np.einsum(\"ijik->jk\", rho_r)",
           "classification": {
@@ -11857,7 +12107,7 @@
         },
         {
           "file": "sim_torch_mutual_info.py",
-          "line": 146,
+          "line": 161,
           "pattern": "ijkj->ik",
           "line_text": "return np.einsum(\"ijkj->ik\", rho_r)",
           "classification": {
@@ -11880,7 +12130,7 @@
         },
         {
           "file": "sim_torch_mutual_info.py",
-          "line": 244,
+          "line": 259,
           "pattern": "ijkj->ik",
           "line_text": "rho_ab = np.einsum(\"ijkj->ik\", rho_8_r)",
           "classification": {
@@ -12153,7 +12403,7 @@
       "patterns": [
         {
           "file": "sim_twilight_zone.py",
-          "line": 153,
+          "line": 168,
           "pattern": "aiaj->ij",
           "line_text": "return torch.einsum('aiaj->ij', rho_reshaped)",
           "classification": {
@@ -12176,7 +12426,7 @@
         },
         {
           "file": "sim_twilight_zone.py",
-          "line": 159,
+          "line": 174,
           "pattern": "iaja->ij",
           "line_text": "return torch.einsum('iaja->ij', rho_reshaped)",
           "classification": {
@@ -12204,7 +12454,7 @@
       "patterns": [
         {
           "file": "sim_universal_q_cross_program_invariant.py",
-          "line": 131,
+          "line": 144,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -12227,7 +12477,7 @@
         },
         {
           "file": "sim_universal_q_cross_program_invariant.py",
-          "line": 132,
+          "line": 145,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
           "classification": {
@@ -12459,7 +12709,7 @@
       "patterns": [
         {
           "file": "sim_weyl_contact_dirac_bridge_claims_canonical.py",
-          "line": 202,
+          "line": 215,
           "pattern": "akbk->ab",
           "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -13091,7 +13341,7 @@
       "patterns": [
         {
           "file": "sim_weyl_symplectic_mera_bridge_claims_canonical.py",
-          "line": 115,
+          "line": 128,
           "pattern": "akbk->ab",
           "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -13114,7 +13364,7 @@
         },
         {
           "file": "sim_weyl_symplectic_mera_bridge_claims_canonical.py",
-          "line": 116,
+          "line": 129,
           "pattern": "kakb->ab",
           "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
           "classification": {
@@ -13430,6 +13680,57 @@
         }
       ],
       "has_bug": true
+    },
+    "sim_z3_pytorch_cross_check.py": {
+      "patterns": [
+        {
+          "file": "sim_z3_pytorch_cross_check.py",
+          "line": 154,
+          "pattern": "abcb->ac",
+          "line_text": "marginal = torch.einsum(\"abcb->ac\", r)",
+          "classification": {
+            "pattern": "abcb->ac",
+            "contracted": [
+              "b"
+            ],
+            "kept": [
+              "a",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_z3_pytorch_cross_check.py",
+          "line": 156,
+          "pattern": "abac->bc",
+          "line_text": "marginal = torch.einsum(\"abac->bc\", r)",
+          "classification": {
+            "pattern": "abac->bc",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "b",
+              "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
     }
   },
   "bugs_found": [
@@ -14238,8 +14539,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 238,
-    "clean_files": 225,
+    "total_files_with_einsum_ptrace": 243,
+    "clean_files": 230,
     "files_with_einsum_bugs": 13,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
@@ -14295,67 +14596,5 @@
       "sim_torch_cnot.py": "CLEAN"
     },
     "verdict": "4 files need fixes. 1 CRITICAL live bug (sim_axis0_through_shells.py), 1 dead code removal, 2 naming/swap bugs that affect correctness."
-  },
-  "tool_manifest": {
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
-    }
   }
 }

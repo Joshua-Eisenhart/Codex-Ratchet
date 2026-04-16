@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not applicable"
     },
     "sympy": {
       "tried": true,
@@ -31,52 +31,52 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not applicable \u2014 su(2) handled via torch matrix ops"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not applicable \u2014 explicit matrix geometry suffices"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not applicable"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not applicable"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not applicable"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not applicable"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not applicable"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": "supportive",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "supportive",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "classification": "canonical",
   "boundary": {
@@ -162,7 +162,7 @@
       "stokes_pass": true,
       "non_trivial_holonomy": true
     },
-    "elapsed_s": 0.9157450199127197
+    "elapsed_s": 0.5541989803314209
   },
   "summary": {
     "total": 3,
@@ -170,11 +170,5 @@
     "failed": 0,
     "failed_tests": []
   },
-  "timestamp": "2026-04-16T05:12:10Z",
-  "positive": {
-    "stub": "positive tests embedded in probe output above"
-  },
-  "negative": {
-    "stub": "negative tests embedded in probe output above"
-  }
+  "timestamp": "2026-04-16T05:57:45Z"
 }

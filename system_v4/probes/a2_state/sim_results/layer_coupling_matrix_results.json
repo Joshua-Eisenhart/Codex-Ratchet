@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix",
-  "timestamp": "2026-04-16T05:09:08.984030+00:00",
+  "timestamp": "2026-04-16T05:58:20.325067+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no message passing in this sim"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 covers incompatibility proof"
     },
     "sympy": {
       "tried": true,
@@ -36,12 +36,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- Hopf geometry done via Cl(3) rotors"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- equivariance handled via Clifford SU(2)"
     },
     "rustworkx": {
       "tried": true,
@@ -51,32 +51,32 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- coupling structure is a directed graph, not hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- layer topology captured by rustworkx DAG"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- no persistence required for 5x5 coupling matrix"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": "not_applicable",
-    "z3": "load_bearing",
-    "cvc5": "not_applicable",
-    "sympy": "load_bearing",
     "clifford": "load_bearing",
-    "geomstats": "not_applicable",
-    "e3nn": "not_applicable",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": "load_bearing",
-    "xgi": "not_applicable",
-    "toponetx": "not_applicable",
-    "gudhi": "not_applicable"
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "L1_on_L1": {

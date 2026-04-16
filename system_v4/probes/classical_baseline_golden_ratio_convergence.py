@@ -5,8 +5,12 @@ numpy-only baseline sim. Non-canonical.
 import os, json
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = "numpy-only golden ratio convergence baseline; no nonclassical or load-bearing tool surface"
+CLASSIFICATION_NOTE = divergence_log
+
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "load-bearing: all numerics (Fibonacci ratio -> phi)"},
+    "numpy": {"tried": True, "used": True, "reason": "supportive: all numerics (Fibonacci ratio -> phi)"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed for classical baseline"},
     "pyg": {"tried": False, "used": False, "reason": "no graph learning in this sim"},
     "z3": {"tried": False, "used": False, "reason": "no SMT claim in classical baseline"},
@@ -21,7 +25,7 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistent homology needed"},
 }
 
-TOOL_INTEGRATION_DEPTH = {"numpy": "load_bearing"}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 def run_positive_tests():
     a,b=1,1
@@ -39,7 +43,9 @@ def run_boundary_tests():
 if __name__ == "__main__":
     results = {
         "name": "classical_baseline_golden_ratio_convergence",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

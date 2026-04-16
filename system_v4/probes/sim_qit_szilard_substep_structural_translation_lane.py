@@ -10,14 +10,18 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Structural translation lane for the stochastic Szilard substep carrier "
-    "after adding an explicit record-wait stage."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Structural Szilard substep translation lane built from the existing "
+    "structural variant sweep and the strict finite QIT substep companion. It "
+    "keeps the explicit record-wait stage and ordering-gap comparison visible "
+    "while remaining a translation surface that reuses existing results "
+    "instead of broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -103,6 +107,7 @@ def main() -> None:
         "name": "qit_szilard_substep_structural_translation_lane",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
@@ -120,7 +125,9 @@ def main() -> None:
             "best_ordering_margin": refined_summary["best_ordering_margin"],
             "best_reset_signal": refined_summary["best_reset_signal"],
             "scope_note": (
-                "Structural translation lane for the stochastic Szilard substep carrier."
+                "Structural translation lane for the stochastic Szilard substep "
+                "carrier. It keeps the record-wait stage explicit while checking "
+                "the ordering and reset gaps against the strict finite companion."
             ),
         },
     }

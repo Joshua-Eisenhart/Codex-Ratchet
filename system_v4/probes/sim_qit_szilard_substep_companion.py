@@ -15,7 +15,7 @@ import pathlib
 import sys
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -24,13 +24,14 @@ if str(PROBE_DIR) not in sys.path:
 
 import sim_qit_szilard_bidirectional_protocol as base  # noqa: E402
 
-
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Finite two-qubit companion row for the stochastic Szilard substep lane. "
-    "It preserves ordered and scrambled protocol families, adds explicit hold "
-    "decay, and keeps the result in exact density-operator bookkeeping."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Finite two-qubit Szilard substep companion built from the existing ordered "
+    "and scrambled protocol families. It preserves the measurement, feedback, "
+    "reset, and hold mechanics, but stays a translation surface over the "
+    "current density-operator bookkeeping rather than broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

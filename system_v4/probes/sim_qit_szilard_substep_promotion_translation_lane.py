@@ -13,11 +13,14 @@ import pathlib
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promotion-style translation lane for the stochastic Szilard substep "
-    "carrier after expanding the high-strength low-noise edge."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Promoted QIT-aligned Szilard substep translation lane built from the open "
+    "stochastic substep carrier and the strict finite two-qubit companion. It "
+    "keeps the promotion, ordering, and reset translation gaps explicit while "
+    "reusing the existing result surfaces instead of broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

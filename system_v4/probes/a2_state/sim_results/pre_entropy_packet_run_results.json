@@ -1,13 +1,13 @@
 {
   "name": "pre_entropy_packet_run",
-  "timestamp": "2026-04-16T20:57:26.351263+00:00",
+  "timestamp": "2026-04-16T21:28:36.878652+00:00",
   "all_ok": false,
   "steps": [
     {
       "label": "xi_bakeoff",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis0_xi_bakeoff_sim.py",
       "returncode": 0,
-      "elapsed_sec": 0.5734448432922363,
+      "elapsed_sec": 0.35695314407348633,
       "stdout_tail": "========================================================================\nAXIS 0 XI BAKEOFF \u2014 FULL GEOMETRY CANDIDATE PROBE\n========================================================================\n\nPointwise shell bridge mean coherent information:\n  inner     fiber=+0.133814  base=+0.133814\n  clifford  fiber=+0.233327  base=+0.233327\n  outer     fiber=+0.133814  base=+0.133814\n\nEngine-cycle bakeoff (per engine type / torus):\n  T1 inner     GA0=0.996742 Xi_shell Ic=+0.133814 Xi_hist Ic=-0.417099 Xi_LR_ctl Ic=+0.000000\n  T1 clifford  GA0=0.998875 Xi_shell Ic=+0.233327 Xi_hist Ic=-0.550421 Xi_LR_ctl Ic=-0.000000\n  T1 outer     GA0=0.997120 Xi_shell Ic=+0.133814 Xi_hist Ic=-0.429893 Xi_LR_ctl Ic=-0.000000\n  T2 inner     GA0=0.999566 Xi_shell Ic=+0.133814 Xi_hist Ic=-0.395129 Xi_LR_ctl Ic=-0.000000\n  T2 clifford  GA0=0.999565 Xi_shell Ic=+0.233327 Xi_hist Ic=-0.566541 Xi_LR_ctl Ic=+0.000000\n  T2 outer     GA0=0.999312 Xi_shell Ic=+0.133814 Xi_hist Ic=-0.388428 Xi_LR_ctl Ic=+0.000000\n\nVerdict summary:\n{\n  \"fiber_base_Ic_mean_diffs\": {\n    \"inner\": -2.7755575615628914e-17,\n    \"clifford\": -1.3877787807814457e-16,\n    \"outer\": 1.6653345369377348e-16\n  },\n  \"mean_abs_Ic\": {\n    \"xi_shell\": 0.16698470871291807,\n    \"xi_hist_cycle\": 0.45791851285873997,\n    \"xi_lr_control\": 2.1356176692099445e-16\n  },\n  \"eta_sensitivity\": {\n    \"xi_shell_Ic_range\": 0.09951287990702554,\n    \"xi_hist_cycle_Ic_range\": 0.17811279227883248\n  },\n  \"kills\": {\n    \"xi_lr_control_trivial\": true,\n    \"xi_shell_geometry_blind\": false,\n    \"xi_hist_geometry_blind\": false,\n    \"xi_shell_loop_blind\": true,\n    \"xi_hist_saturated\": false\n  }\n}\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_bakeoff_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -16,7 +16,7 @@
       "label": "xi_strict_bakeoff",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis0_xi_strict_bakeoff_sim.py",
       "returncode": 0,
-      "elapsed_sec": 0.9208590984344482,
+      "elapsed_sec": 0.6270279884338379,
       "stdout_tail": "       \"full_cycle_mi\": 0.0061311094421888646,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.595254147163775,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.595254147163775,\n        \"candidate_a_minus_full_cycle_mi\": 0.595254147163775,\n        \"candidate_b_minus_full_cycle_mi\": 0.595254147163775,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      },\n      {\n        \"engine_type\": 2,\n        \"torus\": \"clifford\",\n        \"candidate_a_mi_label\": \"0_7\",\n        \"candidate_b_mi_label\": \"0_15\",\n        \"candidate_a_mi\": 0.00963908373948752,\n        \"candidate_b_mi\": 0.00963908373948752,\n        \"uniform_0_15_mi\": 0.00963908373948752,\n        \"full_cycle_mi\": 0.00963908373948752,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.0,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.0,\n        \"candidate_a_minus_full_cycle_mi\": 0.0,\n        \"candidate_b_minus_full_cycle_mi\": 0.0,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      },\n      {\n        \"engine_type\": 2,\n        \"torus\": \"outer\",\n        \"candidate_a_mi_label\": \"8_15\",\n        \"candidate_b_mi_label\": \"8_15\",\n        \"candidate_a_mi\": 0.6004260301229041,\n        \"candidate_b_mi\": 0.6004260301229041,\n        \"uniform_0_15_mi\": 0.005949945314039473,\n        \"full_cycle_mi\": 0.005949945314039473,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.5944760848088646,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.5944760848088646,\n        \"candidate_a_minus_full_cycle_mi\": 0.5944760848088646,\n        \"candidate_b_minus_full_cycle_mi\": 0.5944760848088646,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      }\n    ]\n  },\n  \"axis0_current_live_seat_summary\": {\n    \"mi_seat_pattern\": {\n      \"inner\": \"back_half\",\n      \"outer\": \"back_half\",\n      \"clifford\": \"mixed\"\n    },\n    \"signed_cut_seat_pattern\": {\n      \"inner\": \"front_half\",\n      \"outer\": \"front_half\",\n      \"clifford\": \"mixed\"\n    },\n    \"mi_read\": \"late_anchor_8_23_equals_8_15__inner_outer_back_half__clifford_0_7_or_0_15_tie\",\n    \"signed_cut_read\": \"all_seats_front_half\"\n  },\n  \"clifford_edge_case_summary\": {\n    \"threshold_mi_gain\": 0.001,\n    \"mean_clifford_hist_outer_mi\": 0.012254860424524283,\n    \"mean_clifford_hist_cycle_mi\": 0.012254860424524283,\n    \"mean_inner_outer_hist_outer_mi\": 0.006523362467963534,\n    \"mean_inner_outer_hist_cycle_mi\": 0.006523362467963534,\n    \"hist_outer_clifford_vs_inner_outer_gap\": 0.005731497956560749,\n    \"hist_cycle_clifford_vs_inner_outer_gap\": 0.005731497956560749,\n    \"mean_clifford_hist_outer_minus_lr_ic\": -0.4481581289297346,\n    \"mean_clifford_hist_cycle_minus_lr_ic\": -0.4481581289297346,\n    \"mean_clifford_hist_outer_minus_lr_s_b\": 0.01238657580725222,\n    \"mean_clifford_hist_outer_minus_lr_s_ab\": 0.46054470473698683,\n    \"mean_clifford_hist_cycle_minus_lr_s_b\": 0.01238657580725222,\n    \"mean_clifford_hist_cycle_minus_lr_s_ab\": 0.46054470473698683,\n    \"clifford_point_ref_base_std\": 0.3439910961029495,\n    \"mean_inner_outer_point_ref_base_std\": 0.27691672394656053,\n    \"point_ref_base_std_clifford_vs_inner_outer_gap\": 0.06707437215638895,\n    \"clifford_midpoint_hist_outer_mi_gap\": 0.005731497956560749,\n    \"clifford_midpoint_hist_cycle_mi_gap\": 0.005731497956560749,\n    \"inner_outer_hist_outer_mi_asymmetry\": 0.00019843824180842962,\n    \"inner_outer_hist_cycle_mi_asymmetry\": 0.00019843824180842962,\n    \"clifford_is_midpoint_on_hist_outer_mi\": false,\n    \"clifford_is_midpoint_on_hist_cycle_mi\": false,\n    \"clifford_history_suppressed_on_mi\": false,\n    \"clifford_history_nonflat_on_signed_cut\": true,\n    \"clifford_point_ref_base_peak\": true\n  },\n  \"kills\": {\n    \"xi_lr_direct_correlation_trivial\": false,\n    \"xi_shell_strata_fiber_constant\": true,\n    \"xi_shell_strata_base_varies\": false,\n    \"xi_point_ref_fiber_constant\": true,\n    \"xi_point_ref_base_varies\": true,\n    \"xi_hist_cycle_nontrivial\": true,\n    \"xi_hist_outer_nontrivial\": true\n  }\n}\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -25,7 +25,7 @@
       "label": "bridge_search",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py",
       "returncode": 1,
-      "elapsed_sec": 2.65916109085083,
+      "elapsed_sec": 1.2812228202819824,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py\", line 63, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false
@@ -34,7 +34,7 @@
       "label": "phase5b_stability",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_phase5b_stability.py",
       "returncode": 1,
-      "elapsed_sec": 2.8540549278259277,
+      "elapsed_sec": 1.2770130634307861,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_phase5b_stability.py\", line 31, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false
@@ -43,7 +43,7 @@
       "label": "fe_indexed_history",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_fe_indexed_xi_hist.py",
       "returncode": 1,
-      "elapsed_sec": 3.653752088546753,
+      "elapsed_sec": 1.30035400390625,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_fe_indexed_xi_hist.py\", line 63, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false
@@ -52,7 +52,7 @@
       "label": "dynamic_shell",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_dynamic_shell.py",
       "returncode": 1,
-      "elapsed_sec": 2.5269110202789307,
+      "elapsed_sec": 1.328080177307129,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_dynamic_shell.py\", line 56, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false

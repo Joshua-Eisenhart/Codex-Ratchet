@@ -1,13 +1,13 @@
 {
   "name": "carrier_selection_packet_run",
-  "timestamp": "2026-04-16T20:57:13.084275+00:00",
+  "timestamp": "2026-04-16T21:28:30.654798+00:00",
   "all_ok": false,
   "steps": [
     {
       "label": "missing_axis_search",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_missing_axis_search.py",
       "returncode": 0,
-      "elapsed_sec": 0.8546149730682373,
+      "elapsed_sec": 0.4341299533843994,
       "stdout_tail": "======================================================================\nMISSING AXIS SEARCH\n======================================================================\n\n  Known 6 axes (after Ax1/Ax5 merge)\n  Searching for 7th via residual analysis at d=8\n\n  Candidate                        Residual   MaxOvl     With      Verdict\n  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n  A: measurement_basis               0.9460   0.2442      Ax0  \ud83d\udd25 CANDIDATE\n  B: coupling_strength               0.7900   0.6044      Ax0  \u26a0\ufe0f  PARTIAL\n  C: coherence_class                 0.0000   1.0000      Ax0   \u274c CAPTURED\n  D: spectral_gap                    0.3414   0.9313      Ax0  \u26a0\ufe0f  PARTIAL\n  E: partial_transpose               0.7032   0.7024      Ax0  \u26a0\ufe0f  PARTIAL\n  F: phase_structure                 0.7032   0.7024      Ax0  \u26a0\ufe0f  PARTIAL\n  G: squeezing                       0.8830   0.4370      Ax0  \ud83d\udd25 CANDIDATE\n\n  HIGHEST RESIDUAL: A: measurement_basis (0.9460)\n  \ud83d\udd25 STRONG CANDIDATE for 7th axis!\n\n  Overlap breakdown for A: measurement_basis:\n    vs Ax0     : 0.2442  \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n    vs Ax1=5   : 0.1109  \u2588\u2588\u2588\u2588\n    vs Ax2     : 0.1231  \u2588\u2588\u2588\u2588\n    vs Ax3     : 0.0000  \n    vs Ax4     : 0.0000  \n    vs Ax6     : 0.1253  \u2588\u2588\u2588\u2588\u2588\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/../a2_state/sim_results/missing_axis_search_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -16,7 +16,7 @@
       "label": "bridge_search",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py",
       "returncode": 1,
-      "elapsed_sec": 1.8008198738098145,
+      "elapsed_sec": 1.336393117904663,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py\", line 63, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false
@@ -25,7 +25,7 @@
       "label": "xi_strict_bakeoff",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis0_xi_strict_bakeoff_sim.py",
       "returncode": 0,
-      "elapsed_sec": 0.9270448684692383,
+      "elapsed_sec": 0.6288108825683594,
       "stdout_tail": "       \"full_cycle_mi\": 0.0061311094421888646,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.595254147163775,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.595254147163775,\n        \"candidate_a_minus_full_cycle_mi\": 0.595254147163775,\n        \"candidate_b_minus_full_cycle_mi\": 0.595254147163775,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      },\n      {\n        \"engine_type\": 2,\n        \"torus\": \"clifford\",\n        \"candidate_a_mi_label\": \"0_7\",\n        \"candidate_b_mi_label\": \"0_15\",\n        \"candidate_a_mi\": 0.00963908373948752,\n        \"candidate_b_mi\": 0.00963908373948752,\n        \"uniform_0_15_mi\": 0.00963908373948752,\n        \"full_cycle_mi\": 0.00963908373948752,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.0,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.0,\n        \"candidate_a_minus_full_cycle_mi\": 0.0,\n        \"candidate_b_minus_full_cycle_mi\": 0.0,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      },\n      {\n        \"engine_type\": 2,\n        \"torus\": \"outer\",\n        \"candidate_a_mi_label\": \"8_15\",\n        \"candidate_b_mi_label\": \"8_15\",\n        \"candidate_a_mi\": 0.6004260301229041,\n        \"candidate_b_mi\": 0.6004260301229041,\n        \"uniform_0_15_mi\": 0.005949945314039473,\n        \"full_cycle_mi\": 0.005949945314039473,\n        \"candidate_a_minus_uniform_0_15_mi\": 0.5944760848088646,\n        \"candidate_b_minus_uniform_0_15_mi\": 0.5944760848088646,\n        \"candidate_a_minus_full_cycle_mi\": 0.5944760848088646,\n        \"candidate_b_minus_full_cycle_mi\": 0.5944760848088646,\n        \"candidate_b_minus_candidate_a_mi\": 0.0\n      }\n    ]\n  },\n  \"axis0_current_live_seat_summary\": {\n    \"mi_seat_pattern\": {\n      \"inner\": \"back_half\",\n      \"outer\": \"back_half\",\n      \"clifford\": \"mixed\"\n    },\n    \"signed_cut_seat_pattern\": {\n      \"inner\": \"front_half\",\n      \"outer\": \"front_half\",\n      \"clifford\": \"mixed\"\n    },\n    \"mi_read\": \"late_anchor_8_23_equals_8_15__inner_outer_back_half__clifford_0_7_or_0_15_tie\",\n    \"signed_cut_read\": \"all_seats_front_half\"\n  },\n  \"clifford_edge_case_summary\": {\n    \"threshold_mi_gain\": 0.001,\n    \"mean_clifford_hist_outer_mi\": 0.012254860424524283,\n    \"mean_clifford_hist_cycle_mi\": 0.012254860424524283,\n    \"mean_inner_outer_hist_outer_mi\": 0.006523362467963534,\n    \"mean_inner_outer_hist_cycle_mi\": 0.006523362467963534,\n    \"hist_outer_clifford_vs_inner_outer_gap\": 0.005731497956560749,\n    \"hist_cycle_clifford_vs_inner_outer_gap\": 0.005731497956560749,\n    \"mean_clifford_hist_outer_minus_lr_ic\": -0.4481581289297346,\n    \"mean_clifford_hist_cycle_minus_lr_ic\": -0.4481581289297346,\n    \"mean_clifford_hist_outer_minus_lr_s_b\": 0.01238657580725222,\n    \"mean_clifford_hist_outer_minus_lr_s_ab\": 0.46054470473698683,\n    \"mean_clifford_hist_cycle_minus_lr_s_b\": 0.01238657580725222,\n    \"mean_clifford_hist_cycle_minus_lr_s_ab\": 0.46054470473698683,\n    \"clifford_point_ref_base_std\": 0.3439910961029495,\n    \"mean_inner_outer_point_ref_base_std\": 0.27691672394656053,\n    \"point_ref_base_std_clifford_vs_inner_outer_gap\": 0.06707437215638895,\n    \"clifford_midpoint_hist_outer_mi_gap\": 0.005731497956560749,\n    \"clifford_midpoint_hist_cycle_mi_gap\": 0.005731497956560749,\n    \"inner_outer_hist_outer_mi_asymmetry\": 0.00019843824180842962,\n    \"inner_outer_hist_cycle_mi_asymmetry\": 0.00019843824180842962,\n    \"clifford_is_midpoint_on_hist_outer_mi\": false,\n    \"clifford_is_midpoint_on_hist_cycle_mi\": false,\n    \"clifford_history_suppressed_on_mi\": false,\n    \"clifford_history_nonflat_on_signed_cut\": true,\n    \"clifford_point_ref_base_peak\": true\n  },\n  \"kills\": {\n    \"xi_lr_direct_correlation_trivial\": false,\n    \"xi_shell_strata_fiber_constant\": true,\n    \"xi_shell_strata_base_varies\": false,\n    \"xi_point_ref_fiber_constant\": true,\n    \"xi_point_ref_base_varies\": true,\n    \"xi_hist_cycle_nontrivial\": true,\n    \"xi_hist_outer_nontrivial\": true\n  }\n}\n\nResults written to /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json\n",
       "stderr_tail": "",
       "ok": true
@@ -34,7 +34,7 @@
       "label": "carrier_rank",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_root_constraint_carrier_rank.py",
       "returncode": 1,
-      "elapsed_sec": 1.7809498310089111,
+      "elapsed_sec": 1.3631701469421387,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_root_constraint_carrier_rank.py\", line 50, in <module>\n    from sim_axis0_bridge_search import ALL_CANDIDATES, TORUS_CONFIGS, full_metrics\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py\", line 63, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false
@@ -43,7 +43,7 @@
       "label": "history_mispair_counterfeit",
       "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_history_mispair_counterfeit.py",
       "returncode": 1,
-      "elapsed_sec": 2.856720209121704,
+      "elapsed_sec": 1.3341271877288818,
       "stdout_tail": "",
       "stderr_tail": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_history_mispair_counterfeit.py\", line 24, in <module>\n    from sim_axis0_bridge_search import TORUS_CONFIGS, ALL_CANDIDATES, full_metrics\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axis0_bridge_search.py\", line 63, in <module>\n    import torch_ga\nModuleNotFoundError: No module named 'torch_ga'\n",
       "ok": false

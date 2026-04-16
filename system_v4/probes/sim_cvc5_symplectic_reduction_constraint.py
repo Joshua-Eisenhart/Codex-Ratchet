@@ -160,7 +160,7 @@ def run_positive_tests():
 
         # Axiom: dim(M//G) = dim(M) - 2·dim(G) (Marsden-Weinstein formula)
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Axiom: dim(M) ≥ dim(G)
@@ -209,7 +209,7 @@ def run_positive_tests():
 
         # Axiom: Marsden-Weinstein formula
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Test case: dim(M)=6, dim(G)=2 (T² reduction of 6-manifold)
@@ -252,7 +252,7 @@ def run_positive_tests():
 
         # Axiom: if free action, then dim(M//G) = dim(M) - 2·dim(G)
         formula_consequent = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                           solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                           solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                                          solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
         free_implies_formula = solver.mkTerm(cvc5.Kind.IMPLIES, has_free_action, formula_consequent)
 
@@ -309,7 +309,7 @@ def run_negative_tests():
 
         # Axiom: Marsden-Weinstein formula
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Axiom: dim(M)=4, dim(G)=3 (μ⁻¹(0) nonempty from context)
@@ -350,7 +350,7 @@ def run_negative_tests():
 
         # Axiom: Marsden-Weinstein formula holds
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Violation: dim_reduced ≠ dim_M - 2·dim_G (specific contradiction)
@@ -435,7 +435,7 @@ def run_boundary_tests():
 
         # Constraint: dim(M//G) = dim(M) - 2·dim(G)
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Test case: dim(M)=2, dim(G)=1 (T¹ action → point)
@@ -476,7 +476,7 @@ def run_boundary_tests():
 
         # Constraint: dim(M//G) = dim(M) - 2·dim(G)
         formula = solver.mkTerm(cvc5.Kind.EQUAL, dim_reduced,
-                                solver.mkTerm(cvc5.Kind.MINUS, dim_M,
+                                solver.mkTerm(cvc5.Kind.SUB, dim_M,
                                               solver.mkTerm(cvc5.Kind.MULT, solver.mkInteger(2), dim_G)))
 
         # Test case: dim(M)=6, dim(G)=2 (T² action → surface)

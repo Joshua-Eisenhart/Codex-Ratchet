@@ -40,6 +40,21 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this Weyl-DOF analysis uses numeric "
+    "numpy and local engine helpers to count displacement directions, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and overlap calculations for the Weyl DOF analysis",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

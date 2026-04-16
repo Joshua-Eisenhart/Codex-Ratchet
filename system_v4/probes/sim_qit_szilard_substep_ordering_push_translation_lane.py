@@ -10,14 +10,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Translation lane for the ordering-push substep carrier on the low-noise "
-    "high-reset edge."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Promoted QIT Szilard ordering-push translation lane built from the strict "
+    "finite two-qubit substep companion and the ordering-push sweep results. It "
+    "keeps the ordering/measurement/reset translation gaps explicit while reusing "
+    "the existing result surfaces and not broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

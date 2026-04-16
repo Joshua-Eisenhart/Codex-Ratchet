@@ -10,14 +10,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Balanced refinement translation lane for the stochastic Szilard substep "
-    "carrier, anchored to the low-noise high-reset region."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Balanced Szilard substep translation lane built from the existing "
+    "balanced refinement sweep and the strict QIT substep companion. It keeps "
+    "the low-noise, high-reset comparison explicit, but remains a translation "
+    "surface that reuses existing result files instead of broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -103,9 +106,10 @@ def main() -> None:
 
     out = {
         "name": "qit_szilard_substep_balanced_translation_lane",
-        "classification": CLASSIFICATION,
-        "classification_note": CLASSIFICATION_NOTE,
-        "lego_ids": LEGO_IDS,
+    "classification": CLASSIFICATION,
+    "classification_note": CLASSIFICATION_NOTE,
+    "divergence_log": divergence_log,
+    "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

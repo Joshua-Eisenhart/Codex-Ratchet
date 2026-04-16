@@ -1,7 +1,8 @@
 {
   "name": "qit_carnot_two_bath_cycle",
   "classification": "canonical",
-  "classification_note": "Canonical bounded two-bath Carnot row on a qubit working substance. It makes the cycle mechanics explicit: hot isotherm, adiabatic expansion, cold isotherm, adiabatic compression, plus the reversed refrigerator mode. This is a thermodynamic working-substance row, not a claim that the repo's runtime engine already realizes a Carnot machine.",
+  "classification_note": "Canonical bounded two-bath Carnot row on a qubit working substance. It makes the cycle mechanics explicit: hot isotherm, adiabatic expansion, cold isotherm, adiabatic compression, plus the reversed refrigerator mode. This is a thermodynamic working-substance row, not a claim that the repo's runtime engine already realizes a Carnot machine. It now carries bounded qutip/cirq/pennylane thermal witnesses on the same one-carrier isothermal legs.",
+  "divergence_log": "Canonical bounded two-bath Carnot row on a qubit working substance. It makes the cycle mechanics explicit: hot isotherm, adiabatic expansion, cold isotherm, adiabatic compression, plus the reversed refrigerator mode. This is a thermodynamic working-substance row, not a claim that the repo's runtime engine already realizes a Carnot machine. It now carries bounded qutip/cirq/pennylane thermal witnesses on the same one-carrier isothermal legs.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map"
@@ -10,6 +11,26 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing thermodynamic bookkeeping and result serialization"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the isothermal legs"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"
+    },
     "pytorch": {
       "tried": false,
       "used": false,
@@ -72,6 +93,10 @@
     }
   },
   "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
     "pytorch": null,
     "pyg": null,
     "z3": null,
@@ -105,6 +130,12 @@
     "reverse_cycle_has_positive_cold_heat_absorption_and_requires_work_input": {
       "q_cold_absorbed": 0.1877957548868926,
       "work_input": 0.18779575488689262,
+      "pass": true
+    },
+    "bridge_witnesses_match_the_isothermal_carrier_surface": {
+      "max_qutip_density_error": 0.0,
+      "max_cirq_density_error": 2.484395400514927e-08,
+      "max_pennylane_density_error": 0.0,
       "pass": true
     }
   },
@@ -353,6 +384,66 @@
       "work_input": 0.18779575488689262,
       "cop": 0.9999999999999999,
       "cop_carnot": 1.0
+    }
+  },
+  "bridge_witnesses": {
+    "hot_iso": {
+      "label": "forward_hot_iso",
+      "before_probability": 0.18242552380635632,
+      "target_probability": 0.37754066879814546,
+      "reference_probability": 0.37754066879814546,
+      "qutip_probability": 0.37754066879814546,
+      "cirq_probability": 0.3775406777858734,
+      "pennylane_probability": 0.37754066879814546,
+      "qutip_density_max_error": 0.0,
+      "cirq_density_max_error": 2.081459449243539e-08,
+      "pennylane_density_max_error": 0.0,
+      "pass": true
+    },
+    "cold_iso": {
+      "label": "forward_cold_iso",
+      "before_probability": 0.37754066879814546,
+      "target_probability": 0.18242552380635632,
+      "reference_probability": 0.18242552380635632,
+      "qutip_probability": 0.18242552380635632,
+      "cirq_probability": 0.18242552876472473,
+      "pennylane_probability": 0.18242552380635632,
+      "qutip_density_max_error": 0.0,
+      "cirq_density_max_error": 2.484395400514927e-08,
+      "pennylane_density_max_error": 0.0,
+      "pass": true
+    },
+    "cold_isotherm_reverse": {
+      "label": "reverse_cold_isotherm",
+      "before_probability": 0.18242552380635632,
+      "target_probability": 0.37754066879814546,
+      "reference_probability": 0.37754066879814546,
+      "qutip_probability": 0.37754066879814546,
+      "cirq_probability": 0.3775406777858734,
+      "pennylane_probability": 0.37754066879814546,
+      "qutip_density_max_error": 0.0,
+      "cirq_density_max_error": 2.081459449243539e-08,
+      "pennylane_density_max_error": 0.0,
+      "pass": true
+    },
+    "hot_isotherm_reverse": {
+      "label": "reverse_hot_isotherm",
+      "before_probability": 0.37754066879814546,
+      "target_probability": 0.18242552380635632,
+      "reference_probability": 0.18242552380635632,
+      "qutip_probability": 0.18242552380635632,
+      "cirq_probability": 0.18242552876472473,
+      "pennylane_probability": 0.18242552380635632,
+      "qutip_density_max_error": 0.0,
+      "cirq_density_max_error": 2.484395400514927e-08,
+      "pennylane_density_max_error": 0.0,
+      "pass": true
+    },
+    "summary": {
+      "pass": true,
+      "max_qutip_density_error": 0.0,
+      "max_cirq_density_error": 2.484395400514927e-08,
+      "max_pennylane_density_error": 0.0
     }
   },
   "operating_point_sweep": [
@@ -1011,6 +1102,10 @@
     "forward_carnot_bound": 0.5,
     "reverse_cop": 0.9999999999999999,
     "reverse_cop_carnot": 1.0,
+    "bridge_all_pass": true,
+    "max_bridge_qutip_density_error": 0.0,
+    "max_bridge_cirq_density_error": 2.484395400514927e-08,
+    "max_bridge_pennylane_density_error": 0.0,
     "scope_note": "Explicit two-bath forward/reverse Carnot bookkeeping row on a qubit working substance; not yet a claim about the repo's runtime engine mechanics."
   }
 }

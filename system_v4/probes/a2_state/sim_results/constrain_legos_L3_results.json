@@ -1,7 +1,7 @@
 {
   "probe": "sim_constrain_legos_L3",
   "purpose": "L3 constraint layer: fiber/base loop distinction, Berry connection, transport, Weyl chirality L/R anti-alignment",
-  "timestamp": "2026-04-16T07:46:39.716436+00:00",
+  "timestamp": "2026-04-16T10:04:56.117594+00:00",
   "L3_constraints": {
     "fiber_loop": "S1 fiber = U(1) gauge orbit. Unobservable. Winding number pi_1(S1)=Z.",
     "base_loop": "S1 base = path on Bloch sphere S2. Observable. Berry phase = holonomy.",
@@ -13,6 +13,35 @@
       "conjugation": "R = i*sigma_y * L^* (charge conjugation).",
       "bipartition": "L/R creates natural 2-subsystem split for entanglement."
     }
+  },
+  "divergence_log": "Classical baseline: this L3 probe checks fiber/base transport and chirality constraints numerically, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix and vector numerics for fiber/base and chirality checks"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix square roots, logs, and exponentials for transport and concurrence checks"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint checks for chirality and transport logic"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "auxiliary Clifford algebra checks for the L3 constraint layer"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+    "clifford": "supportive"
   },
   "specific_tests": {
     "a_berry_requires_closed_loop": {
@@ -1205,7 +1234,7 @@
     }
   },
   "summary": {
-    "runtime_seconds": 1.48,
+    "runtime_seconds": 1.58,
     "errors": [],
     "all_passed": true,
     "total_legos_tested": 61,

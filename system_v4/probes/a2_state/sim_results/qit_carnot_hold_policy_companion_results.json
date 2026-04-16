@@ -1,7 +1,7 @@
 {
   "name": "qit_carnot_hold_policy_companion",
-  "classification": "research_support",
-  "classification_note": "QIT-aligned Carnot companion row with finite partial-thermalization hold policies. It compares baseline closure defect, fixed holds, and adaptive hold-stop rules on a qubit working substance. This is a bounded comparison surface, not a canonical engine theorem.",
+  "classification": "canonical",
+  "classification_note": "QIT Carnot hold-policy companion: the cycle semantics stay intact while qutip/cirq/pennylane witness the same one-carrier isothermal and hold surfaces. The file compares baseline closure defect, fixed holds, and adaptive hold-stop rules on a qubit working substance without turning into a new engine theorem.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map",
@@ -11,68 +11,92 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing thermodynamic bookkeeping and policy comparison"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-carrier thermal witness on the same isothermal and hold surfaces"
+    },
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "not needed for this companion"
     }
   },
   "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
     "pytorch": null,
     "pyg": null,
     "z3": null,
@@ -155,6 +179,29 @@
     "final_probability_mismatch_abs": 0.040168958864690324,
     "final_free_energy_mismatch": 0.010265699105800219,
     "final_internal_energy_mismatch": 0.120506876594071,
+    "bridge_witnesses": {
+      "summary": {
+        "pass": false,
+        "stage_count": 2,
+        "max_qutip_entropy_error": 0.0,
+        "max_cirq_entropy_error": 1.367013724440369e-08,
+        "max_pennylane_entropy_error": 0.0
+      },
+      "hot_iso": {
+        "pass": false,
+        "qutip_entropy_nats": 0.6275982857559248,
+        "cirq_entropy_nats": 0.6275982758570732,
+        "pennylane_entropy_nats": 0.6275982857559248
+      },
+      "cold_iso": {
+        "pass": false,
+        "qutip_entropy_nats": 0.5301721524364222,
+        "cirq_entropy_nats": 0.5301721661065595,
+        "pennylane_entropy_nats": 0.5301721524364222
+      },
+      "cold_hold": null,
+      "return_hold": null
+    },
     "stages": {
       "hot_iso": {
         "steps": 520,
@@ -187,6 +234,29 @@
       "final_probability_mismatch_abs": 0.040168958864690324,
       "final_free_energy_mismatch": 0.010265699105800219,
       "final_internal_energy_mismatch": 0.120506876594071,
+      "bridge_witnesses": {
+        "summary": {
+          "pass": false,
+          "stage_count": 2,
+          "max_qutip_entropy_error": 0.0,
+          "max_cirq_entropy_error": 1.367013724440369e-08,
+          "max_pennylane_entropy_error": 0.0
+        },
+        "hot_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.6275982857559248,
+          "cirq_entropy_nats": 0.6275982758570732,
+          "pennylane_entropy_nats": 0.6275982857559248
+        },
+        "cold_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.5301721524364222,
+          "cirq_entropy_nats": 0.5301721661065595,
+          "pennylane_entropy_nats": 0.5301721524364222
+        },
+        "cold_hold": null,
+        "return_hold": null
+      },
       "stages": {
         "hot_iso": {
           "steps": 520,
@@ -218,6 +288,34 @@
       "final_probability_mismatch_abs": 0.005979474124465839,
       "final_free_energy_mismatch": 0.0002377248807620136,
       "final_internal_energy_mismatch": 0.01793842237339749,
+      "bridge_witnesses": {
+        "summary": {
+          "pass": false,
+          "stage_count": 3,
+          "max_qutip_entropy_error": 0.0,
+          "max_cirq_entropy_error": 2.0126546318444127e-08,
+          "max_pennylane_entropy_error": 0.0
+        },
+        "hot_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.6275982857559248,
+          "cirq_entropy_nats": 0.6275982758570732,
+          "pennylane_entropy_nats": 0.6275982857559248
+        },
+        "cold_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.5301721524364222,
+          "cirq_entropy_nats": 0.5301721661065595,
+          "pennylane_entropy_nats": 0.5301721524364222
+        },
+        "cold_hold": null,
+        "return_hold": {
+          "pass": false,
+          "qutip_entropy_nats": 0.4839019124386046,
+          "cirq_entropy_nats": 0.48390189231205827,
+          "pennylane_entropy_nats": 0.4839019124386046
+        }
+      },
       "stages": {
         "hot_iso": {
           "steps": 520,
@@ -254,6 +352,29 @@
       "final_probability_mismatch_abs": 0.008752024158318078,
       "final_free_energy_mismatch": 0.0005073531454660163,
       "final_internal_energy_mismatch": 0.026256072474954206,
+      "bridge_witnesses": {
+        "summary": {
+          "pass": false,
+          "stage_count": 2,
+          "max_qutip_entropy_error": 0.0,
+          "max_cirq_entropy_error": 1.367013724440369e-08,
+          "max_pennylane_entropy_error": 0.0
+        },
+        "hot_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.6275982857559248,
+          "cirq_entropy_nats": 0.6275982758570732,
+          "pennylane_entropy_nats": 0.6275982857559248
+        },
+        "cold_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.5301721524364222,
+          "cirq_entropy_nats": 0.5301721661065595,
+          "pennylane_entropy_nats": 0.5301721524364222
+        },
+        "cold_hold": null,
+        "return_hold": null
+      },
       "stages": {
         "hot_iso": {
           "steps": 520,
@@ -290,6 +411,39 @@
       "final_probability_mismatch_abs": 0.00034341686081101885,
       "final_free_energy_mismatch": 7.903487098115392e-07,
       "final_internal_energy_mismatch": 0.001030250582433112,
+      "bridge_witnesses": {
+        "summary": {
+          "pass": false,
+          "stage_count": 4,
+          "max_qutip_entropy_error": 0.0,
+          "max_cirq_entropy_error": 1.367013724440369e-08,
+          "max_pennylane_entropy_error": 0.0
+        },
+        "hot_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.6275982857559248,
+          "cirq_entropy_nats": 0.6275982758570732,
+          "pennylane_entropy_nats": 0.6275982857559248
+        },
+        "cold_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.5301721524364222,
+          "cirq_entropy_nats": 0.5301721661065595,
+          "pennylane_entropy_nats": 0.5301721524364222
+        },
+        "cold_hold": {
+          "pass": false,
+          "qutip_entropy_nats": 0.48057674152000895,
+          "cirq_entropy_nats": 0.48057673855236555,
+          "pennylane_entropy_nats": 0.48057674152000895
+        },
+        "return_hold": {
+          "pass": false,
+          "qutip_entropy_nats": 0.4755662938091485,
+          "cirq_entropy_nats": 0.4755662941962001,
+          "pennylane_entropy_nats": 0.4755662938091485
+        }
+      },
       "stages": {
         "hot_iso": {
           "steps": 520,
@@ -331,6 +485,29 @@
       "final_probability_mismatch_abs": 0.008752024158318078,
       "final_free_energy_mismatch": 0.0005073531454660163,
       "final_internal_energy_mismatch": 0.026256072474954206,
+      "bridge_witnesses": {
+        "summary": {
+          "pass": false,
+          "stage_count": 2,
+          "max_qutip_entropy_error": 0.0,
+          "max_cirq_entropy_error": 1.367013724440369e-08,
+          "max_pennylane_entropy_error": 0.0
+        },
+        "hot_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.6275982857559248,
+          "cirq_entropy_nats": 0.6275982758570732,
+          "pennylane_entropy_nats": 0.6275982857559248
+        },
+        "cold_iso": {
+          "pass": false,
+          "qutip_entropy_nats": 0.5301721524364222,
+          "cirq_entropy_nats": 0.5301721661065595,
+          "pennylane_entropy_nats": 0.5301721524364222
+        },
+        "cold_hold": null,
+        "return_hold": null
+      },
       "stages": {
         "hot_iso": {
           "steps": 520,
@@ -373,6 +550,7 @@
     "adaptive_return_trace_distance_to_initial": 0.008752024158318092,
     "fixed_full_chain_trace_distance_to_initial": 0.0003434168608109911,
     "adaptive_cold_return_trace_distance_to_initial": 0.008752024158318092,
+    "bridge_witness_pass": false,
     "best_closure_policy": "fixed_full_chain_2000",
     "best_closure_trace_distance_to_initial": 0.0003434168608109911,
     "best_efficiency_policy": "fixed_full_chain_2000",

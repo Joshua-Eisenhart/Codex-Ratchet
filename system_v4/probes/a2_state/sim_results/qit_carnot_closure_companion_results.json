@@ -1,7 +1,8 @@
 {
   "name": "qit_carnot_closure_companion",
-  "classification": "research_support",
-  "classification_note": "Strict finite-carrier QIT companion for the Carnot closure diagnostic lane. It sweeps a bounded budget/hold grid and keeps the forward-cycle return defect, closure concentration, and hold policy tradeoffs explicit. It is a comparison surface, not a canonical engine theorem.",
+  "classification": "canonical",
+  "classification_note": "Canonical finite-carrier Carnot closure companion on a bounded qubit working substance. It sweeps a budget/hold grid and keeps the forward-cycle return defect, closure concentration, and hold policy tradeoffs explicit, while qutip/cirq/pennylane witness the same carrier surface instead of changing the closure theorem.",
+  "divergence_log": "Carnot closure diagnostic on a bounded one-qubit working substance. Numpy remains the closure ledger; qutip, cirq, and pennylane witness the same stage states on the same carrier; the budget/hold grid still measures return defect concentration and policy tradeoffs, not a new engine theorem.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map",
@@ -11,80 +12,32 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing closure ledger, policy comparison, and serialization"
     },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator witness on the same finite carrier"
     },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-matrix witness on the same carrier surface"
     },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed"
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing mixed-state witness on the same carrier surface"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing"
   },
   "positive": {
     "baseline_rows_are_nontrivial": {

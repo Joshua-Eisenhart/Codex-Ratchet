@@ -1133,5 +1133,45 @@
       "peak_concurrence": 0.3974455655919338,
       "ever_positive": false
     }
-  ]
+  ],
+  "divergence_log": "Classical baseline: this unified-engine tuning probe diagnoses traversal and coupling behavior in the engine stack, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "engine_pure_clifford": {
+      "used": true,
+      "reason": "core engine path, dephasing/coupling diagnostics, and operator-state evolution"
+    },
+    "toponetx": {
+      "used": true,
+      "reason": "cell-complex construction and path-blocking diagnosis for the engine mapping"
+    },
+    "toponetx_torus_bridge": {
+      "used": true,
+      "reason": "engine-to-complex mapping and shell-structure bridge logic"
+    },
+    "engine_core": {
+      "used": true,
+      "reason": "terrain ordering and stage/operator lookup semantics for the tuning probe"
+    },
+    "hopf_manifold": {
+      "used": true,
+      "reason": "torus geometry constants used to define the ambient routing surface"
+    },
+    "engine_unified": {
+      "used": true,
+      "reason": "unified-engine execution and entropy/correlation readout"
+    },
+    "bipartite_spinor_algebra": {
+      "used": true,
+      "reason": "density-matrix and concurrence bookkeeping in the tuning diagnostics"
+    }
+  },
+  "tool_integration_depth": {
+    "engine_pure_clifford": "supportive",
+    "toponetx": "supportive",
+    "toponetx_torus_bridge": "supportive",
+    "engine_core": "supportive",
+    "hopf_manifold": "supportive",
+    "engine_unified": "supportive",
+    "bipartite_spinor_algebra": "supportive"
+  }
 }

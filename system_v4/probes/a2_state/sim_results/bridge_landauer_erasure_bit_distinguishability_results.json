@@ -2,74 +2,99 @@
   "name": "bridge_landauer_erasure_bit_distinguishability",
   "scope_note": "Bridge: sympy derives E_erase = F01 * H(p) for Bernoulli p, and z3 proves UNSAT for E_erase < F01 * H(p). Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md Landauer section.",
   "classification": "canonical",
+  "divergence_log": "Landauer distinguishability bridge: sympy keeps the erasure-floor identity E_erase = F01 * H(p) and z3 enforces the admissibility fence, while qutip/cirq/pennylane witness the same one-bit carrier entropy floor (ln2 at p=1/2) on a supportive surface.",
   "tool_manifest": {
-    "pytorch": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "pyg": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "z3": {
+    "numpy": {
       "tried": true,
       "used": true,
-      "reason": "UNSAT on sub-floor erasure; load-bearing fence"
+      "reason": "binary entropy and one-bit carrier bookkeeping for the floor witness"
     },
-    "cvc5": {
+    "qutip": {
       "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "supportive one-bit density witness for the Landauer floor"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-bit density witness for the same carrier surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive one-bit density witness for the same carrier surface"
     },
     "sympy": {
       "tried": true,
       "used": true,
       "reason": "Symbolic derivation of E = F01 * H(p); load-bearing"
     },
-    "clifford": {
+    "z3": {
       "tried": true,
+      "used": true,
+      "reason": "UNSAT on sub-floor erasure; load-bearing fence"
+    },
+    "pytorch": {
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this theorem"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     },
     "toponetx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     },
     "gudhi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not needed for this theorem"
     }
   },
   "tool_integration_depth": {
+    "numpy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
     "pytorch": null,
     "pyg": null,
-    "z3": "load_bearing",
     "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -81,7 +106,14 @@
   "load_bearing_tool": "sympy+z3",
   "positive": {
     "sympy_residual_at_half": "0",
-    "is_zero": true
+    "is_zero": true,
+    "witness_floor": {
+      "expected_entropy_nats": 0.6931471805599453,
+      "qutip_entropy_nats": 0.6931471805599453,
+      "cirq_entropy_nats": 0.6931471805599453,
+      "pennylane_entropy_nats": 0.6931471805599453
+    },
+    "witnesses_ok": true
   },
   "negative": {
     "inadmissible_sub_floor": "unsat",
@@ -89,7 +121,11 @@
   },
   "boundary": {
     "p_to_zero_limit": "0",
-    "is_zero": true
+    "is_zero": true,
+    "boundary_floor": {
+      "p_zero_entropy_nats": 3.553797711707333e-14,
+      "p_one_entropy_nats": 3.551116999690106e-14
+    }
   },
   "pass": true
 }

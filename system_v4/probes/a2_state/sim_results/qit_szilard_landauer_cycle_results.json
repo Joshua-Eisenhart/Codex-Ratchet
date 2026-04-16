@@ -2,6 +2,7 @@
   "name": "qit_szilard_landauer_cycle",
   "classification": "canonical",
   "classification_note": "Canonical finite QIT information-engine row: a one-bit measurement on a bounded system-memory carrier creates correlation, ordered conditional feedback converts that correlation into a one-bit free-energy gain for the system in a degenerate model, and memory erasure closes the bookkeeping at the same kT ln 2 scale.",
+  "divergence_log": "Finite two-qubit Szilard-Landauer cycle: numpy carries the bookkeeping, qutip/cirq/pennylane witness the same bounded two-qubit carrier, and z3 certifies the Landauer floor as an UNSAT exclusion of the forbidden region. No reservoir-runtime or universal-demon claim is being made.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map"
@@ -10,80 +11,58 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "numeric baseline handled by numpy; torch not needed for 2-qubit bookkeeping"
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing two-qubit bookkeeping, entropy, and validation algebra"
     },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph carrier in this row"
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator witness on the same bounded carrier"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-matrix simulator witness on the same carrier"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing mixed-state witness on the same bounded carrier"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "Encodes the Landauer floor E >= T*I and demon inequality dF <= E as Real-arithmetic constraints; certifies the forbidden region (dF > E OR E < T*I) is UNSAT for the measured row, and that free-erasure (E=0 with I>=ln2) is UNSAT against the floor. Pass gate depends on these UNSAT results."
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 covers the linear-arithmetic bookkeeping encoding"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "closed-form kT ln2 values are numeric-exact; no symbolic manipulation needed"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no geometric-algebra carrier in this row"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no manifold carrier in this row"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no equivariant representation in this row"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph carrier in this row"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph carrier"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no cell complex carrier"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistence computation"
+      "reason": "load-bearing arithmetic proof of the Landauer floor and forbidden-region UNSAT"
     }
   },
   "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "bridge_witnesses": {
+    "qutip": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    },
+    "cirq": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    },
+    "pennylane": {
+      "measurement_gap": 0.0,
+      "feedback_gap": 0.0,
+      "erasure_gap": 0.0,
+      "pass": true
+    }
   },
   "positive": {
     "measurement_creates_one_bit_of_system_memory_correlation": {
@@ -96,6 +75,27 @@
       "system_entropy_before_feedback": 0.6931471805599453,
       "system_entropy_after_feedback": -0.0,
       "system_free_energy_gain": 0.6931471805599453,
+      "pass": true
+    },
+    "qutip_cirq_pennylane_witness_the_same_two_qubit_cycle": {
+      "qutip": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
+      "cirq": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
+      "pennylane": {
+        "measurement_gap": 0.0,
+        "feedback_gap": 0.0,
+        "erasure_gap": 0.0,
+        "pass": true
+      },
       "pass": true
     },
     "memory_erasure_closes_the_cycle_at_the_same_kT_ln2_scale": {

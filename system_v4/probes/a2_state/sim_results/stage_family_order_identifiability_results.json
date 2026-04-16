@@ -1,7 +1,7 @@
 {
   "schema": "SIM_EVIDENCE_v1",
   "file": "sim_stage_family_order_identifiability.py",
-  "timestamp": "2026-04-16T07:37:08.638860+00:00",
+  "timestamp": "2026-04-16T10:04:17.525294+00:00",
   "trial_count_per_stage": 4,
   "baseline_order": [
     "Ti",
@@ -1078,7 +1078,22 @@
       "status": "PASS",
       "measured_value": 0.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T07:37:08.639433"
+      "timestamp": "2026-04-16T10:04:17.525653"
     }
-  ]
+  ],
+  "divergence_log": "Classical baseline: this stage-family identifiability probe compares orderings within a stage-matrix control surface, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "stage_matrix_neg_lib": {
+      "used": true,
+      "reason": "load-bearing stage-row generation, variant execution, and rich comparison logic for identifiability"
+    },
+    "proto_ratchet_sim_runner": {
+      "used": true,
+      "reason": "supporting evidence-token emission for the result ledger"
+    }
+  },
+  "tool_integration_depth": {
+    "stage_matrix_neg_lib": "supportive",
+    "proto_ratchet_sim_runner": "supportive"
+  }
 }

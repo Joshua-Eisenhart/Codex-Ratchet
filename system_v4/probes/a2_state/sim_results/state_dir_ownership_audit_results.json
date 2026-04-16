@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T23:56:00.042449+00:00",
+  "generated_at": "2026-04-16T05:38:10.499357+00:00",
   "blocker_count": 0,
   "advisory_count": 0,
   "repair_candidate_count": 0,
@@ -10,7 +10,7 @@
     "roles": {
       ".agent": {
         "role": "repo_local_agent_state",
-        "file_count": 246,
+        "file_count": 249,
         "sample_entries": [
           ".agent/.DS_Store",
           ".agent/handoffs",
@@ -20,6 +20,7 @@
           ".agent/handoffs/archived",
           ".agent/handoffs/completed",
           ".agent/reviews",
+          ".agent/reviews/.DS_Store",
           ".agent/reviews/README.md",
           ".agent/reviews/active",
           ".agent/state",
@@ -126,68 +127,5 @@
     "ok": true
   },
   "advisories": [],
-  "repair_candidates": [],
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
-  }
+  "repair_candidates": []
 }

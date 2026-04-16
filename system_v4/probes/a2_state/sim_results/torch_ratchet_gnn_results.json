@@ -63,18 +63,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
     "pyg": "load_bearing",
-    "z3": "supportive",
-    "cvc5": "not_applicable",
-    "sympy": "not_applicable",
-    "clifford": "not_applicable",
-    "geomstats": "not_applicable",
-    "e3nn": "not_applicable",
-    "rustworkx": "supportive",
-    "xgi": "not_applicable",
-    "toponetx": "not_applicable",
-    "gudhi": "not_applicable"
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "classification": "canonical",
   "z3_verification": {
@@ -102,7 +102,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.17784836888313293,
+          "min_eigenvalue": -4.954333832074553e-09,
           "psd_ok": true,
           "valid": true
         },
@@ -111,7 +111,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 3.108156931830308e-08,
+          "min_eigenvalue": 0.18119515478610992,
           "psd_ok": true,
           "valid": true
         },
@@ -120,7 +120,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -6.550648379288759e-08,
+          "min_eigenvalue": -9.75835519057e-08,
           "psd_ok": true,
           "valid": true
         },
@@ -129,7 +129,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -1.1340262062731199e-11,
+          "min_eigenvalue": -1.4523923397291583e-08,
           "psd_ok": true,
           "valid": true
         }
@@ -139,33 +139,33 @@
       "passed": true,
       "has_grad": true,
       "grad_nonzero": true,
-      "grad_norm": 0.05071527883410454,
-      "ic_mean": -0.18508245050907135
+      "grad_norm": 0.03311900794506073,
+      "ic_mean": -0.3391243517398834
     },
     "optimization_increases_ic": {
       "passed": "True",
-      "ic_start_avg": -0.04391218721866608,
-      "ic_end_avg": 0.2594107389450073,
-      "ic_delta": 0.3033229261636734,
+      "ic_start_avg": -0.34985576570034027,
+      "ic_end_avg": 0.25293610990047455,
+      "ic_delta": 0.6027918756008148,
       "ic_history_sample": [
-        -0.2220485657453537,
-        0.14515765011310577,
-        0.1942080408334732,
-        0.26431527733802795
+        -0.5545074343681335,
+        0.13417185842990875,
+        0.1873122602701187,
+        0.2576868236064911
       ],
       "n_steps": 50
     },
     "shell_constrains_params": {
       "passed": true,
       "raw_param_value": 5.0,
-      "max_gated_param": 0.8032532334327698,
-      "reduction_ratio": 0.16065064668655396
+      "max_gated_param": 1.4001219272613525,
+      "reduction_ratio": 0.2800243854522705
     }
   },
   "negative": {
     "no_shell_allows_unphysical": {
       "passed": true,
-      "max_operator_param": 5.064748287200928,
+      "max_operator_param": 5.108556270599365,
       "exceeds_physical_range": true
     },
     "disconnected_no_flow": {
@@ -181,14 +181,14 @@
         "trace_ok": true,
         "hermitian_error": 0.0,
         "hermitian_ok": true,
-        "min_eigenvalue": 0.2048763632774353,
+        "min_eigenvalue": 0.08649331331253052,
         "psd_ok": true,
         "valid": true
       },
       "terrain_out": [
-        0.02499409019947052,
-        -0.05755150318145752,
-        0.5869028568267822
+        -0.1240401640534401,
+        -0.03701473027467728,
+        0.8168200850486755
       ]
     },
     "fully_connected_max_flow": {
@@ -197,21 +197,21 @@
       "n_operator": 6,
       "n_shell": 4,
       "terrain_norms": [
-        0.9493062496185303,
-        0.5001187920570374,
-        0.5331203937530518,
-        0.6674439311027527,
-        0.9227169752120972,
-        0.9427429437637329,
-        0.8738456964492798,
-        0.5926099419593811
+        1.0,
+        0.3840857148170471,
+        0.43377596139907837,
+        0.8864911794662476,
+        0.4372466504573822,
+        0.31110048294067383,
+        0.919808030128479,
+        0.9461954832077026
       ]
     },
     "bloch_ball_containment": {
       "passed": true,
       "norms": [
-        0.7739177942276001,
-        1.0
+        1.0,
+        0.5788366794586182
       ]
     }
   },

@@ -642,6 +642,23 @@ def _runner_health(queue_counts: dict, freshness: dict, claimed_age: dict | None
     return {"status": "idle", "reason": "no active claims and no material backlog"}
 
 
+def _runner_warnings(queue_counts: dict, freshness: dict, claimed_age: dict | None = None) -> list[str]:
+    warnings: list[str] = []
+    claimed = int(queue_counts.get("claimed", 0) or 0)
+    if claimed <= 0:
+        return warnings
+    ages = claimed_age or {}
+    over_900 = int(ages.get("over_900s", 0) or 0)
+    over_300 = int(ages.get("over_300s", 0) or 0)
+    if over_900:
+        warnings.append(f"{over_900} claim(s) over 900s")
+    elif over_300:
+        warnings.append(f"{over_300} claim(s) over 300s")
+    if freshness.get("done", {}).get("active_within_60s") is not True:
+        warnings.append("done surface not fresh within 60s")
+    return warnings
+
+
 def runner_surface() -> dict:
     queue_counts = adaptive_controller.queue_counts()
     freshness = {
@@ -656,6 +673,7 @@ def runner_surface() -> dict:
         "freshness": freshness,
         "claimed_age": claimed_age,
         "health": _runner_health(queue_counts, freshness, claimed_age),
+        "warnings": _runner_warnings(queue_counts, freshness, claimed_age),
         "claimed": _queue_claim_summary(),
     }
 
@@ -679,12 +697,64 @@ def program_surface() -> dict:
     }
 
 
+def _git_maintenance_queue(git: dict) -> dict:
+    cleanup_posture = git.get("cleanup_posture", {})
+    layers = git.get("layers", {})
+    blocked_layers = {
+        key: value
+        for key, value in layers.items()
+        if cleanup_posture.get(key) == "BLOCKED_REQUIRES_PREP"
+    }
+    active_layers = {
+        key: value
+        for key, value in layers.items()
+        if cleanup_posture.get(key) == "KEEP_ACTIVE"
+    }
+    return {
+        "blocked_entries": sum(blocked_layers.values()),
+        "blocked_layers": blocked_layers,
+        "active_churn_entries": sum(active_layers.values()),
+        "active_churn_layers": active_layers,
+    }
+
+
+def _results_maintenance_queue(results: dict) -> dict:
+    main = results.get("system_v4/probes/a2_state/sim_results", {})
+    grouped: defaultdict[str, list[dict]] = defaultdict(list)
+    for row in main.get("fail_details", []):
+        action = str(row.get("action", "unclassified"))
+        if len(grouped[action]) < 5:
+            grouped[action].append(row)
+    return {
+        "fail_actions": dict(main.get("fail_actions", {})),
+        "fail_action_samples": dict(grouped),
+        "dirty_source_results": int(main.get("dirty_source_results", 0) or 0),
+        "untracked_source_results": int(main.get("untracked_source_results", 0) or 0),
+    }
+
+
+def maintenance_queue_surface(git: dict, runner: dict, results: dict) -> dict:
+    return {
+        "git": _git_maintenance_queue(git),
+        "runner": {
+            "status": runner.get("health", {}).get("status"),
+            "warnings": list(runner.get("warnings", [])),
+            "claimed_age": dict(runner.get("claimed_age", {})),
+        },
+        "results": _results_maintenance_queue(results),
+    }
+
+
 def main() -> int:
+    git = git_surface()
+    runner = runner_surface()
+    results = result_surface()
     report = {
-        "git": git_surface(),
-        "runner": runner_surface(),
+        "git": git,
+        "runner": runner,
         "program": program_surface(),
-        "results": result_surface(),
+        "results": results,
+        "maintenance_queue": maintenance_queue_surface(git, runner, results),
     }
     print(json.dumps(report, indent=2))
     return 0

@@ -875,6 +875,32 @@ def test_system_surface_audit_runner_health_reports_long_claims() -> None:
     assert health["status"] == "draining_with_long_claims"
 
 
+def test_system_surface_audit_runner_warnings_report_long_claims() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_runner_warnings_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    warnings = module._runner_warnings(
+        {"lane_A": 1, "lane_B": 2, "claimed": 1, "done": 10},
+        {
+            "lane_A": {"active_within_60s": False},
+            "lane_B": {"active_within_60s": True},
+            "claimed": {"active_within_60s": True},
+            "done": {"active_within_60s": True},
+        },
+        {"over_300s": 1, "over_900s": 0},
+    )
+
+    assert warnings == ["1 claim(s) over 300s"]
+
+
 def test_system_surface_audit_claimed_age_surface_uses_claimed_at(tmp_path) -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)
@@ -899,6 +925,52 @@ def test_system_surface_audit_claimed_age_surface_uses_claimed_at(tmp_path) -> N
     assert report["count"] == 1
     assert report["over_900s"] == 1
     assert report["samples"][0]["sim"] == "sim_alpha.py"
+
+
+def test_system_surface_audit_maintenance_queue_groups_actions() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_maintenance_queue_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    queue = module.maintenance_queue_surface(
+        {
+            "layers": {"owner_vault": 3, "probe_results": 4, "runner_logs": 1},
+            "cleanup_posture": {
+                "owner_vault": "BLOCKED_REQUIRES_PREP",
+                "probe_results": "KEEP_ACTIVE",
+                "runner_logs": "KEEP_ACTIVE",
+            },
+        },
+        {
+            "health": {"status": "draining"},
+            "warnings": ["1 claim(s) over 300s"],
+            "claimed_age": {"over_300s": 1},
+        },
+        {
+            "system_v4/probes/a2_state/sim_results": {
+                "fail_actions": {"rerun_candidate": 2, "missing_source_repair": 1},
+                "fail_details": [
+                    {"result": "a.json", "action": "rerun_candidate"},
+                    {"result": "b.json", "action": "missing_source_repair"},
+                ],
+                "dirty_source_results": 1,
+                "untracked_source_results": 0,
+            }
+        },
+    )
+
+    assert queue["git"]["blocked_entries"] == 3
+    assert queue["git"]["active_churn_entries"] == 5
+    assert queue["runner"]["warnings"] == ["1 claim(s) over 300s"]
+    assert queue["results"]["fail_actions"] == {"rerun_candidate": 2, "missing_source_repair": 1}
+    assert queue["results"]["fail_action_samples"]["rerun_candidate"] == [{"result": "a.json", "action": "rerun_candidate"}]
 
 
 def test_sim_program_audit_skips_invalid_queue_candidates(tmp_path) -> None:

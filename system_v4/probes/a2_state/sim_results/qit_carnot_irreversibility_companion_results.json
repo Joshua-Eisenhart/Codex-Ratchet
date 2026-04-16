@@ -1,7 +1,8 @@
 {
   "name": "qit_carnot_irreversibility_companion",
   "classification": "research_support",
-  "classification_note": "Strict finite-carrier QIT companion for the finite-time Carnot irreversibility sweep. It preserves the duration signal in a bounded two-bath qubit model with explicit forward engine and reverse refrigerator modes. It is a comparison surface, not a canonical engine theorem.",
+  "classification_note": "Strict finite-carrier QIT companion for the finite-time Carnot irreversibility sweep. It preserves the duration signal in a bounded two-bath qubit model with explicit forward engine and reverse refrigerator modes, and adds bounded qutip/cirq/pennylane thermal witnesses on the same one-carrier isothermal legs.",
+  "divergence_log": "Strict finite-carrier QIT companion for the finite-time Carnot irreversibility sweep. It preserves the duration signal in a bounded two-bath qubit model with explicit forward engine and reverse refrigerator modes, and adds bounded qutip/cirq/pennylane thermal witnesses on the same one-carrier isothermal legs.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map",
@@ -11,6 +12,26 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing finite-carrier bookkeeping, row serialization, and witness comparison"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the isothermal legs"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"
+    },
     "pytorch": {
       "tried": false,
       "used": false,
@@ -73,6 +94,10 @@
     }
   },
   "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
     "pytorch": null,
     "pyg": null,
     "z3": null,
@@ -115,6 +140,12 @@
       "best_forward_distance": 5.266158659589237e-06,
       "best_reverse_distance": 6.207656610968115e-11,
       "pass": true
+    },
+    "bridge_witnesses_match_the_finite_time_leg_rows": {
+      "max_qutip_density_error": 2.220446049250313e-16,
+      "max_cirq_density_error": 7.142868319043316e-08,
+      "max_pennylane_density_error": 2.220446049250313e-16,
+      "pass": true
     }
   },
   "negative": {
@@ -132,10 +163,19 @@
       "forward_closure_spread": 0.04848890373678075,
       "reverse_closure_spread": 0.04848890373678075,
       "pass": true
+    },
+    "bridge_witnesses_do_not_flatten_the_finite_time_surface": {
+      "max_qutip_density_error": 2.220446049250313e-16,
+      "max_cirq_density_error": 7.142868319043316e-08,
+      "max_pennylane_density_error": 2.220446049250313e-16,
+      "pass": true
     }
   },
   "boundary": {
     "all_rows_are_finite_and_valid": {
+      "pass": true
+    },
+    "all_bridge_witnesses_pass": {
       "pass": true
     },
     "row_count_matches_the_forward_reverse_budget_grid": {
@@ -184,7 +224,10 @@
     "reverse_cop_spread": 0.12156181582099157,
     "forward_closure_spread": 0.04848890373678075,
     "reverse_closure_spread": 0.04848890373678075,
-    "scope_note": "Strict finite-carrier companion for the finite-time harmonic Carnot irreversibility sweep. It keeps the open duration signal explicit while comparing forward engine and reverse refrigerator behavior against Carnot references."
+    "max_bridge_qutip_density_error": 2.220446049250313e-16,
+    "max_bridge_cirq_density_error": 7.142868319043316e-08,
+    "max_bridge_pennylane_density_error": 2.220446049250313e-16,
+    "scope_note": "Strict finite-carrier companion for the finite-time harmonic Carnot irreversibility sweep. It keeps the open duration signal explicit while comparing forward engine and reverse refrigerator behavior against Carnot references and bounding one-carrier qutip/cirq/pennylane thermal witnesses on the isothermal legs."
   },
   "rows": [
     {
@@ -243,6 +286,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 60,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.2083996616982111,
+          "qutip_probability": 0.20839966169821114,
+          "cirq_probability": 0.2083996832370758,
+          "pennylane_probability": 0.20839966169821114,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 2.153886469180577e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 60,
+          "before_probability": 0.2083996616982111,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.20494192990986904,
+          "qutip_probability": 0.20494192990986904,
+          "cirq_probability": 0.20494194328784943,
+          "pennylane_probability": 0.20494192990986904,
+          "qutip_density_max_error": 0.0,
+          "cirq_density_max_error": 1.3377980390139044e-08,
+          "pennylane_density_max_error": 0.0,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.153886469180577e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -302,6 +379,40 @@
           "probability_mismatch_abs": 0.022516406103512715,
           "trace_distance_to_target": 0.0225164061035127
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 60,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.2083996616982111,
+          "qutip_probability": 0.20839966169821114,
+          "cirq_probability": 0.2083996832370758,
+          "pennylane_probability": 0.20839966169821114,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 2.153886469180577e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 60,
+          "before_probability": 0.2083996616982111,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.20494192990986904,
+          "qutip_probability": 0.20494192990986904,
+          "cirq_probability": 0.20494194328784943,
+          "pennylane_probability": 0.20494192990986904,
+          "qutip_density_max_error": 0.0,
+          "cirq_density_max_error": 1.3377980390139044e-08,
+          "pennylane_density_max_error": 0.0,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.153886469180577e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -360,6 +471,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 90,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.22005977256574277,
+          "qutip_probability": 0.22005977256574272,
+          "cirq_probability": 0.22005976736545563,
+          "pennylane_probability": 0.22005977256574272,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 2.0101448283682544e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 90,
+          "before_probability": 0.22005977256574277,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.21280079387527268,
+          "qutip_probability": 0.2128007938752727,
+          "cirq_probability": 0.2128007858991623,
+          "pennylane_probability": 0.2128007938752727,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 7.976110383278723e-09,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.0101448283682544e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -419,6 +564,40 @@
           "probability_mismatch_abs": 0.030375270068916355,
           "trace_distance_to_target": 0.03037527006891637
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 90,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.22005977256574277,
+          "qutip_probability": 0.22005977256574272,
+          "cirq_probability": 0.22005976736545563,
+          "pennylane_probability": 0.22005977256574272,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 2.0101448283682544e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 90,
+          "before_probability": 0.22005977256574277,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.21280079387527268,
+          "qutip_probability": 0.2128007938752727,
+          "cirq_probability": 0.2128007858991623,
+          "pennylane_probability": 0.2128007938752727,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 7.976110383278723e-09,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.0101448283682544e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -477,6 +656,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 150,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.24102396022142392,
+          "qutip_probability": 0.2410239602214239,
+          "cirq_probability": 0.2410239726305008,
+          "pennylane_probability": 0.2410239602214239,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 5.7112560458705275e-08,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 150,
+          "before_probability": 0.24102396022142392,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.2234252404991019,
+          "qutip_probability": 0.22342524049910195,
+          "cirq_probability": 0.2234252393245697,
+          "pennylane_probability": 0.22342524049910195,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 3.097685463693267e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 5.7112560458705275e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -536,6 +749,40 @@
           "probability_mismatch_abs": 0.040999716692745575,
           "trace_distance_to_target": 0.04099971669274559
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 150,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.24102396022142392,
+          "qutip_probability": 0.2410239602214239,
+          "cirq_probability": 0.2410239726305008,
+          "pennylane_probability": 0.2410239602214239,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 5.7112560458705275e-08,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 150,
+          "before_probability": 0.24102396022142392,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.2234252404991019,
+          "qutip_probability": 0.22342524049910195,
+          "cirq_probability": 0.2234252393245697,
+          "pennylane_probability": 0.22342524049910195,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 3.097685463693267e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 5.7112560458705275e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -594,6 +841,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 260,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.2724795512838205,
+          "qutip_probability": 0.2724795512838205,
+          "cirq_probability": 0.2724795639514923,
+          "pennylane_probability": 0.2724795512838205,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 1.7134650587280476e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 260,
+          "before_probability": 0.2724795512838205,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.23091574615094293,
+          "qutip_probability": 0.23091574615094293,
+          "cirq_probability": 0.23091576993465424,
+          "pennylane_probability": 0.23091574615094293,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 2.3783711305958022e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.3783711305958022e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -653,6 +934,40 @@
           "probability_mismatch_abs": 0.04849022234458661,
           "trace_distance_to_target": 0.04849022234458658
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 260,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.2724795512838205,
+          "qutip_probability": 0.2724795512838205,
+          "cirq_probability": 0.2724795639514923,
+          "pennylane_probability": 0.2724795512838205,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 1.7134650587280476e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 260,
+          "before_probability": 0.2724795512838205,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.23091574615094293,
+          "qutip_probability": 0.23091574615094293,
+          "cirq_probability": 0.23091576993465424,
+          "pennylane_probability": 0.23091574615094293,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 2.3783711305958022e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.3783711305958022e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -711,6 +1026,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 520,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3209697736284072,
+          "qutip_probability": 0.32096977362840723,
+          "cirq_probability": 0.32096976041793823,
+          "pennylane_probability": 0.32096977362840723,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 4.639417583440775e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 520,
+          "before_probability": 0.3209697736284072,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.22259448267104665,
+          "qutip_probability": 0.2225944826710467,
+          "cirq_probability": 0.2225944697856903,
+          "pennylane_probability": 0.2225944826710467,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 1.6916966050217752e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 4.639417583440775e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -770,6 +1119,40 @@
           "probability_mismatch_abs": 0.040168958864690324,
           "trace_distance_to_target": 0.04016895886469031
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 520,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3209697736284072,
+          "qutip_probability": 0.32096977362840723,
+          "cirq_probability": 0.32096976041793823,
+          "pennylane_probability": 0.32096977362840723,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 4.639417583440775e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 520,
+          "before_probability": 0.3209697736284072,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.22259448267104665,
+          "qutip_probability": 0.2225944826710467,
+          "cirq_probability": 0.2225944697856903,
+          "pennylane_probability": 0.2225944826710467,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 1.6916966050217752e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 4.639417583440775e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -828,6 +1211,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 1000,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.359499839374829,
+          "qutip_probability": 0.35949983937482904,
+          "cirq_probability": 0.35949987173080444,
+          "pennylane_probability": 0.35949983937482904,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 3.235597545447888e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 1000,
+          "before_probability": 0.359499839374829,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.19879825347096416,
+          "qutip_probability": 0.1987982534709642,
+          "cirq_probability": 0.198798269033432,
+          "pennylane_probability": 0.1987982534709642,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 1.5562467842178407e-08,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 3.235597545447888e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -887,6 +1304,40 @@
           "probability_mismatch_abs": 0.016372729664607844,
           "trace_distance_to_target": 0.016372729664607816
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 1000,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.359499839374829,
+          "qutip_probability": 0.35949983937482904,
+          "cirq_probability": 0.35949987173080444,
+          "pennylane_probability": 0.35949983937482904,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 3.235597545447888e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 1000,
+          "before_probability": 0.359499839374829,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.19879825347096416,
+          "qutip_probability": 0.1987982534709642,
+          "cirq_probability": 0.198798269033432,
+          "pennylane_probability": 0.1987982534709642,
+          "qutip_density_max_error": 2.7755575615628914e-17,
+          "cirq_density_max_error": 1.5562467842178407e-08,
+          "pennylane_density_max_error": 2.7755575615628914e-17,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 1.1102230246251565e-16,
+        "max_cirq_density_error": 3.235597545447888e-08,
+        "max_pennylane_density_error": 1.1102230246251565e-16
       }
     },
     {
@@ -945,6 +1396,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 2500,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3770334389764902,
+          "qutip_probability": 0.3770334389764902,
+          "cirq_probability": 0.3770334720611572,
+          "pennylane_probability": 0.3770334389764902,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 3.308466700602253e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 2500,
+          "before_probability": 0.3770334389764902,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.18293143501129427,
+          "qutip_probability": 0.1829314350112943,
+          "cirq_probability": 0.18293145298957825,
+          "pennylane_probability": 0.1829314350112943,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 7.142868319043316e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 7.142868319043316e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -1004,6 +1489,40 @@
           "probability_mismatch_abs": 0.0005059112049379533,
           "trace_distance_to_target": 0.0005059112049379394
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 2500,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3770334389764902,
+          "qutip_probability": 0.3770334389764902,
+          "cirq_probability": 0.3770334720611572,
+          "pennylane_probability": 0.3770334389764902,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 3.308466700602253e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 2500,
+          "before_probability": 0.3770334389764902,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.18293143501129427,
+          "qutip_probability": 0.1829314350112943,
+          "cirq_probability": 0.18293145298957825,
+          "pennylane_probability": 0.1829314350112943,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 7.142868319043316e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 7.142868319043316e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -1062,6 +1581,40 @@
           "closure_error": 0.0,
           "trace_distance_to_target": 0.0
         }
+      },
+      "bridge_witnesses": {
+        "hot_iso": {
+          "label": "forward_hot_iso",
+          "steps": 5000,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3775393501814282,
+          "qutip_probability": 0.37753935018142826,
+          "cirq_probability": 0.37753933668136597,
+          "pennylane_probability": 0.37753935018142826,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 1.3500062234772514e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "cold_iso": {
+          "label": "forward_cold_iso",
+          "steps": 5000,
+          "before_probability": 0.3775393501814282,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.18242684241416215,
+          "qutip_probability": 0.18242684241416224,
+          "cirq_probability": 0.1824268400669098,
+          "pennylane_probability": 0.18242684241416224,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 2.7455069995241388e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.7455069995241388e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     },
     {
@@ -1121,6 +1674,40 @@
           "probability_mismatch_abs": 1.3186078058335937e-06,
           "trace_distance_to_target": 1.3186078058335937e-06
         }
+      },
+      "bridge_witnesses": {
+        "cold_iso_reverse": {
+          "label": "reverse_cold_iso",
+          "steps": 5000,
+          "before_probability": 0.18242552380635632,
+          "target_probability": 0.37754066879814546,
+          "reference_probability": 0.3775393501814282,
+          "qutip_probability": 0.37753935018142826,
+          "cirq_probability": 0.37753933668136597,
+          "pennylane_probability": 0.37753935018142826,
+          "qutip_density_max_error": 2.220446049250313e-16,
+          "cirq_density_max_error": 1.3500062234772514e-08,
+          "pennylane_density_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        "hot_iso_reverse": {
+          "label": "reverse_hot_iso",
+          "steps": 5000,
+          "before_probability": 0.3775393501814282,
+          "target_probability": 0.18242552380635632,
+          "reference_probability": 0.18242684241416215,
+          "qutip_probability": 0.18242684241416224,
+          "cirq_probability": 0.1824268400669098,
+          "pennylane_probability": 0.18242684241416224,
+          "qutip_density_max_error": 1.1102230246251565e-16,
+          "cirq_density_max_error": 2.7455069995241388e-08,
+          "pennylane_density_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "pass": true,
+        "max_qutip_density_error": 2.220446049250313e-16,
+        "max_cirq_density_error": 2.7455069995241388e-08,
+        "max_pennylane_density_error": 2.220446049250313e-16
       }
     }
   ]

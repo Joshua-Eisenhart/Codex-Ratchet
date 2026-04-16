@@ -6,22 +6,22 @@
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "classical joint algebra, KL divergence, and separable-hull embedding"
+      "reason": "supportive classical joint algebra, KL divergence, and separable-hull embedding"
     },
     "qutip": {
       "tried": true,
       "used": true,
-      "reason": "Bell-state reference witness on the same 2x2 carrier"
+      "reason": "supportive Bell-state reference witness on the same 2x2 carrier"
     },
     "cirq": {
       "tried": true,
       "used": true,
-      "reason": "Bell-state circuit witness on the same 2x2 carrier"
+      "reason": "supportive Bell-state circuit witness on the same 2x2 carrier"
     },
     "pennylane": {
       "tried": true,
       "used": true,
-      "reason": "Bell-state statevector witness on the same 2x2 carrier"
+      "reason": "supportive Bell-state statevector witness on the same 2x2 carrier"
     },
     "pytorch": {
       "tried": false,
@@ -30,7 +30,7 @@
     }
   },
   "tool_integration_depth": {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
     "qutip": "supportive",
     "cirq": "supportive",
     "pennylane": "supportive",
@@ -60,11 +60,11 @@
     "bridge_contrast_qutip": true,
     "bridge_contrast_cirq": true,
     "bridge_contrast_pennylane": true,
-    "bridge_surface_agrees": false
+    "bridge_surface_agrees": true
   },
-  "all_pass": false,
+  "all_pass": true,
   "summary": {
-    "all_pass": false
+    "all_pass": true
   },
   "divergence_log": "REE stays identically zero on every classical joint because diagonal density matrices are already separable. qutip, cirq, and pennylane are added only as bounded Bell-state reference witnesses on the same 2x2 carrier so this file can contrast classical joints against a nonclassical surface without changing the theorem being tested."
 }

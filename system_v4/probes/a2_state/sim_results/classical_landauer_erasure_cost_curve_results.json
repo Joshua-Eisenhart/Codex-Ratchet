@@ -1,116 +1,548 @@
 {
-  "name": "classical_landauer_erasure_cost_curve",
-  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): E_erase >= kT * Delta H.",
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": true,
-      "used": false,
-      "reason": ""
+  "boundary": {
+    "p_one": {
+      "cirq": {
+        "cost": -0.0,
+        "entropy": -0.0,
+        "rho": [
+          [
+            [
+              9.992007221626409e-16,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 3.551116999690106e-14,
+      "pennylane": {
+        "cost": 9.992007221626405e-16,
+        "entropy": 9.992007221626405e-16,
+        "rho": [
+          [
+            [
+              9.992007221626409e-16,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.999999999999999,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 3.551116999690106e-14,
+        "entropy": 3.551116999690106e-14,
+        "rho": [
+          [
+            [
+              9.992007221626409e-16,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.999999999999999,
+              0.0
+            ]
+          ]
+        ]
+      }
     },
-    "pyg": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "z3": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "cvc5": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "sympy": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "clifford": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "geomstats": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "e3nn": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "rustworkx": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "xgi": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "toponetx": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "gudhi": {
-      "tried": true,
-      "used": false,
-      "reason": ""
+    "p_zero": {
+      "cirq": {
+        "cost": 3.453877651657239e-14,
+        "entropy": 3.453877651657239e-14,
+        "rho": [
+          [
+            [
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1.0000000036274937e-15,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 3.553797711707333e-14,
+      "pennylane": {
+        "cost": 9.992007221626405e-16,
+        "entropy": 9.992007221626405e-16,
+        "rho": [
+          [
+            [
+              0.999999999999999,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-15,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 3.553797711707333e-14,
+        "entropy": 3.553797711707333e-14,
+        "rho": [
+          [
+            [
+              0.999999999999999,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              1e-15,
+              0.0
+            ]
+          ]
+        ]
+      }
     }
   },
-  "tool_integration_depth": {
-    "pytorch": null,
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
-    "clifford": null,
-    "geomstats": null,
-    "e3nn": null,
-    "rustworkx": null,
-    "xgi": null,
-    "toponetx": null,
-    "gudhi": null
-  },
-  "load_bearing_tool": "numpy",
-  "positive": {
-    "p_0.5": {
-      "E": 0.6931471805599453,
-      "theory": 0.6931471805599453,
-      "ok": true
+  "classification": "canonical",
+  "divergence_log": "Landauer erasure curve: the bit-erase cost is H(p) for a one-bit carrier, and qutip/cirq/pennylane witness the same diagonal carrier state instead of redefining the cost.",
+  "load_bearing_tool": "numpy+qutip+cirq+pennylane",
+  "name": "classical_landauer_erasure_cost_curve",
+  "negative": {
+    "claimed_free_cost": 0.0,
+    "floor_vs_ln2": {
+      "cirq": true,
+      "pennylane": true,
+      "qutip": true
     },
-    "p_0.25": {
-      "E": 0.5623351446188083,
-      "theory": 0.5623351446188083,
-      "ok": true
+    "reject_free_erasure": true,
+    "witness_floor": {
+      "cirq": 0.6931471805599453,
+      "pennylane": 0.6931471805599453,
+      "qutip": 0.6931471805599453
+    }
+  },
+  "pass": true,
+  "positive": {
+    "floor": {
+      "cirq": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 0.6931471805599453,
+      "ln2": 0.6931471805599453,
+      "ok": true,
+      "pennylane": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      }
     },
     "p_0.1": {
-      "E": 0.3250829733914482,
-      "theory": 0.3250829733914482,
-      "ok": true
+      "cirq": {
+        "cost": 0.32508299666231844,
+        "entropy": 0.32508299666231844,
+        "rho": [
+          [
+            [
+              0.8999999761581421,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.10000000149011612,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 0.3250829733914482,
+      "ok": true,
+      "pennylane": {
+        "cost": 0.3250829733914482,
+        "entropy": 0.3250829733914482,
+        "rho": [
+          [
+            [
+              0.9,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.1,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 0.3250829733914482,
+        "entropy": 0.3250829733914482,
+        "rho": [
+          [
+            [
+              0.9,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.1,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "theory": 0.3250829733914482
     },
-    "floor": {
-      "E": 0.6931471805599453,
-      "ln2": 0.6931471805599453,
-      "ok": true
+    "p_0.25": {
+      "cirq": {
+        "cost": 0.5623351446188083,
+        "entropy": 0.5623351446188083,
+        "rho": [
+          [
+            [
+              0.75,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.25,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 0.5623351446188083,
+      "ok": true,
+      "pennylane": {
+        "cost": 0.5623351446188083,
+        "entropy": 0.5623351446188083,
+        "rho": [
+          [
+            [
+              0.75,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.25,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 0.5623351446188083,
+        "entropy": 0.5623351446188083,
+        "rho": [
+          [
+            [
+              0.75,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.25,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "theory": 0.5623351446188083
+    },
+    "p_0.5": {
+      "cirq": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "classical_cost": 0.6931471805599453,
+      "ok": true,
+      "pennylane": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "qutip": {
+        "cost": 0.6931471805599453,
+        "entropy": 0.6931471805599453,
+        "rho": [
+          [
+            [
+              0.5,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.5,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "theory": 0.6931471805599453
     }
   },
-  "negative": {
-    "reject_free_erasure": true
+  "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): E_erase >= kT * Delta H.",
+  "tool_integration_depth": {
+    "cirq": "load_bearing",
+    "numpy": "load_bearing",
+    "pennylane": "load_bearing",
+    "qutip": "load_bearing"
   },
-  "boundary": {
-    "p_zero": {
-      "E": 3.553797711707333e-14
+  "tool_manifest": {
+    "cirq": {
+      "reason": "density-matrix simulator witness for the same one-bit carrier",
+      "tried": true,
+      "used": true
     },
-    "p_one": {
-      "E": 3.551116999690106e-14
+    "numpy": {
+      "reason": "binary entropy, erasure cost, and boundary checks for the carrier bit",
+      "tried": true,
+      "used": true
+    },
+    "pennylane": {
+      "reason": "mixed-state QNode witness for the same one-bit carrier",
+      "tried": true,
+      "used": true
+    },
+    "qutip": {
+      "reason": "density-matrix entropy witness for the same one-bit carrier",
+      "tried": true,
+      "used": true
     }
-  },
-  "pass": true
+  }
 }

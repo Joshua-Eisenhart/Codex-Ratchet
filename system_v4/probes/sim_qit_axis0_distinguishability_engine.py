@@ -98,6 +98,13 @@ e1 = blades_cl3['e1']
 e2 = blades_cl3['e2']
 e3 = blades_cl3['e3']
 
+classification = "canonical"
+divergence_log = (
+    "QIT-Axis0 distinguishability bridge; canonical contract note "
+    "for trace distance, distinguishability cost, and Axis0 correspondence."
+)
+CLASSIFICATION_NOTE = divergence_log
+
 
 # =====================================================================
 # HELPERS
@@ -567,7 +574,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_qit_axis0_distinguishability_engine",
-        "classification": "classical_baseline",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

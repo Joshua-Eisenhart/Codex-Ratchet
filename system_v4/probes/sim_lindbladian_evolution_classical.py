@@ -16,6 +16,11 @@ import numpy as np
 from scipy.linalg import expm  # scipy is numeric, fine as supportive
 
 classification = "classical_baseline"
+divergence_log = (
+    "No Hamiltonian commutator -i[H,rho] piece; purely dissipative rates; "
+    "no decoherence on off-diagonals (none exist classically); no Kraus/GKSL "
+    "structure, so this cannot represent quantum Zeno or dephasing."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix exp/master eqn"},
@@ -83,11 +88,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "no Hamiltonian commutator -i[H,rho] piece; purely dissipative rates",
-            "no decoherence on off-diagonals (none exist classically)",
-            "no Kraus/GKSL structure; cannot represent quantum Zeno or dephasing",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "lindbladian_evolution_classical_results.json")

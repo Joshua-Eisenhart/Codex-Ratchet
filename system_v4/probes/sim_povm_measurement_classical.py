@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "POVM elements are scalars/rows, not PSD operators on a Hilbert space; "
+    "no noncommuting measurement structure, so Helstrom is not generically "
+    "saturated; no Naimark dilation, so measurement state-update is undefined."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "stochastic matrix arithmetic"},
@@ -69,11 +74,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "POVM elements are scalars/rows, not PSD operators on a Hilbert space",
-            "no noncommuting measurement structure; cannot saturate Helstrom bound generically",
-            "no Naimark dilation; measurement instrument state-update undefined",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "povm_measurement_classical_results.json")

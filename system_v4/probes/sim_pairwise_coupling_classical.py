@@ -23,6 +23,11 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Pairwise shells are classical product states, not CP^1 quantum shells; "
+    "fidelity is computed on amplitudes, but no quantum reduced-state coupling "
+    "exists; no entanglement or noncommuting shell interaction is represented."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "excluded; classical baseline"},
@@ -133,6 +138,7 @@ if __name__ == "__main__":
         "negative": neg,
         "boundary": bnd,
         "classification": "classical_baseline",
+        "divergence_log": divergence_log,
         "all_pass": bool(pos.get("pass") and neg.get("pass") and bnd.get("pass")),
     }
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

@@ -10,6 +10,13 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Discord is identically 0 on classical joints, so this baseline cannot "
+    "witness quantum correlations beyond entanglement; it lacks the local "
+    "measurement-induced coherence destruction mechanism; classical J(A:B) = "
+    "I(A:B) always; classical-classical vs classical-quantum states remain "
+    "indistinguishable here."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "pmf mutual info; local measurement sweep"},
@@ -75,11 +82,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "discord identically 0 on classical joints; THE KEY INNATE FAILURE — cannot witness quantum correlations beyond entanglement",
-                "no notion of local-measurement-induced coherence destruction (discord's actual mechanism)",
-                "classical J(A:B) = I(A:B) always; quantum J <= I with strict inequality for coherent states",
-                "classical-classical vs classical-quantum states indistinguishable in this baseline",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

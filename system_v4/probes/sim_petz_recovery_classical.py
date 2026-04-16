@@ -11,6 +11,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bayes rule is commutative; no sqrt(rho) conjugation; cannot recover "
+    "off-diagonal coherence destroyed by channel; no Fawzi-Renner approximate "
+    "recovery inequality via quantum relative entropy."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "Bayes arithmetic"},
@@ -75,11 +80,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "Bayes rule is commutative; no sqrt(rho) conjugation",
-            "cannot recover off-diagonal coherence destroyed by channel",
-            "no Fawzi-Renner approximate recovery inequality via quantum relative entropy",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "petz_recovery_classical_results.json")

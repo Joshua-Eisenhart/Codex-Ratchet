@@ -13,6 +13,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Cannot express pure-joint -> mixed-marginal (entanglement signature); "
+    "no off-diagonal coherence tracing, only diagonal marginalization; "
+    "blind to subsystem purity inversion used in entanglement entropy."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "sum over axis"},
@@ -61,11 +66,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "cannot express pure-joint -> mixed-marginal (entanglement signature)",
-            "no off-diagonal coherence tracing; only diagonal marginalization",
-            "blind to subsystem purity inversion used in entanglement entropy",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "partial_trace_classical_results.json")

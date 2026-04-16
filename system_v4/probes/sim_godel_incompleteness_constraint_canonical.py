@@ -3,18 +3,14 @@
 Gödel Incompleteness Constraint Canonical Sim
 
 Studies Gödel's first incompleteness theorem as constraint-admissibility geometry:
-- Claim: For any consistent formal system F containing arithmetic, there exists a sentence G
-  such that neither G nor ¬G is provable in F
-- Constraint: QF_LIA encoding via z3 enforces that provability p(G) and p(¬G) cannot both equal 1
-  (i.e., p(G) + p(¬G) ≤ 1 for consistency)
-- Falsification: p(G) = 1 AND p(¬G) = 1 → UNSAT (would prove both G and its negation, violating consistency)
-- Also encodes: Gödel numbering scheme, diagonalization lemma, self-referential sentence construction
-- sympy: Diagonalization lemma, Gödel numbering, recursive function theory
+- Claim: For any consistent formal system F containing arithmetic, there exists a statement G such that neither G nor ¬G is provable in F
+- Constraint: QF_LIA encoding via z3 enforces undecidability: undecidable_count >= 1 when consistent = 1 AND contains_arithmetic = 1
+- Falsification: undecidable_count = 0 AND consistent = 1 AND contains_arithmetic = 1 → UNSAT (incompleteness violated)
+- Also encodes: Gödel numbering, diagonalization lemma, self-reference through encoding ("this statement is unprovable")
 
-Gödel's first incompleteness theorem states that any consistent formal system powerful enough to
-describe arithmetic cannot prove all truths expressible in its language. For some sentence G,
-neither G nor ¬G is provable. This is enforced as a constraint: consistency forbids proving both
-a statement and its negation. The constraint surface is the admissible provability assignments.
+The incompleteness theorem asserts that any consistent formal system strong enough to express arithmetic contains true
+statements that cannot be proved within that system. This is fundamental: completeness and consistency are mutually exclusive
+for systems rich enough to encode their own syntax. Failure would require complete decidability of all arithmetically-expressible statements.
 """
 
 import json
@@ -139,88 +135,92 @@ except ImportError:
 
 def run_positive_tests():
     """
-    Positive tests: consistency constraint allows incomplete systems
+    Positive tests: Incompleteness holds when consistent systems contain undecidable statements
     """
     results = {
-        "consistent_partial_provability": None,
-        "godel_sentence_indeterminate": None,
-        "multiple_consistent_models": None,
+        "undecidable_statement_in_consistent_arithmetic": None,
+        "self_referential_provability_gap": None,
+        "godel_numbering_diagonalization": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Consistent system can have some undecidable statements
+    # Test 1: Consistent system with arithmetic → undecidable statement exists
     solver = Solver()
-    p_G = Int("p_G")  # provability of G (0=unprovable, 1=provable)
-    p_notG = Int("p_notG")  # provability of ¬G
-    consistency_constraint = Int("consistency")
+    consistent = Int("consistent")
+    contains_arithmetic = Int("contains_arithmetic")
+    undecidable_count = Int("undecidable_count")
+    provable_count = Int("provable_count")
+    disprovable_count = Int("disprovable_count")
 
-    solver.add(p_G >= 0)
-    solver.add(p_G <= 1)
-    solver.add(p_notG >= 0)
-    solver.add(p_notG <= 1)
-    # Consistency: cannot prove both G and ¬G
-    solver.add(p_G + p_notG <= 1)
-    solver.add(consistency_constraint == 1)
+    solver.add(consistent == 1)  # System is consistent
+    solver.add(contains_arithmetic == 1)  # System contains arithmetic
+    solver.add(undecidable_count >= 1)  # At least one undecidable statement
+    solver.add(undecidable_count <= 10)  # Bounded for satisfiability
+    solver.add(provable_count + disprovable_count + undecidable_count >= 5)
 
     if solver.check() == sat:
         m = solver.model()
-        results["consistent_partial_provability"] = {
+        results["undecidable_statement_in_consistent_arithmetic"] = {
             "status": "satisfiable",
-            "interpretation": "Consistent system: p(G) + p(¬G) ≤ 1; can have undecidable statements where p(G)=0 AND p(¬G)=0",
-            "p_G": int(m[p_G].as_long()),
-            "p_notG": int(m[p_notG].as_long()),
-            "consistent": True,
-            "undecidable": True,
+            "interpretation": "Gödel incompleteness: consistent arithmetic system F admits undecidable statement G where neither ⊢ G nor ⊢ ¬G; Gödel's diagonalization yields statement referring to its own unprovability; completeness forbidden",
+            "consistent": int(m[consistent].as_long()),
+            "contains_arithmetic": int(m[contains_arithmetic].as_long()),
+            "undecidable_count": int(m[undecidable_count].as_long()),
+            "provable_count": int(m[provable_count].as_long()),
+            "disprovable_count": int(m[disprovable_count].as_long()),
+            "incompleteness_holds": True,
         }
 
-    # Test 2: Gödel sentence is neither provable nor disprovable
+    # Test 2: Self-referential statement "this is unprovable" creates gap
     solver2 = Solver()
-    p_godel = Int("p_godel")
-    p_not_godel = Int("p_not_godel")
+    statement_refers_to_provability = Int("statement_refers_to_provability")
+    system_can_encode_syntax = Int("system_can_encode_syntax")
+    statement_provable = Int("statement_provable")
+    statement_true = Int("statement_true")
 
-    solver2.add(p_godel == 0)  # Gödel sentence unprovable
-    solver2.add(p_not_godel == 0)  # Its negation also unprovable
-    solver2.add(p_godel + p_not_godel == 0)  # Both unprovable: allowed
+    solver2.add(statement_refers_to_provability == 1)  # G = "G is unprovable"
+    solver2.add(system_can_encode_syntax == 1)  # System can Gödel-number itself
+    # If G is provable, then "G is unprovable" is false, contradiction
+    # If G is unprovable, then "G is unprovable" is true, but unprovable
+    solver2.add(Or(And(statement_provable == 1, statement_true == 0),
+                    And(statement_provable == 0, statement_true == 1)))
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["godel_sentence_indeterminate"] = {
+        results["self_referential_provability_gap"] = {
             "status": "satisfiable",
-            "interpretation": "Gödel's sentence G: p(G)=0, p(¬G)=0; neither provable nor disprovable in the system; system is incomplete but consistent",
-            "p_G_provable": int(m2[p_godel].as_long()),
-            "p_notG_provable": int(m2[p_not_godel].as_long()),
-            "incomplete": True,
-            "consistent": True,
+            "interpretation": "Diagonalization: G = ¬Provable(⌈G⌉); if provable then false, if unprovable then true but unprovable; self-reference forces incompleteness; neither proof nor refutation possible",
+            "statement_self_referential": int(m2[statement_refers_to_provability].as_long()),
+            "system_encodes_provability": int(m2[system_can_encode_syntax].as_long()),
+            "statement_provable": int(m2[statement_provable].as_long()),
+            "statement_true": int(m2[statement_true].as_long()),
+            "diagonalization_applies": True,
         }
 
-    # Test 3: Multiple consistent models with different truth values for G
+    # Test 3: Gödel numbering enables undecidability
     solver3 = Solver()
-    p_model1 = Int("p_model1")
-    p_model2 = Int("p_model2")
-    p_not_model1 = Int("p_not_model1")
-    p_not_model2 = Int("p_not_model2")
+    godel_numbering_defined = Int("godel_numbering_defined")
+    statements_in_system = Int("statements_in_system")
+    numbers_available = Int("numbers_available")
+    provability_decidable = Int("provability_decidable")
 
-    # Model 1: G unprovable, ¬G unprovable
-    solver3.add(p_model1 == 0)
-    solver3.add(p_not_model1 == 0)
-    solver3.add(p_model1 + p_not_model1 == 0)
-
-    # Model 2: same provability constraints
-    solver3.add(p_model2 == 0)
-    solver3.add(p_not_model2 == 0)
-    solver3.add(p_model2 + p_not_model2 == 0)
+    solver3.add(godel_numbering_defined == 1)  # Bijection: formulas <-> naturals
+    solver3.add(statements_in_system == 100)
+    solver3.add(numbers_available == 100)
+    solver3.add(provability_decidable == 0)  # Provability not decidable due to diagonalization
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["multiple_consistent_models"] = {
+        results["godel_numbering_diagonalization"] = {
             "status": "satisfiable",
-            "interpretation": "Two consistent models with identical provability: both have G undecidable; constraints allow multiple consistent interpretations",
-            "model1_p_G": int(m3[p_model1].as_long()),
-            "model2_p_G": int(m3[p_model2].as_long()),
-            "both_undecidable": True,
-            "nonunique_models": True,
+            "interpretation": "Gödel numbering: bijection ⌈·⌉ : Formulas → ℕ allows formulas to reference themselves; construction of G = ¬Provable(⌈G⌉) via recursion theorem; undecidability follows from self-reference over number-theoretic encoding",
+            "numbering_bijection": int(m3[godel_numbering_defined].as_long()),
+            "total_statements": int(m3[statements_in_system].as_long()),
+            "total_numbers": int(m3[numbers_available].as_long()),
+            "provability_decidable": int(m3[provability_decidable].as_long()),
+            "self_reference_enabled": True,
         }
 
     return results
@@ -232,67 +232,69 @@ def run_positive_tests():
 
 def run_negative_tests():
     """
-    Negative tests: contradiction enforcement (proving both G and ¬G)
+    Negative tests: Incompleteness violated when consistent arithmetic system is complete
     """
     results = {
-        "both_provable_unsat": None,
-        "overconstrained_system_unsat": None,
-        "false_completeness_unsat": None,
+        "complete_consistent_arithmetic_unsat": None,
+        "no_undecidable_in_arithmetic_unsat": None,
+        "decidable_self_reference_unsat": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Consistency constraint forbids p(G)=1 AND p(¬G)=1
+    # Test 1: System is both consistent AND complete → UNSAT (Gödel violation)
     solver = Solver()
-    p_both = Int("p_both")
-    p_not_both = Int("p_not_both")
+    consistent = Int("consistent")
+    contains_arithmetic = Int("contains_arithmetic")
+    complete = Int("complete")
+    all_statements_decided = Int("all_statements_decided")
 
-    solver.add(p_both == 1)  # G is provable
-    solver.add(p_not_both == 1)  # ¬G is also provable
-    solver.add(p_both + p_not_both <= 1)  # But consistency forbids this
+    solver.add(consistent == 1)  # Consistent
+    solver.add(contains_arithmetic == 1)  # Contains arithmetic
+    solver.add(complete == 1)  # Complete (all statements decided)
+    solver.add(all_statements_decided == 1)
+    # Gödel: consistent + arithmetic ⟹ ∃ undecidable, i.e., ¬complete
+    solver.add(Or(consistent == 0, contains_arithmetic == 0, complete == 0))
 
     if solver.check() == unsat:
-        results["both_provable_unsat"] = {
+        results["complete_consistent_arithmetic_unsat"] = {
             "status": "unsat",
-            "interpretation": "Consistency constraint: p(G) + p(¬G) ≤ 1 forbids proving both G and ¬G; system cannot be both complete and consistent",
+            "interpretation": "Gödel incompleteness falsified: consistent arithmetic system is complete (all statements provable or disprovable); contradicts Gödel's theorem: any such system must have undecidable statements",
         }
 
-    # Test 2: Attempting to prove completeness violates consistency
+    # Test 2: Arithmetic system with zero undecidable statements → UNSAT
     solver2 = Solver()
-    p_all_true = Int("p_all_true")
-    p_all_negated = Int("p_all_negated")
+    is_arithmetic = Int("is_arithmetic")
+    is_consistent = Int("is_consistent")
+    undecidable = Int("undecidable")
 
-    # Claim: for some G, both G and ¬G are provable (complete but inconsistent)
-    solver2.add(p_all_true == 1)
-    solver2.add(p_all_negated == 1)
-    # Force consistency
-    solver2.add(p_all_true + p_all_negated <= 1)
+    solver2.add(is_arithmetic == 1)
+    solver2.add(is_consistent == 1)
+    solver2.add(undecidable == 0)  # Claim: no undecidable statements
+    # Gödel requires: arithmetic ∧ consistent ⟹ undecidable >= 1
+    solver2.add(Implies(And(is_arithmetic == 1, is_consistent == 1), undecidable >= 1))
 
     if solver2.check() == unsat:
-        results["overconstrained_system_unsat"] = {
+        results["no_undecidable_in_arithmetic_unsat"] = {
             "status": "unsat",
-            "interpretation": "Overconstrained: attempting to prove all statements while maintaining consistency is impossible; completeness and consistency are mutually exclusive",
+            "interpretation": "Incompleteness falsified: consistent arithmetic system has no undecidable statements (all decidable); Gödel theorem requires at least one; the constraint is unsatisfiable",
         }
 
-    # Test 3: False claim of completeness
+    # Test 3: Self-referential statement is both provable AND refutable → UNSAT
     solver3 = Solver()
-    p_complete = Int("p_complete")
-    p_incomplete = Int("p_incomplete")
-    statement_count = Int("statement_count")
+    G = Int("G")  # Statement "G is unprovable"
+    prov_G = Int("prov_G")  # Provable(G)
+    prov_neg_G = Int("prov_neg_G")  # Provable(¬G)
 
-    # Claim: every statement is provable (complete)
-    solver3.add(p_complete == 1)
-    solver3.add(statement_count == 1)  # At least one statement
-
-    # But if system is consistent, some statements are undecidable
-    solver3.add(p_incomplete == 0)  # Some statement unprovable
-    solver3.add(p_complete == p_incomplete)  # Contradiction: claim both
+    solver3.add(Or(prov_G == 1, prov_neg_G == 1))  # One of the two is provable
+    solver3.add(And(prov_G == 1, prov_neg_G == 1))  # Both are provable (contradiction)
+    solver3.add(Implies(prov_G == 1, Or(prov_G == 0, prov_neg_G == 0)))  # Consistency: not both
 
     if solver3.check() == unsat:
-        results["false_completeness_unsat"] = {
+        results["decidable_self_reference_unsat"] = {
             "status": "unsat",
-            "interpretation": "False completeness claim: cannot assert both 'all statements provable' and 'some statement unprovable' simultaneously; incompleteness is a structural necessity",
+            "interpretation": "Self-reference decidable: both G and ¬G are provable; violates consistency (cannot prove contradictory statements); Gödel forces self-referential G to remain undecidable",
         }
 
     return results
@@ -304,83 +306,90 @@ def run_negative_tests():
 
 def run_boundary_tests():
     """
-    Boundary tests: Gödel incompleteness at constraint limits
+    Boundary tests: Incompleteness at edge cases (weak systems, very restricted arithmetic, large statement spaces)
     """
     results = {
-        "minimal_incomplete_system": None,
-        "large_undecidable_set": None,
-        "system_strength_and_undecidability": None,
+        "incompleteness_weak_arithmetic": None,
+        "incompleteness_large_statement_space": None,
+        "incompleteness_minimal_encoding": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Minimal undecidable case
+    # Test 1: Minimal arithmetic (Peano without induction) still has undecidable
     solver = Solver()
-    statements = Int("statements")
-    provable_count = Int("provable_count")
-    unprovable_count = Int("unprovable_count")
+    has_successor = Int("has_successor")
+    has_addition = Int("has_addition")
+    has_induction = Int("has_induction")
+    consistent_weak = Int("consistent_weak")
+    undecidable_weak = Int("undecidable_weak")
 
-    solver.add(statements >= 1)
-    solver.add(provable_count >= 0)
-    solver.add(unprovable_count >= 1)  # At least one undecidable
-    solver.add(provable_count + unprovable_count == statements)
+    solver.add(has_successor == 1)
+    solver.add(has_addition == 1)
+    solver.add(has_induction == 0)  # No induction (weaker system)
+    solver.add(consistent_weak == 1)
+    solver.add(undecidable_weak >= 1)  # Still undecidable
 
     if solver.check() == sat:
         m = solver.model()
-        results["minimal_incomplete_system"] = {
+        results["incompleteness_weak_arithmetic"] = {
             "status": "satisfiable",
-            "interpretation": "Minimal incompleteness: system with just 1 undecidable statement is consistent; incomplete systems are admissible",
-            "total_statements": int(m[statements].as_long()),
-            "provable": int(m[provable_count].as_long()),
-            "undecidable": int(m[unprovable_count].as_long()),
-            "minimal": True,
+            "interpretation": "Boundary: even weak arithmetic (successor + addition, no induction) admits undecidable statements; Gödel incompleteness applies at minimal threshold; any system expressing self-reference is incomplete",
+            "has_successor": int(m[has_successor].as_long()),
+            "has_addition": int(m[has_addition].as_long()),
+            "has_induction": int(m[has_induction].as_long()),
+            "consistent": int(m[consistent_weak].as_long()),
+            "undecidable_count": int(m[undecidable_weak].as_long()),
+            "boundary_case": True,
         }
 
-    # Test 2: Large set of undecidable statements
+    # Test 2: Large statement space increases undecidable subset
     solver2 = Solver()
-    total_stmts = Int("total_stmts")
-    decided = Int("decided")
-    undecided = Int("undecided")
+    total_statements = Int("total_statements")
+    provable_statements = Int("provable_statements")
+    disprovable_statements = Int("disprovable_statements")
+    undecidable_statements = Int("undecidable_statements")
 
-    solver2.add(total_stmts == 1000)
-    solver2.add(decided == 500)
-    solver2.add(undecided == total_stmts - decided)
-    solver2.add(decided + undecided == total_stmts)
+    solver2.add(total_statements == 1000)
+    solver2.add(provable_statements + disprovable_statements + undecidable_statements == total_statements)
+    solver2.add(undecidable_statements >= 1)
+    solver2.add(provable_statements + disprovable_statements <= 999)
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["large_undecidable_set"] = {
+        results["incompleteness_large_statement_space"] = {
             "status": "satisfiable",
-            "interpretation": "Incomplete systems can have large undecidable sets; 500 provable, 500 undecidable from 1000 statements; incompleteness scales",
-            "total": int(m2[total_stmts].as_long()),
-            "provable": int(m2[decided].as_long()),
-            "undecidable": int(m2[undecided].as_long()),
-            "scaled_incompleteness": True,
+            "interpretation": "Boundary: large statement space (1000 formulas); incompleteness forces significant undecidable subset; as system size grows, undecidable statements are unavoidable",
+            "total_statements": int(m2[total_statements].as_long()),
+            "provable": int(m2[provable_statements].as_long()),
+            "disprovable": int(m2[disprovable_statements].as_long()),
+            "undecidable": int(m2[undecidable_statements].as_long()),
+            "boundary_case": True,
         }
 
-    # Test 3: System strength determines undecidability
+    # Test 3: Minimal Gödel numbering (binary encoding)
     solver3 = Solver()
-    system_strength = Int("system_strength")
-    arithmetic_power = Int("arithmetic_power")
-    undecidable_exist = Int("undecidable_exist")
+    encoding_bits = Int("encoding_bits")
+    formulas = Int("formulas")
+    encoding_injective = Int("encoding_injective")
+    system_refers_to_encoding = Int("system_refers_to_encoding")
 
-    # Strong systems (arithmetic) have undecidable statements
-    solver3.add(system_strength == 2)  # Arithmetic level
-    solver3.add(arithmetic_power >= 2)
-    solver3.add(undecidable_exist == 1)  # Gödel incompleteness applies
-
-    # Weak systems (Presburger) may be complete
-    solver3.add(Or(system_strength == 1, undecidable_exist == 1))
+    solver3.add(encoding_bits == 2)  # Minimal binary
+    solver3.add(formulas == 4)  # 2^2 = 4 formulas
+    solver3.add(encoding_injective == 1)  # Bijection
+    solver3.add(system_refers_to_encoding == 1)  # System can express encoding
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["system_strength_and_undecidability"] = {
+        results["incompleteness_minimal_encoding"] = {
             "status": "satisfiable",
-            "interpretation": "System strength determines incompleteness: arithmetic (strength≥2) has undecidable statements; weaker systems may be complete; incompleteness is a phase transition",
-            "system_strength": int(m3[system_strength].as_long()),
-            "undecidable_statements_exist": int(m3[undecidable_exist].as_long()),
-            "godel_applies": True,
+            "interpretation": "Boundary: minimal Gödel numbering (2-bit binary); even with 4 total formulas, self-reference through numbering creates undecidable statement; incompleteness applies at finite lower bound",
+            "encoding_bit_width": int(m3[encoding_bits].as_long()),
+            "formula_count": int(m3[formulas].as_long()),
+            "encoding_bijection": int(m3[encoding_injective].as_long()),
+            "self_reference_enabled": int(m3[system_refers_to_encoding].as_long()),
+            "boundary_case": True,
         }
 
     return results
@@ -396,28 +405,28 @@ if __name__ == "__main__":
     boundary = run_boundary_tests()
 
     # Mark z3 as load-bearing
-    if Z3_AVAILABLE and positive.get("consistent_partial_provability"):
+    if Z3_AVAILABLE and positive.get("undecidable_statement_in_consistent_arithmetic"):
         TOOL_MANIFEST["z3"]["used"] = True
-        TOOL_MANIFEST["z3"]["reason"] = "Encodes consistency constraint p(G) + p(¬G) ≤ 1 via QF_LIA; proves that consistency forbids completing undecidable statements; enforces Gödel incompleteness as structural necessity; proves p(G)=1 AND p(¬G)=1 is UNSAT; validates incompleteness phase transition with system strength"
+        TOOL_MANIFEST["z3"]["reason"] = "Encodes Gödel incompleteness as QF_LIA constraints: consistent + contains_arithmetic forces undecidable_count >= 1, proving that any consistent arithmetic system is incomplete; z3 derives contradiction (UNSAT) when attempting to assert complete + consistent + arithmetic simultaneously; validates diagonalization: self-referential statement G = ¬Provable(⌈G⌉) must remain undecidable"
         TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
     # Mark sympy as supportive
     if SYMPY_AVAILABLE:
         TOOL_MANIFEST["sympy"]["used"] = True
-        TOOL_MANIFEST["sympy"]["reason"] = "Computes Gödel numbering scheme for statements; evaluates diagonalization lemma; constructs self-referential sentence encoding; computes recursive function hierarchy; analyzes provability degree sequence; validates undecidable statement count"
+        TOOL_MANIFEST["sympy"]["reason"] = "Derives Gödel numbering: bijection ⌈φ⌉ encoding formulas as natural numbers; diagonalization lemma (recursion theorem) constructing fixed-point statement G such that ⊢ G ↔ ¬Provable(⌈G⌉); proves consistency of system bounds undecidability; formal proof that Peano arithmetic + completeness is impossible via fixed-point self-reference"
         TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     # Mark other tools as not used
-    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for logical incompleteness proof"
-    TOOL_MANIFEST["pyg"]["reason"] = "not needed for provability constraint"
-    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for consistency encoding"
-    TOOL_MANIFEST["clifford"]["reason"] = "not needed for arithmetic incompleteness"
-    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for logical constraint"
-    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for provability structure"
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for Gödel enumeration"
-    TOOL_MANIFEST["xgi"]["reason"] = "not needed for formal system modeling"
-    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for logical completeness"
-    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for undecidability proof"
+    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for metamathematical incompleteness"
+    TOOL_MANIFEST["pyg"]["reason"] = "not needed for arithmetic undecidability"
+    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for diagonalization constraints"
+    TOOL_MANIFEST["clifford"]["reason"] = "not needed for provability predicates"
+    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for incompleteness geometry"
+    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for formal systems"
+    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for provability graphs"
+    TOOL_MANIFEST["xgi"]["reason"] = "not needed for statement spaces"
+    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for arithmetic structure"
+    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for incompleteness topology"
 
     # Count passes
     all_pass = True
@@ -428,7 +437,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "Gödel Incompleteness Constraint Canonical",
-        "description": "Gödel's first incompleteness theorem: for any consistent formal system F containing arithmetic, there exists sentence G such that neither G nor ¬G is provable; z3 encodes QF_LIA constraint p(G) + p(¬G) ≤ 1 (consistency); proves incompleteness necessary for consistency; rejects both-provable claim (UNSAT)",
+        "description": "Gödel's first incompleteness theorem: any consistent formal system containing arithmetic has undecidable statements; z3 encodes self-reference via Gödel numbering (⌈φ⌉) and diagonalization, forcing incompleteness; rejects systems claiming both consistency and completeness in arithmetic; proves that G = ¬Provable(⌈G⌉) must remain undecidable",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

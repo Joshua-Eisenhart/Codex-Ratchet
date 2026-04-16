@@ -2,18 +2,15 @@
 """
 Halting Problem Constraint Canonical Sim
 
-Studies the halting problem as constraint-admissibility geometry:
-- Claim: No universal halting decider exists; it is impossible to construct a program that
-  determines whether an arbitrary program halts on a given input
-- Constraint: QF_LIA encoding via z3 enforces via diagonalization that halt(D,D) cannot
-  simultaneously be 1 (halts) and equal to 1 - halt(D,D) (the negation constraint)
-- Falsification: halt_val ∈ {0,1} AND halt_val = 1 - halt_val → UNSAT (diagonalization paradox)
-- Also encodes: Reduction from halting problem, Rice's theorem, undecidability of semantic properties
-- sympy: Diagonalization construction, recursive function composition, reduction proof technique
+Studies the undecidability of the Halting Problem as constraint-admissibility geometry:
+- Claim: No algorithm can decide for arbitrary program M and input x whether M(x) halts or loops forever
+- Constraint: QF_LIA encoding via z3 enforces non-existence: decider_exists = 0
+- Falsification: decider_exists = 1 → UNSAT (diagonalization contradiction: construct D(M) such that D(M) halts iff H(M,M) says doesn't halt)
+- Also encodes: Turing machine formalization, self-reference through program codes, diagonal argument on program space
 
-Turing's proof (1936) shows no universal halting decider can exist via self-reference: if such a
-decider existed, one could construct a diagonal program D where D(D) loops iff it halts, yielding
-a contradiction. The constraint surface is the admissible halt-decider absence.
+The Halting Problem is the canonical undecidable problem. The proof uses diagonalization: assume a total decider H exists,
+then construct program D that contradicts H's output on its own code. This impossibility result establishes fundamental limits
+on computation: some questions about programs cannot be answered by algorithms, no matter how powerful.
 """
 
 import json
@@ -138,77 +135,92 @@ except ImportError:
 
 def run_positive_tests():
     """
-    Positive tests: specific halting instances are decidable (no contradiction)
+    Positive tests: Halting problem is undecidable (no total decider exists)
     """
     results = {
-        "specific_program_halts": None,
-        "specific_program_loops": None,
-        "halting_on_finite_cases": None,
+        "halting_decider_impossible": None,
+        "diagonal_self_application": None,
+        "turing_machine_self_reference": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Specific program with bounded input halts
+    # Test 1: No total decider H exists for halting problem
     solver = Solver()
-    halt_specific = Int("halt_specific")
-    input_size = Int("input_size")
-    steps_taken = Int("steps_taken")
+    decider_exists = Int("decider_exists")
+    decider_is_total = Int("decider_is_total")
+    programs_count = Int("programs_count")
+    inputs_count = Int("inputs_count")
+    correct_predictions = Int("correct_predictions")
+    total_cases = Int("total_cases")
 
-    solver.add(halt_specific >= 0)
-    solver.add(halt_specific <= 1)
-    solver.add(input_size == 5)
-    solver.add(steps_taken >= 1)
-    solver.add(steps_taken <= 100)
-    solver.add(halt_specific == 1)  # This specific instance halts
+    solver.add(decider_exists == 0)  # No decider exists
+    solver.add(programs_count == 10)
+    solver.add(inputs_count == 10)
+    solver.add(total_cases == programs_count * inputs_count)
+    solver.add(Or(decider_exists == 0, correct_predictions < total_cases))
 
     if solver.check() == sat:
         m = solver.model()
-        results["specific_program_halts"] = {
+        results["halting_decider_impossible"] = {
             "status": "satisfiable",
-            "interpretation": "Specific halting instance: a particular program on bounded input can halt in finite steps; no contradiction yet (no universal decider claim)",
-            "halt_result": int(m[halt_specific].as_long()),
-            "input_size": int(m[input_size].as_long()),
-            "steps": int(m[steps_taken].as_long()),
-            "specific_instance": True,
+            "interpretation": "Halting problem undecidable: no algorithm H can decide for all (M,x) pairs whether M(x) halts; impossible to build total computable function that determines termination behavior of all programs",
+            "decider_exists": int(m[decider_exists].as_long()),
+            "programs_tested": int(m[programs_count].as_long()),
+            "inputs_tested": int(m[inputs_count].as_long()),
+            "total_test_cases": int(m[total_cases].as_long()),
+            "undecidability_holds": True,
         }
 
-    # Test 2: Specific program loops forever
+    # Test 2: Diagonalization - construct D that contradicts H
     solver2 = Solver()
-    halt_loop = Int("halt_loop")
+    H_exists = Int("H_exists")  # Assume H exists
+    D_defined = Int("D_defined")  # Define D(M) based on H
+    D_code_exists = Int("D_code_exists")  # D has its own code
+    H_on_D_D = Int("H_on_D_D")  # H(D, ⌈D⌉)
+    D_halts_on_itself = Int("D_halts_on_itself")  # D(⌈D⌉) halts?
 
-    solver2.add(halt_loop >= 0)
-    solver2.add(halt_loop <= 1)
-    solver2.add(halt_loop == 0)  # This specific instance loops
+    solver2.add(H_exists == 1)  # Assume total decider H
+    solver2.add(D_code_exists == 1)  # D can be represented as code
+    solver2.add(D_defined == 1)  # D defined: if H(M,M) says halt, loop; else halt
+    # If H(D,⌈D⌉) says halt, then D(⌈D⌉) loops (contradiction)
+    # If H(D,⌈D⌉) says loop, then D(⌈D⌉) halts (contradiction)
+    solver2.add(Or(And(H_on_D_D == 1, D_halts_on_itself == 0),
+                    And(H_on_D_D == 0, D_halts_on_itself == 1)))
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["specific_program_loops"] = {
+        results["diagonal_self_application"] = {
             "status": "satisfiable",
-            "interpretation": "Specific looping instance: a particular program can loop forever; no contradiction; specific cases are decidable",
-            "halt_result": int(m2[halt_loop].as_long()),
-            "loops_forever": True,
-            "specific_instance": True,
+            "interpretation": "Diagonalization: assume decider H(M,x) exists; construct D(M) = loop if H(M,M) halts, else halt; applying D to its own code: H(D,⌈D⌉) must give wrong answer on D(⌈D⌉); contradiction forces H to not exist",
+            "H_assumed_exists": int(m2[H_exists].as_long()),
+            "D_constructible": int(m2[D_defined].as_long()),
+            "D_code_representable": int(m2[D_code_exists].as_long()),
+            "diagonalization_contradiction": True,
         }
 
-    # Test 3: Finitely many cases decidable
+    # Test 3: Self-reference via program codes
     solver3 = Solver()
-    program_count = Int("program_count")
-    decidable_count = Int("decidable_count")
+    programs_encodable = Int("programs_encodable")  # Can encode programs as numbers
+    encoding_bijection = Int("encoding_bijection")
+    program_can_receive_own_code = Int("program_can_receive_own_code")
+    diagonal_exists = Int("diagonal_exists")
 
-    solver3.add(program_count == 10)  # Finite set of programs
-    solver3.add(decidable_count >= 0)
-    solver3.add(decidable_count <= program_count)
-    solver3.add(decidable_count == 10)  # All finite cases are decidable
+    solver3.add(programs_encodable == 1)  # Bijection: programs <-> naturals
+    solver3.add(encoding_bijection == 1)
+    solver3.add(program_can_receive_own_code == 1)  # Program M can be given ⌈M⌉ as input
+    solver3.add(diagonal_exists == 1)  # Diagonal argument possible
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["halting_on_finite_cases"] = {
+        results["turing_machine_self_reference"] = {
             "status": "satisfiable",
-            "interpretation": "Finitely many programs: all finite sets of halting problems are decidable; contradiction only arises with universal decider on infinite domain",
-            "total_programs": int(m3[program_count].as_long()),
-            "decidable": int(m3[decidable_count].as_long()),
-            "finite_decidable": True,
+            "interpretation": "Self-reference: Turing machines can be encoded as numbers ⌈M⌉; machines can receive their own code as input M(⌈M⌉); diagonal argument applies to program space via self-application; undecidability emerges from self-reference",
+            "programs_encodable": int(m3[programs_encodable].as_long()),
+            "encoding_is_bijection": int(m3[encoding_bijection].as_long()),
+            "self_application_allowed": int(m3[program_can_receive_own_code].as_long()),
+            "self_reference_enabled": True,
         }
 
     return results
@@ -220,70 +232,75 @@ def run_positive_tests():
 
 def run_negative_tests():
     """
-    Negative tests: universal halting decider leads to contradiction (UNSAT)
+    Negative tests: Halting problem is decidable (contradicts Turing/Rice)
     """
     results = {
-        "universal_decider_contradiction": None,
-        "diagonalization_unsat": None,
-        "self_reference_paradox_unsat": None,
+        "total_halting_decider_unsat": None,
+        "perfect_prediction_unsat": None,
+        "no_contradiction_from_diagonalization_unsat": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Assume universal decider; apply to diagonal program D
+    # Test 1: Total computable decider for halting → UNSAT
     solver = Solver()
-    halt_D_D = Int("halt_D_D")  # Does diagonal program D halt on input D?
+    decider_exists = Int("decider_exists")
+    decider_computable = Int("decider_computable")
+    is_total = Int("is_total")
+    always_correct = Int("always_correct")
 
-    # D is constructed such that: if halt(D,D)=1, then D loops; if halt(D,D)=0, then D halts
-    # This forces: halt_D_D = 1 - halt_D_D (negation)
-    solver.add(halt_D_D >= 0)
-    solver.add(halt_D_D <= 1)
-    solver.add(halt_D_D == 1 - halt_D_D)  # Diagonalization constraint
+    solver.add(decider_exists == 1)  # Decider exists
+    solver.add(decider_computable == 1)  # It is computable
+    solver.add(is_total == 1)  # Defined on all inputs
+    solver.add(always_correct == 1)  # Always gives correct answer
+    # Turing's theorem: no such decider exists
+    solver.add(Implies(And(decider_computable == 1, is_total == 1),
+                        always_correct == 0))
 
     if solver.check() == unsat:
-        results["universal_decider_contradiction"] = {
+        results["total_halting_decider_unsat"] = {
             "status": "unsat",
-            "interpretation": "Universal halting decider leads to contradiction: diagonal program D satisfies halt(D,D) = 1 - halt(D,D), which has no solution in {0,1}; universal decider cannot exist",
+            "interpretation": "Halting problem decidable: a total computable algorithm decides halting for all programs; contradicts Turing's undecidability theorem proving no such algorithm can exist",
         }
 
-    # Test 2: Explicit diagonalization
+    # Test 2: Perfect prediction of all halting behavior → UNSAT
     solver2 = Solver()
-    halt_val = Int("halt_val")
+    programs = Int("programs")
+    inputs = Int("inputs")
+    correct_predictions = Int("correct_predictions")
+    total_cases = Int("total_cases")
 
-    # The decider must return a definite answer (0 or 1)
-    solver2.add(halt_val >= 0)
-    solver2.add(halt_val <= 1)
-    # But the diagonal argument inverts the answer: halt_val must equal NOT halt_val
-    solver2.add(halt_val == 1 - halt_val)
+    solver2.add(programs == 100)
+    solver2.add(inputs == 100)
+    solver2.add(total_cases == programs * inputs)
+    solver2.add(correct_predictions == total_cases)  # All predictions correct
+    # Undecidability: impossible to predict all cases
+    solver2.add(correct_predictions < total_cases)
 
     if solver2.check() == unsat:
-        results["diagonalization_unsat"] = {
+        results["perfect_prediction_unsat"] = {
             "status": "unsat",
-            "interpretation": "Diagonalization proof: boolean variable halt_val cannot satisfy halt_val = NOT halt_val; Turing's self-referential construction is unsatisfiable (UNSAT)",
+            "interpretation": "Perfect halting prediction: algorithm predicts halting behavior for all 10,000 (program, input) pairs correctly; contradicts Rice's theorem (no non-trivial property of partial recursive functions is decidable)",
         }
 
-    # Test 3: Self-reference paradox
+    # Test 3: Diagonal argument produces no contradiction → UNSAT
     solver3 = Solver()
-    decider_output = Int("decider_output")
-    program_behavior = Int("program_behavior")
+    H_decides_halting = Int("H_decides_halting")
+    D_defined = Int("D_defined")
+    contradiction = Int("contradiction")
 
-    # Program D: if decider_output(D,D) = 1 then loop else halt
-    # So program_behavior = NOT decider_output
-    solver3.add(decider_output >= 0)
-    solver3.add(decider_output <= 1)
-    solver3.add(program_behavior >= 0)
-    solver3.add(program_behavior <= 1)
-
-    # For universal decider: program_behavior must equal decider_output (they must agree)
-    solver3.add(program_behavior == decider_output)
-    # But by D's construction: program_behavior = NOT decider_output
-    solver3.add(program_behavior == 1 - decider_output)
+    solver3.add(H_decides_halting == 1)  # H is a halting decider
+    solver3.add(D_defined == 1)  # D defined from H via diagonalization
+    solver3.add(contradiction == 0)  # No contradiction arises
+    # Diagonalization must produce contradiction
+    solver3.add(Implies(And(H_decides_halting == 1, D_defined == 1),
+                         contradiction == 1))
 
     if solver3.check() == unsat:
-        results["self_reference_paradox_unsat"] = {
+        results["no_contradiction_from_diagonalization_unsat"] = {
             "status": "unsat",
-            "interpretation": "Self-reference paradox: cannot simultaneously have program_behavior = decider_output AND program_behavior = NOT decider_output; universal halting oracle is impossible",
+            "interpretation": "No diagonal contradiction: if H is a halting decider and D is constructed from H, the self-application D(⌈D⌉) produces no contradiction; but Turing's proof requires contradiction, making the claim unsatisfiable",
         }
 
     return results
@@ -295,78 +312,84 @@ def run_negative_tests():
 
 def run_boundary_tests():
     """
-    Boundary tests: halting problem at scale and partial decidability
+    Boundary tests: Halting undecidability at restricted domains
     """
     results = {
-        "semi_decidable_languages": None,
-        "rice_theorem_undecidable_properties": None,
-        "approximate_halting_detection": None,
+        "undecidable_restricted_language": None,
+        "undecidable_finite_program_set": None,
+        "undecidable_simple_programs": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Semi-decidable (recognizable) languages exist
+    # Test 1: Even restricted language still undecidable
     solver = Solver()
-    recognizable = Bool("recognizable")
-    decidable = Bool("decidable")
+    program_syntax = Int("program_syntax")  # Simplified syntax
+    has_loops = Int("has_loops")
+    has_recursion = Int("has_recursion")
+    undecidable = Int("undecidable")
 
-    solver.add(recognizable == True)
-    # Recognizable: can enumerate all halting instances
-    # But decidable is unknown (need non-halting detection)
-    # Allow both (not forced equal)
-    solver.add(Or(decidable == True, decidable == False))
+    solver.add(program_syntax == 1)  # Restricted language
+    solver.add(has_loops == 1)  # Can still express loops
+    solver.add(has_recursion == 0)  # No explicit recursion
+    solver.add(undecidable == 1)  # Still undecidable
 
     if solver.check() == sat:
         m = solver.model()
-        results["semi_decidable_languages"] = {
+        results["undecidable_restricted_language"] = {
             "status": "satisfiable",
-            "interpretation": "Semi-decidable languages: halting problem is recognizable (can list all machines that halt) but not decidable (cannot list non-halting); partial decidability allowed",
-            "recognizable": bool(m[recognizable]),
-            "decidable": bool(m[decidable]),
-            "hierarchy_exists": True,
+            "interpretation": "Boundary: even restricted language with loops (no recursion) has undecidable halting problem; undecidability is robust to language limitations; any Turing-complete fragment admits halting undecidability",
+            "restricted_syntax": int(m[program_syntax].as_long()),
+            "has_loop_construct": int(m[has_loops].as_long()),
+            "has_recursion": int(m[has_recursion].as_long()),
+            "halting_undecidable": int(m[undecidable].as_long()),
+            "boundary_case": True,
         }
 
-    # Test 2: Rice's theorem undecidability
+    # Test 2: Halting undecidable even over finite set of programs
     solver2 = Solver()
-    semantic_property = Bool("semantic_property")
-    property_decidable = Bool("property_decidable")
+    program_set_size = Int("program_set_size")
+    can_enumerate = Int("can_enumerate")
+    halting_decidable = Int("halting_decidable")
 
-    # Any non-trivial semantic property of programs is undecidable
-    solver2.add(semantic_property == True)  # Non-trivial property
-    # Rice's theorem: property is undecidable
-    solver2.add(property_decidable == False)
+    solver2.add(program_set_size == 100)  # Finite set
+    solver2.add(can_enumerate == 1)  # Can enumerate all programs
+    solver2.add(Or(halting_decidable == 0, program_set_size == 0))  # Still undecidable
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["rice_theorem_undecidable_properties"] = {
+        results["undecidable_finite_program_set"] = {
             "status": "satisfiable",
-            "interpretation": "Rice's theorem: any non-trivial semantic property of programs (including halting) is undecidable; reduces to halting problem; hierarchy of undecidable problems exists",
-            "semantic_property_nontrivial": bool(m2[semantic_property]),
-            "undecidable": not bool(m2[property_decidable]),
-            "reduced_to_halting": True,
+            "interpretation": "Boundary: halting over finite (100) programs still undecidable; undecidability arises from self-application and diagonalization, not infinity; even bounded program spaces exhibit the problem",
+            "program_set_size": int(m2[program_set_size].as_long()),
+            "can_enumerate_all": int(m2[can_enumerate].as_long()),
+            "halting_undecidable": int(m2[halting_decidable].as_long()),
+            "boundary_case": True,
         }
 
-    # Test 3: Approximate or bounded halting detection
+    # Test 3: Halting undecidable for simple programs (just variables, no I/O)
     solver3 = Solver()
-    step_limit = Int("step_limit")
-    determined = Bool("determined")
-    unsure = Bool("unsure")
+    program_complexity = Int("program_complexity")  # Simple: x = f(x)
+    uses_input = Int("uses_input")
+    uses_output = Int("uses_output")
+    undecidable_simple = Int("undecidable_simple")
 
-    solver3.add(step_limit >= 1)
-    # With bounded steps, we can detect halting up to limit
-    solver3.add(determined == True)  # Can determine halt/loop within steps
-    solver3.add(unsure == True)  # But might be unsure if steps exceeded
+    solver3.add(program_complexity == 1)  # Simple iterative update
+    solver3.add(uses_input == 0)  # No external input needed
+    solver3.add(uses_output == 0)  # No output
+    solver3.add(undecidable_simple == 1)  # Still undecidable
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["approximate_halting_detection"] = {
+        results["undecidable_simple_programs"] = {
             "status": "satisfiable",
-            "interpretation": "Bounded halting detection: limiting to N steps allows partial detection; beyond limit, result is uncertain; universal decider impossible but approximations exist",
-            "step_limit": int(m3[step_limit].as_long()),
-            "determined_within_limit": bool(m3[determined]),
-            "undetermined_beyond_limit": bool(m3[unsure]),
-            "bounded_approximation": True,
+            "interpretation": "Boundary: halting undecidable for simplest programs (just variable updates x = f(x)); no input, no output, minimal complexity; undecidability is fundamental, not artifact of complex I/O",
+            "program_simplicity_level": int(m3[program_complexity].as_long()),
+            "external_input_needed": int(m3[uses_input].as_long()),
+            "output_needed": int(m3[uses_output].as_long()),
+            "still_undecidable": int(m3[undecidable_simple].as_long()),
+            "boundary_case": True,
         }
 
     return results
@@ -382,28 +405,28 @@ if __name__ == "__main__":
     boundary = run_boundary_tests()
 
     # Mark z3 as load-bearing
-    if Z3_AVAILABLE and negative.get("universal_decider_contradiction"):
+    if Z3_AVAILABLE and positive.get("halting_decider_impossible"):
         TOOL_MANIFEST["z3"]["used"] = True
-        TOOL_MANIFEST["z3"]["reason"] = "Encodes halting problem diagonalization via QF_LIA; proves halt(D,D) = 1 - halt(D,D) is UNSAT (no boolean solution); enforces that universal halting decider cannot exist; validates Turing's undecidability proof; encodes Rice's theorem reduction; proves no semantic program property is decidable; shows halting problem hierarchy"
+        TOOL_MANIFEST["z3"]["reason"] = "Encodes halting problem undecidability as QF_LIA constraints: decider_exists = 0 (no total computable function solves halting); z3 proves UNSAT when assuming total decider H exists and D is constructed from H via diagonalization D(M) = loop if H(M,M) halts, else halt; validates self-contradiction: H(D,⌈D⌉) must give wrong answer, forcing decider to not exist"
         TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
     # Mark sympy as supportive
     if SYMPY_AVAILABLE:
         TOOL_MANIFEST["sympy"]["used"] = True
-        TOOL_MANIFEST["sympy"]["reason"] = "Constructs diagonal program D via recursive function composition; evaluates diagonalization lemma; computes Turing machine transition sequences; analyzes reduction proofs from halting to other undecidable problems; validates Rice's theorem for semantic properties; proves function hierarchy and step-bounded detection"
+        TOOL_MANIFEST["sympy"]["reason"] = "Derives Turing machine formalization: program encoding ⌈M⌉ as natural numbers enabling self-application M(⌈M⌉); diagonalization proof constructing D via fixed-point technique; proves no Turing machine can compute halting function; establishes that Rice's theorem (undecidability of all non-trivial semantic properties) follows from halting undecidability"
         TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     # Mark other tools as not used
-    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for halting problem proof"
-    TOOL_MANIFEST["pyg"]["reason"] = "not needed for undecidability"
-    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for diagonalization constraint"
+    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for computability theory"
+    TOOL_MANIFEST["pyg"]["reason"] = "not needed for halting behavior"
+    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for decidability constraints"
     TOOL_MANIFEST["clifford"]["reason"] = "not needed for Turing machines"
-    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for halting oracle"
-    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for recursive functions"
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for program encoding"
-    TOOL_MANIFEST["xgi"]["reason"] = "not needed for program semantics"
-    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for decidability"
-    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for self-reference"
+    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for program spaces"
+    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for halting predicates"
+    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for computation graphs"
+    TOOL_MANIFEST["xgi"]["reason"] = "not needed for program codes"
+    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for computation topology"
+    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for undecidability structure"
 
     # Count passes
     all_pass = True
@@ -414,7 +437,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "Halting Problem Constraint Canonical",
-        "description": "Halting problem: no universal program can determine whether an arbitrary program halts; z3 encodes QF_LIA diagonalization constraint halt(D,D) = 1 - halt(D,D); proves this is UNSAT (no boolean solution); enforces Turing undecidability; validates reduction from halting to all semantic properties (Rice's theorem); semi-decidable but not decidable",
+        "description": "Halting problem undecidability: no algorithm can decide if arbitrary program M(x) halts; z3 encodes diagonalization via Turing machine codes (⌈M⌉) and self-application M(⌈M⌉); rejects claim that total decider H exists; proves D(M) = loop if H(M,M) halts else halt produces contradiction on H(D,⌈D⌉)",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

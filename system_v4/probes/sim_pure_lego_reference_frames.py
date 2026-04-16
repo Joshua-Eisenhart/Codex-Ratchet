@@ -38,6 +38,15 @@ from scipy.linalg import expm, logm
 import json
 import os
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures quantum reference-frame resource numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and symmetry diagnostics for reference-frame resource theory"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials and logarithms for twirling and asymmetry checks"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # =====================================================================
 # INFRASTRUCTURE

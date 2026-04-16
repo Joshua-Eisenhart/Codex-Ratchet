@@ -28,6 +28,27 @@ import json
 import os
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego quantum-transport probe "
+    "uses numeric numpy/scipy checks for Wasserstein behavior, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and transport-distance calculations for the transport probe",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and linear-programming routines for Wasserstein checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 

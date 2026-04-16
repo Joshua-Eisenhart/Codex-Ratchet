@@ -42,6 +42,21 @@ from datetime import datetime, UTC
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego quaternion/octonion probe "
+    "uses numeric numpy checks for division-algebra behavior, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and algebraic calculations for division-algebra tests",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # 0. HELPERS

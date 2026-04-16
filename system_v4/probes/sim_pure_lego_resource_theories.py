@@ -41,6 +41,15 @@ from scipy.linalg import expm, logm
 import json
 import os
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures resource-theory numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and resource monotone diagnostics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials and logarithms for coherence, entanglement, and athermality"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # =====================================================================
 # INFRASTRUCTURE

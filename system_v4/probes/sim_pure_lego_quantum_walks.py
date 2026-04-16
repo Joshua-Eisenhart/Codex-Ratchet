@@ -20,6 +20,21 @@ import json
 import numpy as np
 from pathlib import Path
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego quantum-walk probe uses "
+    "numeric numpy checks for walk dynamics, not a canonical nonclassical "
+    "witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and graph-walk calculations for the walk probe",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 RESULTS_DIR = Path(__file__).parent / "a2_state" / "sim_results"
 

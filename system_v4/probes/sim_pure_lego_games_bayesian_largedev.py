@@ -32,6 +32,15 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures game/Bayes/Sanov numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, entropy, and probability diagnostics for pure-lego classical baselines"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots for quantum Bayesian and game-theory numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 
 # ═══════════════════════════════════════════════════════════════════

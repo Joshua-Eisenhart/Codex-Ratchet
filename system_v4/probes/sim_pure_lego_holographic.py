@@ -28,6 +28,13 @@ from itertools import combinations
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures holographic toy numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and tensor-network diagnostics for the holographic pure-lego battery"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # Utilities

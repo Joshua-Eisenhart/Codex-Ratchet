@@ -34,6 +34,15 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical pure-lego baseline: this probe measures hypothesis-testing numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, spectra, and test-statistic diagnostics for hypothesis testing"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix logarithms for relative-entropy and Chernoff-style calculations"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ===================================================================
 # UTILITY HELPERS

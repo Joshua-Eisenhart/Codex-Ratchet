@@ -18,6 +18,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Contact×SpectralTriple×Hopf topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -289,6 +294,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_contact_spectraltriple_hopf_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Topology variants: T1 flat torus (H_hopf=log2/2), T2 S² (H_hopf=log2), T3 lens (H_hopf=log2/3). "
             "DPI: MI decreases under dephasing for each topology. "

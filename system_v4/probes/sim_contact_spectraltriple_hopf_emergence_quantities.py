@@ -22,6 +22,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Contact×SpectralTriple×Hopf emergence probe: this "
+    "file checks scalar emergence quantities with torch, z3, sympy, and "
+    "clifford helpers where available, but it does not claim a canonical "
+    "nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -295,13 +302,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_contact_spectraltriple_hopf_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence: Q_CSH = MI * H_contact * H_st * H_hopf. "
-            "E1-E3 single shells Q=0; E4-E6 pairs Q=0 (no MI). "
-            "E7 all three + MI → Q>0 (emergent quantity). "
-            "z3 UNSAT: any factor=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse analytical proof."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

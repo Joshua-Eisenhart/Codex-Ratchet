@@ -23,6 +23,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bridge claims for Contact×SpectralTriple×Hopf (19th program). "
+    "Q_CSH = MI × H_contact × H_st_fixed × H_hopf. rho_CSH valid (64×64, "
+    "trace=1, PSD, float64). r(Q_CSH, MI) > 0.99 with fixed H values "
+    "(proportional by construction). Axis 0 gradient: dephasing MERA gives "
+    "MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. "
+    "sympy: four-factor product collapse. pytorch: rho_CSH trace validated "
+    "(float64)."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -301,16 +311,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_contact_spectraltriple_hopf_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for Contact×SpectralTriple×Hopf (19th program). "
-            "Q_CSH = MI * H_contact * H_st * H_hopf. "
-            "rho_CSH valid (64×64, trace=1, PSD). "
-            "r(Q_CSH, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_CSH trace validated."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

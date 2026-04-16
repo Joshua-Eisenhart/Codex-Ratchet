@@ -17,6 +17,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Pairwise coupling: Contact×SpectralTriple, Contact×Hopf, "
+    "SpectralTriple×Hopf. Q_pair = H_i * H_j (no MI factor). All pairs > 0 "
+    "confirmed. z3 UNSAT: Q=0 with H_i>0, H_j>0 impossible. sympy: product "
+    "zero iff one factor zero."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -257,12 +264,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_contact_spectraltriple_hopf_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Pairwise coupling: Contact×SpectralTriple, Contact×Hopf, SpectralTriple×Hopf. "
-            "Q_pair = H_i * H_j (no MI factor). All pairs > 0 confirmed. "
-            "z3 UNSAT: Q=0 with H_i>0, H_j>0 impossible. "
-            "sympy: product zero iff one factor zero."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

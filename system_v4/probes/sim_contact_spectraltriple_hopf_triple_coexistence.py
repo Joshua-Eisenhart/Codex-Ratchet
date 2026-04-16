@@ -13,6 +13,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence: joint_count = H_c_n * H_s_n * H_h_n <= pairwise_min. "
+    "Normalization h/(1+h) maps H values to (0,1). "
+    "z3 UNSAT: joint > pairwise_min impossible for normalized values in (0,1). "
+    "sympy: a*b*(1-c) >= 0 for c in (0,1) proves triple <= pairwise."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -269,12 +275,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_contact_spectraltriple_hopf_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Triple coexistence: joint_count = H_c_n * H_s_n * H_h_n <= pairwise_min. "
-            "Normalization h/(1+h) maps H values to (0,1). "
-            "z3 UNSAT: joint > pairwise_min impossible for normalized values in (0,1). "
-            "sympy: a*b*(1-c) >= 0 for c in (0,1) proves triple <= pairwise."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

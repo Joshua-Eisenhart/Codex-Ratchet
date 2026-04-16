@@ -13,16 +13,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Direct comparison surface between open-lab repair rows and their QIT-"
     "aligned repair companions. It keeps the lanes paired so closure, ordering, "
     "reset, and budget tradeoffs can be compared without pretending the models "
     "are numerically identical."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -573,6 +574,7 @@ def main() -> None:
     out = {
         "name": "qit_repair_comparison_surface",
         "classification": CLASSIFICATION,
+        "divergence_log": divergence_log,
         "classification_note": CLASSIFICATION_NOTE,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,

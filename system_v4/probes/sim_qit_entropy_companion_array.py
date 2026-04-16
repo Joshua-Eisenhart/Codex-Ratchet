@@ -9,14 +9,16 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Strict QIT entropy/readout companion surface over the finite-carrier anchor "
-    "rows. Use it to compare open-lab rows against matched strict readouts."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Strict QIT entropy/readout companion array over the finite-carrier anchor "
+    "rows. It keeps the strict readout families separate from the open-lab rows "
+    "and preserves the open-vs-strict gap explicitly."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

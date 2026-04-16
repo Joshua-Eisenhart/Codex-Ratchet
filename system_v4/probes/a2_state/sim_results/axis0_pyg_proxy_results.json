@@ -543,6 +543,20 @@
       "frontier_count": 6,
       "frontier_size": 6,
       "shell_bridge_pass_fraction": 1.0,
+      "distinguishability_surface": {
+        "type": "distinguishability_constraint",
+        "pass": true,
+        "gate_fraction": 1.0,
+        "pass_threshold": 0.8,
+        "gates": {
+          "observational": true,
+          "admissible": true,
+          "stable": true,
+          "entropy_conditioned": true,
+          "topology_conditioned": true
+        },
+        "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
+      },
       "semantic_row_surface": {
         "lane": "pyg_proxy",
         "symbolic_hubble_mid": 1.13358421229186,
@@ -551,23 +565,23 @@
         "bridge_owner_pass": true,
         "bridge_owner_gate_fraction": 1.0,
         "distinguishability_pass": true,
-        "distinguishability_gate_fraction": 0.8,
+        "distinguishability_gate_fraction": 1.0,
         "graph_longest_path_length": 5,
         "manifold_distance": 0.3193425096622258,
         "pyg_mean_aggregate_norm": 9.0,
         "distinguishability_surface": {
           "type": "distinguishability_constraint",
           "pass": true,
-          "gate_fraction": 0.8,
+          "gate_fraction": 1.0,
           "pass_threshold": 0.8,
           "gates": {
             "observational": true,
             "admissible": true,
             "stable": true,
-            "entropy_conditioned": false,
+            "entropy_conditioned": true,
             "topology_conditioned": true
           },
-          "note": "PyG proxy distinguishability is only load-bearing when graph-carried state separation stays admissible through the constraint chain."
+          "note": "PyG proxy distinguishability is only load-bearing when perturbation-driven graph separation survives across the admissible activation profile."
         }
       },
       "candidate_rows": [

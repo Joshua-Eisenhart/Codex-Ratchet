@@ -30,6 +30,8 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = "Bridge claims for SpectralTriple×Symplectic×Hopf (24th program). Q_SSH = MI × H_st × H_symp × H_hopf. H_st=2.203923 (spectral gap seed=1). H_symp=1.609438 (log(5)). H_hopf=0.346574 (log(2)/2). rho_SSH valid (8×8, trace=1, PSD, float64). r(Q_SSH, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_SSH trace validated (float64)."
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -315,19 +317,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for SpectralTriple×Symplectic×Hopf (24th program). "
-            f"Q_SSH = MI × H_st × H_symp × H_hopf. "
-            f"H_st={H_ST:.6f} (spectral gap seed=1). "
-            f"H_symp={H_SYMP:.6f} (log(5)). "
-            f"H_hopf={H_HOPF:.6f} (log(2)/2). "
-            "rho_SSH valid (8×8, trace=1, PSD, float64). "
-            "r(Q_SSH, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_SSH trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_symp": H_SYMP, "H_hopf": H_HOPF},

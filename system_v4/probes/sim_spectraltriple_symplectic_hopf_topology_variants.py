@@ -120,6 +120,15 @@ TOPOLOGY_VARIANTS = {
     "T3_lens":  math.log(2) / 3,
 }
 
+divergence_log = (
+    "Topology variants for SpectralTriple×Symplectic×Hopf (24th program). "
+    "DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_hopf). "
+    "z3 UNSAT: H_hopf=0 makes Q=0. "
+    "sympy: Q is monotone in H_hopf. "
+    "pytorch: topology ordering validated as float64 tensor comparison."
+)
+CLASSIFICATION_NOTE = divergence_log
+
 
 def mera_MI_dephasing(n_layers=4, seed=0, eps=0.3):
     rng = np.random.default_rng(seed)
@@ -298,17 +307,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_symplectic_hopf_topology_variants",
         "classification": classification,
-        "divergence_log": (
-            "Topology variants for SpectralTriple×Symplectic×Hopf (24th program). "
-            f"H_st={H_ST:.6f} (stable). H_symp={H_SYMP:.6f} (stable). "
-            f"T1 H_hopf={TOPOLOGY_VARIANTS['T1_flat']:.6f}. "
-            f"T2 H_hopf={TOPOLOGY_VARIANTS['T2_S2']:.6f}. "
-            f"T3 H_hopf={TOPOLOGY_VARIANTS['T3_lens']:.6f}. "
-            "DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_hopf). "
-            "z3 UNSAT: H_hopf=0 makes Q=0. "
-            "sympy: Q is monotone in H_hopf. "
-            "pytorch: topology ordering validated as float64 tensor comparison."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_symp": H_SYMP, "topology_variants": TOPOLOGY_VARIANTS},

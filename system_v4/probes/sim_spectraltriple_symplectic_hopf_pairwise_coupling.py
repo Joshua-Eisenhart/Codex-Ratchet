@@ -24,6 +24,15 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for SpectralTriple×Symplectic×Hopf (24th program). "
+    "H_st = spectral gap seed=1 random sym 4x4. "
+    "H_symp = log(1+4). H_hopf = log(2)/2. "
+    "All three pairs Q_pair > 0 confirmed. "
+    "z3 UNSAT: positive factors cannot multiply to zero. "
+    "sympy: zero-factor collapse verified."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -279,16 +288,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_symplectic_hopf_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Pairwise coupling for SpectralTriple×Symplectic×Hopf (24th program). "
-            f"H_st={H_ST:.6f} (spectral gap seed=1). "
-            f"H_symp={H_SYMP:.6f} (log(5)). "
-            f"H_hopf={H_HOPF:.6f} (log(2)/2). "
-            "Q_pair=H_i×H_j>0 for all three pairs. "
-            "z3 UNSAT: zero factor makes product zero — no positive Q from zero entropy. "
-            "sympy: two-factor product collapse. "
-            "pytorch: scalar entropy tensor positivity check."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_symp": H_SYMP, "H_hopf": H_HOPF},

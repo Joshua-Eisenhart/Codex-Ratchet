@@ -24,6 +24,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline SpectralTriple×Symplectic×Hopf emergence probe: this "
+    "file checks scalar emergence quantities with z3, sympy, and clifford "
+    "support where available, but it does not claim a canonical nonclassical "
+    "witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -305,16 +312,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_symplectic_hopf_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence quantities for SpectralTriple×Symplectic×Hopf (24th program). "
-            f"H_st={H_ST:.6f}, H_symp={H_SYMP:.6f}, H_hopf={H_HOPF:.6f}. "
-            f"MI={MI_val:.6f}, Q_SSH={Q_SSH:.6f}. "
-            "E1-E6 sub-products all zero (MI missing). "
-            "E7 full product Q_SSH > 0 (emergence). "
-            "z3 UNSAT: MI=0 AND Q>0 impossible. "
-            "sympy: any factor=0 collapses product to 0. "
-            "pytorch: E1-E6 zero and E7 positive validated as float64 tensors."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_symp": H_SYMP, "H_hopf": H_HOPF, "MI": MI_val, "Q_SSH": Q_SSH},

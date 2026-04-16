@@ -15,6 +15,12 @@ from itertools import product
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical foundation baseline: branch-weight classical paths are "
+    "validated here as a bounded numpy lego, not a canonical nonclassical "
+    "witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "trajectory product arithmetic"},
@@ -78,16 +84,13 @@ if __name__ == "__main__":
     results = {
         "name": "branch_weight_classical",
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "no off-diagonal decoherence-functional entries; cannot test consistent-histories diagonality",
-            "branch weights always multiplicative; no interference between paths",
-            "cannot represent quantum trajectory where Tr(rho-tilde) fails to factorize over paths",
-        ],
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "branch_weight_classical_results.json")

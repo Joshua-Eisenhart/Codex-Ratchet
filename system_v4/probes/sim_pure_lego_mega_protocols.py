@@ -27,6 +27,27 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import expm, sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego mega-protocols probe "
+    "uses numeric numpy/scipy checks for protocol behavior, not a canonical "
+    "nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix calculations for protocol simulations",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix exponential, square-root, and logarithm routines for protocol checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # Shared helpers

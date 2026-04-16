@@ -21,6 +21,27 @@ import json, sys, os, itertools
 import numpy as np
 from scipy.linalg import expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego mega-algebra probe uses "
+    "numeric numpy/scipy checks for algebraic closure, not a canonical "
+    "nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix algebra for the mega-algebra checks",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix exponential routines for algebraic structure tests",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ── globals ───────────────────────────────────────────────────────────────────
 

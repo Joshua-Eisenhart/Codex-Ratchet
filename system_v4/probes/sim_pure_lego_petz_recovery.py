@@ -20,6 +20,27 @@ import json, os, sys, time, warnings
 import numpy as np
 from scipy.linalg import sqrtm, logm, fractional_matrix_power
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego Petz recovery probe uses "
+    "numeric numpy/scipy checks for channel reversal behavior, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix calculations for recovery-map tests",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root, logarithm, and fractional power routines for Petz recovery",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 warnings.filterwarnings("ignore", message="Matrix is singular", category=RuntimeWarning)
 # sqrtm on rank-1 density matrices triggers a benign LinAlgWarning

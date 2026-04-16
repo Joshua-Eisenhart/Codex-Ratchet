@@ -29,6 +29,10 @@ import time
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure LEGO entropy baseline for subadditivity, Araki-Lieb, SSA, and "
+    "Audenaert-style continuity checks on representative quantum states."
+)
 
 np.random.seed(42)
 EPS = 1e-12
@@ -497,6 +501,7 @@ if __name__ == "__main__":
             "and Audenaert-style continuity bounds on simple quantum states."
         ),
         "tool_manifest": TOOL_MANIFEST,
+        "classification_note": divergence_log,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

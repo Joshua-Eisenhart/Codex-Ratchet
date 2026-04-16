@@ -11,6 +11,12 @@ from math import log2
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure-math cq ensemble entropy lego for Holevo quantity and simple "
+    "channel-entropy bounds; this is a classical baseline witness, not a "
+    "canonical nonclassical proof."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for cq ensemble entropy algebra"},
@@ -193,6 +199,7 @@ if __name__ == "__main__":
         "schema": "lego_entropy_holevo_quantity/v1",
         "description": "Pure-math cq ensemble entropy lego for Holevo quantity and simple channel-entropy bounds.",
         "tool_manifest": TOOL_MANIFEST,
+        "divergence_log": divergence_log,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

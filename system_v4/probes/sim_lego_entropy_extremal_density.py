@@ -23,6 +23,12 @@ import time
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline density-matrix lego: this probe measures extremal "
+    "entropy families and regularized proxies with pure numpy numerics, not "
+    "a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 np.random.seed(42)
 EPS = 1e-12
@@ -366,6 +372,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
     }
 
     results["summary"] = {

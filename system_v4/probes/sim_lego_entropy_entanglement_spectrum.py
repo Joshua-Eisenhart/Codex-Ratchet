@@ -23,6 +23,13 @@ import time
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure-math bipartite entropy lego. It keeps entanglement entropy, "
+    "entanglement spectrum, negativity, and Werner-threshold checks in a "
+    "classical_baseline posture with no extra scope."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
 
 np.random.seed(42)
 EPS = 1e-12
@@ -426,7 +433,8 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
     }
 
     results["summary"] = {

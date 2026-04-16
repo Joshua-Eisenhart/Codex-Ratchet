@@ -11,6 +11,10 @@ from math import log2
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure-math entropy lego for subadditivity, Araki-Lieb, strong "
+    "subadditivity, and continuity bounds."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for exact low-dimensional entropy identities"},
@@ -210,6 +214,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "summary": {
             "positive_pass": bool(positive["pass"]),
             "negative_pass": bool(negative["pass"]),

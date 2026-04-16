@@ -25,6 +25,11 @@ import time
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: multipartite cut entropy on 3-qubit states "
+    "is validated here as a pure numpy lego, not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 np.random.seed(42)
 EPS = 1e-12
@@ -524,6 +529,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "summary": {
             "total_tests": len(all_tests),
             "passed": sum(1 for ok in all_tests.values() if ok),

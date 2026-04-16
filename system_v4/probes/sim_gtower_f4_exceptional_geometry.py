@@ -19,6 +19,8 @@ Tests:
 
 import json
 import os
+
+classification = "canonical"
 import numpy as np
 
 # =====================================================================

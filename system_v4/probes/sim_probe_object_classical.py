@@ -10,6 +10,10 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline probe object for POVM admissibility on a qubit "
+    "carrier; this is numeric boundary data, not a canonical witness."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "linear algebra baseline"},
@@ -62,6 +66,7 @@ if __name__ == "__main__":
     results = {
         "name": "probe_object_classical",
         "classification": "classical_baseline",
+        "classification_note": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

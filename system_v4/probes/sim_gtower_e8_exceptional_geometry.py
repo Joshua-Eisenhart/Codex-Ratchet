@@ -15,6 +15,8 @@ Classification: classical_baseline
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

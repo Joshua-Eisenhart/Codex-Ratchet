@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph differential complex covered by rustworkx; PyG not needed for BV chain complex"
     },
     "z3": {
       "tried": true,
@@ -55,27 +55,27 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "simplicial topology not required for BV chain complex at this stage"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed for BV bracket grading verification"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
+    "clifford": "load_bearing",
     "cvc5": null,
-    "sympy": "load_bearing",
-    "clifford": "supportive",
-    "geomstats": null,
     "e3nn": null,
-    "rustworkx": "supportive",
-    "xgi": "supportive",
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
   },
   "positive": {
     "pytorch_bv_bracket_graded_antisymmetry_deg0": true,

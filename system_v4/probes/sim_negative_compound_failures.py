@@ -46,6 +46,27 @@ import traceback
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this compound-failure battery uses "
+    "numeric numpy/scipy checks to study composition failures, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix calculations for compound failure tests",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root, logarithm, and exponential routines for composed-lego checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-12

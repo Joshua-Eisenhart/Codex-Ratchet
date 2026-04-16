@@ -35,6 +35,27 @@ from datetime import datetime, timezone
 import numpy as np
 from scipy.linalg import expm, sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this advanced-legos battery uses "
+    "numeric numpy/scipy checks to probe failure modes, not a canonical "
+    "nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix calculations for lego failure tests",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix exponential, square-root, and logarithm routines for boundary checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 np.random.seed(42)

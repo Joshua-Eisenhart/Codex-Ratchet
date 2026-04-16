@@ -30,6 +30,27 @@ from datetime import datetime, timezone
 import numpy as np
 from scipy.linalg import sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this boundary-sweep battery uses "
+    "numeric numpy/scipy checks to locate classical thresholds, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and threshold sweeps for the boundary checks",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and logarithm routines for threshold calculations",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

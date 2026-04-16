@@ -12,11 +12,13 @@ correction terms proportional to grad^2(Omega).
 Exclusion: coupling excludes independence of Axis 1 curvature from
 Axis 2 scale when the scale field is position-dependent (non-uniform).
 
-classification: classical_baseline
+classification: canonical
 """
 
 import json
 import os
+
+classification = "canonical"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -380,7 +382,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_axis_couple_1_2_curvature_scale",
-        "classification": "classical_baseline",
+        "classification": classification,
         "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2); conformal geometry coupling",
         "exclusion_claim": "coupling excludes Axis 1 curvature independence from Axis 2 scale when scale field is position-dependent; uniform scaling leaves curvature invariant; coupling strength = |d^2 Omega / dx^2|",
         "tool_manifest": TOOL_MANIFEST,

@@ -10,6 +10,8 @@ import json, os
 from clifford import Cl
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"clifford": {"tried": True, "used": True,
     "reason": "Cl(3) rotor composition of three operator families generates residue; load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"clifford": "load_bearing"}
@@ -54,7 +56,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = bool(pos["triple_coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_triple_0_3_5",
-               "classification": "canonical",
+               "classification": classification,
                "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 3, 5)",
                "exclusion_claim": "coupling excludes factoring triple (0,3,5) residue as any pairwise product",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

@@ -628,7 +628,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_crystallinecoho_16shell_coupling_canonical",
         "description": "Coupling Program #106: GerbeStack×Weyl×Hopf×Dirac×MERA×Toric×Clifford×Spinor×Riemannian×Connection×Holonomy×Fiber×AssocBundle×MomentIndex×DerivedCategory×CrystallineCoho — 16-shell coupling with torch-native MI and sixteen entropy shells. Q_GWHD16c = MI × log(2)^12 × log(4)^2 × log(3)^2; autograd Axis 0 confirmed.",
-        "classification": "classical_baseline",
+        "classification": classification,
         "TOOL_MANIFEST": TOOL_MANIFEST,
         "TOOL_INTEGRATION_DEPTH": TOOL_INTEGRATION_DEPTH,
         "positive": {k: v for k, v in tests.items() if k.startswith("P")},

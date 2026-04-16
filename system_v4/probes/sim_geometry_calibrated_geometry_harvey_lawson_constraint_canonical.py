@@ -18,6 +18,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -174,16 +176,17 @@ def test_negative_comass_exceeds_one():
         # phi_eval = volume of the 3-plane under φ
         phi_eval = solver.mkConst(solver.getRealSort(), "phi_eval")
 
-        # Unit k-plane constraint: the k-plane is orthonormal so its volume is 1
+        # Unit k-plane constraint: the k-plane is orthonormal so its volume is 1.
         unit_vol = solver.mkReal(1)
 
-        # Comass bound: φ_eval ≤ unit_vol (≤ 1)
-        # Negate this to get UNSAT: φ_eval > 1
-        constr_unsat = solver.mkTerm(Kind.GT, phi_eval, solver.mkReal(1))
+        # Calibration axiom: evaluation on a unit k-plane is bounded by the comass.
+        comass_bound = solver.mkTerm(Kind.LEQ, phi_eval, unit_vol)
 
-        # For a unit form on a unit plane, φ_eval must equal 1
-        # So φ_eval > 1 is infeasible
-        solver.assertFormula(constr_unsat)
+        # Negate the calibration axiom to show the branch is infeasible.
+        exceeds_bound = solver.mkTerm(Kind.GT, phi_eval, solver.mkReal(1))
+
+        solver.assertFormula(comass_bound)
+        solver.assertFormula(exceeds_bound)
 
         result = solver.checkSat()
 

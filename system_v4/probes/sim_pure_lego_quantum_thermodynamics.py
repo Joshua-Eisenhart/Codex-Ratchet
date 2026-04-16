@@ -2,10 +2,11 @@
 """
 Pure Lego: Quantum Thermodynamics in Density Matrix Language
 =============================================================
-Status: [Pure lego — no engine, numpy/scipy only]
+Status: [Pure lego thermodynamics with bounded open-system witnesses]
 
 Builds thermal quantum states from first principles and verifies
-every thermodynamic identity in density-matrix language:
+every thermodynamic identity in density-matrix language, then checks a
+bounded open-system relaxation witness across qutip/cirq/pennylane:
 
   1. Thermal state:  rho_beta = exp(-beta H) / Z,  Z = Tr(exp(-beta H))
   2. Qubit H = sigma_z:  rho_beta = diag(exp(beta), exp(-beta)) / (2 cosh(beta))
@@ -16,22 +17,44 @@ every thermodynamic identity in density-matrix language:
   7. Carnot efficiency:  eta = 1 - T_cold / T_hot  (upper bound)
 
 All quantities computed with explicit matrix operations.
-No engine imports. Pure numpy/scipy.
+Core thermodynamics remain numpy/scipy-led; qutip/cirq/pennylane are
+bounded witness paths for the relaxation surface.
 """
 
 import numpy as np
 from scipy.linalg import expm, logm
 import json
 import os
+from pathlib import Path
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
+import pennylane as qml
+import qutip
+
 classification = "classical_baseline"  # auto-backfill
-divergence_log = "Classical baseline: this pure lego quantum thermodynamics probe checks density-matrix thermodynamic identities numerically, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical baseline: this pure lego quantum thermodynamics probe checks "
+    "density-matrix thermodynamic identities numerically, with bounded "
+    "qutip/cirq/pennylane witnesses on one-qubit open-system relaxation."
+)
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "thermal states, entropy, and work identities"},
+    "numpy": {"tried": True, "used": True, "reason": "thermal states, entropy, work identities, and relaxation curves"},
     "scipy": {"tried": True, "used": True, "reason": "matrix exponentials and logarithms for thermal-state construction"},
+    "qutip": {"tried": True, "used": True, "reason": "open-system mesolve witness for amplitude-damping relaxation"},
+    "cirq": {"tried": True, "used": True, "reason": "density-matrix simulator witness for the same one-qubit relaxation surface"},
+    "pennylane": {"tried": True, "used": True, "reason": "mixed-state QNode witness for the same one-qubit relaxation surface"},
 }
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "supportive",
     "scipy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
 }
 
 # ═══════════════════════════════════════════════════════════════════
@@ -42,6 +65,8 @@ SIGMA_Z = np.array([[1.0, 0.0], [0.0, -1.0]])
 IDENTITY_2 = np.eye(2)
 KB = 1.0          # Boltzmann constant in natural units
 LN2 = np.log(2.0)
+Q0 = cirq.LineQubit(0)
+QML_DEV = qml.device("default.mixed", wires=1)
 
 class _NumpyEncoder(json.JSONEncoder):
     """Handle numpy scalars that vanilla json chokes on."""
@@ -57,10 +82,7 @@ class _NumpyEncoder(json.JSONEncoder):
         return super().default(obj)
 
 
-RESULTS_DIR = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    "a2_state", "sim_results",
-)
+RESULTS_DIR = Path(__file__).resolve().parent / "a2_state" / "sim_results"
 
 # ═══════════════════════════════════════════════════════════════════
 # CORE PRIMITIVES
@@ -91,6 +113,60 @@ def free_energy_from_state(rho: np.ndarray, H: np.ndarray, T: float) -> float:
 def free_energy_exact(Z: float, T: float) -> float:
     """F = -T ln Z."""
     return -T * np.log(Z)
+
+
+def density_from_excited_population(p_excited: float) -> np.ndarray:
+    """Return a one-qubit diagonal density matrix from the excited population."""
+    return np.array([[1.0 - p_excited, 0.0], [0.0, p_excited]], dtype=np.complex128)
+
+
+def classical_amplitude_damping(p_excited0: float, gamma: float, times: np.ndarray) -> np.ndarray:
+    """Zero-temperature amplitude damping rate equation for the excited state."""
+    return np.exp(-gamma * times) * p_excited0
+
+
+def qutip_amplitude_damping(p_excited0: float, gamma: float, times: np.ndarray) -> np.ndarray:
+    """QuTiP mesolve witness for the same amplitude-damping relaxation surface."""
+    rho0 = qutip.Qobj(density_from_excited_population(p_excited0), dims=[[2], [2]])
+    H = 0.5 * qutip.sigmaz()
+    c_ops = [np.sqrt(gamma) * qutip.sigmap()]
+    result = qutip.mesolve(H=H, rho0=rho0, tlist=times, c_ops=c_ops, e_ops=[])
+    return np.array([float((state * qutip.basis(2, 1) * qutip.basis(2, 1).dag()).tr().real) for state in result.states], dtype=np.float64)
+
+
+def cirq_amplitude_damping(p_excited0: float, gamma: float, times: np.ndarray) -> np.ndarray:
+    """Cirq density-matrix witness using an explicit amplitude-damping channel."""
+    rho0 = density_from_excited_population(p_excited0)
+    simulator = cirq.DensityMatrixSimulator(seed=13)
+    excited = []
+    for t in times:
+        p = 1.0 - np.exp(-gamma * float(t))
+        circuit = cirq.Circuit(cirq.AmplitudeDampingChannel(p).on(Q0))
+        rho = simulator.simulate(circuit, initial_state=rho0).final_density_matrix
+        excited.append(float(np.real(rho[1, 1])))
+    return np.array(excited, dtype=np.float64)
+
+
+@qml.qnode(QML_DEV)
+def _qml_relaxation(p_excited0: float, gamma: float, t: float):
+    qml.QubitDensityMatrix(density_from_excited_population(p_excited0), wires=0)
+    p = 1.0 - np.exp(-gamma * t)
+    qml.AmplitudeDamping(p, wires=0)
+    return qml.density_matrix(wires=0)
+
+
+def pennylane_amplitude_damping(p_excited0: float, gamma: float, times: np.ndarray) -> np.ndarray:
+    """PennyLane mixed-state witness using the same damping channel."""
+    excited = []
+    for t in times:
+        rho = np.asarray(_qml_relaxation(p_excited0, gamma, float(t)), dtype=np.complex128)
+        excited.append(float(np.real(rho[1, 1])))
+    return np.array(excited, dtype=np.float64)
+
+
+def free_energy_curve_from_excited_population(p_excited: np.ndarray, beta: float) -> np.ndarray:
+    """Free-energy curve for diagonal one-qubit states from their excited population."""
+    return np.array([free_energy_from_state(density_from_excited_population(float(p)), SIGMA_Z, 1.0 / beta) for p in p_excited], dtype=np.float64)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -304,7 +380,130 @@ def test_extractable_work():
 
 
 # ═══════════════════════════════════════════════════════════════════
-# TEST 5: CARNOT EFFICIENCY BOUND
+# TEST 5: OPEN-SYSTEM WITNESSES ACROSS QUTIP / CIRQ / PENNYLANE
+# ═══════════════════════════════════════════════════════════════════
+
+def test_open_system_tool_witnesses():
+    """
+    Bounded open-system witness:
+      - classical amplitude damping rate equation is the reference surface
+      - QuTiP, Cirq, and PennyLane must agree on the same excited-population decay
+      - free energy computed from the density matrices should match the reference
+      - a wrong cirq gamma must be detected while QuTiP / PennyLane remain consistent
+    """
+    results = {"test": "open_system_tool_witnesses", "pass": True, "details": []}
+
+    times = np.array([0.0, 0.2, 0.6, 1.0, 1.8], dtype=np.float64)
+    beta = 1.2
+    p_excited0 = 0.8
+    gamma = 0.7
+    tol = 1e-5
+
+    classical = classical_amplitude_damping(p_excited0, gamma, times)
+    qutip_excited = qutip_amplitude_damping(p_excited0, gamma, times)
+    cirq_excited = cirq_amplitude_damping(p_excited0, gamma, times)
+    pennylane_excited = pennylane_amplitude_damping(p_excited0, gamma, times)
+
+    classical_free_energy = free_energy_curve_from_excited_population(classical, beta)
+    qutip_free_energy = free_energy_curve_from_excited_population(qutip_excited, beta)
+    cirq_free_energy = free_energy_curve_from_excited_population(cirq_excited, beta)
+    pennylane_free_energy = free_energy_curve_from_excited_population(pennylane_excited, beta)
+
+    positive_errors = {
+        "qutip_vs_classical": float(np.max(np.abs(qutip_excited - classical))),
+        "cirq_vs_classical": float(np.max(np.abs(cirq_excited - classical))),
+        "pennylane_vs_classical": float(np.max(np.abs(pennylane_excited - classical))),
+        "qutip_free_energy_vs_classical": float(np.max(np.abs(qutip_free_energy - classical_free_energy))),
+        "cirq_free_energy_vs_classical": float(np.max(np.abs(cirq_free_energy - classical_free_energy))),
+        "pennylane_free_energy_vs_classical": float(np.max(np.abs(pennylane_free_energy - classical_free_energy))),
+    }
+    positive_ok = all(err < tol for err in positive_errors.values()) and bool(
+        np.isfinite(classical_free_energy).all()
+    )
+    results["details"].append({
+        "case": "positive",
+        "beta": beta,
+        "gamma": gamma,
+        "times": times.tolist(),
+        "classical_excited": classical.tolist(),
+        "qutip_excited": qutip_excited.tolist(),
+        "cirq_excited": cirq_excited.tolist(),
+        "pennylane_excited": pennylane_excited.tolist(),
+        "classical_free_energy": classical_free_energy.tolist(),
+        "errors": positive_errors,
+        "free_energy_nonincreasing": bool(np.all(np.diff(classical_free_energy) <= 1e-12)),
+        "pass": positive_ok,
+    })
+    if not positive_ok:
+        results["pass"] = False
+
+    wrong_cirq_excited = cirq_amplitude_damping(p_excited0, gamma * 1.5, times)
+    wrong_cirq_free_energy = free_energy_curve_from_excited_population(wrong_cirq_excited, beta)
+    negative_errors = {
+        "wrong_cirq_vs_classical": float(np.max(np.abs(wrong_cirq_excited - classical))),
+        "wrong_cirq_free_energy_vs_classical": float(np.max(np.abs(wrong_cirq_free_energy - classical_free_energy))),
+        "qutip_vs_classical": float(np.max(np.abs(qutip_excited - classical))),
+        "pennylane_vs_classical": float(np.max(np.abs(pennylane_excited - classical))),
+    }
+    negative_ok = (
+        negative_errors["wrong_cirq_vs_classical"] > 5e-3
+        and negative_errors["wrong_cirq_free_energy_vs_classical"] > 5e-3
+        and negative_errors["qutip_vs_classical"] < tol
+        and negative_errors["pennylane_vs_classical"] < tol
+    )
+    results["details"].append({
+        "case": "negative",
+        "wrong_gamma": gamma * 1.5,
+        "wrong_cirq_excited": wrong_cirq_excited.tolist(),
+        "wrong_cirq_free_energy": wrong_cirq_free_energy.tolist(),
+        "errors": negative_errors,
+        "pass": negative_ok,
+    })
+    if not negative_ok:
+        results["pass"] = False
+
+    boundary_times = np.array([0.0, 1e-3, 1.0], dtype=np.float64)
+    boundary_beta = 1e-6
+    boundary_gamma = 1e-6
+    boundary_p_excited0 = 0.5
+
+    boundary_classical = classical_amplitude_damping(boundary_p_excited0, boundary_gamma, boundary_times)
+    boundary_qutip = qutip_amplitude_damping(boundary_p_excited0, boundary_gamma, boundary_times)
+    boundary_cirq = cirq_amplitude_damping(boundary_p_excited0, boundary_gamma, boundary_times)
+    boundary_pennylane = pennylane_amplitude_damping(boundary_p_excited0, boundary_gamma, boundary_times)
+
+    boundary_classical_free_energy = free_energy_curve_from_excited_population(boundary_classical, boundary_beta)
+    boundary_qutip_free_energy = free_energy_curve_from_excited_population(boundary_qutip, boundary_beta)
+    boundary_cirq_free_energy = free_energy_curve_from_excited_population(boundary_cirq, boundary_beta)
+    boundary_pennylane_free_energy = free_energy_curve_from_excited_population(boundary_pennylane, boundary_beta)
+
+    boundary_errors = {
+        "qutip_vs_classical": float(np.max(np.abs(boundary_qutip - boundary_classical))),
+        "cirq_vs_classical": float(np.max(np.abs(boundary_cirq - boundary_classical))),
+        "pennylane_vs_classical": float(np.max(np.abs(boundary_pennylane - boundary_classical))),
+        "qutip_free_energy_vs_classical": float(np.max(np.abs(boundary_qutip_free_energy - boundary_classical_free_energy))),
+        "cirq_free_energy_vs_classical": float(np.max(np.abs(boundary_cirq_free_energy - boundary_classical_free_energy))),
+        "pennylane_free_energy_vs_classical": float(np.max(np.abs(boundary_pennylane_free_energy - boundary_classical_free_energy))),
+    }
+    boundary_ok = all(err < 5e-5 for err in boundary_errors.values()) and bool(
+        np.isfinite(boundary_classical_free_energy).all()
+    )
+    results["details"].append({
+        "case": "boundary",
+        "beta": boundary_beta,
+        "gamma": boundary_gamma,
+        "times": boundary_times.tolist(),
+        "errors": boundary_errors,
+        "pass": boundary_ok,
+    })
+    if not boundary_ok:
+        results["pass"] = False
+
+    return results
+
+
+# ═══════════════════════════════════════════════════════════════════
+# TEST 6: CARNOT EFFICIENCY BOUND
 # ═══════════════════════════════════════════════════════════════════
 
 def test_carnot_efficiency():
@@ -421,7 +620,7 @@ def test_carnot_efficiency():
 
 
 # ═══════════════════════════════════════════════════════════════════
-# TEST 6: ENTROPY PROPERTIES
+# TEST 7: ENTROPY PROPERTIES
 # ═══════════════════════════════════════════════════════════════════
 
 def test_entropy_properties():
@@ -519,6 +718,7 @@ def main():
         test_free_energy_identity,
         test_landauer_principle,
         test_extractable_work,
+        test_open_system_tool_witnesses,
         test_carnot_efficiency,
         test_entropy_properties,
     ]
@@ -539,9 +739,9 @@ def main():
     results["tool_manifest"] = TOOL_MANIFEST
     results["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
-    os.makedirs(RESULTS_DIR, exist_ok=True)
-    out_path = os.path.join(RESULTS_DIR, "pure_lego_quantum_thermodynamics_results.json")
-    with open(out_path, "w") as f:
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    out_path = RESULTS_DIR / "pure_lego_quantum_thermodynamics_results.json"
+    with out_path.open("w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, cls=_NumpyEncoder)
 
     print(f"\n{'ALL TESTS PASSED' if all_pass else 'SOME TESTS FAILED'}")

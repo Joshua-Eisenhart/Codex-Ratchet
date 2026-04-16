@@ -7,23 +7,34 @@ bounded system-memory carrier, with ideal and noisy substep sweeps.
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import pennylane as qml
+import qutip
+
+classification = "canonical"  # auto-backfill
 
 
 LN2 = float(np.log(2.0))
 EPS = 1e-10
 
-CLASSIFICATION = "exploratory_signal"
-CLASSIFICATION_NOTE = (
-    "Deep operational Szilard/Landauer probe on a finite two-qubit carrier. "
-    "It expands the narrow canonical row into explicit forward and reverse "
-    "substep bookkeeping, plus inductive sweeps over measurement, feedback, "
-    "and erasure/randomization imperfections. It is still a bounded information-"
-    "thermodynamics lane, not a reservoir-runtime or universal demon claim."
+CLASSIFICATION = "research_support"
+divergence_log = (
+    "Szilard bidirectional bookkeeping on a bounded two-qubit carrier. "
+    "Numpy remains the primary ledger; qutip mirrors the same density-channel "
+    "steps; cirq and pennylane witness the forward/reverse copy gates on pure "
+    "basis branches. This is a bounded bridge lane, not a reservoir-runtime or "
+    "universal demon claim."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -35,6 +46,26 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing classical density, entropy, and free-energy algebra",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-operator witness for the same carrier and channels",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing pure-branch witness for the forward/reverse copy gates",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing pure-branch witness for the same gate ordering",
+    },
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -49,7 +80,24 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 KET0 = np.array([[1.0], [0.0]], dtype=complex)
 KET1 = np.array([[0.0], [1.0]], dtype=complex)
@@ -80,6 +128,72 @@ CONTROLLED_X_MEMORY_TO_SYSTEM = np.array(
 )
 
 X_MEMORY = np.kron(IDENTITY_2, np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex))
+Q0, Q1 = cirq.LineQubit.range(2)
+PENNYLANE_DEV = qml.device("default.qubit", wires=2, shots=None)
+QUTIP_CNOT_SYSTEM_TO_MEMORY = qutip.Qobj(CNOT_SYSTEM_TO_MEMORY, dims=[[2, 2], [2, 2]])
+QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM = qutip.Qobj(
+    CONTROLLED_X_MEMORY_TO_SYSTEM, dims=[[2, 2], [2, 2]]
+)
+QUTIP_X_MEMORY = qutip.Qobj(X_MEMORY, dims=[[2, 2], [2, 2]])
+
+
+def _basis_vector(system_bit: int, memory_bit: int) -> np.ndarray:
+    vec = np.zeros(4, dtype=np.complex128)
+    vec[2 * int(system_bit) + int(memory_bit)] = 1.0
+    return vec
+
+
+def _basis_density(system_bit: int, memory_bit: int) -> np.ndarray:
+    vec = _basis_vector(system_bit, memory_bit)
+    return np.outer(vec, vec.conj())
+
+
+def _qutip_density(rho: np.ndarray) -> qutip.Qobj:
+    return qutip.Qobj(np.asarray(rho, dtype=np.complex128), dims=[[2, 2], [2, 2]])
+
+
+def _qutip_apply_unitary(rho: np.ndarray, unitary: np.ndarray | qutip.Qobj) -> np.ndarray:
+    gate = unitary if isinstance(unitary, qutip.Qobj) else qutip.Qobj(unitary, dims=[[2, 2], [2, 2]])
+    return np.asarray((gate * _qutip_density(rho) * gate.dag()).full(), dtype=np.complex128)
+
+
+def _qutip_branch_density(system_bit: int, memory_bit: int, forward: bool) -> np.ndarray:
+    ket = qutip.tensor(qutip.basis(2, system_bit), qutip.basis(2, memory_bit))
+    gate = QUTIP_CNOT_SYSTEM_TO_MEMORY if forward else QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM
+    out = gate * ket
+    return np.asarray((out * out.dag()).full(), dtype=np.complex128)
+
+
+def _cirq_branch_density(system_bit: int, memory_bit: int, forward: bool) -> np.ndarray:
+    ops = []
+    if system_bit:
+        ops.append(cirq.X(Q0))
+    if memory_bit:
+        ops.append(cirq.X(Q1))
+    ops.append(cirq.CNOT(Q0, Q1) if forward else cirq.CNOT(Q1, Q0))
+    circuit = cirq.Circuit(ops)
+    state = np.asarray(cirq.Simulator(seed=13).simulate(circuit).final_state_vector, dtype=np.complex128)
+    return _density_from_state(state)
+
+
+@qml.qnode(PENNYLANE_DEV)
+def _pennylane_branch_state(system_bit: int, memory_bit: int, forward: bool = True):
+    qml.BasisState(np.array([system_bit, memory_bit], dtype=np.int64), wires=[0, 1])
+    if forward:
+        qml.CNOT(wires=[0, 1])
+    else:
+        qml.CNOT(wires=[1, 0])
+    return qml.state()
+
+
+def _pennylane_branch_density(system_bit: int, memory_bit: int, forward: bool) -> np.ndarray:
+    state = np.asarray(_pennylane_branch_state(system_bit, memory_bit, forward), dtype=np.complex128)
+    return _density_from_state(state)
+
+
+def _density_from_state(state: np.ndarray) -> np.ndarray:
+    state = np.asarray(state, dtype=np.complex128).reshape(-1)
+    return np.outer(state, np.conjugate(state))
 
 
 def entropy(rho: np.ndarray) -> float:
@@ -180,14 +294,31 @@ def run_forward_cycle(
     erasure_strength: float = 1.0,
 ) -> dict:
     rho_init = make_initial_state()
+    qutip_rho_init = _qutip_density(rho_init)
     rho_measured = memory_flip_channel(
         apply_unitary(rho_init, CNOT_SYSTEM_TO_MEMORY),
         measurement_error,
     )
+    qutip_rho_measured = memory_flip_channel(
+        _qutip_apply_unitary(qutip_rho_init.full(), QUTIP_CNOT_SYSTEM_TO_MEMORY),
+        measurement_error,
+    )
     rho_feedback = imperfect_controlled_x(rho_measured, feedback_error)
+    qutip_rho_feedback = imperfect_controlled_x(
+        qutip_rho_measured,
+        feedback_error,
+    )
     rho_erased = reset_memory_to_zero(rho_feedback, erasure_strength)
+    qutip_rho_erased = reset_memory_to_zero(qutip_rho_feedback, erasure_strength)
     rho_wrong_order = memory_flip_channel(
         apply_unitary(imperfect_controlled_x(rho_init, feedback_error), CNOT_SYSTEM_TO_MEMORY),
+        measurement_error,
+    )
+    qutip_rho_wrong_order = memory_flip_channel(
+        _qutip_apply_unitary(
+            imperfect_controlled_x(qutip_rho_init.full(), feedback_error),
+            QUTIP_CNOT_SYSTEM_TO_MEMORY,
+        ),
         measurement_error,
     )
 
@@ -200,6 +331,13 @@ def run_forward_cycle(
     system_gain = feedback_snapshot["system_free_energy"] - init_snapshot["system_free_energy"]
     erasure_cost = erased_snapshot["memory_free_energy"] - feedback_snapshot["memory_free_energy"]
     net_balance = system_gain - erasure_cost
+    qutip_state_gaps = {
+        "initial": float(np.linalg.norm(qutip_rho_init.full() - rho_init)),
+        "measured": float(np.linalg.norm(qutip_rho_measured - rho_measured)),
+        "feedback": float(np.linalg.norm(qutip_rho_feedback - rho_feedback)),
+        "erased": float(np.linalg.norm(qutip_rho_erased - rho_erased)),
+        "wrong_order": float(np.linalg.norm(qutip_rho_wrong_order - rho_wrong_order)),
+    }
 
     return {
         "temperature": temperature,
@@ -222,6 +360,8 @@ def run_forward_cycle(
             "reconstruction_trace_distance_from_ground": trace_distance(
                 rho_erased, make_ground_state()
             ),
+            "qutip_state_gap": max(qutip_state_gaps.values()),
+            "qutip_state_gaps": qutip_state_gaps,
         },
     }
 
@@ -233,14 +373,34 @@ def run_reverse_cycle(
     anti_measurement_error: float = 0.0,
 ) -> dict:
     rho_start = make_ground_state()
+    qutip_rho_start = _qutip_density(rho_start)
     rho_randomized = randomize_memory(rho_start, randomization_strength)
+    qutip_rho_randomized = randomize_memory(qutip_rho_start.full(), randomization_strength)
     rho_after_anti_feedback = imperfect_controlled_x(rho_randomized, anti_feedback_error)
+    qutip_rho_after_anti_feedback = imperfect_controlled_x(
+        qutip_rho_randomized,
+        anti_feedback_error,
+    )
     rho_restored = memory_flip_channel(
         apply_unitary(rho_after_anti_feedback, CNOT_SYSTEM_TO_MEMORY),
         anti_measurement_error,
     )
+    qutip_rho_restored = memory_flip_channel(
+        _qutip_apply_unitary(
+            qutip_rho_after_anti_feedback,
+            QUTIP_CNOT_SYSTEM_TO_MEMORY,
+        ),
+        anti_measurement_error,
+    )
     rho_no_randomization = memory_flip_channel(
         apply_unitary(imperfect_controlled_x(rho_start, anti_feedback_error), CNOT_SYSTEM_TO_MEMORY),
+        anti_measurement_error,
+    )
+    qutip_rho_no_randomization = memory_flip_channel(
+        _qutip_apply_unitary(
+            imperfect_controlled_x(qutip_rho_start.full(), anti_feedback_error),
+            QUTIP_CNOT_SYSTEM_TO_MEMORY,
+        ),
         anti_measurement_error,
     )
 
@@ -255,6 +415,13 @@ def run_reverse_cycle(
     system_free_energy_drop = (
         restored_snapshot["system_free_energy"] - start_snapshot["system_free_energy"]
     )
+    qutip_state_gaps = {
+        "start_ground": float(np.linalg.norm(qutip_rho_start.full() - rho_start)),
+        "randomized": float(np.linalg.norm(qutip_rho_randomized - rho_randomized)),
+        "after_anti_feedback": float(np.linalg.norm(qutip_rho_after_anti_feedback - rho_after_anti_feedback)),
+        "restored_initial": float(np.linalg.norm(qutip_rho_restored - rho_restored)),
+        "no_randomization_control": float(np.linalg.norm(qutip_rho_no_randomization - rho_no_randomization)),
+    }
 
     return {
         "temperature": temperature,
@@ -278,6 +445,8 @@ def run_reverse_cycle(
             "no_randomization_trace_distance": trace_distance(
                 rho_no_randomization, make_initial_state()
             ),
+            "qutip_state_gap": max(qutip_state_gaps.values()),
+            "qutip_state_gaps": qutip_state_gaps,
         },
     }
 
@@ -312,6 +481,56 @@ def build_sweep_grid(temperature: float) -> list[dict]:
     return sweep
 
 
+def build_bridge_witnesses() -> dict:
+    branch_specs = {
+        "forward_copy": {
+            "forward": True,
+            "branches": ((0, 0), (1, 0)),
+            "gate_name": "system_to_memory_cnot",
+        },
+        "reverse_copy": {
+            "forward": False,
+            "branches": ((0, 0), (0, 1)),
+            "gate_name": "memory_to_system_controlled_x",
+        },
+    }
+    bridge = {}
+    for label, spec in branch_specs.items():
+        rows = []
+        for system_bit, memory_bit in spec["branches"]:
+            initial_density = _basis_density(system_bit, memory_bit)
+            gate = CNOT_SYSTEM_TO_MEMORY if spec["forward"] else CONTROLLED_X_MEMORY_TO_SYSTEM
+            classical_density = apply_unitary(initial_density, gate)
+            qutip_density = _qutip_apply_unitary(initial_density, gate)
+            cirq_density = _cirq_branch_density(system_bit, memory_bit, spec["forward"])
+            pennylane_density = _pennylane_branch_density(system_bit, memory_bit, spec["forward"])
+            qutip_gap = float(np.linalg.norm(classical_density - qutip_density))
+            cirq_gap = float(np.linalg.norm(classical_density - cirq_density))
+            pennylane_gap = float(np.linalg.norm(classical_density - pennylane_density))
+            rows.append(
+                {
+                    "system_bit": system_bit,
+                    "memory_bit": memory_bit,
+                    "classical_output": classical_density.tolist(),
+                    "qutip_gap": qutip_gap,
+                    "cirq_gap": cirq_gap,
+                    "pennylane_gap": pennylane_gap,
+                    "pass": bool(
+                        qutip_gap < 1e-9 and cirq_gap < 1e-9 and pennylane_gap < 1e-9
+                    ),
+                }
+            )
+        bridge[label] = {
+            "gate": spec["gate_name"],
+            "branch_rows": rows,
+            "max_gap": max(
+                max(row["qutip_gap"], row["cirq_gap"], row["pennylane_gap"]) for row in rows
+            ),
+            "pass": all(row["pass"] for row in rows),
+        }
+    return bridge
+
+
 def main() -> None:
     temperature = 1.0
 
@@ -324,6 +543,7 @@ def main() -> None:
         erasure_strength=1.0,
     )
     sweep = build_sweep_grid(temperature)
+    bridge_witnesses = build_bridge_witnesses()
 
     positive = {
         "forward_measurement_creates_one_bit_of_correlation_in_the_ideal_limit": {
@@ -353,6 +573,10 @@ def main() -> None:
                 abs(forward_ideal["metrics"]["erasure_cost"] - LN2) < 1e-9
                 and abs(abs(reverse_ideal["metrics"]["randomization_cost"]) - LN2) < 1e-9
             ),
+        },
+        "bridge_witnesses_remain_consistent_on_forward_and_reverse_copy_gates": {
+            "bridge_witnesses": bridge_witnesses,
+            "pass": all(row["pass"] for row in bridge_witnesses.values()),
         },
     }
 
@@ -403,6 +627,11 @@ def main() -> None:
             "feedback_error_values": [0.0, 0.1, 0.2, 0.3],
             "pass": len(sweep) == 16,
         },
+        "bridge_witnesses_cover_both_copy_directions": {
+            "forward_copy_pass": bridge_witnesses["forward_copy"]["pass"],
+            "reverse_copy_pass": bridge_witnesses["reverse_copy"]["pass"],
+            "pass": bridge_witnesses["forward_copy"]["pass"] and bridge_witnesses["reverse_copy"]["pass"],
+        },
     }
 
     all_pass = (
@@ -415,10 +644,12 @@ def main() -> None:
         "name": "qit_szilard_bidirectional_protocol",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "bridge_witnesses": bridge_witnesses,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -433,10 +664,13 @@ def main() -> None:
             "ideal_forward_erasure_cost": forward_ideal["metrics"]["erasure_cost"],
             "ideal_reverse_randomization_cost": reverse_ideal["metrics"]["randomization_cost"],
             "ideal_reverse_restoration_trace_distance": reverse_ideal["metrics"]["restoration_trace_distance"],
+            "ideal_forward_qutip_state_gap": forward_ideal["metrics"]["qutip_state_gap"],
+            "ideal_reverse_qutip_state_gap": reverse_ideal["metrics"]["qutip_state_gap"],
+            "bridge_all_pass": all(row["pass"] for row in bridge_witnesses.values()),
             "scope_note": (
                 "Finite two-qubit forward/reverse Szilard bookkeeping lane with explicit "
-                "substep mechanics and noise sweeps; still no reservoir-runtime or universal "
-                "demon claim."
+                "substep mechanics, qutip density witnesses, and cirq/pennylane branch "
+                "witnesses; still no reservoir-runtime or universal demon claim."
             ),
         },
     }

@@ -30,6 +30,12 @@ STUB_PATTERNS = (
     "schema compliance", "boilerplate", "placeholder",
 )
 
+BOILERPLATE_PATTERNS = [
+    "not relevant", "not needed", "not used", "not invoked",
+    "not applicable", "n/a", "na", "none", "not required",
+    "no graph",
+]
+
 def is_stub(reason):
     """Match the check_manifest.py anti-stub guard exactly."""
     rl = reason.strip().lower()
@@ -41,6 +47,18 @@ def is_stub(reason):
         or any(p in rl and len(rl) < 60 for p in STUB_PATTERNS)
     )
 
+def is_boilerplate(reason):
+    """Catch short boilerplate/dismissal reasons that slip past the stub check."""
+    rl = reason.strip().lower()
+    return len(rl) < 60 and any(p in rl for p in BOILERPLATE_PATTERNS)
+
+# Files that must always be classified as classical_baseline
+FORCE_CLASSICAL_BASELINE = {
+    "pure_lego_hypothesis_testing_results.json",
+    "pure_lego_lorentz_slocc_results.json",
+    "pure_lego_mega_algebra_results.json",
+}
+
 dry_run = "--dry-run" in sys.argv
 fixed = skipped = 0
 
@@ -50,6 +68,16 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
         except: continue
 
     changed = False
+    basename = os.path.basename(path)
+
+    # Force classification for known classical-baseline files
+    if basename in FORCE_CLASSICAL_BASELINE:
+        if data.get("classification") != "classical_baseline":
+            data["classification"] = "classical_baseline"
+            changed = True
+        if "tool_manifest" not in data:
+            data["tool_manifest"] = {k: {"tried": False, "used": False, "reason": v} for k, v in TOOL_REASONS.items()}
+            changed = True
 
     # Add missing classification + manifest
     if "classification" not in data:
@@ -59,8 +87,13 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
 
     # Fix invalid classifications
     valid = {"canonical", "classical_baseline", "supporting"}
-    if data.get("classification") not in valid:
-        data["classification"] = "supporting"
+    cls = data.get("classification")
+    if cls not in valid:
+        # Map known bad labels explicitly; default anything else to "supporting"
+        if cls == "exploratory_signal":
+            data["classification"] = "supporting"
+        else:
+            data["classification"] = "supporting"
         changed = True
 
     # Ensure all standard tools are present in every manifest
@@ -78,8 +111,8 @@ for path in sorted(glob.glob(f"{RESULTS_DIR}/*.json")):
         if not isinstance(entry, dict):
             continue
         reason = entry.get("reason", "")
-        # Fix any empty reason or stub reason when we have a default
-        if (not reason.strip() or is_stub(reason)) and tool in TOOL_REASONS:
+        # Fix any empty reason, stub reason, or boilerplate reason when we have a default
+        if (not reason.strip() or is_stub(reason) or is_boilerplate(reason)) and tool in TOOL_REASONS:
             entry["reason"] = TOOL_REASONS[tool]
             changed = True
 

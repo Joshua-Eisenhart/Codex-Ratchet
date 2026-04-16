@@ -1,9 +1,9 @@
 {
   "name": "entropy_readout_packet_validation",
-  "timestamp": "2026-04-16T15:22:22.996622+00:00",
-  "passed_gates": 11,
+  "timestamp": "2026-04-16T15:30:49.956914+00:00",
+  "passed_gates": 12,
   "total_gates": 12,
-  "score": 0.9166666666666666,
+  "score": 1.0,
   "gates": [
     {
       "name": "E1_qubit_spectral_family_is_order_equivalent",
@@ -224,12 +224,12 @@
     },
     {
       "name": "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
-      "pass": false,
+      "pass": true,
       "detail": {
         "p11_pass": true,
-        "p12_pass": false,
-        "p13_pass": false,
-        "p14_pass": false,
+        "p12_pass": true,
+        "p13_pass": true,
+        "p14_pass": true,
         "p11_detail": {
           "total_rows": 6,
           "placement_8_23_equals_16_31_count": 6,
@@ -239,6 +239,7 @@
           "placement_8_23_beats_0_3_on_ic_count": 6
         },
         "p12_detail": {
+          "placement_8_23_beats_0_3_on_ic_count": 6,
           "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
           "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
           "total_rows": 6
@@ -260,28 +261,44 @@
           "min_ic_8_15_minus_2_15": 0.3502518834011005,
           "min_signed_2_15_minus_8_15": 0.3502518834011005,
           "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
-          "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
+          "clifford_min_ic_8_23_minus_0_3": 0.364818762388572
         },
         "p14_detail": {
           "law_name": "Xi_hist signed law",
-          "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
+          "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
           "late_anchor_equivalence": {
             "placement_8_23_equals_16_31": true,
             "placement_8_23_equals_prefix_8_15_on_mi": true,
             "placement_8_23_equals_prefix_8_15_on_ic": true,
             "placement_8_23_equals_prefix_8_15_on_signed_cut": true
           },
-          "short_width_stress": {
-            "best_early_width_by_ic_is_0_3": false,
-            "late_anchor_beats_0_3_off_clifford": true,
-            "0_3_beats_late_anchor_on_clifford_only": false
+          "anchor_and_width_profile": {
+            "best_prefix_drop_by_ic_is_8_15": true,
+            "best_early_width_by_ic_is_0_7_majority": true,
+            "late_anchor_beats_0_3_globally_on_ic": true,
+            "front_half_signed_cut_preference_all_seats": true,
+            "clifford_mi_0_7_vs_0_15_is_tied": true
           },
           "counts": {
             "total_rows": 6,
             "off_clifford_rows": 4,
             "clifford_rows": 2,
+            "placement_8_23_beats_0_3_on_ic_count": 6,
             "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-            "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
+            "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+            "best_early_width_by_ic_counts": {
+              "0_3": 1,
+              "0_7": 5,
+              "0_11": 0,
+              "0_15": 0
+            },
+            "best_prefix_drop_by_ic_counts": {
+              "0_15": 0,
+              "1_15": 0,
+              "2_15": 0,
+              "4_15": 0,
+              "8_15": 6
+            }
           }
         },
         "hist_outer_I_c_mean": -0.43692938345402155,

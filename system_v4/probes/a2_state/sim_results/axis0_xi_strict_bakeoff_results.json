@@ -1,6 +1,6 @@
 {
   "schema": "AXIS0_XI_STRICT_BAKEOFF_V1",
-  "timestamp": "2026-04-16T15:23:10.171895+00:00",
+  "timestamp": "2026-04-16T15:29:39.388327+00:00",
   "pointwise_shell": {
     "inner": {
       "fiber": {
@@ -3480,24 +3480,40 @@
     },
     "xi_hist_signed_law_summary": {
       "law_name": "Xi_hist signed law",
-      "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
+      "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
       "late_anchor_equivalence": {
         "placement_8_23_equals_16_31": true,
         "placement_8_23_equals_prefix_8_15_on_mi": true,
         "placement_8_23_equals_prefix_8_15_on_ic": true,
         "placement_8_23_equals_prefix_8_15_on_signed_cut": true
       },
-      "short_width_stress": {
-        "best_early_width_by_ic_is_0_3": false,
-        "late_anchor_beats_0_3_off_clifford": true,
-        "0_3_beats_late_anchor_on_clifford_only": false
+      "anchor_and_width_profile": {
+        "best_prefix_drop_by_ic_is_8_15": true,
+        "best_early_width_by_ic_is_0_7_majority": true,
+        "late_anchor_beats_0_3_globally_on_ic": true,
+        "front_half_signed_cut_preference_all_seats": true,
+        "clifford_mi_0_7_vs_0_15_is_tied": true
       },
       "counts": {
         "total_rows": 6,
         "off_clifford_rows": 4,
         "clifford_rows": 2,
+        "placement_8_23_beats_0_3_on_ic_count": 6,
         "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-        "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+        "best_early_width_by_ic_counts": {
+          "0_3": 1,
+          "0_7": 5,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_prefix_drop_by_ic_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        }
       }
     },
     "history_seat_aware_summary": {
@@ -3552,7 +3568,7 @@
         "mean_mi_0_15_minus_1_15": 0.002668989402570071,
         "mean_mi_0_15_minus_8_15": -0.6173358722831579
       },
-      "seat_read": "clifford_0_15_mi__front_half_lean__inner_outer_back_half_mi__all_back_half_signed_cut"
+      "seat_read": "clifford_0_7_or_0_15_mi_tie__front_half_signed_cut__inner_outer_back_half_mi"
     },
     "seat_aware_candidate_comparison_summary": {
       "mi_candidate_rule": "inner_outer_use_8_15__clifford_use_0_15",
@@ -3778,8 +3794,8 @@
         "outer": "front_half",
         "clifford": "mixed"
       },
-      "mi_read": "inner_outer_back_half__clifford_0_15__clifford_front_half_lean",
-      "signed_cut_read": "all_seats_back_half"
+      "mi_read": "late_anchor_8_23_equals_8_15__inner_outer_back_half__clifford_0_7_or_0_15_tie",
+      "signed_cut_read": "all_seats_front_half"
     },
     "clifford_edge_case_summary": {
       "threshold_mi_gain": 0.001,

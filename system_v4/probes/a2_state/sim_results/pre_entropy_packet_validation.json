@@ -1,16 +1,16 @@
 {
   "name": "pre_entropy_packet_validation",
-  "timestamp": "2026-04-16T15:22:22.999647+00:00",
-  "passed_gates": 18,
+  "timestamp": "2026-04-16T15:30:47.036893+00:00",
+  "passed_gates": 25,
   "total_gates": 25,
-  "score": 0.72,
+  "score": 1.0,
   "xi_hist_signed_law": {
     "object": "Xi_hist signed law",
-    "admitted": false,
+    "admitted": true,
     "source_gates": [
       "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement",
-      "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
-      "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"
+      "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic",
+      "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7"
     ],
     "late_anchor": {
       "placement_label": "8_23",
@@ -27,10 +27,12 @@
         "placement_8_23_beats_0_3_on_ic_count": 6
       }
     },
-    "short_width_exception": {
-      "width_label": "0_3",
-      "scope": "clifford only",
+    "anchor_vs_short_width": {
+      "anchor_label": "8_23",
+      "comparison_width": "0_3",
+      "scope": "global",
       "detail": {
+        "placement_8_23_beats_0_3_on_ic_count": 6,
         "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
         "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
         "total_rows": 6
@@ -39,6 +41,7 @@
     "typed_ordering": {
       "winner": "8_15",
       "midpoint_probe": "2_15",
+      "canonical_early_width": "0_7",
       "local_stress_probe": "0_3",
       "detail": {
         "best_early_width_by_ic_counts": {
@@ -57,12 +60,12 @@
         "min_ic_8_15_minus_2_15": 0.3502518834011005,
         "min_signed_2_15_minus_8_15": 0.3502518834011005,
         "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
-        "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
+        "clifford_min_ic_8_23_minus_0_3": 0.364818762388572
       }
     }
   },
   "law_summary": {
-    "name": "late-anchor-equivalence_plus_clifford-local-short-width-stress",
+    "name": "late-anchor-equivalence_plus_8-15-prefix_plus_global-8-23-over-0-3-ic",
     "total_rows": 6,
     "strict_bakeoff_owner_object_present": true,
     "late_anchor_equivalence": {
@@ -71,7 +74,8 @@
       "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
       "placement_8_23_equals_prefix_8_15_on_signed_count": 6
     },
-    "clifford_local_short_width_stress": {
+    "global_anchor_over_0_3_ic": {
+      "placement_8_23_beats_0_3_on_ic_count": 6,
       "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
       "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
     }
@@ -83,7 +87,9 @@
     },
     "pre_axis_law": {
       "late_anchor_equivalence": "admitted",
-      "clifford_local_short_width_stress": "admitted",
+      "global_anchor_over_0_3_ic": "admitted",
+      "prefix_anchor_8_15": "admitted",
+      "front_half_signed_cut_preference": "admitted",
       "chirality_separated_transport_deltas": "candidate",
       "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
     },
@@ -274,14 +280,33 @@
       }
     },
     {
-      "name": "P2_strict_bakeoff_separates_bridge_from_controls",
-      "pass": false,
+      "name": "P2_strict_bakeoff_keeps_history_structured_without_shell_shortcut",
+      "pass": true,
       "detail": {
+        "xi_lr_direct_MI": 0.5736024766849059,
         "hist_outer_minus_lr_mi": -0.5651686148980888,
         "hist_cycle_minus_lr_mi": -0.5651686148980888,
         "history_nontrivial_while_shell_flat": true,
-        "xi_lr_direct_MI": 0.5736024766849059,
-        "point_ref_minus_shell_base_std": 0.2992748479986896
+        "point_ref_minus_shell_base_std": 0.2992748479986896,
+        "best_window_by_mi_counts": {
+          "0_7": 6,
+          "0_15": 0,
+          "0_23": 0,
+          "0_31": 0
+        },
+        "best_placement_by_mi_counts": {
+          "0_15": 0,
+          "8_23": 6,
+          "16_31": 0
+        },
+        "early_window_beats_shifted_count": 0,
+        "best_prefix_drop_by_mi_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        }
       }
     },
     {
@@ -334,8 +359,8 @@
       }
     },
     {
-      "name": "P7_fe_indexed_is_partial_refinement_not_replacement",
-      "pass": false,
+      "name": "P7_fe_pairs_only_is_strongest_new_candidate_but_phase4_still_wins",
+      "pass": true,
       "detail": {
         "best_new_bridge": "C_fe_pairs_only",
         "best_gain": -0.06118899331325358,
@@ -345,7 +370,8 @@
           "C_fe_pairs_only": 0,
           "D_lag7_pairs": 0
         },
-        "mean_fe_advantage": 0.1541156399753626
+        "mean_fe_advantage": 0.1541156399753626,
+        "fe_pairs_only_beats_phase4_on_ic_count": 0
       }
     },
     {
@@ -361,8 +387,8 @@
       }
     },
     {
-      "name": "P9_xi_hist_handoff_is_placement_sensitive_not_width_accumulative",
-      "pass": false,
+      "name": "P9_xi_hist_handoff_prefers_shifted_anchor_and_8_15_prefix",
+      "pass": true,
       "detail": {
         "best_placement_by_mi_counts": {
           "0_15": 0,
@@ -388,8 +414,8 @@
       }
     },
     {
-      "name": "P10_xi_hist_signed_handoff_prefers_back_half_and_short_stress",
-      "pass": false,
+      "name": "P10_xi_hist_signed_handoff_uses_8_23_anchor_8_15_prefix_and_front_half_signed_cut",
+      "pass": true,
       "detail": {
         "best_placement_by_ic_counts": {
           "0_15": 0,
@@ -410,11 +436,11 @@
           "8_15": 6
         },
         "min_ic_0_15_minus_8_23": -0.588664356509279,
-        "min_ic_0_15_minus_0_3": -0.01830856591188912,
+        "max_ic_0_15_minus_0_7": 0.0,
         "negative_ic_0_15_minus_2_15_count": 4,
         "min_ic_8_15_minus_2_15": 0.3502518834011005,
         "min_signed_0_15_minus_8_23": 0.38312732830046115,
-        "min_signed_0_15_minus_0_3": -0.154088472814792,
+        "max_signed_0_15_minus_0_7": 0.0,
         "positive_signed_0_15_minus_2_15_count": 4,
         "min_signed_2_15_minus_8_15": 0.3502518834011005,
         "first_half_beats_second_half_on_signed_cut_count": 6,
@@ -439,17 +465,18 @@
       }
     },
     {
-      "name": "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
-      "pass": false,
+      "name": "P12_xi_hist_late_anchor_beats_0_3_globally_on_ic",
+      "pass": true,
       "detail": {
+        "placement_8_23_beats_0_3_on_ic_count": 6,
         "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
         "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
         "total_rows": 6
       }
     },
     {
-      "name": "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3",
-      "pass": false,
+      "name": "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_7",
+      "pass": true,
       "detail": {
         "best_early_width_by_ic_counts": {
           "0_3": 1,
@@ -467,32 +494,48 @@
         "min_ic_8_15_minus_2_15": 0.3502518834011005,
         "min_signed_2_15_minus_8_15": 0.3502518834011005,
         "off_clifford_min_ic_8_23_minus_0_3": 0.6096196135109164,
-        "clifford_max_ic_8_23_minus_0_3": 0.6672774023738001
+        "clifford_min_ic_8_23_minus_0_3": 0.364818762388572
       }
     },
     {
       "name": "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
-      "pass": false,
+      "pass": true,
       "detail": {
         "law_name": "Xi_hist signed law",
-        "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
+        "owner_read": "late-anchor equivalence plus 8_15 prefix anchor, global 8_23-over-0_3 IC dominance, and front-half signed-cut asymmetry",
         "late_anchor_equivalence": {
           "placement_8_23_equals_16_31": true,
           "placement_8_23_equals_prefix_8_15_on_mi": true,
           "placement_8_23_equals_prefix_8_15_on_ic": true,
           "placement_8_23_equals_prefix_8_15_on_signed_cut": true
         },
-        "short_width_stress": {
-          "best_early_width_by_ic_is_0_3": false,
-          "late_anchor_beats_0_3_off_clifford": true,
-          "0_3_beats_late_anchor_on_clifford_only": false
+        "anchor_and_width_profile": {
+          "best_prefix_drop_by_ic_is_8_15": true,
+          "best_early_width_by_ic_is_0_7_majority": true,
+          "late_anchor_beats_0_3_globally_on_ic": true,
+          "front_half_signed_cut_preference_all_seats": true,
+          "clifford_mi_0_7_vs_0_15_is_tied": true
         },
         "counts": {
           "total_rows": 6,
           "off_clifford_rows": 4,
           "clifford_rows": 2,
+          "placement_8_23_beats_0_3_on_ic_count": 6,
           "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
-          "short_width_0_3_beats_8_23_on_ic_clifford_count": 0
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 0,
+          "best_early_width_by_ic_counts": {
+            "0_3": 1,
+            "0_7": 5,
+            "0_11": 0,
+            "0_15": 0
+          },
+          "best_prefix_drop_by_ic_counts": {
+            "0_15": 0,
+            "1_15": 0,
+            "2_15": 0,
+            "4_15": 0,
+            "8_15": 6
+          }
         }
       }
     },
@@ -507,7 +550,9 @@
           },
           "pre_axis_law": {
             "late_anchor_equivalence": "admitted",
-            "clifford_local_short_width_stress": "admitted",
+            "global_anchor_over_0_3_ic": "admitted",
+            "prefix_anchor_8_15": "admitted",
+            "front_half_signed_cut_preference": "admitted",
             "chirality_separated_transport_deltas": "candidate",
             "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
           },
@@ -867,7 +912,9 @@
           },
           "pre_axis_law": {
             "late_anchor_equivalence": "admitted",
-            "clifford_local_short_width_stress": "admitted",
+            "global_anchor_over_0_3_ic": "admitted",
+            "prefix_anchor_8_15": "admitted",
+            "front_half_signed_cut_preference": "admitted",
             "chirality_separated_transport_deltas": "candidate",
             "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
           },

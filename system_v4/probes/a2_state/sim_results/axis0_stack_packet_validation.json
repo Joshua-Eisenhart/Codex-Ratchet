@@ -1,9 +1,9 @@
 {
   "name": "axis0_stack_packet_validation",
-  "timestamp": "2026-04-16T15:18:23.492971+00:00",
-  "passed_gates": 6,
+  "timestamp": "2026-04-16T15:31:59.243987+00:00",
+  "passed_gates": 8,
   "total_gates": 8,
-  "score": 0.75,
+  "score": 1.0,
   "gates": [
     {
       "name": "S1_all_packet_runners_execute_cleanly",
@@ -51,12 +51,12 @@
     },
     {
       "name": "S2_all_component_packets_are_closed",
-      "pass": false,
+      "pass": true,
       "detail": {
         "formal_geometry": {
-          "passed_gates": 13,
+          "passed_gates": 14,
           "total_gates": 14,
-          "score": 0.9285714285714286
+          "score": 1.0
         },
         "root_emergence": {
           "passed_gates": 12,
@@ -64,14 +64,14 @@
           "score": 1.0
         },
         "carrier_selection": {
-          "passed_gates": 8,
+          "passed_gates": 9,
           "total_gates": 9,
-          "score": 0.8888888888888888
+          "score": 1.0
         },
         "pre_entropy": {
-          "passed_gates": 18,
+          "passed_gates": 25,
           "total_gates": 25,
-          "score": 0.72
+          "score": 1.0
         },
         "c1_bridge_object": {
           "passed_gates": 4,
@@ -84,9 +84,9 @@
           "score": 1.0
         },
         "entropy_readout": {
-          "passed_gates": 11,
+          "passed_gates": 12,
           "total_gates": 12,
-          "score": 0.9166666666666666
+          "score": 1.0
         }
       }
     },
@@ -94,10 +94,10 @@
       "name": "S3_lower_ladder_is_coherent",
       "pass": true,
       "detail": {
-        "formal_geometry_score": 0.9285714285714286,
+        "formal_geometry_score": 1.0,
         "root_r1_pass": true,
         "root_emergence_score": 1.0,
-        "carrier_selection_score": 0.8888888888888888,
+        "carrier_selection_score": 1.0,
         "carrier_c3_pass": true,
         "carrier_c4_pass": true,
         "carrier_c6_pass": true,
@@ -108,12 +108,12 @@
     },
     {
       "name": "S4_upper_ladder_is_coherent",
-      "pass": false,
+      "pass": true,
       "detail": {
-        "pre_entropy_score": 0.72,
+        "pre_entropy_score": 1.0,
         "c1_bridge_object_score": 1.0,
         "matched_marginal_score": 1.0,
-        "entropy_readout_score": 0.9166666666666666
+        "entropy_readout_score": 1.0
       }
     },
     {
@@ -121,9 +121,9 @@
       "pass": true,
       "detail": {
         "root_emergence_score": 1.0,
-        "pre_entropy_score": 0.72,
+        "pre_entropy_score": 1.0,
         "c1_bridge_object_score": 1.0,
-        "entropy_readout_score": 0.9166666666666666,
+        "entropy_readout_score": 1.0,
         "pre_entropy_p22_pass": true,
         "pre_entropy_p23_pass": true,
         "pre_entropy_p24_pass": true,
@@ -140,7 +140,7 @@
         "c1b3_pass": true,
         "c1b4_pass": true,
         "entropy_e10_status": "admitted_executable_candidate_not_final_owner_law",
-        "entropy_e12_pass": false,
+        "entropy_e12_pass": true,
         "xi_axis_internal_status": "current_bridge_candidate",
         "xi_hist_owner_status": "admitted",
         "xi_current_mapping": "axis_internal_candidate_not_final_owner_law",
@@ -156,7 +156,7 @@
         "pre_entropy_p24_pass": true,
         "matched_m9_pass": true,
         "entropy_e10_pass": true,
-        "entropy_e12_pass": false
+        "entropy_e12_pass": true
       }
     },
     {
@@ -168,7 +168,7 @@
         "c1b3_pass": true,
         "c1b4_pass": true,
         "entropy_e10_pass": true,
-        "entropy_e12_pass": false
+        "entropy_e12_pass": true
       }
     }
   ]

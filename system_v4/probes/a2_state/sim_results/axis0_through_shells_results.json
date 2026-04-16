@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- 2-qubit density matrix, no graph"
     },
     "z3": {
       "tried": true,
@@ -20,27 +20,27 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed -- z3 sufficient"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed -- all computation torch-native"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- Bloch/Pauli done in torch"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed -- shell metrics computed directly"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- no equivariant layers"
     },
     "rustworkx": {
       "tried": true,
@@ -50,20 +50,20 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- shells are nested DAG"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- persistence not the focus"
     }
   },
-  "elapsed_seconds": 0.6261591911315918,
+  "elapsed_seconds": 0.3682992458343506,
   "all_pass": true,
   "positive": {
     "P1_gradient_exists_after_shells": {

@@ -11,17 +11,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph message-passing needed; this is a spectral algebra test"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "sympy charpoly comparison is the decisive tool; z3 not needed"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed; sympy handles symbolic polynomial inequality"
     },
     "sympy": {
       "tried": true,
@@ -46,12 +46,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph structure required for spectral triple"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hyperedges in this construction"
     },
     "toponetx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not relevant to spectral splitting"
     }
   },
   "tool_integration_depth": {
@@ -108,21 +108,5 @@
     "clifford_I3_anticommutes_with_e1": true,
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

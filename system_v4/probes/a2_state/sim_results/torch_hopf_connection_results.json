@@ -11,22 +11,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": ""
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": ""
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": ""
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": ""
     },
     "clifford": {
       "tried": true,
@@ -46,22 +46,22 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": ""
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": ""
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": ""
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
@@ -364,7 +364,7 @@
     "P6_e3nn_hopf_bloch_equivariance": {
       "test": "e3nn Linear(1x1o->1x1o) is equivariant on Hopf/Bloch carrier states",
       "n_states": 8,
-      "max_equivariance_error": 1.825012141409843e-08,
+      "max_equivariance_error": 3.0719530030864917e-08,
       "tolerance": 1e-05,
       "pass": true
     }
@@ -496,21 +496,5 @@
     "total_tests": 45,
     "total_pass": 45,
     "all_pass": true
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

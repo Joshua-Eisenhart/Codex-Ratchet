@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed -- no autograd layer in proof sim"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no graph layer in proof sim"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed -- SyGuS not required for this DPI proof"
     },
     "sympy": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- no geometric algebra layer here"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed -- no manifold geometry layer here"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- no equivariant network layer here"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed -- no dependency graph here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- no hypergraph layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -103,14 +103,14 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies CPTP contraction AND D_after > D_before. DPI confirmed: relative entropy cannot increase under CPTP channels.",
-      "elapsed_s": 0.0077
+      "elapsed_s": 0.0163
     },
     "proof2_mutual_information_dpi": {
       "name": "mutual_information_dpi_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies local CPTP constraints AND I_after > I_before. MI DPI confirmed: local CPTP cannot increase mutual information.",
-      "elapsed_s": 0.0012
+      "elapsed_s": 0.0023
     },
     "sympy_derivation": {
       "status": "ok",
@@ -151,7 +151,7 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "D(rho||sigma)=0 iff rho=sigma. Under any CPTP channel, T(rho)=T(sigma), so D_after=0 is forced. Confirmed UNSAT for D_after > 0.",
-      "elapsed_s": 0.0003
+      "elapsed_s": 0.0004
     },
     "boundary3_equality_case": {
       "name": "equality_case_lambda1",
@@ -160,21 +160,5 @@
       "interpretation": "Equality in DPI is achievable (e.g., unitary channels, reversible maps). D_after = D_before is SAT under lambda=1 contraction.",
       "elapsed_s": 0.0005
     }
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

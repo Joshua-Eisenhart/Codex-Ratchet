@@ -1,6 +1,6 @@
 {
   "name": "stinespring_dilation",
-  "timestamp": "2026-04-16T03:21:43.739097+00:00",
+  "timestamp": "2026-04-16T03:29:24.011524+00:00",
   "classification": "canonical",
   "classification_note": "Standalone pure-geometry lego for Stinespring dilation of qubit CPTP channels. Distinct from sim_lego_stinespring_complementary.py which focuses on complementary channels and quantum capacity. This probe verifies: isometry V\u2020V=I, Tr_env[V\u03c1V\u2020]=E_kraus(\u03c1), unitary extension equivalence, symbolic isometry proof (sympy), complementary channel validity, and z3 UNSAT for non-isometric completeness.",
   "lego_ids": [
@@ -13,12 +13,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed; numpy handles all qubit-channel numerics"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "z3": {
       "tried": true,
@@ -38,37 +38,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not relevant to channel dilation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not relevant to channel dilation"
     }
   },
   "tool_integration_depth": {
@@ -586,21 +586,5 @@
     "sympy_proof": "V\u2020V=I for amplitude damping proven symbolically for all gamma in (0,1)",
     "complementary": "E^c(rho)=Tr_sys[V rho V\u2020] is a valid k x k density matrix for all 4 channels",
     "unitary_extension": "U from SVD null-space completion: U[:,0:d]=V, U unitary, Tr_env[U(rho x|0><0|)U\u2020]=E(rho)"
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no message-passing graph layer in this lego"
     },
     "z3": {
       "tried": true,
@@ -31,7 +31,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- no geometric algebra layer in this proof sim"
     },
     "geomstats": {
       "tried": true,
@@ -41,7 +41,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- no E(3)-equivariant network layer here"
     },
     "rustworkx": {
       "tried": true,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- no hypergraph or simplicial layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -237,7 +237,7 @@
       "no_interior_anomaly": true,
       "note": "SPD geodesic monotone: speed_cv=0.0000 < 0.1. No interior anomaly in [0.5, 0.7]. Total geodesic dist=0.6067. Anomaly at relay=0.706 is at the boundary, not interior."
     },
-    "elapsed_s": 0.155,
+    "elapsed_s": 0.14,
     "cvc5_cut_kernel_admissibility": {
       "3a_crosscheck_classical": {
         "verdict": "unsat",
@@ -321,6 +321,6 @@
   "summary": {
     "total_pass": 17,
     "total_fail": 0,
-    "elapsed_total_s": 0.174
+    "elapsed_total_s": 0.159
   }
 }

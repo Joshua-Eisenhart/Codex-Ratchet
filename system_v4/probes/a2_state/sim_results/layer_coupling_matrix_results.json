@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix",
-  "timestamp": "2026-04-16T02:48:17.947221+00:00",
+  "timestamp": "2026-04-16T03:32:43.121912+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no message passing in this sim"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 covers incompatibility proof"
     },
     "sympy": {
       "tried": true,
@@ -36,12 +36,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed -- Hopf geometry done via Cl(3) rotors"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- equivariance handled via Clifford SU(2)"
     },
     "rustworkx": {
       "tried": true,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- coupling structure is a directed graph, not hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- layer topology captured by rustworkx DAG"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- no persistence required for 5x5 coupling matrix"
     }
   },
   "tool_integration_depth": {
@@ -374,21 +374,5 @@
     "sympy_pass": true,
     "rustworkx_pass": true,
     "clifford_pass": true
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

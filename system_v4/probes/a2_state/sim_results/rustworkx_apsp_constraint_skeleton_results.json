@@ -10,61 +10,6 @@
       "tried": true,
       "used": true,
       "reason": "Floyd-Warshall ablation"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -85,27 +30,11 @@
     "pass": true
   },
   "boundary": {
-    "t_rx_dijkstra_s": 0.00022292137145996094,
-    "t_numpy_floyd_s": 0.00015473365783691406,
+    "t_rx_dijkstra_s": 0.001123189926147461,
+    "t_numpy_floyd_s": 0.0001609325408935547,
     "finite_entries_agree": false,
     "infinite_mask_agree": true,
     "pass": false
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

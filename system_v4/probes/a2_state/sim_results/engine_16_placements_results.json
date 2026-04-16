@@ -1,8 +1,8 @@
 {
   "name": "engine_16_placements",
   "description": "All 16 (terrain, loop) placement tuples with spinor evolution on Hopf torus",
-  "timestamp": "2026-04-16T02:46:26Z",
-  "elapsed_seconds": 0.656,
+  "timestamp": "2026-04-16T03:31:49Z",
+  "elapsed_seconds": 0.663,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "available but not needed for this sim"
     },
     "z3": {
       "tried": true,
@@ -22,12 +22,12 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "available but not needed for this sim"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "Symbolic verification of inner-loop stationarity condition"
     },
     "clifford": {
       "tried": true,
@@ -37,27 +37,27 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "available but not needed for this sim"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "available but not needed for this sim"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "available but not needed for this sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "available but not needed for this sim"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "available but not needed for this sim"
     },
     "gudhi": {
       "tried": true,
@@ -774,21 +774,5 @@
       "trace": 1.0
     }
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

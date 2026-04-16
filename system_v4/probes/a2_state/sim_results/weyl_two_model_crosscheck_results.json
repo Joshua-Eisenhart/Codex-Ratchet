@@ -1,8 +1,8 @@
 {
   "name": "weyl_two_model_crosscheck",
   "classification": "canonical",
-  "timestamp": "2026-04-16T03:24:04.436295+00:00",
-  "elapsed_seconds": 2.139,
+  "timestamp": "2026-04-16T03:31:20.336416+00:00",
+  "elapsed_seconds": 2.251,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- topology via gudhi, graph via rustworkx"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 handles the SMT check"
     },
     "sympy": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- chirality encoded in clifford, not irreps"
     },
     "rustworkx": {
       "tried": true,
@@ -52,12 +52,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- model hierarchy is a DAG not a hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- topology measured via gudhi persistence"
     },
     "gudhi": {
       "tried": true,
@@ -231,21 +231,5 @@
     "skip": 0
   },
   "signal": "Both models agree: individual L and R fibers are S\u00b9 (\u03b20=1, \u03b21=1)",
-  "information": "Combined topology diverges: Model A \u03b20=1 (wedge), Model B \u03b20=2 (disjoint)",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "information": "Combined topology diverges: Model A \u03b20=1 (wedge), Model B \u03b20=2 (disjoint)"
 }

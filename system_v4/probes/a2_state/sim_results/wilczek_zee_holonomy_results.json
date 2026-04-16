@@ -1,6 +1,6 @@
 {
   "name": "sim_pure_lego_wilczek_zee_holonomy",
-  "timestamp": "2026-04-16T03:22:09Z",
+  "timestamp": "2026-04-16T03:29:33Z",
   "lego_ids": [
     "wilczek_zee_holonomy",
     "nonabelian_berry_phase",
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph/message-passing structure; sim is 2D finite-dimensional matrix transport"
     },
     "z3": {
       "tried": true,
@@ -29,7 +29,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "no SMT-amenable formula; path-ordered ODE does not map to CVC5 theory"
     },
     "sympy": {
       "tried": true,
@@ -44,7 +44,7 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "geometry computed explicitly via PyTorch matrix ops; no Riemannian library needed"
     },
     "e3nn": {
       "tried": true,
@@ -54,12 +54,12 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph; sim operates on 4D Hilbert space with 2D degenerate subspace"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph structure; sim is a closed-loop matrix transport"
     },
     "toponetx": {
       "tried": true,
@@ -69,7 +69,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "no persistent homology; sim does not require TDA on a point cloud"
     }
   },
   "tool_integration_depth": {
@@ -442,24 +442,8 @@
     "total_tests": 12,
     "passed": 12,
     "failed": 0,
-    "elapsed_seconds": 6.43,
+    "elapsed_seconds": 5.01,
     "model": "4-level H(\u03b8,\u03c6) = W diag(-1,-1,+1,+1) W\u2020, 2D degenerate subspace at -1",
     "bridge_claim": "Wilczek-Zee holonomy for the transported 2D degenerate subspace is a non-trivial SU(2) matrix; it satisfies the U(2) gauge-covariance law U \u2192 g\u207b\u00b9Ug under constant subspace rotations; and its abelian diagonal reduction cross-validates the scalar Berry connection A_\u03c6 = -sin\u00b2(\u03b8/2) established by prior standalone Berry-phase probes."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

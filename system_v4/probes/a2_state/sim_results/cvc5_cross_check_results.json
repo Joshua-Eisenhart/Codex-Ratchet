@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not relevant"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not relevant"
     },
     "z3": {
       "tried": true,
@@ -25,77 +25,77 @@
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not relevant"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not relevant"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not relevant"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not relevant"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not relevant"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not relevant"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not relevant"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not relevant"
     }
   },
   "positive": {
     "no_cloning": {
       "z3_result": "unsat",
-      "z3_time_s": 0.009914,
+      "z3_time_s": 0.045172,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.014755,
+      "cvc5_time_s": 0.024458,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "bloch_contraction": {
       "z3_result": "unsat",
-      "z3_time_s": 0.001539,
+      "z3_time_s": 0.037842,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.000906,
+      "cvc5_time_s": 0.002663,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "entanglement_death": {
       "z3_result": "unsat",
-      "z3_time_s": 0.000569,
+      "z3_time_s": 0.074857,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.000683,
+      "cvc5_time_s": 0.002528,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
     },
     "noncommutation": {
       "z3_result": "unsat",
-      "z3_time_s": 0.000629,
+      "z3_time_s": 0.001321,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.004713,
+      "cvc5_time_s": 0.004919,
       "solvers_agree": true,
       "both_unsat": true,
       "pass": true
@@ -105,36 +105,36 @@
     "no_cloning_closed_interval": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.002052,
+      "z3_time_s": 0.013405,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.00118,
+      "cvc5_time_s": 0.003722,
       "solvers_agree": true,
       "pass": true
     },
     "bloch_low_threshold": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.001204,
+      "z3_time_s": 0.001202,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.003035,
+      "cvc5_time_s": 0.001067,
       "solvers_agree": true,
       "pass": true
     },
     "entanglement_low_threshold": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.002532,
+      "z3_time_s": 0.000831,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.003364,
+      "cvc5_time_s": 0.000984,
       "solvers_agree": true,
       "pass": true
     },
     "noncommutation_degenerate_eigs": {
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000987,
+      "z3_time_s": 0.000821,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.001076,
+      "cvc5_time_s": 0.001163,
       "solvers_agree": true,
       "pass": true
     }

@@ -11,22 +11,22 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed; clifford+numpy sufficient for transport"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "graph structure not relevant to rotor transport"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "rational check: rotor norm at \u03b8=\u03c0/2 is exactly 1"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "z3 sufficient for rational check"
     },
     "sympy": {
       "tried": true,
@@ -41,12 +41,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "Riemannian metric not relevant to algebraic transport"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant networks not relevant here"
     },
     "rustworkx": {
       "tried": false,
@@ -56,17 +56,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "hypergraph structure not relevant"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "cell complex structure not relevant"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not relevant"
     }
   },
   "tool_integration_depth": {
@@ -383,5 +383,5 @@
     "claim": "Cl(3) rotor transport R\u00b7e1\u00b7~R matches SU(2) adjoint U\u00b7\u03c3_x\u00b7U\u2020; double-cover R(2\u03c0)=-1 confirmed; non-commutativity confirmed",
     "diagnosis": "clifford_weyl_bridge_consistent"
   },
-  "timestamp": "2026-04-16T03:27:58.704799Z"
+  "timestamp": "2026-04-16T03:31:39.783196Z"
 }

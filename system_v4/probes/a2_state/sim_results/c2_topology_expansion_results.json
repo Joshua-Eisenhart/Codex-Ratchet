@@ -1,6 +1,6 @@
 {
   "name": "c2_topology_expansion",
-  "timestamp": "2026-04-16T02:41:35.536384+00:00",
+  "timestamp": "2026-04-16T03:32:39.328886+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -10,37 +10,37 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": ""
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": ""
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": ""
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": ""
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": ""
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": ""
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": ""
     },
     "rustworkx": {
       "tried": true,
@@ -50,17 +50,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": ""
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": ""
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
@@ -84,30 +84,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.041025523966598185,
-          "std_grad_norm": 0.030405881558258765,
+          "mean_grad_norm": 0.043073582659581805,
+          "std_grad_norm": 0.018397467410411927,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.041025523966598185,
-          "std_grad_norm": 0.030405881558258765,
+          "mean_grad_norm": 0.043073582659581805,
+          "std_grad_norm": 0.018397467410411927,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.031070801239408922,
-          "std_grad_norm": 0.023027983827210698,
+          "mean_grad_norm": 0.03262190451424212,
+          "std_grad_norm": 0.013933376053473721,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.009954722727189263,
+      "grad_range_across_topologies": 0.010451678145339684,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0853
+      "elapsed_s": 0.0691
     },
     "hadamard": {
       "family": "hadamard",
@@ -115,30 +115,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.03706342179250869,
-          "std_grad_norm": 0.026309777978197,
+          "mean_grad_norm": 0.040459393678995585,
+          "std_grad_norm": 0.03115482295033466,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.03706342179250869,
-          "std_grad_norm": 0.026309777978197,
+          "mean_grad_norm": 0.040459393678995585,
+          "std_grad_norm": 0.03115482295033466,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.02807009150462057,
-          "std_grad_norm": 0.01992578773348745,
+          "mean_grad_norm": 0.030642040801004015,
+          "std_grad_norm": 0.023595196793268155,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.00899333028788812,
+      "grad_range_across_topologies": 0.00981735287799157,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0178
+      "elapsed_s": 0.0258
     },
     "t_gate": {
       "family": "t_gate",
@@ -146,30 +146,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 2.219488582776946e-17,
-          "std_grad_norm": 1.3563670095554186e-17,
+          "mean_grad_norm": 2.8036844160152885e-17,
+          "std_grad_norm": 1.677500145701937e-17,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 2.219488582776946e-17,
-          "std_grad_norm": 1.3563670095554186e-17,
+          "mean_grad_norm": 2.8036844160152885e-17,
+          "std_grad_norm": 1.677500145701937e-17,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 1.7955131338161534e-17,
-          "std_grad_norm": 1.3402712936611407e-17,
+          "mean_grad_norm": 2.1226960251305373e-17,
+          "std_grad_norm": 1.5589118271580352e-17,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 4.239754489607925e-18,
+      "grad_range_across_topologies": 6.809883908847512e-18,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0412
+      "elapsed_s": 0.0309
     },
     "purification": {
       "family": "purification",
@@ -177,30 +177,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.08224276083299166,
-          "std_grad_norm": 0.020546973683206307,
+          "mean_grad_norm": 0.11217672379172317,
+          "std_grad_norm": 0.045475083150432104,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.08224276083299166,
-          "std_grad_norm": 0.020546973683206307,
+          "mean_grad_norm": 0.11217672379172317,
+          "std_grad_norm": 0.045475083150432104,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.062286796807339256,
-          "std_grad_norm": 0.015561310951251857,
+          "mean_grad_norm": 0.08495737169520212,
+          "std_grad_norm": 0.03444068797422432,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.019955964025652403,
+      "grad_range_across_topologies": 0.027219352096521043,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0411
+      "elapsed_s": 0.0242
     },
     "eigenvalue_decomposition": {
       "family": "eigenvalue_decomposition",
@@ -208,30 +208,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.014837559219729735,
-          "std_grad_norm": 0.008456274023638336,
+          "mean_grad_norm": 0.01815441534032087,
+          "std_grad_norm": 0.00843738654217247,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.014837559219729735,
-          "std_grad_norm": 0.008456274023638336,
+          "mean_grad_norm": 0.01815441534032087,
+          "std_grad_norm": 0.00843738654217247,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.011237269114942371,
-          "std_grad_norm": 0.006404384003196677,
+          "mean_grad_norm": 0.013749299853331245,
+          "std_grad_norm": 0.006390079513557091,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.0036002901047873636,
+      "grad_range_across_topologies": 0.004405115486989623,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0452
+      "elapsed_s": 0.0303
     },
     "l1_coherence": {
       "family": "l1_coherence",
@@ -239,30 +239,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07403428038481419,
-          "std_grad_norm": 0.037728050923048435,
+          "mean_grad_norm": 0.08941002686055796,
+          "std_grad_norm": 0.04738748701393859,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07403428038481419,
-          "std_grad_norm": 0.037728050923048435,
+          "mean_grad_norm": 0.08941002686055796,
+          "std_grad_norm": 0.04738748701393859,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.056070079997322525,
-          "std_grad_norm": 0.028573450331426387,
+          "mean_grad_norm": 0.06771494681351081,
+          "std_grad_norm": 0.035889052664968196,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.017964200387491663,
+      "grad_range_across_topologies": 0.02169508004704715,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0329
+      "elapsed_s": 0.0255
     },
     "relative_entropy_coherence": {
       "family": "relative_entropy_coherence",
@@ -270,30 +270,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07325344567940398,
-          "std_grad_norm": 0.032030811781077875,
+          "mean_grad_norm": 0.06549438970157677,
+          "std_grad_norm": 0.04438934343167625,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07325344567940398,
-          "std_grad_norm": 0.032030811781077875,
+          "mean_grad_norm": 0.06549438970157677,
+          "std_grad_norm": 0.04438934343167625,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.05547871253660742,
-          "std_grad_norm": 0.024258629510669275,
+          "mean_grad_norm": 0.049602368671047115,
+          "std_grad_norm": 0.03361839980487247,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.01777473314279656,
+      "grad_range_across_topologies": 0.015892021030529654,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0208
+      "elapsed_s": 0.0454
     },
     "wigner_negativity": {
       "family": "wigner_negativity",
@@ -301,30 +301,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 7.146840492458159e-22,
-          "std_grad_norm": 1.1453434176669609e-21,
+          "mean_grad_norm": 1.6940658945086008e-22,
+          "std_grad_norm": 4.482077061425939e-22,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 7.146840492458159e-22,
-          "std_grad_norm": 1.1453434176669609e-21,
+          "mean_grad_norm": 1.6940658945086008e-22,
+          "std_grad_norm": 4.482077061425939e-22,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 6.246867986000465e-21,
-          "std_grad_norm": 9.15949232100298e-21,
+          "mean_grad_norm": 2.168404344971009e-20,
+          "std_grad_norm": 5.737058638625202e-20,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 5.532183936754649e-21,
+      "grad_range_across_topologies": 2.151463686025923e-20,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0432
+      "elapsed_s": 0.0581
     },
     "hopf_connection": {
       "family": "hopf_connection",
@@ -332,30 +332,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 1.3718154663798599e-16,
-          "std_grad_norm": 7.233072807635653e-17,
+          "mean_grad_norm": 2.081166895757729e-16,
+          "std_grad_norm": 1.1072794893892397e-16,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 1.3718154663798599e-16,
-          "std_grad_norm": 7.233072807635653e-17,
+          "mean_grad_norm": 2.081166895757729e-16,
+          "std_grad_norm": 1.1072794893892397e-16,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 8.040575754991823e-17,
-          "std_grad_norm": 5.677721786593463e-17,
+          "mean_grad_norm": 1.4184899761569834e-16,
+          "std_grad_norm": 8.672945744504495e-17,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 5.677578908806776e-17,
+      "grad_range_across_topologies": 6.626769196007457e-17,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0402
+      "elapsed_s": 0.0463
     },
     "chiral_overlap": {
       "family": "chiral_overlap",
@@ -363,30 +363,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.16267294768984852,
-          "std_grad_norm": 0.09370306984310525,
+          "mean_grad_norm": 0.19616945515310835,
+          "std_grad_norm": 0.08561251356838114,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.16267294768984852,
-          "std_grad_norm": 0.09370306984310525,
+          "mean_grad_norm": 0.19616945515310835,
+          "std_grad_norm": 0.08561251356838114,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.12320083538275291,
-          "std_grad_norm": 0.07096629554294004,
+          "mean_grad_norm": 0.14856951382919237,
+          "std_grad_norm": 0.06483888895252395,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.039472112307095616,
+      "grad_range_across_topologies": 0.047599941323915984,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0579
+      "elapsed_s": 0.0314
     }
   },
   "negative": {
@@ -454,23 +454,7 @@
       "star",
       "skip_connect"
     ],
-    "total_elapsed_s": 0.4394
+    "total_elapsed_s": 0.4024
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

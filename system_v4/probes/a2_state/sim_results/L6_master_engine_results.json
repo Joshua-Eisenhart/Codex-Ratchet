@@ -1,31 +1,31 @@
 {
-  "timestamp": "2026-04-16T02:33:54.895387+00:00",
+  "timestamp": "2026-04-16T03:33:01.583369+00:00",
   "layer": 6,
   "name": "Master_Engine_Validation",
   "layer_results": {
     "L0_S3_Manifold": {
       "pass": true,
-      "time_s": 0.04574418067932129
+      "time_s": 0.052947998046875
     },
     "L1_Loop_Families": {
       "pass": true,
-      "time_s": 0.04248309135437012
+      "time_s": 0.04198884963989258
     },
     "L2_Eight_Stages": {
       "pass": true,
-      "time_s": 0.2168130874633789
+      "time_s": 0.27710795402526855
     },
     "L3_Operators": {
       "pass": true,
-      "time_s": 0.11532711982727051
+      "time_s": 0.1414477825164795
     },
     "L4_Chirality": {
       "pass": true,
-      "time_s": 8.805567979812622
+      "time_s": 9.320843935012817
     },
     "L5_Axes": {
       "pass": true,
-      "time_s": 0.004851102828979492
+      "time_s": 0.0031931400299072266
     }
   },
   "total_tokens": 7,
@@ -38,7 +38,7 @@
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:45.709260"
+      "timestamp": "2026-04-16T03:32:51.797312"
     },
     {
       "token_id": "E_LOOP_FAMILIES_VALID",
@@ -46,7 +46,7 @@
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:45.751923"
+      "timestamp": "2026-04-16T03:32:51.839811"
     },
     {
       "token_id": "E_EIGHT_STAGES_VALID",
@@ -54,7 +54,7 @@
       "status": "PASS",
       "measured_value": 8.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:45.968592"
+      "timestamp": "2026-04-16T03:32:52.116614"
     },
     {
       "token_id": "E_OPERATORS_ON_STAGES_VALID",
@@ -62,7 +62,7 @@
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:46.084105"
+      "timestamp": "2026-04-16T03:32:52.258329"
     },
     {
       "token_id": "E_ENGINE_CHIRALITY_VALID",
@@ -70,7 +70,7 @@
       "status": "PASS",
       "measured_value": 0.6156891572558503,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:54.889349"
+      "timestamp": "2026-04-16T03:33:01.579193"
     },
     {
       "token_id": "E_GEOMETRIC_AXES_VALID",
@@ -78,7 +78,7 @@
       "status": "PASS",
       "measured_value": 15.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:54.894688"
+      "timestamp": "2026-04-16T03:33:01.582687"
     },
     {
       "token_id": "E_MASTER_ENGINE_VALID",
@@ -86,70 +86,7 @@
       "status": "PASS",
       "measured_value": 6.0,
       "kill_reason": null,
-      "timestamp": "2026-04-16T02:33:54.895120"
+      "timestamp": "2026-04-16T03:33:01.583087"
     }
-  ],
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
-  }
+  ]
 }

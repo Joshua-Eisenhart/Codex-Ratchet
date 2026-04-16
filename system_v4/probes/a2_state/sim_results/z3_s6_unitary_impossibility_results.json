@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed \u2014 no graph structure in this proof sim"
     },
     "z3": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed \u2014 z3 proofs are sufficient here"
     },
     "sympy": {
       "tried": true,
@@ -30,37 +30,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed \u2014 no Clifford algebra structure in S6 proof"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed \u2014 no Riemannian geometry in S6 proof"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed \u2014 no SO(3) equivariance in S6 proof"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed \u2014 no DAG structure"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed \u2014 no hyperedge structure"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed \u2014 no cell complex topology"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed \u2014 no persistent homology"
     }
   },
   "tool_integration_depth": {
@@ -258,21 +258,5 @@
     "s6_filter_meaning": "S6 is a DISSIPATION FILTER: it selects open-system channels where entropy increases (amplitude damping, dephasing, thermalization). It strictly excludes all unitary (closed-system, time-reversible) evolution.",
     "corollary": "Any shell subset containing S6 is UNSAT under unitary channel parameterization. This is why sim_layer_stacking_nonprefix found every S6 subset UNSAT."
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

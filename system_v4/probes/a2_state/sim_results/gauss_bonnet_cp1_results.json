@@ -22,12 +22,12 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed; Gauss-Bonnet identity has no logical branching"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed; integral computation requires no SMT reasoning"
     },
     "sympy": {
       "tried": true,
@@ -52,12 +52,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed; no graph structure"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed; no hypergraph structure"
     },
     "toponetx": {
       "tried": false,
@@ -67,7 +67,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed; no persistent homology"
     }
   },
   "tool_integration_depth": {
@@ -290,5 +290,5 @@
     "anchor": "K=4 value anchored to riemannian_curvature probe (both probes canonical)",
     "scope_note": "Gauss-Bonnet probe: local K=4 integrates to global topological invariant 4\u03c0. Out of scope: geodesic curvature boundary terms (\u2202M=\u2205), Chern-Gauss-Bonnet in higher dimensions, Ricci flow, Bochner-Weitzenb\u00f6ck, non-constant K manifolds."
   },
-  "timestamp": "2026-04-16T03:28:03.386697+00:00"
+  "timestamp": "2026-04-16T03:31:42.406289+00:00"
 }

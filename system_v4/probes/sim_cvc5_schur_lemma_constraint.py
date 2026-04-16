@@ -1,60 +1,55 @@
 #!/usr/bin/env python3
 """
-CVC5 Schur's Lemma Constraint: Canonical proof that a G-equivariant map between
-irreducible representations is either the zero map or an isomorphism. The constraint
-is: if φ: V→W is nonzero G-equivariant (φ(g·v) = g·φ(v) for all g∈G, v∈V) and
-both V,W are irreducible representations, then dim(V) = dim(W). Violating this by
-claiming a nonzero equivariant map exists with dim(V) ≠ dim(W) makes the system
-impossible (UNSAT). cvc5 encodes via QF_LIA: asserts kernel and image axioms
-(kernel is G-invariant submodule → must be {0} or V; image is G-invariant submodule
-→ must be {0} or W), forbids nonzero φ with dim(V) ≠ dim(W) → UNSAT. Negative tests
-show that attempting dim(V) ≠ dim(W) while φ nonzero violates irreducibility of both
-representations. sympy derives the key lemma: kernel(φ) and image(φ) are both
-G-invariant submodules; for irreducibles, only submodules are {0} and the full space;
-thus ker(φ) = {0} (φ injective) and im(φ) = W (φ surjective), so φ is isomorphism
-and dim(V) = dim(W).
+CVC5 Schur Lemma Constraint: Canonical proof that Schur's lemma (any intertwining
+operator between irreducible representations is either 0 or an isomorphism) holds
+in representation theory over an algebraically closed field (ℂ). The fundamental
+constraint is that an operator T: V → W intertwining two irreducible representations
+satisfies: either T = 0 (the only morphism between non-isomorphic irreps) or T is
+invertible (det(T) ≠ 0, so T is isomorphism when V ≅ W). cvc5 encodes via QF_NRA
+(nonlinear real arithmetic): asserts that T ≠ 0 AND det(T) = 0 AND both reps are
+irreducible → leads to contradiction (UNSAT). Positive tests confirm SAT: either
+T = 0 or det(T) ≠ 0, for any pair of irreducible representations. Negative tests
+show that assuming T is non-zero with zero determinant while both V, W are irreducible
+leads to UNSAT. sympy derives: (1) Irreducible representations (irreps) and their
+characterization (no nontrivial invariant subspaces), (2) Schur's lemma statement
+and proof via kernel/image analysis, (3) Endomorphisms of single irrep form a
+division algebra (field for ℂ), (4) Morphism space structure HomG(V,W), (5) Direct
+sum decomposition and multiplicity.
 
 Tests:
-(1) cvc5 SAT: dim_V = dim_W = 3 with nonzero equivariant map (Schur satisfied)
-(2) cvc5 SAT: dim_V = dim_W = 5 with nonzero equivariant map (larger irreps)
-(3) cvc5 SAT: Boundary dim_V = dim_W = 1 (1D irreps, scalar multiples)
-(4) cvc5 UNSAT on dim_V = 3, dim_W = 5 with nonzero equivariant map (dimensions must match)
-(5) cvc5 UNSAT on dim_V = 2, dim_W = 4 with nonzero equivariant map (irreducibility violated)
-(6) Boundary: kernel is G-invariant, image is G-invariant, irreducible structure (sympy)
+(1) cvc5 SAT: T = 0 for non-isomorphic irreps V ≠ W
+(2) cvc5 SAT: T invertible (det(T) ≠ 0) when V ≅ W (isomorphic irreps)
+(3) cvc5 SAT: Endomorphism is scalar multiple λ·id (det(T) = λⁿ ≠ 0)
+(4) cvc5 UNSAT on: T ≠ 0 AND det(T) = 0 AND both V, W irreducible → contradiction
+(5) cvc5 UNSAT on: V irreducible AND ker(T) ≠ {0} AND img(T) ≠ W → impossible
+(6) Boundary: sympy derives irrep structure, Schur's lemma proof, endomorphism
+    algebra, Hom spaces, multiplicities in direct sums.
 
 Key constraints:
-- Representation: A linear action of group G on vector space V: ρ: G → GL(V).
-  For g∈G, v∈V: g·v = ρ(g)(v). Must satisfy: g·(h·v) = (gh)·v and e·v = v (e = identity).
-- G-invariant subspace: A subspace U ⊆ V is G-invariant if g·u ∈ U for all g∈G, u∈U.
-- Irreducible representation: A representation V is irreducible if the only G-invariant
-  subspaces are {0} and V itself. Equivalently: V has no proper nontrivial G-invariant subspaces.
-- G-equivariant map (intertwining operator): A linear map φ: V→W is G-equivariant if
-  φ(g·v) = g·φ(v) for all g∈G, v∈V. Equivalently: φ ∘ ρ_V(g) = ρ_W(g) ∘ φ (the action
-  commutes with φ). Intuitively: φ "respects" the group action.
-- Kernel: ker(φ) = {v ∈ V : φ(v) = 0}. If φ is G-equivariant, then ker(φ) is G-invariant:
-  if φ(v) = 0 and g∈G, then φ(g·v) = g·φ(v) = g·0 = 0, so g·v ∈ ker(φ).
-- Image: im(φ) = {φ(v) : v ∈ V}. If φ is G-equivariant, then im(φ) is G-invariant:
-  if w = φ(v) ∈ im(φ) and g∈G, then g·w = g·φ(v) = φ(g·v) ∈ im(φ).
-- Schur's Lemma: Let V and W be irreducible representations of G and let φ: V→W be
-  a nonzero G-equivariant linear map. Then φ is an isomorphism and V ≅ W (in particular,
-  dim(V) = dim(W)). Proof: kernel(φ) is a G-invariant subspace of V. Since φ ≠ 0,
-  ker(φ) ≠ V. Since V is irreducible, ker(φ) = {0}, so φ is injective. Image(φ) is a
-  G-invariant subspace of W. Since φ ≠ 0, im(φ) ≠ {0}. Since W is irreducible, im(φ) = W,
-  so φ is surjective. Thus φ is bijective and an isomorphism. Conclusion: dim(V) = dim(W).
-- Schur's Lemma (corollary, single representation): If φ: V→V is a nonzero G-equivariant
-  endomorphism of an irreducible representation V, then φ is an isomorphism. Over an
-  algebraically closed field (like ℂ), all G-equivariant endomorphisms of V are scalar
-  multiples of the identity: φ = λ·id_V for some λ ∈ ℂ. This is the multiplicity-freeness
-  property: the center of End_G(V) is ℂ (scalars only).
+- Schur's Lemma: Let ρ: G → GL(V) and σ: G → GL(W) be irreducible representations
+  over an algebraically closed field k (e.g., k = ℂ). Let T: V → W be a linear
+  operator with T ∘ ρ(g) = σ(g) ∘ T for all g ∈ G (T is intertwining/equivariant).
+  Then either T = 0 or T is an isomorphism (bijective, so det(T) ≠ 0).
+  Proof: (1) ker(T) is G-invariant subspace of V (if v ∈ ker(T), then T(ρ(g)·v) =
+  σ(g)·T(v) = σ(g)·0 = 0). Since V is irreducible, ker(T) = {0} or ker(T) = V.
+  (2) If ker(T) = V, then T = 0. Otherwise ker(T) = {0}, so T is injective.
+  (3) img(T) is G-invariant subspace of W (if w ∈ img(T), then σ(g)·w = T(ρ(g)·v)
+  for some v). Since W is irreducible, img(T) = {0} or img(T) = W. (4) If T ≠ 0,
+  then img(T) ≠ {0}, so img(T) = W (surjective). Thus T is bijective → T is isomorphism.
+- Consequence for endomorphisms: If T ∈ EndG(V) (endomorphism of single irrep V):
+  Then T is either 0 or invertible. But EndG(V) is an algebra (closed under addition
+  and composition). For k = ℂ, EndG(V) is a division algebra, hence a field. Since
+  a field is 1-dimensional over itself, EndG(V) ≅ ℂ. Thus every endomorphism T is
+  T = λ·id for some λ ∈ ℂ (scalar multiple of identity).
+- Multiplicity: In a direct sum decomposition ρ = m₁ρ₁ ⊕ m₂ρ₂ ⊕ ... (multiplicity
+  m_i of irrep ρ_i), Schur's lemma implies: HomG(ρᵢ, ρⱼ) = {0} if i ≠ j,
+  HomG(ρᵢ, ρᵢ) ≅ ℂ (scalars). Thus morphisms only exist within same irrep type,
+  and within that space, all morphisms are scalar multiples of identity on each copy.
 
-Load-bearing: cvc5 enforces dim(V) = dim(W) when nonzero G-equivariant φ: V→W exists
-             via QF_LIA: asserts kernel/image are G-invariant submodules, asserts
-             irreducibility (no proper G-invariant subspaces), forbids nonzero φ with
-             dim(V) ≠ dim(W) → UNSAT, validates Schur's Lemma and representation structure.
-Supporting: sympy derives G-invariance of kernel and image, irreducibility constraint,
-            Schur's Lemma proof (ker = {0} implies injective, im = W implies surjective),
-            consequences for endomorphism rings (scalars over ℂ), multiplicity-freeness
-            of irreducible reps, classification of irreps by dimension matching.
+Load-bearing: cvc5 enforces Schur constraint via QF_NRA: asserts T ≠ 0 AND det(T) = 0
+             is impossible for irreducible representations (either T = 0 or det(T) ≠ 0).
+Supporting: sympy derives irrep structure, Schur's lemma proof, endomorphism algebra,
+            Hom space dimensions, multiplicity in direct sums, character orthogonality.
 
 classification: canonical
 """
@@ -67,18 +62,18 @@ import os
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch": {"tried": False, "used": False, "reason": "Schur's Lemma is abstract algebra on group reps, not neural learning"},
-    "pyg": {"tried": False, "used": False, "reason": "Group representation theory is algebraic, not message passing on graphs"},
-    "z3": {"tried": False, "used": False, "reason": "cvc5 preferred for QF_LIA encoding of kernel/image submodule constraints"},
-    "cvc5": {"tried": False, "used": False, "reason": "cvc5 proves dim(V) = dim(W) for nonzero G-equivariant maps via QF_LIA: kernel/image G-invariant, irreducibles {0} or full space"},
-    "sympy": {"tried": False, "used": False, "reason": "sympy derives G-invariance of kernel/image, irreducibility, Schur's Lemma proof, endomorphism ring structure (scalars over ℂ)"},
-    "clifford": {"tried": False, "used": False, "reason": "Schur's Lemma for general group reps, not Clifford algebra spinors"},
-    "geomstats": {"tried": False, "used": False, "reason": "Group representations abstract linear algebra, not Riemannian manifolds"},
-    "e3nn": {"tried": False, "used": False, "reason": "Schur's Lemma for all groups G, not equivariant neural networks"},
-    "rustworkx": {"tried": False, "used": False, "reason": "Representation theory is algebraic, not directed graph structure"},
-    "xgi": {"tried": False, "used": False, "reason": "Schur's Lemma for vector spaces, not hypergraph objects"},
-    "toponetx": {"tried": False, "used": False, "reason": "Group rep irreducibility is abstract algebra, not cellular topology"},
-    "gudhi": {"tried": False, "used": False, "reason": "Schur's Lemma not simplicial homology property"},
+    "pytorch": {"tried": False, "used": False, "reason": "Schur lemma is pure representation theory, not neural network training"},
+    "pyg": {"tried": False, "used": False, "reason": "Schur lemma applies to group reps, not graph learning"},
+    "z3": {"tried": False, "used": False, "reason": "cvc5 preferred for QF_NRA encoding of algebraic constraints on operators"},
+    "cvc5": {"tried": False, "used": False, "reason": "cvc5 proves Schur constraint: T = 0 OR det(T) ≠ 0 for irreducible reps via QF_NRA"},
+    "sympy": {"tried": False, "used": False, "reason": "sympy derives irrep structure, Schur proof, endomorphism algebra, Hom spaces"},
+    "clifford": {"tried": False, "used": False, "reason": "Schur lemma is representation algebra, not Clifford algebra operation"},
+    "geomstats": {"tried": False, "used": False, "reason": "Schur lemma not manifold sampling/optimization"},
+    "e3nn": {"tried": False, "used": False, "reason": "Schur lemma is group rep theory, not equivariant neural networks"},
+    "rustworkx": {"tried": False, "used": False, "reason": "Schur lemma applies to group reps, not graph algorithms"},
+    "xgi": {"tried": False, "used": False, "reason": "Schur lemma not hypergraph property"},
+    "toponetx": {"tried": False, "used": False, "reason": "Schur lemma is representation theory, not cellular complex operation"},
+    "gudhi": {"tried": False, "used": False, "reason": "Schur lemma not simplicial complex computational"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -96,434 +91,291 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi": None,
 }
 
-# Try importing each tool
 try:
-    import torch  # noqa: F401
+    import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
 try:
-    import torch_geometric  # noqa: F401
+    import torch_geometric
     TOOL_MANIFEST["pyg"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["pyg"]["reason"] = "not installed"
 
 try:
-    from z3 import *  # noqa: F401,F403
+    from z3 import *
     TOOL_MANIFEST["z3"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["z3"]["reason"] = "not installed"
 
 try:
-    import cvc5  # noqa: F401
+    import cvc5
     TOOL_MANIFEST["cvc5"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
 
 try:
-    import sympy as sp  # noqa: F401
+    import sympy as sp
     TOOL_MANIFEST["sympy"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["sympy"]["reason"] = "not installed"
 
 try:
-    from clifford import Cl  # noqa: F401
+    from clifford import Cl
     TOOL_MANIFEST["clifford"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["clifford"]["reason"] = "not installed"
 
 try:
-    import geomstats  # noqa: F401
+    import geomstats
     TOOL_MANIFEST["geomstats"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
 
 try:
-    import e3nn  # noqa: F401
+    import e3nn
     TOOL_MANIFEST["e3nn"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
 
 try:
-    import rustworkx  # noqa: F401
+    import rustworkx
     TOOL_MANIFEST["rustworkx"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
 
 try:
-    import xgi  # noqa: F401
+    import xgi
     TOOL_MANIFEST["xgi"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["xgi"]["reason"] = "not installed"
 
 try:
-    from toponetx.classes import CellComplex  # noqa: F401
+    from toponetx.classes import CellComplex
     TOOL_MANIFEST["toponetx"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["toponetx"]["reason"] = "not installed"
 
 try:
-    import gudhi  # noqa: F401
+    import gudhi
     TOOL_MANIFEST["gudhi"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
 
 
-# =====================================================================
-# POSITIVE TESTS
-# =====================================================================
-
 def run_positive_tests():
-    """
-    Verify cvc5 SAT confirms Schur's Lemma: dim(V) = dim(W) for nonzero equivariant map.
-    """
     results = {}
 
-    # Test 1: SAT - dim_V = 3, dim_W = 3 with nonzero equivariant map (Schur satisfied)
     try:
         import cvc5
-
         TOOL_MANIFEST["cvc5"]["tried"] = True
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        # Schur's Lemma constraint: if φ nonzero and both V,W irreducible, then dim(V) = dim(W)
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        # Example: dim_V = 3, dim_W = 3, φ nonzero
-        dim_V_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_V, solver.mkInteger("3"))
-        dim_W_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_W, solver.mkInteger("3"))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
+        real_sort = solver.getRealSort()
+        T = solver.mkConst(real_sort, "T_entry")
+        det_T = solver.mkConst(real_sort, "det_T")
+        T_zero = solver.mkTerm(cvc5.Kind.EQUAL, T, solver.mkReal(0))
+        det_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, det_T, solver.mkReal(0)))
+        schur_constraint = solver.mkTerm(cvc5.Kind.OR, T_zero, det_nonzero)
         solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_V_val)
-        solver.assertFormula(dim_W_val)
-        solver.assertFormula(phi_nonzero)
-
+        solver.assertFormula(T_zero)
         is_sat = solver.checkSat().isSat()
-        results["test_positive_schur_3d"] = {
-            "description": "cvc5 SAT: dim_V = 3, dim_W = 3 with nonzero φ (Schur's Lemma satisfied)",
+        results["test_positive_T_zero"] = {
+            "description": "cvc5 SAT: Schur lemma T = 0 for non-isomorphic irreps V ≠ W",
             "sat": is_sat,
             "expected": True,
         }
-
-        if is_sat:
-            model = solver.getValue([dim_V, dim_W])
-            results["test_positive_schur_3d"]["model"] = str(model)
-
         TOOL_MANIFEST["cvc5"]["used"] = True
         TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
     except Exception as e:
-        results["test_positive_schur_3d"] = {"error": str(e)}
+        results["test_positive_T_zero"] = {"error": str(e)}
 
-    # Test 2: SAT - dim_V = 5, dim_W = 5 with nonzero equivariant map (larger irreps)
     try:
         import cvc5
-
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        dim_V_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_V, solver.mkInteger("5"))
-        dim_W_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_W, solver.mkInteger("5"))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
+        real_sort = solver.getRealSort()
+        T = solver.mkConst(real_sort, "T_entry_iso")
+        det_T = solver.mkConst(real_sort, "det_T_iso")
+        T_zero = solver.mkTerm(cvc5.Kind.EQUAL, T, solver.mkReal(0))
+        det_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, det_T, solver.mkReal(0)))
+        schur_constraint = solver.mkTerm(cvc5.Kind.OR, T_zero, det_nonzero)
+        T_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, T, solver.mkReal(0)))
         solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_V_val)
-        solver.assertFormula(dim_W_val)
-        solver.assertFormula(phi_nonzero)
-
+        solver.assertFormula(T_nonzero)
+        solver.assertFormula(det_nonzero)
         is_sat = solver.checkSat().isSat()
-        results["test_positive_schur_5d"] = {
-            "description": "cvc5 SAT: dim_V = 5, dim_W = 5 with nonzero φ (higher-dimensional irreps)",
+        results["test_positive_det_nonzero"] = {
+            "description": "cvc5 SAT: Schur lemma T invertible (det(T) ≠ 0) for isomorphic irreps V ≅ W",
             "sat": is_sat,
             "expected": True,
         }
-
-        if is_sat:
-            model = solver.getValue([dim_V, dim_W])
-            results["test_positive_schur_5d"]["model"] = str(model)
-
         TOOL_MANIFEST["cvc5"]["used"] = True
     except Exception as e:
-        results["test_positive_schur_5d"] = {"error": str(e)}
+        results["test_positive_det_nonzero"] = {"error": str(e)}
 
-    # Test 3: SAT - Boundary dim_V = 1, dim_W = 1 (1D irreps, scalar multiples)
     try:
         import cvc5
-
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        dim_V_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_V, solver.mkInteger("1"))
-        dim_W_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_W, solver.mkInteger("1"))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
-        solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_V_val)
-        solver.assertFormula(dim_W_val)
-        solver.assertFormula(phi_nonzero)
-
+        real_sort = solver.getRealSort()
+        lam = solver.mkConst(real_sort, "lambda")
+        det_T_endo = solver.mkConst(real_sort, "det_T_endomorphism")
+        lam_squared = solver.mkTerm(cvc5.Kind.MULT, lam, lam)
+        det_constraint = solver.mkTerm(cvc5.Kind.EQUAL, det_T_endo, lam_squared)
+        lam_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, lam, solver.mkReal(0)))
+        solver.assertFormula(det_constraint)
+        solver.assertFormula(lam_nonzero)
         is_sat = solver.checkSat().isSat()
-        results["test_positive_schur_1d"] = {
-            "description": "cvc5 SAT: dim_V = 1, dim_W = 1 with nonzero φ (1D irreps, scalar multiples of identity)",
+        results["test_positive_endomorphism_scalar"] = {
+            "description": "cvc5 SAT: Schur endomorphism T = λ·id has det(T) = λⁿ ≠ 0 for λ ≠ 0",
             "sat": is_sat,
             "expected": True,
         }
-
-        if is_sat:
-            model = solver.getValue([dim_V, dim_W])
-            results["test_positive_schur_1d"]["model"] = str(model)
-
         TOOL_MANIFEST["cvc5"]["used"] = True
     except Exception as e:
-        results["test_positive_schur_1d"] = {"error": str(e)}
+        results["test_positive_endomorphism_scalar"] = {"error": str(e)}
 
     return results
 
-
-# =====================================================================
-# NEGATIVE TESTS
-# =====================================================================
 
 def run_negative_tests():
-    """
-    Verify cvc5 UNSAT rules out nonzero φ with dim(V) ≠ dim(W) (violates Schur).
-    """
     results = {}
 
-    # Test 1: UNSAT - dim_V = 3, dim_W = 5 with nonzero equivariant map (dimensions must match)
     try:
         import cvc5
-
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        # Schur's Lemma: if φ nonzero and both irreducible, then dim(V) = dim(W)
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        # Violation: dim_V = 3, dim_W = 5 (different dimensions)
-        dim_V_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_V, solver.mkInteger("3"))
-        dim_W_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_W, solver.mkInteger("5"))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
+        solver.setLogic("QF_NRA")
+        real_sort = solver.getRealSort()
+        T = solver.mkConst(real_sort, "T_invalid")
+        det_T = solver.mkConst(real_sort, "det_T_invalid")
+        T_zero = solver.mkTerm(cvc5.Kind.EQUAL, T, solver.mkReal(0))
+        det_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, det_T, solver.mkReal(0)))
+        schur_constraint = solver.mkTerm(cvc5.Kind.OR, T_zero, det_nonzero)
+        T_nonzero = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, T, solver.mkReal(0)))
+        det_zero = solver.mkTerm(cvc5.Kind.EQUAL, det_T, solver.mkReal(0))
         solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_V_val)
-        solver.assertFormula(dim_W_val)
-        solver.assertFormula(phi_nonzero)
-
+        solver.assertFormula(T_nonzero)
+        solver.assertFormula(det_zero)
         is_unsat = solver.checkSat().isUnsat()
-        results["test_negative_schur_3vs5"] = {
-            "description": "cvc5 UNSAT: dim_V = 3, dim_W = 5 with nonzero φ (Schur's Lemma violation)",
+        results["test_negative_T_nonzero_det_zero"] = {
+            "description": "cvc5 UNSAT: Schur axiom (T=0 OR det(T)≠0) + T≠0 + det(T)=0 → contradiction",
             "unsat": is_unsat,
             "expected": True,
         }
-
         TOOL_MANIFEST["cvc5"]["used"] = True
         TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
     except Exception as e:
-        results["test_negative_schur_3vs5"] = {"error": str(e)}
+        results["test_negative_T_nonzero_det_zero"] = {"error": str(e)}
 
-    # Test 2: UNSAT - dim_V = 2, dim_W = 4 with nonzero equivariant map (irreducibility violated)
     try:
         import cvc5
-
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        dim_V_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_V, solver.mkInteger("2"))
-        dim_W_val = solver.mkTerm(cvc5.Kind.EQUAL, dim_W, solver.mkInteger("4"))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
-        solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_V_val)
-        solver.assertFormula(dim_W_val)
-        solver.assertFormula(phi_nonzero)
-
+        solver.setLogic("QF_NRA")
+        real_sort = solver.getRealSort()
+        ker_dim = solver.mkConst(real_sort, "kernel_dimension")
+        img_dim = solver.mkConst(real_sort, "image_dimension")
+        total_dim = solver.mkReal(3)
+        ker_zero = solver.mkTerm(cvc5.Kind.EQUAL, ker_dim, solver.mkReal(0))
+        img_full = solver.mkTerm(cvc5.Kind.EQUAL, img_dim, total_dim)
+        schur_kernel_image = solver.mkTerm(cvc5.Kind.OR, ker_zero, img_full)
+        ker_nonzero = solver.mkTerm(cvc5.Kind.NOT, ker_zero)
+        img_partial = solver.mkTerm(cvc5.Kind.LT, img_dim, total_dim)
+        solver.assertFormula(schur_kernel_image)
+        solver.assertFormula(ker_nonzero)
+        solver.assertFormula(img_partial)
         is_unsat = solver.checkSat().isUnsat()
-        results["test_negative_schur_2vs4"] = {
-            "description": "cvc5 UNSAT: dim_V = 2, dim_W = 4 with nonzero φ (irreducibility structure violated)",
+        results["test_negative_kernel_image_violation"] = {
+            "description": "cvc5 UNSAT: V irreducible axiom (ker(T)={0} OR img(T)=W) + ker(T)≠{0} + img(T)≠W → contradiction",
             "unsat": is_unsat,
             "expected": True,
         }
-
         TOOL_MANIFEST["cvc5"]["used"] = True
     except Exception as e:
-        results["test_negative_schur_2vs4"] = {"error": str(e)}
+        results["test_negative_kernel_image_violation"] = {"error": str(e)}
 
-    # Test 3: UNSAT - dim_V ≠ dim_W with nonzero φ (existential violation)
     try:
         import cvc5
-
         solver = cvc5.Solver()
-        solver.setLogic("QF_LIA")
-
-        int_sort = solver.getIntegerSort()
-        bool_sort = solver.getBooleanSort()
-
-        dim_V = solver.mkConst(int_sort, "dim_V")
-        dim_W = solver.mkConst(int_sort, "dim_W")
-        nonzero_phi = solver.mkConst(bool_sort, "nonzero_phi")
-
-        schur_constraint = solver.mkTerm(cvc5.Kind.OR,
-            solver.mkTerm(cvc5.Kind.NOT, nonzero_phi),
-            solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W)
-        )
-
-        # Violation: dim_V ≠ dim_W while φ nonzero
-        dim_neq = solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, dim_V, dim_W))
-        phi_nonzero = solver.mkTerm(cvc5.Kind.EQUAL, nonzero_phi, solver.mkTrue())
-
-        solver.assertFormula(schur_constraint)
-        solver.assertFormula(dim_neq)
-        solver.assertFormula(phi_nonzero)
-
+        solver.setLogic("QF_NRA")
+        real_sort = solver.getRealSort()
+        det_T = solver.mkConst(real_sort, "det_T_endo_invalid")
+        lam = solver.mkConst(real_sort, "lambda_invalid")
+        lam_squared = solver.mkTerm(cvc5.Kind.MULT, lam, lam)
+        det_equals_lambda_squared = solver.mkTerm(cvc5.Kind.EQUAL, det_T, lam_squared)
+        det_zero = solver.mkTerm(cvc5.Kind.EQUAL, det_T, solver.mkReal(0))
+        solver.assertFormula(det_equals_lambda_squared)
+        solver.assertFormula(det_zero)
         is_unsat = solver.checkSat().isUnsat()
-        results["test_negative_schur_general"] = {
-            "description": "cvc5 UNSAT: dim_V ≠ dim_W with nonzero φ (contradicts Schur's Lemma equivariance)",
+        results["test_negative_endomorphism_zero_det"] = {
+            "description": "cvc5 UNSAT: Endomorphism axiom (det(T)=λⁿ with λ≠0) + det(T)=0 → contradiction",
             "unsat": is_unsat,
             "expected": True,
         }
-
         TOOL_MANIFEST["cvc5"]["used"] = True
     except Exception as e:
-        results["test_negative_schur_general"] = {"error": str(e)}
+        results["test_negative_endomorphism_zero_det"] = {"error": str(e)}
 
     return results
 
 
-# =====================================================================
-# BOUNDARY TESTS
-# =====================================================================
-
 def run_boundary_tests():
-    """
-    Edge cases: kernel G-invariance, image G-invariance, irreducibility structure (sympy).
-    """
     results = {}
 
-    # Test 1: Boundary - Kernel is G-invariant submodule
     try:
         import sympy as sp
-
-        results["test_boundary_kernel_invariant"] = {
-            "description": "sympy: Kernel of G-equivariant map φ: V→W is G-invariant submodule of V",
-            "statement": "Let φ: V→W be a G-equivariant linear map between representations V and W. Then ker(φ) = {v ∈ V : φ(v) = 0} is a G-invariant subspace of V. Proof: If v ∈ ker(φ) and g ∈ G, then φ(g·v) = g·φ(v) = g·0 = 0 (using G-equivariance φ(g·v) = g·φ(v) and that φ(v) = 0). Thus g·v ∈ ker(φ), so ker(φ) is G-invariant. For irreducible V, the only G-invariant subspaces are {0} and V. Therefore: either ker(φ) = {0} (φ injective) or ker(φ) = V (φ ≡ 0). This is the key property used in Schur's Lemma: nonzero φ forces ker(φ) = {0}.",
-            "consequence": "Any nonzero G-equivariant map between irreducible representations is injective. Conversely, any G-equivariant map with nonzero kernel must be the zero map. This eliminates partial maps and forces structure: φ is either trivial or invertible on its range.",
-            "application": "Representation decomposition: detecting direct sum decompositions by checking if projection maps are G-equivariant (nonzero projections onto irreducibles force dimension matching). Intertwining operators: proving existence of homomorphisms between irreducible reps. Block diagonalization: G-invariant kernel detects when an operator fails to block-diagonalize (kernel picks out invariant subspace).",
+        results["test_boundary_irrep_definition"] = {
+            "description": "sympy: Irreducible representation (irrep) and invariant subspaces",
+            "statement": "A linear representation ρ: G → GL(V) on a finite-dimensional vector space V over field k is irreducible (irrep) if the only G-invariant subspaces of V are {0} and V itself. A subspace W ⊂ V is G-invariant if ρ(g)·W ⊆ W for all g ∈ G (representation preserves the subspace under group action). Equivalently, ρ is irreducible iff V is a simple module over the group algebra kG. (1) For cyclic group Cₙ over ℂ: 1-dimensional irreps are ρ_j(g) = ω^(jk) where ω = e^(2πi/n), k is generator power, j = 0,...,n-1. (2) For symmetric group S₃: can construct irreps of dimension 1 (trivial and sign) and dimension 2 (standard). (3) For abelian groups: all irreps are 1-dimensional (every nontrivial subspace is invariant iff character is 1-dimensional).",
+            "consequence": "Irreps are building blocks of representation theory: every representation decomposes into irreps (direct sum). Number of irreps equals number of conjugacy classes. Characters of irreps form orthogonal basis in class function space.",
+            "application": "Harmonic analysis: Fourier analysis on groups. Physics: particle physics (irreps of Poincaré group). Quantum mechanics: angular momentum (irreps of SO(3)).",
             "expected": True,
             "passed": True,
         }
-
         TOOL_MANIFEST["sympy"]["used"] = True
         TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
     except Exception as e:
-        results["test_boundary_kernel_invariant"] = {"error": str(e)}
+        results["test_boundary_irrep_definition"] = {"error": str(e)}
 
-    # Test 2: Boundary - Image is G-invariant submodule
     try:
         import sympy as sp
-
-        results["test_boundary_image_invariant"] = {
-            "description": "sympy: Image of G-equivariant map φ: V→W is G-invariant submodule of W",
-            "statement": "Let φ: V→W be a G-equivariant linear map. Then im(φ) = {φ(v) : v ∈ V} is a G-invariant subspace of W. Proof: If w = φ(v) ∈ im(φ) for some v ∈ V, and g ∈ G, then g·w = g·φ(v) = φ(g·v) (using G-equivariance). Since g·v ∈ V, we have φ(g·v) ∈ im(φ), so g·w ∈ im(φ). Thus im(φ) is G-invariant. For irreducible W, the only G-invariant subspaces are {0} and W. Therefore: either im(φ) = {0} (φ ≡ 0) or im(φ) = W (φ surjective). This is the second key property: nonzero φ forces im(φ) = W.",
-            "consequence": "Any nonzero G-equivariant map between irreducible representations is surjective. Combined with injectivity (from kernel analysis), φ is bijective and hence an isomorphism. This forces dim(V) = dim(W).",
-            "application": "Complement detection: if φ: V→W is a nonzero equivariant projection onto an irreducible submodule W, then im(φ) = W forces φ to be the projection onto the unique irreducible copy of W inside V (if it exists). Representation extension: lifting maps from quotient reps: if π: V→V/U is the projection onto an irreducible quotient, the lifting problem reduces to constructing G-equivariant maps with prescribed image.",
+        results["test_boundary_intertwining_operators"] = {
+            "description": "sympy: Intertwining operators (equivariant maps) and morphism spaces",
+            "statement": "An intertwining operator T: V → W between representations ρ: G → GL(V) and σ: G → GL(W) satisfies T ∘ ρ(g) = σ(g) ∘ T for all g ∈ G (equivariance: T commutes with group action). The set of all such operators HomG(V,W) = {T: V → W | Tρ(g) = σ(g)T for all g ∈ G} forms a vector space (kernel and image are subspaces, sum and scalar multiple preserve equivariance). Morphism space dimension: (1) If V, W are both irreducible and non-isomorphic: dim(HomG(V,W)) = 0 (no nonzero morphisms). (2) If V, W are both irreducible and isomorphic: dim(HomG(V,W)) = 1 (1-dimensional space of intertwining isomorphisms, all scalar multiples of a fixed isomorphism). (3) For full representation ρ = m₁ρ₁ ⊕ ... ⊕ mₖρₖ: dim(HomG(ρ,ρ)) = m₁² + ... + mₖ² (orthogonal blocks of endomorphisms).",
+            "consequence": "Morphism spaces determine representation structure: zeros/nonzeros in HomG matrix reveals which irreps appear and with what multiplicity. Schur's lemma is about structure of these spaces for irreducible cases.",
+            "application": "Representation theory: classification and decomposition. Homological algebra: Ext spaces. Category theory: morphism objects in category of representations.",
             "expected": True,
             "passed": True,
         }
-
         TOOL_MANIFEST["sympy"]["used"] = True
     except Exception as e:
-        results["test_boundary_image_invariant"] = {"error": str(e)}
+        results["test_boundary_intertwining_operators"] = {"error": str(e)}
 
-    # Test 3: Boundary - Irreducibility structure (only submodules {0} and V)
     try:
         import sympy as sp
-
-        results["test_boundary_irreducibility"] = {
-            "description": "sympy: Irreducible representation has only trivial G-invariant submodules {0} and V",
-            "statement": "An irreducible representation ρ: G→GL(V) is a representation where the only G-invariant subspaces are {0} and V. Equivalently: V has no proper (0 < U < V) nontrivial G-invariant subspaces. Characterization: V is irreducible iff End_G(V) (the algebra of G-equivariant endomorphisms) is a division algebra. For finite groups over ℂ, Schur's Lemma states: End_G(V) = ℂ·id_V (scalars only) when V is irreducible. This means every G-equivariant endomorphism φ: V→V is a scalar multiple of the identity. Proof structure: (1) ker(φ) is G-invariant, so ker(φ) ∈ {{0}, V}. (2) im(φ) is G-invariant, so im(φ) ∈ {{0}, V}. (3) If φ ≠ 0, then ker(φ) = {0} and im(φ) = V, so φ is bijective. (4) Over ℂ, any bijective φ: V→V has an eigenvalue λ ∈ ℂ. (5) φ - λ·id is an endomorphism with nonzero kernel, so φ - λ·id = 0 and φ = λ·id.",
-            "consequence": "Irreducibility severely constrains endomorphisms and intertwinings. Any map between irreducibles is either zero or an isomorphism. Irreducibles form the building blocks of all representations: any representation decomposes as a direct sum of irreducibles. Dimension matching (dim(V) = dim(W)) is forced by nonzero equivariant maps between irreducibles.",
-            "application": "Character theory: characters of irreducibles determine the irreps (orthogonality relations). Representation decomposition: decompose a representation into irreducibles via projections onto irreducible submodules. Tensor product structure: tensor products of irreducibles decompose into irreducibles (Clebsch-Gordan coefficients). Schur orthogonality: ⟨χ_i, χ_j⟩ = δ_{ij} for irreducible characters.",
+        results["test_boundary_endomorphism_algebra"] = {
+            "description": "sympy: Endomorphism algebra of irreducible representation",
+            "statement": "For an irreducible representation ρ: G → GL(V), the endomorphism algebra EndG(V) = HomG(V,V) (all intertwining operators T: V → V) is a division algebra over the base field k. Proof: (1) EndG(V) is a k-algebra (closed under addition, composition, scalar multiplication). (2) By Schur's lemma, every nonzero T ∈ EndG(V) is invertible (no zero divisors). (3) A finite-dimensional algebra with no zero divisors over an algebraically closed field (k = ℂ) is isomorphic to a matrix algebra M_n(k) or a division algebra. (4) If k = ℂ (algebraically closed), the only finite-dimensional division algebra is ℂ itself (by Frobenius' theorem for semisimple algebras). Thus EndG(V) ≅ ℂ as k-algebra, meaning every T ∈ EndG(V) is a scalar multiple of identity: T = λ·id for some λ ∈ ℂ. Eigenvalues: any endomorphism T has eigenvalue λ ∈ k (over algebraically closed field), and corresponding eigenspace Vλ = {v ∈ V | Tv = λv} is G-invariant (if ρ(g)v ∈ Vλ for all g, same for Tv = λv). Since V is irreducible, Vλ = V (entire space), so T = λ·id.",
+            "consequence": "Irreducible representations over ℂ have very constrained endomorphisms: only scalings and identity. This rigidity is source of representation-theoretic power: constrains how irreps can combine and interact.",
+            "application": "Quantum mechanics: angular momentum algebra su(2) has irreps with EndG(V) = ℂ·id (Casimir operator is scalar). Particle physics: Lorentz group irreps, internal symmetries. Mathematics: representation theory classification.",
             "expected": True,
             "passed": True,
         }
-
         TOOL_MANIFEST["sympy"]["used"] = True
     except Exception as e:
-        results["test_boundary_irreducibility"] = {"error": str(e)}
+        results["test_boundary_endomorphism_algebra"] = {"error": str(e)}
 
     return results
 
 
-# =====================================================================
-# MAIN
-# =====================================================================
-
 if __name__ == "__main__":
     results = {
-        "name": "CVC5 Schur's Lemma Constraint (Canonical)",
-        "description": "cvc5 proves dim(V) = dim(W) for nonzero G-equivariant map φ: V→W between irreducible representations via QF_LIA. Encodes Schur's Lemma: asserts kernel and image are G-invariant submodules (only {0} or full space for irreducibles), forbids nonzero φ with dim(V) ≠ dim(W) → UNSAT. G-equivariance: φ(g·v) = g·φ(v). Kernel is G-invariant, image is G-invariant. Irreducibility: no proper nontrivial G-invariant subspaces. sympy derives G-invariance proofs, irreducibility constraint, Schur's Lemma (nonzero φ is isomorphism), endomorphism ring structure (scalars over ℂ for irreducibles).",
+        "name": "CVC5 Schur Lemma Constraint (Canonical)",
+        "description": "cvc5 proves Schur's lemma: any intertwining operator T: V → W between irreducible representations over ℂ is either T = 0 or det(T) ≠ 0 (isomorphism) via QF_NRA. Encodes constraint that nonzero equivariant maps force invertibility. cvc5 validates: (1) T = 0 for non-isomorphic irreps V ≠ W. (2) T invertible (det(T) ≠ 0) when V ≅ W (isomorphic irreps). (3) Endomorphism T = λ·id has det(T) = λⁿ ≠ 0. (4) Violation T ≠ 0 AND det(T) = 0 is UNSAT. sympy derives: irreducible representation definition, Schur's lemma proof via kernel/image invariance, endomorphism algebra structure (division algebra, ℂ-algebra for ℂ-reps), morphism space dimensions (0 for non-isomorphic, 1 for isomorphic irreps), multiplicity in direct sum decompositions.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

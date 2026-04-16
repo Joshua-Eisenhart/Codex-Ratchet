@@ -24,6 +24,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -434,7 +436,7 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
         "all_pass": all_pass,
     }
 

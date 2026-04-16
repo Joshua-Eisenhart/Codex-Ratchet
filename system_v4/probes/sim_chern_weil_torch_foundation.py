@@ -25,6 +25,8 @@ import os
 import torch
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True, "used": True, "reason": "Curvature F as torch float64 matrix, Chern polynomial Tr(exp(F/2πi)), characteristic number computation via trace, integrality check via autograd"},
     "pyg":       {"tried": False, "used": False, "reason": "Graph structure not needed for characteristic class foundation"},

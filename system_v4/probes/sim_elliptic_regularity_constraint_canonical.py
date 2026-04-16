@@ -17,6 +17,8 @@ import json
 import os
 import numpy as np
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
 # =====================================================================
@@ -454,6 +456,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_elliptic_regularity_constraint_canonical",
         "claim": "If Lu=f with L elliptic of order 2m and f∈H^s, then u∈H^{s+2m}",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

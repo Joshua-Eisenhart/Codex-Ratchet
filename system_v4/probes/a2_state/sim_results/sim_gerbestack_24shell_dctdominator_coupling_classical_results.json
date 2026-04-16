@@ -1,0 +1,337 @@
+{
+  "name": "sim_gerbestack_24shell_dctdominator_coupling_classical",
+  "description": "Coupling Program #140: 24-shell extension adding DCTDominator (dominated convergence finite/infinite dominator grading). Q_24 = MI \u00d7 log(2)^20 \u00d7 log(3)^3 \u00d7 log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
+  "classification": "classical_baseline",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 24-factor product with load-bearing MI component"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph topology not required for direct entropy algebra of gerbe and clifford structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Q_24 < 0 impossible; Q=0 while MI>0 and all H_i>0 is structurally impossible via zero-product theorem over 24 factors"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for real-valued constraint satisfaction on entropy product"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_24 = MI \u00d7 H_gerbe \u00d7 ... \u00d7 H_dctdominator; zero-product over 24 factors; entropy bounds and product structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford algebra grade decomposition Cl(2,0) yields 4-element grading; spinor chirality adds categorical layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S^1 and T^2 fiber structure handled via phase argument; Riemannian manifold ops handled via direct entropy computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariance not required for shell-local entropy computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA tensor network skeleton used for entropy layer count; full graph not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for moment map algebra"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological network not required for direct entropy computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for shell-local entropy verification"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mi_primitive_nonzero": {
+      "passed": true,
+      "MI": 0.9394864118290985,
+      "description": "MI primitive: entangled base state has MI > 0 at eps=0"
+    },
+    "P2_h_gerbestack_log2": {
+      "passed": true,
+      "H_gerbestack": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_gerbestack = log(2)"
+    },
+    "P3_h_weyl_log2": {
+      "passed": true,
+      "H_weyl": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_weyl = log(2)"
+    },
+    "P4_h_hopf_log2": {
+      "passed": true,
+      "H_hopf": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_hopf = log(2)"
+    },
+    "P5_h_dirac_log2": {
+      "passed": true,
+      "H_dirac": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_dirac = log(2)"
+    },
+    "P6_h_mera_log3": {
+      "passed": true,
+      "H_mera": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_mera = log(3)"
+    },
+    "P7_h_toric_log4": {
+      "passed": true,
+      "H_toric": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "description": "H_toric = log(4)"
+    },
+    "P8_h_clifford_log4": {
+      "passed": true,
+      "H_clifford": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "description": "H_clifford = log(4)"
+    },
+    "P9_h_spinor_log2": {
+      "passed": true,
+      "H_spinor": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_spinor = log(2)"
+    },
+    "P10_h_riemannian_log3": {
+      "passed": true,
+      "H_riemannian": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_riemannian = log(3)"
+    },
+    "P11_h_connection_log2": {
+      "passed": true,
+      "H_connection": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_connection = log(2)"
+    },
+    "P12_h_holonomy_log2": {
+      "passed": true,
+      "H_holonomy": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_holonomy = log(2)"
+    },
+    "P13_h_fiber_log2": {
+      "passed": true,
+      "H_fiber": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_fiber = log(2)"
+    },
+    "P14_h_assoc_log2": {
+      "passed": true,
+      "H_assoc": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_assoc = log(2)"
+    },
+    "P15_h_moment_log2": {
+      "passed": true,
+      "H_moment": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_moment = log(2)"
+    },
+    "P16_h_derivedcategory_log2": {
+      "passed": true,
+      "H_derivedcategory": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_derivedcategory = log(2)"
+    },
+    "P17_h_etalecoho_log2": {
+      "passed": true,
+      "H_etalecoho": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_etalecoho = log(2)"
+    },
+    "P18_h_tqftpartition_log2": {
+      "passed": true,
+      "H_tqftpartition": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_tqftpartition = log(2)"
+    },
+    "P19_h_mirrorsym_log2": {
+      "passed": true,
+      "H_mirrorsym": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_mirrorsym = log(2)"
+    },
+    "P20_h_riemannzeta_log2": {
+      "passed": true,
+      "H_riemannzeta": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_riemannzeta = log(2)"
+    },
+    "P21_h_kahlermoduli_log3": {
+      "passed": true,
+      "H_kahlermoduli": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_kahlermoduli = log(3)"
+    },
+    "P22_h_homotopywinding_log2": {
+      "passed": true,
+      "H_homotopywinding": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_homotopywinding = log(2)"
+    },
+    "P23_h_godelssentence_log2": {
+      "passed": true,
+      "H_godelssentence": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_godelssentence = log(2)"
+    },
+    "P24_h_dctdominator_log2": {
+      "passed": true,
+      "H_dctdominator": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_dctdominator = log(2) from dominated convergence finite/infinite"
+    },
+    "P25_q_24shell_full_positive": {
+      "passed": true,
+      "Q_24": 0.0032658262316817704,
+      "MI": 0.9394864118290985,
+      "description": "Q_24 = MI \u00d7 H_gerbestack \u00d7 ... \u00d7 H_dctdominator > 0"
+    },
+    "P26_q_24shell_monotone_in_mi": {
+      "passed": true,
+      "Q_per_alpha": [
+        0.003064,
+        0.003138,
+        0.003205,
+        0.003266,
+        0.003322
+      ],
+      "description": "Q_24 > 0 for 5 entanglement levels"
+    },
+    "P27_emergence_zero_product": {
+      "passed": true,
+      "Q_full": 0.0032658262316817704,
+      "description": "Q_24 = 0 iff any H_i = 0"
+    },
+    "P28_rho_base_valid_dm": {
+      "passed": true,
+      "trace": 1.0,
+      "description": "rho_base is valid density matrix"
+    },
+    "P29_axis0_dq_deps_negative": {
+      "passed": true,
+      "dQ_deps": -0.00221171080658658,
+      "description": "Axis 0: dQ/d(eps) < 0"
+    }
+  },
+  "negative": {
+    "N1_z3_q_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q_24 < 0 impossible"
+    },
+    "N2_z3_q_zero_product_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q=0 impossible if MI>0 AND all H_i>0"
+    },
+    "N3_sympy_zero_product_theorem": {
+      "passed": true,
+      "description": "sympy: Q=0 whenever any H_i=0"
+    },
+    "N4_fully_dephased_mi_nonzero": {
+      "passed": true,
+      "MI_dephased": 0.46688042943420094,
+      "MI_original": 0.9394864118290985,
+      "description": "Fully dephased state retains classical MI"
+    }
+  },
+  "boundary": {
+    "B1_shell_entropies_physical": {
+      "passed": true,
+      "description": "All shell entropies positive"
+    },
+    "B2_gradient_finite_nonzero_mid_eps": {
+      "passed": true,
+      "gradient": -0.0014433200556519983,
+      "description": "Autograd gradient finite and nonzero at eps=0.5"
+    },
+    "B3_q_scales_with_mi": {
+      "passed": true,
+      "Q_high": 0.003374216927741919,
+      "Q_low": 0.0019329257266807402,
+      "description": "Q_24 scales monotonically with MI"
+    },
+    "B4_boundary_eps_zero": {
+      "passed": true,
+      "gradient_at_eps_0": -0.004452902192663446,
+      "description": "Gradient well-defined at eps=0"
+    },
+    "B5_dctdominator_log2_validation": {
+      "passed": true,
+      "H_dctdominator": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "DCTDominator entropy exactly log(2) from dominated convergence finite/infinite dominator"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 38,
+  "fail_count": 0,
+  "coupling_program_number": 140,
+  "shells": [
+    "GerbeStack",
+    "Weyl",
+    "Hopf",
+    "Dirac",
+    "MERA",
+    "Toric",
+    "Clifford",
+    "Spinor",
+    "Riemannian",
+    "Connection",
+    "Holonomy",
+    "Fiber",
+    "AssocBundle",
+    "MomentIndex",
+    "DerivedCategory",
+    "EtaleCoho",
+    "TQFTPartition",
+    "MirrorSym",
+    "RiemannZeta",
+    "KahlerModuli",
+    "HomotopyWinding",
+    "GodelSentence",
+    "DCTDominator"
+  ]
+}

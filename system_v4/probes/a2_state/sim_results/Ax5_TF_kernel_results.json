@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T07:54:23.720621+00:00",
+  "timestamp": "2026-04-16T10:13:04.716362+00:00",
   "axis": 5,
   "name": "Ax5_T_vs_F_Kernel_Validation",
   "definition": "T={Ti,Te}=dephasing, F={Fi,Fe}=unitary-rotation",
@@ -7,6 +7,23 @@
   "warning": "geometric_operators.py DIVERGES from locked spec: runtime Fe=amplitude-damping (should be U_z rotation), runtime Te=sigma_y rotation (should be sigma_x dephasing)",
   "verdict": "PASS",
   "evidence_token": "E_AX5_TF_KERNEL_VALID",
+  "divergence_log": "Classical foundation baseline: this validates the locked Ax5 kernel split against the ledger math, not as a canonical nonclassical proof object.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "density matrices, Bloch vectors, and trace-distance numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "locked matrix exponentials for the Ax5 gamma5 branch test"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  },
   "results": {
     "T_reduces_coherence": true,
     "Ti_min_offdiag_reduction": 0.03290716848461376,

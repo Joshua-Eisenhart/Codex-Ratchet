@@ -1,11 +1,22 @@
 {
-  "timestamp": "2026-04-16T07:54:23.400435+00:00",
+  "timestamp": "2026-04-16T10:13:02.302740+00:00",
   "axis": 3,
   "name": "Ax3_Fiber_vs_BaseLift_DensityPath",
   "definition": "inner=density-stationary, outer=density-traversing",
   "source": "AXIS_3_4_5_6_QIT_MATH.md",
   "verdict": "PASS",
   "evidence_token": "E_AX3_DENSITY_PATH_VALID",
+  "divergence_log": "Classical foundation baseline: this checks the Ax3 density-path distinction on the geometry spine, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "vectorized density-path numerics for the Ax3 geometry spine"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  },
   "results": {
     "fiber_density_stationary": true,
     "fiber_max_deviation": 9.899056296961976e-16,

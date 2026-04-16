@@ -1,7 +1,7 @@
 {
   "name": "qit_szilard_record_companion",
-  "classification": "research_support",
-  "classification_note": "Finite two-qubit companion row for Szilard record lifetime, record decay, and reset-strength mechanics. It stays in exact density-operator bookkeeping and is meant for QIT-aligned comparison, not canonical admission.",
+  "classification": "canonical",
+  "classification_note": "Finite two-qubit Szilard record companion: numpy keeps the record-lifetime, record-decay, and reset bookkeeping, while qutip, cirq, and pennylane witness the same bounded two-qubit record/reset carrier. This is a bridge companion row, not a stronger demon claim.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map"
@@ -10,6 +10,26 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing record-lifetime bookkeeping, entropy, and validation algebra"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator witness on the same bounded record/reset carrier"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing gate witness on the same two-qubit carrier"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing mixed-state witness on the same two-qubit carrier"
+    },
     "pytorch": {
       "tried": false,
       "used": false,
@@ -72,6 +92,10 @@
     }
   },
   "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
     "pytorch": null,
     "pyg": null,
     "z3": null,

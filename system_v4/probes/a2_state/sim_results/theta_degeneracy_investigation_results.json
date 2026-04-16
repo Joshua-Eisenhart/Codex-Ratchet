@@ -450,5 +450,16 @@
   "name": "theta_degeneracy_investigation",
   "degeneracy_cause": "Fi produces DIFFERENT output states per theta (expected); Final states differ across thetas (no universal fixed-point convergence); EVD removal breaks degeneracy \u2014 clipping is partly responsible; Fi does contribute even at non-pi thetas",
   "operator_outputs_identical": false,
-  "timestamp": "2026-04-16"
+  "timestamp": "2026-04-16",
+  "divergence_log": "Classical baseline: this theta-degeneracy investigation checks numeric operator sensitivity and clipping behavior, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "theta sweeps, density comparisons, and operator output analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  }
 }

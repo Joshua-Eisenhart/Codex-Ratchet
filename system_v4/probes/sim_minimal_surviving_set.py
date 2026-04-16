@@ -26,6 +26,38 @@ from scipy.linalg import sqrtm, logm, expm
 from scipy.stats import spearmanr
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline: this probe searches the minimal surviving set numerically "
+    "with numpy/scipy/sympy/z3 only, and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric array and matrix operations for the minimal set search",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "linear algebra and rank-correlation helpers for the classical baseline",
+    },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic constraint support for the classical baseline",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "constraint solving for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Optimize, Sum, If as Z3If,

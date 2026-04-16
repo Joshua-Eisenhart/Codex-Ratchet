@@ -132,6 +132,40 @@ def _queue_claim_summary(limit: int = 8) -> dict:
     return {"count": adaptive_controller.queue_counts().get("claimed", 0), "samples": samples}
 
 
+def _blocked_surface(limit: int = 8) -> dict:
+    blocked_dir = adaptive_controller.QUEUE / "blocked"
+    reasons: Counter[str] = Counter()
+    sim_counts: Counter[str] = Counter()
+    samples = []
+    if blocked_dir.exists():
+        for path in sorted(blocked_dir.iterdir()):
+            if not path.is_file():
+                continue
+            data = adaptive_controller.load_result(path)
+            reason = str(data.get("blocked_reason") or data.get("reason") or "unknown")
+            sim = Path(str(data.get("sim_path", ""))).name
+            reasons[reason] += 1
+            if sim:
+                sim_counts[sim] += 1
+            if len(samples) < limit:
+                samples.append({
+                    "file": path.name,
+                    "reason": reason,
+                    "sim": sim,
+                    "lane": data.get("lane"),
+                })
+    duplicate_sims = {sim: count for sim, count in sim_counts.items() if count > 1}
+    return {
+        "active_count": sum(reasons.values()),
+        "resolved_count": adaptive_controller.resolved_blocked_count(),
+        "reasons": dict(reasons),
+        "unique_sims": len(sim_counts),
+        "duplicate_entries": sum(count - 1 for count in duplicate_sims.values()),
+        "duplicate_sims": duplicate_sims,
+        "samples": samples,
+    }
+
+
 def _queue_dir_freshness(path: Path) -> dict:
     newest_name = None
     newest_mtime = None
@@ -193,6 +227,13 @@ def _git_layer(path: str) -> str:
         return "owner_vault"
     if path.startswith("system_v5/new docs/") or path.endswith(".md"):
         return "owner_docs"
+    if (
+        path.startswith("system_v4/probes/")
+        and path.endswith("_results.json")
+        and not path.startswith("system_v4/probes/a2_state/sim_results/")
+        and not path.startswith("system_v4/probes/sim_results/")
+    ):
+        return "misplaced_probe_results"
     if path.startswith("system_v4/probes/sim_") and path.endswith(".py"):
         return "probe_sources"
     if path.startswith("system_v4/probes/a2_state/sim_results/") or path.startswith("system_v4/probes/sim_results/"):
@@ -245,6 +286,7 @@ def git_surface() -> dict:
             "code_and_tests": "KEEP_ACTIVE",
             "runner_logs": "KEEP_ACTIVE",
             "probe_sources": "BLOCKED_REQUIRES_PREP",
+            "misplaced_probe_results": "REPAIR_TO_CANONICAL_ROOT",
             "probe_results": "KEEP_ACTIVE",
             "system_results": "KEEP_ACTIVE",
             "owner_vault": "BLOCKED_REQUIRES_PREP",
@@ -642,9 +684,22 @@ def _runner_health(queue_counts: dict, freshness: dict, claimed_age: dict | None
     return {"status": "idle", "reason": "no active claims and no material backlog"}
 
 
-def _runner_warnings(queue_counts: dict, freshness: dict, claimed_age: dict | None = None) -> list[str]:
+def _runner_warnings(
+    queue_counts: dict,
+    freshness: dict,
+    claimed_age: dict | None = None,
+    blocked: dict | None = None,
+) -> list[str]:
     warnings: list[str] = []
     claimed = int(queue_counts.get("claimed", 0) or 0)
+    blocked_state = blocked or {}
+    duplicate_entries = int(blocked_state.get("duplicate_entries", 0) or 0)
+    if duplicate_entries > 0:
+        active_count = int(blocked_state.get("active_count", 0) or 0)
+        unique_sims = int(blocked_state.get("unique_sims", 0) or 0)
+        warnings.append(
+            f"{active_count} blocked entry(s) across {unique_sims} unique sim(s)"
+        )
     if claimed <= 0:
         return warnings
     ages = claimed_age or {}
@@ -666,14 +721,16 @@ def runner_surface() -> dict:
         for lane in ("lane_A", "lane_B", "claimed", "done")
     }
     claimed_age = _claimed_age_surface(adaptive_controller.QUEUE / "claimed")
+    blocked = _blocked_surface()
     return {
         "pidfiles": {name: _pidfile_status(name, pidfile) for name, pidfile in PIDFILES.items()},
         "wrappers": _wrapper_processes(),
         "queue": queue_counts,
         "freshness": freshness,
         "claimed_age": claimed_age,
+        "blocked": blocked,
         "health": _runner_health(queue_counts, freshness, claimed_age),
-        "warnings": _runner_warnings(queue_counts, freshness, claimed_age),
+        "warnings": _runner_warnings(queue_counts, freshness, claimed_age, blocked),
         "claimed": _queue_claim_summary(),
     }
 
@@ -710,9 +767,16 @@ def _git_maintenance_queue(git: dict) -> dict:
         for key, value in layers.items()
         if cleanup_posture.get(key) == "KEEP_ACTIVE"
     }
+    repair_layers = {
+        key: value
+        for key, value in layers.items()
+        if cleanup_posture.get(key) == "REPAIR_TO_CANONICAL_ROOT"
+    }
     return {
         "blocked_entries": sum(blocked_layers.values()),
         "blocked_layers": blocked_layers,
+        "repair_entries": sum(repair_layers.values()),
+        "repair_layers": repair_layers,
         "active_churn_entries": sum(active_layers.values()),
         "active_churn_layers": active_layers,
     }
@@ -740,6 +804,13 @@ def maintenance_queue_surface(git: dict, runner: dict, results: dict) -> dict:
             "status": runner.get("health", {}).get("status"),
             "warnings": list(runner.get("warnings", [])),
             "claimed_age": dict(runner.get("claimed_age", {})),
+            "blocked": {
+                "active_count": int(runner.get("blocked", {}).get("active_count", 0) or 0),
+                "reasons": dict(runner.get("blocked", {}).get("reasons", {})),
+                "unique_sims": int(runner.get("blocked", {}).get("unique_sims", 0) or 0),
+                "duplicate_entries": int(runner.get("blocked", {}).get("duplicate_entries", 0) or 0),
+                "samples": list(runner.get("blocked", {}).get("samples", [])),
+            },
         },
         "results": _results_maintenance_queue(results),
     }

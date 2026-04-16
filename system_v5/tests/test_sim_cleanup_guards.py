@@ -769,6 +769,10 @@ def test_system_surface_audit_git_layer_classifies_probe_sources() -> None:
             sys.path.pop(0)
 
     assert module._git_layer("system_v4/probes/sim_mera_weyl_pairwise_coupling.py") == "probe_sources"
+    assert (
+        module._git_layer("system_v4/probes/sim_mera_weyl_pairwise_coupling_results.json")
+        == "misplaced_probe_results"
+    )
 
 
 def test_system_surface_audit_result_surface_reports_untracked_probe_sources(
@@ -901,6 +905,87 @@ def test_system_surface_audit_runner_warnings_report_long_claims() -> None:
     assert warnings == ["1 claim(s) over 300s"]
 
 
+def test_system_surface_audit_runner_warnings_report_blocked_duplicates() -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_runner_blocked_warnings_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    warnings = module._runner_warnings(
+        {"lane_A": 1, "lane_B": 2, "claimed": 0, "done": 10},
+        {
+            "lane_A": {"active_within_60s": True},
+            "lane_B": {"active_within_60s": True},
+            "claimed": {"active_within_60s": False},
+            "done": {"active_within_60s": True},
+        },
+        {"over_300s": 0, "over_900s": 0},
+        {"active_count": 9, "unique_sims": 3, "duplicate_entries": 6},
+    )
+
+    assert warnings == ["9 blocked entry(s) across 3 unique sim(s)"]
+
+
+def test_system_surface_audit_blocked_surface_reports_reasons_and_duplicates(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_blocked_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    queue_root = tmp_path / "queue"
+    blocked = queue_root / "blocked"
+    resolved = blocked / "resolved"
+    blocked.mkdir(parents=True, exist_ok=True)
+    resolved.mkdir(parents=True, exist_ok=True)
+    for name in ("a.json.1.host.w1", "a.json.2.host.w2"):
+        (blocked / name).write_text(
+            json.dumps(
+                {
+                    "sim_path": "/tmp/sim_alpha.py",
+                    "lane": "lane_A",
+                    "blocked_reason": "gate_denied",
+                }
+            ),
+            encoding="utf-8",
+        )
+    (blocked / "b.json.1.host.w1").write_text(
+        json.dumps(
+            {
+                "sim_path": "/tmp/sim_beta.py",
+                "lane": "lane_B",
+                "blocked_reason": "blacklisted_meta_sim",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (resolved / "old.json").write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(module.adaptive_controller, "QUEUE", queue_root)
+
+    report = module._blocked_surface()
+
+    assert report["active_count"] == 3
+    assert report["resolved_count"] == 1
+    assert report["reasons"] == {"gate_denied": 2, "blacklisted_meta_sim": 1}
+    assert report["unique_sims"] == 2
+    assert report["duplicate_entries"] == 1
+    assert report["duplicate_sims"] == {"sim_alpha.py": 2}
+
+
 def test_system_surface_audit_claimed_age_surface_uses_claimed_at(tmp_path) -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)
@@ -941,17 +1026,30 @@ def test_system_surface_audit_maintenance_queue_groups_actions() -> None:
 
     queue = module.maintenance_queue_surface(
         {
-            "layers": {"owner_vault": 3, "probe_results": 4, "runner_logs": 1},
+            "layers": {
+                "owner_vault": 3,
+                "probe_results": 4,
+                "runner_logs": 1,
+                "misplaced_probe_results": 2,
+            },
             "cleanup_posture": {
                 "owner_vault": "BLOCKED_REQUIRES_PREP",
                 "probe_results": "KEEP_ACTIVE",
                 "runner_logs": "KEEP_ACTIVE",
+                "misplaced_probe_results": "REPAIR_TO_CANONICAL_ROOT",
             },
         },
         {
             "health": {"status": "draining"},
             "warnings": ["1 claim(s) over 300s"],
             "claimed_age": {"over_300s": 1},
+            "blocked": {
+                "active_count": 5,
+                "reasons": {"gate_denied": 5},
+                "unique_sims": 2,
+                "duplicate_entries": 3,
+                "samples": [{"sim": "sim_alpha.py", "reason": "gate_denied"}],
+            },
         },
         {
             "system_v4/probes/a2_state/sim_results": {
@@ -967,8 +1065,10 @@ def test_system_surface_audit_maintenance_queue_groups_actions() -> None:
     )
 
     assert queue["git"]["blocked_entries"] == 3
+    assert queue["git"]["repair_entries"] == 2
     assert queue["git"]["active_churn_entries"] == 5
     assert queue["runner"]["warnings"] == ["1 claim(s) over 300s"]
+    assert queue["runner"]["blocked"]["duplicate_entries"] == 3
     assert queue["results"]["fail_actions"] == {"rerun_candidate": 2, "missing_source_repair": 1}
     assert queue["results"]["fail_action_samples"]["rerun_candidate"] == [{"result": "a.json", "action": "rerun_candidate"}]
 

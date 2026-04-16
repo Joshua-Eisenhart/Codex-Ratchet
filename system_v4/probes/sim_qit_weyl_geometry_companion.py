@@ -18,7 +18,7 @@ import sys
 from typing import Any
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -29,13 +29,14 @@ import hopf_manifold as hopf  # noqa: E402
 import sim_pauli_algebra_relations as pauli  # noqa: E402
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Strict finite-state companion/readout surface for the Weyl/Hopf/Pauli "
     "geometry stack. It keeps nested Hopf tori, Weyl spinors, Pauli readouts, "
     "transport, and geometry-preserving basis changes explicit. This is a "
     "bounded comparison surface, not a new physics claim."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -427,6 +428,7 @@ def main() -> None:
         "name": "qit_weyl_geometry_companion",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

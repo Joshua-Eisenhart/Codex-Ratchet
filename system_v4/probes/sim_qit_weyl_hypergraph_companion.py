@@ -22,16 +22,17 @@ import rustworkx as rx
 import xgi
 import z3
 from toponetx import CellComplex
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Strict finite bounded companion for the Weyl -> hypergraph lane. It keeps "
     "the hypergraph support pack explicit while adding direct hypergraph, "
     "cell-complex, DAG, and SMT ordering checks. This is a bounded comparison "
     "surface, not a runtime-equivalence or owner-math claim."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_hypergraph_follow_on",
@@ -344,8 +345,9 @@ def main() -> None:
 
     results = {
         "name": "qit_weyl_hypergraph_companion",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

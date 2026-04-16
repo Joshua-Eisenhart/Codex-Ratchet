@@ -17,7 +17,7 @@ from typing import Any
 
 import rustworkx as rx
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -25,12 +25,13 @@ if str(PROBE_DIR) not in sys.path:
     sys.path.insert(0, str(PROBE_DIR))
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Bounded translation lane for the Weyl/Hopf -> hypergraph family. It "
     "compares the ranked hypergraph follow-on, the dedicated hypergraph bridge, "
     "and the existing hypergraph support pack without claiming runtime equivalence."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_hypergraph_follow_on",
@@ -233,6 +234,7 @@ def main() -> None:
         "name": "qit_weyl_hypergraph_translation_lane",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -21,6 +21,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Dirac×Gerbe×MERA topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -292,6 +297,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_dirac_gerbe_mera_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Topology variants for Dirac×Gerbe×MERA (25th program). "
             f"H_dirac={H_DIRAC:.6f} (stable). H_gerbe={H_GERBE:.6f} (stable). "

@@ -24,6 +24,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Dirac×Gerbe×MERA emergence probe: this file checks "
+    "scalar emergence quantities with z3 and sympy support where available, "
+    "but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -296,16 +302,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_dirac_gerbe_mera_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence quantities for Dirac×Gerbe×MERA (25th program). "
-            f"H_dirac={H_DIRAC:.6f}, H_gerbe={H_GERBE:.6f}, H_mera={H_MERA:.6f}. "
-            f"MI={MI_val:.6f}, Q_DGM={Q_DGM:.6f}. "
-            "E1-E6 sub-products all zero (MI missing). "
-            "E7 full product Q_DGM > 0 (emergence). "
-            "z3 UNSAT: MI=0 AND Q>0 impossible. "
-            "sympy: any factor=0 collapses product to 0. "
-            "pytorch: E1-E6 zero and E7 positive validated as float64 tensors."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_dirac": H_DIRAC, "H_gerbe": H_GERBE, "H_mera": H_MERA, "MI": MI_val, "Q_DGM": Q_DGM},

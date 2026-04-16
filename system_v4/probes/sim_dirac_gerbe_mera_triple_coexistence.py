@@ -22,6 +22,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence for Dirac×Gerbe×MERA (25th program). "
+    "H_dirac, H_gerbe, and H_mera are normalized via h/(1+h) and compared "
+    "through joint-vs-pairwise products without broadening program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -282,16 +287,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_dirac_gerbe_mera_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Triple coexistence for Dirac×Gerbe×MERA (25th program). "
-            f"H_dirac={H_DIRAC:.6f}, H_gerbe={H_GERBE:.6f}, H_mera={H_MERA:.6f}. "
-            "Normalized h/(1+h) values all in (0,1). "
-            "Joint product <= pairwise product (DPI-like inequality). "
-            "Q_DGM = MI × H_dirac × H_gerbe × H_mera > 0. "
-            "z3 UNSAT: normalized joint > 1 impossible. "
-            "sympy: h/(1+h) is monotone in h. "
-            "pytorch: normalized tensor positivity validated."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_dirac": H_DIRAC, "H_gerbe": H_GERBE, "H_mera": H_MERA},

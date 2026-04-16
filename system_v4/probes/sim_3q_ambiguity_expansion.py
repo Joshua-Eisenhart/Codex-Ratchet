@@ -33,6 +33,12 @@ from typing import Dict, List, Tuple
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: 3-qubit ambiguity expansion is validated "
+    "here as a pure numpy pre-bridge lego, not a canonical nonclassical "
+    "witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 np.random.seed(29)
 EPS = 1e-12
@@ -690,6 +696,8 @@ def main() -> Dict[str, object]:
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "caveat": (
             "Targeted expansion only. Clear 2q cases are excluded, and the 3q lift is "
             "used only to resolve ambiguity rather than expand breadth."

@@ -24,6 +24,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Pairwise coupling for Dirac×Gerbe×MERA (25th program). "
+    "H_dirac=seed0 symmetric 4x4 spectral gap. "
+    "H_gerbe=log(4). H_mera=log(2). "
+    "Q_pair=H_i×H_j>0 for all three DGM pairs. "
+    "z3 UNSAT: zero factor makes product zero — no positive Q from zero entropy. "
+    "sympy: two-factor product collapse. "
+    "pytorch: scalar entropy tensor positivity check."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -262,16 +272,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_dirac_gerbe_mera_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Pairwise coupling for Dirac×Gerbe×MERA (25th program). "
-            f"H_dirac={H_DIRAC:.6f} (spectral gap seed=0). "
-            f"H_gerbe={H_GERBE:.6f} (log(4)). "
-            f"H_mera={H_MERA:.6f} (log(2)). "
-            "Q_pair=H_i×H_j>0 for all three DGM pairs. "
-            "z3 UNSAT: zero factor makes product zero — no positive Q from zero entropy. "
-            "sympy: two-factor product collapse. "
-            "pytorch: scalar entropy tensor positivity check."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_dirac": H_DIRAC, "H_gerbe": H_GERBE, "H_mera": H_MERA},

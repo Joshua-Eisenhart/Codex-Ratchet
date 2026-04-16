@@ -22,6 +22,32 @@ from datetime import datetime, UTC
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this bridge layer measures 3-qubit constraint behavior "
+    "numerically with numpy and bridge helpers, not as a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state evolution and entropy calculations for the bridge layer",
+    },
+    "sim_3qubit_bridge_prototype": {
+        "tried": True,
+        "used": True,
+        "reason": "bridge operator and entropy helpers reused by the classical layer",
+    },
+    "hopf_manifold": {
+        "tried": True,
+        "used": True,
+        "reason": "torus geometry and Weyl-spinor helpers used by the bridge layer",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sim_3qubit_bridge_prototype": "supportive",
+    "hopf_manifold": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

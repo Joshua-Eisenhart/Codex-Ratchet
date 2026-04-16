@@ -20,6 +20,38 @@ import os
 import sys
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this final ladder layer measures entropy and Axis 0 "
+    "numerically with numpy and bridge helpers, not as a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric entropy and axis calculations for the classical ladder layer",
+    },
+    "sim_3qubit_bridge_prototype": {
+        "tried": True,
+        "used": True,
+        "reason": "bridge operator and entropy helpers used by the classical layer",
+    },
+    "engine_3qubit": {
+        "tried": True,
+        "used": True,
+        "reason": "three-qubit engine helpers used by the classical layer",
+    },
+    "hopf_manifold": {
+        "tried": True,
+        "used": True,
+        "reason": "torus geometry and Weyl-spinor helpers used by the classical layer",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sim_3qubit_bridge_prototype": "supportive",
+    "engine_3qubit": "supportive",
+    "hopf_manifold": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

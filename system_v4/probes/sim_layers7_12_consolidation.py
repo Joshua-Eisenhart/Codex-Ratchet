@@ -16,6 +16,38 @@ Layer 12: Entanglement dynamics
 import sys, os, json, copy
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this consolidation layer verifies layers 7-12 "
+    "numerically with numpy/engine-core helpers and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state and metric handling for the classical consolidation layer",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "classical ladder state transitions and operator lookup used in the layer suite",
+    },
+    "geometric_operators": {
+        "tried": True,
+        "used": True,
+        "reason": "operator application and entanglement checks used in the layer suite",
+    },
+    "hopf_manifold": {
+        "tried": True,
+        "used": True,
+        "reason": "torus coordinates and entropy helpers used in the layer suite",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+    "hopf_manifold": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -24,6 +24,38 @@ import sys
 import os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this probe verifies Layer 6 operator algebra "
+    "numerically with numpy/scipy/sympy/z3 and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric array and matrix operations for the operator-algebra baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "linear-algebra helpers used by the classical baseline checks",
+    },
+    "sympy": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic support for the classical baseline checks",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "constraint checking used by the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "sympy": "supportive",
+    "z3": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

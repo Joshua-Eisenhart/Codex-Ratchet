@@ -16,11 +16,13 @@ classification = "classical_baseline"  # auto-backfill
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
-    "Canonical finite-channel row for QIT-aligned attractor-basin recovery: bounded perturbations "
-    "of nearby density states return under one ordered noncommuting schedule to the same persistent "
-    "equivalence class, while the swapped order is weaker and a commuting control loses the order effect."
+divergence_log = (
+    "Canonical finite-channel row for QIT-aligned attractor-basin recovery: "
+    "bounded perturbations of nearby density states return under one ordered "
+    "noncommuting schedule to the same persistent equivalence class, while "
+    "the swapped order is weaker and a commuting control loses the order effect."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "channel_cptp_map",
@@ -266,6 +268,7 @@ def main():
         "name": "qit_attractor_basin_recovery",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

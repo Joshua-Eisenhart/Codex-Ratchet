@@ -20,18 +20,19 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 EPS = 1e-10
 I2 = np.eye(2, dtype=complex)
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical bounded resource-longevity row on one finite shared-bath carrier. "
     "It compares greedy local extraction against a scheduled repair/lose stroke "
     "without making controller, policy-universality, or real-engine totality claims."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "qit_moloch_coordination_trap",

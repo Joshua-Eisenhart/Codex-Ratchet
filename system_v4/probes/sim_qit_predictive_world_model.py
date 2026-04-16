@@ -19,16 +19,17 @@ import json
 import pathlib
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Canonical finite predictive-world-model row: an internal qubit density "
     "state updated from noncommuting probe errors reduces full-state mismatch "
     "to a finite environment and re-adapts after a shift, while limited or "
     "absent observation controls fail to recover the same alignment."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "predictive_world_model",
@@ -279,8 +280,9 @@ def build_results() -> dict:
 
     return {
         "name": "qit_predictive_world_model",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -14,6 +14,37 @@ from _coupling_template import (
 )
 
 A, B = "holodeck", "sci_method"
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; pair coupling is a finite SMT check"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; no graph learning required"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing: per-pair admissibility and exclusion are verified by SMT"},
+    "cvc5": {"tried": False, "used": False, "reason": "z3 is sufficient for the coupling witness"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed; coupling is finite SMT"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed; no geometric algebra in this wrapper"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; no manifold computation required"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; no equivariant network required"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; finite pair check only"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; no hypergraph structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; no cell complex structure"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; no persistent homology"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 if __name__ == "__main__":
     main(A, B, __file__)

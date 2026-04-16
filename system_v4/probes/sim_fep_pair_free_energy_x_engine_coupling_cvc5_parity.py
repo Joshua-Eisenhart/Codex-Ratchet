@@ -8,6 +8,13 @@ asserts z3<->cvc5 UNSAT parity. Does not modify parent.
 import os, sys
 from _cvc5_parity_helper import write_results, all_pass
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical foundation baseline: this cvc5 parity sibling rechecks the "
+    "free-energy versus engine-coupling UNSAT claim with bounded SMT parity, "
+    "not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 TOOL_MANIFEST = {"z3":{"tried":False,"used":False,"reason":""},
                  "cvc5":{"tried":False,"used":False,"reason":""}}
 TOOL_INTEGRATION_DEPTH = {"z3": None, "cvc5": None}
@@ -92,6 +99,8 @@ if __name__ == "__main__":
         "name": "sim_fep_pair_free_energy_x_engine_coupling_cvc5_parity",
         "scope_note": "redundant-SMT parity for system_v4/probes/sim_fep_pair_free_energy_x_engine_coupling.py",
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

@@ -8,6 +8,13 @@ asserts z3<->cvc5 UNSAT parity. Does not modify parent.
 import os, sys
 from _cvc5_parity_helper import write_results, all_pass
 
+classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "cvc5 parity sibling for the active-inference/Markov-blanket FEP pair. "
+    "This is a supporting redundant-SMT parity witness, not owner math."
+)
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = divergence_log
 TOOL_MANIFEST = {"z3":{"tried":False,"used":False,"reason":""},
                  "cvc5":{"tried":False,"used":False,"reason":""}}
 TOOL_INTEGRATION_DEPTH = {"z3": None, "cvc5": None}
@@ -81,6 +88,8 @@ if __name__ == "__main__":
         "name": "sim_fep_pair_active_inference_x_markov_blanket_cvc5_parity",
         "scope_note": "redundant-SMT parity for system_v4/probes/sim_fep_pair_active_inference_x_markov_blanket.py",
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

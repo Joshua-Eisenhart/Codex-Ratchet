@@ -771,8 +771,11 @@ def main():
         configs = [r for r in all_results if r["engine_type"] == et]
         if configs:
             rates = [r["forward_coarising_rate"] for r in configs if r["forward_coarising_rate"]]
-            print(f"  Engine {et}: mean={np.mean(rates):.3f}  std={np.std(rates):.3f}  "
-                  f"range=[{min(rates):.3f},{max(rates):.3f}]")
+            if rates:
+                print(f"  Engine {et}: mean={np.mean(rates):.3f}  std={np.std(rates):.3f}  "
+                      f"range=[{min(rates):.3f},{max(rates):.3f}]")
+            else:
+                print(f"  Engine {et}: no valid forward_coarising_rate values")
 
     # ---------- Consistency check: do the same step indices fail? ---------- #
     print("\n=== FAILURE STEP CONSISTENCY ===")

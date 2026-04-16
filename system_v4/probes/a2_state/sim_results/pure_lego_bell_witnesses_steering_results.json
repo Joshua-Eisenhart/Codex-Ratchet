@@ -332,7 +332,7 @@
     "all_pass": true
   },
   "meta": {
-    "total_time_s": 0.37,
+    "total_time_s": 0.5,
     "all_sections_pass": true,
     "sections": {
       "1_bell_chsh": true,
@@ -341,68 +341,67 @@
       "4_hierarchy": true
     }
   },
+  "classification": "classical_baseline",
   "tool_manifest": {
-    "pytorch": {
-      "tried": true,
-      "used": true,
-      "reason": "tensor operations and autograd used for numerical probe computations; load-bearing for gradient and matrix computations",
-      "load_bearing": true
-    },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on fixed algebraic or matrix structures; no graph message passing or node embedding required"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "probe checks numerical properties; no structural impossibility claim requiring SMT encoding"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 or numeric check sufficient; cvc5 would not add a distinct theory for this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "all computations are finite-dimensional numerical; symbolic algebra would duplicate without adding to proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "torch matrix representations used for operators; Clifford algebra package not needed for this probe"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian metric computation needed; probe operates on algebraic or density matrix structures"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3) equivariant layers needed; probe tests algebraic properties without learned equivariance"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal needed; probe operates on fixed matrix or algebraic structures"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hyperedge structure needed; probe tests pairwise or scalar algebraic properties"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no cell complex or chain map needed; probe operates on algebraic or density matrix structures"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology needed; probe tests algebraic or entropy properties without topological features"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     }
-  },
-  "classification": "classical_baseline"
+  }
 }

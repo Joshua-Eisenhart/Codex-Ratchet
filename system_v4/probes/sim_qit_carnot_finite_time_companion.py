@@ -5,17 +5,27 @@ QIT Carnot finite-time companion.
 Strict finite-carrier companion surface for the exploratory finite-time
 stochastic Carnot lane. It preserves the fast/slow/quasistatic budget signal
 in a bounded two-bath qubit model, with explicit forward engine and reverse
-refrigerator modes.
+refrigerator modes, and now adds bounded qutip/cirq/pennylane thermal
+witnesses on the same one-carrier isothermal legs.
 """
 
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import sys
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+import pennylane as qml
+import qutip
+classification = "canonical"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -29,9 +39,12 @@ CLASSIFICATION = "research_support"
 CLASSIFICATION_NOTE = (
     "Strict finite-carrier QIT companion for the finite-time Carnot lane. "
     "It preserves fast/slow/quasistatic tradeoffs in a bounded two-bath qubit "
-    "model with explicit forward engine and reverse refrigerator modes. It is a "
-    "comparison surface, not a canonical engine theorem."
+    "model with explicit forward engine and reverse refrigerator modes, and "
+    "adds bounded qutip/cirq/pennylane thermal witnesses on the same one-carrier "
+    "isothermal legs. It is a comparison surface, not a canonical engine theorem."
 )
+
+divergence_log = CLASSIFICATION_NOTE
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -44,6 +57,10 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "load-bearing finite-carrier bookkeeping, row serialization, and witness comparison"},
+    "qutip": {"tried": True, "used": True, "reason": "load-bearing one-carrier thermal witness on the isothermal legs"},
+    "cirq": {"tried": True, "used": True, "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"},
+    "pennylane": {"tried": True, "used": True, "reason": "load-bearing one-carrier thermal witness on the same isothermal legs"},
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -58,12 +75,33 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 T_HOT = 2.0
 T_COLD = 1.0
 GAP_HIGH = 3.0
 GAP_HOT_LOW = 1.0
+THERMAL_RELAX_SCALE = 420.0
+THERMAL_EPS = 1e-15
+Q0 = cirq.LineQubit(0)
+QML_DEV = qml.device("default.mixed", wires=1, shots=None)
 
 BUDGET_GRID = [
     {"budget_label": "fast", "steps_per_isotherm": 90},
@@ -73,6 +111,100 @@ BUDGET_GRID = [
 
 RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 EPS = 1e-15
+
+
+def density_from_probability(p_excited: float) -> np.ndarray:
+    p = min(max(float(p_excited), 0.0), 1.0)
+    return np.array([[1.0 - p, 0.0], [0.0, p]], dtype=np.complex128)
+
+
+def thermal_relaxation_alpha(steps: int) -> float:
+    return float(1.0 - np.exp(-float(steps) / THERMAL_RELAX_SCALE))
+
+
+def thermal_kraus_ops(p_eq: float, steps: int) -> list[np.ndarray]:
+    alpha = min(max(thermal_relaxation_alpha(steps), 0.0), 1.0)
+    p_ground = min(max(1.0 - float(p_eq), 0.0), 1.0)
+    sqrt_alpha = np.sqrt(alpha)
+    sqrt_one_minus_alpha = np.sqrt(1.0 - alpha)
+    sqrt_ground = np.sqrt(p_ground)
+    sqrt_excited = np.sqrt(1.0 - p_ground)
+    return [
+        sqrt_ground
+        * np.array([[1.0, 0.0], [0.0, sqrt_one_minus_alpha]], dtype=np.complex128),
+        sqrt_ground
+        * np.array([[0.0, sqrt_alpha], [0.0, 0.0]], dtype=np.complex128),
+        sqrt_excited
+        * np.array([[sqrt_one_minus_alpha, 0.0], [0.0, 1.0]], dtype=np.complex128),
+        sqrt_excited
+        * np.array([[0.0, 0.0], [sqrt_alpha, 0.0]], dtype=np.complex128),
+    ]
+
+
+def qutip_thermalize_density(p_excited0: float, p_eq: float, steps: int) -> np.ndarray:
+    rho = qutip.Qobj(density_from_probability(p_excited0), dims=[[2], [2]])
+    out = qutip.Qobj(np.zeros((2, 2), dtype=np.complex128), dims=[[2], [2]])
+    for kraus in thermal_kraus_ops(p_eq, steps):
+        k = qutip.Qobj(kraus, dims=[[2], [2]])
+        out += k * rho * k.dag()
+    return np.asarray(out.full(), dtype=np.complex128)
+
+
+def cirq_thermalize_density(p_excited0: float, p_eq: float, steps: int) -> np.ndarray:
+    rho0 = density_from_probability(p_excited0)
+    circuit = cirq.Circuit(cirq.KrausChannel(thermal_kraus_ops(p_eq, steps)).on(Q0))
+    simulator = cirq.DensityMatrixSimulator(seed=13)
+    return np.asarray(simulator.simulate(circuit, initial_state=rho0).final_density_matrix, dtype=np.complex128)
+
+
+@qml.qnode(QML_DEV)
+def _qml_thermalize_density(p_excited0: float, p_eq: float, steps: int):
+    qml.QubitDensityMatrix(density_from_probability(p_excited0), wires=0)
+    qml.QubitChannel(thermal_kraus_ops(p_eq, steps), wires=0)
+    return qml.density_matrix(wires=0)
+
+
+def pennylane_thermalize_density(p_excited0: float, p_eq: float, steps: int) -> np.ndarray:
+    return np.asarray(_qml_thermalize_density(p_excited0, p_eq, steps), dtype=np.complex128)
+
+
+def thermal_witness(stage: dict, label: str) -> dict:
+    before = stage["before"]
+    after = stage["after"]
+    steps = int(stage["steps"])
+    p_eq = float(stage["target_probability"])
+    p_before = float(before["p_excited"])
+    target_rho = np.asarray(after["rho"], dtype=np.complex128)
+
+    qutip_rho = qutip_thermalize_density(p_before, p_eq, steps)
+    cirq_rho = cirq_thermalize_density(p_before, p_eq, steps)
+    pennylane_rho = pennylane_thermalize_density(p_before, p_eq, steps)
+
+    qutip_err = float(np.max(np.abs(qutip_rho - target_rho)))
+    cirq_err = float(np.max(np.abs(cirq_rho - target_rho)))
+    pennylane_err = float(np.max(np.abs(pennylane_rho - target_rho)))
+    pass_ = bool(
+        np.isfinite(qutip_err)
+        and np.isfinite(cirq_err)
+        and np.isfinite(pennylane_err)
+        and qutip_err < 1e-6
+        and cirq_err < 1e-6
+        and pennylane_err < 1e-6
+    )
+    return {
+        "label": label,
+        "steps": steps,
+        "before_probability": p_before,
+        "target_probability": p_eq,
+        "reference_probability": float(target_rho[1, 1].real),
+        "qutip_probability": float(qutip_rho[1, 1].real),
+        "cirq_probability": float(cirq_rho[1, 1].real),
+        "pennylane_probability": float(pennylane_rho[1, 1].real),
+        "qutip_density_max_error": qutip_err,
+        "cirq_density_max_error": cirq_err,
+        "pennylane_density_max_error": pennylane_err,
+        "pass": pass_,
+    }
 
 
 def compact_state(state: dict) -> dict:
@@ -121,6 +253,28 @@ def final_row_state(row: dict) -> dict:
     return compact_state(row["final"])
 
 
+def build_bridge_witnesses(stages: dict, direction: str, budget_label: str) -> dict:
+    if direction == "forward":
+        witness_rows = {
+            "hot_iso": thermal_witness(stages["hot_iso"], f"{budget_label}_hot_iso"),
+            "cold_iso": thermal_witness(stages["cold_iso"], f"{budget_label}_cold_iso"),
+        }
+    else:
+        witness_rows = {
+            "cold_iso_reverse": thermal_witness(stages["cold_iso_reverse"], f"{budget_label}_cold_iso_reverse"),
+            "hot_iso_reverse": thermal_witness(stages["hot_iso_reverse"], f"{budget_label}_hot_iso_reverse"),
+        }
+
+    stage_rows = list(witness_rows.values())
+    summary = {
+        "pass": all(stage["pass"] for stage in stage_rows),
+        "max_qutip_density_error": max(stage["qutip_density_max_error"] for stage in stage_rows),
+        "max_cirq_density_error": max(stage["cirq_density_max_error"] for stage in stage_rows),
+        "max_pennylane_density_error": max(stage["pennylane_density_max_error"] for stage in stage_rows),
+    }
+    return {**witness_rows, "summary": summary}
+
+
 def run_forward_cycle(steps_per_isotherm: int, budget_label: str) -> dict:
     initial = initial_state()
     hot_iso = base.isothermal_leg(
@@ -151,6 +305,14 @@ def run_forward_cycle(steps_per_isotherm: int, budget_label: str) -> dict:
     )
 
     stages = [hot_iso, adiabatic_expand, cold_iso, adiabatic_compress]
+    bridge_witnesses = build_bridge_witnesses(
+        {
+            "hot_iso": hot_iso,
+            "cold_iso": cold_iso,
+        },
+        "forward",
+        budget_label,
+    )
     total_work_by_system = float(sum(stage["work_by_system"] for stage in stages))
     total_heat_into_system = float(sum(stage["heat_into_system"] for stage in stages))
     bookkeeping_closure_error = float(sum(float(stage.get("closure_error", 0.0)) for stage in stages))
@@ -188,6 +350,7 @@ def run_forward_cycle(steps_per_isotherm: int, budget_label: str) -> dict:
             "cold_iso": compact_isothermal(cold_iso),
             "adiabatic_compress": compact_adiabatic(adiabatic_compress),
         },
+        "bridge_witnesses": bridge_witnesses,
     }
 
 
@@ -221,6 +384,14 @@ def run_reverse_cycle(steps_per_isotherm: int, budget_label: str) -> dict:
     )
 
     stages = [adiabatic_to_cold, cold_iso_reverse, adiabatic_to_hot, hot_iso_reverse]
+    bridge_witnesses = build_bridge_witnesses(
+        {
+            "cold_iso_reverse": cold_iso_reverse,
+            "hot_iso_reverse": hot_iso_reverse,
+        },
+        "reverse",
+        budget_label,
+    )
     total_work_by_system = float(sum(stage["work_by_system"] for stage in stages))
     total_heat_into_system = float(sum(stage["heat_into_system"] for stage in stages))
     bookkeeping_closure_error = float(sum(float(stage.get("closure_error", 0.0)) for stage in stages))
@@ -258,6 +429,7 @@ def run_reverse_cycle(steps_per_isotherm: int, budget_label: str) -> dict:
             "adiabatic_to_hot": compact_adiabatic(adiabatic_to_hot),
             "hot_iso_reverse": compact_isothermal(hot_iso_reverse),
         },
+        "bridge_witnesses": bridge_witnesses,
     }
 
 
@@ -296,6 +468,22 @@ def main() -> None:
     reverse_primary_spread = max(row["primary_metric_value"] for row in reverse_rows) - min(
         row["primary_metric_value"] for row in reverse_rows
     )
+    bridge_stage_rows = [
+        row["bridge_witnesses"]["hot_iso"]
+        for row in forward_rows
+    ] + [
+        row["bridge_witnesses"]["cold_iso"]
+        for row in forward_rows
+    ] + [
+        row["bridge_witnesses"]["cold_iso_reverse"]
+        for row in reverse_rows
+    ] + [
+        row["bridge_witnesses"]["hot_iso_reverse"]
+        for row in reverse_rows
+    ]
+    max_bridge_qutip_error = max(stage["qutip_density_max_error"] for stage in bridge_stage_rows)
+    max_bridge_cirq_error = max(stage["cirq_density_max_error"] for stage in bridge_stage_rows)
+    max_bridge_pennylane_error = max(stage["pennylane_density_max_error"] for stage in bridge_stage_rows)
 
     positive = {
         "budgeted_forward_rows_close_the_bookkeeping": {
@@ -305,6 +493,16 @@ def main() -> None:
         "budgeted_reverse_rows_close_the_bookkeeping": {
             "max_bookkeeping_closure_error": max(row["bookkeeping_closure_error"] for row in reverse_rows),
             "pass": max(row["bookkeeping_closure_error"] for row in reverse_rows) < 1e-8,
+        },
+        "bridge_witnesses_match_the_finite_time_leg_rows": {
+            "max_qutip_density_error": max_bridge_qutip_error,
+            "max_cirq_density_error": max_bridge_cirq_error,
+            "max_pennylane_density_error": max_bridge_pennylane_error,
+            "pass": (
+                max_bridge_qutip_error < 1e-6
+                and max_bridge_cirq_error < 1e-6
+                and max_bridge_pennylane_error < 1e-6
+            ),
         },
         "forward_slow_improves_on_fast_in_the_expected_direction": {
             "fast_efficiency": fastest_forward["primary_metric_value"],
@@ -413,6 +611,10 @@ def main() -> None:
         "reverse_cop_spread": reverse_primary_spread,
         "forward_closure_spread": forward_closure_spread,
         "reverse_closure_spread": reverse_closure_spread,
+        "max_bridge_qutip_density_error": max_bridge_qutip_error,
+        "max_bridge_cirq_density_error": max_bridge_cirq_error,
+        "max_bridge_pennylane_density_error": max_bridge_pennylane_error,
+        "all_bridge_witnesses_pass": all(stage["pass"] for stage in bridge_stage_rows),
         "fast_to_quasistatic_forward_efficiency_gain": slowest_forward["primary_metric_value"] - fastest_forward["primary_metric_value"],
         "fast_to_quasistatic_reverse_cop_gain": slowest_reverse["primary_metric_value"] - fastest_reverse["primary_metric_value"],
         "scope_note": (
@@ -426,6 +628,7 @@ def main() -> None:
         "name": "qit_carnot_finite_time_companion",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

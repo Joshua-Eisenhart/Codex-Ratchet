@@ -1,7 +1,8 @@
 {
   "name": "qit_szilard_bidirectional_protocol",
-  "classification": "exploratory_signal",
-  "classification_note": "Deep operational Szilard/Landauer probe on a finite two-qubit carrier. It expands the narrow canonical row into explicit forward and reverse substep bookkeeping, plus inductive sweeps over measurement, feedback, and erasure/randomization imperfections. It is still a bounded information-thermodynamics lane, not a reservoir-runtime or universal demon claim.",
+  "classification": "research_support",
+  "classification_note": "Szilard bidirectional bookkeeping on a bounded two-qubit carrier. Numpy remains the primary ledger; qutip mirrors the same density-channel steps; cirq and pennylane witness the forward/reverse copy gates on pure basis branches. This is a bounded bridge lane, not a reservoir-runtime or universal demon claim.",
+  "divergence_log": "Szilard bidirectional bookkeeping on a bounded two-qubit carrier. Numpy remains the primary ledger; qutip mirrors the same density-channel steps; cirq and pennylane witness the forward/reverse copy gates on pure basis branches. This is a bounded bridge lane, not a reservoir-runtime or universal demon claim.",
   "lego_ids": [
     "quantum_thermodynamics",
     "channel_cptp_map"
@@ -10,6 +11,26 @@
     "quantum_thermodynamics"
   ],
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing classical density, entropy, and free-energy algebra"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing density-operator witness for the same carrier and channels"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing pure-branch witness for the forward/reverse copy gates"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing pure-branch witness for the same gate ordering"
+    },
     "pytorch": {
       "tried": false,
       "used": false,
@@ -72,6 +93,10 @@
     }
   },
   "tool_integration_depth": {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
     "pytorch": null,
     "pyg": null,
     "z3": null,
@@ -84,6 +109,158 @@
     "xgi": null,
     "toponetx": null,
     "gudhi": null
+  },
+  "bridge_witnesses": {
+    "forward_copy": {
+      "gate": "system_to_memory_cnot",
+      "branch_rows": [
+        {
+          "system_bit": 0,
+          "memory_bit": 0,
+          "classical_output": [
+            [
+              "(1+0j)",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ]
+          ],
+          "qutip_gap": 0.0,
+          "cirq_gap": 0.0,
+          "pennylane_gap": 0.0,
+          "pass": true
+        },
+        {
+          "system_bit": 1,
+          "memory_bit": 0,
+          "classical_output": [
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "(1+0j)"
+            ]
+          ],
+          "qutip_gap": 0.0,
+          "cirq_gap": 0.0,
+          "pennylane_gap": 0.0,
+          "pass": true
+        }
+      ],
+      "max_gap": 0.0,
+      "pass": true
+    },
+    "reverse_copy": {
+      "gate": "memory_to_system_controlled_x",
+      "branch_rows": [
+        {
+          "system_bit": 0,
+          "memory_bit": 0,
+          "classical_output": [
+            [
+              "(1+0j)",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ]
+          ],
+          "qutip_gap": 0.0,
+          "cirq_gap": 0.0,
+          "pennylane_gap": 0.0,
+          "pass": true
+        },
+        {
+          "system_bit": 0,
+          "memory_bit": 1,
+          "classical_output": [
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "0j"
+            ],
+            [
+              "0j",
+              "0j",
+              "0j",
+              "(1+0j)"
+            ]
+          ],
+          "qutip_gap": 0.0,
+          "cirq_gap": 0.0,
+          "pennylane_gap": 0.0,
+          "pass": true
+        }
+      ],
+      "max_gap": 0.0,
+      "pass": true
+    }
   },
   "positive": {
     "forward_measurement_creates_one_bit_of_correlation_in_the_ideal_limit": {
@@ -103,6 +280,161 @@
     "forward_and_reverse_bookkeeping_close_at_the_same_kT_ln2_scale_in_the_ideal_limit": {
       "forward_erasure_cost": 0.6931471805599453,
       "reverse_randomization_cost": -0.6931471805599453,
+      "pass": true
+    },
+    "bridge_witnesses_remain_consistent_on_forward_and_reverse_copy_gates": {
+      "bridge_witnesses": {
+        "forward_copy": {
+          "gate": "system_to_memory_cnot",
+          "branch_rows": [
+            {
+              "system_bit": 0,
+              "memory_bit": 0,
+              "classical_output": [
+                [
+                  "(1+0j)",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ]
+              ],
+              "qutip_gap": 0.0,
+              "cirq_gap": 0.0,
+              "pennylane_gap": 0.0,
+              "pass": true
+            },
+            {
+              "system_bit": 1,
+              "memory_bit": 0,
+              "classical_output": [
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "(1+0j)"
+                ]
+              ],
+              "qutip_gap": 0.0,
+              "cirq_gap": 0.0,
+              "pennylane_gap": 0.0,
+              "pass": true
+            }
+          ],
+          "max_gap": 0.0,
+          "pass": true
+        },
+        "reverse_copy": {
+          "gate": "memory_to_system_controlled_x",
+          "branch_rows": [
+            {
+              "system_bit": 0,
+              "memory_bit": 0,
+              "classical_output": [
+                [
+                  "(1+0j)",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ]
+              ],
+              "qutip_gap": 0.0,
+              "cirq_gap": 0.0,
+              "pennylane_gap": 0.0,
+              "pass": true
+            },
+            {
+              "system_bit": 0,
+              "memory_bit": 1,
+              "classical_output": [
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "0j"
+                ],
+                [
+                  "0j",
+                  "0j",
+                  "0j",
+                  "(1+0j)"
+                ]
+              ],
+              "qutip_gap": 0.0,
+              "cirq_gap": 0.0,
+              "pennylane_gap": 0.0,
+              "pass": true
+            }
+          ],
+          "max_gap": 0.0,
+          "pass": true
+        }
+      },
       "pass": true
     }
   },
@@ -141,6 +473,11 @@
         0.2,
         0.3
       ],
+      "pass": true
+    },
+    "bridge_witnesses_cover_both_copy_directions": {
+      "forward_copy_pass": true,
+      "reverse_copy_pass": true,
       "pass": true
     }
   },
@@ -202,7 +539,15 @@
       "system_free_energy_gain": 0.6931471805599453,
       "erasure_cost": 0.6931471805599453,
       "net_after_erasure": 0.0,
-      "reconstruction_trace_distance_from_ground": 0.0
+      "reconstruction_trace_distance_from_ground": 0.0,
+      "qutip_state_gap": 0.0,
+      "qutip_state_gaps": {
+        "initial": 0.0,
+        "measured": 0.0,
+        "feedback": 0.0,
+        "erased": 0.0,
+        "wrong_order": 0.0
+      }
     }
   },
   "ideal_reverse": {
@@ -272,7 +617,15 @@
       "randomization_cost": -0.6931471805599453,
       "system_free_energy_drop": -0.6931471805599453,
       "restoration_trace_distance": 0.0,
-      "no_randomization_trace_distance": 0.5
+      "no_randomization_trace_distance": 0.5,
+      "qutip_state_gap": 0.0,
+      "qutip_state_gaps": {
+        "start_ground": 0.0,
+        "randomized": 0.0,
+        "after_anti_feedback": 0.0,
+        "restored_initial": 0.0,
+        "no_randomization_control": 0.0
+      }
     }
   },
   "error_sweep": [
@@ -429,6 +782,9 @@
     "ideal_forward_erasure_cost": 0.6931471805599453,
     "ideal_reverse_randomization_cost": -0.6931471805599453,
     "ideal_reverse_restoration_trace_distance": 0.0,
-    "scope_note": "Finite two-qubit forward/reverse Szilard bookkeeping lane with explicit substep mechanics and noise sweeps; still no reservoir-runtime or universal demon claim."
+    "ideal_forward_qutip_state_gap": 0.0,
+    "ideal_reverse_qutip_state_gap": 0.0,
+    "bridge_all_pass": true,
+    "scope_note": "Finite two-qubit forward/reverse Szilard bookkeeping lane with explicit substep mechanics, qutip density witnesses, and cirq/pennylane branch witnesses; still no reservoir-runtime or universal demon claim."
   }
 }

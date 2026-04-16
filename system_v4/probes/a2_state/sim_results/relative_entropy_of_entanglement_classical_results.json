@@ -1,37 +1,70 @@
 {
   "name": "relative_entropy_of_entanglement_classical",
   "classification": "classical_baseline",
+  "classification_note": "REE stays identically zero on every classical joint because diagonal density matrices are already separable. qutip, cirq, and pennylane are added only as bounded Bell-state reference witnesses on the same 2x2 carrier so this file can contrast classical joints against a nonclassical surface without changing the theorem being tested.",
   "tool_manifest": {
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "KL divergence and separable-hull construction"
+      "reason": "classical joint algebra, KL divergence, and separable-hull embedding"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "Bell-state reference witness on the same 2x2 carrier"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "Bell-state circuit witness on the same 2x2 carrier"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "Bell-state statevector witness on the same 2x2 carrier"
     },
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "classical baseline"
+      "reason": "not needed for this classical REE baseline"
     }
   },
   "tool_integration_depth": {
-    "numpy": "supportive"
+    "numpy": "load_bearing",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive",
+    "pytorch": null
   },
   "positive": {
     "product_ree_zero": true,
     "correlated_classical_ree_zero": true,
-    "mi_distinct_from_ree": true
+    "mi_distinct_from_ree": true,
+    "qutip_bell_concurrence_positive": true,
+    "cirq_bell_concurrence_positive": true,
+    "pennylane_bell_concurrence_positive": true,
+    "qutip_bell_fidelity_high": true,
+    "cirq_bell_fidelity_high": true,
+    "pennylane_bell_fidelity_high": true
   },
   "negative": {
     "classical_match_to_bell_marginals_has_zero_ree": true,
-    "classical_cannot_witness_entanglement": true
+    "classical_ree_does_not_upgrade_to_entanglement": true
   },
   "boundary": {
     "random_classical_joint_zero_ree": true,
     "ree_nonneg": true
   },
-  "all_pass": true,
-  "summary": {
-    "all_pass": true
+  "bridge_witnesses": {
+    "classical_joint_ree_zero": true,
+    "bridge_contrast_qutip": true,
+    "bridge_contrast_cirq": true,
+    "bridge_contrast_pennylane": true,
+    "bridge_surface_agrees": false
   },
-  "divergence_log": "REE is identically zero on every classical joint because the separable set, intersected with diagonal density matrices, is the entire classical simplex. The baseline therefore cannot distinguish classically correlated states from product states via REE, and cannot detect the nonzero REE of entangled states such as |Phi+>, which depends on the convex geometry of separable mixed states in the full Bloch polytope rather than the classical simplex. Mutual information is still nonzero for classical correlations but does not upgrade to an entanglement monotone."
+  "all_pass": false,
+  "summary": {
+    "all_pass": false
+  },
+  "divergence_log": "REE stays identically zero on every classical joint because diagonal density matrices are already separable. qutip, cirq, and pennylane are added only as bounded Bell-state reference witnesses on the same 2x2 carrier so this file can contrast classical joints against a nonclassical surface without changing the theorem being tested."
 }

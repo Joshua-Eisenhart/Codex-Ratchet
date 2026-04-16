@@ -2,18 +2,28 @@
   "name": "sim_classical_nonclassical_entropy_bridge",
   "classification": "classical_baseline",
   "overall_pass": true,
-  "n_pass": 18,
-  "n_total": 18,
+  "n_pass": 19,
+  "n_total": 19,
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "compute density matrices, entropy gaps, Bloch vectors, and numerical sweeps"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive matrix-exponential witness for single-qubit state preparation"
+    },
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "compute Von Neumann entropy via eigvalsh; autograd on DeltaS w.r.t. off-diagonal amplitude; load-bearing for numerical sweep"
+      "reason": "compute von Neumann entropy via eigvalsh; autograd on DeltaS w.r.t. coherence amplitude"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no graph message-passing required"
     },
     "z3": {
       "tried": true,
@@ -23,27 +33,27 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; z3 covers the proof layer"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "symbolic eigenvalue derivation for rho=[[a,c],[c*,b]]; show |c|>0 implies S_VN > S_diag"
+      "reason": "symbolic eigenvalue derivation for rho=[[a,c],[c*,b]]; show c=0 collapses the entropy gap"
     },
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "Bloch vector rho=(1+r.sigma)/2 in Cl(3,0); classical=r along e3 only; coherences=transverse r_x,r_y; bridge signal is transverse blade activation"
+      "reason": "Bloch vector rho=(1+r.sigma)/2 in Cl(3,0); classical=r along e3 only; coherences=transverse r_x,r_y"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no manifold sampling required"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no equivariant network required"
     },
     "rustworkx": {
       "tried": true,
@@ -53,41 +63,61 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no hypergraph topology required"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no cell complex required"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not used \u2014 density matrix entropy bridge is 2x2 qubit level; no persistent homology required"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing entropy witness on the same coherent qubit surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing statevector witness on the same coherent qubit surface"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing Bloch-vector roundtrip witness on the same coherent qubit surface"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "supportive",
     "clifford": "load_bearing",
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "pennylane": "load_bearing",
+    "qutip": "load_bearing",
     "rustworkx": "load_bearing",
-    "xgi": null,
+    "sympy": "load_bearing",
+    "torch_ga": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "P1_diagonal_VN_equals_Shannon": {
       "pass": true,
-      "description": "Diagonal density matrix: S_VN = S_shannon (classical is special case)"
+      "description": "Diagonal density matrix: S_diag = S_VN (classical is special case)"
     },
     "P2_coherences_create_entropy_gap": {
       "pass": true,
-      "description": "Off-diagonal coherences \u2192 |S_VN - S_shannon| > 0; gap signals nonclassical regime"
+      "description": "Off-diagonal coherences \u2192 S_diag - S_VN > 0; gap signals nonclassical regime"
     },
     "P3_noncommutativity_is_bridge_signal": {
       "pass": true,
@@ -98,7 +128,7 @@
     },
     "P4_sympy_gap_zero_at_c0": {
       "pass": true,
-      "description": "Symbolic: gap = S_VN - S_diag is numerically zero at c=0 for all tested a values",
+      "description": "Symbolic: gap = S_diag - S_VN is numerically zero at c=0 for all tested a values",
       "max_gap": 2.3190468138462996e-17
     },
     "P5_autograd_gap_gradient_nonzero": {
@@ -106,20 +136,33 @@
       "description": "Autograd: d(gap)/dc is nonzero at c=0.3 \u2014 gap is differentiable in off-diagonal amplitude",
       "grad_c": 1.38629436
     },
-    "P6_clifford_transverse_blade_bridge": {
+    "P6_qutip_pennylane_torchga_bridge_surface": {
+      "pass": true,
+      "description": "QuTiP, PennyLane, and torch_ga all witness the same coherent bridge state and Bloch vector",
+      "manual_gap": 0.5907385094,
+      "qutip_gap": 0.5907385094,
+      "pennylane_gap": 0.5907385094,
+      "manual_shannon": 0.5907385094,
+      "manual_vn": 0.0,
+      "qutip_shannon": 0.5907385094,
+      "qutip_vn": 0.0,
+      "pennylane_shannon": 0.5907385094,
+      "pennylane_vn": 0.0
+    },
+    "P7_clifford_transverse_blade_bridge": {
       "pass": true,
       "description": "Classical state has zero transverse Cl(3,0) blades; coherent state activates e1/e2 blades",
       "transverse_classical": 0.0,
       "transverse_coherent": 0.09
     },
-    "P7_rustworkx_bridge_graph_edge": {
+    "P8_rustworkx_bridge_graph_edge": {
       "pass": true,
       "description": "Bridge graph has 1 directed edge with commutator-norm weight > 0",
       "edge_weight": 2.8284
     },
-    "P8_gap_monotone_in_c": {
+    "P9_gap_monotone_in_c": {
       "pass": true,
-      "description": "Entropy gap |S_VN - S_shannon| is monotonically non-decreasing with |c|",
+      "description": "Entropy gap S_diag - S_VN is monotonically non-decreasing with |c|",
       "gaps": [
         0.0,
         0.00500837,
@@ -148,7 +191,7 @@
     },
     "N4_sympy_gap_exactly_zero_at_c0_half": {
       "pass": true,
-      "description": "Sympy: for a=1/2, c=0 \u2014 S_VN = S_shannon exactly = log(2)",
+      "description": "Sympy: for a=1/2, c=0 \u2014 S_diag = S_VN exactly = log(2)",
       "gap": "0"
     },
     "N5_clifford_no_transverse_no_bridge": {
@@ -160,9 +203,10 @@
   "boundary": {
     "B1_max_coherence_pure_state_svn_zero": {
       "pass": true,
-      "description": "Boundary: |+> state (max coherence) has S_VN=0 (pure state); S_shannon=log(2) \u2192 maximal gap",
+      "description": "Boundary: |+> state (max coherence) has S_VN=0 (pure state); S_diag=log(2) \u2192 maximal gap",
       "S_VN": 0.0,
-      "S_shannon": 0.69314718
+      "S_shannon": 0.69314718,
+      "gap": 0.69314718
     },
     "B2_near_pure_gap_approaches_max": {
       "pass": true,
@@ -172,7 +216,7 @@
     },
     "B3_maximally_mixed_both_equal_log2": {
       "pass": true,
-      "description": "Maximally mixed diagonal state: S_VN = S_shannon = log(2); no gap",
+      "description": "Maximally mixed diagonal state: S_VN = S_diag = log(2); no gap",
       "S_VN": 0.6931471806,
       "S_shannon": 0.6931471825
     },

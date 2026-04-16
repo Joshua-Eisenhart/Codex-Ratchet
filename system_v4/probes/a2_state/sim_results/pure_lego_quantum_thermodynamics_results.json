@@ -567,6 +567,113 @@
       ]
     },
     {
+      "test": "open_system_tool_witnesses",
+      "pass": true,
+      "details": [
+        {
+          "case": "positive",
+          "beta": 1.2,
+          "gamma": 0.7,
+          "times": [
+            0.0,
+            0.2,
+            0.6,
+            1.0,
+            1.8
+          ],
+          "classical_excited": [
+            0.8,
+            0.6954865883190448,
+            0.5256374558520455,
+            0.39726824303312763,
+            0.22692322119981634
+          ],
+          "qutip_excited": [
+            0.8,
+            0.6954868259669558,
+            0.5256374468858762,
+            0.3972682059834073,
+            0.22692334101201883
+          ],
+          "cirq_excited": [
+            0.800000011920929,
+            0.6954866051673889,
+            0.5256374478340149,
+            0.39726826548576355,
+            0.22692322731018066
+          ],
+          "pennylane_excited": [
+            0.8000000000000078,
+            0.6954865883190527,
+            0.5256374558520536,
+            0.3972682430331357,
+            0.22692322119982436
+          ],
+          "classical_free_energy": [
+            -1.0170020196151568,
+            -0.9031732946614085,
+            -0.6278016164099469,
+            -0.35444354949700313,
+            0.09987703729703173
+          ],
+          "errors": {
+            "qutip_vs_classical": 2.376479110166585e-07,
+            "cirq_vs_classical": 2.2452635917158403e-08,
+            "pennylane_vs_classical": 8.104628079763643e-15,
+            "qutip_free_energy_vs_classical": 3.620092050571344e-07,
+            "cirq_free_energy_vs_classical": 5.270495245790485e-08,
+            "pennylane_free_energy_vs_classical": 2.4147350785597155e-14
+          },
+          "free_energy_nonincreasing": false,
+          "pass": true
+        },
+        {
+          "case": "negative",
+          "wrong_gamma": 1.0499999999999998,
+          "wrong_cirq_excited": [
+            0.800000011920929,
+            0.6484673619270325,
+            0.42607346177101135,
+            0.27995020151138306,
+            0.12085744738578796
+          ],
+          "wrong_cirq_free_energy": [
+            -1.017002029685417,
+            -0.8372599263269553,
+            -0.4206275389739549,
+            -0.05398896846947865,
+            0.4510935041392288
+          ],
+          "errors": {
+            "wrong_cirq_vs_classical": 0.11731804152174458,
+            "wrong_cirq_free_energy_vs_classical": 0.35121646684219704,
+            "qutip_vs_classical": 2.376479110166585e-07,
+            "pennylane_vs_classical": 8.104628079763643e-15
+          },
+          "pass": true
+        },
+        {
+          "case": "boundary",
+          "beta": 1e-06,
+          "gamma": 1e-06,
+          "times": [
+            0.0,
+            0.001,
+            1.0
+          ],
+          "errors": {
+            "qutip_vs_classical": 2.7755575615628914e-16,
+            "cirq_vs_classical": 2.3162591789027687e-08,
+            "pennylane_vs_classical": 5.051514762044462e-15,
+            "qutip_free_energy_vs_classical": 0.0,
+            "cirq_free_energy_vs_classical": 9.150244295597076e-08,
+            "pennylane_free_energy_vs_classical": 1.1641532182693481e-10
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
       "test": "carnot_efficiency",
       "pass": true,
       "details": [
@@ -721,21 +828,39 @@
     }
   ],
   "all_pass": true,
-  "divergence_log": "Classical baseline: this pure lego quantum thermodynamics probe checks density-matrix thermodynamic identities numerically, not a canonical nonclassical witness.",
+  "divergence_log": "Classical baseline: this pure lego quantum thermodynamics probe checks density-matrix thermodynamic identities numerically, with bounded qutip/cirq/pennylane witnesses on one-qubit open-system relaxation.",
   "tool_manifest": {
     "numpy": {
       "tried": true,
       "used": true,
-      "reason": "thermal states, entropy, and work identities"
+      "reason": "thermal states, entropy, work identities, and relaxation curves"
     },
     "scipy": {
       "tried": true,
       "used": true,
       "reason": "matrix exponentials and logarithms for thermal-state construction"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "open-system mesolve witness for amplitude-damping relaxation"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "density-matrix simulator witness for the same one-qubit relaxation surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "mixed-state QNode witness for the same one-qubit relaxation surface"
     }
   },
   "tool_integration_depth": {
     "numpy": "supportive",
-    "scipy": "supportive"
+    "scipy": "supportive",
+    "qutip": "supportive",
+    "cirq": "supportive",
+    "pennylane": "supportive"
   }
 }

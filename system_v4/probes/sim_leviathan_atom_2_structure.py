@@ -13,6 +13,8 @@ passing.
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "no learned structure yet"},
     "pyg":       {"tried": False, "used": False, "reason": "message passing is reduction atom 3"},

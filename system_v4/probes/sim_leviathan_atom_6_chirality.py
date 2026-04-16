@@ -14,6 +14,8 @@ Load-bearing tool: rustworkx (directed cycles). Supportive: z3
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not used"},
     "pyg":       {"tried": False, "used": False, "reason": "not used"},
@@ -98,7 +100,7 @@ if __name__ == "__main__":
     all_pass = (pos.get("cw_vs_ccw_distinct",{}).get("pass",False)
                 and neg.get("no_scalar_potential",{}).get("pass",False)
                 and bnd.get("achiral_edge_case",{}).get("pass",False))
-    out = {"name":"leviathan_atom_6_chirality","classification":"canonical",
+    out = {"name":"leviathan_atom_6_chirality","classification":classification,
            "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
            "positive":pos,"negative":neg,"boundary":bnd,
            "status":"PASS" if all_pass else "FAIL"}

@@ -14,6 +14,8 @@ w.r.t. agent contributions -- the ratchet substrate).
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "autograd reduction over carrier"},
     "pyg":       {"tried": False, "used": False, "reason": "no edge-based aggregation yet"},

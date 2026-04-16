@@ -14,6 +14,8 @@ vectors). Shows the probe-relative nature of distinguishability.
 
 import json, os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "differentiable probe functionals"},
     "pyg":       {"tried": False, "used": False, "reason": "not used"},
@@ -84,7 +86,7 @@ if __name__ == "__main__":
     all_pass = (pos.get("variance_probe_distinguishes",{}).get("pass",False)
                 and neg.get("sum_probe_fails_to_distinguish",{}).get("pass",False)
                 and bnd.get("identical_indistinguishable",{}).get("pass",False))
-    out = {"name":"leviathan_atom_5_distinguishability","classification":"canonical",
+    out = {"name":"leviathan_atom_5_distinguishability","classification":classification,
            "tool_manifest":TOOL_MANIFEST,"tool_integration_depth":TOOL_INTEGRATION_DEPTH,
            "positive":pos,"negative":neg,"boundary":bnd,
            "status":"PASS" if all_pass else "FAIL"}

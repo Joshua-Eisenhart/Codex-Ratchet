@@ -13,6 +13,8 @@ union). Numpy is a classical baseline cross-check only.
 
 import json, os, numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "not needed for symbolic additivity"},
     "pyg":       {"tried": False, "used": False, "reason": "no graph structure at carrier atom"},
@@ -95,7 +97,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     out = {
         "name": "leviathan_atom_1_carrier",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not required; z3 is sufficient for the chirality scalar impossibility proof"
     },
     "sympy": {
       "tried": true,
@@ -40,7 +40,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not required; Cl(3) bivectors directly encode chirality without e3nn irreps"
     },
     "rustworkx": {
       "tried": true,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not required; shell hierarchy is a simple DAG, not a hypergraph"
     },
     "toponetx": {
       "tried": false,
@@ -81,7 +81,7 @@
     "s3_unconstrained": {
       "status": "pass",
       "beta0": 1,
-      "beta1": 0,
+      "beta1": 1,
       "expected_beta0": 1,
       "note": "Full S\u00b3 is connected (\u03b20=1)"
     },

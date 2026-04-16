@@ -8,7 +8,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
     },
     "pyg": {
       "tried": false,
@@ -28,7 +28,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- all formulas are explicit finite matrix formulas"
     },
     "clifford": {
       "tried": false,
@@ -53,12 +53,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph or simplicial layer is needed here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- this audit uses direct packet arrays, not complexes"
     },
     "gudhi": {
       "tried": false,
@@ -381,6 +381,6 @@
     "all_pass": true,
     "shared_packet_count": 6,
     "note": "Audit only. Shell/global forms can act as stronger companions on this packet set, but local-only and bookkeeping forms remain bounded counterexamples.",
-    "elapsed_s": 0.1637439727783203
+    "elapsed_s": 0.3755676746368408
   }
 }

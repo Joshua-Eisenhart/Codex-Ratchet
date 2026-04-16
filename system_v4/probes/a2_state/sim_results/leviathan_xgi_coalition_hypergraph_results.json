@@ -5,7 +5,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "no tensor graph needed; hyperedge structure is xgi native"
     },
     "pyg": {
       "tried": false,
@@ -20,12 +20,12 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not required; z3 is sufficient for this SAT check"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "no symbolic algebra needed; numerical aggregation sufficient"
     },
     "clifford": {
       "tried": false,
@@ -40,12 +40,12 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant NN not required"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "ordinary graph comparison for connectivity baseline"
     },
     "xgi": {
       "tried": true,
@@ -142,21 +142,5 @@
     }
   },
   "all_pass": true,
-  "status": "PASS",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "status": "PASS"
 }

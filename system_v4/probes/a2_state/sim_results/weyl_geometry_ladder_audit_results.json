@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "weyl_geometry_ladder_audit",
-    "timestamp": "2026-04-16T05:07:07.410121+00:00",
+    "timestamp": "2026-04-16T05:15:30.670743+00:00",
     "results_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/weyl_geometry_ladder_audit_results.json"
   },
   "classification": "canonical",
@@ -9,7 +9,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- numpy-based audit; no autograd layer in this discriminator"
     },
     "pyg": {
       "tried": false,
@@ -39,7 +39,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- Hopf manifold built from scratch in hopf_manifold module"
     },
     "e3nn": {
       "tried": false,
@@ -324,6 +324,6 @@
     "status": "PASS",
     "measured_value": 4.0,
     "kill_reason": null,
-    "timestamp": "2026-04-16T05:07:07.410113"
+    "timestamp": "2026-04-16T05:15:30.670736"
   }
 }

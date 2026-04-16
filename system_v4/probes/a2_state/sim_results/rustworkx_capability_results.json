@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- pure graph capability probe"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- pure graph capability probe"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -186,9 +186,9 @@
     },
     "perf_vs_networkx_1k": {
       "pass": true,
-      "rx_time_s": 9.99579206109047e-05,
-      "nx_time_s": 0.0007702088914811611,
-      "speedup_rx_over_nx": 7.7053312711382755,
+      "rx_time_s": 8.620787411928177e-05,
+      "nx_time_s": 0.0007172501645982265,
+      "speedup_rx_over_nx": 8.32000756225355,
       "N_nodes": 1000,
       "M_edges": 2966,
       "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."

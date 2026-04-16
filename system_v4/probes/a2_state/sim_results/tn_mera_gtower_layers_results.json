@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- numpy/scipy sufficient for MERA contraction baseline"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- MERA causal cone is fixed DAG, no message passing"
     },
     "z3": {
       "tried": true,
@@ -30,12 +30,12 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- group constraint structure does not require Clifford algebra"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- group dimension counting is combinatorial, not Riemannian"
     },
     "e3nn": {
       "tried": false,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- MERA layer coupling does not require hyperedge structure"
     },
     "toponetx": {
       "tried": false,

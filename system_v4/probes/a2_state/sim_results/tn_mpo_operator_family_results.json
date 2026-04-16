@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- scipy SVD used for reduced density matrix entropy"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- MPO acts on 1D chain, no graph message passing"
     },
     "z3": {
       "tried": true,
@@ -30,12 +30,12 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- MPO operator structure does not require Clifford algebra"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- no Riemannian manifold structure in MPO family"
     },
     "e3nn": {
       "tried": false,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- MPO-MPS contraction is not irreducibly triadic"
     },
     "toponetx": {
       "tried": false,

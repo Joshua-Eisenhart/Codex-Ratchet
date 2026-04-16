@@ -14,7 +14,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "No graph structure required; geodesic ODE operates on a continuous manifold, not a graph"
     },
     "z3": {
       "tried": true,
@@ -34,7 +34,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "Clifford algebra encodes spinors and rotors, not needed for geodesic ODE or exp/log map on S\u00b2"
     },
     "geomstats": {
       "tried": true,
@@ -44,12 +44,12 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "e3nn targets equivariant neural networks; not applicable to standalone geodesic/exp-map integration"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "rustworkx is a graph library; geodesic ODE on S\u00b2 has no graph structure"
     },
     "xgi": {
       "tried": false,
@@ -64,7 +64,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "gudhi targets persistent homology / TDA; not applicable to geodesic integration"
     }
   },
   "tool_integration_depth": {

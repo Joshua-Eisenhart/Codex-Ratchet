@@ -3,12 +3,12 @@
   "schema_version": "1.0",
   "probe": "bridge_phi0_cross_consistency_audit",
   "purpose": "Audit whether family sensitivity, kernel ranking, robustness, and packet claims stay mutually consistent on a shared reduced bridge/Phi0 packet set.",
-  "classification": "audit",
+  "classification": "supporting",
   "tool_manifest": {
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
     },
     "pyg": {
       "tried": false,
@@ -28,7 +28,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- all formulas are explicit finite matrix formulas"
     },
     "clifford": {
       "tried": false,
@@ -53,12 +53,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph or simplicial layer is needed here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- this audit uses direct packet arrays, not complexes"
     },
     "gudhi": {
       "tried": false,
@@ -858,6 +858,6 @@
     "all_pass": true,
     "shared_packet_count": 4,
     "note": "Audit classification only. The bridge / Phi0 surfaces are internally consistent on the reduced packet set.",
-    "elapsed_s": 0.2463512420654297
+    "elapsed_s": 0.07397770881652832
   }
 }

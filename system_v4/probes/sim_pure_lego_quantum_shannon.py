@@ -35,6 +35,11 @@ import json, pathlib, time, traceback
 import numpy as np
 from itertools import product as iter_product
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this pure lego quantum Shannon probe checks compression, merging, and coherent-information numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state construction, entropy, and channel numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 np.random.seed(42)
 EPS = 1e-12
@@ -716,6 +721,9 @@ def main():
         },
         "all_validations_pass": all_pass,
         "total_elapsed_s": round(total_time, 3),
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     out_path = (pathlib.Path(__file__).parent / "a2_state" / "sim_results" /

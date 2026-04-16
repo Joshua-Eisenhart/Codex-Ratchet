@@ -24,6 +24,15 @@ from scipy.linalg import expm, logm
 import json
 import os
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this pure lego quantum thermodynamics probe checks density-matrix thermodynamic identities numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "thermal states, entropy, and work identities"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials and logarithms for thermal-state construction"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # CONSTANTS
@@ -526,6 +535,9 @@ def main():
             all_pass = False
 
     results["all_pass"] = all_pass
+    results["divergence_log"] = divergence_log
+    results["tool_manifest"] = TOOL_MANIFEST
+    results["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
     out_path = os.path.join(RESULTS_DIR, "pure_lego_quantum_thermodynamics_results.json")

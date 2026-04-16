@@ -13,6 +13,15 @@ import os
 import numpy as np
 from scipy.linalg import expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this pure lego quantum metrology probe checks bounded phase-estimation and QFI numerics, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state vectors, density matrices, and numerical sweeps for metrology bounds"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for phase-evolution numerics"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ─── Pauli matrices ───────────────────────────────────────────────────────────
 sx = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -745,7 +754,10 @@ def run_tests():
             "failed": total - passed,
             "all_pass": passed == total
         },
-        "sections": sections
+        "sections": sections,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
     return results
 

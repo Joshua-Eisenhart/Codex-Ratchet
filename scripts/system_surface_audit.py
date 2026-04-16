@@ -67,6 +67,18 @@ TOOL_BUNDLES = {
         "goal": "classical numeric + Clifford/GA + quantum state bridge lane",
         "tools": ["numpy", "scipy", "pytorch", "clifford", "torch_ga", "qutip", "cirq", "pennylane"],
     },
+    "qutip_open_system_stack": {
+        "goal": "classical open-system + qutip Lindblad bridge lane",
+        "tools": ["numpy", "scipy", "qutip"],
+    },
+    "cirq_pennylane_entanglement_stack": {
+        "goal": "classical 2-qubit entanglement bridge lane for cirq and pennylane",
+        "tools": ["numpy", "scipy", "cirq", "pennylane"],
+    },
+    "torch_clifford_ga_rotor_stack": {
+        "goal": "rotor geometry bridge lane for pytorch + clifford + torch_ga",
+        "tools": ["numpy", "scipy", "pytorch", "clifford", "torch_ga"],
+    },
     "symbolic_solver_stack": {
         "goal": "solver + symbolic + rotor reference lane",
         "tools": ["pytorch", "z3", "cvc5", "sympy", "clifford"],

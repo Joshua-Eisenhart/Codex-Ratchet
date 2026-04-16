@@ -20,6 +20,11 @@ import numpy as np
 from pathlib import Path
 from datetime import datetime
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this partial-trace audit checks einsum trace contractions against Bell and GHZ references, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "Bell/GHZ state arrays, contraction tests, and spectrum checks"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 # =====================================================================
 # CONSTANTS
@@ -353,6 +358,9 @@ def main():
         "classification": "audit",
         "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
         "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     # ── 1. Test all known 2-qubit einsum patterns ──

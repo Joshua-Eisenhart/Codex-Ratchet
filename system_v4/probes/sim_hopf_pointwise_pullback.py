@@ -38,6 +38,11 @@ from datetime import UTC, datetime
 import numpy as np
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical baseline: this Hopf pointwise pullback probe checks density-traversal structure numerically, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numerical density, entropy, and pullback evaluation on sampled Hopf loops"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -261,6 +266,9 @@ def main() -> int:
             "results_path": RESULTS_PATH,
             "n_samples_per_loop": N_SAMPLES,
         },
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "suites": [{k: v for k, v in s.items() if k != "rows"} for s in suites],
         "suites_with_rows": suites,
         "verdict": verdict,

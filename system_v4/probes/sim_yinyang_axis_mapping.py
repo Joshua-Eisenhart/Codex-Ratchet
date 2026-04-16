@@ -43,6 +43,17 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical yin-yang baseline: this probe measures axis mapping numerically on the Clifford torus and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and overlap diagnostics for axis mapping on the Clifford torus"},
+    "scipy": {"tried": True, "used": True, "reason": "linear algebra and matrix exponentials for torus and spinor comparisons"},
+    "hopf_manifold": {"tried": True, "used": True, "reason": "torus coordinates and Bloch/hopf mappings for the geometric correspondence"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "hopf_manifold": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

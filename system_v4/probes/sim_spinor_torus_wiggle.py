@@ -20,6 +20,19 @@ from datetime import UTC, datetime
 import numpy as np
 import scipy.linalg as la
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical spinor-torus baseline: this probe measures spinor and torus wiggle numerics and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and overlap diagnostics for spinor/torus wiggle comparisons"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials and linear algebra for spinor and torus observables"},
+    "hopf_manifold": {"tried": True, "used": True, "reason": "torus coordinates and phase data for the spinor-torus comparison"},
+    "sim_L2_eight_stages": {"tried": True, "used": True, "reason": "stage classification and invariants used in the torus-layers comparison"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "hopf_manifold": "supportive",
+    "sim_L2_eight_stages": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

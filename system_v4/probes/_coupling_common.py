@@ -18,6 +18,20 @@ that coupling predicates can discriminate interacting vs additive
 pairs under z3 joint admissibility.
 """
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "helper": {
+        "tried": False,
+        "used": False,
+        "reason": "shared predicate table; no external runtime tools are load-bearing",
+    },
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "helper": None,
+}
+
 FRAMEWORKS = {
     "holodeck":   lambda x: 0 <= x <= 2,
     "igt":        lambda x: x % 2 == 0 and 0 <= x <= 4,

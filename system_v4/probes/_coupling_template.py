@@ -18,10 +18,36 @@ import json, os
 from itertools import product
 from _coupling_common import FRAMEWORKS, DOMAIN, COUPLINGS, pair_key
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-                 ["pytorch","pyg","z3","cvc5","sympy","clifford",
-                  "geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "z3": {"tried": False, "used": False, "reason": "joint admissibility SMT (load-bearing)"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; coupling is a finite SMT check"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 try:
     import z3

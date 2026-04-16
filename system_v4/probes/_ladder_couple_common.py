@@ -6,6 +6,25 @@ Exclusion language only: 'admissible under coupling' / 'excluded under coupling'
 """
 import json, os
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "pyg": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "z3": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "cvc5": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "sympy": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "clifford": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "geomstats": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "e3nn": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "rustworkx": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "xgi": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "toponetx": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+    "gudhi": {"tried": False, "used": False, "reason": "helper scaffolding only; tool use is delegated to the pairwise wrapper sims"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 def empty_manifest():
     return {
         "pytorch": {"tried": False, "used": False, "reason": ""},

@@ -9,11 +9,21 @@ verifying per-pair admissibility (SAT) and exclusion (UNSAT).
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _coupling_template import (
-    TOOL_MANIFEST, TOOL_INTEGRATION_DEPTH,
     run_positive_tests, run_negative_tests, run_boundary_tests, main,
 )
 
 A, B = "leviathan", "sci_method"
+classification = "canonical"
+TOOL_MANIFEST = {
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "joint admissibility SMT delegated through _coupling_template for the wrapper pair",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "z3": "load_bearing",
+}
 
 if __name__ == "__main__":
     main(A, B, __file__)

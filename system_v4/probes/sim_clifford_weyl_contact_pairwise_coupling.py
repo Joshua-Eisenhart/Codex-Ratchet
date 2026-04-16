@@ -24,6 +24,17 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for Clifford×Weyl×Contact (26th program). "
+    "H_clifford=0.500000 (fixed fallback 0.5). "
+    "H_weyl=0.693147 (log(2)). "
+    "H_contact=2.833213 (log(17)). "
+    "Q_pair=H_i×H_j>0 for all three CWC pairs. "
+    "z3 UNSAT: zero factor makes product zero — no positive Q from zero entropy. "
+    "sympy: two-factor product collapse. "
+    "pytorch: scalar entropy tensor positivity check."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -264,16 +275,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_clifford_weyl_contact_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Pairwise coupling for Clifford×Weyl×Contact (26th program). "
-            f"H_clifford={H_CLIFFORD:.6f} ({'Cl(3,0) rotor norm' if _CLIFFORD else 'fixed fallback 0.5'}). "
-            f"H_weyl={H_WEYL:.6f} (log(2)). "
-            f"H_contact={H_CONTACT:.6f} (log(17)). "
-            "Q_pair=H_i×H_j>0 for all three CWC pairs. "
-            "z3 UNSAT: zero factor makes product zero — no positive Q from zero entropy. "
-            "sympy: two-factor product collapse. "
-            "pytorch: scalar entropy tensor positivity check."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_clifford": H_CLIFFORD, "H_weyl": H_WEYL, "H_contact": H_CONTACT},

@@ -24,6 +24,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Clifford×Weyl×Contact emergence probe: this file "
+    "checks scalar emergence quantities with clifford, z3, sympy, and "
+    "pytorch helpers where available, but it does not claim a canonical "
+    "nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -313,16 +320,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_clifford_weyl_contact_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence quantities for Clifford×Weyl×Contact (26th program). "
-            f"H_clifford={H_CLIFFORD:.6f}, H_weyl={H_WEYL:.6f}, H_contact={H_CONTACT:.6f}. "
-            f"MI={MI_val:.6f}, Q_CWC={Q_CWC:.6f}. "
-            "E1-E6 sub-products all zero (MI missing). "
-            "E7 full product Q_CWC > 0 (emergence). "
-            "z3 UNSAT: MI=0 AND Q>0 impossible. "
-            "sympy: any factor=0 collapses product to 0. "
-            "pytorch: E1-E6 zero and E7 positive validated as float64 tensors."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {

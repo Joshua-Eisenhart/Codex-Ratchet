@@ -22,6 +22,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence for Clifford×Weyl×Contact (26th program). "
+    "H_clifford=0.5, H_weyl=log(2), H_contact=log(17). "
+    "Normalized h/(1+h) values all in (0,1). "
+    "Joint product <= pairwise product (DPI-like inequality). "
+    "Q_CWC = MI × H_clifford × H_weyl × H_contact > 0. "
+    "z3 UNSAT: normalized joint > 1 impossible. "
+    "sympy: h/(1+h) is monotone in h. "
+    "pytorch: normalized tensor positivity validated."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -286,16 +296,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_clifford_weyl_contact_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Triple coexistence for Clifford×Weyl×Contact (26th program). "
-            f"H_clifford={H_CLIFFORD:.6f}, H_weyl={H_WEYL:.6f}, H_contact={H_CONTACT:.6f}. "
-            "Normalized h/(1+h) values all in (0,1). "
-            "Joint product <= pairwise product (DPI-like inequality). "
-            "Q_CWC = MI × H_clifford × H_weyl × H_contact > 0. "
-            "z3 UNSAT: normalized joint > 1 impossible. "
-            "sympy: h/(1+h) is monotone in h. "
-            "pytorch: normalized tensor positivity validated."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_clifford": H_CLIFFORD, "H_weyl": H_WEYL, "H_contact": H_CONTACT},

@@ -351,11 +351,13 @@ def run_boundary_tests():
         # Solve gamma² = 1
         solutions = sp.solve(gamma_sym**2 - 1, gamma_sym)
 
+        solutions_float = [float(s) for s in solutions]
         results["test_boundary_symbolic_chirality"] = {
             "description": "sympy: γ² = 1 has exact solutions γ = ±1",
             "equation": "gamma^2 - 1 = 0",
-            "solutions": [float(s) for s in solutions],
+            "solutions": solutions_float,
             "expected": True,
+            "passed": sorted(solutions_float) == [-1.0, 1.0],
         }
 
         TOOL_MANIFEST["sympy"]["used"] = True

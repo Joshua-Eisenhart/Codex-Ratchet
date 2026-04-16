@@ -15,7 +15,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "MERA causal cone is a fixed DAG; no message-passing over dynamic graph needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,12 +30,12 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed; chirality projector algebra verified numerically via pytorch"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Weyl projectors encoded as 4x4 numpy/torch matrices"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -55,7 +55,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph structure not required for pairwise coupling test"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

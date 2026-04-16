@@ -1,6 +1,6 @@
 {
   "name": "sim_pure_lego_adiabatic_berry_dynamics",
-  "timestamp": "2026-04-16T05:02:23Z",
+  "timestamp": "2026-04-16T05:08:32Z",
   "lego_ids": [
     "adiabatic_berry_dynamics",
     "rk4_schrodinger",
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph/message-passing structure; sim is ODE over scalar state vector"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -29,7 +29,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "no SMT-amenable formula; continuous ODE does not map to CVC5 theory"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -39,12 +39,12 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "Bloch sphere rotation handled via explicit H(t) matrix; Cl(3) rotor form not needed"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry computed directly on CP\u00b9 via analytic formulas; geomstats overhead not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
@@ -54,7 +54,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph; sim operates on 2D Hilbert space, no network topology"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
@@ -233,7 +233,7 @@
     "total_tests": 13,
     "passed": 13,
     "failed": 0,
-    "elapsed_seconds": 20.04,
+    "elapsed_seconds": 12.58,
     "adiabatic_params_used": {
       "B0": 10.0,
       "omega": 0.1,

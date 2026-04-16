@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "graph message-passing not applicable to 2x2 matrix group-reduction fence tests"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all required UNSAT proofs; cvc5 alternative SMT solver not invoked in this sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
@@ -41,7 +41,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "equivariant neural network layers not applicable to symbolic group-reduction ordering proofs"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph library not applicable; this sim tests pairwise matrix admissibility fences"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "topological cell complex not applicable; GL->O is a Lie-group subgroup inclusion fence"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not applicable; GL->O ordering does not involve topological filtrations"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

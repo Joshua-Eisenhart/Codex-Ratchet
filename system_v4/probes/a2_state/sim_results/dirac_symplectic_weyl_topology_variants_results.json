@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "topology graph structure not required at topology variant baseline; excluded"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "Riemannian structure not needed for topology variant baseline; excluded"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "E(3) equivariance not relevant to topology variants; excluded"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not required for topology variant baseline; excluded"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

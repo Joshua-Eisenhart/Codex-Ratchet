@@ -1,0 +1,196 @@
+{
+  "name": "sim_sympy_clifford_cross_check",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT confirms grade-mismatch is structurally excluded from Clifford algebra"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Clifford algebra in sympy verifies product rules agree with numerical clifford"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical Clifford algebra computations are load-bearing for all bivector product tests"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_e12_squared_equals_neg1": {
+      "clifford_numeric": -1.0,
+      "sympy_symbolic": -1,
+      "deviation": 0.0,
+      "pass": true,
+      "note": "e12^2 = -1 in Cl(3,0); fundamental bivector constraint; both tools must agree"
+    },
+    "P2_e12_squared_is_pure_scalar": {
+      "scalar_component": -1.0,
+      "bivector_components": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true,
+      "note": "e12^2 must survive as pure grade-0; bivector components excluded from result"
+    },
+    "P3_e1_times_e2_equals_e12": {
+      "scalar_component": 0.0,
+      "e12_component": 1.0,
+      "other_bivec_components": [
+        0.0,
+        0.0
+      ],
+      "pass": true,
+      "note": "e1*e2 = e12; grade-0 and other grade-2 components excluded from admissible result"
+    },
+    "P4_anticommutativity_e1e2_plus_e2e1_zero": {
+      "anticomm_scalar": 0.0,
+      "anticomm_biv": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sum_is_zero": true,
+      "sympy_confirms_sign": true,
+      "pass": true,
+      "note": "e1*e2 + e2*e1 = 0 in Cl(3,0); anticommutativity is constraint, not convention"
+    },
+    "P5_rotor_sandwich_stays_grade1": {
+      "scalar_component": 0.0,
+      "bivector_components": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "vector_components": [
+        2.220446049250313e-16,
+        -1.0,
+        0.0
+      ],
+      "pass": true,
+      "note": "Rotor sandwich product must survive in grade-1; scalar/bivector components excluded"
+    },
+    "P6_rotor_rotation_angle_sympy_verified": {
+      "clifford_v1": 2.220446049250313e-16,
+      "clifford_v2": -1.0,
+      "sympy_expected_v1": 0.0,
+      "sympy_expected_v2": 1.0,
+      "deviation_v1": 1.6081226496766364e-16,
+      "deviation_v2": 2.0,
+      "pass": false,
+      "note": "Rotation by pi/2 maps e1->e2; sympy and clifford must agree to 1e-10"
+    },
+    "P7_pseudoscalar_squared_neg1": {
+      "e123_sq": -1.0,
+      "deviation": 0.0,
+      "pass": true,
+      "note": "e123^2 = -1 in Cl(3,0); pseudoscalar constraint; excluded from +1 family"
+    }
+  },
+  "negative": {
+    "N1_e1_squared_positive_not_negative": {
+      "e1_sq": 1.0,
+      "pass": true,
+      "note": "e1^2 = +1 in Cl(3,0); vector generators are excluded from -1 family"
+    },
+    "N2_e1e2_not_commutative": {
+      "e12_component_of_diff": 2.0,
+      "pass": true,
+      "note": "e1*e2 - e2*e1 = 2*e12 \u2260 0; commutativity is excluded for distinct generators"
+    },
+    "N3_z3_grade_mismatch_UNSAT": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "Grade-0 + grade-2 sum cannot have grade-0; structurally excluded (UNSAT)"
+    }
+  },
+  "boundary": {
+    "B1_identity_rotor_no_rotation": {
+      "e1_component": 1.0,
+      "e2_component": 0.0,
+      "pass": true,
+      "note": "Identity rotor boundary: e1 survives as e1, not rotated"
+    },
+    "B2_bivector_sum_grade2_boundary": {
+      "scalar_component": 0.0,
+      "e12_component": 1.0,
+      "e23_component": 1.0,
+      "pass": true,
+      "note": "Sum of two bivectors stays grade-2; scalar excluded from boundary sum"
+    },
+    "B3_e12_times_e23_equals_e13": {
+      "clifford_e13_component": 1.0,
+      "sympy_expected_coefficient": 1,
+      "deviation": 0.0,
+      "pass": true,
+      "note": "e12*e23 = e13 boundary product; sympy and clifford must agree to 1e-10"
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "total_tests": 13,
+    "passed": 12
+  }
+}

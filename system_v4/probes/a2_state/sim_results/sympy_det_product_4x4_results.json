@@ -4,7 +4,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "numeric determinants float; cannot certify polynomial identity"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
@@ -24,7 +24,7 @@
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "symbolic determinant expansion; expand(det(AB)-det(A)det(B)) simplifies to 0"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,

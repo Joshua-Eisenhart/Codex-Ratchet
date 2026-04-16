@@ -13,7 +13,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is a scalar ODE; no graph message-passing required"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -38,12 +38,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is a 1D ODE; Riemannian geometry tools not required at this level"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is scalar; equivariant networks not required"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -53,17 +53,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is scalar ODE; no hypergraph topology required"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is scalar; no cell complex required"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 RG flow bridge is analytic; no persistent homology required"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

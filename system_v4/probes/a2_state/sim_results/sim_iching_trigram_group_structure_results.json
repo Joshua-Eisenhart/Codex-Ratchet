@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; pure combinatorial group theory sim, no tensor learning"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; rustworkx and sympy handle graph and group operations"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,12 +30,12 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no Clifford algebra required for cube automorphisms"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Riemannian geometry not required for discrete cube"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
@@ -55,7 +55,7 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; graph structure sufficient, no cell complex needed"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,

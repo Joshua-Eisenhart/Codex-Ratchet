@@ -4,27 +4,27 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not used: the search is evolutionary over plain Python genomes, with no torch tensors or autograd"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not used: rotor evolution does not involve graph message-passing or edge-index structure"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "not used: this sim optimizes a continuous rotor fit, not a SAT/SMT proof obligation"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not used: same reason as z3; there is no solver-driven constraint proof here"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not used: rotor fitness is evaluated numerically through clifford operations, not symbolic algebra"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
@@ -39,7 +39,7 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not used: there is no equivariant neural architecture in the rotor-evolution loop"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -54,12 +54,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not used: no cell-complex topology is computed in the rotor GA"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not used: persistent homology is unrelated to the rotor residual objective"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     },
     "deap": {
       "tried": true,

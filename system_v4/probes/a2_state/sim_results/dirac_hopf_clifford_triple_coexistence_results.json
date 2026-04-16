@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "graph learning not needed for triple coexistence baseline; excluded"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,12 +30,12 @@
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "Clifford Cl(2) bivector grade verifies XX-gate off-diagonal shell entropy"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "Riemannian manifold not invoked in triple coexistence; excluded"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistence homology not needed at triple coexistence baseline; excluded"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

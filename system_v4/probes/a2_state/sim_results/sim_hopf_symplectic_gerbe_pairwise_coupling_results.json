@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not needed for pairwise H product tests; Q_pair is a scalar product not requiring autograd"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required in pairwise HSG shell entropy product step"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -36,22 +36,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "Riemannian geometry not invoked in scalar HSG pairwise product step"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3) equivariant networks not needed for scalar pairwise entropy products"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal required in HSG pairwise entropy product tests"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hyperedge structure required in pairwise HSG shell entropy tests"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "persistent homology not needed in pairwise HSG shell entropy scalar tests"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

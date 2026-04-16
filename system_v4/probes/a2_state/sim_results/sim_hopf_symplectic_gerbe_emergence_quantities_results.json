@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not needed for emergence quantity tests; E1-E7 are scalar products"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required in HSG emergence quantity scalar tests"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "Clifford algebra rotor not invoked; H_hopf is analytic log(2)/2"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "Riemannian geometry not invoked in scalar HSG emergence product tests"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3) equivariant networks not needed for scalar emergence quantity tests"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal required in HSG emergence scalar quantity tests"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hyperedge structure required in HSG emergence E1-E7 scalar tests"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "chain-complex topology exercised in other steps; not needed in emergence scalar tests"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "persistent homology not needed in HSG emergence E1-E7 scalar product tests"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

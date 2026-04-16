@@ -6,17 +6,17 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph layer in this disqualification battery"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- this battery is exact numeric and constructive"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
@@ -26,7 +26,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no symbolic derivation beyond exact matrix formulas"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
@@ -46,12 +46,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no dependency graph or lattice graph computation here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistent homology or filtration computation here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "positive": {

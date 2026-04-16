@@ -5,7 +5,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "Autograd not required for constraint-manifold admissibility probe; numpy+z3+sympy sufficient"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for linear arithmetic UNSAT checks; cvc5 not required for this constraint encoding"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "Clifford rotor algebra not required; probe states are real vectors, not spinors"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "Hypergraph structure not required for this pairwise-constraint admissibility geometry"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

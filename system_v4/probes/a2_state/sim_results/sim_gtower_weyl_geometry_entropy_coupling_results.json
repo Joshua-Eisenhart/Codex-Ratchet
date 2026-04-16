@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph message-passing needed; coupling test is algebraic/geometric"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geomstats SO(6) manifold not needed; algebraic count suffices"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "equivariance check not needed; Weyl coupling is conformal, not SO(3)"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not applicable to conformal/Weyl geometry"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

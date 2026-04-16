@@ -13,12 +13,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "torch.linalg.eigh cross-check of Choi eigendecomposition vs numpy"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "Availability check only; graph tooling is not used in the Kraus/Choi algebra path"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -33,7 +33,7 @@
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "Symbolic cross-check of Choi matrix trace and determinant for gamma=2/5"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
@@ -48,12 +48,12 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "Availability check only; equivariant neural components are not used in this baseline"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "Availability check only; no graph rewrites or graph search are used here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
@@ -63,12 +63,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "Availability check only; cell-complex structure is not used in the roundtrip check"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "Availability check only; persistent-homology tooling is not used in this baseline"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "contact structure graph not needed at topology-variant baseline; excluded"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for topology-degeneracy UNSAT; cvc5 not needed"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -40,7 +40,7 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "E(3) equivariance not needed for topology-variant baseline; excluded"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -50,7 +50,7 @@
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "hyperedge for topology-variant coupling comparison not needed here; excluded"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "persistent homology not needed for topology-variant baseline; excluded"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

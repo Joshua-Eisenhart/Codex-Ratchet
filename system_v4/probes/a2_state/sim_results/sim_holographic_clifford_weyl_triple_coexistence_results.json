@@ -19,7 +19,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "No dynamic graph needed for triple coexistence probe at this step"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -39,7 +39,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "Cl(3) rotor encoded as block-diagonal matrix; clifford package not required"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -49,22 +49,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "Equivariant layers not needed for triple coexistence at classical baseline"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "No graph operations needed; MERA layers are scalar parameters here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "Hyperedge structure not needed for triple entropy coexistence probe"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "Cell complex topology not required at triple coexistence step"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,

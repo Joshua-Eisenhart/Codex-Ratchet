@@ -20,7 +20,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not required for direct fiber-equivalence bookkeeping"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not required; z3 suffices for bounded equivalence-class witness"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -40,37 +40,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not required; hopf_manifold already provides the local fiber geometry primitives"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not required; no geodesic claim in this direct equivalence packet"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not required; no equivariant learning claim in this packet"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not required; no shell DAG update here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not required; no hypergraph claim here"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not required; no cell-complex claim here"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not required; no persistence claim here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

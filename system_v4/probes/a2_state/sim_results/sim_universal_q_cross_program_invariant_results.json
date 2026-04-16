@@ -1,0 +1,336 @@
+{
+  "name": "sim_universal_q_cross_program_invariant",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "float64 autograd over Q = MI * prod(H_i) for all 10 programs; gradient w.r.t. MI is load-bearing for Q>0 verification"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT proof: MI=0 AND Q>0 is structurally impossible for Q=MI*prod(H_i); primary proof form for negative test"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof that dQ/dMI = prod(H_i); verifies Q-product form is exact identity; load-bearing for boundary universality claim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_MERA_Weyl_Hopf": {
+      "label": "Q\u2082 = I_c \u00d7 H_chirality \u00d7 Hol_phase",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.025980329655779098,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.025980329655779098,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Gerbe_SpectralTriple_Clifford": {
+      "label": "Q_GSC = MI \u00d7 H_gerbe \u00d7 H_st",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.029832977649914418,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.029832977649914418,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Contact_Symplectic_MERA": {
+      "label": "Q_CSM = MI \u00d7 H_contact \u00d7 H_symp",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.21238726414286258,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.21238726414286258,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Weyl_Gerbe_Hopf": {
+      "label": "Q_WGH = MI \u00d7 H_weyl \u00d7 H_gerbe \u00d7 H_hopf",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.006002730750307072,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.006002730750307072,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 0.9999999999999999,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Dirac_Symplectic_Weyl": {
+      "label": "Q_DSW = MI \u00d7 H_dirac \u00d7 H_symp \u00d7 H_weyl",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.06733589529667426,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.06733589529667426,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Holographic_Gerbe_Hopf": {
+      "label": "Q_HGH = MI \u00d7 H_holo \u00d7 H_gerbe \u00d7 H_hopf",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.012005461500614144,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.012005461500614144,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 0.9999999999999999,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Symplectic_Hopf_MERA": {
+      "label": "Q_SHM = MI \u00d7 H_symp \u00d7 H_hopf",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.025980329655779098,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.025980329655779098,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Weyl_Symplectic_MERA": {
+      "label": "Q_WSM = MI \u00d7 H_weyl \u00d7 H_symp \u00d7 H_mera",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.03601638450184243,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.03601638450184243,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Hopf_Dirac_Contact": {
+      "label": "Q_HDC = MI \u00d7 H_hopf \u00d7 H_dirac \u00d7 H_contact",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.1376164849537398,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.1376164849537398,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 1.0,
+      "r_equals_1": true,
+      "pass": true
+    },
+    "P_Holographic_Dirac_SpectralTriple": {
+      "label": "Q_HDS = MI \u00d7 H_holo \u00d7 H_dirac \u00d7 H_st",
+      "MI_seed0": 0.10814930452367744,
+      "Q_seed0": 0.23196359931204502,
+      "Q_seed0_positive": true,
+      "torch_Q_seed0": 0.23196359931204502,
+      "torch_autograd_pass": true,
+      "pearson_r_Q_vs_MI_20seeds": 0.9999999999999998,
+      "r_equals_1": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N_z3_MI0_implies_Q0": {
+      "claim": "MI=0 AND H1>0 AND H2>0 AND H3>0 AND Q>0 is UNSAT",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true
+    },
+    "N_z3_H1_0_implies_Q0": {
+      "claim": "MI>0 AND H1=0 AND H2>0 AND H3>0 AND Q>0 is UNSAT",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "pass": true
+    },
+    "N_MERA_Weyl_Hopf_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Gerbe_SpectralTriple_Clifford_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Contact_Symplectic_MERA_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Weyl_Gerbe_Hopf_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Dirac_Symplectic_Weyl_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Holographic_Gerbe_Hopf_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Symplectic_Hopf_MERA_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Weyl_Symplectic_MERA_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Hopf_Dirac_Contact_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_Holographic_Dirac_SpectralTriple_MI0_Q0": {
+      "Q_when_MI_0": 0.0,
+      "pass": true
+    },
+    "N_MERA_Weyl_Hopf_H0_Q0": {
+      "zeroed_factor": "H_weyl",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Gerbe_SpectralTriple_Clifford_H0_Q0": {
+      "zeroed_factor": "H_gerbe",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Contact_Symplectic_MERA_H0_Q0": {
+      "zeroed_factor": "H_contact",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Weyl_Gerbe_Hopf_H0_Q0": {
+      "zeroed_factor": "H_weyl",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Dirac_Symplectic_Weyl_H0_Q0": {
+      "zeroed_factor": "H_dirac",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Holographic_Gerbe_Hopf_H0_Q0": {
+      "zeroed_factor": "H_holo",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Symplectic_Hopf_MERA_H0_Q0": {
+      "zeroed_factor": "H_symp",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Weyl_Symplectic_MERA_H0_Q0": {
+      "zeroed_factor": "H_weyl",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Hopf_Dirac_Contact_H0_Q0": {
+      "zeroed_factor": "H_hopf",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    },
+    "N_Holographic_Dirac_SpectralTriple_H0_Q0": {
+      "zeroed_factor": "H_holo",
+      "Q_when_H_zeroed": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B_sympy_Q_product_identity": {
+      "Q_symbolic": "H1*H2*H3*MI",
+      "dQ_dMI": "H1*H2*H3",
+      "dQ_dMI_equals_prod_H": true,
+      "factored_form": "H1*H2*H3*MI",
+      "pass": true
+    },
+    "B_sympy_any_factor_zero_kills_Q": {
+      "Q_with_H1_0": "0",
+      "is_zero": true,
+      "pass": true
+    },
+    "B_r_1_tiny_MI_values": {
+      "r_at_1e-6_scale": 1.0,
+      "pass": true
+    },
+    "B_Q_monotone_in_MI": {
+      "program": "Holographic_Dirac_SpectralTriple",
+      "monotone": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "programs_checked": 10,
+    "program_names": [
+      "MERA_Weyl_Hopf",
+      "Gerbe_SpectralTriple_Clifford",
+      "Contact_Symplectic_MERA",
+      "Weyl_Gerbe_Hopf",
+      "Dirac_Symplectic_Weyl",
+      "Holographic_Gerbe_Hopf",
+      "Symplectic_Hopf_MERA",
+      "Weyl_Symplectic_MERA",
+      "Hopf_Dirac_Contact",
+      "Holographic_Dirac_SpectralTriple"
+    ],
+    "all_pass": true,
+    "invariant": "Q = MI \u00d7 \u220fH_i holds: Q>0 iff all factors>0; r(Q,MI)=1.0 when H fixed"
+  }
+}

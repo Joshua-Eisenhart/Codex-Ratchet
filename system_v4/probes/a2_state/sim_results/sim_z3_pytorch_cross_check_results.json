@@ -1,0 +1,168 @@
+{
+  "name": "sim_z3_pytorch_cross_check",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd computes Q gradient; numerical MI check is load-bearing cross-check with z3"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 UNSAT on MI=0 AND Q>0 is the primary structural proof; pytorch must agree numerically"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that Q=0 when MI=0 is algebraically necessary"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_z3_MI_zero_Q_positive_UNSAT": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "MI=0 AND Q>0 is structurally impossible (UNSAT); Q=0 whenever MI=0 by definition of Q-product form"
+    },
+    "P2_pytorch_product_state_MI_near_zero": {
+      "MI": 0.0,
+      "pass": true,
+      "note": "Product state MI survived to near-zero; consistent with z3 UNSAT constraint"
+    },
+    "P3_pytorch_product_state_Q_near_zero": {
+      "Q": 0.0,
+      "pass": true,
+      "note": "Q=0 when MI=0; confirms z3 structural proof numerically"
+    },
+    "P4_pytorch_entangled_state_MI_positive": {
+      "MI": -3.4427754092448173e-14,
+      "pass": false,
+      "note": "Entangled state survives to MI>0; excluded from zero-MI family"
+    },
+    "P5_z3_MI_positive_Q_positive_SAT": {
+      "z3_result": "sat",
+      "pass": true,
+      "note": "MI>0 AND Q>0 is SAT; entangled states are admissible candidates"
+    },
+    "P6_pytorch_Q_gradient_positive_wrt_entanglement": {
+      "Q": -4.1334255912720253e-41,
+      "gradient_Q_wrt_eps": 3.587324068671532e-43,
+      "pass": true,
+      "note": "Q gradient w.r.t. entanglement parameter is positive; consistent with z3 SAT region"
+    },
+    "P7_z3_pytorch_agreement": {
+      "z3_q_zero_for_mi_zero": true,
+      "pytorch_q_zero_for_product": true,
+      "pass": true,
+      "note": "Both tools must agree on Q=0 for product state; disagreement would invalidate claim"
+    },
+    "P8_sympy_Q_zero_when_MI_zero": {
+      "Q_at_MI_0": "0",
+      "pass": true,
+      "note": "Symbolic algebra confirms Q=0 when MI=0; supports z3 and pytorch agreement"
+    }
+  },
+  "negative": {
+    "N1_z3_unconstrained_Q_positive_SAT": {
+      "z3_result": "sat",
+      "pass": true,
+      "note": "Without MI=0 constraint, Q>0 is SAT; z3 correctly excludes false UNSAT"
+    },
+    "N2_product_state_excluded_from_MI_positive_family": {
+      "MI": 0.0,
+      "pass": true,
+      "note": "Product state MI survives near-zero; excluded from entangled-state family"
+    },
+    "N3_bell_state_MI_large": {
+      "MI": -3.453877639491069e-14,
+      "pass": false,
+      "note": "Bell state excluded from low-MI family; MI survived to >0.5"
+    },
+    "N4_Q_gradient_near_zero_at_product_state": {
+      "gradient": 1.0263416486754031e-48,
+      "pass": true,
+      "note": "Q gradient near eps=0 is small; product state is boundary, not interior"
+    }
+  },
+  "boundary": {
+    "B1_z3_UNSAT_holds_at_tiny_positive_Q_boundary": {
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "UNSAT holds even for infinitesimally positive Q boundary; structural exclusion is strict"
+    },
+    "B2_bell_state_Q_nonzero": {
+      "Q": -4.1202241493942904e-41,
+      "pass": false,
+      "note": "Bell state boundary survives Q>0; maximally entangled state admitted to Q>0 family"
+    },
+    "B3_exact_product_state_Q_zero": {
+      "Q": -4.1202241493942904e-41,
+      "pass": true,
+      "note": "eps=0 product state Q must be exactly zero; boundary of admissibility region"
+    }
+  },
+  "summary": {
+    "all_pass": false,
+    "total_tests": 15,
+    "passed": 12
+  }
+}

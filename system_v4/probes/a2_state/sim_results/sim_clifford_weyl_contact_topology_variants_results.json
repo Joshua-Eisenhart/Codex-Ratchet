@@ -11,7 +11,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph message-passing needed for scalar Q_CWC topology-variant comparison in CWC program"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -36,22 +36,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "Riemannian geometry not invoked for scalar topology-variant Q_CWC ordering tests"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3) equivariant networks not needed for scalar Weyl winding-class topology-class comparison"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal needed for topology-variant scalar entropy product tests in CWC program"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hyperedge structure needed for topology-variant scalar Q_CWC comparison"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "persistent homology not needed for topology-variant scalar Q_CWC ordering tests"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

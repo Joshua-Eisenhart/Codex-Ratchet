@@ -1,6 +1,6 @@
 {
   "name": "layer_coupling_matrix",
-  "timestamp": "2026-04-16T03:32:43.121912+00:00",
+  "timestamp": "2026-04-16T05:09:08.984030+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -51,7 +51,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- coupling structure is a directed graph, not hypergraph"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistence required for 5x5 coupling matrix"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

@@ -12,17 +12,17 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "graph structure not needed at L7 (pointwise spinor extraction)"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "not invoked: sympy CAS already closes the 2x2 identities exactly"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not invoked: sympy closes the identities; z3 is the proof fallback"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -32,12 +32,12 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "Cl(3) rotor form deferred to L8 chiral density; not needed for extraction identities"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "S^3 manifold routines not required; Hopf sampling is a 4-tuple norm"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,

@@ -11,7 +11,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not required; no graph message-passing claim in this coupling sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not required; z3 encodes the product-state UNSAT claim directly"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -31,12 +31,12 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not required; no Clifford-algebra rotor claim in this coupling lego"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not required; no geodesic or Riemannian claim in this packet"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,

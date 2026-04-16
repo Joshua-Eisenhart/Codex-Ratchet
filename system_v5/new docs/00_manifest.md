@@ -21,6 +21,10 @@ Authority:
 - `OWNER_THESIS_AND_COSMOLOGY.md` — **canonical** — owner's candidate thesis entering the ratchet
 - `OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md` — **canonical owner doctrine** — five self-similar frameworks (holodeck/QIT/science/IGT/Leviathan), teleological admissibility, AI legacy, empiricism revival; religious terms are metaphorical handles for structural claims
 
+## External Math Ingest
+
+- `EXTERNAL_MATH_EML_OPERATOR.md` — arXiv:2603.21852v2 (Odrzywołek, 2026): single binary operator `eml(x,y)=exp(x)-ln(y)` plus `{1}` generates all elementary functions. Classical-baseline role only; includes 8-lego atomization plan pending owner review.
+
 ## Topic Routing
 
 - `CURRENT_DOCS_MAP.md` — **canonical router** — tells you which doc owns which topic and which surfaces are only partially processed

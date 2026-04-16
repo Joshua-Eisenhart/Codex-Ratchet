@@ -4,7 +4,7 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not used: MAP-Elites archive and SAT checks do not require tensor autograd or torch kernels"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
@@ -19,47 +19,47 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not used: z3 already covers the boolean admissibility proof obligation in this archive sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not used: the archive logic is boolean/numeric bookkeeping, not symbolic algebra"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not used: no rotor or multivector geometry appears in the archive-cell admissibility check"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not used: no manifold geometry is required for the 4x4 archive occupancy probe"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not used: there is no equivariant neural component in this MAP-Elites archive sim"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "not used: graph reduction is unnecessary because ribs stores the archive directly"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not used: the archive contains pairwise cell coordinates, not hyperedges"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not used: no cell-complex topology is computed; the state space is a simple 4x4 grid"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not used: persistent homology is outside the scope of this archive coverage probe"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     },
     "ribs": {
       "tried": true,

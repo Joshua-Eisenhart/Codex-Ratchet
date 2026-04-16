@@ -13,7 +13,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 FEP/Axis0 bridge is a probability simplex computation; no graph message-passing required"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -23,7 +23,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 z3 covers the proof layer; cvc5 not needed for this sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -43,7 +43,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 FEP/Axis0 bridge is a probability simplex computation; no equivariant network required"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -58,12 +58,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 FEP/Axis0 bridge is a probability simplex computation; no cell complex required"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not used \u2014 FEP/Axis0 bridge is a probability simplex computation; no persistent homology required"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

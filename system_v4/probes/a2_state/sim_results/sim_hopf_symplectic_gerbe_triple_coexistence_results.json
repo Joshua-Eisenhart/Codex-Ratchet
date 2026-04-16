@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "not needed for coexistence normalization test; H values are scalar floats"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required in HSG triple coexistence normalization step"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "Clifford algebra rotor not invoked in Hopf holonomy normalization; H_hopf is analytic"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "Riemannian geometry not invoked in scalar normalization coexistence test"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3) equivariant networks not needed for scalar normalized product coexistence"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal required in HSG coexistence normalization step"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hyperedge structure required in triple coexistence normalized product test"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "chain-complex topology not invoked in coexistence normalization inequality step"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "persistent homology not needed in triple coexistence scalar normalization test"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

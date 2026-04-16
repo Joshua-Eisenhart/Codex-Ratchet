@@ -20,7 +20,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no gradient optimization in this root manifold row"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
@@ -35,7 +35,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 is sufficient for the bounded root/fence checks"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -45,7 +45,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- root admission stays at matrix/Lie-algebra level"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -70,12 +70,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell-complex discretization in this root manifold row"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistence/topology filtration in this row"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

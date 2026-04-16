@@ -16,7 +16,7 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- numeric ground truth is enough for capability probe"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
@@ -56,12 +56,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not topology-relevant here"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not topology-relevant here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     },
     "networkx": {
       "tried": true,
@@ -186,9 +186,9 @@
     },
     "perf_vs_networkx_1k": {
       "pass": true,
-      "rx_time_s": 0.0001127501018345356,
-      "nx_time_s": 0.0008021672256290913,
-      "speedup_rx_over_nx": 7.1145587682598945,
+      "rx_time_s": 9.874999523162842e-05,
+      "nx_time_s": 0.0007746671326458454,
+      "speedup_rx_over_nx": 7.844730835974046,
       "N_nodes": 1000,
       "M_edges": 2966,
       "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."

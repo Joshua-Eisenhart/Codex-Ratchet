@@ -17,7 +17,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; integration over smooth manifold requires no graph structure"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -37,17 +37,17 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; scalar curvature integration on 2D sphere requires no Clifford algebra"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Fubini-Study metric computed directly without geomstats"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no equivariant structure in scalar curvature integration"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
@@ -62,7 +62,7 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Euler characteristic \u03c7=2 used as known S\u00b2 fact, no complex construction"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
@@ -290,5 +290,5 @@
     "anchor": "K=4 value anchored to riemannian_curvature probe (both probes canonical)",
     "scope_note": "Gauss-Bonnet probe: local K=4 integrates to global topological invariant 4\u03c0. Out of scope: geodesic curvature boundary terms (\u2202M=\u2205), Chern-Gauss-Bonnet in higher dimensions, Ricci flow, Bochner-Weitzenb\u00f6ck, non-constant K manifolds."
   },
-  "timestamp": "2026-04-16T05:04:18.152490+00:00"
+  "timestamp": "2026-04-16T05:09:20.928567+00:00"
 }

@@ -11,17 +11,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed \u2014 finite-dimensional matrix ops only"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed for this numerical sim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed \u2014 explicit matrix geometry suffices"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed for this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for this sim"
     }
   },
   "tool_integration_depth": {
@@ -110,7 +110,7 @@
       "anti_hermitian_residual": 0.0,
       "note": "C\u2020 = \u2212A_\u03c6,\u2212A_\u03b8 = \u2212C \u2713; no projection needed"
     },
-    "elapsed_s": 0.22361278533935547
+    "elapsed_s": 0.1756267547607422
   },
   "negative": {
     "N1_abelian_diagonal_commutes": {
@@ -132,7 +132,7 @@
       "abelian_commutator_norm": 0.0,
       "note": "F_abelian = dA only; [diag A_\u03b8, diag A_\u03c6] = 0 exactly"
     },
-    "elapsed_s": 0.005201101303100586
+    "elapsed_s": 0.005856990814208984
   },
   "boundary": {
     "B1_fraction_scan": {
@@ -255,7 +255,7 @@
       "norm_comm": 0.707106781234217,
       "commutator_fraction": 325169.2138294892
     },
-    "elapsed_s": 0.04013419151306152
+    "elapsed_s": 0.05918002128601074
   },
   "classification": "canonical",
   "summary": {
@@ -263,21 +263,5 @@
     "passed": 10,
     "failed": 0,
     "failed_tests": []
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

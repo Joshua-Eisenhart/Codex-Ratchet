@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no graph message passing layer"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- no Clifford algebra layer"
     },
     "geomstats": {
       "tried": true,
@@ -40,27 +40,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- already confirmed in axis6_e3nn_fe_bridge"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed -- chain ordering is fixed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- no hypergraph constraint layer"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- no cell complex"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- persistence not in scope here"
     }
   },
   "tool_integration_depth": {
@@ -185,7 +185,7 @@
       "flip_confirmed_near_0p7368": true,
       "gradient_nonzero_at_flip": true,
       "status": "ok",
-      "elapsed_s": 0.0014650821685791016
+      "elapsed_s": 0.0016021728515625
     },
     "geomstats_spd_curvature": {
       "max_curvature": {
@@ -800,7 +800,7 @@
         }
       ],
       "status": "ok",
-      "elapsed_s": 0.004546165466308594
+      "elapsed_s": 0.00446629524230957
     },
     "sympy_analytic": {
       "Ic_expression": "Piecewise((1, Eq(r, 1)), (((r - 2)*log(1 - r/2) - (r - 1)*log((1 - r)/2) - log(r**r/2**r))/(2*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1) & Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), True))",
@@ -820,7 +820,7 @@
       "expected_flip_point": 0.7368,
       "error_from_expected": 0.0306203174774885,
       "status": "ok",
-      "elapsed_s": 3.459764003753662
+      "elapsed_s": 3.1300392150878906
     }
   },
   "negative": {
@@ -865,7 +865,7 @@
       "below_bound_used": 0.6811798507804018,
       "above_bound_used": 0.7361798507804018,
       "status": "ok",
-      "elapsed_s": 0.008016109466552734
+      "elapsed_s": 0.0075588226318359375
     }
   },
   "boundary": {
@@ -891,7 +891,7 @@
       },
       "all_unsat_confirmed": true,
       "status": "ok",
-      "elapsed_s": 0.004721879959106445
+      "elapsed_s": 0.004856109619140625
     }
   },
   "axis6_canonical_summary": {
@@ -909,21 +909,5 @@
     "phase_transition_type": "I_c_transversal_zero_crossing_on_SPD_manifold_trajectory",
     "note": "The flip_point_prior_sim_step=0.7368 is the first grid step with I_c>0 in sim_bridge_fe_relay_sweep (20 steps, step 14 = 14/19 \u2248 0.7368). The computed zero crossing (binary search) is at ~0.706. Both are consistent: the phase boundary falls in [0.684, 0.7368]."
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

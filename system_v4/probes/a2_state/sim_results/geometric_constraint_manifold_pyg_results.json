@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "HeteroData node tensors, autograd through runs_on edges"
     },
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "HeteroData graph construction, MessagePassing base class"
     },
     "z3": {
       "tried": true,
@@ -35,7 +35,7 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "tried and available; not used \u2014 constraint manifold is represented as a discrete G-level hierarchy graph; no Riemannian metric, geodesic, or holonomy computation is required in this packet"
     },
     "e3nn": {
       "tried": true,
@@ -45,7 +45,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "tried and available; not used \u2014 PyG handles all graph computation; rustworkx DAG/routing algorithms are not needed for this single G-structure hierarchy packet"
     },
     "xgi": {
       "tried": true,
@@ -55,7 +55,7 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "tried and available; not used \u2014 no CW-complex or cell-complex structure is constructed; the constraint manifold graph uses directed pairwise edges only; TopoNetX is relevant for shell-face / higher-order topology, which is not in scope for this packet"
     },
     "gudhi": {
       "tried": true,
@@ -225,21 +225,5 @@
     "autograd_to_S3": true,
     "z3_valid_graph_sat": true,
     "z3_invalid_edge_unsat": true
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

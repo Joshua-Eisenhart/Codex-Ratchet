@@ -9,57 +9,57 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "HeteroData graph + message passing with shell projectors wired in"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed -- constraint enforcement is differentiable"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not relevant to this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not relevant to this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not relevant to this sim"
     }
   },
   "tool_integration_depth": {
@@ -91,7 +91,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.0708264410495758,
+              "min_eigenvalue": -1.8923529410130868e-10,
               "psd_ok": true,
               "valid": true
             },
@@ -100,7 +100,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.3056411147117615,
+              "min_eigenvalue": 0.33544647693634033,
               "psd_ok": true,
               "valid": true
             },
@@ -109,7 +109,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.28965795040130615,
+              "min_eigenvalue": 0.026083476841449738,
               "psd_ok": true,
               "valid": true
             },
@@ -118,7 +118,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.28934258222579956,
+              "min_eigenvalue": 0.01257762685418129,
               "psd_ok": true,
               "valid": true
             }
@@ -133,7 +133,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.20146387815475464,
+              "min_eigenvalue": 0.11799655854701996,
               "psd_ok": true,
               "valid": true
             },
@@ -142,7 +142,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.15980537235736847,
+              "min_eigenvalue": 0.33347293734550476,
               "psd_ok": true,
               "valid": true
             },
@@ -151,7 +151,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.2427000254392624,
+              "min_eigenvalue": 0.20200082659721375,
               "psd_ok": true,
               "valid": true
             },
@@ -160,7 +160,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.24541600048542023,
+              "min_eigenvalue": 0.18025913834571838,
               "psd_ok": true,
               "valid": true
             }
@@ -175,7 +175,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.18765906989574432,
+              "min_eigenvalue": 0.45572566986083984,
               "psd_ok": true,
               "valid": true
             },
@@ -184,7 +184,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.16212838888168335,
+              "min_eigenvalue": 0.41825035214424133,
               "psd_ok": true,
               "valid": true
             },
@@ -193,7 +193,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.15301379561424255,
+              "min_eigenvalue": 0.46298712491989136,
               "psd_ok": true,
               "valid": true
             },
@@ -202,7 +202,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.21959878504276276,
+              "min_eigenvalue": 0.39140501618385315,
               "psd_ok": true,
               "valid": true
             }
@@ -338,21 +338,5 @@
     "negative": "1/1",
     "boundary": "1/1",
     "all_passed": true
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

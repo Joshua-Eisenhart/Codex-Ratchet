@@ -1,7 +1,7 @@
 {
   "name": "E3NN XX_23 Relay Equivariance",
   "token": "E_E3NN_RELAY_EQUIVARIANCE",
-  "timestamp": "2026-04-16T03:07:20.813271+00:00",
+  "timestamp": "2026-04-16T03:49:27.387102+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,32 +11,32 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this probe"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "e3nn": {
       "tried": true,
@@ -46,22 +46,22 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for this probe"
     }
   },
   "tool_integration_depth": {
@@ -241,21 +241,5 @@
     "nn_linear_fails": true
   },
   "classification": "canonical",
-  "key_finding": "XX_23 relay is equivariant under X-axis rotations (which commute with X\u2297X generator), but NOT under general simultaneous SO(3) rotations \u2014 this is a real physics constraint. e3nn Linear(1o+1o \u2192 1o+1o) is fully equivariant and is the correct interface for the relay. Single-qubit rotation breaks equivariance (XX is a 2-body interaction). XX(pi/4) creates maximal entanglement from |00>; Bloch vectors collapse to 0, I(A:B)=2*log(2). nn.Linear fails equivariance; e3nn is the correct framework.",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "key_finding": "XX_23 relay is equivariant under X-axis rotations (which commute with X\u2297X generator), but NOT under general simultaneous SO(3) rotations \u2014 this is a real physics constraint. e3nn Linear(1o+1o \u2192 1o+1o) is fully equivariant and is the correct interface for the relay. Single-qubit rotation breaks equivariance (XX is a 2-body interaction). XX(pi/4) creates maximal entanglement from |00>; Bloch vectors collapse to 0, I(A:B)=2*log(2). nn.Linear fails equivariance; e3nn is the correct framework."
 }

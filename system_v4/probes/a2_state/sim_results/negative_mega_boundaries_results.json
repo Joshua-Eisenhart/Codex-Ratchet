@@ -1,9 +1,9 @@
 {
   "probe": "negative_mega_boundaries",
-  "timestamp": "2026-04-16T02:02:02.610854+00:00",
+  "timestamp": "2026-04-16T03:51:24.510214+00:00",
   "total_tests": 15,
   "num_errors": 0,
-  "total_runtime_sec": 26.21,
+  "total_runtime_sec": 26.65,
   "verdict_summary": {
     "01_purity_discord_boundary": "ALWAYS_DETECTABLE",
     "02_channel_composition_depth": "CONVERGED",
@@ -328,7 +328,7 @@
       ],
       "first_undetectable_mix_param": null,
       "verdict": "ALWAYS_DETECTABLE",
-      "runtime_sec": 21.873
+      "runtime_sec": 22.694
     },
     "02_channel_composition_depth": {
       "test": "channel_composition_depth",
@@ -1138,7 +1138,7 @@
         }
       ],
       "verdict": "CONVERGED",
-      "runtime_sec": 0.02
+      "runtime_sec": 0.006
     },
     "03_eigenvalue_precision": {
       "test": "eigenvalue_precision",
@@ -1434,7 +1434,7 @@
       ],
       "noise_floor_omega": null,
       "verdict": "ALL_DETECTABLE",
-      "runtime_sec": 0.055
+      "runtime_sec": 0.086
     },
     "07_qfi_low_signal": {
       "test": "qfi_low_signal",
@@ -1609,7 +1609,7 @@
         {
           "d": 4,
           "joint_dim": 16,
-          "time_sec": 4e-06,
+          "time_sec": 5e-06,
           "trace": 1.0,
           "min_eigenvalue": 0.18125874936838093,
           "valid": true
@@ -1617,7 +1617,7 @@
         {
           "d": 8,
           "joint_dim": 64,
-          "time_sec": 6e-06,
+          "time_sec": 5e-06,
           "trace": 1.0,
           "min_eigenvalue": 0.10010797874444527,
           "valid": true
@@ -1625,7 +1625,7 @@
         {
           "d": 16,
           "joint_dim": 256,
-          "time_sec": 1.9e-05,
+          "time_sec": 2.5e-05,
           "trace": 1.0,
           "min_eigenvalue": 0.055436513565428336,
           "valid": true
@@ -1633,7 +1633,7 @@
         {
           "d": 32,
           "joint_dim": 1024,
-          "time_sec": 0.000217,
+          "time_sec": 0.000272,
           "trace": 1.0,
           "min_eigenvalue": 0.029463920274649537,
           "valid": true
@@ -1641,14 +1641,14 @@
         {
           "d": 64,
           "joint_dim": 4096,
-          "time_sec": 0.022754,
+          "time_sec": 0.001546,
           "trace": 1.0,
           "min_eigenvalue": 0.015171714024730843,
           "valid": true
         }
       ],
       "verdict": "SCALING_DOCUMENTED",
-      "runtime_sec": 3.676
+      "runtime_sec": 3.466
     },
     "10_relative_entropy_asymmetry": {
       "test": "relative_entropy_asymmetry",
@@ -1715,7 +1715,7 @@
         }
       ],
       "verdict": "ASYMMETRY_DOCUMENTED",
-      "runtime_sec": 0.156
+      "runtime_sec": 0.166
     },
     "11_concurrence_negativity_disagreement": {
       "test": "concurrence_negativity_disagreement",
@@ -1723,7 +1723,7 @@
       "num_disagreements": 0,
       "disagreements": [],
       "verdict": "CONSISTENT",
-      "runtime_sec": 0.127
+      "runtime_sec": 0.051
     },
     "12_mi_strong_subadditivity": {
       "test": "mi_strong_subadditivity",
@@ -1731,7 +1731,7 @@
       "num_violations": 0,
       "violations": [],
       "verdict": "SSA_HOLDS",
-      "runtime_sec": 0.01
+      "runtime_sec": 0.02
     },
     "13_channel_fixed_point_uniqueness": {
       "test": "channel_fixed_point_uniqueness",
@@ -1741,7 +1741,7 @@
       "max_pairwise_trace_distance": 1.1053196390441931e-16,
       "unique": "True",
       "verdict": "UNIQUE_FIXED_POINT",
-      "runtime_sec": 0.275
+      "runtime_sec": 0.141
     },
     "14_tomography_sample_complexity": {
       "test": "tomography_sample_complexity",
@@ -1787,7 +1787,7 @@
       "expected_slope": -0.5,
       "scaling_consistent": "False",
       "verdict": "SCALING_ANOMALOUS",
-      "runtime_sec": 0.001
+      "runtime_sec": 0.002
     },
     "15_compression_vs_entanglement": {
       "test": "compression_vs_entanglement",
@@ -1796,70 +1796,7 @@
       "mean_C_original": 0.11681148638420634,
       "mean_C_loss": 0.45575666660598296,
       "verdict": "UNCORRELATED",
-      "runtime_sec": 0.009
-    }
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
+      "runtime_sec": 0.01
     }
   }
 }

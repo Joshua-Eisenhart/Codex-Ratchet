@@ -22,22 +22,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "clifford": {
       "tried": true,
@@ -57,22 +57,22 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for this sim"
     }
   },
   "tool_integration_depth": {
@@ -408,11 +408,11 @@
     },
     "e3nn_torus_density_bloch_equivariance": {
       "n_states": 4,
-      "max_equivariance_error": 1.2377833513710357e-07,
+      "max_equivariance_error": 3.3527612686157227e-08,
       "tolerance": 1e-05,
       "pass": true
     },
-    "time_s": 0.2142190933227539
+    "time_s": 0.11827516555786133
   },
   "negative": {
     "bures_singular_r0": {
@@ -478,7 +478,7 @@
       "near_zero": true,
       "pass": true
     },
-    "time_s": 0.009295225143432617
+    "time_s": 0.002763986587524414
   },
   "boundary": {
     "clifford_torus_symmetry": {
@@ -570,7 +570,7 @@
       ],
       "pass": true
     },
-    "time_s": 0.331165075302124
+    "time_s": 0.2740657329559326
   },
   "clifford_cross_check": {
     "eta": 0.5235987755982988,
@@ -593,27 +593,11 @@
     "pass": "True",
     "counted": true
   },
-  "timestamp": "2026-04-16T02:50:44.158230+00:00",
+  "timestamp": "2026-04-16T03:49:19.408029+00:00",
   "classification": "canonical",
   "summary": {
     "tests_passed": 13,
     "tests_total": 13,
     "all_pass": true
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

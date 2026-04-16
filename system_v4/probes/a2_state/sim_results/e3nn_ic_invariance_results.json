@@ -1,7 +1,7 @@
 {
   "name": "E3NN I_c Local Unitary Invariance",
   "token": "E_E3NN_IC_INVARIANCE",
-  "timestamp": "2026-04-16T02:45:53.297105+00:00",
+  "timestamp": "2026-04-16T03:49:30.226560+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "z3": {
       "tried": true,
@@ -26,17 +26,17 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "e3nn": {
       "tried": true,
@@ -46,22 +46,22 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for this probe"
     }
   },
   "tool_integration_depth": {
@@ -283,21 +283,5 @@
     "fctp_pass": true
   },
   "classification": "canonical",
-  "key_finding": "I_c = S(B) - S(AB) is invariant under local unitaries U_A \u2297 U_B. This holds for both-sided AND one-sided local unitaries (stronger claim). Mechanism: eigenvalues of rho_B preserved under U_B; eigenvalues of rho_AB preserved under U_A\u2297U_B. I_c is NOT invariant under arbitrary joint unitaries (confirmed numerically). z3 UNSAT confirms logical necessity of invariance. cvc5 cross-checks z3. e3nn FCTP (1o,1o)\u21920e is equivariant by construction.",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "key_finding": "I_c = S(B) - S(AB) is invariant under local unitaries U_A \u2297 U_B. This holds for both-sided AND one-sided local unitaries (stronger claim). Mechanism: eigenvalues of rho_B preserved under U_B; eigenvalues of rho_AB preserved under U_A\u2297U_B. I_c is NOT invariant under arbitrary joint unitaries (confirmed numerically). z3 UNSAT confirms logical necessity of invariance. cvc5 cross-checks z3. e3nn FCTP (1o,1o)\u21920e is equivariant by construction."
 }

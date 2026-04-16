@@ -9,7 +9,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": ""
     },
     "e3nn": {
       "tried": true,
@@ -19,52 +19,12 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": ""
     },
     "numpy": {
       "tried": true,
       "used": true,
       "reason": "Pauli matrix computation"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {
@@ -89,21 +49,5 @@
     "4pi_identity_on_spinor": true,
     "orthogonal_antipodal": true
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

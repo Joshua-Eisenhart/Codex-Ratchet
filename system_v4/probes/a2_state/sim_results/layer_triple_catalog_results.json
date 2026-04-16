@@ -1,6 +1,6 @@
 {
   "name": "layer_triple_catalog",
-  "timestamp": "2026-04-16T03:07:43.272158+00:00",
+  "timestamp": "2026-04-16T03:49:43.208697+00:00",
   "classification": "canonical",
   "all_tests_pass": true,
   "tool_manifest": {
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- graph structure via rustworkx"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 handles the uniqueness SMT check"
     },
     "sympy": {
       "tried": true,
@@ -32,7 +32,7 @@
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "Cl(3) rotor for SU(2) Hopf rotation (L1 native operator)"
     },
     "geomstats": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
     },
     "rustworkx": {
       "tried": true,
@@ -52,17 +52,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- layer interactions modeled as directed DAG not hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- topological structure captured by Betti number checks"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- Hopf topology tracked via fiber phase entropy, not persistence"
     }
   },
   "tool_integration_depth": {
@@ -397,21 +397,5 @@
       "is_finite": "True",
       "pass": "True"
     }
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

@@ -18,6 +18,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence step of SpectralTriple×Gerbe×Clifford (28th program). "
+    "H_st, H_gerbe, and H_clifford are normalized via h/(1+h) and compared "
+    "through joint-vs-pairwise products without changing program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -243,15 +248,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_gerbe_clifford_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Step 2 triple coexistence for SpectralTriple×Gerbe×Clifford (28th program). "
-            f"H_st = spectral gap seed=1 = {H_ST:.6f}. "
-            f"H_gerbe = log(1+3) = {H_GERBE:.6f}. "
-            f"H_clifford = {'Cl(3,0) rotor' if _CLIFFORD else 'fallback'} = {H_CLIFFORD:.6f}. "
-            "Normalize H via h/(1+h). Joint product ≤ each pairwise product confirmed. "
-            "z3 UNSAT: joint > pair impossible for values in (0,1). "
-            "sympy: a*b*(1-c) ≥ 0 for c ≤ 1."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_gerbe": H_GERBE, "H_clifford": H_CLIFFORD},

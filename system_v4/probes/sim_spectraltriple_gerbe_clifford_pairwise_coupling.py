@@ -18,6 +18,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for SpectralTriple×Gerbe×Clifford (28th program). "
+    "H_st = spectral gap seed=1 random sym 4x4. "
+    "H_gerbe = log(1+3). "
+    "H_clifford = Cl(3,0) rotor norm when importable, otherwise fallback 0.5. "
+    "All three pairs Q_pair > 0 confirmed. "
+    "z3 UNSAT: positive factors cannot multiply to zero. "
+    "sympy: zero-factor collapse verified."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -232,15 +242,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_gerbe_clifford_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Step 1 pairwise coupling for SpectralTriple×Gerbe×Clifford (28th program). "
-            f"H_st = spectral gap seed=1 random sym 4x4 = {H_ST:.6f}. "
-            f"H_gerbe = log(1+3) = {H_GERBE:.6f}. "
-            f"H_clifford = {'Cl(3,0) rotor norm' if _CLIFFORD else 'fallback 0.5'} = {H_CLIFFORD:.6f}. "
-            "All three pairs Q_pair > 0 confirmed. "
-            "z3 UNSAT: positive factors cannot multiply to zero. "
-            "sympy: zero-factor collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_gerbe": H_GERBE, "H_clifford": H_CLIFFORD},

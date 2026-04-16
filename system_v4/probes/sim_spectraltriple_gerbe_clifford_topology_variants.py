@@ -23,6 +23,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "SpectralTriple×Gerbe×Clifford topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -288,6 +293,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_gerbe_clifford_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Step 3 topology variants for SpectralTriple×Gerbe×Clifford (28th program). "
             f"T1 θ=π/4, T2 θ=π/2, T3 θ=π/6 — H_clifford varies with rotor angle. "

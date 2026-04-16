@@ -24,6 +24,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline SpectralTriple×Gerbe×Clifford emergence probe: this "
+    "file checks scalar emergence quantities with z3, sympy, and clifford "
+    "support where available, but it does not claim a canonical nonclassical "
+    "witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -280,15 +287,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_gerbe_clifford_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Step 4 emergence quantities for SpectralTriple×Gerbe×Clifford (28th program). "
-            "E1-E3 single shell: Q=0 (absent shells zero out product). "
-            "E4-E6 pairwise without MI: Q=0. "
-            "E7 full triple+MI: Q_SGC > 0 — emergence confirmed. "
-            "Q_SGC = MI × H_st × H_gerbe × H_clifford. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor zero-collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "Q_SGC": MI_FIXED * H_ST * H_GERBE * H_CLIFFORD,

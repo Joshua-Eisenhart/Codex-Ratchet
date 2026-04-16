@@ -30,6 +30,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bridge claims for SpectralTriple×Gerbe×Clifford (28th program). "
+    "Q_SGC = MI × H_st × H_gerbe × H_clifford. rho_SGC valid (8×8, "
+    "trace=1, PSD, float64). r(Q_SGC, MI) > 0.99 with fixed H "
+    "(proportional by construction). Axis 0 gradient: dephasing MERA gives "
+    "MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. "
+    "sympy: four-factor product collapse. pytorch: rho_SGC trace validated "
+    "(float64)."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -333,19 +343,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for SpectralTriple×Gerbe×Clifford (28th program). "
-            f"Q_SGC = MI × H_st × H_gerbe × H_clifford. "
-            f"H_st={H_ST:.6f} (spectral gap seed=1 random sym 4x4). "
-            f"H_gerbe={H_GERBE:.6f} (log(1+3), DD_count=3). "
-            f"H_clifford={H_CLIFFORD:.6f} ({'Cl(3,0) rotor norm' if _CLIFFORD else 'fallback 0.5'}). "
-            "rho_SGC valid (8x8, trace=1, PSD, float64). "
-            "r(Q_SGC, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_SGC trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_st": H_ST, "H_gerbe": H_GERBE, "H_clifford": H_CLIFFORD},

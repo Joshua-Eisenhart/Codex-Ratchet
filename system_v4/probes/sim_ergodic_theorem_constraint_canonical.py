@@ -194,13 +194,13 @@ def run_positive_tests():
 
             # Simplified: just assert consistency of ergodic property
             # time_avg = space_avg (in ergodic systems)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, time_avg, space_avg))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, time_avg, space_avg))
 
             # Assert space_avg is in [0,1] for a measure on [0,1)
             zero_float = solver.mkConst(solver.getRealSort(), "zero_f")
             one_float = solver.mkConst(solver.getRealSort(), "one_f")
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, zero_float, space_avg))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Leq, space_avg, one_float))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, zero_float, space_avg))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, space_avg, one_float))
 
             is_sat = solver.checkSat().isSat()
 
@@ -278,10 +278,10 @@ def run_negative_tests():
             space_avg = solver.mkConst(solver.getRealSort(), "space_avg_neg")
 
             # Assert: system is ergodic (time avg = space avg)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, time_avg, space_avg))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, time_avg, space_avg))
 
             # Try to assert: time_avg ≠ space_avg (contradiction)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Distinct, time_avg, space_avg))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.DISTINCT, time_avg, space_avg))
 
             is_sat = solver.checkSat().isSat()
 
@@ -423,12 +423,12 @@ def run_boundary_tests():
             epsilon = solver.mkConst(solver.getRealSort(), "eps")
 
             # Constraint: |time_avg - space_avg| ≤ epsilon
-            diff = solver.mkTerm(cvc5.Kind.Minus, time_avg_bound, space_avg_bound)
+            diff = solver.mkTerm(cvc5.Kind.SUB, time_avg_bound, space_avg_bound)
 
             # Simplified: assert convergence condition
             zero = solver.mkInteger(0)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, epsilon, zero))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, epsilon, zero))  # Perfect convergence
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, epsilon, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, epsilon, zero))  # Perfect convergence
 
             is_sat = solver.checkSat().isSat()
 

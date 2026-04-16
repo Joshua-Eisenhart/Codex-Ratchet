@@ -176,18 +176,18 @@ def run_positive_tests():
             # Constraints: 0 < λ < 1 (exponential mixing)
             zero = solver.mkInteger(0)
             one = solver.mkInteger(1)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, zero, lambda_val))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, lambda_val, one))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, zero, lambda_val))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, lambda_val, one))
 
             # C > 0
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, zero, C))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, zero, C))
 
             # n > 0
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, zero, n))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, zero, n))
 
             # Simplified: assert that mixing is satisfied
             # μ_difference ≥ 0 and bounded by exponential
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, mu_diff, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, mu_diff, zero))
 
             is_sat = solver.checkSat().isSat()
 
@@ -266,10 +266,10 @@ def run_negative_tests():
 
             # Assert: λ < 1 (valid mixing)
             one = solver.mkInteger(1)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, lambda_val, one))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, lambda_val, one))
 
             # Try to assert: λ ≥ 1 (contradiction)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, lambda_val, one))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, lambda_val, one))
 
             is_sat = solver.checkSat().isSat()
 
@@ -403,10 +403,10 @@ def run_boundary_tests():
             one = solver.mkInteger(1)
             zero = solver.mkInteger(0)
 
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Gt, epsilon, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, epsilon, zero))
             # λ + ε = 1
-            sum_term = solver.mkTerm(cvc5.Kind.Plus, lambda_boundary, epsilon)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, sum_term, one))
+            sum_term = solver.mkTerm(cvc5.Kind.ADD, lambda_boundary, epsilon)
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, sum_term, one))
 
             is_sat = solver.checkSat().isSat()
 

@@ -174,11 +174,11 @@ def run_positive_tests():
             # h(T) = log(n) for shift on n symbols
             # h(T) ≥ 0 always
             zero = solver.mkInteger(0)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, h_entropy, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, h_entropy, zero))
 
             # Assert n > 1 (at least binary)
             one = solver.mkInteger(1)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Gt, n_symbols, one))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, n_symbols, one))
 
             is_sat = solver.checkSat().isSat()
 
@@ -242,10 +242,10 @@ def run_negative_tests():
 
             # Assert: h(T) ≥ 0 (valid entropy)
             zero = solver.mkInteger(0)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, h_entropy, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, h_entropy, zero))
 
             # Try to assert: h(T) < 0 (contradiction)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, h_entropy, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, h_entropy, zero))
 
             is_sat = solver.checkSat().isSat()
 
@@ -381,7 +381,7 @@ def run_boundary_tests():
             zero = solver.mkInteger(0)
 
             # Assert: h = 0 (identity case)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, h, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h, zero))
 
             is_sat = solver.checkSat().isSat()
 

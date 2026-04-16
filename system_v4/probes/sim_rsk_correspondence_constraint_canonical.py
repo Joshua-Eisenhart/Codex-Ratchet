@@ -92,10 +92,10 @@ def run_positive_tests():
     q_content = solver.mkConst(solver.getIntegerSort(), "q_content")
 
     # Shape (1): one row of size 1
-    shape_constraint = solver.mkTerm(cvc5.Kind.Equal, shape_1, solver.mkInteger(1))
+    shape_constraint = solver.mkTerm(cvc5.Kind.EQUAL, shape_1, solver.mkInteger(1))
     # P and Q both contain single element 1
-    p_constraint = solver.mkTerm(cvc5.Kind.Equal, p_content, solver.mkInteger(1))
-    q_constraint = solver.mkTerm(cvc5.Kind.Equal, q_content, solver.mkInteger(1))
+    p_constraint = solver.mkTerm(cvc5.Kind.EQUAL, p_content, solver.mkInteger(1))
+    q_constraint = solver.mkTerm(cvc5.Kind.EQUAL, q_content, solver.mkInteger(1))
 
     solver.assertFormula(shape_constraint)
     solver.assertFormula(p_constraint)
@@ -117,10 +117,10 @@ def run_positive_tests():
     row_2 = solver2.mkConst(solver2.getIntegerSort(), "row_2_size")
 
     # Shape (1,1): two rows of size 1 each
-    constraint_r1 = solver2.mkTerm(cvc5.Kind.Equal, row_1, solver2.mkInteger(1))
-    constraint_r2 = solver2.mkTerm(cvc5.Kind.Equal, row_2, solver2.mkInteger(1))
+    constraint_r1 = solver2.mkTerm(cvc5.Kind.EQUAL, row_1, solver2.mkInteger(1))
+    constraint_r2 = solver2.mkTerm(cvc5.Kind.EQUAL, row_2, solver2.mkInteger(1))
     # Rows must be weakly decreasing
-    decreasing = solver2.mkTerm(cvc5.Kind.Geq, row_1, row_2)
+    decreasing = solver2.mkTerm(cvc5.Kind.GEQ, row_1, row_2)
 
     solver2.assertFormula(constraint_r1)
     solver2.assertFormula(constraint_r2)
@@ -174,9 +174,9 @@ def run_negative_tests():
     shape_2 = solver.mkConst(solver.getIntegerSort(), "shape_2")
 
     # Constraint: each permutation has exactly one shape
-    unique_shape = solver.mkTerm(cvc5.Kind.Equal, shape_1, shape_2)
+    unique_shape = solver.mkTerm(cvc5.Kind.EQUAL, shape_1, shape_2)
     # Try to force different shapes
-    different = solver.mkTerm(cvc5.Kind.Distinct, shape_1, shape_2)
+    different = solver.mkTerm(cvc5.Kind.DISTINCT, shape_1, shape_2)
 
     solver.assertFormula(unique_shape)
     solver.assertFormula(different)
@@ -196,14 +196,13 @@ def run_negative_tests():
     p_pair = solver2.mkConst(solver2.getIntegerSort(), "p_pair")
     q_pair = solver2.mkConst(solver2.getIntegerSort(), "q_pair")
 
-    # Constraint: bijection requires perm_1 != perm_2 -> (P, Q) pairs differ
-    perm_differ = solver2.mkTerm(cvc5.Kind.Distinct, perm_1, perm_2)
-    # Try to force same (P, Q)
-    same_pairs = solver2.mkTerm(cvc5.Kind.And,
-        solver2.mkTerm(cvc5.Kind.Equal, perm_1, perm_2)
-    )
+    # Constraint: bijection requires perm_1 != perm_2
+    perm_differ = solver2.mkTerm(cvc5.Kind.DISTINCT, perm_1, perm_2)
+    # Try to force same (contradicts distinctness)
+    same_perm = solver2.mkTerm(cvc5.Kind.EQUAL, perm_1, perm_2)
 
     solver2.assertFormula(perm_differ)
+    solver2.assertFormula(same_perm)
     # This creates contradiction
 
     result_2 = solver2.checkSat()
@@ -241,7 +240,7 @@ def run_boundary_tests():
     row_size = solver.mkConst(solver.getIntegerSort(), "row_size")
     n = 3
 
-    single_row = solver.mkTerm(cvc5.Kind.Equal, row_size, solver.mkInteger(n))
+    single_row = solver.mkTerm(cvc5.Kind.EQUAL, row_size, solver.mkInteger(n))
     solver.assertFormula(single_row)
 
     result_1 = solver.checkSat()
@@ -261,15 +260,15 @@ def run_boundary_tests():
     r3 = solver2.mkConst(solver2.getIntegerSort(), "r3")
 
     # Shape (2, 2, 1) has 5 cells total
-    sum_constraint = solver2.mkTerm(cvc5.Kind.Equal,
-        total,
-        solver2.mkTerm(cvc5.Kind.Add,
-            solver2.mkTerm(cvc5.Kind.Add, r1, r2), r3)
+    sum_constraint = solver2.mkTerm(cvc5.Kind.EQUAL,
+        total_cells,
+        solver2.mkTerm(cvc5.Kind.ADD,
+            solver2.mkTerm(cvc5.Kind.ADD, r1, r2), r3)
     )
-    r1_val = solver2.mkTerm(cvc5.Kind.Equal, r1, solver2.mkInteger(2))
-    r2_val = solver2.mkTerm(cvc5.Kind.Equal, r2, solver2.mkInteger(2))
-    r3_val = solver2.mkTerm(cvc5.Kind.Equal, r3, solver2.mkInteger(1))
-    total_val = solver2.mkTerm(cvc5.Kind.Equal, total, solver2.mkInteger(5))
+    r1_val = solver2.mkTerm(cvc5.Kind.EQUAL, r1, solver2.mkInteger(2))
+    r2_val = solver2.mkTerm(cvc5.Kind.EQUAL, r2, solver2.mkInteger(2))
+    r3_val = solver2.mkTerm(cvc5.Kind.EQUAL, r3, solver2.mkInteger(1))
+    total_val = solver2.mkTerm(cvc5.Kind.EQUAL, total_cells, solver2.mkInteger(5))
 
     solver2.assertFormula(sum_constraint)
     solver2.assertFormula(r1_val)
@@ -292,14 +291,14 @@ def run_boundary_tests():
 
     # Weakly decreasing
     decreasing_constraints = [
-        solver3.mkTerm(cvc5.Kind.Geq, rows[i], rows[i+1])
+        solver3.mkTerm(cvc5.Kind.GEQ, rows[i], rows[i+1])
         for i in range(len(rows)-1)
     ]
 
     row_vals = [
-        solver3.mkTerm(cvc5.Kind.Equal, rows[0], solver3.mkInteger(3)),
-        solver3.mkTerm(cvc5.Kind.Equal, rows[1], solver3.mkInteger(2)),
-        solver3.mkTerm(cvc5.Kind.Equal, rows[2], solver3.mkInteger(1)),
+        solver3.mkTerm(cvc5.Kind.EQUAL, rows[0], solver3.mkInteger(3)),
+        solver3.mkTerm(cvc5.Kind.EQUAL, rows[1], solver3.mkInteger(2)),
+        solver3.mkTerm(cvc5.Kind.EQUAL, rows[2], solver3.mkInteger(1)),
     ]
 
     for c in decreasing_constraints + row_vals:

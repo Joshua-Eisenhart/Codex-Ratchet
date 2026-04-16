@@ -89,8 +89,8 @@ def run_positive_tests():
     solver = cvc5.Solver()
     coeff_0 = solver.mkConst(solver.getIntegerSort(), "c0")
 
-    constraint_1 = solver.mkTerm(cvc5.Kind.Equal, coeff_0, solver.mkInteger(1))
-    non_neg_1 = solver.mkTerm(cvc5.Kind.Geq, coeff_0, solver.mkInteger(0))
+    constraint_1 = solver.mkTerm(cvc5.Kind.EQUAL, coeff_0, solver.mkInteger(1))
+    non_neg_1 = solver.mkTerm(cvc5.Kind.GEQ, coeff_0, solver.mkInteger(0))
 
     solver.assertFormula(constraint_1)
     solver.assertFormula(non_neg_1)
@@ -107,10 +107,10 @@ def run_positive_tests():
     c_q = solver2.mkConst(solver2.getIntegerSort(), "coeff_q")
     c_const = solver2.mkConst(solver2.getIntegerSort(), "coeff_const")
 
-    non_neg_q = solver2.mkTerm(cvc5.Kind.Geq, c_q, solver2.mkInteger(0))
-    non_neg_const = solver2.mkTerm(cvc5.Kind.Geq, c_const, solver2.mkInteger(0))
-    value_constraint = solver2.mkTerm(cvc5.Kind.Equal, c_q, solver2.mkInteger(1))
-    const_constraint = solver2.mkTerm(cvc5.Kind.Equal, c_const, solver2.mkInteger(1))
+    non_neg_q = solver2.mkTerm(cvc5.Kind.GEQ, c_q, solver2.mkInteger(0))
+    non_neg_const = solver2.mkTerm(cvc5.Kind.GEQ, c_const, solver2.mkInteger(0))
+    value_constraint = solver2.mkTerm(cvc5.Kind.EQUAL, c_q, solver2.mkInteger(1))
+    const_constraint = solver2.mkTerm(cvc5.Kind.EQUAL, c_const, solver2.mkInteger(1))
 
     solver2.assertFormula(non_neg_q)
     solver2.assertFormula(non_neg_const)
@@ -159,8 +159,8 @@ def run_negative_tests():
     solver = cvc5.Solver()
     coeff = solver.mkConst(solver.getIntegerSort(), "coeff")
 
-    constraint = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(1))
-    negative = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(-1))
+    constraint = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(1))
+    negative = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(-1))
 
     solver.assertFormula(constraint)
     solver.assertFormula(negative)
@@ -177,8 +177,8 @@ def run_negative_tests():
     solver2 = cvc5.Solver()
     c_q = solver2.mkConst(solver2.getIntegerSort(), "coeff_q")
 
-    non_neg = solver2.mkTerm(cvc5.Kind.Geq, c_q, solver2.mkInteger(0))
-    negative_force = solver2.mkTerm(cvc5.Kind.Equal, c_q, solver2.mkInteger(-2))
+    non_neg = solver2.mkTerm(cvc5.Kind.GEQ, c_q, solver2.mkInteger(0))
+    negative_force = solver2.mkTerm(cvc5.Kind.EQUAL, c_q, solver2.mkInteger(-2))
 
     solver2.assertFormula(non_neg)
     solver2.assertFormula(negative_force)
@@ -216,8 +216,8 @@ def run_boundary_tests():
     solver = cvc5.Solver()
     coeff = solver.mkConst(solver.getIntegerSort(), "coeff")
 
-    zero_constraint = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(0))
-    non_neg = solver.mkTerm(cvc5.Kind.Geq, coeff, solver.mkInteger(0))
+    zero_constraint = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(0))
+    non_neg = solver.mkTerm(cvc5.Kind.GEQ, coeff, solver.mkInteger(0))
 
     solver.assertFormula(zero_constraint)
     solver.assertFormula(non_neg)
@@ -247,7 +247,7 @@ def run_boundary_tests():
     coeffs_vars = [solver3.mkConst(solver3.getIntegerSort(), f"c{i}") for i in range(5)]
 
     constraints = [
-        solver3.mkTerm(cvc5.Kind.Geq, c, solver3.mkInteger(0))
+        solver3.mkTerm(cvc5.Kind.GEQ, c, solver3.mkInteger(0))
         for c in coeffs_vars
     ]
 

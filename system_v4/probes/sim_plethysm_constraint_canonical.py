@@ -91,10 +91,10 @@ def run_positive_tests():
     coeff_s1 = solver.mkConst(solver.getIntegerSort(), "coeff_s1")
     coeff_other = solver.mkConst(solver.getIntegerSort(), "coeff_other")
 
-    constraint_1 = solver.mkTerm(cvc5.Kind.Equal, coeff_s1, solver.mkInteger(1))
-    constraint_2 = solver.mkTerm(cvc5.Kind.Equal, coeff_other, solver.mkInteger(0))
-    non_neg_1 = solver.mkTerm(cvc5.Kind.Geq, coeff_s1, solver.mkInteger(0))
-    non_neg_2 = solver.mkTerm(cvc5.Kind.Geq, coeff_other, solver.mkInteger(0))
+    constraint_1 = solver.mkTerm(cvc5.Kind.EQUAL, coeff_s1, solver.mkInteger(1))
+    constraint_2 = solver.mkTerm(cvc5.Kind.EQUAL, coeff_other, solver.mkInteger(0))
+    non_neg_1 = solver.mkTerm(cvc5.Kind.GEQ, coeff_s1, solver.mkInteger(0))
+    non_neg_2 = solver.mkTerm(cvc5.Kind.GEQ, coeff_other, solver.mkInteger(0))
 
     solver.assertFormula(constraint_1)
     solver.assertFormula(constraint_2)
@@ -115,12 +115,12 @@ def run_positive_tests():
     coeff_s22 = solver2.mkConst(solver2.getIntegerSort(), "coeff_s22")
     coeff_rest = solver2.mkConst(solver2.getIntegerSort(), "coeff_rest")
 
-    val_s4 = solver2.mkTerm(cvc5.Kind.Equal, coeff_s4, solver2.mkInteger(1))
-    val_s22 = solver2.mkTerm(cvc5.Kind.Equal, coeff_s22, solver2.mkInteger(1))
-    val_rest = solver2.mkTerm(cvc5.Kind.Equal, coeff_rest, solver2.mkInteger(0))
-    non_neg_s4 = solver2.mkTerm(cvc5.Kind.Geq, coeff_s4, solver2.mkInteger(0))
-    non_neg_s22 = solver2.mkTerm(cvc5.Kind.Geq, coeff_s22, solver2.mkInteger(0))
-    non_neg_rest = solver2.mkTerm(cvc5.Kind.Geq, coeff_rest, solver2.mkInteger(0))
+    val_s4 = solver2.mkTerm(cvc5.Kind.EQUAL, coeff_s4, solver2.mkInteger(1))
+    val_s22 = solver2.mkTerm(cvc5.Kind.EQUAL, coeff_s22, solver2.mkInteger(1))
+    val_rest = solver2.mkTerm(cvc5.Kind.EQUAL, coeff_rest, solver2.mkInteger(0))
+    non_neg_s4 = solver2.mkTerm(cvc5.Kind.GEQ, coeff_s4, solver2.mkInteger(0))
+    non_neg_s22 = solver2.mkTerm(cvc5.Kind.GEQ, coeff_s22, solver2.mkInteger(0))
+    non_neg_rest = solver2.mkTerm(cvc5.Kind.GEQ, coeff_rest, solver2.mkInteger(0))
 
     solver2.assertFormula(val_s4)
     solver2.assertFormula(val_s22)
@@ -170,9 +170,9 @@ def run_negative_tests():
     coeff = solver.mkConst(solver.getIntegerSort(), "coeff")
 
     # s_1[s_1] = s_1 requires coeff(s_1) = 1
-    constraint = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(1))
+    constraint = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(1))
     # Try to force negative
-    negative = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(-1))
+    negative = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(-1))
 
     solver.assertFormula(constraint)
     solver.assertFormula(negative)
@@ -190,9 +190,9 @@ def run_negative_tests():
     c_s4 = solver2.mkConst(solver2.getIntegerSort(), "c_s4")
 
     # Non-negative constraint
-    non_neg = solver2.mkTerm(cvc5.Kind.Geq, c_s4, solver2.mkInteger(0))
+    non_neg = solver2.mkTerm(cvc5.Kind.GEQ, c_s4, solver2.mkInteger(0))
     # Force negative
-    negative_force = solver2.mkTerm(cvc5.Kind.Equal, c_s4, solver2.mkInteger(-1))
+    negative_force = solver2.mkTerm(cvc5.Kind.EQUAL, c_s4, solver2.mkInteger(-1))
 
     solver2.assertFormula(non_neg)
     solver2.assertFormula(negative_force)
@@ -231,8 +231,8 @@ def run_boundary_tests():
     solver = cvc5.Solver()
     coeff = solver.mkConst(solver.getIntegerSort(), "coeff")
 
-    empty_result = solver.mkTerm(cvc5.Kind.Equal, coeff, solver.mkInteger(1))
-    non_neg = solver.mkTerm(cvc5.Kind.Geq, coeff, solver.mkInteger(0))
+    empty_result = solver.mkTerm(cvc5.Kind.EQUAL, coeff, solver.mkInteger(1))
+    non_neg = solver.mkTerm(cvc5.Kind.GEQ, coeff, solver.mkInteger(0))
 
     solver.assertFormula(empty_result)
     solver.assertFormula(non_neg)
@@ -250,7 +250,7 @@ def run_boundary_tests():
     coeff_total = solver2.mkConst(solver2.getIntegerSort(), "coeff_total")
 
     # Coefficients sum to some positive value
-    total_constraint = solver2.mkTerm(cvc5.Kind.Greater, coeff_total, solver2.mkInteger(0))
+    total_constraint = solver2.mkTerm(cvc5.Kind.GT, coeff_total, solver2.mkInteger(0))
     solver2.assertFormula(total_constraint)
 
     result_2 = solver2.checkSat()
@@ -266,13 +266,13 @@ def run_boundary_tests():
 
     # All coefficients non-negative
     non_neg_all = [
-        solver3.mkTerm(cvc5.Kind.Geq, c, solver3.mkInteger(0))
+        solver3.mkTerm(cvc5.Kind.GEQ, c, solver3.mkInteger(0))
         for c in coeffs
     ]
 
     # At least one is positive (non-zero expansion)
-    at_least_one = solver3.mkTerm(cvc5.Kind.Or,
-        *[solver3.mkTerm(cvc5.Kind.Greater, c, solver3.mkInteger(0)) for c in coeffs]
+    at_least_one = solver3.mkTerm(cvc5.Kind.OR,
+        *[solver3.mkTerm(cvc5.Kind.GT, c, solver3.mkInteger(0)) for c in coeffs]
     )
 
     for constraint in non_neg_all:

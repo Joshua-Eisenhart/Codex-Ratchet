@@ -1,6 +1,6 @@
 {
   "probe": "sim_pure_lego_definetti_symmetry",
-  "timestamp": "2026-04-16T08:28:27.713970+00:00",
+  "timestamp": "2026-04-16T08:35:18.271719+00:00",
   "sections": {
     "classical_definetti": {
       "joint_distribution": [
@@ -143,5 +143,22 @@
     "swap_test": "PASS",
     "bell_symmetry": "PASS"
   },
-  "overall": "ALL PASS"
+  "overall": "ALL PASS",
+  "divergence_log": "Classical baseline: this pure lego de Finetti probe checks exchangeability and symmetry numerically, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "state construction, swap tests, and reduced-state numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "fidelity and reduced-state linear algebra for the de Finetti checks"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  }
 }

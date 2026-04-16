@@ -331,5 +331,20 @@
     "total_tests": 24,
     "total_pass": "24",
     "all_pass": "True"
+  },
+  "divergence_log": "Classical baseline: this symplectic/Kahler/Weyl probe checks geometry numerics, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "used": true,
+      "reason": "matrix construction, random draws, and geometric bookkeeping for the classical baseline"
+    },
+    "scipy": {
+      "used": true,
+      "reason": "matrix exponentials and square roots for the classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
   }
 }

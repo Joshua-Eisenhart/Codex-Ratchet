@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T08:29:17.101278+00:00",
+  "timestamp": "2026-04-16T08:35:52.016657+00:00",
   "probe": "sim_pure_lego_steane_surface",
   "sections": {
     "steane_single_error": {
@@ -1254,5 +1254,15 @@
     }
   },
   "overall_pass": true,
-  "code_distance_verified": true
+  "code_distance_verified": true,
+  "divergence_log": "Classical baseline: this Steane/surface-code probe checks code-theory numerics, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "used": true,
+      "reason": "dense linear-algebra and stabilizer bookkeeping for the classical baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive"
+  }
 }

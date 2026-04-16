@@ -18,6 +18,11 @@ import json, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Dirac×Contact×MERA topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -207,6 +212,8 @@ if __name__ == "__main__":
     result = {
         "sim": "sim_dirac_contact_mera_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "topology_seeds": TOPOLOGY_SEEDS,
         "H_contact": H_CONTACT,
         "H_mera": H_MERA,

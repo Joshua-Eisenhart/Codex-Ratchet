@@ -21,6 +21,14 @@ import json, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Pairwise coupling for Dirac×Contact×MERA (29th program). "
+    "H_dirac=seed0 symmetric 4x4 spectral gap. "
+    "H_contact=log(17). H_mera=log(2). "
+    "Q_pair=H_i×H_j>0 for all three pairings. "
+    "z3/cvc5 not needed for this numeric pairwise step; positivity is checked directly."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -166,6 +174,8 @@ if __name__ == "__main__":
     result = {
         "sim": "sim_dirac_contact_mera_pairwise_coupling",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "shell_entropies": {"H_dirac": H_DIRAC, "H_contact": H_CONTACT, "H_mera": H_MERA},
         "positive_tests": pos,
         "negative_tests": neg,

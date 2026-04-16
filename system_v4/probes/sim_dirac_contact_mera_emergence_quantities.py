@@ -17,6 +17,12 @@ import json, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Dirac×Contact×MERA emergence probe: this file checks "
+    "scalar emergence quantities with z3 and sympy support where available, "
+    "but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -216,6 +222,8 @@ if __name__ == "__main__":
     result = {
         "sim": "sim_dirac_contact_mera_emergence_quantities",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "shell_entropies": {"H_dirac": H_DIRAC, "H_contact": H_CONTACT, "H_mera": H_MERA},
         "positive_tests": pos,
         "negative_tests": neg,

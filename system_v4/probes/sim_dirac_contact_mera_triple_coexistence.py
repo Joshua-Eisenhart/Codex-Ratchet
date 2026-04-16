@@ -17,6 +17,11 @@ import json, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Dirac×Contact×MERA triple coexistence baseline. The file stays numerical "
+    "and compares normalized shell entropies via joint-vs-pairwise products "
+    "without changing the program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -168,6 +173,8 @@ if __name__ == "__main__":
     result = {
         "sim": "sim_dirac_contact_mera_triple_coexistence",
         "classification": classification,
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "shell_entropies": {"H_dirac": H_DIRAC, "H_contact": H_CONTACT, "H_mera": H_MERA},
         "positive_tests": pos,
         "negative_tests": neg,

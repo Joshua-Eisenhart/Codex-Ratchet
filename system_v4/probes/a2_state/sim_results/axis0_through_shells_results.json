@@ -20,9 +20,9 @@
       "reason": "autograd backward through Dykstra shell projections"
     },
     "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- 2-qubit density matrix, no graph"
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: PyG message passing over the ranked shell-mechanics frontier; edge weights carry composite support and aggregated node norms must stay nontrivial"
     },
     "z3": {
       "tried": true,
@@ -30,9 +30,9 @@
       "reason": "legacy shell verification plus deep shell-ordering constraint witness"
     },
     "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- z3 sufficient"
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 cross-check that the measured shell frontier ordering cannot be inverted once the composite scores are fixed as QF_LRA constraints"
     },
     "sympy": {
       "tried": true,
@@ -55,9 +55,9 @@
       "reason": "deep manifold witness over shell-mechanics surfaces"
     },
     "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed -- no equivariant layers"
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn spherical-harmonic parity witness over the shell-mechanics winner vector under shell-axis reflection"
     },
     "rustworkx": {
       "tried": true,
@@ -84,11 +84,11 @@
     "numpy": "supportive",
     "scipy": "load_bearing",
     "clifford": "load_bearing",
-    "cvc5": null,
-    "e3nn": null,
+    "cvc5": "load_bearing",
+    "e3nn": "load_bearing",
     "geomstats": "load_bearing",
     "gudhi": "load_bearing",
-    "pyg": null,
+    "pyg": "load_bearing",
     "pytorch": "load_bearing",
     "rustworkx": "load_bearing",
     "sympy": "load_bearing",
@@ -97,7 +97,7 @@
     "xgi": "load_bearing",
     "z3": "load_bearing"
   },
-  "elapsed_seconds": 1.3798589706420898,
+  "elapsed_seconds": 0.6877732276916504,
   "shell_bridge": {
     "dynamic_vs_frozen_gap": 0.02947145190205047,
     "jk_fuzz_dynamic": 2.261127732148754,
@@ -384,6 +384,26 @@
       "constraint_surface": {
         "result": "sat",
         "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "solver_result": "UNSAT",
+        "winner_gap": 0.17268608194297042
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 8,
+        "num_edges": 14,
+        "mean_aggregate_norm": 1.3589480460718129,
+        "winner_aggregate_norm": 1.154593958742127,
+        "edge_weight_mean": 0.5520463835642678
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
       },
       "manifold_surface": {
         "frechet_mean": [

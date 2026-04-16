@@ -19,9 +19,9 @@
       "reason": "legacy seam tests plus deep fit witness over seam-surface aggregates"
     },
     "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": ""
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: PyG message passing over the ranked seam-candidate chain; edge weights carry composite support and aggregated node norms must stay nontrivial"
     },
     "z3": {
       "tried": true,
@@ -29,9 +29,9 @@
       "reason": "legacy involution UNSAT proof plus deep seam-ordering constraint witness"
     },
     "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": ""
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 cross-check that the measured seam ranking cannot be inverted once the ordered composite scores are fixed as QF_LRA constraints"
     },
     "sympy": {
       "tried": true,
@@ -54,9 +54,9 @@
       "reason": "manifold witness over seam-surface geometry"
     },
     "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": ""
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn spherical-harmonic parity witness over the seam winner vector under chirality reflection"
     },
     "rustworkx": {
       "tried": true,
@@ -83,11 +83,11 @@
     "numpy": "supportive",
     "scipy": "load_bearing",
     "clifford": "load_bearing",
-    "cvc5": null,
-    "e3nn": null,
+    "cvc5": "load_bearing",
+    "e3nn": "load_bearing",
     "geomstats": "load_bearing",
     "gudhi": "load_bearing",
-    "pyg": null,
+    "pyg": "load_bearing",
     "pytorch": "load_bearing",
     "rustworkx": "load_bearing",
     "sympy": "load_bearing",
@@ -394,6 +394,26 @@
       "constraint_surface": {
         "result": "sat",
         "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "solver_result": "UNSAT",
+        "winner_gap": 0.09752836764047723
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 6,
+        "num_edges": 10,
+        "mean_aggregate_norm": 1.5943946251503018,
+        "winner_aggregate_norm": 1.06240787978184,
+        "edge_weight_mean": 0.6889829794157138
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
       },
       "manifold_surface": {
         "frechet_mean": [

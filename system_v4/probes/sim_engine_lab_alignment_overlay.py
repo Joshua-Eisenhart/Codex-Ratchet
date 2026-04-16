@@ -11,14 +11,15 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Controller overlay that compares the open engine lab against stricter "
     "QIT-aligned companion surfaces and entropy/readout arrays when available."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "stochastic_thermodynamics",
@@ -152,6 +153,7 @@ def main() -> None:
         "name": "engine_lab_alignment_overlay",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

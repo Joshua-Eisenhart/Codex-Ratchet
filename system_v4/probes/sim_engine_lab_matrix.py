@@ -18,15 +18,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "exploratory"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Controller-facing engine-lab matrix over Carnot and Szilard rows. "
     "It organizes exact rows, stochastic rows, topology sweeps, and entropy/"
-    "readout variants into one comparable surface."
+    "readout variants into one comparable surface without changing the engine "
+    "theorem or scope."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "stochastic_thermodynamics",
@@ -857,6 +859,7 @@ def main() -> None:
         "name": "engine_lab_matrix",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -27,6 +27,21 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical foundation baseline: this transport-delta ablation uses "
+    "numeric numpy and local Hopf helpers to compare chirality and loop-law "
+    "assignments, not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and Frobenius-distance calculations for the ablation test",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 from hopf_manifold import (
     TORUS_CLIFFORD,

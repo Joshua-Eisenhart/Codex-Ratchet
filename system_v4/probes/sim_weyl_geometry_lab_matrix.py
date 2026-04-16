@@ -19,15 +19,18 @@ import json
 import pathlib
 from collections import Counter
 from typing import Any
+
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Controller-facing Weyl/Hopf geometry matrix over reusable legos, "
-    "composed rows, bridge rows, and directly relevant legacy geometry anchors."
+divergence_log = (
+    "Controller-facing Weyl/Hopf geometry matrix over reusable legos, composed "
+    "rows, bridge rows, and directly relevant legacy geometry anchors. This is a "
+    "classical_baseline comparison surface, not new owner math."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_geometry_lab_matrix",
@@ -564,6 +567,7 @@ def main() -> None:
         "name": "weyl_geometry_lab_matrix",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

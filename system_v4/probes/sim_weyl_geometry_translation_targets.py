@@ -19,17 +19,17 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"
-DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+classification = "canonical"
 
 
-CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Controller-facing translation-target surface for the Weyl/Hopf geometry "
     "lane. It ranks foundation rows, companion-ready rows, graph/proof bridges, "
     "and sidecars using the matrix, overlay, registry supplement, and audit "
-    "surfaces."
+    "surfaces. This is a routing surface, not new owner math."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_geometry_translation_targets",
@@ -460,6 +460,7 @@ def main() -> None:
         "name": "weyl_geometry_translation_targets",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -261,7 +261,7 @@ def run_negative_tests():
 
             # Hyperbolic wave equation requires c > 0
             # Asserting c ≤ 0 should be UNSAT with hyperbolic constraint
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.LE, c, tm.mkReal("0")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, c, tm.mkReal("0")))
             solver.assertFormula(tm.mkTerm(cvc5.Kind.GT, c, tm.mkReal("0")))
 
             result = solver.checkSat()

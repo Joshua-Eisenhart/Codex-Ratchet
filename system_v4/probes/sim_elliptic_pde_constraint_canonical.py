@@ -147,8 +147,8 @@ def run_positive_tests():
             laplacian = tm.mkConst(tm.getRealSort(), "laplacian")
 
             # Maximum principle: if Δu ≥ 0 (subharmonic), max is on boundary
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.GE, laplacian, tm.mkReal("0")))
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.GE, u_int, u_bdry))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, laplacian, tm.mkReal("0")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, u_int, u_bdry))
 
             result = solver.checkSat()
             results["elliptic_sat_max_principle"] = {
@@ -269,10 +269,10 @@ def run_negative_tests():
 
             # Try to violate maximum principle:
             # u attains strict interior max AND Δu ≥ 0
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.GE, laplacian, tm.mkReal("0")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, laplacian, tm.mkReal("0")))
             solver.assertFormula(tm.mkTerm(cvc5.Kind.GT, u_int, u_bdry))  # interior > boundary
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.LE, u_bdry, tm.mkReal("10")))
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.GE, u_int, tm.mkReal("11")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, u_bdry, tm.mkReal("10")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.GEQ, u_int, tm.mkReal("11")))
 
             result = solver.checkSat()
             # This should be SAT as the logic allows general values

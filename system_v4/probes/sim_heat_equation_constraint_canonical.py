@@ -256,7 +256,7 @@ def run_negative_tests():
 
             # Heat equation requires α > 0
             # Asserting α ≤ 0 contradicts well-posedness
-            solver.assertFormula(tm.mkTerm(cvc5.Kind.LE, alpha, tm.mkReal("0")))
+            solver.assertFormula(tm.mkTerm(cvc5.Kind.LEQ, alpha, tm.mkReal("0")))
             solver.assertFormula(tm.mkTerm(cvc5.Kind.GT, alpha, tm.mkReal("0")))
 
             result = solver.checkSat()

@@ -1,6 +1,6 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-16T21:41:07.800357+00:00",
+  "generated_at": "2026-04-16T21:42:44.345846+00:00",
   "classification": "audit",
   "interpreter_authority": {
     "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
@@ -161,13 +161,10 @@
   "probe_truth_audit": {
     "available": true,
     "ok": false,
-    "hard_finding_count": 85,
+    "hard_finding_count": 83,
     "warning_finding_count": 17,
     "blocked_results": {
       "axis0_pyg_proxy_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "axis0_through_shells_results.json": [
         "stale_source_newer_than_result"
       ],
       "cvc5_frege_system_constraint_results.json": [
@@ -253,9 +250,6 @@
         "canonical_has_failed_checks"
       ],
       "sim_axis0_pyg_proxy_results.json": [
-        "stale_source_newer_than_result"
-      ],
-      "sim_axis0_through_shells_results.json": [
         "stale_source_newer_than_result"
       ],
       "sim_cvc5_abstract_interpretation_lattice_results.json": [
@@ -457,13 +451,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 2049,
+    "files_with_manifest_or_depth": 2072,
     "per_tool": {
       "pytorch": {
-        "tried_count": 931,
-        "used_count": 673,
-        "load_bearing_count": 510,
-        "depth_present_count": 586,
+        "tried_count": 936,
+        "used_count": 677,
+        "load_bearing_count": 514,
+        "depth_present_count": 590,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -702,8 +696,11 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_capability_e3nn_isolated_results.json",
           "sim_coupling_285_lt_61shell_results.json",
           "sim_coupling_286_ms_61shell_results.json",
           "sim_coupling_287_ghp_61shell_results.json",
@@ -910,6 +907,7 @@
           "sim_gtower_e8_root_system_240_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
           "sim_integration_cvc5_spectral_triple_constraint_results.json",
+          "sim_integration_datasketch_pyg_lsh_graph_results.json",
           "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_spinor_torch_foundation_results.json",
@@ -985,10 +983,10 @@
         ]
       },
       "pyg": {
-        "tried_count": 388,
-        "used_count": 27,
-        "load_bearing_count": 23,
-        "depth_present_count": 23,
+        "tried_count": 391,
+        "used_count": 28,
+        "load_bearing_count": 24,
+        "depth_present_count": 24,
         "anchor_stage_coverage": [
           "assembly"
         ],
@@ -1007,6 +1005,7 @@
           "sim_axis0_lambda_expansion_cosmology_stack_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_integration_datasketch_pyg_lsh_graph_results.json",
           "su3_gauge_invariant_tensor_contraction_results.json",
           "torch_gnn_axis0_seeded_results.json",
           "torch_gnn_directional_gate_results.json",
@@ -1019,10 +1018,10 @@
         ]
       },
       "z3": {
-        "tried_count": 712,
-        "used_count": 421,
-        "load_bearing_count": 343,
-        "depth_present_count": 372,
+        "tried_count": 716,
+        "used_count": 424,
+        "load_bearing_count": 346,
+        "depth_present_count": 375,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -1273,6 +1272,8 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
           "sim_band_gap_constraint_canonical_results.json",
@@ -1288,6 +1289,7 @@
           "sim_gtower_gl_o_ordering_deep_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
           "sim_integration_cvc5_spectral_triple_constraint_results.json",
+          "sim_integration_hypothesis_z3_property_guard_results.json",
           "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "sim_lagrangian_duality_constraint_canonical_results.json",
           "sim_riemann_mapping_constraint_canonical_results.json",
@@ -1377,10 +1379,10 @@
         ]
       },
       "cvc5": {
-        "tried_count": 688,
-        "used_count": 487,
-        "load_bearing_count": 480,
-        "depth_present_count": 489,
+        "tried_count": 691,
+        "used_count": 489,
+        "load_bearing_count": 482,
+        "depth_present_count": 491,
         "anchor_stage_coverage": [
           "boundary"
         ],
@@ -1436,6 +1438,7 @@
           "sim_axis0_lambda_crosslane_semantic_bridge_results.json",
           "sim_axis0_lambda_expansion_cosmology_stack_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_banach_fixed_point_constraint_canonical_results.json",
           "sim_berkovich_space_analytic_domain_constraint_canonical_results.json",
           "sim_bhatt_morrow_scholze_motivic_constraint_canonical_results.json",
@@ -1443,6 +1446,7 @@
           "sim_bousfield_localization_constraint_canonical_results.json",
           "sim_breuil_mezard_conjecture_constraint_canonical_results.json",
           "sim_brown_representability_constraint_canonical_results.json",
+          "sim_capability_cvc5_isolated_results.json",
           "sim_casselman_wallach_globalization_constraint_canonical_results.json",
           "sim_chromatic_convergence_theorem_constraint_canonical_results.json",
           "sim_cobordism_ring_graded_constraint_canonical_results.json",
@@ -1868,10 +1872,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 966,
-        "used_count": 787,
-        "load_bearing_count": 251,
-        "depth_present_count": 763,
+        "tried_count": 970,
+        "used_count": 790,
+        "load_bearing_count": 254,
+        "depth_present_count": 766,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -2057,6 +2061,8 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
           "sim_connes_distance_gtower_bridge_results.json",
@@ -2067,6 +2073,7 @@
           "sim_gtower_f4_exceptional_geometry_results.json",
           "sim_holographic_entropy_bound_canonical_results.json",
           "sim_integration_cvc5_spectral_triple_constraint_results.json",
+          "sim_integration_optuna_sympy_invariant_search_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_spinor_torch_foundation_results.json",
           "spectral_triple_chirality_grading_results.json",
@@ -2133,10 +2140,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 500,
-        "used_count": 161,
-        "load_bearing_count": 133,
-        "depth_present_count": 143,
+        "tried_count": 504,
+        "used_count": 165,
+        "load_bearing_count": 137,
+        "depth_present_count": 147,
         "anchor_stage_coverage": [
           "coupling",
           "coexistence"
@@ -2258,9 +2265,13 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_capability_clifford_isolated_results.json",
           "sim_gtower_gl_o_ordering_deep_results.json",
+          "sim_integration_deap_clifford_rotor_evolution_results.json",
           "spectral_triple_chirality_grading_results.json",
           "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
           "spectral_triple_gtower_reduction_spectrum_results.json",
@@ -2278,10 +2289,10 @@
         ]
       },
       "geomstats": {
-        "tried_count": 443,
-        "used_count": 83,
-        "load_bearing_count": 73,
-        "depth_present_count": 80,
+        "tried_count": 447,
+        "used_count": 86,
+        "load_bearing_count": 76,
+        "depth_present_count": 83,
         "anchor_stage_coverage": [
           "lego",
           "coexistence"
@@ -2352,6 +2363,9 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
+          "sim_capability_geomstats_isolated_results.json",
           "tools_load_bearing_results.json",
           "torch_axis0_gradient_results.json",
           "torsion_curvature_splitting_results.json",
@@ -2363,10 +2377,10 @@
         ]
       },
       "e3nn": {
-        "tried_count": 390,
-        "used_count": 23,
-        "load_bearing_count": 20,
-        "depth_present_count": 25,
+        "tried_count": 394,
+        "used_count": 26,
+        "load_bearing_count": 23,
+        "depth_present_count": 28,
         "anchor_stage_coverage": [
           "lego"
         ],
@@ -2389,15 +2403,18 @@
           "sim_axis0_lambda_crosslane_semantic_bridge_results.json",
           "sim_axis0_lambda_expansion_cosmology_stack_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
+          "sim_capability_e3nn_isolated_results.json",
           "tools_load_bearing_results.json",
           "torch_hopf_connection_results.json"
         ]
       },
       "rustworkx": {
-        "tried_count": 510,
-        "used_count": 154,
-        "load_bearing_count": 125,
-        "depth_present_count": 132,
+        "tried_count": 513,
+        "used_count": 156,
+        "load_bearing_count": 127,
+        "depth_present_count": 134,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -2509,6 +2526,8 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
           "sim_integration_networkx_rustworkx_crosscheck_results.json",
@@ -2534,10 +2553,10 @@
         ]
       },
       "xgi": {
-        "tried_count": 467,
-        "used_count": 109,
-        "load_bearing_count": 93,
-        "depth_present_count": 101,
+        "tried_count": 470,
+        "used_count": 111,
+        "load_bearing_count": 95,
+        "depth_present_count": 103,
         "anchor_stage_coverage": [
           "assembly",
           "topology",
@@ -2618,6 +2637,8 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_gtower_action_orientation_bridge_results.json",
+          "sim_axis6_seam_probe_results.json",
           "spectral_triple_mera_pairwise_coupling_results.json",
           "spectral_triple_weyl_coupling_results.json",
           "spectral_triple_weyl_mera_topology_variants_results.json",
@@ -2641,10 +2662,10 @@
         ]
       },
       "toponetx": {
-        "tried_count": 452,
-        "used_count": 83,
-        "load_bearing_count": 70,
-        "depth_present_count": 77,
+        "tried_count": 454,
+        "used_count": 84,
+        "load_bearing_count": 71,
+        "depth_present_count": 78,
         "anchor_stage_coverage": [
           "topology",
           "assembly"
@@ -2709,6 +2730,7 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_seam_probe_results.json",
           "state_class_binding_geometry_results.json",
           "toponetx_bridge_seam_results.json",
           "toponetx_capability_results.json",
@@ -2723,10 +2745,10 @@
         ]
       },
       "gudhi": {
-        "tried_count": 437,
-        "used_count": 81,
-        "load_bearing_count": 73,
-        "depth_present_count": 76,
+        "tried_count": 441,
+        "used_count": 84,
+        "load_bearing_count": 76,
+        "depth_present_count": 79,
         "anchor_stage_coverage": [
           "assembly",
           "coexistence"
@@ -2796,6 +2818,9 @@
           "sim_axis0_phase6_point_reference_results.json",
           "sim_axis0_pyg_proxy_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_axis6_seam_probe_results.json",
+          "sim_capability_gudhi_isolated_results.json",
+          "sim_integration_pymoo_gudhi_pareto_persistence_results.json",
           "tensor_network_ic_gradient_results.json",
           "tools_load_bearing_results.json",
           "toponetx_gudhi_hodge_betti_cross_results.json",

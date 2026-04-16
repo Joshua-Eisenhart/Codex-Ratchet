@@ -42,6 +42,11 @@ import traceback
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic-clifford-weyl topology-variant sweep over proxy shell observables; this is comparative boundary data, not a canonical topological witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -583,7 +588,8 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_clifford_weyl_topology_variants",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": divergence_log,
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": 4,
         "parent_sims": [
@@ -611,7 +617,8 @@ if __name__ == "__main__":
             ),
             "total_bool_count": len(bool_pos) + len(bool_neg) + len(bool_bnd),
         },
-        "divergence_log": [
+        "divergence_log": divergence_log,
+        "divergence_details": [
             "classical_baseline: maximally mixed RT state I/d for all topology variants",
             "T1 torus n_cut=2: periodic BC requires cutting both sides of bipartition",
             "T2 open chain n_cut=1: single bond cut at midpoint of linear chain",

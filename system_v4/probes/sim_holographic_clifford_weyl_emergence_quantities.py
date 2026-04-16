@@ -45,6 +45,11 @@ import traceback
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic-clifford-weyl emergence probe built from maximally mixed RT states and proxy shell observables; this is boundary data, not a canonical emergent witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -709,7 +714,8 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_clifford_weyl_emergence_quantities",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": divergence_log,
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": 5,
         "parent_sims": [
@@ -739,7 +745,8 @@ if __name__ == "__main__":
             ),
             "total_bool_count": len(bool_pos) + len(bool_neg) + len(bool_bnd),
         },
-        "divergence_log": [
+        "divergence_log": divergence_log,
+        "divergence_details": [
             "classical_baseline: RT state maximally mixed; perturbation added for H_clifford signal",
             "Q_HCW product is zero whenever any factor is zero (standard arithmetic)",
             "H_clifford defined as |S_θ - S_0| to ensure zero at identity even with random seed",

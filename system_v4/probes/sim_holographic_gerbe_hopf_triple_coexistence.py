@@ -36,6 +36,11 @@ import traceback
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic-gerbe-hopf triple coexistence over proxy shell observables and maximally mixed RT data; this is boundary data, not a canonical coexistence witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -369,7 +374,8 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_gerbe_hopf_triple_coexistence",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": divergence_log,
         "coupling_program": "Holographic x Gerbe x Hopf",
         "coupling_program_step": "2",
         "tool_manifest": TOOL_MANIFEST,

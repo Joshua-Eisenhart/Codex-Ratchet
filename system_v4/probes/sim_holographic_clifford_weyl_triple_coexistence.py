@@ -44,6 +44,11 @@ import traceback
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic-clifford-weyl triple on maximally mixed and proxy shell observables; this is controller-facing boundary data, not a canonical nonclassical witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -465,7 +470,8 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_clifford_weyl_triple_coexistence",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": divergence_log,
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": 3,
         "parent_sims": [
@@ -492,7 +498,8 @@ if __name__ == "__main__":
             ),
             "total_bool_count": len(bool_pos) + len(bool_neg) + len(bool_bnd),
         },
-        "divergence_log": [
+        "divergence_log": divergence_log,
+        "divergence_details": [
             "classical_baseline: all three shells use maximally mixed RT state I/d",
             "Cl(3) rotor is block-diagonal orthogonal; commutes with Z^n chirality op",
             "Weyl projection on maximally mixed state always yields p_L = p_R = 1/2",

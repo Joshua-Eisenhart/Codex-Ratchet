@@ -40,6 +40,11 @@ import traceback
 
 import numpy as np
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline holographic-weyl pairwise coupling over proxy RT and chirality observables; this is boundary data, not a canonical shell-coupling witness."
+)
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -381,7 +386,8 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_weyl_pairwise_coupling",
-        "classification": "classical_baseline",
+        "classification": classification,
+        "classification_note": divergence_log,
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": "2b",
         "parent_sims": [
@@ -405,7 +411,8 @@ if __name__ == "__main__":
             ),
             "total_bool_count": len(bool_pos) + len(bool_neg) + len(bool_bnd),
         },
-        "divergence_log": [
+        "divergence_log": divergence_log,
+        "divergence_details": [
             "classical_baseline: RT state is maximally mixed I/d; exact p_L = p_R = 1/2",
             "Weyl projectors use Z^(tensor n); for maximally mixed state chirality is always balanced",
             "H_chirality computed with eps=1e-12 guard against log(0)",

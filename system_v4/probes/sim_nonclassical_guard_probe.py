@@ -22,6 +22,44 @@ from __future__ import annotations
 import os, sys
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this guard probe checks nonclassical runtime conditions "
+    "against a live engine trajectory and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state and guard witness calculations for the probe",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "live engine trajectory and state initialization used by the probe",
+    },
+    "hopf_manifold": {
+        "tried": True,
+        "used": True,
+        "reason": "torus geometry constants used to initialize the engine trajectory",
+    },
+    "geometric_operators": {
+        "tried": True,
+        "used": True,
+        "reason": "operator application used in the commutativity and marginals checks",
+    },
+    "qit_nonclassical_guards": {
+        "tried": True,
+        "used": True,
+        "reason": "guard definitions and witness formatting are the subject of this probe",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "engine_core": "supportive",
+    "hopf_manifold": "supportive",
+    "geometric_operators": "supportive",
+    "qit_nonclassical_guards": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))

@@ -28,6 +28,38 @@ import numpy as np
 import sys
 classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+divergence_log = (
+    "Classical baseline: this operator/basis search compares operator remaps "
+    "numerically and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state evolution and overlap calculations for the basis search",
+    },
+    "engine_core": {
+        "tried": True,
+        "used": True,
+        "reason": "runtime stage lookup and lattice-state setup used by the search",
+    },
+    "geometric_operators": {
+        "tried": True,
+        "used": True,
+        "reason": "operator application and density validation used by the search",
+    },
+    "stage_matrix_neg_lib": {
+        "tried": True,
+        "used": True,
+        "reason": "stage-row initialization and operator-label mapping used by the search",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+    "stage_matrix_neg_lib": "supportive",
+}
 
 from engine_core import GeometricEngine, EngineState, StageControls, TERRAINS
 from geometric_operators import (

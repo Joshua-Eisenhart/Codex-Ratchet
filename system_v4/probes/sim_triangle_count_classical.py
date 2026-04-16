@@ -9,7 +9,9 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True,
                 "reason": "cross-check triangle count via torch.matrix_power(A,3).diagonal()/2"},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+}
 
 try:
     import torch

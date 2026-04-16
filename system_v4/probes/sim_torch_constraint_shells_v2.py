@@ -58,18 +58,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # All shell projections are nn.Module; Dykstra runs in torch
-    "pyg":       "not_applicable",  # Not used -- shells are torch modules, not a PyG graph
-    "z3":        "load_bearing",    # Verifies converged state satisfies all shells via SMT
-    "cvc5":      "not_applicable",  # Not used -- z3 is sufficient
-    "sympy":     "not_applicable",  # Not used -- computation is torch-native
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "not_applicable",  # Not used -- shell metrics computed directly in torch
-    "e3nn":      "not_applicable",  # Not used
-    "rustworkx": "load_bearing",    # DAG topological_sort DRIVES projection order; changing DAG changes order
-    "xgi":       "not_applicable",  # Not used
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "load_bearing",    # Rips persistence on Bloch trajectory cloud; Betti stabilization tracked
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # ── Imports ─────────────────────────────────────────────────────────

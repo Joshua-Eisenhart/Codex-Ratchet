@@ -68,6 +68,12 @@ TOOL_MANIFEST = {
     "xgi": {"tried": True, "used": xgi is not None, "reason": "hypergraph carrier stats" if xgi is not None else "not installed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "rustworkx": None,
+    "xgi": None,
+}
+
 N_PHASE = 8
 N_GRAPH_PHASE = 4
 N_HYPER_PHASE = 4

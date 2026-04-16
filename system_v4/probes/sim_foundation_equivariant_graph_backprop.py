@@ -77,6 +77,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed for this foundation lego"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 
 # =====================================================================
 # BASIC QUANTUM HELPERS

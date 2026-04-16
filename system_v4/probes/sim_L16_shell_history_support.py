@@ -19,7 +19,10 @@ TOOL_MANIFEST={
     "pytorch":{"tried":False,"used":False,"reason":""},
     "z3":{"tried":False,"used":False,"reason":""},
 }
-TOOL_INTEGRATION_DEPTH={"pytorch":None,"z3":None}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "z3": None,
+}
 
 try:
     import torch

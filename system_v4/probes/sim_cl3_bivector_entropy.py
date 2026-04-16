@@ -40,18 +40,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None,
-    "pyg": None,
-    "z3": "load_bearing",
-    "cvc5": None,
-    "sympy": "supportive",
     "clifford": "load_bearing",
-    "geomstats": None,
+    "cvc5": None,
     "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
+    "geomstats": None,
     "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 try:

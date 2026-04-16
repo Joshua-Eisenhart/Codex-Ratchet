@@ -41,18 +41,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",
-    "pyg": None,
-    "z3": "supportive",
-    "cvc5": "supportive",
-    "sympy": None,
     "clifford": None,
-    "geomstats": None,
+    "cvc5": "load_bearing",
     "e3nn": "load_bearing",
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
+    "geomstats": None,
     "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 import torch

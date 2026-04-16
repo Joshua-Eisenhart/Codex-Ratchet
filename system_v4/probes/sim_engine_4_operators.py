@@ -48,6 +48,21 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": "Not needed for operator-level sim"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
+}
+
 
 # =====================================================================
 # CONSTANTS & HELPERS

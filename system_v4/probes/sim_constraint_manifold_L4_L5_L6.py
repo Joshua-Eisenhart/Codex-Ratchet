@@ -20,7 +20,10 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "operator-manifold numerics across layers 4-6"},
     "sympy": {"tried": True, "used": True, "reason": "symbolic parameterization of chiral Hamiltonians"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "sympy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "sympy": "load_bearing",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

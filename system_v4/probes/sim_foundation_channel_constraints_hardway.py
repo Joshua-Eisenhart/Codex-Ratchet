@@ -66,6 +66,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistence computation is needed here"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
+}
+
 
 EPS = 1e-12
 CDTYPE = torch.complex128

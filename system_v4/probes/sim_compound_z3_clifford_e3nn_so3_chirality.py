@@ -32,7 +32,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "not needed"},
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": "load_bearing",
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
+}
 TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["e3nn"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"

@@ -34,11 +34,11 @@ TOOL_MANIFEST = {
     "clifford": {"tried": True, "used": True, "reason": "runtime graph enrichment carries clifford multivector edge sidecars"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "supportive",
-    "pytorch": "supportive",
-    "pyg": "supportive",
-    "toponetx": "supportive",
-    "clifford": "supportive",
+    "clifford": "load_bearing",
+    "numpy": "load_bearing",
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "toponetx": "load_bearing",
 }
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

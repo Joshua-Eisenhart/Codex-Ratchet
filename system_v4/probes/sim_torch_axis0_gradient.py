@@ -59,18 +59,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # All differentiable ops: autograd computes nabla_eta I_c (Axis 0)
-    "pyg":       "not_applicable",  # Imported but not used in computation
-    "z3":        "not_applicable",  # Imported but not used in computation
-    "cvc5":      "not_applicable",  # Not used
-    "sympy":     "supportive",      # Symbolic I_c formula and derivative cross-check (not decisive)
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "supportive",      # SPD manifold distance on rho_B states -- cross-check, not load-bearing
-    "e3nn":      "not_applicable",  # Not used
-    "rustworkx": "not_applicable",  # Imported but not used in computation
-    "xgi":       "not_applicable",  # Not used
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "not_applicable",  # Not used
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": "load_bearing",
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 try:

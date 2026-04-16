@@ -43,7 +43,20 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": ""},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "numpy": "load_bearing",
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": "load_bearing",
+}
 
 try:
     from z3 import Solver, Bool, BoolVal, Int, IntVal, And, Not, Or, sat, unsat

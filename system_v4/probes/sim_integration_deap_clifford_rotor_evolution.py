@@ -42,19 +42,19 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None,
-    "pyg": None,
-    "z3": None,
-    "cvc5": None,
-    "sympy": None,
     "clifford": "load_bearing",
-    "geomstats": None,
-    "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
-    "gudhi": None,
+    "cvc5": None,
     "deap": "load_bearing",
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 divergence_log = (

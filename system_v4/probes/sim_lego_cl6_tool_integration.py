@@ -38,18 +38,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None,
-    "pyg": None,
-    "z3": None,
+    "clifford": "load_bearing",
     "cvc5": None,
-    "sympy": None,
-    "clifford": None,
-    "geomstats": None,
     "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
+    "geomstats": None,
     "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # Try importing all tools

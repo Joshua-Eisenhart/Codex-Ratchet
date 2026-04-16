@@ -20,7 +20,12 @@ except ImportError:
     HAVE_T = False
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "sympy": None,
+    "z3": None,
+}
 TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["numpy"] = "supportive"
 

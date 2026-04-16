@@ -46,6 +46,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistence computation is needed here"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 
 EPS = 1e-12
 I2 = np.eye(2, dtype=np.complex128)

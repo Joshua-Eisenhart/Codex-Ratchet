@@ -53,6 +53,22 @@ TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "distance matrices, statistics, random shuffling"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": "load_bearing",
+    "numpy": "load_bearing",
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 # Try importing each tool
 try:
     import torch

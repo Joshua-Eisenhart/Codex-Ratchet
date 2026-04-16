@@ -58,18 +58,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # Shared substrate for density matrix ops; removing it kills all 5 tests
-    "pyg":       "not_applicable",  # Not used -- graph layer is rustworkx/xgi
-    "z3":        "not_applicable",  # Not used -- empirical not SMT
-    "cvc5":      "not_applicable",  # Not used
-    "sympy":     "not_applicable",  # Not used
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "load_bearing",    # Frechet mean on SPD(2) differs from arithmetic mean -- test 4 result depends on it
-    "e3nn":      "load_bearing",    # Wigner-D equivariant channel selector produces different dynamics -- test 5
-    "rustworkx": "load_bearing",    # DAG topo-sort order changes final state vs random order -- test 1
-    "xgi":       "load_bearing",    # Hypergraph forbidden combos change result vs unconstrained -- test 2
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "load_bearing",    # Persistence diagram early-warning differs from post-hoc measurement -- test 3
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": "load_bearing",
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": None,
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": None,
 }
 
 # =====================================================================

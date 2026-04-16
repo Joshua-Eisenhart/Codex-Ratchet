@@ -49,18 +49,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",   # autograd ∇I_c, SLD-based QFI
-    "pyg":       None,
-    "z3":        "load_bearing",   # UNSAT: I_c non-increasing along r-path
-    "cvc5":      None,
-    "sympy":     "load_bearing",   # analytic QFI=1 for pure Bell family
-    "clifford":  None,
-    "geomstats": "supportive",     # SPD geodesic distance along r-path
-    "e3nn":      None,
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": "load_bearing",
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
     "rustworkx": None,
-    "xgi":       None,
-    "toponetx":  None,
-    "gudhi":     None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 try:

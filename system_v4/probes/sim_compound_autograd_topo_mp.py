@@ -22,7 +22,11 @@ TOOL_MANIFEST = {
     "pyg":      {"tried": False, "used": False, "reason": ""},
     "toponetx": {"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": None, "pyg": None, "toponetx": None}
+TOOL_INTEGRATION_DEPTH = {
+    "pyg": None,
+    "pytorch": None,
+    "toponetx": None,
+}
 
 import torch
 TOOL_MANIFEST["pytorch"]["tried"] = True

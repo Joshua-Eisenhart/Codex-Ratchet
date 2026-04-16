@@ -50,18 +50,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # All 28 torch modules; autograd gradient test; graph topology test; substrate equivalence
-    "pyg":       "not_applicable",  # Not used -- this is a falsification protocol, not a graph sim
-    "z3":        "not_applicable",  # Not used
-    "cvc5":      "not_applicable",  # Not used
-    "sympy":     "not_applicable",  # Not used
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "not_applicable",  # Not used
-    "e3nn":      "not_applicable",  # Not used
-    "rustworkx": "not_applicable",  # Not used
-    "xgi":       "not_applicable",  # Not used
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "not_applicable",  # Not used
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 try:

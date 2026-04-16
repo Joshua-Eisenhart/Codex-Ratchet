@@ -9,7 +9,9 @@ TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True,
                 "reason": "cross-check Pearson r of endpoint degrees using torch.corrcoef"},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+}
 
 try:
     import torch

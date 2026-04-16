@@ -59,18 +59,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # spinor cloud coordinates
-    "pyg":       "not_applicable",
-    "z3":        "load_bearing",    # UNSAT encodes the divergence as a proof
-    "cvc5":      "not_applicable",
-    "sympy":     "load_bearing",    # P_L·P_R=0 is the shared algebraic invariant
-    "clifford":  "load_bearing",    # Cl(3) rotor exponential defines Model A fibers
-    "geomstats": "load_bearing",    # geodesic distance distinguishes scale of the models
-    "e3nn":      "not_applicable",
-    "rustworkx": "load_bearing",    # fork-not-chain DAG structure is the model hierarchy
-    "xgi":       "not_applicable",
-    "toponetx":  "not_applicable",
-    "gudhi":     "load_bearing",    # β0/β1 measurements are the primary topological claim
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # =====================================================================

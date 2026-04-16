@@ -41,6 +41,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "no persistent topology needed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 
 SIGMA_X = np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex)
 SIGMA_Y = np.array([[0.0, -1j], [1j, 0.0]], dtype=complex)

@@ -22,7 +22,12 @@ TOOL_MANIFEST = {
     "sympy":   {"tried": False, "used": False, "reason": ""},
     "clifford":{"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": None, "z3": None, "sympy": None, "clifford": None}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "pytorch": None,
+    "sympy": None,
+    "z3": None,
+}
 
 try:
     import torch

@@ -46,18 +46,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "supporting",
-    "pyg": None,
-    "z3": "supporting",
-    "cvc5": "supporting",
-    "sympy": "load_bearing",
     "clifford": None,
-    "geomstats": None,
+    "cvc5": "load_bearing",
     "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
+    "geomstats": None,
     "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 LEGO_IDS = [

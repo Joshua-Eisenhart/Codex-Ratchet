@@ -46,18 +46,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "supportive",
-    "pyg": "load_bearing",
-    "z3": "load_bearing",
-    "cvc5": None,
-    "sympy": "supportive",
     "clifford": None,
-    "geomstats": None,
+    "cvc5": None,
     "e3nn": None,
-    "rustworkx": "supportive",
-    "xgi": "load_bearing",
+    "geomstats": None,
+    "gudhi": "load_bearing",
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
     "toponetx": "load_bearing",
-    "gudhi": "supportive",
+    "xgi": "load_bearing",
+    "z3": "load_bearing",
 }
 
 # ── Import all tools ────────────────────────────────────────────────

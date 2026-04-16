@@ -41,7 +41,21 @@ TOOL_MANIFEST = {
 # probe does not exercise pytorch as a separately-tested tool; the quadratic
 # objective is trivially evaluable without autograd or any torch-specific API.
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "evotorch": "load_bearing",
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
 TOOL_INTEGRATION_DEPTH["evotorch"] = "load_bearing"
 
 EVO_OK = False

@@ -23,7 +23,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "graph only"},
     "gudhi": {"tried": False, "used": False, "reason": "no PH"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
 TOOL_INTEGRATION_DEPTH["pyg"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"
 # networkx (always available in env) is supportive; not in manifest keys.

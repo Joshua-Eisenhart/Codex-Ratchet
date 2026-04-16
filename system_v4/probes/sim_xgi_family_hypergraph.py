@@ -35,18 +35,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": None,
-    "pyg": None,
-    "z3": None,
-    "cvc5": None,
-    "sympy": None,
     "clifford": None,
-    "geomstats": None,
+    "cvc5": None,
     "e3nn": None,
+    "geomstats": None,
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": None,
     "rustworkx": None,
-    "xgi": "load_bearing",
+    "sympy": None,
     "toponetx": "load_bearing",
-    "gudhi": "supportive",
+    "xgi": "load_bearing",
+    "z3": None,
 }
 
 # ── Try-import blocks (all 12 tools) ────────────────────────────────

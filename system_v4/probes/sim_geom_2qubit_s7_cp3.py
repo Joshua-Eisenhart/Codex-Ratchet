@@ -43,6 +43,21 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "no persistence needed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 # --- Import PyTorch ---
 try:
     import torch

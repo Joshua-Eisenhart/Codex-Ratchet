@@ -15,7 +15,9 @@ import numpy as np
 
 TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+}
 
 HAVE = False
 try:

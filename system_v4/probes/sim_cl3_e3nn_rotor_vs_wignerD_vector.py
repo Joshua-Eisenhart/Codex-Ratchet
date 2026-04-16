@@ -18,7 +18,9 @@ from e3nn import o3
 
 TOOL_MANIFEST = {k:{"tried":False,"used":False,"reason":""} for k in
     ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats","e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+}
 TOOL_MANIFEST["clifford"] = {"tried":True,"used":True,"reason":"Cl(3) rotor sandwich R v R~ is one side of the equivalence"}
 TOOL_INTEGRATION_DEPTH["clifford"] = "load_bearing"
 TOOL_MANIFEST["e3nn"] = {"tried":True,"used":True,"reason":"Wigner-D on irrep 1o is the other side of the equivalence"}

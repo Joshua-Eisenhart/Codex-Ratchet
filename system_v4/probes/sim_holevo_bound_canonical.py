@@ -22,9 +22,9 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "numpy":   "supportive",
+    "numpy": "load_bearing",
     "pytorch": "load_bearing",
-    "sympy":   None,
+    "sympy": None,
 }
 
 try:

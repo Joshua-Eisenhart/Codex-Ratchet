@@ -19,7 +19,10 @@ TOOL_MANIFEST = {
     "pytorch":{"tried":False,"used":False,"reason":""},
     "sympy":  {"tried":False,"used":False,"reason":""},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch":None,"sympy":None}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "sympy": None,
+}
 
 try:
     import torch

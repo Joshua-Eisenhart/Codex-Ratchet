@@ -38,7 +38,9 @@ divergence_log = "Classical foundation baseline: this characterizes Axis-0 orbit
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "phase-alignment statistics and failure clustering numerics"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+}
 
 _PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(os.path.dirname(_PROBE_DIR))

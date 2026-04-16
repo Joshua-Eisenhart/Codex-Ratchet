@@ -53,18 +53,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # All 3-qubit ops, autograd nabla_eta I_c (7-dim), CNOT gates, partial trace
-    "pyg":       "not_applicable",  # Imported but not used
-    "z3":        "not_applicable",  # Imported but not used
-    "cvc5":      "not_applicable",  # Not used
-    "sympy":     "supportive",      # Symbolic entropy formulas for maximally mixed 3-qubit state -- cross-check
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "not_applicable",  # Not used
-    "e3nn":      "not_applicable",  # Not used
-    "rustworkx": "not_applicable",  # Imported but not used
-    "xgi":       "not_applicable",  # Not used
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "not_applicable",  # Not used
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 try:

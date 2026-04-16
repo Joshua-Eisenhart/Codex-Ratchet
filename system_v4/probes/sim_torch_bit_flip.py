@@ -47,18 +47,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch": "load_bearing",   # BitFlip.forward() + autograd gradient is primary deliverable
-    "pyg": None,
-    "z3": "load_bearing",        # UNSAT proof of Kraus completeness and parameter range
-    "cvc5": None,
-    "sympy": "supportive",       # Symbolic CPTP cross-check; not decisive on its own
     "clifford": None,
-    "geomstats": None,
+    "cvc5": None,
     "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
-    "toponetx": None,
+    "geomstats": None,
     "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # Try importing each tool

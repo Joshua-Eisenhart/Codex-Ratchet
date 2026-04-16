@@ -29,7 +29,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": True, "used": True, "reason": "provides cell complex + coboundary propagation (face->edge->vertex); load-bearing"},
     "gudhi": {"tried": False, "used": False, "reason": "no PH in this test"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": "load_bearing",
+    "xgi": None,
+    "z3": None,
+}
 TOOL_INTEGRATION_DEPTH["pyg"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["toponetx"] = "load_bearing"
 TOOL_INTEGRATION_DEPTH["pytorch"] = "supportive"

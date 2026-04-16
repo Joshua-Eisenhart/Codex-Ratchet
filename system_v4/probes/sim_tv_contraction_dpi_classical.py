@@ -36,7 +36,7 @@ TOOL_MANIFEST = {
 
 TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",
-    "pytorch": "supportive" if _torch_ok else None,
+    "pytorch": None,
     "scipy": None,
     "z3": None,
 }

@@ -52,18 +52,18 @@ classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   None,
-    "pyg":       "not_applicable",
-    "z3":        None,
-    "cvc5":      "not_applicable",
-    "sympy":     None,
-    "clifford":  None,
-    "geomstats": "not_applicable",
-    "e3nn":      "not_applicable",
-    "rustworkx": None,
-    "xgi":       "not_applicable",
-    "toponetx":  "not_applicable",
-    "gudhi":     "not_applicable",
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # ── Imports ─────────────────────────────────────────────────────────

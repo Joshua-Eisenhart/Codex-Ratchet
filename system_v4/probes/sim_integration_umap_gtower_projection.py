@@ -34,18 +34,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",
-    "pyg":       None,
-    "z3":        "supportive",
-    "cvc5":      None,
-    "sympy":     None,
-    "clifford":  None,
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
     "geomstats": None,
-    "e3nn":      None,
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
     "rustworkx": None,
-    "xgi":       None,
-    "toponetx":  None,
-    "gudhi":     "load_bearing",
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # Target tool (outside 12-tool manifest)

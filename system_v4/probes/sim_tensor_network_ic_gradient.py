@@ -44,18 +44,18 @@ TOOL_MANIFEST = {
 classification = "classical_baseline"
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",
-    "pyg":       None,
-    "z3":        "load_bearing",
-    "cvc5":      None,
-    "sympy":     "supportive",
-    "clifford":  "supportive",
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": None,
     "geomstats": None,
-    "e3nn":      None,
-    "rustworkx": "supportive",
-    "xgi":       "supportive",
-    "toponetx":  None,
-    "gudhi":     "supportive",
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": "load_bearing",
 }
 
 # =====================================================================

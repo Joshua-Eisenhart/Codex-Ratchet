@@ -36,19 +36,19 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "supportive",
-    "z3": "supportive",
-    "sympy": "supportive",
-    "pyg": "supportive",
-    "toponetx": "supportive",
     "clifford": None,
-    "pytorch": None,
     "cvc5": None,
-    "geomstats": None,
     "e3nn": None,
-    "rustworkx": None,
-    "xgi": None,
+    "geomstats": None,
     "gudhi": None,
+    "numpy": "load_bearing",
+    "pyg": "load_bearing",
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": "load_bearing",
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

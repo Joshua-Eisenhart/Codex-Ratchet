@@ -29,9 +29,9 @@ TOOL_MANIFEST = {
     "z3": {"tried": False, "used": False, "reason": "no SMT assertion on consistency"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "supportive",
-    "scipy": "supportive",
-    "pytorch": "supportive",
+    "numpy": "load_bearing",
+    "pytorch": None,
+    "scipy": "load_bearing",
     "z3": None,
 }
 

@@ -43,6 +43,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "graph/topology tool audit only"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 SEAM_FILES = [
     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_bridge_packet_library_audit.py",
     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_packet_balance_sensitivity_audit.py",

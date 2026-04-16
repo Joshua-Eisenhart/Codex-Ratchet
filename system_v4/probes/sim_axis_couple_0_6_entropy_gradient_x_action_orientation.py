@@ -17,7 +17,11 @@ TOOL_MANIFEST = {
     "z3": {"tried": False, "used": False, "reason": ""},
     "sympy": {"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing", "z3": None, "sympy": None}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "sympy": None,
+    "z3": None,
+}
 
 import torch
 TOOL_MANIFEST["pytorch"] = {"tried": True, "used": True,

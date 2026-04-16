@@ -47,7 +47,20 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": ""},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": "load_bearing",
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": "load_bearing",
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": None,
+}
 
 # ── Imports ──────────────────────────────────────────────────────────
 

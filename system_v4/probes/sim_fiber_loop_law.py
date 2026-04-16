@@ -45,7 +45,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "not required; no cell-complex claim here"},
     "gudhi": {"tried": False, "used": False, "reason": "not required; no persistence claim here"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
 
 try:
     import torch

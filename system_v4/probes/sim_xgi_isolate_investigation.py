@@ -48,6 +48,21 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": "not relevant -- no persistence needed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": "load_bearing",
+}
+
 # ── Try-import blocks (all 12 tools) ────────────────────────────────
 
 try:

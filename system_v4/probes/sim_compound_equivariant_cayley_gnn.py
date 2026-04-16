@@ -26,7 +26,12 @@ TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
     "networkx":  {"tried": False, "used": False, "reason": ""},
 }
-TOOL_INTEGRATION_DEPTH = {"clifford": None, "e3nn": None, "pytorch": None, "networkx": None}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "e3nn": None,
+    "networkx": None,
+    "pytorch": None,
+}
 
 import torch
 TOOL_MANIFEST["pytorch"]["tried"] = True

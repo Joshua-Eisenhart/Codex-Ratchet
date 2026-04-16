@@ -78,18 +78,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   None,
-    "pyg":       None,
-    "z3":        "load_bearing",   # UNSAT proofs 1+2 are the structural impossibility claims
-    "cvc5":      "load_bearing",   # cross-check z3 + SyGuS relay-bound synthesis (claim 3)
-    "sympy":     "load_bearing",   # eigenvalue chain derivation drives claim 4
-    "clifford":  None,
-    "geomstats": "load_bearing",   # SPD geodesic speed monotonicity (claim 7)
-    "e3nn":      None,
-    "rustworkx": "load_bearing",   # dependency DAG ordering (claim 6)
-    "xgi":       None,
-    "toponetx":  None,
-    "gudhi":     None,
+    "clifford": None,
+    "cvc5": "load_bearing",
+    "e3nn": None,
+    "geomstats": "load_bearing",
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # ---- imports ----

@@ -80,6 +80,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
+
 EPS = 1e-10
 SAMPLE_RESOLUTION = 8
 THETA_GRID = np.linspace(0.0, 2.0 * np.pi, SAMPLE_RESOLUTION, endpoint=False)

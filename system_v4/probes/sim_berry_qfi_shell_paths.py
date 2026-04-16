@@ -47,18 +47,18 @@ TOOL_MANIFEST = {
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",   # autograd for Berry connection, curvature, QFI, ∇I_c
-    "pyg":       None,
-    "z3":        None,
-    "cvc5":      None,
-    "sympy":     "load_bearing",   # analytic verification of Berry curvature formula
-    "clifford":  None,
-    "geomstats": "supportive",     # Bures metric / sphere manifold reference
-    "e3nn":      None,
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": "load_bearing",
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
     "rustworkx": None,
-    "xgi":       None,
-    "toponetx":  None,
-    "gudhi":     None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
 }
 
 try:

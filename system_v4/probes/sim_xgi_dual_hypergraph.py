@@ -38,6 +38,21 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": "not relevant for this sim"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": None,
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": "load_bearing",
+    "z3": None,
+}
+
 # -- Try-import blocks (all 12 tools) ----------------------------------
 
 try:

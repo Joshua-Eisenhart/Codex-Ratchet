@@ -67,18 +67,18 @@ TOOL_MANIFEST = {
 # decorative    = present only at manifest/import level
 # not_applicable = not used in this sim
 TOOL_INTEGRATION_DEPTH = {
-    "pytorch":   "load_bearing",    # Core substrate: tensors, autograd, nn.Module, optimization loop
-    "pyg":       "load_bearing",    # HeteroData graph + MessagePassing IS the ratchet dynamics
-    "z3":        "supportive",      # Verifies shell constraint feasibility -- cross-check, not decisive for I_c result
-    "cvc5":      "not_applicable",  # Not used
-    "sympy":     "not_applicable",  # Not used
-    "clifford":  "not_applicable",  # Not used
-    "geomstats": "not_applicable",  # Not used
-    "e3nn":      "not_applicable",  # Not used
-    "rustworkx": "supportive",      # DAG for message passing order verification -- cross-check, not decisive
-    "xgi":       "not_applicable",  # Not used
-    "toponetx":  "not_applicable",  # Not used
-    "gudhi":     "not_applicable",  # Not used
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
 }
 
 # ── Imports ─────────────────────────────────────────────────────────

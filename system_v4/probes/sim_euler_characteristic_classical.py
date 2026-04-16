@@ -19,7 +19,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "baseline counts"},
     "gudhi": {"tried": False, "used": False, "reason": "baseline counts"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": None,
+    "toponetx": None,
+    "xgi": None,
+    "z3": None,
+}
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True

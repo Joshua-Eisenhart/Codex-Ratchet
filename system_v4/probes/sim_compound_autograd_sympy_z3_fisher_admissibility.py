@@ -34,7 +34,20 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "not needed"},
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "clifford": None,
+    "cvc5": None,
+    "e3nn": None,
+    "geomstats": None,
+    "gudhi": None,
+    "pyg": None,
+    "pytorch": "load_bearing",
+    "rustworkx": None,
+    "sympy": "load_bearing",
+    "toponetx": None,
+    "xgi": None,
+    "z3": "load_bearing",
+}
 for k in ("pytorch", "sympy", "z3"):
     TOOL_INTEGRATION_DEPTH[k] = "load_bearing"
 

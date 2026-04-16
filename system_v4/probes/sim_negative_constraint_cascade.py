@@ -37,6 +37,17 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical negative-cascade baseline: this probe measures ordering and constraint failures numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, trajectories, and diagnostics for the constraint cascade"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots, logarithms, and exponentials for cycle dynamics"},
+    "z3": {"tried": True, "used": True, "reason": "SAT/UNSAT checks for forced-order and necessity claims"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,

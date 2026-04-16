@@ -15,6 +15,17 @@ import numpy as np
 from scipy.linalg import sqrtm, expm
 from clifford import Cl
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical negative-geometry baseline: this probe measures numeric edge cases and failure modes only, not a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and state diagnostics for the negative geometry battery"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square roots and exponentials for fidelity and distance checks"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric algebra basis and multivector edge-case tests"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "clifford": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # SETUP

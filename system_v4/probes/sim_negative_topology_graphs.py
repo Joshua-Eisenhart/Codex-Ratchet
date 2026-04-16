@@ -44,6 +44,21 @@ import torch
 from torch_geometric.data import Data
 from torch_geometric.nn import MessagePassing
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical negative-topology baseline: this probe measures topology and graph edge cases numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and spectral diagnostics for topology and graph edge cases"},
+    "scipy": {"tried": True, "used": True, "reason": "sparse matrices and linear algebra for incidence and Laplacian checks"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex construction and Hodge Laplacian tests"},
+    "torch": {"tried": True, "used": True, "reason": "tensor storage and message-passing state for graph edge-case probes"},
+    "pyg": {"tried": True, "used": True, "reason": "MessagePassing and graph propagation behavior under boundary cases"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "toponetx": "supportive",
+    "torch": "supportive",
+    "pyg": "supportive",
+}
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

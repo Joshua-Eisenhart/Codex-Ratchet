@@ -973,7 +973,9 @@ def test_system_surface_audit_tool_integration_flags_missing_torch_headers(
 
     repo = tmp_path / "repo"
     probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
     probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
     (probes / "sim_torch_missing_headers.py").write_text(
         "\n".join(
             [
@@ -994,6 +996,14 @@ def test_system_surface_audit_tool_integration_flags_missing_torch_headers(
         ) + "\n",
         encoding="utf-8",
     )
+    (probes / "sim_pytorch_capability.py").write_text(
+        "TOOL_INTEGRATION_DEPTH = {'pytorch': 'load_bearing'}\n",
+        encoding="utf-8",
+    )
+    (results / "pytorch_capability_results.json").write_text(
+        '{"summary": {"all_pass": true}}\n',
+        encoding="utf-8",
+    )
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES", probes)
@@ -1009,6 +1019,51 @@ def test_system_surface_audit_tool_integration_flags_missing_torch_headers(
         "missing_manifest_tools": ["pytorch"],
         "missing_depth_tools": ["pytorch"],
     }]
+    assert report["per_tool"]["pytorch"]["status"] == "passing"
+    assert report["per_tool"]["pytorch"]["imported_in_sims"] == 2
+    assert report["per_tool"]["pytorch"]["load_bearing_witnesses"] == 1
+    assert report["per_tool"]["pytorch"]["missing_manifest"] == 1
+    assert report["per_tool"]["pytorch"]["missing_depth"] == 1
+
+
+def test_system_surface_audit_tool_integration_reports_failing_capability_probe(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_tool_probe_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+    (probes / "sim_capability_cma_isolated.py").write_text(
+        "TOOL_INTEGRATION_DEPTH = {'cma': 'load_bearing'}\n",
+        encoding="utf-8",
+    )
+    (results / "sim_capability_cma_isolated_results.json").write_text(
+        '{"summary": {"all_pass": false}}\n',
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+
+    assert report["per_tool"]["cma"]["status"] == "probe_failing"
+    assert report["per_tool"]["cma"]["probe_files"] == [
+        "system_v4/probes/sim_capability_cma_isolated.py"
+    ]
 
 
 def test_system_surface_audit_runner_health_reports_draining() -> None:

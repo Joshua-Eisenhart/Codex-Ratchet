@@ -15,6 +15,7 @@ import sim_program_audit
 
 REPO = Path(__file__).resolve().parents[1]
 PROBES = adaptive_controller.PROBES
+RESULTS_DIR = PROBES / "a2_state" / "sim_results"
 RESULT_ROOTS = [
     REPO / "system_v4/probes/a2_state/sim_results",
     REPO / "system_v4/probes/sim_results",
@@ -49,6 +50,21 @@ IMPORT_TOOL_ALIASES = {
     "ribs": "ribs",
     "deap": "deap",
 }
+
+
+def _canonical_tool(name: str) -> str:
+    return IMPORT_TOOL_ALIASES.get(name.strip().lower().replace("-", "_"), name.strip().lower().replace("-", "_"))
+
+
+def _results_dir() -> Path:
+    return PROBES / "a2_state" / "sim_results"
+
+
+def _rel_or_abs(path: Path) -> str:
+    try:
+        return str(path.relative_to(REPO))
+    except ValueError:
+        return str(path)
 
 
 def _run(args: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str] | None:
@@ -357,10 +373,71 @@ def _imported_tools(path: Path) -> tuple[set[str], bool]:
     return tools, True
 
 
+def _capability_probe_status(tool: str) -> dict[str, object]:
+    results_dir = _results_dir()
+    candidates = [
+        (
+            PROBES / f"sim_{tool}_capability.py",
+            results_dir / f"{tool}_capability_results.json",
+        ),
+        (
+            PROBES / f"sim_capability_{tool}_isolated.py",
+            results_dir / f"sim_capability_{tool}_isolated_results.json",
+        ),
+    ]
+    probe_files = [_rel_or_abs(probe) for probe, _ in candidates if probe.exists()]
+    result_files = [_rel_or_abs(result) for _, result in candidates if result.exists()]
+    status = "missing"
+    if probe_files:
+        status = "probe_stale"
+    for _probe, result in candidates:
+        if not result.exists():
+            continue
+        try:
+            data = json.loads(result.read_text(encoding="utf-8"))
+        except Exception:
+            status = "probe_failing"
+            continue
+        summary = data.get("summary") if isinstance(data, dict) else {}
+        passing = (
+            data.get("overall_pass") is True
+            or data.get("all_pass") is True
+            or (isinstance(summary, dict) and summary.get("all_pass") is True)
+            or (isinstance(summary, dict) and summary.get("all_passed") is True)
+            or (
+                isinstance(summary, dict)
+                and isinstance(summary.get("passed"), int)
+                and isinstance(summary.get("total"), int)
+                and summary.get("total", 0) > 0
+                and summary.get("passed") == summary.get("total")
+            )
+        )
+        status = "passing" if passing else "probe_failing"
+        if passing:
+            break
+    return {
+        "status": status,
+        "probe_files": probe_files,
+        "result_files": result_files,
+    }
+
+
 def tool_integration_surface(limit: int = 12) -> dict:
     missing_depth: Counter[str] = Counter()
     missing_manifest: Counter[str] = Counter()
     samples: list[dict[str, object]] = []
+    per_tool: defaultdict[str, dict[str, object]] = defaultdict(
+        lambda: {
+            "imported_in_sims": 0,
+            "missing_manifest": 0,
+            "missing_depth": 0,
+            "load_bearing_witnesses": 0,
+            "supportive_witnesses": 0,
+            "decorative_witnesses": 0,
+            "header_declared_without_depth": 0,
+            "sample_witnesses": [],
+        }
+    )
     parse_failures = 0
     audited = 0
 
@@ -374,6 +451,8 @@ def tool_integration_surface(limit: int = 12) -> dict:
         if not imported_tools:
             continue
         audited += 1
+        for tool in imported_tools:
+            per_tool[tool]["imported_in_sims"] = int(per_tool[tool]["imported_in_sims"]) + 1
         try:
             tree = ast.parse(path.read_text(encoding="utf-8"))
         except Exception:
@@ -381,6 +460,23 @@ def tool_integration_surface(limit: int = 12) -> dict:
             continue
         manifest = _module_literal(tree, "TOOL_MANIFEST")
         depth = _module_literal(tree, "TOOL_INTEGRATION_DEPTH")
+        if isinstance(depth, dict):
+            for raw_tool, level in depth.items():
+                tool = _canonical_tool(str(raw_tool))
+                row = per_tool[tool]
+                if level == "load_bearing":
+                    row["load_bearing_witnesses"] = int(row["load_bearing_witnesses"]) + 1
+                elif level == "supportive":
+                    row["supportive_witnesses"] = int(row["supportive_witnesses"]) + 1
+                elif level == "decorative":
+                    row["decorative_witnesses"] = int(row["decorative_witnesses"]) + 1
+                elif tool in imported_tools:
+                    row["header_declared_without_depth"] = int(row["header_declared_without_depth"]) + 1
+                if (
+                    level in {"load_bearing", "supportive", "decorative"}
+                    and len(row["sample_witnesses"]) < 5
+                ):
+                    row["sample_witnesses"].append(path.name)
         missing_manifest_tools = sorted(
             tool for tool in imported_tools
             if not isinstance(manifest, dict) or tool not in manifest
@@ -391,8 +487,10 @@ def tool_integration_surface(limit: int = 12) -> dict:
         )
         for tool in missing_manifest_tools:
             missing_manifest[tool] += 1
+            per_tool[tool]["missing_manifest"] = int(per_tool[tool]["missing_manifest"]) + 1
         for tool in missing_depth_tools:
             missing_depth[tool] += 1
+            per_tool[tool]["missing_depth"] = int(per_tool[tool]["missing_depth"]) + 1
         if (missing_manifest_tools or missing_depth_tools) and len(samples) < limit:
             samples.append({
                 "sim": path.name,
@@ -401,11 +499,23 @@ def tool_integration_surface(limit: int = 12) -> dict:
                 "missing_depth_tools": missing_depth_tools,
             })
 
+    all_tools = sorted(
+        set(per_tool)
+        | {_canonical_tool(path.stem.removeprefix("sim_").removesuffix("_capability")) for path in PROBES.glob("sim_*_capability.py")}
+        | {_canonical_tool(path.stem.removeprefix("sim_capability_").removesuffix("_isolated")) for path in PROBES.glob("sim_capability_*_isolated.py")}
+    )
+    per_tool_report: dict[str, dict[str, object]] = {}
+    for tool in all_tools:
+        row = dict(per_tool[tool])
+        row.update(_capability_probe_status(tool))
+        per_tool_report[tool] = row
+
     return {
         "audited_sims_with_tool_imports": audited,
         "parse_failures": parse_failures,
         "missing_manifest_by_tool": dict(missing_manifest),
         "missing_depth_by_tool": dict(missing_depth),
+        "per_tool": per_tool_report,
         "samples": samples,
     }
 

@@ -25,6 +25,15 @@ from datetime import UTC, datetime
 import numpy as np
 import scipy.linalg as la
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this process/geometry wiggle exploration compares bounded numeric proxies only, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix and vector numerics for process and geometry wiggle comparisons"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponentials for curvature-style probe comparisons"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -263,6 +272,9 @@ def run():
         "process_wiggle": process,
         "geometry_wiggle": geometry,
         "note": "Exploratory process/geometry wiggle; normalized states; not canon.",
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

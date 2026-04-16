@@ -39,6 +39,11 @@ from datetime import UTC, datetime
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this Proto-B runtime wiggle exploration stays on runtime-native numeric candidates, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "runtime candidate metrics and sweep summaries"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -719,6 +724,9 @@ def main():
             "torus_programs": TORUS_PROGRAMS,
             "n_runs": len(runs),
         },
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "candidate_summaries": summary,
         "rankings": {
             "axis0_gap": ranking("axis0_high_minus_low_mean"),

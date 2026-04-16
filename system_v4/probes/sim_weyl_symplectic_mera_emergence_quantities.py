@@ -23,6 +23,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Weyl×Symplectic×MERA emergence probe: this file checks "
+    "scalar emergence quantities with z3, sympy, and clifford support where "
+    "available, but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -256,13 +262,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_weyl_symplectic_mera_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Emergence quantities step for Weyl×Symplectic×MERA (22nd program). "
-            "E1-E6 subshell products with MI=0 give Q=0. "
-            f"E7 full triple: MI={MI_val:.6f}, Q_WSM={Q_WSM:.6f} > 0. "
-            "z3 UNSAT: MI=0 kills Q regardless of H values. "
-            "sympy: four-factor zero collapse confirmed."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_weyl": H_WEYL, "H_symp": H_SYMP, "H_mera": H_MERA},

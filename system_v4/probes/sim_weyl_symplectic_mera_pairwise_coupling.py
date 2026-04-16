@@ -21,6 +21,14 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for Weyl×Symplectic×MERA (22nd program). "
+    "H_weyl = log(2), H_symp = log(5), H_mera = log(2). "
+    "Q_WS, Q_WM, Q_SM all > 0. "
+    "z3 UNSAT: zero shell entropy kills pairwise product. "
+    "sympy: symbolic positivity confirmed."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -231,14 +239,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_weyl_symplectic_mera_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Pairwise coupling step for Weyl×Symplectic×MERA (22nd program). "
-            f"H_weyl={H_WEYL:.6f} (log 2), H_symp={H_SYMP:.6f} (log 5), "
-            f"H_mera={H_MERA:.6f} (log 2). "
-            "Q_WS, Q_WM, Q_SM all > 0. "
-            "z3 UNSAT: zero shell entropy kills pairwise product. "
-            "sympy: symbolic positivity confirmed."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_weyl": H_WEYL, "H_symp": H_SYMP, "H_mera": H_MERA},

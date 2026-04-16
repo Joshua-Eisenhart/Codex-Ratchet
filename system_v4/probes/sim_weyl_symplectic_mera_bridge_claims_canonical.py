@@ -30,6 +30,8 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = "Bridge claims for Weyl×Symplectic×MERA (22nd program). Q_WSM = MI × H_weyl × H_symp × H_mera. H_weyl=0.693147 (log 2). H_symp=1.609438 (log 5). H_mera=0.693147 (log 2). rho_WSM valid (64×64, trace=1, PSD, float64). r(Q_WSM, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_WSM trace validated (float64)."
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -307,18 +309,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_weyl_symplectic_mera_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for Weyl×Symplectic×MERA (22nd program). "
-            f"Q_WSM = MI × H_weyl × H_symp × H_mera. "
-            f"H_weyl={H_WEYL:.6f} (log 2). H_symp={H_SYMP:.6f} (log 5). "
-            f"H_mera={H_MERA:.6f} (log 2). "
-            "rho_WSM valid (64×64, trace=1, PSD, float64). "
-            "r(Q_WSM, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_WSM trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_weyl": H_WEYL, "H_symp": H_SYMP, "H_mera": H_MERA},

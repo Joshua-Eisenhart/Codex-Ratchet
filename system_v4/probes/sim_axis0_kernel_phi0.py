@@ -10,15 +10,17 @@ import pathlib
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Canonical late-layer lego for a signed Axis-0 kernel Phi0 on one "
+    "bounded point-bridge family, kept separate from bridge search, unsigned "
+    "entropy bundles, and final selector promotion."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 
 EPS = 1e-10
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
-    "Canonical late-layer lego for a signed Axis-0 kernel Phi0 on one bounded point-bridge family, "
-    "kept separate from bridge search, unsigned entropy bundles, and final selector promotion."
-)
 
 LEGO_IDS = [
     "axis0_kernel_phi0",
@@ -166,6 +168,7 @@ def main():
         "name": "axis0_kernel_phi0",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

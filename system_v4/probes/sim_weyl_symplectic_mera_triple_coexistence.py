@@ -17,6 +17,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence step of Weyl×Symplectic×MERA (22nd program). "
+    "H_weyl, H_symp, and H_mera are normalized via h/(1+h) and compared "
+    "through joint-vs-pairwise products without changing program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -231,13 +236,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_weyl_symplectic_mera_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Triple coexistence step for Weyl×Symplectic×MERA (22nd program). "
-            f"h_weyl={hw:.6f}, h_symp={hs:.6f}, h_mera={hm:.6f} (normalized H/(1+H)). "
-            "Joint product ≤ all pairwise products — consistent with data-processing inequality. "
-            "z3 UNSAT: joint > pairwise impossible when all h in (0,1). "
-            "sympy: h/(1+H) in (0,1) for H>0."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_weyl": H_WEYL, "H_symp": H_SYMP, "H_mera": H_MERA},

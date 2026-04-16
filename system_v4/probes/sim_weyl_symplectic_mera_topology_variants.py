@@ -22,6 +22,13 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Topology variants step for Weyl×Symplectic×MERA (22nd program). "
+    "H_weyl and H_symp are topology-stable across flat, S², and lens classes. "
+    "DPI confirmed; z3 and sympy witness topology-invariant entropy. "
+    "toponetx CellComplex instantiation is load-bearing for the variant comparison."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -269,16 +276,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_weyl_symplectic_mera_topology_variants",
         "classification": classification,
-        "divergence_log": (
-            "Topology variants step for Weyl×Symplectic×MERA (22nd program). "
-            f"H_weyl={H_WEYL:.6f}, H_symp={H_SYMP:.6f}, H_mera={H_MERA:.6f}. "
-            "T1 (flat), T2 (S²), T3 (lens L(5,2)). "
-            "H_weyl and H_symp topology-stable across all three. "
-            "DPI confirmed. "
-            "z3 UNSAT: topology cannot change fixed entropy. "
-            "sympy: dH/dt=0. "
-            "toponetx: CellComplex instantiation confirmed."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_weyl": H_WEYL, "H_symp": H_SYMP, "H_mera": H_MERA},

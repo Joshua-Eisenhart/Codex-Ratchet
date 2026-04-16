@@ -15,6 +15,11 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical FEP/Markov-blanket pair baseline. The file stays numeric and "
+    "uses numpy plus a bounded z3 admissibility check to keep the free-energy "
+    "and blanket constraints aligned."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "KL + CI-gap evaluation"},
@@ -116,6 +121,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_fep_pair_free_energy_x_markov_blanket",
         "classification": "canonical",
+        "classification_note": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

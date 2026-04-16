@@ -16,6 +16,13 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pair-step active-inference probe. It stays in a classical_baseline "
+    "posture while testing expected free energy against a generative model "
+    "and action-loop coherence."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "expected F over actions"},
@@ -102,7 +109,8 @@ def run_boundary_tests():
 if __name__ == "__main__":
     results = {
         "name": "sim_fep_pair_active_inference_x_generative_model",
-        "classification": "canonical",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

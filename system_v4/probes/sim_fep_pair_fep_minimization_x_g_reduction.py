@@ -16,6 +16,12 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Step-2 coupling: F-minimization on a G-reduced manifold is checked "
+    "against the admissible orbit only; this is a classical baseline, not "
+    "a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "KL + mean-field search"},
@@ -98,6 +104,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_fep_pair_fep_minimization_x_g_reduction",
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

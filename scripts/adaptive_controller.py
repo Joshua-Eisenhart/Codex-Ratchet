@@ -958,6 +958,45 @@ def auto_commit():
     except Exception:
         pass
 
+# ── result file discovery with flexible naming ─────────────────────────────────
+
+def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> pathlib.Path | None:
+    """
+    Find a result file for a given sim stem, accounting for flexible naming conventions.
+
+    Tries these patterns in order:
+    1. {stem}_results.json (exact match)
+    2. {stem_without_sim_prefix}_results.json (strip leading "sim_")
+    3. Any substring-based match where the basename (without _results.json) contains the key part
+    """
+    # Pattern 1: exact match
+    exact = results_dir / f"{sim_stem}_results.json"
+    if exact.exists():
+        return exact
+
+    # Pattern 2: strip leading "sim_" if present
+    if sim_stem.startswith("sim_"):
+        without_prefix = sim_stem[4:]
+        without_prefix_path = results_dir / f"{without_prefix}_results.json"
+        if without_prefix_path.exists():
+            return without_prefix_path
+
+    # Pattern 3: substring-based match
+    # For "sim_4qubit_cascade", look for files like "4qubit_cascade_results.json"
+    key = sim_stem
+    if key.startswith("sim_"):
+        key = key[4:]
+
+    if results_dir.exists():
+        for result_file in results_dir.glob("*_results.json"):
+            basename = result_file.stem  # Remove .json
+            if basename.endswith("_results"):
+                basename = basename[:-8]  # Remove "_results"
+            if key in basename or basename in key:
+                return result_file
+
+    return None
+
 # ── main triage cycle ─────────────────────────────────────────────────────────
 
 def triage_cycle(dry: bool = False) -> dict:
@@ -979,9 +1018,9 @@ def triage_cycle(dry: bool = False) -> dict:
 
     for sim in sorted(all_sims):
         stem = sim.stem
-        rj = RESULTS / f"{stem}_results.json"
+        rj = find_result_file(stem)
 
-        if not rj.exists():
+        if rj is None:
             state["never_run"].append(stem)
             if not dry and not is_tracked(str(sim), include_blocked=True):
                 enqueue(sim, infer_lane(sim), default_priority_for_bucket(plan_bucket(sim.name)))

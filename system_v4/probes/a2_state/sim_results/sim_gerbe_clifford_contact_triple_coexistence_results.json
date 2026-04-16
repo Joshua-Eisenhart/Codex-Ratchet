@@ -1,17 +1,18 @@
 {
   "name": "sim_gerbe_clifford_contact_triple_coexistence",
-  "classification": "canonical",
-  "divergence_log": "Step 2 triple coexistence for Gerbe\u00d7Clifford\u00d7Contact (21st program). Normalize H via h/(1+h). Joint product \u2264 each pairwise product confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). sympy: a*b*(1-c) \u2265 0 for c \u2264 1.",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence for Gerbe\u00d7Clifford\u00d7Contact (21st program). Normalize H via h/(1+h). Joint product \u2264 each pairwise product confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). sympy: a*b*(1-c) \u2265 0 for c \u2264 1.",
+  "divergence_log": "Triple coexistence for Gerbe\u00d7Clifford\u00d7Contact (21st program). Normalize H via h/(1+h). Joint product \u2264 each pairwise product confirmed. z3 UNSAT: joint > pair impossible for values in (0,1). sympy: a*b*(1-c) \u2265 0 for c \u2264 1.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed for coexistence normalization test"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning in triple coexistence"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 is sufficient for UNSAT proof here"
     },
     "sympy": {
       "tried": true,
@@ -36,27 +37,27 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "Riemannian geometry not invoked here"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariance not invoked here"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal needed"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph structure needed"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "chain-complex not invoked here"
     },
     "gudhi": {
       "tried": true,
@@ -146,21 +147,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

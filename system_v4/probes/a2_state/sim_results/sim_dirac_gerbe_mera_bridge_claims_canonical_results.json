@@ -1,7 +1,7 @@
 {
   "name": "sim_dirac_gerbe_mera_bridge_claims_canonical",
-  "classification": "canonical",
-  "divergence_log": "Bridge claims for Dirac\u00d7Gerbe\u00d7MERA (25th program). Q_DGM = MI \u00d7 H_dirac \u00d7 H_gerbe \u00d7 H_mera. H_dirac=0.336783 (spectral gap seed=0). H_gerbe=1.386294 (log(4)). H_mera=0.693147 (log(2)). rho_DGM valid (8\u00d78, trace=1, PSD, float64). r(Q_DGM, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_DGM trace validated (float64).",
+  "classification": "classical_baseline",
+  "divergence_log": "Bridge claims for Dirac\u00d7Gerbe\u00d7MERA (25th program). Q_DGM = MI \u00d7 H_dirac \u00d7 H_gerbe \u00d7 H_mera. rho_DGM valid (8\u00d78, trace=1, PSD, float64). r(Q_DGM, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_DGM trace validated (float64).",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -46,7 +46,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal required in DGM bridge claims density matrix or Pearson-r computation for Q_DGM"
     },
     "xgi": {
       "tried": true,
@@ -56,27 +56,27 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "CellComplex exercised in topology-variants step; not needed in DGM bridge claims density matrix"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not needed in rho trace and MI correlation DGM bridge test for Q_DGM"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_dirac": 0.33678336703714473,

@@ -1,7 +1,8 @@
 {
   "name": "sim_dirac_gerbe_mera_triple_coexistence",
-  "classification": "canonical",
-  "divergence_log": "Triple coexistence for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac=0.336783, H_gerbe=1.386294, H_mera=0.693147. Normalized h/(1+h) values all in (0,1). Joint product <= pairwise product (DPI-like inequality). Q_DGM = MI \u00d7 H_dirac \u00d7 H_gerbe \u00d7 H_mera > 0. z3 UNSAT: normalized joint > 1 impossible. sympy: h/(1+h) is monotone in h. pytorch: normalized tensor positivity validated.",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac, H_gerbe, and H_mera are normalized via h/(1+h) and compared through joint-vs-pairwise products without broadening program scope.",
+  "divergence_log": "Triple coexistence for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac, H_gerbe, and H_mera are normalized via h/(1+h) and compared through joint-vs-pairwise products without broadening program scope.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph structure in DGM triple coexistence scalar normalization tests; PyG not needed"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 UNSAT covers the monotonicity impossibility proof for DGM coexistence; cvc5 not needed"
     },
     "sympy": {
       "tried": true,
@@ -36,47 +37,47 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in scalar normalization DGM coexistence test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariant networks not needed for scalar DGM shell-entropy normalization tests"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal required for DGM triple coexistence normalized entropy products"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure needed for DGM triple coexistence scalar entropy tests"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "CellComplex topology deferred to topology-variants step; not needed in DGM coexistence"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not needed for DGM triple scalar normalization coexistence tests"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_dirac": 0.33678336703714473,
@@ -143,21 +144,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

@@ -1,7 +1,7 @@
 {
   "name": "E3NN I_c Local Unitary Invariance",
   "token": "E_E3NN_IC_INVARIANCE",
-  "timestamp": "2026-04-16T05:08:33.219798+00:00",
+  "timestamp": "2026-04-16T05:56:49.995773+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for this probe"
     },
     "z3": {
       "tried": true,
@@ -26,17 +26,17 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed for this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed for this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed for this probe"
     },
     "e3nn": {
       "tried": true,
@@ -46,37 +46,37 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for this probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for this probe"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "supportive",
-    "cvc5": "supportive",
-    "sympy": null,
     "clifford": null,
-    "geomstats": null,
+    "cvc5": "load_bearing",
     "e3nn": "load_bearing",
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": null,
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "P1_ic_invariant_local_unitaries_both_sides": {

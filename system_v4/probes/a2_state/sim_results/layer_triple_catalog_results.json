@@ -1,6 +1,6 @@
 {
   "name": "layer_triple_catalog",
-  "timestamp": "2026-04-16T05:11:31.537255+00:00",
+  "timestamp": "2026-04-16T05:56:08.484599+00:00",
   "classification": "canonical",
   "all_tests_pass": true,
   "tool_manifest": {
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- graph structure via rustworkx"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 handles the uniqueness SMT check"
     },
     "sympy": {
       "tried": true,
@@ -32,7 +32,7 @@
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "Cl(3) rotor for SU(2) Hopf rotation (L1 native operator)"
     },
     "geomstats": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
     },
     "rustworkx": {
       "tried": true,
@@ -66,18 +66,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": "not_applicable",
-    "z3": "load_bearing",
-    "cvc5": "not_applicable",
-    "sympy": "load_bearing",
     "clifford": "load_bearing",
-    "geomstats": "supportive",
-    "e3nn": "not_applicable",
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": "load_bearing",
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": "load_bearing",
-    "xgi": "not_applicable",
-    "toponetx": "not_applicable",
-    "gudhi": "not_applicable"
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "layer_catalog": {
     "L1_Hopf": {

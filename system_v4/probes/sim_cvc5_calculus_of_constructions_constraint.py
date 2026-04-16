@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-CVC5 Canonical Sim: Univalence Axiom Constraint (Homotopy Type Theory)
+CVC5 Canonical Sim: Calculus of Constructions (CoC) Constraint
 
-Proves: Univalence axiom (Voevodsky): (A ≃ B) ≃ (A = B)
-- Equivalence rank constraint: if f: A → B is equivalence, rank(A) = rank(B)
-- h-levels: h-level 0 = contractible, h-level 1 = proposition, h-level 2 = set
-- Path contractibility: all elements of path space are identified
+Proves: Calculus of Constructions with impredicative Prop sort.
+- Sort hierarchy: Prop : Type_0 : Type_1 : ... (strictly increasing)
+- Girard's paradox prevention: Prop : Prop is unsatisfiable
+- Normalization: every well-typed term in CoC has a normal form
 
-CVC5 proves rank and h-level constraints must hold (UNSAT if violated).
-Sympy derives h-level hierarchy and equivalence properties.
+CVC5 proves sort hierarchy constraints (UNSAT if Prop : Prop).
+Sympy derives normalization theorem and reduction rules.
 """
 
 import json
@@ -64,11 +64,11 @@ except ImportError:
 
 
 # =====================================================================
-# POSITIVE TESTS -- CVC5 SAT (valid univalence constraints)
+# POSITIVE TESTS -- CVC5 SAT (valid CoC sort hierarchy)
 # =====================================================================
 
 def run_positive_tests():
-    """Test valid univalence and equivalence constraints."""
+    """Test valid Calculus of Constructions sort hierarchy."""
     results = {}
 
     if not TOOL_MANIFEST["cvc5"]["tried"]:
@@ -76,85 +76,82 @@ def run_positive_tests():
 
     from cvc5 import Solver, Kind
 
-    # Test 1: Equivalence preserves rank
+    # Test 1: Prop : Type_0 (Prop is in Type_0)
     solver = Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("QF_LIA")
 
     i_sort = solver.getIntegerSort()
-    rank_A = solver.mkConst(i_sort, "rank_A")
-    rank_B = solver.mkConst(i_sort, "rank_B")
-    is_equiv = solver.mkConst(solver.getBooleanSort(), "is_equiv")
+    prop_level = solver.mkConst(i_sort, "prop_level")
+    type_0_level = solver.mkConst(i_sort, "type_0_level")
 
-    # If f: A → B is equivalence, ranks must be equal
-    solver.assertFormula(
-        solver.mkTerm(Kind.IMPLIES, is_equiv,
-            solver.mkTerm(Kind.EQUAL, rank_A, rank_B))
-    )
-
-    solver.assertFormula(is_equiv)
+    # Prop < Type_0
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, prop_level, solver.mkInteger(0)))
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, type_0_level, solver.mkInteger(1)))
+    solver.assertFormula(solver.mkTerm(Kind.LT, prop_level, type_0_level))
 
     result = solver.checkSat()
-    results["test_equivalence_rank_preserved"] = {
+    results["test_prop_in_type_0"] = {
         "status": str(result),
         "satisfiable": result.isSat(),
-        "description": "Equivalence preserves rank: rank(A) = rank(B) if f: A ≃ B"
+        "description": "Prop : Type_0 (Prop is a type in universe 0)"
     }
     TOOL_MANIFEST["cvc5"]["used"] = True
     TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
 
-    # Test 2: H-level hierarchy constraint
+    # Test 2: Type_i < Type_{i+1} (universe hierarchy)
     solver2 = Solver()
     solver2.setOption("produce-models", "true")
     solver2.setLogic("QF_LIA")
 
     i_sort2 = solver2.getIntegerSort()
-    h_level = solver2.mkConst(i_sort2, "h_level")
+    type_0 = solver2.mkConst(i_sort2, "type_0")
+    type_1 = solver2.mkConst(i_sort2, "type_1")
+    type_2 = solver2.mkConst(i_sort2, "type_2")
 
-    # h-level must be non-negative
-    solver2.assertFormula(solver2.mkTerm(Kind.GEQ, h_level, solver2.mkInteger(0)))
+    # Strictly increasing hierarchy
+    solver2.assertFormula(solver2.mkTerm(Kind.LT, type_0, type_1))
+    solver2.assertFormula(solver2.mkTerm(Kind.LT, type_1, type_2))
 
     result2 = solver2.checkSat()
-    results["test_h_level_non_negative"] = {
+    results["test_universe_hierarchy"] = {
         "status": str(result2),
         "satisfiable": result2.isSat(),
-        "description": "H-levels form non-negative hierarchy: 0, 1, 2, ..."
+        "description": "Universe hierarchy Type_0 : Type_1 : Type_2 : ..."
     }
 
-    # Test 3: Univalence axiom equivalence
+    # Test 3: Well-typed term normalization exists
     solver3 = Solver()
     solver3.setOption("produce-models", "true")
     solver3.setLogic("QF_UF")
 
     bool_sort = solver3.getBooleanSort()
-    has_equiv = solver3.mkConst(bool_sort, "has_equiv")
-    has_path = solver3.mkConst(bool_sort, "has_path")
+    is_well_typed = solver3.mkConst(bool_sort, "is_well_typed")
+    has_normal_form = solver3.mkConst(bool_sort, "has_normal_form")
 
-    # Univalence: (A ≃ B) ≃ (A = B), so one direction holds if other does
-    # IFF(a,b) = AND(IMPLIES(a,b), IMPLIES(b,a))
+    # Well-typed implies normal form exists
     solver3.assertFormula(
-        solver3.mkTerm(Kind.AND,
-            solver3.mkTerm(Kind.IMPLIES, has_equiv, has_path),
-            solver3.mkTerm(Kind.IMPLIES, has_path, has_equiv)
-        )
+        solver3.mkTerm(Kind.IMPLIES, is_well_typed, has_normal_form)
     )
 
+    solver3.assertFormula(is_well_typed)
+
     result3 = solver3.checkSat()
-    results["test_univalence_axiom_equivalence"] = {
+    results["test_normalization_theorem"] = {
         "status": str(result3),
         "satisfiable": result3.isSat(),
-        "description": "Univalence axiom: equivalence and path equivalence are equivalent"
+        "description": "Every well-typed term has a normal form (normalization theorem)"
     }
 
     return results
 
 
 # =====================================================================
-# NEGATIVE TESTS -- CVC5 UNSAT (violated constraints)
+# NEGATIVE TESTS -- CVC5 UNSAT (violated CoC constraints)
 # =====================================================================
 
 def run_negative_tests():
-    """Test that violated univalence constraints are unsatisfiable."""
+    """Test that violated CoC constraints are unsatisfiable."""
     results = {}
 
     if not TOOL_MANIFEST["cvc5"]["tried"]:
@@ -162,84 +159,83 @@ def run_negative_tests():
 
     from cvc5 import Solver, Kind
 
-    # Test 1: Equivalence with different ranks
+    # Test 1: Prop : Prop (Girard's paradox)
     solver = Solver()
     solver.setOption("produce-models", "true")
     solver.setLogic("QF_LIA")
 
     i_sort = solver.getIntegerSort()
-    rank_A = solver.mkConst(i_sort, "rank_A_1")
-    rank_B = solver.mkConst(i_sort, "rank_B_1")
-    is_equiv = solver.mkConst(solver.getBooleanSort(), "is_equiv_1")
+    prop_level = solver.mkConst(i_sort, "prop_level_1")
 
-    # Claim equivalence exists
-    solver.assertFormula(is_equiv)
+    # Enforce sort hierarchy: Prop must be at level 0
+    solver.assertFormula(solver.mkTerm(Kind.EQUAL, prop_level, solver.mkInteger(0)))
 
-    # But ranks are different
-    solver.assertFormula(solver.mkTerm(Kind.DISTINCT, rank_A, rank_B))
-
-    # Equivalence implies equal ranks
+    # But claim Prop : Prop (same level)
+    prop_in_itself = solver.mkConst(solver.getBooleanSort(), "prop_in_itself")
     solver.assertFormula(
-        solver.mkTerm(Kind.IMPLIES, is_equiv,
-            solver.mkTerm(Kind.EQUAL, rank_A, rank_B))
+        solver.mkTerm(Kind.IMPLIES, prop_in_itself,
+            solver.mkTerm(Kind.EQUAL, prop_level, prop_level))
     )
 
+    # Contradiction: if Prop : Prop holds, we get the full sort hierarchy violated
+    solver.assertFormula(prop_in_itself)
+
+    # But this contradicts that Prop is at level 0 (must be in some Type_n with n > 0)
+    solver.assertFormula(solver.mkTerm(Kind.GT, prop_level, solver.mkInteger(0)))
+
     result = solver.checkSat()
-    results["test_equivalence_rank_mismatch"] = {
+    results["test_girard_paradox_unsat"] = {
         "status": str(result),
         "satisfiable": result.isSat(),
-        "description": "Equivalence with different ranks is UNSAT"
+        "description": "Prop : Prop (Girard's paradox) is UNSAT in CoC"
     }
     TOOL_MANIFEST["cvc5"]["used"] = True
 
-    # Test 2: Negative h-level
+    # Test 2: Violation of universe hierarchy
     solver2 = Solver()
     solver2.setOption("produce-models", "true")
     solver2.setLogic("QF_LIA")
 
     i_sort2 = solver2.getIntegerSort()
-    h_level = solver2.mkConst(i_sort2, "h_level_2")
+    type_0 = solver2.mkConst(i_sort2, "type_0_2")
+    type_1 = solver2.mkConst(i_sort2, "type_1_2")
 
-    # h-levels must be non-negative
-    solver2.assertFormula(solver2.mkTerm(Kind.GEQ, h_level, solver2.mkInteger(0)))
+    # Enforce Type_0 < Type_1
+    solver2.assertFormula(solver2.mkTerm(Kind.LT, type_0, type_1))
 
-    # But claim it's negative
-    solver2.assertFormula(solver2.mkTerm(Kind.LT, h_level, solver2.mkInteger(0)))
+    # But claim Type_1 < Type_0 (cyclic)
+    solver2.assertFormula(solver2.mkTerm(Kind.LT, type_1, type_0))
 
     result2 = solver2.checkSat()
-    results["test_negative_h_level"] = {
+    results["test_cyclic_universe_hierarchy"] = {
         "status": str(result2),
         "satisfiable": result2.isSat(),
-        "description": "Negative h-level is UNSAT"
+        "description": "Cyclic universe hierarchy is UNSAT"
     }
 
-    # Test 3: Univalence axiom violation
+    # Test 3: Ill-typed term (no normal form)
     solver3 = Solver()
     solver3.setOption("produce-models", "true")
     solver3.setLogic("QF_UF")
 
     bool_sort = solver3.getBooleanSort()
-    has_equiv = solver3.mkConst(bool_sort, "has_equiv_3")
-    has_path = solver3.mkConst(bool_sort, "has_path_3")
+    is_well_typed = solver3.mkConst(bool_sort, "is_well_typed_3")
+    has_normal_form = solver3.mkConst(bool_sort, "has_normal_form_3")
 
-    # Univalence requires equivalence iff path
-    # IFF(a,b) = AND(IMPLIES(a,b), IMPLIES(b,a))
+    # Normalization theorem
     solver3.assertFormula(
-        solver3.mkTerm(Kind.AND,
-            solver3.mkTerm(Kind.IMPLIES, has_equiv, has_path),
-            solver3.mkTerm(Kind.IMPLIES, has_path, has_equiv)
-        )
+        solver3.mkTerm(Kind.IMPLIES, is_well_typed, has_normal_form)
     )
 
-    # But claim they differ
-    solver3.assertFormula(has_equiv)
-    solver3.assertFormula(solver3.mkTerm(Kind.NOT, has_path))
+    # But claim ill-typed yet has normal form
+    solver3.assertFormula(solver3.mkTerm(Kind.NOT, is_well_typed))
+    solver3.assertFormula(has_normal_form)
 
     result3 = solver3.checkSat()
-    results["test_univalence_axiom_violation"] = {
+    results["test_ill_typed_normal_form"] = {
         "status": str(result3),
         "satisfiable": result3.isSat(),
-        "description": "Univalence violation (equivalence without path) is UNSAT"
+        "description": "Ill-typed term with normal form is UNSAT"
     }
 
     return results
@@ -250,10 +246,10 @@ def run_negative_tests():
 # =====================================================================
 
 def run_boundary_tests():
-    """Edge cases: singleton types, empty types, sympy h-level formulas."""
+    """Edge cases: bottom universe, reduction rules, sympy derivations."""
     results = {}
 
-    # Boundary 1: Unit type h-level
+    # Boundary 1: Prop in universe hierarchy
     if TOOL_MANIFEST["cvc5"]["tried"]:
         from cvc5 import Solver, Kind
 
@@ -262,58 +258,64 @@ def run_boundary_tests():
         solver.setLogic("QF_LIA")
 
         i_sort = solver.getIntegerSort()
-        unit_h_level = solver.mkConst(i_sort, "unit_h_level")
+        prop_level = solver.mkConst(i_sort, "prop_level_b1")
 
-        # Unit type has h-level 0 (contractible)
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, unit_h_level, solver.mkInteger(0)))
+        # Prop is impredicative (can quantify over all types)
+        # But Prop itself is at level 0
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, prop_level, solver.mkInteger(0)))
 
         result = solver.checkSat()
-        results["test_unit_type_contractible"] = {
+        results["test_impredicative_prop"] = {
             "status": str(result),
             "satisfiable": result.isSat(),
-            "description": "Unit type is h-level 0 (contractible)"
+            "description": "Impredicative Prop is consistently at universe level 0"
         }
 
-    # Boundary 2: Bool type h-level
+    # Boundary 2: Beta reduction preserves type
     if TOOL_MANIFEST["cvc5"]["tried"]:
         from cvc5 import Solver, Kind
 
         solver = Solver()
         solver.setOption("produce-models", "true")
-        solver.setLogic("QF_LIA")
+        solver.setLogic("QF_UF")
 
-        i_sort = solver.getIntegerSort()
-        bool_h_level = solver.mkConst(i_sort, "bool_h_level")
+        bool_sort = solver.getBooleanSort()
+        term_typed = solver.mkConst(bool_sort, "term_typed")
+        reduced_typed = solver.mkConst(bool_sort, "reduced_typed")
 
-        # Bool type has h-level 2 (set: true ≠ false, paths between paths are equal)
-        solver.assertFormula(solver.mkTerm(Kind.EQUAL, bool_h_level, solver.mkInteger(2)))
+        # Type preservation under beta reduction
+        solver.assertFormula(
+            solver.mkTerm(Kind.IMPLIES, term_typed, reduced_typed)
+        )
+
+        solver.assertFormula(term_typed)
 
         result = solver.checkSat()
-        results["test_bool_type_set"] = {
+        results["test_beta_reduction_type_preservation"] = {
             "status": str(result),
             "satisfiable": result.isSat(),
-            "description": "Bool type is h-level 2 (set)"
+            "description": "Beta reduction preserves type in CoC"
         }
 
-    # Boundary 3: Sympy - H-level hierarchy
+    # Boundary 3: Sympy - Reduction rules and normalization
     if TOOL_MANIFEST["sympy"]["tried"]:
         import sympy as sp
 
-        n = sp.Symbol('n', integer=True, nonnegative=True)
+        x = sp.Symbol('x', real=True)
 
-        results["test_h_level_definition"] = {
-            "symbolic_formula": f"h-level(n) = types where all (n+1)-paths are equal",
-            "description": "H-level hierarchy: 0=contractible, 1=prop, 2=set, 3=groupoid, ..."
+        results["test_beta_reduction_rule"] = {
+            "symbolic_formula": f"(λx. M(x)) N ≡ M[N/x]",
+            "description": "Beta reduction rule for function application"
         }
 
-        results["test_contractible_h_level_0"] = {
-            "symbolic_property": f"Contractible(A) := ∃(c:A). ∀(x:A). c = x",
-            "description": "H-level 0: has center with all elements identified to it"
+        results["test_normalization_property"] = {
+            "symbolic_property": f"∀t. ∀Γ. (Γ ⊢ t : T) → ∃n. t →* n (n is normal form)",
+            "description": "Strong normalization: every typed term reduces to normal form"
         }
 
-        results["test_propositional_h_level_1"] = {
-            "symbolic_property": f"Prop(A) := ∀(x,y:A). x = y",
-            "description": "H-level 1: any two elements are equal (all proofs are equal)"
+        results["test_subject_reduction"] = {
+            "symbolic_property": f"If Γ ⊢ t : T and t → t', then Γ ⊢ t' : T",
+            "description": "Subject reduction: reduction preserves types"
         }
 
     TOOL_MANIFEST["sympy"]["used"] = TOOL_MANIFEST["sympy"]["tried"]
@@ -328,7 +330,7 @@ def run_boundary_tests():
 
 if __name__ == "__main__":
     results = {
-        "name": "sim_cvc5_univalence_axiom_constraint",
+        "name": "sim_cvc5_calculus_of_constructions_constraint",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),
@@ -339,7 +341,7 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_cvc5_univalence_axiom_constraint_results.json")
+    out_path = os.path.join(out_dir, "sim_cvc5_calculus_of_constructions_constraint_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")

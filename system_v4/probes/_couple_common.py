@@ -36,6 +36,38 @@ import itertools
 import json
 import os
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "z3": {"tried": True, "used": True, "reason": "load-bearing: pairwise coupling SAT/UNSAT witness layer"},
+    "cvc5": {"tried": False, "used": False, "reason": "helper only; z3 is sufficient"},
+    "sympy": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "clifford": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "helper only; not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "helper only; not needed"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 try:
     from z3 import Bool, Solver, And, Or, Not, Implies, sat, unsat
     _HAVE_Z3 = True

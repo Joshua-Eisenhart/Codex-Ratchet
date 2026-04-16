@@ -11,6 +11,23 @@ This author writes the 20 files, then the user runs them.
 import os, textwrap
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+classification = "classical_baseline"
+divergence_log = (
+    "Authoring helper that emits classical_baseline numpy-only sims; the helper "
+    "itself only templates files and keeps the metadata surface honest."
+)
+
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": False,
+        "used": False,
+        "reason": "helper templates numpy-only classical_baseline sims; the author itself only emits code",
+    },
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": None,
+}
 
 HEADER = r'''#!/usr/bin/env python3
 """{title}

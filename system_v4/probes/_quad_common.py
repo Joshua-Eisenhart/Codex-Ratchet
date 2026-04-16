@@ -18,6 +18,38 @@ import itertools
 import json
 import os
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "pytorch":   {"tried": True, "used": False, "reason": "supportive only; Boolean k-wise admissibility at helper layer does not require gradient surfaces"},
+    "pyg":       {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "z3":        {"tried": False, "used": False, "reason": "helper itself does not run a standalone SMT proof"},
+    "cvc5":      {"tried": False, "used": False, "reason": "helper itself does not run a standalone SMT proof"},
+    "sympy":     {"tried": True, "used": False, "reason": "supportive only; helper exposes shared symbolic-friendly scaffolding"},
+    "clifford":  {"tried": True, "used": False, "reason": "shared k-wise coupling scaffolding; not load-bearing in helper"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "e3nn":      {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "xgi":       {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "toponetx":  {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+    "gudhi":     {"tried": False, "used": False, "reason": "not needed; helper provides shared k-wise coupling scaffolding"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 try:
     from z3 import Bool, Solver, And, Not, sat
     _HAVE_Z3 = True

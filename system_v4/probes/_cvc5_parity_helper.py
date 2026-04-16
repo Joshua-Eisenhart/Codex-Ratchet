@@ -5,6 +5,16 @@ cvc5 on the same constraint encoding. Not a canonical sim itself.
 """
 import os, json
 
+classification = "canonical"
+
+TOOL_MANIFEST = {
+    "cvc5": {"tried": False, "used": False, "reason": "helper module only; parity checks are owned by sibling sims"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "cvc5": None,
+}
+
 def write_results(name, results):
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)

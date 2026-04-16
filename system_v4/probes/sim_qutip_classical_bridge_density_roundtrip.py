@@ -245,8 +245,26 @@ def run_bridge_probe() -> dict[str, Any]:
     return summary
 
 
+def _jsonable(value: Any) -> Any:
+    if isinstance(value, np.generic):
+        return _jsonable(value.item())
+    if isinstance(value, complex):
+        return {"real": float(value.real), "imag": float(value.imag)}
+    if isinstance(value, dict):
+        return {k: _jsonable(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_jsonable(v) for v in value]
+    if isinstance(value, tuple):
+        return [_jsonable(v) for v in value]
+    if hasattr(value, "tolist"):
+        return _jsonable(value.tolist())
+    if hasattr(value, "__dict__") and not isinstance(value, type):
+        return _jsonable(value.__dict__)
+    return value
+
+
 def main() -> int:
-    print(json.dumps(run_bridge_probe(), indent=2, sort_keys=True, default=lambda x: x.tolist() if hasattr(x, "tolist") else x))
+    print(json.dumps(_jsonable(run_bridge_probe()), indent=2, sort_keys=True))
     return 0
 
 

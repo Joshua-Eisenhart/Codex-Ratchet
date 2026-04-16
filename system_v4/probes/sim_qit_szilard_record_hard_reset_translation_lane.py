@@ -10,15 +10,16 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Promoted hard-reset translation lane for the open Szilard record/reset "
     "carrier. It compares the upgraded open reset mechanic against the strict "
-    "QIT companion without claiming canonical admission."
+    "QIT companion while keeping the theorem and scope unchanged."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

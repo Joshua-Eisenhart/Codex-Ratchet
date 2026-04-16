@@ -21,18 +21,18 @@ import json, pathlib, time
 import numpy as np
 from scipy.linalg import sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline density-matrix lego: this probe builds and checks "
+    "local density-matrix identities, entropies, and channel behaviors with "
+    "numpy/scipy numerics, not a canonical nonclassical witness."
+)
 
 np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
 CLASSIFICATION = "canonical"
-CLASSIFICATION_NOTE = (
-    "Canonical local lego evidence for density-matrix validity, local spectral structure, "
-    "basic entropy/distance identities, bipartite reductions, correlation measures, and "
-    "elementary CPTP channel behavior. This is a broad local probe, not a closure-grade "
-    "coexistence or topology result."
-)
+CLASSIFICATION_NOTE = divergence_log
 LEGO_IDS = [
     "density_matrix_object",
     "density_matrix_representability",

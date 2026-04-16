@@ -19,17 +19,18 @@ import json, pathlib, time
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure LEGO ML/density baseline. The file stays classical and numerical, "
+    "using numpy/scipy density-matrix analogies for compression, spectrum, "
+    "and partial-trace checks."
+)
 
 np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
 CLASSIFICATION = "supporting"
-CLASSIFICATION_NOTE = (
-    "Supporting multi-lego compression/spectral evidence. This probe is mathematically strong "
-    "and all-pass locally, but it bundles several compression analogies and should not be treated "
-    "as a single canonical lego surface."
-)
+CLASSIFICATION_NOTE = divergence_log
 LEGO_IDS = [
     "covariance_operator",
     "spectral_truncation",

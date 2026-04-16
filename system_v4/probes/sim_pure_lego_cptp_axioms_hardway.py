@@ -16,6 +16,13 @@ import os
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure lego CPTP axioms probe. It stays in a classical_baseline posture "
+    "while testing trace preservation, complete positivity, Kraus "
+    "representation, composition, and explicit negative families."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
 
 # =====================================================================
 # TOOL MANIFEST
@@ -698,7 +705,8 @@ if __name__ == "__main__":
         "lego_ids": ["cptp_trace_preservation", "cptp_complete_positivity",
                      "cptp_kraus_representation", "cptp_choi_kraus_equivalence",
                      "cptp_composition", "cptp_negative_transpose_family"],
-        "classification": "canonical",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
         "overall_pass": overall_pass,
         "positive_ok": positive_ok,
         "negative_ok": negative_ok,

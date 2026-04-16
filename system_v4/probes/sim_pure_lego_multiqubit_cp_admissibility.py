@@ -18,6 +18,11 @@ import os
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: multi-qubit CP admissibility is validated "
+    "here as a pure numpy lego, not a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 # =====================================================================
 # TOOL MANIFEST
@@ -823,6 +828,8 @@ if __name__ == "__main__":
             "cptp_boundary_ad_dephasing_depolarizing",
         ],
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "dim":     4,
         "n_qubits": 2,
         "overall_pass":  overall_pass,

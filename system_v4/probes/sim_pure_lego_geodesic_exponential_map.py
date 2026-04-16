@@ -27,6 +27,11 @@ from typing import Any
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure-lego geodesic exponential-map probe for S² and R². "
+    "This remains a canonical geometry comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 # =====================================================================
 # TOOL MANIFEST -- Document which tools were tried
@@ -873,6 +878,8 @@ if __name__ == "__main__":
         "name": "sim_pure_lego_geodesic_exponential_map",
         "lego_ids": ["geodesic_exponential_map"],
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "overall_pass": overall_pass,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

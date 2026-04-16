@@ -34,6 +34,10 @@ from datetime import datetime, UTC
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline for decoherence-free subspaces and noiseless "
+    "subsystems under collective dephasing and collective SU(2) noise."
+)
 
 np.random.seed(42)
 
@@ -55,10 +59,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Classical baseline for decoherence-free subspaces and noiseless subsystems under "
-    "collective dephasing and collective SU(2) noise."
-)
+CLASSIFICATION_NOTE = divergence_log
 LEGO_IDS = ["dfs_noiseless"]
 PRIMARY_LEGO_IDS = ["dfs_noiseless"]
 
@@ -368,6 +369,7 @@ def main():
         "name": "pure_lego_dfs_noiseless",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -10,15 +10,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Reconciled QIT-aligned record/reset translation lane for Szilard. It uses "
-    "a calibrated reset-effect mapping instead of comparing reset tilt and "
-    "reset strength directly."
+    "a calibrated reset-effect mapping on top of the existing record/reset "
+    "result surfaces instead of comparing reset tilt and reset strength directly. "
+    "This is a translation surface, not a stronger theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

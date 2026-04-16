@@ -10,15 +10,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promoted refinement translation lane for the open Szilard hard-reset "
-    "record carrier after adding local feedback duration and barrier-depth "
-    "tuning around the strongest ordering-amplified setting."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Ordering-focused translation lane for the open Szilard hard-reset record "
+    "carrier. It reuses the existing ordering refinement results and compares "
+    "them against the stricter finite-state record/reset companion without "
+    "broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

@@ -10,15 +10,17 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promoted QIT-aligned repair translation lane for the improved open "
-    "Szilard record/reset sweep. It keeps the repair gains and remaining "
-    "reset-axis mismatch explicit."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Szilard record repair translation lane: it stays a translation surface "
+    "for the improved open record/reset sweep, reuses the existing repair and "
+    "strict companion result files, and keeps the remaining reset-axis mismatch "
+    "explicit without broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -137,6 +139,7 @@ def main() -> None:
         "name": "qit_szilard_record_repair_translation_lane",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

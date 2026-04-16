@@ -70,32 +70,29 @@ None
 ---
 
 ## evidence_graph.json
-- **Nodes**: 33
-- **Edges**: 17
-- **Density**: 0.016098
-- **Connected Components**: 16 (Largest: 18)
-- **Degree Distribution**: Min=0, Max=17, Mean=1.03, Median=1.00
-- **Isolated Nodes (degree 0)**: 15
+- **Nodes**: 18
+- **Edges**: 0
+- **Density**: 0.000000
+- **Connected Components**: 18 (Largest: 1)
+- **Degree Distribution**: Min=0, Max=0, Mean=0.00, Median=0.00
+- **Isolated Nodes (degree 0)**: 18
 - **Self-loops**: 0
 - **Duplicate Edges**: 0
 - **Dangling Edges**: 0
 
 ### Node Types Distribution
 - `NonCommutativity`: 15
-- `SpecClaim`: 14
 - `LieClosure`: 3
-- `SystemState`: 1
 
 ### Edge Relation Types Distribution
-- `supports`: 17
+None
 
 ### Missing Required Fields
-- `description`: 19 nodes missing
-- `admissibility_state`: 19 nodes missing
+- `description`: 18 nodes missing
 
 ### Health Anomalies
-- ⚠️ Many nodes missing 'description': 19 nodes
-- ⚠️ Many nodes missing 'admissibility_state': 19 nodes
+- ⚠️ High number of isolated nodes: 18/18 (100.0%)
+- ⚠️ Many nodes missing 'description': 18 nodes
 
 ---
 

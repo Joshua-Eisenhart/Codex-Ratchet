@@ -9,22 +9,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
@@ -39,27 +39,27 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not needed for this sim"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "positive": {
@@ -319,7 +319,7 @@
     "total_tests": 10,
     "passed": 10,
     "failed": 0,
-    "elapsed_seconds": 0.35,
+    "elapsed_seconds": 0.298,
     "all_passed": true
   }
 }

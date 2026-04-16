@@ -77,11 +77,11 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare eigenvalue variable: 0 <= lambda <= 1
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
-            constraint = solver.mkAnd([
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_quantum_predicate_eigenvalue_valid"] = {
@@ -98,12 +98,12 @@ def run_positive_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda must be < 0 AND >= 0 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.LT, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_quantum_predicate_eigenvalue_invalid_negative"] = {
@@ -121,12 +121,12 @@ def run_positive_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda > 1 AND <= 1 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GT, lambda_val, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_quantum_predicate_eigenvalue_invalid_greater_than_1"] = {
@@ -180,17 +180,17 @@ def run_negative_tests():
             solver.setLogic("QF_NRA")
 
             # Declare probability variables
-            prob_P = solver.mkConst(cvc5.Real("prob_P"), cvc5.getRealSort())
-            prob_Q = solver.mkConst(cvc5.Real("prob_Q"), cvc5.getRealSort())
+            prob_P = solver.mkConst(solver.getRealSort(), "prob_P")
+            prob_Q = solver.mkConst(solver.getRealSort(), "prob_Q")
 
             # Set probabilities: prob_P = 1, prob_Q = 0
             # (since I |0⟩⟨0| I† = |0⟩⟨0|, not |1⟩⟨1|)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, prob_P, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.EQUAL, prob_Q, solver.mkReal(0)),
                 # But we claim {|0⟩⟨0|} I {|1⟩⟨1|} is valid: prob_Q >= prob_P
                 solver.mkTerm(cvc5.Kind.GEQ, prob_Q, prob_P),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_identity_gate_hoare_violation"] = {
@@ -207,15 +207,15 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda = -0.5 (invalid for quantum predicate)
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(-0.5))
 
             # But also require 0 <= lambda <= 1
-            valid_constraint = solver.mkAnd([
+            valid_constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
 
             solver.assertFormula(constraint)
             solver.assertFormula(valid_constraint)
@@ -295,12 +295,12 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
-            constraint = solver.mkAnd([
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_eigenvalue_boundary_zero"] = {
@@ -317,12 +317,12 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
-            constraint = solver.mkAnd([
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_eigenvalue_boundary_one"] = {

@@ -77,8 +77,8 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare eigenvalues of Q and U†QU
-            lambda_Q = solver.mkConst(cvc5.Real("lambda_Q"), cvc5.getRealSort())
-            lambda_wp = solver.mkConst(cvc5.Real("lambda_wp"), cvc5.getRealSort())
+            lambda_Q = solver.mkConst(solver.getRealSort(), "lambda_Q")
+            lambda_wp = solver.mkConst(solver.getRealSort(), "lambda_wp")
 
             # Constraint: if lambda is eigenvalue of Q, it's eigenvalue of wp.U.Q
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, lambda_Q, lambda_wp)
@@ -99,8 +99,8 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare probabilities
-            prob_direct = solver.mkConst(cvc5.Real("prob_direct"), cvc5.getRealSort())
-            prob_composed = solver.mkConst(cvc5.Real("prob_composed"), cvc5.getRealSort())
+            prob_direct = solver.mkConst(solver.getRealSort(), "prob_direct")
+            prob_composed = solver.mkConst(solver.getRealSort(), "prob_composed")
 
             # Constraint: wp.(S;T).Q = wp.S.(wp.T.Q) means same probability
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, prob_direct, prob_composed)
@@ -172,17 +172,17 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_Q_max = solver.mkConst(cvc5.Real("lambda_Q_max"), cvc5.getRealSort())
-            lambda_wp = solver.mkConst(cvc5.Real("lambda_wp"), cvc5.getRealSort())
+            lambda_Q_max = solver.mkConst(solver.getRealSort(), "lambda_Q_max")
+            lambda_wp = solver.mkConst(solver.getRealSort(), "lambda_wp")
 
             # Constraint: lambda_wp > lambda_Q_max BUT wp.U.Q = U†QU must preserve eigenvalues
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GT, lambda_wp, lambda_Q_max),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_Q_max, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_Q_max, solver.mkReal(0)),
                 # wp.U.Q eigenvalues must equal Q eigenvalues
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_wp, lambda_Q_max),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_wp_eigenvalue_violation"] = {
@@ -200,15 +200,15 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            prob_direct = solver.mkConst(cvc5.Real("prob_direct"), cvc5.getRealSort())
-            prob_composed = solver.mkConst(cvc5.Real("prob_composed"), cvc5.getRealSort())
+            prob_direct = solver.mkConst(solver.getRealSort(), "prob_direct")
+            prob_composed = solver.mkConst(solver.getRealSort(), "prob_composed")
 
             # Constraint: wp.(S;T).Q ≠ wp.S.(wp.T.Q)
-            constraint = solver.mkAnd([
-                solver.mkTerm(cvc5.Kind.NEQ, prob_direct, prob_composed),
+            constraint = solver.mkTerm(cvc5.Kind.AND,
+                solver.mkTerm(cvc5.Kind.NOT, solver.mkTerm(cvc5.Kind.EQUAL, prob_direct, prob_composed)),
                 # But also require compositionality
                 solver.mkTerm(cvc5.Kind.EQUAL, prob_direct, prob_composed),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_wp_compositionality_violation"] = {
@@ -303,15 +303,15 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_Q = solver.mkConst(cvc5.Real("lambda_Q"), cvc5.getRealSort())
-            lambda_wp = solver.mkConst(cvc5.Real("lambda_wp"), cvc5.getRealSort())
+            lambda_Q = solver.mkConst(solver.getRealSort(), "lambda_Q")
+            lambda_wp = solver.mkConst(solver.getRealSort(), "lambda_wp")
 
             # Boundary: lambda_wp = lambda_Q (eigenvalue of wp.U.Q equals eigenvalue of Q)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_wp, lambda_Q),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_Q, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_Q, solver.mkReal(0)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_wp_eigenvalue_boundary"] = {

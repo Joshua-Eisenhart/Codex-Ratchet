@@ -960,6 +960,13 @@ def auto_commit():
 
 # ── result file discovery with flexible naming ─────────────────────────────────
 
+def _exists_safe(path: pathlib.Path) -> bool:
+    try:
+        return path.exists()
+    except OSError:
+        return False
+
+
 def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> pathlib.Path | None:
     """
     Find a result file for a given sim stem, accounting for flexible naming conventions.
@@ -971,14 +978,14 @@ def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> path
     """
     # Pattern 1: exact match
     exact = results_dir / f"{sim_stem}_results.json"
-    if exact.exists():
+    if _exists_safe(exact):
         return exact
 
     # Pattern 2: strip leading "sim_" if present
     if sim_stem.startswith("sim_"):
         without_prefix = sim_stem[4:]
         without_prefix_path = results_dir / f"{without_prefix}_results.json"
-        if without_prefix_path.exists():
+        if _exists_safe(without_prefix_path):
             return without_prefix_path
 
     # Pattern 3: substring-based match
@@ -987,7 +994,7 @@ def find_result_file(sim_stem: str, results_dir: pathlib.Path = RESULTS) -> path
     if key.startswith("sim_"):
         key = key[4:]
 
-    if results_dir.exists():
+    if _exists_safe(results_dir):
         for result_file in results_dir.glob("*_results.json"):
             basename = result_file.stem  # Remove .json
             if basename.endswith("_results"):

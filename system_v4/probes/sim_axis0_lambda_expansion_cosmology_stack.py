@@ -28,6 +28,8 @@ os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
 os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
 
 import cirq
+import cvc5
+import e3nn
 import gudhi
 import numpy as np
 import pennylane as qml
@@ -38,10 +40,14 @@ import torch
 import torch_ga
 import xgi
 from clifford import Cl
+from cvc5 import Kind
+from e3nn import o3
 from geomstats.geometry.hypersphere import Hypersphere
 from geomstats.learning.frechet_mean import FrechetMean
 from scipy.linalg import expm
 from toponetx import CellComplex
+from torch_geometric.data import Data
+from torch_geometric.nn import MessagePassing
 from z3 import Real, RealVal, Solver, Sum, sat
 
 from sim_integration_quantum_open_entangle_correlator_mega_stack import (
@@ -99,6 +105,16 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "fit and gradient witness coupling dark-energy and gravity proxies to the Hubble proxy",
     },
+    "pyg": {
+        "tried": True,
+        "used": True,
+        "reason": "message-passing witness over the directed lambda-shell graph using cosmology shell features",
+    },
+    "cvc5": {
+        "tried": True,
+        "used": True,
+        "reason": "QF_LRA contradiction witness for ordered lambda shells and monotone scale growth",
+    },
     "clifford": {
         "tried": True,
         "used": True,
@@ -144,6 +160,11 @@ TOOL_MANIFEST = {
         "used": True,
         "reason": "Frechet-mean manifold witness for shell-carrier aggregation on S^2",
     },
+    "e3nn": {
+        "tried": True,
+        "used": True,
+        "reason": "spherical-harmonic parity witness for the cosmology summary vector under shell-axis reflection",
+    },
 }
 
 TOOL_INTEGRATION_DEPTH = {
@@ -153,6 +174,8 @@ TOOL_INTEGRATION_DEPTH = {
     "cirq": "load_bearing",
     "pennylane": "load_bearing",
     "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "cvc5": "load_bearing",
     "clifford": "load_bearing",
     "torch_ga": "load_bearing",
     "rustworkx": "load_bearing",
@@ -162,6 +185,7 @@ TOOL_INTEGRATION_DEPTH = {
     "sympy": "load_bearing",
     "z3": "load_bearing",
     "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
 }
 
 RESULTS_PATH = os.path.join(
@@ -473,6 +497,177 @@ def _shell_constraint_surface(
     }
 
 
+def _shell_pyg_surface(
+    shell_rows: list[dict[str, object]],
+    pair_edges: list[list[int]],
+) -> dict[str, object]:
+    features = np.asarray(
+        [
+            [
+                float(row["lambda_density"]),
+                float(row["dark_energy_pressure"]),
+                float(row["gravity_response"]),
+                float(row["scale_factor"]),
+            ]
+            for row in shell_rows
+        ],
+        dtype=np.float64,
+    )
+    if len(features) == 0:
+        return {
+            "pass": False,
+            "num_nodes": 0,
+            "num_edges": 0,
+            "mean_aggregate_norm": 0.0,
+            "max_aggregate_norm": 0.0,
+            "edge_weight_mean": 0.0,
+        }
+
+    if not pair_edges:
+        return {
+            "pass": True,
+            "num_nodes": int(len(features)),
+            "num_edges": 0,
+            "mean_aggregate_norm": 0.0,
+            "max_aggregate_norm": 0.0,
+            "edge_weight_mean": 0.0,
+        }
+
+    edge_pairs: list[list[int]] = []
+    edge_weights: list[float] = []
+    for src, dst in pair_edges:
+        src_idx = int(src)
+        dst_idx = int(dst)
+        weight = float(
+            abs(float(shell_rows[dst_idx]["dark_energy_pressure"]) - float(shell_rows[src_idx]["dark_energy_pressure"]))
+            + abs(float(shell_rows[dst_idx]["gravity_response"]) - float(shell_rows[src_idx]["gravity_response"]))
+            + abs(float(shell_rows[dst_idx]["scale_factor"]) - float(shell_rows[src_idx]["scale_factor"]))
+        )
+        edge_pairs.extend([[src_idx, dst_idx], [dst_idx, src_idx]])
+        edge_weights.extend([weight, weight])
+
+    x = torch.tensor(features, dtype=torch.float64)
+    edge_index = torch.tensor(edge_pairs, dtype=torch.long).t().contiguous()
+    edge_attr = torch.tensor(edge_weights, dtype=torch.float64)
+    data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
+
+    class CosmologyMessagePassing(MessagePassing):
+        def __init__(self) -> None:
+            super().__init__(aggr="add")
+
+        def forward(self, x, edge_index, edge_attr):
+            return self.propagate(edge_index, x=x, edge_attr=edge_attr)
+
+        def message(self, x_j, edge_attr):
+            return edge_attr.view(-1, 1) * x_j
+
+    mp_layer = CosmologyMessagePassing()
+    aggregated = mp_layer(data.x, data.edge_index, data.edge_attr)
+    norms = torch.linalg.norm(aggregated, dim=1)
+
+    return {
+        "pass": bool(int(data.num_nodes) == len(shell_rows) and float(norms.mean().item()) > 1e-3),
+        "num_nodes": int(data.num_nodes),
+        "num_edges": int(data.num_edges),
+        "mean_aggregate_norm": float(norms.mean().item()),
+        "max_aggregate_norm": float(norms.max().item()),
+        "edge_weight_mean": float(edge_attr.mean().item()),
+    }
+
+
+def _shell_cvc5_surface(
+    lambda_shells: np.ndarray,
+    scale_factors: np.ndarray,
+    dark_energy_pressure: np.ndarray,
+) -> dict[str, object]:
+    solver = cvc5.Solver()
+    solver.setLogic("QF_LRA")
+    lambda_vars = [solver.mkConst(solver.getRealSort(), f"lam_{idx}") for idx in range(len(lambda_shells))]
+    scale_vars = [solver.mkConst(solver.getRealSort(), f"scale_{idx}") for idx in range(len(scale_factors))]
+    dark_vars = [solver.mkConst(solver.getRealSort(), f"dark_{idx}") for idx in range(len(dark_energy_pressure))]
+
+    for var, value in zip(lambda_vars, lambda_shells.tolist(), strict=True):
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, solver.mkReal(f"{float(value):.12f}")))
+    for var, value in zip(scale_vars, scale_factors.tolist(), strict=True):
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, solver.mkReal(f"{float(value):.12f}")))
+        solver.assertFormula(solver.mkTerm(Kind.GEQ, var, solver.mkReal("1.0")))
+    for var, value in zip(dark_vars, dark_energy_pressure.tolist(), strict=True):
+        solver.assertFormula(solver.mkTerm(Kind.EQUAL, var, solver.mkReal(f"{float(value):.12f}")))
+        solver.assertFormula(solver.mkTerm(Kind.GEQ, var, solver.mkReal("0.0")))
+    for lhs, rhs in zip(lambda_vars[:-1], lambda_vars[1:], strict=True):
+        solver.assertFormula(solver.mkTerm(Kind.LT, lhs, rhs))
+    for lhs, rhs in zip(scale_vars[:-1], scale_vars[1:], strict=True):
+        solver.assertFormula(solver.mkTerm(Kind.LEQ, lhs, rhs))
+    actual_sat = solver.checkSat().isSat()
+
+    contradiction = cvc5.Solver()
+    contradiction.setLogic("QF_LRA")
+    contradiction_lambda_vars = [
+        contradiction.mkConst(contradiction.getRealSort(), f"clam_{idx}")
+        for idx in range(len(lambda_shells))
+    ]
+    contradiction_scale_vars = [
+        contradiction.mkConst(contradiction.getRealSort(), f"cscale_{idx}")
+        for idx in range(len(scale_factors))
+    ]
+    for var, value in zip(contradiction_lambda_vars, lambda_shells.tolist(), strict=True):
+        contradiction.assertFormula(
+            contradiction.mkTerm(Kind.EQUAL, var, contradiction.mkReal(f"{float(value):.12f}"))
+        )
+    for var, value in zip(contradiction_scale_vars, scale_factors.tolist(), strict=True):
+        contradiction.assertFormula(
+            contradiction.mkTerm(Kind.EQUAL, var, contradiction.mkReal(f"{float(value):.12f}"))
+        )
+    for lhs, rhs in zip(contradiction_lambda_vars[:-1], contradiction_lambda_vars[1:], strict=True):
+        contradiction.assertFormula(contradiction.mkTerm(Kind.LT, lhs, rhs))
+    for lhs, rhs in zip(contradiction_scale_vars[:-1], contradiction_scale_vars[1:], strict=True):
+        contradiction.assertFormula(contradiction.mkTerm(Kind.LEQ, lhs, rhs))
+    contradiction.assertFormula(
+        contradiction.mkTerm(Kind.LT, contradiction_scale_vars[-1], contradiction_scale_vars[0])
+    )
+    contradiction_sat = contradiction.checkSat().isSat()
+
+    return {
+        "pass": bool(actual_sat and not contradiction_sat),
+        "actual_sat": bool(actual_sat),
+        "contradiction_unsat": bool(not contradiction_sat),
+        "winner_gap": float(scale_factors[-1] - scale_factors[0]),
+    }
+
+
+def _shell_e3nn_surface(cosmology_vector: np.ndarray) -> dict[str, object]:
+    base_vector = np.asarray(cosmology_vector, dtype=np.float64)
+    base_vector = np.where(np.abs(base_vector) < 1e-6, 1e-6, base_vector)
+    vector = torch.tensor(base_vector[None, :], dtype=torch.float64)
+    reflected = vector.clone()
+    reflected[:, 0] *= -1.0
+
+    y0 = o3.spherical_harmonics(0, vector, normalize=True, normalization="component")
+    y0_reflected = o3.spherical_harmonics(0, reflected, normalize=True, normalization="component")
+    y1 = o3.spherical_harmonics(1, vector, normalize=True, normalization="component")
+    y1_reflected = o3.spherical_harmonics(1, reflected, normalize=True, normalization="component")
+
+    l0_gap = float(torch.max(torch.abs(y0 - y0_reflected)).item())
+    l1_norm_gap = float(
+        torch.max(torch.abs(torch.linalg.norm(y1, dim=1) - torch.linalg.norm(y1_reflected, dim=1))).item()
+    )
+    x_parity_gap = float(torch.abs(y1[0, 0] + y1_reflected[0, 0]).item())
+    yz_invariance_gap = float(torch.max(torch.abs(y1[0, 1:] - y1_reflected[0, 1:])).item())
+
+    return {
+        "pass": bool(
+            l0_gap < 1e-6
+            and l1_norm_gap < 1e-6
+            and x_parity_gap < 1e-6
+            and yz_invariance_gap < 1e-6
+        ),
+        "l0_gap": l0_gap,
+        "l1_norm_gap": l1_norm_gap,
+        "x_parity_gap": x_parity_gap,
+        "yz_invariance_gap": yz_invariance_gap,
+    }
+
+
 def _shell_manifold_surface(
     lambda_density: np.ndarray,
     dark_energy_pressure: np.ndarray,
@@ -608,6 +803,7 @@ def _cosmology_case(
         row["scale_factor"] = float(scale)
 
     graph_surface = _shell_graph_surface(shell_rows)
+    pyg_surface = _shell_pyg_surface(shell_rows, graph_surface["pair_edges"])
     hypergraph_surface = _shell_hypergraph_surface(
         n_shells,
         graph_surface["pair_edges"],
@@ -633,6 +829,11 @@ def _cosmology_case(
         scale_factors,
         dark_energy_pressure,
     )
+    cvc5_surface = _shell_cvc5_surface(
+        lambda_shells,
+        scale_factors,
+        dark_energy_pressure,
+    )
     manifold_surface = _shell_manifold_surface(
         lambda_density,
         dark_energy_pressure,
@@ -650,8 +851,9 @@ def _cosmology_case(
     )
     clifford_vector = _clifford_vector(cosmology_vector)
     torch_ga_vector = _torch_ga_roundtrip(cosmology_vector)
+    e3nn_surface = _shell_e3nn_surface(cosmology_vector)
 
-    return {
+    metrics = {
         "prep_density_errors": {
             "numpy_vs_cirq": float(np.linalg.norm(_rho(prep_ref) - _rho(prep_cirq))),
             "numpy_vs_pennylane": float(np.linalg.norm(_rho(prep_ref) - _rho(prep_pl))),
@@ -683,6 +885,7 @@ def _cosmology_case(
         "qutip_z_expectation": qutip_z_arr.tolist(),
         "propagator_traces": propagator_traces,
         "graph_surface": graph_surface,
+        "pyg_surface": pyg_surface,
         "hypergraph_surface": hypergraph_surface,
         "cell_complex_surface": cell_complex_surface,
         "topology_surface": topology_surface,
@@ -691,16 +894,52 @@ def _cosmology_case(
         ),
         "symbolic_surface": symbolic_surface,
         "constraint_surface": constraint_surface,
+        "cvc5_surface": cvc5_surface,
         "manifold_surface": manifold_surface,
         "torch_fit": torch_fit,
         "clifford_vector": clifford_vector.tolist(),
         "torch_ga_vector": torch_ga_vector.tolist(),
         "cosmology_vector": cosmology_vector.tolist(),
+        "e3nn_surface": e3nn_surface,
     }
+    metrics["semantic_row_surface"] = semantic_row_surface(metrics)
+    return metrics
+
+
+def semantic_row_surface(metrics: dict[str, object]) -> dict[str, object]:
+    return {
+        "lane": "lambda_cosmology",
+        "symbolic_hubble_mid": float(metrics["symbolic_surface"]["symbolic_hubble_mid"]),
+        "constraint_pass": bool(metrics["constraint_surface"]["sat"]),
+        "cvc5_pass": bool(metrics["cvc5_surface"]["pass"]),
+        "graph_longest_path_length": int(metrics["graph_surface"]["longest_path_length"]),
+        "manifold_distance": float(metrics["manifold_surface"]["mean_geodesic_distance"]),
+        "pyg_mean_aggregate_norm": float(metrics["pyg_surface"]["mean_aggregate_norm"]),
+    }
+
+
+def _crosslane_semantic_surface(
+    mode: str,
+    metrics: dict[str, object] | None = None,
+) -> dict[str, object]:
+    from axis0_lambda_crosslane_semantic_core import (
+        run_boundary_tests as _run_crosslane_boundary_tests,
+        run_negative_tests as _run_crosslane_negative_tests,
+        run_positive_tests as _run_crosslane_positive_tests,
+    )
+
+    if mode == "positive":
+        return _run_crosslane_positive_tests(metrics)
+    if mode == "negative":
+        return _run_crosslane_negative_tests(metrics)
+    if mode == "boundary":
+        return _run_crosslane_boundary_tests()
+    raise ValueError(f"unknown crosslane mode: {mode}")
 
 
 def run_positive_tests() -> dict[str, object]:
     metrics = _cosmology_case(theta=1.127, phi=-0.713, gamma=0.68, t=0.91)
+    crosslane_positive = _crosslane_semantic_surface("positive", metrics)
     graph_surface = metrics["graph_surface"]
     hypergraph_surface = metrics["hypergraph_surface"]
     cell_complex_surface = metrics["cell_complex_surface"]
@@ -727,6 +966,8 @@ def run_positive_tests() -> dict[str, object]:
         and float(np.mean(metrics["gravity_response"])) > 1e-2
         and float(np.mean(metrics["hubble_proxy"])) > 1e-3
         and graph_surface["longest_path_length"] >= len(metrics["lambda_shells"]) - 2
+        and metrics["pyg_surface"]["pass"]
+        and metrics["pyg_surface"]["num_edges"] >= 2 * graph_surface["edge_count"]
         and hypergraph_surface["max_hyperedge_size"] >= 3
         and cell_complex_surface["boundary_composes_to_zero"]
         and topology_surface["beta0"] == 1
@@ -734,9 +975,12 @@ def run_positive_tests() -> dict[str, object]:
         and metrics["topology_parity_ok"]
         and symbolic_surface["symbolic_hubble_mid"] > 1e-3
         and metrics["constraint_surface"]["sat"]
+        and metrics["cvc5_surface"]["pass"]
         and manifold_surface["mean_geodesic_distance"] > 1e-2
         and abs(manifold_surface["mean_norm"] - 1.0) < 1e-9
+        and metrics["e3nn_surface"]["pass"]
         and torch_fit["loss"] < 5e-2
+        and crosslane_positive["pass"]
     )
 
     return {
@@ -752,6 +996,7 @@ def run_positive_tests() -> dict[str, object]:
         },
         "axis0_lambda_expansion": {
             "pass": bool(axis0_ok),
+            "semantic_row_surface": metrics["semantic_row_surface"],
             "jk_fuzz_dynamic": metrics["jk_fuzz_dynamic"],
             "i_scalar_dynamic": metrics["i_scalar_dynamic"],
             "i_scalar_frozen": metrics["i_scalar_frozen"],
@@ -777,7 +1022,10 @@ def run_positive_tests() -> dict[str, object]:
             },
             "symbolic_surface": symbolic_surface,
             "constraint_surface": metrics["constraint_surface"],
+            "cvc5_surface": metrics["cvc5_surface"],
             "manifold_surface": manifold_surface,
+            "pyg_surface": metrics["pyg_surface"],
+            "e3nn_surface": metrics["e3nn_surface"],
             "torch_fit": {
                 "weights": torch_fit["weights"],
                 "bias": torch_fit["bias"],
@@ -787,11 +1035,30 @@ def run_positive_tests() -> dict[str, object]:
             "clifford_vector": metrics["clifford_vector"],
             "torch_ga_vector": metrics["torch_ga_vector"],
         },
+        "crosslane_semantics_surface": {
+            "pass": bool(crosslane_positive["pass"]),
+            "winner": crosslane_positive["crosslane_bridge"]["ranked_rows"][0]["lane"],
+            "min_cosine_similarity": crosslane_positive["crosslane_bridge"]["alignment_surface"]["min_cosine_similarity"],
+            "max_component_gap": crosslane_positive["crosslane_bridge"]["alignment_surface"]["max_component_gap"],
+            "graph_longest_path_length": crosslane_positive["crosslane_bridge"]["graph_surface"]["longest_path_length"],
+            "topology_betti_numbers": crosslane_positive["crosslane_bridge"]["topology_surface"]["betti_numbers"],
+            "symbolic_hubble_mid": crosslane_positive["crosslane_bridge"]["symbolic_surface"]["symbolic_hubble_mid"],
+            "constraint_surface": crosslane_positive["crosslane_bridge"]["constraint_surface"],
+            "cvc5_surface": crosslane_positive["crosslane_bridge"]["cvc5_surface"],
+            "pyg_surface": crosslane_positive["crosslane_bridge"]["pyg_surface"],
+            "manifold_surface": crosslane_positive["crosslane_bridge"]["manifold_surface"],
+            "e3nn_surface": crosslane_positive["crosslane_bridge"]["e3nn_surface"],
+            "torch_fit": {
+                "loss": crosslane_positive["crosslane_bridge"]["torch_fit"]["loss"],
+                "max_gap": crosslane_positive["crosslane_bridge"]["torch_fit"]["max_gap"],
+            },
+        },
     }
 
 
 def run_negative_tests() -> dict[str, object]:
     metrics = _cosmology_case(theta=1.127, phi=-0.713, gamma=0.68, t=0.91)
+    crosslane_negative = _crosslane_semantic_surface("negative", metrics)
     reverse_scale_constraint = _shell_constraint_surface(
         np.asarray(metrics["lambda_shells"], dtype=np.float64),
         np.asarray(list(reversed(metrics["scale_factors"])), dtype=np.float64),
@@ -824,6 +1091,7 @@ def run_negative_tests() -> dict[str, object]:
             and face_ablated_hypergraph["max_hyperedge_size"] < metrics["hypergraph_surface"]["max_hyperedge_size"]
             and face_ablated_topology["beta1"] > metrics["topology_surface"]["beta1"]
             and float(flat_scale_factors[-1]) < float(metrics["scale_factors"][-1]) - 0.5
+            and crosslane_negative["pass"]
         ),
         "reverse_scale_growth_rejected": {
             "pass": bool(not reverse_scale_constraint["sat"]),
@@ -848,11 +1116,13 @@ def run_negative_tests() -> dict[str, object]:
             "positive_final_scale": float(metrics["scale_factors"][-1]),
             "ablated_final_scale": float(flat_scale_factors[-1]),
         },
+        "crosslane_semantics_rejects_reflection_and_ablation": crosslane_negative,
     }
 
 
 def run_boundary_tests() -> dict[str, object]:
     metrics = _cosmology_case(theta=0.0, phi=0.0, gamma=0.0, t=0.0)
+    crosslane_boundary = _crosslane_semantic_surface("boundary")
     graph_surface = metrics["graph_surface"]
     hypergraph_surface = metrics["hypergraph_surface"]
     cell_complex_surface = metrics["cell_complex_surface"]
@@ -869,6 +1139,7 @@ def run_boundary_tests() -> dict[str, object]:
         and float(metrics["dynamic_vs_frozen_gap"]) < 1e-12
         and abs(float(metrics["scale_factors"][-1]) - 1.0) < 1e-9
         and graph_surface["edge_count"] == 0
+        and metrics["pyg_surface"]["num_edges"] == 0
         and hypergraph_surface["num_edges"] == 0
         and cell_complex_surface["euler_characteristic"] == len(metrics["lambda_shells"])
         and topology_surface["beta0"] == len(metrics["lambda_shells"])
@@ -876,7 +1147,10 @@ def run_boundary_tests() -> dict[str, object]:
         and metrics["topology_parity_ok"]
         and abs(symbolic_surface["symbolic_hubble_mid"]) < 1e-9
         and metrics["constraint_surface"]["sat"]
+        and metrics["cvc5_surface"]["pass"]
         and manifold_surface["mean_geodesic_distance"] < 1e-12
+        and metrics["e3nn_surface"]["pass"]
+        and crosslane_boundary["pass"]
     )
 
     return {
@@ -893,7 +1167,17 @@ def run_boundary_tests() -> dict[str, object]:
             "topology_betti_numbers": topology_surface["betti_numbers"],
             "symbolic_hubble_mid": symbolic_surface["symbolic_hubble_mid"],
             "constraint_surface": metrics["constraint_surface"],
+            "cvc5_surface": metrics["cvc5_surface"],
             "manifold_surface": manifold_surface,
+            "pyg_surface": metrics["pyg_surface"],
+            "e3nn_surface": metrics["e3nn_surface"],
+            "crosslane_boundary_surface": {
+                "pass": bool(crosslane_boundary["pass"]),
+                "graph_edge_count": crosslane_boundary["crosslane_boundary"]["graph_surface"]["edge_count"],
+                "pyg_edge_count": crosslane_boundary["crosslane_boundary"]["pyg_surface"]["num_edges"],
+                "topology_betti_numbers": crosslane_boundary["crosslane_boundary"]["topology_surface"]["betti_numbers"],
+                "symbolic_hubble_mid": crosslane_boundary["crosslane_boundary"]["symbolic_surface"]["symbolic_hubble_mid"],
+            },
         },
     }
 

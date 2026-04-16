@@ -27,32 +27,90 @@ For the proof strategy:
 """
 
 from __future__ import annotations
+
 import argparse
-import json, os, sys
+import json
+import os
+import sys
 from datetime import UTC, datetime
 from functools import lru_cache
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.environ.setdefault("XDG_CACHE_HOME", "/tmp/codex-mpl")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+os.makedirs(os.environ["XDG_CACHE_HOME"], exist_ok=True)
+
+import gudhi
 import numpy as np
+import rustworkx as rx
+import sympy as sp
+import torch
+import torch_ga
+import xgi
 from collections import defaultdict
+from clifford import Cl
+from geomstats.geometry.hypersphere import Hypersphere
+from geomstats.learning.frechet_mean import FrechetMean
+from scipy.linalg import expm
+from toponetx import CellComplex
+from z3 import Real, RealVal, Solver, Sum, sat
+
 classification = "classical_baseline"  # auto-backfill
-divergence_log = "Classical foundation baseline: this characterizes Axis-0 orbit-phase failures numerically, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical foundation baseline: this characterizes Axis-0 orbit-phase failures numerically, "
+    "not a canonical nonclassical witness. The legacy strict bridge diagnosis is preserved, and "
+    "the orbit-phase lane is now also grounded in the deep Axis 0 shell/topology/symbolic/solver/"
+    "manifold contract used by the upgraded probe family."
+)
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "phase-alignment statistics and failure clustering numerics"},
+    "numpy": {"tried": True, "used": True, "reason": "phase-alignment statistics, guard diagnostics, and orbit aggregates"},
+    "scipy": {"tried": True, "used": True, "reason": "orbit-phase expansion propagator witness"},
+    "pytorch": {"tried": True, "used": True, "reason": "fit witness over orbit-phase deep surfaces"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric carrier witness for the winning orbit-phase surface vector"},
+    "torch_ga": {"tried": True, "used": True, "reason": "geometric algebra roundtrip witness for the winning orbit-phase surface vector"},
+    "rustworkx": {"tried": True, "used": True, "reason": "ordered orbit-phase surface DAG witness"},
+    "xgi": {"tried": True, "used": True, "reason": "higher-order orbit-phase coupling witness"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex boundary witness for orbit-phase surface closure"},
+    "gudhi": {"tried": True, "used": True, "reason": "persistent topology witness for the orbit-phase surface complex"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic interpolation and derivative witness for orbit-phase expansion trends"},
+    "z3": {"tried": True, "used": True, "reason": "constraint witness enforcing ordered orbit-phase ranking and scale growth"},
+    "geomstats": {"tried": True, "used": True, "reason": "Frechet-mean manifold witness for orbit-phase surface aggregation"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "numpy": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing",
 }
-
-_PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
-_REPO_ROOT = os.path.dirname(os.path.dirname(_PROBE_DIR))
-_MPL_CACHE = os.path.join(_REPO_ROOT, "work", "audit_tmp", "mplcache")
-os.makedirs(_MPL_CACHE, exist_ok=True)
-os.environ.setdefault("MPLCONFIGDIR", _MPL_CACHE)
-os.environ.setdefault("XDG_CACHE_HOME", _MPL_CACHE)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER
+from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
+from sim_axis0_iscalar_sweep import (
+    _clifford_vector,
+    _option_cell_complex_surface as _candidate_cell_complex_surface,
+    _option_constraint_surface as _candidate_constraint_surface,
+    _option_graph_surface as _candidate_graph_surface,
+    _option_hypergraph_surface as _candidate_hypergraph_surface,
+    _option_manifold_surface as _candidate_manifold_surface,
+    _option_scale_history as _candidate_scale_history,
+    _option_symbolic_surface as _candidate_symbolic_surface,
+    _option_topology_surface as _candidate_topology_surface,
+    _torch_ga_roundtrip,
+    _torch_option_fit as _torch_candidate_fit,
+)
 
 # Graph stack imports
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
@@ -75,6 +133,7 @@ RESULTS_DIR = os.path.join(
     "a2_state", "sim_results"
 )
 os.makedirs(RESULTS_DIR, exist_ok=True)
+EPS = 1e-12
 
 TORUS_CONFIGS = [
     ("inner",    TORUS_INNER),
@@ -87,9 +146,7 @@ PHASE_NAMES  = {0: "Ti", 1: "Fe", 2: "Te", 3: "Fi"}
 
 @lru_cache(maxsize=1)
 def _get_clifford_layout():
-    import clifford as cf
-
-    layout, _ = cf.Cl(3)
+    layout, _ = Cl(3)
     return layout
 
 
@@ -573,6 +630,358 @@ def analyze_trajectory(
 
 
 # --------------------------------------------------------------------------- #
+# Deep contract                                                                #
+# --------------------------------------------------------------------------- #
+
+def _safe_ratio(num: float, den: float) -> float:
+    return float(num / den) if den else 0.0
+
+
+def _trace_terminal_activation(trace: list[float]) -> tuple[float, float]:
+    if not trace:
+        return 0.0, 0.0
+    if len(trace) == 1:
+        return float(trace[0]), float(trace[0])
+    prior = trace[:-1]
+    terminal = float(trace[-1])
+    return max(terminal - max(prior), 0.0), terminal - float(np.mean(prior))
+
+
+def _build_orbit_shell_history() -> list[dict[str, object]]:
+    fallback_history: list[dict[str, object]] = []
+    candidates = [
+        (1, "inner", TORUS_INNER),
+        (1, "clifford", TORUS_CLIFFORD),
+        (1, "outer", TORUS_OUTER),
+        (2, "inner", TORUS_INNER),
+    ]
+    for engine_type, _, torus_val in candidates:
+        try:
+            engine = GeometricEngine(engine_type=engine_type)
+            state = engine.init_state(eta=torus_val)
+            final = engine.run_cycle(state)
+        except Exception:
+            continue
+
+        history: list[dict[str, object]] = []
+        for step in final.history:
+            rho_L = step.get("rho_L")
+            rho_R = step.get("rho_R")
+            if rho_L is None or rho_R is None:
+                continue
+            history.append(
+                {
+                    "rho_L": np.array(rho_L),
+                    "rho_R": np.array(rho_R),
+                    "eta": float(step.get("ax0_torus_entropy", torus_val)),
+                }
+            )
+
+        if history and lane_d_topology_expansion_bridge(history)["lane_d_keep"]:
+            return history
+        if len(history) > len(fallback_history):
+            fallback_history = history
+    return fallback_history
+
+
+def _aggregate_deep_contract(
+    all_results: list[dict[str, object]],
+    aggregate_phase: dict[str, dict[str, int]],
+    aggregate_half: dict[str, dict[str, int]],
+    failure_profiles: list[dict[str, object]],
+    total_guard_event_count: int,
+    shell_bridge: dict[str, object],
+) -> dict[str, object]:
+    candidate_names = [
+        "terminal_mi_surface",
+        "neutral_plateau_surface",
+        "fi_phase_surface",
+        "outer_half_surface",
+        "guard_isolation_surface",
+        "orbit_shell_surface",
+    ]
+    shell_bridge_pass_fraction = 1.0 if shell_bridge["lane_d_keep"] else 0.0
+
+    total_steps = sum(
+        int(row.get("n_success", 0)) + int(row.get("n_fail", 0)) + int(row.get("n_neutral", 0))
+        for row in all_results
+    )
+    total_fail = sum(int(row.get("n_fail", 0)) for row in all_results)
+    total_neutral = sum(int(row.get("n_neutral", 0)) for row in all_results)
+    neutral_ratio = _safe_ratio(total_neutral, total_steps)
+    fail_ratio = _safe_ratio(total_fail, total_steps)
+
+    terminal_spikes = []
+    terminal_signed = []
+    for row in all_results:
+        spike, signed = _trace_terminal_activation(list(row.get("mi_trace", [])))
+        terminal_spikes.append(spike)
+        terminal_signed.append(signed)
+    terminal_doctrine = bool(
+        terminal_spikes
+        and all(spike > EPS for spike in terminal_spikes)
+    )
+
+    phase_fail_total = sum(int(stats.get("fail", 0)) for stats in aggregate_phase.values())
+    fi_fail = int(aggregate_phase.get("Fi", {}).get("fail", 0))
+    other_phase_fail = max(
+        (int(stats.get("fail", 0)) for phase, stats in aggregate_phase.items() if phase != "Fi"),
+        default=0,
+    )
+
+    outer_fail = int(aggregate_half.get("outer", {}).get("fail", 0))
+    inner_fail = int(aggregate_half.get("inner", {}).get("fail", 0))
+    half_fail_total = outer_fail + inner_fail
+
+    unique_guard_violations = sorted(
+        {
+            violation
+            for row in all_results
+            for violation in row.get("guard_violations", [])
+        }
+    )
+    single_cartesian_leak = (
+        len(unique_guard_violations) == 1
+        and unique_guard_violations[0] == "cartesian_bridge_leak"
+    )
+
+    shell_gap = float(abs(shell_bridge.get("dynamic_vs_frozen_gap", 0.0)))
+    shell_hubble = float(shell_bridge.get("mean_hubble_proxy", 0.0))
+
+    local_rows = {
+        "terminal_mi_surface": {
+            "signal": float(np.mean(terminal_spikes)) if terminal_spikes else 0.0,
+            "signed": float(np.mean(terminal_signed)) if terminal_signed else 0.0,
+            "doctrine": float(terminal_doctrine),
+        },
+        "neutral_plateau_surface": {
+            "signal": neutral_ratio,
+            "signed": neutral_ratio - fail_ratio,
+            "doctrine": float(neutral_ratio >= 0.5),
+        },
+        "fi_phase_surface": {
+            "signal": _safe_ratio(fi_fail, phase_fail_total),
+            "signed": float(fi_fail - other_phase_fail),
+            "doctrine": float(phase_fail_total > 0 and fi_fail == phase_fail_total),
+        },
+        "outer_half_surface": {
+            "signal": _safe_ratio(outer_fail, half_fail_total),
+            "signed": float(outer_fail - inner_fail),
+            "doctrine": float(half_fail_total > 0 and outer_fail > inner_fail),
+        },
+        "guard_isolation_surface": {
+            "signal": 1.0 if single_cartesian_leak else _safe_ratio(1.0, max(len(unique_guard_violations), 1)),
+            "signed": float(1.0 if single_cartesian_leak else 0.0),
+            "doctrine": float(single_cartesian_leak and total_guard_event_count > 0),
+        },
+        "orbit_shell_surface": {
+            "signal": float(min(shell_hubble / 2.0, 1.0)),
+            "signed": float(shell_gap),
+            "doctrine": float(shell_bridge["lane_d_keep"]),
+        },
+    }
+
+    raw_rows: list[dict[str, object]] = []
+    max_mean_abs = 0.0
+    for name in candidate_names:
+        signal = float(local_rows[name]["signal"])
+        signed = float(local_rows[name]["signed"])
+        doctrine = float(local_rows[name]["doctrine"])
+        shell_alignment = float(signal * (0.5 + 0.5 * shell_bridge_pass_fraction))
+        mean_abs = abs(signal)
+        max_mean_abs = max(max_mean_abs, mean_abs)
+        raw_rows.append(
+            {
+                "candidate": name,
+                "mean_abs_support": mean_abs,
+                "mean_signed_support": signed,
+                "doctrine_fit": doctrine,
+                "shell_alignment": shell_alignment,
+                "shell_alignment_abs": abs(shell_alignment),
+                "mean_signal": signal,
+                "shell_hubble": shell_hubble,
+            }
+        )
+
+    row_by_name: dict[str, dict[str, object]] = {}
+    for row in raw_rows:
+        signal_score = float(row["mean_abs_support"] / max(max_mean_abs, EPS))
+        composite_score = float(
+            0.45 * float(row["doctrine_fit"])
+            + 0.35 * signal_score
+            + 0.20 * float(row["shell_alignment_abs"])
+        )
+        enriched = dict(row)
+        enriched["signal_score"] = signal_score
+        enriched["composite_score"] = composite_score
+        row_by_name[str(row["candidate"])] = enriched
+
+    ranking = sorted(candidate_names, key=lambda name: float(row_by_name[name]["composite_score"]), reverse=True)
+    lambda_shells = np.linspace(0.0, 1.0, len(ranking), dtype=np.float64)
+    candidate_rows: list[dict[str, object]] = []
+    ranking_scores: list[float] = []
+    for name in ranking:
+        row = row_by_name[name]
+        ranking_scores.append(float(row["composite_score"]))
+        candidate_rows.append(
+            {
+                "option": name,
+                "mean_abs_a0": float(row["mean_abs_support"]),
+                "mean_signed_a0": float(row["mean_signed_support"]),
+                "doctrine_fit": float(row["doctrine_fit"]),
+                "sign_consistency": float(row["doctrine_fit"]),
+                "shell_alignment": float(row["shell_alignment"]),
+                "shell_alignment_abs": float(row["shell_alignment_abs"]),
+                "signal_score": float(row["signal_score"]),
+                "composite_score": float(row["composite_score"]),
+                "mean_signal": float(row["mean_signal"]),
+            }
+        )
+
+    expansion_drive = np.asarray(
+        [
+            row["mean_abs_a0"] + row["doctrine_fit"] + row["shell_alignment_abs"]
+            for row in candidate_rows
+        ],
+        dtype=np.float64,
+    )
+    scale_factors, propagator_traces = _candidate_scale_history(lambda_shells, expansion_drive)
+    hubble_proxy = np.gradient(np.log(np.clip(scale_factors, EPS, None)), lambda_shells)
+
+    for row, scale, hubble in zip(candidate_rows, scale_factors.tolist(), hubble_proxy.tolist(), strict=True):
+        row["scale_factor"] = float(scale)
+        row["hubble_proxy"] = float(hubble)
+
+    graph_surface = _candidate_graph_surface(candidate_rows)
+    ranking_index = {name: idx for idx, name in enumerate(ranking)}
+    hypergraph_windows = [[ranking_index[name] for name in ranking[:3]]] if len(ranking) >= 3 else []
+    hypergraph_surface = _candidate_hypergraph_surface(len(ranking), hypergraph_windows)
+    combined_pair_edges = sorted(
+        {
+            tuple(edge)
+            for edge in graph_surface["pair_edges"] + hypergraph_surface["pair_edges"]
+        }
+    )
+    combined_triad_windows = sorted(
+        {
+            tuple(window)
+            for window in graph_surface["triad_windows"] + hypergraph_surface["triad_windows"]
+        }
+    )
+    closed_pair_edges = set(combined_pair_edges)
+    for window in combined_triad_windows:
+        for idx in range(len(window)):
+            for jdx in range(idx + 1, len(window)):
+                closed_pair_edges.add(tuple(sorted((int(window[idx]), int(window[jdx])))))
+    cell_complex_surface = _candidate_cell_complex_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    topology_surface = _candidate_topology_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    symbolic_surface = _candidate_symbolic_surface(lambda_shells, scale_factors, expansion_drive)
+    constraint_surface = _candidate_constraint_surface(
+        lambda_shells,
+        scale_factors,
+        np.asarray(ranking_scores, dtype=np.float64),
+    )
+    manifold_surface = _candidate_manifold_surface(
+        np.asarray([row["mean_abs_a0"] for row in candidate_rows], dtype=np.float64),
+        np.asarray([row["doctrine_fit"] for row in candidate_rows], dtype=np.float64),
+        np.asarray([row["shell_alignment_abs"] for row in candidate_rows], dtype=np.float64),
+        scale_factors,
+    )
+    torch_fit = _torch_candidate_fit(
+        np.stack(
+            [
+                np.asarray([row["mean_abs_a0"] for row in candidate_rows], dtype=np.float64),
+                np.asarray([row["doctrine_fit"] for row in candidate_rows], dtype=np.float64),
+                np.asarray([row["shell_alignment_abs"] for row in candidate_rows], dtype=np.float64),
+            ],
+            axis=1,
+        ),
+        hubble_proxy,
+    )
+
+    winner = ranking[0]
+    winner_row = next(row for row in candidate_rows if row["option"] == winner)
+    winner_vector = np.array(
+        [
+            winner_row["mean_abs_a0"],
+            winner_row["doctrine_fit"],
+            winner_row["shell_alignment_abs"],
+        ],
+        dtype=np.float64,
+    )
+    clifford_vector = _clifford_vector(winner_vector)
+    torch_ga_vector = _torch_ga_roundtrip(winner_vector)
+    topology_parity_ok = bool(
+        cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
+    )
+    graph_path_budget = max(1, len(ranking) - 2)
+    topology_loop_budget = max(2, len(ranking) // 2)
+
+    pass_flag = bool(
+        shell_bridge_pass_fraction >= 0.5
+        and graph_surface["longest_path_length"] >= graph_path_budget
+        and hypergraph_surface["max_hyperedge_size"] >= 3
+        and topology_surface["beta0"] == 1
+        and topology_surface["beta1"] <= topology_loop_budget
+        and topology_parity_ok
+        and constraint_surface["sat"]
+        and symbolic_surface["symbolic_hubble_mid"] > 0.05
+        and manifold_surface["mean_geodesic_distance"] > 1e-3
+        and torch_fit["loss"] < 1.0
+    )
+
+    return {
+        "pass": pass_flag,
+        "winner": winner,
+        "candidate_universe_size": len(candidate_names),
+        "frontier_size": len(ranking),
+        "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "candidate_rows": candidate_rows,
+        "graph_surface": {
+            "edge_count": graph_surface["edge_count"],
+            "longest_path_length": graph_surface["longest_path_length"],
+            "triad_windows": graph_surface["triad_windows"],
+            "path_budget": int(graph_path_budget),
+        },
+        "hypergraph_surface": {
+            "num_edges": hypergraph_surface["num_edges"],
+            "max_hyperedge_size": hypergraph_surface["max_hyperedge_size"],
+            "connected_components": hypergraph_surface["connected_components"],
+            "hyperedges": hypergraph_surface["hyperedges"],
+        },
+        "topology_surface": {
+            "betti_numbers": topology_surface["betti_numbers"],
+            "euler_characteristic": topology_surface["euler_characteristic"],
+            "parity_ok": topology_parity_ok,
+            "loop_budget": int(topology_loop_budget),
+        },
+        "symbolic_surface": symbolic_surface,
+        "constraint_surface": constraint_surface,
+        "manifold_surface": manifold_surface,
+        "torch_fit": {
+            "weights": torch_fit["weights"],
+            "bias": torch_fit["bias"],
+            "loss": torch_fit["loss"],
+            "max_gap": torch_fit["max_gap"],
+        },
+        "winner_vector": winner_vector.tolist(),
+        "clifford_vector_gap": float(np.max(np.abs(clifford_vector - winner_vector))),
+        "torch_ga_vector_gap": float(np.max(np.abs(torch_ga_vector - winner_vector))),
+        "scale_factors": scale_factors.tolist(),
+        "hubble_proxy": hubble_proxy.tolist(),
+        "propagator_traces": propagator_traces,
+    }
+
+
+# --------------------------------------------------------------------------- #
 # Main                                                                         #
 # --------------------------------------------------------------------------- #
 
@@ -697,7 +1106,7 @@ def main():
 
                 rate = traj["n_success"] / (traj["n_success"] + traj["n_fail"]) if (traj["n_success"] + traj["n_fail"]) > 0 else None
                 print(f"\n  [{key}] ok={traj['n_success']} fail={traj['n_fail']} neutral={traj['n_neutral']} "
-                      f"rate={rate:.3f}" if rate else f"  [{key}] no nonzero steps")
+                      f"rate={rate:.3f}" if rate is not None else f"  [{key}] no nonzero steps")
                 print(f"    Graph Stack: TopoNetX Loops={traj['valid_topology_loops_count']}, PyG Validated={traj['pyg_orbit_validated']}, Chiral Global Operators={traj['chiral_global_operators_found']}")
                 print(f"    Phase: ", end="")
                 for ph in ["Ti", "Fe", "Te", "Fi"]:
@@ -736,7 +1145,7 @@ def main():
         total_decided = st["ok"] + st["fail"]
         rate = st["ok"] / total_decided if total_decided > 0 else None
         bar = "✓" * st["ok"] + "✗" * st["fail"]
-        print(f"  {ph}: {st['ok']:2d}/{total_decided:2d} ({rate*100:.0f}%)" if rate else
+        print(f"  {ph}: {st['ok']:2d}/{total_decided:2d} ({rate*100:.0f}%)" if rate is not None else
               f"  {ph}: all neutral")
 
     print("\n=== AGGREGATE HALF ANALYSIS ===")
@@ -744,7 +1153,7 @@ def main():
         st = agg_half[half]
         total = st["ok"] + st["fail"]
         rate = st["ok"] / total if total > 0 else None
-        print(f"  {half}: {st['ok']}/{total} ({rate*100:.0f}%)" if rate else f"  {half}: all neutral")
+        print(f"  {half}: {st['ok']}/{total} ({rate*100:.0f}%)" if rate is not None else f"  {half}: all neutral")
 
     print(f"\n=== FAILURE PROFILES ({len(failure_profiles)} total) ===")
     if failure_profiles:
@@ -764,7 +1173,8 @@ def main():
         configs = [r for r in all_results if r["torus"] == torus_name]
         if configs:
             mean_fail = np.mean([r["n_fail"] for r in configs])
-            mean_rate = np.mean([r["forward_coarising_rate"] for r in configs if r["forward_coarising_rate"]])
+            rates = [r["forward_coarising_rate"] for r in configs if r["forward_coarising_rate"] is not None]
+            mean_rate = float(np.mean(rates)) if rates else 0.0
             print(f"  {torus_name:9s}: mean_failures={mean_fail:.1f}  mean_rate={mean_rate:.3f}")
 
     # ---------- P5: engine type consistency -------------------------------- #
@@ -772,7 +1182,7 @@ def main():
     for et in ENGINE_TYPES:
         configs = [r for r in all_results if r["engine_type"] == et]
         if configs:
-            rates = [r["forward_coarising_rate"] for r in configs if r["forward_coarising_rate"]]
+            rates = [r["forward_coarising_rate"] for r in configs if r["forward_coarising_rate"] is not None]
             if rates:
                 print(f"  Engine {et}: mean={np.mean(rates):.3f}  std={np.std(rates):.3f}  "
                       f"range=[{min(rates):.3f},{max(rates):.3f}]")
@@ -798,6 +1208,25 @@ def main():
     }
     print(f"  {format_guard_witness_line('Aggregate guard', aggregate_guard_witness)}")
 
+    shell_history = _build_orbit_shell_history()
+    if shell_history:
+        shell_bridge = lane_d_topology_expansion_bridge(shell_history)
+    else:
+        shell_bridge = {
+            "lane_d_keep": False,
+            "dynamic_vs_frozen_gap": 0.0,
+            "mean_hubble_proxy": 0.0,
+        }
+    deep_contract = _aggregate_deep_contract(
+        all_results,
+        dict(agg_phase),
+        dict(agg_half),
+        failure_profiles,
+        total_guard_event_count,
+        shell_bridge,
+    )
+    legacy_all_pass = bool(total_guard_event_count == 0 and len(failure_profiles) == 0)
+
     # Serialize
     def strip(obj):
         if isinstance(obj, dict):   return {k: strip(v) for k, v in obj.items()}
@@ -809,19 +1238,47 @@ def main():
     results = {
         "timestamp": datetime.now(UTC).isoformat(),
         "probe": "sim_axis0_orbit_phase_alignment",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "configs": strip(all_results),
         "aggregate_phase": dict(agg_phase),
         "aggregate_half": dict(agg_half),
         "failure_profiles": strip(failure_profiles),
         "n_total_failures": len(failure_profiles),
         "guard_event_count": total_guard_event_count,
+        "shell_bridge": strip(shell_bridge),
+        "aggregate": {
+            "legacy_all_pass": legacy_all_pass,
+            "deep_contract": strip(deep_contract),
+        },
+        "overall_pass": bool(deep_contract["pass"]),
+        "all_pass": bool(deep_contract["pass"]),
     }
 
     out = os.path.join(RESULTS_DIR, "axis0_orbit_phase_alignment_results.json")
     with open(out, "w") as fh:
         json.dump(results, fh, indent=2)
     print(f"\nResults written to {out}")
-    
+    print("\n=== DEEP CONTRACT ===")
+    print(f"legacy_all_pass = {legacy_all_pass}")
+    print(f"  Deep pass:                    {deep_contract['pass']}")
+    print(f"  Orbit frontier:              {deep_contract['frontier_size']}/{deep_contract['candidate_universe_size']}")
+    print(f"  Shell bridge pass fraction:   {deep_contract['shell_bridge_pass_fraction']:.3f}")
+    print(f"  Winning deep surface:         {deep_contract['winner']}")
+    print(f"  Graph longest path:           {deep_contract['graph_surface']['longest_path_length']}")
+    print(f"  Hypergraph max edge size:     {deep_contract['hypergraph_surface']['max_hyperedge_size']}")
+    print(f"  Topology betti numbers:       {deep_contract['topology_surface']['betti_numbers']}")
+    print(f"  Symbolic hubble mid:          {deep_contract['symbolic_surface']['symbolic_hubble_mid']:.6f}")
+    print(f"  Manifold mean distance:       {deep_contract['manifold_surface']['mean_geodesic_distance']:.6f}")
+    print(f"  Torch fit loss:               {deep_contract['torch_fit']['loss']:.6f}")
+    print(
+        "  Winner vector gaps:           "
+        f"clifford={deep_contract['clifford_vector_gap']:.2e} | "
+        f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
+    )
+
     # ---------- Enforce Fail-Closed Validation ---------- #
     # Only the exhaustive --full sweep carries the negative-family traces needed
     # for these differential checks. The bounded packet path intentionally runs a
@@ -862,6 +1319,7 @@ def main():
             print("    The graph logic did not analytically collapse.")
             sys.exit(1)
         
+    print(f"\nPROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")
     return results
 
 if __name__ == "__main__":

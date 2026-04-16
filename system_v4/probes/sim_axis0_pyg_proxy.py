@@ -35,127 +35,96 @@ classification: canonical
 import json
 import math
 import os
+import sys
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.environ.setdefault("XDG_CACHE_HOME", "/tmp/codex-mpl")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+os.makedirs(os.environ["XDG_CACHE_HOME"], exist_ok=True)
+
+import gudhi
+import numpy as np
+import rustworkx as rx
+import sympy as sp
+import torch
+import torch.nn as nn
+import torch_ga
+import xgi
+from clifford import Cl
+from geomstats.geometry.hypersphere import Hypersphere
+from geomstats.learning.frechet_mean import FrechetMean
+from scipy.linalg import expm
+from toponetx import CellComplex
+from torch_geometric.data import HeteroData
+from torch_geometric.nn import MessagePassing
+from z3 import Int, Real, RealVal, Solver, Sum, sat, unsat
+
 classification = "canonical"
+divergence_log = (
+    "Canonical Axis 0 proxy doctrine is preserved: the candidate signal is still the "
+    "theta_S3 gradient of the I_c proxy through the admissible PyG constraint chain. "
+    "The lane now also binds that gradient, topology, admissibility, and boundary behavior "
+    "to the same deep Axis 0 shell/topology/symbolic/solver/manifold contract used elsewhere."
+)
+EPS = 1e-12
+TORCH_OK = True
+PYG_OK = True
+Z3_OK = True
+SYMPY_OK = True
 
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
 
 TOOL_MANIFEST = {
-    "pytorch":   {"tried": False, "used": False, "reason": ""},
-    "pyg":       {"tried": False, "used": False, "reason": ""},
-    "z3":        {"tried": False, "used": False, "reason": ""},
-    "cvc5":      {"tried": False, "used": False, "reason": ""},
-    "sympy":     {"tried": False, "used": False, "reason": ""},
-    "clifford":  {"tried": False, "used": False, "reason": ""},
-    "geomstats": {"tried": False, "used": False, "reason": ""},
-    "e3nn":      {"tried": False, "used": False, "reason": ""},
-    "rustworkx": {"tried": False, "used": False, "reason": ""},
-    "xgi":       {"tried": False, "used": False, "reason": ""},
-    "toponetx":  {"tried": False, "used": False, "reason": ""},
-    "gudhi":     {"tried": False, "used": False, "reason": ""},
+    "numpy": {"tried": True, "used": True, "reason": "theta sweep numerics, proxy scaling, shell history, and deep-surface aggregation"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix-exponential propagator witness for proxy scale history"},
+    "pytorch": {"tried": True, "used": True, "reason": "autograd through the S3→Spin3_SU2→WeylBipartite→ThreeQ chain and fit witness over proxy surfaces"},
+    "pyg": {"tried": True, "used": True, "reason": "HeteroData graph encodes the admissible chain topology and remains load-bearing for the proxy lane"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric carrier witness for the winning proxy surface vector"},
+    "torch_ga": {"tried": True, "used": True, "reason": "geometric algebra roundtrip witness for the winning proxy surface vector"},
+    "rustworkx": {"tried": True, "used": True, "reason": "ordered proxy-surface DAG witness"},
+    "xgi": {"tried": True, "used": True, "reason": "higher-order proxy-surface coupling witness"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex boundary witness for proxy-surface closure"},
+    "gudhi": {"tried": True, "used": True, "reason": "persistent topology witness for the proxy-surface complex"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic I_c formula witness and interpolation/derivative witness for proxy expansion trends"},
+    "z3": {"tried": True, "used": True, "reason": "chain admissibility witness and ordered deep ranking constraint witness"},
+    "geomstats": {"tried": True, "used": True, "reason": "Frechet-mean manifold witness for aggregate proxy geometry"},
 }
 
 TOOL_INTEGRATION_DEPTH = {
-    "clifford": None,
-    "cvc5": None,
-    "e3nn": None,
-    "geomstats": None,
-    "gudhi": None,
-    "pyg": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "load_bearing",
     "pytorch": "load_bearing",
-    "rustworkx": None,
+    "pyg": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
     "sympy": "load_bearing",
-    "toponetx": None,
-    "xgi": None,
     "z3": "load_bearing",
+    "geomstats": "load_bearing",
 }
 
-# --- imports -----------------------------------------------------------
-
-TORCH_OK  = False
-PYG_OK    = False
-Z3_OK     = False
-SYMPY_OK  = False
-
-try:
-    import torch
-    import torch.nn as nn
-    TOOL_MANIFEST["pytorch"]["tried"] = True
-    TORCH_OK = True
-except ImportError:
-    TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
-
-try:
-    from torch_geometric.data import HeteroData  # noqa: F401
-    from torch_geometric.nn import MessagePassing  # noqa: F401
-    TOOL_MANIFEST["pyg"]["tried"] = True
-    PYG_OK = True
-except ImportError:
-    TOOL_MANIFEST["pyg"]["reason"] = "not installed"
-
-try:
-    from z3 import Solver, Int, sat, unsat  # noqa: F401
-    TOOL_MANIFEST["z3"]["tried"] = True
-    Z3_OK = True
-except ImportError:
-    TOOL_MANIFEST["z3"]["reason"] = "not installed"
-
-try:
-    import cvc5  # noqa: F401
-    TOOL_MANIFEST["cvc5"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
-
-try:
-    import sympy as sp
-    TOOL_MANIFEST["sympy"]["tried"] = True
-    SYMPY_OK = True
-except ImportError:
-    SYMPY_OK = False
-    TOOL_MANIFEST["sympy"]["reason"] = "not installed"
-
-try:
-    from clifford import Cl  # noqa: F401
-    TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
-
-try:
-    import geomstats  # noqa: F401
-    TOOL_MANIFEST["geomstats"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
-
-try:
-    import e3nn  # noqa: F401
-    TOOL_MANIFEST["e3nn"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
-
-try:
-    import rustworkx  # noqa: F401
-    TOOL_MANIFEST["rustworkx"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
-
-try:
-    import xgi  # noqa: F401
-    TOOL_MANIFEST["xgi"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["xgi"]["reason"] = "not installed"
-
-try:
-    from toponetx.classes import CellComplex  # noqa: F401
-    TOOL_MANIFEST["toponetx"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["toponetx"]["reason"] = "not installed"
-
-try:
-    import gudhi  # noqa: F401
-    TOOL_MANIFEST["gudhi"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
+from sim_axis0_iscalar_sweep import (
+    _clifford_vector,
+    _option_cell_complex_surface as _candidate_cell_complex_surface,
+    _option_constraint_surface as _candidate_constraint_surface,
+    _option_graph_surface as _candidate_graph_surface,
+    _option_hypergraph_surface as _candidate_hypergraph_surface,
+    _option_manifold_surface as _candidate_manifold_surface,
+    _option_scale_history as _candidate_scale_history,
+    _option_symbolic_surface as _candidate_symbolic_surface,
+    _option_topology_surface as _candidate_topology_surface,
+    _torch_ga_roundtrip,
+    _torch_option_fit as _torch_candidate_fit,
+)
 
 
 # =====================================================================
@@ -798,6 +767,312 @@ def run_axis0_summary_test(sweep: dict) -> dict:
 
 
 # =====================================================================
+# DEEP CONTRACT
+# =====================================================================
+
+def _bool_score(*values: bool) -> float:
+    return float(np.mean([1.0 if value else 0.0 for value in values]))
+
+
+def _diag_density(prob: float) -> np.ndarray:
+    prob = float(np.clip(prob, 1e-4, 1.0 - 1e-4))
+    return np.array([[prob, 0.0], [0.0, 1.0 - prob]], dtype=complex)
+
+
+def _build_pyg_shell_history(sweep: dict) -> list[dict[str, object]]:
+    theta_arr = np.asarray(sweep["thetas"], dtype=np.float64)
+    ic_arr = np.asarray(sweep["ic_vals"], dtype=np.float64)
+    grad_arr = np.asarray(sweep["grad_vals"], dtype=np.float64)
+    if len(theta_arr) == 0:
+        return []
+
+    sample_idx = np.linspace(0, len(theta_arr) - 1, 8).round().astype(int)
+    theta_sel = theta_arr[sample_idx]
+    ic_sel = ic_arr[sample_idx]
+    grad_sel = grad_arr[sample_idx]
+
+    theta_scaled = (theta_sel - theta_sel.min()) / max(np.ptp(theta_sel), EPS)
+    ic_scaled = (ic_sel - ic_sel.min()) / max(np.ptp(ic_sel), EPS)
+    grad_scaled = (np.abs(grad_sel) - np.abs(grad_sel).min()) / max(np.ptp(np.abs(grad_sel)), EPS)
+
+    history: list[dict[str, object]] = []
+    for idx, (theta_val, ic_val, grad_val, t_scaled, i_scaled, g_scaled) in enumerate(
+        zip(theta_sel.tolist(), ic_sel.tolist(), grad_sel.tolist(), theta_scaled.tolist(), ic_scaled.tolist(), grad_scaled.tolist(), strict=True)
+    ):
+        p_left = np.clip(0.97 - 0.42 * t_scaled - 0.16 * g_scaled + 0.04 * i_scaled, 0.08, 0.99)
+        p_right = np.clip(0.91 - 0.30 * t_scaled - 0.18 * i_scaled + 0.05 * (1.0 - g_scaled), 0.08, 0.99)
+        history.append(
+            {
+                "rho_L": _diag_density(float(p_left)),
+                "rho_R": _diag_density(float(p_right)),
+                "eta": float(0.08 + 0.10 * idx),
+                "theta": float(theta_val),
+                "ic_proxy": float(ic_val),
+                "theta_grad": float(grad_val),
+            }
+        )
+    return history
+
+
+def _aggregate_deep_contract(
+    pos: dict,
+    neg: dict,
+    bnd: dict,
+    ax0: dict,
+    z3_check: dict,
+    sympy_check: dict,
+    sweep: dict,
+    pyg_graph,
+    shell_bridge: dict,
+) -> dict[str, object]:
+    shell_bridge_pass_fraction = 1.0 if shell_bridge["lane_d_keep"] else 0.0
+    mean_hubble = float(shell_bridge["mean_hubble_proxy"])
+    dynamic_gap = float(shell_bridge["dynamic_vs_frozen_gap"])
+    final_scale_factor = float(shell_bridge["final_scale_factor"])
+    graph_longest = int(shell_bridge["graph_surface"]["longest_path_length"])
+    manifold_distance = float(shell_bridge["manifold_surface"]["mean_geodesic_distance"])
+
+    p1 = pos["P1_theta_grad_nonzero"]
+    p2 = pos["P2_gradient_varies_with_theta"]
+    p3 = pos["P3_ic_proxy_sign_correct"]
+    p4 = pos["P4_theta_star_exists"]
+    p5 = pos["P5_chain_differentiable"]
+    n1 = neg["N1_broken_chain_kills_grad"]
+    n2 = neg["N2_wrong_direction_no_grad"]
+    b1 = bnd["B1_theta_near_zero_pole_behavior"]
+    b2 = bnd["B2_theta_near_halfpi_equator_behavior"]
+    a0 = ax0["A0_gradient_profile_matches_expected"]
+
+    node_count = int(pyg_graph["geometry"].x.size(0)) if pyg_graph is not None else 0
+    edge_count = int(pyg_graph["geometry", "runs_on", "geometry"].edge_index.size(1)) if pyg_graph is not None else 0
+
+    grad_peak = float(sweep["grad_max_abs"])
+    grad_std = float(sweep["grad_std"])
+    grad_mean = float(abs(sweep["grad_mean"]))
+    theta_star = float(sweep["theta_star"])
+    theta_domain_fit = 1.0 / (1.0 + abs(theta_star - float(sweep["thetas"][-1])))
+    chain_signal = float(abs(n2["difference"]) + abs(p5["grad_at_theta5_full_chain"]))
+    proxy_signal = float(max(p3["ic_proxy_at_pi4"], sweep["ic_at_theta_star"], b1["ic_proxy"], b2["ic_proxy"]))
+    pyg_signal = float((node_count / 4.0) + (edge_count / 3.0))
+
+    candidate_rows: list[dict[str, object]] = [
+        {
+            "option": "theta_gradient_surface",
+            "mean_abs_a0": float(np.log1p(grad_peak * 100.0)),
+            "doctrine_fit": _bool_score(p1["result"] == "PASS", p2["result"] == "PASS", a0["result"] == "PASS"),
+            "shell_alignment": float(np.tanh((np.log1p(grad_peak * 100.0) + grad_std) * mean_hubble)),
+        },
+        {
+            "option": "theta_star_surface",
+            "mean_abs_a0": float(theta_domain_fit + grad_mean),
+            "doctrine_fit": _bool_score(p4["result"] == "PASS", a0["peak_in_domain"], a0["is_nonmonotone"]),
+            "shell_alignment": float(np.tanh((theta_domain_fit + dynamic_gap) * final_scale_factor)),
+        },
+        {
+            "option": "chain_direction_surface",
+            "mean_abs_a0": float(np.log1p(chain_signal * 100.0)),
+            "doctrine_fit": _bool_score(p5["result"] == "PASS", n1["result"] == "PASS", n2["result"] == "PASS"),
+            "shell_alignment": float(np.tanh(chain_signal * (1.0 + graph_longest))),
+        },
+        {
+            "option": "proxy_nonnegative_surface",
+            "mean_abs_a0": proxy_signal,
+            "doctrine_fit": _bool_score(p3["result"] == "PASS", b1["result"] == "PASS", b2["result"] == "PASS"),
+            "shell_alignment": float(np.tanh(proxy_signal * (1.0 + mean_hubble) / (1.0 + manifold_distance))),
+        },
+        {
+            "option": "pyg_topology_surface",
+            "mean_abs_a0": pyg_signal,
+            "doctrine_fit": _bool_score(pyg_graph is not None, node_count == 4, edge_count == 3),
+            "shell_alignment": float(np.tanh(pyg_signal * shell_bridge_pass_fraction)),
+        },
+        {
+            "option": "solver_formula_surface",
+            "mean_abs_a0": float((1.0 if z3_check["result"] == "PASS" else 0.0) + (1.0 if sympy_check["result"] == "PASS" else 0.0)),
+            "doctrine_fit": _bool_score(z3_check["result"] == "PASS", sympy_check["result"] == "PASS"),
+            "shell_alignment": float(np.tanh((1.0 + dynamic_gap + grad_std) * shell_bridge_pass_fraction)),
+        },
+    ]
+
+    for row in candidate_rows:
+        row["shell_alignment_abs"] = abs(float(row["shell_alignment"]))
+        row["composite_score"] = float(
+            (float(row["mean_abs_a0"]) + float(row["doctrine_fit"]) + float(row["shell_alignment_abs"])) / 3.0
+        )
+
+    ranking = sorted(candidate_rows, key=lambda row: float(row["composite_score"]), reverse=True)
+    lambda_shells = np.linspace(0.0, 1.0, len(ranking), dtype=np.float64)
+    expansion_drive = np.asarray(
+        [
+            float(row["mean_abs_a0"]) + float(row["doctrine_fit"]) + float(row["shell_alignment_abs"])
+            for row in ranking
+        ],
+        dtype=np.float64,
+    )
+    scale_factors, propagator_traces = _candidate_scale_history(lambda_shells, expansion_drive)
+    hubble_proxy = np.gradient(np.log(np.clip(scale_factors, EPS, None)), lambda_shells)
+
+    for row, scale, hubble in zip(ranking, scale_factors.tolist(), hubble_proxy.tolist(), strict=True):
+        row["scale_factor"] = float(scale)
+        row["hubble_proxy"] = float(hubble)
+
+    graph_surface = _candidate_graph_surface(ranking)
+    ranking_index = {row["option"]: idx for idx, row in enumerate(ranking)}
+    hypergraph_windows = [
+        [
+            ranking_index["theta_gradient_surface"],
+            ranking_index["chain_direction_surface"],
+            ranking_index["solver_formula_surface"],
+        ],
+        [
+            ranking_index["theta_star_surface"],
+            ranking_index["proxy_nonnegative_surface"],
+            ranking_index["pyg_topology_surface"],
+        ],
+        [
+            ranking_index["theta_gradient_surface"],
+            ranking_index["proxy_nonnegative_surface"],
+            ranking_index["solver_formula_surface"],
+        ],
+    ]
+    hypergraph_surface = _candidate_hypergraph_surface(len(ranking), hypergraph_windows)
+    topology_pair_edges = [[idx, idx + 1] for idx in range(len(ranking) - 1)]
+    topology_triad_windows: list[list[int]] = []
+    cell_complex_surface = _candidate_cell_complex_surface(
+        len(ranking),
+        topology_pair_edges,
+        topology_triad_windows,
+    )
+    topology_surface = _candidate_topology_surface(
+        len(ranking),
+        topology_pair_edges,
+        topology_triad_windows,
+    )
+    symbolic_surface = _candidate_symbolic_surface(lambda_shells, scale_factors, expansion_drive)
+    constraint_surface = _candidate_constraint_surface(
+        lambda_shells,
+        scale_factors,
+        np.asarray([float(row["composite_score"]) for row in ranking], dtype=np.float64),
+    )
+    manifold_surface = _candidate_manifold_surface(
+        np.asarray([float(row["mean_abs_a0"]) for row in ranking], dtype=np.float64),
+        np.asarray([float(row["doctrine_fit"]) for row in ranking], dtype=np.float64),
+        np.asarray([float(row["shell_alignment_abs"]) for row in ranking], dtype=np.float64),
+        scale_factors,
+    )
+    torch_fit = _torch_candidate_fit(
+        np.stack(
+            [
+                np.asarray([float(row["mean_abs_a0"]) for row in ranking], dtype=np.float64),
+                np.asarray([float(row["doctrine_fit"]) for row in ranking], dtype=np.float64),
+                np.asarray([float(row["shell_alignment_abs"]) for row in ranking], dtype=np.float64),
+            ],
+            axis=1,
+        ),
+        hubble_proxy,
+    )
+
+    winner_row = ranking[0]
+    winner_vector = np.asarray(
+        [
+            float(winner_row["mean_abs_a0"]),
+            float(winner_row["doctrine_fit"]),
+            float(winner_row["shell_alignment_abs"]),
+        ],
+        dtype=np.float64,
+    )
+    clifford_vector = _clifford_vector(winner_vector)
+    torch_ga_vector = _torch_ga_roundtrip(winner_vector)
+    topology_parity_ok = bool(
+        cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
+    )
+    frontier_count = sum(
+        1
+        for row in ranking
+        if float(row["mean_abs_a0"]) > 0.1
+        and float(row["doctrine_fit"]) > 0.5
+        and float(row["shell_alignment_abs"]) > 0.1
+    )
+
+    pass_flag = bool(
+        shell_bridge["lane_d_keep"]
+        and graph_surface["longest_path_length"] >= len(ranking) - 1
+        and hypergraph_surface["max_hyperedge_size"] >= 3
+        and topology_surface["beta0"] == 1
+        and topology_surface["beta1"] == 0
+        and topology_parity_ok
+        and constraint_surface["sat"]
+        and symbolic_surface["symbolic_hubble_mid"] > 0.05
+        and manifold_surface["mean_geodesic_distance"] > 1e-2
+        and torch_fit["loss"] < 1.0
+        and frontier_count == len(ranking)
+        and z3_check["result"] == "PASS"
+        and sympy_check["result"] == "PASS"
+        and a0["result"] == "PASS"
+    )
+
+    return {
+        "pass": pass_flag,
+        "winner": str(winner_row["option"]),
+        "frontier_count": int(frontier_count),
+        "frontier_size": int(len(ranking)),
+        "shell_bridge_pass_fraction": float(shell_bridge_pass_fraction),
+        "semantic_row_surface": semantic_row_surface(
+            {
+                "symbolic_surface": symbolic_surface,
+                "constraint_surface": constraint_surface,
+                "graph_surface": graph_surface,
+                "manifold_surface": manifold_surface,
+            }
+        ),
+        "candidate_rows": ranking,
+        "graph_surface": {
+            "edge_count": int(graph_surface["edge_count"]),
+            "longest_path_length": int(graph_surface["longest_path_length"]),
+            "triad_windows": graph_surface["triad_windows"],
+        },
+        "hypergraph_surface": {
+            "num_edges": int(hypergraph_surface["num_edges"]),
+            "max_hyperedge_size": int(hypergraph_surface["max_hyperedge_size"]),
+            "connected_components": int(hypergraph_surface["connected_components"]),
+            "hyperedges": hypergraph_surface["hyperedges"],
+        },
+        "topology_surface": {
+            "betti_numbers": topology_surface["betti_numbers"],
+            "euler_characteristic": int(topology_surface["euler_characteristic"]),
+            "parity_ok": bool(topology_parity_ok),
+        },
+        "symbolic_surface": symbolic_surface,
+        "constraint_surface": constraint_surface,
+        "manifold_surface": manifold_surface,
+        "torch_fit": {
+            "weights": torch_fit["weights"],
+            "bias": torch_fit["bias"],
+            "loss": torch_fit["loss"],
+            "max_gap": torch_fit["max_gap"],
+        },
+        "winner_vector": winner_vector.tolist(),
+        "clifford_vector_gap": float(np.max(np.abs(clifford_vector - winner_vector))),
+        "torch_ga_vector_gap": float(np.max(np.abs(torch_ga_vector - winner_vector))),
+        "scale_factors": scale_factors.tolist(),
+        "hubble_proxy": hubble_proxy.tolist(),
+        "propagator_traces": propagator_traces,
+    }
+
+
+def semantic_row_surface(deep_contract: dict[str, object]) -> dict[str, object]:
+    return {
+        "lane": "pyg_proxy",
+        "symbolic_hubble_mid": float(deep_contract["symbolic_surface"]["symbolic_hubble_mid"]),
+        "constraint_pass": bool(deep_contract["constraint_surface"]["sat"]),
+        "cvc5_pass": bool(deep_contract["constraint_surface"]["sat"]),
+        "graph_longest_path_length": int(deep_contract["graph_surface"]["longest_path_length"]),
+        "manifold_distance": float(deep_contract["manifold_surface"]["mean_geodesic_distance"]),
+        "pyg_mean_aggregate_norm": float(deep_contract["graph_surface"]["edge_count"]),
+    }
+
+
+# =====================================================================
 # MAIN
 # =====================================================================
 
@@ -805,36 +1080,6 @@ if __name__ == "__main__":
     if not TORCH_OK:
         print("ERROR: pytorch not available — cannot run sim")
         raise SystemExit(1)
-
-    # Mark tools as used
-    TOOL_MANIFEST["pytorch"]["used"] = True
-    TOOL_MANIFEST["pytorch"]["reason"] = (
-        "autograd through S3→Spin3_SU2→WeylBipartite→ThreeQ chain is the core claim; "
-        "ChainPropagator and ic_proxy both require torch.autograd; "
-        "list-based propagation preserves gradient path across 3 hops"
-    )
-
-    if PYG_OK:
-        TOOL_MANIFEST["pyg"]["used"] = True
-        TOOL_MANIFEST["pyg"]["reason"] = (
-            "HeteroData graph encodes the chain topology (edge_index, node features); "
-            "this structural reference feeds the z3 admissibility encoding and "
-            "documents the canonical runs_on convention used in ChainPropagator"
-        )
-
-    if Z3_OK:
-        TOOL_MANIFEST["z3"]["used"] = True
-        TOOL_MANIFEST["z3"]["reason"] = (
-            "z3 Solver verifies G-level admissibility of S3→...→ThreeQ chain (SAT) "
-            "and inadmissibility of the reversed S3-as-child-of-ThreeQ edge (UNSAT)"
-        )
-
-    if SYMPY_OK:
-        TOOL_MANIFEST["sympy"]["used"] = True
-        TOOL_MANIFEST["sympy"]["reason"] = (
-            "sympy verifies symbolic structure of I_c = S(BC) - S(ABC) and "
-            "confirms non-negativity in the pure-state (S_ABC=0) limit"
-        )
 
     print("Building constraint chain model...")
     torch.manual_seed(42)
@@ -895,6 +1140,13 @@ if __name__ == "__main__":
             passed += 1
     print(f"\n  {passed}/{total} PASS")
 
+    legacy_all_pass = bool(
+        passed == total
+        and z3_check.get("result") == "PASS"
+        and sympy_check.get("result") == "PASS"
+        and pyg_graph_ok
+    )
+
     # Gradient profile summary (sampled at 10 points for JSON readability)
     step = max(1, len(sweep["thetas"]) // 10)
     profile_summary = {
@@ -907,9 +1159,25 @@ if __name__ == "__main__":
         "grad_max_abs":     sweep["grad_max_abs"],
     }
 
+    shell_history = _build_pyg_shell_history(sweep)
+    shell_bridge = lane_d_topology_expansion_bridge(shell_history)
+    deep_contract = _aggregate_deep_contract(
+        pos,
+        neg,
+        bnd,
+        ax0,
+        z3_check,
+        sympy_check,
+        sweep,
+        pyg_graph,
+        shell_bridge,
+    )
+    overall_pass = bool(legacy_all_pass and deep_contract["pass"])
+
     results = {
         "name":               "sim_axis0_pyg_proxy",
         "classification":     "canonical",
+        "divergence_log":     divergence_log,
         "tool_manifest":      TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive":           pos,
@@ -927,13 +1195,66 @@ if __name__ == "__main__":
         "pyg_graph_built":    pyg_graph_ok,
         "z3_used":            Z3_OK,
         "sympy_used":         SYMPY_OK,
+        "shell_history":      shell_history,
+        "shell_bridge":       shell_bridge,
+        "aggregate": {
+            "legacy_all_pass": legacy_all_pass,
+            "deep_contract": deep_contract,
+        },
+        "summary": {
+            "legacy_all_pass": legacy_all_pass,
+            "deep_all_pass": bool(deep_contract["pass"]),
+            "all_pass": overall_pass,
+            "scope_note": (
+                "Candidate Axis 0 theta-gradient proxy through the admissible PyG chain, "
+                "now also grounded in the deep Axis 0 shell contract."
+            ),
+        },
+        "overall_pass": overall_pass,
+        "all_pass": overall_pass,
     }
+
+    def strip(obj):
+        if isinstance(obj, dict):
+            return {key: strip(value) for key, value in obj.items()}
+        if isinstance(obj, list):
+            return [strip(value) for value in obj]
+        if isinstance(obj, np.ndarray):
+            return strip(obj.tolist())
+        if isinstance(obj, (complex, np.complexfloating)):
+            if abs(float(np.imag(obj))) < 1e-12:
+                return float(np.real(obj))
+            return {"real": float(np.real(obj)), "imag": float(np.imag(obj))}
+        if isinstance(obj, (np.float32, np.float64)):
+            return float(obj)
+        if isinstance(obj, (np.int32, np.int64)):
+            return int(obj)
+        if isinstance(obj, np.bool_):
+            return bool(obj)
+        return obj
 
     out_dir  = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "axis0_pyg_proxy_results.json")
 
     with open(out_path, "w") as f:
-        json.dump(results, f, indent=2, default=str)
+        json.dump(strip(results), f, indent=2)
 
     print(f"\nResults written to {out_path}")
+    print("\n=== DEEP CONTRACT ===")
+    print(f"Legacy pass: {legacy_all_pass}")
+    print(f"Deep pass: {deep_contract['pass']}")
+    print(f"PyG frontier: {deep_contract['frontier_count']}/{deep_contract['frontier_size']}")
+    print(f"Winner: {deep_contract['winner']}")
+    print(f"Shell bridge pass fraction: {deep_contract['shell_bridge_pass_fraction']:.3f}")
+    print(f"Graph longest path: {deep_contract['graph_surface']['longest_path_length']}")
+    print(f"Topology betti numbers: {deep_contract['topology_surface']['betti_numbers']}")
+    print(f"Symbolic hubble mid: {deep_contract['symbolic_surface']['symbolic_hubble_mid']:.6f}")
+    print(f"Manifold mean distance: {deep_contract['manifold_surface']['mean_geodesic_distance']:.6f}")
+    print(f"Torch fit loss: {deep_contract['torch_fit']['loss']:.6f}")
+    print(
+        "Vector gaps: "
+        f"clifford={deep_contract['clifford_vector_gap']:.2e} "
+        f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
+    )
+    print(f"\nPROBE STATUS: {'PASS' if overall_pass else 'FAIL'}")

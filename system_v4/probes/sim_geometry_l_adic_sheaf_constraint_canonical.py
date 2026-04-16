@@ -154,15 +154,18 @@ def run_positive_tests():
             w = 2  # weight of sheaf
 
             # Eigenvalue magnitude constraint
-            alpha_real = cvc5.Real("alpha_real")
-            alpha_imag = cvc5.Real("alpha_imag")
+            real_sort = solver.getRealSort()
+            alpha_real = solver.mkConst(real_sort, "alpha_real_ladic")
+            alpha_imag = solver.mkConst(real_sort, "alpha_imag_ladic")
 
             # |α|^2 = q^w
             target_norm_sq = float(q ** w)  # = 25 for q=5, w=2
 
-            solver.assertFormula(
-                alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(target_norm_sq)
-            )
+            alpha_real_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_real, alpha_real)
+            alpha_imag_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_imag, alpha_imag)
+            sum_sq = solver.mkTerm(cvc5.Kind.ADD, alpha_real_sq, alpha_imag_sq)
+            constraint = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, solver.mkReal(target_norm_sq))
+            solver.assertFormula(constraint)
 
             result = solver.checkSat()
             results["test_purity_weight_w"] = {
@@ -194,15 +197,16 @@ def run_positive_tests():
             max_nonzero_i = -dim_S - 1  # = -2, so H^i = 0 for i > -2
 
             # Encode: for stratum S of dimension 1, only H^{-2} and lower can be nonzero
-            h_minus_2 = cvc5.Int("h_minus_2")
-            h_minus_1 = cvc5.Int("h_minus_1")
-            h_0 = cvc5.Int("h_0")
+            int_sort = solver.getIntegerSort()
+            h_minus_2 = solver.mkConst(int_sort, "h_minus_2")
+            h_minus_1 = solver.mkConst(int_sort, "h_minus_1")
+            h_0 = solver.mkConst(int_sort, "h_0")
 
             # Perversity: H^i = 0 for i > -dim(S) - 1
-            solver.assertFormula(h_minus_1 == cvc5.Int(0))
-            solver.assertFormula(h_0 == cvc5.Int(0))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h_minus_1, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h_0, solver.mkInteger(0)))
             # H^{-2} can be nonzero
-            solver.assertFormula(h_minus_2 >= cvc5.Int(0))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, h_minus_2, solver.mkInteger(0)))
 
             result = solver.checkSat()
             results["test_perversity_condition"] = {
@@ -276,18 +280,20 @@ def run_negative_tests():
             q = 5
             w = 2
 
-            alpha_real = cvc5.Real("alpha_real")
-            alpha_imag = cvc5.Real("alpha_imag")
+            real_sort = solver.getRealSort()
+            alpha_real = solver.mkConst(real_sort, "alpha_real_neg")
+            alpha_imag = solver.mkConst(real_sort, "alpha_imag_neg")
 
             # Correct constraint: |α|^2 = 25
-            solver.assertFormula(
-                alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(25.0)
-            )
+            alpha_real_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_real, alpha_real)
+            alpha_imag_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_imag, alpha_imag)
+            sum_sq = solver.mkTerm(cvc5.Kind.ADD, alpha_real_sq, alpha_imag_sq)
+            constraint1 = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, solver.mkReal(25.0))
+            solver.assertFormula(constraint1)
 
             # Violated claim: |α|^2 = 16 (not 25)
-            solver.assertFormula(
-                alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(16.0)
-            )
+            constraint2 = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, solver.mkReal(16.0))
+            solver.assertFormula(constraint2)
 
             result = solver.checkSat()
             results["test_purity_violation_unsat"] = {
@@ -311,14 +317,14 @@ def run_negative_tests():
             # Perversity requires H^i = 0 for i > -dim(S) - 1
             # For dim(S) = 1: H^i = 0 for i >= 0
 
-            h_0 = cvc5.Int("h_0")
-            h_minus_1 = cvc5.Int("h_minus_1")
+            int_sort = solver.getIntegerSort()
+            h_0 = solver.mkConst(int_sort, "h_0_perv")
 
             # Constraint: H^0 must be 0
-            solver.assertFormula(h_0 == cvc5.Int(0))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h_0, solver.mkInteger(0)))
 
-            # Violation: but also H^0 ≠ 0
-            solver.assertFormula(h_0 > cvc5.Int(0))
+            # Violation: but also H^0 > 0
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, h_0, solver.mkInteger(0)))
 
             result = solver.checkSat()
             results["test_perversity_violation_unsat"] = {

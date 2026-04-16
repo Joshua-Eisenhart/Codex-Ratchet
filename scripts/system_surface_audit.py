@@ -62,6 +62,15 @@ IMPORT_TOOL_ALIASES = {
     "deap": "deap",
     "cma": "cma",
 }
+
+
+def _exists_safe(path: Path) -> bool:
+    try:
+        return path.exists()
+    except OSError:
+        return False
+
+
 TOOL_BUNDLES = {
     "quantum_ga_bridge_stack": {
         "goal": "classical numeric + Clifford/GA + quantum state bridge lane",
@@ -143,8 +152,11 @@ TOOL_BUNDLES = {
             "cirq",
             "pennylane",
             "pytorch",
+            "pyg",
+            "cvc5",
             "clifford",
             "torch_ga",
+            "e3nn",
             "rustworkx",
             "xgi",
             "toponetx",
@@ -154,6 +166,54 @@ TOOL_BUNDLES = {
             "geomstats",
         ],
         "sim_name_contains": ["axis0_lambda_expansion_cosmology_stack"],
+    },
+    "axis0_lambda_crosslane_semantic_bridge_stack": {
+        "goal": "Axis 0 lambda-shell cross-lane semantic bridge across cosmology, seam, shell, and PyG witnesses",
+        "tools": [
+            "numpy",
+            "scipy",
+            "qutip",
+            "cirq",
+            "pennylane",
+            "pytorch",
+            "pyg",
+            "cvc5",
+            "clifford",
+            "torch_ga",
+            "e3nn",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_lambda_crosslane_semantic_bridge"],
+    },
+    "axis0_lambda_crosslane_result_audit_stack": {
+        "goal": "Axis 0 persisted-result semantic consistency audit across cosmology, seam, shell, and PyG witnesses",
+        "tools": [
+            "numpy",
+            "scipy",
+            "qutip",
+            "cirq",
+            "pennylane",
+            "pytorch",
+            "pyg",
+            "cvc5",
+            "clifford",
+            "torch_ga",
+            "e3nn",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_lambda_crosslane_result_audit"],
     },
     "axis0_history_dynamic_shell_stack": {
         "goal": "Axis 0 history-driven dynamic shell topology and expansion lane",
@@ -298,6 +358,283 @@ TOOL_BUNDLES = {
             "geomstats",
         ],
         "sim_name_contains": ["axis0_phase4_final_bridge"],
+    },
+    "axis0_phase5a_marginal_preserving_deep_stack": {
+        "goal": "Axis 0 Phase-5A marginal-preserving honesty surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_phase5a_marginal_preserving"],
+    },
+    "axis0_phase5b_stability_deep_stack": {
+        "goal": "Axis 0 Phase-5B stability surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_phase5b_stability"],
+    },
+    "axis0_phase5c_honesty_deep_stack": {
+        "goal": "Axis 0 Phase-5C earned-vs-smuggled honesty surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_phase5c_earned_vs_smuggled"],
+    },
+    "axis0_phase6_clifford_anomaly_deep_stack": {
+        "goal": "Axis 0 Phase-6 Clifford anomaly surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_phase6_clifford_anomaly"],
+    },
+    "axis0_phase6_point_reference_deep_stack": {
+        "goal": "Axis 0 Phase-6 point-reference surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_phase6_point_reference"],
+    },
+    "axis0_chiral_deep_search_deep_stack": {
+        "goal": "Axis 0 chiral deep-search surface grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_chiral_deep_search"],
+    },
+    "axis0_axis6_coupling_seam_deep_stack": {
+        "goal": "Axis 0 x Axis 6 coupling seam grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "pyg",
+            "cvc5",
+            "clifford",
+            "torch_ga",
+            "e3nn",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_axis6_coupling_seam"],
+    },
+    "axis0_through_shells_deep_stack": {
+        "goal": "Axis 0 gradient-through-shells mechanics grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "pyg",
+            "cvc5",
+            "clifford",
+            "torch_ga",
+            "e3nn",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_through_shells"],
+    },
+    "axis0_attractor_basin_boundary_deep_stack": {
+        "goal": "Axis 0 attractor-basin boundary grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_attractor_basin_boundary"],
+    },
+    "axis0_kernel_phi0_deep_stack": {
+        "goal": "Axis 0 kernel Phi0 foundation lane grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_kernel_phi0"],
+    },
+    "axis0_cut_kernel_sweep_deep_stack": {
+        "goal": "Axis 0 cut-kernel sweep grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_cut_kernel_sweep"],
+    },
+    "axis0_entropy_gradient_constraint_deep_stack": {
+        "goal": "Axis 0 entropy-gradient constraint grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_entropy_gradient_constraint_canonical"],
+    },
+    "axis0_orbit_phase_alignment_deep_stack": {
+        "goal": "Axis 0 orbit-phase alignment grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_orbit_phase_alignment"],
+    },
+    "axis0_gtower_gradient_cascade_deep_stack": {
+        "goal": "Axis 0 G-tower gradient cascade grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_gtower_gradient_cascade"],
+    },
+    "axis0_pyg_proxy_deep_stack": {
+        "goal": "Axis 0 PyG proxy gradient lane grounded in the deep shell contract",
+        "tools": [
+            "numpy",
+            "scipy",
+            "pytorch",
+            "pyg",
+            "clifford",
+            "torch_ga",
+            "rustworkx",
+            "xgi",
+            "toponetx",
+            "gudhi",
+            "sympy",
+            "z3",
+            "geomstats",
+        ],
+        "sim_name_contains": ["axis0_pyg_proxy"],
     },
     "symbolic_solver_stack": {
         "goal": "solver + symbolic + rotor reference lane",
@@ -837,13 +1174,13 @@ def _capability_probe_status(tool: str) -> dict[str, object]:
             results_dir / f"sim_capability_{tool}_isolated_results.json",
         ),
     ]
-    probe_files = [_rel_or_abs(probe) for probe, _ in candidates if probe.exists()]
-    result_files = [_rel_or_abs(result) for _, result in candidates if result.exists()]
+    probe_files = [_rel_or_abs(probe) for probe, _ in candidates if _exists_safe(probe)]
+    result_files = [_rel_or_abs(result) for _, result in candidates if _exists_safe(result)]
     status = "missing"
     if probe_files:
         status = "probe_stale"
     for _probe, result in candidates:
-        if not result.exists():
+        if not _exists_safe(result):
             continue
         try:
             data = json.loads(result.read_text(encoding="utf-8"))
@@ -893,7 +1230,7 @@ def _result_paths_for_probe(path: Path) -> list[Path]:
 
 
 def _first_result_for_probe(path: Path) -> Path | None:
-    return next((candidate for candidate in _result_paths_for_probe(path) if candidate.exists()), None)
+    return next((candidate for candidate in _result_paths_for_probe(path) if _exists_safe(candidate)), None)
 
 
 def _integration_relationship_surface(
@@ -1707,18 +2044,18 @@ def _source_state_for_result(
     candidates = [PROBES / f"{stem}.py"]
     if not stem.startswith("sim_"):
         candidates.append(PROBES / f"sim_{stem}.py")
-    source = next((candidate for candidate in candidates if candidate.exists()), candidates[0])
+    source = next((candidate for candidate in candidates if _exists_safe(candidate)), candidates[0])
     rel_source = str(source.relative_to(REPO))
     state = {
         "source_path": rel_source,
-        "source_exists": source.exists(),
+        "source_exists": _exists_safe(source),
         "source_canonical_name": source.name.startswith("sim_"),
         "source_dirty": rel_source in dirty_probe_sources,
         "source_untracked": rel_source in untracked_probe_sources,
         "source_newer_than_result": False,
         "result_newer_than_source": False,
     }
-    if source.exists():
+    if _exists_safe(source):
         try:
             source_mtime = source.stat().st_mtime
             result_mtime = result_path.stat().st_mtime

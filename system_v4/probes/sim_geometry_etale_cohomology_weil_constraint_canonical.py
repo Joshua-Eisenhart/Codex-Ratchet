@@ -151,17 +151,15 @@ def run_positive_tests():
             solver.setLogic("QF_LIA")
 
             # P^1 has Betti numbers b_0=1, b_1=0, b_2=1
-            b = [cvc5.Datatype("b", [1, 0, 1])]
+            int_sort = solver.getIntegerSort()
+            h0 = solver.mkConst(int_sort, "h0")
+            h1 = solver.mkConst(int_sort, "h1")
+            h2 = solver.mkConst(int_sort, "h2")
 
-            # Constraint: l-adic dimension equals topological dimension
-            h_et_0 = cvc5.Int(1)  # dim H^0_et
-            h_et_1 = cvc5.Int(0)  # dim H^1_et
-            h_et_2 = cvc5.Int(1)  # dim H^2_et
-
-            # Assert the constraint holds
-            solver.assertFormula(h_et_0 == cvc5.Int(1))
-            solver.assertFormula(h_et_1 == cvc5.Int(0))
-            solver.assertFormula(h_et_2 == cvc5.Int(1))
+            # Assert the constraint holds: dimensions equal Betti numbers
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, solver.mkInteger(1)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h1, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h2, solver.mkInteger(1)))
 
             # Check satisfiability
             result = solver.checkSat()
@@ -183,14 +181,17 @@ def run_positive_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_LIA")
 
-            n = 1  # dimension of P^1
-            h0 = cvc5.Int(1)
-            h1 = cvc5.Int(0)
-            h2 = cvc5.Int(1)
+            int_sort = solver.getIntegerSort()
+            h0 = solver.mkConst(int_sort, "h0_poinc")
+            h1 = solver.mkConst(int_sort, "h1_poinc")
+            h2 = solver.mkConst(int_sort, "h2_poinc")
 
             # Poincaré duality: dim H^i = dim H^{2n-i}
-            solver.assertFormula(h0 == h2)  # H^0 ~ H^2
-            solver.assertFormula(h1 == h1)  # H^1 ~ H^1
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, solver.mkInteger(1)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h1, solver.mkInteger(0)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h2, solver.mkInteger(1)))
+            # Duality constraint: H^0 paired with H^2
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, h2))
 
             result = solver.checkSat()
             results["test_poincare_p1"] = {
@@ -253,19 +254,19 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_LIA")
 
-            # Claim: H^0 has dimension 2 (violates b_0 = 1)
-            h_et_0 = cvc5.Int(2)
+            int_sort = solver.getIntegerSort()
+            h0 = solver.mkConst(int_sort, "h0_unsat")
 
             # Constraint: must equal b_0 = 1
-            solver.assertFormula(h_et_0 == cvc5.Int(1))
-            # Contradiction
-            solver.assertFormula(h_et_0 == cvc5.Int(2))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, solver.mkInteger(1)))
+            # Contradiction: also claim h0 = 2
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, solver.mkInteger(2)))
 
             result = solver.checkSat()
             results["test_dimension_unsat"] = {
                 "constraint": "UNSAT when dim H^0_et ≠ b_0",
                 "unsatisfiable": not result.isSat(),
-                "reason": "claimed dim H^0 = 2 but b_0 = 1"
+                "reason": "claimed dim H^0 = 2 but constraint requires = 1"
             }
     except Exception as e:
         results["test_dimension_unsat"] = {"error": str(e)}
@@ -277,16 +278,15 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_LIA")
 
-            n = 1
-            h0 = cvc5.Int(1)
-            h1 = cvc5.Int(0)
-            h2 = cvc5.Int(2)  # Should be 1 by duality
+            int_sort = solver.getIntegerSort()
+            h0 = solver.mkConst(int_sort, "h0_poinc_unsat")
+            h2 = solver.mkConst(int_sort, "h2_poinc_unsat")
 
-            # Force duality
-            solver.assertFormula(h0 == h2)
+            # Duality constraint: H^0 = H^2 in dimension
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, h2))
             # But assign different values
-            solver.assertFormula(h2 == cvc5.Int(2))
-            solver.assertFormula(h0 == cvc5.Int(1))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h0, solver.mkInteger(1)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h2, solver.mkInteger(2)))
 
             result = solver.checkSat()
             results["test_poincare_unsat"] = {

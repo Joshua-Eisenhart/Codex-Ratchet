@@ -77,7 +77,7 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare trace variable
-            trace = solver.mkConst(cvc5.Real("trace"), cvc5.getRealSort())
+            trace = solver.mkConst(solver.getRealSort(), "trace")
             # Constraint: Tr(ρ) = 1
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, trace, solver.mkReal(1))
             solver.assertFormula(constraint)
@@ -97,12 +97,12 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare eigenvalue
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: 0 <= lambda <= 1
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, lambda_val, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_eigenvalue_positive"] = {
@@ -120,12 +120,12 @@ def run_positive_tests():
             solver.setLogic("QF_NRA")
 
             # Declare purity = Tr(ρ²)
-            purity = solver.mkConst(cvc5.Real("purity"), cvc5.getRealSort())
+            purity = solver.mkConst(solver.getRealSort(), "purity")
             # Constraint: 0 < purity <= 1 (valid purity range)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.GT, purity, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.LEQ, purity, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_purity_range"] = {
@@ -201,12 +201,12 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            trace = solver.mkConst(cvc5.Real("trace"), cvc5.getRealSort())
+            trace = solver.mkConst(solver.getRealSort(), "trace")
             # Constraint: trace = 0.5 AND trace = 1 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, trace, solver.mkReal(0.5)),
                 solver.mkTerm(cvc5.Kind.EQUAL, trace, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_invalid_trace"] = {
@@ -223,12 +223,12 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
             # Constraint: lambda = -0.1 AND lambda >= 0 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(-0.1)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_negative_eigenvalue"] = {
@@ -246,12 +246,12 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            purity = solver.mkConst(cvc5.Real("purity"), cvc5.getRealSort())
+            purity = solver.mkConst(solver.getRealSort(), "purity")
             # Constraint: purity = 1.5 AND purity <= 1 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, purity, solver.mkReal(1.5)),
                 solver.mkTerm(cvc5.Kind.LEQ, purity, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_purity_exceeds_one"] = {
@@ -298,7 +298,7 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            trace = solver.mkConst(cvc5.Real("trace"), cvc5.getRealSort())
+            trace = solver.mkConst(solver.getRealSort(), "trace")
             constraint = solver.mkTerm(cvc5.Kind.EQUAL, trace, solver.mkReal(1))
             solver.assertFormula(constraint)
             result = solver.checkSat()
@@ -316,11 +316,11 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            lambda_val = solver.mkConst(cvc5.Real("lambda"), cvc5.getRealSort())
-            constraint = solver.mkAnd([
+            lambda_val = solver.mkConst(solver.getRealSort(), "lambda")
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, lambda_val, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GEQ, lambda_val, solver.mkReal(0)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_boundary_eigenvalue_zero"] = {
@@ -338,11 +338,11 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            purity = solver.mkConst(cvc5.Real("purity"), cvc5.getRealSort())
-            constraint = solver.mkAnd([
+            purity = solver.mkConst(solver.getRealSort(), "purity")
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, purity, solver.mkReal(1)),
                 solver.mkTerm(cvc5.Kind.LEQ, purity, solver.mkReal(1)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_boundary_purity_one"] = {
@@ -359,12 +359,12 @@ def run_boundary_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_NRA")
 
-            purity = solver.mkConst(cvc5.Real("purity"), cvc5.getRealSort())
+            purity = solver.mkConst(solver.getRealSort(), "purity")
             # purity = 0 AND purity > 0 (contradictory)
-            constraint = solver.mkAnd([
+            constraint = solver.mkTerm(cvc5.Kind.AND, 
                 solver.mkTerm(cvc5.Kind.EQUAL, purity, solver.mkReal(0)),
                 solver.mkTerm(cvc5.Kind.GT, purity, solver.mkReal(0)),
-            ])
+            )
             solver.assertFormula(constraint)
             result = solver.checkSat()
             results["test_boundary_purity_zero"] = {

@@ -157,17 +157,20 @@ def run_positive_tests():
             # H^1 has dimension 2, Frob has 2 eigenvalues α, ᾱ
             # Both must satisfy |α| = √5, ᾱ = conjugate of α
 
-            alpha_real = cvc5.Real("alpha_real")
-            alpha_imag = cvc5.Real("alpha_imag")
+            real_sort = solver.getRealSort()
+            alpha_real = solver.mkConst(real_sort, "alpha_real")
+            alpha_imag = solver.mkConst(real_sort, "alpha_imag")
 
             # |α|^2 = alpha_real^2 + alpha_imag^2 = q^i = 5
             norm_sq = q ** i  # = 5
+            norm_sq_real = solver.mkReal(norm_sq)
 
-            solver.assertFormula(
-                cvc5.And(
-                    alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(norm_sq)
-                )
-            )
+            # Constraint: alpha_real^2 + alpha_imag^2 = norm_sq
+            alpha_real_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_real, alpha_real)
+            alpha_imag_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_imag, alpha_imag)
+            sum_sq = solver.mkTerm(cvc5.Kind.ADD, alpha_real_sq, alpha_imag_sq)
+            constraint = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, norm_sq_real)
+            solver.assertFormula(constraint)
 
             result = solver.checkSat()
             results["test_purity_h1"] = {
@@ -273,18 +276,20 @@ def run_negative_tests():
             q = 5
             i = 1
 
-            alpha_real = cvc5.Real("alpha_real")
-            alpha_imag = cvc5.Real("alpha_imag")
+            real_sort = solver.getRealSort()
+            alpha_real = solver.mkConst(real_sort, "alpha_real_neg")
+            alpha_imag = solver.mkConst(real_sort, "alpha_imag_neg")
 
             # Correct constraint: |α|^2 = 5
-            solver.assertFormula(
-                alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(5.0)
-            )
+            alpha_real_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_real, alpha_real)
+            alpha_imag_sq = solver.mkTerm(cvc5.Kind.MULT, alpha_imag, alpha_imag)
+            sum_sq = solver.mkTerm(cvc5.Kind.ADD, alpha_real_sq, alpha_imag_sq)
+            constraint1 = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, solver.mkReal(5))
+            solver.assertFormula(constraint1)
 
             # Violated claim: |α|^2 = 7 (impossible)
-            solver.assertFormula(
-                alpha_real * alpha_real + alpha_imag * alpha_imag == cvc5.Real(7.0)
-            )
+            constraint2 = solver.mkTerm(cvc5.Kind.EQUAL, sum_sq, solver.mkReal(7))
+            solver.assertFormula(constraint2)
 
             result = solver.checkSat()
             results["test_purity_violation_unsat"] = {

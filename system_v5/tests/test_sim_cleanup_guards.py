@@ -748,6 +748,22 @@ def test_adaptive_controller_accepts_all_pass_and_summary_all_passed() -> None:
     assert module.is_legacy_schema({"timestamp": "x", "ALL_PASS": True}) is False
 
 
+def test_adaptive_controller_find_result_file_skips_oversized_candidates(tmp_path) -> None:
+    module = _load_module(
+        "adaptive_controller_long_filename_under_test",
+        REPO_ROOT / "scripts" / "adaptive_controller.py",
+    )
+
+    results_dir = tmp_path / "results"
+    results_dir.mkdir()
+    expected = results_dir / "normal_probe_results.json"
+    expected.write_text('{"all_pass": true}\n', encoding="utf-8")
+
+    long_stem = "sim_" + ("x" * 512)
+    assert module.find_result_file(long_stem, results_dir) is None
+    assert module.find_result_file("sim_normal_probe", results_dir) == expected
+
+
 def test_perpetual_runner_declares_pidfile_singleton() -> None:
     text = (REPO_ROOT / "scripts" / "perpetual_runner.sh").read_text(encoding="utf-8")
 
@@ -790,6 +806,27 @@ def test_system_surface_audit_infers_legacy_pass_shapes() -> None:
         "boundary": {"baz": {"ok": True}},
     }) == "pass_inferred"
     assert module._pass_state({"summary": {"positive": "42/42", "boundary": "5/5"}}) == "pass_inferred"
+
+
+def test_system_surface_audit_first_result_for_probe_skips_oversized_candidates(tmp_path) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_long_filename_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    result_root = tmp_path / "sim_results"
+    result_root.mkdir()
+    long_probe = tmp_path / ("sim_" + ("y" * 512) + ".py")
+
+    module.RESULT_ROOTS = [result_root]
+
+    assert module._first_result_for_probe(long_probe) is None
 
 
 def test_system_surface_audit_pidfile_uses_ps_fallback_on_permission_error(
@@ -2234,12 +2271,15 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
         "numpy": ("sim_numpy_capability.py", "numpy_capability_results.json"),
         "scipy": ("sim_scipy_capability.py", "scipy_capability_results.json"),
         "torch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "pyg": ("sim_pyg_capability.py", "pyg_capability_results.json"),
+        "cvc5": ("sim_cvc5_capability.py", "cvc5_capability_results.json"),
         "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
         "torch_ga": ("sim_torch_ga_capability.py", "torch_ga_capability_results.json"),
         "qutip": ("sim_qutip_capability.py", "qutip_capability_results.json"),
         "cirq": ("sim_cirq_capability.py", "cirq_capability_results.json"),
         "pennylane": ("sim_pennylane_capability.py", "pennylane_capability_results.json"),
         "geomstats": ("sim_geomstats_capability.py", "geomstats_capability_results.json"),
+        "e3nn": ("sim_e3nn_capability.py", "e3nn_capability_results.json"),
         "rustworkx": ("sim_rustworkx_capability.py", "rustworkx_capability_results.json"),
         "xgi": ("sim_xgi_capability.py", "xgi_capability_results.json"),
         "toponetx": ("sim_toponetx_capability.py", "toponetx_capability_results.json"),
@@ -2375,6 +2415,8 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
         "\n".join(
             [
                 "import cirq",
+                "import cvc5",
+                "import e3nn",
                 "import gudhi",
                 "import numpy as np",
                 "import pennylane as qml",
@@ -2385,9 +2427,12 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
                 "import torch_ga",
                 "import xgi",
                 "from clifford import Cl",
+                "from e3nn import o3",
                 "from geomstats.geometry.hypersphere import Hypersphere",
                 "from scipy.linalg import expm",
                 "from toponetx import CellComplex",
+                "from torch_geometric.data import Data",
+                "from torch_geometric.nn import MessagePassing",
                 "from z3 import Solver",
                 "TOOL_MANIFEST = {",
                 "    'numpy': {'tried': True, 'used': True, 'reason': 'lambda-shell arrays'},",
@@ -2396,8 +2441,11 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
                 "    'cirq': {'tried': True, 'used': True, 'reason': 'entangling source witness'},",
                 "    'pennylane': {'tried': True, 'used': True, 'reason': 'qnode source witness'},",
                 "    'pytorch': {'tried': True, 'used': True, 'reason': 'proxy fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'lambda-shell message-passing witness'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'lambda-shell contradiction witness'},",
                 "    'clifford': {'tried': True, 'used': True, 'reason': 'cosmology vector witness'},",
                 "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga vector witness'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'cosmology parity witness'},",
                 "    'rustworkx': {'tried': True, 'used': True, 'reason': 'shell dag witness'},",
                 "    'xgi': {'tried': True, 'used': True, 'reason': 'shell hypergraph witness'},",
                 "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
@@ -2413,8 +2461,147 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
                 "    'cirq': 'load_bearing',",
                 "    'pennylane': 'load_bearing',",
                 "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
                 "    'clifford': 'load_bearing',",
                 "    'torch_ga': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_lambda_crosslane_semantic_bridge.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import cvc5",
+                "import e3nn",
+                "import gudhi",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from e3nn import o3",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from torch_geometric.data import Data",
+                "from torch_geometric.nn import MessagePassing",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'cross-lane semantic vectors'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'semantic propagator witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'open-system source witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'entangling source witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'qnode source witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'cross-lane fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'cross-lane message-passing witness'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'cross-lane contradiction witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'semantic carrier witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga semantic carrier witness'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'cross-lane parity witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'cross-lane dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'cross-lane hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic semantic witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'cross-lane constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold semantic witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_lambda_crosslane_result_audit.py").write_text(
+        "\n".join(
+            [
+                "import cirq",
+                "import cvc5",
+                "import e3nn",
+                "import gudhi",
+                "import numpy as np",
+                "import pennylane as qml",
+                "import qutip",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from e3nn import o3",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from torch_geometric.data import Data",
+                "from torch_geometric.nn import MessagePassing",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'persisted semantic vectors'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'persisted semantic propagator witness'},",
+                "    'qutip': {'tried': True, 'used': True, 'reason': 'persisted open-system source witness'},",
+                "    'cirq': {'tried': True, 'used': True, 'reason': 'persisted entangling source witness'},",
+                "    'pennylane': {'tried': True, 'used': True, 'reason': 'persisted qnode source witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'persisted frontier fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'persisted message-passing witness'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'persisted contradiction witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'persisted semantic carrier witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'persisted ga semantic witness'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'persisted parity witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'persisted dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'persisted hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'persisted cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'persisted topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'persisted symbolic witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'persisted constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'persisted manifold witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'qutip': 'load_bearing',",
+                "    'cirq': 'load_bearing',",
+                "    'pennylane': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
                 "    'rustworkx': 'load_bearing',",
                 "    'xgi': 'load_bearing',",
                 "    'toponetx': 'load_bearing',",
@@ -2812,6 +2999,752 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
         + "\n",
         encoding="utf-8",
     )
+    (probes / "sim_axis0_phase5a_marginal_preserving.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'preserving-surface aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'preserving-surface propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'preserving-surface fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'preserving-surface vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga preserving-surface vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'preserving-surface dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'preserving-surface hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic preserving-surface witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'preserving-surface constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold preserving-surface witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_phase5b_stability.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'stability-surface aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'stability-surface propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'stability-surface fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'stability-surface vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga stability-surface vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'stability-surface dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'stability-surface hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic stability-surface witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'stability-surface constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold stability-surface witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_phase5c_earned_vs_smuggled.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'honesty-surface aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'honesty-surface propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'honesty-surface fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'honesty-surface vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga honesty-surface vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'honesty-surface dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'honesty-surface hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic honesty-surface witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'honesty-surface constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold honesty-surface witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_phase6_clifford_anomaly.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'anomaly-surface aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'anomaly-surface propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'anomaly-surface fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'anomaly-surface vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga anomaly-surface vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'anomaly-surface dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'anomaly-surface hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic anomaly-surface witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'anomaly-surface constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold anomaly-surface witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_phase6_point_reference.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'point-reference aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'point-reference propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'point-reference fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'point-reference vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga point-reference vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'point-reference dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'point-reference hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic point-reference witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'point-reference constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold point-reference witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_chiral_deep_search.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'chiral-search aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'chiral-search propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'chiral-search fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'chiral-search vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga chiral-search vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'chiral-search dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'chiral-search hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic chiral-search witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'chiral-search constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold chiral-search witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_axis6_coupling_seam.py").write_text(
+        "\n".join(
+            [
+                "import cvc5",
+                "import e3nn",
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from e3nn import o3",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from torch_geometric.data import Data",
+                "from torch_geometric.nn import MessagePassing",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam message-passing witness'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam ranking contradiction witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga axis0-axis6 seam vector witness'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam parity witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic axis0-axis6 seam witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'axis0-axis6 seam constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold axis0-axis6 seam witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_through_shells.py").write_text(
+        "\n".join(
+            [
+                "import cvc5",
+                "import e3nn",
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from e3nn import o3",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from torch_geometric.data import Data",
+                "from torch_geometric.nn import MessagePassing",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'through-shells aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'through-shells propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'through-shells fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'through-shells message-passing witness'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'through-shells ranking contradiction witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'through-shells vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga through-shells vector witness'},",
+                "    'e3nn': {'tried': True, 'used': True, 'reason': 'through-shells parity witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'through-shells dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'through-shells hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic through-shells witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'through-shells constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold through-shells witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'e3nn': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_attractor_basin_boundary.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'attractor-boundary aggregates'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'attractor-boundary propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'attractor-boundary fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'attractor-boundary vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga attractor-boundary vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'attractor-boundary dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'attractor-boundary hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic attractor-boundary witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'attractor-boundary constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold attractor-boundary witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_kernel_phi0.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'kernel phi0 bridge numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'kernel phi0 propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'kernel phi0 fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'kernel phi0 vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga kernel phi0 vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'kernel phi0 dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'kernel phi0 hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic kernel phi0 witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'kernel phi0 constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold kernel phi0 witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_cut_kernel_sweep.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga cut-kernel sweep vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'cut-kernel sweep hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic cut-kernel witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'cut-kernel constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold cut-kernel witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_entropy_gradient_constraint_canonical.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'entropy-gradient numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'entropy-gradient propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'entropy-gradient fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'entropy-gradient vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga entropy-gradient vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'entropy-gradient dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'entropy-gradient hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic entropy-gradient witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'entropy-gradient constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold entropy-gradient witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_orbit_phase_alignment.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'orbit-phase numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'orbit-phase propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'orbit-phase fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'orbit-phase vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga orbit-phase vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'orbit-phase dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'orbit-phase hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic orbit-phase witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'orbit-phase constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold orbit-phase witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_gtower_gradient_cascade.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'G-tower numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'G-tower propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'G-tower fit witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'G-tower vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga G-tower vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'G-tower dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'G-tower hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic G-tower witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'G-tower constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold G-tower witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (probes / "sim_axis0_pyg_proxy.py").write_text(
+        "\n".join(
+            [
+                "import gudhi",
+                "import numpy as np",
+                "import rustworkx as rx",
+                "import sympy as sp",
+                "import torch",
+                "import torch_ga",
+                "import xgi",
+                "from clifford import Cl",
+                "from geomstats.geometry.hypersphere import Hypersphere",
+                "from scipy.linalg import expm",
+                "from toponetx import CellComplex",
+                "from torch_geometric.data import HeteroData",
+                "from torch_geometric.nn import MessagePassing",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'numpy': {'tried': True, 'used': True, 'reason': 'PyG proxy numerics'},",
+                "    'scipy': {'tried': True, 'used': True, 'reason': 'PyG proxy propagator witness'},",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'PyG proxy fit witness'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'PyG chain witness'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'PyG proxy vector witness'},",
+                "    'torch_ga': {'tried': True, 'used': True, 'reason': 'ga PyG proxy vector witness'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'PyG proxy dag witness'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'PyG proxy hypergraph witness'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell-complex witness'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'topology witness'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic PyG proxy witness'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'PyG proxy constraint witness'},",
+                "    'geomstats': {'tried': True, 'used': True, 'reason': 'manifold PyG proxy witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'numpy': 'supportive',",
+                "    'scipy': 'load_bearing',",
+                "    'pytorch': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'torch_ga': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'geomstats': 'load_bearing',",
+                "}",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     monkeypatch.setattr(module, "REPO", repo)
     monkeypatch.setattr(module, "PROBES", probes)
@@ -2857,6 +3790,22 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
     assert any(
         witness["sim"] == "sim_axis0_lambda_expansion_cosmology_stack.py"
         for witness in axis0_lambda_bundle["best_existing_witnesses"]
+    )
+
+    axis0_lambda_crosslane_bundle = report["bundles"]["axis0_lambda_crosslane_semantic_bridge_stack"]
+    assert axis0_lambda_crosslane_bundle["capability_gap_tools"] == []
+    assert axis0_lambda_crosslane_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_lambda_crosslane_semantic_bridge.py"
+        for witness in axis0_lambda_crosslane_bundle["best_existing_witnesses"]
+    )
+
+    axis0_lambda_result_audit_bundle = report["bundles"]["axis0_lambda_crosslane_result_audit_stack"]
+    assert axis0_lambda_result_audit_bundle["capability_gap_tools"] == []
+    assert axis0_lambda_result_audit_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_lambda_crosslane_result_audit.py"
+        for witness in axis0_lambda_result_audit_bundle["best_existing_witnesses"]
     )
 
     axis0_history_bundle = report["bundles"]["axis0_history_dynamic_shell_stack"]
@@ -2921,6 +3870,126 @@ def test_system_surface_audit_reports_entropy_and_thermo_bridge_bundle_witnesses
     assert any(
         witness["sim"] == "sim_axis0_phase4_final_bridge.py"
         for witness in axis0_phase4_bundle["best_existing_witnesses"]
+    )
+
+    axis0_phase5a_bundle = report["bundles"]["axis0_phase5a_marginal_preserving_deep_stack"]
+    assert axis0_phase5a_bundle["capability_gap_tools"] == []
+    assert axis0_phase5a_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_phase5a_marginal_preserving.py"
+        for witness in axis0_phase5a_bundle["best_existing_witnesses"]
+    )
+
+    axis0_phase5b_bundle = report["bundles"]["axis0_phase5b_stability_deep_stack"]
+    assert axis0_phase5b_bundle["capability_gap_tools"] == []
+    assert axis0_phase5b_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_phase5b_stability.py"
+        for witness in axis0_phase5b_bundle["best_existing_witnesses"]
+    )
+
+    axis0_phase5c_bundle = report["bundles"]["axis0_phase5c_honesty_deep_stack"]
+    assert axis0_phase5c_bundle["capability_gap_tools"] == []
+    assert axis0_phase5c_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_phase5c_earned_vs_smuggled.py"
+        for witness in axis0_phase5c_bundle["best_existing_witnesses"]
+    )
+
+    axis0_phase6_anomaly_bundle = report["bundles"]["axis0_phase6_clifford_anomaly_deep_stack"]
+    assert axis0_phase6_anomaly_bundle["capability_gap_tools"] == []
+    assert axis0_phase6_anomaly_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_phase6_clifford_anomaly.py"
+        for witness in axis0_phase6_anomaly_bundle["best_existing_witnesses"]
+    )
+
+    axis0_phase6_point_reference_bundle = report["bundles"]["axis0_phase6_point_reference_deep_stack"]
+    assert axis0_phase6_point_reference_bundle["capability_gap_tools"] == []
+    assert axis0_phase6_point_reference_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_phase6_point_reference.py"
+        for witness in axis0_phase6_point_reference_bundle["best_existing_witnesses"]
+    )
+
+    axis0_chiral_deep_search_bundle = report["bundles"]["axis0_chiral_deep_search_deep_stack"]
+    assert axis0_chiral_deep_search_bundle["capability_gap_tools"] == []
+    assert axis0_chiral_deep_search_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_chiral_deep_search.py"
+        for witness in axis0_chiral_deep_search_bundle["best_existing_witnesses"]
+    )
+
+    axis0_axis6_seam_bundle = report["bundles"]["axis0_axis6_coupling_seam_deep_stack"]
+    assert axis0_axis6_seam_bundle["capability_gap_tools"] == []
+    assert axis0_axis6_seam_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_axis6_coupling_seam.py"
+        for witness in axis0_axis6_seam_bundle["best_existing_witnesses"]
+    )
+
+    axis0_through_shells_bundle = report["bundles"]["axis0_through_shells_deep_stack"]
+    assert axis0_through_shells_bundle["capability_gap_tools"] == []
+    assert axis0_through_shells_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_through_shells.py"
+        for witness in axis0_through_shells_bundle["best_existing_witnesses"]
+    )
+
+    axis0_attractor_boundary_bundle = report["bundles"]["axis0_attractor_basin_boundary_deep_stack"]
+    assert axis0_attractor_boundary_bundle["capability_gap_tools"] == []
+    assert axis0_attractor_boundary_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_attractor_basin_boundary.py"
+        for witness in axis0_attractor_boundary_bundle["best_existing_witnesses"]
+    )
+
+    axis0_kernel_phi0_bundle = report["bundles"]["axis0_kernel_phi0_deep_stack"]
+    assert axis0_kernel_phi0_bundle["capability_gap_tools"] == []
+    assert axis0_kernel_phi0_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_kernel_phi0.py"
+        for witness in axis0_kernel_phi0_bundle["best_existing_witnesses"]
+    )
+
+    axis0_cut_kernel_sweep_bundle = report["bundles"]["axis0_cut_kernel_sweep_deep_stack"]
+    assert axis0_cut_kernel_sweep_bundle["capability_gap_tools"] == []
+    assert axis0_cut_kernel_sweep_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_cut_kernel_sweep.py"
+        for witness in axis0_cut_kernel_sweep_bundle["best_existing_witnesses"]
+    )
+
+    axis0_entropy_gradient_bundle = report["bundles"]["axis0_entropy_gradient_constraint_deep_stack"]
+    assert axis0_entropy_gradient_bundle["capability_gap_tools"] == []
+    assert axis0_entropy_gradient_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_entropy_gradient_constraint_canonical.py"
+        for witness in axis0_entropy_gradient_bundle["best_existing_witnesses"]
+    )
+
+    axis0_orbit_phase_bundle = report["bundles"]["axis0_orbit_phase_alignment_deep_stack"]
+    assert axis0_orbit_phase_bundle["capability_gap_tools"] == []
+    assert axis0_orbit_phase_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_orbit_phase_alignment.py"
+        for witness in axis0_orbit_phase_bundle["best_existing_witnesses"]
+    )
+
+    axis0_gtower_bundle = report["bundles"]["axis0_gtower_gradient_cascade_deep_stack"]
+    assert axis0_gtower_bundle["capability_gap_tools"] == []
+    assert axis0_gtower_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_gtower_gradient_cascade.py"
+        for witness in axis0_gtower_bundle["best_existing_witnesses"]
+    )
+
+    axis0_pyg_proxy_bundle = report["bundles"]["axis0_pyg_proxy_deep_stack"]
+    assert axis0_pyg_proxy_bundle["capability_gap_tools"] == []
+    assert axis0_pyg_proxy_bundle["full_bundle_witness_count"] >= 1
+    assert any(
+        witness["sim"] == "sim_axis0_pyg_proxy.py"
+        for witness in axis0_pyg_proxy_bundle["best_existing_witnesses"]
     )
 
 

@@ -23,6 +23,92 @@ from datetime import datetime, timezone
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical numpy-only baseline: this probe measures Ax4 loop-ordering "
+    "distinguishability numerically and does not couple to non-numpy tool families."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric numpy baseline for loop-ordering and entropy metrics",
+    },
+    "pytorch": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "pyg": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "z3": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "cvc5": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "sympy": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "clifford": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "geomstats": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "e3nn": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "rustworkx": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "xgi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "toponetx": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+    "gudhi": {
+        "tried": False,
+        "used": False,
+        "reason": "not used: this probe is a numeric numpy-only classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,

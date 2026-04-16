@@ -378,7 +378,7 @@ def run_boundary_tests():
             solver.setLogic("QF_LRA")
 
             h = solver.mkConst(solver.getRealSort(), "h_boundary")
-            zero = solver.mkInteger(0)
+            zero = solver.mkReal("0")
 
             # Assert: h = 0 (identity case)
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h, zero))

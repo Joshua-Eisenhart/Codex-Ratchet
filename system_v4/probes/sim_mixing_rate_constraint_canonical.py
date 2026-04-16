@@ -400,8 +400,8 @@ def run_boundary_tests():
             epsilon = solver.mkConst(solver.getRealSort(), "epsilon")
 
             # Constraint: λ = 1 - ε where ε is small
-            one = solver.mkInteger(1)
-            zero = solver.mkInteger(0)
+            one = solver.mkReal("1")
+            zero = solver.mkReal("0")
 
             solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, epsilon, zero))
             # λ + ε = 1

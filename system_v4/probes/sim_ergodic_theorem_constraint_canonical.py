@@ -420,7 +420,7 @@ def run_boundary_tests():
 
             # Simplified: assert convergence condition
             zero_real = solver.mkReal("0")
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, epsilon, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, epsilon, zero_real))
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, epsilon, zero_real))  # Perfect convergence
 
             is_sat = solver.checkSat().isSat()

@@ -50,6 +50,13 @@ TOOL_INTEGRATION_DEPTH = {
 }
 
 NAME = "sim_carnot_axis0_entropy_gradient_bridge"
+classification = "canonical"
+divergence_log = (
+    "Carnot cycle entropy gradients co-vary with Axis 0: reversible closure is a "
+    "closed loop on the entropy-gradient surface, while irreversibility is an open "
+    "trajectory excluded from that reversible surface."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 # =====================================================================
 # IMPORTS
@@ -388,7 +395,8 @@ if __name__ == "__main__":
 
     results = {
         "name": NAME,
-        "classification": "classical_baseline",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "claim": (
             "Carnot cycle delta-S at each step co-varies with Axis 0 (entropy gradient / "
             "distinguishability cost). Isothermal steps = signed Axis 0 moves; "

@@ -81,6 +81,8 @@ import rustworkx as rx
 import xgi
 from clifford import Cl
 
+classification = "canonical"
+
 # Physical setup
 T_H = 600.0   # hot reservoir temperature (K)
 T_C = 300.0   # cold reservoir temperature (K)

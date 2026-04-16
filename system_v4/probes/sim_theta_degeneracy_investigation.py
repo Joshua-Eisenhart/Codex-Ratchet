@@ -21,6 +21,11 @@ from datetime import datetime, UTC
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this theta-degeneracy investigation checks numeric operator sensitivity and clipping behavior, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "theta sweeps, density comparisons, and operator output analysis"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -535,6 +540,9 @@ def main():
     results["degeneracy_cause"] = degeneracy_cause
     results["operator_outputs_identical"] = results["operator_analysis"]["single_fi_outputs_identical"]
     results["timestamp"] = datetime.now(UTC).strftime("%Y-%m-%d")
+    results["divergence_log"] = divergence_log
+    results["tool_manifest"] = TOOL_MANIFEST
+    results["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 
     # Sanitize numpy types for JSON
     def sanitize(obj):

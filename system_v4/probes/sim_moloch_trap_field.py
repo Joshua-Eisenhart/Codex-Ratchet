@@ -21,6 +21,11 @@ from datetime import datetime, UTC
 
 import sys
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this Moloch field probe measures bounded numeric agent dynamics and thermalization behavior, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "matrix and trajectory numerics for multi-agent thermalization sweeps"},
+}
+TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import (
     make_random_density_matrix,
@@ -255,6 +260,9 @@ def run_moloch_field(d=4, n_classical=5, n_dualloop=5, n_cycles=100):
             "classical_thermalized": bool(classical_collapsed),
             "dualloop_ness": bool(dualloop_ness),
             "bath_final_entropy": float(bath_entropy[-1]),
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "evidence_ledger": [
                 {"token_id": e.token_id, "sim_spec_id": e.sim_spec_id,
                  "status": e.status, "measured_value": e.measured_value,

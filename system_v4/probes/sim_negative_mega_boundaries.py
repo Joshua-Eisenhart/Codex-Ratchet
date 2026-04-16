@@ -33,6 +33,15 @@ from datetime import datetime, timezone
 import numpy as np
 from scipy.linalg import sqrtm, logm, expm, eigvalsh
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical baseline: this negative-boundary audit probes numeric failure edges in quantum-information primitives, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "state construction, spectra, and boundary sweeps"},
+    "scipy": {"tried": True, "used": True, "reason": "linear-algebra primitives for fidelity and entropy boundary checks"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
@@ -841,7 +850,10 @@ def main():
         "num_errors": num_errors,
         "total_runtime_sec": round(total_time, 2),
         "verdict_summary": verdicts,
-        "tests": tests
+        "tests": tests,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     os.makedirs(OUT_DIR, exist_ok=True)

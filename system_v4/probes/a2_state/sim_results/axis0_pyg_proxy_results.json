@@ -1,81 +1,88 @@
 {
   "name": "sim_axis0_pyg_proxy",
   "classification": "canonical",
+  "divergence_log": "Canonical Axis 0 proxy doctrine is preserved: the candidate signal is still the theta_S3 gradient of the I_c proxy through the admissible PyG constraint chain. The lane now also binds that gradient, topology, admissibility, and boundary behavior to the same deep Axis 0 shell/topology/symbolic/solver/manifold contract used elsewhere.",
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "theta sweep numerics, proxy scaling, shell history, and deep-surface aggregation"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix-exponential propagator witness for proxy scale history"
+    },
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "autograd through S3\u2192Spin3_SU2\u2192WeylBipartite\u2192ThreeQ chain is the core claim; ChainPropagator and ic_proxy both require torch.autograd; list-based propagation preserves gradient path across 3 hops"
+      "reason": "autograd through the S3\u2192Spin3_SU2\u2192WeylBipartite\u2192ThreeQ chain and fit witness over proxy surfaces"
     },
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "HeteroData graph encodes the chain topology (edge_index, node features); this structural reference feeds the z3 admissibility encoding and documents the canonical runs_on convention used in ChainPropagator"
+      "reason": "HeteroData graph encodes the admissible chain topology and remains load-bearing for the proxy lane"
     },
-    "z3": {
+    "clifford": {
       "tried": true,
       "used": true,
-      "reason": "z3 Solver verifies G-level admissibility of S3\u2192...\u2192ThreeQ chain (SAT) and inadmissibility of the reversed S3-as-child-of-ThreeQ edge (UNSAT)"
+      "reason": "geometric carrier witness for the winning proxy surface vector"
     },
-    "cvc5": {
+    "torch_ga": {
       "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning proxy surface vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered proxy-surface DAG witness"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order proxy-surface coupling witness"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for proxy-surface closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the proxy-surface complex"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "sympy verifies symbolic structure of I_c = S(BC) - S(ABC) and confirms non-negativity in the pure-state (S_ABC=0) limit"
+      "reason": "symbolic I_c formula witness and interpolation/derivative witness for proxy expansion trends"
     },
-    "clifford": {
+    "z3": {
       "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "chain admissibility witness and ordered deep ranking constraint witness"
     },
     "geomstats": {
       "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "e3nn": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "rustworkx": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "xgi": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "toponetx": {
-      "tried": true,
-      "used": false,
-      "reason": ""
-    },
-    "gudhi": {
-      "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "Frechet-mean manifold witness for aggregate proxy geometry"
     }
   },
   "tool_integration_depth": {
-    "clifford": null,
-    "cvc5": null,
-    "e3nn": null,
-    "geomstats": null,
-    "gudhi": null,
-    "pyg": "load_bearing",
+    "numpy": "supportive",
+    "scipy": "load_bearing",
     "pytorch": "load_bearing",
-    "rustworkx": null,
+    "pyg": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
     "sympy": "load_bearing",
-    "toponetx": null,
-    "xgi": null,
-    "z3": "load_bearing"
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
   },
   "positive": {
     "P1_theta_grad_nonzero": {
@@ -223,5 +230,509 @@
   "pyg_used": true,
   "pyg_graph_built": true,
   "z3_used": true,
-  "sympy_used": true
+  "sympy_used": true,
+  "shell_history": [
+    {
+      "rho_L": [
+        [
+          0.8674619983971001,
+          0.0
+        ],
+        [
+          0.0,
+          0.13253800160289986
+        ]
+      ],
+      "rho_R": [
+        [
+          0.7354568744990938,
+          0.0
+        ],
+        [
+          0.0,
+          0.2645431255009062
+        ]
+      ],
+      "eta": 0.08,
+      "theta": 0.01,
+      "ic_proxy": 0.16535234451293945,
+      "theta_grad": -0.019149983301758766
+    },
+    {
+      "rho_L": [
+        [
+          0.8482035391680085,
+          0.0
+        ],
+        [
+          0.0,
+          0.1517964608319915
+        ]
+      ],
+      "rho_R": [
+        [
+          0.7540692186333352,
+          0.0
+        ],
+        [
+          0.0,
+          0.2459307813666648
+        ]
+      ],
+      "eta": 0.18,
+      "theta": 0.23154233239927094,
+      "ic_proxy": 0.1617966890335083,
+      "theta_grad": -0.013295676559209824
+    },
+    {
+      "rho_L": [
+        [
+          0.8075184962914579,
+          0.0
+        ],
+        [
+          0.0,
+          0.1924815037085421
+        ]
+      ],
+      "rho_R": [
+        [
+          0.7523580730471738,
+          0.0
+        ],
+        [
+          0.0,
+          0.24764192695282616
+        ]
+      ],
+      "eta": 0.28,
+      "theta": 0.45308466479854187,
+      "ic_proxy": 0.15923523902893066,
+      "theta_grad": -0.010233167558908463
+    },
+    {
+      "rho_L": [
+        [
+          0.7654157859638128,
+          0.0
+        ],
+        [
+          0.0,
+          0.23458421403618723
+        ]
+      ],
+      "rho_R": [
+        [
+          0.7412952584129677,
+          0.0
+        ],
+        [
+          0.0,
+          0.25870474158703227
+        ]
+      ],
+      "eta": 0.38000000000000006,
+      "theta": 0.6746269971978128,
+      "ic_proxy": 0.1573237180709839,
+      "theta_grad": -0.007546854205429554
+    },
+    {
+      "rho_L": [
+        [
+          0.7107708485274199,
+          0.0
+        ],
+        [
+          0.0,
+          0.2892291514725801
+        ]
+      ],
+      "rho_R": [
+        [
+          0.7211535964932758,
+          0.0
+        ],
+        [
+          0.0,
+          0.2788464035067242
+        ]
+      ],
+      "eta": 0.48000000000000004,
+      "theta": 0.8961693295970837,
+      "ic_proxy": 0.1557886004447937,
+      "theta_grad": -0.006427360698580742
+    },
+    {
+      "rho_L": [
+        [
+          0.6844468966453892,
+          0.0
+        ],
+        [
+          0.0,
+          0.31555310335461084
+        ]
+      ],
+      "rho_R": [
+        [
+          0.6807032508100348,
+          0.0
+        ],
+        [
+          0.0,
+          0.3192967491899652
+        ]
+      ],
+      "eta": 0.58,
+      "theta": 1.1177116619963547,
+      "ic_proxy": 0.1563807725906372,
+      "theta_grad": -0.0027458202093839645
+    },
+    {
+      "rho_L": [
+        [
+          0.5473667399029101,
+          0.0
+        ],
+        [
+          0.0,
+          0.45263326009708993
+        ]
+      ],
+      "rho_R": [
+        [
+          0.6337213161690202,
+          0.0
+        ],
+        [
+          0.0,
+          0.36627868383097983
+        ]
+      ],
+      "eta": 0.68,
+      "theta": 1.3392539943956256,
+      "ic_proxy": 0.1549243927001953,
+      "theta_grad": -0.011139295995235443
+    },
+    {
+      "rho_L": [
+        [
+          0.39,
+          0.0
+        ],
+        [
+          0.0,
+          0.61
+        ]
+      ],
+      "rho_R": [
+        [
+          0.6100000000000001,
+          0.0
+        ],
+        [
+          0.0,
+          0.3899999999999999
+        ]
+      ],
+      "eta": 0.78,
+      "theta": 1.5607963267948968,
+      "ic_proxy": 0.15130853652954102,
+      "theta_grad": -0.021159619092941284
+    }
+  ],
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.03601474986189801,
+    "jk_fuzz_dynamic": 2.3805269200359227,
+    "lambda_density_mean": 0.924829643709943,
+    "dark_energy_pressure_mean": 0.971840775456107,
+    "gravity_response_mean": 0.9662415230212411,
+    "final_scale_factor": 2.9981032702991564,
+    "mean_hubble_proxy": 1.0578055801901671,
+    "mean_acceleration_proxy": -0.0951919887390762,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 1.1303506374692578,
+      "symbolic_acceleration_mid": 4.577393114214146,
+      "symbolic_dark_energy_mid": 0.785627816789594
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.49737983373864325,
+      "max_geodesic_distance": 1.6031667448222735,
+      "mean_norm": 0.9999999999999999
+    },
+    "torch_fit": {
+      "weights": [
+        -0.6037112513488189,
+        -0.03158988150654657
+      ],
+      "bias": 1.6750402472099675,
+      "loss": 0.02145492124619169,
+      "max_gap": 0.3386887307727243
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 4.201267689296628e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "legacy_all_pass": true,
+    "deep_contract": {
+      "pass": true,
+      "winner": "pyg_topology_surface",
+      "frontier_count": 6,
+      "frontier_size": 6,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "pyg_topology_surface",
+          "mean_abs_a0": 2.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.9640275800758169,
+          "shell_alignment_abs": 0.9640275800758169,
+          "composite_score": 1.321342526691939,
+          "scale_factor": 1.0,
+          "hubble_proxy": 2.814632883808799
+        },
+        {
+          "option": "solver_formula_surface",
+          "mean_abs_a0": 2.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.7790174109847161,
+          "shell_alignment_abs": 0.7790174109847161,
+          "composite_score": 1.2596724703282387,
+          "scale_factor": 1.7558034821969433,
+          "hubble_proxy": 2.1432929727937617
+        },
+        {
+          "option": "theta_star_surface",
+          "mean_abs_a0": 1.0091307629062793,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.995998212477033,
+          "shell_alignment_abs": 0.995998212477033,
+          "composite_score": 1.001709658461104,
+          "scale_factor": 2.3568292772736057,
+          "hubble_proxy": 1.2984180237838574
+        },
+        {
+          "option": "theta_gradient_surface",
+          "mean_abs_a0": 1.1365379037021193,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.8365245558376041,
+          "shell_alignment_abs": 0.8365245558376041,
+          "composite_score": 0.9910208198465744,
+          "scale_factor": 2.9514417691815504,
+          "hubble_proxy": 0.8959763764072437
+        },
+        {
+          "option": "chain_direction_surface",
+          "mean_abs_a0": 0.9748855815449289,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.13130656978335445,
+          "shell_alignment_abs": 0.13130656978335445,
+          "composite_score": 0.7020640504427611,
+          "scale_factor": 3.372680199447207,
+          "hubble_proxy": 0.5313793324319431
+        },
+        {
+          "option": "proxy_nonnegative_surface",
+          "mean_abs_a0": 0.16535234451293945,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.2234067037506453,
+          "shell_alignment_abs": 0.2234067037506453,
+          "composite_score": 0.46291968275452827,
+          "scale_factor": 3.650432009099924,
+          "hubble_proxy": 0.39568889783839
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 9,
+        "longest_path_length": 5,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 3,
+        "max_hyperedge_size": 3,
+        "connected_components": 1,
+        "hyperedges": [
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            0,
+            2,
+            5
+          ],
+          [
+            1,
+            3,
+            5
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "13.3378474460432*lam**5 - 34.8872871427408*lam**4 + 31.6178217909032*lam**3 - 12.7375154571033*lam**2 + 5.31956537199748*lam + 1.0",
+        "expansion_drive_polynomial": "142.400849167553*lam**5 - 360.513310272444*lam**4 + 317.938043706632*lam**3 - 114.26817957918*lam**2 + 11.8673284456267*lam + 3.96402758007582",
+        "scale_poly_degree": 5,
+        "drive_poly_degree": 5,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.13358421229186,
+        "symbolic_acceleration_mid": -1.9388083546110977,
+        "symbolic_drive_mid": 2.9908470158814318
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.09929558768110741,
+          0.0,
+          0.9950579813594098
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.3193425096622258,
+        "max_geodesic_distance": 0.5843609589936005
+      },
+      "torch_fit": {
+        "weights": [
+          1.0319686732263522,
+          0.10099316526404453,
+          0.5975763892775795
+        ],
+        "bias": -0.3990068347359555,
+        "loss": 0.11313781293540974,
+        "max_gap": 0.47876879029524755
+      },
+      "winner_vector": [
+        2.0,
+        1.0,
+        0.9640275800758169
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 3.5232736728119107e-09,
+      "scale_factors": [
+        1.0,
+        1.7558034821969433,
+        2.3568292772736057,
+        2.9514417691815504,
+        3.372680199447207,
+        3.650432009099924
+      ],
+      "hubble_proxy": [
+        2.814632883808799,
+        2.1432929727937617,
+        1.2984180237838574,
+        0.8959763764072437,
+        0.5313793324319431,
+        0.39568889783839
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  },
+  "summary": {
+    "legacy_all_pass": true,
+    "deep_all_pass": true,
+    "all_pass": true,
+    "scope_note": "Candidate Axis 0 theta-gradient proxy through the admissible PyG chain, now also grounded in the deep Axis 0 shell contract."
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

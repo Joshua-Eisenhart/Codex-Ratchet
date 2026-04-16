@@ -1,6 +1,6 @@
 {
   "name": "engine_lab_matrix",
-  "classification": "classical_baseline",
+  "classification": "exploratory",
   "classification_note": "Controller-facing engine-lab matrix over Carnot and Szilard rows. It organizes exact rows, stochastic rows, topology sweeps, and entropy/readout variants into one comparable surface.",
   "lego_ids": [
     "stochastic_thermodynamics",
@@ -14,62 +14,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
@@ -178,10 +178,10 @@
       "controller_readout_surface": 1,
       "graph_proof_bridge_surface": 2,
       "likely_allowed_qit_core": 1,
-      "open_or_likely_outside_strict_qit_core": 17,
+      "open_or_likely_outside_strict_qit_core": 13,
       "qit_aligned_repair_surface": 21,
       "qit_alignment_controller_surface": 6,
-      "runs_cleanly_but_still_open_against_repo_constraints": 2
+      "runs_cleanly_but_still_open_against_repo_constraints": 6
     },
     "scope_note": "Open engine-lab matrix over exact, stochastic, parameter-sweep, and topology-sweep rows. This surface is for controller comparison, not canonical admission."
   },
@@ -222,7 +222,7 @@
         "reverse",
         "graph_proof_alignment"
       ],
-      "classification": "supporting",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_graph_proof_alignment_results.json",
       "likely_constraint_relation": "graph_proof_bridge_surface",
       "headline_metrics": {
@@ -250,9 +250,9 @@
         "ordered",
         "scrambled_controls"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_measurement_feedback_substeps_results.json",
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "headline_metrics": {
         "all_pass": true,
         "ordered_final_entropy": 0.6562408706276686,
@@ -357,7 +357,7 @@
         "ordered_vs_scrambled",
         "measurement_feedback_reset_hold"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -384,7 +384,7 @@
         "ordered_vs_scrambled",
         "measurement_feedback_reset_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -412,7 +412,7 @@
         "ordered_vs_scrambled",
         "substep_refinement_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_refinement_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -439,7 +439,7 @@
       "direction_modes": [
         "balanced_substep_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_balanced_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -467,7 +467,7 @@
       "direction_modes": [
         "ordering_push_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_substep_ordering_push_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -519,7 +519,7 @@
         "naive_reverse",
         "recovery"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_reverse_recovery_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -545,7 +545,7 @@
         "naive_reverse",
         "recovery"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_reverse_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -567,7 +567,7 @@
       "direction_modes": [
         "ordered_vs_scrambled"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_ordering_sensitivity_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -616,7 +616,7 @@
         "reset_tilt",
         "feedback_strength"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_reset_repair_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -647,9 +647,9 @@
         "reset_steps",
         "reset_barrier"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_hard_reset_repair_sweep_results.json",
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "headline_metrics": {
         "all_pass": true,
         "best_ordering_margin": 0.03790279143585795,
@@ -675,9 +675,9 @@
         "feedback_asymmetry",
         "record_wait"
       ],
-      "classification": "classical_baseline",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_record_ordering_amplification_sweep_results.json",
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "headline_metrics": {
         "all_pass": true,
         "best_ordering_margin": 0.08247997532188,
@@ -730,7 +730,7 @@
         "record_lifetime",
         "reset_strength"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -757,7 +757,7 @@
         "record_lifetime_translation",
         "reset_axis_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -786,7 +786,7 @@
         "record_lifetime_translation",
         "reset_axis_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_repair_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -813,7 +813,7 @@
       "direction_modes": [
         "hard_reset_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_hard_reset_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -840,7 +840,7 @@
       "direction_modes": [
         "ordering_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_ordering_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -867,7 +867,7 @@
       "direction_modes": [
         "ordering_refinement_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_szilard_record_ordering_refinement_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -919,7 +919,7 @@
         "reverse_refrigerator",
         "graph_proof_alignment"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_graph_proof_alignment_results.json",
       "likely_constraint_relation": "graph_proof_bridge_surface",
       "headline_metrics": {
@@ -950,9 +950,9 @@
         "reverse_refrigerator",
         "fast_slow_quasistatic"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/stoch_harmonic_carnot_finite_time_results.json",
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "headline_metrics": {
         "all_pass": true,
         "forward_slow_efficiency": 0.17162168374974454,
@@ -978,7 +978,7 @@
         "reverse_refrigerator",
         "fast_slow_quasistatic"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1006,7 +1006,7 @@
         "reverse_refrigerator",
         "budget_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_finite_time_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1027,7 +1027,7 @@
         "forward_engine",
         "reverse_refrigerator"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_irreversibility_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1054,7 +1054,7 @@
         "reverse_refrigerator",
         "duration_sweep"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_irreversibility_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1083,7 +1083,7 @@
         "reverse_refrigerator",
         "duration_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_irreversibility_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1103,7 +1103,7 @@
       "direction_modes": [
         "forward_engine"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_closure_diagnostic_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1127,7 +1127,7 @@
         "closure_diagnostic",
         "hold_policy"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_closure_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1151,7 +1151,7 @@
         "forward_engine",
         "closure_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_closure_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1171,7 +1171,7 @@
       "direction_modes": [
         "forward_engine"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_asymmetric_isotherm_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1193,7 +1193,7 @@
       "direction_modes": [
         "reverse_refrigerator"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_reverse_asymmetric_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1216,7 +1216,7 @@
         "forward_engine",
         "reverse_refrigerator"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_topology_array_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1238,7 +1238,7 @@
         "forward_engine",
         "hold_policy_comparison"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_adaptive_hold_sweep_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1264,7 +1264,7 @@
         "forward_engine",
         "fixed_vs_adaptive_hold_policy"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_policy_companion_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1288,7 +1288,7 @@
         "forward_engine",
         "hold_policy_translation"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_carnot_hold_translation_lane_results.json",
       "likely_constraint_relation": "qit_aligned_repair_surface",
       "headline_metrics": {
@@ -1310,7 +1310,7 @@
         "forward_engine",
         "reverse_refrigerator"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carnot_entropy_family_array_results.json",
       "likely_constraint_relation": "controller_readout_surface",
       "headline_metrics": {
@@ -1330,7 +1330,7 @@
       "direction_modes": [
         "ordered_vs_scrambled"
       ],
-      "classification": "supporting",
+      "classification": "exploratory",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_topology_entropy_array_results.json",
       "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
       "headline_metrics": {
@@ -1350,7 +1350,7 @@
       "direction_modes": [
         "companion_mapping"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_engine_companion_array_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {
@@ -1369,7 +1369,7 @@
       "direction_modes": [
         "companion_readouts"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_entropy_companion_array_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {
@@ -1389,7 +1389,7 @@
       "direction_modes": [
         "constraint_audit"
       ],
-      "classification": "exploratory",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_constraint_audit_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {
@@ -1409,7 +1409,7 @@
       "direction_modes": [
         "repair_priority"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_repair_priority_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {
@@ -1429,7 +1429,7 @@
       "direction_modes": [
         "translation_targeting"
       ],
-      "classification": "supporting",
+      "classification": "classical_baseline",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/engine_lab_translation_targets_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {
@@ -1448,7 +1448,7 @@
       "direction_modes": [
         "open_vs_qit_repair"
       ],
-      "classification": "classical_baseline",
+      "classification": "research_support",
       "result_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/qit_repair_comparison_surface_results.json",
       "likely_constraint_relation": "qit_alignment_controller_surface",
       "headline_metrics": {

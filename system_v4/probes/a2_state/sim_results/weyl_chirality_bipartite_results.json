@@ -1,7 +1,7 @@
 {
   "name": "sim_weyl_chirality_bipartite",
   "classification": "classical_baseline",
-  "timestamp": "2026-04-16T04:57:58.719828+00:00",
+  "timestamp": "2026-04-16T05:48:35.673461+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not required; no graph message-passing claim in 2q chirality lego"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not required; z3 encodes chirality constraint and SAT/UNSAT directly"
     },
     "sympy": {
       "tried": true,
@@ -31,52 +31,52 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not required; no Clifford-algebra rotor claim in this 2q lego"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not required; no geodesic or Riemannian claim in this packet"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not required; no equivariant network claim here"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not required; no shell DAG update in this packet"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not required; no hypergraph claim here"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not required; no cell-complex topology claim here"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not required; no persistence diagram claim here"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "supportive",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "P1_sympy_opposite_phase_derivation": {
@@ -295,8 +295,8 @@
     "total_pass": 12,
     "total_tests": 12,
     "load_bearing_tools": [
-      "z3",
-      "sympy"
+      "sympy",
+      "z3"
     ],
     "supportive_tools": [
       "pytorch"

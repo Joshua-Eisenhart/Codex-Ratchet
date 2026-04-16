@@ -16,6 +16,8 @@ import os
 import numpy as np
 from fractions import Fraction
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

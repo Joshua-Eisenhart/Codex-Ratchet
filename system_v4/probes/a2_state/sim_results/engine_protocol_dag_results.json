@@ -28,7 +28,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": false,
@@ -357,22 +357,6 @@
     "graph_tool": "rustworkx",
     "proof_tool": "z3",
     "scope_note": "Reusable graph/proof lego for finite protocol schedules. The DAG is the core object, and the solver checks precedence impossibility."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   },
   "positive": [
     {

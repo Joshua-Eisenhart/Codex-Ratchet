@@ -1,6 +1,6 @@
 {
   "name": "sim_pure_lego_adiabatic_berry_dynamics",
-  "timestamp": "2026-04-16T03:25:05Z",
+  "timestamp": "2026-04-16T03:28:42Z",
   "lego_ids": [
     "adiabatic_berry_dynamics",
     "rk4_schrodinger",
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph/message-passing structure; sim is ODE over scalar state vector"
     },
     "z3": {
       "tried": true,
@@ -29,7 +29,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "no SMT-amenable formula; continuous ODE does not map to CVC5 theory"
     },
     "sympy": {
       "tried": true,
@@ -39,12 +39,12 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "Bloch sphere rotation handled via explicit H(t) matrix; Cl(3) rotor form not needed"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "geometry computed directly on CP\u00b9 via analytic formulas; geomstats overhead not needed"
     },
     "e3nn": {
       "tried": true,
@@ -54,12 +54,12 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph; sim operates on 2D Hilbert space, no network topology"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hypergraph structure; sim is single spin-1/2 ODE"
     },
     "toponetx": {
       "tried": true,
@@ -69,7 +69,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "no persistent homology or \u010cech/Rips complex; sim does not require TDA"
     }
   },
   "tool_integration_depth": {
@@ -233,7 +233,7 @@
     "total_tests": 13,
     "passed": 13,
     "failed": 0,
-    "elapsed_seconds": 7.67,
+    "elapsed_seconds": 8.44,
     "adiabatic_params_used": {
       "B0": 10.0,
       "omega": 0.1,
@@ -244,21 +244,5 @@
       "omega": 2.0
     },
     "bridge_claim": "In the adiabatic regime (\u03c9 sin\u03b8 / B\u2080 << 1), the geometric residual \u03a6_geom = \u03a6_total - \u03a6_dyn agrees with the kinematic Berry prediction -\u03c0(1-cos\u03b8) to within \u00b10.05 rad, cross-validated against Stokes probe."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

@@ -114,7 +114,7 @@
     "pytorch": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "tried from template discipline; not relevant to this non-differentiable local carrier lego"
     },
     "pyg": {
       "tried": true,
@@ -134,7 +134,7 @@
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "tried from template discipline; no symbolic identity is needed beyond exact finite checks"
     },
     "clifford": {
       "tried": true,
@@ -302,21 +302,5 @@
     "reverse_schedule_z3_unsat": true,
     "reverse_schedule_cvc5_unsat": true,
     "scope_note": "Contract-clean local Weyl-hypergraph lego. No bridge, no companion, no controller claim."
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

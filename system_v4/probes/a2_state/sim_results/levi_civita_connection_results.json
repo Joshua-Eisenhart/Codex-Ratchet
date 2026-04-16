@@ -14,7 +14,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "Levi-Civita connection is coordinate-local on S\u00b2/R\u00b2; no graph message-passing structure is needed for Christoffel verification."
     },
     "z3": {
       "tried": true,
@@ -49,22 +49,22 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "Coordinate chart transition graphs could use rustworkx; single-chart S\u00b2/R\u00b2 Christoffel computation needs no graph structure."
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "Hypergraph structure not relevant for 2D Riemannian connection; reserved for multi-shell coupling topology probes."
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "Cell complex topology not needed for smooth manifold Christoffel computation; applies to discrete geometry variants only."
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "Persistent homology not relevant for local connection coefficient verification; reserved for topological feature extraction from metric spaces."
     }
   },
   "tool_integration_depth": {
@@ -306,21 +306,5 @@
       ],
       "pass": true
     }
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

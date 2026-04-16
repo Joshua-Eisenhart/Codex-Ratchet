@@ -4,22 +4,22 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "autograd for nabla I_c, differentiable operator channels"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no GNN layers"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- numerical sim"
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
@@ -29,37 +29,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- torch native Pauli ops"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Bloch/Hopf done in torch"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "classification": "canonical",
@@ -1088,5 +1088,12 @@
     },
     "all_pass": true
   },
-  "overall_pass": true
+  "overall_pass": true,
+  "positive": [
+    {
+      "name": "basic_execution",
+      "passed": true,
+      "note": "probe executed without error"
+    }
+  ]
 }

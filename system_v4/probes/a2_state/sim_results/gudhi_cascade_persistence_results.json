@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
@@ -203,21 +203,5 @@
     "two_family_pass": true,
     "two_family_detail": "Two families with Hamming distance 6: should see 2 H0 pairs, one merging at filtration 6.0"
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

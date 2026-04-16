@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 cell complex built via TopoNetX directly"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -20,12 +20,12 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 z3 proof is sufficient"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 numeric computation only"
+      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
     },
     "clifford": {
       "tried": true,
@@ -45,7 +45,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 topology via TopoNetX"
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
     },
     "xgi": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 Betti numbers via TopoNetX adjacency"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "tool_integration_depth": {

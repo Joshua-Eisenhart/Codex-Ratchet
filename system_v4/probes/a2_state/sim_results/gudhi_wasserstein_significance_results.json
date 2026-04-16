@@ -10,22 +10,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph neural nets needed"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "no SMT constraints in statistical test"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "no symbolic algebra needed"
     },
     "clifford": {
       "tried": true,
@@ -45,7 +45,7 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph algorithms needed"
     },
     "xgi": {
       "tried": true,
@@ -55,7 +55,7 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "GUDHI handles all persistence"
     },
     "gudhi": {
       "tried": true,
@@ -184,21 +184,5 @@
     "boundary3_pass": true,
     "boundary3_detail": "Adjacent kill layers (L4,L5) vs real (L4,L6): W=2.0000, bottleneck=1.0000. Shows sensitivity to kill-layer spacing."
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

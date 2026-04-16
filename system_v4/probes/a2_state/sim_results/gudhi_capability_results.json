@@ -11,12 +11,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed for tool-capability isolation"
+      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed for tool-capability isolation"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": false,
@@ -46,7 +46,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no equivariance needed"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not the tool under test"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,

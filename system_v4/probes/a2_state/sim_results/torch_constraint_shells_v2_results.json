@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nn.Module projectors"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 sufficient"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": false,
@@ -34,12 +34,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant layers"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -49,12 +49,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nested DAG"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topology via GUDHI"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": true,

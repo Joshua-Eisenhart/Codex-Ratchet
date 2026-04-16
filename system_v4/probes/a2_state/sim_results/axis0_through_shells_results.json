@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- 2-qubit density matrix, no graph"
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
     },
     "z3": {
       "tried": true,
@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 sufficient"
+      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
     },
     "sympy": {
       "tried": false,
@@ -30,17 +30,17 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Bloch/Pauli done in torch"
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant layers"
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
     },
     "rustworkx": {
       "tried": true,
@@ -50,17 +50,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nested DAG"
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex here"
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- persistence not the focus"
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
     }
   },
   "elapsed_seconds": 0.6261591911315918,

@@ -22,7 +22,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph structure in channel axioms"
     },
     "z3": {
       "tried": true,
@@ -42,12 +42,12 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "no Clifford algebra structure in CPTP axioms"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "no Riemannian geometry needed here"
     },
     "e3nn": {
       "tried": false,
@@ -57,7 +57,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph representation needed"
     },
     "xgi": {
       "tried": false,
@@ -72,7 +72,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "no persistent homology needed"
     }
   },
   "tool_integration_depth": {
@@ -577,21 +577,5 @@
     "z3_load_bearing": true,
     "choi_convention": "J = sum_ij kron(|i><j|, E(|i><j|)); TP: Tr_output(J)=I",
     "transpose_excluded": "Choi min eigenvalue -1; ancilla witness min -0.5"
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

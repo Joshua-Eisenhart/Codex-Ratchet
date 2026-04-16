@@ -14,7 +14,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "No graph structure required; geodesic ODE operates on a continuous manifold, not a graph"
     },
     "z3": {
       "tried": true,
@@ -34,7 +34,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "Clifford algebra encodes spinors and rotors, not needed for geodesic ODE or exp/log map on S\u00b2"
     },
     "geomstats": {
       "tried": true,
@@ -49,7 +49,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "rustworkx is a graph library; geodesic ODE on S\u00b2 has no graph structure"
     },
     "xgi": {
       "tried": false,
@@ -295,21 +295,5 @@
       "phi_sum": 0.0,
       "note": "S\u00b2 geodesics from (\u03b8\u2080,0) with \u00b1v_\u03c6 are \u03c6-reflections: same \u03b8_f, opposite \u03c6_f"
     }
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
   }
 }

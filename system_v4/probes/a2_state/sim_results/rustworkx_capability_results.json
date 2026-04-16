@@ -16,7 +16,7 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed -- numeric ground truth is enough for capability probe"
     },
     "cvc5": {
       "tried": false,
@@ -186,9 +186,9 @@
     },
     "perf_vs_networkx_1k": {
       "pass": true,
-      "rx_time_s": 0.0001065828837454319,
-      "nx_time_s": 0.0007900837808847427,
-      "speedup_rx_over_nx": 7.412857985451209,
+      "rx_time_s": 8.454080671072006e-05,
+      "nx_time_s": 0.0007100002840161324,
+      "speedup_rx_over_nx": 8.398314513908014,
       "N_nodes": 1000,
       "M_edges": 2966,
       "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."
@@ -202,21 +202,5 @@
   },
   "all_pass": true,
   "witness_file": "system_v4/probes/sim_foundation_shell_graph_topology.py",
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

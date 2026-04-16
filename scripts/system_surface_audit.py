@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import adaptive_controller
+import lint_sim_contract
 import sim_program_audit
 
 
@@ -495,6 +496,25 @@ def _module_dict_keys(tree: ast.AST, name: str) -> set[str]:
     return set()
 
 
+def _module_classification(path: Path) -> str | None:
+    try:
+        tree = ast.parse(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Name) or target.id != "classification":
+                continue
+            try:
+                value = ast.literal_eval(node.value)
+            except Exception:
+                return None
+            return value if isinstance(value, str) else None
+    return None
+
+
 def _module_depth_map(tree: ast.AST, name: str, manifest_keys: set[str] | None = None) -> dict[str, object] | None:
     base: dict[str, object] | None = None
     for node in ast.iter_child_nodes(tree):
@@ -615,119 +635,33 @@ def _capability_probe_status(tool: str) -> dict[str, object]:
     }
 
 
-def tool_integration_surface(limit: int = 12) -> dict:
-    missing_depth: Counter[str] = Counter()
-    missing_manifest: Counter[str] = Counter()
-    samples: list[dict[str, object]] = []
-    sim_rows: list[dict[str, object]] = []
-    per_tool: defaultdict[str, dict[str, object]] = defaultdict(
-        lambda: {
-            "imported_in_sims": 0,
-            "missing_manifest": 0,
-            "missing_depth": 0,
-            "load_bearing_witnesses": 0,
-            "supportive_witnesses": 0,
-            "decorative_witnesses": 0,
-            "header_declared_without_depth": 0,
-            "sample_witnesses": [],
-        }
-    )
-    parse_failures = 0
-    audited = 0
+def _result_paths_for_probe(path: Path) -> list[Path]:
+    probe_stem = path.stem
+    result_names = [f"{probe_stem}_results.json"]
+    if probe_stem.startswith("sim_"):
+        result_names.append(f"{probe_stem[4:]}_results.json")
+    candidates: list[Path] = []
+    seen: set[str] = set()
+    for root in RESULT_ROOTS:
+        for name in result_names:
+            candidate = root / name
+            key = str(candidate)
+            if key in seen:
+                continue
+            seen.add(key)
+            candidates.append(candidate)
+    return candidates
 
-    for path in sorted(PROBES.glob("sim_*.py")):
-        if " 2" in path.name:
-            continue
-        imported_tools, parsed = _imported_tools(path)
-        if not parsed:
-            parse_failures += 1
-            continue
-        if not imported_tools:
-            continue
-        audited += 1
-        for tool in imported_tools:
-            per_tool[tool]["imported_in_sims"] = int(per_tool[tool]["imported_in_sims"]) + 1
-        try:
-            tree = ast.parse(path.read_text(encoding="utf-8"))
-        except Exception:
-            parse_failures += 1
-            continue
-        manifest_tools = _module_dict_keys(tree, "TOOL_MANIFEST")
-        depth = _module_depth_map(tree, "TOOL_INTEGRATION_DEPTH", manifest_tools)
-        manifest = {tool: True for tool in manifest_tools} if manifest_tools else None
-        depth_tools = set(depth) if isinstance(depth, dict) else set()
-        load_bearing_tools = (
-            {
-                _canonical_tool(str(raw_tool))
-                for raw_tool, level in depth.items()
-                if level == "load_bearing"
-            }
-            if isinstance(depth, dict)
-            else set()
-        )
-        declared_tools = (
-            set(imported_tools)
-            & {_canonical_tool(str(tool)) for tool in manifest_tools}
-            & {_canonical_tool(str(tool)) for tool in depth_tools}
-        )
-        sim_rows.append({
-            "sim": path.name,
-            "imported_tools": set(imported_tools),
-            "manifest_tools": {_canonical_tool(str(tool)) for tool in manifest_tools},
-            "depth_tools": {_canonical_tool(str(tool)) for tool in depth_tools},
-            "declared_tools": declared_tools,
-            "load_bearing_tools": load_bearing_tools,
-        })
-        if isinstance(depth, dict):
-            for raw_tool, level in depth.items():
-                tool = _canonical_tool(str(raw_tool))
-                row = per_tool[tool]
-                if level == "load_bearing":
-                    row["load_bearing_witnesses"] = int(row["load_bearing_witnesses"]) + 1
-                elif level == "supportive":
-                    row["supportive_witnesses"] = int(row["supportive_witnesses"]) + 1
-                elif level == "decorative":
-                    row["decorative_witnesses"] = int(row["decorative_witnesses"]) + 1
-                elif tool in imported_tools:
-                    row["header_declared_without_depth"] = int(row["header_declared_without_depth"]) + 1
-                if (
-                    level in {"load_bearing", "supportive", "decorative"}
-                    and len(row["sample_witnesses"]) < 5
-                ):
-                    row["sample_witnesses"].append(path.name)
-        missing_manifest_tools = sorted(
-            tool for tool in imported_tools
-            if not isinstance(manifest, dict) or tool not in manifest
-        )
-        missing_depth_tools = sorted(
-            tool for tool in imported_tools
-            if not isinstance(depth, dict) or tool not in depth
-        )
-        for tool in missing_manifest_tools:
-            missing_manifest[tool] += 1
-            per_tool[tool]["missing_manifest"] = int(per_tool[tool]["missing_manifest"]) + 1
-        for tool in missing_depth_tools:
-            missing_depth[tool] += 1
-            per_tool[tool]["missing_depth"] = int(per_tool[tool]["missing_depth"]) + 1
-        if (missing_manifest_tools or missing_depth_tools) and len(samples) < limit:
-            samples.append({
-                "sim": path.name,
-                "imported_tools": sorted(imported_tools),
-                "missing_manifest_tools": missing_manifest_tools,
-                "missing_depth_tools": missing_depth_tools,
-            })
 
-    all_tools = sorted(
-        set(per_tool)
-        | {_canonical_tool(path.stem.removeprefix("sim_").removesuffix("_capability")) for path in PROBES.glob("sim_*_capability.py")}
-        | {_canonical_tool(path.stem.removeprefix("sim_capability_").removesuffix("_isolated")) for path in PROBES.glob("sim_capability_*_isolated.py")}
-    )
-    per_tool_report: dict[str, dict[str, object]] = {}
-    for tool in all_tools:
-        row = dict(per_tool[tool])
-        row.update(_capability_probe_status(tool))
-        per_tool_report[tool] = row
+def _first_result_for_probe(path: Path) -> Path | None:
+    return next((candidate for candidate in _result_paths_for_probe(path) if candidate.exists()), None)
 
+
+def _integration_relationship_surface(
+    sim_rows: list[dict[str, object]],
+    all_tools: list[str],
+    limit: int = 12,
+) -> dict[str, object]:
     max_stack_sims = []
     for row in sim_rows:
         imported_tools = sorted(set(row["imported_tools"]))
@@ -872,6 +806,133 @@ def tool_integration_surface(limit: int = 12) -> dict:
             "best_anchor_sims": anchor_rows[:limit],
         }
 
+    return {
+        "max_stack_sims": max_stack_sims[:limit],
+        "greedy_declared_cover": {
+            "target_tool_count": len(declared_target_tools),
+            "covered_tool_count": len(declared_target_tools) - len(remaining_declared_tools),
+            "uncovered_tools": sorted(remaining_declared_tools),
+            "selected_sims": greedy_cover_rows[:limit],
+        },
+        "per_tool_best_companions": per_tool_best_companions,
+    }
+
+
+def tool_integration_surface(limit: int = 12) -> dict:
+    missing_depth: Counter[str] = Counter()
+    missing_manifest: Counter[str] = Counter()
+    samples: list[dict[str, object]] = []
+    sim_rows: list[dict[str, object]] = []
+    per_tool: defaultdict[str, dict[str, object]] = defaultdict(
+        lambda: {
+            "imported_in_sims": 0,
+            "missing_manifest": 0,
+            "missing_depth": 0,
+            "load_bearing_witnesses": 0,
+            "supportive_witnesses": 0,
+            "decorative_witnesses": 0,
+            "header_declared_without_depth": 0,
+            "sample_witnesses": [],
+        }
+    )
+    parse_failures = 0
+    audited = 0
+
+    for path in sorted(PROBES.glob("sim_*.py")):
+        if " 2" in path.name:
+            continue
+        imported_tools, parsed = _imported_tools(path)
+        if not parsed:
+            parse_failures += 1
+            continue
+        if not imported_tools:
+            continue
+        audited += 1
+        for tool in imported_tools:
+            per_tool[tool]["imported_in_sims"] = int(per_tool[tool]["imported_in_sims"]) + 1
+        try:
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+        except Exception:
+            parse_failures += 1
+            continue
+        manifest_tools = _module_dict_keys(tree, "TOOL_MANIFEST")
+        depth = _module_depth_map(tree, "TOOL_INTEGRATION_DEPTH", manifest_tools)
+        manifest = {tool: True for tool in manifest_tools} if manifest_tools else None
+        depth_tools = set(depth) if isinstance(depth, dict) else set()
+        load_bearing_tools = (
+            {
+                _canonical_tool(str(raw_tool))
+                for raw_tool, level in depth.items()
+                if level == "load_bearing"
+            }
+            if isinstance(depth, dict)
+            else set()
+        )
+        declared_tools = (
+            set(imported_tools)
+            & {_canonical_tool(str(tool)) for tool in manifest_tools}
+            & {_canonical_tool(str(tool)) for tool in depth_tools}
+        )
+        sim_rows.append({
+            "sim": path.name,
+            "imported_tools": set(imported_tools),
+            "manifest_tools": {_canonical_tool(str(tool)) for tool in manifest_tools},
+            "depth_tools": {_canonical_tool(str(tool)) for tool in depth_tools},
+            "declared_tools": declared_tools,
+            "load_bearing_tools": load_bearing_tools,
+        })
+        if isinstance(depth, dict):
+            for raw_tool, level in depth.items():
+                tool = _canonical_tool(str(raw_tool))
+                row = per_tool[tool]
+                if level == "load_bearing":
+                    row["load_bearing_witnesses"] = int(row["load_bearing_witnesses"]) + 1
+                elif level == "supportive":
+                    row["supportive_witnesses"] = int(row["supportive_witnesses"]) + 1
+                elif level == "decorative":
+                    row["decorative_witnesses"] = int(row["decorative_witnesses"]) + 1
+                elif tool in imported_tools:
+                    row["header_declared_without_depth"] = int(row["header_declared_without_depth"]) + 1
+                if (
+                    level in {"load_bearing", "supportive", "decorative"}
+                    and len(row["sample_witnesses"]) < 5
+                ):
+                    row["sample_witnesses"].append(path.name)
+        missing_manifest_tools = sorted(
+            tool for tool in imported_tools
+            if not isinstance(manifest, dict) or tool not in manifest
+        )
+        missing_depth_tools = sorted(
+            tool for tool in imported_tools
+            if not isinstance(depth, dict) or tool not in depth
+        )
+        for tool in missing_manifest_tools:
+            missing_manifest[tool] += 1
+            per_tool[tool]["missing_manifest"] = int(per_tool[tool]["missing_manifest"]) + 1
+        for tool in missing_depth_tools:
+            missing_depth[tool] += 1
+            per_tool[tool]["missing_depth"] = int(per_tool[tool]["missing_depth"]) + 1
+        if (missing_manifest_tools or missing_depth_tools) and len(samples) < limit:
+            samples.append({
+                "sim": path.name,
+                "imported_tools": sorted(imported_tools),
+                "missing_manifest_tools": missing_manifest_tools,
+                "missing_depth_tools": missing_depth_tools,
+            })
+
+    all_tools = sorted(
+        set(per_tool)
+        | {_canonical_tool(path.stem.removeprefix("sim_").removesuffix("_capability")) for path in PROBES.glob("sim_*_capability.py")}
+        | {_canonical_tool(path.stem.removeprefix("sim_capability_").removesuffix("_isolated")) for path in PROBES.glob("sim_capability_*_isolated.py")}
+    )
+    per_tool_report: dict[str, dict[str, object]] = {}
+    for tool in all_tools:
+        row = dict(per_tool[tool])
+        row.update(_capability_probe_status(tool))
+        per_tool_report[tool] = row
+
+    relationship_surface = _integration_relationship_surface(sim_rows, all_tools, limit)
+
     bundle_report: dict[str, dict[str, object]] = {}
     for bundle_name, spec in TOOL_BUNDLES.items():
         tools = [_canonical_tool(tool) for tool in spec["tools"]]
@@ -958,16 +1019,201 @@ def tool_integration_surface(limit: int = 12) -> dict:
         "missing_manifest_by_tool": dict(missing_manifest),
         "missing_depth_by_tool": dict(missing_depth),
         "per_tool": per_tool_report,
-        "max_stack_sims": max_stack_sims[:limit],
-        "greedy_declared_cover": {
-            "target_tool_count": len(declared_target_tools),
-            "covered_tool_count": len(declared_target_tools) - len(remaining_declared_tools),
-            "uncovered_tools": sorted(remaining_declared_tools),
-            "selected_sims": greedy_cover_rows[:limit],
-        },
-        "per_tool_best_companions": per_tool_best_companions,
+        "max_stack_sims": relationship_surface["max_stack_sims"],
+        "greedy_declared_cover": relationship_surface["greedy_declared_cover"],
+        "per_tool_best_companions": relationship_surface["per_tool_best_companions"],
         "bundles": bundle_report,
         "samples": samples,
+    }
+
+
+def classical_surface(limit: int = 12) -> dict:
+    classical_paths = [
+        path for path in sorted(PROBES.glob("sim_*.py"))
+        if " 2" not in path.name and _module_classification(path) == "classical_baseline"
+    ]
+    state_counts: Counter[str] = Counter()
+    fail_families: Counter[str] = Counter()
+    unknown_families: Counter[str] = Counter()
+    no_result_families: Counter[str] = Counter()
+    stale_families: Counter[str] = Counter()
+    missing_manifest: Counter[str] = Counter()
+    missing_depth: Counter[str] = Counter()
+    lint_counts: Counter[str] = Counter()
+    lint_samples: defaultdict[str, list[str]] = defaultdict(list)
+    result_samples: defaultdict[str, list[str]] = defaultdict(list)
+    tool_samples: list[dict[str, object]] = []
+    sim_rows: list[dict[str, object]] = []
+    per_tool: defaultdict[str, dict[str, object]] = defaultdict(
+        lambda: {
+            "imported_in_sims": 0,
+            "missing_manifest": 0,
+            "missing_depth": 0,
+            "load_bearing_witnesses": 0,
+            "supportive_witnesses": 0,
+            "decorative_witnesses": 0,
+            "header_declared_without_depth": 0,
+            "sample_witnesses": [],
+        }
+    )
+
+    old_lint_repo = lint_sim_contract.REPO
+    old_lint_probes = lint_sim_contract.PROBES_DIR
+    old_lint_results = lint_sim_contract.RESULTS_DIR
+    lint_sim_contract.REPO = REPO
+    lint_sim_contract.PROBES_DIR = PROBES
+    lint_sim_contract.RESULTS_DIR = _results_dir()
+    try:
+        for path in classical_paths:
+            result_path = _first_result_for_probe(path)
+            if result_path is None:
+                state_counts["no_result"] += 1
+                no_result_families[_result_family(path)] += 1
+                if len(result_samples["no_result"]) < limit:
+                    result_samples["no_result"].append(path.name)
+            else:
+                try:
+                    data = json.loads(result_path.read_text(encoding="utf-8"))
+                except Exception:
+                    data = None
+                state = _pass_state(data)
+                state_counts[state] += 1
+                if state == "fail":
+                    fail_families[_result_family(path)] += 1
+                    if len(result_samples["fail"]) < limit:
+                        result_samples["fail"].append(path.name)
+                elif state == "unknown":
+                    unknown_families[_result_family(path)] += 1
+                    if len(result_samples["unknown"]) < limit:
+                        result_samples["unknown"].append(path.name)
+                try:
+                    if path.stat().st_mtime > result_path.stat().st_mtime:
+                        state_counts["stale_source_newer"] += 1
+                        stale_families[_result_family(path)] += 1
+                        if len(result_samples["stale_source_newer"]) < limit:
+                            result_samples["stale_source_newer"].append(path.name)
+                except OSError:
+                    pass
+
+            violations = lint_sim_contract.lint_sim(path)
+            if not violations:
+                lint_counts["clean"] += 1
+            else:
+                lint_counts["violating_sims"] += 1
+                seen_rules: set[str] = set()
+                for violation in violations:
+                    rule = str(violation.get("rule"))
+                    lint_counts[rule] += 1
+                    if rule not in seen_rules and len(lint_samples[rule]) < limit:
+                        lint_samples[rule].append(path.name)
+                    seen_rules.add(rule)
+
+            imported_tools, parsed = _imported_tools(path)
+            if not parsed or not imported_tools:
+                continue
+            for tool in imported_tools:
+                per_tool[tool]["imported_in_sims"] = int(per_tool[tool]["imported_in_sims"]) + 1
+            try:
+                tree = ast.parse(path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            manifest_tools = _module_dict_keys(tree, "TOOL_MANIFEST")
+            depth = _module_depth_map(tree, "TOOL_INTEGRATION_DEPTH", manifest_tools)
+            manifest = {tool: True for tool in manifest_tools} if manifest_tools else None
+            depth_tools = set(depth) if isinstance(depth, dict) else set()
+            load_bearing_tools = (
+                {
+                    _canonical_tool(str(raw_tool))
+                    for raw_tool, level in depth.items()
+                    if level == "load_bearing"
+                }
+                if isinstance(depth, dict)
+                else set()
+            )
+            declared_tools = (
+                set(imported_tools)
+                & {_canonical_tool(str(tool)) for tool in manifest_tools}
+                & {_canonical_tool(str(tool)) for tool in depth_tools}
+            )
+            sim_rows.append({
+                "sim": path.name,
+                "imported_tools": set(imported_tools),
+                "manifest_tools": {_canonical_tool(str(tool)) for tool in manifest_tools},
+                "depth_tools": {_canonical_tool(str(tool)) for tool in depth_tools},
+                "declared_tools": declared_tools,
+                "load_bearing_tools": load_bearing_tools,
+            })
+            if isinstance(depth, dict):
+                for raw_tool, level in depth.items():
+                    tool = _canonical_tool(str(raw_tool))
+                    row = per_tool[tool]
+                    if level == "load_bearing":
+                        row["load_bearing_witnesses"] = int(row["load_bearing_witnesses"]) + 1
+                    elif level == "supportive":
+                        row["supportive_witnesses"] = int(row["supportive_witnesses"]) + 1
+                    elif level == "decorative":
+                        row["decorative_witnesses"] = int(row["decorative_witnesses"]) + 1
+                    elif tool in imported_tools:
+                        row["header_declared_without_depth"] = int(row["header_declared_without_depth"]) + 1
+                    if (
+                        level in {"load_bearing", "supportive", "decorative"}
+                        and len(row["sample_witnesses"]) < 5
+                    ):
+                        row["sample_witnesses"].append(path.name)
+            missing_manifest_tools = sorted(
+                tool for tool in imported_tools
+                if not isinstance(manifest, dict) or tool not in manifest
+            )
+            missing_depth_tools = sorted(
+                tool for tool in imported_tools
+                if not isinstance(depth, dict) or tool not in depth
+            )
+            for tool in missing_manifest_tools:
+                missing_manifest[tool] += 1
+                per_tool[tool]["missing_manifest"] = int(per_tool[tool]["missing_manifest"]) + 1
+            for tool in missing_depth_tools:
+                missing_depth[tool] += 1
+                per_tool[tool]["missing_depth"] = int(per_tool[tool]["missing_depth"]) + 1
+            if (missing_manifest_tools or missing_depth_tools) and len(tool_samples) < limit:
+                tool_samples.append({
+                    "sim": path.name,
+                    "imported_tools": sorted(imported_tools),
+                    "missing_manifest_tools": missing_manifest_tools,
+                    "missing_depth_tools": missing_depth_tools,
+                })
+    finally:
+        lint_sim_contract.REPO = old_lint_repo
+        lint_sim_contract.PROBES_DIR = old_lint_probes
+        lint_sim_contract.RESULTS_DIR = old_lint_results
+
+    all_tools = sorted(set(per_tool))
+    per_tool_report: dict[str, dict[str, object]] = {}
+    for tool in all_tools:
+        row = dict(per_tool[tool])
+        row.update(_capability_probe_status(tool))
+        per_tool_report[tool] = row
+    relationship_surface = _integration_relationship_surface(sim_rows, all_tools, limit)
+    return {
+        "count": len(classical_paths),
+        "result_states": dict(state_counts),
+        "fail_families": dict(fail_families.most_common(10)),
+        "unknown_families": dict(unknown_families.most_common(10)),
+        "no_result_families": dict(no_result_families.most_common(10)),
+        "stale_families": dict(stale_families.most_common(10)),
+        "lint": {
+            "counts": dict(lint_counts),
+            "samples": dict(lint_samples),
+        },
+        "tool_integration": {
+            "missing_manifest_by_tool": dict(missing_manifest),
+            "missing_depth_by_tool": dict(missing_depth),
+            "per_tool": per_tool_report,
+            "max_stack_sims": relationship_surface["max_stack_sims"],
+            "greedy_declared_cover": relationship_surface["greedy_declared_cover"],
+            "per_tool_best_companions": relationship_surface["per_tool_best_companions"],
+            "samples": tool_samples,
+        },
+        "samples": dict(result_samples),
     }
 
 
@@ -1471,7 +1717,21 @@ def _results_maintenance_queue(results: dict) -> dict:
     }
 
 
-def maintenance_queue_surface(git: dict, runner: dict, results: dict) -> dict:
+def _classical_maintenance_queue(classical: dict) -> dict:
+    lint = classical.get("lint", {})
+    tool_integration = classical.get("tool_integration", {})
+    return {
+        "count": int(classical.get("count", 0) or 0),
+        "result_states": dict(classical.get("result_states", {})),
+        "stale_samples": list(classical.get("samples", {}).get("stale_source_newer", []))[:5],
+        "no_result_samples": list(classical.get("samples", {}).get("no_result", []))[:5],
+        "lint_counts": dict(lint.get("counts", {})),
+        "top_tool_manifest_gaps": dict(Counter(tool_integration.get("missing_manifest_by_tool", {})).most_common(10)),
+        "top_tool_depth_gaps": dict(Counter(tool_integration.get("missing_depth_by_tool", {})).most_common(10)),
+    }
+
+
+def maintenance_queue_surface(git: dict, runner: dict, results: dict, classical: dict | None = None) -> dict:
     return {
         "git": _git_maintenance_queue(git),
         "runner": {
@@ -1487,6 +1747,7 @@ def maintenance_queue_surface(git: dict, runner: dict, results: dict) -> dict:
             },
         },
         "results": _results_maintenance_queue(results),
+        "classical": _classical_maintenance_queue(classical or {}),
     }
 
 
@@ -1494,13 +1755,15 @@ def main() -> int:
     git = git_surface()
     runner = runner_surface()
     results = result_surface()
+    classical = classical_surface()
     report = {
         "git": git,
         "runner": runner,
         "program": program_surface(),
         "tool_integration": tool_integration_surface(),
         "results": results,
-        "maintenance_queue": maintenance_queue_surface(git, runner, results),
+        "classical": classical,
+        "maintenance_queue": maintenance_queue_surface(git, runner, results, classical),
     }
     print(json.dumps(report, indent=2))
     return 0

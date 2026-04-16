@@ -2055,6 +2055,158 @@ def test_system_surface_audit_reports_top_stack_cover_and_companions(
     assert pytorch_companions["best_anchor_sims"][0]["sim"] == "sim_stack_anchor.py"
 
 
+def test_system_surface_audit_reports_classical_surface(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_classical_surface_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    for tool in ("pytorch", "z3"):
+        (probes / f"sim_{tool}_capability.py").write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / f"{tool}_capability_results.json").write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    anchor = probes / "sim_integration_classical_anchor.py"
+    anchor.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'divergence_log = "Classical integration reference."',
+                "import torch",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (results / "sim_integration_classical_anchor_results.json").write_text(
+        '{"overall_pass": true}\n',
+        encoding="utf-8",
+    )
+
+    stale = probes / "sim_classical_stale.py"
+    stale.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'divergence_log = "Classical supportive baseline."',
+                "import sympy",
+                "TOOL_MANIFEST = {",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic baseline'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'sympy': 'supportive',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    stale_result = results / "sim_classical_stale_results.json"
+    stale_result.write_text('{"overall_pass": true}\n', encoding="utf-8")
+
+    unknown = probes / "sim_classical_unknown.py"
+    unknown.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'divergence_log = "Classical unknown-shape baseline."',
+                "import sympy",
+                "TOOL_MANIFEST = {",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic baseline'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'sympy': 'supportive',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (results / "sim_classical_unknown_results.json").write_text(
+        '{"summary": {"note": "unknown legacy shape"}}\n',
+        encoding="utf-8",
+    )
+
+    failed = probes / "sim_classical_fail.py"
+    failed.write_text(
+        "\n".join(
+            [
+                'classification = "classical_baseline"',
+                'divergence_log = "Classical failing baseline."',
+                "import sympy",
+                "TOOL_MANIFEST = {",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic baseline'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'sympy': 'supportive',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+    (results / "sim_classical_fail_results.json").write_text(
+        '{"overall_pass": false}\n',
+        encoding="utf-8",
+    )
+
+    missing = probes / "sim_classical_missing_contract.py"
+    missing.write_text(
+        'classification = "classical_baseline"\n',
+        encoding="utf-8",
+    )
+
+    base_time = time.time()
+    os.utime(stale_result, (base_time - 20, base_time - 20))
+    os.utime(stale, (base_time, base_time))
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULT_ROOTS", [results])
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.classical_surface(limit=5)
+
+    assert report["count"] == 5
+    assert report["result_states"]["pass"] == 2
+    assert report["result_states"]["fail"] == 1
+    assert report["result_states"]["unknown"] == 1
+    assert report["result_states"]["no_result"] == 1
+    assert report["result_states"]["stale_source_newer"] == 1
+    assert report["samples"]["stale_source_newer"] == ["sim_classical_stale.py"]
+    assert report["lint"]["counts"]["clean"] == 4
+    assert report["lint"]["counts"]["violating_sims"] == 1
+    assert report["lint"]["counts"]["C2_manifest_missing"] == 1
+    assert report["lint"]["counts"]["C3_depth_missing"] == 1
+    assert report["lint"]["counts"]["C4_divergence_log_missing"] == 1
+    assert report["tool_integration"]["max_stack_sims"][0]["sim"] == "sim_integration_classical_anchor.py"
+    assert report["tool_integration"]["max_stack_sims"][0]["load_bearing_tool_count"] == 2
+
+
 def test_system_surface_audit_runner_health_reports_draining() -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)

@@ -105,16 +105,16 @@ def run_positive_tests():
 
             # Constraints: degrees are in [1,3] for bivectors, 3-vectors on R³
             constraint_deg_f = solver.mkTerm(Kind.AND,
-                solver.mkTerm(Kind.GE, deg_f, solver.mkInteger(1)),
-                solver.mkTerm(Kind.LE, deg_f, solver.mkInteger(3))
+                solver.mkTerm(Kind.GEQ, deg_f, solver.mkInteger(1)),
+                solver.mkTerm(Kind.LEQ, deg_f, solver.mkInteger(3))
             )
             constraint_deg_g = solver.mkTerm(Kind.AND,
-                solver.mkTerm(Kind.GE, deg_g, solver.mkInteger(1)),
-                solver.mkTerm(Kind.LE, deg_g, solver.mkInteger(3))
+                solver.mkTerm(Kind.GEQ, deg_g, solver.mkInteger(1)),
+                solver.mkTerm(Kind.LEQ, deg_g, solver.mkInteger(3))
             )
             constraint_deg_h = solver.mkTerm(Kind.AND,
-                solver.mkTerm(Kind.GE, deg_h, solver.mkInteger(1)),
-                solver.mkTerm(Kind.LE, deg_h, solver.mkInteger(3))
+                solver.mkTerm(Kind.GEQ, deg_h, solver.mkInteger(1)),
+                solver.mkTerm(Kind.LEQ, deg_h, solver.mkInteger(3))
             )
 
             solver.assertFormula(constraint_deg_f)
@@ -196,6 +196,7 @@ def run_positive_tests():
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_formality_high_degree_is_exact"] = {
             "status": "SKIP", "reason": "cvc5 not installed"
@@ -253,14 +254,15 @@ def run_negative_tests():
             solver2.assertFormula(jacobi_fails2)
             solver2.assertFormula(solver2.mkTerm(Kind.NOT, is_exact2))
 
-            result = solver2.checkSat()
+            result2 = solver2.checkSat()
             results[test_name] = {
-                "status": "PASS" if not result.isSat() else "FAIL",
-                "cvc5_result": str(result),
+                "status": "PASS" if not result2.isSat() else "FAIL",
+                "cvc5_result": str(result2),
                 "claim": "formality constraint forces non-exact Jacobi failure to be UNSAT"
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_formality_non_exact_jacobi_failure_unsat"] = {
             "status": "SKIP", "reason": "cvc5 not installed"
@@ -317,6 +319,7 @@ def run_negative_tests():
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_formality_boundary_operator_nilpotent"] = {
             "status": "SKIP", "reason": "cvc5 not installed"

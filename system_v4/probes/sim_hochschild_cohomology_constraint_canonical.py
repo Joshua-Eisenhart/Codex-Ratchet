@@ -122,6 +122,7 @@ def run_positive_tests():
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_hochschild_degree0_coboundary_squares_to_zero"] = {
             "status": "SKIP", "reason": "cvc5 not installed"
@@ -203,7 +204,7 @@ def run_negative_tests():
 
             # We set up: δc is well-defined (satisfies coboundary property)
             # but δ(δc) ≠ 0 (coefficient is nonzero)
-            constraint_coboundary_defined = solver.mkTerm(Kind.GE, coeff_d2c, solver.mkInteger(0))
+            constraint_coboundary_defined = solver.mkTerm(Kind.GEQ, coeff_d2c, solver.mkInteger(0))
             constraint_d2c_nonzero = solver.mkTerm(Kind.GT, coeff_d2c, solver.mkInteger(0))
 
             solver.assertFormula(constraint_coboundary_defined)
@@ -217,6 +218,7 @@ def run_negative_tests():
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_hochschild_negation_d_squared_nonzero_unsat"] = {
             "status": "SKIP", "reason": "cvc5 not installed"
@@ -256,8 +258,8 @@ def run_negative_tests():
             max_degree = solver.mkConst(solver.getIntegerSort(), "max_degree")
             degree_d2c = solver.mkConst(solver.getIntegerSort(), "degree_d2c")
 
-            constraint1 = solver.mkTerm(Kind.LE, degree_d2c, max_degree)
-            constraint2 = solver.mkTerm(Kind.GE, degree_d2c, solver.mkInteger(0))
+            constraint1 = solver.mkTerm(Kind.LEQ, degree_d2c, max_degree)
+            constraint2 = solver.mkTerm(Kind.GEQ, degree_d2c, solver.mkInteger(0))
 
             solver.assertFormula(constraint1)
             solver.assertFormula(constraint2)
@@ -270,6 +272,7 @@ def run_negative_tests():
             }
         except Exception as e:
             results[test_name] = {"status": "ERROR", "error": str(e)}
+            TOOL_MANIFEST["cvc5"]["used"] = False
     else:
         results["cvc5_hochschild_degree_bound_forces_d_squared_zero"] = {
             "status": "SKIP", "reason": "cvc5 not installed"

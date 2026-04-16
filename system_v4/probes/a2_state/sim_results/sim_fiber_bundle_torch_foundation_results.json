@@ -1,0 +1,161 @@
+{
+  "name": "sim_fiber_bundle_torch_foundation",
+  "description": "Torch-native Fiber Bundle (Hopf) foundation: S\u00b3 total space, Hopf projection \u03c0: S\u00b3\u2192S\u00b2, fiber circles S\u00b9, non-triviality, continuity \u2014 all torch float64 with autograd. numpy\u2192torch migration proof-of-concept.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Hopf bundle S\u00b3 total space as 4-vector, projection \u03c0: S\u00b3\u2192S\u00b2 as Hopf map, fiber circles, normalization constraints \u2014 all torch float64 with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: |\u03c0(q)| > 1 \u2227 |q|=1 impossible (Hopf projection has unit image on unit inputs)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 constraint solving sufficient for Hopf image norm UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Hopf map \u03c0(z\u2081,z\u2082)=(2Re(z\u2081z\u0304\u2082), 2Im(z\u2081z\u0304\u2082), |z\u2081|\u00b2-|z\u2082|\u00b2) and fiber dimension"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for Hopf bundle foundation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry backend not needed for fiber migration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant neural networks not required for Hopf bundle sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph algorithms not applicable to fiber projections"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for Hopf projection"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological complexes not required for fiber bundle"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for Hopf foundation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_s3_unit_norm": {
+      "passed": true,
+      "||q||": 1.0,
+      "description": "S\u00b3 parametrization has unit norm"
+    },
+    "P2_hopf_image_unit": {
+      "passed": true,
+      "||\u03c0(q)||": 1.0,
+      "description": "Hopf projection of unit q gives ||\u03c0(q)|| \u2264 1"
+    },
+    "P3_hopf_maps_to_s2": {
+      "passed": true,
+      "num_samples": 18,
+      "description": "Hopf projection maps S\u00b3 to S\u00b2"
+    },
+    "P4_fiber_circle": {
+      "passed": true,
+      "num_fiber_points": 8,
+      "description": "Fiber over base point forms a circle"
+    },
+    "P5_autograd_hopf_projection": {
+      "passed": true,
+      "loss": 1.0,
+      "description": "Hopf projection is differentiable via pytorch autograd"
+    },
+    "P6_normalization_unit": {
+      "passed": true,
+      "||normalized q||": 0.9999999999989216,
+      "description": "Normalization produces unit vectors"
+    },
+    "P7_sympy_hopf_formula": {
+      "passed": true,
+      "\u03c0_x": "2(z1_re*z2_re + z1_im*z2_im)",
+      "description": "sympy: Hopf map \u03c0(z\u2081,z\u2082) formula verified symbolically"
+    },
+    "P8_hopf_nontrivial": {
+      "passed": true,
+      "is_trivial": false,
+      "description": "Hopf bundle is non-trivial (cannot extend section globally)"
+    }
+  },
+  "negative": {
+    "N1_z3_hopf_image_constraint": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: |\u03c0(q)| > 1 \u2227 |q|=1 impossible"
+    },
+    "N2_non_unit_s3_detectable": {
+      "passed": true,
+      "||q||": 0.8717797887081347,
+      "description": "Non-unit norm in S\u00b3 is detectable"
+    },
+    "N3_fiber_nonempty": {
+      "passed": true,
+      "description": "Hopf fiber over any base point is non-empty"
+    }
+  },
+  "boundary": {
+    "B1_poles_map_to_s2": {
+      "passed": true,
+      "||\u03c0(north)||": 1.0,
+      "||\u03c0(south)||": 1.0,
+      "description": "North and south poles of S\u00b3 map to S\u00b2"
+    },
+    "B2_fiber_dimension_one": {
+      "passed": true,
+      "dim(fiber)": 1,
+      "description": "Hopf fiber is 1-dimensional (circles)"
+    },
+    "B3_hopf_continuity": {
+      "passed": true,
+      "\u0394\u03c0": 0.019999666668333336,
+      "description": "Hopf projection is continuous"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0,
+  "migration_notes": "This sim establishes the torch-native pattern for Fiber Bundle family migration. Next: port fiber bundle lego sims to use these primitives."
+}

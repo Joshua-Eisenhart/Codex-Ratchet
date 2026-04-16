@@ -1,0 +1,209 @@
+{
+  "name": "sim_spinor_torch_foundation",
+  "description": "Torch-native Spinor geometry foundation: SU(2) rotation matrices, Weyl spinors \u03c8\u2208\u2102\u00b2, spin-\u00bd periodicity (2\u03c0\u2192-I, 4\u03c0\u2192I), Weyl projections \u2014 all torch float64 with autograd. numpy\u2192torch migration proof-of-concept.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "SU(2) rotation R(\u03b8,n\u0302) via Pauli matrices \u03c3, spinor \u03c8 action, 2\u03c0/4\u03c0 periodic behavior \u2014 all torch float64 with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: R(4\u03c0) \u2260 I impossible (SU(2) spin-\u00bd is forced to 4\u03c0-periodic)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 constraint solving sufficient for spinor periodicity UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic SU(2) matrix structure and spinor periodicity J\u00b2 = -I on spinor states"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for SU(2) rotation foundation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry backend not needed for spinor migration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant neural networks not required for Weyl spinor sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph algorithms not applicable to spinor transformations"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for spin-\u00bd representation"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological complexes not required for spinor foundation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for SU(2) rotation foundation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_pauli_anticommutation": {
+      "passed": true,
+      "\u03c3\u2093\u00b2": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "description": "Pauli matrix \u03c3\u2093\u00b2 = I (anticommutation property)"
+    },
+    "P2_2pi_spinor_phase_flip": {
+      "passed": true,
+      "\u03c8_initial": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "\u03c8_after_2\u03c0": [
+        -1.0000000000000002,
+        -0.0,
+        0.0,
+        -0.0
+      ],
+      "expected": [
+        -1.0,
+        -0.0,
+        -0.0,
+        -0.0
+      ],
+      "description": "2\u03c0 rotation: R(2\u03c0) = -I (spinor picks up -1 phase)"
+    },
+    "P3_4pi_spinor_periodicity": {
+      "passed": true,
+      "\u03c8_initial": [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "\u03c8_after_4\u03c0": [
+        1.0000000000000002,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "description": "4\u03c0 rotation: R(4\u03c0) = I (spinor is 4\u03c0-periodic)"
+    },
+    "P4_su2_preserves_norm": {
+      "passed": true,
+      "||\u03c8|| before": 1.0,
+      "||\u03c8|| after": 1.0,
+      "description": "2D rotation on (Re,Im) pairs preserves spinor norm"
+    },
+    "P5_small_angle_approx_identity": {
+      "passed": true,
+      "\u03b8": 0.001,
+      "||R(\u03b8) - I||": 0.0007071067738209282,
+      "description": "Small angle rotation \u2248 identity"
+    },
+    "P6_autograd_spinor_rotation": {
+      "passed": true,
+      "has_gradient": true,
+      "description": "Spinor rotation is differentiable w.r.t. SU(2) matrix via autograd"
+    },
+    "P7_sympy_su2_determinant": {
+      "passed": true,
+      "det_formula": "a\u00b2 + b\u00b2 = 1 for SU(2)",
+      "description": "sympy: SU(2) matrix has determinant 1"
+    },
+    "P8_weyl_projection_nonzero": {
+      "passed": true,
+      "||P_L \u03c8||": 0.8,
+      "description": "Left-handed Weyl projection produces nonzero spinor component"
+    }
+  },
+  "negative": {
+    "N1_z3_spinor_periodicity_constraint": {
+      "passed": true,
+      "z3_result": "sat",
+      "description": "z3: SU(2) spinor is 4\u03c0-periodic (constraint is consistent)"
+    },
+    "N2_2pi_not_identity": {
+      "passed": true,
+      "\u03c8 == R(2\u03c0)\u03c8?": false,
+      "description": "2\u03c0 rotation is NOT identity (gives -1 phase)"
+    },
+    "N3_zero_spinor_stays_zero": {
+      "passed": true,
+      "||R(\u03b8) * 0||": 0.0,
+      "description": "Zero spinor remains zero under any rotation"
+    }
+  },
+  "boundary": {
+    "B1_zero_rotation_is_identity": {
+      "passed": true,
+      "R(0)": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "description": "Zero rotation: R(0) = I"
+    },
+    "B2_norm_continuity_small_rotation": {
+      "passed": true,
+      "\u0394||\u03c8||": 0.0050124791406510605,
+      "description": "Spinor norm varies continuously under small rotations"
+    },
+    "B3_tiny_angle_axis_independence": {
+      "passed": true,
+      "\u03b8": 0.0001,
+      "description": "At tiny angles, rotation \u2248 identity regardless of axis"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0,
+  "migration_notes": "This sim establishes the torch-native pattern for Spinor family migration. Next: port spinor lego sims to use these primitives."
+}

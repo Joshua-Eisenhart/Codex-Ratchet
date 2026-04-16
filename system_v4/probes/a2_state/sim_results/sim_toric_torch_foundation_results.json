@@ -1,0 +1,201 @@
+{
+  "name": "sim_toric_torch_foundation",
+  "description": "Torch-native Toric geometry foundation: T\u00b2 action on \u2102\u00b2, moment map \u03bc(z\u2081,z\u2082)=(|z\u2081|\u00b2,|z\u2082|\u00b2), polytope constraints, torus orbits \u2014 all torch float64 with autograd. numpy\u2192torch migration proof-of-concept.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "T\u00b2 action on \u2102\u00b2 as torch float64 reals; moment map \u03bc(z\u2081,z\u2082)=(|z\u2081|\u00b2,|z\u2082|\u00b2); norm constraints; autograd through moment map"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: \u03bc\u2081 < 0 \u2227 \u03bc\u2081 = |z\u2081|\u00b2 contradictory (moment map is non-negative)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 constraint solving sufficient for moment map UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic T\u00b2 action e^{i\u03b8}z and moment map \u03bc(z)=|z|\u00b2 constraint"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for toric moment map foundation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry backend not needed for this migration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant neural networks not required for foundation sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph algorithms not applicable to toric moment maps"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for torus action"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological complexes not required for moment polytope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for toric foundation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_torus_action_rotation": {
+      "passed": true,
+      "z_rotated": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "expected": [
+        0.7071067811865476,
+        0.7071067811865475
+      ],
+      "description": "T\u00b9 action e^{i\u03b8} rotates z=1 by \u03b8"
+    },
+    "P2_torus_action_preserves_norm": {
+      "passed": true,
+      "norm_before": 1.0,
+      "norm_after": 1.0,
+      "description": "T\u00b9 action preserves |z|"
+    },
+    "P3_torus_2pi_periodicity": {
+      "passed": true,
+      "z_initial": [
+        3.0,
+        4.0
+      ],
+      "z_after_2pi": [
+        3.000000000000001,
+        3.999999999999999
+      ],
+      "description": "2\u03c0 rotation is identity on T\u00b9 orbit"
+    },
+    "P4_moment_map_unit_polytope": {
+      "passed": true,
+      "\u03bc": [
+        0.36,
+        0.6400000000000001
+      ],
+      "\u03bc\u2081 + \u03bc\u2082": 1.0,
+      "description": "Moment map of unit-norm (z\u2081,z\u2082) satisfies \u03bc\u2081 + \u03bc\u2082 \u2264 1"
+    },
+    "P5_moment_map_nonnegative": {
+      "passed": true,
+      "\u03bc": [
+        0.008224052161930189,
+        1.0138902139448518
+      ],
+      "description": "Moment map \u03bc = (|z\u2081|\u00b2, |z\u2082|\u00b2) is always nonnegative"
+    },
+    "P6_autograd_moment_map": {
+      "passed": true,
+      "has_grad_z1": true,
+      "has_grad_z2": true,
+      "description": "Moment map is differentiable w.r.t. z\u2081, z\u2082 via pytorch autograd"
+    },
+    "P7_sympy_moment_map_formula": {
+      "passed": true,
+      "\u03bc": "z_re\u00b2 + z_im\u00b2 = |z|\u00b2",
+      "description": "sympy: moment map \u03bc(z) = |z|\u00b2 verified symbolically"
+    },
+    "P8_torus_orbit_representative": {
+      "passed": true,
+      "\u03bc_prescribed": [
+        0.3,
+        0.5
+      ],
+      "\u03bc_from_rep": [
+        0.29999999999999993,
+        0.5000000000000001
+      ],
+      "description": "Orbit representative satisfies prescribed moment value"
+    }
+  },
+  "negative": {
+    "N1_z3_moment_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: \u03bc < 0 \u2227 \u03bc = |z|\u00b2 contradictory"
+    },
+    "N2_polytope_violation_large_norms": {
+      "passed": true,
+      "\u03bc": [
+        0.8900000000000001,
+        0.8900000000000001
+      ],
+      "\u03bc\u2081 + \u03bc\u2082": 1.7800000000000002,
+      "description": "Large-norm pairs violate unit polytope constraint"
+    },
+    "N3_negative_moment_impossible": {
+      "passed": true,
+      "requested_\u03bc\u2081": -0.1,
+      "achieved_\u03bc\u2081": 0.0,
+      "description": "Negative moment coordinate is impossible (norm is real and nonnegative)"
+    }
+  },
+  "boundary": {
+    "B1_zero_moment": {
+      "passed": true,
+      "\u03bc": [
+        0.0,
+        0.0
+      ],
+      "description": "Zero vector has zero moment map"
+    },
+    "B2_torus_boundary_preserves_sphere": {
+      "passed": true,
+      "norm_before": 1.0,
+      "norm_after": 1.0,
+      "description": "T\u00b9 action preserves unit sphere boundary"
+    },
+    "B3_moment_map_continuity": {
+      "passed": true,
+      "\u0394\u03bc": 0.0061961752119023515,
+      "\u03b5": 0.01,
+      "description": "Moment map varies continuously under small perturbations"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0,
+  "migration_notes": "This sim establishes the torch-native pattern for Toric family migration. Next: port toric lego sims to use these primitives."
+}

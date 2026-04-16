@@ -408,7 +408,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_gerbe_hopf_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "coupling_program": "Holographic x Gerbe x Hopf",
         "coupling_program_step": "5",
         "positive_section_pass": pos_section_pass,

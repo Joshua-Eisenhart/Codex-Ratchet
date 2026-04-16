@@ -497,7 +497,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "coupling_program_step": 6,
         "requires_steps_1_to_5": True,
         "tool_manifest": TOOL_MANIFEST,

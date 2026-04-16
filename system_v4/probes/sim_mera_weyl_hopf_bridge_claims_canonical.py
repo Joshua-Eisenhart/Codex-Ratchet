@@ -563,7 +563,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_mera_weyl_hopf_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "coupling_program_step": 6,
         "prerequisites_satisfied": [
             "Step 1: shell-local legos (MERA, Weyl, Hopf)",

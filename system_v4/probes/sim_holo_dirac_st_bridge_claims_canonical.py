@@ -349,7 +349,7 @@ if __name__ == "__main__":
         "positive": pos,
         "negative": neg,
         "boundary": bnd,
-        "classification": "canonical",
+        "classification": "classical_baseline",
     }
 
     all_pass = all(

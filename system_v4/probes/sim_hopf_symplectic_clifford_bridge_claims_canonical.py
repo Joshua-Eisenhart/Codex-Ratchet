@@ -552,7 +552,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_hopf_symplectic_clifford_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

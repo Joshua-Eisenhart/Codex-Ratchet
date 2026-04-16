@@ -775,7 +775,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_holographic_clifford_weyl_bridge_claims_canonical",
-        "classification": "canonical",
+        "classification": "classical_baseline",
         "coupling_program": "Holographic x Clifford x Weyl",
         "coupling_program_step": 6,
         "parent_sims": [

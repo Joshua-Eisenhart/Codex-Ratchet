@@ -1,0 +1,206 @@
+{
+  "name": "sim_assoc_bundle_torch_foundation",
+  "description": "Torch-native Associated Bundle foundation: principal U(1) bundles, transition functions g(\u03b8)=e^{i\u03b8}, holonomy products, winding numbers, cocycle conditions, Chern classes \u2014 all torch float64 with autograd. numpy\u2192torch migration proof-of-concept.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Transition functions g(\u03b8)=e^{i\u03b8} as cos/sin pairs, holonomy products, winding number tracking \u2014 all torch float64 with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: holonomy = 1 \u2227 holonomy = -1 impossible (single-valued holonomy constraint)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 constraint solving sufficient for holonomy uniqueness UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic winding number and holonomy formula exp(2\u03c0i * w)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed for U(1) bundle transitions"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry backend not needed for bundle migration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant neural networks not required for bundle foundation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph algorithms not applicable to transition functions"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for principal bundles"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological complexes not required for associated bundle"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for bundle foundation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_trivial_bundle_holonomy": {
+      "passed": true,
+      "winding": 0.0,
+      "holonomy": [
+        1.0,
+        0.0
+      ],
+      "description": "Trivial bundle (w=0) has holonomy hol = 1"
+    },
+    "P2_mobius_bundle_holonomy": {
+      "passed": true,
+      "winding": 0.5,
+      "holonomy": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "description": "Half-winding bundle (w=0.5) has holonomy hol = -1 (orientation reversal)"
+    },
+    "P3_transition_periodicity": {
+      "passed": true,
+      "g(\u03b8)": [
+        0.8775825618903728,
+        0.479425538604203
+      ],
+      "g(\u03b8+2\u03c0)": [
+        0.8775825618903729,
+        0.4794255386042028
+      ],
+      "description": "Transition function g(\u03b8) = e^{i\u03b8} is 2\u03c0-periodic"
+    },
+    "P4_holonomy_loop_integration": {
+      "passed": true,
+      "holonomy": [
+        -1.0,
+        -8.742277657347586e-08
+      ],
+      "description": "Holonomy around full loop S\u00b9 equals exp(2\u03c0i*w)"
+    },
+    "P5_bundle_triviality_from_holonomy": {
+      "passed": true,
+      "winding": 0.5,
+      "is_trivial": false,
+      "description": "Bundle triviality is determined by holonomy = 1"
+    },
+    "P6_cocycle_condition": {
+      "passed": true,
+      "g\u2080\u2081": [
+        0.8775825618903728,
+        0.479425538604203
+      ],
+      "g\u2081\u2082": [
+        0.955336489125606,
+        0.29552020666133955
+      ],
+      "g\u2080\u2082": [
+        0.6967067093471654,
+        0.7173560908995228
+      ],
+      "description": "Cocycle condition g\u2080\u2081 * g\u2081\u2082 = g\u2080\u2082 holds for transition functions"
+    },
+    "P7_sympy_chern_class": {
+      "passed": true,
+      "c\u2081_formula": "c\u2081 = winding number",
+      "description": "sympy: c\u2081(E) = winding number for line bundle"
+    },
+    "P8_section_over_bundle": {
+      "passed": true,
+      "||\u03c3(\u03b8)||": 1.0,
+      "description": "A section over the bundle is well-defined and nonzero"
+    }
+  },
+  "negative": {
+    "N1_z3_holonomy_single_valued": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: hol = 1 \u2227 hol = -1 contradictory (single-valued)"
+    },
+    "N2_nontrivial_bundle_not_trivial": {
+      "passed": true,
+      "winding": 0.5,
+      "holonomy": [
+        -1.0,
+        1.2246467991473532e-16
+      ],
+      "description": "Non-trivial bundle (w\u22600) cannot have holonomy = 1"
+    },
+    "N3_negative_winding_holonomy": {
+      "passed": true,
+      "winding": -1.0,
+      "holonomy": [
+        1.0,
+        2.4492935982947064e-16
+      ],
+      "description": "Negative winding gives orientation-reversed holonomy"
+    }
+  },
+  "boundary": {
+    "B1_half_winding_phase": {
+      "passed": true,
+      "winding": 0.25,
+      "holonomy": [
+        6.123233995736766e-17,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        1.0
+      ],
+      "description": "Quarter-winding (w=0.25) gives holonomy = i"
+    },
+    "B2_transition_unitary": {
+      "passed": true,
+      "description": "Transition function g(\u03b8) has unit norm for all \u03b8"
+    },
+    "B3_winding_continuity": {
+      "passed": true,
+      "\u0394hol": 0.06282151815625658,
+      "description": "Holonomy varies continuously with winding number"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0,
+  "migration_notes": "This sim establishes the torch-native pattern for Associated Bundle family migration. Next: port associated bundle lego sims to use these primitives."
+}

@@ -29,6 +29,26 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import sqrtm, expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe studies state discrimination "
+    "numerically with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state-discrimination calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and exponential support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # UTILITY HELPERS

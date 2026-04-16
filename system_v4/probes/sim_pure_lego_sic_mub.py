@@ -26,6 +26,20 @@ from datetime import datetime, UTC
 import numpy as np
 from numpy.linalg import eigvalsh
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe studies SIC and MUB structure "
+    "numerically with numpy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric SIC/MUB calculations for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # Constants

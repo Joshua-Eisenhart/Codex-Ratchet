@@ -17,11 +17,11 @@ import numpy as np
 
 TOOL_MANIFEST = {
     "hdbscan": {"tried": False, "used": False, "reason": ""},
-    "umap-learn": {"tried": False, "used": False, "reason": ""},
+    "umap": {"tried": False, "used": False, "reason": ""},
     "numpy": {"tried": True, "used": True, "reason": "signature vector assembly"},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "hdbscan": None, "umap-learn": None, "numpy": "supportive",
+    "hdbscan": None, "umap": None, "numpy": "supportive",
 }
 
 try:
@@ -36,10 +36,10 @@ except ImportError:
 
 try:
     import umap
-    TOOL_MANIFEST["umap-learn"]["tried"] = True
-    TOOL_MANIFEST["umap-learn"]["used"] = True
-    TOOL_MANIFEST["umap-learn"]["reason"] = "nonlinear dim-reduction of verdict signature space"
-    TOOL_INTEGRATION_DEPTH["umap-learn"] = "load_bearing"
+    TOOL_MANIFEST["umap"]["tried"] = True
+    TOOL_MANIFEST["umap"]["used"] = True
+    TOOL_MANIFEST["umap"]["reason"] = "nonlinear dim-reduction of verdict signature space"
+    TOOL_INTEGRATION_DEPTH["umap"] = "load_bearing"
     UMAP_OK = True
 except ImportError:
     UMAP_OK = False

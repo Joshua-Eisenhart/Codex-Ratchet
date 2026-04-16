@@ -75,6 +75,10 @@ TOOL_BUNDLES = {
         "goal": "manifold + ANN + embedding + density clustering reference lane",
         "tools": ["pytorch", "datasketch", "pynndescent", "umap", "hdbscan", "sklearn"],
     },
+    "manifold_search_archive_stack": {
+        "goal": "search-tuned manifold + archive reference lane",
+        "tools": ["pytorch", "datasketch", "pynndescent", "umap", "hdbscan", "sklearn", "optuna", "ribs"],
+    },
     "search_archive_stack": {
         "goal": "optimizer/archive/search reference lane",
         "tools": ["pytorch", "optuna", "pymoo", "ribs", "deap", "evotorch"],
@@ -367,6 +371,18 @@ def git_surface() -> dict:
     }
 
 
+def _string_key(node: ast.AST | None) -> str | None:
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    return None
+
+
+def _depth_value(node: ast.AST | None):
+    if isinstance(node, ast.Constant) and (node.value is None or isinstance(node.value, str)):
+        return node.value
+    return None
+
+
 def _module_literal(tree: ast.AST, name: str):
     for node in ast.iter_child_nodes(tree):
         if not isinstance(node, ast.Assign):
@@ -378,6 +394,77 @@ def _module_literal(tree: ast.AST, name: str):
                 except Exception:
                     return None
     return None
+
+
+def _module_dict_keys(tree: ast.AST, name: str) -> set[str]:
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if not isinstance(target, ast.Name) or target.id != name:
+                continue
+            if isinstance(node.value, ast.Dict):
+                return {
+                    str(raw)
+                    for raw in (
+                        _string_key(key)
+                        for key in node.value.keys
+                    )
+                    if raw is not None
+                }
+            literal = _module_literal(tree, name)
+            if isinstance(literal, dict):
+                return {str(raw) for raw in literal}
+            return set()
+    return set()
+
+
+def _module_depth_map(tree: ast.AST, name: str, manifest_keys: set[str] | None = None) -> dict[str, object] | None:
+    base: dict[str, object] | None = None
+    for node in ast.iter_child_nodes(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id == name:
+                if isinstance(node.value, ast.Dict):
+                    parsed: dict[str, object] = {}
+                    for key_node, value_node in zip(node.value.keys, node.value.values):
+                        key = _string_key(key_node)
+                        if key is None:
+                            continue
+                        value = _depth_value(value_node)
+                        if value is None and not (
+                            isinstance(value_node, ast.Constant) and value_node.value is None
+                        ):
+                            continue
+                        parsed[key] = value
+                    base = parsed
+                elif (
+                    isinstance(node.value, ast.DictComp)
+                    and isinstance(node.value.key, ast.Name)
+                    and node.value.key.id
+                    and isinstance(node.value.value, ast.Constant)
+                    and node.value.value.value is None
+                    and len(node.value.generators) == 1
+                    and isinstance(node.value.generators[0].iter, ast.Name)
+                    and node.value.generators[0].iter.id == "TOOL_MANIFEST"
+                    and manifest_keys
+                ):
+                    base = {key: None for key in manifest_keys}
+                else:
+                    literal = _module_literal(tree, name)
+                    base = literal if isinstance(literal, dict) else None
+            elif (
+                isinstance(target, ast.Subscript)
+                and isinstance(target.value, ast.Name)
+                and target.value.id == name
+                and base is not None
+            ):
+                key = _string_key(target.slice)
+                value = _depth_value(node.value)
+                if key is not None and value is not None:
+                    base[key] = value
+    return base
 
 
 def _imported_tools(path: Path) -> tuple[set[str], bool]:
@@ -489,9 +576,9 @@ def tool_integration_surface(limit: int = 12) -> dict:
         except Exception:
             parse_failures += 1
             continue
-        manifest = _module_literal(tree, "TOOL_MANIFEST")
-        depth = _module_literal(tree, "TOOL_INTEGRATION_DEPTH")
-        manifest_tools = set(manifest) if isinstance(manifest, dict) else set()
+        manifest_tools = _module_dict_keys(tree, "TOOL_MANIFEST")
+        depth = _module_depth_map(tree, "TOOL_INTEGRATION_DEPTH", manifest_tools)
+        manifest = {tool: True for tool in manifest_tools} if manifest_tools else None
         depth_tools = set(depth) if isinstance(depth, dict) else set()
         load_bearing_tools = (
             {

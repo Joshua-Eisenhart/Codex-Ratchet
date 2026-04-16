@@ -35,7 +35,22 @@ TOOL_MANIFEST = {
     "toponetx": {"tried": False, "used": False, "reason": "no cell complex"},
     "gudhi": {"tried": False, "used": False, "reason": "no persistence"},
 }
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "datasketch": "load_bearing",
+    "ribs": None,
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 try:
     from datasketch import MinHash, MinHashLSH

@@ -20,6 +20,7 @@ import numpy as np
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True,  "used": True,  "reason": "torch.tensor wraps the 8D feature matrix; torch pairwise distance computations verify cluster structure and nearest-neighbor label accuracy in load-bearing post-embedding analysis"},
+    "umap":      {"tried": True,  "used": True,  "reason": "UMAP is the primary nonlinear dimensionality reduction step; the 8D G-tower features must preserve shell separation after projection into 2D"},
     "pyg":       {"tried": False, "used": False, "reason": "not used: graph neural message passing is not needed for G-tower feature projection; pyg is reserved for sims where shell-level state interactions form an explicit message-passing graph rather than a feature manifold"},
     "z3":        {"tried": True,  "used": True,  "reason": "z3 verifies that GL-level samples have strictly higher mean feature norm than SU-level samples (structural ordering preserved after UMAP); SAT result confirms the ordering is structurally consistent"},
     "cvc5":      {"tried": False, "used": False, "reason": "not used: z3 linear arithmetic is sufficient for the norm-ordering check here; cvc5 nonlinear arithmetic solvers are reserved for sims that require bitvector or array theory constraints beyond z3 capabilities"},
@@ -44,6 +45,7 @@ TOOL_INTEGRATION_DEPTH = {
     "rustworkx": None,
     "sympy": None,
     "toponetx": None,
+    "umap": "load_bearing",
     "xgi": None,
     "z3": "load_bearing",
 }

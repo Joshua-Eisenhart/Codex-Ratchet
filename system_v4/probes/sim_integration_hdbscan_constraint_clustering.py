@@ -18,6 +18,7 @@ import numpy as np
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": True,  "used": True,  "reason": "torch.tensor wraps state vectors for cluster centroid computation; torch.norm computes centroid distances as load-bearing tensor operations used throughout clustering validation"},
+    "hdbscan":   {"tried": True,  "used": True,  "reason": "HDBSCAN is the primary density-clustering step; it must separate admissible in-circle states from excluded noise without fixing k in advance"},
     "pyg":       {"tried": False, "used": False, "reason": "not used: graph neural network message passing is not needed for this 2D constraint-admissibility clustering sim; deferred to a coupling sim where graph structure emerges from multi-shell state interactions"},
     "z3":        {"tried": True,  "used": True,  "reason": "z3 Real arithmetic checks that cluster centroid (cx, cy) satisfies cx^2 + cy^2 < 1 (SAT=admissible) and that noise centroids satisfy cx^2 + cy^2 > 1 (SAT=excluded); structural impossibility is the primary proof form"},
     "cvc5":      {"tried": False, "used": False, "reason": "not used: z3 arithmetic is sufficient for unit-circle constraint checking here; cvc5 is reserved for nonlinear arithmetic or bitvector constraints that z3 cannot handle efficiently in later integration sims"},
@@ -37,6 +38,7 @@ TOOL_INTEGRATION_DEPTH = {
     "e3nn": None,
     "geomstats": None,
     "gudhi": None,
+    "hdbscan": "load_bearing",
     "pyg": None,
     "pytorch": "load_bearing",
     "rustworkx": None,
@@ -46,7 +48,7 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": "load_bearing",
 }
 
-# Target tool (outside 12-tool manifest)
+# Legacy target-tool note retained for older result consumers.
 TARGET_TOOL = {
     "name": "hdbscan",
     "import": "import hdbscan; hdbscan.HDBSCAN",

@@ -41,6 +41,17 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical numpy-only baseline: this probe measures L6/L7 constraint behavior numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, matrix algebra, and diagnostics for classical constraint layers"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix functions such as sqrtm, logm, and expm for the constraint cycle"},
+    "z3": {"tried": True, "used": True, "reason": "SAT/UNSAT checks for forced combination and ordering conditions"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Real, RealVal, If, ForAll, Exists,

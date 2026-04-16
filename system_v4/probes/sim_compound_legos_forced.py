@@ -32,6 +32,17 @@ import numpy as np
 from scipy.linalg import sqrtm, logm, expm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical numpy-only baseline: this probe measures forced compound lego behavior numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays, entropy, and algebraic diagnostics for classical compound-constraint tests"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix functions such as sqrtm, logm, and expm for compound constraint checks"},
+    "z3": {"tried": True, "used": True, "reason": "SAT/UNSAT checks for forced, forbidden, and emergent combinations"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Solver, Bool, And, Or, Not, Implies, sat, unsat,
     BoolVal, Int, Real, RealVal, If, ForAll, Exists,

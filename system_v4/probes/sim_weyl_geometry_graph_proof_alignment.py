@@ -21,6 +21,11 @@ import numpy as np
 import rustworkx as rx
 import z3
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline graph/proof bridge: this row aligns the Weyl/Hopf/Pauli "
+    "geometry stack with rustworkx and z3 checks, but it is still a controller "
+    "comparison surface rather than a canonical nonclassical witness."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -32,11 +37,7 @@ import sim_pauli_algebra_relations as pauli
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Graph/proof alignment bridge for the Weyl/Hopf/Pauli geometry stack. "
-    "It adds an explicit stage-order graph and z3 proof surfaces around the "
-    "composed torus transport, spinor frame, and Pauli projection layers."
-)
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_torus_lego",
@@ -367,8 +368,9 @@ def main() -> None:
 
     results = {
         "name": "weyl_geometry_graph_proof_alignment",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": classification,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

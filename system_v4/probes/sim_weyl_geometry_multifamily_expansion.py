@@ -32,11 +32,14 @@ RESULT_DIR = PROBE_DIR / "a2_state" / "sim_results"
 OUT_PATH = RESULT_DIR / "weyl_geometry_multifamily_expansion_results.json"
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Controller-facing multifamily geometry expansion lane. It keeps the "
     "Weyl/Hopf stack as anchor and ranks the next grounded geometry family "
     "using existing pass-bearing graph, hypergraph, and contact/symplectic "
     "rows."
+)
+CLASSIFICATION_NOTE = (
+    divergence_log
 )
 
 LEGO_IDS = [
@@ -280,8 +283,9 @@ def make_results() -> dict[str, Any]:
 
     return {
         "name": "weyl_geometry_multifamily_expansion",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

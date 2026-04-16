@@ -25,16 +25,18 @@ from __future__ import annotations
 import json
 import pathlib
 classification = "classical_baseline"
+divergence_log = (
+    "Controller overlay for the Weyl/Hopf geometry lane. It compares base "
+    "legos, composed numeric rows, strict companion rows, translation lanes, "
+    "repair comparison surfaces, proof-pressure rows, and routing/controller "
+    "surfaces when available, while keeping the overlay distinct from owner "
+    "math."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Controller overlay for the Weyl/Hopf geometry lane. It compares base "
-    "legos, composed numeric rows, strict companion rows, translation lanes, "
-    "repair comparison surfaces, proof-pressure rows, and routing/controller "
-    "surfaces when available."
-)
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "nested_hopf_tori",

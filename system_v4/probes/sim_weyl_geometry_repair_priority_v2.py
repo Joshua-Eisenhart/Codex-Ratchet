@@ -18,11 +18,12 @@ DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Updated controller ranking surface over the Weyl/Hopf geometry lane after "
     "direct translation lanes were added for the composed stack, carrier array, "
     "and carrier compare rows."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -233,6 +234,7 @@ def main() -> None:
         "name": "weyl_geometry_repair_priority_v2",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

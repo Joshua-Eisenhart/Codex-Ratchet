@@ -9,6 +9,7 @@ chain.
 import os, json, cvc5
 from cvc5 import Kind
 
+classification = "canonical"
 NAME = "sim_cvc5_deep_g_reduction_chain_sat"
 SCOPE_NOTE = "G-tower reduction chain admissibility; cvc5 SAT/UNSAT under monotone fence."
 TOOL_MANIFEST = {"cvc5": {"tried": True, "used": True,
@@ -48,7 +49,7 @@ def run_boundary_tests():
     return {"g_min_length_chain_sat": {"pass": _chain(min_len=True).isSat()}}
 
 if __name__ == "__main__":
-    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": "canonical",
+    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(), "negative": run_negative_tests(),
         "boundary": run_boundary_tests()}

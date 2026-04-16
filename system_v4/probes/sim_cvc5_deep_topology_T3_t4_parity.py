@@ -8,6 +8,7 @@ Bitvector encoding; UNSAT on the violated-parity branch is the exclusion.
 import os, json, cvc5
 from cvc5 import Kind
 
+classification = "canonical"
 NAME = "sim_cvc5_deep_topology_T3_t4_parity"
 SCOPE_NOTE = "T3@t4 edge-parity fence; cvc5 UNSAT excludes parity-violating survivors."
 TOOL_MANIFEST = {"cvc5": {"tried": True, "used": True,
@@ -53,7 +54,7 @@ def run_boundary_tests():
     return {"T3_t4_parity_zero_sat": {"pass": _edge_parity(0, violate=False).isSat()}}
 
 if __name__ == "__main__":
-    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": "canonical",
+    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(), "negative": run_negative_tests(),
         "boundary": run_boundary_tests()}

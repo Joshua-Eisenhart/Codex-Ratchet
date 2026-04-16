@@ -9,6 +9,7 @@ attempts to assert (b_pos AND b_neg). Exclusion = UNSAT.
 import os, json, cvc5
 from cvc5 import Kind
 
+classification = "canonical"
 NAME = "sim_cvc5_deep_fence_bc04_unsat"
 SCOPE_NOTE = "BC04 polar-branch exclusion; cvc5 UNSAT certifies admissibility fence."
 
@@ -51,7 +52,7 @@ def run_boundary_tests():
     return {"bc04_three_branch_forced_unsat": {"pass": s.checkSat().isUnsat()}}
 
 if __name__ == "__main__":
-    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": "canonical",
+    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(), "negative": run_negative_tests(),
         "boundary": run_boundary_tests()}

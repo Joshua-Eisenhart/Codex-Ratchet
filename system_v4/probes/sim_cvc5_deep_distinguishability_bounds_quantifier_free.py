@@ -12,6 +12,7 @@ This is not a construction: cvc5 UNSAT excludes the joint admissibility of
 import os, json, cvc5
 from cvc5 import Kind
 
+classification = "canonical"
 NAME = "sim_cvc5_deep_distinguishability_bounds_quantifier_free"
 SCOPE_NOTE = (
     "cvc5 QF_LRA; excludes pairs that are simultaneously indistinguishable "
@@ -65,7 +66,7 @@ if __name__ == "__main__":
     results = {
         "name": NAME,
         "scope_note": SCOPE_NOTE,
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

@@ -9,6 +9,7 @@ the exclusion claim on over-saturated coupled pairs.
 import os, json, cvc5
 from cvc5 import Kind
 
+classification = "canonical"
 NAME = "sim_cvc5_deep_fence_bc09_unsat"
 SCOPE_NOTE = "BC09 weight-budget fence; cvc5 UNSAT excludes over-saturated coupled pairs."
 TOOL_MANIFEST = {"cvc5": {"tried": True, "used": True,
@@ -43,7 +44,7 @@ def run_boundary_tests():
     return {"bc09_exact_half_sat": {"pass": _check("0.5","1.0").isSat()}}
 
 if __name__ == "__main__":
-    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": "canonical",
+    results = {"name": NAME, "scope_note": SCOPE_NOTE, "classification": classification,
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(), "negative": run_negative_tests(),
         "boundary": run_boundary_tests()}

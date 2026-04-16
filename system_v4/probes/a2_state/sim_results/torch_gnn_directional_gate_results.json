@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "Axis 0 gradient via autograd; GNN tensors; cosine-similarity directional gate"
     },
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "HeteroData graph + heterogeneous message passing IS the ratchet dynamics"
     },
     "z3": {
       "tried": true,

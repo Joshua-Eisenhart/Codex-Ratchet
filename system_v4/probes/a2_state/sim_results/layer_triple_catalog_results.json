@@ -1,6 +1,6 @@
 {
   "name": "layer_triple_catalog",
-  "timestamp": "2026-04-16T04:14:48.491899+00:00",
+  "timestamp": "2026-04-16T05:11:31.537255+00:00",
   "classification": "canonical",
   "all_tests_pass": true,
   "tool_manifest": {
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- graph structure via rustworkx"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 handles the uniqueness SMT check"
     },
     "sympy": {
       "tried": true,
@@ -42,27 +42,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
     },
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "DAG of layer coupling: edges where native operator preserves target entropy"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- layer interactions modeled as directed DAG not hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- topological structure captured by Betti number checks"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- Hopf topology tracked via fiber phase entropy, not persistence"
     }
   },
   "tool_integration_depth": {

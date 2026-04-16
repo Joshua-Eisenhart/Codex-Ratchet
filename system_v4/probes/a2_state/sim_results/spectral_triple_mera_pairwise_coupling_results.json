@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 suffices for DPI monotonicity constraint; cvc5 not needed at this depth"
     },
     "sympy": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry on MERA coarse-graining manifold not needed at classical baseline; excluded"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "E(3) equivariance not relevant to MERA/spectral-triple coupling; excluded"
     },
     "rustworkx": {
       "tried": true,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "cell complex topology not required for MERA/spectral-triple pairwise coupling; excluded"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required for MERA coarse-graining probe; excluded"
     }
   },
   "tool_integration_depth": {

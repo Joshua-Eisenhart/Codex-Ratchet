@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 covers the required UNSAT proof; cvc5 not needed at topology-variant level"
     },
     "sympy": {
       "tried": true,
@@ -35,7 +35,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry on product space not needed at topology-variant classical baseline; excluded"
     },
     "e3nn": {
       "tried": false,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "cell complex topology not required for discrete chain/ring/star MERA variants; excluded"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required for topology-variant reruns; excluded"
     }
   },
   "tool_integration_depth": {

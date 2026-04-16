@@ -94,8 +94,8 @@
       "note": "Q=0 when MI=0; confirms z3 structural proof numerically"
     },
     "P4_pytorch_entangled_state_MI_positive": {
-      "MI": -3.4427754092448173e-14,
-      "pass": false,
+      "MI": 1.124670289237513,
+      "pass": true,
       "note": "Entangled state survives to MI>0; excluded from zero-MI family"
     },
     "P5_z3_MI_positive_Q_positive_SAT": {
@@ -104,8 +104,8 @@
       "note": "MI>0 AND Q>0 is SAT; entangled states are admissible candidates"
     },
     "P6_pytorch_Q_gradient_positive_wrt_entanglement": {
-      "Q": -4.1334255912720253e-41,
-      "gradient_Q_wrt_eps": 3.587324068671532e-43,
+      "Q": 0.35564415532665206,
+      "gradient_Q_wrt_eps": 2.0844244389156055,
       "pass": true,
       "note": "Q gradient w.r.t. entanglement parameter is positive; consistent with z3 SAT region"
     },
@@ -133,12 +133,12 @@
       "note": "Product state MI survives near-zero; excluded from entangled-state family"
     },
     "N3_bell_state_MI_large": {
-      "MI": -3.453877639491069e-14,
-      "pass": false,
+      "MI": 1.3862943611197869,
+      "pass": true,
       "note": "Bell state excluded from low-MI family; MI survived to >0.5"
     },
     "N4_Q_gradient_near_zero_at_product_state": {
-      "gradient": 1.0263416486754031e-48,
+      "gradient": 2.7147495412119985e-25,
       "pass": true,
       "note": "Q gradient near eps=0 is small; product state is boundary, not interior"
     }
@@ -150,8 +150,8 @@
       "note": "UNSAT holds even for infinitesimally positive Q boundary; structural exclusion is strict"
     },
     "B2_bell_state_Q_nonzero": {
-      "Q": -4.1202241493942904e-41,
-      "pass": false,
+      "Q": 0.6660493039778091,
+      "pass": true,
       "note": "Bell state boundary survives Q>0; maximally entangled state admitted to Q>0 family"
     },
     "B3_exact_product_state_Q_zero": {
@@ -161,8 +161,8 @@
     }
   },
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "total_tests": 15,
-    "passed": 12
+    "passed": 15
   }
 }

@@ -10,7 +10,7 @@
   "primary_lego_ids": [
     "chiral_density_bookkeeping"
   ],
-  "created_at": "2026-04-16T04:14:44.552511+00:00",
+  "created_at": "2026-04-16T05:12:45.055632+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -20,7 +20,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not required for local chiral density bookkeeping"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not required; z3 is sufficient for bounded projector mutual-exclusion proof"
     },
     "sympy": {
       "tried": true,
@@ -45,32 +45,32 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not required; no geodesic/curvature claim in this bookkeeping packet"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not required; no equivariant carrier-learning claim in this bookkeeping packet"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not required; no shell-DAG update in this bookkeeping packet"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not required; no hypergraph claim in this bookkeeping packet"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not required; no cell-complex claim in this bookkeeping packet"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not required; no persistence/topology claim in this bookkeeping packet"
     }
   },
   "tool_integration_depth": {

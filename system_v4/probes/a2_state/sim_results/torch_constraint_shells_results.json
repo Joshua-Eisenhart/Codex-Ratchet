@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- shells are nn.Module, not GNN"
     },
     "z3": {
       "tried": true,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 sufficient for nesting proof"
     },
     "sympy": {
       "tried": true,
@@ -34,12 +34,12 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- shell metrics computed directly"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant layers here"
     },
     "rustworkx": {
       "tried": true,
@@ -49,12 +49,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- shells are nested, not hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- topology tracked via GUDHI"
     },
     "gudhi": {
       "tried": true,
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 6.0874247550964355,
-            "L2_d2_Hopf": 0.6389667987823486,
+            "L1_CPTP": 6.823062896728516,
+            "L2_d2_Hopf": 0.0,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.09951511025428772
+            "L6_irreversibility": 0.33171942830085754
           },
-          "total_violation": 6.825906664133072
+          "total_violation": 7.154782325029373
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 6.675577640533447,
-            "L2_d2_Hopf": 1.547609806060791,
+            "L1_CPTP": 4.874931335449219,
+            "L2_d2_Hopf": 0.26664257049560547,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.14550049602985382
+            "L6_irreversibility": 0.12120717018842697
           },
-          "total_violation": 8.368687942624092
+          "total_violation": 5.262781076133251
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.310620307922363,
-            "L2_d2_Hopf": 0.16388964653015137,
+            "L1_CPTP": 4.772406578063965,
+            "L2_d2_Hopf": 0.4827420711517334,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.297767698764801
+            "L6_irreversibility": 0.14692147076129913
           },
-          "total_violation": 4.772277653217316
+          "total_violation": 5.402070119976997
         }
       ]
     },

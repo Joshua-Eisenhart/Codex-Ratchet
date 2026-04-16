@@ -20,6 +20,26 @@ import time
 import numpy as np
 from scipy import linalg as la
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe studies quantum chaos numerically "
+    "with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric random-matrix and spectral calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "linear-algebra support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ---------------------------------------------------------------------------
 # Constants

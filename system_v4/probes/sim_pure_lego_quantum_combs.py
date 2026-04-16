@@ -22,6 +22,26 @@ import json, pathlib, time, traceback
 import numpy as np
 from scipy.linalg import expm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe studies quantum combs numerically "
+    "with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric comb and process-tensor calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix exponential support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-12

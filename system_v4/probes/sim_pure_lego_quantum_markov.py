@@ -18,6 +18,26 @@ import json
 import os
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe studies quantum Markov structure "
+    "numerically with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric entropy and conditional-mutual-information calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix logarithm and exponential support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

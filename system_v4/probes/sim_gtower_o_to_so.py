@@ -13,6 +13,11 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "O( n ) -> SO( n ) admissibility is orientation-sensitive; the probe "
+    "separates det=+1 from det=-1 rather than claiming a broader geometric lift."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -108,6 +113,8 @@ if __name__ == "__main__":
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "positive": pos, "negative": neg, "boundary": bnd,
         "status": "PASS" if all_pass else "FAIL",
     }

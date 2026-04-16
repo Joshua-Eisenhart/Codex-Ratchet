@@ -31,6 +31,11 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "classical baseline reduction from SO(2n) to U(n); numeric numpy baseline "
+    "with sympy and z3 witnesses for the reduction identities"
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -271,6 +276,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gtower_so_to_u_reduction",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

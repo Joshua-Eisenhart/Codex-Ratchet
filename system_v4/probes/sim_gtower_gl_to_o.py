@@ -13,6 +13,12 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "GL(n) -> O(n) admissibility probe: orthogonal candidates preserve the "
+    "standard Euclidean form, while det=2 GL templates are obstructed by the "
+    "z3 witness because orthogonal determinants have absolute value 1."
+)
+CLASSIFICATION_NOTE = divergence_log
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {
@@ -108,7 +114,8 @@ if __name__ == "__main__":
                 and _t(bnd.get("z3_obstruction_ok")))
     results = {
         "name": "sim_gtower_gl_to_o",
-        "classification": "canonical",
+        "classification": classification,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos,

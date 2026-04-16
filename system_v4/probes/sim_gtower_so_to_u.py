@@ -14,6 +14,11 @@ import os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "GTower SO-to-U reduction baseline. The file stays numeric and checks "
+    "whether an orthogonal matrix admits a complex-structure reduction via "
+    "J-commutation and determinant-style obstruction tests."
+)
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 TOOL_MANIFEST = {
@@ -142,6 +147,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gtower_so_to_u",
         "classification": "canonical",
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

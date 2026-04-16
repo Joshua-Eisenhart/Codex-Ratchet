@@ -13,6 +13,8 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "O->SO orientation fence: det=+1 admissibility is load-bearing and exhaustively excludes det=-1 reflections."
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": ""},
@@ -98,7 +100,9 @@ if __name__ == "__main__":
     results = {
         "name": "sim_gtower_o_to_so_orientation",
         "classification": "canonical",
-        "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: O->SO orientation fence",
+        "classification_note": CLASSIFICATION_NOTE,
+        "scope_note": CLASSIFICATION_NOTE,
+        "divergence_log": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

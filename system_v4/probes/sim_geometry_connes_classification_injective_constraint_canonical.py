@@ -82,21 +82,25 @@ def run_positive_tests():
         # rank(R_1) = 4, rank(R_2) = 16, rank(R_3) = 64, etc.
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
+        int_sort = tm.getIntegerSort()
 
-        n = solver.mkConst(int_sort, "n")
-        rank_rn = solver.mkConst(int_sort, "rank_Rn")
+        n = tm.mkConst(int_sort, "n")
+        rank_rn = tm.mkConst(int_sort, "rank_Rn")
 
         # rank(R_n) = 4^n
         # For n=1: rank = 4^1 = 4
         # For n=2: rank = 4^2 = 16
         # For n=3: rank = 4^3 = 64
         # Constraint: rank is positive exponential in n
-        hyperfinite_constraint = solver.mkAnd(
-            solver.mkGt(rank_rn, solver.mkInteger(0)),
-            solver.mkEq(n, solver.mkInteger(2)),
-            solver.mkEq(rank_rn, solver.mkInteger(16))  # 4^2 = 16
+        hyperfinite_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.GT, rank_rn, tm.mkInteger(0)),
+            tm.mkTerm(Kind.AND,
+                tm.mkTerm(Kind.EQUAL, n, tm.mkInteger(2)),
+                tm.mkTerm(Kind.EQUAL, rank_rn, tm.mkInteger(16))
+            )
         )
 
         solver.assertFormula(hyperfinite_constraint)
@@ -115,21 +119,24 @@ def run_positive_tests():
         # Constraint: ranks of approximations form a monotone increasing sequence
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        rank_m_k = solver2.mkConst(int_sort, "rank_M_k")
-        rank_m_k_plus_1 = solver2.mkConst(int_sort, "rank_M_k+1")
-        rank_full = solver2.mkConst(int_sort, "rank_full_M")
+        int_sort2 = tm2.getIntegerSort()
+        rank_m_k = tm2.mkConst(int_sort2, "rank_M_k")
+        rank_m_k_plus_1 = tm2.mkConst(int_sort2, "rank_M_k+1")
+        rank_full = tm2.mkConst(int_sort2, "rank_full_M")
 
         # Monotone increasing: rank_M_k <= rank_M_{k+1} <= rank_M (full)
-        convergence_constraint = solver2.mkAnd(
-            solver2.mkLeq(rank_m_k, rank_m_k_plus_1),
-            solver2.mkLeq(rank_m_k_plus_1, rank_full)
+        convergence_constraint = tm2.mkTerm(
+            Kind.AND,
+            tm2.mkTerm(Kind.LEQ, rank_m_k, rank_m_k_plus_1),
+            tm2.mkTerm(Kind.LEQ, rank_m_k_plus_1, rank_full)
         )
 
         solver2.assertFormula(convergence_constraint)
-        solver2.assertFormula(solver2.mkEq(rank_m_k, solver2.mkInteger(10)))
-        solver2.assertFormula(solver2.mkEq(rank_m_k_plus_1, solver2.mkInteger(20)))
-        solver2.assertFormula(solver2.mkEq(rank_full, solver2.mkInteger(30)))
+        solver2.assertFormula(tm2.mkTerm(Kind.EQUAL, rank_m_k, tm2.mkInteger(10)))
+        solver2.assertFormula(tm2.mkTerm(Kind.EQUAL, rank_m_k_plus_1, tm2.mkInteger(20)))
+        solver2.assertFormula(tm2.mkTerm(Kind.EQUAL, rank_full, tm2.mkInteger(30)))
 
         result2 = solver2.checkSat()
         results["positive_test_2_injective_approximation"] = {
@@ -145,13 +152,13 @@ def run_positive_tests():
         # Type II_1 injective factor M embeds into B(H) via finite-dim approximations
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        embedding_exists = solver3.mkConst(int_sort, "embedding_rank")
+        int_sort3 = tm3.getIntegerSort()
+        embedding_exists = tm3.mkConst(int_sort3, "embedding_rank")
 
         # Embedding exists if rank is positive and achievable
-        embedding_constraint = solver3.mkAnd(
-            solver3.mkGt(embedding_exists, solver3.mkInteger(0))
-        )
+        embedding_constraint = tm3.mkTerm(Kind.GT, embedding_exists, tm3.mkInteger(0))
 
         solver3.assertFormula(embedding_constraint)
         result3 = solver3.checkSat()
@@ -183,15 +190,16 @@ def run_negative_tests():
         # Test 1: UNSAT - hyperfinite rank cannot both follow 4^n and follow different growth
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        rank_rn = solver.mkConst(int_sort, "rank_Rn")
+        int_sort = tm.getIntegerSort()
+        rank_rn = tm.mkConst(int_sort, "rank_Rn")
 
         # Claim: rank(R_2) = 16 (which is 4^2)
-        hyperfinite_correct = solver.mkEq(rank_rn, solver.mkInteger(16))
+        hyperfinite_correct = tm.mkTerm(Kind.EQUAL, rank_rn, tm.mkInteger(16))
 
         # Claim: rank(R_2) = 20 (which contradicts 4^2)
-        hyperfinite_wrong = solver.mkEq(rank_rn, solver.mkInteger(20))
+        hyperfinite_wrong = tm.mkTerm(Kind.EQUAL, rank_rn, tm.mkInteger(20))
 
         solver.assertFormula(hyperfinite_correct)
         solver.assertFormula(hyperfinite_wrong)
@@ -208,15 +216,17 @@ def run_negative_tests():
         # Test 2: UNSAT - approximation ranks cannot be non-monotone and monotone
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        rank_k = solver2.mkConst(int_sort, "rank_k")
-        rank_k_plus_1 = solver2.mkConst(int_sort, "rank_k+1")
+        int_sort2 = tm2.getIntegerSort()
+        rank_k = tm2.mkConst(int_sort2, "rank_k")
+        rank_k_plus_1 = tm2.mkConst(int_sort2, "rank_k+1")
 
         # Claim: rank_k <= rank_k+1 (monotone increasing)
-        monotone_constraint = solver2.mkLeq(rank_k, rank_k_plus_1)
+        monotone_constraint = tm2.mkTerm(Kind.LEQ, rank_k, rank_k_plus_1)
 
         # Claim: rank_k > rank_k+1 (strictly decreasing)
-        non_monotone_constraint = solver2.mkGt(rank_k, rank_k_plus_1)
+        non_monotone_constraint = tm2.mkTerm(Kind.GT, rank_k, rank_k_plus_1)
 
         solver2.assertFormula(monotone_constraint)
         solver2.assertFormula(non_monotone_constraint)
@@ -233,14 +243,16 @@ def run_negative_tests():
         # Test 3: UNSAT - injectivity cannot hold and fail simultaneously
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        injectivity_rank = solver3.mkConst(int_sort, "inj_rank")
+        int_sort3 = tm3.getIntegerSort()
+        injectivity_rank = tm3.mkConst(int_sort3, "inj_rank")
 
         # Claim: injectivity (rank > 0)
-        injectivity_holds = solver3.mkGt(injectivity_rank, solver3.mkInteger(0))
+        injectivity_holds = tm3.mkTerm(Kind.GT, injectivity_rank, tm3.mkInteger(0))
 
         # Claim: non-injectivity (rank = 0)
-        injectivity_fails = solver3.mkEq(injectivity_rank, solver3.mkInteger(0))
+        injectivity_fails = tm3.mkTerm(Kind.EQUAL, injectivity_rank, tm3.mkInteger(0))
 
         solver3.assertFormula(injectivity_holds)
         solver3.assertFormula(injectivity_fails)
@@ -274,14 +286,16 @@ def run_boundary_tests():
         # Test 1: Boundary - hyperfinite rank at n=1
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        rank_r1 = solver.mkConst(int_sort, "rank_R1")
+        int_sort = tm.getIntegerSort()
+        rank_r1 = tm.mkConst(int_sort, "rank_R1")
 
         # R_1 = M_2(C), so rank = 4
-        rank_1_constraint = solver.mkAnd(
-            solver.mkEq(rank_r1, solver.mkInteger(4)),
-            solver.mkGt(rank_r1, solver.mkInteger(0))
+        rank_1_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.EQUAL, rank_r1, tm.mkInteger(4)),
+            tm.mkTerm(Kind.GT, rank_r1, tm.mkInteger(0))
         )
 
         solver.assertFormula(rank_1_constraint)
@@ -297,13 +311,16 @@ def run_boundary_tests():
         # Test 2: Boundary - large n hyperfinite growth
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        rank_r5 = solver2.mkConst(int_sort, "rank_R5")
+        int_sort2 = tm2.getIntegerSort()
+        rank_r5 = tm2.mkConst(int_sort2, "rank_R5")
 
         # R_5 = M_{2^5}(C) = M_32(C), rank = 4^5 = 1024
-        rank_5_constraint = solver2.mkAnd(
-            solver2.mkEq(rank_r5, solver2.mkInteger(1024)),
-            solver2.mkGt(rank_r5, solver2.mkInteger(0))
+        rank_5_constraint = tm2.mkTerm(
+            Kind.AND,
+            tm2.mkTerm(Kind.EQUAL, rank_r5, tm2.mkInteger(1024)),
+            tm2.mkTerm(Kind.GT, rank_r5, tm2.mkInteger(0))
         )
 
         solver2.assertFormula(rank_5_constraint)
@@ -319,14 +336,17 @@ def run_boundary_tests():
         # Test 3: Boundary - approximation at convergence limit
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        rank_approx = solver3.mkConst(int_sort, "rank_approx")
-        rank_limit = solver3.mkConst(int_sort, "rank_limit")
+        int_sort3 = tm3.getIntegerSort()
+        rank_approx = tm3.mkConst(int_sort3, "rank_approx")
+        rank_limit = tm3.mkConst(int_sort3, "rank_limit")
 
         # Approximation converges to full rank (rank_approx very close to rank_limit)
-        limit_constraint = solver3.mkAnd(
-            solver3.mkEq(rank_approx, solver3.mkInteger(999)),
-            solver3.mkEq(rank_limit, solver3.mkInteger(1000))
+        limit_constraint = tm3.mkTerm(
+            Kind.AND,
+            tm3.mkTerm(Kind.EQUAL, rank_approx, tm3.mkInteger(999)),
+            tm3.mkTerm(Kind.EQUAL, rank_limit, tm3.mkInteger(1000))
         )
 
         solver3.assertFormula(limit_constraint)

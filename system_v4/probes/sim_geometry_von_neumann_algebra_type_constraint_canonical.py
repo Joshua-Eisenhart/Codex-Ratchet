@@ -81,24 +81,26 @@ def run_positive_tests():
         # Constraint: all projections are finite-rank
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
+        int_sort = tm.getIntegerSort()
 
         # dim_h = dimension of Hilbert space
-        dim_h = solver.mkConst(int_sort, "dim_h")
+        dim_h = tm.mkConst(int_sort, "dim_h")
 
         # rank_bound = max rank of any projection
-        rank_bound = solver.mkConst(int_sort, "rank_bound")
+        rank_bound = tm.mkConst(int_sort, "rank_bound")
 
         # Type I_n: rank_bound <= dim_h and dim_h > 0
-        type_i_constraint = solver.mkAnd(
-            solver.mkLeq(rank_bound, dim_h),
-            solver.mkGt(dim_h, solver.mkInteger(0))
+        type_i_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.LEQ, rank_bound, dim_h),
+            tm.mkTerm(Kind.GT, dim_h, tm.mkInteger(0))
         )
 
         solver.assertFormula(type_i_constraint)
-        solver.assertFormula(solver.mkEq(dim_h, solver.mkInteger(3)))
-        solver.assertFormula(solver.mkEq(rank_bound, solver.mkInteger(2)))
+        solver.assertFormula(tm.mkTerm(Kind.EQUAL, dim_h, tm.mkInteger(3)))
+        solver.assertFormula(tm.mkTerm(Kind.EQUAL, rank_bound, tm.mkInteger(2)))
 
         result = solver.checkSat()
         results["positive_test_1_type_i_n"] = {
@@ -113,20 +115,16 @@ def run_positive_tests():
         # Normalized trace τ: τ(1) = 1, τ(xy) = τ(yx), τ(x*x) >= 0
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        # Real-valued trace function (encoded as rational approximations)
-        # τ(1) = 1
-        tau_identity = 1  # normalized
-
-        # For an element x, τ(x*x) >= 0 (trace of positive element is positive)
-        # Constraint: if x is self-adjoint, τ(x²) >= 0
-        x_norm_sq = solver2.mkConst(int_sort, "x_norm_sq")
+        int_sort2 = tm2.getIntegerSort()
+        x_norm_sq = tm2.mkConst(int_sort2, "x_norm_sq")
 
         # Type II_1: normalized trace with x² always non-negative trace
-        type_ii1_constraint = solver2.mkGeq(x_norm_sq, solver2.mkInteger(0))
+        type_ii1_constraint = tm2.mkTerm(Kind.GEQ, x_norm_sq, tm2.mkInteger(0))
 
         solver2.assertFormula(type_ii1_constraint)
-        solver2.assertFormula(solver2.mkEq(x_norm_sq, solver2.mkInteger(5)))
+        solver2.assertFormula(tm2.mkTerm(Kind.EQUAL, x_norm_sq, tm2.mkInteger(5)))
 
         result2 = solver2.checkSat()
         results["positive_test_2_type_ii1_trace"] = {
@@ -141,13 +139,15 @@ def run_positive_tests():
         # We model this as: if you try to define τ(1) = c, contradiction for any c > 0
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        trace_value = solver3.mkConst(int_sort, "trace_of_1")
+        int_sort3 = tm3.getIntegerSort()
+        trace_value = tm3.mkConst(int_sort3, "trace_of_1")
 
         # Type III: trying to set τ(1) = any positive value leads to contradiction
         # For now, we just verify the constraint logic is sound
         # (in real Type III, we'd need the algebra to reject all finite traces)
-        type_iii_observation = solver3.mkGt(trace_value, solver3.mkInteger(0))
+        type_iii_observation = tm3.mkTerm(Kind.GT, trace_value, tm3.mkInteger(0))
 
         solver3.assertFormula(type_iii_observation)
         result3 = solver3.checkSat()
@@ -181,21 +181,23 @@ def run_negative_tests():
         # These are mutually exclusive
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        dim_h = solver.mkConst(int_sort, "dim_h")
-        rank_bound = solver.mkConst(int_sort, "rank_bound")
+        int_sort = tm.getIntegerSort()
+        dim_h = tm.mkConst(int_sort, "dim_h")
+        rank_bound = tm.mkConst(int_sort, "rank_bound")
 
         # Claim: Type I_n
-        type_i_constraint = solver.mkAnd(
-            solver.mkLeq(rank_bound, dim_h),
-            solver.mkGt(dim_h, solver.mkInteger(0))
+        type_i_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.LEQ, rank_bound, dim_h),
+            tm.mkTerm(Kind.GT, dim_h, tm.mkInteger(0))
         )
 
         # Claim: Type III (no finite bound on trace)
         # Encoded as: there exists arbitrarily large rank_bound
         # For UNSAT: rank_bound is both <= dim_h and can be arbitrarily large
-        type_iii_constraint = solver.mkGt(rank_bound, solver.mkMult(dim_h, solver.mkInteger(2)))
+        type_iii_constraint = tm.mkTerm(Kind.GT, rank_bound, tm.mkTerm(Kind.MULT, dim_h, tm.mkInteger(2)))
 
         solver.assertFormula(type_i_constraint)
         solver.assertFormula(type_iii_constraint)
@@ -212,15 +214,17 @@ def run_negative_tests():
         # Test 2: UNSAT - trace cannot satisfy both τ(xy) = τ(yx) and τ(xy) ≠ τ(yx)
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        tau_xy = solver2.mkConst(int_sort, "tau_xy")
-        tau_yx = solver2.mkConst(int_sort, "tau_yx")
+        int_sort2 = tm2.getIntegerSort()
+        tau_xy = tm2.mkConst(int_sort2, "tau_xy")
+        tau_yx = tm2.mkConst(int_sort2, "tau_yx")
 
         # Type II_1 property: τ(xy) = τ(yx)
-        commutativity_of_trace = solver2.mkEq(tau_xy, tau_yx)
+        commutativity_of_trace = tm2.mkTerm(Kind.EQUAL, tau_xy, tau_yx)
 
         # Contradiction: τ(xy) ≠ τ(yx)
-        contradiction = solver2.mkNot(solver2.mkEq(tau_xy, tau_yx))
+        contradiction = tm2.mkTerm(Kind.NOT, tm2.mkTerm(Kind.EQUAL, tau_xy, tau_yx))
 
         solver2.assertFormula(commutativity_of_trace)
         solver2.assertFormula(contradiction)
@@ -237,11 +241,13 @@ def run_negative_tests():
         # Test 3: UNSAT - normalized trace cannot have τ(1) = 1 and τ(1) = 0 simultaneously
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        tau_1 = solver3.mkConst(int_sort, "tau_of_identity")
+        int_sort3 = tm3.getIntegerSort()
+        tau_1 = tm3.mkConst(int_sort3, "tau_of_identity")
 
-        constraint_tau_1_is_1 = solver3.mkEq(tau_1, solver3.mkInteger(1))
-        constraint_tau_1_is_0 = solver3.mkEq(tau_1, solver3.mkInteger(0))
+        constraint_tau_1_is_1 = tm3.mkTerm(Kind.EQUAL, tau_1, tm3.mkInteger(1))
+        constraint_tau_1_is_0 = tm3.mkTerm(Kind.EQUAL, tau_1, tm3.mkInteger(0))
 
         solver3.assertFormula(constraint_tau_1_is_1)
         solver3.assertFormula(constraint_tau_1_is_0)
@@ -275,15 +281,19 @@ def run_boundary_tests():
         # Test 1: Boundary - Type I_1 (one-dimensional)
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        dim_h = solver.mkConst(int_sort, "dim_h")
-        rank_bound = solver.mkConst(int_sort, "rank_bound")
+        int_sort = tm.getIntegerSort()
+        dim_h = tm.mkConst(int_sort, "dim_h")
+        rank_bound = tm.mkConst(int_sort, "rank_bound")
 
-        type_i_1_constraint = solver.mkAnd(
-            solver.mkLeq(rank_bound, dim_h),
-            solver.mkEq(dim_h, solver.mkInteger(1)),
-            solver.mkGeq(rank_bound, solver.mkInteger(1))
+        type_i_1_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.LEQ, rank_bound, dim_h),
+            tm.mkTerm(Kind.AND,
+                tm.mkTerm(Kind.EQUAL, dim_h, tm.mkInteger(1)),
+                tm.mkTerm(Kind.GEQ, rank_bound, tm.mkInteger(1))
+            )
         )
 
         solver.assertFormula(type_i_1_constraint)
@@ -300,13 +310,16 @@ def run_boundary_tests():
         # Test 2: Boundary - Large Type I_n
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        dim_h_large = solver2.mkConst(int_sort, "dim_h_large")
-        rank_bound_large = solver2.mkConst(int_sort, "rank_bound_large")
+        int_sort2 = tm2.getIntegerSort()
+        dim_h_large = tm2.mkConst(int_sort2, "dim_h_large")
+        rank_bound_large = tm2.mkConst(int_sort2, "rank_bound_large")
 
-        type_i_large_constraint = solver2.mkAnd(
-            solver2.mkLeq(rank_bound_large, dim_h_large),
-            solver2.mkEq(dim_h_large, solver2.mkInteger(100))
+        type_i_large_constraint = tm2.mkTerm(
+            Kind.AND,
+            tm2.mkTerm(Kind.LEQ, rank_bound_large, dim_h_large),
+            tm2.mkTerm(Kind.EQUAL, dim_h_large, tm2.mkInteger(100))
         )
 
         solver2.assertFormula(type_i_large_constraint)
@@ -320,15 +333,18 @@ def run_boundary_tests():
         }
 
         # Test 3: Boundary - Trace at the boundary of normalized and non-normalized
-        solver3 = cvc3.Solver()
+        solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        tau_boundary = solver3.mkConst(int_sort, "tau_boundary")
+        int_sort3 = tm3.getIntegerSort()
+        tau_boundary = tm3.mkConst(int_sort3, "tau_boundary")
 
         # Constraint: τ is "almost" normalized (very close to 1)
-        boundary_constraint = solver3.mkAnd(
-            solver3.mkGeq(tau_boundary, solver3.mkInteger(0)),
-            solver3.mkLeq(tau_boundary, solver3.mkInteger(2))
+        boundary_constraint = tm3.mkTerm(
+            Kind.AND,
+            tm3.mkTerm(Kind.GEQ, tau_boundary, tm3.mkInteger(0)),
+            tm3.mkTerm(Kind.LEQ, tau_boundary, tm3.mkInteger(2))
         )
 
         solver3.assertFormula(boundary_constraint)

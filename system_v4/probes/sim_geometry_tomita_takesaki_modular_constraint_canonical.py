@@ -82,17 +82,18 @@ def run_positive_tests():
         # Spectrum of Δ is (0, ∞)
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
+        int_sort = tm.getIntegerSort()
 
         # eigenvalue λ of modular operator Δ
-        eigenvalue = solver.mkConst(int_sort, "lambda_delta")
+        eigenvalue = tm.mkConst(int_sort, "lambda_delta")
 
         # Modular operator is positive: λ > 0
-        positivity_constraint = solver.mkGt(eigenvalue, solver.mkInteger(0))
+        positivity_constraint = tm.mkTerm(Kind.GT, eigenvalue, tm.mkInteger(0))
 
         solver.assertFormula(positivity_constraint)
-        solver.assertFormula(solver.mkEq(eigenvalue, solver.mkInteger(5)))
+        solver.assertFormula(tm.mkTerm(Kind.EQUAL, eigenvalue, tm.mkInteger(5)))
 
         result = solver.checkSat()
         results["positive_test_1_modular_spectrum"] = {
@@ -108,15 +109,17 @@ def run_positive_tests():
         # Encoded as: rank of (A, B) inner product equals rank of Δ^{1/2}(B*, A)
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        rank_ab = solver2.mkConst(int_sort, "rank_ab")
-        rank_delta_ba = solver2.mkConst(int_sort, "rank_delta_ba")
+        int_sort2 = tm2.getIntegerSort()
+        rank_ab = tm2.mkConst(int_sort2, "rank_ab")
+        rank_delta_ba = tm2.mkConst(int_sort2, "rank_delta_ba")
 
         # KMS rank preservation
-        kms_constraint = solver2.mkEq(rank_ab, rank_delta_ba)
+        kms_constraint = tm2.mkTerm(Kind.EQUAL, rank_ab, rank_delta_ba)
 
         solver2.assertFormula(kms_constraint)
-        solver2.assertFormula(solver2.mkEq(rank_ab, solver2.mkInteger(3)))
+        solver2.assertFormula(tm2.mkTerm(Kind.EQUAL, rank_ab, tm2.mkInteger(3)))
 
         result2 = solver2.checkSat()
         results["positive_test_2_kms_rank"] = {
@@ -130,12 +133,14 @@ def run_positive_tests():
         # For all t ∈ ℝ: Δ^{it}MΔ^{-it} ⊆ M (algebra is preserved under modular flow)
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        parameter_t = solver3.mkConst(int_sort, "t")
-        invariant_rank = solver3.mkConst(int_sort, "invariant_rank")
+        int_sort3 = tm3.getIntegerSort()
+        parameter_t = tm3.mkConst(int_sort3, "t")
+        invariant_rank = tm3.mkConst(int_sort3, "invariant_rank")
 
         # Constraint: for any t, the rank of elements in M is preserved
-        preservation_constraint = solver3.mkEq(invariant_rank, solver3.mkInteger(10))
+        preservation_constraint = tm3.mkTerm(Kind.EQUAL, invariant_rank, tm3.mkInteger(10))
 
         solver3.assertFormula(preservation_constraint)
         result3 = solver3.checkSat()
@@ -169,13 +174,14 @@ def run_negative_tests():
         # Claim: rank(⟨AΩ, BΩ⟩) = rank(Δ^{1/2}(B*, A)) AND rank(⟨AΩ, BΩ⟩) ≠ rank(Δ^{1/2}(B*, A))
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        rank1 = solver.mkConst(int_sort, "rank1")
-        rank2 = solver.mkConst(int_sort, "rank2")
+        int_sort = tm.getIntegerSort()
+        rank1 = tm.mkConst(int_sort, "rank1")
+        rank2 = tm.mkConst(int_sort, "rank2")
 
-        kms_holds = solver.mkEq(rank1, rank2)
-        kms_fails = solver.mkNot(solver.mkEq(rank1, rank2))
+        kms_holds = tm.mkTerm(Kind.EQUAL, rank1, rank2)
+        kms_fails = tm.mkTerm(Kind.NOT, tm.mkTerm(Kind.EQUAL, rank1, rank2))
 
         solver.assertFormula(kms_holds)
         solver.assertFormula(kms_fails)
@@ -192,11 +198,13 @@ def run_negative_tests():
         # Test 2: UNSAT - modular spectrum cannot be both positive and non-positive
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        eigenvalue = solver2.mkConst(int_sort, "eigenval")
+        int_sort2 = tm2.getIntegerSort()
+        eigenvalue = tm2.mkConst(int_sort2, "eigenval")
 
-        positive_spectrum = solver2.mkGt(eigenvalue, solver2.mkInteger(0))
-        non_positive_spectrum = solver2.mkLeq(eigenvalue, solver2.mkInteger(0))
+        positive_spectrum = tm2.mkTerm(Kind.GT, eigenvalue, tm2.mkInteger(0))
+        non_positive_spectrum = tm2.mkTerm(Kind.LEQ, eigenvalue, tm2.mkInteger(0))
 
         solver2.assertFormula(positive_spectrum)
         solver2.assertFormula(non_positive_spectrum)
@@ -213,12 +221,14 @@ def run_negative_tests():
         # Test 3: UNSAT - preservation cannot hold and fail simultaneously
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        rank_before = solver3.mkConst(int_sort, "rank_before")
-        rank_after = solver3.mkConst(int_sort, "rank_after")
+        int_sort3 = tm3.getIntegerSort()
+        rank_before = tm3.mkConst(int_sort3, "rank_before")
+        rank_after = tm3.mkConst(int_sort3, "rank_after")
 
-        preservation_holds = solver3.mkEq(rank_before, rank_after)
-        preservation_fails = solver3.mkGt(rank_before, solver3.mkMult(rank_after, solver3.mkInteger(2)))
+        preservation_holds = tm3.mkTerm(Kind.EQUAL, rank_before, rank_after)
+        preservation_fails = tm3.mkTerm(Kind.GT, rank_before, tm3.mkTerm(Kind.MULT, rank_after, tm3.mkInteger(2)))
 
         solver3.assertFormula(preservation_holds)
         solver3.assertFormula(preservation_fails)
@@ -252,13 +262,15 @@ def run_boundary_tests():
         # Test 1: Boundary - smallest positive eigenvalue
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
+        tm = solver.getTermManager()
 
-        int_sort = solver.getIntegerSort()
-        eigenvalue_min = solver.mkConst(int_sort, "eigenval_min")
+        int_sort = tm.getIntegerSort()
+        eigenvalue_min = tm.mkConst(int_sort, "eigenval_min")
 
-        min_constraint = solver.mkAnd(
-            solver.mkGt(eigenvalue_min, solver.mkInteger(0)),
-            solver.mkLeq(eigenvalue_min, solver.mkInteger(1))
+        min_constraint = tm.mkTerm(
+            Kind.AND,
+            tm.mkTerm(Kind.GT, eigenvalue_min, tm.mkInteger(0)),
+            tm.mkTerm(Kind.LEQ, eigenvalue_min, tm.mkInteger(1))
         )
 
         solver.assertFormula(min_constraint)
@@ -274,12 +286,15 @@ def run_boundary_tests():
         # Test 2: Boundary - very large eigenvalue
         solver2 = cvc5.Solver()
         solver2.setLogic("QF_LIA")
+        tm2 = solver2.getTermManager()
 
-        eigenvalue_max = solver2.mkConst(int_sort, "eigenval_max")
+        int_sort2 = tm2.getIntegerSort()
+        eigenvalue_max = tm2.mkConst(int_sort2, "eigenval_max")
 
-        max_constraint = solver2.mkAnd(
-            solver2.mkGt(eigenvalue_max, solver2.mkInteger(0)),
-            solver2.mkEq(eigenvalue_max, solver2.mkInteger(1000))
+        max_constraint = tm2.mkTerm(
+            Kind.AND,
+            tm2.mkTerm(Kind.GT, eigenvalue_max, tm2.mkInteger(0)),
+            tm2.mkTerm(Kind.EQUAL, eigenvalue_max, tm2.mkInteger(1000))
         )
 
         solver2.assertFormula(max_constraint)
@@ -295,12 +310,15 @@ def run_boundary_tests():
         # Test 3: Boundary - KMS rank at boundary (rank 1 inner product)
         solver3 = cvc5.Solver()
         solver3.setLogic("QF_LIA")
+        tm3 = solver3.getTermManager()
 
-        rank_boundary = solver3.mkConst(int_sort, "rank_boundary")
+        int_sort3 = tm3.getIntegerSort()
+        rank_boundary = tm3.mkConst(int_sort3, "rank_boundary")
 
-        boundary_rank_constraint = solver3.mkAnd(
-            solver3.mkEq(rank_boundary, solver3.mkInteger(1)),
-            solver3.mkGt(rank_boundary, solver3.mkInteger(0))
+        boundary_rank_constraint = tm3.mkTerm(
+            Kind.AND,
+            tm3.mkTerm(Kind.EQUAL, rank_boundary, tm3.mkInteger(1)),
+            tm3.mkTerm(Kind.GT, rank_boundary, tm3.mkInteger(0))
         )
 
         solver3.assertFormula(boundary_rank_constraint)

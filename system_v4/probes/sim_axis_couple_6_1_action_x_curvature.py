@@ -10,6 +10,8 @@ as independently chosen factors.
 import json, os
 from z3 import Bool, Solver, Implies, Not, And, Or, sat, unsat
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"z3": {"tried": True, "used": True,
     "reason": "z3 checks SAT/UNSAT of joint curvature x precedence admissibility; load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"z3": "load_bearing"}
@@ -51,7 +53,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_6_1_action_x_curvature",
-               "classification": "canonical",
+               "classification": classification,
                "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1)",
                "exclusion_claim": "coupling excludes independent joint admissibility of Axis 6 and Axis 1",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

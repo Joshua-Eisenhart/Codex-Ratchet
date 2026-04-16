@@ -5,6 +5,8 @@ Exclusion: coupling excludes entropy-gradient invariance under fiber vs lifted-b
 """
 import json, os, torch
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"pytorch": {"tried": True, "used": True,
     "reason": "autograd entropy gradient evaluated along fiber vs base loop; load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"pytorch": "load_bearing"}

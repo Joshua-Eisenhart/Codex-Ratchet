@@ -8,6 +8,8 @@ import json, os
 from clifford import Cl
 import numpy as np
 
+classification = "canonical"
+
 TOOL_MANIFEST = {"clifford": {"tried": True, "used": True,
     "reason": "Cl(3) rotors evaluate UEUE vs EUEU order; residue is load-bearing"}}
 TOOL_INTEGRATION_DEPTH = {"clifford": "load_bearing"}
@@ -51,7 +53,7 @@ if __name__ == "__main__":
     pos = run_positive_tests(); neg = run_negative_tests(); bnd = run_boundary_tests()
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_4_5_loop_x_torus",
-               "classification": "canonical",
+               "classification": classification,
                "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 4, 5)",
                "exclusion_claim": "coupling excludes UEUE/EUEU equivalence under Axis 5 operator fixed point",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

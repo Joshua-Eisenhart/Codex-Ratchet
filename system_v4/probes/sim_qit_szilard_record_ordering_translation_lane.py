@@ -10,14 +10,22 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
-    "Promoted ordering-focused translation lane for the open Szilard hard-reset "
-    "record carrier. It tracks the stronger open ordering signal against the "
-    "strict QIT record/reset companion."
+    "Promoted QIT-aligned Szilard record ordering translation lane built from "
+    "the open hard-reset carrier and the strict record/reset companion. It "
+    "reuses the existing companion results as an ordering translation surface "
+    "and does not claim a new Szilard theorem."
+)
+
+divergence_log = (
+    "QIT Szilard record ordering translation lane: this file compares the open "
+    "ordering-amplified hard-reset sweep against the strict record/reset "
+    "companion by reusing the existing result packs. It preserves the ordering "
+    "gap and the record-survival comparison, but it is not new owner math."
 )
 
 LEGO_IDS = [
@@ -104,11 +112,12 @@ def main() -> None:
 
     out = {
         "name": "qit_szilard_record_ordering_translation_lane",
-        "classification": CLASSIFICATION,
-        "classification_note": CLASSIFICATION_NOTE,
-        "lego_ids": LEGO_IDS,
-        "primary_lego_ids": PRIMARY_LEGO_IDS,
-        "tool_manifest": TOOL_MANIFEST,
+    "classification": CLASSIFICATION,
+    "classification_note": CLASSIFICATION_NOTE,
+    "divergence_log": divergence_log,
+    "lego_ids": LEGO_IDS,
+    "primary_lego_ids": PRIMARY_LEGO_IDS,
+    "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,

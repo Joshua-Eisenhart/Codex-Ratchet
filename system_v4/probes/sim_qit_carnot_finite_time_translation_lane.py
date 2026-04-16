@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"  # auto-backfill
 
 
 CLASSIFICATION = "research_support"
@@ -19,6 +19,8 @@ CLASSIFICATION_NOTE = (
     "open stochastic finite-time row and the strict finite-time companion. It "
     "keeps the fast/slow/quasistatic translation gap explicit."
 )
+
+divergence_log = CLASSIFICATION_NOTE
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -142,6 +144,7 @@ def main() -> None:
         "name": "qit_carnot_finite_time_translation_lane",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

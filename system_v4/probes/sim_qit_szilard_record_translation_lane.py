@@ -18,13 +18,15 @@ from statistics import mean
 classification = "classical_baseline"  # auto-backfill
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Promoted QIT-aligned Szilard record-reset translation lane built from the "
-    "open record/reset sweep and the strict record companion. It keeps the "
-    "shared ordering, record-lifetime, and reset-response metrics explicit, "
-    "without claiming canonical admission."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "QIT-aligned Szilard record-reset translation lane built from the open "
+    "record/reset sweep and the strict record companion. It keeps the shared "
+    "ordering, record-lifetime, and reset-response metrics explicit, while "
+    "remaining a translation surface that reuses existing result files instead "
+    "of broadening the theorem."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",

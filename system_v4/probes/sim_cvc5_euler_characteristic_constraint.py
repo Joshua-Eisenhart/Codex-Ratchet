@@ -15,6 +15,8 @@ import json
 import os
 import sys
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================
@@ -316,7 +318,7 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+            "classification": classification,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

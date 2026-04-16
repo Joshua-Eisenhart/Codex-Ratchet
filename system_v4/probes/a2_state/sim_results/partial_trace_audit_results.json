@@ -1,7 +1,7 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T19:51:11.927741",
-  "classification": "supporting",
+  "timestamp": "2026-04-15T21:59:29.104621",
+  "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
   "known_pattern_tests": {
@@ -1757,6 +1757,465 @@
       ],
       "has_bug": false
     },
+    "sim_clifford_holo_dirac_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_holo_dirac_bridge_claims_canonical.py",
+          "line": 233,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_holo_dirac_bridge_claims_canonical.py",
+          "line": 234,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_holo_dirac_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_holo_dirac_emergence_quantities.py",
+          "line": 216,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_holo_dirac_emergence_quantities.py",
+          "line": 217,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_holo_dirac_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_holo_dirac_pairwise_coupling.py",
+          "line": 221,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_holo_dirac_pairwise_coupling.py",
+          "line": 222,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_holo_dirac_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_holo_dirac_topology_variants.py",
+          "line": 215,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_holo_dirac_topology_variants.py",
+          "line": 216,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_holo_dirac_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_holo_dirac_triple_coexistence.py",
+          "line": 216,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_holo_dirac_triple_coexistence.py",
+          "line": 217,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_weyl_contact_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_weyl_contact_bridge_claims_canonical.py",
+          "line": 127,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_weyl_contact_bridge_claims_canonical.py",
+          "line": 128,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_weyl_contact_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_weyl_contact_emergence_quantities.py",
+          "line": 117,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_weyl_contact_emergence_quantities.py",
+          "line": 118,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_weyl_contact_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_weyl_contact_topology_variants.py",
+          "line": 132,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_weyl_contact_topology_variants.py",
+          "line": 133,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_weyl_contact_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_weyl_contact_triple_coexistence.py",
+          "line": 115,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_weyl_contact_triple_coexistence.py",
+          "line": 116,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_coherent_info_erasure_canonical.py": {
       "patterns": [
         {
@@ -1994,6 +2453,261 @@
       ],
       "has_bug": false
     },
+    "sim_contact_holo_weyl_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_holo_weyl_bridge_claims_canonical.py",
+          "line": 168,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_holo_weyl_bridge_claims_canonical.py",
+          "line": 169,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_holo_weyl_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_holo_weyl_emergence_quantities.py",
+          "line": 158,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_holo_weyl_emergence_quantities.py",
+          "line": 159,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_holo_weyl_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_holo_weyl_pairwise_coupling.py",
+          "line": 159,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_holo_weyl_pairwise_coupling.py",
+          "line": 160,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_holo_weyl_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_holo_weyl_topology_variants.py",
+          "line": 165,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_holo_weyl_topology_variants.py",
+          "line": 166,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_holo_weyl_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_holo_weyl_triple_coexistence.py",
+          "line": 168,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_holo_weyl_triple_coexistence.py",
+          "line": 169,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py": {
       "patterns": [
         {
@@ -2185,6 +2899,363 @@
             "kept": [
               "k",
               "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_contact_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_contact_mera_bridge_claims_canonical.py",
+          "line": 124,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_contact_mera_bridge_claims_canonical.py",
+          "line": 125,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_contact_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_contact_mera_emergence_quantities.py",
+          "line": 96,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_contact_mera_emergence_quantities.py",
+          "line": 97,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_contact_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_contact_mera_topology_variants.py",
+          "line": 89,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_contact_mera_topology_variants.py",
+          "line": 90,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_gerbe_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_gerbe_mera_bridge_claims_canonical.py",
+          "line": 123,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_gerbe_mera_bridge_claims_canonical.py",
+          "line": 124,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_gerbe_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_gerbe_mera_emergence_quantities.py",
+          "line": 113,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_gerbe_mera_emergence_quantities.py",
+          "line": 114,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_gerbe_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_gerbe_mera_topology_variants.py",
+          "line": 115,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_gerbe_mera_topology_variants.py",
+          "line": 116,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_gerbe_mera_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_gerbe_mera_triple_coexistence.py",
+          "line": 111,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_gerbe_mera_triple_coexistence.py",
+          "line": 112,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -2884,6 +3955,159 @@
       ],
       "has_bug": false
     },
+    "sim_gerbe_clifford_contact_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_clifford_contact_bridge_claims_canonical.py",
+          "line": 114,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_gerbe_clifford_contact_bridge_claims_canonical.py",
+          "line": 115,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_clifford_contact_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_clifford_contact_emergence_quantities.py",
+          "line": 108,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_gerbe_clifford_contact_emergence_quantities.py",
+          "line": 109,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_clifford_contact_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_clifford_contact_topology_variants.py",
+          "line": 111,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_gerbe_clifford_contact_topology_variants.py",
+          "line": 112,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical.py": {
       "patterns": [
         {
@@ -3386,6 +4610,817 @@
       ],
       "has_bug": true
     },
+    "sim_holo_contact_symplectic_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_contact_symplectic_bridge_claims_canonical.py",
+          "line": 184,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_contact_symplectic_bridge_claims_canonical.py",
+          "line": 185,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_contact_symplectic_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_contact_symplectic_emergence_quantities.py",
+          "line": 169,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_contact_symplectic_emergence_quantities.py",
+          "line": 170,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_contact_symplectic_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_contact_symplectic_pairwise_coupling.py",
+          "line": 177,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_contact_symplectic_pairwise_coupling.py",
+          "line": 178,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_contact_symplectic_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_contact_symplectic_topology_variants.py",
+          "line": 195,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_contact_symplectic_topology_variants.py",
+          "line": 196,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_contact_symplectic_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_contact_symplectic_triple_coexistence.py",
+          "line": 168,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_contact_symplectic_triple_coexistence.py",
+          "line": 169,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_dirac_st_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_dirac_st_bridge_claims_canonical.py",
+          "line": 88,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_dirac_st_bridge_claims_canonical.py",
+          "line": 89,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_dirac_st_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_dirac_st_emergence_quantities.py",
+          "line": 81,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_dirac_st_emergence_quantities.py",
+          "line": 82,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_dirac_st_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_dirac_st_pairwise_coupling.py",
+          "line": 97,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_dirac_st_pairwise_coupling.py",
+          "line": 100,
+          "pattern": "kakb->ab",
+          "line_text": "return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_dirac_st_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_dirac_st_topology_variants.py",
+          "line": 76,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_dirac_st_topology_variants.py",
+          "line": 77,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_dirac_st_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_dirac_st_triple_coexistence.py",
+          "line": 87,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_dirac_st_triple_coexistence.py",
+          "line": 88,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_mera_clifford_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_mera_clifford_bridge_claims_canonical.py",
+          "line": 180,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_bridge_claims_canonical.py",
+          "line": 181,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_mera_clifford_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_mera_clifford_emergence_quantities.py",
+          "line": 132,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_emergence_quantities.py",
+          "line": 133,
+          "pattern": "kakb->ab",
+          "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_emergence_quantities.py",
+          "line": 249,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_emergence_quantities.py",
+          "line": 250,
+          "pattern": "kakb->ab",
+          "line_text": "rB = np.einsum(\"kakb->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_mera_clifford_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_mera_clifford_pairwise_coupling.py",
+          "line": 158,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_pairwise_coupling.py",
+          "line": 159,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_mera_clifford_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_mera_clifford_topology_variants.py",
+          "line": 139,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_topology_variants.py",
+          "line": 140,
+          "pattern": "kakb->ab",
+          "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holo_mera_clifford_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_holo_mera_clifford_triple_coexistence.py",
+          "line": 119,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holo_mera_clifford_triple_coexistence.py",
+          "line": 120,
+          "pattern": "kakb->ab",
+          "line_text": "rB = np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_holodeck_atom_3_reduction.py": {
       "patterns": [
         {
@@ -3878,6 +5913,465 @@
       ],
       "has_bug": false
     },
+    "sim_hopf_contact_gerbe_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_contact_gerbe_bridge_claims_canonical.py",
+          "line": 194,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_contact_gerbe_bridge_claims_canonical.py",
+          "line": 195,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_contact_gerbe_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_contact_gerbe_emergence_quantities.py",
+          "line": 166,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_contact_gerbe_emergence_quantities.py",
+          "line": 167,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_contact_gerbe_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_contact_gerbe_pairwise_coupling.py",
+          "line": 166,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_contact_gerbe_pairwise_coupling.py",
+          "line": 167,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_contact_gerbe_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_contact_gerbe_topology_variants.py",
+          "line": 164,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_contact_gerbe_topology_variants.py",
+          "line": 165,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_contact_gerbe_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_contact_gerbe_triple_coexistence.py",
+          "line": 162,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_contact_gerbe_triple_coexistence.py",
+          "line": 163,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_dirac_contact_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_dirac_contact_bridge_claims_canonical.py",
+          "line": 125,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_dirac_contact_bridge_claims_canonical.py",
+          "line": 126,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_dirac_contact_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_dirac_contact_emergence_quantities.py",
+          "line": 114,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_dirac_contact_emergence_quantities.py",
+          "line": 115,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_mera_gerbe_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_mera_gerbe_pairwise_coupling.py",
+          "line": 207,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_mera_gerbe_pairwise_coupling.py",
+          "line": 208,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_mera_gerbe_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_mera_gerbe_triple_coexistence.py",
+          "line": 187,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_mera_gerbe_triple_coexistence.py",
+          "line": 188,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_hopf_symplectic_clifford_bridge_claims_canonical.py": {
       "patterns": [
         {
@@ -3971,6 +6465,159 @@
           "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
             "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_gerbe_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_gerbe_bridge_claims_canonical.py",
+          "line": 115,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_symplectic_gerbe_bridge_claims_canonical.py",
+          "line": 116,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_gerbe_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_gerbe_emergence_quantities.py",
+          "line": 92,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_symplectic_gerbe_emergence_quantities.py",
+          "line": 93,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_gerbe_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_gerbe_topology_variants.py",
+          "line": 91,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_hopf_symplectic_gerbe_topology_variants.py",
+          "line": 92,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
             "contracted": [
               "k"
             ],
@@ -6806,6 +9453,1128 @@
       ],
       "has_bug": false
     },
+    "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical.py",
+          "line": 141,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_bridge_claims_canonical.py",
+          "line": 142,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_gerbe_clifford_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_emergence_quantities.py",
+          "line": 103,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_emergence_quantities.py",
+          "line": 104,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_gerbe_clifford_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_topology_variants.py",
+          "line": 102,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_gerbe_clifford_topology_variants.py",
+          "line": 103,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical.py",
+          "line": 123,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical.py",
+          "line": 124,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_symplectic_hopf_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_emergence_quantities.py",
+          "line": 113,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_emergence_quantities.py",
+          "line": 114,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_symplectic_hopf_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_topology_variants.py",
+          "line": 115,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_topology_variants.py",
+          "line": 116,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectraltriple_symplectic_hopf_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_triple_coexistence.py",
+          "line": 106,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectraltriple_symplectic_hopf_triple_coexistence.py",
+          "line": 107,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_st_dirac_symplectic_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_st_dirac_symplectic_bridge_claims_canonical.py",
+          "line": 204,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_st_dirac_symplectic_bridge_claims_canonical.py",
+          "line": 205,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_st_dirac_symplectic_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_st_dirac_symplectic_emergence_quantities.py",
+          "line": 39,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_st_dirac_symplectic_emergence_quantities.py",
+          "line": 40,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_st_dirac_symplectic_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_st_dirac_symplectic_pairwise_coupling.py",
+          "line": 47,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_st_dirac_symplectic_pairwise_coupling.py",
+          "line": 48,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_st_dirac_symplectic_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_st_dirac_symplectic_topology_variants.py",
+          "line": 45,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_st_dirac_symplectic_topology_variants.py",
+          "line": 46,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_st_dirac_symplectic_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_st_dirac_symplectic_triple_coexistence.py",
+          "line": 40,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_st_dirac_symplectic_triple_coexistence.py",
+          "line": 41,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symp_st_weyl_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_symp_st_weyl_bridge_claims_canonical.py",
+          "line": 226,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symp_st_weyl_bridge_claims_canonical.py",
+          "line": 227,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symp_st_weyl_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_symp_st_weyl_emergence_quantities.py",
+          "line": 218,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symp_st_weyl_emergence_quantities.py",
+          "line": 219,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symp_st_weyl_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_symp_st_weyl_pairwise_coupling.py",
+          "line": 222,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symp_st_weyl_pairwise_coupling.py",
+          "line": 223,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symp_st_weyl_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_symp_st_weyl_topology_variants.py",
+          "line": 224,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symp_st_weyl_topology_variants.py",
+          "line": 225,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symp_st_weyl_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_symp_st_weyl_triple_coexistence.py",
+          "line": 217,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symp_st_weyl_triple_coexistence.py",
+          "line": 218,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_holo_dirac_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_holo_dirac_bridge_claims_canonical.py",
+          "line": 177,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_holo_dirac_bridge_claims_canonical.py",
+          "line": 178,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_holo_dirac_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_holo_dirac_emergence_quantities.py",
+          "line": 167,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_holo_dirac_emergence_quantities.py",
+          "line": 168,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_holo_dirac_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_holo_dirac_pairwise_coupling.py",
+          "line": 170,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_holo_dirac_pairwise_coupling.py",
+          "line": 171,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_holo_dirac_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_holo_dirac_topology_variants.py",
+          "line": 174,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_holo_dirac_topology_variants.py",
+          "line": 175,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_holo_dirac_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_holo_dirac_triple_coexistence.py",
+          "line": 177,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_holo_dirac_triple_coexistence.py",
+          "line": 178,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_symplectic_hopf_mera_bridge_claims_canonical.py": {
       "patterns": [
         {
@@ -8431,6 +12200,57 @@
       ],
       "has_bug": false
     },
+    "sim_universal_q_cross_program_invariant.py": {
+      "patterns": [
+        {
+          "file": "sim_universal_q_cross_program_invariant.py",
+          "line": 131,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_universal_q_cross_program_invariant.py",
+          "line": 132,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_werner_state_ic_gradient_sweep.py": {
       "patterns": [
         {
@@ -8798,6 +12618,261 @@
       ],
       "has_bug": false
     },
+    "sim_weyl_dirac_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_dirac_mera_bridge_claims_canonical.py",
+          "line": 204,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_dirac_mera_bridge_claims_canonical.py",
+          "line": 205,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_dirac_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_dirac_mera_emergence_quantities.py",
+          "line": 181,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_dirac_mera_emergence_quantities.py",
+          "line": 182,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_dirac_mera_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_dirac_mera_pairwise_coupling.py",
+          "line": 186,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_dirac_mera_pairwise_coupling.py",
+          "line": 187,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_dirac_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_dirac_mera_topology_variants.py",
+          "line": 181,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_dirac_mera_topology_variants.py",
+          "line": 182,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_dirac_mera_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_dirac_mera_triple_coexistence.py",
+          "line": 181,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_dirac_mera_triple_coexistence.py",
+          "line": 182,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_weyl_gerbe_hopf_bridge_claims_canonical.py": {
       "patterns": [
         {
@@ -8891,6 +12966,210 @@
           "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
           "classification": {
             "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_holo_symplectic_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_holo_symplectic_bridge_claims_canonical.py",
+          "line": 168,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_holo_symplectic_bridge_claims_canonical.py",
+          "line": 169,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_holo_symplectic_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_holo_symplectic_emergence_quantities.py",
+          "line": 142,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_holo_symplectic_emergence_quantities.py",
+          "line": 143,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_symplectic_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_symplectic_mera_bridge_claims_canonical.py",
+          "line": 115,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_symplectic_mera_bridge_claims_canonical.py",
+          "line": 116,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_symplectic_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_symplectic_mera_emergence_quantities.py",
+          "line": 96,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_symplectic_mera_emergence_quantities.py",
+          "line": 97,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
             "contracted": [
               "k"
             ],
@@ -9959,8 +14238,8 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 155,
-    "clean_files": 142,
+    "total_files_with_einsum_ptrace": 238,
+    "clean_files": 225,
     "files_with_einsum_bugs": 13,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
@@ -10016,67 +14295,5 @@
       "sim_torch_cnot.py": "CLEAN"
     },
     "verdict": "4 files need fixes. 1 CRITICAL live bug (sim_axis0_through_shells.py), 1 dead code removal, 2 naming/swap bugs that affect correctness."
-  },
-  "tool_manifest": {
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
-    }
   }
 }

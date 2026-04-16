@@ -18,6 +18,15 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Step 1 pairwise coupling for Hopf×Symplectic×Gerbe (27th program). "
+    "H_hopf=log(2)/2 (π/2 holonomy, topology-sensitive). "
+    "H_symp=log(1+4). H_gerbe=log(1+3). "
+    "All three pairs Q_pair > 0 confirmed. "
+    "z3 UNSAT: positive factors cannot multiply to zero. "
+    "sympy: zero-factor collapse verified."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -205,14 +214,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_symplectic_gerbe_pairwise_coupling",
         "classification": classification,
-        "divergence_log": (
-            "Step 1 pairwise coupling for Hopf×Symplectic×Gerbe (27th program). "
-            "H_hopf = log(2)/2 (π/2 holonomy, topology-sensitive). "
-            "H_symp = log(1+4). H_gerbe = log(1+3). "
-            "All three pairs Q_pair > 0 confirmed. "
-            "z3 UNSAT: positive factors cannot multiply to zero. "
-            "sympy: zero-factor collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_symp": H_SYMP, "H_gerbe": H_GERBE},

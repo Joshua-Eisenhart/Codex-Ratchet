@@ -23,6 +23,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Hopf×Symplectic×Gerbe topology-variant probe. This remains a "
+    "classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -256,6 +261,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_symplectic_gerbe_topology_variants",
         "classification": classification,
+        "classification_note": CLASSIFICATION_NOTE,
         "divergence_log": (
             "Step 3 topology variants for Hopf×Symplectic×Gerbe (27th program). "
             "T1 S³ H_hopf=log(2)/2, T2 S² H_hopf=log(2), T3 lens H_hopf=log(2)/3. "

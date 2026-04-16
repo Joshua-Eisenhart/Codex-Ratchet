@@ -30,6 +30,16 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Bridge claims for Hopf×Symplectic×Gerbe (27th program). "
+    "Q_HSG = MI × H_hopf × H_symp × H_gerbe. rho_HSG valid (8×8, "
+    "trace=1, PSD, float64). r(Q_HSG, MI) > 0.99 with fixed H "
+    "(proportional by construction). Axis 0 gradient: dephasing MERA gives "
+    "MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. "
+    "sympy: four-factor product collapse. pytorch: rho_HSG trace validated "
+    "(float64)."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -307,19 +317,7 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_symplectic_gerbe_bridge_claims_canonical",
         "classification": classification,
-        "divergence_log": (
-            "Bridge claims for Hopf×Symplectic×Gerbe (27th program). "
-            f"Q_HSG = MI × H_hopf × H_symp × H_gerbe. "
-            f"H_hopf={H_HOPF:.6f} (log(2)/2, π/2 holonomy). "
-            f"H_symp={H_SYMP:.6f} (log(1+4), n_lagrangian=4). "
-            f"H_gerbe={H_GERBE:.6f} (log(1+3), DD_count=3). "
-            "rho_HSG valid (8x8, trace=1, PSD, float64). "
-            "r(Q_HSG, MI) > 0.99 with fixed H (proportional by construction). "
-            "Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor product collapse. "
-            "pytorch: rho_HSG trace validated (float64)."
-        ),
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_symp": H_SYMP, "H_gerbe": H_GERBE},

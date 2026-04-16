@@ -18,6 +18,11 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Triple coexistence step of Hopf×Symplectic×Gerbe (27th program). "
+    "H_hopf, H_symp, and H_gerbe are normalized via h/(1+h) and compared "
+    "through joint-vs-pairwise products without changing program scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -216,14 +221,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_symplectic_gerbe_triple_coexistence",
         "classification": classification,
-        "divergence_log": (
-            "Step 2 triple coexistence for Hopf×Symplectic×Gerbe (27th program). "
-            "H_hopf = log(2)/2 (π/2 holonomy). "
-            "H_symp = log(1+4). H_gerbe = log(1+3). "
-            "Normalize H via h/(1+h). Joint product ≤ each pairwise product confirmed. "
-            "z3 UNSAT: joint > pair impossible for values in (0,1). "
-            "sympy: a*b*(1-c) ≥ 0 for c ≤ 1."
-        ),
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "H_values": {"H_hopf": H_HOPF, "H_symp": H_SYMP, "H_gerbe": H_GERBE},

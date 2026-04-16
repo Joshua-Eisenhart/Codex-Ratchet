@@ -24,6 +24,12 @@ import json, os, math
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline Hopf×Symplectic×Gerbe emergence probe: this file "
+    "checks scalar emergence quantities with z3 and sympy support where "
+    "available, but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch":   {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"},
@@ -251,15 +257,8 @@ if __name__ == "__main__":
     out = {
         "name": "sim_hopf_symplectic_gerbe_emergence_quantities",
         "classification": classification,
-        "divergence_log": (
-            "Step 4 emergence quantities for Hopf×Symplectic×Gerbe (27th program). "
-            "E1-E3 single shell: Q=0 (absent shells zero out product). "
-            "E4-E6 pairwise without MI: Q=0. "
-            "E7 full triple+MI: Q_HSG > 0 — emergence confirmed. "
-            "Q_HSG = MI × H_hopf × H_symp × H_gerbe. "
-            "z3 UNSAT: MI=0 with Q>0 impossible. "
-            "sympy: four-factor zero-collapse verified."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "Q_HSG": MI_FIXED * H_HOPF * H_SYMP * H_GERBE,

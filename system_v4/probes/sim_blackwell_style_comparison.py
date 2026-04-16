@@ -16,6 +16,11 @@ import numpy as np
 import cvc5
 from cvc5 import Kind
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Canonical local cvc5 lego for operational comparison of finite probe "
+    "families via stochastic post-processing synthesis."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 
 EPS = 1e-10
@@ -189,6 +194,7 @@ def main():
         "name": "blackwell_style_comparison",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

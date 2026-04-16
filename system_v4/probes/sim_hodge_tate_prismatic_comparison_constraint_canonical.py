@@ -125,8 +125,9 @@ def run_positive_tests():
         n = 2
 
         # Hodge-Tate weights
-        w1 = solver.mkConst(cvc5.IntSort(), "w1")
-        w2 = solver.mkConst(cvc5.IntSort(), "w2")
+        int_sort = solver.getIntegerSort()
+        w1 = solver.declareFun("w1", [], int_sort)
+        w2 = solver.declareFun("w2", [], int_sort)
 
         # Constraint: 0 ≤ w_i ≤ n
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, w1, solver.mkInteger(0)))
@@ -152,7 +153,7 @@ def run_positive_tests():
 
         n = 2  # dimension = 2
 
-        w_bad = solver.mkConst(cvc5.IntSort(), "w_bad")
+        w_bad = solver.declareFun("w_bad", [], solver.getIntegerSort())
 
         # Constraint: 0 ≤ w ≤ n
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, w_bad, solver.mkInteger(0)))
@@ -174,9 +175,10 @@ def run_positive_tests():
         solver.setLogic("QF_NRA")
 
         # Variables for Frobenius eigenvalue and weight
-        ev = solver.mkConst(cvc5.RealSort(), "eigenvalue")
-        w = solver.mkConst(cvc5.RealSort(), "weight")
-        p_val = solver.mkConst(cvc5.RealSort(), "p")
+        real_sort = solver.getRealSort()
+        ev = solver.declareFun("eigenvalue", [], real_sort)
+        w = solver.declareFun("weight", [], real_sort)
+        p_val = solver.declareFun("p", [], real_sort)
 
         # p > 1 (prime)
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_val, solver.mkReal(1)))
@@ -250,7 +252,7 @@ def run_negative_tests():
         solver.setLogic("QF_LIA")
 
         n = 2  # dimension = 2
-        w_too_large = solver.mkConst(cvc5.IntSort(), "w_too_large")
+        w_too_large = solver.declareFun("w_too_large", [], solver.getIntegerSort())
 
         # Constraint: w ≤ n
         solver.assertFormula(solver.mkTerm(cvc5.Kind.LEQ, w_too_large, solver.mkInteger(n)))
@@ -270,9 +272,10 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
 
-        ev = solver.mkConst(cvc5.RealSort(), "ev")
-        w = solver.mkConst(cvc5.RealSort(), "w")
-        p_val = solver.mkConst(cvc5.RealSort(), "p")
+        real_sort = solver.getRealSort()
+        ev = solver.declareFun("ev", [], real_sort)
+        w = solver.declareFun("w", [], real_sort)
+        p_val = solver.declareFun("p", [], real_sort)
 
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_val, solver.mkReal(1)))
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w, solver.mkReal(1)))
@@ -316,7 +319,7 @@ def run_boundary_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_LIA")
 
-        w = solver.mkConst(cvc5.IntSort(), "w")
+        w = solver.declareFun("w", [], solver.getIntegerSort())
 
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, w, solver.mkInteger(0)))
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w, solver.mkInteger(0)))

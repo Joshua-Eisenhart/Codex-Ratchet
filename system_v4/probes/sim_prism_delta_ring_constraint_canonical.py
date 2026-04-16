@@ -122,12 +122,13 @@ def run_positive_tests():
         solver.setLogic("QF_NRA")
 
         # Variables for δ on elements
-        x = solver.mkConst(cvc5.RealSort(), "x")
-        y = solver.mkConst(cvc5.RealSort(), "y")
-        delta_x = solver.mkConst(cvc5.RealSort(), "delta_x")
-        delta_y = solver.mkConst(cvc5.RealSort(), "delta_y")
-        p_char = solver.mkConst(cvc5.RealSort(), "p_char")
-        delta_xy = solver.mkConst(cvc5.RealSort(), "delta_xy")
+        real_sort = solver.getRealSort()
+        x = solver.declareFun("x", [], real_sort)
+        y = solver.declareFun("y", [], real_sort)
+        delta_x = solver.declareFun("delta_x", [], real_sort)
+        delta_y = solver.declareFun("delta_y", [], real_sort)
+        p_char = solver.declareFun("p_char", [], real_sort)
+        delta_xy = solver.declareFun("delta_xy", [], real_sort)
 
         # p > 0 (characteristic)
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_char, solver.mkReal(0)))
@@ -160,9 +161,10 @@ def run_positive_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
 
-        one = solver.mkConst(cvc5.RealSort(), "one")
-        delta_one = solver.mkConst(cvc5.RealSort(), "delta_one")
-        p_char = solver.mkConst(cvc5.RealSort(), "p_char")
+        real_sort = solver.getRealSort()
+        one = solver.declareFun("one", [], real_sort)
+        delta_one = solver.declareFun("delta_one", [], real_sort)
+        p_char = solver.declareFun("p_char", [], real_sort)
 
         # one = 1
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, one, solver.mkReal(1)))
@@ -238,12 +240,13 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
 
-        x = solver.mkConst(cvc5.RealSort(), "x")
-        y = solver.mkConst(cvc5.RealSort(), "y")
-        delta_x = solver.mkConst(cvc5.RealSort(), "delta_x")
-        delta_y = solver.mkConst(cvc5.RealSort(), "delta_y")
-        p_char = solver.mkConst(cvc5.RealSort(), "p_char")
-        delta_xy = solver.mkConst(cvc5.RealSort(), "delta_xy")
+        real_sort = solver.getRealSort()
+        x = solver.declareFun("x", [], real_sort)
+        y = solver.declareFun("y", [], real_sort)
+        delta_x = solver.declareFun("delta_x", [], real_sort)
+        delta_y = solver.declareFun("delta_y", [], real_sort)
+        p_char = solver.declareFun("p_char", [], real_sort)
+        delta_xy = solver.declareFun("delta_xy", [], real_sort)
 
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, x, solver.mkReal(2)))
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, y, solver.mkReal(3)))
@@ -267,8 +270,9 @@ def run_negative_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
 
-        delta_one = solver.mkConst(cvc5.RealSort(), "delta_one")
-        p_char = solver.mkConst(cvc5.RealSort(), "p_char")
+        real_sort = solver.getRealSort()
+        delta_one = solver.declareFun("delta_one", [], real_sort)
+        p_char = solver.declareFun("p_char", [], real_sort)
 
         solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_char, solver.mkReal(0)))
         # Contradiction: δ(1) ≠ 0 but axiom forces δ(1) = 0
@@ -305,11 +309,12 @@ def run_boundary_tests():
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
 
-        x = solver.mkConst(cvc5.RealSort(), "x")
-        y = solver.mkConst(cvc5.RealSort(), "y")
-        delta_x = solver.mkConst(cvc5.RealSort(), "delta_x")
-        delta_y = solver.mkConst(cvc5.RealSort(), "delta_y")
-        p_char = solver.mkConst(cvc5.RealSort(), "p_char")
+        real_sort = solver.getRealSort()
+        x = solver.declareFun("x", [], real_sort)
+        y = solver.declareFun("y", [], real_sort)
+        delta_x = solver.declareFun("delta_x", [], real_sort)
+        delta_y = solver.declareFun("delta_y", [], real_sort)
+        p_char = solver.declareFun("p_char", [], real_sort)
 
         # δ ≡ 0
         solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, delta_x, solver.mkReal(0)))

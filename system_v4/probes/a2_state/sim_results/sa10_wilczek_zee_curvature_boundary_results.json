@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not applicable \u2014 finite-dim matrix algebra, no graph structure"
     },
     "z3": {
       "tried": false,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not applicable"
     },
     "sympy": {
       "tried": true,
@@ -41,27 +41,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not applicable"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not applicable"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not applicable"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not applicable"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not applicable"
     }
   },
   "tool_integration_depth": {
@@ -162,7 +162,7 @@
       "stokes_pass": true,
       "non_trivial_holonomy": true
     },
-    "elapsed_s": 0.3118631839752197
+    "elapsed_s": 0.285794734954834
   },
   "summary": {
     "total": 3,
@@ -170,35 +170,5 @@
     "failed": 0,
     "failed_tests": []
   },
-  "timestamp": "2026-04-16T03:08:27Z",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  },
-  "positive": [
-    {
-      "name": "basic_execution",
-      "passed": true,
-      "note": "probe executed without error"
-    }
-  ],
-  "negative": [
-    {
-      "name": "invalid_input_rejected",
-      "passed": true,
-      "note": "boundary conditions verified"
-    }
-  ]
+  "timestamp": "2026-04-16T04:39:56Z"
 }

@@ -1,37 +1,37 @@
 {
   "schema": "SIM_EVIDENCE_v1",
-  "timestamp": "2026-04-16T03:07:59.918508+00:00Z",
+  "timestamp": "2026-04-16T04:39:30.487850+00:00Z",
   "sim_name": "contract_s6_variance_direction",
   "status": "current_basis_measurement",
   "variance_definition": "V(rho) = Tr(rho^2)",
   "measurements": {
     "Type1_Deductive": {
       "n_trials": 200,
-      "avg_early_delta_v": -0.201356886161211,
-      "avg_full_delta_v": -0.2394990750903531,
+      "avg_early_delta_v": -0.20079704879062696,
+      "avg_full_delta_v": -0.23510412028865282,
       "early_positive_rate": 0.0,
       "early_negative_rate": 1.0
     },
     "Type1_Inductive": {
       "n_trials": 200,
-      "avg_early_delta_v": -0.07288520719665117,
-      "avg_full_delta_v": -0.2387440282121421,
+      "avg_early_delta_v": -0.0725703294000126,
+      "avg_full_delta_v": -0.2256515930923089,
       "early_positive_rate": 0.0,
       "early_negative_rate": 1.0
     },
     "Type2_Deductive": {
       "n_trials": 200,
-      "avg_early_delta_v": 5.0515147620444624e-17,
-      "avg_full_delta_v": 2.1316282072803005e-16,
-      "early_positive_rate": 0.45,
-      "early_negative_rate": 0.27
+      "avg_early_delta_v": 4.6074255521943994e-17,
+      "avg_full_delta_v": 2.2759572004815707e-16,
+      "early_positive_rate": 0.475,
+      "early_negative_rate": 0.275
     },
     "Type2_Inductive": {
       "n_trials": 200,
-      "avg_early_delta_v": 1.6153745008296028e-16,
-      "avg_full_delta_v": 3.1086244689504386e-17,
-      "early_positive_rate": 0.785,
-      "early_negative_rate": 0.025
+      "avg_early_delta_v": 1.7486012637846215e-16,
+      "avg_full_delta_v": 3.3861802251067274e-17,
+      "early_positive_rate": 0.83,
+      "early_negative_rate": 0.02
     }
   },
   "verdicts": {
@@ -46,72 +46,9 @@
       "token_id": "",
       "sim_spec_id": "S_SIM_CONTRACT_S6_VARIANCE_DIRECTION_V1",
       "status": "KILL",
-      "measured_value": 0.12847167896455983,
+      "measured_value": 0.12822671939061436,
       "kill_reason": "EARLY_VARIANCE_SIGNS_DO_NOT_MATCH_CONTRACT",
-      "timestamp": "2026-04-16T03:07:59.918496"
+      "timestamp": "2026-04-16T04:39:30.487839"
     }
-  ],
-  "tool_manifest": {
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
-    }
-  },
-  "classification": "classical_baseline"
+  ]
 }

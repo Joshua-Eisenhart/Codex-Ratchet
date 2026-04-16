@@ -13,6 +13,8 @@ Theory:
 import json
 import os
 
+classification = "canonical"
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "pytorch not needed; pure symbolic constraint via cvc5"},
     "pyg": {"tried": False, "used": False, "reason": "PyG not needed; categorical structure encoded as constraints"},

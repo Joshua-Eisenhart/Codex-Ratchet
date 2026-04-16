@@ -17,6 +17,8 @@ import os
 import sympy as sp
 from sympy import binomial
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

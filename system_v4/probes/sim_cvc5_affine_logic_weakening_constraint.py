@@ -15,6 +15,8 @@ sympy: resource count upper-bound formula verification.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

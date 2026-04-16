@@ -14,6 +14,8 @@ Sympy derives the universal property of free/forgetful adjunction.
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

@@ -1,8 +1,8 @@
 {
   "name": "weyl_two_model_crosscheck",
   "classification": "canonical",
-  "timestamp": "2026-04-16T05:16:05.965609+00:00",
-  "elapsed_seconds": 4.28,
+  "timestamp": "2026-04-16T05:29:04.582862+00:00",
+  "elapsed_seconds": 3.875,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- topology via gudhi, graph via rustworkx"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 handles the SMT check"
     },
     "sympy": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- chirality encoded in clifford, not irreps"
     },
     "rustworkx": {
       "tried": true,
@@ -52,12 +52,12 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- model hierarchy is a DAG not a hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- topology measured via gudhi persistence"
     },
     "gudhi": {
       "tried": true,

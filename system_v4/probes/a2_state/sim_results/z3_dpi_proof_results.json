@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- no autograd layer in proof sim"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no graph layer in proof sim"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- SyGuS not required for this DPI proof"
     },
     "sympy": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- no geometric algebra layer here"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- no manifold geometry layer here"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant network layer here"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed -- no dependency graph here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -103,14 +103,14 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies CPTP contraction AND D_after > D_before. DPI confirmed: relative entropy cannot increase under CPTP channels.",
-      "elapsed_s": 0.0243
+      "elapsed_s": 0.0568
     },
     "proof2_mutual_information_dpi": {
       "name": "mutual_information_dpi_unsat",
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "No assignment satisfies local CPTP constraints AND I_after > I_before. MI DPI confirmed: local CPTP cannot increase mutual information.",
-      "elapsed_s": 0.0144
+      "elapsed_s": 0.0105
     },
     "sympy_derivation": {
       "status": "ok",
@@ -135,7 +135,7 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "Identity channel (lambda=1) also satisfies DPI -- trivially D_after <= D_before AND D_after > D_before is UNSAT.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0004
     }
   },
   "boundary": {

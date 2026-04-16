@@ -1,7 +1,7 @@
 {
   "name": "weyl_spinor_hopf",
-  "timestamp": "2026-04-16T05:16:00.717552+00:00",
-  "elapsed_s": 2.6263427734375,
+  "timestamp": "2026-04-16T05:29:00.026516+00:00",
+  "elapsed_s": 2.277203321456909,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for fiber bundle geometry"
     },
     "z3": {
       "tried": true,
@@ -41,22 +41,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- spinor geometry handled by clifford/geomstats"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- topology via GUDHI"
     },
     "gudhi": {
       "tried": true,

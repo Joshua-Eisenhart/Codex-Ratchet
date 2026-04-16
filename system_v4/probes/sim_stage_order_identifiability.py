@@ -13,6 +13,24 @@ from itertools import permutations
 import sys
 classification = "classical_baseline"  # auto-backfill
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+divergence_log = (
+    "Classical baseline: this stage-order identifiability probe compares stage-matrix "
+    "operator permutations, not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "stage_matrix_neg_lib": {
+        "used": True,
+        "reason": "load-bearing stage-row generation, variant execution, and comparison logic for order identifiability",
+    },
+    "proto_ratchet_sim_runner": {
+        "used": True,
+        "reason": "supporting evidence-token emission for the result ledger",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "stage_matrix_neg_lib": "supportive",
+    "proto_ratchet_sim_runner": "supportive",
+}
 
 from proto_ratchet_sim_runner import EvidenceToken
 from stage_matrix_neg_lib import (
@@ -101,6 +119,9 @@ def run():
         "strongest_separated_orders": strongest,
         "all_orders": summaries,
         "evidence_ledger": [t.__dict__ for t in tokens],
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
     }
 
     outpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "a2_state", "sim_results", RESULT_NAME)

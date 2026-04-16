@@ -9,7 +9,7 @@
   "primary_lego_ids": [
     "fiber_loop_law"
   ],
-  "created_at": "2026-04-16T05:14:04.069722+00:00",
+  "created_at": "2026-04-16T06:15:32.864642+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not required for direct fiber-loop law"
     },
     "z3": {
       "tried": true,
@@ -44,47 +44,47 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not required; no geodesic claim in this packet"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not required; no equivariant learning claim in this packet"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not required; no shell DAG update here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not required; no hypergraph claim here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not required; no cell-complex claim here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not required; no persistence claim here"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "sampled_fiber_stationary": {

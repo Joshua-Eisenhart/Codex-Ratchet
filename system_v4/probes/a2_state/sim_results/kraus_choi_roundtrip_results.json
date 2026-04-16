@@ -13,12 +13,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "torch.linalg.eigh cross-check of Choi eigendecomposition vs numpy"
     },
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "Availability check only; graph tooling is not used in the Kraus/Choi algebra path"
     },
     "z3": {
       "tried": true,
@@ -33,7 +33,7 @@
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "Symbolic cross-check of Choi matrix trace and determinant for gamma=2/5"
     },
     "clifford": {
       "tried": true,
@@ -48,12 +48,12 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "Availability check only; equivariant neural components are not used in this baseline"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "Availability check only; no graph rewrites or graph search are used here"
     },
     "xgi": {
       "tried": true,
@@ -63,27 +63,27 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "Availability check only; cell-complex structure is not used in the roundtrip check"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "Availability check only; persistent-homology tooling is not used in this baseline"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "choi_numeric_vs_analytic": {

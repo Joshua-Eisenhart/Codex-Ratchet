@@ -20,12 +20,12 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "no SMT closure in baseline"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "numeric checks only"
     },
     "clifford": {
       "tried": false,
@@ -35,47 +35,47 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "manual chord distance"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "no equivariant features"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hypergraph"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "no cell complex"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "no persistence"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": null,
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "torch_reference_chord": 1.4142135381698608,

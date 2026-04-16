@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no graph message passing layer"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- no Clifford algebra layer"
     },
     "geomstats": {
       "tried": true,
@@ -40,42 +40,42 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- already confirmed in axis6_e3nn_fe_bridge"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed -- chain ordering is fixed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph constraint layer"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- no cell complex"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- persistence not in scope here"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": "load_bearing",
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": "load_bearing",
+    "cvc5": "load_bearing",
     "e3nn": null,
+    "geomstats": "load_bearing",
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "pytorch_autograd": {
@@ -185,7 +185,7 @@
       "flip_confirmed_near_0p7368": true,
       "gradient_nonzero_at_flip": true,
       "status": "ok",
-      "elapsed_s": 0.0037398338317871094
+      "elapsed_s": 0.020801782608032227
     },
     "geomstats_spd_curvature": {
       "max_curvature": {
@@ -800,7 +800,7 @@
         }
       ],
       "status": "ok",
-      "elapsed_s": 0.004518985748291016
+      "elapsed_s": 0.01536107063293457
     },
     "sympy_analytic": {
       "Ic_expression": "Piecewise((1, Eq(r, 1)), (((r - 2)*log(1 - r/2) - (r - 1)*log((1 - r)/2) - log(r**r/2**r))/(2*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1) & Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), True))",
@@ -820,7 +820,7 @@
       "expected_flip_point": 0.7368,
       "error_from_expected": 0.0306203174774885,
       "status": "ok",
-      "elapsed_s": 5.580076694488525
+      "elapsed_s": 5.153268098831177
     }
   },
   "negative": {
@@ -865,7 +865,7 @@
       "below_bound_used": 0.6811798507804018,
       "above_bound_used": 0.7361798507804018,
       "status": "ok",
-      "elapsed_s": 0.011000871658325195
+      "elapsed_s": 0.016796350479125977
     }
   },
   "boundary": {
@@ -891,7 +891,7 @@
       },
       "all_unsat_confirmed": true,
       "status": "ok",
-      "elapsed_s": 0.05106306076049805
+      "elapsed_s": 0.00471186637878418
     }
   },
   "axis6_canonical_summary": {

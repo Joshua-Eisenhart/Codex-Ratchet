@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "Topology graph not needed at variant baseline; excluded"
     },
     "z3": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian manifold structure not required for variant baseline; excluded"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariance not relevant for topology variants; excluded"
     },
     "rustworkx": {
       "tried": true,
@@ -60,22 +60,22 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "Persistent homology not required for topology variant baseline; excluded"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "supportive",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
-    "rustworkx": "supportive",
-    "xgi": "supportive",
-    "toponetx": "supportive",
-    "gudhi": null
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "P1_H_holo_stable_all_3_variants": {
@@ -93,17 +93,17 @@
       "variant_results": {
         "T1_torus": {
           "MI_input": 1.3862943611198906,
-          "MI_final": 0.11596037878975984,
+          "MI_final": 0.11996318077866275,
           "monotone": true
         },
         "T2_sphere": {
           "MI_input": 1.3862943611198906,
-          "MI_final": 0.147843590145319,
+          "MI_final": 0.13449393161352852,
           "monotone": true
         },
         "T3_open_book": {
           "MI_input": 1.3862943611198906,
-          "MI_final": 0.11653616638952946,
+          "MI_final": 0.14823215864238182,
           "monotone": true
         }
       },
@@ -157,8 +157,8 @@
     },
     "N3_high_dephasing_lower_MI_all_variants": {
       "passed": true,
-      "mean_MI_eps09": 0.0002537668297634503,
-      "mean_MI_eps03": 0.12678004510820276,
+      "mean_MI_eps09": 0.0008995604036458419,
+      "mean_MI_eps03": 0.13422975701152437,
       "interpretation": "eps=0.9 produces lower MI than eps=0.3 across all 3 topology variants; DPI topology-agnostic"
     },
     "pass": true

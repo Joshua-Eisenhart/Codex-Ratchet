@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "cross-check boundary rank via torch.linalg.matrix_rank"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for classical linalg baseline"
     },
     "z3": {
       "tried": false,
@@ -20,12 +20,12 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "no SMT encoding for rank computation"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "numpy rank sufficient"
     },
     "clifford": {
       "tried": false,
@@ -40,7 +40,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "no equivariant nets required"
     },
     "rustworkx": {
       "tried": false,
@@ -60,22 +60,22 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "baseline uses raw linalg"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "supportive",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": null,
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "divergence_log": [
     "Chose minimal 7-vertex Cs\u00e1sz\u00e1r torus triangulation over subdivision for speed.",

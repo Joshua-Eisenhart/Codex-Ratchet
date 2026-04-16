@@ -10,12 +10,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed; this is a small closed-form numpy probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph learning is not needed for this bounded family separation test"
     },
     "z3": {
       "tried": false,
@@ -30,7 +30,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "all calculations are numerical and finite-dimensional"
     },
     "clifford": {
       "tried": false,
@@ -40,7 +40,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "manifold tooling is not needed for this bounded comparison"
     },
     "e3nn": {
       "tried": false,
@@ -50,7 +50,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph-algorithm layer is required here"
     },
     "xgi": {
       "tried": false,
@@ -65,7 +65,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "no persistence computation is needed here"
     }
   },
   "positive": {

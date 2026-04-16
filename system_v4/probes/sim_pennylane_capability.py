@@ -13,6 +13,11 @@ import pennylane as qml
 
 
 classification = "canonical"
+divergence_log = (
+    "Capability isolation witness for pennylane: qnode state and gradient "
+    "surfaces are exercised here so broader bridge sims can treat pennylane "
+    "as an admitted variational witness instead of an ad hoc dependency."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "supportive numeric checks for pennylane capability"},

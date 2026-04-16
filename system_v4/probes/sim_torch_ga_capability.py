@@ -16,6 +16,11 @@ import torch_ga
 
 
 classification = "canonical"
+divergence_log = (
+    "Capability isolation witness for torch_ga: geometric tensor conversion and "
+    "roundtrip stability are exercised here so broader bridge sims can treat "
+    "torch_ga as an admitted GA surface instead of a speculative package import."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": True, "used": True, "reason": "supportive tensor carrier for torch_ga capability"},

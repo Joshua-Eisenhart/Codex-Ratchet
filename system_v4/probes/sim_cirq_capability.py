@@ -13,6 +13,11 @@ import numpy as np
 
 
 classification = "canonical"
+divergence_log = (
+    "Capability isolation witness for cirq: single-qubit gate, simulator, and "
+    "statevector surfaces are exercised here so broader bridge sims can treat "
+    "cirq as an admitted circuit witness instead of an ad hoc import."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "supportive numeric checks for cirq capability"},

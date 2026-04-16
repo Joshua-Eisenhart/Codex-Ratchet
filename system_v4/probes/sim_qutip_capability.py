@@ -13,6 +13,11 @@ import qutip
 
 
 classification = "canonical"
+divergence_log = (
+    "Capability isolation witness for qutip: ket, density-matrix, and expectation "
+    "surfaces are exercised here so broader bridge sims can treat qutip as an "
+    "admitted nonclassical witness instead of an ad hoc runtime dependency."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "supportive numeric checks for qutip capability"},

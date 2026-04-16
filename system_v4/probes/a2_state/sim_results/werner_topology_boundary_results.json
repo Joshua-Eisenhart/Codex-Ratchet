@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 cell complex built via TopoNetX directly"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -20,37 +20,37 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 z3 proof is sufficient"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 numeric computation only"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 topology via TopoNetX"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "not needed"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not needed \u2014 Betti numbers via TopoNetX adjacency"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

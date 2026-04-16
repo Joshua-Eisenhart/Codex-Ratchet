@@ -14,7 +14,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "not needed; no GNN in this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -24,7 +24,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "not needed; z3 handles unfalsifiability impossibility proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -39,12 +39,12 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "not needed; Clifford grade-projection handles posterior"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "not needed; no equivariant network in this sim"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -59,12 +59,12 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "not needed; cycle graph handled by rustworkx"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "not needed; no persistent homology in this sim"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

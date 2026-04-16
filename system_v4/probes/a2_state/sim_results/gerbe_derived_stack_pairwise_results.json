@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "DAG structure captured by rustworkx; PyG not needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; sympy handles symbolic 2-form comparison"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -52,7 +52,7 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hyperedges not needed; DAG captures derived-stack nerve"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

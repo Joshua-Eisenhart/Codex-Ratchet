@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -22,47 +22,47 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "Symbolic Jacobian structure analysis"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -1018,7 +1018,7 @@
       }
     }
   },
-  "classification": "substrate_insensitive_deep_analysis",
+  "classification": "supporting",
   "key_findings": {
     "adversarial_search": "11/11 families survived all adversarial states. No divergence found at float64 floor even with near-singular, near-pure, and degenerate-eigenvalue states.",
     "hypothesis_verdict": "Hypothesis C is universal: ALL 11 insensitive families have closed-form analytic expressions with no iterative optimization and no tunable channel parameter. Hypothesis A (eigenvalue-only) holds for 4-5 families (purification, eigenvalue_decomp, relative_entropy_coherence, hopf_connection). Hypothesis B (linear) holds for 3-4 families (z_measurement, l1_coherence, wigner_negativity, chiral_overlap). Density_matrix, Hadamard, T_gate are NEITHER eigenvalue-only NOR linear but are closed-form quadratic \u2014 and still insensitive.",

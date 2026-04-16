@@ -17,17 +17,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Jacobi equation has no logical branching"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -37,37 +37,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Jacobi equation is scalar on 2D manifold"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; analytic Jacobi solutions computed directly"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for Jacobi ODE"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -355,5 +355,5 @@
     "key_distinction": "Curved geodesics reconverge at s=\u03c0/2 (J=0); flat geodesics diverge linearly forever.",
     "scope_note": "Geodesic deviation probe: scalar Jacobi equation on 2D constant-K manifolds. Anchored to riemannian_curvature probe (K=4). Out of scope: Levi-Civita connection tensor, Berry phase, Ricci flow, sectional curvature tensor, higher-dimensional Jacobi fields."
   },
-  "timestamp": "2026-04-16T04:56:03.655528+00:00"
+  "timestamp": "2026-04-16T05:04:21.852498+00:00"
 }

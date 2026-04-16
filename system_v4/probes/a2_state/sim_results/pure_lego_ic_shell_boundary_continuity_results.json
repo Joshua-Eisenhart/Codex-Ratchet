@@ -17,7 +17,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -27,7 +27,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "tried; not needed \u2014 no algebraic constraint proof here"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -37,37 +37,37 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 no spinor geometry in this probe"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used \u2014 pure information-theoretic probe"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "tried; not used"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -1179,5 +1179,5 @@
     "answer": "Raw \u2207I_c is SMOOTH through the kill point \u2014 no discontinuity. The shell-boundary marker lives in max(0,I_c): kink of magnitude ~1.19 at \u03b3*=(1-p)/p. L4\u2194L6 proxy: raw gradient zero at \u03b3=1/(2p).",
     "scope_note": "Amplitude damping channel, 1-parameter family, direct H\u2082(p)-H\u2082(\u03b3p) formula. Resolves ENFORCEMENT_AND_PROCESS_RULES.md \u2207I_c continuity question."
   },
-  "timestamp": "2026-04-16T04:56:06.315280+00:00"
+  "timestamp": "2026-04-16T05:04:41.199435+00:00"
 }

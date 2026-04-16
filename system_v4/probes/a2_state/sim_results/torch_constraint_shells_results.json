@@ -9,7 +9,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nn.Module, not GNN"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -19,27 +19,27 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 sufficient for nesting proof"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "tried but not needed -- all computation is torch-native"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- Hopf done natively in torch"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shell metrics computed directly"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant layers here"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -49,17 +49,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- shells are nested, not hypergraph"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- topology tracked via GUDHI"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "Persistence tracking through alternating projection"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "positive": {
@@ -284,32 +284,32 @@
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.665467262268066,
-            "L2_d2_Hopf": 0.5480861663818359,
+            "L1_CPTP": 6.0874247550964355,
+            "L2_d2_Hopf": 0.6389667987823486,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.002670632442459464
+            "L6_irreversibility": 0.09951511025428772
           },
-          "total_violation": 5.216224061092362
+          "total_violation": 6.825906664133072
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 5.826272964477539,
-            "L2_d2_Hopf": 0.8329874277114868,
+            "L1_CPTP": 6.675577640533447,
+            "L2_d2_Hopf": 1.547609806060791,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.0
+            "L6_irreversibility": 0.14550049602985382
           },
-          "total_violation": 6.659260392189026
+          "total_violation": 8.368687942624092
         },
         {
           "violations": {
             "L0_N01_noncommutation": 0.0,
-            "L1_CPTP": 4.924795150756836,
-            "L2_d2_Hopf": 1.9391913414001465,
+            "L1_CPTP": 4.310620307922363,
+            "L2_d2_Hopf": 0.16388964653015137,
             "L4_composition": 0.0,
-            "L6_irreversibility": 0.0
+            "L6_irreversibility": 0.297767698764801
           },
-          "total_violation": 6.863986492156982
+          "total_violation": 4.772277653217316
         }
       ]
     },

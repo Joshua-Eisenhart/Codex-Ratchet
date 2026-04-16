@@ -1,6 +1,6 @@
 {
   "name": "qit_weyl_hypergraph_companion",
-  "classification": "research_support",
+  "classification": "supporting",
   "classification_note": "Strict finite bounded companion for the Weyl -> hypergraph lane. It keeps the hypergraph support pack explicit while adding direct hypergraph, cell-complex, DAG, and SMT ordering checks. This is a bounded comparison surface, not a runtime-equivalence or owner-math claim.",
   "lego_ids": [
     "weyl_hypergraph_follow_on",
@@ -18,12 +18,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -38,22 +38,22 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,
@@ -73,7 +73,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

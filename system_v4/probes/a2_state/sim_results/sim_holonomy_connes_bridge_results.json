@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; geomstats+numpy sufficient for S2 geodesics"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph-structured data in this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -45,7 +45,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph structure required here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,

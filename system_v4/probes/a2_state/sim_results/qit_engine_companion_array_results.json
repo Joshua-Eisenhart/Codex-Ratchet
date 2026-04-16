@@ -1,6 +1,6 @@
 {
   "name": "qit_engine_companion_array",
-  "classification": "research_support",
+  "classification": "supporting",
   "classification_note": "Companion array that keeps to tighter QIT-style carriers and readouts while pointing to the closest open-lab analogues for later repair.",
   "lego_ids": [
     "quantum_thermodynamics",
@@ -14,62 +14,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -407,7 +407,7 @@
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/szilard_measurement_feedback_substeps_results.json",
       "closest_companion_id": "qit_szilard_substep_companion",
       "bridge_reason": "matched finite-state substep companion for ordered and scrambled protocol families",
-      "classification": "supporting",
+      "classification": "exploratory",
       "headline_metrics": {
         "ordered_final_entropy": 0.6562408706276686,
         "measurement_accuracy": 0.8746666666666667,
@@ -698,7 +698,7 @@
       "source_file": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/stoch_harmonic_carnot_finite_time_results.json",
       "closest_companion_id": "qit_carnot_finite_time_companion",
       "bridge_reason": "matched finite-state budget-axis companion for forward and reverse finite-time tradeoffs",
-      "classification": "supporting",
+      "classification": "exploratory",
       "headline_metrics": {
         "forward_slow_efficiency": 0.17162168374974454,
         "forward_quasistatic_efficiency": 0.5281401728113482,

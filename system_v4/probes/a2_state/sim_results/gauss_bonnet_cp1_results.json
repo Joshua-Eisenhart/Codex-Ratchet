@@ -22,12 +22,12 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "not needed; Gauss-Bonnet identity has no logical branching"
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; integral computation requires no SMT reasoning"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -52,12 +52,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph structure"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph structure"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
@@ -67,7 +67,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no persistent homology"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -290,5 +290,5 @@
     "anchor": "K=4 value anchored to riemannian_curvature probe (both probes canonical)",
     "scope_note": "Gauss-Bonnet probe: local K=4 integrates to global topological invariant 4\u03c0. Out of scope: geodesic curvature boundary terms (\u2202M=\u2205), Chern-Gauss-Bonnet in higher dimensions, Ricci flow, Bochner-Weitzenb\u00f6ck, non-constant K manifolds."
   },
-  "timestamp": "2026-04-16T05:01:15.960324+00:00"
+  "timestamp": "2026-04-16T05:04:18.152490+00:00"
 }

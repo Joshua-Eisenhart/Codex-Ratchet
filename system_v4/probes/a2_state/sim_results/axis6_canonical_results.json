@@ -10,7 +10,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no graph message passing layer"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no Clifford algebra layer"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
@@ -40,27 +40,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- already confirmed in axis6_e3nn_fe_bridge"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- chain ordering is fixed"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph constraint layer"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no cell complex"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- persistence not in scope here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -185,7 +185,7 @@
       "flip_confirmed_near_0p7368": true,
       "gradient_nonzero_at_flip": true,
       "status": "ok",
-      "elapsed_s": 0.0011830329895019531
+      "elapsed_s": 0.0037398338317871094
     },
     "geomstats_spd_curvature": {
       "max_curvature": {
@@ -800,7 +800,7 @@
         }
       ],
       "status": "ok",
-      "elapsed_s": 0.004084110260009766
+      "elapsed_s": 0.004518985748291016
     },
     "sympy_analytic": {
       "Ic_expression": "Piecewise((1, Eq(r, 1)), (((r - 2)*log(1 - r/2) - (r - 1)*log((1 - r)/2) - log(r**r/2**r))/(2*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1) & Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r + sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), Eq(r - sqrt(5*r**2 - 2*r + 1), -1)), ((2*(r - 2)*log(1 - r/2) - 2*(r - 1)*log((1 - r)/2) + (r - sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r - sqrt(5*r**2 - 2*r + 1) + 1)/4) + (r + sqrt(4*r**2 - 4*r + (r + 1)**2) + 1)*log((r + sqrt(5*r**2 - 2*r + 1) + 1)/4) - log(r**(2*r)/2**(2*r)))/(4*log(2)), True))",
@@ -820,7 +820,7 @@
       "expected_flip_point": 0.7368,
       "error_from_expected": 0.0306203174774885,
       "status": "ok",
-      "elapsed_s": 2.5903050899505615
+      "elapsed_s": 5.580076694488525
     }
   },
   "negative": {
@@ -865,7 +865,7 @@
       "below_bound_used": 0.6811798507804018,
       "above_bound_used": 0.7361798507804018,
       "status": "ok",
-      "elapsed_s": 0.0078051090240478516
+      "elapsed_s": 0.011000871658325195
     }
   },
   "boundary": {
@@ -891,7 +891,7 @@
       },
       "all_unsat_confirmed": true,
       "status": "ok",
-      "elapsed_s": 0.0055217742919921875
+      "elapsed_s": 0.05106306076049805
     }
   },
   "axis6_canonical_summary": {

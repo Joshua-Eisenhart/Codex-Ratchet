@@ -5,12 +5,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no autograd or gradient flow"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; hypergraph handled by XGI"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -35,17 +35,17 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no Riemannian metric required"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no equivariant layers needed"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; blanket graph handled by XGI"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; hypergraph (not cell complex) is correct"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no persistence filtration"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

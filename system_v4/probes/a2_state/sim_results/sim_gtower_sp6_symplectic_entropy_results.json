@@ -5,7 +5,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; numpy+scipy+sympy+z3 cover all symplectic tests"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "spinor algebra not needed; this is a symplectic group test"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": false,
@@ -40,22 +40,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "equivariant NN not applicable"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "graph structure not applicable to symplectic algebra"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph not applicable"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "cell complex topology not applicable"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,

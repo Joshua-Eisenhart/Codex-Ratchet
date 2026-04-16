@@ -11,12 +11,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; correlation numerics are 1D numpy operations"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph structure in trajectory correlation"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": false,
@@ -26,12 +26,12 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; numpy sufficient for derivative bridge"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no symbolic computation required"
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": false,
@@ -46,17 +46,17 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no SO(3) equivariance in FEP bridge"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph structure in derivative correlation"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph in FEP-GA0 bridge"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,

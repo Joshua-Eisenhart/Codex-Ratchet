@@ -20,7 +20,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph structure needed"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -30,7 +30,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for rational check"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -50,22 +50,22 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "equivariant networks not relevant"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph structure needed"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph not relevant"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "cell complex not needed for base geometry"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
@@ -382,5 +382,5 @@
     "claim": "Hopf tori T_eta are flat (K=0) tori in S3 with area 2pi^2*sin(2eta); fiber/base decomposition is U(1) diagonal shift over S2",
     "diagnosis": "hopf_tori_base_substrate_established"
   },
-  "timestamp": "2026-04-16T05:01:19.962854+00:00"
+  "timestamp": "2026-04-16T05:04:31.460843+00:00"
 }

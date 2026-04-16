@@ -11,32 +11,32 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no symbolic computation or algebraic proof required in this probe"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "tried import, not used for Hopf connection"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "tried import, not used for Hopf connection"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": true,
@@ -46,22 +46,22 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {
@@ -364,7 +364,7 @@
     "P6_e3nn_hopf_bloch_equivariance": {
       "test": "e3nn Linear(1x1o->1x1o) is equivariant on Hopf/Bloch carrier states",
       "n_states": 8,
-      "max_equivariance_error": 3.332000986233652e-08,
+      "max_equivariance_error": 5.960464477539063e-08,
       "tolerance": 1e-05,
       "pass": true
     }

@@ -5,7 +5,7 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; sympy+z3+numpy cover all complexification tests"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
@@ -45,12 +45,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "graph structure not applicable to complexification test"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph not applicable"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
@@ -60,7 +60,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not applicable"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; sympy/clifford cover curvature+holonomy"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph message-passing in this sim"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not installed or not needed; z3 covers the proof guard"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -46,12 +46,12 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph traversal in this sim"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph structure in this sim"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed; persistent homology not required here"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

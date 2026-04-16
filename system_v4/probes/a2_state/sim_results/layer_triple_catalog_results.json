@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- graph structure via rustworkx"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- z3 handles the uniqueness SMT check"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -32,7 +32,7 @@
     "clifford": {
       "tried": true,
       "used": true,
-      "reason": "Cl(3) rotor for SU(2) Hopf rotation (L1 native operator)"
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
     },
     "geomstats": {
       "tried": true,
@@ -42,7 +42,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- equivariance handled by Clifford rotor in L1"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": true,

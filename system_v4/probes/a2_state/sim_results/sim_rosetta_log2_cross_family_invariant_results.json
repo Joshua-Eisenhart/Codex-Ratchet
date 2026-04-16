@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed; numpy sufficient for matrix orbit computations"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed; no graph message passing required"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; z3 covers UNSAT proofs"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -36,7 +36,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed; manual adjoint map used"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,

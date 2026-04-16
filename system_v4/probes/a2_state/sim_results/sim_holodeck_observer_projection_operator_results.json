@@ -12,7 +12,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed for observer operator family; deferred"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -22,7 +22,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "not needed; z3 covers the UNSAT claims"
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
     },
     "sympy": {
       "tried": true,
@@ -37,7 +37,7 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "not needed for projection operator family; deferred"
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
     },
     "e3nn": {
       "tried": false,
@@ -47,22 +47,22 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for observer operator; deferred"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for observer operator; deferred"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "not needed for observer operator; deferred"
+      "reason": "no chain complex or cell complex computation required in this probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed for observer operator; deferred"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

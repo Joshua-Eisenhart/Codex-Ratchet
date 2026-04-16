@@ -15,12 +15,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no gradient optimization in this manifold row"
+      "reason": "no automatic differentiation or tensor computation required in this probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no message-passing graph model"
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
     },
     "z3": {
       "tried": true,
@@ -50,17 +50,17 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no equivariant network layer"
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- subset or DAG routing is not the object here"
+      "reason": "no graph traversal or path computation required in this probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no hypergraph interaction structure"
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
     },
     "toponetx": {
       "tried": true,
@@ -70,7 +70,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "not needed -- no persistence computation in this row"
+      "reason": "no persistent homology or Rips complex computation required in this probe"
     }
   },
   "tool_integration_depth": {

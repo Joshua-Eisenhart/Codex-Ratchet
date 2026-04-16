@@ -1,7 +1,8 @@
 {
   "name": "sim_weyl_symplectic_mera_pairwise_coupling",
-  "classification": "canonical",
-  "divergence_log": "Pairwise coupling step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl=0.693147 (log 2), H_symp=1.609438 (log 5), H_mera=0.693147 (log 2). Q_WS, Q_WM, Q_SM all > 0. z3 UNSAT: zero shell entropy kills pairwise product. sympy: symbolic positivity confirmed.",
+  "classification": "classical_baseline",
+  "classification_note": "Step 1 pairwise coupling for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl = log(2), H_symp = log(5), H_mera = log(2). Q_WS, Q_WM, Q_SM all > 0. z3 UNSAT: zero shell entropy kills pairwise product. sympy: symbolic positivity confirmed.",
+  "divergence_log": "Step 1 pairwise coupling for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl = log(2), H_symp = log(5), H_mera = log(2). Q_WS, Q_WM, Q_SM all > 0. z3 UNSAT: zero shell entropy kills pairwise product. sympy: symbolic positivity confirmed.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning in pairwise coupling step; deferred to coupling matrix"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 is sufficient for the UNSAT checks here; cvc5 not needed"
     },
     "sympy": {
       "tried": true,
@@ -36,22 +37,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geodesics not invoked in pairwise entropy coupling"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariance not required for scalar entropy product test"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal needed in pairwise H_i\u00d7H_j tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure needed; pairwise is 2-body only"
     },
     "toponetx": {
       "tried": true,
@@ -61,7 +62,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required in pairwise shell coupling"
     }
   },
   "tool_integration_depth": {
@@ -141,21 +142,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

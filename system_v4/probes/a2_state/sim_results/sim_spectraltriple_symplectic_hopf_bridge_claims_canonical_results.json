@@ -1,7 +1,7 @@
 {
   "name": "sim_spectraltriple_symplectic_hopf_bridge_claims_canonical",
-  "classification": "canonical",
-  "divergence_log": "Bridge claims for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). Q_SSH = MI \u00d7 H_st \u00d7 H_symp \u00d7 H_hopf. H_st=0.617678 (spectral gap seed=1). H_symp=1.609438 (log(5)). H_hopf=0.346574 (log(2)/2). rho_SSH valid (8\u00d78, trace=1, PSD, float64). r(Q_SSH, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_SSH trace validated (float64).",
+  "classification": "classical_baseline",
+  "divergence_log": "Bridge claims for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). Q_SSH = MI \u00d7 H_st \u00d7 H_symp \u00d7 H_hopf. H_st=2.203923 (spectral gap seed=1). H_symp=1.609438 (log(5)). H_hopf=0.346574 (log(2)/2). rho_SSH valid (8\u00d78, trace=1, PSD, float64). r(Q_SSH, MI) > 0.99 with fixed H (proportional by construction). Axis 0 gradient: dephasing MERA gives MI_input > MI_final, 20/20 seeds. z3 UNSAT: MI=0 with Q>0 impossible. sympy: four-factor product collapse. pytorch: rho_SSH trace validated (float64).",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph learning not invoked in bridge claims step; Q_SSH is a scalar product, not a graph quantity"
     },
     "z3": {
       "tried": true,
@@ -36,17 +36,17 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked in rho construction or MI correlation bridge computation for Q_SSH"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariant networks not needed for scalar bridge claim tests on Q_SSH four-factor product"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal required in bridge claims density matrix or Pearson-r computation for Q_SSH"
     },
     "xgi": {
       "tried": true,
@@ -56,27 +56,27 @@
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "CellComplex exercised in topology-variants step; not needed in bridge claims density matrix for Q_SSH"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not needed in rho trace and MI correlation bridge test for Q_SSH"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_st": 0.6176781863564109,
@@ -150,21 +150,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

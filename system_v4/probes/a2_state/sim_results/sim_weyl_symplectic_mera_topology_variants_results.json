@@ -1,7 +1,8 @@
 {
   "name": "sim_weyl_symplectic_mera_topology_variants",
-  "classification": "canonical",
-  "divergence_log": "Topology variants step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl=0.693147, H_symp=1.609438, H_mera=0.693147. T1 (flat), T2 (S\u00b2), T3 (lens L(5,2)). H_weyl and H_symp topology-stable across all three. DPI confirmed. z3 UNSAT: topology cannot change fixed entropy. sympy: dH/dt=0. toponetx: CellComplex instantiation confirmed.",
+  "classification": "classical_baseline",
+  "classification_note": "Topology variants step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl and H_symp are topology-stable across flat, S\u00b2, and lens classes. DPI confirmed; z3 and sympy witness topology-invariant entropy. toponetx CellComplex instantiation is load-bearing for the variant comparison.",
+  "divergence_log": "Topology variants step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl and H_symp are topology-stable across flat, S\u00b2, and lens classes. DPI confirmed; z3 and sympy witness topology-invariant entropy. toponetx CellComplex instantiation is load-bearing for the variant comparison.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph learning not invoked in topology-variant entropy stability test"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 UNSAT is sufficient; cvc5 not required for topology label constraints"
     },
     "sympy": {
       "tried": true,
@@ -41,17 +42,17 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant features on S\u00b2 not needed for entropy stability across topology classes"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "graph traversal not needed in topology-variant shell entropy test"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "hyperedges not relevant to topology label vs entropy stability claim"
     },
     "toponetx": {
       "tried": true,
@@ -155,21 +156,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

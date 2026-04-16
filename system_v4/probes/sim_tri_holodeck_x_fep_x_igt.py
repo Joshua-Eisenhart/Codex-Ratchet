@@ -21,6 +21,11 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "3-way ADDS: FEP-descent reweights IGT policy within the H shell; "
+    "pairwise H x I cannot see."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "descent + scoring"},
@@ -125,14 +130,13 @@ def run_boundary_tests():
 if __name__ == "__main__":
     results = {
         "name": "sim_tri_holodeck_x_fep_x_igt",
-        "classification": "canonical",
+        "classification": classification,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "three_way_note": ("3-way ADDS: FEP-descent reweights IGT policy "
-                            "within the H shell; pairwise H x I cannot see."),
+        "three_way_note": divergence_log,
     }
     ok = all(bool(v) for d in (results["positive"], results["negative"],
                                results["boundary"])

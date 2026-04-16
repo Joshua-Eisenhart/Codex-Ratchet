@@ -26,6 +26,11 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "3-way ADDS: rejection of uncivil-but-dominant observed strategies; "
+    "pairwise H x I keeps them."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "payoff vectors"},
@@ -134,8 +139,9 @@ if __name__ == "__main__":
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
-        "three_way_note": ("3-way ADDS: rejection of uncivil-but-dominant "
-                            "observed strategies; pairwise H x I keeps them."),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
+        "three_way_note": divergence_log,
     }
     ok = all(bool(v) for d in (results["positive"], results["negative"],
                                results["boundary"])

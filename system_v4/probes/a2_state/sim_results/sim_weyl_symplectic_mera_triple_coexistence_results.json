@@ -1,7 +1,8 @@
 {
   "name": "sim_weyl_symplectic_mera_triple_coexistence",
-  "classification": "canonical",
-  "divergence_log": "Triple coexistence step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). h_weyl=0.409384, h_symp=0.616776, h_mera=0.409384 (normalized H/(1+H)). Joint product \u2264 all pairwise products \u2014 consistent with data-processing inequality. z3 UNSAT: joint > pairwise impossible when all h in (0,1). sympy: h/(1+H) in (0,1) for H>0.",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence step of Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl, H_symp, and H_mera are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "divergence_log": "Triple coexistence step of Weyl\u00d7Symplectic\u00d7MERA (22nd program). H_weyl, H_symp, and H_mera are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph learning in normalization coexistence step; deferred to coupling matrix step"
     },
     "z3": {
       "tried": true,
@@ -21,7 +22,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 covers UNSAT structural bound; cvc5 not needed in this step"
     },
     "sympy": {
       "tried": true,
@@ -36,22 +37,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian manifold structure not invoked in normalized product coexistence test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant convolution not relevant to scalar shell entropy comparison"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal required in triple shell normalization bounds"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure in three-body entropy coexistence test"
     },
     "toponetx": {
       "tried": true,
@@ -61,7 +62,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required in triple entropy normalization step"
     }
   },
   "tool_integration_depth": {
@@ -140,21 +141,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

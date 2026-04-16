@@ -1,7 +1,8 @@
 {
   "name": "sim_spectraltriple_symplectic_hopf_topology_variants",
-  "classification": "canonical",
-  "divergence_log": "Topology variants for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). H_st=0.617678 (stable). H_symp=1.609438 (stable). T1 H_hopf=0.346574. T2 H_hopf=0.693147. T3 H_hopf=0.231049. DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_hopf). z3 UNSAT: H_hopf=0 makes Q=0. sympy: Q is monotone in H_hopf. pytorch: topology ordering validated as float64 tensor comparison.",
+  "classification": "classical_baseline",
+  "classification_note": "Topology variants for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_hopf). z3 UNSAT: H_hopf=0 makes Q=0. sympy: Q is monotone in H_hopf. pytorch: topology ordering validated as float64 tensor comparison.",
+  "divergence_log": "Topology variants for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_hopf). z3 UNSAT: H_hopf=0 makes Q=0. sympy: Q is monotone in H_hopf. pytorch: topology ordering validated as float64 tensor comparison.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "no graph message-passing needed for scalar Q_SSH topology-variant comparison"
     },
     "z3": {
       "tried": true,
@@ -31,27 +32,27 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "Hopf holonomy encoded as scalar H_hopf values per topology class; Cl(3,0) rotor spin not needed in this step"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian geometry not invoked for scalar topology-variant Q_SSH ordering tests"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariant networks not needed for scalar Hopf topology-class comparison"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal needed for topology-variant scalar entropy product tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure needed for topology-variant scalar Q_SSH comparison"
     },
     "toponetx": {
       "tried": true,
@@ -61,22 +62,22 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not needed for topology-variant scalar Q_SSH ordering tests"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_st": 0.6176781863564109,
@@ -164,21 +165,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

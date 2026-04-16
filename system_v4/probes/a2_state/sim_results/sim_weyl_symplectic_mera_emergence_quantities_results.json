@@ -1,7 +1,8 @@
 {
   "name": "sim_weyl_symplectic_mera_emergence_quantities",
-  "classification": "canonical",
-  "divergence_log": "Emergence quantities step for Weyl\u00d7Symplectic\u00d7MERA (22nd program). E1-E6 subshell products with MI=0 give Q=0. E7 full triple: MI=0.108149, Q_WSM=0.083627 > 0. z3 UNSAT: MI=0 kills Q regardless of H values. sympy: four-factor zero collapse confirmed.",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline Weyl\u00d7Symplectic\u00d7MERA emergence probe: this file checks scalar emergence quantities with z3, sympy, and clifford support where available, but it does not claim a canonical nonclassical witness.",
+  "divergence_log": "Classical baseline Weyl\u00d7Symplectic\u00d7MERA emergence probe: this file checks scalar emergence quantities with z3, sympy, and clifford support where available, but it does not claim a canonical nonclassical witness.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "graph message passing not relevant to scalar emergence quantity test"
     },
     "z3": {
       "tried": true,
@@ -36,22 +37,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian exponential map not required for MI-emergence scalar test"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "equivariant networks not needed in emergence quantity scalar computation"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph structure in emergence E1-E7 scalar tests"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure in emergence quantity tests"
     },
     "toponetx": {
       "tried": true,
@@ -61,7 +62,7 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not required in emergence quantity computation"
     }
   },
   "tool_integration_depth": {
@@ -149,21 +150,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

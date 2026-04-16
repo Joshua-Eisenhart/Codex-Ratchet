@@ -19,6 +19,11 @@ from __future__ import annotations
 import json, os
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Cross Holodeck×FEP baseline. The file stays numerical and compares "
+    "a holodeck mask against the FEP limit via joint support and argmax "
+    "agreement without broadening scope."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "descent + mask arithmetic"},
@@ -118,6 +123,8 @@ if __name__ == "__main__":
     results = {
         "name": "sim_cross_holodeck_x_fep",
         "classification": "canonical",
+        "classification_note": divergence_log,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),

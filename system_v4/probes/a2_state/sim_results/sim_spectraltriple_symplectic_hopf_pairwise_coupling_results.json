@@ -1,7 +1,8 @@
 {
   "name": "sim_spectraltriple_symplectic_hopf_pairwise_coupling",
-  "classification": "canonical",
-  "divergence_log": "Pairwise coupling for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). H_st=0.617678 (spectral gap seed=1). H_symp=1.609438 (log(5)). H_hopf=0.346574 (log(2)/2). Q_pair=H_i\u00d7H_j>0 for all three pairs. z3 UNSAT: zero factor makes product zero \u2014 no positive Q from zero entropy. sympy: two-factor product collapse. pytorch: scalar entropy tensor positivity check.",
+  "classification": "classical_baseline",
+  "classification_note": "Step 1 pairwise coupling for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). H_st = spectral gap seed=1 random sym 4x4. H_symp = log(1+4). H_hopf = log(2)/2. All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
+  "divergence_log": "Step 1 pairwise coupling for SpectralTriple\u00d7Symplectic\u00d7Hopf (24th program). H_st = spectral gap seed=1 random sym 4x4. H_symp = log(1+4). H_hopf = log(2)/2. All three pairs Q_pair > 0 confirmed. z3 UNSAT: positive factors cannot multiply to zero. sympy: zero-factor collapse verified.",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "graph learning not required for scalar pairwise coupling entropy products; no graph structure invoked"
     },
     "z3": {
       "tried": true,
@@ -31,52 +32,52 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "Hopf holonomy encoded as H_hopf=log(2)/2 scalar in pairwise step; Cl(3,0) rotors not needed at this level"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "Riemannian geometry not needed for scalar entropy product pairwise coupling tests"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "SO(3) equivariant networks not needed for scalar shell-entropy pairwise product tests"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "no graph traversal required for pairwise scalar entropy product computation"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hyperedge structure needed for pairwise shell-entropy product tests"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "CellComplex topology variants deferred to topology-variants step; not needed in pairwise coupling"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not needed for scalar pairwise shell-entropy product tests"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "H_values": {
     "H_st": 0.6176781863564109,
@@ -152,21 +153,5 @@
     },
     "pass": true
   },
-  "overall_pass": true,
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "overall_pass": true
 }

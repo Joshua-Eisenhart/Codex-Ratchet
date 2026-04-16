@@ -1,6 +1,6 @@
 {
   "name": "tools_load_bearing -- anti-theater sim",
-  "timestamp": "2026-04-16T02:24:47.153553+00:00",
+  "timestamp": "2026-04-16T03:05:42.935851+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -10,27 +10,27 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- graph structure via rustworkx/xgi"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed -- empirical load-bearing test, not SMT"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": true,
@@ -55,12 +55,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": true,
       "used": true,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistence diagrams as early warning signal -- test 3"
     }
   },
   "tool_integration_depth": {
@@ -434,6 +434,6 @@
       "P5_e3nn_equivariant_selector": true
     },
     "all_tools_load_bearing": true,
-    "elapsed_seconds": 0.03
+    "elapsed_seconds": 0.02
   }
 }

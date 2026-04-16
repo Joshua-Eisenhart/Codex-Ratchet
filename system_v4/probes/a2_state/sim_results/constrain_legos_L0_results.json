@@ -1,7 +1,7 @@
 {
   "probe": "sim_constrain_legos_L0",
   "purpose": "Run all legos through F01+N01 root constraints",
-  "timestamp": "2026-04-16T02:44:58.052601+00:00",
+  "timestamp": "2026-04-16T03:07:59.967380+00:00",
   "categories": {
     "state_representations": {
       "density_matrix": {
@@ -1147,7 +1147,7 @@
     "needs_both": 19,
     "F01_only": 34,
     "survives_L0": 53,
-    "runtime_seconds": 0.81,
+    "runtime_seconds": 0.62,
     "key_finding": "ALL 53 legos need F01. 19 need N01. 34 work with F01 alone. N01 splits legos into SPECTRAL (eigenvalue-based, N01-blind) vs GEOMETRIC (phase-based, N01-dependent). This is the fundamental partition of the constraint manifold.",
     "partition": {
       "spectral_N01_blind": [
@@ -1278,69 +1278,6 @@
       "requires_complex": true,
       "killed_without_N01": true,
       "note": "Im() of real quantity = 0 always. Berry phase REQUIRES complex inner product."
-    }
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
     }
   }
 }

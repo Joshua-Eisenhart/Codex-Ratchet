@@ -1,7 +1,7 @@
 {
   "probe": "sim_negative_constraint_cascade",
   "purpose": "Negative battery: attack necessity and ordering of L0-L7 constraint cascade",
-  "timestamp": "2026-04-16T02:49:42.053198+00:00",
+  "timestamp": "2026-04-16T03:08:21.371192+00:00",
   "tests": {
     "T01": {
       "test": "T01_skip_L0_no_N01",
@@ -312,24 +312,24 @@
         {
           "layer": "L4",
           "killed": [
-            "renyi",
-            "hopf_fiber_coordinate",
-            "negativity",
-            "participation_ratio",
-            "entanglement_of_formation",
             "linear_entropy",
-            "entanglement_entropy",
-            "geometric_phase_quantization",
-            "von_neumann",
-            "conditional_entropy",
+            "entanglement_of_formation",
             "tsallis",
-            "coherent_information",
-            "qgt_curvature",
-            "concurrence",
-            "min_entropy",
             "monopole_curvature",
+            "hopf_fiber_coordinate",
+            "min_entropy",
+            "renyi",
+            "von_neumann",
+            "concurrence",
+            "geometric_phase_quantization",
+            "max_entropy",
+            "qgt_curvature",
+            "conditional_entropy",
             "berry_phase",
-            "max_entropy"
+            "participation_ratio",
+            "coherent_information",
+            "negativity",
+            "entanglement_entropy"
           ],
           "remaining": 48
         },
@@ -341,10 +341,10 @@
         {
           "layer": "L6",
           "killed": [
-            "schmidt",
-            "chirality_operator_C",
             "berry_holonomy_operator",
+            "chirality_operator_C",
             "chirality_bipartition_marker",
+            "schmidt",
             "hopf_invariant"
           ],
           "remaining": 43
@@ -364,10 +364,10 @@
         {
           "layer": "L6",
           "killed": [
-            "schmidt",
-            "chirality_operator_C",
             "berry_holonomy_operator",
+            "chirality_operator_C",
             "chirality_bipartition_marker",
+            "schmidt",
             "hopf_invariant"
           ],
           "remaining": 61
@@ -380,24 +380,24 @@
         {
           "layer": "L4",
           "killed": [
-            "renyi",
-            "hopf_fiber_coordinate",
-            "negativity",
-            "participation_ratio",
-            "entanglement_of_formation",
             "linear_entropy",
-            "entanglement_entropy",
-            "geometric_phase_quantization",
-            "von_neumann",
-            "conditional_entropy",
+            "entanglement_of_formation",
             "tsallis",
-            "coherent_information",
-            "qgt_curvature",
-            "concurrence",
-            "min_entropy",
             "monopole_curvature",
+            "hopf_fiber_coordinate",
+            "min_entropy",
+            "renyi",
+            "von_neumann",
+            "concurrence",
+            "geometric_phase_quantization",
+            "max_entropy",
+            "qgt_curvature",
+            "conditional_entropy",
             "berry_phase",
-            "max_entropy"
+            "participation_ratio",
+            "coherent_information",
+            "negativity",
+            "entanglement_entropy"
           ],
           "remaining": 43
         },
@@ -1060,74 +1060,11 @@
     }
   },
   "summary": {
-    "runtime_seconds": 0.1,
+    "runtime_seconds": 0.05,
     "total_tests": 10,
     "passed": 10,
     "failed": 0,
     "errors": [],
     "headline": "Negative constraint cascade battery: 10/10 PASS, 0 FAIL, 0 ERROR. The L0-L7 ordering is NECESSARY: skipping layers changes kills, z3 confirms dependencies, layers are idempotent, 10 rounds suffice."
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

@@ -9,57 +9,57 @@
     "pyg": {
       "tried": true,
       "used": true,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "HeteroData graph + message passing with shell projectors wired in"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed -- constraint enforcement is differentiable"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not relevant to this sim"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not relevant to this sim"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not relevant to this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not relevant to this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not relevant to this sim"
     }
   },
   "tool_integration_depth": {
@@ -91,7 +91,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.3613271117210388,
+              "min_eigenvalue": 0.0708264410495758,
               "psd_ok": true,
               "valid": true
             },
@@ -100,7 +100,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.0338975228369236,
+              "min_eigenvalue": 0.3056411147117615,
               "psd_ok": true,
               "valid": true
             },
@@ -109,7 +109,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.007708123419433832,
+              "min_eigenvalue": 0.28965795040130615,
               "psd_ok": true,
               "valid": true
             },
@@ -118,7 +118,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.11947041004896164,
+              "min_eigenvalue": 0.28934258222579956,
               "psd_ok": true,
               "valid": true
             }
@@ -133,7 +133,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.2071084976196289,
+              "min_eigenvalue": 0.20146387815475464,
               "psd_ok": true,
               "valid": true
             },
@@ -142,7 +142,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.05783688277006149,
+              "min_eigenvalue": 0.15980537235736847,
               "psd_ok": true,
               "valid": true
             },
@@ -151,7 +151,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.09876365214586258,
+              "min_eigenvalue": 0.2427000254392624,
               "psd_ok": true,
               "valid": true
             },
@@ -160,7 +160,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.13881444931030273,
+              "min_eigenvalue": 0.24541600048542023,
               "psd_ok": true,
               "valid": true
             }
@@ -175,7 +175,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.28262364864349365,
+              "min_eigenvalue": 0.18765906989574432,
               "psd_ok": true,
               "valid": true
             },
@@ -184,7 +184,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.19440573453903198,
+              "min_eigenvalue": 0.16212838888168335,
               "psd_ok": true,
               "valid": true
             },
@@ -193,7 +193,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.25710251927375793,
+              "min_eigenvalue": 0.15301379561424255,
               "psd_ok": true,
               "valid": true
             },
@@ -202,7 +202,7 @@
               "trace_ok": true,
               "hermitian_error": 0.0,
               "hermitian_ok": true,
-              "min_eigenvalue": 0.21071316301822662,
+              "min_eigenvalue": 0.21959878504276276,
               "psd_ok": true,
               "valid": true
             }

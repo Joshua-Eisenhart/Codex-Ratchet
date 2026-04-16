@@ -1,6 +1,7 @@
 {
   "name": "sim_spectral_triple_weyl_mera_emergence_quantities",
   "classification": "classical_baseline",
+  "classification_note": "Q_STW=I_c\u00d7H_chirality\u00d7spectral_gap. Zero for all single/pairwise. Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. sympy: any factor=0 analytically collapses product.",
   "divergence_log": "Q_STW=I_c\u00d7H_chirality\u00d7spectral_gap. Zero for all single/pairwise. Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. sympy: any factor=0 analytically collapses product.",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +12,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph learning in emergence observable"
     },
     "z3": {
       "tried": true,
@@ -26,7 +27,7 @@
     "sympy": {
       "tried": true,
       "used": true,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "Symbolic: a*b*c with any factor=0 \u2192 product=0 (analytical proof, load-bearing)."
     },
     "clifford": {
       "tried": true,
@@ -46,37 +47,37 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph traversal needed"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hypergraph in Q_STW"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "chain-complex boundary not invoked"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not relevant to Q_STW"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": "load_bearing"
   },
   "positive": {
     "E1_ST_alone_Q_zero": {

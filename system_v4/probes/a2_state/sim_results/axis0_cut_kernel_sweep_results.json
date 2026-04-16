@@ -1,68 +1,82 @@
 {
   "name": "axis0_cut_kernel_sweep",
-  "schema": "axis0_cut_kernel_sweep/v1",
+  "schema": "axis0_cut_kernel_sweep/v2",
   "description": "Pure-math sweep of bipartite cut kernels derived from rho_AB: mutual information, conditional entropy, coherent information, entanglement entropy where applicable, and a weighted cut functional.",
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "cut-kernel battery numerics, density-matrix algebra, and discrimination aggregates"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix-exponential propagator witness for kernel scale history"
+    },
     "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "pure-math numpy baseline"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "pure-math numpy baseline"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "fit witness over cut-kernel deep-surface features"
     },
     "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the winning cut-kernel surface vector"
     },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the winning cut-kernel surface vector"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "ordered cut-kernel surface DAG witness"
     },
     "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "higher-order cut-kernel coupling witness"
     },
     "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for cut-kernel surface closure"
     },
     "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "not needed for this cut-kernel sweep"
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for the cut-kernel surface complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for cut-kernel expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing ordered cut-kernel ranking and scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for cut-kernel surface aggregation"
     }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
   },
   "positive": {
     "battery_rows": [
@@ -652,14 +666,303 @@
     },
     "pass": true
   },
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.03575307972845776,
+    "jk_fuzz_dynamic": 2.1501532603047524,
+    "lambda_density_mean": 1.4189551414822532,
+    "dark_energy_pressure_mean": 1.7582478378347761,
+    "gravity_response_mean": 1.4610507160582413,
+    "final_scale_factor": 3.7113041069562622,
+    "mean_hubble_proxy": 1.2769990228540269,
+    "mean_acceleration_proxy": -0.5562878970586688,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 1.228689050217258,
+      "symbolic_acceleration_mid": 7.652462884951092,
+      "symbolic_dark_energy_mid": 0.9395682522945847
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.515295085985618,
+      "max_geodesic_distance": 1.7644961123509852,
+      "mean_norm": 1.0
+    },
+    "torch_fit": {
+      "weights": [
+        0.1009607968137404,
+        0.0734972661809716
+      ],
+      "bias": 0.9921016870275984,
+      "loss": 0.3046699451957334,
+      "max_gap": 1.1095189761268032
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 3.276683191444363e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "mutual_information_surface",
+      "frontier_count": 6,
+      "frontier_size": 6,
+      "shell_bridge_pass_fraction": 1.0,
+      "candidate_rows": [
+        {
+          "option": "mutual_information_surface",
+          "mean_abs_a0": 1.7688027034003444,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.9710935759317334,
+          "shell_alignment_abs": 0.9710935759317334,
+          "composite_score": 1.2466320931106925,
+          "scale_factor": 1.0,
+          "hubble_proxy": 2.3969432875513137
+        },
+        {
+          "option": "conditional_entropy_surface",
+          "mean_abs_a0": 1.0796731199523943,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.9957605259388903,
+          "shell_alignment_abs": 0.9957605259388903,
+          "composite_score": 1.0251445486304283,
+          "scale_factor": 1.6150867291782571,
+          "hubble_proxy": 2.005198416158454
+        },
+        {
+          "option": "coherent_information_surface",
+          "mean_abs_a0": 1.0796731199523941,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.9957605259388903,
+          "shell_alignment_abs": 0.9957605259388903,
+          "composite_score": 1.0251445486304283,
+          "scale_factor": 2.2301734583565143,
+          "hubble_proxy": 1.3876564112517125
+        },
+        {
+          "option": "entanglement_entropy_surface",
+          "mean_abs_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.9169416637296744,
+          "shell_alignment_abs": 0.9169416637296744,
+          "composite_score": 0.9723138879098915,
+          "scale_factor": 2.8135617911024493,
+          "hubble_proxy": 1.0495245897108938
+        },
+        {
+          "option": "weighted_cut_surface",
+          "mean_abs_a0": 1.0580125357512684,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.8421428338841545,
+          "shell_alignment_abs": 0.8421428338841545,
+          "composite_score": 0.966718456545141,
+          "scale_factor": 3.393592865029534,
+          "hubble_proxy": 0.8505518389766986
+        },
+        {
+          "option": "fake_kernel_rejection_surface",
+          "mean_abs_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "shell_alignment": 0.8009331891016641,
+          "shell_alignment_abs": 0.8009331891016641,
+          "composite_score": 0.9336443963672214,
+          "scale_factor": 3.953779502849867,
+          "hubble_proxy": 0.7639137762694406
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 9,
+        "longest_path_length": 5,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 3,
+        "max_hyperedge_size": 3,
+        "connected_components": 1,
+        "hyperedges": [
+          [
+            0,
+            4,
+            5
+          ],
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            0,
+            2,
+            3
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-2.73093356633253*lam**5 + 7.02539666510775*lam**4 - 6.35992569080315*lam**3 + 2.17655637621179*lam**2 + 2.84268571866632*lam + 1.0",
+        "expansion_drive_polynomial": "-42.9034252751877*lam**5 + 115.055607993901*lam**4 - 112.308192142543*lam**3 + 48.6235389982663*lam**2 - 9.4064926646664*lam + 3.73989627933208",
+        "scale_poly_degree": 5,
+        "drive_poly_degree": 5,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.1522608937125922,
+        "symbolic_acceleration_mid": -0.4778082404939621,
+        "symbolic_drive_mid": 3.0042541385167105
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.05488536278620609,
+          0.0,
+          0.9984926624426573
+        ],
+        "mean_norm": 0.9999999999999999,
+        "mean_geodesic_distance": 0.16727986982465462,
+        "max_geodesic_distance": 0.5018396094739661
+      },
+      "torch_fit": {
+        "weights": [
+          1.2603319290011314,
+          -1.8826355469120786,
+          4.570380766157304
+        ],
+        "bias": -2.3826355469120784,
+        "loss": 0.03840492267777828,
+        "max_gap": 0.3587182485725542
+      },
+      "winner_vector": [
+        1.7688027034003444,
+        1.0,
+        0.9710935759317334
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 5.86312107753173e-08,
+      "scale_factors": [
+        1.0,
+        1.6150867291782571,
+        2.2301734583565143,
+        2.8135617911024493,
+        3.393592865029534,
+        3.953779502849867
+      ],
+      "hubble_proxy": [
+        2.3969432875513137,
+        2.005198416158454,
+        1.3876564112517125,
+        1.0495245897108938,
+        0.8505518389766986,
+        0.7639137762694406
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  },
   "classification": "canonical",
-  "classification_note": "Classical foundation baseline: axis-0 cut-kernel sweep is validated here as a pure numpy cutoff lego, not a canonical nonclassical witness.",
-  "divergence_log": "Classical foundation baseline: axis-0 cut-kernel sweep is validated here as a pure numpy cutoff lego, not a canonical nonclassical witness.",
+  "classification_note": "Classical foundation baseline: the Axis 0 cut-kernel sweep remains a bounded cutoff lego, not a canonical nonclassical witness. The legacy battery is preserved, and the same bounded cut-kernel family is now grounded in the deep Axis 0 shell/topology/symbolic/solver/manifold contract.",
+  "divergence_log": "Classical foundation baseline: the Axis 0 cut-kernel sweep remains a bounded cutoff lego, not a canonical nonclassical witness. The legacy battery is preserved, and the same bounded cut-kernel family is now grounded in the deep Axis 0 shell/topology/symbolic/solver/manifold contract.",
   "summary": {
-    "total_tests": 10,
-    "passed": 10,
+    "total_tests": 12,
+    "passed": 12,
     "failed": 0,
+    "legacy_all_pass": true,
+    "deep_all_pass": true,
     "all_pass": true,
-    "elapsed_s": 0.007174253463745117
-  }
+    "elapsed_s": 1.600625991821289
+  },
+  "overall_pass": true,
+  "all_pass": true
 }

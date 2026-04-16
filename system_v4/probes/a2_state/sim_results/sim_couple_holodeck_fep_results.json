@@ -64,87 +64,19 @@
   "interacting": true,
   "additive": false,
   "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "pairwise coupling enumeration and local predicate checks"
+    },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: joint/shell/exclusion SAT-UNSAT decides admissibility and coupling-exclusion witness"
-    },
-    "sympy": {
-      "tried": true,
-      "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
-    },
-    "clifford": {
-      "tried": true,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "pytorch": {
-      "tried": true,
-      "used": false,
-      "reason": "no gradient surface at this Boolean admissibility layer"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "load-bearing witness for projection_quotient AND markov_blanket_ci -> boundary"
     }
   },
   "tool_integration_depth": {
-    "z3": "load_bearing",
-    "sympy": "supportive",
-    "clifford": null,
-    "pytorch": null
-  },
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
+    "numpy": "supportive",
+    "z3": "load_bearing"
   }
 }

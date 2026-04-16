@@ -89,7 +89,7 @@ def run_positive_tests():
     # Test 1: Identity matrix (always symplectic)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
@@ -135,7 +135,7 @@ def run_positive_tests():
     # Test 2: Shift matrix (symplectic)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
@@ -180,7 +180,7 @@ def run_positive_tests():
     # Test 3: General symplectic matrix (det = 1)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
         solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
@@ -189,6 +189,8 @@ def run_positive_tests():
         c = solver.mkConst(real_sort, "c")
         d = solver.mkConst(real_sort, "d")
 
+        # Use concrete vals: [[2, 1], [-1, 1]] → det = 2*1 - 1*(-1) = 3 ≠ 1
+        # Actually use [[2, 3], [1, 2]] → det = 4 - 3 = 1 ✓
         # Determinant constraint: ad - bc = 1
         det_term = solver.mkTerm(cvc5.Kind.SUB,
                                  solver.mkTerm(cvc5.Kind.MULT, a, d),
@@ -251,7 +253,7 @@ def run_negative_tests():
     # Test 1: UNSAT - det(M) = 1 AND det(M) = 2 (contradictory)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
 
         real_sort = solver.getRealSort()
         a = solver.mkConst(real_sort, "a")
@@ -288,7 +290,7 @@ def run_negative_tests():
     # Test 2: UNSAT - det(M) < 0 AND det(M) = 1
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
 
         real_sort = solver.getRealSort()
         a = solver.mkConst(real_sort, "a")
@@ -324,7 +326,7 @@ def run_negative_tests():
     # Test 3: UNSAT - antisymmetric form ω(v,v) > 0
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
 
         real_sort = solver.getRealSort()
         v1 = solver.mkConst(real_sort, "v1")
@@ -376,7 +378,8 @@ def run_boundary_tests():
     # Test 1: Boundary - det(M) very close to 1 (but must be exactly 1)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
+        solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
         a = solver.mkConst(real_sort, "a")
@@ -420,7 +423,7 @@ def run_boundary_tests():
     # Test 2: Scaled symplectic matrix (det = 2, not symplectic)
     try:
         solver = cvc5.Solver()
-        solver.setLogic("QF_LRA")
+        solver.setLogic("QF_NRA")
 
         real_sort = solver.getRealSort()
         a = solver.mkConst(real_sort, "a")

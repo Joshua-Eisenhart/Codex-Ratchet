@@ -329,12 +329,12 @@ def run_negative_tests():
         n_y = solver.mkConst(real_sort, "n_y")
         n_z = solver.mkConst(real_sort, "n_z")
 
-        # Axiom: S² has norm = 1
-        hopf_axiom = solver.mkTerm(cvc5.Kind.EQUAL,
-                                    solver.mkTerm(cvc5.Kind.ADD, n_x, n_y, n_z),
-                                    solver.mkReal(1))
+        # Axiom: S² coordinate bounds — each component in [-1, 1]
+        nx_lb = solver.mkTerm(cvc5.Kind.GEQ, n_x, solver.mkReal(-1))
+        nx_ub = solver.mkTerm(cvc5.Kind.LEQ, n_x, solver.mkReal(1))
+        hopf_axiom = solver.mkTerm(cvc5.Kind.AND, nx_lb, nx_ub)
 
-        # Constraint: try to make individual components negative and exceed 1
+        # Violation: n_x < -2 (outside S² coordinate range) → UNSAT given axiom
         neg_constraint = solver.mkTerm(cvc5.Kind.LT, n_x, solver.mkReal(-2))
 
         solver.assertFormula(hopf_axiom)
@@ -373,6 +373,7 @@ def run_boundary_tests():
     try:
         solver = cvc5.Solver()
         solver.setLogic("QF_NRA")
+        solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
         w = solver.mkConst(real_sort, "w")

@@ -355,6 +355,7 @@ def run_boundary_tests():
     try:
         solver = cvc5.Solver()
         solver.setLogic("QF_LRA")
+        solver.setOption("produce-models", "true")
 
         real_sort = solver.getRealSort()
         S = solver.mkConst(real_sort, "S")

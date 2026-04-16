@@ -43,8 +43,8 @@ TOOL_INTEGRATION_DEPTH = {
     "pytorch": None,
     "pyg": None,
     "z3": None,
-    "cvc5": None,
-    "sympy": None,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
     "clifford": None,
     "geomstats": None,
     "e3nn": None,
@@ -178,7 +178,6 @@ def run_positive_tests():
                     "method": "cvc5 QF_LIA",
                 }
                 TOOL_MANIFEST["cvc5"]["used"] = True
-                TOOL_INTEGRATION_DEPTH["cvc5"] = "load_bearing"
             else:
                 results["cvc5_positive_shift_1"] = {"error": "UNSAT (unexpected)"}
 

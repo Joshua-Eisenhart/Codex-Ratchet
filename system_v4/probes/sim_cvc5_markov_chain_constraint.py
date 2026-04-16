@@ -192,10 +192,10 @@ def run_positive_tests():
         p11 = solver.mkConst(real_sort, "p11")
 
         # Stochasticity: row sums = 1
-        row0_sum = solver.mkTerm(cvc5.Kind.PLUS, p00, p01)
+        row0_sum = solver.mkTerm(cvc5.Kind.ADD, p00, p01)
         row0_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row0_sum, solver.mkReal("1"))
 
-        row1_sum = solver.mkTerm(cvc5.Kind.PLUS, p10, p11)
+        row1_sum = solver.mkTerm(cvc5.Kind.ADD, p10, p11)
         row1_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row1_sum, solver.mkReal("1"))
 
         # Non-negativity
@@ -259,15 +259,15 @@ def run_positive_tests():
         p22 = solver.mkConst(real_sort, "p22_3x3")
 
         # Row 0 stochasticity
-        row0_sum = solver.mkTerm(cvc5.Kind.PLUS, p00, solver.mkTerm(cvc5.Kind.PLUS, p01, p02))
+        row0_sum = solver.mkTerm(cvc5.Kind.ADD, p00, solver.mkTerm(cvc5.Kind.ADD, p01, p02))
         row0_eq_1 = solver.mkTerm(cvc5.Kind.EQUAL, row0_sum, solver.mkReal("1"))
 
         # Row 1 stochasticity
-        row1_sum = solver.mkTerm(cvc5.Kind.PLUS, p10, solver.mkTerm(cvc5.Kind.PLUS, p11, p12))
+        row1_sum = solver.mkTerm(cvc5.Kind.ADD, p10, solver.mkTerm(cvc5.Kind.ADD, p11, p12))
         row1_eq_1 = solver.mkTerm(cvc5.Kind.EQUAL, row1_sum, solver.mkReal("1"))
 
         # Row 2 stochasticity
-        row2_sum = solver.mkTerm(cvc5.Kind.PLUS, p20, solver.mkTerm(cvc5.Kind.PLUS, p21, p22))
+        row2_sum = solver.mkTerm(cvc5.Kind.ADD, p20, solver.mkTerm(cvc5.Kind.ADD, p21, p22))
         row2_eq_1 = solver.mkTerm(cvc5.Kind.EQUAL, row2_sum, solver.mkReal("1"))
 
         # All entries non-negative
@@ -332,13 +332,13 @@ def run_positive_tests():
         p11 = solver.mkConst(real_sort, "p11_absorb")
 
         # Row 0: absorbing state
-        row0_sum = solver.mkTerm(cvc5.Kind.PLUS, p00, p01)
+        row0_sum = solver.mkTerm(cvc5.Kind.ADD, p00, p01)
         row0_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row0_sum, solver.mkReal("1"))
         p00_absorb = solver.mkTerm(cvc5.Kind.EQUAL, p00, solver.mkReal("1"))
         p01_absorb = solver.mkTerm(cvc5.Kind.EQUAL, p01, solver.mkReal("0"))
 
         # Row 1: regular state
-        row1_sum = solver.mkTerm(cvc5.Kind.PLUS, p10, p11)
+        row1_sum = solver.mkTerm(cvc5.Kind.ADD, p10, p11)
         row1_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row1_sum, solver.mkReal("1"))
 
         # Non-negativity
@@ -396,7 +396,7 @@ def run_negative_tests():
         p01 = solver.mkConst(real_sort, "p01_rowsum")
 
         # Stochasticity: row sum = 1
-        row_sum = solver.mkTerm(cvc5.Kind.PLUS, p00, p01)
+        row_sum = solver.mkTerm(cvc5.Kind.ADD, p00, p01)
         row_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row_sum, solver.mkReal("1"))
 
         # Violation: row sum > 1 (e.g., p00=0.7, p01=0.4, sum=1.1)
@@ -465,7 +465,7 @@ def run_negative_tests():
         p1 = solver.mkConst(real_sort, "p1_rowsum_lt")
 
         # Stochasticity: row sum = 1
-        row_sum = solver.mkTerm(cvc5.Kind.PLUS, p0, p1)
+        row_sum = solver.mkTerm(cvc5.Kind.ADD, p0, p1)
         row_constraint = solver.mkTerm(cvc5.Kind.EQUAL, row_sum, solver.mkReal("1"))
 
         # Violation: row sum < 1 (e.g., p0=0.3, p1=0.3, sum=0.6)
@@ -560,14 +560,18 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+
     results = {
         "name": "CVC5 Markov Chain Stochasticity Constraint (Canonical)",
         "description": "cvc5 proves Markov chain row-stochasticity constraint Σ_j P_ij = 1 via QF_NRA. Encodes fundamental probability axiom: transition matrix rows sum to 1 and all entries non-negative. Forbids row sums != 1 or negative entries → UNSAT. Markov property: P(X_n = j | X_{n-1} = i, history) = P(X_n = j | X_{n-1} = i) (memoryless). Transition matrix P_ij = P(X_{n+1} = j | X_n = i) parameterizes all transitions. sympy derives: Markov property and stochasticity from probability axioms, stationary distribution π = πP, detailed balance condition π_i P_ij = π_j P_ji, Chapman-Kolmogorov equation, reversibility and MCMC applications.",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
         "classification": "canonical",
     }
 

@@ -26,6 +26,23 @@ from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: this checks pairwise orthogonality of the geometric axes, not a canonical nonclassical proof object."
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "z3": {"tried": False, "used": False, "reason": "not needed; proof work is handled in the axis sims"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed; proof work is handled in the axis sims"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; helper utilities are used by the axis sims"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density
 from geometric_operators import (

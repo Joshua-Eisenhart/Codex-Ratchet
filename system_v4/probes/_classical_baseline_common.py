@@ -3,6 +3,12 @@ numpy-only; sympy optional; no load-bearing non-numeric tools.
 """
 import numpy as np  # noqa: F401
 
+classification = "classical_baseline"
+divergence_log = (
+    "Classical baseline helper: shared manifest for numpy-first baseline sims; "
+    "this module is support code, not a canonical proof object."
+)
+
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "classical baseline: numpy only"},
     "pyg": {"tried": False, "used": False, "reason": "classical baseline: numpy only"},

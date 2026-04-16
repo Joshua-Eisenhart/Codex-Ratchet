@@ -40,6 +40,20 @@ from geometric_operators import (
 )
 from proto_ratchet_sim_runner import EvidenceToken
 
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "core numeric arrays and density-matrix arithmetic"},
+    "hopf_manifold": {"tried": True, "used": True, "reason": "s3 point sampling, coherent states, and hopf lift helpers"},
+    "geometric_operators": {"tried": True, "used": True, "reason": "Fe/Ti boundary operators plus negentropy and density checks"},
+    "proto_ratchet_sim_runner": {"tried": True, "used": True, "reason": "evidence token ledger for controller-facing results"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "hopf_manifold": "supportive",
+    "geometric_operators": "supportive",
+    "proto_ratchet_sim_runner": "decorative",
+}
+
 
 def base_arc_density(q, arc_fraction=1.0, n_samples=32):
     """Build density matrix by averaging coherent states along a BASE arc on S².

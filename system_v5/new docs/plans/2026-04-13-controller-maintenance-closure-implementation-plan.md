@@ -1,6 +1,18 @@
 # Controller Maintenance Closure Implementation Plan
 
-> **For Hermes:** Use subagent-driven-development skill to implement this plan task-by-task.
+Status: HISTORICAL IMPLEMENTATION PLAN.
+
+Core v1 artifacts now exist in this checkout:
+- `system_v4/probes/maintenance_closure.py`
+- `system_v4/tests/test_maintenance_closure.py`
+
+Local verification on 2026-04-16:
+- `python3 -m pytest system_v4/tests/test_maintenance_closure.py -q` -> `25 passed`
+
+Use this file as design history and follow-on scope notes, not as an
+open “missing implementation” queue.
+
+> **For Hermes:** If further work is needed, use bounded subagents explicitly. No repo-local `subagent-driven-development` skill surface is present in this checkout.
 
 **Goal:** Build the missing maintenance-closure layer so bounded controller runs can update the live control surfaces from fresh result artifacts and audit outputs instead of leaving truth/queue/wiki state partially manual.
 

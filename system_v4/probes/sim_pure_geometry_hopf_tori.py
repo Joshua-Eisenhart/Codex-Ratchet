@@ -11,6 +11,39 @@ Can we actually compute this structure?  YES OR NO.
 
 import sys, os, json, time
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this Hopf-tori geometry probe uses "
+    "numeric scipy plus Clifford and TopoNetX geometry helpers to verify "
+    "nested torus structure, not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and geometry calculations for the Hopf-tori probe",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "linear-algebra helpers for torus geometry and Berry-phase checks",
+    },
+    "clifford": {
+        "tried": True,
+        "used": True,
+        "reason": "Cl(3) basis and rotor geometry for the nested Hopf tori surface",
+    },
+    "toponetx": {
+        "tried": True,
+        "used": True,
+        "reason": "cell-complex construction for the torus geometry surface model",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "clifford": "supportive",
+    "toponetx": "supportive",
+}
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import numpy as np

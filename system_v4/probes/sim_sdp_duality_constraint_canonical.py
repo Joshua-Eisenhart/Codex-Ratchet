@@ -194,21 +194,21 @@ def run_positive_tests():
             gap = solver.mkConst(real_sort, "gap")
             slater_margin = solver.mkConst(real_sort, "slater")
 
-            zero = solver.mkRealValue("0")
+            zero = solver.mkReal("0")
 
             # Slater condition: feasible X with strict positivity
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Gt, slater_margin, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, slater_margin, zero))
 
             # Gap definition
-            gap_formula = solver.mkTerm(cvc5.Kind.Equal, gap,
-                                       solver.mkTerm(cvc5.Kind.Sub, primal_obj, dual_obj))
+            gap_formula = solver.mkTerm(cvc5.Kind.EQUAL, gap,
+                                       solver.mkTerm(cvc5.Kind.SUB, primal_obj, dual_obj))
             solver.assertFormula(gap_formula)
 
             # Under Slater: gap = 0 (strong duality)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, gap, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, gap, zero))
 
             # Primal and dual equal
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, primal_obj, dual_obj))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, primal_obj, dual_obj))
 
             result = solver.checkSat()
             sat = result.isSat()
@@ -280,19 +280,19 @@ def run_negative_tests():
             dual_obj = solver.mkConst(real_sort, "d_obj")
             gap = solver.mkConst(real_sort, "gap")
 
-            zero = solver.mkRealValue("0")
-            epsilon = solver.mkRealValue("0.1")
+            zero = solver.mkReal("0")
+            epsilon = solver.mkReal("0.1")
 
             # Slater condition satisfied
             slater = solver.mkConst(real_sort, "slater")
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Gt, slater, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, slater, zero))
 
             # Gap definition
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, gap,
-                                              solver.mkTerm(cvc5.Kind.Sub, primal_obj, dual_obj)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, gap,
+                                              solver.mkTerm(cvc5.Kind.SUB, primal_obj, dual_obj)))
 
             # Claim: gap > epsilon (positive)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Gt, gap, epsilon))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, gap, epsilon))
 
             result = solver.checkSat()
             unsat = result.isUnsat()
@@ -431,8 +431,8 @@ def run_boundary_tests():
             real_sort = solver.getRealSort()
 
             gap = solver.mkConst(real_sort, "gap")
-            zero = solver.mkRealValue("0")
-            tiny = solver.mkRealValue("1e-12")
+            zero = solver.mkReal("0")
+            tiny = solver.mkReal("1e-12")
 
             # Constraint: gap within numerical tolerance
             solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt,

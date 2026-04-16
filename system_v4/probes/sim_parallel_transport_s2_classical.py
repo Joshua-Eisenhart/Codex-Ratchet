@@ -43,25 +43,43 @@ def rotate_axis_angle(v, axis, theta):
     return v * c + np.cross(a, v) * s + a * np.dot(a, v) * (1 - c)
 
 
-def transport_along_arc(vec_start, p_start, p_end, steps=200):
-    """Levi-Civita transport of a tangent vector along the great-circle arc."""
+def _trace_transport_along_arc_states(vec_start, p_start, p_end, steps=200):
+    """Return intermediate base/tangent states along a transported great-circle arc."""
     # Axis is p_start x p_end, angle is arc length
     axis = np.cross(p_start, p_end)
+    states = [{
+        "local_step": 0,
+        "base_xyz": np.asarray(p_start, dtype=float).tolist(),
+        "tangent_xyz": np.asarray(vec_start, dtype=float).tolist(),
+    }]
     if np.linalg.norm(axis) < 1e-14:
-        return vec_start.copy()
+        return states
     axis = normalize(axis)
     total = np.arccos(np.clip(np.dot(p_start, p_end), -1.0, 1.0))
     dtheta = total / steps
     p = p_start.copy()
     v = vec_start.copy()
-    for _ in range(steps):
+    for local_step in range(1, steps + 1):
         # rotate base point and tangent by dtheta around axis
         p_new = rotate_axis_angle(p, axis, dtheta)
         v = rotate_axis_angle(v, axis, dtheta)
         # reproject v onto tangent space at p_new (should already be tangent)
         v = v - np.dot(v, p_new) * p_new
+        if np.linalg.norm(v) > 0:
+            v = normalize(v)
         p = p_new
-    return v
+        states.append({
+            "local_step": local_step,
+            "base_xyz": np.asarray(p, dtype=float).tolist(),
+            "tangent_xyz": np.asarray(v, dtype=float).tolist(),
+        })
+    return states
+
+
+def transport_along_arc(vec_start, p_start, p_end, steps=200):
+    """Levi-Civita transport of a tangent vector along the great-circle arc."""
+    states = _trace_transport_along_arc_states(vec_start, p_start, p_end, steps=steps)
+    return np.array(states[-1]["tangent_xyz"], dtype=float)
 
 
 def transport_loop_octant():
@@ -77,6 +95,37 @@ def transport_loop_octant():
     v = transport_along_arc(v, E, F)
     v = transport_along_arc(v, F, N)
     return v
+
+
+def trace_transport_loop_octant(steps_per_arc=200):
+    """Trace the transported tangent vector around the N→E→F→N octant loop."""
+    N = np.array([0.0, 0.0, 1.0])
+    E = np.array([1.0, 0.0, 0.0])
+    F = np.array([0.0, 1.0, 0.0])
+    arc_points = [(N, E), (E, F), (F, N)]
+    tangent = np.array([1.0, 0.0, 0.0])
+    total_steps = max(1, len(arc_points) * steps_per_arc)
+    trace = []
+    step_index = 0
+
+    for arc_id, (p_start, p_end) in enumerate(arc_points):
+        arc_states = _trace_transport_along_arc_states(tangent, p_start, p_end, steps=steps_per_arc)
+        if arc_id > 0:
+            arc_states = arc_states[1:]
+        for state in arc_states:
+            progress = step_index / total_steps
+            if step_index == total_steps:
+                progress = 1.0
+            trace.append({
+                "step_index": step_index,
+                "arc_id": arc_id,
+                "loop_progress": float(progress),
+                "base_xyz": state["base_xyz"],
+                "tangent_xyz": state["tangent_xyz"],
+            })
+            step_index += 1
+        tangent = np.array(trace[-1]["tangent_xyz"], dtype=float)
+    return trace
 
 
 def angle_between_tangent(v_initial, v_final, base_point):

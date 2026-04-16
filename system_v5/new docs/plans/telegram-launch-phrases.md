@@ -53,13 +53,13 @@ Add one or more only when you want to bias the queue, not replace it:
 
 ## Expected persistence behavior
 Runs should preserve continuity through repo-local maintenance surfaces, not through vague memory alone:
-- `docs/plans/sim_backlog_matrix.md`
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `docs/plans/controller_maintenance_checklist.md`
-- `docs/plans/sim_process_gap_log.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/plans/controller_maintenance_checklist.md`
+- `system_v5/new docs/plans/sim_process_gap_log.md`
+- `system_v5/new docs/16_lego_build_catalog.md`
+- `system_v5/new docs/17_actual_lego_registry.md`
 - `/Users/joshuaeisenhart/wiki`
 
 ## Rule against system bloat

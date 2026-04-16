@@ -1,6 +1,6 @@
 # 2026-04-12 Overnight 8h Run Plan
 
-Status: OPEN-ENDED OVERNIGHT RUN PLAN — geometry-first, bottom-up lego work, high parallelism, broader pre-Axis geometry scope, and controller-audited closure.
+Status: HISTORICAL DUPLICATE / WORKING COPY — prefer `system_v5/new docs/plans/2026-04-12-overnight-8h-run-plan.md` as the primary repo-tracked plan surface.
 
 Purpose: define a real 8-hour overnight work program that keeps advancing the full geometry/pre-Axis machinery stack step by step, with many parallel lanes, visible progress, anti-stuck behavior, and only bounded fallback use of the classical/QIT engine lane.
 
@@ -12,11 +12,11 @@ Authority surfaces used:
 - `new docs/16_lego_build_catalog.md`
 - `new docs/17_actual_lego_registry.md`
 - `new docs/LLM_RESEARCH_GAP_MATRIX.json`
-- `docs/plans/sim_backlog_matrix.md`
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `docs/plans/controller_maintenance_checklist.md`
-- `docs/plans/on-demand-telegram-runner.md`
+- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/plans/controller_maintenance_checklist.md`
+- `system_v5/new docs/plans/on-demand-telegram-runner.md`
 - `system_v5/READ ONLY Reference Docs/Pre axies math and geometry work out.md`
 - `system_v5/READ ONLY Reference Docs/Formal constraints and geometry .md`
 - `system_v5/READ ONLY Reference Docs/AXIS_0_1_2_QIT_MATH.md`
@@ -204,10 +204,10 @@ Goal:
 - keep controller surfaces honest after each geometry packet
 
 Touched surfaces when justified:
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/16_lego_build_catalog.md`
+- `system_v5/new docs/17_actual_lego_registry.md`
 - touched wiki pages only if concept framing materially changed
 
 ### Classical lane C1 — fallback or side-lane maintenance

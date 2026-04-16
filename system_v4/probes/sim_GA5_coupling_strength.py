@@ -28,6 +28,16 @@ import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: GA5 is validated here as a geometric coupling-strength sweep, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "Numerical sampling, density-matrix construction, and Bloch/trace-distance calculations.",
+    }
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density, density_to_bloch

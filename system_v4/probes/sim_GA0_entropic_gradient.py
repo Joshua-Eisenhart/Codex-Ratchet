@@ -38,6 +38,14 @@ from hopf_manifold import (
 from geometric_operators import negentropy, _ensure_valid_density, I2
 from proto_ratchet_sim_runner import EvidenceToken
 
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "entropy, coarse-graining, and Bloch-vector numerics"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
+
 
 def von_neumann_entropy_2x2(rho):
     """Von Neumann entropy S = -Tr(ρ log ρ) for 2x2."""

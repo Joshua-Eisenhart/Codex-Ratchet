@@ -27,6 +27,18 @@ from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: GA4 is validated here as a geometric operator-family separation, not a canonical nonclassical witness."
 
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "vectorized Bloch-vector arithmetic, distance metrics, and trial averaging",
+    },
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import random_s3_point, coherent_state_density, density_to_bloch
 from geometric_operators import (

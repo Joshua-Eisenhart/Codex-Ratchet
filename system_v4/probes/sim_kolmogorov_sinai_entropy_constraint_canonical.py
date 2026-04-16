@@ -424,20 +424,22 @@ def run_boundary_tests():
                 "error": abs(float(h_n) - float(target_entropy))
             })
 
-        # Check convergence (error decreases)
-        is_convergent = all(
-            partition_entropies[i]["error"] >= partition_entropies[i+1]["error"]
-            for i in range(len(partition_entropies) - 1)
-            if i < len(partition_entropies) - 1
-        ) or len(partition_entropies) < 2
+        # Check convergence (error decreases, allowing for numerical precision)
+        # All h_n should be close to target (within tolerance)
+        tolerance = 1e-10
+        all_close = all(
+            abs(pe["h_n"] - pe["target"]) < tolerance
+            for pe in partition_entropies
+        )
 
         results["numpy_boundary_partition_convergence"] = {
             "test": "Boundary: h_n → log 2 via partition refinement",
             "alphabet_size": alphabet_size,
             "partition_data": partition_entropies,
             "target_entropy": float(target_entropy),
-            "convergent": is_convergent,
-            "passed": is_convergent or len(partition_entropies) < 2,
+            "tolerance": tolerance,
+            "all_close_to_target": all_close,
+            "passed": all_close,
             "interpretation": "KS entropy emerges from partition refinement limit",
             "method": "numpy partition entropy"
         }

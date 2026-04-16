@@ -48,20 +48,88 @@ FEP framing note:
 from __future__ import annotations
 import json, os, sys
 from datetime import UTC, datetime
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import gudhi
 import numpy as np
+import rustworkx as rx
+import sympy as sp
+import torch
+import torch_ga
+import xgi
+from clifford import Cl
+from geomstats.geometry.hypersphere import Hypersphere
+from geomstats.learning.frechet_mean import FrechetMean
+from scipy.linalg import expm
+from toponetx import CellComplex
+from z3 import Real, RealVal, Solver, Sum, sat
 classification = "classical_baseline"  # auto-backfill
-divergence_log = "Classical foundation baseline: this probes Fe-indexed Xi history bridges numerically, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical foundation baseline: this probes Fe-indexed Xi history bridges "
+    "numerically. The bridge bakeoff is preserved, and a deep contract now "
+    "binds the bridge ranking to the same shell bridge, ordered graph/topology, "
+    "symbolic expansion, solver closure, geometric algebra, and manifold "
+    "witnesses used elsewhere in Axis 0."
+)
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "history-window bridge construction and scoring numerics"},
+    "numpy": {"tried": True, "used": True, "reason": "history-window bridge construction, bridge scoring, and aggregate numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponential propagator for bridge-ranking expansion updates"},
+    "pytorch": {"tried": True, "used": True, "reason": "fit and gradient witness over aggregate bridge features"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric carrier witness for the winning Xi-history bridge vector"},
+    "torch_ga": {"tried": True, "used": True, "reason": "geometric algebra roundtrip witness for the winning Xi-history bridge vector"},
+    "rustworkx": {"tried": True, "used": True, "reason": "ordered DAG witness over the ranked Xi-history bridges"},
+    "xgi": {"tried": True, "used": True, "reason": "higher-order config-to-bridge coupling witness"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex boundary witness for bridge-ranking closure"},
+    "gudhi": {"tried": True, "used": True, "reason": "persistent topology witness for the Xi-history bridge complex"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic interpolation and derivative witness for bridge expansion trends"},
+    "z3": {"tried": True, "used": True, "reason": "constraint witness enforcing bridge rank order and monotone scale growth"},
+    "geomstats": {"tried": True, "used": True, "reason": "Frechet-mean manifold witness for aggregate bridge geometry"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER
+from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
+from sim_axis0_iscalar_sweep import (
+    _clifford_vector,
+    _option_cell_complex_surface as _bridge_cell_complex_surface,
+    _option_constraint_surface as _bridge_constraint_surface,
+    _option_graph_surface as _bridge_graph_surface,
+    _option_hypergraph_surface as _bridge_hypergraph_surface,
+    _option_manifold_surface as _bridge_manifold_surface,
+    _option_scale_history as _bridge_scale_history,
+    _option_symbolic_surface as _bridge_symbolic_surface,
+    _option_topology_surface as _bridge_topology_surface,
+    _torch_ga_roundtrip,
+    _torch_option_fit as _torch_bridge_fit,
+)
 
 TORUS_CONFIGS = [("inner", TORUS_INNER), ("clifford", TORUS_CLIFFORD), ("outer", TORUS_OUTER)]
+BRIDGE_ORDER = [
+    "A_phase4_winner",
+    "B_fe_indexed",
+    "C_fe_pairs_only",
+    "D_lag7_pairs",
+]
 PSI_MINUS = np.array([0, 1, -1, 0], dtype=complex) / np.sqrt(2)
 BELL = np.outer(PSI_MINUS, PSI_MINUS.conj())
 SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -236,6 +304,241 @@ def bridge_D_lag7_pairs(history: list[dict]) -> np.ndarray:
     return _ensure_valid_density(sum(w * s for w, s in zip(weights, states)))
 
 
+def _aggregate_deep_contract(all_results: list[dict]) -> dict[str, object]:
+    shell_bridge_pass_fraction = float(
+        np.mean([1.0 if cfg["shell_bridge"]["lane_d_keep"] else 0.0 for cfg in all_results])
+    ) if all_results else 0.0
+
+    bridge_values_by_name: dict[str, list[float]] = {name: [] for name in BRIDGE_ORDER}
+    bridge_shell_hubble_by_name: dict[str, list[float]] = {name: [] for name in BRIDGE_ORDER}
+    bridge_win_by_name: dict[str, list[float]] = {name: [] for name in BRIDGE_ORDER}
+    per_config_rankings: list[list[str]] = []
+
+    for cfg in all_results:
+        shell_hubble = float(cfg["shell_bridge"]["mean_hubble_proxy"])
+        ranking = sorted(
+            BRIDGE_ORDER,
+            key=lambda name: float(cfg["bridges"][name]["mi"]),
+            reverse=True,
+        )
+        per_config_rankings.append(ranking)
+        for bridge_name in BRIDGE_ORDER:
+            bridge_values_by_name[bridge_name].append(float(cfg["bridges"][bridge_name]["mi"]))
+            bridge_shell_hubble_by_name[bridge_name].append(shell_hubble)
+            bridge_win_by_name[bridge_name].append(1.0 if cfg["winner"] == bridge_name else 0.0)
+
+    raw_rows: list[dict[str, object]] = []
+    max_mean_abs = 0.0
+    for bridge_name in BRIDGE_ORDER:
+        values = np.asarray(bridge_values_by_name[bridge_name], dtype=np.float64)
+        shell_vals = np.asarray(bridge_shell_hubble_by_name[bridge_name], dtype=np.float64)
+        win_vals = np.asarray(bridge_win_by_name[bridge_name], dtype=np.float64)
+        shell_alignment = 0.0
+        if values.size and values.std() > EPS and shell_vals.std() > EPS:
+            shell_alignment = float(np.corrcoef(values, shell_vals)[0, 1])
+        mean_abs = float(np.mean(np.abs(values))) if values.size else 0.0
+        max_mean_abs = max(max_mean_abs, mean_abs)
+        raw_rows.append(
+            {
+                "bridge": bridge_name,
+                "mean_abs_support": mean_abs,
+                "mean_signed_support": float(np.mean(values)) if values.size else 0.0,
+                "win_fraction": float(np.mean(win_vals)) if win_vals.size else 0.0,
+                "shell_alignment": shell_alignment,
+                "shell_alignment_abs": abs(shell_alignment),
+            }
+        )
+
+    row_by_name: dict[str, dict[str, object]] = {}
+    for row in raw_rows:
+        signal_score = float(row["mean_abs_support"] / max(max_mean_abs, EPS))
+        composite_score = float(
+            0.45 * float(row["win_fraction"])
+            + 0.35 * signal_score
+            + 0.20 * float(row["shell_alignment_abs"])
+        )
+        enriched = dict(row)
+        enriched["signal_score"] = signal_score
+        enriched["composite_score"] = composite_score
+        row_by_name[str(row["bridge"])] = enriched
+
+    ranking = sorted(
+        BRIDGE_ORDER,
+        key=lambda name: float(row_by_name[name]["composite_score"]),
+        reverse=True,
+    )
+    lambda_shells = np.linspace(0.0, 1.0, len(ranking), dtype=np.float64)
+    bridge_rows: list[dict[str, object]] = []
+    ranking_scores: list[float] = []
+    for bridge_name in ranking:
+        row = row_by_name[bridge_name]
+        ranking_scores.append(float(row["composite_score"]))
+        bridge_rows.append(
+            {
+                "option": bridge_name,
+                "mean_abs_a0": float(row["mean_abs_support"]),
+                "mean_signed_a0": float(row["mean_signed_support"]),
+                "doctrine_fit": float(row["win_fraction"]),
+                "sign_consistency": float(row["win_fraction"]),
+                "shell_alignment": float(row["shell_alignment"]),
+                "shell_alignment_abs": float(row["shell_alignment_abs"]),
+                "signal_score": float(row["signal_score"]),
+                "composite_score": float(row["composite_score"]),
+            }
+        )
+
+    expansion_drive = np.asarray(
+        [
+            row["mean_abs_a0"] + row["doctrine_fit"] + row["shell_alignment_abs"]
+            for row in bridge_rows
+        ],
+        dtype=np.float64,
+    )
+    scale_factors, propagator_traces = _bridge_scale_history(lambda_shells, expansion_drive)
+    hubble_proxy = np.gradient(
+        np.log(np.clip(scale_factors, EPS, None)),
+        lambda_shells,
+    )
+
+    for row, scale, hubble in zip(
+        bridge_rows,
+        scale_factors.tolist(),
+        hubble_proxy.tolist(),
+        strict=True,
+    ):
+        row["scale_factor"] = float(scale)
+        row["hubble_proxy"] = float(hubble)
+
+    graph_surface = _bridge_graph_surface(bridge_rows)
+    ranking_index = {name: idx for idx, name in enumerate(ranking)}
+    config_windows = [
+        [ranking_index[name] for name in config_ranking[:3]]
+        for config_ranking in per_config_rankings
+    ]
+    hypergraph_surface = _bridge_hypergraph_surface(len(ranking), config_windows)
+    combined_pair_edges = sorted(
+        {
+            tuple(edge)
+            for edge in graph_surface["pair_edges"] + hypergraph_surface["pair_edges"]
+        }
+    )
+    combined_triad_windows = sorted(
+        {
+            tuple(window)
+            for window in graph_surface["triad_windows"] + hypergraph_surface["triad_windows"]
+        }
+    )
+    closed_pair_edges = set(combined_pair_edges)
+    for window in combined_triad_windows:
+        for idx in range(len(window)):
+            for jdx in range(idx + 1, len(window)):
+                closed_pair_edges.add(tuple(sorted((int(window[idx]), int(window[jdx])))))
+    cell_complex_surface = _bridge_cell_complex_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    topology_surface = _bridge_topology_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    symbolic_surface = _bridge_symbolic_surface(
+        lambda_shells,
+        scale_factors,
+        expansion_drive,
+    )
+    constraint_surface = _bridge_constraint_surface(
+        lambda_shells,
+        scale_factors,
+        np.asarray(ranking_scores, dtype=np.float64),
+    )
+    manifold_surface = _bridge_manifold_surface(
+        np.asarray([row["mean_abs_a0"] for row in bridge_rows], dtype=np.float64),
+        np.asarray([row["doctrine_fit"] for row in bridge_rows], dtype=np.float64),
+        np.asarray([row["shell_alignment_abs"] for row in bridge_rows], dtype=np.float64),
+        scale_factors,
+    )
+    torch_fit = _torch_bridge_fit(
+        np.stack(
+            [
+                np.asarray([row["mean_abs_a0"] for row in bridge_rows], dtype=np.float64),
+                np.asarray([row["doctrine_fit"] for row in bridge_rows], dtype=np.float64),
+                np.asarray([row["shell_alignment_abs"] for row in bridge_rows], dtype=np.float64),
+            ],
+            axis=1,
+        ),
+        hubble_proxy,
+    )
+
+    winner = ranking[0]
+    winner_row = next(row for row in bridge_rows if row["option"] == winner)
+    winner_vector = np.array(
+        [
+            winner_row["mean_abs_a0"],
+            winner_row["doctrine_fit"],
+            winner_row["shell_alignment_abs"],
+        ],
+        dtype=np.float64,
+    )
+    clifford_vector = _clifford_vector(winner_vector)
+    torch_ga_vector = _torch_ga_roundtrip(winner_vector)
+    topology_parity_ok = bool(
+        cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
+    )
+
+    pass_flag = bool(
+        shell_bridge_pass_fraction >= 0.5
+        and graph_surface["longest_path_length"] >= len(ranking) - 1
+        and hypergraph_surface["max_hyperedge_size"] >= 3
+        and topology_surface["beta0"] == 1
+        and topology_surface["beta1"] == 0
+        and topology_parity_ok
+        and constraint_surface["sat"]
+        and symbolic_surface["symbolic_hubble_mid"] > 0.05
+        and manifold_surface["mean_geodesic_distance"] > 1e-2
+        and torch_fit["loss"] < 1.0
+    )
+
+    return {
+        "pass": pass_flag,
+        "winner": winner,
+        "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "bridge_rows": bridge_rows,
+        "graph_surface": {
+            "edge_count": graph_surface["edge_count"],
+            "longest_path_length": graph_surface["longest_path_length"],
+            "triad_windows": graph_surface["triad_windows"],
+        },
+        "hypergraph_surface": {
+            "num_edges": hypergraph_surface["num_edges"],
+            "max_hyperedge_size": hypergraph_surface["max_hyperedge_size"],
+            "connected_components": hypergraph_surface["connected_components"],
+            "hyperedges": hypergraph_surface["hyperedges"],
+        },
+        "topology_surface": {
+            "betti_numbers": topology_surface["betti_numbers"],
+            "euler_characteristic": topology_surface["euler_characteristic"],
+            "parity_ok": topology_parity_ok,
+        },
+        "symbolic_surface": symbolic_surface,
+        "constraint_surface": constraint_surface,
+        "manifold_surface": manifold_surface,
+        "torch_fit": {
+            "weights": torch_fit["weights"],
+            "bias": torch_fit["bias"],
+            "loss": torch_fit["loss"],
+            "max_gap": torch_fit["max_gap"],
+        },
+        "winner_vector": winner_vector.tolist(),
+        "clifford_vector_gap": float(np.max(np.abs(clifford_vector - winner_vector))),
+        "torch_ga_vector_gap": float(np.max(np.abs(torch_ga_vector - winner_vector))),
+        "scale_factors": scale_factors.tolist(),
+        "hubble_proxy": hubble_proxy.tolist(),
+        "propagator_traces": propagator_traces,
+    }
+
+
 # --------------------------------------------------------------------------- #
 # Runner                                                                       #
 # --------------------------------------------------------------------------- #
@@ -245,6 +548,15 @@ def run_torus(engine_type: int, torus_name: str, torus_val: float) -> dict:
     state = engine.init_state(eta=torus_val)
     final_state = engine.run_cycle(state)
     history = final_state.history
+    history_base = []
+    for step in history:
+        history_base.append(
+            {
+                "rho_L": step["rho_L"],
+                "rho_R": step["rho_R"],
+                "eta": float(step.get("ax0_torus_entropy", 0.5)),
+            }
+        )
 
     # Fe step statistics
     fe_indices = [i for i, s in enumerate(history) if s["op_name"] == "Fe"]
@@ -277,6 +589,7 @@ def run_torus(engine_type: int, torus_name: str, torus_val: float) -> dict:
     winner_mi = results[winner]["mi"]
     baseline_mi = results["A_phase4_winner"]["mi"]
     gain = winner_mi - baseline_mi
+    shell_bridge = lane_d_topology_expansion_bridge(history_base)
 
     print(f"  {engine_type}/{torus_name}: "
           f"A={baseline_mi:.4f} "
@@ -297,6 +610,7 @@ def run_torus(engine_type: int, torus_name: str, torus_val: float) -> dict:
         "winner_mi": winner_mi,
         "baseline_mi": baseline_mi,
         "gain_over_baseline": gain,
+        "shell_bridge": shell_bridge,
     }
 
 
@@ -338,6 +652,7 @@ def main() -> None:
         for k in ["A_phase4_winner", "B_fe_indexed", "C_fe_pairs_only", "D_lag7_pairs"]
     }
     mean_fe_adv = float(np.mean([r["fe_advantage"] for r in results]))
+    deep_contract = _aggregate_deep_contract(results)
 
     print()
     print("=" * 72)
@@ -384,8 +699,26 @@ def main() -> None:
     print("    The entire 4-step cycle is the prior unfolding; Fe is its peak.")
 
     print()
+    print("─" * 72)
+    print("DEEP CONTRACT")
+    print("─" * 72)
+    print(f"  Deep pass:                    {deep_contract['pass']}")
+    print(f"  Shell bridge pass fraction:   {deep_contract['shell_bridge_pass_fraction']:.3f}")
+    print(f"  Winning bridge surface:       {deep_contract['winner']}")
+    print(f"  Graph longest path:           {deep_contract['graph_surface']['longest_path_length']}")
+    print(f"  Hypergraph max edge size:     {deep_contract['hypergraph_surface']['max_hyperedge_size']}")
+    print(f"  Topology betti numbers:       {deep_contract['topology_surface']['betti_numbers']}")
+    print(f"  Symbolic hubble mid:          {deep_contract['symbolic_surface']['symbolic_hubble_mid']:.6f}")
+    print(f"  Manifold mean distance:       {deep_contract['manifold_surface']['mean_geodesic_distance']:.6f}")
+    print(f"  Torch fit loss:               {deep_contract['torch_fit']['loss']:.6f}")
+    print(
+        f"  Winner vector gaps:           "
+        f"clifford={deep_contract['clifford_vector_gap']:.2e} | "
+        f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
+    )
+    print()
     print("================================================================================")
-    print("PROBE STATUS: PASS")
+    print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")
     print("================================================================================")
 
     def safe(obj):
@@ -399,6 +732,10 @@ def main() -> None:
 
     output = {
         "timestamp": datetime.now(UTC).isoformat(),
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "compression_horizon_steps": WINDOW,
         "results": safe(results),
         "summary": {
@@ -409,7 +746,15 @@ def main() -> None:
             "best_new_bridge": best_new,
             "best_gain": best_gain,
             "mean_fe_advantage": mean_fe_adv,
+            "deep_contract_pass": bool(deep_contract["pass"]),
+            "deep_contract_winner": deep_contract["winner"],
         },
+        "aggregate": {
+            "deep_contract": safe(deep_contract),
+            "all_pass": bool(deep_contract["pass"]),
+        },
+        "overall_pass": bool(deep_contract["pass"]),
+        "all_pass": bool(deep_contract["pass"]),
     }
 
     out_path = os.path.join(

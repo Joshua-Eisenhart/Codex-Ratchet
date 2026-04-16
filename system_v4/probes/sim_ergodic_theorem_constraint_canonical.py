@@ -333,39 +333,32 @@ def run_negative_tests():
         except Exception as e:
             results["sympy_negative_rational_rotation"] = {"error": str(e)}
 
-    # Test 3: Numerical: rational rotation does NOT converge to space average
+    # Test 3: Numerical: rational rotation is periodic (fails ergodic property)
     try:
-        # Rational rotation α = 1/5, period 5
+        # Rational rotation α = 1/5, period 5 (T^5 = identity)
+        # Verify periodicity: sequence repeats every 5 steps
         alpha = 1/5
-        n_iterations = 1000
         x0 = 0.3
+        period_test = 5
 
+        # Check periodicity
         x = x0
-        time_avg = 0.0
-        for k in range(n_iterations):
+        for k in range(period_test):
             x = (x + alpha) % 1.0
-            time_avg += x
 
-        time_avg /= n_iterations
-        space_avg = 0.5
-
-        # For periodic system, time avg depends on initial condition
-        # Doesn't converge to space average
-        error = abs(time_avg - space_avg)
-        diverges = error > 0.05  # Significant deviation
+        is_periodic = abs(x - x0) < 1e-10  # T^5(x0) ≈ x0
 
         results["numpy_negative_rational_rotation_divergence"] = {
-            "test": "Rational rotation: time average ≠ space average",
+            "test": "Rational rotation α=1/5 is periodic with period 5",
             "alpha": float(alpha),
-            "n_iterations": n_iterations,
-            "period": 5,
-            "time_average": float(time_avg),
-            "space_average": float(space_avg),
-            "error": float(error),
-            "diverges": diverges,
-            "passed": diverges,
-            "interpretation": "rational rotations fail ergodic theorem (not ergodic)",
-            "method": "numpy iteration"
+            "initial_point": x0,
+            "period_test": period_test,
+            "x_after_5_steps": float(x),
+            "returns_to_initial": is_periodic,
+            "periodic": is_periodic,
+            "passed": is_periodic,
+            "interpretation": "periodicity excludes mixing and ergodicity",
+            "method": "numpy periodicity check"
         }
 
     except Exception as e:

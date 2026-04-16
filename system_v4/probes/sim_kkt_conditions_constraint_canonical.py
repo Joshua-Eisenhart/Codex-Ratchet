@@ -193,25 +193,25 @@ def run_positive_tests():
             lam2 = solver.mkConst(real_sort, "lam2")
 
             # Constants
-            zero = solver.mkRealValue("0")
-            one = solver.mkRealValue("1")
-            two = solver.mkRealValue("2")
-            half = solver.mkRealValue("0.5")
+            zero = solver.mkReal("0")
+            one = solver.mkReal("1")
+            two = solver.mkReal("2")
+            half = solver.mkReal("0.5")
 
             # Constraints for min f(x,y)=x^2+y^2 s.t. x+y<=1, x>=0
             # KKT stationarity at interior point: 2x + lam1 = 0, 2y + lam1 = 0
             # Complementarity: lam1 >= 0, lam2 >= 0, lam1*(x+y-1) = 0, lam2*(-x) = 0
             # For interior solution (x=0.5, y=0.5): lam1 = 0, lam2 = 0
 
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, x, half))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, y, half))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, lam1, zero))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, lam2, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, x, half))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, y, half))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, lam1, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, lam2, zero))
 
             # Stationarity check: 2x + lam1 = 0
-            two_x = solver.mkTerm(cvc5.Kind.Mult, two, x)
-            stationarity_x = solver.mkTerm(cvc5.Kind.Equal,
-                                          solver.mkTerm(cvc5.Kind.Add, two_x, lam1),
+            two_x = solver.mkTerm(cvc5.Kind.MULT, two, x)
+            stationarity_x = solver.mkTerm(cvc5.Kind.EQUAL,
+                                          solver.mkTerm(cvc5.Kind.ADD, two_x, lam1),
                                           zero)
             solver.assertFormula(stationarity_x)
 
@@ -295,18 +295,18 @@ def run_negative_tests():
             # So claiming: Hessian eigenvalue < 0 AND KKT satisfied
             # This should be UNSAT
 
-            zero = solver.mkRealValue("0")
+            zero = solver.mkReal("0")
 
             # KKT stationarity: 2x = 0, 2y = 0 (interior minimum)
-            two = solver.mkRealValue("2")
-            two_x = solver.mkTerm(cvc5.Kind.Mult, two, x)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, two_x, zero))
+            two = solver.mkReal("2")
+            two_x = solver.mkTerm(cvc5.Kind.MULT, two, x)
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, two_x, zero))
 
             # Try to claim: Hessian eigenvalue = -1 (negative definite)
             # This contradicts convex optimization theory
             h_eigenval = solver.mkConst(real_sort, "h_eigenval")
-            neg_one = solver.mkRealValue("-1")
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, h_eigenval, neg_one))
+            neg_one = solver.mkReal("-1")
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, h_eigenval, neg_one))
 
             result = solver.checkSat()
             unsat = result.isUnsat()
@@ -453,17 +453,17 @@ def run_boundary_tests():
             x = solver.mkConst(real_sort, "x")
             lam = solver.mkConst(real_sort, "lam")
 
-            zero = solver.mkRealValue("0")
-            one = solver.mkRealValue("1")
+            zero = solver.mkReal("0")
+            one = solver.mkReal("1")
 
             # At boundary: x = 1, complementarity lam*(x-1) = 0 (satisfied)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, x, one))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, x, one))
 
             # Multiplier constraint: lam >= 0
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Geq, lam, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GEQ, lam, zero))
 
             # Edge case: lam = 0 (constraint inactive)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, lam, zero))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, lam, zero))
 
             result = solver.checkSat()
             sat = result.isSat()

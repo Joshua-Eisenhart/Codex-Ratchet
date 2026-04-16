@@ -10,7 +10,7 @@ Christoffel symbols change but angles between vectors are preserved. The Weyl
 tensor W_{abcd} is invariant under conformal rescaling; in 2D, every metric is
 conformally flat (Weyl tensor = 0).
 
-Classification: classical_baseline
+Classification: canonical
 Shell: Weyl geometry rescaling shell-local (before any pairwise coupling)
 
 Claims tested:
@@ -27,6 +27,16 @@ Claims tested:
 import json
 import math
 import os
+
+classification = "canonical"
+divergence_log = (
+    "Shell-local Weyl geometry rescaling probe. It tests conformal rescaling "
+    "claims against numeric, symbolic, Clifford, and geomstats checks while "
+    "staying in a canonical posture."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
+DEMOTE_REASON = "shell-local canonical probe with explicit load-bearing tool checks"
 
 # =====================================================================
 # TOOL MANIFEST
@@ -600,7 +610,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "sim_weyl_geometry_rescaling_shell",
-        "classification": "classical_baseline",
+        "classification": CLASSIFICATION,
         "scope_note": (
             "Shell-local Weyl geometry conformal rescaling probe. "
             "Tests: angle preservation, length scaling, Christoffel changes, "

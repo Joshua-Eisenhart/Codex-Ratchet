@@ -25,6 +25,18 @@ import json
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: GA2 is validated here as a torus-scale accessibility construction, not a canonical nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "core numeric arrays and density-matrix arithmetic"},
+    "hopf_manifold": {"tried": True, "used": True, "reason": "S3 sampling, coherent states, and torus coordinate helpers"},
+    "geometric_operators": {"tried": True, "used": True, "reason": "Te operator plus negentropy and density checks"},
+    "proto_ratchet_sim_runner": {"tried": True, "used": True, "reason": "evidence token ledger for controller-facing results"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "hopf_manifold": "supportive",
+    "geometric_operators": "supportive",
+    "proto_ratchet_sim_runner": "decorative",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import (

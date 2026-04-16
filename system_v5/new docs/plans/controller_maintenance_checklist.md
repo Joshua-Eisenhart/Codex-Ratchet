@@ -31,7 +31,7 @@ Goal: keep each on-demand Hermes-controlled run healthy, bounded, and aligned wh
 - state current lane and primary task
 - if a worker is launched, record exact command/session being used
 - if Telegram reporting is active, send initial run status
-- if Telegram reporting is active, use the same lane/task/health/changed-files schema described in `docs/plans/on-demand-telegram-runner.md`
+- if Telegram reporting is active, use the same lane/task/health/changed-files schema described in `system_v5/new docs/plans/on-demand-telegram-runner.md`
 - only call the run `running` after verifying the real worker/process is actually active
 - if Claude Code is useful for a bounded non-overlapping subtask, launch it explicitly and record its session too
 
@@ -82,13 +82,13 @@ Goal: keep each on-demand Hermes-controlled run healthy, bounded, and aligned wh
 
 ## Maintenance closure surfaces
 Check whether this run requires updates to:
-- `docs/plans/sim_backlog_matrix.md`
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `docs/plans/controller_maintenance_checklist.md`
-- `docs/plans/on-demand-telegram-runner.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/plans/controller_maintenance_checklist.md`
+- `system_v5/new docs/plans/on-demand-telegram-runner.md`
+- `system_v5/new docs/16_lego_build_catalog.md`
+- `system_v5/new docs/17_actual_lego_registry.md`
 - wiki concept pages under `/Users/joshuaeisenhart/wiki/concepts/`
 
 ## Anti-patterns

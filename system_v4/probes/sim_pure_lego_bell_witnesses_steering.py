@@ -19,6 +19,33 @@ from scipy.linalg import sqrtm
 from scipy.optimize import minimize_scalar
 import z3
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this Bell/steering probe uses numeric "
+    "numpy/scipy plus z3 proofs to probe threshold behavior, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and state calculations for Bell and steering thresholds",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and scalar minimization routines for boundary checks",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic threshold proofs for Bell/entanglement/steering inequalities",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 
 warnings.filterwarnings("ignore", message="Matrix is singular", category=RuntimeWarning)
 

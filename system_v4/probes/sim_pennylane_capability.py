@@ -29,6 +29,14 @@ TOOL_INTEGRATION_DEPTH = {
     "pennylane": "load_bearing",
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_integration_quantum_open_entangle_correlator_mega_stack.py",
+        "system_v4/probes/sim_integration_cirq_pennylane_entanglement_bridge.py",
+        "system_v4/probes/sim_integration_thermo_open_system_bridge_stack.py",
+    ]
+}
+
 DEV = qml.device("default.qubit", wires=1)
 
 

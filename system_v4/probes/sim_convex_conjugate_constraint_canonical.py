@@ -183,17 +183,17 @@ def run_positive_tests():
             f_x = solver.mkConst(real_sort, "f_x")
             f_star_star_x = solver.mkConst(real_sort, "f_double_star_x")
 
-            zero = solver.mkRealValue("0")
-            half = solver.mkRealValue("0.5")
+            zero = solver.mkReal("0")
+            half = solver.mkReal("0.5")
 
             # f(x) = 0.5*x^2
-            x_squared = solver.mkTerm(cvc5.Kind.Mult, x, x)
-            f_def = solver.mkTerm(cvc5.Kind.Equal, f_x,
-                                 solver.mkTerm(cvc5.Kind.Mult, half, x_squared))
+            x_squared = solver.mkTerm(cvc5.Kind.MULT, x, x)
+            f_def = solver.mkTerm(cvc5.Kind.EQUAL, f_x,
+                                 solver.mkTerm(cvc5.Kind.MULT, half, x_squared))
             solver.assertFormula(f_def)
 
             # Biconjugate constraint: f**(x) = f(x)
-            biconj_constraint = solver.mkTerm(cvc5.Kind.Equal, f_star_star_x, f_x)
+            biconj_constraint = solver.mkTerm(cvc5.Kind.EQUAL, f_star_star_x, f_x)
             solver.assertFormula(biconj_constraint)
 
             result = solver.checkSat()
@@ -270,17 +270,17 @@ def run_negative_tests():
             f_x = solver.mkConst(real_sort, "f_x")
             f_star_star_x = solver.mkConst(real_sort, "f_double_star_x")
 
-            zero = solver.mkRealValue("0")
-            half = solver.mkRealValue("0.5")
+            zero = solver.mkReal("0")
+            half = solver.mkReal("0.5")
 
             # f(x) = 0.5*x^2 (convex)
-            x_squared = solver.mkTerm(cvc5.Kind.Mult, x, x)
-            f_def = solver.mkTerm(cvc5.Kind.Equal, f_x,
-                                 solver.mkTerm(cvc5.Kind.Mult, half, x_squared))
+            x_squared = solver.mkTerm(cvc5.Kind.MULT, x, x)
+            f_def = solver.mkTerm(cvc5.Kind.EQUAL, f_x,
+                                 solver.mkTerm(cvc5.Kind.MULT, half, x_squared))
             solver.assertFormula(f_def)
 
             # Claim: f**(x) < f(x) (biconjugate theorem violation)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.Lt, f_star_star_x, f_x))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, f_star_star_x, f_x))
 
             result = solver.checkSat()
             unsat = result.isUnsat()
@@ -418,17 +418,17 @@ def run_boundary_tests():
             f_x = solver.mkConst(real_sort, "f_x")
             f_star_star_x = solver.mkConst(real_sort, "f_double_star_x")
 
-            zero = solver.mkRealValue("0")
-            half = solver.mkRealValue("0.5")
+            zero = solver.mkReal("0")
+            half = solver.mkReal("0.5")
 
             # Boundary: f**(x) = f(x) (equality at all x)
-            x_squared = solver.mkTerm(cvc5.Kind.Mult, x, x)
-            f_def = solver.mkTerm(cvc5.Kind.Equal, f_x,
-                                 solver.mkTerm(cvc5.Kind.Mult, half, x_squared))
+            x_squared = solver.mkTerm(cvc5.Kind.MULT, x, x)
+            f_def = solver.mkTerm(cvc5.Kind.EQUAL, f_x,
+                                 solver.mkTerm(cvc5.Kind.MULT, half, x_squared))
             solver.assertFormula(f_def)
 
             # Boundary constraint: f**(x) = f(x)
-            boundary = solver.mkTerm(cvc5.Kind.Equal, f_star_star_x, f_x)
+            boundary = solver.mkTerm(cvc5.Kind.EQUAL, f_star_star_x, f_x)
             solver.assertFormula(boundary)
 
             result = solver.checkSat()

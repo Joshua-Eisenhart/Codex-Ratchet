@@ -29,6 +29,14 @@ TOOL_INTEGRATION_DEPTH = {
     "qutip": "load_bearing",
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_integration_quantum_open_entangle_correlator_mega_stack.py",
+        "system_v4/probes/sim_integration_qutip_open_system_bridge.py",
+        "system_v4/probes/sim_integration_thermo_open_system_bridge_stack.py",
+    ]
+}
+
 
 def _all_pass(section: dict[str, dict[str, object]]) -> bool:
     return all(bool(row.get("pass", False)) for row in section.values())

@@ -32,6 +32,14 @@ TOOL_INTEGRATION_DEPTH = {
     "torch_ga": "load_bearing",
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_integration_quantum_open_entangle_correlator_mega_stack.py",
+        "system_v4/probes/sim_integration_quantum_ga_correlator_stack.py",
+        "system_v4/probes/sim_integration_torch_clifford_ga_rotor_bridge.py",
+    ]
+}
+
 
 def _all_pass(section: dict[str, dict[str, object]]) -> bool:
     return all(bool(row.get("pass", False)) for row in section.values())

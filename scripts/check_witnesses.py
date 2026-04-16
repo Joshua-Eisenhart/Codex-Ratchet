@@ -7,6 +7,11 @@ For every system_v4/probes/sim_*_capability.py:
   3. Verify the witness sim declares the capability tool as "load_bearing" in its
      TOOL_INTEGRATION_DEPTH.
 
+Capability probe filenames occasionally carry a scoped variant label
+(`sim_pyg_hopf_graph_deep_capability.py`) even when the underlying tool that
+must be witnessed is the canonical tool surface (`pyg`). This guard therefore
+canonicalizes known variants before checking witness headers.
+
 Exit 1 with a JSON report if any capability probe has a missing or non-load-bearing
 witness. Intended to be usable as a pre-commit hook. No external dependencies.
 """
@@ -19,6 +24,17 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 PROBES_DIR = REPO / "system_v4" / "probes"
+
+ALIASES = {
+    "torch": "pytorch",
+    "torch_geometric": "pyg",
+    "pyg_hopf_graph_deep": "pyg",
+}
+
+
+def _canonical_tool(name: str) -> str:
+    key = name.strip().lower().replace("-", "_")
+    return ALIASES.get(key, key)
 
 
 def _tool_name_from_capability(path: Path) -> str:
@@ -124,11 +140,13 @@ def main() -> int:
     violations: list[dict] = []
 
     for cap in cap_probes:
-        tool = _tool_name_from_capability(cap)
+        declared_tool = _tool_name_from_capability(cap)
+        tool = _canonical_tool(declared_tool)
         witness_rel_paths = _extract_witness_sim_paths(cap)
         entry: dict = {
             "capability_probe": cap.name,
             "tool": tool,
+            "declared_tool": declared_tool,
             "witness_sims": witness_rel_paths,
             "status": "ok",
         }
@@ -166,7 +184,11 @@ def main() -> int:
                 witness_details.append(detail)
                 continue
 
-            level = depth.get(tool)
+            canonical_depth = {
+                _canonical_tool(str(raw_tool)): level
+                for raw_tool, level in depth.items()
+            }
+            level = canonical_depth.get(tool)
             detail["declared_level"] = level
             if level == "load_bearing":
                 detail["status"] = "ok"

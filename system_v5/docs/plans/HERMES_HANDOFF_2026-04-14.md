@@ -1,8 +1,18 @@
 # Hermes Handoff — 2026-04-14
 
-Prior handoff: `docs/plans/HERMES_HANDOFF_2026-04-13.md` (read first for baseline state).
+Status: HISTORICAL SNAPSHOT, not a live operational baseline.
 
-Git is **NOT committed** at time of writing. `git status --porcelain` shows 390 changed paths; 53 are new `sim_*_classical*.py` files and 7 are new `sim_*_canonical*.py` files.
+Prior handoff: `system_v5/docs/plans/HERMES_HANDOFF_2026-04-13.md` (read first for the earlier snapshot).
+
+This file records what was true at handoff time. Do not reuse its counts as live repo state without rerunning them.
+
+Later 2026-04-16 audit spot-checks confirmed substantial drift from this snapshot. Before using this handoff operationally, rerun:
+- `git status --porcelain | wc -l`
+- `ls system_v4/probes/sim_*_classical*.py | wc -l`
+- `ls system_v4/probes/sim_*_canonical*.py | wc -l`
+- `python3 scripts/queue_claim.py counts`
+
+Git was **NOT committed** at handoff time. The handoff snapshot recorded `390` changed paths, with `53` new `sim_*_classical*.py` files and `7` new `sim_*_canonical*.py` files.
 
 ---
 

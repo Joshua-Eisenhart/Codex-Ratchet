@@ -32,13 +32,13 @@ is:
 6. update the same continuity surfaces for the next run
 
 Primary live control surfaces:
-- `docs/plans/sim_backlog_matrix.md`
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `docs/plans/controller_maintenance_checklist.md`
+- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/plans/controller_maintenance_checklist.md`
 
 Derived diagnostic surface (consult when needed, not as the primary live queue):
-- `docs/plans/sim_process_gap_log.md`
+- `system_v5/new docs/plans/sim_process_gap_log.md`
 
 ## Required run behavior
 Every live run should provide:
@@ -91,7 +91,7 @@ Hermes should remain the controller and may use Claude Code CLI or Codex CLI as 
 - health reporting
 - final audit/closeout
 
-The Telegram-facing status format should stay aligned with `docs/plans/controller_maintenance_checklist.md` so launch, heartbeat, and closeout messages match the same control surface.
+The Telegram-facing status format should stay aligned with `system_v5/new docs/plans/controller_maintenance_checklist.md` so launch, heartbeat, and closeout messages match the same control surface.
 
 ## Preferred execution shape
 - user triggers a run manually

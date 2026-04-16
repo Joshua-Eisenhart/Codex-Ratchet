@@ -21,6 +21,27 @@ import json, sys, os
 import numpy as np
 from clifford import Cl
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this Clifford-algebra probe uses "
+    "numeric numpy plus the clifford package to verify algebraic closure, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and matrix algebra for Clifford calculations",
+    },
+    "clifford": {
+        "tried": True,
+        "used": True,
+        "reason": "Cl(3)/Cl(6) multivector algebra for the Clifford probe",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "clifford": "supportive",
+}
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 

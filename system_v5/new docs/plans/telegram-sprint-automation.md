@@ -1,6 +1,6 @@
 # Telegram Sprint Automation
 
-Status: OPTIONAL SCHEDULED MODE — only use if explicitly enabled later. Default Telegram mode is on-demand as defined in `docs/plans/on-demand-telegram-runner.md`.
+Status: OPTIONAL SCHEDULED MODE — only use if explicitly enabled later. Default Telegram mode is on-demand as defined in `system_v5/new docs/plans/on-demand-telegram-runner.md`.
 
 Goal: run bounded 1-3 hour autonomous maintenance/research sprints under Hermes control, deliver progress/results to Telegram, and keep the system aligned across the required lanes.
 

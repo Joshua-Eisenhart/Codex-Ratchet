@@ -21,6 +21,13 @@ TOOL_INTEGRATION_DEPTH = {
     "numpy": "load_bearing",
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_axis0_orbit_phase_alignment.py",
+        "system_v4/probes/sim_integration_thermo_open_system_bridge_stack.py",
+    ]
+}
+
 
 def _all_pass(section: dict[str, dict[str, object]]) -> bool:
     return all(bool(row.get("pass", False)) for row in section.values())

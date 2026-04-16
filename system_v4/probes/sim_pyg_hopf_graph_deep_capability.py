@@ -124,6 +124,13 @@ TOOL_INTEGRATION_DEPTH = {
     "z3": None,
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_pyg_dynamic_edge_werner.py",
+        "system_v4/probes/sim_pyg_deep_hopf_u1_equivariant_conservation.py",
+    ]
+}
+
 # =====================================================================
 # IMPORTS
 # =====================================================================

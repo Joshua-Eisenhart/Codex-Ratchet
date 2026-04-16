@@ -38,10 +38,15 @@ Rules:
 - Cannot write canon — only plans, audits, and routing
 - Is the A2 high-entropy ingestion plane
 
-Hermes is gpt-5.4-mini. It is useful for memory, chat, light planning.
-It is NOT capable of enforcement, deep audit, or holding the nominalist
-framing. It will drift, skip layers, and produce plausible summaries
-that miss structural requirements. Use it for what it's good at.
+Hermes runtime/model details can vary by deployment. Treat the live
+session metadata plus `LLM_CONTROLLER_CONTRACT.md` as the authority for
+current capabilities instead of hardcoding one model SKU here.
+
+In this repo, Hermes should be used for bounded planning, routing,
+controller continuity, and direct repo-state verification when the live
+runtime supports it. Do not assume a fixed capability ceiling from this
+doc alone; verify against the active runtime and current controller
+rules.
 
 ### A1 / Recon (Claude Code terminal)
 
@@ -147,12 +152,18 @@ Each terminal launch includes:
 
 ## Handoff Files
 
-Handoff files in .agent/handoffs/active/ remain the mechanism for
-queuing bounded tasks. Each handoff should specify:
+Handoffs should remain repo-local and explicit, but this checkout does
+not contain a live `.agent/handoffs/active/` queue.
+
+Use bounded task briefs under `system_v5/docs/plans/`,
+`system_v5/new docs/plans/`, or the active controller prompt itself.
+Each handoff/task brief should specify:
 - Which boot the executing terminal should run under
-- The resolution level (what part of M(C) is being explored)
+- The exact files/surfaces in scope
+- Required verification commands
 - What artifacts from lower resolutions are available as input
 - What the terminal must NOT see (downward-blind enforcement)
+- Expected output / closeout format
 
 ---
 

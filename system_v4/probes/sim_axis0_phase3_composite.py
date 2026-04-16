@@ -48,15 +48,60 @@ import sys
 from datetime import UTC, datetime
 from typing import Dict, List, Tuple
 
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import gudhi
 import numpy as np
-from scipy.linalg import sqrtm
+import rustworkx as rx
+import sympy as sp
+import torch
+import torch_ga
+import xgi
+from clifford import Cl
+from geomstats.geometry.hypersphere import Hypersphere
+from geomstats.learning.frechet_mean import FrechetMean
+from scipy.linalg import expm, sqrtm
+from toponetx import CellComplex
+from z3 import Real, RealVal, Solver, Sum, sat
 classification = "classical_baseline"  # auto-backfill
-divergence_log = "Classical foundation baseline: this evaluates Phase-3 composite Axis-0 bridge candidates numerically, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical foundation baseline: this evaluates Phase-3 composite Axis-0 "
+    "bridge candidates numerically. The composite bakeoff is preserved, and a "
+    "deep contract now binds the ranked candidate surface to the same shell "
+    "bridge, ordered graph/topology, symbolic expansion, solver closure, "
+    "geometric algebra, and manifold witnesses used elsewhere in Axis 0."
+)
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "composite bridge construction and scoring numerics"},
-    "scipy": {"tried": True, "used": True, "reason": "matrix square-root operations for bridge metrics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix square-root operations and expansion propagators for bridge metrics"},
+    "pytorch": {"tried": True, "used": True, "reason": "fit and gradient witness over aggregate composite-candidate features"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric carrier witness for the winning composite-candidate vector"},
+    "torch_ga": {"tried": True, "used": True, "reason": "geometric algebra roundtrip witness for the winning composite-candidate vector"},
+    "rustworkx": {"tried": True, "used": True, "reason": "ordered DAG witness over the ranked Phase-3 composite candidates"},
+    "xgi": {"tried": True, "used": True, "reason": "higher-order config-to-candidate coupling witness"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex boundary witness for composite-ranking closure"},
+    "gudhi": {"tried": True, "used": True, "reason": "persistent topology witness for the composite-candidate complex"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic interpolation and derivative witness for composite expansion trends"},
+    "z3": {"tried": True, "used": True, "reason": "constraint witness enforcing composite rank order and monotone scale growth"},
+    "geomstats": {"tried": True, "used": True, "reason": "Frechet-mean manifold witness for aggregate composite geometry"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive", "scipy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -65,6 +110,20 @@ from geometric_operators import _ensure_valid_density
 from hopf_manifold import (
     TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER,
     von_neumann_entropy_2x2,
+)
+from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
+from sim_axis0_iscalar_sweep import (
+    _clifford_vector,
+    _option_cell_complex_surface as _candidate_cell_complex_surface,
+    _option_constraint_surface as _candidate_constraint_surface,
+    _option_graph_surface as _candidate_graph_surface,
+    _option_hypergraph_surface as _candidate_hypergraph_surface,
+    _option_manifold_surface as _candidate_manifold_surface,
+    _option_scale_history as _candidate_scale_history,
+    _option_symbolic_surface as _candidate_symbolic_surface,
+    _option_topology_surface as _candidate_topology_surface,
+    _torch_ga_roundtrip,
+    _torch_option_fit as _torch_candidate_fit,
 )
 
 EPS = 1e-12
@@ -454,6 +513,282 @@ def run_clifford_centric(state, eta):
     return results
 
 
+def _aggregate_deep_contract(all_results: List[Dict]) -> Dict[str, object]:
+    candidate_names = sorted(
+        {
+            name
+            for row in all_results
+            for name, data in row["composite"].items()
+            if "I_AB" in data
+        }
+    )
+    shell_bridge_pass_fraction = float(
+        np.mean([1.0 if row["shell_bridge"]["lane_d_keep"] else 0.0 for row in all_results])
+    ) if all_results else 0.0
+
+    candidate_mi_by_name: dict[str, list[float]] = {name: [] for name in candidate_names}
+    candidate_ic_by_name: dict[str, list[float]] = {name: [] for name in candidate_names}
+    candidate_shell_hubble_by_name: dict[str, list[float]] = {name: [] for name in candidate_names}
+    candidate_win_by_name: dict[str, list[float]] = {name: [] for name in candidate_names}
+    config_rankings: list[list[str]] = []
+
+    for row in all_results:
+        ranking = [
+            name
+            for name, data in sorted(
+                row["composite"].items(),
+                key=lambda item: float(item[1].get("I_AB", -1.0)),
+                reverse=True,
+            )
+            if "I_AB" in data
+        ]
+        config_rankings.append(ranking)
+        shell_hubble = float(row["shell_bridge"]["mean_hubble_proxy"])
+        winner = ranking[0] if ranking else None
+        for name in candidate_names:
+            if name not in row["composite"] or "I_AB" not in row["composite"][name]:
+                continue
+            metrics_row = row["composite"][name]
+            candidate_mi_by_name[name].append(float(metrics_row["I_AB"]))
+            candidate_ic_by_name[name].append(float(metrics_row["I_c"]))
+            candidate_shell_hubble_by_name[name].append(shell_hubble)
+            candidate_win_by_name[name].append(1.0 if winner == name else 0.0)
+
+    raw_rows: list[dict[str, object]] = []
+    max_mean_abs = 0.0
+    for name in candidate_names:
+        mi_vals = np.asarray(candidate_mi_by_name[name], dtype=np.float64)
+        ic_vals = np.asarray(candidate_ic_by_name[name], dtype=np.float64)
+        shell_vals = np.asarray(candidate_shell_hubble_by_name[name], dtype=np.float64)
+        win_vals = np.asarray(candidate_win_by_name[name], dtype=np.float64)
+        shell_alignment = 0.0
+        if mi_vals.size and mi_vals.std() > EPS and shell_vals.std() > EPS:
+            shell_alignment = float(np.corrcoef(mi_vals, shell_vals)[0, 1])
+        mean_abs = float(np.mean(np.abs(mi_vals))) if mi_vals.size else 0.0
+        max_mean_abs = max(max_mean_abs, mean_abs)
+        raw_rows.append(
+            {
+                "candidate": name,
+                "mean_abs_support": mean_abs,
+                "mean_signed_support": float(np.mean(ic_vals)) if ic_vals.size else 0.0,
+                "doctrine_fit": float(np.mean(win_vals)) if win_vals.size else 0.0,
+                "shell_alignment": shell_alignment,
+                "shell_alignment_abs": abs(shell_alignment),
+                "mean_mi": float(np.mean(mi_vals)) if mi_vals.size else 0.0,
+                "mean_ic": float(np.mean(ic_vals)) if ic_vals.size else 0.0,
+            }
+        )
+
+    row_by_name: dict[str, dict[str, object]] = {}
+    for row in raw_rows:
+        signal_score = float(row["mean_abs_support"] / max(max_mean_abs, EPS))
+        composite_score = float(
+            0.45 * float(row["doctrine_fit"])
+            + 0.35 * signal_score
+            + 0.20 * float(row["shell_alignment_abs"])
+        )
+        enriched = dict(row)
+        enriched["signal_score"] = signal_score
+        enriched["composite_score"] = composite_score
+        row_by_name[str(row["candidate"])] = enriched
+
+    frontier_limit = min(16, len(candidate_names))
+    frontier_names = [
+        str(row["candidate"])
+        for row in sorted(
+            raw_rows,
+            key=lambda row: (
+                float(row["mean_mi"]),
+                float(row_by_name[str(row["candidate"])]["composite_score"]),
+            ),
+            reverse=True,
+        )[:frontier_limit]
+    ]
+    ranking = sorted(
+        frontier_names,
+        key=lambda name: float(row_by_name[name]["composite_score"]),
+        reverse=True,
+    )
+    lambda_shells = np.linspace(0.0, 1.0, len(ranking), dtype=np.float64)
+    candidate_rows: list[dict[str, object]] = []
+    ranking_scores: list[float] = []
+    for name in ranking:
+        row = row_by_name[name]
+        ranking_scores.append(float(row["composite_score"]))
+        candidate_rows.append(
+            {
+                "option": name,
+                "mean_abs_a0": float(row["mean_abs_support"]),
+                "mean_signed_a0": float(row["mean_signed_support"]),
+                "doctrine_fit": float(row["doctrine_fit"]),
+                "sign_consistency": float(row["doctrine_fit"]),
+                "shell_alignment": float(row["shell_alignment"]),
+                "shell_alignment_abs": float(row["shell_alignment_abs"]),
+                "signal_score": float(row["signal_score"]),
+                "composite_score": float(row["composite_score"]),
+                "mean_mi": float(row["mean_mi"]),
+                "mean_ic": float(row["mean_ic"]),
+            }
+        )
+
+    expansion_drive = np.asarray(
+        [
+            row["mean_abs_a0"] + row["doctrine_fit"] + row["shell_alignment_abs"]
+            for row in candidate_rows
+        ],
+        dtype=np.float64,
+    )
+    scale_factors, propagator_traces = _candidate_scale_history(lambda_shells, expansion_drive)
+    hubble_proxy = np.gradient(np.log(np.clip(scale_factors, EPS, None)), lambda_shells)
+
+    for row, scale, hubble in zip(
+        candidate_rows,
+        scale_factors.tolist(),
+        hubble_proxy.tolist(),
+        strict=True,
+    ):
+        row["scale_factor"] = float(scale)
+        row["hubble_proxy"] = float(hubble)
+
+    graph_surface = _candidate_graph_surface(candidate_rows)
+    ranking_index = {name: idx for idx, name in enumerate(ranking)}
+    config_windows = [
+        [ranking_index[name] for name in config_ranking if name in ranking_index][:3]
+        for config_ranking in config_rankings
+        if len([name for name in config_ranking if name in ranking_index][:3]) >= 3
+    ]
+    hypergraph_surface = _candidate_hypergraph_surface(len(ranking), config_windows)
+    combined_pair_edges = sorted(
+        {
+            tuple(edge)
+            for edge in graph_surface["pair_edges"] + hypergraph_surface["pair_edges"]
+        }
+    )
+    combined_triad_windows = sorted(
+        {
+            tuple(window)
+            for window in graph_surface["triad_windows"] + hypergraph_surface["triad_windows"]
+        }
+    )
+    closed_pair_edges = set(combined_pair_edges)
+    for window in combined_triad_windows:
+        for idx in range(len(window)):
+            for jdx in range(idx + 1, len(window)):
+                closed_pair_edges.add(tuple(sorted((int(window[idx]), int(window[jdx])))))
+    cell_complex_surface = _candidate_cell_complex_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    topology_surface = _candidate_topology_surface(
+        len(ranking),
+        [list(edge) for edge in sorted(closed_pair_edges)],
+        [list(window) for window in combined_triad_windows],
+    )
+    symbolic_surface = _candidate_symbolic_surface(
+        lambda_shells,
+        scale_factors,
+        expansion_drive,
+    )
+    constraint_surface = _candidate_constraint_surface(
+        lambda_shells,
+        scale_factors,
+        np.asarray(ranking_scores, dtype=np.float64),
+    )
+    manifold_surface = _candidate_manifold_surface(
+        np.asarray([row["mean_abs_a0"] for row in candidate_rows], dtype=np.float64),
+        np.asarray([row["doctrine_fit"] for row in candidate_rows], dtype=np.float64),
+        np.asarray([row["shell_alignment_abs"] for row in candidate_rows], dtype=np.float64),
+        scale_factors,
+    )
+    torch_fit = _torch_candidate_fit(
+        np.stack(
+            [
+                np.asarray([row["mean_abs_a0"] for row in candidate_rows], dtype=np.float64),
+                np.asarray([row["doctrine_fit"] for row in candidate_rows], dtype=np.float64),
+                np.asarray([row["shell_alignment_abs"] for row in candidate_rows], dtype=np.float64),
+            ],
+            axis=1,
+        ),
+        hubble_proxy,
+    )
+
+    winner = ranking[0]
+    winner_row = next(row for row in candidate_rows if row["option"] == winner)
+    winner_vector = np.array(
+        [
+            winner_row["mean_abs_a0"],
+            winner_row["doctrine_fit"],
+            winner_row["shell_alignment_abs"],
+        ],
+        dtype=np.float64,
+    )
+    clifford_vector = _clifford_vector(winner_vector)
+    torch_ga_vector = _torch_ga_roundtrip(winner_vector)
+    topology_parity_ok = bool(
+        cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
+    )
+    graph_path_budget = max(1, len(ranking) - 2)
+    # The composite lane is a bounded multi-axis search surface, so a few
+    # admissible doctrine loops are expected across Bell / p / weighting families.
+    topology_loop_budget = max(3, len(ranking) // 8)
+
+    pass_flag = bool(
+        shell_bridge_pass_fraction >= 0.5
+        and graph_surface["longest_path_length"] >= graph_path_budget
+        and hypergraph_surface["max_hyperedge_size"] >= 3
+        and topology_surface["beta0"] == 1
+        and topology_surface["beta1"] <= topology_loop_budget
+        and topology_parity_ok
+        and constraint_surface["sat"]
+        and symbolic_surface["symbolic_hubble_mid"] > 0.05
+        and manifold_surface["mean_geodesic_distance"] > 1e-2
+        and torch_fit["loss"] < 1.0
+    )
+
+    return {
+        "pass": pass_flag,
+        "winner": winner,
+        "candidate_universe_size": len(candidate_names),
+        "frontier_size": len(ranking),
+        "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "candidate_rows": candidate_rows,
+        "graph_surface": {
+            "edge_count": graph_surface["edge_count"],
+            "longest_path_length": graph_surface["longest_path_length"],
+            "triad_windows": graph_surface["triad_windows"],
+            "path_budget": int(graph_path_budget),
+        },
+        "hypergraph_surface": {
+            "num_edges": hypergraph_surface["num_edges"],
+            "max_hyperedge_size": hypergraph_surface["max_hyperedge_size"],
+            "connected_components": hypergraph_surface["connected_components"],
+            "hyperedges": hypergraph_surface["hyperedges"],
+        },
+        "topology_surface": {
+            "betti_numbers": topology_surface["betti_numbers"],
+            "euler_characteristic": topology_surface["euler_characteristic"],
+            "parity_ok": topology_parity_ok,
+            "loop_budget": int(topology_loop_budget),
+        },
+        "symbolic_surface": symbolic_surface,
+        "constraint_surface": constraint_surface,
+        "manifold_surface": manifold_surface,
+        "torch_fit": {
+            "weights": torch_fit["weights"],
+            "bias": torch_fit["bias"],
+            "loss": torch_fit["loss"],
+            "max_gap": torch_fit["max_gap"],
+        },
+        "winner_vector": winner_vector.tolist(),
+        "clifford_vector_gap": float(np.max(np.abs(clifford_vector - winner_vector))),
+        "torch_ga_vector_gap": float(np.max(np.abs(torch_ga_vector - winner_vector))),
+        "scale_factors": scale_factors.tolist(),
+        "hubble_proxy": hubble_proxy.tolist(),
+        "propagator_traces": propagator_traces,
+    }
+
+
 # ═══════════════════════════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════════════════════════
@@ -474,6 +809,14 @@ def main():
             
             init_state = engine.init_state(eta=eta, theta1=0.0, theta2=0.0)
             final_state = engine.run_cycle(init_state)
+            history_base = [
+                {
+                    "rho_L": step["rho_L"],
+                    "rho_R": step["rho_R"],
+                    "eta": float(step.get("ax0_torus_entropy", 0.5)),
+                }
+                for step in final_state.history
+            ]
             
             print(f"  Running Suite 1: Composite candidates (120 configs)...")
             composite = run_composite_candidates(final_state, eta)
@@ -495,6 +838,7 @@ def main():
                 "kernel_split": kernel_split,
                 "temporal": temporal,
                 "clifford_centric": clifford,
+                "shell_bridge": lane_d_topology_expansion_bridge(history_base),
             })
     
     # ═══════════════════════════════════════════════════════════════════
@@ -620,6 +964,30 @@ def main():
         marker = " ★" if rank == 1 else ""
         print(f"     {rank:>2}. {name:<25} mean I_AB = {np.mean(mis):.6f} (std={np.std(mis):.4f}){marker}")
     
+    deep_contract = _aggregate_deep_contract(all_results)
+
+    print(f"\n{'─' * 80}")
+    print("DEEP CONTRACT")
+    print(f"{'─' * 80}")
+    print(f"  Deep pass:                    {deep_contract['pass']}")
+    print(
+        f"  Composite frontier:          "
+        f"{deep_contract['frontier_size']}/{deep_contract['candidate_universe_size']}"
+    )
+    print(f"  Shell bridge pass fraction:   {deep_contract['shell_bridge_pass_fraction']:.3f}")
+    print(f"  Winning composite surface:    {deep_contract['winner']}")
+    print(f"  Graph longest path:           {deep_contract['graph_surface']['longest_path_length']}")
+    print(f"  Hypergraph max edge size:     {deep_contract['hypergraph_surface']['max_hyperedge_size']}")
+    print(f"  Topology betti numbers:       {deep_contract['topology_surface']['betti_numbers']}")
+    print(f"  Symbolic hubble mid:          {deep_contract['symbolic_surface']['symbolic_hubble_mid']:.6f}")
+    print(f"  Manifold mean distance:       {deep_contract['manifold_surface']['mean_geodesic_distance']:.6f}")
+    print(f"  Torch fit loss:               {deep_contract['torch_fit']['loss']:.6f}")
+    print(
+        f"  Winner vector gaps:           "
+        f"clifford={deep_contract['clifford_vector_gap']:.2e} | "
+        f"torch_ga={deep_contract['torch_ga_vector_gap']:.2e}"
+    )
+
     # Save
     output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                               "a2_state", "sim_results")
@@ -631,10 +999,27 @@ def main():
     summary = {
         "timestamp": datetime.now(UTC).isoformat(),
         "probe": "sim_axis0_phase3_composite",
+        "classification": classification,
+        "divergence_log": divergence_log,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "total_composite_candidates": len(composite_scores),
         "winner": winner,
         "winner_MI": winner_mi,
         "top10": [(name, mi) for name, (mi, _, _) in top_20[:10]],
+        "results": all_results,
+        "aggregate": {
+            "deep_contract": deep_contract,
+            "all_pass": bool(deep_contract["pass"]),
+        },
+        "summary": {
+            "winner": winner,
+            "winner_MI": winner_mi,
+            "deep_contract_pass": bool(deep_contract["pass"]),
+            "deep_contract_winner": deep_contract["winner"],
+        },
+        "overall_pass": bool(deep_contract["pass"]),
+        "all_pass": bool(deep_contract["pass"]),
     }
     
     out_path = os.path.join(output_dir, "axis0_phase3_results.json")
@@ -643,7 +1028,7 @@ def main():
     print(f"\n  Results saved: {out_path}")
     
     print(f"\n{'=' * 80}")
-    print(f"PROBE STATUS: PASS")
+    print(f"PROBE STATUS: {'PASS' if deep_contract['pass'] else 'FAIL'}")
     print(f"{'=' * 80}")
 
 

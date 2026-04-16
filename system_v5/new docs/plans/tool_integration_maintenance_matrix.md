@@ -80,5 +80,5 @@ After any meaningful batch:
 - if a tool became newly load-bearing, update this matrix
 - if a tool regressed to decorative use in promoted claims, record it here
 - if a new sim exposes a better anchor for a tool, replace the weaker anchor
-- keep the linked truth status in `docs/plans/sim_truth_audit.md` aligned so tool-depth claims do not outrun the current safe truth label for the anchor file
+- keep the linked truth status in `system_v5/new docs/plans/sim_truth_audit.md` aligned so tool-depth claims do not outrun the current safe truth label for the anchor file
 - if the batch was run through the on-demand Telegram controller, include any tool-anchor change in the run closeout or explicitly queue the follow-up update before closure

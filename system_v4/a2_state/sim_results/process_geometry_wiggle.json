@@ -1,6 +1,6 @@
 {
   "schema": "PROCESS_GEOMETRY_WIGGLE_v1",
-  "timestamp": "2026-04-16T06:56:50.615443+00:00Z",
+  "timestamp": "2026-04-16T10:14:22.322924+00:00Z",
   "process_wiggle": {
     "r=1.0": {
       "overlaps": {
@@ -68,5 +68,22 @@
       "torus_curvature_scalar": 1.0
     }
   },
-  "note": "Exploratory process/geometry wiggle; normalized states; not canon."
+  "note": "Exploratory process/geometry wiggle; normalized states; not canon.",
+  "divergence_log": "Classical baseline: this process/geometry wiggle exploration compares bounded numeric proxies only, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix and vector numerics for process and geometry wiggle comparisons"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponentials for curvature-style probe comparisons"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive"
+  }
 }

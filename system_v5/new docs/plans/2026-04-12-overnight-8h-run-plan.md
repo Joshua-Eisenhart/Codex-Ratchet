@@ -12,11 +12,11 @@ Authority surfaces used:
 - `new docs/16_lego_build_catalog.md`
 - `new docs/17_actual_lego_registry.md`
 - `new docs/LLM_RESEARCH_GAP_MATRIX.json`
-- `docs/plans/sim_backlog_matrix.md`
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `docs/plans/controller_maintenance_checklist.md`
-- `docs/plans/on-demand-telegram-runner.md`
+- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/plans/controller_maintenance_checklist.md`
+- `system_v5/new docs/plans/on-demand-telegram-runner.md`
 
 ## 1. Correct model of an 8-hour run
 
@@ -167,10 +167,10 @@ Goal:
 - keep the controller surfaces honest after each geometry packet
 
 Touched surfaces when justified:
-- `docs/plans/sim_truth_audit.md`
-- `docs/plans/tool_integration_maintenance_matrix.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/new docs/16_lego_build_catalog.md`
+- `system_v5/new docs/17_actual_lego_registry.md`
 - touched wiki pages only if concept framing materially changed
 
 ### Classical lane C1 — fallback or side-lane maintenance

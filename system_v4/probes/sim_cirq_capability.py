@@ -29,6 +29,13 @@ TOOL_INTEGRATION_DEPTH = {
     "cirq": "load_bearing",
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_integration_quantum_open_entangle_correlator_mega_stack.py",
+        "system_v4/probes/sim_integration_cirq_pennylane_entanglement_bridge.py",
+    ]
+}
+
 
 def _all_pass(section: dict[str, dict[str, object]]) -> bool:
     return all(bool(row.get("pass", False)) for row in section.values())

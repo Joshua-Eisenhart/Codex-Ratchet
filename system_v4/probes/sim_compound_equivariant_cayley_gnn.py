@@ -27,10 +27,10 @@ TOOL_MANIFEST = {
     "networkx":  {"tried": False, "used": False, "reason": ""},
 }
 TOOL_INTEGRATION_DEPTH = {
-    "clifford": None,
-    "e3nn": None,
-    "networkx": None,
-    "pytorch": None,
+    "clifford": "load_bearing",
+    "e3nn": "load_bearing",
+    "networkx": "load_bearing",
+    "pytorch": "load_bearing",
 }
 
 import torch

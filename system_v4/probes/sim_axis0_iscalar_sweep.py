@@ -30,18 +30,67 @@ The winning option is the canonical i-scalar functional.
 from __future__ import annotations
 import json, os, sys, copy
 from datetime import UTC, datetime
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import gudhi
 import numpy as np
+import rustworkx as rx
+import sympy as sp
+import torch
+import torch_ga
+import xgi
+from clifford import Cl
+from geomstats.geometry.hypersphere import Hypersphere
+from geomstats.learning.frechet_mean import FrechetMean
+from scipy.linalg import expm
+from toponetx import CellComplex
+from z3 import Real, RealVal, Solver, Sum, sat
 classification = "classical_baseline"  # auto-backfill
-divergence_log = "Classical foundation baseline: this sweeps candidate Axis-0 i-scalar functionals numerically, not a canonical nonclassical witness."
+divergence_log = (
+    "Classical foundation baseline: this sweeps candidate Axis-0 i-scalar "
+    "functionals numerically. The option sweep is now grounded in the same deep "
+    "Axis 0 shell contract used elsewhere: history-driven shell bridge per "
+    "config, plus a graph/topology/solver/manifold witness over the aggregate "
+    "option ranking."
+)
 TOOL_MANIFEST = {
-    "numpy": {"tried": True, "used": True, "reason": "functional sweep and perturbation numerics"},
+    "numpy": {"tried": True, "used": True, "reason": "functional sweep, perturbation arrays, and aggregate option numerics"},
+    "scipy": {"tried": True, "used": True, "reason": "matrix exponential propagator for option-ranking expansion updates"},
+    "pytorch": {"tried": True, "used": True, "reason": "fit and gradient witness over option-level shell-alignment features"},
+    "clifford": {"tried": True, "used": True, "reason": "geometric carrier witness for the winner summary vector"},
+    "torch_ga": {"tried": True, "used": True, "reason": "geometric algebra roundtrip witness for the winner summary vector"},
+    "rustworkx": {"tried": True, "used": True, "reason": "ordered option DAG witness over the ranked i-scalar candidates"},
+    "xgi": {"tried": True, "used": True, "reason": "higher-order perturbation-option coupling witness"},
+    "toponetx": {"tried": True, "used": True, "reason": "cell-complex boundary witness for the ranked option surface"},
+    "gudhi": {"tried": True, "used": True, "reason": "persistent topology witness for the option-ranking complex"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic interpolation and derivative witness for option expansion trends"},
+    "z3": {"tried": True, "used": True, "reason": "constraint witness enforcing option ranking order and monotone scale growth"},
+    "geomstats": {"tried": True, "used": True, "reason": "Frechet-mean manifold witness for aggregate option geometry"},
 }
-TOOL_INTEGRATION_DEPTH = {"numpy": "supportive"}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER
+from sim_axis0_dynamic_shell import lane_d_topology_expansion_bridge
 
 # ─────────────────────────────────────────────────────────────────────
 # Constants
@@ -60,6 +109,20 @@ SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
 SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
 SIGMA_Z = np.array([[1, 0], [0, -1]], dtype=complex)
 I2      = np.eye(2, dtype=complex)
+OPTION_ORDER = [
+    "A_mi_diversity",
+    "B_mi_variance",
+    "C_coherent_info",
+    "D_jk_path_entropy",
+]
+LAYOUT, BLADES = Cl(3)
+E1 = BLADES["e1"]
+E2 = BLADES["e2"]
+E3 = BLADES["e3"]
+TORCH_GA_ALG = torch_ga.GeometricAlgebra([1.0, 1.0, 1.0])
+TORCH_GA_TO_GEO = torch_ga.TensorToGeometric(TORCH_GA_ALG, [1, 2, 3])
+TORCH_GA_TO_TENSOR = torch_ga.GeometricToTensor(TORCH_GA_ALG, [1, 2, 3])
+OPTION_SPHERE = Hypersphere(dim=2)
 
 # ─────────────────────────────────────────────────────────────────────
 # QIT Utilities
@@ -258,6 +321,508 @@ def option_D(history: list[dict], rng: np.random.Generator | None = None) -> flo
     return float(-np.sum(probs * np.log2(probs)))
 
 
+def _clifford_vector(vec: np.ndarray) -> np.ndarray:
+    multivector = vec[0] * E1 + vec[1] * E2 + vec[2] * E3
+    return np.asarray(multivector.value[1:4], dtype=np.float64)
+
+
+def _torch_ga_roundtrip(vec: np.ndarray) -> np.ndarray:
+    tensor = torch.tensor(vec, dtype=torch.float32).reshape(1, 3)
+    geo = TORCH_GA_TO_GEO(tensor)
+    return TORCH_GA_TO_TENSOR(geo).detach().cpu().numpy().reshape(-1).astype(np.float64)
+
+
+def _torch_option_fit(features: np.ndarray, target: np.ndarray) -> dict[str, object]:
+    features_t = torch.tensor(features, dtype=torch.float64)
+    target_t = torch.tensor(target, dtype=torch.float64)
+    weights = torch.nn.Parameter(torch.full((features.shape[1],), 0.5, dtype=torch.float64))
+    bias = torch.nn.Parameter(torch.tensor(0.0, dtype=torch.float64))
+    optimizer = torch.optim.LBFGS(
+        [weights, bias],
+        lr=1.0,
+        max_iter=100,
+        tolerance_grad=1e-14,
+        tolerance_change=1e-14,
+        line_search_fn="strong_wolfe",
+    )
+    history: list[float] = []
+
+    def closure():
+        optimizer.zero_grad()
+        pred = features_t @ weights + bias
+        loss = torch.mean((pred - target_t) ** 2)
+        loss.backward()
+        history.append(float(loss.detach()))
+        return loss
+
+    optimizer.step(closure)
+    with torch.no_grad():
+        pred = features_t @ weights + bias
+        pred_np = pred.detach().cpu().numpy()
+        loss = torch.mean((pred - target_t) ** 2).item()
+    return {
+        "weights": weights.detach().cpu().numpy().tolist(),
+        "bias": float(bias.item()),
+        "predicted": pred_np.tolist(),
+        "loss": float(loss),
+        "max_gap": float(np.max(np.abs(pred_np - target))),
+        "history_tail": [float(value) for value in history[-5:]],
+    }
+
+
+def _option_scale_history(
+    lambda_shells: np.ndarray,
+    expansion_drive: np.ndarray,
+) -> tuple[np.ndarray, list[float]]:
+    delta_lambda = float(lambda_shells[1] - lambda_shells[0]) if len(lambda_shells) > 1 else 1.0
+    state = np.array([1.0, 1.0], dtype=np.float64)
+    scales = [1.0]
+    propagator_traces: list[float] = []
+    for drive in expansion_drive[1:]:
+        generator = np.array([[0.0, float(drive)], [0.0, 0.0]], dtype=np.float64)
+        propagator = expm(generator * delta_lambda)
+        state = propagator @ state
+        scales.append(float(state[0]))
+        propagator_traces.append(float(np.trace(propagator)))
+    return np.asarray(scales, dtype=np.float64), propagator_traces
+
+
+def _option_graph_surface(
+    option_rows: list[dict[str, object]],
+    *,
+    eps: float = 1e-6,
+) -> dict[str, object]:
+    dag = rx.PyDiGraph()
+    node_ids: list[int] = []
+    pair_edges: set[tuple[int, int]] = set()
+    triad_windows: list[tuple[int, int, int]] = []
+    edge_signal_sum = 0.0
+
+    for idx, row in enumerate(option_rows):
+        node_ids.append(dag.add_node({"rank_index": idx, "option": str(row["option"])}))
+
+    def _signal(i: int, j: int) -> float:
+        lhs = option_rows[i]
+        rhs = option_rows[j]
+        return float(
+            abs(float(rhs["mean_abs_a0"]) - float(lhs["mean_abs_a0"]))
+            + abs(float(rhs["doctrine_fit"]) - float(lhs["doctrine_fit"]))
+            + abs(float(rhs["shell_alignment_abs"]) - float(lhs["shell_alignment_abs"]))
+            + abs(float(rhs["scale_factor"]) - float(lhs["scale_factor"]))
+        )
+
+    for idx in range(len(option_rows) - 1):
+        signal = _signal(idx, idx + 1)
+        if signal > eps:
+            dag.add_edge(node_ids[idx], node_ids[idx + 1], {"kind": "rank_step", "signal": signal})
+            pair_edges.add((idx, idx + 1))
+            edge_signal_sum += signal
+
+    for idx in range(len(option_rows) - 2):
+        triad = (idx, idx + 1, idx + 2)
+        triad_windows.append(triad)
+        signal = max(_signal(idx, idx + 1), _signal(idx + 1, idx + 2))
+        if (idx, idx + 2) not in pair_edges and signal > eps:
+            dag.add_edge(node_ids[idx], node_ids[idx + 2], {"kind": "rank_triad", "signal": signal})
+            pair_edges.add((idx, idx + 2))
+            edge_signal_sum += signal
+
+    return {
+        "node_count": int(dag.num_nodes()),
+        "edge_count": int(dag.num_edges()),
+        "pair_edges": [list(edge) for edge in sorted(pair_edges)],
+        "triad_windows": [list(window) for window in triad_windows],
+        "topological_order": [int(dag[node]["rank_index"]) for node in rx.topological_sort(dag)],
+        "longest_path_length": int(rx.dag_longest_path_length(dag)) if dag.num_edges() else 0,
+        "acyclic": bool(rx.is_directed_acyclic_graph(dag)),
+        "edge_signal_sum": float(edge_signal_sum),
+    }
+
+
+def _option_hypergraph_surface(
+    n_options: int,
+    perturbation_windows: list[list[int]],
+) -> dict[str, object]:
+    hypergraph = xgi.Hypergraph()
+    hypergraph.add_nodes_from(range(n_options))
+    triad_windows: list[list[int]] = []
+    pair_edges: set[tuple[int, int]] = set()
+    hyperedges: list[list[int]] = []
+
+    for window in perturbation_windows:
+        deduped = sorted(set(int(value) for value in window))
+        if len(deduped) < 2:
+            continue
+        hypergraph.add_edge(deduped)
+        hyperedges.append(deduped)
+        if len(deduped) == 2:
+            pair_edges.add((deduped[0], deduped[1]))
+        if len(deduped) >= 3:
+            triad = deduped[:3]
+            triad_windows.append(triad)
+
+    incidence = xgi.incidence_matrix(hypergraph, sparse=False) if hypergraph.num_edges else np.zeros((n_options, 0), dtype=np.float64)
+    edge_sizes = [int(value) for value in hypergraph.edges.size.aslist()] if hypergraph.num_edges else []
+    return {
+        "num_nodes": int(hypergraph.num_nodes),
+        "num_edges": int(hypergraph.num_edges),
+        "edge_sizes": edge_sizes,
+        "incidence_rank": int(np.linalg.matrix_rank(incidence)) if incidence.size else 0,
+        "connected_components": int(xgi.number_connected_components(hypergraph)) if hypergraph.num_edges else int(n_options),
+        "max_hyperedge_size": int(max(edge_sizes)) if edge_sizes else 1,
+        "pair_edges": [list(edge) for edge in sorted(pair_edges)],
+        "triad_windows": triad_windows,
+        "hyperedges": hyperedges,
+    }
+
+
+def _option_cell_complex_surface(
+    n_options: int,
+    pair_edges: list[list[int]],
+    triad_windows: list[list[int]],
+) -> dict[str, object]:
+    complex_ = CellComplex()
+    for edge in pair_edges:
+        complex_.add_cell([int(edge[0]), int(edge[1])], rank=1)
+    for triad in triad_windows:
+        complex_.add_cell([int(triad[0]), int(triad[1]), int(triad[2])], rank=2)
+    boundary_1 = complex_.incidence_matrix(rank=1, signed=True).toarray()
+    boundary_2 = complex_.incidence_matrix(rank=2, signed=True).toarray()
+    boundary_composes_to_zero = True
+    if boundary_1.size and boundary_2.size:
+        boundary_composes_to_zero = bool(np.allclose(boundary_1 @ boundary_2, 0.0, atol=1e-12))
+    return {
+        "shape": [int(value) for value in complex_.shape],
+        "boundary_rank_1": int(np.linalg.matrix_rank(boundary_1)) if boundary_1.size else 0,
+        "boundary_rank_2": int(np.linalg.matrix_rank(boundary_2)) if boundary_2.size else 0,
+        "boundary_composes_to_zero": bool(boundary_composes_to_zero),
+        "euler_characteristic": int(n_options - len(pair_edges) + len(triad_windows)),
+    }
+
+
+def _option_topology_surface(
+    n_options: int,
+    pair_edges: list[list[int]],
+    triad_windows: list[list[int]],
+) -> dict[str, object]:
+    simplex_tree = gudhi.SimplexTree()
+    for idx in range(n_options):
+        simplex_tree.insert([int(idx)], filtration=0.0)
+    for edge in pair_edges:
+        simplex_tree.insert([int(edge[0]), int(edge[1])], filtration=1.0)
+    for triad in triad_windows:
+        simplex_tree.insert([int(triad[0]), int(triad[1]), int(triad[2])], filtration=2.0)
+    simplex_tree.set_dimension(max(2, simplex_tree.dimension()))
+    simplex_tree.compute_persistence()
+    betti = [int(value) for value in simplex_tree.betti_numbers()]
+    beta0 = betti[0] if betti else int(n_options)
+    beta1 = betti[1] if len(betti) > 1 else 0
+    beta2 = betti[2] if len(betti) > 2 else 0
+    return {
+        "betti_numbers": betti,
+        "beta0": int(beta0),
+        "beta1": int(beta1),
+        "beta2": int(beta2),
+        "euler_characteristic": int(beta0 - beta1 + beta2),
+    }
+
+
+def _option_symbolic_surface(
+    lambda_shells: np.ndarray,
+    scale_factors: np.ndarray,
+    expansion_drive: np.ndarray,
+) -> dict[str, object]:
+    lam = sp.symbols("lam", real=True)
+    scale_pairs = [(float(x), float(y)) for x, y in zip(lambda_shells.tolist(), scale_factors.tolist(), strict=True)]
+    drive_pairs = [(float(x), float(y)) for x, y in zip(lambda_shells.tolist(), expansion_drive.tolist(), strict=True)]
+    scale_poly = sp.expand(sp.interpolate(scale_pairs, lam))
+    drive_poly = sp.expand(sp.interpolate(drive_pairs, lam))
+    if len(lambda_shells) % 2 == 0:
+        right_idx = len(lambda_shells) // 2
+        left_idx = right_idx - 1
+        mid_lambda = float(0.5 * (lambda_shells[left_idx] + lambda_shells[right_idx]))
+    else:
+        mid_lambda = float(lambda_shells[len(lambda_shells) // 2])
+    scale_mid = float(sp.N(scale_poly.subs(lam, mid_lambda)))
+    d_scale_mid = float(sp.N(sp.diff(scale_poly, lam).subs(lam, mid_lambda)))
+    dd_scale_mid = float(sp.N(sp.diff(scale_poly, lam, 2).subs(lam, mid_lambda)))
+    return {
+        "scale_factor_polynomial": str(scale_poly),
+        "expansion_drive_polynomial": str(drive_poly),
+        "scale_poly_degree": int(sp.Poly(scale_poly, lam).degree()),
+        "drive_poly_degree": int(sp.Poly(drive_poly, lam).degree()),
+        "mid_lambda": mid_lambda,
+        "symbolic_hubble_mid": float(d_scale_mid / max(scale_mid, EPS_NUM)),
+        "symbolic_acceleration_mid": float(dd_scale_mid),
+        "symbolic_drive_mid": float(sp.N(drive_poly.subs(lam, mid_lambda))),
+    }
+
+
+def _option_constraint_surface(
+    lambda_shells: np.ndarray,
+    scale_factors: np.ndarray,
+    ranking_scores: np.ndarray,
+) -> dict[str, object]:
+    solver = Solver()
+    lambda_vars = [Real(f"lambda_shell_{idx}") for idx in range(len(lambda_shells))]
+    scale_vars = [Real(f"scale_factor_{idx}") for idx in range(len(scale_factors))]
+    score_vars = [Real(f"ranking_score_{idx}") for idx in range(len(ranking_scores))]
+    for var, value in zip(lambda_vars, lambda_shells.tolist(), strict=True):
+        solver.add(var == RealVal(str(float(value))))
+    for var, value in zip(scale_vars, scale_factors.tolist(), strict=True):
+        solver.add(var == RealVal(str(float(value))))
+        solver.add(var >= RealVal("1.0"))
+    for var, value in zip(score_vars, ranking_scores.tolist(), strict=True):
+        solver.add(var == RealVal(str(float(value))))
+    for lhs, rhs in zip(lambda_vars[:-1], lambda_vars[1:], strict=True):
+        solver.add(lhs < rhs)
+    for lhs, rhs in zip(scale_vars[:-1], scale_vars[1:], strict=True):
+        solver.add(lhs <= rhs)
+    for lhs, rhs in zip(score_vars[:-1], score_vars[1:], strict=True):
+        solver.add(lhs >= rhs)
+    if scale_vars:
+        solver.add(Sum(*scale_vars) >= RealVal("4.0"))
+    result = solver.check()
+    return {
+        "result": str(result),
+        "sat": bool(result == sat),
+    }
+
+
+def _option_manifold_surface(
+    mean_abs_a0: np.ndarray,
+    doctrine_fit: np.ndarray,
+    shell_alignment_abs: np.ndarray,
+    scale_factors: np.ndarray,
+) -> dict[str, object]:
+    raw_points = np.stack(
+        [
+            mean_abs_a0 - float(np.mean(mean_abs_a0)),
+            doctrine_fit - float(np.mean(doctrine_fit)),
+            shell_alignment_abs + (scale_factors - float(scale_factors[0])),
+        ],
+        axis=1,
+    )
+    points = []
+    for row in raw_points:
+        norm = float(np.linalg.norm(row))
+        if norm < EPS_NUM:
+            points.append(np.array([0.0, 0.0, 1.0], dtype=np.float64))
+        else:
+            points.append(np.asarray(row, dtype=np.float64) / norm)
+    points_arr = np.asarray(points, dtype=np.float64)
+    estimator = FrechetMean(space=OPTION_SPHERE)
+    estimator.fit(points_arr)
+    mean = np.asarray(estimator.estimate_, dtype=np.float64)
+    dists = np.asarray(
+        [float(OPTION_SPHERE.metric.dist(point, mean)) for point in points_arr],
+        dtype=np.float64,
+    )
+    return {
+        "frechet_mean": mean.tolist(),
+        "mean_norm": float(np.linalg.norm(mean)),
+        "mean_geodesic_distance": float(np.mean(dists)),
+        "max_geodesic_distance": float(np.max(dists)),
+    }
+
+
+def _aggregate_deep_contract(
+    all_results: list[dict],
+    option_verdicts: dict[str, dict[str, object]],
+    ranking: list[str],
+) -> dict[str, object]:
+    shell_bridge_pass_fraction = float(
+        np.mean([1.0 if cfg["shell_bridge"]["lane_d_keep"] else 0.0 for cfg in all_results])
+    ) if all_results else 0.0
+
+    option_a0_by_name: dict[str, list[float]] = {opt: [] for opt in OPTION_ORDER}
+    option_shell_hubble_by_name: dict[str, list[float]] = {opt: [] for opt in OPTION_ORDER}
+    per_perturb_means: dict[str, dict[str, float]] = {
+        pert: {opt: 0.0 for opt in OPTION_ORDER} for pert in PERTURBATIONS
+    }
+
+    for pert in PERTURBATIONS:
+        for opt in OPTION_ORDER:
+            values = []
+            for cfg in all_results:
+                a0 = float(cfg["perturbations"][pert][opt]["a0"])
+                values.append(abs(a0))
+            per_perturb_means[pert][opt] = float(np.mean(values)) if values else 0.0
+
+    for cfg in all_results:
+        shell_hubble = float(cfg["shell_bridge"]["mean_hubble_proxy"])
+        for pert in PERTURBATIONS:
+            for opt in OPTION_ORDER:
+                option_a0_by_name[opt].append(float(cfg["perturbations"][pert][opt]["a0"]))
+                option_shell_hubble_by_name[opt].append(shell_hubble)
+
+    lambda_shells = np.linspace(0.0, 1.0, len(ranking), dtype=np.float64)
+    option_rows: list[dict[str, object]] = []
+    ranking_scores: list[float] = []
+
+    for opt in ranking:
+        option_vals = np.asarray(option_a0_by_name[opt], dtype=np.float64)
+        shell_vals = np.asarray(option_shell_hubble_by_name[opt], dtype=np.float64)
+        shell_alignment = 0.0
+        if option_vals.size and option_vals.std() > EPS_NUM and shell_vals.std() > EPS_NUM:
+            shell_alignment = float(np.corrcoef(option_vals, shell_vals)[0, 1])
+        mean_abs = float(np.mean(np.abs(option_vals))) if option_vals.size else 0.0
+        doctrine_fit = float(option_verdicts[opt]["doctrine_fit"])
+        sign_consistency = float(option_verdicts[opt]["sign_consistency"])
+        composite_score = float(option_verdicts[opt]["composite_score"])
+        ranking_scores.append(composite_score)
+        option_rows.append(
+            {
+                "option": opt,
+                "mean_abs_a0": mean_abs,
+                "mean_signed_a0": float(np.mean(option_vals)) if option_vals.size else 0.0,
+                "doctrine_fit": doctrine_fit,
+                "sign_consistency": sign_consistency,
+                "shell_alignment": shell_alignment,
+                "shell_alignment_abs": abs(shell_alignment),
+            }
+        )
+
+    expansion_drive = np.asarray(
+        [
+            row["mean_abs_a0"] + row["doctrine_fit"] + row["shell_alignment_abs"]
+            for row in option_rows
+        ],
+        dtype=np.float64,
+    )
+    scale_factors, propagator_traces = _option_scale_history(lambda_shells, expansion_drive)
+    hubble_proxy = np.gradient(np.log(np.clip(scale_factors, EPS_NUM, None)), lambda_shells)
+
+    for row, scale, hubble in zip(option_rows, scale_factors.tolist(), hubble_proxy.tolist(), strict=True):
+        row["scale_factor"] = float(scale)
+        row["hubble_proxy"] = float(hubble)
+
+    graph_surface = _option_graph_surface(option_rows)
+    perturbation_windows: list[list[int]] = []
+    ranking_index = {opt: idx for idx, opt in enumerate(ranking)}
+    for pert in PERTURBATIONS:
+        sorted_opts = sorted(
+            OPTION_ORDER,
+            key=lambda opt: per_perturb_means[pert][opt],
+            reverse=True,
+        )
+        perturbation_windows.append([ranking_index[opt] for opt in sorted_opts[:3]])
+
+    hypergraph_surface = _option_hypergraph_surface(len(ranking), perturbation_windows)
+    combined_pair_edges = sorted(
+        {
+            tuple(edge)
+            for edge in graph_surface["pair_edges"] + hypergraph_surface["pair_edges"]
+        }
+    )
+    combined_triad_windows = sorted(
+        {
+            tuple(window)
+            for window in graph_surface["triad_windows"] + hypergraph_surface["triad_windows"]
+        }
+    )
+    cell_complex_surface = _option_cell_complex_surface(
+        len(ranking),
+        [list(edge) for edge in combined_pair_edges],
+        [list(window) for window in combined_triad_windows],
+    )
+    topology_surface = _option_topology_surface(
+        len(ranking),
+        [list(edge) for edge in combined_pair_edges],
+        [list(window) for window in combined_triad_windows],
+    )
+    symbolic_surface = _option_symbolic_surface(lambda_shells, scale_factors, expansion_drive)
+    constraint_surface = _option_constraint_surface(
+        lambda_shells,
+        scale_factors,
+        np.asarray(ranking_scores, dtype=np.float64),
+    )
+    manifold_surface = _option_manifold_surface(
+        np.asarray([row["mean_abs_a0"] for row in option_rows], dtype=np.float64),
+        np.asarray([row["doctrine_fit"] for row in option_rows], dtype=np.float64),
+        np.asarray([row["shell_alignment_abs"] for row in option_rows], dtype=np.float64),
+        scale_factors,
+    )
+    torch_fit = _torch_option_fit(
+        np.stack(
+            [
+                np.asarray([row["mean_abs_a0"] for row in option_rows], dtype=np.float64),
+                np.asarray([row["doctrine_fit"] for row in option_rows], dtype=np.float64),
+                np.asarray([row["shell_alignment_abs"] for row in option_rows], dtype=np.float64),
+            ],
+            axis=1,
+        ),
+        hubble_proxy,
+    )
+
+    winner = ranking[0]
+    winner_row = next(row for row in option_rows if row["option"] == winner)
+    winner_vector = np.array(
+        [
+            winner_row["mean_abs_a0"],
+            winner_row["doctrine_fit"],
+            winner_row["shell_alignment_abs"],
+        ],
+        dtype=np.float64,
+    )
+    clifford_vector = _clifford_vector(winner_vector)
+    torch_ga_vector = _torch_ga_roundtrip(winner_vector)
+    topology_parity_ok = bool(
+        cell_complex_surface["euler_characteristic"] == topology_surface["euler_characteristic"]
+    )
+
+    pass_flag = bool(
+        shell_bridge_pass_fraction >= 0.5
+        and graph_surface["longest_path_length"] >= len(ranking) - 1
+        and hypergraph_surface["max_hyperedge_size"] >= 3
+        and topology_surface["beta0"] == 1
+        and topology_surface["beta1"] == 0
+        and topology_parity_ok
+        and constraint_surface["sat"]
+        and symbolic_surface["symbolic_hubble_mid"] > 0.05
+        and manifold_surface["mean_geodesic_distance"] > 1e-2
+        and torch_fit["loss"] < 1.0
+    )
+
+    return {
+        "pass": pass_flag,
+        "winner": winner,
+        "shell_bridge_pass_fraction": shell_bridge_pass_fraction,
+        "option_rows": option_rows,
+        "graph_surface": {
+            "edge_count": graph_surface["edge_count"],
+            "longest_path_length": graph_surface["longest_path_length"],
+            "triad_windows": graph_surface["triad_windows"],
+        },
+        "hypergraph_surface": {
+            "num_edges": hypergraph_surface["num_edges"],
+            "max_hyperedge_size": hypergraph_surface["max_hyperedge_size"],
+            "connected_components": hypergraph_surface["connected_components"],
+            "hyperedges": hypergraph_surface["hyperedges"],
+        },
+        "topology_surface": {
+            "betti_numbers": topology_surface["betti_numbers"],
+            "euler_characteristic": topology_surface["euler_characteristic"],
+            "parity_ok": topology_parity_ok,
+        },
+        "symbolic_surface": symbolic_surface,
+        "constraint_surface": constraint_surface,
+        "manifold_surface": manifold_surface,
+        "torch_fit": {
+            "weights": torch_fit["weights"],
+            "bias": torch_fit["bias"],
+            "loss": torch_fit["loss"],
+            "max_gap": torch_fit["max_gap"],
+        },
+        "winner_vector": winner_vector.tolist(),
+        "clifford_vector_gap": float(np.max(np.abs(clifford_vector - winner_vector))),
+        "torch_ga_vector_gap": float(np.max(np.abs(torch_ga_vector - winner_vector))),
+        "scale_factors": scale_factors.tolist(),
+        "hubble_proxy": hubble_proxy.tolist(),
+        "propagator_traces": propagator_traces,
+    }
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Axis-0 Index: finite-difference derivative
 # A0 = [D(Φ_ε(ρ)) - D(ρ)] / ε
@@ -285,7 +850,15 @@ def run_config(engine_type: int,
     engine = GeometricEngine(engine_type=engine_type)
     state = engine.init_state(eta=torus_val)
     final = engine.run_cycle(state)
-    history_base = final.history
+    history_base = []
+    for step in final.history:
+        history_base.append(
+            {
+                "rho_L": step["rho_L"],
+                "rho_R": step["rho_R"],
+                "eta": float(step.get("ax0_torus_entropy", 0.5)),
+            }
+        )
 
     option_fns = {
         "A_mi_diversity":    option_A,
@@ -309,10 +882,13 @@ def run_config(engine_type: int,
             }
         results_by_perturbation[pert_name] = option_scores
 
+    shell_bridge = lane_d_topology_expansion_bridge(history_base)
+
     return {
         "engine_type": engine_type,
         "torus": torus_name,
         "perturbations": results_by_perturbation,
+        "shell_bridge": shell_bridge,
     }
 
 
@@ -330,7 +906,7 @@ def aggregate(all_results: list[dict]) -> dict:
       T2 configs that are allostatic (per Grok Unified Physics Type1=L-handed
       cooling bias, Type2=R-handed heating bias)
     """
-    option_names = ["A_mi_diversity", "B_mi_variance", "C_coherent_info", "D_jk_path_entropy"]
+    option_names = OPTION_ORDER
     pert_names = list(PERTURBATIONS.keys())
 
     # Collect all A0 values per option
@@ -389,6 +965,8 @@ def aggregate(all_results: list[dict]) -> dict:
     ranked = sorted(option_names, key=lambda o: verdicts[o]["composite_score"], reverse=True)
     winner = ranked[0]
 
+    deep_contract = _aggregate_deep_contract(all_results, verdicts, ranked)
+
     return {
         "option_verdicts": verdicts,
         "ranking": ranked,
@@ -400,6 +978,8 @@ def aggregate(all_results: list[dict]) -> dict:
             f"signal={verdicts[winner]['mean_abs_a0']:.4f}, "
             f"doctrine_fit={verdicts[winner]['doctrine_fit']:.3f})"
         ),
+        "deep_contract": deep_contract,
+        "all_pass": bool(deep_contract["pass"]),
     }
 
 
@@ -485,6 +1065,21 @@ def main() -> None:
     print(f"  {agg['winner_rationale']}")
     print()
 
+    deep = agg["deep_contract"]
+    print("─" * 72)
+    print("DEEP CONTRACT")
+    print("─" * 72)
+    print(f"  Deep pass:                    {deep['pass']}")
+    print(f"  Shell bridge pass fraction:   {deep['shell_bridge_pass_fraction']:.3f}")
+    print(f"  Graph longest path:           {deep['graph_surface']['longest_path_length']}")
+    print(f"  Hypergraph max edge size:     {deep['hypergraph_surface']['max_hyperedge_size']}")
+    print(f"  Topology betti numbers:       {deep['topology_surface']['betti_numbers']}")
+    print(f"  Symbolic hubble mid:          {deep['symbolic_surface']['symbolic_hubble_mid']:.6f}")
+    print(f"  Manifold mean distance:       {deep['manifold_surface']['mean_geodesic_distance']:.6f}")
+    print(f"  Torch fit loss:               {deep['torch_fit']['loss']:.6f}")
+    print(f"  Winner vector gaps:           clifford={deep['clifford_vector_gap']:.2e} | torch_ga={deep['torch_ga_vector_gap']:.2e}")
+    print()
+
     # Doctrine interpretation
     winner = agg["winner"]
     wv = agg["option_verdicts"][winner]
@@ -530,7 +1125,7 @@ def main() -> None:
 
     print()
     print("=" * 72)
-    print("PROBE STATUS: PASS")
+    print(f"PROBE STATUS: {'PASS' if agg['all_pass'] else 'FAIL'}")
     print("=" * 72)
 
     # Save
@@ -549,12 +1144,23 @@ def main() -> None:
     with open(out_path, "w") as f:
         json.dump(json_safe({
             "timestamp": datetime.now(UTC).isoformat(),
+            "classification": classification,
+            "divergence_log": divergence_log,
+            "tool_manifest": TOOL_MANIFEST,
+            "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "parameters": {
                 "eps": PERTURBATION_EPS,
                 "kraus_branches": KRAUS_BRANCHES,
             },
             "per_config_results": all_results,
             "aggregate": agg,
+            "summary": {
+                "winner": agg["winner"],
+                "all_pass": bool(agg["all_pass"]),
+                "deep_contract_pass": bool(agg["deep_contract"]["pass"]),
+            },
+            "overall_pass": bool(agg["all_pass"]),
+            "all_pass": bool(agg["all_pass"]),
         }), f, indent=2)
     print(f"\n  Results → {out_path}")
 

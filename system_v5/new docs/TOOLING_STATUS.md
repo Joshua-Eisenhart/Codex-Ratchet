@@ -2,6 +2,9 @@
 
 Date: 2026-04-08
 Supersedes: all prior tooling status docs
+Status: dated tooling audit snapshot, not a live current-count surface.
+
+Later recounts already exceed the `425`-file spot-audit size cited below. Use this doc for tool-role framing and the 2026-04-08 audit snapshot; rerun the sim-like file count before quoting it as current repo state.
 
 ---
 

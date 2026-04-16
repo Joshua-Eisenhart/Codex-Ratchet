@@ -1,6 +1,6 @@
 # Codex Ratchet Sim Build Plan
 
-Status: MASTER REFERENCE PLAN — not the live queue surface. Use `docs/plans/sim_backlog_matrix.md` for the live queue, `docs/plans/sim_truth_audit.md` for truth labels, `docs/plans/tool_integration_maintenance_matrix.md` for tool depth, and `docs/plans/controller_maintenance_checklist.md` for live run operations.
+Status: MASTER REFERENCE PLAN — not the live queue surface. Use `system_v5/new docs/plans/sim_backlog_matrix.md` for the live queue, `system_v5/new docs/plans/sim_truth_audit.md` for truth labels, `system_v5/new docs/plans/tool_integration_maintenance_matrix.md` for tool depth, and `system_v5/new docs/plans/controller_maintenance_checklist.md` for live run operations.
 
 > For Hermes: use this plan to build the sim estate in bounded phases. Do not collapse `exists`, `runs`, `passes local rerun`, and `canonical by process`.
 
@@ -121,12 +121,12 @@ Deliverables:
 - one recurring controller-maintenance checklist for manifests, validators, stale classifications, and queue hygiene
 
 Files to create/update:
-- Create: `docs/plans/sim_backlog_matrix.md`
-- Create: `docs/plans/sim_truth_audit.md`
-- Create: `docs/plans/sim_process_gap_log.md`
-- Create: `docs/plans/tool_integration_maintenance_matrix.md`
-- Create: `docs/plans/controller_maintenance_checklist.md`
-- Create: `docs/plans/wiki_ingest_and_lego_maintenance.md`
+- Create/update: `system_v5/new docs/plans/sim_backlog_matrix.md`
+- Create/update: `system_v5/new docs/plans/sim_truth_audit.md`
+- Create/update: `system_v5/new docs/plans/sim_process_gap_log.md`
+- Create/update: `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
+- Create/update: `system_v5/new docs/plans/controller_maintenance_checklist.md`
+- Create/update: `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
 
 Required checks:
 - confirm every active target maps to `07`, `08`, `16`, and `17`

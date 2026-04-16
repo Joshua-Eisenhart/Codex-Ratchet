@@ -46,6 +46,12 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi": None,
 }
 
+WITNESS_INFO = {
+    "witness_use_cases": [
+        "system_v4/probes/sim_compound_equivariant_cayley_gnn.py",
+    ]
+}
+
 try:
     import networkx as nx
     TOOL_MANIFEST["networkx"]["tried"] = True
@@ -193,6 +199,12 @@ if __name__ == "__main__":
 
     all_sections = [positive, negative, boundary]
     all_pass = all(t.get("pass", False) for sec in all_sections for t in sec.values())
+    summary = {
+        "positive_all_pass": all(t.get("pass", False) for t in positive.values()),
+        "negative_all_pass": all(t.get("pass", False) for t in negative.values()),
+        "boundary_all_pass": all(t.get("pass", False) for t in boundary.values()),
+        "all_pass": bool(all_pass),
+    }
 
     results = {
         "name": "sim_networkx_capability",
@@ -202,13 +214,14 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "summary": summary,
         "all_pass": all_pass,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "sim_networkx_capability_results.json")
-    with open(out_path, "w") as f:
+    out_path = os.path.join(out_dir, "networkx_capability_results.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
     print(f"ALL_PASS={all_pass}")

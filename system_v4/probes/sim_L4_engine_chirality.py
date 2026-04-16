@@ -30,6 +30,23 @@ from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: engine chirality is being validated on the geometric core, not asserted here as a canonical nonclassical witness."
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "helper wrapper only; engine-family sims carry the actual tensor work"},
+    "pyg": {"tried": False, "used": False, "reason": "helper wrapper only; no graph-learning work is done here"},
+    "z3": {"tried": False, "used": False, "reason": "helper wrapper only; proof work is delegated to the validating sims"},
+    "cvc5": {"tried": False, "used": False, "reason": "helper wrapper only; proof work is delegated to the validating sims"},
+    "sympy": {"tried": False, "used": False, "reason": "helper wrapper only; symbolic work is delegated to the validating sims"},
+    "clifford": {"tried": False, "used": False, "reason": "helper wrapper only; geometric algebra is handled elsewhere"},
+    "geomstats": {"tried": False, "used": False, "reason": "helper wrapper only; manifold work is handled elsewhere"},
+    "e3nn": {"tried": False, "used": False, "reason": "helper wrapper only; equivariance is handled elsewhere"},
+    "rustworkx": {"tried": False, "used": False, "reason": "helper wrapper only; graph work is handled elsewhere"},
+    "xgi": {"tried": False, "used": False, "reason": "helper wrapper only; hypergraph work is handled elsewhere"},
+    "toponetx": {"tried": False, "used": False, "reason": "helper wrapper only; cell-complex work is handled elsewhere"},
+    "gudhi": {"tried": False, "used": False, "reason": "helper wrapper only; persistence work is handled elsewhere"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hopf_manifold import (
     random_s3_point, coherent_state_density, density_to_bloch,

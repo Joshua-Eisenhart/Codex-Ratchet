@@ -19,6 +19,37 @@ from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
 divergence_log = "Classical foundation baseline: the master engine composes prior layers for bottom-up validation, not as a canonical nonclassical witness."
 
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "master orchestration uses numerical timing and aggregation"},
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "z3": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; master engine composes existing layer runners"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import EvidenceToken
 

@@ -6,42 +6,42 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- pure graph capability probe"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- pure graph capability probe"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed -- numeric ground truth is enough for capability probe"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not geometry-relevant"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not geometry-relevant"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not geometry-relevant"
     },
     "rustworkx": {
       "tried": true,
@@ -56,12 +56,12 @@
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not topology-relevant here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not topology-relevant here"
     },
     "networkx": {
       "tried": true,
@@ -186,9 +186,9 @@
     },
     "perf_vs_networkx_1k": {
       "pass": true,
-      "rx_time_s": 9.633414447307587e-05,
-      "nx_time_s": 0.0007347078062593937,
-      "speedup_rx_over_nx": 7.62666041493455,
+      "rx_time_s": 8.120900020003319e-05,
+      "nx_time_s": 0.0007058330811560154,
+      "speedup_rx_over_nx": 8.691562258092262,
       "N_nodes": 1000,
       "M_edges": 2966,
       "detail": "Both orderings must be valid; speedup reported for context, not load-bearing."

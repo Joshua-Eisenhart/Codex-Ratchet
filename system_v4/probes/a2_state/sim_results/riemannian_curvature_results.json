@@ -17,17 +17,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for curvature computation"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed; no logical branching in Liouville formula"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for curvature computation"
     },
     "sympy": {
       "tried": true,
@@ -37,37 +37,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed; 2D diagonal metric uses no Clifford algebra"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed; Fubini-Study and flat computed directly without geomstats machinery"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed for curvature computation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for curvature computation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for curvature computation"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for curvature computation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for curvature computation"
     }
   },
   "tool_integration_depth": {
@@ -209,5 +209,5 @@
     "formula": "Liouville diagonal metric: K = -(1/2*sqrt(EG))*[d/du(G_u/sqrt(EG)) + d/dv(E_v/sqrt(EG))]",
     "scope_note": "Gaussian curvature lego: Fubini-Study (K=4) vs flat Euclidean (K=0). Numerical: Liouville formula with centered finite differences on torch.float64. Analytic: sympy symbolic derivation confirms both K values. Out of scope: Levi-Civita connection in full, Berry-phase holonomy, Ricci flow, Einstein equations, sectional curvature tensor, higher dimensions."
   },
-  "timestamp": "2026-04-16T02:57:26.007675+00:00"
+  "timestamp": "2026-04-16T03:03:18.196399+00:00"
 }

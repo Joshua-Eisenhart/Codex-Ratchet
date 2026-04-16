@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no message-passing graph layer in this lego"
     },
     "z3": {
       "tried": true,
@@ -31,7 +31,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- no geometric algebra layer in this proof sim"
     },
     "geomstats": {
       "tried": true,
@@ -41,7 +41,7 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no E(3)-equivariant network layer here"
     },
     "rustworkx": {
       "tried": true,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph or simplicial layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -237,7 +237,7 @@
       "no_interior_anomaly": true,
       "note": "SPD geodesic monotone: speed_cv=0.0000 < 0.1. No interior anomaly in [0.5, 0.7]. Total geodesic dist=0.6067. Anomaly at relay=0.706 is at the boundary, not interior."
     },
-    "elapsed_s": 0.162,
+    "elapsed_s": 0.212,
     "cvc5_cut_kernel_admissibility": {
       "3a_crosscheck_classical": {
         "verdict": "unsat",
@@ -321,6 +321,6 @@
   "summary": {
     "total_pass": 17,
     "total_fail": 0,
-    "elapsed_total_s": 0.177
+    "elapsed_total_s": 0.237
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "sim_pure_lego_adiabatic_berry_dynamics",
-  "timestamp": "2026-04-16T03:00:17Z",
+  "timestamp": "2026-04-16T03:02:48Z",
   "lego_ids": [
     "adiabatic_berry_dynamics",
     "rk4_schrodinger",
@@ -19,7 +19,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph/message-passing structure; sim is ODE over scalar state vector"
     },
     "z3": {
       "tried": true,
@@ -54,12 +54,12 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph; sim operates on 2D Hilbert space, no network topology"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "no hypergraph structure; sim is single spin-1/2 ODE"
     },
     "toponetx": {
       "tried": true,
@@ -233,7 +233,7 @@
     "total_tests": 13,
     "passed": 13,
     "failed": 0,
-    "elapsed_seconds": 9.15,
+    "elapsed_seconds": 9.49,
     "adiabatic_params_used": {
       "B0": 10.0,
       "omega": 0.1,

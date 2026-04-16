@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed -- no autograd layer in this proof sim"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- no graph layer here"
     },
     "z3": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- no geometric algebra layer here"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- no manifold geometry layer here"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant network layer here"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed -- no dependency graph here"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- no hypergraph layer here"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed -- no cell complex here"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- no persistent homology here"
     }
   },
   "tool_integration_depth": {
@@ -157,13 +157,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of amplitude_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0583
+          "elapsed_s": 0.0055
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for amplitude_damping.",
-          "elapsed_s": 0.0018
+          "elapsed_s": 0.0033
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -175,13 +175,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of phase_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0222
+          "elapsed_s": 0.0312
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_damping.",
-          "elapsed_s": 0.0691
+          "elapsed_s": 0.007
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -193,13 +193,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of depolarizing can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.007
+          "elapsed_s": 0.0568
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for depolarizing.",
-          "elapsed_s": 0.0361
+          "elapsed_s": 0.0836
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -211,13 +211,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of bit_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0184
+          "elapsed_s": 0.0033
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for bit_flip.",
-          "elapsed_s": 0.0064
+          "elapsed_s": 0.0401
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -229,13 +229,13 @@
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "No linear function through boundary corners of phase_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
-          "elapsed_s": 0.0408
+          "elapsed_s": 0.0041
         },
         "proof2_no_quadratic_needed": {
           "verdict": "UNSAT",
           "status": "PASS",
           "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_flip.",
-          "elapsed_s": 0.0035
+          "elapsed_s": 0.0039
         },
         "linear_boundary_theorem_holds": true,
         "status": "PASS"
@@ -258,7 +258,7 @@
       "status": "PASS",
       "verdict": "UNSAT",
       "interpretation": "\u03bb > 3/4 with |1-4\u03bb/3| <= 1 is UNSAT. Single-qubit depolarizing linear boundary \u03bb = 3/4 is strict -- no admissible channel exceeds it.",
-      "elapsed_s": 0.0005
+      "elapsed_s": 0.0004
     }
   },
   "boundary": {
@@ -307,6 +307,6 @@
     "synthesized_function": "(lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0))",
     "is_linear": true,
     "interpretation": "cvc5 synthesized: (lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0)). Boundary IS linear. Cross-check with z3 linear boundary proof: AGREES.",
-    "elapsed_s": 1.2702
+    "elapsed_s": 1.0814
   }
 }

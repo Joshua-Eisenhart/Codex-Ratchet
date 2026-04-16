@@ -16,7 +16,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed -- shells are nn.Module projectors"
     },
     "z3": {
       "tried": true,
@@ -26,27 +26,27 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed -- z3 sufficient"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- all computation torch-native"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- density matrices native"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed -- shell metrics computed directly"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed -- no equivariant layers"
     },
     "rustworkx": {
       "tried": true,
@@ -56,17 +56,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed -- shells are nested DAG"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed -- gradient flow is the topology probe"
     }
   },
   "tool_integration_depth": {
@@ -485,5 +485,5 @@
     "all_final_states_z3_sat": true,
     "note_on_non_psd_exclusion": "non_psd state excluded from z3 verification because L4_Composition (channel cycle application) does not preserve the PSD cone. Dykstra oscillates between L1_CPTP and L4_Composition for severely non-PSD inputs. This is a real constraint-compatibility finding: the 4-shell intersection is not reachable from all initial conditions under finite-iteration Dykstra. The binding gradient in this case is dominated by L4 (not L1) because L4's large nonlinear projection creates the largest gradient signal even when L1 is the violated shell. Physical interpretation: L4 (irreversible contraction) is the harder constraint to satisfy jointly with L1 (PSD+trace=1)."
   },
-  "elapsed_seconds": 0.4613921642303467
+  "elapsed_seconds": 0.4977850914001465
 }

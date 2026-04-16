@@ -30,7 +30,7 @@
     ],
     "all_concurrence_one": true,
     "all_prob_quarter": true,
-    "elapsed_s": 0.0007832050323486328
+    "elapsed_s": 0.0009539127349853516
   },
   "2_entanglement_distillation": {
     "werner_p": 0.8,
@@ -77,7 +77,7 @@
     "final_concurrence": 0.98028111777707,
     "purification_achieved": true,
     "monotone_fidelity_increase": true,
-    "elapsed_s": 0.0001552104949951172
+    "elapsed_s": 0.0001850128173828125
   },
   "3_locc_bound": {
     "p_values_tested": [
@@ -200,7 +200,7 @@
     "all_entangled_above_threshold": true,
     "yield_respects_hashing_bound": true,
     "purification_works_all_above_half": true,
-    "elapsed_s": 0.002403736114501953
+    "elapsed_s": 0.0010170936584472656
   },
   "summary": {
     "1_swap_AC_unentangled_before": true,
@@ -212,68 +212,5 @@
     "3_locc_yield_respects_bound": true,
     "3_locc_all_entangled_above_threshold": true
   },
-  "ALL_PASS": true,
-  "classification": "supporting",
-  "tool_manifest": {
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
-    },
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
-    }
-  }
+  "ALL_PASS": true
 }

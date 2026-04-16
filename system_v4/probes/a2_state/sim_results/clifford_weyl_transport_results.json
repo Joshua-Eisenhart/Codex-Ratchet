@@ -11,22 +11,22 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed; clifford+numpy sufficient for transport"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "graph structure not relevant to rotor transport"
     },
     "z3": {
       "tried": true,
       "used": true,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "rational check: rotor norm at \u03b8=\u03c0/2 is exactly 1"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "z3 sufficient for rational check"
     },
     "sympy": {
       "tried": true,
@@ -41,32 +41,32 @@
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian metric not relevant to algebraic transport"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "equivariant networks not relevant here"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph structure needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "hypergraph structure not relevant"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "cell complex structure not relevant"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "persistent homology not relevant"
     }
   },
   "tool_integration_depth": {
@@ -383,5 +383,5 @@
     "claim": "Cl(3) rotor transport R\u00b7e1\u00b7~R matches SU(2) adjoint U\u00b7\u03c3_x\u00b7U\u2020; double-cover R(2\u03c0)=-1 confirmed; non-commutativity confirmed",
     "diagnosis": "clifford_weyl_bridge_consistent"
   },
-  "timestamp": "2026-04-16T02:57:37.235444Z"
+  "timestamp": "2026-04-16T03:03:07.188677Z"
 }

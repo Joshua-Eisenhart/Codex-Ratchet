@@ -6,6 +6,13 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "CP classically reduces to entrywise positivity; misses complete-"
+    "positivity on entangled extensions (tensor with ancilla). "
+    "No Choi-positivity witnessing for noncommuting channels. "
+    "Unitary channels are absent; only permutations are reversible classically. "
+    "Cannot model non-Markovian / non-CP-divisible quantum dynamics."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "stochastic matrix checks"},
@@ -68,11 +75,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "CP classically reduces to entrywise positivity; misses complete-positivity on entangled extensions (tensor with ancilla)",
-                "no Choi-positivity witnessing for noncommuting channels",
-                "unitary channels absent; only permutations are reversible classically",
-                "cannot model non-Markovian / non-CP-divisible quantum dynamics",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

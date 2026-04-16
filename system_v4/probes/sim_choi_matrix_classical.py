@@ -11,6 +11,14 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Choi is block-diagonal; misses off-diagonal coherences that "
+    "witness non-CP-divisible or entanglement-breaking distinctions. Choi "
+    "rank=1 (unitary) is unreachable classically except for permutations. "
+    "No Jamiolkowski isomorphism subtlety: state-channel duality is trivial "
+    "on diagonals. Classical Choi cannot detect PPT/NPT entanglement and is "
+    "always separable."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "block-diagonal Choi on stochastic matrix"},
@@ -90,11 +98,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical Choi is block-diagonal; misses off-diagonal coherences that witness non-CP-divisible or entanglement-breaking distinctions",
-                "Choi rank=1 (unitary) unreachable classically except for permutations",
-                "no Jamiolkowski isomorphism subtlety (state-channel duality trivial on diagonals)",
-                "cannot detect PPT/NPT entanglement of Choi state; classical Choi is always separable",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

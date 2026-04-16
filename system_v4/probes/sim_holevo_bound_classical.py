@@ -10,6 +10,14 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical chi collapses to mixing entropy on commuting states and "
+    "misses noncommuting rho_i. There is no advantage from nonorthogonal "
+    "but overlapping quantum ensembles (Holevo < log d). The classical "
+    "model cannot express the chi > I_acc gap because equality is generic "
+    "classically while the quantum inequality is strict. It also ignores "
+    "probe-basis admissibility and assumes a single diagonalizing frame."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "entropy arithmetic on pmfs"},
@@ -80,11 +88,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical chi collapses to mixing entropy on commuting states; misses noncommuting rho_i",
-                "no advantage from nonorthogonal-but-overlapping quantum ensembles (Holevo < log d)",
-                "cannot model chi > I_acc gap: classical equality is generic, quantum inequality is strict",
-                "ignores probe-basis admissibility; assumes a single diagonalizing frame",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

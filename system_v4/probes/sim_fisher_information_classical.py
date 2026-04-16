@@ -6,6 +6,14 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Fisher ignores SLD (symmetric logarithmic derivative) "
+    "structure; multiple inequivalent quantum Fishers (SLD, RLD, BKM) "
+    "collapse to one. No noncommuting-parameter incompatibility: the "
+    "classical Cramer-Rao bound is always tight in the limit. It misses the "
+    "quantum metrology advantage (Heisenberg scaling 1/N vs 1/sqrt(N)) and "
+    "cannot diagnose measurement-incompatibility obstructions."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "finite-difference scoring on pmf"},
@@ -78,11 +86,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical Fisher ignores SLD (symmetric logarithmic derivative) structure; multiple inequivalent quantum Fishers (SLD, RLD, BKM) collapse to one",
-                "no noncommuting-parameter incompatibility; classical Cramer-Rao bound is always tight in the limit",
-                "misses quantum metrology advantage (Heisenberg scaling 1/N vs 1/sqrt(N))",
-                "cannot diagnose parameter estimation obstructions from measurement incompatibility",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

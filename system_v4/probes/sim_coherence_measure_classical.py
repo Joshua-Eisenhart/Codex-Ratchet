@@ -11,6 +11,11 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical diagonal states have identically zero l1 coherence. "
+    "No basis rotation sensitivity; coherence is basis-fixed trivially. "
+    "Cannot witness superposition as a resource."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix arithmetic"},
@@ -64,11 +69,7 @@ if __name__ == "__main__":
         "positive": pos, "negative": neg, "boundary": bnd,
         "all_pass": all_pass,
         "summary": {"all_pass": all_pass},
-        "divergence_log": [
-            "classical diagonal states have identically zero l1 coherence",
-            "no basis rotation sensitivity; coherence is basis-fixed trivially",
-            "cannot witness superposition as a resource",
-        ],
+        "divergence_log": divergence_log,
     }
     out = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results",
                        "coherence_measure_classical_results.json")

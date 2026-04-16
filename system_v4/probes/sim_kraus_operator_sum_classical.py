@@ -9,6 +9,14 @@ import json, os
 import numpy as np
 
 classification = "classical_baseline"
+divergence_log = (
+    "Classical Kraus collapse to rank-1 diagonal selections and cannot "
+    "express non-commuting K_k. It misses nonorthogonal measurement "
+    "back-action (POVM Kraus with K_k^dag K_k overlap). There is no "
+    "interference between Kraus branches because the classical channel acts "
+    "on pmf, not amplitudes. Unitary Kraus (|K|=1) are absent; classical "
+    "has no reversible mixing channel beyond permutations."
+)
 
 TOOL_MANIFEST = {
     "numpy": {"tried": True, "used": True, "reason": "matrix arithmetic on stochastic matrices"},
@@ -84,11 +92,6 @@ if __name__ == "__main__":
             "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
             "positive": pos, "negative": neg, "boundary": bnd,
             "all_pass": all_pass, "summary": {"all_pass": all_pass},
-            "divergence_log": [
-                "classical Kraus collapse to rank-1 diagonal selections; cannot express non-commuting K_k",
-                "misses nonorthogonal measurement back-action (POVM Kraus with K_k^dag K_k overlap)",
-                "no interference between Kraus branches; classical channel acts on pmf, not amplitudes",
-                "unitary Kraus (|K|=1) absent; classical has no reversible mixing channel beyond permutations",
-            ],
+            "divergence_log": divergence_log,
         }, f, indent=2, default=str)
     print(f"all_pass={all_pass} -> {out}")

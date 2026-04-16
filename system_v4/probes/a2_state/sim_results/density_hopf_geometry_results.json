@@ -22,22 +22,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed for this sim"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed for this sim"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed for this sim"
     },
     "clifford": {
       "tried": true,
@@ -57,22 +57,22 @@
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for this sim"
     }
   },
   "tool_integration_depth": {
@@ -408,11 +408,11 @@
     },
     "e3nn_torus_density_bloch_equivariance": {
       "n_states": 4,
-      "max_equivariance_error": 3.3527612686157227e-08,
+      "max_equivariance_error": 3.8399412538581146e-09,
       "tolerance": 1e-05,
       "pass": true
     },
-    "time_s": 0.11827516555786133
+    "time_s": 0.08456611633300781
   },
   "negative": {
     "bures_singular_r0": {
@@ -478,7 +478,7 @@
       "near_zero": true,
       "pass": true
     },
-    "time_s": 0.002763986587524414
+    "time_s": 0.0023899078369140625
   },
   "boundary": {
     "clifford_torus_symmetry": {
@@ -570,7 +570,7 @@
       ],
       "pass": true
     },
-    "time_s": 0.2740657329559326
+    "time_s": 0.35397982597351074
   },
   "clifford_cross_check": {
     "eta": 0.5235987755982988,
@@ -593,7 +593,7 @@
     "pass": "True",
     "counted": true
   },
-  "timestamp": "2026-04-16T03:49:19.408029+00:00",
+  "timestamp": "2026-04-16T04:08:55.694598+00:00",
   "classification": "canonical",
   "summary": {
     "tests_passed": 13,

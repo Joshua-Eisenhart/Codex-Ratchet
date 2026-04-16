@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed \u2014 finite-dimensional matrix ops only"
     },
     "z3": {
       "tried": false,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
@@ -31,7 +31,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "geomstats": {
       "tried": false,
@@ -41,27 +41,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for this sim"
     }
   },
   "tool_integration_depth": {
@@ -110,7 +110,7 @@
       "anti_hermitian_residual": 0.0,
       "note": "C\u2020 = \u2212A_\u03c6,\u2212A_\u03b8 = \u2212C \u2713; no projection needed"
     },
-    "elapsed_s": 0.1756267547607422
+    "elapsed_s": 0.15375089645385742
   },
   "negative": {
     "N1_abelian_diagonal_commutes": {
@@ -132,7 +132,7 @@
       "abelian_commutator_norm": 0.0,
       "note": "F_abelian = dA only; [diag A_\u03b8, diag A_\u03c6] = 0 exactly"
     },
-    "elapsed_s": 0.005856990814208984
+    "elapsed_s": 0.017145872116088867
   },
   "boundary": {
     "B1_fraction_scan": {
@@ -255,7 +255,7 @@
       "norm_comm": 0.707106781234217,
       "commutator_fraction": 325169.2138294892
     },
-    "elapsed_s": 0.05918002128601074
+    "elapsed_s": 0.05008196830749512
   },
   "classification": "canonical",
   "summary": {

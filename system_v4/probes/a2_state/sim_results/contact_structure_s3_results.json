@@ -17,7 +17,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "z3": {
       "tried": true,
@@ -27,7 +27,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "sympy": {
       "tried": true,
@@ -37,37 +37,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not relevant to S\u00b3 contact structure probe"
     }
   },
   "tool_integration_depth": {
@@ -267,5 +267,5 @@
     "scope": "Standalone probe for S\u00b3 contact structure. Distinct from sim_geom_symplectic_kahler_contact.py which embeds contact as one item in a 3-structure comparative survey.",
     "interpretation": "Standard contact structure on S\u00b3 verified via \u211d\u2074 embedding. Contact 1-form \u03b1 = x\u2080dx\u2081\u2212x\u2081dx\u2080+x\u2082dx\u2083\u2212x\u2083dx\u2082 satisfies: (1) \u03b1\u2227d\u03b1 \u2260 0 everywhere \u2014 a nonzero volume form on each T_pS\u00b3. (2) Reeb field R=(\u2212x\u2081,x\u2080,\u2212x\u2083,x\u2082) satisfies \u03b1(R)=1 and (d\u03b1)(R,v)=0 for all tangent v, following from p\u00b7v=0. (3) R generates the U(1) Hopf circle action \u2014 its flow is e^{it}(z\u2080,z\u2081) where z_k are complex coordinates on \u2102\u00b2. (4) Contact distribution ker(\u03b1) is maximally non-integrable (Frobenius: \u03b1\u2227d\u03b1\u22600 violates integrability condition). (5) z3 UNSAT confirms: integrability assumption is algebraically contradictory. (6) Sympy verifies d\u03b1 = 2(dx\u2080\u2227dx\u2081+dx\u2082\u2227dx\u2083) symbolically."
   },
-  "timestamp": "2026-04-16T04:03:01.623325+00:00"
+  "timestamp": "2026-04-16T04:06:56.892710+00:00"
 }

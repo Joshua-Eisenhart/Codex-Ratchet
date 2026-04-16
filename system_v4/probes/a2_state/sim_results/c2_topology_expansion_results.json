@@ -1,6 +1,6 @@
 {
   "name": "c2_topology_expansion",
-  "timestamp": "2026-04-16T03:50:37.245963+00:00",
+  "timestamp": "2026-04-16T04:08:17.399596+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -10,37 +10,37 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": ""
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": ""
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": ""
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": ""
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": ""
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": ""
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": ""
     },
     "rustworkx": {
       "tried": true,
@@ -50,17 +50,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": ""
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": ""
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
@@ -84,30 +84,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.037267210064806766,
-          "std_grad_norm": 0.016406469765955303,
+          "mean_grad_norm": 0.0694962185957133,
+          "std_grad_norm": 0.03909029150319683,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.037267210064806766,
-          "std_grad_norm": 0.016406469765955303,
+          "mean_grad_norm": 0.0694962185957133,
+          "std_grad_norm": 0.03909029150319683,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.028224431152022788,
-          "std_grad_norm": 0.012425488131569086,
+          "mean_grad_norm": 0.052633165554106374,
+          "std_grad_norm": 0.02960514724139171,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.009042778912783978,
+      "grad_range_across_topologies": 0.016863053041606922,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0696
+      "elapsed_s": 0.0808
     },
     "hadamard": {
       "family": "hadamard",
@@ -115,30 +115,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.053111066990088815,
-          "std_grad_norm": 0.021719346499089548,
+          "mean_grad_norm": 0.03773497120004596,
+          "std_grad_norm": 0.03776189523367625,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.053111066990088815,
-          "std_grad_norm": 0.021719346499089548,
+          "mean_grad_norm": 0.03773497120004596,
+          "std_grad_norm": 0.03776189523367625,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.040223822793964345,
-          "std_grad_norm": 0.016449210951516358,
+          "mean_grad_norm": 0.028578691423564236,
+          "std_grad_norm": 0.02859908241962245,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.01288724419612447,
+      "grad_range_across_topologies": 0.009156279776481722,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0169
+      "elapsed_s": 0.0233
     },
     "t_gate": {
       "family": "t_gate",
@@ -146,30 +146,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 1.8492831052154577e-17,
-          "std_grad_norm": 1.4523326794402838e-17,
+          "mean_grad_norm": 3.307018490327206e-17,
+          "std_grad_norm": 2.7514604091672328e-17,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 1.8492831052154577e-17,
-          "std_grad_norm": 1.4523326794402838e-17,
+          "mean_grad_norm": 3.307018490327206e-17,
+          "std_grad_norm": 2.7514604091672328e-17,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 1.4198259600025027e-17,
-          "std_grad_norm": 1.3499777372997059e-17,
+          "mean_grad_norm": 2.2679241840168815e-17,
+          "std_grad_norm": 2.287842583284599e-17,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 4.29457145212955e-18,
+      "grad_range_across_topologies": 1.0390943063103247e-17,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0205
+      "elapsed_s": 0.1715
     },
     "purification": {
       "family": "purification",
@@ -177,30 +177,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.1024488519796454,
-          "std_grad_norm": 0.05115815289278658,
+          "mean_grad_norm": 0.1179371863213447,
+          "std_grad_norm": 0.03117843694484789,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.1024488519796454,
-          "std_grad_norm": 0.05115815289278658,
+          "mean_grad_norm": 0.1179371863213447,
+          "std_grad_norm": 0.03117843694484789,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.07758993936693732,
-          "std_grad_norm": 0.03874477755850749,
+          "mean_grad_norm": 0.08932007493454783,
+          "std_grad_norm": 0.023613080921465704,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.024858912612708076,
+      "grad_range_across_topologies": 0.028617111386796873,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0199
+      "elapsed_s": 0.0324
     },
     "eigenvalue_decomposition": {
       "family": "eigenvalue_decomposition",
@@ -208,30 +208,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.012365461851618976,
-          "std_grad_norm": 0.011085933736259775,
+          "mean_grad_norm": 0.018081080524450045,
+          "std_grad_norm": 0.011741274480491299,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.012365461851618976,
-          "std_grad_norm": 0.011085933736259775,
+          "mean_grad_norm": 0.018081080524450045,
+          "std_grad_norm": 0.011741274480491299,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.009365018902329075,
-          "std_grad_norm": 0.008395964520843797,
+          "mean_grad_norm": 0.013693759514840843,
+          "std_grad_norm": 0.008892288760960324,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.003000442949289901,
+      "grad_range_across_topologies": 0.004387321009609202,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0216
+      "elapsed_s": 0.0448
     },
     "l1_coherence": {
       "family": "l1_coherence",
@@ -239,30 +239,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07192001148560997,
-          "std_grad_norm": 0.045472697987448366,
+          "mean_grad_norm": 0.04487228255816843,
+          "std_grad_norm": 0.030560568893664496,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.07192001148560997,
-          "std_grad_norm": 0.045472697987448366,
+          "mean_grad_norm": 0.04487228255816843,
+          "std_grad_norm": 0.030560568893664496,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.05446883222807226,
-          "std_grad_norm": 0.0344388815640234,
+          "mean_grad_norm": 0.0339841551727305,
+          "std_grad_norm": 0.023145136735642967,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.017451179257537718,
+      "grad_range_across_topologies": 0.010888127385437929,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0473
+      "elapsed_s": 0.0475
     },
     "relative_entropy_coherence": {
       "family": "relative_entropy_coherence",
@@ -270,30 +270,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.06299865379206648,
-          "std_grad_norm": 0.023898307437129656,
+          "mean_grad_norm": 0.08512567095914707,
+          "std_grad_norm": 0.04569480272894748,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.06299865379206648,
-          "std_grad_norm": 0.023898307437129656,
+          "mean_grad_norm": 0.08512567095914707,
+          "std_grad_norm": 0.04569480272894748,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.04771221573957976,
-          "std_grad_norm": 0.01809945342664967,
+          "mean_grad_norm": 0.0644701772705305,
+          "std_grad_norm": 0.034607093243246984,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.015286438052486723,
+      "grad_range_across_topologies": 0.020655493688616564,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.053
+      "elapsed_s": 0.0254
     },
     "wigner_negativity": {
       "family": "wigner_negativity",
@@ -301,30 +301,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 4.8789097761847707e-20,
-          "std_grad_norm": 1.1261448770889915e-19,
+          "mean_grad_norm": 5.341601523622432e-21,
+          "std_grad_norm": 1.3862167726414995e-20,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 4.8789097761847707e-20,
-          "std_grad_norm": 1.1261448770889915e-19,
+          "mean_grad_norm": 5.341601523622432e-21,
+          "std_grad_norm": 1.3862167726414995e-20,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 2.723210925422576e-20,
-          "std_grad_norm": 5.715104917293402e-20,
+          "mean_grad_norm": 1.3598849270371775e-20,
+          "std_grad_norm": 1.8259055762791088e-20,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 2.1556988507621946e-20,
+      "grad_range_across_topologies": 8.257247746749343e-21,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0311
+      "elapsed_s": 0.0257
     },
     "hopf_connection": {
       "family": "hopf_connection",
@@ -332,30 +332,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 7.548816951866826e-17,
-          "std_grad_norm": 7.77062311184488e-17,
+          "mean_grad_norm": 2.7840786265232476e-16,
+          "std_grad_norm": 1.6273438176025642e-16,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 7.548816951866826e-17,
-          "std_grad_norm": 7.77062311184488e-17,
+          "mean_grad_norm": 2.7840786265232476e-16,
+          "std_grad_norm": 1.6273438176025642e-16,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 6.829273768073541e-17,
-          "std_grad_norm": 4.907401508294327e-17,
+          "mean_grad_norm": 1.8318547622903e-16,
+          "std_grad_norm": 9.611447057846933e-17,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 7.195431837932851e-18,
+      "grad_range_across_topologies": 9.522238642329476e-17,
       "threshold": 1e-06,
       "topology_load_bearing": false,
       "verdict": "TOPOLOGY_INDEPENDENT",
-      "elapsed_s": 0.0435
+      "elapsed_s": 0.0733
     },
     "chiral_overlap": {
       "family": "chiral_overlap",
@@ -363,30 +363,30 @@
         "chain": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.20759229985836403,
-          "std_grad_norm": 0.08062116729410958,
+          "mean_grad_norm": 0.19363743382397688,
+          "std_grad_norm": 0.08532118740587069,
           "n_valid_grads": 8
         },
         "star": {
           "n_edges": 3,
           "n_trials": 8,
-          "mean_grad_norm": 0.20759229985836403,
-          "std_grad_norm": 0.08062116729410958,
+          "mean_grad_norm": 0.19363743382397688,
+          "std_grad_norm": 0.08532118740587069,
           "n_valid_grads": 8
         },
         "skip_connect": {
           "n_edges": 4,
           "n_trials": 8,
-          "mean_grad_norm": 0.15722063886331983,
-          "std_grad_norm": 0.06105867817127419,
+          "mean_grad_norm": 0.14665188002845306,
+          "std_grad_norm": 0.06461825222650502,
           "n_valid_grads": 8
         }
       },
-      "grad_range_across_topologies": 0.0503716609950442,
+      "grad_range_across_topologies": 0.04698555379552383,
       "threshold": 1e-06,
       "topology_load_bearing": true,
       "verdict": "LOAD_BEARING",
-      "elapsed_s": 0.0951
+      "elapsed_s": 0.0457
     }
   },
   "negative": {
@@ -454,7 +454,7 @@
       "star",
       "skip_connect"
     ],
-    "total_elapsed_s": 0.4277
+    "total_elapsed_s": 0.5904
   },
   "classification": "canonical"
 }

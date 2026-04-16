@@ -1,6 +1,6 @@
 {
   "name": "pure_lego_hopf_contact_symplectic_bridge",
-  "timestamp": "2026-04-16T04:03:09.232297Z",
+  "timestamp": "2026-04-16T04:07:07.627762Z",
   "classification": "canonical",
   "classification_note": "Standalone pure-geometry lego for the Hopf-contact-symplectic bridge identity. Establishes that ker(\u03b1) on S\u00b3 is compatible with the symplectic area form on S\u00b2 under Hopf projection: \u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082). Distinct from sim_torch_hopf_connection.py (Berry phase/connection) and sim_hopf_pointwise_pullback.py (density matrix pullback). Uses pytorch (load_bearing) + z3 UNSAT + sympy polynomial identity.",
   "lego_ids": [
@@ -18,7 +18,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "z3": {
       "tried": true,
@@ -28,7 +28,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "sympy": {
       "tried": true,
@@ -38,37 +38,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not relevant to Hopf bridge probe"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not relevant to Hopf bridge probe"
     }
   },
   "tool_integration_depth": {
@@ -88,20 +88,20 @@
   "positive": {
     "P1_reeb_vertical": {
       "pass": true,
-      "max_JR_norm": 9.145105675142935e-17,
+      "max_JR_norm": 1.0373873141209199e-16,
       "threshold": 1e-12,
       "description": "J\u00b7R = 0 at 100 random S\u00b3 points"
     },
     "P2_pushforward_nonzero": {
       "pass": true,
-      "min_norm_Jh1": 1.9999999999999993,
+      "min_norm_Jh1": 1.9999999999999996,
       "min_norm_Jh2": 1.9999999999999993,
       "threshold": 0.1,
       "description": "d\u03c0(h) \u2260 0 for h \u2208 ker(\u03b1) at 50 random S\u00b3 points"
     },
     "P3_pullback_ratio_minus2": {
       "pass": true,
-      "max_deviation_from_minus2": 1.7763568394002505e-15,
+      "max_deviation_from_minus2": 1.5543122344752192e-15,
       "threshold": 1e-10,
       "n_valid_points": 100,
       "description": "\u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082) at 100 random S\u00b3 points"
@@ -135,7 +135,7 @@
   "negative": {
     "N1_vertical_annihilated": {
       "pass": true,
-      "max_JR_norm": 1.0369531699129229e-16,
+      "max_JR_norm": 1.0900848945001791e-16,
       "threshold": 1e-12,
       "description": "Reeb field R maps to zero under d\u03c0 (vertical = annihilated)"
     },
@@ -194,7 +194,7 @@
     },
     "B4_large_batch_stability": {
       "pass": true,
-      "max_deviation": 1.3322676295501878e-15,
+      "max_deviation": 1.7763568394002505e-15,
       "n_valid": 100,
       "threshold": 1e-08,
       "description": "Bridge identity stable across 100 random points, no numerical blowup"

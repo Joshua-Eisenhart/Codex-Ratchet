@@ -15,7 +15,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed"
     },
     "z3": {
       "tried": true,
@@ -30,42 +30,42 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed -- exact rational arithmetic via Fraction"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
@@ -87,9 +87,9 @@
       "description": "Bloch vector norm > 1 is impossible for any valid density matrix",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.006252,
+      "z3_time_s": 0.004401,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.002336,
+      "cvc5_time_s": 0.001399,
       "solvers_agree": true,
       "both_unsat": true,
       "cross_check_verdict": "CONFIRMED",
@@ -99,9 +99,9 @@
       "description": "CPTP channel contraction factor > 1 is impossible (p in [0,1] => lam=1-p in [0,1])",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.002625,
+      "z3_time_s": 0.00125,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.002546,
+      "cvc5_time_s": 0.001191,
       "solvers_agree": true,
       "both_unsat": true,
       "cross_check_verdict": "CONFIRMED",
@@ -111,9 +111,9 @@
       "description": "Qubit entropy exceeding log(2) is impossible (bounded maximum entropy)",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.001676,
+      "z3_time_s": 0.001248,
       "cvc5_result": "unsat",
-      "cvc5_time_s": 0.000941,
+      "cvc5_time_s": 0.000926,
       "solvers_agree": true,
       "both_unsat": true,
       "cross_check_verdict": "CONFIRMED",
@@ -125,9 +125,9 @@
       "description": "r in [0,2] with r > 1 is SAT (constraint dropped)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.00078,
+      "z3_time_s": 0.000921,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.000941,
+      "cvc5_time_s": 0.0011,
       "solvers_agree": true,
       "pass": true
     },
@@ -135,9 +135,9 @@
       "description": "p in [-1,1] allows lam > 1 (non-physical p)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000934,
+      "z3_time_s": 0.001064,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.001094,
+      "cvc5_time_s": 0.001092,
       "solvers_agree": true,
       "pass": true
     },
@@ -145,9 +145,9 @@
       "description": "s in [0,2] with s > log(2) is SAT (physical upper bound removed)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000774,
+      "z3_time_s": 0.000857,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.000989,
+      "cvc5_time_s": 0.001074,
       "solvers_agree": true,
       "pass": true
     }
@@ -157,9 +157,9 @@
       "description": "Bloch norm = 1 is SAT (pure state at sphere boundary)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000749,
+      "z3_time_s": 0.000867,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.000838,
+      "cvc5_time_s": 0.000925,
       "solvers_agree": true,
       "pass": true
     },
@@ -167,9 +167,9 @@
       "description": "Contraction = 1 is SAT (identity channel, p=0)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000909,
+      "z3_time_s": 0.001009,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.000933,
+      "cvc5_time_s": 0.001003,
       "solvers_agree": true,
       "pass": true
     },
@@ -177,9 +177,9 @@
       "description": "Entropy in [log2_lower, log2_upper] is SAT (maximally mixed state)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000724,
+      "z3_time_s": 0.000811,
       "cvc5_result": "sat",
-      "cvc5_time_s": 0.000894,
+      "cvc5_time_s": 0.000982,
       "solvers_agree": true,
       "pass": true
     }
@@ -189,7 +189,7 @@
     "success": true,
     "synthesis_result": "solution_found",
     "solution": "(lambda ((r Real)) (+ r (- 1.0)))",
-    "elapsed_s": 0.003165,
+    "elapsed_s": 0.003715,
     "note": "SyGuS found minimal generator for Bloch ball boundary"
   },
   "summary": {

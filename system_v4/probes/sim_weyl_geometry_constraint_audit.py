@@ -25,12 +25,13 @@ DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Controller audit over the Weyl/Hopf geometry lane. It routes rows by the "
-    "properties they actually expose: stacked torus composition, graph/proof "
-    "alignment, carrier comparison, reusable base geometry, and open sidecar "
-    "diagnostics."
+divergence_log = (
+    "Classical baseline: controller audit over the Weyl/Hopf geometry lane. "
+    "It routes existing rows by the properties they actually expose: stacked "
+    "torus composition, graph/proof alignment, carrier comparison, reusable "
+    "base geometry, and open sidecar diagnostics."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_torus_lego",
@@ -355,6 +356,7 @@ def main() -> None:
         "name": "weyl_geometry_constraint_audit",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

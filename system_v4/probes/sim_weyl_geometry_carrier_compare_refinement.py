@@ -16,15 +16,16 @@ import pathlib
 from typing import Any
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
-
-
-CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Controller-facing refinement of the Weyl/Hopf carrier-compare row. It "
     "keeps the open carrier comparison bounded against the strict companion "
     "carrier, translation targets, and the repair comparison surface without "
     "collapsing the open-vs-strict gap."
 )
+
+
+CLASSIFICATION = "classical_baseline"
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_geometry_carrier_compare",
@@ -308,6 +309,7 @@ def main() -> None:
         "name": "weyl_geometry_carrier_compare_refinement",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

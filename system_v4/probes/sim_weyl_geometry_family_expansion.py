@@ -25,6 +25,11 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline expansion row that widens the Weyl/Hopf carrier core "
+    "into geometry families already present in the repo, using only numeric "
+    "carrier comparison and no load-bearing non-numpy tool surface."
+)
 
 from hopf_manifold import (
     TORUS_CLIFFORD,
@@ -47,10 +52,7 @@ OUT_PATH = RESULT_DIR / "weyl_geometry_family_expansion_results.json"
 
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Controller-facing expansion row that widens the Weyl/Hopf carrier core "
-    "into additional geometry families already present in the repo."
-)
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_geometry_family_expansion",
@@ -415,6 +417,7 @@ def main() -> None:
         "name": "weyl_geometry_family_expansion",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

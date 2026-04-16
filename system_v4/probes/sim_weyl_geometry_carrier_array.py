@@ -27,6 +27,7 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+CLASSIFICATION = classification
 
 ROOT = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
@@ -99,11 +100,12 @@ ANGLE_PAIRS = [
     (np.pi / 2.0, np.pi / 2.0),
 ]
 
-CLASSIFICATION_NOTE = (
+divergence_log = (
     "Carrier-array lego for the Weyl/Hopf stack. The same spinor core is tested on "
     "nested Hopf tori, Bloch-sphere projection, graph and hypergraph carriers, and "
     "a CP^3/S^7 product lift. The array stays bounded and keeps negative controls explicit."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "weyl_geometry_carrier_array",
@@ -906,8 +908,9 @@ def main():
 
     results = {
         "name": "weyl_geometry_carrier_array",
-        "classification": "canonical" if all_pass else "exploratory_signal",
+        "classification": classification,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

@@ -22,6 +22,26 @@ import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this wiggle exploration is a numeric sweep over candidate "
+    "formulations with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric state generation and overlap calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "linear algebra support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

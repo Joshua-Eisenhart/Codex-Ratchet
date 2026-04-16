@@ -20,6 +20,13 @@ Output: a2_state/sim_results/state_representations_L0_results.json
 import sys, os, json, time
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical state-representation baseline: this probe measures representation compatibility numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and state representation diagnostics for the L0 battery"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

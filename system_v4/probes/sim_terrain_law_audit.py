@@ -22,6 +22,17 @@ from datetime import datetime, timezone
 from engine_core import GeometricEngine, StageControls, TERRAINS, LOOP_STAGE_ORDER
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = "Classical terrain-law baseline: this probe audits terrain/operator runtime behavior numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and runtime diagnostics for terrain-law auditing"},
+    "engine_core": {"tried": True, "used": True, "reason": "engine stage execution and terrain history inspection"},
+    "geometric_operators": {"tried": True, "used": True, "reason": "operator application and trace-distance comparison"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "engine_core": "supportive",
+    "geometric_operators": "supportive",
+}
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
     trace_distance_2x2, negentropy, _ensure_valid_density

@@ -28,6 +28,15 @@ from datetime import datetime, UTC
 import numpy as np
 import sympy as sp
 classification = "classical_baseline"  # auto-backfill
+divergence_log = "Classical root-constraint baseline: this probe measures constraint ablation numerically and does not claim a nonclassical witness."
+TOOL_MANIFEST = {
+    "numpy": {"tried": True, "used": True, "reason": "numeric arrays and diagnostics for root-constraint ablation"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic checks and algebraic constraint construction"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "sympy": "supportive",
+}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

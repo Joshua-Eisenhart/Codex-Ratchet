@@ -8,6 +8,12 @@ No strong load-bearing tool per cut list; sympy for chain complex / dg-algebra s
 """
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Derived-geometry carrier step. It stays in a classical_baseline posture "
+    "while testing a symbolic chain-complex carrier and related atomic checks."
+)
+CLASSIFICATION = classification
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},
@@ -81,7 +87,8 @@ if __name__ == "__main__":
         "family": "derived_geom",
         "step": "carrier",
         "step_index": 1,
-        "classification": "canonical",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": {k: bool(v) for k,v in POS.items()},

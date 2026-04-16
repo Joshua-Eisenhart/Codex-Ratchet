@@ -8,6 +8,12 @@ No strong load-bearing tool per cut list; sympy for chain complex / dg-algebra s
 """
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline derived-geometry structure step: this probe checks "
+    "symbolic dg-algebra structure with sympy, but it does not claim a "
+    "canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},
@@ -85,6 +91,8 @@ if __name__ == "__main__":
         "step": "structure",
         "step_index": 2,
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": {k: bool(v) for k,v in POS.items()},

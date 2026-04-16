@@ -8,6 +8,11 @@ No strong load-bearing tool per cut list; sympy for chain complex / dg-algebra s
 """
 import json, os, numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Derived-geometry distinguishability baseline. The file stays symbolic and "
+    "load-bearing on sympy for the atomic Tor-vs-tensor comparison, while the "
+    "higher geometry stack remains out of scope."
+)
 
 TOOL_MANIFEST = {
     "pytorch": {"tried": False, "used": False, "reason": "not needed for symbolic/proof lego"},
@@ -83,6 +88,7 @@ if __name__ == "__main__":
         "step": "distinguishability",
         "step_index": 5,
         "classification": "canonical",
+        "classification_note": divergence_log,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": {k: bool(v) for k,v in POS.items()},

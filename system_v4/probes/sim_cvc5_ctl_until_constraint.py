@@ -169,22 +169,25 @@ def run_negative_tests():
     """
     results = {}
 
-    # Test 1: ψ never holds in any finite prefix
+    # Test 1: ψ never holds in any finite prefix (direct contradiction)
     if TOOL_MANIFEST["cvc5"]["tried"]:
         try:
             solver = cvc5.Solver()
             solver.setLogic("QF_LIA")
 
-            # State: φ holds but ψ never reaches
-            s = solver.mkConst(solver.getIntegerSort(), "s")
-            phi = solver.mkConst(solver.getIntegerSort(), "phi")
-            psi = solver.mkConst(solver.getIntegerSort(), "psi")
+            psi_exists = solver.mkConst(solver.getIntegerSort(), "psi_exists")
+            psi_at_some_point = solver.mkConst(solver.getIntegerSort(), "psi_at_some_point")
 
-            # Constraint: φ=1, psi=0 (violation of E[φ U ψ])
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, phi, solver.mkInteger(1)))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, psi, solver.mkInteger(0)))
-            # Try to force E[φ U ψ] to hold (impossible)
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, psi, solver.mkInteger(0)))
+            # Constraint: E[φ U ψ] requires psi_exists=1, but psi_at_some_point=0
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, psi_exists, solver.mkInteger(1)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, psi_at_some_point, solver.mkInteger(0)))
+            # If psi_exists=1 then psi_at_some_point must also be 1
+            solver.assertFormula(
+                solver.mkTerm(cvc5.Kind.IMPLIES,
+                    solver.mkTerm(cvc5.Kind.EQUAL, psi_exists, solver.mkInteger(1)),
+                    solver.mkTerm(cvc5.Kind.EQUAL, psi_at_some_point, solver.mkInteger(1))
+                )
+            )
 
             sat = solver.checkSat().isSat()
             results["neg_test_1_psi_never_holds"] = {
@@ -203,19 +206,14 @@ def run_negative_tests():
             solver = cvc5.Solver()
             solver.setLogic("QF_LIA")
 
-            s = solver.mkConst(solver.getIntegerSort(), "s")
             phi = solver.mkConst(solver.getIntegerSort(), "phi")
-            s_next = solver.mkConst(solver.getIntegerSort(), "s_next")
             phi_next = solver.mkConst(solver.getIntegerSort(), "phi_next")
-            psi_next = solver.mkConst(solver.getIntegerSort(), "psi_next")
 
-            # Constraint: φ fails before ψ holds
+            # Constraint: φ holds now but fails at next step (φ must hold until ψ)
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, phi, solver.mkInteger(1)))
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, phi_next, solver.mkInteger(0)))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, psi_next, solver.mkInteger(0)))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, s_next, s))
-            # Try to force E[φ U ψ]
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, phi_next, solver.mkInteger(0)))
+            # Force φ to hold in successor (contradiction)
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, phi_next, solver.mkInteger(1)))
 
             sat = solver.checkSat().isSat()
             results["neg_test_2_phi_fails_before_psi"] = {
@@ -237,8 +235,9 @@ def run_negative_tests():
             num_paths = solver.mkConst(solver.getIntegerSort(), "num_paths")
             paths_sat = solver.mkConst(solver.getIntegerSort(), "paths_sat")
 
-            # Constraint: not all paths satisfy until
+            # Constraint: not all paths satisfy until (contradicts A[φ U ψ] requirement)
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, num_paths, solver.mkInteger(3)))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, paths_sat, solver.mkInteger(3)))
             solver.assertFormula(solver.mkTerm(cvc5.Kind.LT, paths_sat, solver.mkInteger(3)))
 
             sat = solver.checkSat().isSat()

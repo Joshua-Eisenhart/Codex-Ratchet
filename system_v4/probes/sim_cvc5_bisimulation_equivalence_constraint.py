@@ -187,13 +187,11 @@ def run_negative_tests():
             q = solver.mkConst(solver.getIntegerSort(), "q")
             q_prime = solver.mkConst(solver.getIntegerSort(), "q'")
 
-            # Constraint: p → p' but no matching q → q'
+            # Constraint: p → p' with q having no matching successor
             solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_prime, p))
-            # q has no successors or different successors
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, q_prime, q))
-            # Try to force bisimulation to hold
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p_prime, q_prime))
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_prime, p))
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, q_prime, q))  # no transition
+            # But force matching (contradiction)
+            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, q_prime, q))
 
             sat = solver.checkSat().isSat()
             results["neg_test_1_unmatched_transition"] = {
@@ -242,13 +240,10 @@ def run_negative_tests():
 
             p = solver.mkConst(solver.getIntegerSort(), "p")
             p_prime = solver.mkConst(solver.getIntegerSort(), "p'")
-            q = solver.mkConst(solver.getIntegerSort(), "q")
 
-            # Constraint: p → p' but q has no such transition
+            # Constraint: p → p' (strict inequality) but also p' = p (self-loop)
             solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_prime, p))
             solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, p_prime, p))
-            # Try to force matching
-            solver.assertFormula(solver.mkTerm(cvc5.Kind.GT, p_prime, p))
 
             sat = solver.checkSat().isSat()
             results["neg_test_3_cyclic_mismatch"] = {

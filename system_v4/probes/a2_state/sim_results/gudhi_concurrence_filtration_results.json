@@ -10,52 +10,52 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": ""
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": ""
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": ""
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": ""
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": ""
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": ""
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": ""
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": ""
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": ""
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": ""
     },
     "gudhi": {
       "tried": true,
@@ -64,18 +64,18 @@
     }
   },
   "tool_integration_depth": {
-    "pytorch": "supportive",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": null,
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": "load_bearing",
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": null,
     "toponetx": null,
-    "gudhi": "load_bearing"
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "n_states": 20,

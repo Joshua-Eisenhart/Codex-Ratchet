@@ -1,6 +1,6 @@
 {
   "name": "engine_lab_constraint_audit",
-  "classification": "classical_baseline",
+  "classification": "exploratory",
   "classification_note": "Constraint audit over the engine lab. It compares open-lab rows against strict QIT anchors and companion readout surfaces to identify repairable rows, topology-only rows, and rows that are still too open.",
   "lego_ids": [
     "quantum_thermodynamics",
@@ -14,62 +14,62 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "not needed"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "not needed"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed"
     }
   },
   "tool_integration_depth": {
@@ -156,7 +156,7 @@
         "measurement_mutual_information",
         "work_heat_bookkeeping"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "repair_toward_qit_alignment",
       "headline_metrics": {
         "all_pass": true,
@@ -268,7 +268,7 @@
         "landauer_gap",
         "restoration_fraction"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "repair_toward_qit_alignment",
       "headline_metrics": {
         "all_pass": true,
@@ -321,7 +321,7 @@
         "measurement_mutual_information",
         "reset_stage_entropy"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "repair_toward_qit_alignment",
       "headline_metrics": {
         "all_pass": true,
@@ -377,7 +377,7 @@
         "reset_stage_entropy",
         "repair_score"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "repair_toward_qit_alignment",
       "headline_metrics": {
         "all_pass": true,
@@ -406,7 +406,7 @@
         "record_survival",
         "reset_stage_entropy"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "repair_toward_qit_alignment",
       "headline_metrics": {
         "all_pass": true,
@@ -497,7 +497,7 @@
         "cop",
         "cycle_delta_u"
       ],
-      "likely_constraint_relation": "open_or_likely_outside_strict_qit_core",
+      "likely_constraint_relation": "runs_cleanly_but_still_open_against_repo_constraints",
       "route": "keep_as_open_lab_sidecar",
       "headline_metrics": {
         "all_pass": true,

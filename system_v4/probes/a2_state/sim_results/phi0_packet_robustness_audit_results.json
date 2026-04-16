@@ -6,12 +6,12 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "pure-math numpy audit"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "no graph layer is needed for this packet audit"
     },
     "z3": {
       "tried": false,
@@ -26,7 +26,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "no symbolic computation or algebraic proof required in this probe"
+      "reason": "all calculations are numerical and finite-dimensional"
     },
     "clifford": {
       "tried": false,
@@ -46,7 +46,7 @@
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "no graph kernel is needed here"
     },
     "xgi": {
       "tried": false,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "no persistence computation is needed here"
     }
   },
   "positive": {
@@ -433,7 +433,7 @@
     "tests_passed": 9,
     "tests_failed": 0,
     "all_pass": true,
-    "elapsed_s": 0.14373016357421875,
+    "elapsed_s": 0.1265120506286621,
     "most_bridge_sensitive_candidate": "Phi0_shell_weighted_Ic",
     "most_bridge_blind_metric": "fake_packet_score"
   }

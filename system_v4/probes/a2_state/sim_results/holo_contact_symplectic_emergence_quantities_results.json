@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "Graph learning not required for emergence quantity computation; excluded"
     },
     "z3": {
       "tried": true,
@@ -35,12 +35,12 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "Riemannian manifold not required for emergence baseline; excluded"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "SO(3) equivariance not relevant to emergence quantities; excluded"
     },
     "rustworkx": {
       "tried": true,
@@ -60,22 +60,22 @@
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "Persistent homology not required for emergence quantity baseline; excluded"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": "load_bearing",
-    "cvc5": null,
-    "sympy": "supportive",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
-    "rustworkx": "supportive",
-    "xgi": "supportive",
-    "toponetx": "supportive",
-    "gudhi": null
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": null,
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "E1_Q_triple_nonzero_all_shells_active": {

@@ -11,17 +11,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+      "reason": "not needed \u2014 finite-dimensional matrix ops only"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+      "reason": "not needed for this numerical sim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
@@ -31,52 +31,52 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+      "reason": "not needed \u2014 explicit matrix geometry suffices"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed for this sim"
     }
   },
   "tool_integration_depth": {
-    "pytorch": "load_bearing",
-    "pyg": null,
-    "z3": null,
-    "cvc5": null,
-    "sympy": "supportive",
     "clifford": null,
-    "geomstats": null,
+    "cvc5": null,
     "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
     "rustworkx": null,
-    "xgi": null,
+    "sympy": "load_bearing",
     "toponetx": null,
-    "gudhi": null
+    "xgi": null,
+    "z3": null
   },
   "positive": {
     "P1_commutator_expansion": {
@@ -110,7 +110,7 @@
       "anti_hermitian_residual": 0.0,
       "note": "C\u2020 = \u2212A_\u03c6,\u2212A_\u03b8 = \u2212C \u2713; no projection needed"
     },
-    "elapsed_s": 0.4095277786254883
+    "elapsed_s": 0.172745943069458
   },
   "negative": {
     "N1_abelian_diagonal_commutes": {
@@ -132,7 +132,7 @@
       "abelian_commutator_norm": 0.0,
       "note": "F_abelian = dA only; [diag A_\u03b8, diag A_\u03c6] = 0 exactly"
     },
-    "elapsed_s": 0.0072748661041259766
+    "elapsed_s": 0.013506889343261719
   },
   "boundary": {
     "B1_fraction_scan": {
@@ -255,7 +255,7 @@
       "norm_comm": 0.707106781234217,
       "commutator_fraction": 325169.2138294892
     },
-    "elapsed_s": 0.22732806205749512
+    "elapsed_s": 0.12475991249084473
   },
   "classification": "canonical",
   "summary": {

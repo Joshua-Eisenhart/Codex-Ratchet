@@ -1,13 +1,23 @@
 {
-  "generated_at": "2026-04-16T19:19:10.186962+00:00",
+  "generated_at": "2026-04-16T21:41:02.371825+00:00",
   "strict_stale": false,
-  "files_scanned": 2141,
+  "files_scanned": 2237,
   "summary": {
-    "hard_finding_count": 76,
-    "warning_finding_count": 16,
+    "hard_finding_count": 85,
+    "warning_finding_count": 17,
     "ok": false
   },
   "hard_findings": [
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_axis0_pyg_proxy.py",
+      "result_json": "axis0_pyg_proxy_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_axis0_through_shells.py",
+      "result_json": "axis0_through_shells_results.json"
+    },
     {
       "kind": "canonical_summary_false",
       "result_json": "cvc5_frege_system_constraint_results.json"
@@ -190,10 +200,58 @@
     },
     {
       "kind": "canonical_has_failed_checks",
+      "result_json": "sim_a_infinity_algebra_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_1_m1_differential_sat.pass",
+        "$.positive.test_3_lower_triangular_differential.pass",
+        "$.negative.test_1_m1_squared_nonzero_unsat.pass",
+        "$.negative.test_2_nilpotent_vs_identity.pass",
+        "$.negative.test_3_degree_contradiction.pass",
+        "$.boundary.test_1_trivial_zero_maps.pass",
+        "$.boundary.test_2_higher_nilpotency.pass",
+        "$.boundary.test_3_all_positive_degrees.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
       "result_json": "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json",
       "paths": [
         "$.boundary.boundary_test_2_large_multiplicity.pass",
         "$.boundary.boundary_test_3_trivial_packet.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_automorphic_l_function_constraint_canonical_results.json",
+      "paths": [
+        "$.negative.test_1_cvc5_epsilon_unsat.pass",
+        "$.negative.test_2_cvc5_false_functional_equation.pass",
+        "$.negative.test_3_cvc5_epsilon_magnitude_gt_1.pass",
+        "$.boundary.test_1_boundary_epsilon_equals_1.pass",
+        "$.boundary.test_2_boundary_epsilon_equals_minus1.pass",
+        "$.boundary.test_3_boundary_epsilon_magnitude_just_outside.pass"
+      ]
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_axis0_pyg_proxy.py",
+      "result_json": "sim_axis0_pyg_proxy_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_axis0_through_shells.py",
+      "result_json": "sim_axis0_through_shells_results.json"
+    },
+    {
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_cvc5_abstract_interpretation_lattice_results.json",
+      "paths": [
+        "$.positive.test_join_upper_bound.pass",
+        "$.positive.test_widening_monotonicity.pass",
+        "$.negative.test_widening_not_monotone.pass",
+        "$.negative.test_fixpoint_without_widening.pass",
+        "$.boundary.test_empty_interval.pass",
+        "$.boundary.test_large_interval.pass"
       ]
     },
     {
@@ -285,6 +343,15 @@
     },
     {
       "kind": "canonical_has_failed_checks",
+      "result_json": "sim_geometry_bridgeland_stability_condition_constraint_canonical_results.json",
+      "paths": [
+        "$.positive.test_3_sympy_central_charge.pass",
+        "$.negative.test_3_negative_rank.pass",
+        "$.boundary.test_3_rank_one_bundle.pass"
+      ]
+    },
+    {
+      "kind": "canonical_has_failed_checks",
       "result_json": "sim_geometry_bsd_conjecture_rank_vanishing_constraint_canonical_results.json",
       "paths": [
         "$.positive.test_1_rank_0_curve.pass",
@@ -308,8 +375,12 @@
       ]
     },
     {
-      "kind": "canonical_summary_false",
-      "result_json": "sim_geometry_calibrated_geometry_harvey_lawson_constraint_canonical_results.json"
+      "kind": "canonical_has_failed_checks",
+      "result_json": "sim_geometry_characteristic_variety_constraint_canonical_results.json",
+      "paths": [
+        "$.negative.neg_test_2_non_conic_dmodule.pass",
+        "$.negative.neg_test_3_non_lagrangian_ch.pass"
+      ]
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -362,6 +433,11 @@
         "$.negative.N1_cvc5_pure_state_irreducible.pass",
         "$.negative.N3_cvc5_gns_requires_positive_state.pass"
       ]
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_geometry_higgs_bundle_hitchin_constraint_canonical.py",
+      "result_json": "sim_geometry_higgs_bundle_hitchin_constraint_canonical_results.json"
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -521,16 +597,6 @@
   "warning_findings": [
     {
       "kind": "stale_source_newer_than_result",
-      "source": "sim_Ax4_commutation.py",
-      "result_json": "Ax4_commutation_results.json"
-    },
-    {
-      "kind": "stale_source_newer_than_result",
-      "source": "sim_a0_kernel_discriminator.py",
-      "result_json": "a0_kernel_discriminator_results.json"
-    },
-    {
-      "kind": "stale_source_newer_than_result",
       "source": "classical_baseline_aes_sbox_verify.py",
       "result_json": "classical_baseline_aes_sbox_verify_results.json"
     },
@@ -581,13 +647,28 @@
     },
     {
       "kind": "stale_source_newer_than_result",
-      "source": "sim_holographic_gerbe_hopf_pairwise_coupling.py",
-      "result_json": "sim_holographic_gerbe_hopf_pairwise_coupling_results.json"
+      "source": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_crystallinecoho_16shell_coupling_canonical.py",
+      "result_json": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_crystallinecoho_16shell_coupling_canonical_results.json"
     },
     {
       "kind": "stale_source_newer_than_result",
-      "source": "sim_holographic_gerbe_hopf_triple_coexistence.py",
-      "result_json": "sim_holographic_gerbe_hopf_triple_coexistence_results.json"
+      "source": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_adsboundary_17shell_coupling_canonical.py",
+      "result_json": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_adsboundary_17shell_coupling_canonical_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_bpsmass_17shell_coupling_canonical.py",
+      "result_json": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_bpsmass_17shell_coupling_canonical_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_instantonnumber_17shell_coupling_canonical.py",
+      "result_json": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_instantonnumber_17shell_coupling_canonical_results.json"
+    },
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_17shell_coupling_canonical.py",
+      "result_json": "sim_gerbestack_weyl_hopf_dirac_mera_toric_clifford_spinor_riemannian_connection_holonomy_fiber_assoc_moment_derivedcategory_etalecoho_tqftpartition_17shell_coupling_canonical_results.json"
     },
     {
       "kind": "stale_source_newer_than_result",

@@ -1,6 +1,6 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-16T19:11:03.949158+00:00",
+  "generated_at": "2026-04-16T21:41:07.800357+00:00",
   "classification": "audit",
   "interpreter_authority": {
     "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
@@ -161,9 +161,15 @@
   "probe_truth_audit": {
     "available": true,
     "ok": false,
-    "hard_finding_count": 76,
-    "warning_finding_count": 18,
+    "hard_finding_count": 85,
+    "warning_finding_count": 17,
     "blocked_results": {
+      "axis0_pyg_proxy_results.json": [
+        "stale_source_newer_than_result"
+      ],
+      "axis0_through_shells_results.json": [
+        "stale_source_newer_than_result"
+      ],
       "cvc5_frege_system_constraint_results.json": [
         "canonical_summary_false"
       ],
@@ -237,7 +243,22 @@
       "rustworkx_apsp_constraint_skeleton_results.json": [
         "canonical_has_failed_checks"
       ],
+      "sim_a_infinity_algebra_constraint_canonical_results.json": [
+        "canonical_has_failed_checks"
+      ],
       "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json": [
+        "canonical_has_failed_checks"
+      ],
+      "sim_automorphic_l_function_constraint_canonical_results.json": [
+        "canonical_has_failed_checks"
+      ],
+      "sim_axis0_pyg_proxy_results.json": [
+        "stale_source_newer_than_result"
+      ],
+      "sim_axis0_through_shells_results.json": [
+        "stale_source_newer_than_result"
+      ],
+      "sim_cvc5_abstract_interpretation_lattice_results.json": [
         "canonical_has_failed_checks"
       ],
       "sim_cvc5_adams_spectral_sequence_ext_constraint_results.json": [
@@ -279,14 +300,17 @@
       "sim_gap_frobenius_theorem_involutivity_constraint_canonical_results.json": [
         "load_bearing_without_used"
       ],
+      "sim_geometry_bridgeland_stability_condition_constraint_canonical_results.json": [
+        "canonical_has_failed_checks"
+      ],
       "sim_geometry_bsd_conjecture_rank_vanishing_constraint_canonical_results.json": [
         "canonical_has_failed_checks"
       ],
       "sim_geometry_c_star_algebra_gelfand_naimark_constraint_canonical_results.json": [
         "canonical_has_failed_checks"
       ],
-      "sim_geometry_calibrated_geometry_harvey_lawson_constraint_canonical_results.json": [
-        "canonical_summary_false"
+      "sim_geometry_characteristic_variety_constraint_canonical_results.json": [
+        "canonical_has_failed_checks"
       ],
       "sim_geometry_class_field_theory_artin_map_constraint_canonical_results.json": [
         "canonical_has_failed_checks"
@@ -302,6 +326,9 @@
       ],
       "sim_geometry_gns_construction_cyclic_constraint_canonical_results.json": [
         "canonical_has_failed_checks"
+      ],
+      "sim_geometry_higgs_bundle_hitchin_constraint_canonical_results.json": [
+        "stale_source_newer_than_result"
       ],
       "sim_geometry_hopf_algebroid_source_target_constraint_canonical_results.json": [
         "canonical_has_failed_checks"
@@ -430,13 +457,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 1977,
+    "files_with_manifest_or_depth": 2049,
     "per_tool": {
       "pytorch": {
-        "tried_count": 888,
-        "used_count": 651,
-        "load_bearing_count": 494,
-        "depth_present_count": 564,
+        "tried_count": 931,
+        "used_count": 673,
+        "load_bearing_count": 510,
+        "depth_present_count": 586,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -550,6 +577,7 @@
           "e3nn_ic_pipeline_results.json",
           "e3nn_relay_equivariance_results.json",
           "e3nn_tensor_product_results.json",
+          "engine_16_placements_results.json",
           "entanglement_breaking_ppt_witness_canonical_results.json",
           "f01_cross_11_pytorch_autograd_distinguishability_loss_results.json",
           "f_divergence_convexity_sweep_classical_results.json",
@@ -606,9 +634,12 @@
           "layer_triple_catalog_results.json",
           "leggett_garg_k3_canonical_results.json",
           "lego_choi_state_duality_results.json",
+          "lego_entropy_smooth_one_shot_results.json",
+          "lego_entropy_spectral_families_results.json",
           "lego_lindblad_dissipator_results.json",
           "lego_pauli_algebra_results.json",
           "lego_povm_measurement_results.json",
+          "lego_weyl_wigner_phase_space_results.json",
           "levi_civita_connection_results.json",
           "leviathan_atom_3_reduction_results.json",
           "leviathan_atom_5_distinguishability_results.json",
@@ -640,6 +671,11 @@
           "rustworkx_dag_reduction_results.json",
           "sa10_wilczek_zee_curvature_boundary_results.json",
           "sa5_curvature_commutator_results.json",
+          "sim_ab_cut_specification_canonical_results.json",
+          "sim_araki_lieb_z3_canonical_results.json",
+          "sim_assortativity_classical_results.json",
+          "sim_axiom_f01_finite_hilbert_dim_results.json",
+          "sim_axiom_n01_composition_order_distinguishes_results.json",
           "sim_axis0_attractor_basin_boundary_results.json",
           "sim_axis0_axis6_coupling_seam_results.json",
           "sim_axis0_bridge_search_results.json",
@@ -871,6 +907,10 @@
           "sim_geometry_c_star_algebra_gelfand_naimark_constraint_canonical_results.json",
           "sim_geometry_crossed_product_algebra_constraint_canonical_results.json",
           "sim_geometry_gns_construction_cyclic_constraint_canonical_results.json",
+          "sim_gtower_e8_root_system_240_results.json",
+          "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_integration_cvc5_spectral_triple_constraint_results.json",
+          "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_spinor_torch_foundation_results.json",
           "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
@@ -900,6 +940,7 @@
           "torch_axis0_gradient_results.json",
           "torch_bit_flip_results.json",
           "torch_channel_composition_results.json",
+          "torch_channel_taxonomy_results.json",
           "torch_constraint_shells_v2_results.json",
           "torch_depolarizing_results.json",
           "torch_eigendecomp_results.json",
@@ -910,7 +951,9 @@
           "torch_gnn_loss_regularized_results.json",
           "torch_graph_integrated_pipeline_results.json",
           "torch_hopf_connection_results.json",
+          "torch_l1_coherence_results.json",
           "torch_phase_damping_results.json",
+          "torch_purification_results.json",
           "torch_quantum_discord_results.json",
           "torch_ratchet_gnn_results.json",
           "torch_ratchet_pipeline_v2_results.json",
@@ -942,8 +985,8 @@
         ]
       },
       "pyg": {
-        "tried_count": 362,
-        "used_count": 25,
+        "tried_count": 388,
+        "used_count": 27,
         "load_bearing_count": 23,
         "depth_present_count": 23,
         "anchor_stage_coverage": [
@@ -976,10 +1019,10 @@
         ]
       },
       "z3": {
-        "tried_count": 662,
-        "used_count": 385,
-        "load_bearing_count": 314,
-        "depth_present_count": 342,
+        "tried_count": 712,
+        "used_count": 421,
+        "load_bearing_count": 343,
+        "depth_present_count": 372,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -1080,6 +1123,7 @@
           "dissipative_kraus_shell_compatibility_results.json",
           "distinguishability_relation_results.json",
           "e3nn_ic_invariance_results.json",
+          "engine_16_placements_results.json",
           "engine_protocol_dag_results.json",
           "f01_compose_14_iterated_measurement_saturates_log_N_results.json",
           "f01_compose_15_quotient_cardinality_le_original_results.json",
@@ -1186,6 +1230,23 @@
           "sci_method_atom_6_chirality_results.json",
           "sci_method_atom_7_coupling_results.json",
           "sci_method_deep_popper_refutation_unsat_for_tautology_results.json",
+          "sim_L11_placement_admissibility_results.json",
+          "sim_L12_geometry_negatives_triad_results.json",
+          "sim_ab_cut_specification_canonical_results.json",
+          "sim_adjoint_functor_constraint_canonical_results.json",
+          "sim_ads_cft_constraint_canonical_results.json",
+          "sim_algebraic_cycles_hodge_canonical_results.json",
+          "sim_anyon_constraint_canonical_results.json",
+          "sim_araki_lieb_z3_canonical_results.json",
+          "sim_arith_geom_3_reduction_results.json",
+          "sim_arith_geom_4_admissibility_results.json",
+          "sim_arith_geom_6_chirality_coupling_results.json",
+          "sim_assoc_bundle_constraint_canonical_results.json",
+          "sim_axiom_f01_finite_measurement_set_results.json",
+          "sim_axiom_f01_finite_state_set_results.json",
+          "sim_axiom_f01_quotient_well_defined_results.json",
+          "sim_axiom_n01_identity_via_indistinguishability_results.json",
+          "sim_axiom_n01_indiscernibility_implies_identity_results.json",
           "sim_axis0_attractor_basin_boundary_results.json",
           "sim_axis0_axis6_coupling_seam_results.json",
           "sim_axis0_bridge_search_results.json",
@@ -1214,9 +1275,20 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_band_gap_constraint_canonical_results.json",
+          "sim_connes_distance_gtower_bridge_results.json",
           "sim_derived_category_exact_triangle_constraint_canonical_results.json",
           "sim_gromov_witten_invariant_constraint_canonical_results.json",
           "sim_gromov_witten_potential_canonical_results.json",
+          "sim_gtower_e7_exceptional_geometry_results.json",
+          "sim_gtower_e8_exceptional_geometry_results.json",
+          "sim_gtower_e8_lattice_unimodular_results.json",
+          "sim_gtower_e8_root_system_240_results.json",
+          "sim_gtower_f4_exceptional_geometry_results.json",
+          "sim_gtower_gl_o_ordering_deep_results.json",
+          "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_integration_cvc5_spectral_triple_constraint_results.json",
+          "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "sim_lagrangian_duality_constraint_canonical_results.json",
           "sim_riemann_mapping_constraint_canonical_results.json",
           "sim_riemann_roch_constraint_canonical_results.json",
@@ -1305,10 +1377,10 @@
         ]
       },
       "cvc5": {
-        "tried_count": 643,
-        "used_count": 450,
-        "load_bearing_count": 443,
-        "depth_present_count": 452,
+        "tried_count": 688,
+        "used_count": 487,
+        "load_bearing_count": 480,
+        "depth_present_count": 489,
         "anchor_stage_coverage": [
           "boundary"
         ],
@@ -1348,16 +1420,23 @@
           "rsk_correspondence_results.json",
           "sci_method_deep_probe_set_determines_falsifiability_results.json",
           "sim_2_category_strict_coherence_constraint_canonical_results.json",
+          "sim_a_infinity_algebra_constraint_canonical_results.json",
           "sim_a_theory_stable_homotopy_constraint_canonical_results.json",
           "sim_adic_space_huber_pair_constraint_canonical_results.json",
+          "sim_aep_typical_set_constraint_canonical_results.json",
           "sim_affine_grassmannian_schubert_cell_constraint_canonical_results.json",
+          "sim_alexander_polynomial_constraint_canonical_results.json",
           "sim_algebraic_k_theory_quillen_constraint_canonical_results.json",
+          "sim_analytic_geometry_clausen_scholze_constraint_canonical_results.json",
+          "sim_araki_lieb_z3_canonical_results.json",
           "sim_arthur_packet_multiplicity_formula_constraint_canonical_results.json",
+          "sim_automorphic_l_function_constraint_canonical_results.json",
           "sim_axis0_axis6_coupling_seam_results.json",
           "sim_axis0_lambda_crosslane_result_audit_results.json",
           "sim_axis0_lambda_crosslane_semantic_bridge_results.json",
           "sim_axis0_lambda_expansion_cosmology_stack_results.json",
           "sim_axis0_through_shells_results.json",
+          "sim_banach_fixed_point_constraint_canonical_results.json",
           "sim_berkovich_space_analytic_domain_constraint_canonical_results.json",
           "sim_bhatt_morrow_scholze_motivic_constraint_canonical_results.json",
           "sim_bicategory_horizontal_vertical_composition_constraint_canonical_results.json",
@@ -1371,17 +1450,28 @@
           "sim_complex_orientation_chern_class_constraint_canonical_results.json",
           "sim_conformal_block_constraint_canonical_results.json",
           "sim_cotangent_complex_obstruction_constraint_canonical_results.json",
+          "sim_cvc5_abstract_interpretation_lattice_results.json",
           "sim_cvc5_adams_spectral_sequence_ext_constraint_results.json",
           "sim_cvc5_adem_relation_composition_constraint_results.json",
+          "sim_cvc5_adjoint_functor_constraint_results.json",
           "sim_cvc5_adjunction_unit_counit_constraint_results.json",
+          "sim_cvc5_ads_cft_central_charge_constraint_results.json",
           "sim_cvc5_affine_logic_weakening_constraint_results.json",
           "sim_cvc5_algebraic_effect_handler_constraint_results.json",
+          "sim_cvc5_algebraic_k_theory_constraint_results.json",
           "sim_cvc5_algebraic_k_theory_devissage_constraint_results.json",
           "sim_cvc5_applicative_functor_laws_constraint_results.json",
           "sim_cvc5_arena_composition_constraint_results.json",
           "sim_cvc5_arrow_calculus_constraint_results.json",
+          "sim_cvc5_assume_guarantee_composition_results.json",
+          "sim_cvc5_atiyah_singer_index_constraint_results.json",
           "sim_cvc5_atiyah_singer_index_formula_constraint_results.json",
+          "sim_cvc5_banach_fixed_point_constraint_results.json",
+          "sim_cvc5_bcs_gap_equation_constraint_results.json",
           "sim_cvc5_beck_chevalley_condition_constraint_results.json",
+          "sim_cvc5_bell_inequality_constraint_results.json",
+          "sim_cvc5_berry_phase_constraint_results.json",
+          "sim_cvc5_betti_number_constraint_results.json",
           "sim_cvc5_bisimulation_equivalence_constraint_results.json",
           "sim_cvc5_bloch_kato_norm_residue_constraint_results.json",
           "sim_cvc5_bounded_quantification_constraint_results.json",
@@ -1389,6 +1479,8 @@
           "sim_cvc5_bunched_implications_bi_logic_results.json",
           "sim_cvc5_calculus_of_constructions_constraint_results.json",
           "sim_cvc5_cartesian_closed_category_exponential_constraint_results.json",
+          "sim_cvc5_character_orthogonality_constraint_results.json",
+          "sim_cvc5_character_theory_constraint_results.json",
           "sim_cvc5_chern_simons_gauge_invariance_constraint_results.json",
           "sim_cvc5_chern_weil_naturality_constraint_results.json",
           "sim_cvc5_class_field_theory_artin_map_constraint_results.json",
@@ -1397,6 +1489,7 @@
           "sim_cvc5_colored_operad_arity_color_constraint_results.json",
           "sim_cvc5_concurrent_program_rely_guarantee_results.json",
           "sim_cvc5_concurrent_separation_logic_constraint_results.json",
+          "sim_cvc5_connes_distance_constraint_results.json",
           "sim_cvc5_ctl_constraint_results.json",
           "sim_cvc5_ctl_until_constraint_results.json",
           "sim_cvc5_curry_howard_isomorphism_constraint_results.json",
@@ -1404,6 +1497,11 @@
           "sim_cvc5_cyclic_homology_connes_operator_constraint_results.json",
           "sim_cvc5_d_module_holonomic_characteristic_constraint_results.json",
           "sim_cvc5_dag_cotangent_complex_constraint_results.json",
+          "sim_cvc5_deep_distinguishability_bounds_quantifier_free_results.json",
+          "sim_cvc5_deep_fence_bc04_unsat_results.json",
+          "sim_cvc5_deep_fence_bc09_unsat_results.json",
+          "sim_cvc5_deep_g_reduction_chain_sat_results.json",
+          "sim_cvc5_deep_topology_T3_t4_parity_results.json",
           "sim_cvc5_deformation_theory_maurer_cartan_constraint_results.json",
           "sim_cvc5_density_matrix_trace_constraint_results.json",
           "sim_cvc5_dependent_type_pi_sigma_constraint_results.json",
@@ -1413,6 +1511,7 @@
           "sim_cvc5_effect_system_row_typing_constraint_results.json",
           "sim_cvc5_elliptic_curve_discriminant_constraint_results.json",
           "sim_cvc5_equivariant_homotopy_fixed_point_constraint_results.json",
+          "sim_cvc5_euler_characteristic_constraint_results.json",
           "sim_cvc5_euler_class_self_intersection_constraint_results.json",
           "sim_cvc5_galois_correspondence_subgroup_constraint_results.json",
           "sim_cvc5_galois_extension_degree_constraint_results.json",
@@ -1462,6 +1561,7 @@
           "sim_cvc5_resource_invariant_ownership_results.json",
           "sim_cvc5_ribbon_category_twist_constraint_results.json",
           "sim_cvc5_riemann_hilbert_correspondence_rank_constraint_results.json",
+          "sim_cvc5_riemann_roch_constraint_results.json",
           "sim_cvc5_rust_ownership_borrow_constraint_results.json",
           "sim_cvc5_s4_modal_logic_constraint_results.json",
           "sim_cvc5_secondary_characteristic_class_transgression_constraint_results.json",
@@ -1517,6 +1617,8 @@
           "sim_gap_frobenius_theorem_involutivity_constraint_canonical_results.json",
           "sim_gap_fully_extended_tqft_symmetric_monoidal_constraint_canonical_results.json",
           "sim_gap_fundamental_infinity_groupoid_van_kampen_constraint_canonical_results.json",
+          "sim_gap_g_tower_triple_coexistence_constraint_canonical_results.json",
+          "sim_gap_gerbe_derived_stack_coexistence_constraint_canonical_results.json",
           "sim_gap_goodwillie_derivative_symmetric_constraint_canonical_results.json",
           "sim_gap_goodwillie_polynomial_functor_constraint_canonical_results.json",
           "sim_gap_higher_category_globular_set_constraint_canonical_results.json",
@@ -1536,6 +1638,7 @@
           "sim_gap_postnikov_tower_k_invariant_constraint_canonical_results.json",
           "sim_gap_rational_homotopy_sullivan_minimal_constraint_canonical_results.json",
           "sim_gap_segal_condition_simplicial_nerve_canonical_results.json",
+          "sim_gap_spectral_triple_gerbe_pairwise_constraint_canonical_results.json",
           "sim_gap_spin_structure_existence_w2_constraint_canonical_results.json",
           "sim_gap_stable_homotopy_groups_spheres_stem_constraint_canonical_results.json",
           "sim_gap_t_structure_truncation_constraint_canonical_results.json",
@@ -1554,6 +1657,7 @@
           "sim_geometry_automorphic_form_cuspidality_constraint_results.json",
           "sim_geometry_bbd_decomposition_theorem_constraint_canonical_results.json",
           "sim_geometry_borel_weil_theorem_line_bundle_constraint_canonical_results.json",
+          "sim_geometry_bridgeland_stability_condition_constraint_canonical_results.json",
           "sim_geometry_bsd_conjecture_rank_vanishing_constraint_canonical_results.json",
           "sim_geometry_c_star_algebra_gelfand_naimark_constraint_canonical_results.json",
           "sim_geometry_calabi_yau_holonomy_constraint_canonical_results.json",
@@ -1562,6 +1666,8 @@
           "sim_geometry_canonical_class_kodaira_dimension_constraint_canonical_results.json",
           "sim_geometry_casson_invariant_constraint_canonical_results.json",
           "sim_geometry_castelnuovo_mumford_regularity_constraint_canonical_results.json",
+          "sim_geometry_characteristic_variety_constraint_canonical_results.json",
+          "sim_geometry_cheeger_inequality_constraint_canonical_results.json",
           "sim_geometry_class_field_theory_artin_map_constraint_canonical_results.json",
           "sim_geometry_connes_classification_injective_constraint_canonical_results.json",
           "sim_geometry_connes_cyclic_homology_SBI_constraint_canonical_results.json",
@@ -1571,6 +1677,7 @@
           "sim_geometry_contact_structure_gray_stability_constraint_canonical_results.json",
           "sim_geometry_crossed_product_algebra_constraint_canonical_results.json",
           "sim_geometry_crystalline_cohomology_frobenius_constraint_canonical_results.json",
+          "sim_geometry_d_module_holonomic_constraint_canonical_results.json",
           "sim_geometry_de_rham_cohomology_betti_number_constraint_canonical_results.json",
           "sim_geometry_de_rham_witt_complex_constraint_canonical_results.json",
           "sim_geometry_decomposition_theorem_constraint_canonical_results.json",
@@ -1581,6 +1688,7 @@
           "sim_geometry_dirac_operator_lichnerowicz_constraint_canonical_results.json",
           "sim_geometry_dolbeault_cohomology_hodge_numbers_constraint_canonical_results.json",
           "sim_geometry_donaldson_invariant_dimension_constraint_canonical_results.json",
+          "sim_geometry_donaldson_uhlenbeck_yau_constraint_canonical_results.json",
           "sim_geometry_drinfeld_double_quasitriangular_constraint_canonical_results.json",
           "sim_geometry_e8_lattice_self_dual_constraint_canonical_results.json",
           "sim_geometry_eichler_shimura_relation_constraint_canonical_results.json",
@@ -1700,6 +1808,7 @@
           "sim_homological_algebra_tor_flatness_constraint_canonical_results.json",
           "sim_infinity_category_hom_space_constraint_canonical_results.json",
           "sim_infinity_topos_sheaf_condition_constraint_canonical_results.json",
+          "sim_integration_cvc5_spectral_triple_constraint_results.json",
           "sim_iwasawa_lambda_invariant_constraint_canonical_results.json",
           "sim_iwasawa_main_conjecture_constraint_canonical_results.json",
           "sim_iwasawa_main_conjecture_gl2_constraint_canonical_results.json",
@@ -1759,10 +1868,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 906,
-        "used_count": 728,
-        "load_bearing_count": 234,
-        "depth_present_count": 707,
+        "tried_count": 966,
+        "used_count": 787,
+        "load_bearing_count": 251,
+        "depth_present_count": 763,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -1838,6 +1947,7 @@
           "dirac_hopf_clifford_triple_coexistence_results.json",
           "dirac_symplectic_weyl_bridge_claims_canonical_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
+          "engine_16_placements_results.json",
           "f01_compose_12_tensor_product_preserves_finiteness_results.json",
           "f01_compose_13_partial_trace_preserves_distinguishability_bound_results.json",
           "f01_deep_02_finiteness_forces_discrete_spectrum_results.json",
@@ -1894,6 +2004,7 @@
           "lego_lindblad_dissipator_results.json",
           "lego_pauli_algebra_results.json",
           "lego_povm_measurement_results.json",
+          "lego_weyl_wigner_phase_space_results.json",
           "levi_civita_connection_results.json",
           "leviathan_atom_1_carrier_results.json",
           "leviathan_authority_entropy_operator_results.json",
@@ -1914,6 +2025,12 @@
           "robertson_uncertainty_canonical_results.json",
           "sa5_curvature_commutator_results.json",
           "sasakian_structure_s3_results.json",
+          "sim_a1_homotopy_motivic_filtration_results.json",
+          "sim_ab_cut_specification_canonical_results.json",
+          "sim_araki_lieb_z3_canonical_results.json",
+          "sim_arith_geom_5_distinguishability_results.json",
+          "sim_axiom_n01_noncommutation_generic_results.json",
+          "sim_axiom_n01_pauli_algebra_closure_results.json",
           "sim_axis0_attractor_basin_boundary_results.json",
           "sim_axis0_axis6_coupling_seam_results.json",
           "sim_axis0_bridge_search_results.json",
@@ -1942,6 +2059,14 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_connes_distance_gtower_bridge_results.json",
+          "sim_gtower_e7_exceptional_geometry_results.json",
+          "sim_gtower_e8_exceptional_geometry_results.json",
+          "sim_gtower_e8_lattice_unimodular_results.json",
+          "sim_gtower_e8_root_system_240_results.json",
+          "sim_gtower_f4_exceptional_geometry_results.json",
+          "sim_holographic_entropy_bound_canonical_results.json",
+          "sim_integration_cvc5_spectral_triple_constraint_results.json",
           "sim_riemannian_torch_foundation_results.json",
           "sim_spinor_torch_foundation_results.json",
           "spectral_triple_chirality_grading_results.json",
@@ -1987,6 +2112,7 @@
           "torch_depolarizing_results.json",
           "torch_eigendecomp_results.json",
           "torch_graph_integrated_pipeline_results.json",
+          "torch_l1_coherence_results.json",
           "torch_phase_damping_results.json",
           "torch_quantum_discord_results.json",
           "torch_z_dephasing_results.json",
@@ -2007,10 +2133,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 470,
-        "used_count": 160,
-        "load_bearing_count": 131,
-        "depth_present_count": 141,
+        "tried_count": 500,
+        "used_count": 161,
+        "load_bearing_count": 133,
+        "depth_present_count": 143,
         "anchor_stage_coverage": [
           "coupling",
           "coexistence"
@@ -2073,6 +2199,7 @@
           "dirac_hopf_clifford_emergence_quantities_results.json",
           "dirac_hopf_clifford_pairwise_coupling_results.json",
           "dirac_hopf_clifford_triple_coexistence_results.json",
+          "engine_16_placements_results.json",
           "f01_cross_10_clifford_rotor_distinguishability_results.json",
           "f01n01_couple_clifford_rotor_identity_under_finite_probes_results.json",
           "frame_bundle_structure_results.json",
@@ -2133,6 +2260,7 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_gtower_gl_o_ordering_deep_results.json",
           "spectral_triple_chirality_grading_results.json",
           "spectral_triple_contact_gerbe_bridge_claims_canonical_results.json",
           "spectral_triple_gtower_reduction_spectrum_results.json",
@@ -2150,7 +2278,7 @@
         ]
       },
       "geomstats": {
-        "tried_count": 419,
+        "tried_count": 443,
         "used_count": 83,
         "load_bearing_count": 73,
         "depth_present_count": 80,
@@ -2235,7 +2363,7 @@
         ]
       },
       "e3nn": {
-        "tried_count": 365,
+        "tried_count": 390,
         "used_count": 23,
         "load_bearing_count": 20,
         "depth_present_count": 25,
@@ -2266,10 +2394,10 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 481,
-        "used_count": 149,
-        "load_bearing_count": 123,
-        "depth_present_count": 129,
+        "tried_count": 510,
+        "used_count": 154,
+        "load_bearing_count": 125,
+        "depth_present_count": 132,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -2354,6 +2482,7 @@
           "rustworkx_max_clique_carriers_results.json",
           "rustworkx_petersen_iso_results.json",
           "rustworkx_scc_admissibility_results.json",
+          "sim_a1_homotopy_motivic_filtration_results.json",
           "sim_axis0_attractor_basin_boundary_results.json",
           "sim_axis0_axis6_coupling_seam_results.json",
           "sim_axis0_bridge_search_results.json",
@@ -2382,6 +2511,7 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis_couple_1_2_curvature_scale_results.json",
           "sim_axis_couple_2_3_scale_phase_results.json",
+          "sim_integration_networkx_rustworkx_crosscheck_results.json",
           "spectral_triple_mera_pairwise_coupling_results.json",
           "spectral_triple_weyl_coupling_results.json",
           "spectral_triple_weyl_mera_topology_variants_results.json",
@@ -2404,8 +2534,8 @@
         ]
       },
       "xgi": {
-        "tried_count": 442,
-        "used_count": 108,
+        "tried_count": 467,
+        "used_count": 109,
         "load_bearing_count": 93,
         "depth_present_count": 101,
         "anchor_stage_coverage": [
@@ -2511,8 +2641,8 @@
         ]
       },
       "toponetx": {
-        "tried_count": 427,
-        "used_count": 82,
+        "tried_count": 452,
+        "used_count": 83,
         "load_bearing_count": 70,
         "depth_present_count": 77,
         "anchor_stage_coverage": [
@@ -2593,10 +2723,10 @@
         ]
       },
       "gudhi": {
-        "tried_count": 413,
+        "tried_count": 437,
         "used_count": 81,
-        "load_bearing_count": 72,
-        "depth_present_count": 75,
+        "load_bearing_count": 73,
+        "depth_present_count": 76,
         "anchor_stage_coverage": [
           "assembly",
           "coexistence"
@@ -2624,6 +2754,7 @@
           "axis0_through_shells_results.json",
           "bridge_prep_xi_cross_shell_correlation_results.json",
           "derived_stack_gerbe_coupling_results.json",
+          "engine_16_placements_results.json",
           "gudhi_3qubit_bridge_results.json",
           "gudhi_bipartite_entangled_results.json",
           "gudhi_bloch_sphere_2d_results.json",

@@ -34,6 +34,27 @@ import warnings
 import numpy as np
 from scipy.linalg import sqrtm, logm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this density-matrix battery uses "
+    "numeric numpy/scipy checks to expose invalid state pathologies, not "
+    "a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric matrix and eigenvalue calculations for density-matrix diagnostics",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and logarithm routines for entropy/pathology checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-14

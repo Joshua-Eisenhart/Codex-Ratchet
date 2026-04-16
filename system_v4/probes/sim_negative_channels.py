@@ -37,6 +37,33 @@ import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical foundation baseline: this channel battery uses numeric "
+    "numpy/scipy/z3 checks to document non-CPTP failure modes, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric matrix and eigenvalue calculations for channel diagnostics",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root routines for channel and Choi diagnostics",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "symbolic checks for simple non-CP and contractivity arguments",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Real, RealVal, Solver, sat, unsat, And, Or, Not, Implies, Sum, If,
 )

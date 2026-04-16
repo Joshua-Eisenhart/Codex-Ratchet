@@ -28,6 +28,27 @@ from datetime import datetime, timezone
 import numpy as np
 from scipy.optimize import minimize_scalar
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this entanglement battery uses "
+    "numeric numpy/scipy checks to probe measure failure modes, not a "
+    "canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric tensor and matrix calculations for entanglement diagnostics",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "scalar minimization for entanglement-measure boundary checks",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 

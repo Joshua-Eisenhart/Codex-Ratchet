@@ -17,6 +17,21 @@ import numpy as np
 
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical foundation baseline: this Weyl-delta packet uses numeric "
+    "numpy and local engine helpers to compare pre-Axis delta surfaces, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and trace-distance calculations for Weyl-side delta surfaces",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+}
 
 from engine_core import (
     GeometricEngine,

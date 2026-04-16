@@ -1,6 +1,6 @@
 {
   "audit_type": "partial_trace_einsum",
-  "timestamp": "2026-04-15T16:38:17.304805",
+  "timestamp": "2026-04-15T19:51:11.927741",
   "classification": "audit",
   "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
   "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
@@ -1604,6 +1604,159 @@
       ],
       "has_bug": true
     },
+    "sim_clifford_gerbe_symplectic_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_gerbe_symplectic_bridge_claims_canonical.py",
+          "line": 107,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_gerbe_symplectic_bridge_claims_canonical.py",
+          "line": 108,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_gerbe_symplectic_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_gerbe_symplectic_emergence_quantities.py",
+          "line": 106,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_gerbe_symplectic_emergence_quantities.py",
+          "line": 107,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_clifford_gerbe_symplectic_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_clifford_gerbe_symplectic_topology_variants.py",
+          "line": 111,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_clifford_gerbe_symplectic_topology_variants.py",
+          "line": 112,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_coherent_info_erasure_canonical.py": {
       "patterns": [
         {
@@ -1655,6 +1808,345 @@
       ],
       "has_bug": false
     },
+    "sim_contact_clifford_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_clifford_mera_bridge_claims_canonical.py",
+          "line": 194,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_clifford_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_clifford_mera_emergence_quantities.py",
+          "line": 172,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_clifford_mera_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_clifford_mera_pairwise_coupling.py",
+          "line": 171,
+          "pattern": "akbk->ab",
+          "line_text": "MI_layerwise = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_clifford_mera_pairwise_coupling.py",
+          "line": 184,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_clifford_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_clifford_mera_topology_variants.py",
+          "line": 185,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_clifford_mera_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_clifford_mera_triple_coexistence.py",
+          "line": 168,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_clifford_mera_triple_coexistence.py",
+          "line": 181,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py",
+          "line": 99,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_spectraltriple_hopf_bridge_claims_canonical.py",
+          "line": 100,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_spectraltriple_hopf_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_spectraltriple_hopf_emergence_quantities.py",
+          "line": 98,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_spectraltriple_hopf_emergence_quantities.py",
+          "line": 99,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_contact_spectraltriple_hopf_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_contact_spectraltriple_hopf_topology_variants.py",
+          "line": 94,
+          "pattern": "akbk->ab",
+          "line_text": "def pt_A(r): return np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_contact_spectraltriple_hopf_topology_variants.py",
+          "line": 95,
+          "pattern": "kakb->ab",
+          "line_text": "def pt_B(r): return np.einsum(\"kakb->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_data_processing_inequality_canonical.py": {
       "patterns": [
         {
@@ -1693,6 +2185,332 @@
             "kept": [
               "k",
               "l"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_hopf_clifford_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_hopf_clifford_bridge_claims_canonical.py",
+          "line": 205,
+          "pattern": "akbk->ab",
+          "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_hopf_clifford_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_hopf_clifford_emergence_quantities.py",
+          "line": 205,
+          "pattern": "akbk->ab",
+          "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_hopf_clifford_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_hopf_clifford_pairwise_coupling.py",
+          "line": 218,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_hopf_clifford_pairwise_coupling.py",
+          "line": 221,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_dirac_hopf_clifford_pairwise_coupling.py",
+          "line": 233,
+          "pattern": "akbk->ab",
+          "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_hopf_clifford_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_hopf_clifford_topology_variants.py",
+          "line": 229,
+          "pattern": "akbk->ab",
+          "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_hopf_clifford_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_hopf_clifford_triple_coexistence.py",
+          "line": 203,
+          "pattern": "akbk->ab",
+          "line_text": "rB = np.einsum(\"akbk->ab\", rr)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_symplectic_weyl_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_symplectic_weyl_bridge_claims_canonical.py",
+          "line": 203,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_symplectic_weyl_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_symplectic_weyl_emergence_quantities.py",
+          "line": 199,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_symplectic_weyl_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_symplectic_weyl_pairwise_coupling.py",
+          "line": 232,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_symplectic_weyl_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_symplectic_weyl_topology_variants.py",
+          "line": 220,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_dirac_symplectic_weyl_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_dirac_symplectic_weyl_triple_coexistence.py",
+          "line": 192,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -2053,6 +2871,192 @@
             "kept": [
               "i",
               "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical.py",
+          "line": 234,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_gerbe_spectral_triple_clifford_bridge_claims_canonical.py",
+          "line": 264,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_spectral_triple_clifford_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_spectral_triple_clifford_emergence_quantities.py",
+          "line": 206,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho_AB.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_spectral_triple_clifford_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_spectral_triple_clifford_triple_coexistence.py",
+          "line": 203,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho_AB.reshape(dA, dB, dA, dB)).real",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_weyl_spectral_triple_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_weyl_spectral_triple_bridge_claims_canonical.py",
+          "line": 227,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_gerbe_weyl_spectral_triple_bridge_claims_canonical.py",
+          "line": 257,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_gerbe_weyl_spectral_triple_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_gerbe_weyl_spectral_triple_emergence_quantities.py",
+          "line": 195,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -2448,6 +3452,531 @@
             "kept": [
               "i",
               "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_clifford_weyl_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
+          "line": 379,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A_np = np.einsum(\"akbk->ab\", T)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
+          "line": 381,
+          "pattern": "kikj->ij",
+          "line_text": "rho_BC_np = np.einsum(\"kikj->ij\", T)",
+          "classification": {
+            "pattern": "kikj->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
+          "line": 397,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A2_np = np.einsum(\"akbk->ab\", T2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_clifford_weyl_bridge_claims_canonical.py",
+          "line": 398,
+          "pattern": "kikj->ij",
+          "line_text": "rho_B2_np = np.einsum(\"kikj->ij\", T2)",
+          "classification": {
+            "pattern": "kikj->ij",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_clifford_weyl_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
+          "line": 405,
+          "pattern": "iajb->ij",
+          "line_text": "rho_A = torch.einsum(\"iajb->ij\", rho_rot.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "iajb->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [1, 3] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
+          "line": 406,
+          "pattern": "aibj->ij",
+          "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_rot.reshape(dA, dB, dA, dB))",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
+    },
+    "sim_holographic_gerbe_hopf_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_gerbe_hopf_bridge_claims_canonical.py",
+          "line": 196,
+          "pattern": "akbk->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_gerbe_hopf_bridge_claims_canonical.py",
+          "line": 196,
+          "pattern": "kakb->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_gerbe_hopf_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_gerbe_hopf_emergence_quantities.py",
+          "line": 178,
+          "pattern": "akbk->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_gerbe_hopf_emergence_quantities.py",
+          "line": 178,
+          "pattern": "kakb->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_gerbe_hopf_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_gerbe_hopf_pairwise_coupling.py",
+          "line": 187,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_gerbe_hopf_pairwise_coupling.py",
+          "line": 188,
+          "pattern": "kakb->ab",
+          "line_text": "rho_B = np.einsum(\"kakb->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_gerbe_hopf_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_gerbe_hopf_topology_variants.py",
+          "line": 205,
+          "pattern": "akbk->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_gerbe_hopf_topology_variants.py",
+          "line": 205,
+          "pattern": "kakb->ab",
+          "line_text": "return _entropy(np.einsum(\"akbk->ab\", r)) + _entropy(np.einsum(\"kakb->ab\", r)) - _entropy(rho)",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_holographic_gerbe_hopf_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_holographic_gerbe_hopf_triple_coexistence.py",
+          "line": 179,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_holographic_gerbe_hopf_triple_coexistence.py",
+          "line": 180,
+          "pattern": "kakb->ab",
+          "line_text": "rB = np.einsum(\"kakb->ab\", r)",
+          "classification": {
+            "pattern": "kakb->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_clifford_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_clifford_bridge_claims_canonical.py",
+          "line": 221,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_clifford_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_clifford_emergence_quantities.py",
+          "line": 213,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_clifford_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_clifford_topology_variants.py",
+          "line": 245,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_hopf_symplectic_clifford_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_hopf_symplectic_clifford_triple_coexistence.py",
+          "line": 219,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -3596,6 +5125,149 @@
       ],
       "has_bug": false
     },
+    "sim_nonuple_coupling_program.py": {
+      "patterns": [
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 110,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 111,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 261,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 262,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 288,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_nonuple_coupling_program.py",
+          "line": 289,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_numpy_capability.py": {
       "patterns": [
         {
@@ -3611,6 +5283,149 @@
             "kept": [
               "i",
               "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_octuple_coupling_program.py": {
+      "patterns": [
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 110,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 111,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 275,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 276,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 302,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_octuple_coupling_program.py",
+          "line": 303,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -4510,6 +6325,103 @@
       ],
       "has_bug": true
     },
+    "sim_septuple_coupling_program.py": {
+      "patterns": [
+        {
+          "file": "sim_septuple_coupling_program.py",
+          "line": 111,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_septuple_coupling_program.py",
+          "line": 112,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_septuple_coupling_program.py",
+          "line": 287,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_A = np.einsum('ijkj->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_septuple_coupling_program.py",
+          "line": 288,
+          "pattern": "jijk->ik",
+          "line_text": "rho_B = np.einsum('jijk->ik', rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "jijk->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_shell_entropy_signed_cut.py": {
       "patterns": [
         {
@@ -4621,6 +6533,707 @@
             "kept": [
               "a",
               "c"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_contact_gerbe_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_contact_gerbe_bridge_claims_canonical.py",
+          "line": 194,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_contact_gerbe_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_contact_gerbe_emergence_quantities.py",
+          "line": 158,
+          "pattern": "akbk->ab",
+          "line_text": "MI_vals = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectral_triple_contact_gerbe_emergence_quantities.py",
+          "line": 169,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_contact_gerbe_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_contact_gerbe_pairwise_coupling.py",
+          "line": 172,
+          "pattern": "akbk->ab",
+          "line_text": "MI_layerwise = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectral_triple_contact_gerbe_pairwise_coupling.py",
+          "line": 184,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_contact_gerbe_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_contact_gerbe_topology_variants.py",
+          "line": 174,
+          "pattern": "akbk->ab",
+          "line_text": "MI_vals = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectral_triple_contact_gerbe_topology_variants.py",
+          "line": 185,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_contact_gerbe_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_contact_gerbe_triple_coexistence.py",
+          "line": 175,
+          "pattern": "akbk->ab",
+          "line_text": "MI_vals = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_spectral_triple_contact_gerbe_triple_coexistence.py",
+          "line": 186,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_spectral_triple_weyl_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_spectral_triple_weyl_mera_emergence_quantities.py",
+          "line": 95,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_hopf_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_hopf_mera_bridge_claims_canonical.py",
+          "line": 186,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A_in = np.einsum(\"akbk->ab\", rho4_in)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_bridge_claims_canonical.py",
+          "line": 187,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B_in = np.einsum(\"aibi->ab\", rho4_in)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_bridge_claims_canonical.py",
+          "line": 198,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho4)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_bridge_claims_canonical.py",
+          "line": 199,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B = np.einsum(\"aibi->ab\", rho4)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_hopf_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_hopf_mera_emergence_quantities.py",
+          "line": 193,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho4)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_emergence_quantities.py",
+          "line": 194,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B = np.einsum(\"aibi->ab\", rho4)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_hopf_mera_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_hopf_mera_pairwise_coupling.py",
+          "line": 190,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho4)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_pairwise_coupling.py",
+          "line": 191,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B = np.einsum(\"aibi->ab\", rho4)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_hopf_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_hopf_mera_topology_variants.py",
+          "line": 182,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho4)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_topology_variants.py",
+          "line": 183,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B = np.einsum(\"aibi->ab\", rho4)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_hopf_mera_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_hopf_mera_triple_coexistence.py",
+          "line": 178,
+          "pattern": "akbk->ab",
+          "line_text": "rho_A = np.einsum(\"akbk->ab\", rho4)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_symplectic_hopf_mera_triple_coexistence.py",
+          "line": 179,
+          "pattern": "aibi->ab",
+          "line_text": "rho_B = np.einsum(\"aibi->ab\", rho4)",
+          "classification": {
+            "pattern": "aibi->ab",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_spectral_triple_mera_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_spectral_triple_mera_bridge_claims_canonical.py",
+          "line": 198,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_spectral_triple_mera_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_spectral_triple_mera_emergence_quantities.py",
+          "line": 193,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_spectral_triple_mera_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_spectral_triple_mera_pairwise_coupling.py",
+          "line": 212,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_spectral_triple_mera_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_spectral_triple_mera_topology_variants.py",
+          "line": 196,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_symplectic_spectral_triple_mera_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_symplectic_spectral_triple_mera_triple_coexistence.py",
+          "line": 185,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", r.reshape(2, 2, 2, 2)).reshape(2, 2)",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
             ],
             "is_valid_partial_trace": true,
             "issues": []
@@ -6022,6 +8635,281 @@
       ],
       "has_bug": false
     },
+    "sim_weyl_contact_dirac_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_contact_dirac_bridge_claims_canonical.py",
+          "line": 202,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_contact_dirac_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_contact_dirac_emergence_quantities.py",
+          "line": 170,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_contact_dirac_pairwise_coupling.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_contact_dirac_pairwise_coupling.py",
+          "line": 174,
+          "pattern": "akbk->ab",
+          "line_text": "MI_layerwise = [vn(np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))) +",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_weyl_contact_dirac_pairwise_coupling.py",
+          "line": 186,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", rho.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_contact_dirac_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_contact_dirac_topology_variants.py",
+          "line": 177,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_contact_dirac_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_contact_dirac_triple_coexistence.py",
+          "line": 180,
+          "pattern": "akbk->ab",
+          "line_text": "rA = np.einsum(\"akbk->ab\", r.reshape(2,2,2,2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_gerbe_hopf_bridge_claims_canonical.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_gerbe_hopf_bridge_claims_canonical.py",
+          "line": 181,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_gerbe_hopf_emergence_quantities.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_gerbe_hopf_emergence_quantities.py",
+          "line": 179,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_gerbe_hopf_topology_variants.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_gerbe_hopf_topology_variants.py",
+          "line": 179,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_weyl_gerbe_hopf_triple_coexistence.py": {
+      "patterns": [
+        {
+          "file": "sim_weyl_gerbe_hopf_triple_coexistence.py",
+          "line": 191,
+          "pattern": "akbk->ab",
+          "line_text": "return np.einsum(\"akbk->ab\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "akbk->ab",
+            "contracted": [
+              "k"
+            ],
+            "kept": [
+              "a",
+              "b"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
     "sim_xi_3qubit_bridge_canonical.py": {
       "patterns": [
         {
@@ -6563,6 +9451,62 @@
       }
     },
     {
+      "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
+      "line": 405,
+      "pattern": "iajb->ij",
+      "line_text": "rho_A = torch.einsum(\"iajb->ij\", rho_rot.reshape(dA, dB, dA, dB))",
+      "classification": {
+        "pattern": "iajb->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [1, 3] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_holographic_clifford_weyl_emergence_quantities.py",
+      "line": 406,
+      "pattern": "aibj->ij",
+      "line_text": "rho_B = torch.einsum(\"aibj->ij\", rho_rot.reshape(dA, dB, dA, dB))",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
       "file": "sim_mera_weyl_hopf_emergence_quantities.py",
       "line": 243,
       "pattern": "aibj->ij",
@@ -7015,9 +9959,9 @@
     }
   },
   "summary": {
-    "total_files_with_einsum_ptrace": 90,
-    "clean_files": 78,
-    "files_with_einsum_bugs": 12,
+    "total_files_with_einsum_ptrace": 155,
+    "clean_files": 142,
+    "files_with_einsum_bugs": 13,
     "live_einsum_bugs": 1,
     "dead_code_bugs": 1,
     "naming_swap_bugs": 2,

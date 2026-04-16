@@ -99,8 +99,8 @@ def run_positive_tests():
         w_new = solver.mkConst(solver.getIntegerSort(), "w_new")
 
         # Constraint: w_new = w_old + 1 (R1 move)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_new,
-                                          solver.mkTerm(cvc5.Kind.Add, w_old,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_new,
+                                          solver.mkTerm(cvc5.Kind.ADD, w_old,
                                                        solver.mkInteger(1))))
 
         result = solver.checkSat()
@@ -119,7 +119,7 @@ def run_positive_tests():
         w_after = solver.mkConst(solver.getIntegerSort(), "w_after")
 
         # R2 preserves writhe: w_after = w_before
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_after, w_before))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_after, w_before))
 
         result = solver.checkSat()
         results["positive_r2_writhe_preserved"] = {
@@ -135,7 +135,7 @@ def run_positive_tests():
         w_r3_after = solver.mkConst(solver.getIntegerSort(), "w_r3_after")
 
         # R3 preserves writhe: w_r3_after = w_r3_before
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_r3_after, w_r3_before))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_r3_after, w_r3_before))
 
         result = solver.checkSat()
         results["positive_r3_writhe_preserved"] = {
@@ -172,11 +172,11 @@ def run_negative_tests():
 
         # Contradictory constraints:
         # (1) w_after_r1 = w + 1 (R1 rule)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_after_r1,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_after_r1,
                                           solver.mkTerm(cvc5.Kind.Add, w,
                                                        solver.mkInteger(1))))
         # (2) w_after_r1 = w (false claim that R1 preserves)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_after_r1, w))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_after_r1, w))
 
         result = solver.checkSat()
         results["negative_r1_preserves_writhe_false"] = {
@@ -193,9 +193,9 @@ def run_negative_tests():
 
         # Contradictory constraints:
         # (1) w_r2_after = w_r2 (R2 rule)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_r2_after, w_r2))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_r2_after, w_r2))
         # (2) w_r2_after != w_r2 (false claim)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Distinct, w_r2_after, w_r2))
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.DISTINCT, w_r2_after, w_r2))
 
         result = solver.checkSat()
         results["negative_r2_changes_writhe_false"] = {
@@ -211,12 +211,12 @@ def run_negative_tests():
         w_trefoil = solver.mkConst(solver.getIntegerSort(), "w_trefoil")
 
         # Contradictory: trefoil writhe is ±3, not 0
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
                                           solver.mkTerm(cvc5.Kind.Equal, w_trefoil,
                                                        solver.mkInteger(3)),
                                           solver.mkTerm(cvc5.Kind.Equal, w_trefoil,
                                                        solver.mkInteger(-3))))
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, w_trefoil,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, w_trefoil,
                                           solver.mkInteger(0)))
 
         result = solver.checkSat()

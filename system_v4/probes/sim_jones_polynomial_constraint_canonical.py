@@ -99,7 +99,7 @@ def run_positive_tests():
         # Test 1: V_{unknot}(t) = 1
         v_unknot = solver.mkConst(solver.getIntegerSort(), "v_unknot")
 
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, v_unknot,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, v_unknot,
                                           solver.mkInteger(1)))
 
         result = solver.checkSat()
@@ -123,13 +123,13 @@ def run_positive_tests():
 
         # Simplified test: difference should be expressible
         # v_plus - v_minus = coeff * v_zero (for some nonzero coefficient)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
                                           solver.mkTerm(cvc5.Kind.Equal,
-                                                       solver.mkTerm(cvc5.Kind.Sub, v_plus, v_minus),
+                                                       solver.mkTerm(cvc5.Kind.SUB, v_plus, v_minus),
                                                        v_zero),
                                           solver.mkTerm(cvc5.Kind.Equal,
-                                                       solver.mkTerm(cvc5.Kind.Sub, v_plus, v_minus),
-                                                       solver.mkTerm(cvc5.Kind.Mult,
+                                                       solver.mkTerm(cvc5.Kind.SUB, v_plus, v_minus),
+                                                       solver.mkTerm(cvc5.Kind.MULT,
                                                                     solver.mkInteger(2), v_zero))))
 
         result = solver.checkSat()
@@ -146,7 +146,7 @@ def run_positive_tests():
         v_nontrivial = solver.mkConst(solver.getIntegerSort(), "v_nontrivial")
 
         # For nontrivial knot, V(t) can differ from 1 (e.g., V = -1)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
                                           solver.mkTerm(cvc5.Kind.Equal, v_nontrivial,
                                                        solver.mkInteger(-1)),
                                           solver.mkTerm(cvc5.Kind.Equal, v_nontrivial,
@@ -184,10 +184,10 @@ def run_negative_tests():
         v_unk = solver.mkConst(solver.getIntegerSort(), "v_unk")
 
         # Constraint 1: V_{unknot} = 1 (theorem)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, v_unk,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, v_unk,
                                           solver.mkInteger(1)))
         # Constraint 2: V_{unknot} ≠ 1 (false claim)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Distinct, v_unk,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.DISTINCT, v_unk,
                                           solver.mkInteger(1)))
 
         result = solver.checkSat()
@@ -206,16 +206,16 @@ def run_negative_tests():
         vz = solver.mkConst(solver.getIntegerSort(), "vz")
 
         # Constraint 1: Valid skein relation (difference equals some coefficient times vz)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal,
-                                          solver.mkTerm(cvc5.Kind.Sub, vp, vm),
-                                          solver.mkTerm(cvc5.Kind.Mult,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL,
+                                          solver.mkTerm(cvc5.Kind.SUB, vp, vm),
+                                          solver.mkTerm(cvc5.Kind.MULT,
                                                        solver.mkInteger(2), vz)))
         # Constraint 2: False claim (difference is zero when it shouldn't be)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal,
-                                          solver.mkTerm(cvc5.Kind.Sub, vp, vm),
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL,
+                                          solver.mkTerm(cvc5.Kind.SUB, vp, vm),
                                           solver.mkInteger(0)))
         # Constraint 3: But vz ≠ 0
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Distinct, vz,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.DISTINCT, vz,
                                           solver.mkInteger(0)))
 
         result = solver.checkSat()
@@ -232,10 +232,10 @@ def run_negative_tests():
         v_trefoil = solver.mkConst(solver.getIntegerSort(), "v_trefoil")
 
         # Constraint 1: Trefoil has V ≠ 1 (true, trefoil V(t) != 1)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Distinct, v_trefoil,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.DISTINCT, v_trefoil,
                                           solver.mkInteger(1)))
         # Constraint 2: All nontrivial have V = 1 (false claim)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, v_trefoil,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, v_trefoil,
                                           solver.mkInteger(1)))
 
         result = solver.checkSat()

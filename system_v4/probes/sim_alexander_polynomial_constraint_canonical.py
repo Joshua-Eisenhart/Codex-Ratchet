@@ -98,7 +98,7 @@ def run_positive_tests():
         # Δ_{unknot}(t) = 1, so Δ_{unknot}(1) = 1
         delta_at_1 = solver.mkConst(solver.getIntegerSort(), "delta_unknot_at_1")
 
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, delta_at_1,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, delta_at_1,
                                           solver.mkInteger(1)))
 
         result = solver.checkSat()
@@ -116,10 +116,10 @@ def run_positive_tests():
         delta_trefoil_at_1 = solver.mkConst(solver.getIntegerSort(), "delta_trefoil_at_1")
 
         # Δ_{trefoil}(1) = 1 (±1 constraint)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_trefoil_at_1,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_trefoil_at_1,
                                                        solver.mkInteger(1)),
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_trefoil_at_1,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_trefoil_at_1,
                                                        solver.mkInteger(-1))))
 
         result = solver.checkSat()
@@ -137,10 +137,10 @@ def run_positive_tests():
         solver.setOption("produce-models", "true")
         delta_fig8_at_1 = solver.mkConst(solver.getIntegerSort(), "delta_fig8_at_1")
 
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_fig8_at_1,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_fig8_at_1,
                                                        solver.mkInteger(1)),
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_fig8_at_1,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_fig8_at_1,
                                                        solver.mkInteger(-1))))
 
         result = solver.checkSat()
@@ -178,13 +178,13 @@ def run_negative_tests():
 
         # Contradictory constraints:
         # (1) Δ(1) ∈ {-1, +1} (true theorem)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-                                          solver.mkTerm(cvc5.Kind.Equal, delta,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta,
                                                        solver.mkInteger(1)),
-                                          solver.mkTerm(cvc5.Kind.Equal, delta,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta,
                                                        solver.mkInteger(-1))))
         # (2) Δ(1) = 0 (false claim)
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, delta,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, delta,
                                           solver.mkInteger(0)))
 
         result = solver.checkSat()
@@ -199,12 +199,12 @@ def run_negative_tests():
         solver.setOption("produce-models", "true")
         delta2 = solver.mkConst(solver.getIntegerSort(), "delta2")
 
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-                                          solver.mkTerm(cvc5.Kind.Equal, delta2,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta2,
                                                        solver.mkInteger(1)),
-                                          solver.mkTerm(cvc5.Kind.Equal, delta2,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta2,
                                                        solver.mkInteger(-1))))
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, delta2,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, delta2,
                                           solver.mkInteger(2)))
 
         result = solver.checkSat()
@@ -220,13 +220,13 @@ def run_negative_tests():
         delta_t = solver.mkConst(solver.getIntegerSort(), "delta_t")
 
         # Trefoil satisfies (±1) constraint
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Or,
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_t,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.OR,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_t,
                                                        solver.mkInteger(1)),
-                                          solver.mkTerm(cvc5.Kind.Equal, delta_t,
+                                          solver.mkTerm(cvc5.Kind.EQUAL, delta_t,
                                                        solver.mkInteger(-1))))
         # But we claim it equals 3
-        solver.assertFormula(solver.mkTerm(cvc5.Kind.Equal, delta_t,
+        solver.assertFormula(solver.mkTerm(cvc5.Kind.EQUAL, delta_t,
                                           solver.mkInteger(3)))
 
         result = solver.checkSat()

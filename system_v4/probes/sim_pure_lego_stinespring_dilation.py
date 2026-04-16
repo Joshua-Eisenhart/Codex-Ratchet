@@ -30,6 +30,12 @@ import os
 import datetime
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline Stinespring-dilation probe: this file checks qubit "
+    "channel dilation/recovery numerically, with z3 and sympy as load-bearing "
+    "proof helpers, but it does not claim a canonical nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 # =====================================================================
 # TOOL MANIFEST
@@ -698,13 +704,8 @@ if __name__ == "__main__":
         "name":                "stinespring_dilation",
         "timestamp":           datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "classification":      "canonical",
-        "classification_note": (
-            "Standalone pure-geometry lego for Stinespring dilation of qubit CPTP channels. "
-            "Distinct from sim_lego_stinespring_complementary.py which focuses on complementary "
-            "channels and quantum capacity. This probe verifies: isometry V†V=I, "
-            "Tr_env[VρV†]=E_kraus(ρ), unitary extension equivalence, symbolic isometry proof "
-            "(sympy), complementary channel validity, and z3 UNSAT for non-isometric completeness."
-        ),
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids":          ["stinespring_dilation"],
         "primary_lego_ids":  ["stinespring_dilation"],
         "tool_manifest":     TOOL_MANIFEST,

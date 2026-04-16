@@ -27,6 +27,12 @@ from typing import Callable, Dict, List
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: entropy transport/history taxonomy is "
+    "validated here as a pure numpy pre-bridge lego, not a canonical "
+    "nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 
 TOOL_MANIFEST = {
@@ -390,6 +396,8 @@ def main() -> None:
             "here is promoted to final doctrine."
         ),
         "classification": "classical_baseline",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "summary": {
             "positive_pass": pos_counts["passed"],
             "positive_fail": pos_counts["failed"],

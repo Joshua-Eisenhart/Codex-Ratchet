@@ -27,6 +27,11 @@ from datetime import datetime, timezone
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure-math entropy/divergence lego for relative entropy and JS divergence. "
+    "This remains a canonical classical-baseline comparison surface, not a nonclassical witness."
+)
+CLASSIFICATION_NOTE = divergence_log
 
 EPS = 1e-12
 
@@ -294,6 +299,8 @@ def main():
         "name": "sim_lego_entropy_relative_js",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "classification": "canonical",
+        "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "schema": {
             "version": 1,
             "surface": "pure_lego_entropy",

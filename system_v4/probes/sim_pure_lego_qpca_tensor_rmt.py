@@ -18,17 +18,19 @@ import json, pathlib, time
 import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Supporting multi-lego compression and spectral evidence. This probe "
+    "covers QPCA, low-rank approximation, and related spectral structure, "
+    "while staying a bundled local probe rather than a single canonical lego "
+    "surface."
+)
 
 np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
 CLASSIFICATION = "supporting"
-CLASSIFICATION_NOTE = (
-    "Supporting multi-lego compression/spectral evidence. This probe covers QPCA, low-rank "
-    "approximation, and related spectral structure, but it remains a bundled local probe rather "
-    "than a single canonical lego surface."
-)
+CLASSIFICATION_NOTE = divergence_log
 LEGO_IDS = [
     "spectral_decomposition",
     "principal_subspace",

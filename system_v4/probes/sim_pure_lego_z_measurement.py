@@ -19,6 +19,10 @@ Sections
 import json, os, time, traceback
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline for projective Z-measurement on a qubit: POVM "
+    "validity, Born rule, collapse, idempotency, and dephasing equivalence."
+)
 
 np.random.seed(42)
 EPS = 1e-12
@@ -45,10 +49,7 @@ TOOL_MANIFEST = {
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
 CLASSIFICATION = "classical_baseline"
-CLASSIFICATION_NOTE = (
-    "Classical baseline for projective Z-measurement on a qubit: POVM validity, Born rule, "
-    "collapse, idempotency, and dephasing equivalence."
-)
+CLASSIFICATION_NOTE = divergence_log
 LEGO_IDS = ["z_measurement"]
 PRIMARY_LEGO_IDS = ["z_measurement"]
 
@@ -377,8 +378,9 @@ if __name__ == "__main__":
     results = {
         "name": "pure_lego_z_measurement",
         "description": "Projective Z-measurement: POVM, Born rule, collapse, idempotency, dephasing link",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

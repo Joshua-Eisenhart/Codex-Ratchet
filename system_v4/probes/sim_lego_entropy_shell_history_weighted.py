@@ -25,6 +25,11 @@ from datetime import datetime, timezone
 
 import numpy as np
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Pure LEGO entropy shell/history baseline. The file stays classical and "
+    "numerical, using numpy density-matrix checks for weighted-shell, "
+    "history-window, transport-weighted, and operator-order entropy responses."
+)
 
 EPS = 1e-12
 
@@ -378,6 +383,7 @@ def main():
         "name": "sim_lego_entropy_shell_history_weighted",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "classification": "canonical",
+        "classification_note": divergence_log,
         "schema": {
             "version": 1,
             "surface": "pure_lego_entropy",

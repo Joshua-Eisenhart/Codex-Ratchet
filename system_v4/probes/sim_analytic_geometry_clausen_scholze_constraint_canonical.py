@@ -16,6 +16,8 @@ sympy is supportive: verifies embeddings and de Rham comparisons symbolically
 import json
 import os
 
+classification = "canonical"
+
 # =====================================================================
 # TOOL MANIFEST
 # =====================================================================

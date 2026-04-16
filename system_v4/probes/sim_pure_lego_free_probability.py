@@ -17,6 +17,27 @@ import json
 import os
 from datetime import datetime, UTC
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego free-probability probe "
+    "uses numeric numpy/scipy checks for universality and spectral laws, "
+    "not a canonical nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and random-matrix calculations for free-probability tests",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "statistics and distribution helpers for universality comparisons",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),

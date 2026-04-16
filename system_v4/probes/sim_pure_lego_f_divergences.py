@@ -36,6 +36,27 @@ from datetime import datetime, UTC
 import numpy as np
 from scipy.linalg import sqrtm, logm, fractional_matrix_power
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical foundation baseline: this pure-lego divergence probe uses "
+    "numeric numpy/scipy checks for divergence behavior, not a canonical "
+    "nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric arrays and operator-spectrum calculations for divergence checks",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root, logarithm, and fractional power routines for divergence formulas",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 # ═══════════════════════════════════════════════════════════════════
 # HELPERS

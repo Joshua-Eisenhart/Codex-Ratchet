@@ -33,27 +33,6 @@ import json, pathlib, time, warnings
 import numpy as np
 from scipy.linalg import sqrtm
 classification = "classical_baseline"  # auto-backfill
-divergence_log = (
-    "Classical foundation baseline: this pure-lego Wigner probe uses "
-    "numeric numpy/scipy checks for quasi-probability behavior, not a "
-    "canonical nonclassical witness."
-)
-TOOL_MANIFEST = {
-    "numpy": {
-        "tried": True,
-        "used": True,
-        "reason": "numeric arrays and discrete-Wigner calculations for the quasi-probability probe",
-    },
-    "scipy": {
-        "tried": True,
-        "used": True,
-        "reason": "matrix square-root routines for state diagnostics in the Wigner checks",
-    },
-}
-TOOL_INTEGRATION_DEPTH = {
-    "numpy": "supportive",
-    "scipy": "supportive",
-}
 
 np.random.seed(42)
 EPS = 1e-14

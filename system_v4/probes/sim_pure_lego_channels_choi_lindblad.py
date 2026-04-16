@@ -20,6 +20,33 @@ import numpy as np
 from scipy.linalg import expm, sqrtm, logm
 classification = "classical_baseline"
 DEMOTE_REASON = "no non-numpy load_bearing tool; numeric numpy only"
+divergence_log = (
+    "Classical baseline: this pure lego probe studies channels, Choi maps, "
+    "Lindblad generators, and Stinespring dilations numerically with numpy/scipy/z3 "
+    "and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric channel and entropy calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix exponential, square-root, and logarithm support for the channel/lindblad baseline",
+    },
+    "z3": {
+        "tried": True,
+        "used": True,
+        "reason": "structural proof obligations for channel properties and rank/unitary claims",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "z3": "supportive",
+}
 from z3 import (
     Reals, Real, Solver, sat, unsat, And, Or, Not, ForAll,
     Implies, RealVal, simplify, Sum, If

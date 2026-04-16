@@ -15,21 +15,6 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 classification = "classical_baseline"  # auto-backfill
-divergence_log = (
-    "Classical foundation baseline: this Weyl/Hopf registry supplement uses "
-    "standard library JSON and path inspection only, not a canonical "
-    "nonclassical witness."
-)
-TOOL_MANIFEST = {
-    "python_stdlib": {
-        "tried": True,
-        "used": True,
-        "reason": "JSON, datetime, pathlib, and typing helpers for the registry supplement",
-    }
-}
-TOOL_INTEGRATION_DEPTH = {
-    "python_stdlib": "supportive",
-}
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent

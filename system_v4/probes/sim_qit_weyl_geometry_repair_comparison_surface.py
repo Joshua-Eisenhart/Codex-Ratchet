@@ -15,16 +15,18 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Direct comparison surface between the Weyl/Hopf geometry rows that are "
     "ready for stricter companion work and the finite-state strict companion "
     "carrier. It keeps the lanes paired so transport, carrier, and readout "
     "survival can be compared without pretending the models are identical."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -346,6 +348,7 @@ def main() -> None:
         "name": "qit_weyl_geometry_repair_comparison_surface",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

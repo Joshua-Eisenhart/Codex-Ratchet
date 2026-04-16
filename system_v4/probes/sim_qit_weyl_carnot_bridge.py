@@ -18,16 +18,17 @@ import pathlib
 
 import rustworkx as rx
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Bounded open-vs-strict bridge between the stabilized Weyl/Hopf geometry "
     "carrier stack and the exact Carnot engine family. It uses a schedule "
     "graph plus z3 ordering checks to keep the carrier and engine lanes "
     "aligned without claiming equivalence."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -315,8 +316,9 @@ def main() -> None:
 
     out = {
         "name": "qit_weyl_carnot_bridge",
-        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

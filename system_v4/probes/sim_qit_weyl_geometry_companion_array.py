@@ -18,15 +18,16 @@ from __future__ import annotations
 import json
 import pathlib
 from typing import Any
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Companion array for the Weyl/Hopf geometry lane. It keeps the strict "
     "finite-state anchor separate from the open companion-ready rows and the "
-    "promoted translation lanes, without claiming equivalence."
+    "promoted translation lanes, while leaving the open-vs-strict gap explicit."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -458,6 +459,7 @@ def main() -> None:
         "name": "qit_weyl_geometry_companion_array",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

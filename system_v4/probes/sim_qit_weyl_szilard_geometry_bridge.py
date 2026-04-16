@@ -22,7 +22,7 @@ from typing import Any
 import numpy as np
 import rustworkx as rx
 import z3
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -34,13 +34,14 @@ import sim_helstrom_guess_bound as helstrom  # noqa: E402
 import sim_qit_szilard_bidirectional_protocol as szilard  # noqa: E402
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
+CLASSIFICATION = "canonical"
+divergence_log = (
     "Bridge row between the stabilized Weyl/Hopf geometry stack and the exact "
     "Szilard bookkeeping family. It uses Weyl-spinor distinguishability, a "
     "shared protocol/order DAG, and z3 precedence guards without claiming a "
     "geometry-native engine runtime."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "hopf_geometry",
@@ -264,6 +265,7 @@ def main() -> None:
         "name": "qit_weyl_szilard_geometry_bridge",
         "classification": CLASSIFICATION if all_pass else "exploratory_signal",
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

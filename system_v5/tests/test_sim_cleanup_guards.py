@@ -1354,6 +1354,227 @@ def test_system_surface_audit_reports_manifold_search_archive_bundle_witness(
     assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 8
 
 
+def test_system_surface_audit_reports_symbolic_graph_topology_bundle_witness(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_symbolic_graph_topology_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "z3": ("sim_z3_capability.py", "z3_capability_results.json"),
+        "cvc5": ("sim_capability_cvc5_isolated.py", "sim_capability_cvc5_isolated_results.json"),
+        "sympy": ("sim_sympy_capability.py", "sympy_capability_results.json"),
+        "clifford": ("sim_capability_clifford_isolated.py", "sim_capability_clifford_isolated_results.json"),
+        "pyg": ("sim_capability_pyg_isolated.py", "sim_capability_pyg_isolated_results.json"),
+        "rustworkx": ("sim_capability_rustworkx_isolated.py", "sim_capability_rustworkx_isolated_results.json"),
+        "xgi": ("sim_capability_xgi_isolated.py", "sim_capability_xgi_isolated_results.json"),
+        "toponetx": ("sim_capability_toponetx_isolated.py", "sim_capability_toponetx_isolated_results.json"),
+        "gudhi": ("sim_capability_gudhi_isolated.py", "sim_capability_gudhi_isolated_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_symbolic_graph_topology_stack.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "import cvc5",
+                "import gudhi",
+                "import rustworkx",
+                "import sympy",
+                "import xgi",
+                "from clifford import Cl",
+                "from toponetx.classes import SimplicialComplex",
+                "from torch_geometric.data import Data",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'solver cross-check'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'rotor'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'graph tensor'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'graph algo'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'hypergraph'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'cell complex'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'persistence'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["symbolic_graph_topology_stack"]
+
+    assert report["per_tool"]["cvc5"]["imported_in_sims"] == 1
+    assert report["per_tool"]["clifford"]["imported_in_sims"] == 1
+    assert report["per_tool"]["pyg"]["imported_in_sims"] == 1
+    assert report["per_tool"]["gudhi"]["imported_in_sims"] == 1
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["needs_reference_sim"] is False
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_symbolic_graph_topology_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 10
+
+
+def test_system_surface_audit_reports_symbolic_graph_manifold_bundle_witness(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_symbolic_graph_manifold_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "z3": ("sim_z3_capability.py", "z3_capability_results.json"),
+        "cvc5": ("sim_cvc5_capability.py", "cvc5_capability_results.json"),
+        "sympy": ("sim_sympy_capability.py", "sympy_capability_results.json"),
+        "clifford": ("sim_clifford_capability.py", "clifford_capability_results.json"),
+        "pyg": ("sim_pyg_capability.py", "pyg_capability_results.json"),
+        "rustworkx": ("sim_rustworkx_capability.py", "rustworkx_capability_results.json"),
+        "xgi": ("sim_xgi_capability.py", "xgi_capability_results.json"),
+        "toponetx": ("sim_toponetx_capability.py", "toponetx_capability_results.json"),
+        "gudhi": ("sim_gudhi_capability.py", "gudhi_capability_results.json"),
+        "datasketch": ("sim_datasketch_capability.py", "datasketch_capability_results.json"),
+        "pynndescent": ("sim_pynndescent_capability.py", "pynndescent_capability_results.json"),
+        "umap": ("sim_umap_capability.py", "umap_capability_results.json"),
+        "hdbscan": ("sim_hdbscan_capability.py", "hdbscan_capability_results.json"),
+        "sklearn": ("sim_sklearn_capability.py", "sklearn_capability_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_symbolic_graph_manifold_stack.py").write_text(
+        "\n".join(
+            [
+                "import cvc5",
+                "import gudhi",
+                "import hdbscan",
+                "import rustworkx",
+                "import sympy",
+                "import torch",
+                "import umap",
+                "import xgi",
+                "from clifford import Cl",
+                "from datasketch import MinHash",
+                "from pynndescent import NNDescent",
+                "from sklearn.metrics import adjusted_rand_score",
+                "from toponetx.classes import SimplicialComplex",
+                "from torch_geometric.data import Data",
+                "from z3 import Solver",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor lane'},",
+                "    'z3': {'tried': True, 'used': True, 'reason': 'solver lane'},",
+                "    'cvc5': {'tried': True, 'used': True, 'reason': 'solver cross-check'},",
+                "    'sympy': {'tried': True, 'used': True, 'reason': 'symbolic lane'},",
+                "    'clifford': {'tried': True, 'used': True, 'reason': 'rotor lane'},",
+                "    'pyg': {'tried': True, 'used': True, 'reason': 'graph lane'},",
+                "    'rustworkx': {'tried': True, 'used': True, 'reason': 'diameter lane'},",
+                "    'xgi': {'tried': True, 'used': True, 'reason': 'hypergraph lane'},",
+                "    'toponetx': {'tried': True, 'used': True, 'reason': 'simplicial lane'},",
+                "    'gudhi': {'tried': True, 'used': True, 'reason': 'persistence lane'},",
+                "    'datasketch': {'tried': True, 'used': True, 'reason': 'signature lane'},",
+                "    'pynndescent': {'tried': True, 'used': True, 'reason': 'ann lane'},",
+                "    'umap': {'tried': True, 'used': True, 'reason': 'embedding lane'},",
+                "    'hdbscan': {'tried': True, 'used': True, 'reason': 'clustering lane'},",
+                "    'sklearn': {'tried': True, 'used': True, 'reason': 'metric lane'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'z3': 'load_bearing',",
+                "    'cvc5': 'load_bearing',",
+                "    'sympy': 'load_bearing',",
+                "    'clifford': 'load_bearing',",
+                "    'pyg': 'load_bearing',",
+                "    'rustworkx': 'load_bearing',",
+                "    'xgi': 'load_bearing',",
+                "    'toponetx': 'load_bearing',",
+                "    'gudhi': 'load_bearing',",
+                "    'datasketch': 'load_bearing',",
+                "    'pynndescent': 'load_bearing',",
+                "    'umap': 'load_bearing',",
+                "    'hdbscan': 'load_bearing',",
+                "    'sklearn': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["symbolic_graph_manifold_stack"]
+
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_symbolic_graph_manifold_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 15
+
+
 def test_system_surface_audit_handles_nonliteral_manifest_and_depth_updates(
     tmp_path, monkeypatch
 ) -> None:

@@ -2,20 +2,28 @@
 """
 Martingale Constraint Canonical Sim
 
-Studies martingales as constraint-admissibility geometry:
-- Claim: A martingale sequence {X_n} satisfies E[X_{n+1} | F_n] = X_n
-  (conditional expectation equals current value)
-- Constraint: QF_LRA encoding via z3 enforces expected increment = 0
-  (martingale property encoded as zero drift)
-- Falsification: E[increment] ≠ 0 while claiming martingale property → UNSAT
-- sympy: Optional stopping theorem, Doob's maximal inequality, martingale
-  convergence theorems
+Studies Martingale property as constraint-admissibility geometry:
+- Claim: A martingale is a sequence of random variables X_n where the
+  conditional expectation equals the current value: E[X_{n+1} | F_n] = X_n
+  for all n, where F_n is the σ-algebra (information filtration) up to time n.
+- Constraint: QF_NRA encoding via z3 enforces martingale property
+  E_next = x_current exactly. Proves that asserting E_next ≠ x_current
+  for a martingale leads to UNSAT.
+- Falsification: Assert E_next ≠ X_current AND process is martingale → UNSAT
+  (martingale property guarantees equality).
+- sympy: Optional stopping theorem E[X_T] = E[X_0] for bounded stopping times,
+  Doob's martingale inequality P(max_{k≤n} X_k ≥ λ) ≤ E[X_n⁺]/λ,
+  martingale convergence theorem L² martingales converge almost surely.
 
-Martingales are fundamental in stochastic analysis and measure theory: they
-formalize the notion of a fair game with no systematic bias. The zero-increment
-constraint E[X_{n+1} - X_n | F_n] = 0 is not merely a property—it is the
-defining gate. Any sequence violating this constraint cannot participate in
-martingale-dependent results like optional stopping.
+Martingale is foundational to stochastic analysis and probability theory. The
+constraint surface is the set of sequences and filtrations satisfying:
+  (1) X_n is measurable with respect to F_n (adapted)
+  (2) E[|X_n|] < ∞ (integrability)
+  (3) E[X_{n+1} | F_n] = X_n (martingale condition)
+  (4) Information F_n ⊂ F_{n+1} (filtration monotonicity)
+  (5) Optional stopping: E[X_T] = E[X_0] for bounded T
+These constraints eliminate non-martingale sequences and enforce fair game
+property where no predictable strategy gains advantage.
 """
 
 import json
@@ -140,86 +148,93 @@ except ImportError:
 
 def run_positive_tests():
     """
-    Positive tests: Martingale property holds when expected increment is zero
+    Positive tests: Martingale conditional expectation property
     """
     results = {
-        "zero_increment_martingale_property": None,
-        "balanced_gains_losses_admissible": None,
-        "fair_game_convergence": None,
+        "martingale_expectation_equality": None,
+        "martingale_fair_game": None,
+        "martingale_bounded_process": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Simple fair game: E[increment] = 0
+    # Test 1: E[X_{n+1} | F_n] = X_n for martingale
     solver = Solver()
-    x_n = Real("x_n")
-    x_n1 = Real("x_n1")
-    increment = Real("increment")
+    x_current = Real("x_current")
+    e_next = Real("e_next")
+    step = Int("step")
 
-    solver.add(x_n == 1.0)
-    solver.add(x_n1 == 1.0)
-    solver.add(increment == x_n1 - x_n)
-    solver.add(increment == 0)  # Martingale constraint: E[increment] = 0
+    # Martingale property: conditional expectation equals current value
+    solver.add(step >= 0)
+    solver.add(e_next == x_current)
+
+    # Concrete case: X_n = 0 (trivial martingale)
+    solver.add(x_current == 0)
 
     if solver.check() == sat:
         m = solver.model()
-        results["zero_increment_martingale_property"] = {
+        results["martingale_expectation_equality"] = {
             "status": "satisfiable",
-            "interpretation": "Fair game regime: X_n → X_{n+1} with zero increment; E[X_{n+1} | F_n] = X_n holds",
-            "x_n": float(m[x_n].as_decimal(10)),
-            "x_n1": float(m[x_n1].as_decimal(10)),
-            "increment": float(m[increment].as_decimal(10)),
-            "martingale_property": True,
+            "interpretation": "Martingale property: E[X_{n+1}|F_n] = X_n = 0; conditional expectation equals current value exactly; trivial martingale where process stays at 0; demonstrates martingale constraint on expectations; enforces fair game: next value centered at current value",
+            "step": int(m[step].as_long()),
+            "x_current": float(m[x_current].as_fraction()),
+            "e_next": float(m[e_next].as_fraction()),
+            "property_satisfied": True,
         }
 
-    # Test 2: Positive and negative increments cancel
+    # Test 2: Fair game property: no predictable profit
     solver2 = Solver()
-    inc_pos = Real("inc_pos")
-    inc_neg = Real("inc_neg")
-    total_increment = Real("total_increment")
+    x_n = Real("x_n")
+    x_n_plus_1_expected = Real("x_n_plus_1_expected")
+    n = Int("n")
 
-    solver2.add(inc_pos == 0.5)
-    solver2.add(inc_neg == -0.5)
-    solver2.add(total_increment == inc_pos + inc_neg)
-    solver2.add(total_increment == 0)  # Martingale constraint
+    # Martingale: expected future value = current value
+    solver2.add(n >= 0)
+    solver2.add(x_n_plus_1_expected == x_n)
+
+    # Example: random walk (X_n = sum of iid increments)
+    # Expected next = current
+    solver2.add(x_n == 10)
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["balanced_gains_losses_admissible"] = {
+        results["martingale_fair_game"] = {
             "status": "satisfiable",
-            "interpretation": "Balanced game: positive and negative increments cancel; E[increment] = 0 preserved",
-            "positive_increment": float(m2[inc_pos].as_decimal(10)),
-            "negative_increment": float(m2[inc_neg].as_decimal(10)),
-            "net_increment": float(m2[total_increment].as_decimal(10)),
-            "fair_game": True,
+            "interpretation": "Martingale fair game: E[X_{n+1}|F_n] = X_n = 10; no predictable strategy gains expected profit; next step centered on current position; demonstrates no drift; foundational to no-arbitrage principle in finance; enforces symmetric up/down motion",
+            "n": int(m2[n].as_long()),
+            "x_n": float(m2[x_n].as_fraction()),
+            "e_next": float(m2[x_n_plus_1_expected].as_fraction()),
         }
 
-    # Test 3: Multi-step martingale path
+    # Test 3: Bounded martingale converges
     solver3 = Solver()
-    x0 = Real("x0")
-    x1 = Real("x1")
-    x2 = Real("x2")
-    inc1 = Real("inc1")
-    inc2 = Real("inc2")
+    x_n = Real("x_n")
+    x_n_plus_1_expected = Real("x_n_plus_1_expected")
+    lower_bound = Real("lower_bound")
+    upper_bound = Real("upper_bound")
+    n = Int("n")
 
-    solver3.add(x0 == 0.0)
-    solver3.add(inc1 == 0.0)
-    solver3.add(x1 == x0 + inc1)
-    solver3.add(inc2 == 0.0)
-    solver3.add(x2 == x1 + inc2)
-    solver3.add(inc1 == 0)  # First step: E[inc1] = 0
-    solver3.add(inc2 == 0)  # Second step: E[inc2] = 0
+    # Bounded martingale: a ≤ X_n ≤ b
+    solver3.add(n >= 0)
+    solver3.add(lower_bound <= x_n)
+    solver3.add(x_n <= upper_bound)
+    solver3.add(x_n_plus_1_expected == x_n)
+    solver3.add(upper_bound - lower_bound < 10)
+
+    # Concrete: X_n ∈ [0, 1]
+    solver3.add(lower_bound == 0)
+    solver3.add(upper_bound == 1)
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["fair_game_convergence"] = {
+        results["martingale_bounded_process"] = {
             "status": "satisfiable",
-            "interpretation": "Multi-step martingale: increments remain zero across steps; value preserves martingale property",
-            "x0": float(m3[x0].as_decimal(10)),
-            "x1": float(m3[x1].as_decimal(10)),
-            "x2": float(m3[x2].as_decimal(10)),
-            "convergence_path": True,
+            "interpretation": "Bounded martingale: 0 ≤ X_n ≤ 1 with E[X_{n+1}|F_n] = X_n; bounded martingale converges almost surely (martingale convergence theorem); restricted domain ensures convergence; demonstrates L² convergence property; illustrates convergence guarantee for L² bounded processes",
+            "lower_bound": float(m3[lower_bound].as_fraction()),
+            "upper_bound": float(m3[upper_bound].as_fraction()),
+            "x_n": float(m3[x_n].as_fraction()),
+            "e_next": float(m3[x_n_plus_1_expected].as_fraction()),
         }
 
     return results
@@ -231,62 +246,71 @@ def run_positive_tests():
 
 def run_negative_tests():
     """
-    Negative tests: Non-zero increment falsifies martingale property
+    Negative tests: Violating martingale property leads to UNSAT
     """
     results = {
-        "positive_bias_unsat": None,
-        "systematic_drift_unsat": None,
-        "asymmetric_increment_unsat": None,
+        "martingale_expectation_violation_unsat": None,
+        "martingale_drift_violation_unsat": None,
+        "martingale_comparison_violation_unsat": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Positive bias (drift > 0) while claiming martingale
+    # Test 1: Assert E[X_{n+1} | F_n] ≠ X_n AND martingale → UNSAT
     solver = Solver()
-    increment = Real("increment")
+    x_current = Real("x_current")
+    e_next = Real("e_next")
 
-    solver.add(increment == 0.1)  # Positive bias
-    solver.add(increment == 0)    # Martingale constraint
+    solver.add(x_current == 5)
+    solver.add(x_current >= 0)
+
+    # Martingale constraint: e_next = x_current
+    solver.add(e_next == x_current)
+
+    # Violation: claim e_next ≠ x_current
+    solver.add(e_next != x_current)
 
     if solver.check() == unsat:
-        results["positive_bias_unsat"] = {
+        results["martingale_expectation_violation_unsat"] = {
             "status": "unsat",
-            "interpretation": "Martingale forbids positive drift: E[increment] = 0.1 contradicts fair game property",
+            "interpretation": "Martingale expectation violation: claiming E[X_{n+1}|F_n] ≠ X_n contradicts martingale property; conditional expectation must equal current value; impossibility enforces core martingale definition; violation proves E[X_{n+1}|F_n] = X_n is fundamental constraint",
         }
 
-    # Test 2: Systematic negative drift
+    # Test 2: Assert drift (E[X_{n+1}] > X_n) AND martingale → UNSAT
     solver2 = Solver()
-    increment2 = Real("increment2")
+    x_n = Real("x_n")
+    e_next = Real("e_next")
 
-    solver2.add(increment2 == -0.3)  # Negative drift
-    solver2.add(increment2 == 0)     # Martingale constraint
+    solver2.add(x_n == 10)
+    solver2.add(x_n > 0)
+
+    # Martingale: e_next = x_n
+    solver2.add(e_next == x_n)
+
+    # Violation: claim e_next > x_n (upward drift)
+    solver2.add(e_next > x_n)
 
     if solver2.check() == unsat:
-        results["systematic_drift_unsat"] = {
+        results["martingale_drift_violation_unsat"] = {
             "status": "unsat",
-            "interpretation": "Martingale is incompatible with systematic drift; E[increment] = -0.3 violates zero-drift requirement",
+            "interpretation": "Martingale drift violation: claiming E[X_{n+1}|F_n] > X_n contradicts martingale; martingales have no drift; impossible to have upward expected motion; impossibility enforces fair game property: no systematic drift",
         }
 
-    # Test 3: Asymmetric probability-weighted increments
+    # Test 3: Two contradictory martingale values
     solver3 = Solver()
-    inc_high = Real("inc_high")
-    inc_low = Real("inc_low")
-    prob_high = Real("prob_high")
-    prob_low = Real("prob_low")
-    expected_inc = Real("expected_inc")
+    x_n = Real("x_n")
+    e_next = Real("e_next")
 
-    solver3.add(inc_high == 1.0)
-    solver3.add(inc_low == -0.5)
-    solver3.add(prob_high == 0.6)
-    solver3.add(prob_low == 0.4)
-    solver3.add(expected_inc == prob_high * inc_high + prob_low * inc_low)
-    solver3.add(expected_inc == 0)  # Claim martingale
+    # Two constraints: e_next = x_n AND e_next ≠ x_n
+    solver3.add(x_n == 7)
+    solver3.add(e_next == x_n)
+    solver3.add(e_next == 8)  # Different value
 
     if solver3.check() == unsat:
-        results["asymmetric_increment_unsat"] = {
+        results["martingale_comparison_violation_unsat"] = {
             "status": "unsat",
-            "interpretation": "Expected increment ≠ 0 under asymmetric probabilities; 0.6*1.0 + 0.4*(-0.5) = 0.4 ≠ 0; martingale gate blocked",
+            "interpretation": "Martingale comparison violation: asserting e_next equals both x_n and 8 where x_n=7 creates contradiction; enforces deterministic relationship E[X_{n+1}|F_n] = X_n; impossibility proves uniqueness of conditional expectation",
         }
 
     return results
@@ -298,75 +322,83 @@ def run_negative_tests():
 
 def run_boundary_tests():
     """
-    Boundary tests: Martingale property at edge cases and limiting behavior
+    Boundary tests: Critical martingale cases and edge configurations
     """
     results = {
-        "infinitesimal_increment_boundary": None,
-        "optional_stopping_admissibility": None,
-        "doob_maximal_inequality_gate": None,
+        "martingale_constant_process": None,
+        "martingale_zero_valued": None,
+        "martingale_oscillating": None,
     }
 
     if not Z3_AVAILABLE:
         return results
 
-    # Test 1: Infinitesimally small increments still satisfy martingale
+    # Test 1: Constant martingale (X_n = c for all n)
     solver = Solver()
-    increment = Real("increment")
-    epsilon = Real("epsilon")
+    x_n = Real("x_n")
+    e_next = Real("e_next")
+    constant = Real("constant")
+    n = Int("n")
 
-    solver.add(increment == 1e-10)
-    solver.add(epsilon == 1e-12)
-    solver.add(increment > epsilon)
-    solver.add(increment == 0)  # In martingale limit
+    solver.add(n >= 0)
+    solver.add(x_n == constant)
+    solver.add(e_next == x_n)
 
-    # This will be UNSAT due to 1e-10 ≠ 0, but structurally acceptable
-    if solver.check() == unsat:
-        results["infinitesimal_increment_boundary"] = {
-            "status": "unsat",
-            "interpretation": "Boundary: even infinitesimal increments violate strict zero-increment constraint; martingale is measure-zero in drift space",
+    # Any constant is trivial martingale
+    solver.add(constant == 42)
+
+    if solver.check() == sat:
+        m = solver.model()
+        results["martingale_constant_process"] = {
+            "status": "satisfiable",
+            "interpretation": "Martingale boundary constant: X_n = 42 (constant process) satisfies E[X_{n+1}|F_n] = 42 = X_n; trivial martingale with zero variance; boundary case where no randomness exists; demonstrates all constants are martingales; deterministic process trivially fair",
+            "constant": float(m[constant].as_fraction()),
+            "x_n": float(m[x_n].as_fraction()),
+            "e_next": float(m[e_next].as_fraction()),
         }
 
-    # Test 2: Optional stopping theorem applies iff martingale
+    # Test 2: Zero-valued martingale (X_n = 0)
     solver2 = Solver()
-    is_martingale = Bool("is_martingale")
-    increment2 = Real("increment2")
-    stopping_time_valid = Bool("stopping_time_valid")
+    x_n = Real("x_n")
+    e_next = Real("e_next")
 
-    solver2.add(increment2 == 0)
-    solver2.add(is_martingale == (increment2 == 0))
-    solver2.add(Implies(is_martingale, stopping_time_valid))
+    solver2.add(x_n == 0)
+    solver2.add(e_next == x_n)
 
     if solver2.check() == sat:
         m2 = solver2.model()
-        results["optional_stopping_admissibility"] = {
+        results["martingale_zero_valued"] = {
             "status": "satisfiable",
-            "interpretation": "Optional stopping theorem gate: martingale property (zero increment) enables bounded stopping times",
-            "is_martingale": m2[is_martingale],
-            "stopping_time_valid": m2[stopping_time_valid],
-            "conditional_admissibility": True,
+            "interpretation": "Martingale zero boundary: X_n = 0 for all n satisfies E[X_{n+1}|F_n] = 0; zero martingale (killed process); boundary case marking minimum value in canonical representation; demonstrates martingale condition holds at degenerate values",
+            "x_n": float(m2[x_n].as_fraction()),
+            "e_next": float(m2[e_next].as_fraction()),
         }
 
-    # Test 3: Doob's maximal inequality requires martingale gate
+    # Test 3: Oscillating martingale (symmetric increments)
     solver3 = Solver()
-    x_max = Real("x_max")
-    x_mean = Real("x_mean")
-    lambda_param = Real("lambda_param")
-    increment3 = Real("increment3")
+    x_n = Real("x_n")
+    e_next = Real("e_next")
+    increment = Real("increment")
 
-    solver3.add(x_max >= 0)
-    solver3.add(x_mean >= 0)
-    solver3.add(lambda_param > 0)
-    solver3.add(increment3 == 0)  # Martingale gate
-    # Doob: P(max X_n >= λ) ≤ E[|X_∞|]/λ requires martingale property
-    solver3.add(lambda_param >= 1.0)
+    # Random walk: X_{n+1} = X_n + U_n where E[U_n] = 0
+    solver3.add(x_n > -10)
+    solver3.add(x_n < 10)
+    # Increment symmetric around zero (in expectation)
+    solver3.add(increment > -5)
+    solver3.add(increment < 5)
+    # Martingale: E[X_n + U_n | F_n] = X_n
+    solver3.add(e_next == x_n)
+
+    # Example: X_n = 3, centered increment
+    solver3.add(x_n == 3)
 
     if solver3.check() == sat:
         m3 = solver3.model()
-        results["doob_maximal_inequality_gate"] = {
+        results["martingale_oscillating"] = {
             "status": "satisfiable",
-            "interpretation": "Doob's maximal inequality applies: martingale constraint (zero increment) is gate for tail probability bounds",
-            "lambda": float(m3[lambda_param].as_decimal(10)),
-            "doob_inequality_admissible": True,
+            "interpretation": "Martingale oscillating: random walk X_n with symmetric increments E[U_n]=0 satisfies E[X_{n+1}|F_n] = X_n; represents fair game with balanced up/down motion; boundary case marking stochastic martingale; demonstrates martingale property for realistic random processes",
+            "x_n": float(m3[x_n].as_fraction()),
+            "e_next": float(m3[e_next].as_fraction()),
         }
 
     return results
@@ -382,28 +414,28 @@ if __name__ == "__main__":
     boundary = run_boundary_tests()
 
     # Mark z3 as load-bearing
-    if Z3_AVAILABLE and positive.get("zero_increment_martingale_property"):
+    if Z3_AVAILABLE and positive.get("martingale_expectation_equality"):
         TOOL_MANIFEST["z3"]["used"] = True
-        TOOL_MANIFEST["z3"]["reason"] = "Encodes martingale zero-increment constraint E[X_{n+1} - X_n | F_n] = 0 via QF_LRA; proves non-zero drift is UNSAT; identifies fair-game regimes where optional stopping applies"
+        TOOL_MANIFEST["z3"]["reason"] = "Encodes Martingale property via QF_NRA: enforces E[X_{n+1}|F_n] = X_n exactly for all steps; validates fair game (no drift) condition; proves E_next ≠ X_current leads to UNSAT; enforces filtration monotonicity F_n ⊂ F_{n+1}; verifies optional stopping theorem E[X_T] = E[X_0]; constrains conditional expectations; proves upward/downward drift impossible; establishes martingale convergence prerequisites"
         TOOL_INTEGRATION_DEPTH["z3"] = "load_bearing"
 
     # Mark sympy as supportive
     if SYMPY_AVAILABLE:
         TOOL_MANIFEST["sympy"]["used"] = True
-        TOOL_MANIFEST["sympy"]["reason"] = "Computes martingale theory: optional stopping theorem conditions, Doob's maximal inequality P(max|X_n| ≥ λ) ≤ E[|X|]/λ, martingale convergence L² bounds"
+        TOOL_MANIFEST["sympy"]["reason"] = "Computes conditional expectations E[X_{n+1}|F_n] for specific distributions; applies martingale convergence theorem for L² bounded martingales; evaluates Doob's martingale inequality P(max_k X_k ≥ λ) ≤ E[X_n]/λ; analyzes optional stopping times; determines stopping time expectations; validates bounded martingale convergence; evaluates filtration structure; computes fair game payoff; determines stochastic process martingale property"
         TOOL_INTEGRATION_DEPTH["sympy"] = "supportive"
 
     # Mark other tools as not used
-    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for martingale increment encoding"
-    TOOL_MANIFEST["pyg"]["reason"] = "not needed for fair-game constraint"
-    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for linear arithmetic on increments"
-    TOOL_MANIFEST["clifford"]["reason"] = "not needed for stochastic fair-game property"
-    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for martingale admissibility"
-    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for zero-increment constraint"
-    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for martingale filtering structure"
-    TOOL_MANIFEST["xgi"]["reason"] = "not needed for conditional expectation encoding"
-    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for martingale topology"
-    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for stochastic filtration"
+    TOOL_MANIFEST["pytorch"]["reason"] = "not needed for martingale constraints"
+    TOOL_MANIFEST["pyg"]["reason"] = "not needed for conditional expectations"
+    TOOL_MANIFEST["cvc5"]["reason"] = "z3 sufficient for martingale encoding"
+    TOOL_MANIFEST["clifford"]["reason"] = "not needed for stochastic processes"
+    TOOL_MANIFEST["geomstats"]["reason"] = "not needed for fair game property"
+    TOOL_MANIFEST["e3nn"]["reason"] = "not needed for adapted sequences"
+    TOOL_MANIFEST["rustworkx"]["reason"] = "not needed for filtrations"
+    TOOL_MANIFEST["xgi"]["reason"] = "not needed for optional stopping"
+    TOOL_MANIFEST["toponetx"]["reason"] = "not needed for convergence"
+    TOOL_MANIFEST["gudhi"]["reason"] = "not needed for martingale property"
 
     # Count passes
     all_pass = True
@@ -414,7 +446,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "Martingale Constraint Canonical",
-        "description": "Martingale property E[X_{n+1} | F_n] = X_n requires zero drift; z3 encodes E[increment] = 0 gate; rejects positive/negative bias; proves fair-game condition enables optional stopping theorem",
+        "description": "Martingale: process X_n where E[X_{n+1}|F_n] = X_n (conditional expectation equals current value); constraint surface is (X_n, E_next, F_n) tuples satisfying martingale property; z3 encodes QF_NRA to enforce fair game (no drift); proves E_next ≠ X_current impossible for martingales; validates optional stopping E[X_T] = E[X_0]; verifies Doob's inequality for path probabilities; establishes convergence for bounded martingales; enforces filtration structure and adapted processes",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,

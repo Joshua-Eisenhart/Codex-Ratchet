@@ -93,8 +93,8 @@ def run_positive_tests():
             m1 = s1.model()
             results['test_k3_pure_weight2'] = {
                 'status': 'SAT',
-                'weight': int(m1.eval(weight_h2)),
-                'is_pure': m1.eval(is_pure_k3),
+                'weight': str(m1.eval(weight_h2)),
+                'is_pure': str(m1.eval(is_pure_k3)),
                 'description': 'K3 H^2 is pure Hodge of weight 2',
                 'grw_property': 'Gr^W_2(H^2) carries pure weight 2'
             }
@@ -123,9 +123,9 @@ def run_positive_tests():
             m2 = s2.model()
             results['test_abelian_weight_filtration'] = {
                 'status': 'SAT',
-                'W_0': int(m2.eval(w0)),
-                'W_1': int(m2.eval(w1)),
-                'W_2': int(m2.eval(w2)),
+                'W_0': str(m2.eval(w0)),
+                'W_1': str(m2.eval(w1)),
+                'W_2': str(m2.eval(w2)),
                 'description': 'Abelian surface admits weight filtration'
             }
     except Exception as e:
@@ -146,8 +146,8 @@ def run_positive_tests():
             m3 = s3.model()
             results['test_projective_mhs'] = {
                 'status': 'SAT',
-                'dimension': int(m3.eval(dim_x)),
-                'max_weight': int(m3.eval(max_weight)),
+                'dimension': str(m3.eval(dim_x)),
+                'max_weight': str(m3.eval(max_weight)),
                 'description': 'Projective variety admits MHS with weight ≤ 2·dim(X)'
             }
     except Exception as e:

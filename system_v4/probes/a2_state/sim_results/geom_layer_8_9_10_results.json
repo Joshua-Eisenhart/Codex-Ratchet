@@ -4,7 +4,7 @@
     "pytorch": {
       "tried": true,
       "used": true,
-      "reason": "no automatic differentiation or tensor computation required in this probe"
+      "reason": "autograd for nabla I_c, differentiable operator channels"
     },
     "pyg": {
       "tried": false,
@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": true,
@@ -29,7 +29,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+      "reason": "not needed -- torch native Pauli ops"
     },
     "geomstats": {
       "tried": false,
@@ -39,27 +39,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "no persistent homology or Rips complex computation required in this probe"
+      "reason": "not needed"
     }
   },
   "classification": "canonical",
@@ -1088,6 +1088,5 @@
     },
     "all_pass": true
   },
-  "overall_pass": true,
-  "positive": []
+  "overall_pass": true
 }

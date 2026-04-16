@@ -1,6 +1,6 @@
 {
   "sim": "pure_lego_stokes_mueller",
-  "timestamp": "2026-04-16T02:53:02.061020+00:00",
+  "timestamp": "2026-04-16T02:56:29.953701+00:00",
   "description": "Stokes-Mueller formalism for single-qubit quantum channels. Mueller matrix = real 4x4 representation of density-matrix + Pauli algebra.",
   "overall_pass": true,
   "channels": [
@@ -455,68 +455,5 @@
       "reason": "For n qubits the generalized Stokes vector has 4^n components and the Mueller matrix is 4^n x 4^n. While formally possible, this loses the tensor-product structure that makes multi-qubit physics tractable. Entangling channels (CNOT, etc.) cannot be written as M_A (x) M_B; the full 4^n x 4^n Mueller is needed. For n>=2 the Choi/Kraus/Stinespring representations are strictly more practical. Mueller formalism remains a single-qubit tool."
     },
     "key_insight": "Mueller matrices ARE the real representation of what density matrices and Pauli algebra do with complex numbers. Every complex phase in the channel cancels when projected onto the Hermitian Pauli basis, leaving a purely real 4x4 matrix. This is not an approximation -- it is exact for single-qubit channels. The Bloch sphere IS the Mueller picture."
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on classical data structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving required in this classical baseline probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT solving required; probe uses classical numerical methods only"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required here"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

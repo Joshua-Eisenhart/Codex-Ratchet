@@ -16,10 +16,34 @@ import json, os
 
 classification = "canonical"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-                 ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats",
-                  "e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "z3": {"tried": False, "used": False, "reason": "not needed; sympy handles the ordering witness"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed; sympy handles the ordering witness"},
+    "sympy": {"tried": False, "used": False, "reason": "symbolically checks symplectic/orthogonal preservation"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; ordering is symbolic and numeric-free"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 try:
     import sympy as sp

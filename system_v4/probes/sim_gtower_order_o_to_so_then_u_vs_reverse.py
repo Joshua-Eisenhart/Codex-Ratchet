@@ -16,10 +16,34 @@ import numpy as np
 
 classification = "canonical"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-                 ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats",
-                  "e3nn","rustworkx","xgi","toponetx","gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed; tower logic is handled by the Clifford wrapper"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed; no graph learning in this helper"},
+    "z3": {"tried": False, "used": False, "reason": "not needed; proof work is done in the wrapper sim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed; proof work is done in the wrapper sim"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed; symbolic work is done in the wrapper sim"},
+    "clifford": {"tried": False, "used": False, "reason": "load-bearing: orientation and J are realised in Cl(2)"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed; no manifold calculations here"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed; no equivariant networks here"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed; no graph traversal here"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed; no hypergraph structure here"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed; no cell-complex structure here"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed; no persistence computation here"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 try:
     from clifford import Cl

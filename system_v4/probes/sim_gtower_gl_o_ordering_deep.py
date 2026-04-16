@@ -31,10 +31,34 @@ import math
 
 classification = "canonical"
 
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""}
-                 for k in ["pytorch", "pyg", "z3", "cvc5", "sympy", "clifford",
-                           "geomstats", "e3nn", "rustworkx", "xgi", "toponetx", "gudhi"]}
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": ""},
+    "pyg": {"tried": False, "used": False, "reason": ""},
+    "z3": {"tried": False, "used": False, "reason": ""},
+    "cvc5": {"tried": False, "used": False, "reason": ""},
+    "sympy": {"tried": False, "used": False, "reason": ""},
+    "clifford": {"tried": False, "used": False, "reason": ""},
+    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "e3nn": {"tried": False, "used": False, "reason": ""},
+    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "xgi": {"tried": False, "used": False, "reason": ""},
+    "toponetx": {"tried": False, "used": False, "reason": ""},
+    "gudhi": {"tried": False, "used": False, "reason": ""},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 try:
     from clifford import Cl

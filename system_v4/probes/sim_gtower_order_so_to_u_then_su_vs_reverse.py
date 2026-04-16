@@ -14,10 +14,20 @@ must be present before SU det=1 fence is meaningful.
 import json, os
 
 classification = "canonical"
-
-TOOL_MANIFEST = {k: {"tried": False, "used": False, "reason": ""} for k in
-                 ["pytorch","pyg","z3","cvc5","sympy","clifford","geomstats",
-                  "e3nn","rustworkx","xgi","toponetx","gudhi"]}
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": True, "used": False, "reason": "symbolic det/phase ordering check"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
 TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
 
 try:

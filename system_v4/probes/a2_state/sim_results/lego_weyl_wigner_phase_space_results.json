@@ -11,17 +11,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no graph structure"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed -- numerical + symbolic verification"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed"
     },
     "sympy": {
       "tried": true,
@@ -31,37 +31,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- Pauli algebra handled directly"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed"
     }
   },
   "tools_used": [
@@ -279,8 +279,8 @@
       "monotone_decreasing": true
     },
     "reconstruction_precision_50": {
-      "max_error": 3.0038278561619005e-16,
-      "mean_error": 1.831943301471007e-16,
+      "max_error": 3.3425740216001875e-16,
+      "mean_error": 1.782146741228508e-16,
       "all_below_1e10": true
     },
     "bell_reduced_is_mixed": {

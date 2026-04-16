@@ -10,7 +10,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed \u2014 no message-passing graph dynamics in this sim"
     },
     "z3": {
       "tried": true,
@@ -20,47 +20,47 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "not needed \u2014 constraints are numeric/SMT"
     },
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed \u2014 chirality tested via matrix commutator"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed \u2014 Hopf geometry via Bloch parameterization"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed \u2014 SU(2) tested via commutator residual"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed \u2014 no DAG structure required for this sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed \u2014 no hyperedge structure"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed \u2014 coexistence is a constraint problem, not a topology problem"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed \u2014 no persistent homology"
     }
   },
   "tool_integration_depth": {
@@ -875,21 +875,5 @@
     "key_theorem": "S6 (entropy must increase) is ALWAYS UNSAT under unitary channel parameterization because S(U rho U\u2020) = S(rho) for all unitaries U. This means any subset containing S6 is UNSAT regardless of which other shells are active. Removing S6 from {A,D,C} gives satisfiable subsets.",
     "s3_s6_finding": "Adding S3 (chirality) to an S6-containing subset does NOT create new impossibilities \u2014 the UNSAT is already established by S6 alone."
   },
-  "classification": "canonical",
-  "tests": {
-    "positive": [
-      {
-        "name": "basic_execution",
-        "passed": true,
-        "note": "probe executed without error"
-      }
-    ],
-    "negative": [
-      {
-        "name": "invalid_input_rejected",
-        "passed": true,
-        "note": "boundary conditions verified"
-      }
-    ]
-  }
+  "classification": "canonical"
 }

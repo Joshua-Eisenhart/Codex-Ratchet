@@ -17,17 +17,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed for curvature computation"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed; no logical branching in Liouville formula"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed for curvature computation"
     },
     "sympy": {
       "tried": true,
@@ -37,7 +37,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed; 2D diagonal metric uses no Clifford algebra"
     },
     "geomstats": {
       "tried": false,
@@ -47,27 +47,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed for curvature computation"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for curvature computation"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for curvature computation"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for curvature computation"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for curvature computation"
     }
   },
   "tool_integration_depth": {
@@ -209,5 +209,5 @@
     "formula": "Liouville diagonal metric: K = -(1/2*sqrt(EG))*[d/du(G_u/sqrt(EG)) + d/dv(E_v/sqrt(EG))]",
     "scope_note": "Gaussian curvature lego: Fubini-Study (K=4) vs flat Euclidean (K=0). Numerical: Liouville formula with centered finite differences on torch.float64. Analytic: sympy symbolic derivation confirms both K values. Out of scope: Levi-Civita connection in full, Berry-phase holonomy, Ricci flow, Einstein equations, sectional curvature tensor, higher dimensions."
   },
-  "timestamp": "2026-04-16T03:29:07.882627+00:00"
+  "timestamp": "2026-04-16T03:35:39.168979+00:00"
 }

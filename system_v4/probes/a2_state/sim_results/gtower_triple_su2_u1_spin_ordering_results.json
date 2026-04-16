@@ -26,7 +26,7 @@
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical methods throughout; symbolic computation library is outside this probe's scope"
+      "reason": "numeric rotor comparison is sufficient; sympy not needed"
     },
     "clifford": {
       "tried": true,
@@ -51,17 +51,17 @@
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "no hyperedges needed"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "cell complex not needed for group ordering"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "persistent homology not relevant to group chain"
     }
   },
   "tool_integration_depth": {

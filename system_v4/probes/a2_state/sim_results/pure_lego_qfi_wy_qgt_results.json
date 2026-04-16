@@ -5,22 +5,22 @@
     "pytorch": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytical or numpy computation; automatic differentiation is outside this probe's scope"
+      "reason": "not needed -- pure numpy/scipy/sympy math"
     },
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- no graph layer"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed -- no SMT proof search"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed -- no synthesis/proof search"
     },
     "sympy": {
       "tried": true,
@@ -30,7 +30,7 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed -- no geometric algebra layer"
     },
     "geomstats": {
       "tried": false,
@@ -40,27 +40,27 @@
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed -- no equivariant network layer"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed -- no dependency graph"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed -- no hypergraph layer"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed -- no cell-complex layer"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed -- no persistence layer"
     }
   },
   "tool_integration_depth": {
@@ -1582,19 +1582,5 @@
     "passed": 198,
     "failed": 0,
     "all_pass": true
-  },
-  "positive": [
-    {
-      "name": "basic_execution",
-      "passed": true,
-      "note": "probe executed without error"
-    }
-  ],
-  "negative": [
-    {
-      "name": "invalid_input_rejected",
-      "passed": true,
-      "note": "boundary conditions verified"
-    }
-  ]
+  }
 }

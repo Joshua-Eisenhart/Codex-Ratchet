@@ -1,6 +1,6 @@
 {
   "name": "pure_lego_contact_symplectic_coupling",
-  "timestamp": "2026-04-16T03:28:41.864577+00:00",
+  "timestamp": "2026-04-16T03:35:08.667051+00:00",
   "classification": "canonical",
   "classification_note": "Pairwise coupling probe: S\u00b3 contact shell \u2194 S\u00b2 symplectic shell via Hopf projection. Tests whether the two shells coexist under explicit coupling constraints derived from the bridge identity established in sim_pure_lego_hopf_contact_symplectic_bridge.py. Coupling Program step 2 (pairwise coupling). Distinct from: bridge probe (establishes identity), contact probe (standalone S\u00b3), sim_geom_symplectic_kahler_contact (comparative survey). Uses pytorch (load_bearing) + z3 UNSAT uniqueness proof + sympy polynomial checks.",
   "lego_ids": [
@@ -42,7 +42,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "z3": {
       "tried": true,
@@ -52,7 +52,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "sympy": {
       "tried": true,
@@ -62,37 +62,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not relevant to pairwise contact-symplectic coupling"
     }
   },
   "tool_integration_depth": {
@@ -206,7 +206,7 @@
   "boundary": {
     "B1_antipodal_fiber": {
       "pass": true,
-      "coupling_residual": 1.3322676295501878e-15,
+      "coupling_residual": 8.881784197001252e-16,
       "base_point_diff": 0.0,
       "n_valid_pairs": 20,
       "verdict": "compatible",

@@ -9,17 +9,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed -- single/two-qubit density matrices"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": true,
@@ -29,37 +29,37 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed for this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed for this sim"
     }
   },
   "positive": {
@@ -128,7 +128,7 @@
       "passed": true,
       "note": "Sympy symbolic verification of Berry phase formula"
     },
-    "elapsed_s": 0.2323918342590332
+    "elapsed_s": 0.20195317268371582
   },
   "negative": {
     "maximally_mixed_zero_phase": {
@@ -151,7 +151,7 @@
       "passed": true,
       "note": "Uhlmann fidelity must always be in [0, 1]"
     },
-    "elapsed_s": 0.004971027374267578
+    "elapsed_s": 0.005164146423339844
   },
   "boundary": {
     "purity_sweep": {
@@ -268,7 +268,7 @@
       "passed": true,
       "note": "Phase error decreases as loop discretisation gets finer (or is already at machine precision for all step counts)"
     },
-    "elapsed_s": 0.17970800399780273
+    "elapsed_s": 0.1792600154876709
   },
   "classification": "canonical",
   "summary": {

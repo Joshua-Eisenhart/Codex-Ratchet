@@ -1,6 +1,6 @@
 {
   "name": "toponetx_state_class_binding",
-  "timestamp": "2026-04-16T03:28:43.332748+00:00",
+  "timestamp": "2026-04-16T03:36:17.482793+00:00",
   "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
@@ -11,7 +11,7 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+      "reason": "not needed; topology via toponetx/xgi"
     },
     "z3": {
       "tried": true,
@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "z3 covers all separability and product-form UNSAT proofs required here; cvc5 adds no additional coverage"
+      "reason": "not needed; z3 sufficient for this inequality"
     },
     "sympy": {
       "tried": true,
@@ -31,22 +31,22 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+      "reason": "not needed; no spinor geometry in this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+      "reason": "not needed; topology is combinatorial here"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+      "reason": "not needed; no equivariance check in this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+      "reason": "not needed; graph structure handled by toponetx internally"
     },
     "xgi": {
       "tried": true,
@@ -61,7 +61,7 @@
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+      "reason": "not needed; exact Betti numbers from incidence matrices"
     }
   },
   "tool_integration_depth": {

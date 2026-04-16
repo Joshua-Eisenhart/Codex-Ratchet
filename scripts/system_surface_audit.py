@@ -46,9 +46,39 @@ IMPORT_TOOL_ALIASES = {
     "optuna": "optuna",
     "evotorch": "evotorch",
     "datasketch": "datasketch",
+    "pynndescent": "pynndescent",
+    "sklearn": "sklearn",
+    "hdbscan": "hdbscan",
+    "umap": "umap",
     "pymoo": "pymoo",
     "ribs": "ribs",
     "deap": "deap",
+    "networkx": "networkx",
+    "igraph": "igraph",
+    "scipy": "scipy",
+    "cma": "cma",
+}
+TOOL_BUNDLES = {
+    "symbolic_solver_stack": {
+        "goal": "solver + symbolic + rotor reference lane",
+        "tools": ["pytorch", "z3", "cvc5", "sympy", "clifford"],
+    },
+    "equivariant_geometry_stack": {
+        "goal": "equivariant geometry reference lane",
+        "tools": ["pytorch", "clifford", "e3nn", "geomstats", "sympy"],
+    },
+    "graph_topology_stack": {
+        "goal": "graph/hypergraph/topology reference lane",
+        "tools": ["pytorch", "pyg", "rustworkx", "xgi", "toponetx", "gudhi"],
+    },
+    "manifold_cluster_stack": {
+        "goal": "manifold + ANN + embedding + density clustering reference lane",
+        "tools": ["pytorch", "datasketch", "pynndescent", "umap", "hdbscan", "sklearn"],
+    },
+    "search_archive_stack": {
+        "goal": "optimizer/archive/search reference lane",
+        "tools": ["pytorch", "optuna", "pymoo", "ribs", "deap", "evotorch"],
+    },
 }
 
 
@@ -426,6 +456,7 @@ def tool_integration_surface(limit: int = 12) -> dict:
     missing_depth: Counter[str] = Counter()
     missing_manifest: Counter[str] = Counter()
     samples: list[dict[str, object]] = []
+    sim_rows: list[dict[str, object]] = []
     per_tool: defaultdict[str, dict[str, object]] = defaultdict(
         lambda: {
             "imported_in_sims": 0,
@@ -460,6 +491,24 @@ def tool_integration_surface(limit: int = 12) -> dict:
             continue
         manifest = _module_literal(tree, "TOOL_MANIFEST")
         depth = _module_literal(tree, "TOOL_INTEGRATION_DEPTH")
+        manifest_tools = set(manifest) if isinstance(manifest, dict) else set()
+        depth_tools = set(depth) if isinstance(depth, dict) else set()
+        load_bearing_tools = (
+            {
+                _canonical_tool(str(raw_tool))
+                for raw_tool, level in depth.items()
+                if level == "load_bearing"
+            }
+            if isinstance(depth, dict)
+            else set()
+        )
+        sim_rows.append({
+            "sim": path.name,
+            "imported_tools": set(imported_tools),
+            "manifest_tools": {_canonical_tool(str(tool)) for tool in manifest_tools},
+            "depth_tools": {_canonical_tool(str(tool)) for tool in depth_tools},
+            "load_bearing_tools": load_bearing_tools,
+        })
         if isinstance(depth, dict):
             for raw_tool, level in depth.items():
                 tool = _canonical_tool(str(raw_tool))
@@ -510,12 +559,93 @@ def tool_integration_surface(limit: int = 12) -> dict:
         row.update(_capability_probe_status(tool))
         per_tool_report[tool] = row
 
+    bundle_report: dict[str, dict[str, object]] = {}
+    for bundle_name, spec in TOOL_BUNDLES.items():
+        tools = [_canonical_tool(tool) for tool in spec["tools"]]
+        tool_set = set(tools)
+        deep_threshold = max(3, (2 * len(tools) + 2) // 3)
+        witnesses: list[dict[str, object]] = []
+        full_bundle_witness_count = 0
+        deep_bundle_witness_count = 0
+
+        for row in sim_rows:
+            imported_overlap = sorted(tool_set & set(row["imported_tools"]))
+            if not imported_overlap:
+                continue
+            manifest_overlap = sorted(tool_set & set(row["manifest_tools"]))
+            depth_overlap = sorted(tool_set & set(row["depth_tools"]))
+            load_bearing_overlap = sorted(tool_set & set(row["load_bearing_tools"]))
+            missing_tools = sorted(tool_set - set(row["imported_tools"]))
+            header_complete = tool_set.issubset(set(row["imported_tools"])) and tool_set.issubset(set(row["manifest_tools"])) and tool_set.issubset(set(row["depth_tools"]))
+            deep_witness = (
+                len(imported_overlap) >= deep_threshold
+                and len(manifest_overlap) >= deep_threshold
+                and len(depth_overlap) >= deep_threshold
+            )
+            if header_complete:
+                full_bundle_witness_count += 1
+            if deep_witness:
+                deep_bundle_witness_count += 1
+            witnesses.append({
+                "sim": row["sim"],
+                "imported_overlap_count": len(imported_overlap),
+                "header_declared_overlap_count": min(len(manifest_overlap), len(depth_overlap)),
+                "load_bearing_overlap_count": len(load_bearing_overlap),
+                "missing_tools": missing_tools,
+                "header_complete": header_complete,
+                "deep_witness": deep_witness,
+            })
+
+        witnesses.sort(
+            key=lambda row: (
+                -int(row["imported_overlap_count"]),
+                -int(row["header_declared_overlap_count"]),
+                -int(row["load_bearing_overlap_count"]),
+                len(row["missing_tools"]),
+                str(row["sim"]),
+            )
+        )
+
+        capability_gap_tools = [
+            tool for tool in tools
+            if per_tool_report.get(tool, {}).get("status") != "passing"
+        ]
+        weak_tools = [
+            tool for tool in tools
+            if int(per_tool_report.get(tool, {}).get("imported_in_sims", 0)) == 0
+        ]
+        load_bearing_gap_tools = [
+            tool for tool in tools
+            if int(per_tool_report.get(tool, {}).get("load_bearing_witnesses", 0)) == 0
+        ]
+        recommendation = (
+            "repair_capability_first"
+            if capability_gap_tools
+            else "add_reference_sim"
+            if full_bundle_witness_count == 0
+            else "expand_existing_bundle"
+        )
+        bundle_report[bundle_name] = {
+            "goal": spec["goal"],
+            "tools": tools,
+            "capability_gap_tools": capability_gap_tools,
+            "weak_tools": weak_tools,
+            "load_bearing_gap_tools": load_bearing_gap_tools,
+            "deep_threshold": deep_threshold,
+            "full_bundle_witness_count": full_bundle_witness_count,
+            "deep_bundle_witness_count": deep_bundle_witness_count,
+            "needs_reference_sim": full_bundle_witness_count == 0,
+            "recommendation": recommendation,
+            "best_existing_witnesses": witnesses[:limit],
+        }
+
     return {
         "audited_sims_with_tool_imports": audited,
         "parse_failures": parse_failures,
         "missing_manifest_by_tool": dict(missing_manifest),
         "missing_depth_by_tool": dict(missing_depth),
         "per_tool": per_tool_report,
+        "bundles": bundle_report,
         "samples": samples,
     }
 

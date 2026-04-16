@@ -1066,6 +1066,111 @@ def test_system_surface_audit_tool_integration_reports_failing_capability_probe(
     ]
 
 
+def test_system_surface_audit_tool_integration_reports_bundle_witnesses(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": (
+            "sim_pytorch_capability.py",
+            "pytorch_capability_results.json",
+        ),
+        "datasketch": (
+            "sim_capability_datasketch_isolated.py",
+            "sim_capability_datasketch_isolated_results.json",
+        ),
+        "pynndescent": (
+            "sim_capability_pynndescent_isolated.py",
+            "sim_capability_pynndescent_isolated_results.json",
+        ),
+        "umap": (
+            "sim_capability_umap_isolated.py",
+            "sim_capability_umap_isolated_results.json",
+        ),
+        "hdbscan": (
+            "sim_capability_hdbscan_isolated.py",
+            "sim_capability_hdbscan_isolated_results.json",
+        ),
+        "sklearn": (
+            "sim_capability_sklearn_isolated.py",
+            "sim_capability_sklearn_isolated_results.json",
+        ),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_manifold_cluster_stack.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "import hdbscan",
+                "import umap",
+                "from datasketch import MinHash",
+                "from pynndescent import NNDescent",
+                "from sklearn.metrics import adjusted_rand_score",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'tensor manifold'},",
+                "    'datasketch': {'tried': True, 'used': True, 'reason': 'signature witness'},",
+                "    'pynndescent': {'tried': True, 'used': True, 'reason': 'ann witness'},",
+                "    'umap': {'tried': True, 'used': True, 'reason': 'embedding witness'},",
+                "    'hdbscan': {'tried': True, 'used': True, 'reason': 'density witness'},",
+                "    'sklearn': {'tried': True, 'used': True, 'reason': 'metric witness'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'datasketch': 'load_bearing',",
+                "    'pynndescent': 'load_bearing',",
+                "    'umap': 'load_bearing',",
+                "    'hdbscan': 'load_bearing',",
+                "    'sklearn': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["manifold_cluster_stack"]
+
+    assert report["per_tool"]["umap"]["imported_in_sims"] == 1
+    assert report["per_tool"]["hdbscan"]["imported_in_sims"] == 1
+    assert report["per_tool"]["pynndescent"]["imported_in_sims"] == 1
+    assert report["per_tool"]["sklearn"]["imported_in_sims"] == 1
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["needs_reference_sim"] is False
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_manifold_cluster_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 6
+
+
 def test_system_surface_audit_runner_health_reports_draining() -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)

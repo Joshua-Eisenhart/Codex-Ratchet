@@ -69,17 +69,6 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "xgi": None,
     "z3": "load_bearing",
-} signal
-    "z3":        "supportive",     # verifies chain structure admissibility
-    "cvc5":      None,
-    "sympy":     "supportive",     # verifies I_c formula: I_c = S(BC) - S(ABC)
-    "clifford":  None,
-    "geomstats": None,
-    "e3nn":      None,
-    "rustworkx": None,
-    "xgi":       None,
-    "toponetx":  None,
-    "gudhi":     None,
 }
 
 # --- imports -----------------------------------------------------------

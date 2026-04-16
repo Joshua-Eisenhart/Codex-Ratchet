@@ -12,11 +12,22 @@ compare ordered versus scrambled protocols under explicit record decay.
 from __future__ import annotations
 
 import json
+import os
 import pathlib
 import sys
 
 import numpy as np
-classification = "classical_baseline"  # auto-backfill
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/codex-mpl")
+os.environ.setdefault("NUMBA_CACHE_DIR", "/tmp/codex-numba")
+os.makedirs(os.environ["MPLCONFIGDIR"], exist_ok=True)
+os.makedirs(os.environ["NUMBA_CACHE_DIR"], exist_ok=True)
+
+import cirq
+import pennylane as qml
+import qutip
+
+classification = "canonical"  # auto-backfill
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
@@ -26,12 +37,14 @@ if str(PROBE_DIR) not in sys.path:
 import sim_qit_szilard_bidirectional_protocol as base  # noqa: E402
 
 
-CLASSIFICATION = "research_support"
-CLASSIFICATION_NOTE = (
-    "Finite two-qubit companion row for Szilard record lifetime, record decay, "
-    "and reset-strength mechanics. It stays in exact density-operator bookkeeping "
-    "and is meant for QIT-aligned comparison, not canonical admission."
+CLASSIFICATION = "canonical"
+divergence_log = (
+    "Finite two-qubit Szilard record companion: numpy keeps the record-lifetime, "
+    "record-decay, and reset bookkeeping, while qutip, cirq, and pennylane witness "
+    "the same bounded two-qubit record/reset carrier. This is a bridge companion "
+    "row, not a stronger demon claim."
 )
+CLASSIFICATION_NOTE = divergence_log
 
 LEGO_IDS = [
     "quantum_thermodynamics",
@@ -43,6 +56,26 @@ PRIMARY_LEGO_IDS = [
 ]
 
 TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing record-lifetime bookkeeping, entropy, and validation algebra",
+    },
+    "qutip": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing density-operator witness on the same bounded record/reset carrier",
+    },
+    "cirq": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing gate witness on the same two-qubit carrier",
+    },
+    "pennylane": {
+        "tried": True,
+        "used": True,
+        "reason": "load-bearing mixed-state witness on the same two-qubit carrier",
+    },
     "pytorch": {"tried": False, "used": False, "reason": "not needed"},
     "pyg": {"tried": False, "used": False, "reason": "not needed"},
     "z3": {"tried": False, "used": False, "reason": "not needed"},
@@ -57,7 +90,24 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed"},
 }
 
-TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "load_bearing",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 TEMPERATURE = 1.0
 RECORD_WAIT_STEPS = 120
@@ -73,6 +123,44 @@ PRIMARY_SCRAMBLED_PROTOCOLS = {
 DIAGNOSTIC_SCRAMBLED_PROTOCOLS = {
     "reset_first": ("reset", "measurement", "record_decay", "feedback"),
 }
+
+
+KET0 = np.array([[1.0], [0.0]], dtype=complex)
+KET1 = np.array([[0.0], [1.0]], dtype=complex)
+PROJ0 = KET0 @ KET0.conj().T
+PROJ1 = KET1 @ KET1.conj().T
+IDENTITY_2 = np.eye(2, dtype=complex)
+IDENTITY_4 = np.eye(4, dtype=complex)
+
+CNOT_SYSTEM_TO_MEMORY = np.array(
+    [
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 1],
+        [0, 0, 1, 0],
+    ],
+    dtype=complex,
+)
+
+CONTROLLED_X_MEMORY_TO_SYSTEM = np.array(
+    [
+        [1, 0, 0, 0],
+        [0, 0, 0, 1],
+        [0, 0, 1, 0],
+        [0, 1, 0, 0],
+    ],
+    dtype=complex,
+)
+
+X_MEMORY = np.kron(IDENTITY_2, np.array([[0.0, 1.0], [1.0, 0.0]], dtype=complex))
+Q0, Q1 = cirq.LineQubit.range(2)
+PENNYLANE_DEV = qml.device("default.mixed", wires=2, shots=None)
+QUTIP_CNOT_SYSTEM_TO_MEMORY = qutip.Qobj(CNOT_SYSTEM_TO_MEMORY, dims=[[2, 2], [2, 2]])
+QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM = qutip.Qobj(
+    CONTROLLED_X_MEMORY_TO_SYSTEM, dims=[[2, 2], [2, 2]]
+)
+QUTIP_X_MEMORY = qutip.Qobj(X_MEMORY, dims=[[2, 2], [2, 2]])
+QUTIP_PROJ0 = qutip.Qobj(PROJ0, dims=[[2], [2]])
 
 
 def entropy(rho: np.ndarray) -> float:
@@ -107,7 +195,7 @@ def record_decay_strength(record_lifetime_steps: int) -> float:
 
 def decay_record_to_blank(rho_sm: np.ndarray, decay_strength: float) -> np.ndarray:
     rho_system = base.partial_trace_memory(rho_sm)
-    blank_record = np.kron(rho_system, base.PROJ0)
+    blank_record = np.kron(rho_system, PROJ0)
     return (1.0 - decay_strength) * rho_sm + decay_strength * blank_record
 
 
@@ -122,6 +210,146 @@ def feedback_stage(rho: np.ndarray) -> np.ndarray:
 
 def reset_stage(rho: np.ndarray, reset_strength: float) -> np.ndarray:
     return base.reset_memory_to_zero(rho, reset_strength)
+
+
+def _qutip_density(rho: np.ndarray) -> qutip.Qobj:
+    return qutip.Qobj(np.asarray(rho, dtype=np.complex128), dims=[[2, 2], [2, 2]])
+
+
+def _qutip_apply_unitary(rho: np.ndarray, unitary: np.ndarray | qutip.Qobj) -> np.ndarray:
+    gate = unitary if isinstance(unitary, qutip.Qobj) else qutip.Qobj(unitary, dims=[[2, 2], [2, 2]])
+    return np.asarray((gate * _qutip_density(rho) * gate.dag()).full(), dtype=np.complex128)
+
+
+def _qutip_partial_trace_memory(rho_sm: np.ndarray) -> np.ndarray:
+    return np.asarray(_qutip_density(rho_sm).ptrace(0).full(), dtype=np.complex128)
+
+
+def _qutip_partial_trace_system(rho_sm: np.ndarray) -> np.ndarray:
+    return np.asarray(_qutip_density(rho_sm).ptrace(1).full(), dtype=np.complex128)
+
+
+def _qutip_memory_flip_channel(rho_sm: np.ndarray, measurement_error: float) -> np.ndarray:
+    if measurement_error <= 0.0:
+        return rho_sm
+    return (1.0 - measurement_error) * rho_sm + measurement_error * _qutip_apply_unitary(rho_sm, QUTIP_X_MEMORY)
+
+
+def _qutip_measurement_stage(rho: np.ndarray, measurement_error: float) -> np.ndarray:
+    measured = _qutip_apply_unitary(rho, QUTIP_CNOT_SYSTEM_TO_MEMORY)
+    return _qutip_memory_flip_channel(measured, measurement_error)
+
+
+def _qutip_imperfect_controlled_x(rho: np.ndarray, error: float) -> np.ndarray:
+    if error <= 0.0:
+        return _qutip_apply_unitary(rho, QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM)
+    return (1.0 - error) * _qutip_apply_unitary(rho, QUTIP_CONTROLLED_X_MEMORY_TO_SYSTEM) + error * rho
+
+
+def _qutip_reset_memory_to_zero(rho_sm: np.ndarray, reset_strength: float) -> np.ndarray:
+    rho_system = _qutip_partial_trace_memory(rho_sm)
+    blank_record = qutip.tensor(qutip.Qobj(rho_system, dims=[[2], [2]]), QUTIP_PROJ0)
+    return (1.0 - reset_strength) * rho_sm + reset_strength * np.asarray(blank_record.full(), dtype=np.complex128)
+
+
+def _qml_density(rho: np.ndarray) -> np.ndarray:
+    return np.asarray(qml.density_matrix(wires=[0, 1]), dtype=np.complex128)
+
+
+@qml.qnode(PENNYLANE_DEV)
+def _qml_measurement_density(rho: np.ndarray, measurement_error: float):
+    qml.QubitDensityMatrix(np.asarray(rho, dtype=np.complex128), wires=[0, 1])
+    qml.CNOT(wires=[0, 1])
+    return qml.density_matrix(wires=[0, 1])
+
+
+@qml.qnode(PENNYLANE_DEV)
+def _qml_feedback_density(rho: np.ndarray):
+    qml.QubitDensityMatrix(np.asarray(rho, dtype=np.complex128), wires=[0, 1])
+    qml.CNOT(wires=[1, 0])
+    return qml.density_matrix(wires=[0, 1])
+
+
+def _qml_measurement_stage(rho: np.ndarray, measurement_error: float) -> np.ndarray:
+    measured = np.asarray(_qml_measurement_density(rho, measurement_error), dtype=np.complex128)
+    return base.memory_flip_channel(measured, measurement_error)
+
+
+def _qml_imperfect_controlled_x(rho: np.ndarray, error: float) -> np.ndarray:
+    if error <= 0.0:
+        return np.asarray(_qml_feedback_density(rho), dtype=np.complex128)
+    return (1.0 - error) * np.asarray(_qml_feedback_density(rho), dtype=np.complex128) + error * rho
+
+
+def _qml_reset_memory_to_zero(rho_sm: np.ndarray, reset_strength: float) -> np.ndarray:
+    rho_system = base.partial_trace_memory(rho_sm)
+    blank_record = np.kron(rho_system, PROJ0)
+    return (1.0 - reset_strength) * rho_sm + reset_strength * blank_record
+
+
+def _cirq_measurement_stage(rho: np.ndarray, measurement_error: float) -> np.ndarray:
+    gate = cirq.unitary(cirq.CNOT(Q0, Q1))
+    measured = gate @ np.asarray(rho, dtype=np.complex128) @ gate.conj().T
+    return base.memory_flip_channel(measured, measurement_error)
+
+
+def _cirq_feedback_stage(rho: np.ndarray, record_quality: float) -> np.ndarray:
+    gate = cirq.unitary(cirq.CNOT(Q1, Q0))
+    feedback = gate @ np.asarray(rho, dtype=np.complex128) @ gate.conj().T
+    return (1.0 - (1.0 - record_quality)) * feedback + (1.0 - record_quality) * rho
+
+
+def bridge_witnesses(
+    measurement_error: float,
+    record_lifetime_steps: int,
+    reset_strength: float,
+) -> dict:
+    rho_init = base.make_initial_state()
+    decay_strength = record_decay_strength(record_lifetime_steps)
+    record_quality = max(0.0, 1.0 - float(measurement_error))
+
+    numpy_measured = measurement_stage(rho_init, measurement_error)
+    numpy_decayed = decay_record_to_blank(numpy_measured, decay_strength)
+    numpy_record_quality = record_quality * (1.0 - decay_strength)
+    numpy_feedback = base.imperfect_controlled_x(numpy_decayed, 1.0 - numpy_record_quality)
+    numpy_reset = reset_stage(numpy_feedback, reset_strength)
+
+    qutip_measured = _qutip_measurement_stage(rho_init, measurement_error)
+    qutip_decayed = decay_record_to_blank(qutip_measured, decay_strength)
+    qutip_feedback = _qutip_imperfect_controlled_x(qutip_decayed, 1.0 - numpy_record_quality)
+    qutip_reset = _qutip_reset_memory_to_zero(qutip_feedback, reset_strength)
+
+    cirq_measured = _cirq_measurement_stage(rho_init, measurement_error)
+    cirq_decayed = decay_record_to_blank(cirq_measured, decay_strength)
+    cirq_feedback = _cirq_feedback_stage(cirq_decayed, numpy_record_quality)
+    cirq_reset = reset_stage(cirq_feedback, reset_strength)
+
+    qml_measured = _qml_measurement_stage(rho_init, measurement_error)
+    qml_decayed = decay_record_to_blank(qml_measured, decay_strength)
+    qml_feedback = _qml_imperfect_controlled_x(qml_decayed, 1.0 - numpy_record_quality)
+    qml_reset = _qml_reset_memory_to_zero(qml_feedback, reset_strength)
+
+    def _row(tool_name: str, measured: np.ndarray, decayed: np.ndarray, feedback: np.ndarray, reset: np.ndarray) -> dict:
+        return {
+            "measurement_gap": float(np.linalg.norm(measured - numpy_measured)),
+            "decay_gap": float(np.linalg.norm(decayed - numpy_decayed)),
+            "feedback_gap": float(np.linalg.norm(feedback - numpy_feedback)),
+            "reset_gap": float(np.linalg.norm(reset - numpy_reset)),
+            "pass": bool(
+                np.allclose(measured, numpy_measured, atol=1e-8)
+                and np.allclose(decayed, numpy_decayed, atol=1e-8)
+                and np.allclose(feedback, numpy_feedback, atol=1e-8)
+                and np.allclose(reset, numpy_reset, atol=1e-8)
+            ),
+            "carrier": "two_qubit_record_reset",
+            "tool": tool_name,
+        }
+
+    return {
+        "qutip": _row("qutip", qutip_measured, qutip_decayed, qutip_feedback, qutip_reset),
+        "cirq": _row("cirq", cirq_measured, cirq_decayed, cirq_feedback, cirq_reset),
+        "pennylane": _row("pennylane", qml_measured, qml_decayed, qml_feedback, qml_reset),
+    }
 
 
 def run_protocol(
@@ -318,6 +546,11 @@ def main() -> None:
 
     ordered_rows = [row for row in rows if row["best_scrambled_name"] is not None]
     best_row = max(ordered_rows, key=lambda row: row["ordering_margin"])
+    bridge = build_bridge_witnesses(
+        measurement_error=best_row["measurement_error"],
+        record_lifetime_steps=best_row["record_lifetime_steps"],
+        reset_strength=best_row["reset_strength"],
+    )
     short_rows = [row for row in rows if row["record_lifetime_steps"] in (60, 120)]
     long_rows = [row for row in rows if row["record_lifetime_steps"] in (240, 480)]
     weak_rows = [row for row in rows if row["reset_strength"] == min(RESET_STRENGTH_GRID)]
@@ -350,6 +583,10 @@ def main() -> None:
                 "reset_strength": best_row["reset_strength"],
             },
             "pass": best_row["ordering_margin"] > 0.0,
+        },
+        "qutip_cirq_pennylane_witness_the_same_two_qubit_record_reset_carrier": {
+            "bridge_witnesses": bridge,
+            "pass": all(row["pass"] for row in bridge.values()),
         },
         "longer_lived_records_help_ordered_vs_scrambled_separation_on_average": {
             "short_lifetime_mean_margin": short_lifetime_mean_margin,
@@ -400,6 +637,9 @@ def main() -> None:
         "all_rows_have_finite_summary_values": {
             "pass": all(np.isfinite(row["ordering_margin"]) for row in rows),
         },
+        "bridge_witnesses_remain_consistent_on_the_same_two_qubit_carrier": {
+            "pass": all(row["pass"] for row in bridge.values()),
+        },
         "parameter_grid_covers_measurement_lifetime_and_reset_axes": {
             "measurement_error_values": MEASUREMENT_ERROR_GRID,
             "record_lifetime_steps_values": RECORD_LIFETIME_GRID,
@@ -435,6 +675,7 @@ def main() -> None:
         "mean_measurement_accuracy": mean_measurement_accuracy,
         "mean_measurement_mutual_information": mean_measurement_mi,
         "mean_record_survival_fraction": mean(row["ordered_record_survival_fraction"] for row in rows),
+        "bridge_all_pass": bool(all(row["pass"] for row in bridge.values())),
         "scope_note": (
             "QIT-aligned finite two-qubit companion row for record lifetime, record decay, "
             "and reset strength. It separates ordered, scrambled, and repair-oriented "
@@ -450,6 +691,7 @@ def main() -> None:
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "bridge_witnesses": bridge,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

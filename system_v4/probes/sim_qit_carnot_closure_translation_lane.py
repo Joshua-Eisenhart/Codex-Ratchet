@@ -10,14 +10,22 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
-    "Promoted QIT-aligned Carnot closure translation lane built from the open "
+    "Canonical QIT-aligned Carnot closure translation lane built from the open "
     "closure diagnostic row and the strict closure companion. It keeps closure "
-    "defect and dominant-leg translation gaps explicit."
+    "defect and dominant-leg translation gaps explicit without broadening the "
+    "theorem."
+)
+
+divergence_log = (
+    "This lane translates the open Carnot closure diagnostic against the strict "
+    "QIT Carnot closure companion. It reuses the existing result surfaces, keeps "
+    "the closure-gap comparison explicit, and does not introduce a new closure "
+    "theorem or new witness model."
 )
 
 LEGO_IDS = [

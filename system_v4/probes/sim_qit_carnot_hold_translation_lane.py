@@ -10,14 +10,22 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "classical_baseline"  # auto-backfill
+classification = "canonical"
 
 
-CLASSIFICATION = "research_support"
+CLASSIFICATION = "canonical"
 CLASSIFICATION_NOTE = (
     "Promoted QIT-aligned Carnot hold-translation lane built from the open "
-    "adaptive-hold sweep and the strict hold-policy companion. It is a "
-    "translation-ready comparison surface, not a canonical engine theorem."
+    "adaptive-hold sweep and the strict hold-policy companion. It reuses the "
+    "existing companion results as a translation surface and does not claim a "
+    "new Carnot theorem."
+)
+
+divergence_log = (
+    "QIT Carnot hold translation lane: this file compares the open adaptive-hold "
+    "sweep against the strict hold-policy companion by reusing the companion "
+    "result packs. It preserves the translation gap between closure and "
+    "efficiency, but it is not a new engine theorem or a fresh witness model."
 )
 
 LEGO_IDS = [
@@ -132,6 +140,7 @@ def main() -> None:
         "name": "qit_carnot_hold_translation_lane",
         "classification": CLASSIFICATION,
         "classification_note": CLASSIFICATION_NOTE,
+        "divergence_log": divergence_log,
         "lego_ids": LEGO_IDS,
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,

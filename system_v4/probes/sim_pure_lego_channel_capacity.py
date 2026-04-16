@@ -33,6 +33,26 @@ import numpy as np
 from scipy.linalg import sqrtm
 from scipy.optimize import minimize_scalar, minimize
 classification = "classical_baseline"  # auto-backfill
+divergence_log = (
+    "Classical baseline: this pure lego probe compares channel capacity and "
+    "degradability numerically with numpy/scipy and does not claim a nonclassical witness."
+)
+TOOL_MANIFEST = {
+    "numpy": {
+        "tried": True,
+        "used": True,
+        "reason": "numeric channel and entropy calculations for the classical baseline",
+    },
+    "scipy": {
+        "tried": True,
+        "used": True,
+        "reason": "matrix square-root and scalar optimization support for the classical baseline",
+    },
+}
+TOOL_INTEGRATION_DEPTH = {
+    "numpy": "supportive",
+    "scipy": "supportive",
+}
 
 np.random.seed(42)
 EPS = 1e-12

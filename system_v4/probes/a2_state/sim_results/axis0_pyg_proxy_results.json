@@ -551,10 +551,24 @@
         "bridge_owner_pass": true,
         "bridge_owner_gate_fraction": 1.0,
         "distinguishability_pass": true,
-        "distinguishability_gate_fraction": 1.0,
+        "distinguishability_gate_fraction": 0.8,
         "graph_longest_path_length": 5,
         "manifold_distance": 0.3193425096622258,
-        "pyg_mean_aggregate_norm": 9.0
+        "pyg_mean_aggregate_norm": 9.0,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 0.8,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": false,
+            "topology_conditioned": true
+          },
+          "note": "PyG proxy distinguishability is only load-bearing when graph-carried state separation stays admissible through the constraint chain."
+        }
       },
       "candidate_rows": [
         {

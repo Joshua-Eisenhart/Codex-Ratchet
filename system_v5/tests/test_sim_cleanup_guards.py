@@ -1171,6 +1171,94 @@ def test_system_surface_audit_tool_integration_reports_bundle_witnesses(
     assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 6
 
 
+def test_system_surface_audit_reports_search_archive_bundle_witness(
+    tmp_path, monkeypatch
+) -> None:
+    scripts_dir = str(REPO_ROOT / "scripts")
+    sys.path.insert(0, scripts_dir)
+    try:
+        module = _load_module(
+            "system_surface_audit_search_archive_bundle_under_test",
+            REPO_ROOT / "scripts" / "system_surface_audit.py",
+        )
+    finally:
+        if sys.path and sys.path[0] == scripts_dir:
+            sys.path.pop(0)
+
+    repo = tmp_path / "repo"
+    probes = repo / "system_v4" / "probes"
+    results = probes / "a2_state" / "sim_results"
+    probes.mkdir(parents=True, exist_ok=True)
+    results.mkdir(parents=True, exist_ok=True)
+
+    capability_specs = {
+        "pytorch": ("sim_pytorch_capability.py", "pytorch_capability_results.json"),
+        "optuna": ("sim_capability_optuna_isolated.py", "sim_capability_optuna_isolated_results.json"),
+        "pymoo": ("sim_capability_pymoo_isolated.py", "sim_capability_pymoo_isolated_results.json"),
+        "ribs": ("sim_capability_ribs_isolated.py", "sim_capability_ribs_isolated_results.json"),
+        "deap": ("sim_capability_deap_isolated.py", "sim_capability_deap_isolated_results.json"),
+        "evotorch": ("sim_capability_evotorch_isolated.py", "sim_capability_evotorch_isolated_results.json"),
+    }
+    for tool, (probe_name, result_name) in capability_specs.items():
+        (probes / probe_name).write_text(
+            f"TOOL_INTEGRATION_DEPTH = {{'{tool}': 'load_bearing'}}\n",
+            encoding="utf-8",
+        )
+        (results / result_name).write_text(
+            '{"overall_pass": true}\n',
+            encoding="utf-8",
+        )
+
+    (probes / "sim_integration_search_archive_stack.py").write_text(
+        "\n".join(
+            [
+                "import torch",
+                "import optuna",
+                "from deap import base",
+                "from evotorch import Problem",
+                "from pymoo.algorithms.moo.nsga2 import NSGA2",
+                "from ribs.archives import GridArchive",
+                "TOOL_MANIFEST = {",
+                "    'pytorch': {'tried': True, 'used': True, 'reason': 'objective'},",
+                "    'optuna': {'tried': True, 'used': True, 'reason': 'tpe'},",
+                "    'pymoo': {'tried': True, 'used': True, 'reason': 'pareto'},",
+                "    'ribs': {'tried': True, 'used': True, 'reason': 'archive'},",
+                "    'deap': {'tried': True, 'used': True, 'reason': 'ga'},",
+                "    'evotorch': {'tried': True, 'used': True, 'reason': 'snes'},",
+                "}",
+                "TOOL_INTEGRATION_DEPTH = {",
+                "    'pytorch': 'load_bearing',",
+                "    'optuna': 'load_bearing',",
+                "    'pymoo': 'load_bearing',",
+                "    'ribs': 'load_bearing',",
+                "    'deap': 'load_bearing',",
+                "    'evotorch': 'load_bearing',",
+                "}",
+            ]
+        ) + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(module, "REPO", repo)
+    monkeypatch.setattr(module, "PROBES", probes)
+    monkeypatch.setattr(module, "RESULTS_DIR", results)
+
+    report = module.tool_integration_surface()
+    bundle = report["bundles"]["search_archive_stack"]
+
+    assert report["per_tool"]["optuna"]["imported_in_sims"] == 1
+    assert report["per_tool"]["pymoo"]["imported_in_sims"] == 1
+    assert report["per_tool"]["ribs"]["imported_in_sims"] == 1
+    assert report["per_tool"]["deap"]["imported_in_sims"] == 1
+    assert report["per_tool"]["evotorch"]["imported_in_sims"] == 1
+    assert bundle["capability_gap_tools"] == []
+    assert bundle["weak_tools"] == []
+    assert bundle["full_bundle_witness_count"] == 1
+    assert bundle["needs_reference_sim"] is False
+    assert bundle["best_existing_witnesses"][0]["sim"] == "sim_integration_search_archive_stack.py"
+    assert bundle["best_existing_witnesses"][0]["imported_overlap_count"] == 6
+
+
 def test_system_surface_audit_runner_health_reports_draining() -> None:
     scripts_dir = str(REPO_ROOT / "scripts")
     sys.path.insert(0, scripts_dir)

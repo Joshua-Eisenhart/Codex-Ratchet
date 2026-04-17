@@ -34,6 +34,8 @@ def test_inspect_and_scrubber_status_report_atlas_overlays(tmp_path: Path) -> No
     assert "transition_annotations" in report["overlays"]
     assert report["mesh_patch_count"] == 2
     assert report["transition_meta_count"] == 2
+    assert report["lineage_meta_count"] == 2
+    assert report["topology_change_count"] == 2
     assert report["lane"] == "pairwise"
     assert report["claim_state"] == "snapshot-labeled"
     assert report["witness_type"] == "synthetic_fixture"

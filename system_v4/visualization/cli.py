@@ -129,16 +129,19 @@ def _build_parser() -> argparse.ArgumentParser:
 
     view_launch_parser = subparsers.add_parser("view-launch-report", help="Render the isolated viewer launch command")
     view_launch_parser.add_argument("--run", required=True)
+    view_launch_parser.add_argument("--consumer")
     view_launch_parser.add_argument("--off-screen-smoke", action="store_true")
     view_launch_parser.add_argument("--python-executable")
 
     view_launch_json_parser = subparsers.add_parser("view-launch-inspect", help="Inspect the isolated viewer launch command as JSON")
     view_launch_json_parser.add_argument("--run", required=True)
+    view_launch_json_parser.add_argument("--consumer")
     view_launch_json_parser.add_argument("--off-screen-smoke", action="store_true")
     view_launch_json_parser.add_argument("--python-executable")
 
     view_launch_run_parser = subparsers.add_parser("view-launch-run", help="Run the viewer through the isolated PyVista environment")
     view_launch_run_parser.add_argument("--run", required=True)
+    view_launch_run_parser.add_argument("--consumer")
     view_launch_run_parser.add_argument("--off-screen-smoke", action="store_true")
     view_launch_run_parser.add_argument("--dry-run", action="store_true")
     view_launch_run_parser.add_argument("--python-executable")
@@ -146,18 +149,21 @@ def _build_parser() -> argparse.ArgumentParser:
     view_best_parser = subparsers.add_parser("view-best-report", help="Render the isolated viewer launch for the current best run of a sim family")
     view_best_parser.add_argument("--root", action="append", required=True)
     view_best_parser.add_argument("--sim", required=True)
+    view_best_parser.add_argument("--consumer")
     view_best_parser.add_argument("--off-screen-smoke", action="store_true")
     view_best_parser.add_argument("--python-executable")
 
     view_best_json_parser = subparsers.add_parser("view-best-inspect", help="Inspect the isolated viewer launch for the current best run of a sim family as JSON")
     view_best_json_parser.add_argument("--root", action="append", required=True)
     view_best_json_parser.add_argument("--sim", required=True)
+    view_best_json_parser.add_argument("--consumer")
     view_best_json_parser.add_argument("--off-screen-smoke", action="store_true")
     view_best_json_parser.add_argument("--python-executable")
 
     view_best_run_parser = subparsers.add_parser("view-best-run", help="Run the isolated viewer for the current best run of a sim family")
     view_best_run_parser.add_argument("--root", action="append", required=True)
     view_best_run_parser.add_argument("--sim", required=True)
+    view_best_run_parser.add_argument("--consumer")
     view_best_run_parser.add_argument("--off-screen-smoke", action="store_true")
     view_best_run_parser.add_argument("--dry-run", action="store_true")
     view_best_run_parser.add_argument("--python-executable")
@@ -332,6 +338,7 @@ def main() -> int:
         print(
             render_viewer_launch(
                 Path(args.run),
+                consumer=args.consumer,
                 off_screen_smoke=args.off_screen_smoke,
                 python_executable=Path(args.python_executable) if args.python_executable else None,
             )
@@ -343,6 +350,7 @@ def main() -> int:
             json.dumps(
                 collect_viewer_launch(
                     Path(args.run),
+                    consumer=args.consumer,
                     off_screen_smoke=args.off_screen_smoke,
                     python_executable=Path(args.python_executable) if args.python_executable else None,
                 ),
@@ -354,6 +362,7 @@ def main() -> int:
     if args.command == "view-launch-run":
         result = launch_viewer(
             Path(args.run),
+            consumer=args.consumer,
             off_screen_smoke=args.off_screen_smoke,
             dry_run=args.dry_run,
             python_executable=Path(args.python_executable) if args.python_executable else None,
@@ -366,6 +375,7 @@ def main() -> int:
             render_best_viewer_launch(
                 [Path(root) for root in args.root],
                 args.sim,
+                consumer=args.consumer,
                 off_screen_smoke=args.off_screen_smoke,
                 python_executable=Path(args.python_executable) if args.python_executable else None,
             )
@@ -378,6 +388,7 @@ def main() -> int:
                 collect_best_viewer_launch(
                     [Path(root) for root in args.root],
                     args.sim,
+                    consumer=args.consumer,
                     off_screen_smoke=args.off_screen_smoke,
                     python_executable=Path(args.python_executable) if args.python_executable else None,
                 ),
@@ -390,6 +401,7 @@ def main() -> int:
         result = launch_best_viewer(
             [Path(root) for root in args.root],
             args.sim,
+            consumer=args.consumer,
             off_screen_smoke=args.off_screen_smoke,
             dry_run=args.dry_run,
             python_executable=Path(args.python_executable) if args.python_executable else None,

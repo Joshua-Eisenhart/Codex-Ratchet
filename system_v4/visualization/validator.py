@@ -99,6 +99,30 @@ def _is_transition_meta(value: object) -> bool:
     return True
 
 
+def _is_lineage_meta(value: object) -> bool:
+    if not isinstance(value, dict):
+        return False
+    if not isinstance(value.get("source_patch_id"), str) or not value.get("source_patch_id"):
+        return False
+    if not isinstance(value.get("lineage_kind"), str) or not value.get("lineage_kind"):
+        return False
+    return True
+
+
+def _is_topology_change_meta(value: object) -> bool:
+    if not isinstance(value, dict):
+        return False
+    if not isinstance(value.get("change_kind"), str) or not value.get("change_kind"):
+        return False
+    source_patch_ids = value.get("source_patch_ids")
+    if not isinstance(source_patch_ids, list) or not all(isinstance(item, str) and item for item in source_patch_ids):
+        return False
+    detail = value.get("detail")
+    if detail is not None and (not isinstance(detail, str) or not detail):
+        return False
+    return True
+
+
 def _is_non_empty_string_list(value: object) -> bool:
     return isinstance(value, list) and all(isinstance(item, str) and item for item in value)
 
@@ -400,6 +424,24 @@ def validate_run_dir(run_dir: Path) -> dict:
                         for scalar_name, scalar_values in point_scalars.items():
                             if not isinstance(scalar_values, list) or len(scalar_values) != points_count:
                                 errors.append(f"{label} point_scalars[{scalar_name}] length must match points_xyz")
+
+                lineage_meta = entity.get("lineage_meta")
+                if lineage_meta is not None:
+                    if not isinstance(lineage_meta, list) or not lineage_meta:
+                        errors.append(f"{label} lineage_meta must be a non-empty list")
+                    else:
+                        for lineage_index, entry in enumerate(lineage_meta):
+                            if not _is_lineage_meta(entry):
+                                errors.append(f"{label} lineage_meta[{lineage_index}] is malformed")
+
+                topology_change_meta = entity.get("topology_change_meta")
+                if topology_change_meta is not None:
+                    if not isinstance(topology_change_meta, list) or not topology_change_meta:
+                        errors.append(f"{label} topology_change_meta must be a non-empty list")
+                    else:
+                        for change_index, entry in enumerate(topology_change_meta):
+                            if not _is_topology_change_meta(entry):
+                                errors.append(f"{label} topology_change_meta[{change_index}] is malformed")
 
         if len(entity_ids) != len(set(entity_ids)):
             errors.append(f"{frame_path.name} contains duplicate entity_id values")

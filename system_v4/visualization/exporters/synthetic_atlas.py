@@ -176,6 +176,15 @@ def build_frame(step_index: int, frame_count: int) -> dict:
             "transition_kind": "shared_edge_flip",
             "seam_edges": [[0, 1]],
         }],
+        "lineage_meta": [{
+            "source_patch_id": "fixture_seed_upper",
+            "lineage_kind": "fixture_seed",
+        }],
+        "topology_change_meta": [{
+            "change_kind": "fixture_patch_split",
+            "source_patch_ids": ["fixture_seed_upper"],
+            "detail": "upper patch is a supporting split from the synthetic seam fixture",
+        }],
         "point_scalars": {
             "height": [0.0, 0.0, 0.8],
         },
@@ -198,6 +207,15 @@ def build_frame(step_index: int, frame_count: int) -> dict:
             "neighbor_patch_id": "patch_A",
             "transition_kind": "shared_edge_flip",
             "seam_edges": [[0, 1]],
+        }],
+        "lineage_meta": [{
+            "source_patch_id": "fixture_seed_lower",
+            "lineage_kind": "fixture_seed",
+        }],
+        "topology_change_meta": [{
+            "change_kind": "fixture_patch_split",
+            "source_patch_ids": ["fixture_seed_lower"],
+            "detail": "lower patch is a supporting split from the synthetic seam fixture",
         }],
         "point_scalars": {
             "height": [0.0, 0.0, -0.8],

@@ -123,6 +123,16 @@ def inspect_run_dir(run_dir: Path) -> dict:
             for entity in final_entities
             if entity.get("entity_kind") == MESH_PATCH_ENTITY_KIND and isinstance(entity.get("transition_meta"), list)
         ),
+        "lineage_meta_count": sum(
+            len(entity.get("lineage_meta", []))
+            for entity in final_entities
+            if entity.get("entity_kind") == MESH_PATCH_ENTITY_KIND and isinstance(entity.get("lineage_meta"), list)
+        ),
+        "topology_change_count": sum(
+            len(entity.get("topology_change_meta", []))
+            for entity in final_entities
+            if entity.get("entity_kind") == MESH_PATCH_ENTITY_KIND and isinstance(entity.get("topology_change_meta"), list)
+        ),
         "primary_entity_id": primary_entity.get("entity_id"),
         "capabilities": capabilities,
         "path_kind": scene.get("path_spec", {}).get("kind"),

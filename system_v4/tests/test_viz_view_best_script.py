@@ -89,3 +89,44 @@ def test_view_best_replay_script_dry_run_for_transport(tmp_path: Path) -> None:
     assert payload["best_run"]["run_id"] == "script_transport_demo"
     assert payload["launch_result"]["off_screen_smoke"] is True
     assert payload["launch_result"]["executed"] is False
+
+
+def test_view_best_replay_script_forwards_consumer_flag(tmp_path: Path) -> None:
+    transport = _load_module(TRANSPORT_EXPORTER_PATH, "transport_s2_exporter")
+    hopf = _load_module(HOPF_EXPORTER_PATH, "hopf_bundle_exporter")
+    transport_root = tmp_path / "transport_root"
+    hopf_root = tmp_path / "hopf_root"
+    transport_run = transport.export_transport_s2("script_transport_demo", transport_root, steps_per_arc=8)
+    hopf.export_hopf_bundle("script_hopf_demo", hopf_root, n_points=16, fiber_points=8, fiber_twist=1.0)
+
+    manifest_path = transport_run / "run_manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["eligible_consumers"] = manifest["eligible_consumers"] + ["viewer_surface_smoke"]
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+    result = subprocess.run(
+        [
+            str(SCRIPT_PATH),
+            "parallel_transport_s2_classical",
+            "--consumer",
+            "viewer_surface_smoke",
+            "--off-screen-smoke",
+            "--dry-run",
+        ],
+        cwd=REPO_ROOT,
+        env={
+            **dict(**__import__("os").environ),
+            "VIZ_RUN_ROOT_TRANSPORT": str(transport_root),
+            "VIZ_RUN_ROOT_HOPF": str(hopf_root),
+            "VIZ_VIEWER_PYTHON": sys.executable,
+        },
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["best_run"]["consumer"] == "viewer_surface_smoke"
+    assert payload["launch_result"]["consumer"] == "viewer_surface_smoke"
+    assert payload["launch_result"]["consumer_admission"]["admitted"] is True

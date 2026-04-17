@@ -126,5 +126,30 @@ def test_frame_status_text_mentions_multi_entity_primary(tmp_path: Path) -> None
     assert "claim ceiling: exists" in text
     assert "claim/promotion: candidate / supporting" in text
     assert "admission: pairwise -> coexistence" in text
+    assert "lane gate: no lower-lane prerequisites" in text
     assert "entities: 5" in text
     assert "primary: carrier_0" in text
+
+
+def test_timeline_series_tracks_witness_and_exclusion_progression(tmp_path: Path) -> None:
+    exporter = _load_module(HOPF_EXPORTER_PATH, "hopf_bundle_exporter")
+    scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
+
+    run_dir = exporter.export_hopf_bundle("hopf_timeline", tmp_path, n_points=16, fiber_points=8, fiber_twist=1.0)
+    witness_trace = json.loads((run_dir / "witness_trace.json").read_text(encoding="utf-8"))
+    witness_cumulative, exclusion_cumulative = scrubber._timeline_series(witness_trace, frame_count=16)
+
+    assert witness_cumulative[-1] == len(witness_trace["events"])
+    assert exclusion_cumulative[-1] == 0
+
+
+def test_timeline_series_defaults_exclusion_without_step_to_last_frame(tmp_path: Path) -> None:
+    atlas_exporter = _load_module(REPO_ROOT / "system_v4" / "visualization" / "exporters" / "synthetic_atlas.py", "synthetic_atlas_exporter")
+    scrubber = _load_module(SCRUBBER_PATH, "scrubber_pyvista")
+
+    run_dir = atlas_exporter.export_synthetic_atlas("atlas_timeline", tmp_path, frame_count=5)
+    witness_trace = json.loads((run_dir / "witness_trace.json").read_text(encoding="utf-8"))
+    witness_cumulative, exclusion_cumulative = scrubber._timeline_series(witness_trace, frame_count=5)
+
+    assert witness_cumulative[-1] == len(witness_trace["events"])
+    assert exclusion_cumulative.tolist() == [0.0, 0.0, 0.0, 0.0, 1.0]

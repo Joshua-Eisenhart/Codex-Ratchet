@@ -2,8 +2,8 @@
 set -euo pipefail
 
 if [[ $# -lt 1 ]]; then
-  echo "usage: scripts/view_best_replay.sh <sim_name> [extra args...]" >&2
-  echo "example: scripts/view_best_replay.sh hopf_bundle_lift --off-screen-smoke --dry-run" >&2
+  echo "usage: scripts/view_best_replay.sh <sim_name> [--consumer <name>] [extra args...]" >&2
+  echo "example: scripts/view_best_replay.sh hopf_bundle_lift --consumer viewer_surface_smoke --off-screen-smoke --dry-run" >&2
   exit 2
 fi
 

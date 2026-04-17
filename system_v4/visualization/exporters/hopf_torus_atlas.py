@@ -214,6 +214,15 @@ def build_frame(
                     "transition_kind": "nested_torus_transport",
                     "seam_edges": seam_edges,
                 }],
+                "lineage_meta": [{
+                    "source_patch_id": "hopf_inner_seed",
+                    "lineage_kind": "transport_family_seed",
+                }],
+                "topology_change_meta": [{
+                    "change_kind": "nested_transport_remesh",
+                    "source_patch_ids": ["hopf_inner_seed"],
+                    "detail": "inner torus patch tracks the remeshed transport family across nested shells",
+                }],
                 "point_scalars": {
                     "torus_phase": point_scalars,
                 },
@@ -232,6 +241,15 @@ def build_frame(
                     "neighbor_patch_id": "inner_torus_patch",
                     "transition_kind": "nested_torus_transport",
                     "seam_edges": seam_edges,
+                }],
+                "lineage_meta": [{
+                    "source_patch_id": "hopf_outer_seed",
+                    "lineage_kind": "transport_family_seed",
+                }],
+                "topology_change_meta": [{
+                    "change_kind": "nested_transport_remesh",
+                    "source_patch_ids": ["hopf_outer_seed"],
+                    "detail": "outer torus patch tracks the remeshed transport family across nested shells",
                 }],
                 "point_scalars": {
                     "torus_phase": point_scalars,

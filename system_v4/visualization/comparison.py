@@ -128,6 +128,16 @@ def compare_run_dirs(left_run: Path, right_run: Path) -> dict:
             "right": right.get("transition_meta_count", 0),
             "delta": int(right.get("transition_meta_count", 0)) - int(left.get("transition_meta_count", 0)),
         },
+        "lineage_meta_count": {
+            "left": left.get("lineage_meta_count", 0),
+            "right": right.get("lineage_meta_count", 0),
+            "delta": int(right.get("lineage_meta_count", 0)) - int(left.get("lineage_meta_count", 0)),
+        },
+        "topology_change_count": {
+            "left": left.get("topology_change_count", 0),
+            "right": right.get("topology_change_count", 0),
+            "delta": int(right.get("topology_change_count", 0)) - int(left.get("topology_change_count", 0)),
+        },
         "capabilities": {
             "left": left["capabilities"],
             "right": right["capabilities"],

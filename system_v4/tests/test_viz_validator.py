@@ -137,3 +137,35 @@ def test_validator_fails_when_canonical_promotion_is_too_early(tmp_path: Path) -
     report = validator.validate_run_dir(run_dir)
     assert report["ok"] is False
     assert any("bridge-claims" in error for error in report["errors"])
+
+
+def test_validator_fails_when_lineage_meta_is_malformed(tmp_path: Path) -> None:
+    atlas_exporter = _load_module(REPO_ROOT / "system_v4" / "visualization" / "exporters" / "synthetic_atlas.py", "synthetic_atlas_exporter")
+    validator = _load_module(VALIDATOR_PATH, "viz_validator")
+
+    run_dir = atlas_exporter.export_synthetic_atlas("broken_lineage_meta", tmp_path, frame_count=5)
+    frame_path = sorted((run_dir / "frames").glob("*.json"))[-1]
+    frame_payload = json.loads(frame_path.read_text(encoding="utf-8"))
+    mesh_entity = next(entity for entity in frame_payload["entities"] if entity.get("entity_id") == "patch_A")
+    mesh_entity["lineage_meta"][0] = {"source_patch_id": "", "lineage_kind": ""}
+    frame_path.write_text(json.dumps(frame_payload, indent=2), encoding="utf-8")
+
+    report = validator.validate_run_dir(run_dir)
+    assert report["ok"] is False
+    assert any("lineage_meta" in error for error in report["errors"])
+
+
+def test_validator_fails_when_topology_change_meta_is_malformed(tmp_path: Path) -> None:
+    atlas_exporter = _load_module(REPO_ROOT / "system_v4" / "visualization" / "exporters" / "synthetic_atlas.py", "synthetic_atlas_exporter")
+    validator = _load_module(VALIDATOR_PATH, "viz_validator")
+
+    run_dir = atlas_exporter.export_synthetic_atlas("broken_topology_change", tmp_path, frame_count=5)
+    frame_path = sorted((run_dir / "frames").glob("*.json"))[-1]
+    frame_payload = json.loads(frame_path.read_text(encoding="utf-8"))
+    mesh_entity = next(entity for entity in frame_payload["entities"] if entity.get("entity_id") == "patch_B")
+    mesh_entity["topology_change_meta"][0] = {"change_kind": "", "source_patch_ids": [], "detail": ""}
+    frame_path.write_text(json.dumps(frame_payload, indent=2), encoding="utf-8")
+
+    report = validator.validate_run_dir(run_dir)
+    assert report["ok"] is False
+    assert any("topology_change_meta" in error for error in report["errors"])

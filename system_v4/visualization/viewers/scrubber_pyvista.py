@@ -23,6 +23,32 @@ def load_run(run_dir: Path) -> tuple[dict, dict, list[dict], dict]:
     return manifest, scene, frames, summary
 
 
+def _event_frame_index(event: dict, frame_count: int, *, default_to_last: bool) -> int:
+    raw_index = event.get("step_index")
+    if isinstance(raw_index, int):
+        return max(0, min(raw_index, frame_count - 1))
+    return frame_count - 1 if default_to_last and frame_count > 0 else 0
+
+
+def _timeline_series(witness_trace: dict, frame_count: int) -> tuple[np.ndarray, np.ndarray]:
+    witness_counts = np.zeros(frame_count, dtype=float)
+    exclusion_counts = np.zeros(frame_count, dtype=float)
+    if frame_count <= 0:
+        return witness_counts, exclusion_counts
+
+    for event in witness_trace.get("events", []):
+        if not isinstance(event, dict):
+            continue
+        witness_counts[_event_frame_index(event, frame_count, default_to_last=False)] += 1.0
+
+    for event in witness_trace.get("exclusion_events", []):
+        if not isinstance(event, dict):
+            continue
+        exclusion_counts[_event_frame_index(event, frame_count, default_to_last=True)] += 1.0
+
+    return np.cumsum(witness_counts), np.cumsum(exclusion_counts)
+
+
 def _prepare_matplotlib_runtime() -> str:
     configured = os.environ.get("MPLCONFIGDIR")
     if configured:
@@ -129,12 +155,19 @@ def _frame_status_text(frame: dict, expected_holonomy: float, manifest: dict) ->
     entity = _primary_entity(frame)
     scalars = entity["scalars"]
     tags = entity.get("tags", {})
+    prerequisite_lanes = list(manifest.get("lane_admission", {}).get("prerequisite_lanes", []))
+    gate_state = (
+        f"requires lower lanes: {', '.join(prerequisite_lanes)}"
+        if prerequisite_lanes
+        else "no lower-lane prerequisites"
+    )
     lines = [
         f"constraint set: {manifest.get('constraint_set')}",
         f"probe family: {manifest.get('probe_family')}",
         f"claim ceiling: {manifest.get('status_label')}",
         f"claim/promotion: {manifest.get('claim_state')} / {manifest.get('promotion_status')}",
         f"admission: {manifest.get('admission_stage')} -> {manifest.get('promotion_target_stage')}",
+        f"lane gate: {gate_state}",
         f"blocked consumers: {', '.join(manifest.get('blocked_consumers', [])) or '(none)'}",
         f"promotion blockers: {', '.join(manifest.get('promotion_blockers', [])) or '(none)'}",
         f"exclusion criteria: {', '.join(manifest.get('exclusion_criteria', [])) or '(none)'}",
@@ -229,6 +262,7 @@ def open_scrubber(
         raise RuntimeError(f"Run failed validation: {'; '.join(report['errors'])}")
 
     manifest, scene, frames, _summary = load_run(run_dir)
+    witness_trace = json.loads((Path(run_dir) / "witness_trace.json").read_text(encoding="utf-8"))
     _require_capabilities(manifest)
 
     _prepare_matplotlib_runtime()
@@ -254,6 +288,7 @@ def open_scrubber(
     )
     capabilities = set(manifest.get("capabilities", []))
     frame_indices = np.array([frame["step_index"] for frame in frames], dtype=float)
+    witness_cumulative, exclusion_cumulative = _timeline_series(witness_trace, len(frames))
     error_values = np.array(
         [_primary_entity(frame)["scalars"]["transport_error"] for frame in frames],
         dtype=float,
@@ -369,6 +404,37 @@ def open_scrubber(
         label="current",
     )
     plotter.add_chart(error_chart)
+
+    witness_chart = pv.Chart2D(size=(0.34, 0.18), loc=(0.33, 0.74))
+    witness_chart.title = "Witness / Exclusion Timeline"
+    witness_chart.x_label = "step"
+    witness_chart.y_label = "cumulative events"
+    witness_chart.line(frame_indices, witness_cumulative, color="#fde047", width=2.5, label="witnesses")
+    witness_cursor = witness_chart.scatter(
+        [frame_indices[0]],
+        [witness_cumulative[0]],
+        color="#ffffff",
+        size=10,
+        label="current witness",
+    )
+    exclusion_cursor = None
+    if np.any(exclusion_cumulative > 0):
+        witness_chart.line(frame_indices, exclusion_cumulative, color="#fb7185", width=2.5, label="exclusions")
+        exclusion_cursor = witness_chart.scatter(
+            [frame_indices[0]],
+            [exclusion_cumulative[0]],
+            color="#fecdd3",
+            size=10,
+            label="current exclusion",
+        )
+    plotter.add_chart(witness_chart)
+
+    def _update_witness_chart(index: int) -> None:
+        witness_cursor.update([frame_indices[index]], [witness_cumulative[index]])
+        if exclusion_cursor is not None:
+            exclusion_cursor.update([frame_indices[index]], [exclusion_cumulative[index]])
+
+    chart_updaters.append(_update_witness_chart)
 
     def render_frame(index: int) -> None:
         index = max(0, min(index, len(frames) - 1))

@@ -85,3 +85,5 @@ def test_render_run_report_includes_atlas_overlay_fields(tmp_path: Path) -> None
     assert "Capabilities: base_point, frame, mesh_geometry, cell_geometry, chart_patch, seam_markers, transition_meta" in text
     assert "Overlays: base_path, frame_glyphs, mesh_patch_lines, mesh_patch_cells, seam_edges, transition_annotations" in text
     assert "Transitions: 2" in text
+    assert "Lineage Records: 2" in text
+    assert "Topology Changes: 2" in text

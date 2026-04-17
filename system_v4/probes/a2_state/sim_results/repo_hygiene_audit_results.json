@@ -1,58 +1,39 @@
 {
-  "generated_at": "2026-04-17T07:12:28.025449+00:00",
+  "generated_at": "2026-04-17T07:16:40.400019+00:00",
   "strict": false,
   "blocker_count": 1,
-  "advisory_count": 3,
+  "advisory_count": 2,
   "repair_candidate_count": 1,
-  "source_dirty_count": 6,
-  "generated_dirty_count": 142,
-  "dirty_worktree_count": 148,
+  "source_dirty_count": 1,
+  "generated_dirty_count": 0,
+  "dirty_worktree_count": 1,
   "git": {
     "ok": true,
-    "tracked_dirty_count": 145,
-    "untracked_count": 3,
-    "source_dirty_count": 6,
-    "generated_dirty_count": 142,
-    "total_dirty_count": 148,
+    "tracked_dirty_count": 1,
+    "untracked_count": 0,
+    "source_dirty_count": 1,
+    "generated_dirty_count": 0,
+    "total_dirty_count": 1,
     "status_class_counts": {
-      "modified": 116,
-      "deleted": 29,
-      "untracked": 3
+      "modified": 1
     },
     "dirty_source_buckets": [
       {
         "label": "other_source",
-        "count": 5
-      },
-      {
-        "label": "build_contract",
         "count": 1
       }
     ],
-    "dirty_generated_buckets": [
-      {
-        "label": "generated_artifacts",
-        "count": 142
-      }
-    ],
+    "dirty_generated_buckets": [],
     "top_dirty_prefixes": [
       {
-        "prefix": "system_v4",
-        "count": 142
-      },
-      {
         "prefix": "ops",
-        "count": 5
-      },
-      {
-        "prefix": "requirements-sim-stack.txt",
         "count": 1
       }
     ]
   },
   "branch_divergence": {
     "behind_count": 0,
-    "ahead_count": 1157
+    "ahead_count": 1162
   },
   "recent_checkpoint_scope_findings": [],
   "root_result_files": [],
@@ -79,7 +60,7 @@
     },
     "primary_sim_results": {
       "path": "system_v4/probes/a2_state/sim_results",
-      "file_count": 2712,
+      "file_count": 2714,
       "threshold": 500
     },
     "secondary_sim_results": {
@@ -90,46 +71,34 @@
   },
   "summary": {
     "blocker_count": 1,
-    "advisory_count": 3,
+    "advisory_count": 2,
     "repair_candidate_count": 1,
-    "primary_result_count": 2686,
+    "primary_result_count": 2688,
     "secondary_result_count": 0,
     "secondary_unique_result_count": 0,
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 6,
-    "generated_dirty_count": 142,
-    "dirty_worktree_count": 148,
-    "dirty_source_bucket_count": 2,
+    "source_dirty_count": 1,
+    "generated_dirty_count": 0,
+    "dirty_worktree_count": 1,
+    "dirty_source_bucket_count": 1,
     "ok": false
   },
   "blockers": [
     {
       "kind": "dirty_source_pressure",
       "severity": "medium",
-      "source_dirty_count": 6,
+      "source_dirty_count": 1,
       "dirty_source_buckets": [
         {
           "label": "other_source",
-          "count": 5
-        },
-        {
-          "label": "build_contract",
           "count": 1
         }
       ],
       "top_dirty_prefixes": [
         {
-          "prefix": "system_v4",
-          "count": 142
-        },
-        {
           "prefix": "ops",
-          "count": 5
-        },
-        {
-          "prefix": "requirements-sim-stack.txt",
           "count": 1
         }
       ]
@@ -137,15 +106,9 @@
   ],
   "advisories": [
     {
-      "kind": "dirty_generated_pressure",
-      "severity": "advisory",
-      "generated_dirty_count": 142,
-      "total_dirty_count": 148
-    },
-    {
       "kind": "local_commit_stack_depth",
       "severity": "advisory",
-      "ahead_count": 1157,
+      "ahead_count": 1162,
       "recommended_push_threshold": 5
     },
     {
@@ -153,7 +116,7 @@
       "severity": "advisory",
       "label": "primary_sim_results",
       "path": "system_v4/probes/a2_state/sim_results",
-      "file_count": 2712,
+      "file_count": 2714,
       "threshold": 500
     }
   ],
@@ -166,10 +129,6 @@
       "dirty_source_buckets": [
         {
           "label": "other_source",
-          "count": 5
-        },
-        {
-          "label": "build_contract",
           "count": 1
         }
       ]

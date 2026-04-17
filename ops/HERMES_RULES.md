@@ -22,17 +22,35 @@ Step 2 — Auto-handle SAFE buckets (commit or delete, no questions asked):
 | D | `**/.DS_Store`, `* 2.py` (space-number macOS dupes) | `rm` (no commit) |
 | E | New `system_v4/probes/sim_flux_*.py`, `sim_u1_*.py`, `*_shell_canonical.py` (≤500 lines) | `git add` + commit `"auto: new shell-local sims <date>"` |
 
-Step 3 — BLOCK on unsafe buckets (report to L3, do not proceed):
+Step 3 — IGNORE runtime-mutated files (expected drift, not blockers):
 
+These files are mutated continuously by the 24/7 runner and other live processes. Do NOT treat them as dirty-tree blockers. Do NOT try to auto-commit them. Simply ignore in preflight:
+
+- `ops/queue_*.txt` (runner rewrites DONE/FAIL markers in-place)
+- `ops/sim_queue*.txt`
+- `system_v4/**/sim_results/*.json` (runner writes on every probe)
+- `system_v4/a2_state/**` (runtime audit/graph state)
+- `system_v4/a2_state/audit_logs/**`
+- `overnight_logs/**` (runtime logs)
+- `/tmp/hermes_active_scopes.txt`
+
+A preflight implementation should:
+1. Get `git status --short`
+2. Filter out any line whose path matches the ignore patterns above
+3. ONLY apply safe-bucket / blocker classification to the remaining paths
+
+Step 4 — BLOCK on unsafe buckets (report to L3, do not proceed):
+
+After ignoring runtime-mutated files, BLOCK only on:
 - Any change to: `.gitignore`, `Makefile`, `CLAUDE.md`, `pyproject.toml`, `requirements.txt`, `.github/`, `.claude/`, or files containing `secret|credential|.env`
 - Deleted files not in buckets A–E
 - New `.py` files >500 lines outside `*_shell_canonical.py` pattern
 - Scopes owned by a current sibling Hermes terminal (check `/tmp/hermes_active_scopes.txt`)
 - Untracked directories not named: `system_v4/`, `system_v5/`, `overnight_logs/`, `scripts/`, `tests/`, `tools/`, `ops/`
 
-Step 4 — Verify: `git status --short` empty → proceed. Non-empty → telegram L3 with specific items + category guess.
+Step 5 — Verify: `git status --short | grep -vE "<ignore patterns from Step 3>"` empty → proceed. Non-empty → telegram L3 with specific items + category guess. Runtime-mutated files never count toward "dirty tree."
 
-Step 5 — Record active scope: append to `/tmp/hermes_active_scopes.txt`:
+Step 6 — Record active scope: append to `/tmp/hermes_active_scopes.txt`:
 `<terminal_id>:<session_start>:<brief_name>:<file_prefix_scopes>`
 
 ## 3. Worker spawning rules

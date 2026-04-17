@@ -3,7 +3,7 @@
 Canonical shell-local U(1) charge-sector selection probe.
 
 QED-style shell-local claim: local U(1) charge sectors that survive 2*pi phase closure are
-integer-labeled, while fractional labels are excluded on this single-shell carrier.
+integer-labeled QED sectors, while fractional labels are excluded on this single-shell carrier.
 """
 
 import json

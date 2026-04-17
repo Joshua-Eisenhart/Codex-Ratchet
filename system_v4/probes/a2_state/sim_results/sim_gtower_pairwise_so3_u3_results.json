@@ -51,19 +51,19 @@
       "reason": "load-bearing: Cl(2,0) has e12^2 = -1 \u2192 complex structure; U(1) phase rotation = Cl(2,0) rotor; SO(3)\u2194U(3) coupling adds this structure."
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: geomstats confirms SO(3) dim=3, SU(3) dim=8; U(3) has dim=9 = SO(3) embedded + 6 complex directions."
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: e3nn SO(3) irreps are real orthogonal representations; U(3) adds complex phase freedom; D^1 at identity vs phase rotation verified."
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: rustworkx encodes SO(3)\u2192U(3) as a directed edge; this is the complexification step in the G-tower."
+      "reason": "not installed"
     },
     "xgi": {
       "tried": false,
@@ -127,24 +127,6 @@
       "pass": true,
       "e12_sq": -1.0,
       "detail": "e12^2 = -1 in Cl(2,0): e12 defines J (complex structure for SO\u2192U step)"
-    },
-    "e3nn_so3_real_at_identity": {
-      "pass": true,
-      "shape": [
-        3,
-        3
-      ],
-      "detail": "SO(3) D^1 Wigner matrix at identity = I: real, no complex phase"
-    },
-    "geomstats_dimension_difference": {
-      "pass": true,
-      "so3_lie_dim": 3,
-      "u3_lie_dim": 9,
-      "detail": "SO(3) Lie dim=3; U(3) Lie dim=9: complex structure adds 6 generators"
-    },
-    "rustworkx_SO3_U3_edge": {
-      "pass": true,
-      "detail": "SO(3)\u2192U(3) directed edge: complexification ratchet step"
     }
   },
   "negative": {

@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing: proves UNSAT when injective AND Ext^1!=0"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "not needed; Ext is purely categorical, not geometric algebra"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no manifold geometry in Ext computation"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no equivariance in homological algebra"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; Ext complex uses chain structure, not general graphs"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph structure"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -100,14 +100,12 @@
   },
   "negative": {
     "test_unsat_injective_and_nonzero_ext1": {
-      "pass": true,
-      "detail": "UNSAT when injective(N)=true AND Ext^1(M,N)!=0",
-      "solver_result": "UNSAT"
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_unsat_proj_dim_exceeded": {
-      "pass": true,
-      "detail": "UNSAT when proj_dim(M)=4 AND Ext^5(M,N)!=0",
-      "solver_result": "UNSAT"
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_sympy_injectivity_constraint": {
       "pass": true,

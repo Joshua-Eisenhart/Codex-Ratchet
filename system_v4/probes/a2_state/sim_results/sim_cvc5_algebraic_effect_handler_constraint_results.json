@@ -19,9 +19,9 @@
       "reason": "cvc5 preferred for algebraic handler composition constraints"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 proves handler composition laws (h1\u2218h2, identity, associativity) via QF_LIA handler index and operation constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -68,7 +68,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": null,
     "clifford": null,
     "geomstats": null,
@@ -80,73 +80,35 @@
   },
   "positive": {
     "test_positive_identity_handler": {
-      "description": "cvc5 SAT: identity handler handle_id(m)=m preserves computation",
-      "sat": true,
-      "effect_count_before": 3,
-      "handler": "id",
-      "expected": true,
-      "interpretation": "Identity handler satisfies algebraic handler law: no transformation",
-      "model": "[3, 3]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_handler_composition": {
-      "description": "cvc5 SAT: handler composition h1\u2218h2 with sequential effect reduction",
-      "sat": true,
-      "initial_effects": 5,
-      "after_h2": 3,
-      "after_h1": 2,
-      "expected": true,
-      "interpretation": "Sequential handler composition is associative: h1(h2(m)) combines semantics",
-      "model": "[5, 3, 2]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_handler_associativity": {
-      "description": "cvc5 SAT: handler associativity (h1\u2218(h2\u2218h3)) = ((h1\u2218h2)\u2218h3)",
-      "sat": true,
-      "expected": true,
-      "interpretation": "Handler composition is associative; order of nesting does not matter",
-      "model": "[2, 2]"
+      "error": "No module named 'cvc5'"
     }
   },
   "negative": {
     "test_negative_identity_law_violated": {
-      "description": "cvc5 UNSAT: handle_id(m)\u2260m AND algebraic law is impossible (identity is axiomatic)",
-      "unsat": true,
-      "expected": true,
-      "reason": "Identity handler is fundamental algebraic operation; cannot violate without contradiction"
+      "error": "No module named 'cvc5'"
     },
     "test_negative_composition_law_violated": {
-      "description": "cvc5 UNSAT: h1\u2218h2 \u2260 h_combined AND composition law is impossible (monad law holds)",
-      "unsat": true,
-      "expected": true,
-      "reason": "Handler composition must satisfy monad laws; violation contradicts algebraic semantics"
+      "error": "No module named 'cvc5'"
     },
     "test_negative_associativity_violated": {
-      "description": "cvc5 UNSAT: (h1\u2218h2)\u2218h3 \u2260 h1\u2218(h2\u2218h3) AND associativity is impossible (handler semigroup)",
-      "unsat": true,
-      "expected": true,
-      "reason": "Handler composition forms semigroup/monoid; associativity is foundational"
+      "error": "No module named 'cvc5'"
     }
   },
   "boundary": {
     "test_boundary_single_handler": {
-      "description": "cvc5 SAT: single handler h(m) with m=5 reduces by 2 to result=3",
-      "sat": true,
-      "expected": true,
-      "interpretation": "Single handler base case for composition associativity",
-      "model": "[5, 3]"
+      "error": "No module named 'cvc5'"
     },
     "test_boundary_two_sequential_handlers": {
-      "description": "cvc5 SAT: two sequential handlers h2(h1(m)): m=5 \u2192 h1 \u2192 3 \u2192 h2 \u2192 1",
-      "sat": true,
-      "expected": true,
-      "interpretation": "Sequential handler composition models pipeline of effect transformations",
-      "model": "[5, 3, 1]"
+      "error": "No module named 'cvc5'"
     },
     "test_boundary_nested_three_handlers": {
-      "description": "cvc5 SAT: nested three-level handlers h1(h2(h3(m))): m=10 \u2192 9 \u2192 7 \u2192 6",
-      "sat": true,
-      "expected": true,
-      "interpretation": "Nested handler application follows algebraic monad laws at arbitrary depth",
-      "model": "[10, 9, 7, 6]"
+      "error": "No module named 'cvc5'"
     }
   }
 }

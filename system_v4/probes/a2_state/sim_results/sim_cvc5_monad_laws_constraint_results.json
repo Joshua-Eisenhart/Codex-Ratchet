@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "load-bearing: cvc5 SMT solver proves monad laws via quantifier-free linear integer arithmetic"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,22 +78,16 @@
   },
   "positive": {
     "test_1_left_identity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Left identity: return a >>= f \u2261 f a holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_right_identity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Right identity: m >>= return \u2261 m holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_associativity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Associativity: (m >>= f) >>= g \u2261 m >>= (\u03bbx. f x >>= g) holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_4_sympy_monad_equivalence": {
       "status": "PASS",
@@ -105,42 +99,30 @@
   },
   "negative": {
     "neg_test_1_left_identity_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Left identity law cannot be violated (UNSAT confirms law necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_2_right_identity_fail": {
-      "status": "FAIL",
-      "expected": "UNSAT",
-      "actual": "SAT",
-      "reason": "Right identity law cannot be violated (UNSAT confirms law necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_3_associativity_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Associativity law cannot be violated (UNSAT confirms law necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "boundary": {
     "boundary_test_1_zero_values": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Monad laws hold with zero/null values"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_2_identity_monad": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Monad laws hold with identity function"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_3_nested_binds": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Monad laws hold with deeply nested binds (h\u2218g\u2218f composition)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "classification": "canonical"

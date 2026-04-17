@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -87,15 +87,6 @@
       "interpretation": "valid A\u221e structure satisfies composition relations",
       "method": "sympy symbolic"
     },
-    "cvc5_positive_a_infinity_grading": {
-      "test": "cvc5 satisfies A\u221e Maslov grading: |\u03bc^k| + 2 - k even",
-      "composition_order": 2,
-      "mu_grading": 0,
-      "satisfiable": true,
-      "passed": true,
-      "interpretation": "valid A\u221e grading consistent with Maslov index",
-      "method": "cvc5 QF_NIA SMT solver"
-    },
     "numpy_positive_a_infinity_composition": {
       "test": "A\u221e composition: 3-dimensional nilpotent algebra",
       "mu1_matrix": "[[0,1,0], [0,0,1], [0,0,0]]",
@@ -108,15 +99,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_non_nilpotent_unsat": {
-      "test": "cvc5 proves UNSAT: \u03bc^1 \u2218 \u03bc^1 \u2260 0 AND nilpotent (A\u221e excluded)",
-      "mu1_squared": "nonzero",
-      "required_nilpotent": true,
-      "satisfiable": false,
-      "passed": true,
-      "interpretation": "constraint excluded: non-nilpotent differential violates A\u221e",
-      "method": "cvc5 QF_NIA proof"
-    },
     "sympy_negative_non_nilpotent_form": {
       "test": "Non-nilpotent \u03bc^1 contradicts A\u221e differential",
       "is_mu1_squared_nonzero": true,
@@ -142,15 +124,6 @@
       "passed": true,
       "interpretation": "minimal A\u221e structure has nilpotence index 2",
       "method": "sympy matrix"
-    },
-    "cvc5_boundary_critical_grading": {
-      "test": "Boundary: A\u221e grading at k=1 (critical order)",
-      "composition_order": 1,
-      "mu_grading": 1,
-      "satisfiable": false,
-      "passed": false,
-      "interpretation": "boundary grading condition is satisfiable",
-      "method": "cvc5 QF_NIA"
     },
     "numpy_boundary_nilpotence_sweep": {
       "test": "Boundary: nilpotence index sweep in A\u221e",

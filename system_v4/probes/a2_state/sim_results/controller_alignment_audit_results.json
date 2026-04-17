@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-17T06:06:36.496234+00:00",
+  "generated_at": "2026-04-17T07:00:26.187928+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "sys_executable": "/usr/local/bin/python3",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.11.0",
+      "installed_version": "2.8.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": true
+      "meets_floor": false
     },
     "sympy": {
       "distribution": "sympy",
@@ -39,11 +39,11 @@
     "cvc5": {
       "distribution": "cvc5",
       "import_name": "cvc5",
-      "installed_version": "1.3.3",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'cvc5'",
       "required_floor": "1.3.3",
-      "meets_floor": true
+      "meets_floor": null
     },
     "clifford": {
       "distribution": "clifford",
@@ -57,38 +57,38 @@
     "geomstats": {
       "distribution": "geomstats",
       "import_name": "geomstats",
-      "installed_version": "2.8.0",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'geomstats'",
       "required_floor": "2.8.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "e3nn": {
       "distribution": "e3nn",
       "import_name": "e3nn",
-      "installed_version": "0.6.0",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'e3nn'",
       "required_floor": "0.6.0",
-      "meets_floor": true
+      "meets_floor": null
     },
     "rustworkx": {
       "distribution": "rustworkx",
       "import_name": "rustworkx",
-      "installed_version": "0.17.1",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'rustworkx'",
       "required_floor": "0.17.1",
-      "meets_floor": true
+      "meets_floor": null
     },
     "xgi": {
       "distribution": "xgi",
       "import_name": "xgi",
-      "installed_version": "0.10.1",
-      "import_ok": true,
-      "import_error": null,
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "ModuleNotFoundError: No module named 'xgi'",
       "required_floor": "0.10.1",
-      "meets_floor": true
+      "meets_floor": null
     },
     "TopoNetX": {
       "distribution": "TopoNetX",
@@ -138,7 +138,7 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "2.3.3",
+      "installed_version": "2.3.1",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
@@ -147,11 +147,11 @@
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.6.1",
+      "installed_version": "3.5",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": true
+      "meets_floor": false
     }
   },
   "known_env_risks": {
@@ -162,7 +162,7 @@
     "available": true,
     "ok": false,
     "hard_finding_count": 83,
-    "warning_finding_count": 18,
+    "warning_finding_count": 13,
     "blocked_results": {
       "cvc5_frege_system_constraint_results.json": [
         "canonical_summary_false"
@@ -451,13 +451,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 2418,
+    "files_with_manifest_or_depth": 2439,
     "per_tool": {
       "pytorch": {
-        "tried_count": 1101,
-        "used_count": 809,
-        "load_bearing_count": 625,
-        "depth_present_count": 722,
+        "tried_count": 1111,
+        "used_count": 815,
+        "load_bearing_count": 631,
+        "depth_present_count": 728,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -1018,6 +1018,12 @@
           "sim_torch_deep_axis0_autograd_vn_entropy_results 2.json",
           "sim_torch_deep_axis0_autograd_vn_entropy_results.json",
           "sim_triangle_count_classical_results.json",
+          "sim_u1_carrier_phase_shell_canonical_results.json",
+          "sim_u1_orientation_holonomy_shell_canonical_results.json",
+          "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_group_a2_root_system_results.json",
+          "sim_weyl_group_bc2_root_system_results.json",
+          "sim_weyl_group_g2_shell_local_results.json",
           "sim_weyl_symplectic_mera_bridge_claims_canonical_results.json",
           "sim_yinyang_axis7_12_extended_mapping_results.json",
           "sim_yinyang_carnot_szilard_geometry_results.json",
@@ -1094,7 +1100,7 @@
         ]
       },
       "pyg": {
-        "tried_count": 469,
+        "tried_count": 475,
         "used_count": 36,
         "load_bearing_count": 30,
         "depth_present_count": 32,
@@ -1135,10 +1141,10 @@
         ]
       },
       "z3": {
-        "tried_count": 959,
-        "used_count": 610,
-        "load_bearing_count": 528,
-        "depth_present_count": 565,
+        "tried_count": 980,
+        "used_count": 625,
+        "load_bearing_count": 543,
+        "depth_present_count": 580,
         "anchor_stage_coverage": [
           "boundary",
           "coupling",
@@ -1442,6 +1448,17 @@
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
           "sim_gromov_witten_invariant_constraint_canonical_results.json",
           "sim_gromov_witten_potential_canonical_results.json",
+          "sim_gstack_arithmetic_curve_shell_local_results.json",
+          "sim_gstack_associated_bundle_shell_local_results.json",
+          "sim_gstack_floer_complex_shell_local_results.json",
+          "sim_gstack_gerbe_shell_local_results.json",
+          "sim_gstack_harmonic_bundle_shell_local_results.json",
+          "sim_gstack_higgs_bundle_shell_local_results.json",
+          "sim_gstack_hitchin_fibration_shell_local_results.json",
+          "sim_gstack_nonabelian_hodge_shell_local_results.json",
+          "sim_gstack_spectral_triple_shell_local_results.json",
+          "sim_gstack_stable_bundle_shell_local_results.json",
+          "sim_gstack_twistor_line_shell_local_results.json",
           "sim_gtower_cvc5_parity_on_reduction_results.json",
           "sim_gtower_e6_exceptional_geometry_results.json",
           "sim_gtower_e7_exceptional_geometry_results.json",
@@ -1590,6 +1607,10 @@
           "sim_symplectic_hopf_mera_triple_coexistence_results.json",
           "sim_tropical_curve_constraint_canonical_results.json",
           "sim_tropical_semiring_constraint_canonical_results.json",
+          "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_group_a2_root_system_results.json",
+          "sim_weyl_group_bc2_root_system_results.json",
+          "sim_weyl_group_g2_shell_local_results.json",
           "sim_weyl_symplectic_mera_bridge_claims_canonical_results.json",
           "sim_weyl_symplectic_mera_emergence_quantities_results.json",
           "sim_weyl_symplectic_mera_pairwise_coupling_results.json",
@@ -1678,10 +1699,10 @@
         ]
       },
       "cvc5": {
-        "tried_count": 776,
-        "used_count": 507,
-        "load_bearing_count": 499,
-        "depth_present_count": 508,
+        "tried_count": 782,
+        "used_count": 508,
+        "load_bearing_count": 500,
+        "depth_present_count": 509,
         "anchor_stage_coverage": [
           "boundary"
         ],
@@ -2177,6 +2198,7 @@
           "sim_topological_hochschild_homology_constraint_canonical_results.json",
           "sim_traced_monoidal_category_yanking_constraint_canonical_results.json",
           "sim_triangulated_category_octahedron_axiom_constraint_canonical_results.json",
+          "sim_u1_gauge_admissibility_constraint_shell_canonical_results.json",
           "sim_verlinde_formula_constraint_canonical_results.json",
           "sim_vertex_operator_algebra_constraint_canonical_results.json",
           "sim_waldhausen_k_theory_s_construction_constraint_canonical_results.json",
@@ -2188,10 +2210,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 1195,
-        "used_count": 992,
-        "load_bearing_count": 418,
-        "depth_present_count": 971,
+        "tried_count": 1216,
+        "used_count": 1013,
+        "load_bearing_count": 433,
+        "depth_present_count": 992,
         "anchor_stage_coverage": [
           "coupling",
           "topology",
@@ -2428,6 +2450,17 @@
           "sim_gerbe_clifford_contact_triple_coexistence_results.json",
           "sim_gerbe_dixmier_douady_class_results.json",
           "sim_gerbe_pairwise_holonomy_coupling_results.json",
+          "sim_gstack_arithmetic_curve_shell_local_results.json",
+          "sim_gstack_associated_bundle_shell_local_results.json",
+          "sim_gstack_floer_complex_shell_local_results.json",
+          "sim_gstack_gerbe_shell_local_results.json",
+          "sim_gstack_harmonic_bundle_shell_local_results.json",
+          "sim_gstack_higgs_bundle_shell_local_results.json",
+          "sim_gstack_hitchin_fibration_shell_local_results.json",
+          "sim_gstack_nonabelian_hodge_shell_local_results.json",
+          "sim_gstack_spectral_triple_shell_local_results.json",
+          "sim_gstack_stable_bundle_shell_local_results.json",
+          "sim_gstack_twistor_line_shell_local_results.json",
           "sim_gtower_e6_exceptional_geometry_results.json",
           "sim_gtower_e7_exceptional_geometry_results.json",
           "sim_gtower_e8_exceptional_geometry_results.json",
@@ -2548,6 +2581,10 @@
           "sim_symplectic_hopf_mera_pairwise_coupling_results.json",
           "sim_symplectic_hopf_mera_topology_variants_results.json",
           "sim_symplectic_hopf_mera_triple_coexistence_results.json",
+          "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_group_a2_root_system_results.json",
+          "sim_weyl_group_bc2_root_system_results.json",
+          "sim_weyl_group_g2_shell_local_results.json",
           "sim_weyl_symplectic_mera_bridge_claims_canonical_results.json",
           "sim_weyl_symplectic_mera_emergence_quantities_results.json",
           "sim_weyl_symplectic_mera_pairwise_coupling_results.json",
@@ -2620,10 +2657,10 @@
         ]
       },
       "clifford": {
-        "tried_count": 689,
-        "used_count": 250,
-        "load_bearing_count": 215,
-        "depth_present_count": 232,
+        "tried_count": 699,
+        "used_count": 254,
+        "load_bearing_count": 219,
+        "depth_present_count": 236,
         "anchor_stage_coverage": [
           "coupling",
           "coexistence"
@@ -2827,6 +2864,10 @@
           "sim_spectraltriple_gerbe_clifford_topology_variants_results.json",
           "sim_spectraltriple_gerbe_clifford_triple_coexistence_results.json",
           "sim_symplectic_berry_flux_axis0_results.json",
+          "sim_weyl_geometry_rescaling_shell_results.json",
+          "sim_weyl_group_a2_root_system_results.json",
+          "sim_weyl_group_bc2_root_system_results.json",
+          "sim_weyl_group_g2_shell_local_results.json",
           "sim_yinyang_axis7_12_extended_mapping_results.json",
           "sim_yinyang_carnot_szilard_geometry_results.json",
           "sim_yinyang_gtower_correspondence_results.json",
@@ -2847,10 +2888,10 @@
         ]
       },
       "geomstats": {
-        "tried_count": 540,
-        "used_count": 110,
-        "load_bearing_count": 99,
-        "depth_present_count": 108,
+        "tried_count": 549,
+        "used_count": 114,
+        "load_bearing_count": 102,
+        "depth_present_count": 111,
         "anchor_stage_coverage": [
           "lego",
           "coexistence"
@@ -2924,6 +2965,8 @@
           "sim_axis6_gtower_action_orientation_bridge_results.json",
           "sim_axis6_seam_probe_results.json",
           "sim_capability_geomstats_isolated_results.json",
+          "sim_gstack_harmonic_bundle_shell_local_results.json",
+          "sim_gstack_twistor_line_shell_local_results.json",
           "sim_gtower_emergence_coset_decomposition_results.json",
           "sim_gtower_full_6shell_coexistence_results.json",
           "sim_gtower_gl3_shell_local_results.json",
@@ -2947,6 +2990,7 @@
           "sim_gtower_triple_u3_su3_sp6_results.json",
           "sim_gtower_u3_shell_local_results.json",
           "sim_integration_equivariant_symbolic_graph_manifold_search_stack_results.json",
+          "sim_u1_structure_matrix_shell_canonical_results.json",
           "tools_load_bearing_results.json",
           "torch_axis0_gradient_results.json",
           "torsion_curvature_splitting_results.json",
@@ -2958,7 +3002,7 @@
         ]
       },
       "e3nn": {
-        "tried_count": 481,
+        "tried_count": 487,
         "used_count": 44,
         "load_bearing_count": 40,
         "depth_present_count": 46,
@@ -3009,10 +3053,10 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 643,
-        "used_count": 219,
-        "load_bearing_count": 184,
-        "depth_present_count": 197,
+        "tried_count": 655,
+        "used_count": 226,
+        "load_bearing_count": 188,
+        "depth_present_count": 201,
         "anchor_stage_coverage": [
           "boundary",
           "topology",
@@ -3134,6 +3178,9 @@
           "sim_dark_matter_negentropy_lego_results.json",
           "sim_g2_f4_e6_triple_cartan_coupling_canonical_results.json",
           "sim_gerbe_dixmier_douady_class_results.json",
+          "sim_gstack_floer_complex_shell_local_results.json",
+          "sim_gstack_hitchin_fibration_shell_local_results.json",
+          "sim_gstack_stable_bundle_shell_local_results.json",
           "sim_gtower_emergence_casimir_invariants_results.json",
           "sim_gtower_emergence_commutator_structure_results.json",
           "sim_gtower_emergence_coset_decomposition_results.json",
@@ -3183,6 +3230,7 @@
           "sim_rustworkx_deep_mincut_probe_relative_results.json",
           "sim_spectral_triple_dirac_clifford_results.json",
           "sim_symplectic_berry_flux_axis0_results.json",
+          "sim_u1_wilson_loop_distinguishability_shell_canonical_results.json",
           "sim_yinyang_axis7_12_extended_mapping_results.json",
           "sim_yinyang_carnot_szilard_geometry_results.json",
           "sim_yinyang_gtower_correspondence_results.json",
@@ -3208,10 +3256,10 @@
         ]
       },
       "xgi": {
-        "tried_count": 577,
-        "used_count": 151,
-        "load_bearing_count": 132,
-        "depth_present_count": 145,
+        "tried_count": 588,
+        "used_count": 156,
+        "load_bearing_count": 134,
+        "depth_present_count": 147,
         "anchor_stage_coverage": [
           "assembly",
           "topology",
@@ -3297,6 +3345,8 @@
           "sim_capability_xgi_isolated_results.json",
           "sim_carnot_axis0_entropy_gradient_bridge_results.json",
           "sim_g2_f4_e6_triple_cartan_coupling_canonical_results.json",
+          "sim_gstack_gerbe_shell_local_results.json",
+          "sim_gstack_nonabelian_hodge_shell_local_results.json",
           "sim_gtower_emergence_casimir_invariants_results.json",
           "sim_gtower_emergence_coset_decomposition_results.json",
           "sim_gtower_full_6shell_coexistence_results.json",
@@ -3354,10 +3404,10 @@
         ]
       },
       "toponetx": {
-        "tried_count": 534,
-        "used_count": 101,
-        "load_bearing_count": 80,
-        "depth_present_count": 95,
+        "tried_count": 542,
+        "used_count": 104,
+        "load_bearing_count": 83,
+        "depth_present_count": 98,
         "anchor_stage_coverage": [
           "topology",
           "assembly"
@@ -3424,7 +3474,10 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis6_seam_probe_results.json",
           "sim_capability_toponetx_isolated_results.json",
+          "sim_flux_stokes_cell_shell_canonical_results.json",
           "sim_g2_f4_e6_triple_cartan_coupling_canonical_results.json",
+          "sim_gstack_associated_bundle_shell_local_results.json",
+          "sim_gstack_higgs_bundle_shell_local_results.json",
           "sim_integration_equivariant_symbolic_graph_manifold_search_stack_results.json",
           "sim_integration_quantum_open_entangle_correlator_mega_stack_results.json",
           "sim_integration_symbolic_graph_manifold_search_stack_results.json",
@@ -3446,10 +3499,10 @@
         ]
       },
       "gudhi": {
-        "tried_count": 536,
-        "used_count": 111,
-        "load_bearing_count": 98,
-        "depth_present_count": 106,
+        "tried_count": 543,
+        "used_count": 113,
+        "load_bearing_count": 100,
+        "depth_present_count": 108,
         "anchor_stage_coverage": [
           "assembly",
           "coexistence"
@@ -3521,8 +3574,10 @@
           "sim_axis0_through_shells_results.json",
           "sim_axis6_seam_probe_results.json",
           "sim_capability_gudhi_isolated_results.json",
+          "sim_flux_stokes_cell_shell_canonical_results.json",
           "sim_g2_f4_e6_triple_cartan_coupling_canonical_results.json",
           "sim_gerbe_dixmier_douady_class_results.json",
+          "sim_gstack_arithmetic_curve_shell_local_results.json",
           "sim_gtower_emergence_commutator_structure_results.json",
           "sim_gtower_full_6shell_coexistence_results.json",
           "sim_gtower_pent_gl3_o3_so3_u3_su3_results.json",

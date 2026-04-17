@@ -1,6 +1,6 @@
 {
   "name": "Phase 7 Divergence Analysis -- torch vs numpy",
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -63,7 +63,7 @@
       "reason": ""
     }
   },
-  "elapsed_seconds": 0.20689105987548828,
+  "elapsed_seconds": 0.19784879684448242,
   "scenarios": {
     "scenario_1_long_channel_chains": {
       "state_divergence_max": 0.0,
@@ -361,7 +361,5 @@
       "Graph topology affects gradients: computational graph carries content"
     ],
     "key_finding": "STRUCTURAL DIVERGENCE FOUND in 2 scenario(s). The computational graph carries content beyond the scalar output. This is evidence FOR the PyTorch-as-ratchet claim."
-  },
-  "downgrade_reason": "orphan_no_source_2026-04-17",
-  "original_classification": "canonical"
+  }
 }

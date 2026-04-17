@@ -24,9 +24,9 @@
       "reason": "Load-bearing: R\u00b2 energy conservation dE/dt=2vx\u00b7ax+2vy\u00b7ay=0 encoded as SMT; SAT confirms zero-acceleration geodesic conserves energy; negation (dE/dt\u22600 with ax=ay=0) gives UNSAT \u2014 proves conservation"
     },
     "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: R\u00b2 exp-log round-trip exp_p(log_p(q))=q verified via QF_LRA; round-trip holds \u2192 SAT; negation (round-trip fails) \u2192 UNSAT; proves algebraic correctness of flat exp/log definitions"
     },
     "sympy": {
       "tried": true,
@@ -39,9 +39,9 @@
       "reason": "Clifford algebra encodes spinors and rotors, not needed for geodesic ODE or exp/log map on S\u00b2"
     },
     "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: Hypersphere(dim=2).metric.dist cross-validates our geodesic distance formula at test points; agreement within 1e-6 confirms S\u00b2 arc-length computation"
     },
     "e3nn": {
       "tried": false,
@@ -73,10 +73,10 @@
     "pytorch": null,
     "pyg": null,
     "z3": "load_bearing",
-    "cvc5": null,
+    "cvc5": "supportive",
     "sympy": "load_bearing",
     "clifford": null,
-    "geomstats": null,
+    "geomstats": "supportive",
     "e3nn": null,
     "rustworkx": null,
     "xgi": null,
@@ -166,9 +166,14 @@
       "note": "E=\u03b8\u0307\u00b2+sin\u00b2\u03b8\u00b7\u03c6\u0307\u00b2 and h=sin\u00b2\u03b8\u00b7\u03c6\u0307 both conserved along geodesic"
     },
     "geomstats_distance_cross_validate": {
-      "ok": false,
-      "skip": true,
-      "reason": "geomstats not installed"
+      "ok": true,
+      "dist_ours": 0.7041567116119656,
+      "dist_geomstats": 0.7041567116119656,
+      "error": 0.0,
+      "theta_p": 0.4,
+      "phi_p": 0.3,
+      "theta_q": 0.9,
+      "phi_q": 1.2
     },
     "z3_r2_energy_conservation": {
       "ok": true,
@@ -178,9 +183,11 @@
       "unsat_ok": true
     },
     "cvc5_r2_round_trip": {
-      "ok": false,
-      "skip": true,
-      "reason": "cvc5 not installed"
+      "ok": true,
+      "sat_result": "sat",
+      "sat_ok": true,
+      "unsat_result": "unsat",
+      "unsat_ok": true
     }
   },
   "negative": {

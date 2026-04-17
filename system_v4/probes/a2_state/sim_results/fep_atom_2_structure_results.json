@@ -43,9 +43,9 @@
       "reason": "not used"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "blanket removal splits I from E"
     },
     "xgi": {
       "tried": false,
@@ -72,19 +72,29 @@
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
-    "rustworkx": null,
+    "rustworkx": "load_bearing",
     "xgi": null,
     "toponetx": null,
     "gudhi": null
   },
   "positive": {
-    "skipped": "rustworkx missing"
+    "blanket_separates": {
+      "full_components": 1,
+      "no_blanket_components": 2,
+      "pass": true
+    }
   },
   "negative": {
-    "skipped": "rustworkx missing"
+    "leaky_blanket_rejected": {
+      "no_blanket_components": 1,
+      "pass": true
+    }
   },
   "boundary": {
-    "skipped": "rustworkx missing"
+    "blanket_only_degenerate": {
+      "components": 1,
+      "pass": true
+    }
   },
-  "status": "FAIL"
+  "status": "PASS"
 }

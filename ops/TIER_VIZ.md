@@ -64,7 +64,7 @@ Viewer/status surfaces display constraint→probe→admission→claim before per
 - If `system_v4/visualization/exporters/` produces a new exporter, enqueue one smoke-test probe to `ops/queue_tier_a.txt`.
 - If pytest fails at full viz rerun, revert the last slice and report blocker to `_steward_questions.md`.
 - If the viz terminal needs to add a new Python dep, write a proposal to `_steward_questions.md` and wait for owner — do not auto-install.
-- Manim dep is not installed yet; prototype scene work requires owner approval.
+- Manim is available as the Hermes `manim-video` skill. Use the skill; do NOT pip-install. Prototype scene work is allowed using the skill surface.
 
 ## Reporting
 

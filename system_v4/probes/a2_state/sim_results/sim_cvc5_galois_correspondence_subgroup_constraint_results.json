@@ -18,13 +18,13 @@
       "reason": "cvc5 used instead; same SMT solver capability"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Galois correspondence subgroup constraint"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "sympy: supportive symbolic computation for subgroup-field correspondence"
     },
     "clifford": {
@@ -67,8 +67,8 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
-    "sympy": "supportive",
+    "cvc5": null,
+    "sympy": null,
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -77,65 +77,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_positive_correspondence_valid": {
-      "description": "cvc5 SAT: |H|=2=[L:F] for fixed field F=L^H",
-      "sat": true,
-      "expected": true,
-      "model": "[2, 2]"
-    },
-    "test_positive_intermediate_field_degree": {
-      "description": "cvc5 SAT: [F:K]=3 = |G|/|H|=6/2 for intermediate field",
-      "sat": true,
-      "expected": true,
-      "model": "[6, 2, 3]"
-    },
-    "test_positive_subgroup_lattice": {
-      "description": "cvc5 SAT: |H|=3=[L:F], [F:K]=4, [L:K]=|G|=12",
-      "sat": true,
-      "expected": true,
-      "model": "[12, 3, 3, 4]"
-    }
-  },
-  "negative": {
-    "test_negative_correspondence_mismatch": {
-      "description": "cvc5 UNSAT: [L:F]=3 \u2260 |H|=2 violates Galois correspondence",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_tower_law_violation": {
-      "description": "cvc5 UNSAT: [L:F]\u00b7[F:K]=3\u00b75=15 \u2260 [L:K]=12",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_H_does_not_divide_G": {
-      "description": "cvc5 UNSAT: |H|=3 does not divide |G|=10",
-      "unsat": true,
-      "expected": true
-    }
-  },
-  "boundary": {
-    "test_boundary_trivial_subgroup": {
-      "description": "cvc5 SAT: trivial subgroup H={e} with |H|=1=[L:L]",
-      "sat": true,
-      "expected": true
-    },
-    "test_boundary_full_group": {
-      "description": "cvc5 SAT: full group H=G with |H|=|G|=5=[L:K]",
-      "sat": true,
-      "expected": true
-    },
-    "test_boundary_symbolic_correspondence": {
-      "description": "sympy: verify Galois correspondence symbolically",
-      "tower_law_expression": "-degree_FK*degree_LF + degree_LK",
-      "correspondence_expression": "-H + degree_LF",
-      "divisibility_expression": "-G/H + degree_FK",
-      "tower_law_satisfied": true,
-      "correspondence_satisfied": true,
-      "divisibility_satisfied": true,
-      "expected": true,
-      "passed": true
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

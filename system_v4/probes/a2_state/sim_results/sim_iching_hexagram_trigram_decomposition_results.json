@@ -45,7 +45,7 @@
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "construct Q6 and Q3\u25a1Q3 as explicit graphs; verify isomorphism via degree sequence and edge count"
+      "reason": "construct Q6 and Q3\u25a1Q3 as explicit graphs; verify isomorphism via degree sequence and edge count [IMPORT FAILED]"
     },
     "xgi": {
       "tried": false,
@@ -78,14 +78,7 @@
     "gudhi": null
   },
   "positive": {
-    "p1_q6_edge_count": 192,
-    "p1_cp_edge_count": 192,
-    "p1_edge_counts_match": true,
-    "p1_degree_sequences_match": true,
-    "p1_all_degree_6": true,
-    "p1_q6_bipartite": true,
-    "p1_cp_bipartite": true,
-    "p1_pass": true,
+    "p1_pass": "SKIP: rustworkx unavailable",
     "p2_independence_violations": 0,
     "p2_pass": true,
     "p3_unique_pairs": 64,
@@ -130,15 +123,16 @@
   },
   "pass_summary": {
     "passed": [
-      "p1_pass",
       "p2_pass",
       "p3_pass",
       "n1_pass",
       "b1_pass",
       "b2_pass"
     ],
-    "failed": [],
+    "failed": [
+      "p1_pass"
+    ],
     "total_pass_keys": 6,
-    "all_pass": true
+    "all_pass": false
   }
 }

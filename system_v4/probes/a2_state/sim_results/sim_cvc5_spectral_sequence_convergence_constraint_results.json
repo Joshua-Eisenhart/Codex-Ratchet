@@ -79,37 +79,15 @@
     "gudhi": null
   },
   "positive": {
-    "e2_page_valid_d2": {
-      "pass": true,
-      "result": "sat",
-      "detail": "E_2 page: (p,q)=(0,0) with d_2 -> (2,-1) must be SAT"
-    },
-    "e3_page_valid_d3": {
-      "pass": true,
-      "result": "sat",
-      "detail": "E_3 page: (p,q)=(1,2) with d_3 -> (4,0) must be SAT"
-    },
-    "e5_page_valid_d5": {
-      "pass": true,
-      "result": "sat",
-      "detail": "E_r page r=5: (p,q)=(2,3) with d_5 -> (7,-1) must be SAT"
+    "cvc5_unavailable": {
+      "pass": false,
+      "detail": "cvc5 not installed"
     }
   },
   "negative": {
-    "contradictory_p_bidegree": {
+    "cvc5_unavailable": {
       "pass": true,
-      "result": "unsat",
-      "detail": "p_out = 2 AND p_out = 3 must be UNSAT"
-    },
-    "contradictory_q_bidegree": {
-      "pass": true,
-      "result": "unsat",
-      "detail": "q_out = 0 AND q_out = -1 simultaneously must be UNSAT"
-    },
-    "negative_filtration_unsat": {
-      "pass": true,
-      "result": "unsat",
-      "detail": "p \u2265 0 AND p < 0 must be UNSAT"
+      "detail": "skip: cvc5 not installed"
     }
   },
   "boundary": {
@@ -131,9 +109,8 @@
       "detail": "Page r defined only for r \u2265 2 in typical constructions"
     },
     "large_degree_bidegree": {
-      "pass": true,
-      "result": "sat",
-      "detail": "Large degree values p=1000, q=500, r=10 must be SAT"
+      "pass": false,
+      "detail": "cvc5 unavailable"
     }
   },
   "classification": "canonical"

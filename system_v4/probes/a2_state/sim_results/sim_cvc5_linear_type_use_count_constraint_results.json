@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all constraint solving"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Constraint solving for linear type use-count verification"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,62 +78,50 @@
   },
   "positive": {
     "test_1_single_use": {
-      "status": "pass",
-      "formula": "use_count_a = 1",
-      "expected": "SAT",
-      "actual": "SAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_tensor_product_both_used_once": {
-      "status": "pass",
-      "formula": "use_a=1, use_b=1, use_tensor=use_a+use_b",
-      "expected": "SAT",
-      "actual": "SAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_nested_tensor_depth_3": {
+      "status": "skipped",
+      "reason": "cvc5 not available"
+    },
+    "test_sympy_use_count_formula": {
       "status": "pass",
-      "formula": "All use=1, use_ab=use_a+use_b, use_abc=use_ab+use_c",
-      "expected": "SAT",
-      "actual": "SAT"
+      "formula": "use_tensor = use_a + use_b, with use_a=1, use_b=1",
+      "result": 2,
+      "expected": 2
     }
   },
   "negative": {
     "test_1_unused_resource": {
-      "status": "pass",
-      "formula": "use_count=1 AND use_count=0",
-      "expected": "UNSAT",
-      "actual": "UNSAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_reused_resource": {
-      "status": "pass",
-      "formula": "use_count=1 AND use_count>=2",
-      "expected": "UNSAT",
-      "actual": "UNSAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_tensor_missing_component": {
-      "status": "pass",
-      "formula": "use_b=1 AND use_b=0 (tensor requires both)",
-      "expected": "UNSAT",
-      "actual": "UNSAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "boundary": {
     "test_1_large_tensor_chain": {
-      "status": "pass",
-      "formula": "A\u2297B\u2297C\u2297D\u2297E, all use_count=1",
-      "expected": "SAT",
-      "actual": "SAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_zero_is_not_valid": {
-      "status": "pass",
-      "formula": "Linear constraint: use_count=1; query: can it be 0?",
-      "expected": "UNSAT (no, zero violates linear type)",
-      "actual": "UNSAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_negative_use_count": {
-      "status": "pass",
-      "formula": "use_count=1; query: can it be negative?",
-      "expected": "UNSAT (no, negative violates type invariant)",
-      "actual": "UNSAT"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "classification": "canonical"

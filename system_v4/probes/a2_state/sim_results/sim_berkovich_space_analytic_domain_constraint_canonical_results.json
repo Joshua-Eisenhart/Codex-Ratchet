@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of non-archimedean ultrametric constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -79,65 +79,20 @@
   },
   "positive": {
     "ultrametric_cvc5_positive_1": {
-      "status": "pass",
-      "solver_result": "sat",
-      "constraint": "ultrametric |f+g| <= max(|f|,|g|) is satisfiable"
-    },
-    "gauss_point_seminorm_positive_2": {
-      "status": "pass",
-      "coefficients": [
-        2,
-        3,
-        1
-      ],
-      "radius": 0.5,
-      "gauss_seminorm": 2.0,
-      "formula": "|\u2211 a_i x^i| = max |a_i| r^i"
-    },
-    "ultrametric_concrete_positive_3": {
-      "status": "pass",
-      "solver_result": "sat",
-      "values": {
-        "f_abs": 2,
-        "g_abs": 3,
-        "sum_abs": 3
-      },
-      "constraint": "|f+g|=3 <= max(2,3)=3 is satisfiable"
+      "status": "skipped",
+      "reason": "cvc5 not installed"
     }
   },
   "negative": {
     "ultrametric_violation_negative_1": {
-      "status": "pass",
-      "solver_result": "unsat",
-      "claim": "|f+g|=5 with |f|=2, |g|=2 violates ultrametric"
-    },
-    "non_multiplicative_negative_2": {
-      "status": "pass",
-      "solver_result": "unsat",
-      "claim": "|fg|=5 but |f||g|=6, contradicts multiplicativity"
-    },
-    "negative_abs_value_negative_3": {
-      "status": "pass",
-      "solver_result": "unsat",
-      "claim": "|f| = -1 contradicts |f| >= 0"
+      "status": "skipped",
+      "reason": "cvc5 not installed"
     }
   },
   "boundary": {
     "zero_seminorm_boundary_1": {
-      "status": "pass",
-      "solver_result": "sat",
-      "constraint": "|0+f| = |f| satisfied"
-    },
-    "unit_seminorm_boundary_2": {
-      "status": "pass",
-      "solver_result": "sat",
-      "constraint": "|1||f| = |f| holds"
-    },
-    "gauss_point_radius_zero_boundary_3": {
-      "status": "pass",
-      "radius": 0.0,
-      "gauss_seminorm": 2.0,
-      "note": "Only a_0 contributes when r=0"
+      "status": "skipped",
+      "reason": "cvc5 not installed"
     }
   }
 }

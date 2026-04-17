@@ -18,9 +18,9 @@
       "reason": "cvc5 preferred for real nonlinear constraints QF_NRA"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 proves c > 0 via QF_NRA: asserts R > 0, G > 0, derives c = (3R/2G), forbids c \u2264 0 UNSAT"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "Central charge is scalar, not spinor algebra"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "AdS/CFT duality is holographic, not Riemannian geometry"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Central charge not equivariant network problem"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "AdS/CFT from gauge/gravity, not graph theory"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Central charge not hypergraph problem"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -79,33 +79,24 @@
   },
   "positive": {
     "test_positive_central_charge_formula": {
-      "description": "cvc5 SAT: R > 0, G > 0 implies c = (3R/2G) > 0",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 1 6), (/ 1 2), (/ 1 2)]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_central_charge_scaling": {
-      "description": "cvc5 SAT: R_large > R_small implies c_large > c_small (c \u221d R)",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 1 6), (/ 2 3), (/ 1 2), (/ 1 2), 2.0]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_numeric_example": {
-      "description": "cvc5 SAT: R=2.4, G=1 yields c=3.6 from Brown-Henneaux",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 12 5), 1.0, (/ 18 5)]"
+      "error": "No module named 'cvc5'"
     }
   },
   "negative": {
     "test_negative_R_nonpositive": {
-      "error": "type object 'Kind' has no attribute 'LE'"
+      "error": "No module named 'cvc5'"
     },
     "test_negative_G_nonpositive": {
-      "error": "type object 'Kind' has no attribute 'LE'"
+      "error": "No module named 'cvc5'"
     },
     "test_negative_c_nonpositive": {
-      "error": "type object 'Kind' has no attribute 'LE'"
+      "error": "No module named 'cvc5'"
     }
   },
   "boundary": {
@@ -126,10 +117,7 @@
       "passed": true
     },
     "test_boundary_conformal_anomaly": {
-      "description": "cvc5 SAT: Conformal anomaly scales as (c/12)/R\u00b2 with c = (3R/2G)",
-      "sat": true,
-      "expected": true,
-      "model": "[1.0, 1.0, (/ 3 2), (/ 1 8)]"
+      "error": "No module named 'cvc5'"
     }
   },
   "classification": "canonical"

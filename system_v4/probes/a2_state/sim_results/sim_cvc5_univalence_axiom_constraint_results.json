@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of type theory constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -76,51 +76,9 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_equivalence_rank_preserved": {
-      "status": "sat",
-      "satisfiable": true,
-      "description": "Equivalence preserves rank: rank(A) = rank(B) if f: A \u2243 B"
-    },
-    "test_h_level_non_negative": {
-      "status": "sat",
-      "satisfiable": true,
-      "description": "H-levels form non-negative hierarchy: 0, 1, 2, ..."
-    },
-    "test_univalence_axiom_equivalence": {
-      "status": "sat",
-      "satisfiable": true,
-      "description": "Univalence axiom: equivalence and path equivalence are equivalent"
-    }
-  },
-  "negative": {
-    "test_equivalence_rank_mismatch": {
-      "status": "unsat",
-      "satisfiable": false,
-      "description": "Equivalence with different ranks is UNSAT"
-    },
-    "test_negative_h_level": {
-      "status": "unsat",
-      "satisfiable": false,
-      "description": "Negative h-level is UNSAT"
-    },
-    "test_univalence_axiom_violation": {
-      "status": "unsat",
-      "satisfiable": false,
-      "description": "Univalence violation (equivalence without path) is UNSAT"
-    }
-  },
+  "positive": {},
+  "negative": {},
   "boundary": {
-    "test_unit_type_contractible": {
-      "status": "sat",
-      "satisfiable": true,
-      "description": "Unit type is h-level 0 (contractible)"
-    },
-    "test_bool_type_set": {
-      "status": "sat",
-      "satisfiable": true,
-      "description": "Bool type is h-level 2 (set)"
-    },
     "test_h_level_definition": {
       "symbolic_formula": "h-level(n) = types where all (n+1)-paths are equal",
       "description": "H-level hierarchy: 0=contractible, 1=prop, 2=set, 3=groupoid, ..."

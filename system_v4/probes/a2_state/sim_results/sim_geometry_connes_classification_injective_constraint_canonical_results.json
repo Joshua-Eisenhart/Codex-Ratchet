@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "proves rank convergence (UNSAT when approximation ranks don't converge) and hyperfinite rank growth"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,73 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "positive_test_1_hyperfinite_rank": {
-      "name": "Hyperfinite rank growth R_n",
-      "constraint": "rank(R_n) = 4^n (n=2)",
-      "satisfiable": "True",
-      "n": 2,
-      "rank_R_n": 16,
-      "formula": "4^n for n=2 is 16"
-    },
-    "positive_test_2_injective_approximation": {
-      "name": "Injective approximation convergence",
-      "constraint": "rank(M_k) <= rank(M_{k+1}) <= rank(M)",
-      "satisfiable": "True",
-      "rank_M_k": 10,
-      "rank_M_k_plus_1": 20,
-      "rank_full_M": 30
-    },
-    "positive_test_3_injective_embedding": {
-      "name": "Injectivity as embedding existence",
-      "constraint": "rank(embedding M into B(H)) > 0",
-      "satisfiable": "True",
-      "note": "All injective II_1 factors embed via finite-dim approximations"
-    }
+    "positive_tests_error": "No module named 'cvc5'"
   },
   "negative": {
-    "negative_test_1_hyperfinite_rank_contradiction": {
-      "name": "Hyperfinite rank growth contradiction",
-      "constraint_1": "rank(R_2) = 16 (4^2)",
-      "constraint_2": "rank(R_2) = 20 (wrong growth)",
-      "satisfiable": "False",
-      "expected": "UNSAT"
-    },
-    "negative_test_2_monotonicity_contradiction": {
-      "name": "Approximation monotonicity contradiction",
-      "constraint_1": "rank(M_k) <= rank(M_{k+1})",
-      "constraint_2": "rank(M_k) > rank(M_{k+1})",
-      "satisfiable": "False",
-      "expected": "UNSAT"
-    },
-    "negative_test_3_injectivity_contradiction": {
-      "name": "Injectivity contradiction",
-      "constraint_1": "rank(embedding) > 0 (injective)",
-      "constraint_2": "rank(embedding) = 0 (not injective)",
-      "satisfiable": "False",
-      "expected": "UNSAT"
-    }
+    "negative_tests_error": "No module named 'cvc5'"
   },
   "boundary": {
-    "boundary_test_1_hyperfinite_n1": {
-      "name": "Hyperfinite at n=1",
-      "constraint": "rank(R_1) = 4 (base case M_2(C))",
-      "satisfiable": "True",
-      "rank_R_1": 4
-    },
-    "boundary_test_2_hyperfinite_n5": {
-      "name": "Hyperfinite at large n (n=5)",
-      "constraint": "rank(R_5) = 1024 (4^5)",
-      "satisfiable": "True",
-      "rank_R_5": 1024
-    },
-    "boundary_test_3_convergence_limit": {
-      "name": "Approximation convergence limit",
-      "constraint": "rank_approx very close to rank_limit",
-      "satisfiable": "True",
-      "rank_approx": 999,
-      "rank_limit": 1000,
-      "note": "Tests boundary of approximation convergence"
-    }
+    "boundary_tests_error": "No module named 'cvc5'"
   },
   "classification": "canonical"
 }

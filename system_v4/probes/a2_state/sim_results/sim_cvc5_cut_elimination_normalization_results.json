@@ -18,13 +18,13 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "load-bearing SMT solver for cut-elimination complexity UNSAT proofs"
     },
     "sympy": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "supportive verification of Church-Rosser confluence property"
     },
     "clifford": {
@@ -33,24 +33,24 @@
       "reason": "Clifford algebra not needed; proof theory via cvc5/sympy"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; no differential geometry required"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; proof structure encoded directly in constraints"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; no hypergraph structure"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -78,73 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_principal_cut_reduces": {
-      "satisfiable": true,
-      "expected": true,
-      "pass": true,
-      "description": "Principal cut elimination reduces formula complexity (5 -> 3)"
-    },
-    "test_cutfree_complexity_bounded": {
-      "satisfiable": true,
-      "expected": true,
-      "pass": true,
-      "description": "Cut-free proof complexity (7) <= original with cuts (8)"
-    },
-    "test_normalization_termination": {
-      "satisfiable": true,
-      "expected": true,
-      "pass": true,
-      "description": "Proof with 3 cuts normalizes in >= 3 steps"
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "test_principal_cut_no_reduction_unsat": {
-      "satisfiable": false,
-      "expected": false,
-      "pass": true,
-      "description": "Principal cut with no reduction (5 -> 5) is UNSAT; must decrease"
-    },
-    "test_principal_cut_increases_unsat": {
-      "satisfiable": false,
-      "expected": false,
-      "pass": true,
-      "description": "Principal cut increasing complexity (5 -> 8) is UNSAT"
-    },
-    "test_cutfree_exceeds_original_unsat": {
-      "satisfiable": false,
-      "expected": false,
-      "pass": true,
-      "description": "Cut-free proof (10) exceeding original with cuts (8) is UNSAT"
-    },
-    "test_normalization_too_slow_unsat": {
-      "satisfiable": false,
-      "expected": false,
-      "pass": true,
-      "description": "Normalization taking 5 steps for 2 cuts exceeds reasonable bound; UNSAT"
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
-    "test_cutfree_zero_steps": {
-      "satisfiable": true,
-      "expected": true,
-      "pass": true,
-      "description": "Cut-free proof requires 0 normalization steps"
-    },
-    "test_single_cut_one_step": {
-      "satisfiable": true,
-      "expected": true,
-      "pass": true,
-      "description": "Single cut eliminated in 1 step"
-    },
-    "test_sympy_church_rosser": {
-      "start_complexity": 8,
-      "path1_final": 5,
-      "path2_final": 5,
-      "confluent": true,
-      "expected": true,
-      "pass": true,
-      "description": "Church-Rosser confluence: all reduction paths converge to same normal form (8->5)"
-    }
+    "error": "cvc5 not installed"
   },
   "classification": "canonical"
 }

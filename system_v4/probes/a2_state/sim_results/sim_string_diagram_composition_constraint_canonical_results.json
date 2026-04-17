@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "proves wire-matching constraint: UNSAT when source(f\u2218g) != target(g) or incompatible ranks"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,34 +77,13 @@
     "gudhi": null
   },
   "positive": {
-    "positive_test_1_sequential_composition": {
-      "name": "Valid sequential composition f\u2218g",
-      "g_type": "A -> B (ranks 1 -> 2)",
-      "f_type": "B -> C (ranks 2 -> 3)",
-      "composition": "f\u2218g: A -> C (ranks 1 -> 3)",
-      "constraint": "target(g) = source(f)",
-      "satisfiable": "True",
-      "valid": true
-    },
-    "positive_tests_error": "Given sort is not associated with this term manager"
+    "positive_tests_error": "No module named 'cvc5'"
   },
   "negative": {
-    "negative_test_1_incompatible_composition_unsat": {
-      "name": "Incompatible sequential composition (UNSAT)",
-      "formula": "target(g) = 2 AND source(f) = 3 AND target(g) = source(f)",
-      "satisfiable": "False",
-      "proof": "Wire mismatch: g outputs rank 2 but f expects rank 3"
-    },
-    "negative_tests_error": "Given sort is not associated with this term manager"
+    "negative_tests_error": "No module named 'cvc5'"
   },
   "boundary": {
-    "boundary_test_1_identity_strings": {
-      "name": "String diagram with all identity morphisms",
-      "constraint": "source(w) = target(w) for all wires w",
-      "satisfiable": "True",
-      "note": "Boundary case: minimal diagram"
-    },
-    "boundary_tests_error": "Given sort is not associated with this term manager"
+    "boundary_tests_error": "No module named 'cvc5'"
   },
   "classification": "canonical"
 }

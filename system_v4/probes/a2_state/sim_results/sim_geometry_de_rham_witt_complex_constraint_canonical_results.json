@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves restriction rank constraint rank(W_n\u03a9^i) \u2264 rank(W_{n+1}\u03a9^i); UNSAT for rank increase; proves Cartier isomorphism constraint"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -34,22 +34,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "differential geometry not primary focus"
+      "reason": "not installed"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "equivariance not relevant here"
+      "reason": "not installed"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "Witt structure implicit in constraint"
+      "reason": "not installed"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "hypergraph not needed"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -77,61 +77,18 @@
     "gudhi": null
   },
   "positive": {
-    "test_restriction_rank_1_to_2": {
-      "passed": true,
-      "reason": "cvc5 proves restriction rank constraint rank(W_n\u03a9^i) \u2264 rank(W_{n+1}\u03a9^i)",
-      "w_n_rank": 1,
-      "w_n_plus_1_rank": 2
-    },
-    "test_cartier_isomorphism_degree_1": {
-      "passed": true,
-      "reason": "cvc5 proves Cartier isomorphism C^{-1}: \u03a9^i \u2192 H^i(W_1\u03a9^\u2022)",
-      "omega_rank": 2,
-      "w1_cohomology_rank": 2
-    },
-    "test_witt_tower_monotonic": {
-      "passed": true,
-      "reason": "cvc5 proves Witt tower rank monotonicity",
-      "w_n_rank": 2,
-      "w_n_plus_1_rank": 3
-    }
+    "test_restriction_rank_1_to_2": null,
+    "test_cartier_isomorphism_degree_1": null,
+    "test_witt_tower_monotonic": null
   },
   "negative": {
-    "test_restriction_rank_decrease": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: restriction surjectivity constraint enforced (3 > 2)",
-      "w_n_rank": 3,
-      "w_n_plus_1_rank": 2,
-      "unsatisfiable": true
-    },
-    "test_cartier_rank_mismatch": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: Cartier isomorphism constraint enforced (2 \u2260 3)",
-      "omega_rank": 2,
-      "w1_cohomology_rank": 3,
-      "unsatisfiable": true
-    },
-    "test_witt_tower_violation": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: Witt tower monotonicity constraint enforced (4 > 3)",
-      "w_n_rank": 4,
-      "w_n_plus_1_rank": 3,
-      "unsatisfiable": true
-    }
+    "test_restriction_rank_decrease": null,
+    "test_cartier_rank_mismatch": null,
+    "test_witt_tower_violation": null
   },
   "boundary": {
-    "test_zero_rank_constraint": {
-      "passed": true,
-      "reason": "cvc5 proves restriction constraint for zero ranks",
-      "w_n_rank": 0,
-      "w_n_plus_1_rank": 0
-    },
-    "test_high_witt_level": {
-      "passed": true,
-      "reason": "cvc5 proves restriction constraint for high Witt levels",
-      "w_n_rank": 5,
-      "w_n_plus_1_rank": 6
-    },
+    "test_zero_rank_constraint": null,
+    "test_high_witt_level": null,
     "test_sympy_cartier_validation": {
       "passed": true,
       "reason": "sympy validates Cartier operator properties",

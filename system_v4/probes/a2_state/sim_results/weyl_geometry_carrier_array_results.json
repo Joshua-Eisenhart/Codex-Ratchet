@@ -61,18 +61,18 @@
     },
     "rustworkx": {
       "tried": true,
-      "used": true,
-      "reason": "used for graph carrier comparison"
+      "used": false,
+      "reason": "not installed -- pure-python graph fallback used"
     },
     "xgi": {
       "tried": true,
-      "used": true,
-      "reason": "used for hypergraph carrier comparison"
+      "used": false,
+      "reason": "not installed -- pure-python hypergraph fallback used"
     },
     "toponetx": {
       "tried": true,
-      "used": true,
-      "reason": "used for cell-complex lift witness"
+      "used": false,
+      "reason": "not installed -- fallback boundary witness used"
     },
     "gudhi": {
       "tried": false,
@@ -158,41 +158,7 @@
           2,
           2
         ],
-        "repo_check": {
-          "num_nodes": 12,
-          "num_edges": 17,
-          "num_components": 1,
-          "cycle_rank": 6,
-          "laplacian_zero_modes": 1,
-          "laplacian_eigenvalues": [
-            -9.086033836203024e-16,
-            0.5857864376269053,
-            1.0000000000000002,
-            1.5857864376269053,
-            2.000000000000001,
-            2.999999999999999,
-            3.0000000000000004,
-            3.414213562373095,
-            3.5857864376269046,
-            4.414213562373097,
-            4.999999999999998,
-            6.414213562373096
-          ],
-          "degree_sequence": [
-            4,
-            4,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            2,
-            2,
-            2,
-            2
-          ]
-        },
+        "repo_check": {},
         "mean_edge_geodesic": 1.1703972631020798,
         "mean_nonedge_geodesic": 1.581482016092821,
         "pass": true
@@ -224,8 +190,8 @@
       },
       "cell_complex_boundary_composes_to_zero": {
         "cell_complex_shape": [
-          4,
-          4,
+          3,
+          3,
           1
         ],
         "pass": true

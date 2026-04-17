@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of endoscopic transfer factor constraints"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "Clifford algebra not needed; transfer factor constraints only"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; constraints handled via SMT solver"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; no graph structure in this sim"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; pairwise interactions only"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -77,44 +77,10 @@
     "gudhi": null
   },
   "positive": {
-    "pos_test_1_delta_zero": {
-      "description": "\u0394 = 0 satisfies transfer constraint",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    },
-    "pos_test_2_delta_one": {
-      "description": "\u0394 = 1 satisfies transfer constraint",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    },
-    "pos_test_3_delta_minus_one": {
-      "description": "\u0394 = -1 satisfies transfer constraint",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "neg_test_1_delta_two": {
-      "description": "\u0394 = 2 violates transfer constraint |\u0394| \u2264 1",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    },
-    "neg_test_2_delta_three": {
-      "description": "\u0394 = 3 violates transfer constraint",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    },
-    "neg_test_3_delta_minus_two": {
-      "description": "\u0394 = -2 violates transfer constraint",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
     "boundary_test_1_four_factor_product": {
@@ -124,7 +90,7 @@
       "pass": true
     },
     "boundary_test_2_singular_element": {
-      "error": "name 'Kind' is not defined",
+      "error": "name 'cvc5' is not defined",
       "pass": false
     },
     "boundary_test_3_endoscopic_variety": {
@@ -140,7 +106,5 @@
       "pass": true
     }
   },
-  "classification": "classical_baseline",
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  "classification": "canonical"
 }

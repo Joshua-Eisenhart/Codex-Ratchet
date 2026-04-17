@@ -64,24 +64,24 @@
       "reason": "load_bearing: Cl(3,0) even subalgebra is Spin(3)\u2245SU(2); bivector e12 is the complex structure J (J\u00b2=-1); rotor R=cos(t/2)+sin(t/2)*e12 acts as U(1) phase on the e12-plane; grade structure shows SO\u2192U complexification at Clifford level."
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load_bearing: sample from SpecialOrthogonal(n=3); embed real 3\u00d73 matrix as complex128; verify passes U(3) (M\u2020M=I) and SU(3) (det=1) tests simultaneously, confirming SO(3)\u2282SU(3)\u2282U(3) numerically."
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load_bearing: e3nn D^l(l=1) is the defining SO(3) representation; verified simultaneously unitary (U(3) member) and det=1 (SU(3) member); confirms SO(3) irrep lives in the triple intersection SO(3)\u2229U(3)\u2229SU(3)."
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load_bearing: rustworkx G-tower DAG encodes SO(3)\u2192U(3)\u2192SU(3) with directed edges; path-length=2 from SO(3) to SU(3) confirmed; node properties carry group metadata."
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load_bearing: xgi encodes triple coexistence as a 3-node hyperedge {SO3, U3, SU3}; all three pairwise sub-faces verified present; confirms the triple is an internal triple in the G-tower hypergraph."
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": false,
@@ -198,51 +198,6 @@
     "clifford_grade_inclusion_chain": {
       "pass": true,
       "detail": "SO(3)\u2282Spin(3)\u2282U(3): all realized as even-grade Clifford elements; grade structure encodes the inclusion chain SO\u2192U at Cl(3,0) level"
-    },
-    "e3nn_d1_dim_3": {
-      "pass": true,
-      "dim": 3,
-      "detail": "D^1 (l=1) defining SO(3) rep has dimension 3"
-    },
-    "e3nn_d1_is_unitary_u3_member": {
-      "pass": true,
-      "max_err": 1.4901161193847656e-05,
-      "detail": "D^1 matrix is unitary: M\u2020M=I (passes U(3) membership test)"
-    },
-    "e3nn_d1_det1_su3_member": {
-      "pass": true,
-      "det_abs_err": 1.5556812286376953e-05,
-      "det_real": 0.9999844431877136,
-      "det_imag": 0.0,
-      "detail": "D^1 matrix has |det|=1 and det\u22481: passes SU(3) membership test; SO(3) irrep lives in triple intersection SO(3)\u2229U(3)\u2229SU(3)"
-    },
-    "geomstats_so3_in_u3_and_su3": {
-      "pass": true,
-      "U3_unitarity_err": 1.1102230246251565e-16,
-      "SU3_det_real_err": 1.1102230246251565e-16,
-      "SU3_det_imag": 0.0,
-      "detail": "geomstats SO(3) sample embeds as complex unitary with det=1: SO(3)\u2282U(3)\u2229SU(3) numerically confirmed"
-    },
-    "rustworkx_gtower_dag_path_so3_to_su3": {
-      "pass": true,
-      "has_so3_u3_edge": true,
-      "has_u3_su3_edge": true,
-      "path_length_so3_to_su3": 2,
-      "detail": "G-tower DAG: SO(3)\u2192U(3)\u2192SU(3); path length=2 from SO(3) to SU(3)"
-    },
-    "rustworkx_gtower_node_count": {
-      "pass": true,
-      "node_count": 3,
-      "detail": "Three nodes SO(3), U(3), SU(3) active simultaneously in DAG"
-    },
-    "xgi_triple_hyperedge_so3_u3_su3": {
-      "pass": true,
-      "triple_hyperedge_present": true,
-      "pairwise_SO3_U3": true,
-      "pairwise_U3_SU3": true,
-      "pairwise_SO3_SU3": true,
-      "num_edges": 4,
-      "detail": "Triple {SO3,U3,SU3} hyperedge present; all 3 pairwise sub-faces present; internal triple in G-tower hypergraph confirmed"
     }
   },
   "negative": {
@@ -275,10 +230,6 @@
       "grade_3_sq": 0.0,
       "norm_sq": 1.0,
       "detail": "Identity rotor satisfies Spin(3) even-grade and unit-norm fences"
-    },
-    "geomstats_identity_in_so3": {
-      "pass": true,
-      "detail": "Identity matrix belongs to SpecialOrthogonal(n=3): confirmed"
     }
   }
 }

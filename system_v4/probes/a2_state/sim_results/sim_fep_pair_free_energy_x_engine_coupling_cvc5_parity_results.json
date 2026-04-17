@@ -7,29 +7,27 @@
   "tool_manifest": {
     "z3": {
       "tried": true,
-      "used": true,
-      "reason": "cross-check UNSAT on pk<=0 under convex combo"
+      "used": false,
+      "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "load-bearing UNSAT parity witness"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     }
   },
   "tool_integration_depth": {
-    "z3": "supportive",
-    "cvc5": "load_bearing"
+    "z3": null,
+    "cvc5": null
   },
   "positive": {
-    "z3_unsat": true,
-    "cvc5_unsat": true,
-    "parity_both_unsat": true
+    "tools_available": false
   },
   "negative": {
-    "drop_p_positivity_becomes_sat": true
+    "skip": false
   },
   "boundary": {
-    "k_zero_edge_still_unsat": true
+    "skip": false
   },
-  "PASS": true
+  "PASS": false
 }

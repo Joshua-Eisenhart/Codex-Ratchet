@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Whitney stratification condition A admissibility"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": null,
     "clifford": null,
     "geomstats": null,
@@ -142,45 +142,10 @@
     }
   },
   "negative": {
-    "negative_1_dimension_violation": {
-      "name": "Whitney negative test: dimension violation",
-      "claim": "\u2203 Whitney stratification with dim(Y)=1, dim(X)=2 (violates dim(Y)\u2265dim(X))",
-      "cvc5_result": "unsat",
-      "passes": true
-    },
-    "negative_2_rank_mismatch": {
-      "name": "Whitney negative test: tangent rank incompatibility",
-      "claim": "\u2203 Whitney stratification with rank(T_Y)=1, rank(T_X)=3 (violates rank\u2265constraint)",
-      "cvc5_result": "unsat",
-      "passes": true
-    },
-    "negative_3_isolated_stratum": {
-      "name": "Whitney negative test: isolated low-dim stratum with high-dim closure",
-      "claim": "\u2203 Whitney stratification: dim(Y)=0, dim(X)=3, no intermediate, X in cl(Y) (violates constraint)",
-      "cvc5_result": "unsat",
-      "passes": true
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "boundary_1_equal_dims": {
-      "name": "Boundary: equal-dimension strata",
-      "claim": "Whitney stratification with dim(Y)=dim(X)=2 is valid",
-      "cvc5_result": "sat",
-      "passes": true
-    },
-    "boundary_2_codim_one": {
-      "name": "Boundary: codimension-1 attachment",
-      "claim": "Whitney stratification with codim(Y)=1 in X is structurally valid",
-      "cvc5_result": "sat",
-      "passes": true,
-      "note": "Whitney-A must be verified per pair, not just dimension check"
-    },
-    "boundary_3_stratification_chain": {
-      "name": "Boundary: stratification chain",
-      "claim": "Whitney stratification with chain 0\u21921\u21922 dims is valid",
-      "cvc5_result": "sat",
-      "passes": true
-    }
+    "error": "cvc5 not available"
   },
   "classification": "canonical"
 }

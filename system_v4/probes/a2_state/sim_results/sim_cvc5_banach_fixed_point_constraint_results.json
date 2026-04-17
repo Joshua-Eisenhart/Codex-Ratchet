@@ -18,9 +18,9 @@
       "reason": "cvc5 preferred for nonlinear real arithmetic QF_NRA (constraint L < 1)"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 proves L < 1 for contraction via QF_NRA: asserts axiom, forbids L \u2265 1 UNSAT"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "Contraction mapping is scalar/vector-valued, not spinor geometry"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Fixed point on complete metric space, not Riemannian manifold-specific"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Fixed point iteration not equivariant learning problem"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Banach theorem from analysis, not directed graph"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Contraction constant is scalar constraint, not hypergraph"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -79,39 +79,24 @@
   },
   "positive": {
     "test_positive_contraction_08": {
-      "description": "cvc5 SAT: L = 0.8 < 1 (strict contraction, strong convergence)",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 4 5)]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_multiple_contractions": {
-      "description": "cvc5 SAT: L_1=0.5, L_2=0.6, L_3=0.7 all < 1 (pointwise contractions)",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 1 2), (/ 3 5), (/ 7 10)]"
+      "error": "No module named 'cvc5'"
     },
     "test_positive_boundary_tight_contraction": {
-      "description": "cvc5 SAT: L = 0.99999 < 1 (tight contraction, slow convergence)",
-      "sat": true,
-      "expected": true,
-      "model": "[(/ 99999 100000)]"
+      "error": "No module named 'cvc5'"
     }
   },
   "negative": {
     "test_negative_l_equals_one": {
-      "description": "cvc5 UNSAT: L = 1.0 with L < 1 axiom (L=1 is non-expansive, not contraction)",
-      "unsat": true,
-      "expected": true
+      "error": "No module named 'cvc5'"
     },
     "test_negative_l_expansion": {
-      "description": "cvc5 UNSAT: L = 1.5 > 1 with contraction claim (expansion violates fixed point existence)",
-      "unsat": true,
-      "expected": true
+      "error": "No module named 'cvc5'"
     },
     "test_negative_l_noncontract_convergence": {
-      "description": "cvc5 UNSAT: L = 1.2 > 1 with convergence claim (iteration diverges for L > 1)",
-      "unsat": true,
-      "expected": true
+      "error": "No module named 'cvc5'"
     }
   },
   "boundary": {
@@ -132,11 +117,7 @@
       "passed": true
     },
     "test_boundary_fixed_point_existence": {
-      "description": "cvc5 SAT: L = 0.5 < 1 with fixed point equation T(x*) = x*, x* = 0.3",
-      "sat": true,
-      "expected": true,
-      "note": "Banach theorem guarantees unique x* with T(x*) = x* when L < 1",
-      "model": "[(/ 3 10), (/ 3 10), (/ 1 2)]"
+      "error": "No module named 'cvc5'"
     }
   },
   "classification": "canonical"

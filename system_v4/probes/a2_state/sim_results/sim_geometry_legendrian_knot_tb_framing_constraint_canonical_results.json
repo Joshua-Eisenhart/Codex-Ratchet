@@ -18,8 +18,8 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "cvc5 SMT solver: load_bearing proof of Bennequin inequality constraint"
     },
     "sympy": {
@@ -78,55 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_unknot": {
-      "sat": true,
-      "valid": true,
-      "description": "Unknot satisfies Bennequin inequality"
-    },
-    "test_2_trefoil": {
-      "sat": true,
-      "valid": true,
-      "description": "Trefoil knot satisfies Bennequin inequality (tight bound)"
-    },
-    "test_3_high_genus_slack": {
-      "sat": true,
-      "valid": true,
-      "description": "Higher genus knot satisfies Bennequin with slack"
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "test_1_bennequin_violation": {
-      "unsat": true,
-      "valid": true,
-      "description": "Bennequin inequality violation is UNSAT"
-    },
-    "test_2_high_rotation_low_genus": {
-      "unsat": true,
-      "valid": true,
-      "description": "High rotation number with low genus violates Bennequin"
-    },
-    "test_3_high_tb_high_r": {
-      "unsat": true,
-      "valid": true,
-      "description": "High tb and r values violate Bennequin for low genus"
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "test_1_tight_bennequin": {
-      "sat": true,
-      "valid": true,
-      "description": "Tight Bennequin (equality) is admissible"
-    },
-    "test_2_genus_zero_unknot": {
-      "sat": true,
-      "valid": true,
-      "description": "Genus-0 unknot at boundary of Bennequin"
-    },
-    "test_3_zero_rotation": {
-      "sat": true,
-      "valid": true,
-      "description": "Zero rotation number simplifies Bennequin inequality"
-    }
+    "error": "cvc5 not available"
   },
   "classification": "canonical"
 }

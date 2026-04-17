@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "SAT solver for AEP concentration inequalities"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -78,55 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "aep_probability_convergence": {
-      "sat": true,
-      "assertion": "0 \u2264 P_T \u2264 1 AND 0 < \u03b5 < 0.1 AND P_T \u2265 1 - \u03b5",
-      "expected": true,
-      "passed": true
-    },
-    "typical_set_cardinality_bounds": {
-      "error": "type object 'Kind' has no attribute 'EQ'"
-    },
-    "sequence_probability_concentration": {
-      "error": "type object 'Kind' has no attribute 'EQ'"
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "aep_probability_bound_unsat": {
-      "unsat": true,
-      "assertion": "P_T \u2265 0.9 AND P_T < 0.9",
-      "expected": true,
-      "passed": true
-    },
-    "typical_set_exceeds_all_sequences_unsat": {
-      "unsat": true,
-      "assertion": "log_card \u2264 n AND log_card > n",
-      "expected": true,
-      "passed": true
-    },
-    "atypical_seq_probability_unsat": {
-      "error": "type object 'Kind' has no attribute 'EQ'"
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "sympy_lower_bound": {
-      "formula": "|T_\u03b4(n)| \u2265 2^(n(H-\u03b4))",
-      "bound_at_n10_H1.5_delta0.1": 16384.0,
-      "expected": 16384,
-      "passed": true
-    },
-    "sympy_upper_bound": {
-      "formula": "|T_\u03b4(n)| \u2264 2^(n(H+\u03b4))",
-      "bound_at_n10_H1.5_delta0.1": 65536.0,
-      "expected": 65536,
-      "passed": true
-    },
-    "aep_delta_zero_limit": {
-      "sat": true,
-      "assertion": "P_T \u2265 0.99 (typical as \u03b4 \u2192 0)",
-      "expected": true,
-      "passed": true
-    }
+    "error": "sympy or cvc5 not available"
   },
   "classification": "canonical"
 }

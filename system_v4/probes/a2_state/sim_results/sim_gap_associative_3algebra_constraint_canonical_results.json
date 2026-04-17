@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "QF_LIA solver for ternary bracket degree constraint modulo n"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -45,12 +45,12 @@
     "rustworkx": {
       "tried": true,
       "used": true,
-      "reason": "graph of degree-flow: nodes=degrees, edges=bracket operations"
+      "reason": "not installed"
     },
     "xgi": {
       "tried": true,
       "used": true,
-      "reason": "hypergraph of ternary bracket: each operation is 3-edge"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -80,17 +80,11 @@
   "positive": [
     {
       "name": "positive_1_ternary_degrees_mod3",
-      "condition": "deg_x=1, deg_y=1, deg_z=1, n=3, output=0",
-      "satisfiable": true,
-      "expected": true,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     },
     {
       "name": "positive_2_ternary_larger_modulus",
-      "condition": "deg_x=2, deg_y=3, deg_z=1, n=7, output=6",
-      "satisfiable": true,
-      "expected": true,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     },
     {
       "name": "positive_3_sympy_mod5_closure",
@@ -103,17 +97,11 @@
   "negative": [
     {
       "name": "negative_1_contradiction_unsat",
-      "condition": "output_deg < 0 AND output_deg >= 0",
-      "satisfiable": false,
-      "expected": false,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     },
     {
       "name": "negative_2_degree_mismatch",
-      "condition": "deg=(1,1,1), n=3, assert_output=2, actual=0",
-      "satisfiable": false,
-      "expected": false,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     },
     {
       "name": "negative_3_sympy_algebraic_contradiction",
@@ -134,17 +122,11 @@
     },
     {
       "name": "boundary_2_trivial_modulus_n1",
-      "condition": "n=1 -> all degrees collapse to 0",
-      "satisfiable": true,
-      "expected": true,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     },
     {
       "name": "boundary_3_large_degrees_small_modulus",
-      "condition": "deg=(100,200,300), n=7, output=6",
-      "satisfiable": false,
-      "expected": false,
-      "passed": true
+      "error": "name 'cvc5' is not defined"
     }
   ],
   "classification": "canonical"

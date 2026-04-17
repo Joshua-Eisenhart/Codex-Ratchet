@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: cvc5 SMT solver: proves UNSAT for multiple dendroidal horn fillings"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "not needed; dendroidal structure is combinatorial, not algebraic"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; dendroidal sets are abstract simplicial complexes"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no equivariance in abstract dendroidal structure"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; dendroidal edges form tree structures, not general graphs"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; dendroidal structure is not hypergraph"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -129,14 +129,12 @@
   },
   "negative": {
     "test_unsat_multiple_distinct_fillings": {
-      "pass": true,
-      "detail": "UNSAT when multiple distinct horn fillings exist in Segal set",
-      "solver_result": "UNSAT"
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_unsat_segal_filling_count_violation": {
-      "pass": true,
-      "detail": "UNSAT when number of fillings violates Segal count constraint",
-      "solver_result": "UNSAT"
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_sympy_segal_uniqueness_constraint": {
       "pass": true,

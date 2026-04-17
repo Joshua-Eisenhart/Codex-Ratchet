@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves Hodge number summation constraint \u2211_{p+q=i} h^{p,q}(X) = b_i; UNSAT when sum differs"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -34,22 +34,22 @@
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "differential geometry not primary focus"
+      "reason": "not installed"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "equivariance not relevant here"
+      "reason": "not installed"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "cohomology structure implicit in constraint"
+      "reason": "not installed"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "hypergraph not needed"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -77,67 +77,18 @@
     "gudhi": null
   },
   "positive": {
-    "test_sphere_s1_hodge_sum": {
-      "passed": true,
-      "reason": "cvc5 proves Hodge sum = Betti number for S^1",
-      "variety": "S^1",
-      "cohomology_degree": 0,
-      "betti_number": 1,
-      "hodge_sum": 1
-    },
-    "test_torus_t2_hodge_sum": {
-      "passed": true,
-      "reason": "cvc5 proves Hodge sum = Betti number for T^2 (i=1)",
-      "variety": "T^2",
-      "cohomology_degree": 1,
-      "betti_number": 2,
-      "hodge_sum": 2
-    },
-    "test_rank_comparison_et_cris": {
-      "passed": true,
-      "reason": "cvc5 proves rank(H^i_et \u2297 B_cris) = rank(H^i_cris \u2297 B_cris)",
-      "et_rank": 2,
-      "cris_rank": 2
-    }
+    "test_sphere_s1_hodge_sum": null,
+    "test_torus_t2_hodge_sum": null,
+    "test_rank_comparison_et_cris": null
   },
   "negative": {
-    "test_hodge_sum_mismatch_2_vs_1": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: Hodge decomposition constraint enforced (2 \u2260 1)",
-      "betti_number": 1,
-      "hodge_sum": 2,
-      "unsatisfiable": true
-    },
-    "test_hodge_sum_mismatch_1_vs_3": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: Hodge decomposition constraint enforced (1 \u2260 3)",
-      "betti_number": 3,
-      "hodge_sum": 1,
-      "unsatisfiable": true
-    },
-    "test_rank_mismatch_et_cris": {
-      "passed": true,
-      "reason": "cvc5 UNSAT: CST functor rank constraint enforced (2 \u2260 3)",
-      "et_rank": 2,
-      "cris_rank": 3,
-      "unsatisfiable": true
-    }
+    "test_hodge_sum_mismatch_2_vs_1": null,
+    "test_hodge_sum_mismatch_1_vs_3": null,
+    "test_rank_mismatch_et_cris": null
   },
   "boundary": {
-    "test_hodge_sum_zero": {
-      "passed": true,
-      "reason": "cvc5 proves Hodge sum = Betti when both are zero",
-      "betti_number": 0,
-      "hodge_sum": 0
-    },
-    "test_high_dim_p3": {
-      "passed": true,
-      "reason": "cvc5 proves Hodge sum = Betti for P^3",
-      "variety": "P^3",
-      "cohomology_degree": 2,
-      "betti_number": 1,
-      "hodge_sum": 1
-    },
+    "test_hodge_sum_zero": null,
+    "test_high_dim_p3": null,
     "test_sympy_hodge_validation": {
       "passed": false,
       "reason": "sympy computes Hodge numbers for T^2",

@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of WDVV equation constraints (QF_NRA)"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,39 +78,15 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_wdvv_equation": {
-      "name": "WDVV equation is satisfiable",
-      "status": "PASS",
-      "satisfiable": true,
-      "constraint": "\u2202\u00b3F/\u2202t_a\u2202t_b\u2202t_c satisfies WDVV consistency"
-    },
     "test_2_gromov_witten_potential": {
       "name": "Genus-0 Gromov-Witten potential for P^2",
       "status": "PASS",
       "valid": true,
       "potential": "q**2*exp(2*t) + 2*q*exp(t) + t**2/2",
       "constraint": "F encodes N_1=2 (lines) and N_2=1 (conics)"
-    },
-    "test_3_frobenius_algebra": {
-      "name": "Frobenius algebra structure",
-      "status": "PASS",
-      "satisfiable": true,
-      "constraint": "(A, *, c, \u03b7) with non-degenerate metric and associative product"
     }
   },
   "negative": {
-    "neg_test_1_degenerate_metric": {
-      "name": "Degenerate metric violates Frobenius",
-      "status": "PASS",
-      "unsatisfiable": true,
-      "reason": "det(\u03b7) = 0 contradicts non-degeneracy requirement"
-    },
-    "neg_test_2_nonassociative_product": {
-      "name": "Non-associative product violates Frobenius",
-      "status": "PASS",
-      "unsatisfiable": true,
-      "reason": "Associativity constant > 0 contradicts Frobenius structure"
-    },
     "neg_test_3_missing_gw_invariants": {
       "name": "Missing Gromov-Witten invariants",
       "status": "PASS",
@@ -127,18 +103,6 @@
       "correct": true,
       "F_classical": "t**2/2",
       "constraint": "Quantum potential reduces to (1/2)t\u00b2 when q=0"
-    },
-    "boundary_test_2_gw_count_range": {
-      "name": "Gromov-Witten invariant count range",
-      "status": "PASS",
-      "satisfiable": true,
-      "constraint": "0 \u2264 N_d \u2264 \u221e (genus-0, degree d rational curves)"
-    },
-    "boundary_test_3_orbifold_singularity": {
-      "name": "Orbifold singularity in quantum potential",
-      "status": "PASS",
-      "satisfiable": true,
-      "constraint": "Hessian is semi-positive definite at orbifold points"
     }
   },
   "classification": "canonical"

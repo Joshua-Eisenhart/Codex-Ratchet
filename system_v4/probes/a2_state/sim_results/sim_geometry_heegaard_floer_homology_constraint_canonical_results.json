@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of 3-manifold invariant constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "Clifford algebra not needed; 3-manifold topology constraints only"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; constraints handled via SMT solver"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; no graph structure in this sim"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; pairwise interactions only"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -87,9 +87,6 @@
       "interpretation": "d-invariant correction term computable via formula",
       "method": "sympy symbolic algebra"
     },
-    "cvc5_positive_surgery_exact_triangle": {
-      "error": "getModel() takes exactly 2 positional arguments (0 given)"
-    },
     "numpy_positive_trefoil_surgery_ranks": {
       "test": "Trefoil surgery: rank(L(3,1)) \u2264 rank(S^3) + rank(L(2,1))",
       "manifold_Y0": "S^3",
@@ -105,13 +102,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_surgery_violates_rank": {
-      "test": "CVC5 UNSAT: rank(Y_1)=5 > rank(Y_0)=1 + rank(Y_\u221e)=1 (violates constraint)",
-      "satisfiable": false,
-      "passed": true,
-      "interpretation": "exact triangle constraint excludes this rank configuration",
-      "method": "cvc5 QF_LIA proof"
-    },
     "sympy_negative_impossible_d_invariant": {
       "error": "name 'is_in_valid_set' is not defined"
     },

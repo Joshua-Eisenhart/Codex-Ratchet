@@ -77,54 +77,15 @@
     "gudhi": null
   },
   "positive": {
-    "g1_1_g2_2_g3_4_sat": {
-      "g1": 1,
-      "g2": 2,
-      "g3": 4,
-      "sat": true,
-      "claim": "g1 \u2264 g2 \u2264 g3 satisfiable (strictly ordered triple)"
-    },
-    "g1_2_g2_2_g3_3_sat": {
-      "g1": 2,
-      "g2": 2,
-      "g3": 3,
-      "sat": true,
-      "claim": "g1 \u2264 g2 \u2264 g3 satisfiable (non-strict ordering)"
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "contradiction_g1_gt_g2_and_leq_unsat": {
-      "g1": 3,
-      "g2": 2,
-      "unsat": true,
-      "claim": "g1 > g2 AND g1 \u2264 g2 is unsatisfiable (stacked geometry cannot persist)"
-    },
-    "g1_4_g2_2_g3_5_unsat": {
-      "g1": 4,
-      "g2": 2,
-      "g3": 5,
-      "sat": false,
-      "claim": "g1 \u2264 g2 \u2264 g3 must hold; g1=4, g2=2 violates constraint (excluded)"
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
     "flat_tower_degenerate": {
       "g1_equals_g2_equals_g3": true,
       "explanation": "g1=g2=g3 is degenerate but admissible; no nesting constraints, all layers identical dimension"
-    },
-    "boundary_g1_g2_g3_2_sat": {
-      "g1": 2,
-      "g2": 2,
-      "g3": 2,
-      "sat": true,
-      "claim": "flat tower (all dimensions equal) is admissible boundary"
-    },
-    "boundary_g1_0_g2_1_g3_1_sat": {
-      "g1": 0,
-      "g2": 1,
-      "g3": 1,
-      "sat": true,
-      "claim": "minimal tower (g1=0) is admissible boundary"
     }
   },
   "classification": "canonical"

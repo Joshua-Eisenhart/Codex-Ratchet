@@ -42,8 +42,8 @@
       "reason": "not needed"
     },
     "rustworkx": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "DAG topological sort for shell ordering"
     },
     "xgi": {
@@ -62,7 +62,7 @@
       "reason": "not needed"
     }
   },
-  "classification": "classical_baseline",
+  "classification": "canonical",
   "architecture": {
     "type": "3qubit_full_cascade",
     "dimension": "8x8",
@@ -91,535 +91,28 @@
     }
   },
   "summary": {
-    "n_pass": 14,
-    "n_fail": 0,
-    "n_error": 0,
-    "elapsed_seconds": 0.2624979019165039
+    "n_pass": 2,
+    "n_fail": 2,
+    "n_error": 10,
+    "elapsed_seconds": 0.011813879013061523
   },
   "positive": {
     "P1_full_cascade_3q": {
-      "status": "PASS",
-      "n_families": 31,
-      "n_survived": 8,
-      "n_killed_L4": 16,
-      "n_killed_L6": 7,
-      "n_errors": 0,
-      "survived": [
-        "z_dephasing",
-        "x_dephasing",
-        "depolarizing",
-        "amplitude_damping",
-        "phase_damping",
-        "bit_flip",
-        "phase_flip",
-        "bit_phase_flip"
-      ],
-      "killed_L4": [
-        "l1_coherence",
-        "re_coherence",
-        "chiral_overlap",
-        "quantum_discord",
-        "mutual_info",
-        "hopf_connection",
-        "wigner_negativity",
-        "husimi_q",
-        "cartan_kak",
-        "eigendecomp",
-        "z_measurement",
-        "purification",
-        "lindblad",
-        "tripartite_info",
-        "coherent_info_A_BC",
-        "coherent_info_AB_C"
-      ],
-      "killed_L6": [
-        "CNOT_AB",
-        "CZ_AB",
-        "iSWAP_AB",
-        "SWAP_AB",
-        "Hadamard_A",
-        "T_gate_A",
-        "unitary_rotation"
-      ],
-      "errors": [],
-      "per_family": {
-        "z_dephasing": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.16737070711447688,
-          "observable_after": 0.16737070711447694,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "x_dephasing": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.20442906679316972,
-          "observable_after": 0.2044290667931697,
-          "ratio": 0.9999999999999999,
-          "match_expected": true
-        },
-        "depolarizing": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.12077534268218826,
-          "observable_after": 0.12077534268218829,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "amplitude_damping": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.10140506391382838,
-          "observable_after": 0.10140506391382836,
-          "ratio": 0.9999999999999999,
-          "match_expected": true
-        },
-        "phase_damping": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.04556387809841943,
-          "observable_after": 0.04556387809841945,
-          "ratio": 1.0000000000000004,
-          "match_expected": true
-        },
-        "bit_flip": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.20442906679316972,
-          "observable_after": 0.2044290667931697,
-          "ratio": 0.9999999999999999,
-          "match_expected": true
-        },
-        "phase_flip": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.16737070711447688,
-          "observable_after": 0.16737070711447694,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "bit_phase_flip": {
-          "category": "channel",
-          "expected_fate": "survive",
-          "actual_fate": "survive",
-          "observable_before": 0.21653930416918263,
-          "observable_after": 0.21653930416918263,
-          "ratio": 1.0,
-          "match_expected": true
-        },
-        "CNOT_AB": {
-          "category": "gate_2q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.4706840978830706,
-          "observable_after": 0.4706840978830707,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "CZ_AB": {
-          "category": "gate_2q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.5376000043842275,
-          "observable_after": 0.5376000043842276,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "iSWAP_AB": {
-          "category": "gate_2q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.4083590668516569,
-          "observable_after": 0.40835906685165696,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "SWAP_AB": {
-          "category": "gate_2q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.40835906685165696,
-          "observable_after": 0.40835906685165696,
-          "ratio": 1.0,
-          "match_expected": true
-        },
-        "Hadamard_A": {
-          "category": "gate_1q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.5322005474570927,
-          "observable_after": 0.5322005474570928,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "T_gate_A": {
-          "category": "gate_1q",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.2134999889198005,
-          "observable_after": 0.21349998891980057,
-          "ratio": 1.0000000000000004,
-          "match_expected": true
-        },
-        "l1_coherence": {
-          "category": "measure",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 1.32357385644434,
-          "observable_after": 1.3235738564443404,
-          "ratio": 1.0000000000000004,
-          "match_expected": true
-        },
-        "re_coherence": {
-          "category": "measure",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 1.3598511007233767,
-          "observable_after": 1.3598511007233764,
-          "ratio": 0.9999999999999999,
-          "match_expected": true
-        },
-        "chiral_overlap": {
-          "category": "measure",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.3716417600000001,
-          "observable_after": 0.37164176,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        },
-        "quantum_discord": {
-          "category": "measure_2q",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.12286033118760686,
-          "observable_after": 0.12286033118760709,
-          "ratio": 1.0000000000000018,
-          "match_expected": true
-        },
-        "mutual_info": {
-          "category": "measure_2q",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.12286033118760686,
-          "observable_after": 0.12286033118760709,
-          "ratio": 1.0000000000000018,
-          "match_expected": true
-        },
-        "hopf_connection": {
-          "category": "geometric",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.3716417600000001,
-          "observable_after": 0.37164176,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        },
-        "wigner_negativity": {
-          "category": "geometric",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.32897416311923355,
-          "observable_after": 0.32897416311923355,
-          "ratio": 1.0,
-          "match_expected": true
-        },
-        "husimi_q": {
-          "category": "geometric",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.6082240000000002,
-          "observable_after": 0.6082240000000001,
-          "ratio": 0.9999999999999998,
-          "match_expected": true
-        },
-        "cartan_kak": {
-          "category": "geometric",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.3716417600000001,
-          "observable_after": 0.37164176,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        },
-        "eigendecomp": {
-          "category": "process",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.6096242777317845,
-          "observable_after": 0.6096242777317846,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "z_measurement": {
-          "category": "process",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 1.6763454745902746,
-          "observable_after": 1.6763454745902746,
-          "ratio": 1.0,
-          "match_expected": true
-        },
-        "purification": {
-          "category": "process",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.3716417600000001,
-          "observable_after": 0.37164176,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        },
-        "lindblad": {
-          "category": "process",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": 0.04966304058351643,
-          "observable_after": 0.049663040583516414,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        },
-        "unitary_rotation": {
-          "category": "process",
-          "expected_fate": "killed_L6",
-          "actual_fate": "killed_L6",
-          "observable_before": 0.5322005474570927,
-          "observable_after": 0.5322005474570928,
-          "ratio": 1.0000000000000002,
-          "match_expected": true
-        },
-        "tripartite_info": {
-          "category": "measure_3q_emergent",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": -0.1275865320614642,
-          "observable_after": -0.12758653206146464,
-          "ratio": 1.0000000000000036,
-          "match_expected": true
-        },
-        "coherent_info_A_BC": {
-          "category": "measure_3q_emergent",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": -0.2876726114099273,
-          "observable_after": -0.28767261140992684,
-          "ratio": 0.9999999999999984,
-          "match_expected": true
-        },
-        "coherent_info_AB_C": {
-          "category": "measure_3q_emergent",
-          "expected_fate": "killed_L4",
-          "actual_fate": "killed_L4",
-          "observable_before": -0.6737766102694025,
-          "observable_after": -0.6737766102694023,
-          "ratio": 0.9999999999999997,
-          "match_expected": true
-        }
-      },
-      "dykstra_violation_trace": [
-        2.280345378567457e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16,
-        1.4409668897043473e-16
-      ]
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1048, in run_positive_tests\n    run_3q_cascade(families, rho_generic, n_dykstra_iter=30, label=\"generic_entangled\")\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "P2_per_shell_kills_3q": {
-      "status": "PASS",
-      "L1+L2": {
-        "alive": [
-          "z_dephasing",
-          "x_dephasing",
-          "depolarizing",
-          "amplitude_damping",
-          "phase_damping",
-          "bit_flip",
-          "phase_flip",
-          "bit_phase_flip",
-          "CNOT_AB",
-          "CZ_AB",
-          "iSWAP_AB",
-          "SWAP_AB",
-          "Hadamard_A",
-          "T_gate_A",
-          "l1_coherence",
-          "re_coherence",
-          "chiral_overlap",
-          "quantum_discord",
-          "mutual_info",
-          "hopf_connection",
-          "wigner_negativity",
-          "husimi_q",
-          "cartan_kak",
-          "eigendecomp",
-          "z_measurement",
-          "purification",
-          "lindblad",
-          "unitary_rotation",
-          "tripartite_info",
-          "coherent_info_A_BC",
-          "coherent_info_AB_C"
-        ],
-        "killed": [],
-        "n_alive": 31,
-        "n_killed": 0
-      },
-      "L1+L2+L4": {
-        "alive": [
-          "z_dephasing",
-          "x_dephasing",
-          "depolarizing",
-          "amplitude_damping",
-          "phase_damping",
-          "bit_flip",
-          "phase_flip",
-          "bit_phase_flip",
-          "CNOT_AB",
-          "CZ_AB",
-          "iSWAP_AB",
-          "SWAP_AB",
-          "Hadamard_A",
-          "T_gate_A",
-          "l1_coherence",
-          "re_coherence",
-          "chiral_overlap",
-          "quantum_discord",
-          "mutual_info",
-          "hopf_connection",
-          "wigner_negativity",
-          "husimi_q",
-          "cartan_kak",
-          "eigendecomp",
-          "z_measurement",
-          "purification",
-          "lindblad",
-          "unitary_rotation",
-          "tripartite_info",
-          "coherent_info_A_BC",
-          "coherent_info_AB_C"
-        ],
-        "killed": [],
-        "n_alive": 31,
-        "n_killed": 0
-      },
-      "L1+L2+L4+L6": {
-        "alive": [
-          "z_dephasing",
-          "x_dephasing",
-          "depolarizing",
-          "amplitude_damping",
-          "phase_damping",
-          "bit_flip",
-          "phase_flip",
-          "bit_phase_flip",
-          "CNOT_AB",
-          "CZ_AB",
-          "iSWAP_AB",
-          "SWAP_AB",
-          "Hadamard_A",
-          "T_gate_A",
-          "l1_coherence",
-          "re_coherence",
-          "chiral_overlap",
-          "quantum_discord",
-          "mutual_info",
-          "hopf_connection",
-          "wigner_negativity",
-          "husimi_q",
-          "cartan_kak",
-          "eigendecomp",
-          "z_measurement",
-          "purification",
-          "lindblad",
-          "unitary_rotation",
-          "tripartite_info",
-          "coherent_info_A_BC",
-          "coherent_info_AB_C"
-        ],
-        "killed": [],
-        "n_alive": 31,
-        "n_killed": 0
-      },
-      "cascade_ordering": {
-        "killed_at_L1_L2": [],
-        "killed_at_L4": [],
-        "killed_at_L6": [],
-        "survive_all": [
-          "CNOT_AB",
-          "CZ_AB",
-          "Hadamard_A",
-          "SWAP_AB",
-          "T_gate_A",
-          "amplitude_damping",
-          "bit_flip",
-          "bit_phase_flip",
-          "cartan_kak",
-          "chiral_overlap",
-          "coherent_info_AB_C",
-          "coherent_info_A_BC",
-          "depolarizing",
-          "eigendecomp",
-          "hopf_connection",
-          "husimi_q",
-          "iSWAP_AB",
-          "l1_coherence",
-          "lindblad",
-          "mutual_info",
-          "phase_damping",
-          "phase_flip",
-          "purification",
-          "quantum_discord",
-          "re_coherence",
-          "tripartite_info",
-          "unitary_rotation",
-          "wigner_negativity",
-          "x_dephasing",
-          "z_dephasing",
-          "z_measurement"
-        ],
-        "n_killed_L12": 0,
-        "n_killed_L4": 0,
-        "n_killed_L6": 0
-      }
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1073, in run_positive_tests\n    per_shell = run_per_shell_kills_3q(families, rho_generic)\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 944, in run_per_shell_kills_3q\n    dag, topo, _, idx_map = build_shell_dag_8x8(shells)\n                            ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "P3_channels_survive_3q": {
-      "status": "PASS",
+      "status": "FAIL",
       "expected": 8,
-      "actual": 8,
-      "survived": [
+      "actual": 0,
+      "survived": [],
+      "missing": [
         "z_dephasing",
         "x_dephasing",
         "depolarizing",
@@ -628,146 +121,54 @@
         "bit_flip",
         "phase_flip",
         "bit_phase_flip"
-      ],
-      "missing": []
+      ]
     },
     "P4_kill_ordering_preserved": {
-      "status": "PASS",
-      "measures_killed_at_L4": true,
-      "gates_killed_at_L6": true,
-      "killed_L4": [
-        "cartan_kak",
-        "chiral_overlap",
-        "coherent_info_AB_C",
-        "coherent_info_A_BC",
-        "eigendecomp",
-        "hopf_connection",
-        "husimi_q",
-        "l1_coherence",
-        "lindblad",
-        "mutual_info",
-        "purification",
-        "quantum_discord",
-        "re_coherence",
-        "tripartite_info",
-        "wigner_negativity",
-        "z_measurement"
-      ],
-      "killed_L6": [
-        "CNOT_AB",
-        "CZ_AB",
-        "Hadamard_A",
-        "SWAP_AB",
-        "T_gate_A",
-        "iSWAP_AB",
-        "unitary_rotation"
-      ]
+      "status": "FAIL",
+      "measures_killed_at_L4": false,
+      "gates_killed_at_L6": false,
+      "killed_L4": [],
+      "killed_L6": []
     },
     "P5_z3_cascade_consistency": {
       "status": "PASS",
       "z3_result": "sat",
-      "n_killed_L4": 16,
-      "n_killed_L6": 7,
-      "n_survived": 8
+      "n_killed_L4": 0,
+      "n_killed_L6": 0,
+      "n_survived": 0
     },
     "P6_relay_changes_Ic_not_survival": {
-      "status": "PASS",
-      "surviving_sets_match": true,
-      "survived_with_relay": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "survived_without_relay": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "Ic_AB_C_with_relay": -0.6737766102694025,
-      "Ic_AB_C_without_relay": -0.8594486771851888,
-      "Ic_differs": true
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1127, in run_positive_tests\n    _, summary_no_relay, _, _, _ = run_3q_cascade(\n                                   ~~~~~~~~~~~~~~^\n        families, rho_no_relay, n_dykstra_iter=30, label=\"no_relay\")\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     }
   },
   "negative": {
     "N1_relay_does_not_change_survival": {
-      "status": "PASS",
-      "survived_no_relay": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "survived_with_relay": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "symmetric_diff": []
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1175, in run_negative_tests\n    _, summary_no, _, _, _ = run_3q_cascade(families, rho_no_relay, label=\"no_relay_neg\")\n                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "N2_no_new_survivors_at_3q": {
-      "status": "PASS",
-      "emergent_observables": [
-        "coherent_info_AB_C",
-        "coherent_info_A_BC",
-        "tripartite_info"
-      ],
-      "emergent_survived": [],
-      "note": "3q-specific measures should be killed at L4 (absolute measures)"
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering"
     },
     "N3_null_shell_changes_nothing": {
-      "status": "PASS",
-      "frobenius_diff": 0.0
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1235, in run_negative_tests\n    dag_w, topo_w, _, idx_w = build_shell_dag_8x8(shells_with)\n                              ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     }
   },
   "boundary": {
     "B1_product_state": {
-      "status": "PASS",
-      "channels_survive": true,
-      "survived": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "note": "Product state: no entanglement, channels still survive"
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1273, in run_boundary_tests\n    _, summary_product, _, _, _ = run_3q_cascade(\n                                  ~~~~~~~~~~~~~~^\n        families, rho_product, label=\"product_state\")\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "B2_ghz_state": {
-      "status": "PASS",
-      "channels_survive": true,
-      "survived": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "note": "GHZ state: maximally entangled, channels still survive"
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1293, in run_boundary_tests\n    _, summary_ghz, _, _, _ = run_3q_cascade(\n                              ~~~~~~~~~~~~~~^\n        families, rho_ghz, label=\"ghz_state\")\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "B3_maximally_mixed_3q": {
       "status": "PASS",
@@ -780,33 +181,13 @@
       "note": "I/8 satisfies L1+L2 trivially"
     },
     "B4_w_state": {
-      "status": "PASS",
-      "channels_survive": true,
-      "survived": [
-        "amplitude_damping",
-        "bit_flip",
-        "bit_phase_flip",
-        "depolarizing",
-        "phase_damping",
-        "phase_flip",
-        "x_dephasing",
-        "z_dephasing"
-      ],
-      "note": "W state: different entanglement class from GHZ"
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 1329, in run_boundary_tests\n    _, summary_w, _, _, _ = run_3q_cascade(families, rho_w, label=\"w_state\")\n                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 864, in run_3q_cascade\n    dag, topo_indices, topo_names, idx_to_shell = build_shell_dag_8x8(shells)\n                                                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_3qubit_full_cascade.py\", line 472, in build_shell_dag_8x8\n    raise RuntimeError(\"rustworkx required for shell ordering\")\nRuntimeError: rustworkx required for shell ordering\n"
     },
     "B5_shell_dag_structure": {
-      "status": "PASS",
-      "n_nodes": 4,
-      "n_edges": 3,
-      "topo_order": [
-        "L1_CPTP",
-        "L2_Purity",
-        "L4_Composition",
-        "L6_Irreversibility"
-      ],
-      "is_dag": true
+      "status": "ERROR",
+      "error": "rustworkx required for shell ordering"
     }
-  },
-  "classification_reason": "orphan_no_source_2026-04-17",
-  "orphan_no_source_reason": "orphan_no_source_2026-04-17"
+  }
 }

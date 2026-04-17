@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "Clifford algebra not needed; number-theoretic computation via cvc5/sympy"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; Iwasawa theory is purely algebraic/p-adic"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance in this arithmetic setting"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; no graph structure in Iwasawa theory sim"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; no hypergraph structure required"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -83,34 +83,13 @@
       "passed": true,
       "detail": "p-adic L-function values at non-positive integers are algebraic integers"
     },
-    "test_interpolation_property_positive_n": {
-      "description": "L_p(1-n,\u03c7) = (1-\u03c7\u03c9^{-n}(p)p^{n-1})L(1-n,\u03c7\u03c9^{-n}) for n\u22651",
-      "satisfiable": true,
-      "passed": true
-    },
     "test_bernoulli_l_function_relation": {
       "description": "Bernoulli number B_{2k}/(2k) connects to L(1-2k,\u03c7)",
       "passed": true,
       "detail": "For even negative integers, L-values at 1-2k are determined by Bernoulli numbers"
     }
   },
-  "negative": {
-    "test_lp_transcendental_unsat": {
-      "description": "L_p(0,\u03c7) transcendental contradicts algebraicity constraint",
-      "satisfiable": false,
-      "passed": true
-    },
-    "test_interpolation_failure_unsat": {
-      "description": "interpolation property failure for n\u22651 is UNSAT",
-      "satisfiable": false,
-      "passed": true
-    },
-    "test_functional_eq_violation_unsat": {
-      "description": "functional equation symmetry violation is UNSAT",
-      "satisfiable": false,
-      "passed": true
-    }
-  },
+  "negative": {},
   "boundary": {
     "test_lp_s_zero_boundary": {
       "description": "L_p(0,\u03c7) is the boundary special value",
@@ -121,11 +100,6 @@
       "description": "Bernoulli numbers B_n grow factorially; bound p-adic L interpolation error",
       "passed": true,
       "detail": "Boundary: p-adic valuation controls growth in p-adic expansion"
-    },
-    "test_symmetric_exponent_domain": {
-      "description": "functional equation domain s \u2208 [0,1] is symmetric",
-      "satisfiable": true,
-      "passed": true
     }
   },
   "classification": "canonical"

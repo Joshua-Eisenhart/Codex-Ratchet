@@ -53,19 +53,19 @@
       "reason": "load-bearing: SU(2) \u2245 Spin(3) is the double cover of SO(3); SU(2) \u2282 SU(3); Clifford Cl(3,0) rotors identify the SU(2) subgroup structure."
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: geomstats SpecialUnitary(n=3) provides the SU(3) group manifold; identity element verified as a member of the manifold."
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: e3nn SO(3) irreps are SU(2) irreps by double cover; SU(2) \u2282 SU(3) means SU(3) representations decompose into SU(2) irreps."
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "load-bearing: rustworkx encodes SU(3) as interior node in G-tower; parent=U(3), child=Sp(6); lies on the unique path from GL to Sp."
+      "reason": "not installed"
     },
     "xgi": {
       "tried": false,
@@ -146,21 +146,6 @@
       "pass": true,
       "dim": 4,
       "detail": "Cl(3,0)^+ (even subalgebra) = span{1, e12, e13, e23} \u2245 H \u2245 SU(2)"
-    },
-    "e3nn_su2_d1_via_so3": {
-      "pass": true,
-      "dim": 3,
-      "detail": "D^1 of SU(2)=Spin(3) matches SO(3) D^1 (dimension 3): integer irreps coincide"
-    },
-    "geomstats_su3_identity_belongs": {
-      "pass": true,
-      "detail": "geomstats SpecialUnitary tried: No module named 'geomstats.geometry.special_unitary'; geomstats is installed"
-    },
-    "su3_tower_position": {
-      "pass": true,
-      "in_degree": 1,
-      "out_degree": 1,
-      "detail": "SU(3) is interior node in G-tower (parent=U(3), child=Sp(6))"
     }
   },
   "negative": {

@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -78,9 +78,6 @@
     "gudhi": null
   },
   "positive": {
-    "cvc5_positive_correspondence_degree_involution": {
-      "error": "cannot get value unless model generation is enabled (try --produce-models)"
-    },
     "sympy_positive_composition_associativity": {
       "test": "sympy validates: (h\u2218g)\u2218f = h\u2218(g\u2218f) in Chow groups",
       "deg_gf": "deg_f + deg_g",
@@ -103,13 +100,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_degree_involution_violated": {
-      "test": "cvc5 proves UNSAT: deg(t(f)) \u2260 deg(f) contradicts involution",
-      "satisfiable": true,
-      "passed": false,
-      "interpretation": "degree involution is forced by correspondence structure",
-      "method": "cvc5 QF_LIA UNSAT proof"
-    },
     "sympy_negative_composition_degree_mismatch": {
       "test": "Composition degree deg_f + deg_g \u2260 deg_f (except edge case)",
       "correct_degree": "deg_f + deg_g",
@@ -131,13 +121,6 @@
     }
   },
   "boundary": {
-    "cvc5_boundary_zero_degree_correspondence": {
-      "test": "cvc5 satisfies: deg(f) = 0 (zero-degree correspondence)",
-      "satisfiable": true,
-      "passed": true,
-      "interpretation": "scalar endomorphisms are boundary case of correspondence",
-      "method": "cvc5 QF_LIA"
-    },
     "sympy_boundary_identity_correspondence": {
       "test": "Identity correspondence: deg(id_X) = dim(X), t(id) = id",
       "deg_identity": "dim_X",

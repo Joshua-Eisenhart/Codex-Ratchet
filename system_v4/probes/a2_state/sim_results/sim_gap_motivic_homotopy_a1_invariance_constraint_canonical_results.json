@@ -19,9 +19,9 @@
       "reason": "dimension constraints checked via SAT"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "A\u00b9-invariance dimension equality (load-bearing)"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -34,24 +34,24 @@
       "reason": "not applicable to sheaf dimension"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "manifold dimension check"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "equivariance structure under A\u00b9 action"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "sheaf graph structure"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "hypergraph complex"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -80,14 +80,12 @@
   },
   "positive": {
     "test_a1_invariance_basic": {
-      "status": "PASS",
-      "sat": true,
-      "description": "A\u00b9-invariant sheaf with dim(X)=5, dim(X\u00d7A\u00b9)=5"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_a1_invariance_low_dim": {
-      "status": "PASS",
-      "sat": true,
-      "description": "A\u00b9-invariant sheaf with dim(X)=3, dim(X\u00d7A\u00b9)=3"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_k_theory_a1_invariance": {
       "status": "PASS",
@@ -97,16 +95,12 @@
   },
   "negative": {
     "test_a1_invariance_contradiction": {
-      "status": "PASS",
-      "sat": false,
-      "expected": "UNSAT",
-      "description": "dim(X)=5, dim(X\u00d7A\u00b9)=6 contradicts A\u00b9-invariance"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_a1_negative_dimension": {
-      "status": "PASS",
-      "sat": false,
-      "expected": "UNSAT",
-      "description": "Negative dimension contradicts non-negativity constraint"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_k_theory_contradiction": {
       "status": "ERROR",
@@ -115,14 +109,12 @@
   },
   "boundary": {
     "test_a1_zero_dimension": {
-      "status": "PASS",
-      "sat": true,
-      "description": "A\u00b9-invariance at zero dimension (point)"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_a1_large_dimension": {
-      "status": "PASS",
-      "sat": true,
-      "description": "A\u00b9-invariance at large dimension (100)"
+      "status": "ERROR",
+      "error": "No module named 'cvc5'"
     },
     "test_k_theory_negative_bound": {
       "status": "PASS",

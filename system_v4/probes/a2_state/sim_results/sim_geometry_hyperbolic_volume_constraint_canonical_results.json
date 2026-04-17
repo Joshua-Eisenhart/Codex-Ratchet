@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of hyperbolic geometry constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,43 +78,17 @@
     "gudhi": null
   },
   "positive": {
-    "positive_mostow_rigidity_sat": {
-      "satisfiable": true,
-      "expected": true,
-      "reason": "Mostow rigidity: equal volume + equal \u03c0_1 rank \u2192 isometric (SAT)"
-    },
     "positive_dehn_surgery_limit": {
       "original_volume": 1.3169002532958984,
       "limit_as_p_infty": 1.3169,
       "limit_as_q_infty": 1.3169,
       "matches": false,
       "reason": "Dehn surgery formula: Vol(M_{p/q}) \u2192 Vol(M) as p,q \u2192 \u221e"
-    },
-    "positive_volume_positivity": {
-      "satisfiable": true,
-      "expected": true,
-      "reason": "Hyperbolic volume is always positive (SAT)"
     }
   },
-  "positive_pass": 3,
-  "negative": {
-    "negative_mostow_rank_mismatch": {
-      "satisfiable": false,
-      "expected": false,
-      "reason": "Mostow rigidity violated: equal volume but different \u03c0_1 ranks with non-isometric claim (UNSAT)"
-    },
-    "negative_volume_negative": {
-      "satisfiable": false,
-      "expected": false,
-      "reason": "Negative volume is impossible in hyperbolic geometry (UNSAT)"
-    },
-    "negative_hyperbolic_trivial_pi1": {
-      "satisfiable": false,
-      "expected": false,
-      "reason": "Hyperbolic manifolds must have non-trivial \u03c0_1 (UNSAT)"
-    }
-  },
-  "negative_pass": 3,
+  "positive_pass": 1,
+  "negative": {},
+  "negative_pass": 0,
   "boundary": {
     "boundary_weeks_manifold_minimal": {
       "weeks_volume": 0.9427003860473633,
@@ -139,6 +113,6 @@
     }
   },
   "boundary_pass": 3,
-  "all_pass": true,
+  "all_pass": false,
   "classification": "canonical"
 }

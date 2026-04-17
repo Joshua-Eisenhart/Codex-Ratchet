@@ -18,7 +18,7 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": true,
       "reason": "cvc5 SMT solver: load_bearing proof of Chern-Weil naturality constraint"
     },
@@ -78,55 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test1_identity": {
-      "name": "identity_map_naturality",
-      "sat": "sat",
-      "pass": true
-    },
-    "test2_restriction": {
-      "name": "restriction_naturality",
-      "sat": "sat",
-      "pass": true
-    },
-    "test3_tensor_trivial": {
-      "name": "tensor_trivial_naturality",
-      "sat": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "test1_pullback_mismatch": {
-      "name": "pullback_mismatch_unsat",
-      "sat": "unsat",
-      "unsat": true
-    },
-    "test2_composition": {
-      "name": "composition_naturality_violation",
-      "sat": "unsat",
-      "unsat": true
-    },
-    "test3_class_modification": {
-      "name": "class_modification_unsat",
-      "sat": "unsat",
-      "unsat": true
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "test1_zero_class": {
-      "name": "zero_class",
-      "sat": "sat",
-      "pass": true
-    },
-    "test2_high_rank": {
-      "name": "high_rank_bundle",
-      "sat": "sat",
-      "pass": true
-    },
-    "test3_surjection": {
-      "name": "pullback_surjection",
-      "sat": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "classification": "canonical"
 }

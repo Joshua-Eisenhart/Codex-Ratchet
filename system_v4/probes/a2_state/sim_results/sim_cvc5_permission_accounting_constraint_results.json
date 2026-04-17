@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing SMT verification of fractional permission constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,64 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_exclusive_write": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "Exclusive write permission (write_perm=1, read_sum=0)"
-    },
-    "test_2_two_readers_half_each": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "Two readers with 1/2 permission each (total=1, no write)"
-    },
-    "test_3_one_reader_fractional": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "One reader with 1/3 permission (total <= 1)"
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "test_1_write_exceeds_one": {
-      "expected": false,
-      "actual": false,
-      "passed": true,
-      "description": "Write permission 1.5 is invalid (must be 0 or 1)"
-    },
-    "test_2_read_sum_exceeds_one": {
-      "expected": false,
-      "actual": false,
-      "passed": true,
-      "description": "Read permissions 2/3 + 1/2 = 7/6 > 1 (invalid)"
-    },
-    "test_3_read_and_write_exceed": {
-      "expected": false,
-      "actual": false,
-      "passed": true,
-      "description": "Read 0.6 + Write 1.0 = 1.6 > 1 (capacity exceeded)"
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
-    "test_1_full_read_capacity": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "Full read capacity (read_sum=1, write_perm=0)"
-    },
-    "test_2_infinitesimal_permission": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "Infinitesimal read permission 1/1000000"
-    },
-    "test_3_ten_readers_tenth_each": {
-      "expected": true,
-      "actual": true,
-      "passed": true,
-      "description": "Ten readers with 1/10 permission each (total=1)"
-    }
+    "error": "cvc5 not installed"
   },
   "classification": "canonical"
 }

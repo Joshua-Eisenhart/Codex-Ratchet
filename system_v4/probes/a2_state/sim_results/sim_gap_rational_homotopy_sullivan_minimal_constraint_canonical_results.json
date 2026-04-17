@@ -18,8 +18,8 @@
     },
     "cvc5": {
       "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Sullivan minimality constraint"
+      "used": false,
+      "reason": "not installed: No module named 'cvc5'"
     },
     "sympy": {
       "tried": true,
@@ -78,98 +78,35 @@
   },
   "positive": {
     "sullivan_trivial_algebra_gen0": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 0,
-        "d_is_decomposable": 1,
-        "d_image_degree": 2
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_minimal_gen1_quadratic": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 1,
-        "d_is_decomposable": 1,
-        "d_image_degree": 2
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_minimal_gen2_cubic": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 2,
-        "d_is_decomposable": 1,
-        "d_image_degree": 3
-      }
+      "error": "name 'cvc5' is not defined"
     }
   },
   "negative": {
     "sullivan_not_minimal_gen0_linear": {
-      "satisfiable": true,
-      "expected": false,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 0,
-        "d_is_decomposable": 0,
-        "d_image_degree": 1
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_not_minimal_gen1_linear_map": {
-      "satisfiable": true,
-      "expected": false,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 1,
-        "d_is_decomposable": 0,
-        "d_image_degree": 1
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_not_minimal_gen2_degree0": {
-      "satisfiable": true,
-      "expected": false,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 2,
-        "d_is_decomposable": 0,
-        "d_image_degree": 0
-      }
+      "error": "name 'cvc5' is not defined"
     }
   },
   "boundary": {
     "sullivan_boundary_trivial_gen0_deg2": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 0,
-        "d_is_decomposable": 1,
-        "d_image_degree": 2
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_boundary_high_degree_gen5_deg10": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 5,
-        "d_is_decomposable": 1,
-        "d_image_degree": 10
-      }
+      "error": "name 'cvc5' is not defined"
     },
     "sullivan_boundary_zero_differential": {
-      "satisfiable": false,
-      "expected": true,
-      "match": false,
-      "sullivan_parameters": {
-        "generator": 3,
-        "d_is_decomposable": 1,
-        "d_image_degree": 2
-      }
+      "error": "name 'cvc5' is not defined"
     }
   },
   "classification": "canonical"

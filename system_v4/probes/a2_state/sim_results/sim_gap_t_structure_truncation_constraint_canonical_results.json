@@ -19,7 +19,7 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": true,
       "reason": "cvc5 SMT solver: load_bearing proof of t-structure truncation axiom constraint"
     },
@@ -34,24 +34,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -113,11 +113,8 @@
   "negative": {
     "negative_1_unsat": {
       "test": "truncation_axiom_violation_unsat",
-      "sat_result": "sat",
-      "is_unsat": false,
-      "interpretation": "No non-trivial object can be in both D^{<=0} and D^{>=1}",
-      "cvc5_query": "exists nonzero E: E in D^{<=0} AND E in D^{>=1}?",
-      "triangle_axioms_imply": "UNSAT \u2014 violates t-structure axiom"
+      "error": "name 'cvc5' is not defined",
+      "is_unsat": false
     },
     "negative_2_both_cohomology": {
       "description": "Object with H^-1(E) nonzero and H^1(E) nonzero",

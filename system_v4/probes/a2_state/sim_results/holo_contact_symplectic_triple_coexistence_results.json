@@ -18,7 +18,7 @@
       "reason": "z3 SAT: all three shells active simultaneously is satisfiable; z3 UNSAT: any shell degenerate while Q_HCS>0 is impossible"
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": false,
       "reason": "z3 sufficient for triple coexistence admissibility check; excluded"
     },
@@ -33,24 +33,24 @@
       "reason": "Clifford algebra not primary target for triple coexistence; excluded"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
       "reason": "Riemannian manifold not required for triple coexistence baseline; excluded"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
       "reason": "SO(3) equivariance not relevant to HCS triple coexistence; excluded"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Three-shell compatibility graph: 3 nodes + 3 pairwise edges; confirms full connectivity"
+      "reason": "Three-shell compatibility graph: 3 nodes + 3 pairwise edges; confirms full connectivity [NOT INSTALLED]"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "Order-3 hyperedge {H_holo, H_contact, H_symp}: verifies irreducible three-way coexistence"
+      "reason": "Order-3 hyperedge {H_holo, H_contact, H_symp}: verifies irreducible three-way coexistence [NOT INSTALLED]"
     },
     "toponetx": {
       "tried": true,
@@ -100,18 +100,14 @@
       "interpretation": "MI[input] > MI[final] confirmed 20/20 seeds; dephasing-MERA is entropy-increasing"
     },
     "P4_rustworkx_triple_shell_fully_connected": {
-      "passed": true,
-      "n_nodes": 3,
-      "n_edges": 3,
-      "interpretation": "Three-shell compatibility graph is fully connected; all pairs are pairwise compatible"
+      "passed": false,
+      "error": "rustworkx not installed"
     },
     "P5_xgi_order4_coexistence_hyperedge": {
-      "passed": true,
-      "n_nodes": 4,
-      "n_hyperedges": 1,
-      "interpretation": "Order-4 hyperedge {H_holo,H_contact,H_symp,MI} encodes full triple coexistence"
+      "passed": false,
+      "error": "xgi not installed"
     },
-    "pass": true
+    "pass": false
   },
   "negative": {
     "N1_z3_unsat_contact_degenerate": {
@@ -150,11 +146,11 @@
     },
     "pass": true
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "summary": {
-    "all_pass": true,
+    "all_pass": false,
     "n_tests": 10,
-    "n_pass": 10
+    "n_pass": 8
   },
   "Q_form": "Q_HCS = MI \u00d7 H_holo \u00d7 H_contact \u00d7 H_symp"
 }

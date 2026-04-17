@@ -18,8 +18,8 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "Load-bearing for Connes distance formula metric constraint proofs"
     },
     "sympy": {
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -77,60 +77,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "pos_1": {
-      "test": "triangle_inequality_satisfied",
-      "d(p,q)": 1,
-      "d(q,r)": 2,
-      "d(p,r)": 3,
-      "bound": "d(p,r) <= d(p,q) + d(q,r)",
-      "result": "SAT",
-      "status": "PASS"
-    },
-    "pos_2": {
-      "test": "four_point_metric",
-      "points": [
-        "p",
-        "q",
-        "r",
-        "s"
-      ],
-      "result": "SAT",
-      "status": "PASS"
-    },
-    "pos_3": {
-      "test": "triangle_equality",
-      "d(p,q)": 2,
-      "d(q,r)": 3,
-      "d(p,r)": 5,
-      "constraint": "d(p,r) = d(p,q) + d(q,r)",
-      "result": "SAT",
-      "status": "PASS"
-    }
-  },
-  "negative": {
-    "neg_1": {
-      "test": "negative_distance",
-      "constraint": "d >= 0 AND d < 0",
-      "result": "UNSAT",
-      "status": "PASS"
-    },
-    "neg_2": {
-      "test": "triangle_violation",
-      "d(p,q)": 1,
-      "d(q,r)": 1,
-      "d(p,r)": 3,
-      "constraint": "d(p,r) <= 2 AND d(p,r) > 2",
-      "result": "UNSAT",
-      "status": "PASS"
-    },
-    "neg_3": {
-      "test": "diagonal_nonzero",
-      "constraint": "d(p,p) = 0 AND d(p,p) = 1",
-      "result": "UNSAT",
-      "status": "PASS"
-    }
-  },
+  "positive": {},
+  "negative": {},
   "boundary": {
     "bnd_1": {
       "test": "reflexivity",

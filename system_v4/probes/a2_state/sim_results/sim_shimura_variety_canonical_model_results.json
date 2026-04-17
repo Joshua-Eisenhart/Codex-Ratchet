@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,11 +78,6 @@
     "gudhi": null
   },
   "positive": {
-    "test_valid_degree_bound": {
-      "status": "PASS",
-      "is_satisfiable": true,
-      "interpretation": "Valid Shimura datum with reflex field degree = dim(X) + 1"
-    },
     "test_cm_elliptic_galois_action": {
       "status": "PASS",
       "field": "Q(i)",
@@ -99,16 +94,6 @@
     }
   },
   "negative": {
-    "test_reflex_degree_overflow": {
-      "status": "PASS",
-      "is_unsatisfiable": true,
-      "interpretation": "UNSAT: reflex field degree [E:Q]=5 > dim(X)+1=3 is structurally impossible"
-    },
-    "test_weight_non_central": {
-      "status": "PASS",
-      "is_unsatisfiable": true,
-      "interpretation": "UNSAT: non-central weight homomorphism contradicts Shimura axiom"
-    },
     "test_invalid_galois_action": {
       "status": "PASS",
       "claim": "Gal(Q^ab/Q) action NOT via Hecke character",
@@ -117,27 +102,12 @@
     }
   },
   "boundary": {
-    "test_minimal_shimura_datum": {
-      "status": "PASS",
-      "dim_X": 1,
-      "reflex_degree": 1,
-      "reflex_field": "Q",
-      "is_satisfiable": true,
-      "interpretation": "Boundary: reflex field = Q is valid for 1-dimensional Shimura variety"
-    },
     "test_locally_symmetric_decomposition": {
       "status": "PASS",
       "property": "analytic space = disjoint union of locally symmetric spaces",
       "num_components": 4,
       "each_component_finite_volume": true,
       "interpretation": "Boundary: topological compactification preserves disjoint union structure"
-    },
-    "test_high_dimension_bound": {
-      "status": "PASS",
-      "dim_X": 100,
-      "max_reflex_degree": 101,
-      "is_satisfiable": true,
-      "interpretation": "Boundary: degree bound scales linearly with dimension"
     }
   },
   "classification": "canonical"

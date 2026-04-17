@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -78,9 +78,6 @@
     "gudhi": null
   },
   "positive": {
-    "cvc5_positive_hodge_deligne_constraint": {
-      "error": "cannot get value unless model generation is enabled (try --produce-models)"
-    },
     "sympy_positive_hodge_decomposition": {
       "test": "Hodge decomposition Gr_k^W = \u2295_{p+q=k} H^{p,q}",
       "weight_k": 2,
@@ -116,13 +113,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_deligne_violated": {
-      "test": "cvc5 proves UNSAT: p+q\u2260k+1 but dim(intersection)>0 (violates Deligne)",
-      "satisfiable": true,
-      "passed": false,
-      "interpretation": "Deligne constraint forces vanishing when p+q=k+1",
-      "method": "cvc5 QF_LIA UNSAT proof"
-    },
     "sympy_negative_incompatible_filtrations": {
       "test": "Incompatible filtrations: asserting non-zero intersection at p+q=k+1",
       "k": 2,
@@ -148,9 +138,6 @@
     }
   },
   "boundary": {
-    "cvc5_boundary_weight_zero": {
-      "error": "cannot get value unless model generation is enabled (try --produce-models)"
-    },
     "sympy_boundary_pure_hodge_structure": {
       "test": "Pure Hodge structure: all weights equal (boundary case)",
       "dimension": 3,

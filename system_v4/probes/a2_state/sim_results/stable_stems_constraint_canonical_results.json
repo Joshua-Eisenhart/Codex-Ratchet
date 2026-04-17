@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing: QF_LIA for order bounds and torsion finiteness constraints"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,130 +78,21 @@
     "gudhi": null
   },
   "positive": {
-    "test_finite_2primary_part": {
-      "description": "\u03c0_n^s has finite 2-primary part for n > 0",
-      "stems": [
-        {
-          "n": 1,
-          "order": 2,
-          "satisfied": true
-        },
-        {
-          "n": 2,
-          "order": 2,
-          "satisfied": true
-        },
-        {
-          "n": 3,
-          "order": 24,
-          "satisfied": true
-        },
-        {
-          "n": 4,
-          "order": 240,
-          "satisfied": true
-        },
-        {
-          "n": 5,
-          "order": 504,
-          "satisfied": true
-        }
-      ],
-      "all_finite": true,
-      "status": "pass"
-    },
-    "test_serre_finiteness": {
-      "description": "Serre finiteness: \u03c0_n^s(S^0) is finite for n > 0",
-      "status": "pass",
-      "examples": {
-        "pi_1_s0": "Z/2",
-        "pi_2_s0": "Z/2",
-        "pi_3_s0": "Z/24 (Z/8 * Z/3)"
-      },
-      "vanishing": "\u03c0_0^s(S^0) = Z, \u03c0_n^s(S^0) finite for n > 0"
-    },
-    "test_stems_adams_compatible": {
-      "description": "Stem values compatible with Adams spectral sequence convergence",
-      "status": "pass",
-      "note": "Stems computed from Adams E_\u221e page agree with direct computation"
+    "cvc5_unavailable": {
+      "status": "skip",
+      "reason": "cvc5 not installed"
     }
   },
   "negative": {
-    "test_unsat_infinite_torsion": {
-      "description": "UNSAT: \u03c0_n^s has infinite torsion for n > 0",
-      "invalid_claims": [
-        {
-          "n": 1,
-          "claim": "infinite 2-torsion",
-          "unsat": false
-        },
-        {
-          "n": 2,
-          "claim": "infinite 2-torsion",
-          "unsat": false
-        },
-        {
-          "n": 3,
-          "claim": "infinite 2-torsion",
-          "unsat": false
-        },
-        {
-          "n": 4,
-          "claim": "infinite 2-torsion",
-          "unsat": false
-        },
-        {
-          "n": 5,
-          "claim": "infinite 2-torsion",
-          "unsat": false
-        }
-      ],
-      "all_unsat": true,
-      "status": "pass"
-    },
-    "test_unsat_unbounded_order": {
-      "description": "UNSAT: \u03c0_3^s order > 10^6",
-      "status": "pass",
-      "note": "\u03c0_3^s = Z/24 has bounded order"
-    },
-    "test_unsat_zero_torsion": {
-      "description": "UNSAT: \u03c0_n^s is free Z for n > 0",
-      "status": "pass",
-      "note": "Serre theorem: only \u03c0_0^s = Z is free"
+    "cvc5_unavailable": {
+      "status": "skip",
+      "reason": "cvc5 not installed"
     }
   },
   "boundary": {
-    "test_large_stems_finite": {
-      "description": "\u03c0_n^s remains finite for large n",
-      "stems": [
-        {
-          "n": 10,
-          "finite": true
-        },
-        {
-          "n": 20,
-          "finite": true
-        },
-        {
-          "n": 50,
-          "finite": true
-        },
-        {
-          "n": 100,
-          "finite": true
-        }
-      ],
-      "status": "pass"
-    },
-    "test_order_growth_rate": {
-      "description": "Orders grow but stay bounded (not doubly exponential)",
-      "status": "pass",
-      "note": "Known: 2^{n-1} is approximate upper bound on 2-primary orders"
-    },
-    "test_boundary_pi0_pi1": {
-      "description": "\u03c0_0^s = Z (free), \u03c0_1^s = Z/2 (torsion)",
-      "status": "pass",
-      "transition": "n=0 to n>0 boundary marks torsion emergence"
+    "cvc5_unavailable": {
+      "status": "skip",
+      "reason": "cvc5 not installed"
     }
   },
   "classification": "canonical"

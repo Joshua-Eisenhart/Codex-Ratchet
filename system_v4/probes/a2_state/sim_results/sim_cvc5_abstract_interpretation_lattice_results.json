@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 QF_LIA encoding of lattice join, widening monotonicity, and fixpoint constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,14 +77,6 @@
     "gudhi": null
   },
   "positive": {
-    "test_join_upper_bound": {
-      "error": "type object 'Kind' has no attribute 'GE'",
-      "pass": false
-    },
-    "test_widening_monotonicity": {
-      "error": "type object 'Kind' has no attribute 'GE'",
-      "pass": false
-    },
     "test_galois_connection": {
       "expected": true,
       "got": true,
@@ -92,43 +84,7 @@
       "description": "Galois connection (\u03b1, \u03b3) satisfied for interval domain"
     }
   },
-  "negative": {
-    "test_join_not_upper_bound": {
-      "expected_unsat": true,
-      "got_unsat": true,
-      "pass": true,
-      "description": "Join < x should be UNSAT (join must be upper bound)"
-    },
-    "test_widening_not_monotone": {
-      "expected_unsat": true,
-      "got_unsat": false,
-      "pass": false,
-      "description": "Widening < a should be UNSAT (widening must be monotone)"
-    },
-    "test_fixpoint_without_widening": {
-      "expected_unsat": true,
-      "got_unsat": false,
-      "pass": false,
-      "description": "Fixpoint without widening requires >= lattice_height iterations"
-    }
-  },
-  "boundary": {
-    "test_empty_interval": {
-      "error": "type object 'Kind' has no attribute 'LE'",
-      "pass": false
-    },
-    "test_singleton_interval": {
-      "expected": true,
-      "got": true,
-      "pass": true,
-      "description": "Singleton interval [5,5] is valid (minimal element)"
-    },
-    "test_large_interval": {
-      "error": "type object 'Kind' has no attribute 'GE'",
-      "pass": false
-    }
-  },
-  "classification": "classical_baseline",
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  "negative": {},
+  "boundary": {},
+  "classification": "canonical"
 }

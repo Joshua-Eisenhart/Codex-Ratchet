@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "QF_LIA SAT/UNSAT proof of Betti number constraints"
+      "reason": "cvc5 not installed"
     },
     "sympy": {
       "tried": true,
@@ -79,16 +79,14 @@
   },
   "positive": {
     "cvc5_positive_SAT_genus2": {
-      "status": "pass",
-      "is_sat": true,
-      "claim": "smooth projective curve genus g=2 with b_0=1, b_1=4, b_2=1 should be SAT"
+      "status": "error",
+      "error": "name 'cvc5' is not defined"
     }
   },
   "negative": {
     "cvc5_negative_UNSAT_negative_betti": {
-      "status": "pass",
-      "is_sat": false,
-      "claim": "b_1 >= 0 AND b_1 < 0 is contradictory, should be UNSAT"
+      "status": "error",
+      "error": "name 'cvc5' is not defined"
     }
   },
   "boundary": {
@@ -99,16 +97,15 @@
       "satisfied": true
     },
     "cvc5_boundary_poincare": {
-      "status": "pass",
-      "is_sat": true,
-      "claim": "Poincar\u00e9 duality b_0 = b_2 = 1 for 1-dim smooth variety should be SAT"
+      "status": "error",
+      "error": "name 'cvc5' is not defined"
     }
   },
   "summary": {
     "betti_number_constraints": "non-negative, Poincar\u00e9 duality b_i = b_{2n-i}",
     "genus_formula": "b_1 = 2*g for smooth projective curve of genus g",
-    "positive_result": "pass",
-    "negative_result": "pass",
+    "positive_result": "error",
+    "negative_result": "error",
     "boundary_result": "pass"
   }
 }

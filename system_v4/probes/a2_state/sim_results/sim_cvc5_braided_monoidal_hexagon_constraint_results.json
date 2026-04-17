@@ -17,14 +17,14 @@
       "reason": "cvc5 is primary"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Primary solver for hexagon axiom proofs and braiding constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
-      "used": true,
-      "reason": "Symbolic verification of braiding compositions"
+      "used": false,
+      "reason": ""
     },
     "clifford": {
       "tried": false,
@@ -76,65 +76,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_1_hexagon1_commutes": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Hexagon 1 diagram commutes"
-    },
-    "test_2_hexagon2_commutes": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Hexagon 2 diagram commutes"
-    },
-    "test_3_non_symmetric_braiding": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Non-symmetric braiding allowed in braided category"
-    }
-  },
-  "negative": {
-    "test_neg_1_hexagon1_fails": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Hexagon 1 violation is unsatisfiable"
-    },
-    "test_neg_2_hexagon2_fails": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Hexagon 2 violation is unsatisfiable"
-    },
-    "test_neg_3_symmetric_contradiction": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Symmetric axiom and its negation are unsatisfiable"
-    }
-  },
-  "boundary": {
-    "test_boundary_1_trivial_braiding": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Trivial (identity) braiding satisfies hexagon"
-    },
-    "test_boundary_2_yang_baxter": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Yang-Baxter relation compatible with braiding"
-    },
-    "test_boundary_3_braiding_naturality": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Braiding is natural in arguments"
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

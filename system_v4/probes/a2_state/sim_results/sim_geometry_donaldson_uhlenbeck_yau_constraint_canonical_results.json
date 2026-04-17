@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of stability and HYM constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "Clifford algebra not needed; slope stability constraints only"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; constraints handled via SMT solver"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; no graph structure in this sim"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; pairwise interactions only"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -78,64 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_line_bundle_stable": {
-      "name": "Line bundle is \u03bc-stable",
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_2_no_destabilizing_subsheaf": {
-      "name": "Bundle with no destabilizing subsheaves",
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_3_bogomolov_inequality": {
-      "name": "Bogomolov inequality \u0394 \u2265 0",
-      "computed": 4.0,
-      "expected": 4,
-      "pass": "True"
-    }
+    "error": "cvc5 or sympy not installed"
   },
   "negative": {
-    "test_1_destabilizing_subsheaf": {
-      "name": "Destabilizing subsheaf exists (UNSAT)",
-      "sat": false,
-      "expected": false,
-      "pass": true
-    },
-    "test_2_negative_rank": {
-      "name": "Negative rank (UNSAT)",
-      "sat": false,
-      "expected": false,
-      "pass": true
-    },
-    "test_3_bogomolov_violation": {
-      "name": "Bogomolov inequality violated",
-      "computed": -3.0,
-      "expected_violation": "\u0394 < 0",
-      "pass": "True"
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
-    "test_1_semistable_equal_slopes": {
-      "name": "Semi-stable: equal slopes",
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_2_large_rank": {
-      "name": "Large rank ratio",
-      "sat": true,
-      "expected": true,
-      "pass": true
-    },
-    "test_3_bogomolov_zero": {
-      "name": "Bogomolov equality at boundary (\u0394 = 0)",
-      "computed": 0.0,
-      "expected": 0,
-      "pass": true
-    }
+    "error": "cvc5 or sympy not installed"
   },
   "classification": "canonical"
 }

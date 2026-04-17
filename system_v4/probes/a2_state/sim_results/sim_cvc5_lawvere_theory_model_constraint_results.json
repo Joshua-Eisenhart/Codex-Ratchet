@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "SMT solver for product-preservation constraints and rank consistency"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,61 +77,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_product_preservation": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true,
-      "model": {
-        "F_1": "2",
-        "F_2": "4",
-        "F_3": "8"
-      }
-    },
-    "test_2_free_algebra_rank": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true,
-      "free_rank": "4"
-    },
-    "test_3_natural_transformation_naturality": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "neg_test_1_rank_mismatch_unsat": {
-      "sat": "unsat",
-      "expected": "unsat",
-      "pass": true
-    },
-    "neg_test_2_free_rank_formula_violation_unsat": {
-      "sat": "unsat",
-      "expected": "unsat",
-      "pass": true
-    },
-    "neg_test_3_naturality_violation_unsat": {
-      "sat": "unsat",
-      "expected": "unsat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
-    "boundary_test_1_trivial_theory": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true
-    },
-    "boundary_test_2_one_generator_free_algebra": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true
-    },
-    "boundary_test_3_associativity_of_products": {
-      "sat": "sat",
-      "expected": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "classification": "canonical"
 }

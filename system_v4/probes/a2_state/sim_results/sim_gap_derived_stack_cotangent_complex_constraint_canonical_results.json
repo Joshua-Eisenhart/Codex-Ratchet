@@ -21,7 +21,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "core solver: QF_LIA for amplitude interval constraints"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -79,47 +79,10 @@
     "gudhi": null
   },
   "positive": {
-    "test_positive_n1_amplitude_minus1_0": {
-      "n": 1,
-      "amplitude_lower": -1,
-      "amplitude_upper": 0,
-      "is_sat": true,
-      "expected": true
-    },
-    "test_positive_n2_amplitude_minus2_0": {
-      "n": 2,
-      "amplitude_lower": -2,
-      "amplitude_upper": 0,
-      "is_sat": true,
-      "expected": true
-    },
-    "test_positive_smooth_amplitude_0_0": {
-      "amplitude_lower": 0,
-      "amplitude_upper": 0,
-      "is_sat": true,
-      "expected": true
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "test_negative_amplitude_1_0_malformed": {
-      "amplitude_lower": 1,
-      "amplitude_upper": 0,
-      "is_sat": false,
-      "expected": false
-    },
-    "test_negative_amplitude_below_neg_n": {
-      "n": 1,
-      "amplitude_lower": -2,
-      "amplitude_upper": 0,
-      "is_sat": false,
-      "expected": false
-    },
-    "test_negative_amplitude_upper_positive": {
-      "amplitude_lower": -1,
-      "amplitude_upper": 1,
-      "is_sat": false,
-      "expected": false
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
     "test_boundary_smooth_amplitude_unique": {

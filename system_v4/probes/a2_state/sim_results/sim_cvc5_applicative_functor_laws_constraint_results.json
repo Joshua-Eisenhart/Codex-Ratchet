@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "load-bearing: cvc5 SMT solver proves applicative functor laws via quantifier-free linear integer arithmetic"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,28 +78,20 @@
   },
   "positive": {
     "test_1_identity_law": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Identity law: pure id <*> v = v holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_composition_law": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Composition law: pure (.) <*> u <*> v <*> w = u <*> (v <*> w) holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_homomorphism_law": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Homomorphism law: pure f <*> pure x = pure (f x) holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_4_interchange_law": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Interchange law: u <*> pure y = pure (\u03bbf. f y) <*> u holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_5_sympy_applicative": {
       "status": "PASS",
@@ -112,42 +104,30 @@
   },
   "negative": {
     "neg_test_1_identity_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Identity law cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_2_composition_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Composition law cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_3_homomorphism_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Homomorphism law cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "boundary": {
     "boundary_test_1_constant_function": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Applicative laws hold with constant functions"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_2_self_composition": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Applicative laws hold with self-composition (f . f)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_3_chain_four_functions": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Applicative laws hold with chains of 4 composed functions"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "classification": "canonical"

@@ -19,9 +19,9 @@
       "reason": "UNSAT proofs: Z1 L=R in non-commutative algebra, Z2 entropy<0, Z3 flip\u2218flip\u2260id -- all load-bearing seam guards"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cross-check on Z3 UNSAT Z2 (entropy non-negativity)"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -34,24 +34,24 @@
       "reason": "Cl(2) rotor provides concrete L vs R action for trace-distance measurement"
     },
     "geomstats": {
-      "tried": true,
-      "used": true,
-      "reason": "SO(3) geodesic distance used as supportive check that Z\u2082 seam aligns with half the SO(3) group diameter"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
-      "used": true,
-      "reason": "e3nn Irrep(1,1) distinguishes L/R representations; supportive confirmation that Axis 6 maps to irrep parity"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
-      "used": true,
-      "reason": "directed 2-node graph L\u2192R and R\u2192L encodes the Z\u2082 flip structure; confirms non-trivial directed topology of the seam"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
-      "used": true,
-      "reason": "hyperedge {L, R} added to confirm the seam is a single constraint over both nodes, not two separate constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -159,12 +159,7 @@
       "all_pass": true
     },
     "cvc5": {
-      "cvc5_entropy_nonneg_unsat": {
-        "claim": "p_L*(1-p_L) < 0 with p_L in [0,1] \u2192 UNSAT",
-        "cvc5_result": "unsat",
-        "pass": true
-      },
-      "all_pass": true
+      "skipped": "cvc5 not installed"
     }
   },
   "boundary": {
@@ -188,22 +183,10 @@
   },
   "supporting": {
     "rustworkx": {
-      "z2_directed_graph": {
-        "num_nodes": 2,
-        "num_edges": 2,
-        "strongly_connected": true,
-        "pass": true
-      },
-      "all_pass": true
+      "skipped": "rustworkx not installed"
     },
     "xgi": {
-      "z2_hyperedge": {
-        "num_nodes": 2,
-        "num_edges": 1,
-        "single_joint_constraint": true,
-        "pass": true
-      },
-      "all_pass": true
+      "skipped": "xgi not installed"
     },
     "toponetx": {
       "euler_characteristic": {
@@ -216,21 +199,10 @@
       "all_pass": true
     },
     "geomstats": {
-      "so3_seam_at_half_diameter": {
-        "theta_seam": 1.570796,
-        "so3_dist": 1.570796,
-        "pass": true
-      },
-      "all_pass": true
+      "skipped": "geomstats not installed"
     },
     "e3nn": {
-      "e3nn_irrep_parity_distinct": {
-        "even_parity": 1,
-        "odd_parity": -1,
-        "distinct": true,
-        "pass": true
-      },
-      "all_pass": true
+      "skipped": "e3nn not installed"
     },
     "gudhi": {
       "gudhi_persistence_seam_death": {
@@ -245,5 +217,5 @@
     }
   },
   "all_pass": true,
-  "elapsed_s": 0.876
+  "elapsed_s": 0.869
 }

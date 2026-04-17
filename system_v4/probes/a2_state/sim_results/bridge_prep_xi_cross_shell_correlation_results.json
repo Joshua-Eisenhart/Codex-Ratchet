@@ -44,9 +44,9 @@
       "reason": "not needed -- equivariant neural layers not required at classical baseline"
     },
     "rustworkx": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing: Xi graph with G-tower shells as nodes and Xi values as edge weights; verify edge weight decreases with tower distance"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "xgi": {
       "tried": false,
@@ -161,12 +161,8 @@
       "note": "Xi is always bounded by 1.0 (Cauchy-Schwarz); Xi(GL3,O3) and Xi(GL3,Sp6) both <= 1"
     },
     "N6_rustworkx_xi_graph_adjacent_outweighs_distant": {
-      "pass": true,
-      "n_nodes": 6,
-      "n_edges": 15,
-      "avg_adjacent_xi": 0.8414213562373094,
-      "avg_dist2_xi": 0.8017766952966368,
-      "note": "Xi graph has 6 nodes; adjacent edges outweigh distance-2 edges on average"
+      "pass": false,
+      "error": "name 'rx' is not defined"
     }
   },
   "boundary": {
@@ -209,9 +205,9 @@
   },
   "summary": {
     "positive": "8/8",
-    "negative": "6/6",
+    "negative": "5/6",
     "boundary": "5/5",
-    "overall_pass": true,
-    "total_time_s": 0.8549
+    "overall_pass": false,
+    "total_time_s": 0.6548
   }
 }

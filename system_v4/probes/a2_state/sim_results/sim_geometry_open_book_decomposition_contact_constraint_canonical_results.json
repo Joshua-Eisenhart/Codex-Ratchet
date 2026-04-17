@@ -18,8 +18,8 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "cvc5 SMT solver: load_bearing proof of open book decomposition binding constraint"
     },
     "sympy": {
@@ -78,53 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_unknot_binding_s1_s2": {
-      "sat": true,
-      "valid": true,
-      "description": "Unknot binding (fibered) compatible with S^1\u00d7S^2 contact structure"
-    },
-    "test_2_fibered_link_s3": {
-      "sat": true,
-      "valid": true,
-      "description": "Fibered multi-component link binding compatible with S^3"
-    },
-    "test_3_pseudo_anosov_monodromy": {
-      "sat": true,
-      "valid": true,
-      "description": "Pseudo-Anosov monodromy on fibered pages is consistent"
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "test_1_non_fibered_asserted_compatible": {
-      "error": "expecting a Boolean subexpression"
-    },
-    "test_2_trivial_monodromy_multi_component": {
-      "unsat": true,
-      "valid": true,
-      "description": "Multi-component fibered binding cannot have trivial monodromy"
-    },
-    "test_3_non_pa_monodromy_high_genus": {
-      "unsat": true,
-      "valid": true,
-      "description": "Non-pseudo-Anosov monodromy on high-genus page with fibered binding is UNSAT"
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "test_1_genus_zero_disk_page": {
-      "sat": true,
-      "valid": true,
-      "description": "Genus-0 disk page with identity monodromy is always fibered"
-    },
-    "test_2_no_binding": {
-      "sat": true,
-      "valid": true,
-      "description": "Open book without binding is degenerate"
-    },
-    "test_3_lens_space_standard_decomposition": {
-      "sat": true,
-      "valid": true,
-      "description": "Lens space standard open book decomposition is compatible"
-    }
+    "error": "cvc5 not available"
   },
   "classification": "canonical"
 }

@@ -17,14 +17,14 @@
       "reason": "cvc5 is primary"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Primary solver for descent data cocycle constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
-      "tried": true,
-      "used": true,
-      "reason": "Cross-check: isomorphism composition via sympy algebras"
+      "tried": false,
+      "used": false,
+      "reason": ""
     },
     "clifford": {
       "tried": false,
@@ -76,59 +76,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_1_cocycle_condition": {
-      "status": "PASS",
-      "expected": "\u03c6_13 = \u03c6_23 * \u03c6_12 (composition)",
-      "actual": "\u03c6_13=6, \u03c6_23*\u03c6_12=6",
-      "reason": "Cocycle condition satisfied on triple intersection"
-    },
-    "test_2_isomorphism": {
-      "status": "PASS",
-      "expected": "\u03c6 is invertible (\u03c6 \u2260 0, \u03c6^-1 \u2260 0)",
-      "actual": "\u03c6=(- 1), \u03c6^-1=(- 1) (both nonzero)",
-      "reason": "Descent data \u03c6 is an isomorphism in the category"
-    },
-    "test_3_refinement_compat": {
-      "status": "PASS",
-      "expected": "descent data compatible with refinement",
-      "actual": "refinement compatibility satisfied",
-      "reason": "Descent data respects cover refinement"
-    }
-  },
-  "negative": {
-    "test_neg_1_cocycle_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Descent data violating cocycle condition impossible"
-    },
-    "test_neg_2_not_isomorphism": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Non-isomorphic descent data impossible"
-    },
-    "test_neg_3_refinement_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Incompatible descent data on refinements impossible"
-    }
-  },
-  "boundary": {
-    "test_boundary_1_identity_descent": {
-      "status": "PASS",
-      "reason": "Identity descent data: \u03c6 = id on trivial cover"
-    },
-    "test_boundary_2_two_element_cover": {
-      "status": "PASS",
-      "reason": "Two-element cover: single descent isomorphism"
-    },
-    "test_boundary_3_higher_order_cocycle": {
-      "status": "PASS",
-      "reason": "Higher stacky descent: order-2 cocycles on quadruple intersections"
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

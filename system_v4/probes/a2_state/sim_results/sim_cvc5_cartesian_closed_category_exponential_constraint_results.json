@@ -20,7 +20,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing: proves universal property UNSAT when two curry morphisms both satisfy ev\u2218(curry(f)\u00d7id)=f; proves rank formula UNSAT for violations"
+      "reason": "import failed: No module named 'cvc5'"
     },
     "sympy": {
       "tried": true,
@@ -78,17 +78,8 @@
     "gudhi": null
   },
   "positive": {
-    "test_unique_curry_a2_b3": {
-      "sat": "True",
-      "expected_rank": 9,
-      "model": "satisfiable (unique curry exists within rank constraint)"
-    },
-    "test_rank_formula_a3_b2": {
-      "sat": "True",
-      "expected": 8,
-      "computed": 8,
-      "formula_valid": true
-    },
+    "status": "skipped",
+    "reason": "cvc5 not installed",
     "sympy_rank_a2_b3": {
       "expected": 9,
       "computed": 9,
@@ -111,43 +102,12 @@
     }
   },
   "negative": {
-    "test_dual_curry_unsat": {
-      "sat": "True",
-      "expected": "unsat",
-      "violation": "two distinct curry morphisms cannot both satisfy universal property with same output"
-    },
-    "test_incorrect_rank_unsat": {
-      "sat": "False",
-      "expected": "unsat",
-      "correct_rank": 9,
-      "attempted_rank": 8
-    },
-    "test_eval_domain_unsat": {
-      "sat": "False",
-      "expected": "unsat",
-      "violation": "evaluation domain must be full B^A \u00d7 A"
-    }
+    "status": "skipped",
+    "reason": "cvc5 not installed"
   },
   "boundary": {
-    "test_singleton_isomorphism": {
-      "sat": "True",
-      "rank_A": 1,
-      "rank_B": 5,
-      "rank_BA_expected": 5,
-      "valid": true
-    },
-    "test_empty_domain_singleton": {
-      "sat": "True",
-      "rank_A": 0,
-      "rank_B": 5,
-      "rank_BA_expected": 1,
-      "valid": true
-    },
-    "test_large_exponent_a4_b3": {
-      "sat": "True",
-      "expected_rank": 81,
-      "valid": true
-    }
+    "status": "skipped",
+    "reason": "cvc5 not installed"
   },
   "classification": "canonical"
 }

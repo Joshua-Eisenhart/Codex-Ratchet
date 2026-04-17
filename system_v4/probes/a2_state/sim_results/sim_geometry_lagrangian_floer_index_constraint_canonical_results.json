@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -93,15 +93,6 @@
       "interpretation": "integer Maslov index is necessary for orientable case",
       "method": "sympy type checking"
     },
-    "cvc5_positive_integer_maslov_constraint": {
-      "test": "cvc5 satisfies: Maslov index \u03bc \u2208 Z for orientable Lagrangian",
-      "maslov_index": 0,
-      "is_integer": true,
-      "satisfiable": false,
-      "passed": false,
-      "interpretation": "integer Maslov index consistent with orientable Floer theory",
-      "method": "cvc5 QF_NIA SMT solver"
-    },
     "numpy_positive_maslov_grading": {
       "test": "Integer Maslov index grading for Floer cohomology",
       "num_intersection_points": 3,
@@ -117,16 +108,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_fractional_maslov_unsat": {
-      "test": "cvc5 proves UNSAT: fractional Maslov AND orientable (excluded)",
-      "maslov_index": "1.5 (half-integer)",
-      "twice_maslov": 3,
-      "is_orientable": true,
-      "satisfiable": false,
-      "passed": true,
-      "interpretation": "constraint excluded: fractional Maslov incompatible with orientable",
-      "method": "cvc5 QF_NIA proof"
-    },
     "sympy_negative_fractional_maslov": {
       "test": "Fractional Maslov indices violate orientability constraint",
       "fractional_indices": [
@@ -170,15 +151,6 @@
       "passed": true,
       "interpretation": "zero Maslov index is the critical boundary case",
       "method": "sympy type check"
-    },
-    "cvc5_boundary_half_integer_edge": {
-      "test": "Boundary: 2*\u03bc = 4 (just before half-integer region)",
-      "twice_maslov": 4,
-      "maslov_index": 2,
-      "is_satisfiable": false,
-      "passed": false,
-      "interpretation": "integer Maslov at boundary before half-integer exclusion",
-      "method": "cvc5 QF_NIA"
     },
     "numpy_boundary_maslov_sweep": {
       "test": "Boundary: Maslov index sweep from negative to positive",

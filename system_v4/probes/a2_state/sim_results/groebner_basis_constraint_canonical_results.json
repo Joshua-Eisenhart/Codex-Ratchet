@@ -18,8 +18,8 @@
       "reason": "cvc5 handles QF_LIA directly"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "load-bearing: proves Buchberger criterion via QF_LIA degree constraints"
     },
     "sympy": {
@@ -79,9 +79,8 @@
   },
   "positive": {
     "test_1_buchberger_cvc5": {
-      "sat": "sat",
-      "buchberger_constraint": "deg(S(f,g)) < max(deg(f), deg(g))",
-      "constraint_satisfiable": false
+      "error": "name 'cvc5' is not defined",
+      "cvc5_available": false
     },
     "test_2_groebner_basis_sympy": {
       "error": "div(x - y**2, [x - y**2, y**3 - 1]) failed without generators",
@@ -93,9 +92,7 @@
   },
   "negative": {
     "test_1_violate_buchberger": {
-      "attempted_violation": "deg(S(f,g)) >= max(deg(f), deg(g))",
-      "cvc5_result": "sat",
-      "constraint_violated": false
+      "error": "name 'cvc5' is not defined"
     },
     "test_2_false_groebner_claim": {
       "description": "Check that wrong basis is rejected",

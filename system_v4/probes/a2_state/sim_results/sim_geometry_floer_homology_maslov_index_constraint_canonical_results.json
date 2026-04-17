@@ -17,9 +17,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -157,26 +157,8 @@
     }
   },
   "cvc5_constraint_proof": {
-    "valid_grading_shift_3_to_2": {
-      "formula": "out_grade = 2 \u2227 out_grade = in_grade - 1 (in_grade = 3)",
-      "smt_result": "sat",
-      "satisfiable": true,
-      "expected": "SAT"
-    },
-    "invalid_grading_both_5_and_4": {
-      "formula": "(out_grade = 5) \u2227 (out_grade = in_grade - 1) [in_grade = 5]",
-      "expands_to": "(5 = 5) \u2227 (5 = 4)",
-      "smt_result": "unsat",
-      "satisfiable": false,
-      "expected": "UNSAT"
-    },
-    "invalid_shift_by_zero": {
-      "formula": "out_grade = 7 \u2227 7 = in_grade - 1 (in_grade = 7)",
-      "expands_to": "7 = 6",
-      "smt_result": "unsat",
-      "satisfiable": false,
-      "expected": "UNSAT"
-    }
+    "cvc5_available": false,
+    "error": "cvc5 not installed"
   },
   "sympy_maslov_verification": {
     "maslov_constant_lagrangian": {

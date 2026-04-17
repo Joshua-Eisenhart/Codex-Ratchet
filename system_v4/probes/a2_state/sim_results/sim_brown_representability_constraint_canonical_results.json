@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load-bearing: proves UNSAT for exactness violations"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "not needed; no Clifford algebra in cohomology"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; cohomology groups are not manifolds"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no equivariance in representability"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no directed graph"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed; no hypergraph"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -123,15 +123,12 @@
   },
   "negative": {
     "test_unsat_mayer_vietoris_violation": {
-      "pass": true,
-      "detail": "Original MV satisfiable; violation of MV exactness is UNSAT",
-      "original_satisfiable": true,
-      "violation_unsat": true
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_unsat_wedge_axiom_violation": {
-      "pass": true,
-      "detail": "UNSAT when wedge rank \u2260 sum of component ranks",
-      "solver_result": "UNSAT"
+      "pass": false,
+      "error": "cvc5 not available"
     },
     "test_mayer_vietoris_rank_consistency": {
       "pass": true,

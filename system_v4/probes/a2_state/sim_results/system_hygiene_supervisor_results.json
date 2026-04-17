@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-17T07:19:49.499720+00:00",
+  "generated_at": "2026-04-17T08:43:02.668750+00:00",
   "strict": false,
-  "overall_green": true,
-  "repair_queue_count": 0,
+  "overall_green": false,
+  "repair_queue_count": 3,
   "safe_auto_repair_count": 0,
-  "manual_repair_count": 0,
-  "truth_green": true,
-  "controller_green": true,
+  "manual_repair_count": 1,
+  "truth_green": false,
+  "controller_green": false,
   "migration_green": true,
   "repo_hygiene_green": true,
-  "runtime_hygiene_green": true,
+  "runtime_hygiene_green": false,
   "state_dir_ownership_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 0,
+    "repair_queue_count": 3,
     "safe_auto_repair_count": 0,
-    "manual_repair_count": 0,
-    "truth_green": true,
-    "controller_green": true,
+    "manual_repair_count": 1,
+    "truth_green": false,
+    "controller_green": false,
     "migration_green": true,
     "repo_hygiene_green": true,
-    "runtime_hygiene_green": true,
+    "runtime_hygiene_green": false,
     "state_dir_ownership_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": true
+    "overall_green": false
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -172,26 +172,56 @@
     }
   ],
   "missing_surfaces": [],
-  "repair_queue": [],
+  "repair_queue": [
+    {
+      "kind": "runtime_alignment_required",
+      "action_class": "manual_env_repair",
+      "safe_auto": false,
+      "recommendation": "Repair interpreter or dependency floors before relying on unattended hygiene automation.",
+      "source_surface": "runtime_hygiene"
+    },
+    {
+      "source_surface": "truth",
+      "kind": "truth_audit_failed",
+      "action_class": "repair_truth_surface",
+      "safe_auto": false,
+      "recommendation": "Resolve hard truth-audit findings before further promotion."
+    },
+    {
+      "source_surface": "controller",
+      "kind": "controller_contract_not_current",
+      "action_class": "repair_controller_surface",
+      "safe_auto": false,
+      "recommendation": "Bring docs/process/controller back to a green state before unattended loops."
+    }
+  ],
   "safe_auto_queue": [],
-  "manual_queue": [],
+  "manual_queue": [
+    {
+      "kind": "runtime_alignment_required",
+      "action_class": "manual_env_repair",
+      "safe_auto": false,
+      "recommendation": "Repair interpreter or dependency floors before relying on unattended hygiene automation.",
+      "source_surface": "runtime_hygiene"
+    }
+  ],
   "surface_status": {
     "truth": {
-      "hard_finding_count": 0,
-      "warning_finding_count": 14,
-      "ok": true
+      "hard_finding_count": 77,
+      "warning_finding_count": 12,
+      "ok": false
     },
     "controller": {
       "doc_drift_count": 0,
       "interpreter_aligned": true,
       "phase7_c2_surface_consistent": true,
       "phase7_source_has_legacy_subset_branch": false,
-      "trusted_spine_risky_entries": 0,
-      "truth_audit_ok": true,
+      "trusted_spine_risky_entries": 1,
+      "truth_audit_ok": false,
       "shallow_tool_count": 0,
-      "code_process_green": true,
+      "code_process_green": false,
       "docs_current": true,
-      "controller_contract_current": true
+      "controller_contract_current": false
     },
     "migration": {
       "extracted_family_count": 5,
@@ -216,11 +246,11 @@
       "ok": true
     },
     "runtime_hygiene": {
-      "blocker_count": 0,
-      "advisory_count": 0,
-      "repair_candidate_count": 0,
+      "blocker_count": 9,
+      "advisory_count": 1,
+      "repair_candidate_count": 1,
       "requirements_package_count": 20,
-      "ok": true
+      "ok": false
     },
     "state_dir_ownership": {
       "blocker_count": 0,

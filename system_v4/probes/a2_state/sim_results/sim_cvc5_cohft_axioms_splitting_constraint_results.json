@@ -19,9 +19,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "CohFT splitting axiom validated via genus/marked-point QF_LIA"
+      "tried": false,
+      "used": false,
+      "reason": "not installed: No module named 'cvc5'"
     },
     "sympy": {
       "tried": true,
@@ -79,50 +79,10 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_genus_0_n3": {
-      "name": "genus_0_3_insertions_valid",
-      "description": "g=0, n=3: genus 0 sphere with 3 marked points is stable",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    },
-    "test_2_genus_1_n1": {
-      "name": "genus_1_1_insertion_valid",
-      "description": "g=1, n=1: genus 1 with 1 marked point is stable",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    },
-    "test_3_genus_0_n4": {
-      "name": "genus_0_4_insertions_valid",
-      "description": "g=0, n=4: genus 0 with 4 marked points is stable",
-      "expected": "SAT",
-      "result": "sat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "negative": {
-    "test_1_negative_n": {
-      "name": "negative_marked_points_impossible",
-      "description": "n < 0 contradicts n >= 0; must be UNSAT",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    },
-    "test_2_negative_g": {
-      "name": "negative_genus_impossible",
-      "description": "g < 0 contradicts g >= 0; must be UNSAT",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    },
-    "test_3_unstable_config": {
-      "name": "unstable_genus_marked_points",
-      "description": "g=0, n=0: stability 2g-2+n = -2 not > 0; should be UNSAT",
-      "expected": "UNSAT",
-      "result": "unsat",
-      "pass": true
-    }
+    "error": "cvc5 not installed"
   },
   "boundary": {
     "test_1_stability_boundary": {

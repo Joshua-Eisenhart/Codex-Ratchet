@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Cheeger inequality constraint"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,83 +77,21 @@
     "gudhi": null
   },
   "positive": {
-    "positive_01_circle": {
-      "passed": true,
-      "manifold": "S^1 (circle)",
-      "lambda_1": 4,
-      "h": 1,
-      "h_squared_over_4": 0.25,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 4 \u2265 0.25",
-      "smt_result": "SAT"
-    },
-    "positive_02_sphere_s2": {
-      "passed": true,
-      "manifold": "S^2 (sphere)",
-      "lambda_1": 2,
-      "h": 2,
-      "h_squared_over_4": 1,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 2 \u2265 1",
-      "smt_result": "SAT"
-    },
-    "positive_03_generic_manifold": {
-      "passed": true,
-      "lambda_1": 10,
-      "h": 2,
-      "h_squared_over_4": 1,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 10 \u2265 1",
-      "smt_result": "SAT"
+    "positive_01_cvc5_available": {
+      "passed": false,
+      "reason": "cvc5 not installed"
     }
   },
   "negative": {
-    "negative_01_violated_inequality": {
-      "passed": true,
-      "lambda_1": 0.5,
-      "h": 2,
-      "h_squared_over_4": 1,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 0.5 \u2265 1 (should be UNSAT)",
-      "smt_result": "UNSAT"
-    },
-    "negative_02_large_cheeger_gap": {
-      "passed": true,
-      "lambda_1": 0.1,
-      "h": 10,
-      "h_squared_over_4": 25,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 0.1 \u2265 25 (should be UNSAT)",
-      "smt_result": "UNSAT"
-    },
-    "negative_03_tiny_gap": {
-      "passed": true,
-      "lambda_1": 0.001,
-      "h": 1,
-      "h_squared_over_4": 0.25,
-      "constraint": "\u03bb_1 \u2265 h\u00b2/4: 0.001 \u2265 0.25 (should be UNSAT)",
-      "smt_result": "UNSAT"
+    "negative_01_cvc5_available": {
+      "passed": false,
+      "reason": "cvc5 not installed"
     }
   },
   "boundary": {
-    "boundary_01_tight_bound": {
-      "passed": true,
-      "lambda_1": 0.25,
-      "h": 1,
-      "h_squared_over_4": 0.25,
-      "constraint": "\u03bb_1 = h\u00b2/4 (equality, SAT)",
-      "smt_result": "SAT"
-    },
-    "boundary_02_small_cheeger": {
-      "passed": true,
-      "lambda_1": 0.01,
-      "h": 0.1,
-      "h_squared_over_4": 0.0025,
-      "constraint": "Small Cheeger constant, \u03bb_1 \u2265 h\u00b2/4: 0.01 \u2265 0.0025",
-      "smt_result": "SAT"
-    },
-    "boundary_03_large_scale": {
-      "passed": true,
-      "lambda_1": 100,
-      "h": 20,
-      "h_squared_over_4": 100,
-      "constraint": "Large-scale manifold, \u03bb_1 = h\u00b2/4: 100 \u2265 100",
-      "smt_result": "SAT"
+    "boundary_01_cvc5_available": {
+      "passed": false,
+      "reason": "cvc5 not installed"
     }
   },
   "classification": "canonical"

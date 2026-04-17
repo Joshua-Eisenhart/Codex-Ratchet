@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": null,
     "clifford": null,
     "geomstats": null,
@@ -78,20 +78,6 @@
     "gudhi": null
   },
   "positive": {
-    "test_kappa_compact_generators": {
-      "status": "PASS",
-      "description": "\u03ba-compact generating set within cardinality bound",
-      "kappa": 5,
-      "gen_cardinality": 3,
-      "within_bound": true,
-      "solver_result": "sat"
-    },
-    "test_aft_right_adjoint_exists": {
-      "status": "PASS",
-      "description": "Adjoint Functor Theorem: colimit-preserving F between presentable categories has right adjoint",
-      "solver_result": "sat",
-      "is_satisfiable": true
-    },
     "test_yoneda_fin_fully_faithful": {
       "status": "PASS",
       "description": "Yoneda embedding Y: Fin \u2192 Fun(Fin^op, Sets) is fully faithful",
@@ -101,20 +87,6 @@
     }
   },
   "negative": {
-    "test_generators_exceed_kappa": {
-      "status": "PASS",
-      "description": "Generator set exceeding \u03ba bound violates presentability (UNSAT)",
-      "kappa": 3,
-      "gen_cardinality": 7,
-      "violates": true,
-      "is_unsat": true
-    },
-    "test_aft_violation": {
-      "status": "PASS",
-      "description": "Colimit-preserving functor without right adjoint violates AFT (UNSAT)",
-      "solver_result": "unsat",
-      "is_unsat": true
-    },
     "test_yoneda_non_injective": {
       "status": "PASS",
       "description": "Non-injective Yoneda violates full faithfulness",
@@ -124,15 +96,6 @@
     }
   },
   "boundary": {
-    "test_topos_presentable": {
-      "status": "PASS",
-      "description": "Every \u221e-topos is presentable (generating set = site shape)",
-      "is_satisfiable": true
-    },
-    "test_compact_generate_presentable": {
-      "status": "ERROR",
-      "error": "type object 'Kind' has no attribute 'IFF'"
-    },
     "test_yoneda_image_presentable": {
       "status": "PASS",
       "description": "Image of Yoneda embedding for small category is presentable",

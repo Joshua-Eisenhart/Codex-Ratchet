@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Vanishing constraints: K_{-n}(R)=0 for n>dim(R)+1, K_{-1} rank bound"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -77,14 +77,14 @@
     "gudhi": null
   },
   "positive": {
-    "test_bass_vanishing_error": "type object 'Kind' has no attribute 'EQ'",
-    "test_k_minus_1_rank_bound_sat": "True",
+    "test_bass_vanishing_error": "No module named 'cvc5'",
+    "test_k_minus_1_rank_bound_error": "No module named 'cvc5'",
     "test_k_minus_1_z_is_zero": true,
     "test_k_minus_1_zx_is_zero": true
   },
   "negative": {
-    "test_bass_vanishing_violation_error": "type object 'Kind' has no attribute 'EQ'",
-    "test_k_minus_1_rank_violation_error": "type object 'Kind' has no attribute 'EQ'",
+    "test_bass_vanishing_violation_error": "No module named 'cvc5'",
+    "test_k_minus_1_rank_violation_error": "No module named 'cvc5'",
     "test_k_minus_1_z_nonzero_impossible": true
   },
   "boundary": {

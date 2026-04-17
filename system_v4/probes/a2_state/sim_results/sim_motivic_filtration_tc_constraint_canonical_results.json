@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 QF_LIA: motivic filtration cohomological amplitude bounds on TC"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,16 +77,6 @@
     "gudhi": null
   },
   "positive": {
-    "tc_amplitude_bound": {
-      "test": "gr^i(TC) amplitude in [i, 2i]: degree=3, weight=2 should be SAT",
-      "result": true,
-      "pass": true
-    },
-    "tc_minus_lower_bound": {
-      "test": "gr^i(TC^{-}) bounded below by i: degree=5, weight=3 should be SAT",
-      "result": true,
-      "pass": true
-    },
     "tp_graded_formula": {
       "test": "gr^i(TP(A;p)) \u2245 H^*(A, W\u03a9^i_A)[2i]",
       "special_case": "For A=F_p: gr^i(TP(F_p;p)) = F_p[2i]",
@@ -94,28 +84,12 @@
       "pass": true
     }
   },
-  "negative": {
-    "tc_amplitude_violation": {
-      "test": "degree=5 > 2*weight=4 should be UNSAT",
-      "result": true,
-      "pass": true
-    },
-    "tc_minus_lower_bound_violation": {
-      "test": "degree=2 < weight=4 should be UNSAT",
-      "result": true,
-      "pass": true
-    }
-  },
+  "negative": {},
   "boundary": {
     "motivic_ss_degeneration": {
       "test": "Motivic SS E^{i,j}_2 \u27f9 H^{i+j}(TC) degenerates at E_2 for regular rings",
       "parametrization": "i=i, j=j",
       "property": "E_2 = E_\u221e",
-      "pass": true
-    },
-    "tc_weight_zero_boundary": {
-      "test": "weight=0 (gr^0(TC)) with degree=0 should be SAT",
-      "result": true,
       "pass": true
     }
   },

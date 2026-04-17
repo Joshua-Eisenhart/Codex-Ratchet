@@ -18,13 +18,13 @@
       "reason": "z3 SMT solver not used; cvc5 handles all constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Chern-Simons gauge invariance constraint"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "sympy: supportive symbolic computation for gauge transformation forms"
     },
     "clifford": {
@@ -67,8 +67,8 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
-    "sympy": "supportive",
+    "cvc5": null,
+    "sympy": null,
     "clifford": null,
     "geomstats": null,
     "e3nn": null,
@@ -77,64 +77,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_positive_zero_cs_shift": {
-      "description": "cvc5 SAT: identity gauge transformation shifts CS by 0",
-      "sat": true,
-      "expected": true,
-      "model": "[5, 5, 0]"
-    },
-    "test_positive_integer_winding_shift": {
-      "description": "cvc5 SAT: CS shift = winding number (integer)",
-      "sat": true,
-      "expected": true,
-      "model": "[3, 3]"
-    },
-    "test_positive_gauge_composition_additivity": {
-      "description": "cvc5 SAT: CS shift additivity under gauge composition",
-      "sat": true,
-      "expected": true,
-      "model": "[2, 3, 5]"
-    }
-  },
-  "negative": {
-    "test_negative_non_integer_cs_shift": {
-      "description": "cvc5 UNSAT: CS shift = 0.7 violates gauge invariance",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_additivity_violation": {
-      "description": "cvc5 UNSAT: CS shift compositivity fails (4 \u2260 2+3)",
-      "unsat": true,
-      "expected": true
-    },
-    "test_negative_winding_orientation_conflict": {
-      "description": "cvc5 UNSAT: negative winding conflicts with non-negative CS shift",
-      "unsat": true,
-      "expected": true
-    }
-  },
-  "boundary": {
-    "test_boundary_zero_winding": {
-      "description": "cvc5 SAT: zero winding (trivial gauge)",
-      "sat": true,
-      "expected": true,
-      "model": "[0]"
-    },
-    "test_boundary_large_winding": {
-      "description": "cvc5 SAT: large winding number (n=100)",
-      "sat": true,
-      "expected": true,
-      "model": "[100, 100]"
-    },
-    "test_boundary_symbolic_chern_simons": {
-      "description": "sympy: Chern-Simons form under U(1) gauge",
-      "gauge_param": "theta",
-      "cs_integrand": "theta",
-      "cs_value_over_2pi": "2*pi**2",
-      "expected": true,
-      "passed": true
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

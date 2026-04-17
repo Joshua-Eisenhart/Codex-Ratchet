@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "load-bearing: cvc5 SMT solver proves arrow calculus laws via quantifier-free linear integer arithmetic"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -78,28 +78,20 @@
   },
   "positive": {
     "test_1_arr_identity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "arr id = id arrow law holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_arr_composition": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "arr (f >>> g) = arr f >>> arr g law holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_first_lifting": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "first (arr f) = arr (first f) law holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_4_composition_associativity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "(f >>> g) >>> h = f >>> (g >>> h) associativity holds"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_5_sympy_arrow": {
       "status": "PASS",
@@ -112,42 +104,30 @@
   },
   "negative": {
     "neg_test_1_arr_identity_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "arr id law cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_2_arr_composition_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "arr composition law cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "neg_test_3_composition_associativity_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Arrow associativity cannot be violated (UNSAT confirms necessity)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "boundary": {
     "boundary_test_1_zero_flow": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Arrow laws hold with identity function (zero transformation)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_2_identity_arrow": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Arrow laws hold with identity arrow composition (id >>> id = id)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "boundary_test_3_deep_nesting": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Arrow laws hold with deeply nested compositions (5 arrows, 1->2->4->8->16->32)"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "classification": "canonical"

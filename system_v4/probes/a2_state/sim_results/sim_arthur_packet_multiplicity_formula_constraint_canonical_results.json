@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Arthur packet multiplicity constraints"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,44 +77,10 @@
     "gudhi": null
   },
   "positive": {
-    "pos_test_1_standard_multiplicity_nonneg": {
-      "description": "m(\u03c0) = 5 satisfies m(\u03c0) \u2265 0",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    },
-    "pos_test_2_zero_multiplicity": {
-      "description": "m(\u03c0) = 0 is admissible",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    },
-    "pos_test_3_packet_sum": {
-      "description": "\u03a3_{\u03c0 \u2208 \u03a0(\u03c8)} m(\u03c0) = 5 satisfies sum \u2265 0",
-      "expected": "SAT",
-      "actual": "True",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "neg_test_1_negative_multiplicity": {
-      "description": "m(\u03c0) = -3 violates constraint m(\u03c0) \u2265 0",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    },
-    "neg_test_2_partial_negative_multiplicity": {
-      "description": "m(\u03c0_2) = -7 makes system UNSAT when both m(\u03c0_i) \u2265 0",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    },
-    "neg_test_3_negative_sum": {
-      "description": "\u03a3 m(\u03c0) = -5 violates sum \u2265 0",
-      "expected": "UNSAT",
-      "actual": "False",
-      "pass": true
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
     "boundary_test_1_trace_formula": {
@@ -124,15 +90,13 @@
       "pass": true
     },
     "boundary_test_2_large_multiplicity": {
-      "error": "name 'Kind' is not defined",
+      "error": "name 'cvc5' is not defined",
       "pass": false
     },
     "boundary_test_3_trivial_packet": {
-      "error": "name 'Kind' is not defined",
+      "error": "name 'cvc5' is not defined",
       "pass": false
     }
   },
-  "classification": "classical_baseline",
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  "classification": "canonical"
 }

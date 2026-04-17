@@ -17,9 +17,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -66,7 +66,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -115,52 +115,10 @@
     }
   },
   "negative": {
-    "neg_pairing_1": {
-      "name": "pairing_equals_1_unsat",
-      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 1",
-      "expected": "UNSAT",
-      "actual": "unsat",
-      "pass": false
-    },
-    "neg_pairing_3": {
-      "name": "pairing_equals_3_unsat",
-      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 3",
-      "expected": "UNSAT",
-      "actual": "unsat",
-      "pass": false
-    },
-    "neg_pairing_0": {
-      "name": "pairing_equals_0_unsat",
-      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 0",
-      "expected": "UNSAT",
-      "actual": "unsat",
-      "pass": false
-    }
+    "cvc5_error": "No module named 'cvc5'"
   },
   "boundary": {
-    "boundary_rank_0": {
-      "name": "rank_0_trivial",
-      "rank": 0,
-      "roots": "[]",
-      "coroots": "[]",
-      "description": "Empty root system is valid"
-    },
-    "boundary_large_alpha": {
-      "name": "large_alpha_small_coroot",
-      "constraint": "\u03b1=1000, \u27e8\u03b1,\u03b1\u2228\u27e9=2 \u2192 \u03b1\u2228=1/500 (integer model has no solution)",
-      "expected": "UNSAT (for integer rooted lattice)",
-      "actual": "unsat",
-      "note": "Boundary: integer lattice cannot represent this pairing"
-    },
-    "boundary_minimal": {
-      "name": "minimal_valid_configuration",
-      "constraint": "\u03b1=1, \u03b1\u2228=2 \u2192 \u27e8\u03b1,\u03b1\u2228\u27e9=2",
-      "expected": "SAT",
-      "actual": "sat",
-      "pass": false
-    }
+    "boundary_cvc5_error": "No module named 'cvc5'"
   },
-  "classification": "classical_baseline",
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  "classification": "canonical"
 }

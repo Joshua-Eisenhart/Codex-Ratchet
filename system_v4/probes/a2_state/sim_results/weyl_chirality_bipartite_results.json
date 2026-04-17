@@ -1,7 +1,7 @@
 {
   "name": "sim_weyl_chirality_bipartite",
   "classification": "classical_baseline",
-  "timestamp": "2026-04-17T08:35:20.742096+00:00",
+  "timestamp": "2026-04-17T10:34:39.667346+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -19,9 +19,9 @@
       "reason": "Load-bearing: encodes H_L=-H_R chirality constraint. SAT check confirms Weyl structure admits a model. UNSAT checks confirm (1) same Hamiltonian cannot produce opposite phases, (2) chirality flip L<->R is provably equivalent to H0->-H0. These z3 results are the primary proof certificates for this sim."
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not required; z3 encodes chirality constraint and SAT/UNSAT directly"
     },
     "sympy": {
       "tried": true,
@@ -34,24 +34,24 @@
       "reason": "not required; no Clifford-algebra rotor claim in this 2q lego"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not required; no geodesic or Riemannian claim in this packet"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not required; no equivariant network claim here"
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not required; no shell DAG update in this packet"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not required; no hypergraph claim here"
     },
     "toponetx": {
       "tried": true,

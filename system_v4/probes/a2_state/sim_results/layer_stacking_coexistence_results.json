@@ -18,9 +18,9 @@
       "reason": "proves UNSAT (impossibility) for shell subsets that cannot coexist"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient for this sim"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "not needed \u2014 chirality tested via matrix commutator, not geometric product"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed \u2014 Hopf geometry tested via Bloch sphere parameterization"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed \u2014 SU(2) symmetry tested via commutator residual"
     },
     "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "DAG of shell subset inclusion: shows which subsets are subsets of which"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "not needed \u2014 shell interactions are pairwise, not multi-way hyperedges"
     },
     "toponetx": {
       "tried": true,
@@ -78,7 +78,19 @@
     "z3": "load_bearing"
   },
   "dag": {
-    "status": "rustworkx_not_available"
+    "num_nodes": 8,
+    "num_edges": 7,
+    "topological_order": [
+      "{S0}",
+      "{S0,S1}",
+      "{S0,S1,S2}",
+      "{S0,S1,S2,S3}",
+      "{S0,S1,S2,S3,S4}",
+      "{S0,S1,S2,S3,S4,S5}",
+      "{S0,S1,S2,S3,S4,S5,S6}",
+      "{S0,S1,S2,S3,S4,S5,S6,S7}"
+    ],
+    "dag_built": true
   },
   "positive": {
     "{S0}": {

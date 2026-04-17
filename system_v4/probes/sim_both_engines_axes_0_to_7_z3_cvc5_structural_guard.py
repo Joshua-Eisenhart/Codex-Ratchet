@@ -108,29 +108,33 @@ def run_z3_assertions() -> Dict[str, Any]:
         print(f"z3 import failed: {e}")
         return {"z3_failed": str(e)}
 
-    # Assertion 1: Unique schedule up to non-commuting swaps
-    print("Assertion 1: Unique schedule (non-commuting swaps only)")
-    results["assertion_1_unique_schedule"] = test_unique_schedule_z3()
+    try:
+        # Assertion 1: Unique schedule up to non-commuting swaps
+        print("Assertion 1: Unique schedule (non-commuting swaps only)")
+        results["assertion_1_unique_schedule"] = test_unique_schedule_z3()
 
-    # Assertion 2: Non-commutation load-bearing
-    print("Assertion 2: Non-commutation load-bearing")
-    results["assertion_2_non_commutation_load_bearing"] = test_non_commutation_z3()
+        # Assertion 2: Non-commutation load-bearing
+        print("Assertion 2: Non-commutation load-bearing")
+        results["assertion_2_non_commutation_load_bearing"] = test_non_commutation_z3()
 
-    # Assertion 3: 7-shell ordering
-    print("Assertion 3: 7-shell ordering (spinor → mera → dirac → toric → weyl → gerbe → hopf)")
-    results["assertion_3_shell_ordering"] = test_shell_ordering_z3()
+        # Assertion 3: 7-shell ordering
+        print("Assertion 3: 7-shell ordering (spinor → mera → dirac → toric → weyl → gerbe → hopf)")
+        results["assertion_3_shell_ordering"] = test_shell_ordering_z3()
 
-    # Assertion 4: Axis orthogonality
-    print("Assertion 4: Axis orthogonality (8 axes)")
-    results["assertion_4_axis_orthogonality"] = test_axis_orthogonality_z3()
+        # Assertion 4: Axis orthogonality
+        print("Assertion 4: Axis orthogonality (8 axes)")
+        results["assertion_4_axis_orthogonality"] = test_axis_orthogonality_z3()
 
-    # Assertion 5: Engine chirality (Type 1 vs Type 2)
-    print("Assertion 5: Engine chirality (Axis 3 or 4 mirrored)")
-    results["assertion_5_engine_chirality"] = test_engine_chirality_z3()
+        # Assertion 5: Engine chirality (Type 1 vs Type 2)
+        print("Assertion 5: Engine chirality (Axis 3 or 4 mirrored)")
+        results["assertion_5_engine_chirality"] = test_engine_chirality_z3()
 
-    # Assertion 6: Root constraints F01 + N01
-    print("Assertion 6: Root constraints F01 + N01 (finite Hilbert + non-commuting ops)")
-    results["assertion_6_root_constraints"] = test_root_constraints_z3()
+        # Assertion 6: Root constraints F01 + N01
+        print("Assertion 6: Root constraints F01 + N01 (finite Hilbert + non-commuting ops)")
+        results["assertion_6_root_constraints"] = test_root_constraints_z3()
+    except Exception as e:
+        print(f"Error running z3 assertions: {e}")
+        results["assertion_error"] = str(e)
 
     return results
 
@@ -276,26 +280,29 @@ def test_shell_ordering_z3() -> Dict[str, Any]:
     for idx, removed_shell in enumerate(shells):
         s = Solver()
 
-        # Remaining shells
-        remaining = [sh for sh in shells if sh != removed_shell]
-
-        # I_c > 0 requires all 7 shells active
-        # Removing one shell → I_c > 0 becomes UNSAT
+        # I_c > 0 requires all 7 shells active simultaneously
         I_c_positive = Bool(f"I_c_positive_without_{removed_shell}")
-        shells_active = Bool(f"all_7_shells_active")
 
-        # If shell is removed, all_7_shells_active = False
-        all_shells_required = Bool("all_7_shells_required_for_Ic")
+        # Mark each shell as present or absent
+        shell_present = {sh: Bool(f"shell_{sh}_present") for sh in shells}
 
-        s.add(Implies(Not(shells_active), Not(I_c_positive)))
-        s.add(Not(shells_active))  # This shell is removed
-        s.add(all_shells_required)
+        # If any shell is absent, I_c > 0 cannot hold
+        all_shells_active = And([shell_present[sh] for sh in shells])
+
+        # Assert: I_c > 0 requires all shells
+        s.add(Implies(I_c_positive, all_shells_active))
+
+        # Assert: this shell is removed
+        s.add(Not(shell_present[removed_shell]))
+
+        # Assert: I_c is positive (contradicts the removed shell requirement)
+        s.add(I_c_positive)
 
         check = s.check()
         result["shell_removal_results"][removed_shell] = {
             "z3_result": str(check),
             "stage": idx,
-            "expected": "unsat (I_c must fail)",
+            "expected": "unsat (I_c must fail without all shells)",
             "match": str(check) == "unsat"
         }
 
@@ -316,7 +323,7 @@ def test_axis_orthogonality_z3() -> Dict[str, Any]:
 
     result = {
         "assertion_id": "axis_orthogonality",
-        "axis_pairs": [],
+        "axis_pairs_count": 0,
         "collapsed_claims": {}
     }
 
@@ -344,17 +351,17 @@ def test_axis_orthogonality_z3() -> Dict[str, Any]:
             s.add(Not(inv_i == inv_j))  # Contradiction: collapse but distinguishable
 
             check = s.check()
-            result["axis_pairs"].append((i, j))
-            result["collapsed_claims"][(i, j)] = {
+            pair_key = f"axis_{i}_{j}"
+            result["collapsed_claims"][pair_key] = {
                 "z3_result": str(check),
                 "expected": "unsat (axes are distinguishable)",
                 "match": str(check) == "unsat"
             }
 
     unsat_count = sum(1 for r in result["collapsed_claims"].values() if r["z3_result"] == "unsat")
-    result["total_pairs"] = len(result["axis_pairs"])
+    result["axis_pairs_count"] = len(result["collapsed_claims"])
     result["unsat_count"] = unsat_count
-    result["all_pairs_distinguishable"] = unsat_count == len(result["axis_pairs"])
+    result["all_pairs_distinguishable"] = unsat_count == len(result["collapsed_claims"])
 
     return result
 

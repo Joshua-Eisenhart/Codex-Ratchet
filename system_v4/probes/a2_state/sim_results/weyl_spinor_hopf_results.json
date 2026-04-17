@@ -1,7 +1,7 @@
 {
   "name": "weyl_spinor_hopf",
-  "timestamp": "2026-04-17T06:05:05.925328+00:00",
-  "elapsed_s": 1.5127606391906738,
+  "timestamp": "2026-04-17T06:08:11.928940+00:00",
+  "elapsed_s": 1.6394340991973877,
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -35,7 +35,7 @@
     },
     "geomstats": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": "geodesic distance between L/R trajectories on S\u00b3"
     },
     "e3nn": {
@@ -311,16 +311,8 @@
       "status": "PASS"
     },
     "geomstats_separation": {
-      "distances_mean": 1.5707963267948966,
-      "distances_std": 0.9104353668013667,
-      "distances_min": 0.0,
-      "distances_max": 3.141592653589793,
-      "n_samples": 32,
-      "fixed_separation": false,
-      "r4_dot_products_mean": -4.85722573273506e-17,
-      "r4_dot_products_std": 0.7071067811865476,
-      "analytic_note": "R\u2074 dot product between p_L(\u03be) and p_R(\u03be)=p_L(-\u03be) gives geodesic dist=arccos(dot). If dot varies with \u03be: trajectories have varying separation.",
-      "status": "PASS"
+      "status": "SKIP",
+      "reason": "geomstats not installed"
     },
     "xi_zero_degenerate": {
       "overlap_abs": 1.0,

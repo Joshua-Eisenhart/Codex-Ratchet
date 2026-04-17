@@ -33,9 +33,9 @@
       "reason": "Cl(3) bivector e12/e21 algebra for spinor construction and chirality encoding"
     },
     "geomstats": {
-      "tried": true,
-      "used": true,
-      "reason": "S\u00b3 geodesic distance confirms L/R geometric connection (min_dist=0 at \u03be=0); corrects \u03b20=2 claim"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "e3nn": {
       "tried": false,
@@ -43,9 +43,9 @@
       "reason": "not required; Cl(3) bivectors directly encode chirality without e3nn irreps"
     },
     "rustworkx": {
-      "tried": true,
-      "used": true,
-      "reason": "PyDAG to encode and verify the shell constraint hierarchy: S3 \u2192 Hopf \u2192 Weyl"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "xgi": {
       "tried": false,
@@ -81,7 +81,7 @@
     "s3_unconstrained": {
       "status": "pass",
       "beta0": 1,
-      "beta1": 1,
+      "beta1": 0,
       "expected_beta0": 1,
       "note": "Full S\u00b3 is connected (\u03b20=1)"
     },
@@ -110,15 +110,9 @@
       "note": "No nonzero \u03bb satisfies \u03bb = -\u03bb; chirality classes cannot smoothly interpolate"
     },
     "geomstats_geodesic": {
-      "status": "pass",
-      "min_geodesic_dist": 0.0,
-      "max_geodesic_dist": 3.141592653589793,
-      "mean_geodesic_dist": 1.5707963267948963,
-      "geometric_touch_at_xi0": true,
-      "finite_distances_confirmed": true,
-      "old_wrong_interpretation": "geodesic > 0 was taken as chirality barrier; actually just generic angle separation",
-      "corrected_claim": "min_dist=0 at \u03be=0 CONFIRMS geometric connection; chirality is projector-level only",
-      "note": "L and R spinors touch at \u03be=0 on S\u00b3; no geometric disconnection; projector P_L*P_R=0 is the algebraic separation"
+      "status": "error",
+      "error": "No module named 'geomstats'",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_weyl_nested_shell.py\", line 338, in run_positive_tests\n    import geomstats.backend as gs  # noqa: F401 -- already numpy by default\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'geomstats'\n"
     },
     "sympy_projectors": {
       "status": "pass",
@@ -129,17 +123,9 @@
       "note": "Chirality projectors are orthogonal (P_L\u00b7P_R=0), idempotent, and complete"
     },
     "rustworkx_shell_dag": {
-      "status": "pass",
-      "is_dag": true,
-      "topological_order": [
-        "S3_shell",
-        "Hopf_shell",
-        "Weyl_shell"
-      ],
-      "order_correct": true,
-      "n_nodes": 3,
-      "n_edges": 2,
-      "note": "Shell hierarchy DAG: S3 \u2192 Hopf \u2192 Weyl encodes constraint stacking order; Weyl shell is projector restriction (\u03b20=1), not geometric disconnection"
+      "status": "error",
+      "error": "No module named 'rustworkx'",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_weyl_nested_shell.py\", line 444, in run_positive_tests\n    import rustworkx as rx\nModuleNotFoundError: No module named 'rustworkx'\n"
     },
     "pytorch_spinors": {
       "status": "pass",
@@ -232,8 +218,8 @@
   },
   "summary": {
     "total": 15,
-    "pass": 15,
+    "pass": 13,
     "fail": 0,
-    "error": 0
+    "error": 2
   }
 }

@@ -51,28 +51,24 @@ TOOL_INTEGRATION_DEPTH = {
 
 
 def run_positive_tests():
-    # E6 Cartan matrix (6x6)
+    # E6 Cartan matrix with the standard fork at the third node.
     cartan_e6 = sp.Matrix([
         [2, -1, 0, 0, 0, 0],
         [-1, 2, -1, 0, 0, 0],
-        [0, -1, 2, -1, 0, 0],
+        [0, -1, 2, -1, 0, -1],
         [0, 0, -1, 2, -1, 0],
-        [0, 0, 0, -1, 2, -1],
-        [0, 0, 0, 0, -1, 2],
+        [0, 0, 0, -1, 2, 0],
+        [0, 0, -1, 0, 0, 2],
     ])
 
-    # Compute basic properties
     det_e6 = cartan_e6.det()
     eigenvals = cartan_e6.eigenvals()
     inverse = cartan_e6.inv()
 
-    # E6 should have exactly one zero eigenvalue (rank 5 modulo center)
-    zero_count = sum(1 for ev in eigenvals.keys() if abs(float(ev)) < 1e-10)
-
     return {
         "cartan_positive_definite": {
-            "pass": all(float(ev) >= -1e-10 for ev in eigenvals.keys()),
-            "detail": "E6 Cartan matrix is positive semi-definite (zero eigenvector is center).",
+            "pass": all(complex(ev).real > 1e-10 for ev in eigenvals.keys()),
+            "detail": "E6 Cartan matrix is positive definite on the simple-root packet.",
             "determinant": float(det_e6),
         },
         "cartan_simply_laced": {
@@ -80,9 +76,9 @@ def run_positive_tests():
             "detail": "E6 is simply laced: all off-diagonal entries are -1 or 0.",
         },
         "root_system_connected": {
-            "pass": zero_count == 1,
-            "detail": "Cartan matrix has rank 5 (one zero eigenvalue for center).",
-            "zero_eigenvalues": zero_count,
+            "pass": det_e6 == 3,
+            "detail": "E6 Cartan determinant is 3, so the simple-root packet is connected and nondegenerate.",
+            "determinant": float(det_e6),
         },
         "weight_lattice_nondegenerate": {
             "pass": inverse is not None and inverse.rows == 6,
@@ -92,25 +88,24 @@ def run_positive_tests():
 
 
 def run_negative_tests():
-    # E6 should NOT collapse to lower rank
-    cartan_e6 = sp.Matrix([
+    # E6 should NOT admit a nontrivial kernel in its simple-root Cartan action.
+    cartan_e6 = [
         [2, -1, 0, 0, 0, 0],
         [-1, 2, -1, 0, 0, 0],
-        [0, -1, 2, -1, 0, 0],
+        [0, -1, 2, -1, 0, -1],
         [0, 0, -1, 2, -1, 0],
-        [0, 0, 0, -1, 2, -1],
-        [0, 0, 0, 0, -1, 2],
-    ])
+        [0, 0, 0, -1, 2, 0],
+        [0, 0, -1, 0, 0, 2],
+    ]
 
-    # A degenerate kernel violation
     solver = Solver()
     w = [Real(f"w_{i}") for i in range(6)]
 
-    # Suppose weights form a kernel (wC = 0) that should be forbidden
-    kernel_eqns = [sp.simplify(sum(w[i] * cartan_e6[i, j] for i in range(6))) == 0 for j in range(6)]
-    nontrivial = Or([w[i] != 0 for i in range(6)])
+    kernel_eqns = [sum(cartan_e6[i][j] * w[i] for i in range(6)) == 0 for j in range(6)]
+    nontrivial = Or(*[w[i] != 0 for i in range(6)])
 
-    solver.add(And([kernel_eqns], nontrivial))
+    solver.add(*kernel_eqns)
+    solver.add(nontrivial)
 
     return {
         "weight_kernel_trivial": {

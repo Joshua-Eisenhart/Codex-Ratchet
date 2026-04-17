@@ -50,24 +50,21 @@ TOOL_INTEGRATION_DEPTH = {
 
 
 def run_positive_tests():
-    # E8 Cartan matrix (8x8)
+    # E8 Cartan matrix with the standard branch on the third node of the long chain.
     cartan_e8 = sp.Matrix([
         [2, -1, 0, 0, 0, 0, 0, 0],
         [-1, 2, -1, 0, 0, 0, 0, 0],
-        [0, -1, 2, -1, 0, 0, 0, 0],
+        [0, -1, 2, -1, 0, 0, 0, -1],
         [0, 0, -1, 2, -1, 0, 0, 0],
         [0, 0, 0, -1, 2, -1, 0, 0],
-        [0, 0, 0, 0, -1, 2, -1, -1],
+        [0, 0, 0, 0, -1, 2, -1, 0],
         [0, 0, 0, 0, 0, -1, 2, 0],
-        [0, 0, 0, 0, 0, -1, 0, 2],
+        [0, 0, -1, 0, 0, 0, 0, 2],
     ])
 
     det_e8 = cartan_e8.det()
     eigenvals = cartan_e8.eigenvals()
     inverse = cartan_e8.inv()
-
-    # E8 fundamental weights (via Cartan inverse)
-    fund_weights = [float(inverse[i, 0]) for i in range(8)]
 
     return {
         "cartan_simply_laced": {
@@ -76,19 +73,19 @@ def run_positive_tests():
         },
         "determinant_unity": {
             "pass": abs(float(det_e8) - 1.0) < 1e-10,
-            "detail": "E8 Cartan determinant is 1 (E8 is unimodular).",
+            "detail": "E8 Cartan determinant is 1 (E8 root lattice is unimodular).",
             "determinant": float(det_e8),
         },
-        "positive_semi_definite": {
-            "pass": all(float(ev) >= -1e-10 for ev in eigenvals.keys()),
-            "detail": "E8 Cartan matrix is positive semi-definite.",
+        "positive_definite": {
+            "pass": all(complex(ev).real > 1e-10 for ev in eigenvals.keys()),
+            "detail": "E8 Cartan matrix is positive definite on the simple-root packet.",
         },
         "root_coroot_duality": {
             "pass": inverse is not None,
             "detail": "E8 root system and coroot system are dual via Cartan matrix inversion.",
         },
         "positive_negative_roots_balanced": {
-            "pass": True,  # Verified by constraint in negative test
+            "pass": True,
             "detail": "E8 has 120 positive roots and 120 negative roots (240 total).",
         },
     }
@@ -110,11 +107,15 @@ def run_negative_tests():
     solver = Solver()
     r = [Real(f"r_{i}") for i in range(8)]
 
-    # Positive root cone: r_i >= 0 for all i, at least one > 0, and r · cartan is all nonnegative
-    positive_cone = And([r[i] >= 0 for i in range(8)], Or([r[i] > 0 for i in range(8)]))
+    # Positive root cone: r_i >= 0 for all i, at least one > 0
+    positive_cone = And(*(
+        [r[i] >= 0 for i in range(8)] + [Or(*[r[i] > 0 for i in range(8)])]
+    ))
 
     # Negative root cone: r_i <= 0 for all i, at least one < 0
-    negative_cone = And([r[i] <= 0 for i in range(8)], Or([r[i] < 0 for i in range(8)]))
+    negative_cone = And(*(
+        [r[i] <= 0 for i in range(8)] + [Or(*[r[i] < 0 for i in range(8)])]
+    ))
 
     solver.add(positive_cone)
     solver.add(negative_cone)

@@ -135,7 +135,7 @@ def hopf_weyl_admissibility(
         rotor_parity == req_rotor_parity_val,
         # R3: odd winding excludes left chirality (chirality_sign == -1)
         z3.Implies(
-            z3.Mod(winding, 2) == 1,
+            winding % 2 == 1,
             chirality_sign == 1,
         ),
         # R4: valid Hopf fiber dimension

@@ -90,7 +90,7 @@ TOOL_INTEGRATION_DEPTH = {
 
 # Sympy symbolic confirmation of parity constraint (load-bearing symbolic layer)
 _n = sp.Symbol("n", integer=True, positive=True)
-_rotor_parity_poly = sp.Poly(sp.Mod(_n, 2), _n, domain="ZZ")  # even iff zero remainder
+_rotor_parity_expr = sp.Mod(_n, 2)  # even iff zero remainder; kept symbolic, not polynomialised
 
 
 def _sympy_even_check(n: int) -> bool:
@@ -120,7 +120,7 @@ def spinor_carrier_admissible(
     """
     return z3.And(
         rotor_count >= 1,
-        z3.Mod(rotor_count, 2) == 0,
+        rotor_count % 2 == 0,
         z3.Or(chirality == 1, chirality == -1),
     )
 

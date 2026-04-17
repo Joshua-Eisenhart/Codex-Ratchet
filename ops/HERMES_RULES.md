@@ -57,9 +57,34 @@ Step 6 — Record active scope: append to `/tmp/hermes_active_scopes.txt`:
 
 - Use `hermes -w` for isolated worktrees per worker.
 - Model tier: Haiku for mechanical work, Sonnet for math/reasoning work, Opus only for owner-level decisions (escalate, don't spawn).
+- **Haiku is INSUFFICIENT for capstone-class probes** — any probe that imports from multiple existing `axis{N}_*.py`, applies a named schedule to state, or asserts `rho_stage2 != rho_stage1` REQUIRES Sonnet minimum. Haiku consistently fabricates (confirmed 2× 2026-04-17: Agent C + haiku capstone). See `memory/feedback_sub_agent_fabrication_incident.md`.
 - Max 9 concurrent Claude terminals per tier (peak).
 - Each worker prompt MUST include: path to `~/wiki/harness/00_READ_FIRST.md`, file-prefix scope, setup-only vs launch-authorized declaration, success criteria.
 - Disjoint file-prefix scopes — no shared scope between workers.
+- **Capstone probes MUST pass `ops/detect_capstone_fabrication.py`** before Hermes reports worker done. If fabrication tells found → quarantine + respawn with Sonnet.
+
+## 3a. Capstone-probe prompt template (mandatory for multi-axis + schedule-applied work)
+
+Any worker tasked with a capstone (combining multiple axis probes + applying named schedule) receives this additional clause:
+
+```
+MANDATORY REQUIREMENTS (violations = fabrication, will be rejected):
+
+1. `from system_v4.probes.axis<N>_<name> import <primitive>` — ≥3 such imports from real existing probes
+2. State (rho) is evolved across stages, NOT re-randomized. Must include this assertion:
+     assert not np.allclose(rho_stage2, rho_stage1), "stage evolution required; state must differ"
+3. Torch is load-bearing: at least one gradient or autograd-tracked operation applied to the evolved state, not just a proxy of trace/norm
+4. z3/cvc5 assertions MUST reference the named schedule variables (not generic int bounds). Vacuous patterns like `BitVec != 0` or `Int >= -10 <= 10` = fabrication
+5. sympy MUST prove a non-trivial identity; `sp.satisfiable(True)` = fabrication
+6. Clifford blades MUST be applied to the state if imported; importing and not using = fabrication
+7. No `random_unitary(seed=N)` substituting for a named schedule
+
+BEFORE reporting done:
+  python3 ops/detect_capstone_fabrication.py <probe_file>
+must return exit 0. If exit 1, your work is rejected — revise and re-run.
+
+DO NOT commit. Author file, report path + detector exit code to parent.
+```
 
 ## 4. GPT-5.4 (Hermes self) rules
 

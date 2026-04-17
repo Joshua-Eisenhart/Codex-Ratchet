@@ -27,7 +27,9 @@ INTER_SIM_SLEEP=5
 CONSECUTIVE_FAIL_LIMIT=5
 POST_FAIL_PAUSE=1800
 PER_SIM_TIMEOUT=300  # kill any single sim after 5 min — protects against hangs
+# macOS ships without `timeout`; fall back to portable perl-alarm wrapper.
 TIMEOUT_BIN="$(command -v gtimeout || command -v timeout || echo '')"
+PERL_BIN="$(command -v perl)"
 
 mkdir -p "$LOG_DIR"
 cd "$REPO" || exit 1
@@ -142,8 +144,15 @@ while :; do
   fi
 
   # Skip known hang-prone probes
+  # Extended 2026-04-17 after deep log audit found: live_queue_controller (3602s),
+  # autoresearch_sim_harness (126s), multi_seed_stability_test (86s),
+  # followup_anomaly_investigation (461s), various *_substep_*_sweep (70-171s)
   case "$basename" in
-    *benchmark*|*_stress*|*stress_test*|*infinite*|*long_exact*|*80shell*|*prolongation*|*sweep_runner*|*_runner|*_runner_*|classical_sweep_*|autonomous_*|overnight_*|*_sweep|*variant_sweep*)
+    *benchmark*|*_stress*|*stress_test*|*infinite*|*long_exact*|*80shell*|*prolongation*\
+    |*sweep_runner*|*_runner|*_runner_*|classical_sweep_*|autonomous_*|overnight_*\
+    |*_sweep|*variant_sweep*|*substep_*_sweep|*substep_*sweep|live_queue_*|autoresearch_*\
+    |followup_*|multi_seed_*|cross_*_analyzer|*_normalizer|*_enforce|*_checker\
+    |*_legality|thread_sim_*|phase*_first_*|graph_policy_*|smt_graph_*|egglog_*)
       log "SKIP (hang-prone pattern): $basename"
       mark_line "$queue_file" "$basename" "SKIPPED" "0"
       continue
@@ -154,6 +163,9 @@ while :; do
   start=$(date +%s)
   if [ -n "$TIMEOUT_BIN" ]; then
     RUN_CMD=("$TIMEOUT_BIN" "${PER_SIM_TIMEOUT}s" nice -n 19 "$PYTHON" "$probe")
+  elif [ -n "$PERL_BIN" ]; then
+    # Portable perl-alarm fallback for macOS without GNU timeout
+    RUN_CMD=("$PERL_BIN" -e 'alarm shift; exec @ARGV or die "exec: $!"' "$PER_SIM_TIMEOUT" nice -n 19 "$PYTHON" "$probe")
   else
     RUN_CMD=(nice -n 19 "$PYTHON" "$probe")
   fi

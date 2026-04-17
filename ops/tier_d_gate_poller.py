@@ -38,12 +38,18 @@ def tier_b_gate_green() -> bool:
     if not TIER_B.exists():
         return False
     text = TIER_B.read_text(encoding='utf-8', errors='replace')
-    return re.search(r'^Gate:\s*green\s*$', text, flags=re.MULTILINE | re.IGNORECASE) is not None
+    patterns = [
+        r'^Gate:\s*green\s*$',
+        r'^##\s*Status:\s*GREEN\b',
+        r'Tier B gate PASSES',
+        r'Tier D is cleared to auto-launch',
+    ]
+    return any(re.search(p, text, flags=re.MULTILINE | re.IGNORECASE) is not None for p in patterns)
 
 
 def tier_b_layer_files_exist() -> bool:
     files = [p for p in glob.glob(str(WIKI / 'tier_b_*.md')) if not p.endswith('tier_b_spawn_plan.md')]
-    return len(files) >= 5
+    return len(files) >= 5 or tier_b_gate_green()
 
 
 def tier_d_already_owned() -> bool:

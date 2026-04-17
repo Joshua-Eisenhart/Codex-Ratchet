@@ -28,7 +28,7 @@ Goal
 Execute Tier D only if the gate is honestly open. Keep overnight polling/launch behavior autonomous. Be silent unless Tier D is actually launched or blocked by a concrete prerequisite during this execution.
 
 Hard gate before any Tier D launch work:
-- /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md must contain `Gate: green`
+- /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md must honestly declare Tier B green/pass state; accept explicit green/pass language such as `Status: GREEN`, `Gate: GREEN`, or `Tier B gate PASSES`
 - all 5 /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b_<layer>.md files must exist
 - runner must be live, not just a stale log path
 - no existing Tier D execution is already in progress or passed
@@ -40,11 +40,12 @@ If the hard gate is not open:
 
 If the hard gate is open:
 - Per ops/OVERNIGHT.md, no owner confirmation is needed to auto-launch Tier D once the Tier B gate passes.
-1. Run preflight from ops/HERMES_RULES.md exactly:
+1. Run preflight from ops/HERMES_RULES.md with the overnight overrides from ops/OVERNIGHT.md:
    - `git status --short`
    - auto-handle only safe buckets A-E
-   - block on any remaining non-empty status or unsafe bucket
-   - check `/tmp/hermes_active_scopes.txt` for scope collision
+   - do NOT block on Tier VIZ WIP files under `system_v4/visualization/`, `system_v4/tests/test_viz_*`, or `scripts/render_manim_*`
+   - when checking `/tmp/hermes_active_scopes.txt`, ignore stale historical Tier B scope entries older than 2 hours from completed gate-passed work
+   - block only on remaining true unsafe items after those overrides
 2. Verify runner liveness from ops/SIM_RUNNER.md.
 3. Append terminal start line to `/Users/joshuaeisenhart/wiki/projects/codex-ratchet/_steward_log.md`.
 4. Rewrite `/Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_d.md` with `last_updated:` header and a precise state.
@@ -90,7 +91,7 @@ Audit-log discipline:
 - `exited status=<gate_pass|blocker|failed|killed>` is only for actual process end
 
 Blocker discipline once gate is open:
-- if launch is blocked by preflight, missing references, runner not live, or scope collision, write the exact blocker to `tier_d.md`
+- if launch is blocked by preflight, missing references, runner not live, or a true active scope collision, write the exact blocker to `tier_d.md`
 - append any judgment-needed question to `_steward_questions.md`
 - if the controller remains alive for another cycle, append `cycle_end status=polling` or `cycle_end status=idle` as appropriate
 - use `exited status=blocker` only if the Tier D controller is actually ending

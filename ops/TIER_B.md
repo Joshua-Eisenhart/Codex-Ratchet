@@ -1,5 +1,8 @@
 # Tier B — Geometry Shell-Local Lego Coverage
 
+> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+
+
 Preconditions: read `ops/HERMES_RULES.md` and `ops/SIM_RUNNER.md`. Preflight. Tier A gate passed: `test -f ~/wiki/projects/codex-ratchet/tier_a.md`. Runner is live.
 
 ## Role

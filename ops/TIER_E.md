@@ -1,5 +1,8 @@
 # Tier E — Composed Engine: Canonical Axis 0
 
+> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+
+
 Runs after Tier D (boundary UNSAT certificates). L3 + owner collaboration — research tier, NOT a low-reasoning mechanical job.
 
 Preconditions:

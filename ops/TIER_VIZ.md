@@ -1,5 +1,8 @@
 # Tier VIZ — Visualization Deepening (parallel track)
 
+> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+
+
 Independent of Tier A/B/D. Runs in parallel. Produces the truth→live→explainer visualization stack.
 
 Preconditions: read `ops/HERMES_RULES.md` and `ops/OVERNIGHT.md`. Verify harness at `~/wiki/harness/00_READ_FIRST.md`.

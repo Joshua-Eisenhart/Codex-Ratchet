@@ -1,5 +1,8 @@
 # Tier F — Axes 1–6 on the Composed Manifold
 
+> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+
+
 Runs after Tier E (canonical composed Axis 0). Axes 1–6 inherit the B/C/D/E infrastructure — no new math, just composition.
 
 Preconditions:

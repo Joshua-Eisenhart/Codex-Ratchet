@@ -1,5 +1,8 @@
 # Tier D — Boundary Admissibility UNSAT Certificates
 
+> **Worker spawn preamble (mandatory):** every spawned Claude worker receives Block B (140-word) from `~/wiki/harness/SALIENCE_PREAMBLE.md` prepended to its system prompt before any task description. See `ops/HERMES_RULES.md` §0. Probe-tested 2026-04-17 on fresh Haiku.
+
+
 Preconditions: read `ops/HERMES_RULES.md` and `ops/SIM_RUNNER.md`. Preflight. Tier B gate passed: all 5 `~/wiki/projects/codex-ratchet/tier_b_<layer>.md` exist. Runner is live.
 
 ## Role

@@ -1,7 +1,7 @@
 """Axis 0 composition operator scaffold: π = Pauli ∘ Flux ∘ Weyl ∘ Hopf ∘ G-stack.
 
 Opus-authored starting point for Tier E. NOT a canonical sim yet — this is
-symbolic infrastructure that Tier E will build on. Read ops/TIER_E.md.
+symbolic infrastructure that Tier E will build on. Read system_v5/ops/TIER_E.md.
 
 Does NOT run as a standalone probe. Do NOT enqueue to runner until Tier E-ready.
 This file is scaffolding, imported by future `axis0_canonical_composed.py`.
@@ -216,4 +216,4 @@ if __name__ == "__main__":
     print("Admission predicate (symbolic):")
     print(expr)
     print()
-    print("NOT a canonical sim. Scaffolding only — see ops/TIER_E.md.")
+    print("NOT a canonical sim. Scaffolding only — see system_v5/ops/TIER_E.md.")

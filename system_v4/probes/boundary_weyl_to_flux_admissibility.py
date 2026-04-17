@@ -1,6 +1,6 @@
 """D3 — Weyl spinor → Flux orientation admissibility UNSAT certificates.
 
-Per ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
+Per system_v5/ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
 
 Question: which flux orientations are structurally UNSAT without a spinor carrier?
 

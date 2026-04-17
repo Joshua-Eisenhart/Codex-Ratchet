@@ -1,6 +1,6 @@
 """D4 — Flux orientation → Pauli axis admissibility UNSAT certificates.
 
-Per ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
+Per system_v5/ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
 
 Question: which Pauli axes are UNSAT without flux orientation?
 

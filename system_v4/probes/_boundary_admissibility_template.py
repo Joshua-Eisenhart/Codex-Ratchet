@@ -1,6 +1,6 @@
 """Shared template for Tier D boundary admissibility probes.
 
-Per ops/TIER_D.md, each boundary (D1–D4) produces UNSAT certificates
+Per system_v5/ops/TIER_D.md, each boundary (D1–D4) produces UNSAT certificates
 proving structural impossibility at layer composition boundaries.
 
 Opus-authored symbolic skeleton. Tier D Sonnet workers fill in the

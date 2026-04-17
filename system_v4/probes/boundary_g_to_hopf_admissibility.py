@@ -1,6 +1,6 @@
 """D1 — G-stack → Hopf fibration admissibility UNSAT certificates.
 
-Per ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
+Per system_v5/ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
 
 Question: which Hopf fibration classes (winding, fiber type) are
 structurally impossible on a given G-stack root system?

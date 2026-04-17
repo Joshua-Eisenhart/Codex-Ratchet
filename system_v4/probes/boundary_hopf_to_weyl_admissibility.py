@@ -1,6 +1,6 @@
 """D2 — Hopf fibration → Weyl chirality admissibility UNSAT certificates.
 
-Per ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
+Per system_v5/ops/TIER_D.md. Tier E depends on this probe's UNSAT set.
 
 Question: which chirality choices are structurally impossible (UNSAT) given a
 fixed Hopf fibration winding number?

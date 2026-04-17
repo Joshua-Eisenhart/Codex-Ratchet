@@ -1,0 +1,84 @@
+# 24/7 Sim Runner — thermal-safe, zero token cost
+
+Pure Python + shell. No LLM in the loop. Drains tier queues in priority order, pauses when the machine gets hot.
+
+## Role separation
+
+- **Hermes terminals** (Tier A / B / D) — write probes, enqueue them, monitor the runner's log. They do NOT execute sims.
+- **Runner** (this file) — picks next queued probe, runs it at low priority, writes result JSON, logs, repeats.
+
+## What it does per tick
+
+1. Reads queues in priority order: `queue_tier_a.txt` → `queue_tier_b.txt` → `queue_tier_d.txt` → `queue_default.txt`.
+2. Picks the first un-done probe from the highest-priority non-empty queue.
+3. Runs it with `nice -n 19`, captures result.
+4. Marks the queue line as `# DONE <timestamp>` or `# FAIL <timestamp>`.
+5. Sleeps between sims; cooldown sleep if hot.
+6. Repeats forever.
+
+## Priority rules
+
+- Tier A queue drained before B, B before D. Foundation first.
+- Within a queue, top-to-bottom order (Hermes terminals append).
+- `queue_default.txt` = fallback. Auto-populated from "canonical missing `tool_integration_depth`" when all tier queues empty.
+
+## Thermal safety
+
+Pause when ANY of:
+- `sysctl -n machdep.xcpm.cpu_thermal_level` ≥ 60
+- 1-min load avg > `ncpus * 0.75`
+- (optional) `osx-cpu-temp` > 85°C
+
+Resume when ALL below their thresholds:
+- thermal_level < 40
+- load normal
+- (optional) temp < 75°C
+
+Cooldown sleep: 120s per cycle while hot.
+
+## Queue file format
+
+One probe basename per line (relative to `system_v4/probes/`, no `.py` suffix). Lines starting with `#` are ignored. Runner rewrites completed lines to `# DONE <timestamp> <basename> (<dur>s)`.
+
+Example `queue_tier_a.txt`:
+```
+# Tier A tool-capability + integration queue
+tool_capability_z3
+tool_capability_cvc5
+tool_capability_sympy
+tool_capability_pyg
+tool_integration_z3_sympy
+tool_integration_sympy_pyg
+```
+
+## Hermes enqueue convention
+
+When a Hermes worker writes a new probe:
+1. Save `.py` file.
+2. `git add` + commit per its tier convention.
+3. Append probe basename to its tier queue (e.g. `echo "tool_capability_z3" >> system_v5/ops/queue_tier_a.txt`).
+
+## Monitoring
+
+Hermes terminals tail `overnight_logs/sim_runner_current.log` (symlink to latest) to see progress. Wiki steward cron digests new result JSONs into `~/wiki/concepts/<family>.md` automatically.
+
+## Launch / stop
+
+Launch:
+```bash
+cd "/Users/joshuaeisenhart/Desktop/Codex Ratchet" && nohup bash system_v5/ops/sim_runner.sh > overnight_logs/sim_runner_$(date +%Y%m%d_%H%M%S).log 2>&1 &
+```
+
+Stop gracefully:
+```bash
+touch system_v5/ops/.stop_sim_runner
+```
+
+## Rules
+
+1. One sim at a time. No parallelization (keeps laptop cool, keeps logs simple).
+2. `nice -n 19` always; never `sudo`.
+3. Runner only reads queues and executes; never writes probe source.
+4. Unhandled probe exception → log, move on, don't retry.
+5. 5 consecutive failures → pause 30 min, telegram L3 once.
+6. Runner obeys `system_v5/ops/.stop_sim_runner` sentinel file between sims.

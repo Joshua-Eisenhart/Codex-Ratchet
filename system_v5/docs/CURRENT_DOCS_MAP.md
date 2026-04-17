@@ -1,6 +1,6 @@
 # Current Docs Map
 
-Purpose: this is the routing layer for `system_v5/new docs/`.
+Purpose: this is the routing layer for `system_v5/docs/`.
 Use it to answer two questions quickly:
 
 1. Which doc owns a topic right now?
@@ -80,7 +80,7 @@ Read in this order:
 - `new content/preprocessed/README.md`
 - the specific preprocessed digest you need
 
-Do not treat intake material as canon until its content is promoted into a top-level doc in `new docs/`.
+Do not treat intake material as canon until its content is promoted into a top-level doc in `docs/`.
 
 ---
 

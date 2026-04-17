@@ -2,7 +2,7 @@
 """bridge_leviathan_admissibility_z3 -- canonical bridge.
 scope_note: Shows nonclassical exclusion: z3 UNSAT rules out coalitions where
 additive Hobbesian stability + minority-veto co-constraint are simultaneously
-admissible. Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+admissible. Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 from _doc_illum_common import build_manifest, write_results

@@ -403,9 +403,9 @@ The partial trace bug is a **recurring pattern**: einsum index confusion between
 
 | What | Path |
 |------|------|
-| Enforcement rules | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/ENFORCEMENT_AND_PROCESS_RULES.md` |
-| Build plan | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/PYTORCH_RATCHET_BUILD_PLAN.md` |
-| Tooling status | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/TOOLING_STATUS.md` |
+| Enforcement rules | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/ENFORCEMENT_AND_PROCESS_RULES.md` |
+| Build plan | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/PYTORCH_RATCHET_BUILD_PLAN.md` |
+| Tooling status | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/TOOLING_STATUS.md` |
 | Ratchet modules hub | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/ratchet_modules.py` |
 | Lean proofs root | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/lean/RatchetProofs.lean` |
 | Lean ShellNesting | `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/lean/RatchetProofs/ShellNesting.lean` |

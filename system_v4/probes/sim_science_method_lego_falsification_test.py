@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Science Method Lego: Falsification Test
-scope_note: system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+scope_note: system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 The falsification step: testing whether a hypothesis makes a prediction that
 can be shown wrong. Popper's criterion — a hypothesis is scientific iff it
@@ -366,7 +366,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_science_method_lego_falsification_test",
         "classification": "classical_baseline",
-        "scope_note": "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method — falsification step as physical constraint on hypothesis admissibility",
+        "scope_note": "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; Popperian science method — falsification step as physical constraint on hypothesis admissibility",
         "exclusion_claim": "hypothesis with P(o*|h)=0 cannot survive observation o*; unfalsifiable hypothesis has no structure distinguishing it from prior; Modus Tollens is exact at P(o*|h)=1",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

@@ -2,7 +2,7 @@
 """bridge_axis0_gradient_autograd -- canonical bridge: compute Axis 0 entropy
 gradient via pytorch autograd (load_bearing). Cross-checks classical FD baseline.
 
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md, Axis 0 gradient;
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md, Axis 0 gradient;
 CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md entropy definition.
 """
 import numpy as np

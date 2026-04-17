@@ -3,7 +3,7 @@
 nested constraint layers (L0 ⊃ L1 ⊃ L2) produce monotonically smaller admissible
 state sets.
 
-scope_note: system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md,
+scope_note: system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md,
 section "Constraint manifold / layer nesting"; LADDERS_FENCES_ADMISSION_REFERENCE.md
 admission ladder. Classical baseline.
 """

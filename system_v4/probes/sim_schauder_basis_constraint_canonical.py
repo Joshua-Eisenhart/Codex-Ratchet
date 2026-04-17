@@ -10,7 +10,7 @@ Claims:
   - UNSAT when non-trivial null combination is claimed for a basis
   - sympy verifies orthonormal basis property in l² (⟨e_i, e_j⟩ = δ_ij)
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

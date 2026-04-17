@@ -4,7 +4,7 @@ Deep geomstats tool-integration sim. Load-bearing: geomstats SpecialOrthogonal
 exp/log on the Lie group SO(3); admissibility = candidates that survive
 exp(log(R)) round-trip under the group's own matrix representation.
 
-scope_note: see system_v5/new docs/ENGINE_MATH_REFERENCE.md (rotor/SO(3) layer)
+scope_note: see system_v5/docs/ENGINE_MATH_REFERENCE.md (rotor/SO(3) layer)
 and LADDERS_FENCES_ADMISSION_REFERENCE.md (exp/log fence).
 """
 import json, os, numpy as np

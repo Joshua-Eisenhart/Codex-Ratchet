@@ -2,7 +2,7 @@
 """classical_hopf_fibration_s3_s2 -- classical numpy Hopf map
 h: S^3 -> S^2, (z1,z2) |-> (2 Re z1 z2*, 2 Im z1 z2*, |z1|^2-|z2|^2).
 
-scope_note: system_v5/new docs/ENGINE_MATH_REFERENCE.md, section "Hopf
+scope_note: system_v5/docs/ENGINE_MATH_REFERENCE.md, section "Hopf
 fibration / U(1) equivariance"; LADDERS_FENCES_ADMISSION_REFERENCE.md
 fibration fences. Classical baseline; e3nn bridge is canonical.
 """

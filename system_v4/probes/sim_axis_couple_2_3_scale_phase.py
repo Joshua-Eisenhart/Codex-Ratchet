@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Axis 2 x Axis 3 coupling: scale x phase.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 2, 3).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 2, 3).
 
 Claim: scale changes (Axis 2) and phase changes (Axis 3) are coupled at the
 fiber bundle level. The scale is the base-space loop area; the phase is the
@@ -394,7 +394,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_axis_couple_2_3_scale_phase",
         "classification": "classical_baseline",
-        "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 2, 3); U(1) fiber bundle coupling via Stokes theorem",
+        "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 2, 3); U(1) fiber bundle coupling via Stokes theorem",
         "exclusion_claim": "coupling excludes nonzero holonomy phase under flat connection (F=0); Axis 2 and Axis 3 decouple exactly when field strength is zero; coupling coefficient is |F|",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

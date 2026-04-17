@@ -7,7 +7,7 @@ Exclusion-language discipline:
   intersection of all 4 triple-joints embedded inside it; else "additive".
 - Pent analogously uses the intersection of all 5 quad-joints embedded inside.
 
-scope_note cites: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
+scope_note cites: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
 
 No create/derive/drive language; use 'survived' / 'admissible under joint coupling' /
 'joint coupling excludes ...'.
@@ -61,7 +61,7 @@ from _couple_common import SHELL_SPECS
 
 SCOPE_NOTE = (
     "4-shell / 5-shell coexistence test (step 4 of coupling program: multi-shell "
-    "coexistence). Cites system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
+    "coexistence). Cites system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
     "Statements use 'survived' / 'admissible under joint coupling' / 'joint coupling "
     "excludes ...'. No creates/derives/drives language."
 )

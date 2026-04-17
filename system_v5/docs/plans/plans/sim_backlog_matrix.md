@@ -5,12 +5,12 @@ Status: PRIMARY LIVE QUEUE SURFACE
 Goal: make the current engine-construction queue explicit across the primary lanes without widening scope or collapsing truth labels. The sims in this queue are build/validation instruments for lego completion and engine assembly readiness, not the end goal.
 
 Authority surfaces used:
-- `new docs/07_model_math_geometry_sim_plan.md`
-- `new docs/08_aligned_sim_backlog_and_build_order.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- `new docs/TOOLING_STATUS.md`
+- `docs/07_model_math_geometry_sim_plan.md`
+- `docs/08_aligned_sim_backlog_and_build_order.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/TOOLING_STATUS.md`
 
 ## Queue policy
 - Build actual engines through controlled lego construction; do not treat sim count or sim novelty as progress by itself.
@@ -103,7 +103,7 @@ Purpose in the overall build: keep the construction process honest, reproducible
 | C2 | `tool_integration_maintenance_matrix.md` | show which tools are deep vs shallow by lane | build matrix from tooling docs + legos |
 | C3 | `controller_maintenance_checklist.md` | keep runs healthy and aligned | create pre/during/post run checklist |
 | C4 | `on-demand-telegram-runner.md` | keep launch/heartbeat/closeout behavior aligned with controller ownership | link progress/health reporting to truth/maintenance closure |
-| C5 | `16_lego_build_catalog.md` | keep grouped controller ledger current | patch when new docs/results materially change states |
+| C5 | `16_lego_build_catalog.md` | keep grouped controller ledger current | patch when docs/results materially change states |
 | C6 | `17_actual_lego_registry.md` | keep exhaustive lego registry current | patch when distinct math objects/results need explicit rows |
 | C7 | wiki concept pages | keep current-docs-aligned summaries in sync | patch touched concept pages after material changes, but not as part of controller-only closure unless concept framing changed |
 

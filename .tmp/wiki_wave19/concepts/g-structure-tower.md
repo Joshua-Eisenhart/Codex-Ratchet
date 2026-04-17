@@ -86,7 +86,7 @@ The extra fence from the newer geometry-stack doctrine is that the ratchet claim
 If this line holds up under rerun and deeper audit, then the project's geometric ratchet is not only an intuitive ordering discipline. It may also be a computational search over which support manifolds survive to the deepest appropriate `G`-structure level for the target physics/QIT objects.
 
 ## G-tower / Hopf / Weyl integration follow-on
-A newer repo-side spec, `system_v5/new docs/plans/G_TOWER_HOPF_WEYL_INTEGRATION_SPEC.md`, deepens this lane in a more specific direction than the current public page had previously exposed.
+A newer repo-side spec, `system_v5/docs/plans/G_TOWER_HOPF_WEYL_INTEGRATION_SPEC.md`, deepens this lane in a more specific direction than the current public page had previously exposed.
 
 Safe current takeaway from that spec:
 - the `G`-tower is being tested not just as a generic support-manifold ladder but as a candidate nested shell structure tied to the Hopf bundle `S^3 -> S^2`

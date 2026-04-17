@@ -6,7 +6,7 @@
 cvc5 proves the rank constraint: rank(H^i_et) = rank(H^i_Betti) = b_i (Betti number)
 UNSAT when étale rank differs from Betti number for smooth projective X
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

@@ -5,10 +5,10 @@ Status: PRIMARY LIVE TOOL-DEPTH SURFACE
 Goal: show which tools are already strong, which are shallow, where they belong in the sim program, and what bounded next move best deepens them.
 
 Authority surfaces:
-- `new docs/TOOLING_STATUS.md`
-- `new docs/TOOL_MANIFEST_AUDIT.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `docs/TOOLING_STATUS.md`
+- `docs/TOOL_MANIFEST_AUDIT.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
 
 ## Current maturity snapshot
 
@@ -80,5 +80,5 @@ After any meaningful batch:
 - if a tool became newly load-bearing, update this matrix
 - if a tool regressed to decorative use in promoted claims, record it here
 - if a new sim exposes a better anchor for a tool, replace the weaker anchor
-- keep the linked truth status in `system_v5/new docs/plans/sim_truth_audit.md` aligned so tool-depth claims do not outrun the current safe truth label for the anchor file
+- keep the linked truth status in `system_v5/docs/plans/sim_truth_audit.md` aligned so tool-depth claims do not outrun the current safe truth label for the anchor file
 - if the batch was run through the on-demand Telegram controller, include any tool-anchor change in the run closeout or explicitly queue the follow-up update before closure

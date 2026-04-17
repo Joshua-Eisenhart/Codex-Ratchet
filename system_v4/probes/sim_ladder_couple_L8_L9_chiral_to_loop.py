@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L8_L9_chiral_to_loop
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L8_chiral and L9_loop via clifford.
 classification: canonical
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L8_L9_chiral_to_loop",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L8_chiral", "layer_b": "L9_loop"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

@@ -55,7 +55,7 @@ These define a `SPEC_GRAPH_PYTHON` variable that is **never used in any executio
 - **Audit logs** (`system_v4/a2_state/audit_logs/`): ~12 frozen JSON/MD run records that captured the interpreter path at execution time
 - **Antigravity prompt batches** (`system_v4/a2_state/antigravity_prompt_batches/safe_pack/`): 4 historical task docs
 - **Planning/tracking docs** (repo root): `VENV_SPEC_GRAPH_SHRINK_DELETE_READINESS_LEDGER.md`, `VENV_SPEC_GRAPH_REFERENCE_PRIORITY_AUDIT.md`, `VENV_SPEC_GRAPH_TIER2_SKILL_BATCH_READINESS.md`, `CURRENT_TOOL_STATUS__*.md`, etc.
-- **Legacy/read-only docs**: `core_docs/`, `READ ONLY Legacy core_docs/`, `system_v5/READ ONLY Reference Docs/`
+- **Legacy/read-only docs**: `core_docs/`, `READ ONLY Legacy core_docs/`, `system_v5/docs/archive/`
 - **Sim results**: `formal_geometry_packet_run_results.json` (frozen run output)
 
 **None of these are runtime references. All are historical records or documentation.**

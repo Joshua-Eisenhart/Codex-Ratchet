@@ -10,7 +10,7 @@ marked with the of-course modality !A. Tests:
 3. UNSAT when !A weakening/contraction count inconsistent in a branch
 4. sympy verification of sequent calculus resource conservation
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 Usage:
   python3 sim_cvc5_linear_logic_resource_constraint.py

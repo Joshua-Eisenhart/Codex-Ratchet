@@ -3,21 +3,21 @@
 Goal: keep the repo docs, lego ledgers, sim results, and wiki synchronized as an active working system rather than a one-way archive.
 
 ## Authority surfaces
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/07_model_math_geometry_sim_plan.md`
-- `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
-- `new docs/08_aligned_sim_backlog_and_build_order.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/07_model_math_geometry_sim_plan.md`
+- `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- `docs/08_aligned_sim_backlog_and_build_order.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
 - `/Users/joshuaeisenhart/wiki`
 
 ## Wiki automation execution primitives
 Use these as the live execution surfaces for wiki automation:
 - `/Users/joshuaeisenhart/wiki/tools/wiki_probe.py` — structural verification against the live filesystem
 - `/Users/joshuaeisenhart/wiki/config/wiki_automation_surface_map.json` — explicit repo-surface to wiki-target mapping for maintenance ticks
-- `system_v5/new docs/plans/wiki-automation-run-contract.md` — launch/runtime contract for the separate wiki-builder lane
-- `system_v5/new docs/plans/wiki-automation-claude-terminal-orchestration.md` — worker split and parallel Claude terminal rules
-- `system_v5/new docs/plans/local-launch-checklist-wiki-automation.md` — prelaunch go/no-go checklist
+- `system_v5/docs/plans/wiki-automation-run-contract.md` — launch/runtime contract for the separate wiki-builder lane
+- `system_v5/docs/plans/wiki-automation-claude-terminal-orchestration.md` — worker split and parallel Claude terminal rules
+- `system_v5/docs/plans/local-launch-checklist-wiki-automation.md` — prelaunch go/no-go checklist
 
 ## Core rule
 When a new doc appears, an existing doc changes materially, or a sim result changes the honest state of a lego, update all three surfaces together:
@@ -28,7 +28,7 @@ When a new doc appears, an existing doc changes materially, or a sim result chan
 ## Maintenance loop
 
 ### A. New or updated docs
-For each new or updated file under `new docs/`:
+For each new or updated file under `docs/`:
 - classify it as current / legacy / supporting / archive
 - decide whether it changes:
   - build order

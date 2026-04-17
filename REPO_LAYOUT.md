@@ -30,13 +30,13 @@ All human-readable docs live here.
 system_v5/
 ├── docs/
 │   └── plans/                  # Handoffs, coverage matrices, runner scripts, lane specs
-├── new docs/                   # Numbered research docs (00–17+) + enforcement/contracts
+├── docs/                   # Numbered research docs (00–17+) + enforcement/contracts
 │   ├── ENFORCEMENT_AND_PROCESS_RULES.md   ← read first
 │   ├── LLM_CONTROLLER_CONTRACT.md         ← read first
 │   ├── LEGO_SIM_CONTRACT.md               ← read first
 │   ├── AGENT_WORKFLOW_AND_BOOT_ARCHITECTURE.md
 │   └── plans/
-├── READ ONLY Reference Docs/   # Axes, entropic monism, engine schedules
+├── docs/archive/   # Axes, entropic monism, engine schedules
 └── tests/                      # System-level test harness
 ```
 
@@ -87,7 +87,7 @@ Per-run artifacts: NDJSON events, heartbeats, tool-capability state, per-worker 
 
 | What | Path |
 |---|---|
-| Read-first docs | `system_v5/new docs/{ENFORCEMENT_AND_PROCESS_RULES,LLM_CONTROLLER_CONTRACT,LEGO_SIM_CONTRACT}.md` |
+| Read-first docs | `system_v5/docs/{ENFORCEMENT_AND_PROCESS_RULES,LLM_CONTROLLER_CONTRACT,LEGO_SIM_CONTRACT}.md` |
 | Sim template | `system_v4/probes/SIM_TEMPLATE.py` |
 | Sim results | `system_v4/probes/a2_state/sim_results/` |
 | QIT owner graph | `system_v4/a2_state/graphs/qit_engine_graph_v1.json` |
@@ -98,7 +98,7 @@ Per-run artifacts: NDJSON events, heartbeats, tool-capability state, per-worker 
 ## Rules
 
 1. **No random files at root.** Root = entry-point metadata only.
-2. **No `docs/` or `new docs/` at root.** Those live under `system_v5/`.
+2. **No `docs/` or `docs/` at root.** Those live under `system_v5/`.
 3. **Sim results are never touched by hand.** Written only by sim probes.
 4. **Loose scratch → `archive/`**, not root.
 5. **Every new sim starts from `system_v4/probes/SIM_TEMPLATE.py`** and must pass `scripts/lint_sim_contract.py`.

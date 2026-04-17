@@ -7,7 +7,7 @@ Tests bridge claims: (1) SW invariants are constraint-admissible quantities;
 (2) cvc5 UNSAT excludes classical monopole equations without SW constraint;
 (3) non-abelian structure on constraint manifold survives SW probing.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 classification: canonical
 Required tools: cvc5 (load_bearing: UNSAT on SW constraint), sympy (supportive),

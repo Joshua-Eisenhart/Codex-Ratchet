@@ -2,7 +2,7 @@
 """classical_ladder_L0_spectral_baseline -- classical numpy eigen-decomposition
 of graph Laplacian as L0 spectral admissibility baseline.
 
-scope_note: system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, L0
+scope_note: system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, L0
 spectral section; ENGINE_MATH_REFERENCE.md spectral operators. Classical
 baseline; non-canonical geometry.
 """

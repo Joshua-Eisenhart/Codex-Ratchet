@@ -2,7 +2,7 @@
 """sim_classical_szilard_one_bit_measurement_work
 
 scope_note: Illuminates Landauer section of
-  system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md.
+  system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md.
   Classical Szilard engine extracts W=kT ln2 from one measured bit.
 """
 

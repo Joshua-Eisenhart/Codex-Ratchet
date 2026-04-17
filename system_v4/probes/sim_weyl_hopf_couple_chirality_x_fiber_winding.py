@@ -4,7 +4,7 @@ sim_weyl_hopf_couple_chirality_x_fiber_winding
 Scope: Coupling sim — Weyl chirality sign co-varies with Hopf fiber winding
 direction under Cl(3) rotor action. Candidates where chirality and winding
 decouple are excluded.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np
 from clifford import Cl

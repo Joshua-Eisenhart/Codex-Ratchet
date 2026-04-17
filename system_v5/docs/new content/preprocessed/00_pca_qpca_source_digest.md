@@ -21,4 +21,4 @@
 - low-rank density approximation -> valid compression primitive
 
 ## Promotion rule
-If a note below can be rewritten as a dominant-subspace / operator-spectral statement, it can move to `new docs/`.
+If a note below can be rewritten as a dominant-subspace / operator-spectral statement, it can move to `docs/`.

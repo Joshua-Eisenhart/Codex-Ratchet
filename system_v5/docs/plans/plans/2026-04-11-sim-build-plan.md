@@ -1,6 +1,6 @@
 # Codex Ratchet Sim Build Plan
 
-Status: MASTER REFERENCE PLAN — not the live queue surface. Use `system_v5/new docs/plans/sim_backlog_matrix.md` for the live queue, `system_v5/new docs/plans/sim_truth_audit.md` for truth labels, `system_v5/new docs/plans/tool_integration_maintenance_matrix.md` for tool depth, and `system_v5/new docs/plans/controller_maintenance_checklist.md` for live run operations.
+Status: MASTER REFERENCE PLAN — not the live queue surface. Use `system_v5/docs/plans/sim_backlog_matrix.md` for the live queue, `system_v5/docs/plans/sim_truth_audit.md` for truth labels, `system_v5/docs/plans/tool_integration_maintenance_matrix.md` for tool depth, and `system_v5/docs/plans/controller_maintenance_checklist.md` for live run operations.
 
 > For Hermes: use this plan to build the sim estate in bounded phases. Do not collapse `exists`, `runs`, `passes local rerun`, and `canonical by process`.
 
@@ -8,21 +8,21 @@ Goal: build the simulation stack in the documented order, with the classical eng
 
 Architecture: this plan uses two coordinated lanes. Lane A builds classical Carnot/Szilard baselines clearly and fully, then bridges them into the system only after the bridge objects are ready. Lane B builds the geometric constraint manifold from carrier admission upward, decomposing geometry into explicit local legos on the same admitted carrier before any late bridge or axis work. Both lanes share the same truth labels, tool-honesty rules, and negative-test requirements.
 
-Tech stack: PyTorch, z3, cvc5, sympy, clifford, geomstats, e3nn, rustworkx, XGI, TopoNetX, GUDHI, PyG, hypothesis/pytest/pydantic where relevant, existing `system_v4/probes/SIM_TEMPLATE.py` contract, repo docs in `new docs/`.
+Tech stack: PyTorch, z3, cvc5, sympy, clifford, geomstats, e3nn, rustworkx, XGI, TopoNetX, GUDHI, PyG, hypothesis/pytest/pydantic where relevant, existing `system_v4/probes/SIM_TEMPLATE.py` contract, repo docs in `docs/`.
 
 ---
 
 ## 0. Authority and non-negotiable rules
 
 Use these docs first:
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- `new docs/LLM_CONTROLLER_CONTRACT.md`
-- `new docs/07_model_math_geometry_sim_plan.md`
-- `new docs/08_aligned_sim_backlog_and_build_order.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md`
-- `new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/LLM_CONTROLLER_CONTRACT.md`
+- `docs/07_model_math_geometry_sim_plan.md`
+- `docs/08_aligned_sim_backlog_and_build_order.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/LADDERS_FENCES_ADMISSION_REFERENCE.md`
+- `docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md`
 
 Plan-wide rules:
 1. Use standard mathematical terms in sims and result files. Do not use engine shorthand as the computation surface.
@@ -121,20 +121,20 @@ Deliverables:
 - one recurring controller-maintenance checklist for manifests, validators, stale classifications, and queue hygiene
 
 Files to create/update:
-- Create/update: `system_v5/new docs/plans/sim_backlog_matrix.md`
-- Create/update: `system_v5/new docs/plans/sim_truth_audit.md`
-- Create/update: `system_v5/new docs/plans/sim_process_gap_log.md`
-- Create/update: `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- Create/update: `system_v5/new docs/plans/controller_maintenance_checklist.md`
-- Create/update: `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
+- Create/update: `system_v5/docs/plans/sim_backlog_matrix.md`
+- Create/update: `system_v5/docs/plans/sim_truth_audit.md`
+- Create/update: `system_v5/docs/plans/sim_process_gap_log.md`
+- Create/update: `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- Create/update: `system_v5/docs/plans/controller_maintenance_checklist.md`
+- Create/update: `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`
 
 Required checks:
 - confirm every active target maps to `07`, `08`, `16`, and `17`
 - separate Lane A and Lane B explicitly
 - identify legacy result files that are useful but not promotion-grade
-- tie claims to the repo's current tool-role contract in `new docs/TOOLING_STATUS.md`, `new docs/TOOL_MANIFEST_AUDIT.md`, and `new docs/LLM_RESEARCH_GAP_MATRIX.json`
+- tie claims to the repo's current tool-role contract in `docs/TOOLING_STATUS.md`, `docs/TOOL_MANIFEST_AUDIT.md`, and `docs/LLM_RESEARCH_GAP_MATRIX.json`
 - keep validator surfaces in play, including `system_v4/skills/llm_research_enforcement_validator.py`
-- treat `new docs/16_lego_build_catalog.md` and `new docs/17_actual_lego_registry.md` as living maintenance surfaces that must be updated as new docs appear and sims land
+- treat `docs/16_lego_build_catalog.md` and `docs/17_actual_lego_registry.md` as living maintenance surfaces that must be updated as new docs appear and sims land
 - keep the wiki in sync with the current-docs lane by ingesting new/updated docs and sim-result-facing summaries as they are produced
 - use the wiki as an active research surface during execution, not only as an archive after the fact
 

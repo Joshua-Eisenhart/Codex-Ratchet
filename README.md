@@ -8,8 +8,8 @@ Nonclassical constraint-admissibility research system. Runs sim legos under the 
 |---|---|
 | Session instructions | `CLAUDE.md` |
 | Repo layout map | `REPO_LAYOUT.md` |
-| **System docs** (plans, handoffs, research) | `system_v5/docs/` and `system_v5/new docs/` |
-| Read-only reference docs | `system_v5/READ ONLY Reference Docs/` |
+| **System docs** (plans, handoffs, research) | `system_v5/docs/` and `system_v5/docs/` |
+| Read-only reference docs | `system_v5/docs/archive/` |
 | Sim code + probes | `system_v4/probes/` |
 | Sim results (canonical) | `system_v4/probes/a2_state/sim_results/` |
 | Overnight runner + gates | `scripts/` |
@@ -19,9 +19,9 @@ Nonclassical constraint-admissibility research system. Runs sim legos under the 
 ## Read first (every session)
 
 1. `CLAUDE.md` — operating principles, status labels, lane rules
-2. `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-3. `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`
-4. `system_v5/new docs/LEGO_SIM_CONTRACT.md`
+2. `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+3. `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`
+4. `system_v5/docs/LEGO_SIM_CONTRACT.md`
 
 ## Running sims
 

@@ -5,16 +5,16 @@ Use this checklist immediately before starting a real wiki-builder automation ru
 ## Confirm lane separation
 - [ ] this run is for wiki automation, not the sim runner
 - [ ] no sim batch launcher or overnight probe runner is being reused as the wiki runtime
-- [ ] the run contract is `system_v5/new docs/plans/wiki-automation-run-contract.md`
+- [ ] the run contract is `system_v5/docs/plans/wiki-automation-run-contract.md`
 
 ## Confirm files to read first
 - [ ] `/Users/joshuaeisenhart/wiki/index.md`
 - [ ] `/Users/joshuaeisenhart/wiki/concepts/topic-map.md`
 - [ ] `/Users/joshuaeisenhart/wiki/concepts/current-research-overlays.md`
 - [ ] `/Users/joshuaeisenhart/wiki/log.md`
-- [ ] `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
-- [ ] `system_v5/new docs/plans/sim_backlog_matrix.md`
-- [ ] `system_v5/new docs/plans/sim_truth_audit.md`
+- [ ] `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`
+- [ ] `system_v5/docs/plans/sim_backlog_matrix.md`
+- [ ] `system_v5/docs/plans/sim_truth_audit.md`
 - [ ] `/Users/joshuaeisenhart/wiki/concepts/wiki-automation-contract.md`
 - [ ] `/Users/joshuaeisenhart/wiki/concepts/wiki-automation-tick-template.md`
 - [ ] `/Users/joshuaeisenhart/wiki/config/wiki_automation_surface_map.json`

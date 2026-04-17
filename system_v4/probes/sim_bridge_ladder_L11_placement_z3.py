@@ -4,7 +4,7 @@ ladder placement admissibility/exclusion for an L11 placement problem.
 Uses SAT for positive (placement exists) and UNSAT for negative (forbidden
 configuration structurally impossible).
 
-scope_note: system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md L11
+scope_note: system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md L11
 placement; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md structural admissibility.
 """
 from z3 import Solver, Int, And, Or, Distinct, sat, unsat, Not

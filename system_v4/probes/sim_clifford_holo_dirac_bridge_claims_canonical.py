@@ -7,7 +7,7 @@ Tests bridge claims: (1) Clifford algebra structure survives rotor probe;
 (2) holomorphic Dirac equations co-vary on constraint manifold;
 (3) z3 UNSAT excludes classical Dirac without rotor constraint.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 classification: canonical
 Required tools: pytorch (load_bearing: numerical), clifford (load_bearing),

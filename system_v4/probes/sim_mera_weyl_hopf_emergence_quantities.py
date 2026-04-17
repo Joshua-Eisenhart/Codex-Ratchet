@@ -41,7 +41,7 @@ Tests:
   B2 (pytorch): Q2=0 for product states (no entanglement → no emergence).
 
 Classification: classical_baseline
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
 """
 
 import json

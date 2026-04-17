@@ -7,7 +7,7 @@ CLAIM: dim(Gr_λ) = 2⟨ρ, λ⟩ where ρ is half-sum of positive roots.
 PROOF LAYER: cvc5 (QF_LIA) constraint on Schubert cell dimension.
 ALGEBRA LAYER: sympy Kazhdan-Lusztig Poincaré polynomial.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 import json

@@ -6,7 +6,7 @@ Scope note: admissibility claim -- on a contractible 2-complex (filled triangle)
 the Hodge 1-Laplacian L1 has trivial kernel modulo the image of d0 (i.e.
 dim ker L1 - dim ker L0 = b1 = 0), while on an annulus-shaped complex (hole)
 b1 = 1. This is the homology-admissibility fence; see
-system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (harmonic
+system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (harmonic
 representatives distinguish topology). Without toponetx's hodge_laplacian_matrix
 emitting the oriented L_k, the admissibility probe has no operator to evaluate;
 a numpy rebuild would re-derive exactly the tool under test, so toponetx is

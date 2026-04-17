@@ -9,7 +9,7 @@ Exclusion-language discipline:
 - A triple is "additive" when admissible_joint_triple ==
   admissible_pairwise_intersection (no three-way exclusion beyond pairwise).
 
-scope_note cites: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
+scope_note cites: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
 """
 from __future__ import annotations
 
@@ -60,7 +60,7 @@ from _couple_common import SHELL_SPECS, SCOPE_NOTE as _PAIR_SCOPE  # reuse
 
 SCOPE_NOTE = (
     "Triple coupling test (step 3 of coupling program: multi-shell coexistence). "
-    "Cites system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
+    "Cites system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
     "Statements use 'survived' / 'admissible under joint triple coupling' / "
     "'joint coupling excludes ...'. No creates/derives/drives language."
 )

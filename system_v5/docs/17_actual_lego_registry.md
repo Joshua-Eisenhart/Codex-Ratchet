@@ -18,21 +18,21 @@ This file is intended to become exhaustive. It is materially closer now, but it 
 
 ## Source Keys
 
-- `01` = `new docs/01_pca_qpca_alignment.md`
-- `02` = `new docs/02_compression_to_density_matrix_map.md`
-- `04` = `new docs/04_system_math_alignment.md`
-- `06` = `new docs/06_entropy_sweep_protocol.md`
-- `07` = `new docs/07_model_math_geometry_sim_plan.md`
-- `08` = `new docs/08_aligned_sim_backlog_and_build_order.md`
-- `09` = `new docs/09_research_inventory_and_foundations.md`
-- `10` = `new docs/10_cross_domain_equivalence_map.md`
-- `11` = `new docs/11_mass_equivalence_engine.md`
-- `AER` = `new docs/AXIS_AND_ENTROPY_REFERENCE.md`
-- `CD` = `new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md`
-- `EMR` = `new docs/ENGINE_MATH_REFERENCE.md`
-- `FSD` = `new docs/FALSIFICATION_SIM_DESIGNS.md`
-- `LFA` = `new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md`
-- `16` = `new docs/16_lego_build_catalog.md`
+- `01` = `docs/01_pca_qpca_alignment.md`
+- `02` = `docs/02_compression_to_density_matrix_map.md`
+- `04` = `docs/04_system_math_alignment.md`
+- `06` = `docs/06_entropy_sweep_protocol.md`
+- `07` = `docs/07_model_math_geometry_sim_plan.md`
+- `08` = `docs/08_aligned_sim_backlog_and_build_order.md`
+- `09` = `docs/09_research_inventory_and_foundations.md`
+- `10` = `docs/10_cross_domain_equivalence_map.md`
+- `11` = `docs/11_mass_equivalence_engine.md`
+- `AER` = `docs/AXIS_AND_ENTROPY_REFERENCE.md`
+- `CD` = `docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md`
+- `EMR` = `docs/ENGINE_MATH_REFERENCE.md`
+- `FSD` = `docs/FALSIFICATION_SIM_DESIGNS.md`
+- `LFA` = `docs/LADDERS_FENCES_ADMISSION_REFERENCE.md`
+- `16` = `docs/16_lego_build_catalog.md`
 
 ## Status Keys
 

@@ -4,7 +4,7 @@ sim_weyl_deep_cross_cl3_vs_sympy_pauli_decomp
 Scope: Cross-check Cl(3) bivector coefficients against sympy Pauli-matrix
 decomposition. Survives only when both decompositions agree; divergence
 excludes the candidate identification.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np
 from clifford import Cl

@@ -3,7 +3,7 @@
 (clifford load_bearing) implements chirality via pseudoscalar sign and shows
 left/right rotor sectors are distinguishable.
 
-scope_note: system_v5/new docs/ENGINE_MATH_REFERENCE.md Weyl/chirality;
+scope_note: system_v5/docs/ENGINE_MATH_REFERENCE.md Weyl/chirality;
 LADDERS_FENCES_ADMISSION_REFERENCE.md chirality fences.
 """
 import numpy as np

@@ -2,7 +2,7 @@
 """classical_leviathan_coalition_monotone -- doc illumination sim.
 
 scope_note: Illustrates Leviathan framework (coalition power monotone in membership)
-from system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md and
+from system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md and
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md. Classical
 baseline only -- does not claim constraint-admissibility.
 """
@@ -11,7 +11,7 @@ from _doc_illum_common import build_manifest, write_results
 
 SCOPE_NOTE = (
     "Leviathan monotone coalition power (classical baseline). Doc refs: "
-    "system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md; "
+    "system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md; "
     "wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md."
 )
 

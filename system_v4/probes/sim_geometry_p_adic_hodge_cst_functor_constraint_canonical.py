@@ -9,7 +9,7 @@ cvc5 proves the rank matching constraint and the Hodge-Tate decomposition:
 H^i_et ⊗ C_p ≅ ⊕_{p+q=i} H^q(X, Ω^p) ⊗ C_p(-p)
 UNSAT when Hodge numbers don't sum to Betti number.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

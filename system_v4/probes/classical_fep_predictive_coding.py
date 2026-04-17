@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_fep_predictive_coding -- doc illumination (classical).
 scope_note: Prediction error e = obs - pred; minimizing e^2 via gradient step
-reduces total error. Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+reduces total error. Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

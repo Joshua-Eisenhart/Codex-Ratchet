@@ -7,7 +7,7 @@ CLAIM: Each irrep V_λ of G^∨ corresponds to IC sheaf IC(Gr_λ) with rank = di
 PROOF LAYER: cvc5 (QF_LIA) constraint on representation rank.
 ALGEBRA LAYER: sympy Satake isomorphism and Betti number formula.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 import json

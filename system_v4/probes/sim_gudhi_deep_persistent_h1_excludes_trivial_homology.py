@@ -6,7 +6,7 @@ Scope note: admissibility claim -- a filtration built over an annulus-shaped
 point cloud must admit one persistent H_1 class whose (birth, death) interval
 has positive length, while a filtration over a convex blob must exclude any
 such class (no persistent loop). See
-system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (persistent
+system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (persistent
 classes as distinguishability witnesses). Without gudhi computing persistence
 pairs on a filtered SimplexTree, there is no admissibility operator at all --
 recomputing persistence in numpy would replicate exactly the tool under test.

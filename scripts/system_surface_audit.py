@@ -952,7 +952,7 @@ def _git_layer(path: str) -> str:
         return "legacy_copies"
     if path.startswith("obsidian_vault/"):
         return "owner_vault"
-    if path.startswith("system_v5/new docs/") or path.endswith(".md"):
+    if path.startswith("system_v5/docs/") or path.endswith(".md"):
         return "owner_docs"
     if (
         path.startswith("system_v4/probes/")

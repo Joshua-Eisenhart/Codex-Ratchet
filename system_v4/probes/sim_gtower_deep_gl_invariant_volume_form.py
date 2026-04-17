@@ -6,7 +6,7 @@ Claim (admissibility, not construction):
   transforms by det(A). Candidates with det=0 are EXCLUDED from GL.
   SL(n) candidates (det=+-1) survive as volume-preserving.
 
-scope_note: See system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
+scope_note: See system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
   for the GL -> SL reduction fence (volume-preservation admissibility).
 """
 import json, os

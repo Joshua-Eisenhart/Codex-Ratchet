@@ -6,7 +6,7 @@ CLAIM: ψ(x) = x + O(x^{1/2} log²x), i.e., |ψ(x) - x| ≤ C·x^{1/2}·(log x)^
 TOOL: cvc5 (load_bearing) proves UNSAT when error exceeds x for large x.
 TOOL: sympy (supportive) computes von Mangoldt function Λ(n) and partial sums.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

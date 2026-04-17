@@ -17,7 +17,7 @@ This file makes one thing explicit:
 
 - the controller is not here to "understand the theory"
 - the controller is here to move bounded objects through honest state transitions
-- the computer-science translation of that job lives in `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- the computer-science translation of that job lives in `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
 
 ## Short Description
 
@@ -75,8 +75,8 @@ Examples:
 
 Authority surfaces:
 
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
 
 ### 2. Candidate
 

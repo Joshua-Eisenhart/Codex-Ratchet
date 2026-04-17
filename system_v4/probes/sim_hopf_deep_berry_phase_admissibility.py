@@ -4,7 +4,7 @@ sim_hopf_deep_berry_phase_admissibility
 Scope: Berry phase around a closed base loop equals half the enclosed S^2
 solid angle (Hopf connection). Candidates with phase decoupled from solid
 angle excluded. Uses pytorch autograd-friendly tensor eval.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, torch, math
 

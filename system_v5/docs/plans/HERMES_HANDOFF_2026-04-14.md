@@ -44,7 +44,7 @@ Git was **NOT committed** at handoff time. The handoff snapshot recorded `390` c
   {"lane_A": 0, "lane_B": 0, "claimed": 0, "blocked": 3, "done": 224}
   ```
 - Queue dir `system_v4/probes/a2_state/queue/` now present (untracked).
-- Two-runner overnight contract docs: `system_v5/new docs/plans/2026-04-12-overnight-8h-audited-run-contract.md`, `system_v5/new docs/plans/2026-04-12-overnight-8h-run-plan.md`, controller script `system_v5/new docs/plans/run_overnight_8h_controller.sh`.
+- Two-runner overnight contract docs: `system_v5/docs/plans/2026-04-12-overnight-8h-audited-run-contract.md`, `system_v5/docs/plans/2026-04-12-overnight-8h-run-plan.md`, controller script `system_v5/docs/plans/run_overnight_8h_controller.sh`.
 
 ### Lint / contract tooling
 - `scripts/lint_sim_contract.py` (untracked) — silences structural-noise lint on SIM_TEMPLATE-compliant sims.
@@ -123,7 +123,7 @@ In priority order:
 3. **`queue_claim.py counts` shows 0 queued, 3 blocked, 224 done** — the queue is currently drained. Re-populating the queue is Hermes's call (which batch / which lane).
 4. **7 canonical sims are on disk but not yet wired into any runner or queue.** They pass locally (classification field set, tool manifest present) but have not been added to Lane C scheduling because Lane C is still gated.
 5. **5 ambiguous legacy classifications** from the 2026-04-13 handoff still outstanding: `supporting`, `frozen_kernel`, `NULL`, `symmetric (triplet)`, `entropy_increasing`.
-6. **`overnight_8h_run.sh`** — the canonical script has not been updated; the new two-runner contract lives only in `system_v5/new docs/plans/run_overnight_8h_controller.sh`. Choose one.
+6. **`overnight_8h_run.sh`** — the canonical script has not been updated; the new two-runner contract lives only in `system_v5/docs/plans/run_overnight_8h_controller.sh`. Choose one.
 7. **Untracked proliferation** — many `overnight_logs/overnight_8h_run_*.log` files from 2026-04-12 and 2026-04-13 are under `system_v4/probes/a2_state/sim_results/overnight_logs/`. Decide whether to `.gitignore` the log dir or commit a representative sample.
 8. **3 blocked queue items** — not yet investigated. Read the queue state JSON before next run.
 

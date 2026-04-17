@@ -253,7 +253,7 @@
 - Updated: current/wiki-ingest-queue-and-priorities.md
 - Updated: current/wiki-harness-progress-and-audit.md
 - Updated: log.md
-- Verification result: reread the active current/wiki planning surfaces directly and patched them so the current model is explicit: Hermes + wiki is an entropy-refinery stack, `current/` is the lowest-entropy front door, and `READ ONLY Reference Docs` is handled as higher-entropy reflection material on the same idea-space rather than as a separate canon/non-canon universe; subsequent direct structural recheck was repaired back to clean in the next log entry.
+- Verification result: reread the active current/wiki planning surfaces directly and patched them so the current model is explicit: Hermes + wiki is an entropy-refinery stack, `current/` is the lowest-entropy front door, and `docs/archive` is handled as higher-entropy reflection material on the same idea-space rather than as a separate canon/non-canon universe; subsequent direct structural recheck was repaired back to clean in the next log entry.
 - Notes: this brings the saved wiki/planning language into line with the later conceptual correction from the Hermes thread, without widening scope into new doctrine pages or ingest work.
 
 ## [2026-04-15] update | g-tower Hopf Weyl integration spec bounded ingest
@@ -347,25 +347,25 @@
 ## [2026-04-15] update | aligned sim backlog page role and status-boundary clarification
 |- Updated: concepts/aligned-sim-backlog-and-build-order.md
 |- Updated: log.md
-|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/new docs/plans/2026-04-11-sim-build-plan.md`, `system_v5/new docs/plans/sim_backlog_matrix.md`) and patched the wiki page so its role/read-order fence is explicit, its queue-summary role is separated from the wiki front door and live repo truth surfaces, and its status language keeps the public four-label controller contract primary over backlog/closeout-detail wording; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
+|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/docs/plans/2026-04-11-sim-build-plan.md`, `system_v5/docs/plans/sim_backlog_matrix.md`) and patched the wiki page so its role/read-order fence is explicit, its queue-summary role is separated from the wiki front door and live repo truth surfaces, and its status language keeps the public four-label controller contract primary over backlog/closeout-detail wording; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
 |- Notes: bounded role-clarification/controller-lane tranche only. No new public pages and no routing spread; this pass hardens one adjacent queue-facing page against front-door drift and status-vocabulary leakage. Next bounded step: audit one nearby backlog/maintenance page for the same role-and-boundary clarity, with `aligned-sim-backlog-source-digest.md` or another single adjacent queue-facing summary page as the next smallest candidate.
 
 ## [2026-04-15] update | sim-build spine page role and status-boundary clarification
 |- Updated: concepts/sim-build-spine-and-wiki-maintenance.md
 |- Updated: log.md
-|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/new docs/plans/2026-04-11-sim-build-plan.md`, `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`) and patched the wiki page so its role/read-order fence is explicit, its geometry-spine/maintenance-closure role is separated from the wiki front door, and its status language keeps the public four-label controller contract primary over closeout-detail wording; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
+|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/docs/plans/2026-04-11-sim-build-plan.md`, `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`) and patched the wiki page so its role/read-order fence is explicit, its geometry-spine/maintenance-closure role is separated from the wiki front door, and its status language keeps the public four-label controller contract primary over closeout-detail wording; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
 |- Notes: bounded role-clarification/controller-lane tranche only. No new public pages and no routing spread; this pass hardens one queue-facing bridge page against front-door drift and status-vocabulary leakage. Next bounded step: audit one adjacent maintenance/queue page for the same role-and-boundary clarity, with `aligned-sim-backlog-and-build-order.md` the smallest nearby candidate.
 
 ## [2026-04-15] update | controller state-transition page boundary clarification
 |- Updated: concepts/controller-state-transition-model.md
 |- Updated: log.md
-|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/new docs/EXPLICIT_CONTROLLER_MODEL.md`, `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/new docs/plans/sim_backlog_matrix.md`, `system_v5/new docs/plans/sim_truth_audit.md`, `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`, `system_v5/new docs/plans/controller_maintenance_checklist.md`, `system_v5/new docs/plans/on-demand-telegram-runner.md`) and patched the wiki page so its role/read-order fence is explicit, its source list includes the live reporting surface it names, and its truth-language guidance keeps the public four-label contract primary while fencing `proof-backed` / `runs locally` as implementation-detail vocabulary; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
+|- Verification result: reread the repo authority/controller surfaces directly (`system_v5/docs/EXPLICIT_CONTROLLER_MODEL.md`, `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/docs/plans/sim_backlog_matrix.md`, `system_v5/docs/plans/sim_truth_audit.md`, `system_v5/docs/plans/tool_integration_maintenance_matrix.md`, `system_v5/docs/plans/controller_maintenance_checklist.md`, `system_v5/docs/plans/on-demand-telegram-runner.md`) and patched the wiki page so its role/read-order fence is explicit, its source list includes the live reporting surface it names, and its truth-language guidance keeps the public four-label contract primary while fencing `proof-backed` / `runs locally` as implementation-detail vocabulary; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
 |- Notes: bounded repo-to-wiki controller tranche only. No new public pages and no routing spread; this pass just hardens one adjacent controller-facing bridge page against status-vocabulary drift. Next bounded step: audit one nearby controller-facing or queue-facing page for the same public-vs-implementation boundary, with `sim-build-spine-and-wiki-maintenance.md` or another single controller bridge page as the smallest next candidate.
 
 ## [2026-04-15] update | validator vocabulary boundary clarification in controller lane
 |- Updated: concepts/llm-research-enforcement-validator.md
 |- Updated: log.md
-|- Verification result: reread the repo implementation and authority surfaces directly (`system_v4/skills/llm_research_enforcement_validator.py`, `system_v5/new docs/LLM_RESEARCH_GAP_MATRIX.json`, `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`) and patched the wiki page so it no longer overstates vocabulary alignment; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
+|- Verification result: reread the repo implementation and authority surfaces directly (`system_v4/skills/llm_research_enforcement_validator.py`, `system_v5/docs/LLM_RESEARCH_GAP_MATRIX.json`, `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`) and patched the wiki page so it no longer overstates vocabulary alignment; live structural probe remained CLEAN (`Pages 331 | Index 331 | Missing-from-index 0 | Broken 0 | Orphans 0 | Malformed 0`).
 |- Notes: bounded repo-to-wiki controller tranche only. Clarified that the validator page is implementation-facing, that the validator still uses `runs locally`, and that public wiki summaries should keep the four-label controller contract primary. Next bounded step: audit one adjacent controller-facing page for the same implementation-vs-public-boundary drift, with `controller-state-transition-model.md` the smallest nearby candidate.
 
 ## [2026-04-15] update | harness second-layer role clarification for front-door preservation
@@ -381,7 +381,7 @@
 - Updated: concepts/llm-controller-contract.md
 - Updated: concepts/llm-research-gap-matrix.md
 - Updated: log.md
-- Verification result: reread repo-current controller surfaces (`CLAUDE.md`, `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/new docs/LLM_RESEARCH_GAP_MATRIX.json`, `system_v4/skills/llm_research_enforcement_validator.py`), then rerouted the wiki summaries so public four-label reporting stays primary while validator-only `proof-backed` / `runs locally` vocabulary is fenced as implementation detail; live structural probe remained CLEAN.
+- Verification result: reread repo-current controller surfaces (`CLAUDE.md`, `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`, `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`, `system_v5/docs/LLM_RESEARCH_GAP_MATRIX.json`, `system_v4/skills/llm_research_enforcement_validator.py`), then rerouted the wiki summaries so public four-label reporting stays primary while validator-only `proof-backed` / `runs locally` vocabulary is fenced as implementation detail; live structural probe remained CLEAN.
 - Notes: bounded repo-to-wiki deepening tranche only. Refreshed the controller-contract lane with repo-doc current blocker wording (C2_graph_topology 11/28 non-null, 0 mismatches) and added the missing DAG-ordering claim-tool row in the gap-matrix summary. Next bounded step: audit one nearby controller-facing page for the same public-vs-implementation vocabulary leakage before widening into broader repo-state refreshes.
 
 ## [2026-04-15] update | bounded residue normalization from Hermes memory offload ledger
@@ -483,7 +483,7 @@
 - Updated: concepts/weyl-flux.md
 - Updated: concepts/aligned-sim-backlog-and-build-order.md
 - Verification result: Pages 326 | Index 326 | Orphans 0 | Broken 0 | Stubs 0
-- Notes: normalized this bounded geometry/current-docs tranche from old root-level `new docs/...` and `docs/plans/...` source paths to repo-current `system_v5/new docs/...` and `system_v5/new docs/plans/...` authority surfaces, while preserving the existing geometry queue/truth wording and keeping the tranche limited to the published geometry/build-order mirrors that were still source-stale.
+- Notes: normalized this bounded geometry/current-docs tranche from old root-level `docs/...` and `docs/plans/...` source paths to repo-current `system_v5/docs/...` and `system_v5/docs/plans/...` authority surfaces, while preserving the existing geometry queue/truth wording and keeping the tranche limited to the published geometry/build-order mirrors that were still source-stale.
 
 ## [2026-04-14] update | nominalist-CS routing refresh and five-framework query repair
 - Updated: concepts/nominalist-cs-cluster.md
@@ -504,7 +504,7 @@
 - Updated: queries/five-framework-cluster.md
 - Updated: index.md, log.md
 - Verification result: Pages 326 | Index 326 | Orphans 0 | Broken 0 | Stubs 0
-- Notes: refreshed the nominalist-CS/QIT handoff lane against repo-current `system_v5/new docs/...` authority paths, tightened page-role routing across the cluster, surfaced the JP/self-similar bridge in the main harness navigation, repaired the broken links inside the five-framework recall query, and restored inbound/index coverage for that query page.
+- Notes: refreshed the nominalist-CS/QIT handoff lane against repo-current `system_v5/docs/...` authority paths, tightened page-role routing across the cluster, surfaced the JP/self-similar bridge in the main harness navigation, repaired the broken links inside the five-framework recall query, and restored inbound/index coverage for that query page.
 
 ## [AUTO-WIKI 2026-04-13] personality support-layer bridge lane
 - Updated/Created files: concepts/research-support-bibliography.md, concepts/current-research-overlays.md, concepts/emotional-evolution-personality-system.md, comparisons/personality-theory-mapping.md, concepts/leviathan-science-method-qit-engine-crosswalk.md, log.md
@@ -570,7 +570,7 @@
 - Updated: concepts/controller-state-transition-model.md
 - Updated: concepts/wiki-automation-contract.md
 - Updated: concepts/actual-lego-registry.md
-- Notes: clarified that the automated sim runner and the wiki-builder are separate automation paths, repaired current repo authority paths to `system_v5/new docs/...` on controller-facing wiki pages, and refreshed the registry summary with the current g-structure baseline/follow-on split so the wiki reflects repo-current maintenance framing rather than runner-contract drift.
+- Notes: clarified that the automated sim runner and the wiki-builder are separate automation paths, repaired current repo authority paths to `system_v5/docs/...` on controller-facing wiki pages, and refreshed the registry summary with the current g-structure baseline/follow-on split so the wiki reflects repo-current maintenance framing rather than runner-contract drift.
 
 ## [2026-04-13] update | holodeck owner-kernel and JP handoff sharpening
 - Updated: concepts/holodeck-docs.md
@@ -828,21 +828,21 @@
 ## [2026-04-12] update | harness layer completion and proof pages
 |- Created/Updated: concepts/harness-bias-inversions.md, concepts/harness-translated-companion.md, concepts/nominalist-translation-rules.md, concepts/wiki-as-harness-architecture.md, concepts/llm-ingest-policy.md, concepts/harness-boot-pack.md, concepts/controller-prompt-rules.md
 |- Updated: index.md (2 new entries, count 276->278), log.md
-|- Sources: new docs/NOMINALISM_IN_THIS_SYSTEM.md, new docs/ENFORCEMENT_AND_PROCESS_RULES.md, new docs/LLM_CONTROLLER_CONTRACT.md, new docs/CONSTRAINT_SURFACE_AND_PROCESS.md, new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md
+|- Sources: docs/NOMINALISM_IN_THIS_SYSTEM.md, docs/ENFORCEMENT_AND_PROCESS_RULES.md, docs/LLM_CONTROLLER_CONTRACT.md, docs/CONSTRAINT_SURFACE_AND_PROCESS.md, docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md
 
 ## [2026-04-12] update | nominalist-CS routing and geometry parity hardening
 |- Created/Updated: concepts/nominalist-cs-cluster.md, concepts/geometry-manifold-parity-audit.md, concepts/current-geometry-spine-status.md, concepts/geometry-ingredient-map.md, concepts/topic-map.md
 |- Updated: index.md (2 new entries, count 278->280), log.md
-|- Sources: new docs/07_model_math_geometry_sim_plan.md, new docs/08_aligned_sim_backlog_and_build_order.md, new docs/16_lego_build_catalog.md, new docs/17_actual_lego_registry.md, docs/plans/sim_backlog_matrix.md, docs/plans/sim_truth_audit.md, new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, new docs/EXPLICIT_CONTROLLER_MODEL.md
+|- Sources: docs/07_model_math_geometry_sim_plan.md, docs/08_aligned_sim_backlog_and_build_order.md, docs/16_lego_build_catalog.md, docs/17_actual_lego_registry.md, docs/plans/sim_backlog_matrix.md, docs/plans/sim_truth_audit.md, docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, docs/EXPLICIT_CONTROLLER_MODEL.md
 
 ## [2026-04-12] update | classical baseline truth-language cleanup and Weyl/operator packet hardening
 |- Created/Updated: concepts/probe-doc-result-map.md, concepts/stochastic-thermodynamics-reference.md, concepts/qit-engine-proto-ratchet-and-sim-plan.md, concepts/qit-basin-engine-synthesis.md, concepts/qit-geometry-thermodynamics-harness-synthesis.md, concepts/operator-math-explicit.md, concepts/pauli-on-weyl-loop-interaction.md, concepts/terrain-laws-and-loop-geometry.md
 |- Updated: log.md
-|- Sources: docs/plans/sim_backlog_matrix.md, docs/plans/sim_truth_audit.md, new docs/17_actual_lego_registry.md, new docs/ENGINE_MATH_REFERENCE.md, new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
+|- Sources: docs/plans/sim_backlog_matrix.md, docs/plans/sim_truth_audit.md, docs/17_actual_lego_registry.md, docs/ENGINE_MATH_REFERENCE.md, docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
 
 ## [2026-04-12] update | rerun-backed geometry truth sync and classical companion audit expansion
 |- Created/Updated: concepts/current-geometry-spine-status.md, concepts/pauli-on-weyl-loop-interaction.md, index.md, log.md
-|- Sources: system_v4/probes/a2_state/sim_results/foundation_hopf_torus_geomstats_clifford_results.json, system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json, docs/plans/sim_truth_audit.md, new docs/16_lego_build_catalog.md
+|- Sources: system_v4/probes/a2_state/sim_results/foundation_hopf_torus_geomstats_clifford_results.json, system_v4/probes/a2_state/sim_results/weyl_spinor_hopf_results.json, docs/plans/sim_truth_audit.md, docs/16_lego_build_catalog.md
 
 ## [2026-04-12] update | 20-minute parallel Claude Code test run sync
 |- Created/Updated: concepts/current-geometry-spine-status.md, log.md
@@ -852,7 +852,7 @@
 - Created: concepts/nominalist-cs-framing.md
 - Updated: index.md, log.md
 - Sources used: raw/articles/new-docs/NOMINALISM_IN_THIS_SYSTEM.md, raw/articles/new-docs/LLM_CONTROLLER_CONTRACT.md, raw/articles/new-docs/LEGO_SIM_CONTRACT.md
-- Repo-current anchors referenced in page body: new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, new docs/EXPLICIT_CONTROLLER_MODEL.md
+- Repo-current anchors referenced in page body: docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, docs/EXPLICIT_CONTROLLER_MODEL.md
 - Created: concepts/information-geometry-reference.md
 - Created: concepts/evolutionary-epistemology-reference.md
 - Created: concepts/viability-theory-reference.md
@@ -1184,7 +1184,7 @@
   - concepts/viability-vs-attractor.md
   - concepts/weyl-flux.md
 - Updated: index.md, log.md
-- Sources used: system_v5 reference docs and older legacy docs under READ ONLY Reference Docs
+- Sources used: system_v5 reference docs and older legacy docs under docs/archive
 
 ## [2026-04-07] update | legacy-context-and-genealogy backbone
 - Updated: concepts/legacy-context-and-genealogy.md
@@ -1808,7 +1808,7 @@
 |- Sources: domain knowledge on quantum geometry, distinguishability, and information geometry
 
 ## [2026-04-10] sync | system-v5-reference-docs parity check
-|- Source folder: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/READ ONLY Reference Docs
+|- Source folder: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/archive
 |- Wiki intake: /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
 |- Actions: removed extra wiki-only file `Older Legacy/The Dark Empress-A Practical Guide to Universal Dominion V6.1 copy.md`
 |- Verification: source files 45, wiki intake files 45, missing_in_wiki 0, extra_in_wiki 0, parity True
@@ -1826,9 +1826,9 @@
 |- Sources: mathematics explanation SEP, control/dynamics PDF, yin-yang correlative-thinking sources, kongziyjy support page, SFU PDF
 
 ## [2026-04-10] enforcement | research ladder matrix and validator seeded
-|- Created: new docs/LLM_RESEARCH_GAP_MATRIX.json
+|- Created: docs/LLM_RESEARCH_GAP_MATRIX.json
 |- Created: system_v4/skills/llm_research_enforcement_validator.py
-|- Updated: new docs/LLM_CONTROLLER_CONTRACT.md, new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+|- Updated: docs/LLM_CONTROLLER_CONTRACT.md, docs/ENFORCEMENT_AND_PROCESS_RULES.md
 |- Verification: validator accepted a sample closeout with status "passes local rerun"
 |- Scope note: this is a controller-side process artifact; no runtime gates were introduced
 
@@ -1865,7 +1865,7 @@
 ## [2026-04-10] sync | system-v5 reference intake parity
 |- Removed extra wiki intake file: raw/articles/system-v5-reference-docs/Older Legacy/The Grandmaster of the Universe.txt
 |- Verification: source count 76, wiki intake count 76, missing_in_wiki 0, extra_in_wiki 0, parity True
-|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/READ ONLY Reference Docs vs /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
+|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/archive vs /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
 
 ## [2026-04-11] maintenance | stale phrasing cleanup
 |- Updated: concepts/enforcement-and-process-rules.md, concepts/current-research-overlays.md
@@ -1993,12 +1993,12 @@
 |- Created: concepts/current-authoritative-stack-index.md, concepts/axis0-current-doctrine-state-card.md, concepts/constraint-geometry-axis0-separation.md, concepts/thread-b-stack-audit.md, concepts/llm-research-enforcement-validator.md
 |- Updated: concepts/llm-controller-contract.md, concepts/controller-prompt-rules.md, concepts/llm-ingest-policy.md, concepts/llm-research-gap-matrix.md, concepts/probe-doc-result-map.md, concepts/stochastic-thermodynamics-reference.md, concepts/current-research-overlays.md, concepts/current-canonical-spine.md, concepts/topic-map.md, index.md, SCHEMA.md
 |- Verification: repo-current controller, Axis0, and thermodynamics surfaces are now routed in the wiki; stale archive/format issues and tag-taxonomy drift were reduced in the same pass
-|- Sources: system_v4/docs/CURRENT_AUTHORITATIVE_STACK_INDEX.md, system_v4/docs/AXIS0_CURRENT_DOCTRINE_STATE_CARD.md, system_v4/docs/CONSTRAINT_GEOMETRY_AXIS0_SEPARATION.md, system_v4/docs/THREAD_B_STACK_AUDIT.md, system_v4/skills/llm_research_enforcement_validator.py, new docs/LLM_CONTROLLER_CONTRACT.md, new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+|- Sources: system_v4/docs/CURRENT_AUTHORITATIVE_STACK_INDEX.md, system_v4/docs/AXIS0_CURRENT_DOCTRINE_STATE_CARD.md, system_v4/docs/CONSTRAINT_GEOMETRY_AXIS0_SEPARATION.md, system_v4/docs/THREAD_B_STACK_AUDIT.md, system_v4/skills/llm_research_enforcement_validator.py, docs/LLM_CONTROLLER_CONTRACT.md, docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 ## [2026-04-11] update | bounded wiki stale-claim softening pass
 |- Updated: concepts/llm-controller-contract.md, concepts/migration-registry.md, concepts/docs-vs-sims-gap-audit.md, index.md, log.md
 |- Verification: structural wiki audit still shows 264 active pages, index match, 0 orphans, 0 broken links, 0 stubs; stale quantitative controller/migration claims were softened to explicit 2026-04-10 audit snapshots rather than implied current-run repo state
-|- Sources: concepts/llm-controller-contract.md, concepts/migration-registry.md, concepts/docs-vs-sims-gap-audit.md, index.md, new docs/LLM_CONTROLLER_CONTRACT.md, new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+|- Sources: concepts/llm-controller-contract.md, concepts/migration-registry.md, concepts/docs-vs-sims-gap-audit.md, index.md, docs/LLM_CONTROLLER_CONTRACT.md, docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 ## [2026-04-11] update | raw source filename hygiene pass
 |- Updated: concepts/formal-constraints-and-geometry.md, concepts/_archive/ring-checkerboard-gradient-.md, concepts/_archive/cs-version-of-system-first-draft.-.md, raw/articles/new-docs/SYSTEM_ARCHITECTURE_REFERENCE.md, log.md
@@ -2009,7 +2009,7 @@
 |- Created: concepts/nominalist-cs-framing.md
 |- Updated: index.md, log.md
 |- Sources used: raw/articles/new-docs/NOMINALISM_IN_THIS_SYSTEM.md, raw/articles/new-docs/LLM_CONTROLLER_CONTRACT.md, raw/articles/new-docs/LEGO_SIM_CONTRACT.md
-|- Repo-current anchors referenced in page body: new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, new docs/EXPLICIT_CONTROLLER_MODEL.md
+|- Repo-current anchors referenced in page body: docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, docs/EXPLICIT_CONTROLLER_MODEL.md
 
 ## [2026-04-11] update | wiki arXiv ingest geometry reprioritization pass
 |- Updated: queries/wiki-driven-arxiv-search-queue.md
@@ -2090,7 +2090,7 @@
 |- Created: concepts/leviathan-to-qit-engine-glossary.md
 |- Updated: index.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: all three new pages created in concepts/ and routed from the main index plus engine/research overlay surfaces; later reconciliation assigned explicit roles: dev-framing=entrypoint, dev-technical-brief=full explanation, glossary=term map
-|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/EXPLICIT_CONTROLLER_MODEL.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/07_model_math_geometry_sim_plan.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/sim_backlog_matrix.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/controller_maintenance_checklist.md
+|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/EXPLICIT_CONTROLLER_MODEL.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/07_model_math_geometry_sim_plan.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/sim_backlog_matrix.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/controller_maintenance_checklist.md
 
 ## [2026-04-11] update | qit engine framing consolidation and flux deepening
 |- Created: concepts/qit-engine-dev-framing.md
@@ -2200,7 +2200,7 @@
 |- Created: concepts/leviathan-world-engine-memo.md, concepts/why-qit-engines-need-exotic-geometry.md
 |- Updated: index.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: the new CS-facing memo and geometry clarification page now exist and are routed from the main index plus basin/engine and AI/world-model overlay surfaces; accidentally removed topic-map/overlay lines were restored in the same pass
-|- Sources used: /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/EXPLICIT_CONTROLLER_MODEL.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/new docs/07_model_math_geometry_sim_plan.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/sim_backlog_matrix.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/controller_maintenance_checklist.md
+|- Sources used: /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/EXPLICIT_CONTROLLER_MODEL.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/07_model_math_geometry_sim_plan.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/sim_backlog_matrix.md, /Users/joshuaeisenhart/Desktop/Codex Ratchet/docs/plans/controller_maintenance_checklist.md
 
 ## [2026-04-12] create | holodeck + QIT + FEP + Leviathan integration page
 |- Created: concepts/holodeck-qit-fep-leviathan-integration.md
@@ -2230,14 +2230,14 @@
 |- Created: concepts/leviathan-science-method-qit-engine-crosswalk.md
 |- Updated: concepts/leviathan-framework.md, concepts/emotional-evolution-personality-system.md, concepts/leviathan-world-engine-memo.md, concepts/qit-ai-foundations-bridge.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: the wiki now preserves the deeper integration claim that Leviathan's science method, holodeck perception/memory model, FEP-style update loop, and candidate personality engine grammar are different surfaces of one recursive engine architecture; personality material is more explicitly legacy/non-canon and MBTI-heavy framing is now flagged as drift-prone
-|- Sources used: system_v5/READ ONLY Reference Docs/Older Legacy/Leviathan v3.2 word.txt, system_v5/READ ONLY Reference Docs/Older Legacy/holodeck docs.md, system_v5/READ ONLY Reference Docs/Older Legacy/MODEL_CONTEXT copy.md, system_v5/READ ONLY Reference Docs/Older Legacy/INTENT_SUMMARY copy.md, READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1 copy.tsv, READ ONLY Legacy core_docs/ultra high entropy docs/Personality_theory_EXTRACTED.md
+|- Sources used: system_v5/docs/archive/Older Legacy/Leviathan v3.2 word.txt, system_v5/docs/archive/Older Legacy/holodeck docs.md, system_v5/docs/archive/Older Legacy/MODEL_CONTEXT copy.md, system_v5/docs/archive/Older Legacy/INTENT_SUMMARY copy.md, READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1 copy.tsv, READ ONLY Legacy core_docs/ultra high entropy docs/Personality_theory_EXTRACTED.md
 
 ## [2026-04-13] update | deepen research support for holodeck and recursive engine doctrine
 |- Created: concepts/holodeck-as-recall-space.md, concepts/recursive-science-methodology-reference.md
 |- Restored: concepts/holodeck-qit-fep-leviathan-integration.md
 |- Updated: concepts/research-support-bibliography.md, concepts/fep-and-active-inference-reference.md, concepts/projective-holodeck-memory-model.md, concepts/leviathan-science-method-qit-engine-crosswalk.md, index.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: the missing holodeck integration page is back; the research-support layer now explicitly covers prediction-first memory, recall-space, recursive science method, and the crosswalk cluster; routing surfaces now include the new support pages
-|- Sources used: system_v5/READ ONLY Reference Docs/Older Legacy/holodeck docs.md, READ ONLY Legacy core_docs/ultra high entropy docs/txt/holodeck docs.md.txt, system_v5/READ ONLY Reference Docs/Older Legacy/Leviathan v3.2 word.txt, concepts/projective-holodeck-memory-model.md, concepts/prediction-first-memory-vs-llm-memory.md, concepts/leviathan-science-method-qit-engine-crosswalk.md
+|- Sources used: system_v5/docs/archive/Older Legacy/holodeck docs.md, READ ONLY Legacy core_docs/ultra high entropy docs/txt/holodeck docs.md.txt, system_v5/docs/archive/Older Legacy/Leviathan v3.2 word.txt, concepts/projective-holodeck-memory-model.md, concepts/prediction-first-memory-vs-llm-memory.md, concepts/leviathan-science-method-qit-engine-crosswalk.md
 
 ## [AUTO-WIKI 2026-04-13] structural integrity: index count and duplicate-entry cleanup
 - Updated/Created files: index.md, log.md

@@ -1,7 +1,7 @@
 # Stack Authority and Capability Index
 
 Date: 2026-04-06
-Status: Canonical governance index for the `new docs/` stack
+Status: Canonical governance index for the `docs/` stack
 
 ## Authority Precedence
 

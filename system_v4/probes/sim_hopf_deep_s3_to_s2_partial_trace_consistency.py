@@ -4,7 +4,7 @@ sim_hopf_deep_s3_to_s2_partial_trace_consistency
 Scope: Hopf map S^3 -> S^2 via partial trace of |psi><psi| should yield a unit
 Bloch vector; candidates with |r| != 1 excluded. Uses pytorch autograd for
 consistency gradient check.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, torch
 

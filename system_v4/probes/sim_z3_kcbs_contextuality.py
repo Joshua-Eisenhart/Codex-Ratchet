@@ -9,7 +9,7 @@ arbitrary {0,1} assignments on 5 exclusive projectors; numpy can sample but
 cannot certify non-existence. Ablation below shows numpy substitute cannot
 close the claim.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md.
 """
 
 import json

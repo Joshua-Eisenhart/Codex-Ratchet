@@ -11,7 +11,7 @@ Tests:
 3. UNSAT when axiom links don't form a perfect matching
 4. sympy verification of Sequentialization theorem
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 Usage:
   python3 sim_cvc5_proof_net_correctness_criterion.py

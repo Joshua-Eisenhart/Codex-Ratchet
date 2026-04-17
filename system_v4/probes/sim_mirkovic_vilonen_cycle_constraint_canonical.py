@@ -7,7 +7,7 @@ CLAIM: dim(V_λ)_μ = #{MV cycles at weight μ}, verified by Weyl character form
 PROOF LAYER: cvc5 (QF_LIA) constraint on weight multiplicity.
 ALGEBRA LAYER: sympy Weyl character formula ch(V_λ) = Σ_μ mult(μ) e^μ.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 import json

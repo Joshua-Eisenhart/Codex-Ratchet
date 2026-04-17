@@ -2,7 +2,7 @@
 """sim_classical_landauer_erasure_cost_curve
 
 scope_note: Illuminates Landauer section of
-  system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md:
+  system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md:
   erasure dissipates at least kT ln2 per bit; partial erasure scales
   with H(p) - H(p_final).
 """

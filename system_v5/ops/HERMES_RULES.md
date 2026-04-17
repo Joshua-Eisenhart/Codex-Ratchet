@@ -54,7 +54,7 @@ Step 2 — Auto-handle SAFE buckets (commit or delete, no questions asked):
 | Bucket | Pattern | Action |
 |---|---|---|
 | A | `system_v4/**/sim_results/*.json` | `git add` + commit `"auto: sim-results snapshot <date>"` |
-| B | `system_v5/new docs/*.json` | `git add` + commit `"auto: doc metadata snapshot <date>"` |
+| B | `system_v5/docs/*.json` | `git add` + commit `"auto: doc metadata snapshot <date>"` |
 | C | `overnight_logs/*.json` (if NOT gitignored) | `git add` + commit `"auto: overnight log snapshot <date>"` |
 | D | `**/.DS_Store`, `* 2.py` (space-number macOS dupes) | `rm` (no commit) |
 | E | New `system_v4/probes/sim_flux_*.py`, `sim_u1_*.py`, `*_shell_canonical.py` (≤500 lines) | `git add` + commit `"auto: new shell-local sims <date>"` |
@@ -139,7 +139,7 @@ DO NOT commit. Author file, report path + detector exit code to parent.
 
 ## 6. Artifact conventions
 
-- All sims: repo per `REPO_LAYOUT.md` in `system_v5/new docs/`.
+- All sims: repo per `REPO_LAYOUT.md` in `system_v5/docs/`.
 - Tier reports: `~/wiki/projects/codex-ratchet/tier_<X>.md`.
 - Spawn plans: `~/wiki/projects/codex-ratchet/<brief>_spawn_plan.md`.
 - New doctrine: propose at `~/wiki/harness/` — notify L3 before committing.

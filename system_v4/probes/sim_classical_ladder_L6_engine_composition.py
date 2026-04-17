@@ -2,7 +2,7 @@
 """classical_ladder_L6_engine_composition -- classical numpy composition
 of unitary engine operators testing non-commutativity and closure.
 
-scope_note: system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md L6
+scope_note: system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md L6
 engine composition; ENGINE_MATH_REFERENCE.md 4-operator engine.
 Classical baseline.
 """

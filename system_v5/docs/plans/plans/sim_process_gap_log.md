@@ -8,7 +8,7 @@ Goal: record the current bounded process/tooling gaps that still block the overa
 
 ### G1. Promotion pressure is still the main open process gap
 Grounding:
-- `new docs/TOOLING_STATUS.md` explicitly says the bridge/proof integration step closed and promotion pressure remains the main open step.
+- `docs/TOOLING_STATUS.md` explicitly says the bridge/proof integration step closed and promotion pressure remains the main open step.
 
 Meaning:
 - the repo has many useful and even strong result files

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 SIM TEMPLATE -- All new sims must start from this template.
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 Usage:
   1. Copy this file to sim_<your_name>.py
@@ -223,7 +223,7 @@ if __name__ == "__main__":
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),
         "classification": "canonical",
-        "scope_note": "Scope: see system_v5/new docs/ENGINE_MATH_REFERENCE.md -- rotor composition is shell-local non-commutative geometric product; exclusion language: candidates failing equality are excluded as indistinguishable-under-commutation, not proven nonexistent."
+        "scope_note": "Scope: see system_v5/docs/ENGINE_MATH_REFERENCE.md -- rotor composition is shell-local non-commutative geometric product; exclusion language: candidates failing equality are excluded as indistinguishable-under-commutation, not proven nonexistent."
     }
 
     # Mark tools as used based on what was actually called

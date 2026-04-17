@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_gtower_o_to_so_orientation -- orientation (det=+1) admissibility.
 
-Scope note: see system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
+Scope note: see system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
 (O(n) -> SO(n) fence is the det=+1 subgroup constraint).
 
 Candidate in O(n) admitted to SO(n) iff det = +1. This sim uses sympy to

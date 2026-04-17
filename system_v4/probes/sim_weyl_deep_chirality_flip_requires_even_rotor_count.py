@@ -3,7 +3,7 @@
 sim_weyl_deep_chirality_flip_requires_even_rotor_count
 Scope: Cl(3) rotor composition exclusion. A sequence of odd-count unit rotors
 cannot return a Weyl spinor to its original chirality bin under SU(2) cover.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np
 from clifford import Cl

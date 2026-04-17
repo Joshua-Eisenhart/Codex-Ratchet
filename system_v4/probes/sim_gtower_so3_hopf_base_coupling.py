@@ -27,7 +27,7 @@ Tests:
   B1: At SO(3) rung of G-tower: only S² accessible; S³ total space is invisible.
 
 Classification: classical_baseline
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
 """
 
 import json

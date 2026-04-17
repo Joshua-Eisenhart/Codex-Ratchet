@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Axis 4 x Axis 5 coupling: loop-order family (UEUE vs EUEU) x operator family.
 Realized with Cl(3) rotors as alternating U/E sequences on a vector.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 4, 5).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 4, 5).
 Exclusion: coupling excludes UEUE/EUEU equivalence under operator-family fixed point.
 """
 import json, os
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_4_5_loop_x_torus",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 4, 5)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 4, 5)",
                "exclusion_claim": "coupling excludes UEUE/EUEU equivalence under Axis 5 operator fixed point",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

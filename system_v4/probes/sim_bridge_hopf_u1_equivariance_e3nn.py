@@ -3,7 +3,7 @@
 irrep / rotation machinery (load_bearing) to check SO(3) equivariance of the
 Hopf-image spherical coordinates, subsuming U(1) phase equivariance.
 
-scope_note: system_v5/new docs/ENGINE_MATH_REFERENCE.md Hopf;
+scope_note: system_v5/docs/ENGINE_MATH_REFERENCE.md Hopf;
 LADDERS_FENCES_ADMISSION_REFERENCE.md fibration fences.
 """
 import numpy as np

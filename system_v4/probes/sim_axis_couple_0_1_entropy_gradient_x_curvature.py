@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Axis 0 x Axis 1 coupling: entropy-gradient vs derived terrain curvature branch.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 1).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 1).
 Exclusion: coupling excludes independence of entropy gradient from the
 Se/Ni vs Ne/Si terrain branch (curvature sign).
 """
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["branch_dependence"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_0_1_entropy_gradient_x_curvature",
                "classification": "canonical",
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 1)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 1)",
                "exclusion_claim": "coupling excludes Axis 0 gradient independence from Axis 1 curvature branch",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

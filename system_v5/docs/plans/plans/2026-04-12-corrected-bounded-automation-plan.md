@@ -109,16 +109,16 @@ Each worker prompt must include:
 ## 6. Automation control surfaces
 
 Authority / live surfaces:
-- `new docs/LLM_CONTROLLER_CONTRACT.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- `new docs/EXPLICIT_CONTROLLER_MODEL.md`
-- `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/plans/sim_backlog_matrix.md`
-- `new docs/plans/sim_truth_audit.md`
-- `new docs/plans/tool_integration_maintenance_matrix.md`
-- `new docs/plans/controller_maintenance_checklist.md`
+- `docs/LLM_CONTROLLER_CONTRACT.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/EXPLICIT_CONTROLLER_MODEL.md`
+- `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/plans/sim_backlog_matrix.md`
+- `docs/plans/sim_truth_audit.md`
+- `docs/plans/tool_integration_maintenance_matrix.md`
+- `docs/plans/controller_maintenance_checklist.md`
 
 Supportive harness surfaces:
 - `/Users/joshuaeisenhart/wiki/concepts/wiki-as-harness-architecture.md`

@@ -10,7 +10,7 @@ Voevodsky motivic cohomology is a bigraded theory where (p,q) represents
 codimension p and weight q. The Beilinson-Soulé vanishing conjecture
 requires p ≥ q ≥ 0. Diagonal terms H^{n,n} identify with Milnor K-theory.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 

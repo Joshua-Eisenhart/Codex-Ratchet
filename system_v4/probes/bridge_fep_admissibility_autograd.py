@@ -3,7 +3,7 @@
 scope_note: Torch autograd as the load-bearing admissibility test: a belief mu is
 admissible under FEP only if grad F exists and points toward lower F. The
 manifold's tangent structure (not entropy bookkeeping) decides admissibility.
-Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 from _doc_illum_common import build_manifest, write_results

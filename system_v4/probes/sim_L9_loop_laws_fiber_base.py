@@ -5,7 +5,7 @@ sim_L9_loop_laws_fiber_base.py
 Layer 9 (Loop laws) probe: fiber vs base loops on the Hopf bundle S^3 -> S^2,
 horizontal lift, and the density-stationary vs density-traversing distinction.
 
-Reference: system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
+Reference: system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
   L9 | Loop laws | fiber/base, horizontal lift,
       density-stationary/traversing | live, strongly simulated
 

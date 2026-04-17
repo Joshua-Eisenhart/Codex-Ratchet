@@ -4,7 +4,7 @@ sim_weyl_deep_left_right_projector_unsat_mix
 Scope: z3 UNSAT proof that left and right Weyl projectors cannot simultaneously
 admit a non-trivial shared eigenvector. Candidate-admissibility test: excludes
 chirality-mixed survivors under P_L + P_R = I, P_L P_R = 0.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os
 from z3 import Solver, Reals, And, Or, Not, sat, unsat

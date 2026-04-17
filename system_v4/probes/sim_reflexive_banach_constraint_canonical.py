@@ -11,7 +11,7 @@ Claims:
     is claimed for a Hilbert space
   - sympy verifies l² is reflexive via the Riesz representation theorem
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

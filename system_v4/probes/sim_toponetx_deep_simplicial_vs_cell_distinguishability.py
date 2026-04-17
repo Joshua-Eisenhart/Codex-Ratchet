@@ -6,7 +6,7 @@ Scope note: admissibility claim -- a square face (4-cycle filled by a single
 2-cell) and its simplicial triangulation (two triangles across a diagonal)
 must be indistinguishable under H_* (same Betti numbers) but distinguishable
 under cell count / L1 spectrum cardinality. Fence: see
-system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md (cell/simplicial
+system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md (cell/simplicial
 admission ladder). Without toponetx offering BOTH CellComplex and
 SimplicialComplex with compatible Hodge operators, the claim "same homology,
 different decomposition" cannot be tested; toponetx is load_bearing.

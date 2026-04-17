@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L15_L16_bridge_family_to_shell_support
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L15_bridge_family and L16_shell_support via pytorch.
 classification: canonical
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L15_L16_bridge_family_to_shell_support",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L15_bridge_family", "layer_b": "L16_shell_support"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

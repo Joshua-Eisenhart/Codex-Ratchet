@@ -39,11 +39,11 @@ Use these surfaces in this order:
 - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
 
 2. Core execution docs
-- `new docs/07_model_math_geometry_sim_plan.md`
-- `new docs/08_aligned_sim_backlog_and_build_order.md`
-- `new docs/LEGO_SIM_CONTRACT.md`
-- `new docs/FALSIFICATION_SIM_DESIGNS.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/07_model_math_geometry_sim_plan.md`
+- `docs/08_aligned_sim_backlog_and_build_order.md`
+- `docs/LEGO_SIM_CONTRACT.md`
+- `docs/FALSIFICATION_SIM_DESIGNS.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
 
 3. Everything else
 - useful only if it does not conflict with the surfaces above

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_sci_popper_falsification -- doc illumination (classical).
 scope_note: A universal claim "all x P(x)" is falsified by one counterexample.
-Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

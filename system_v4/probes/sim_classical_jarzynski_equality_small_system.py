@@ -2,7 +2,7 @@
 """sim_classical_jarzynski_equality_small_system
 
 scope_note: Illuminates Landauer section of
-  system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
+  system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
   via <exp(-beta W)> = exp(-beta Delta F) for a two-level system driven
   by a stochastic work protocol.
 """

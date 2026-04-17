@@ -581,7 +581,7 @@ if __name__ == "__main__":
         "scope_note": (
             "Step 6 bridge: tests structural necessity of Ξ = I_c on (shell, history) "
             "bipartite cut. All 5 prior coupling stages authorized this claim. "
-            "See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for process gate."
+            "See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for process gate."
         ),
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

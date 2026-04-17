@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Holodeck Observer Projection Operator
-scope_note: system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+scope_note: system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 The holodeck observer is fundamentally an operator: it takes a world-state W
 and produces a projected representation R = O(W), where O is the observer's
@@ -311,7 +311,7 @@ if __name__ == "__main__":
         "name": "sim_holodeck_observer_projection_operator",
         "classification": "classical_baseline",
         "scope_note": (
-            "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
+            "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
             "Holodeck observer as projection operator family: idempotency, "
             "self-adjointness, entropy compression. z3 UNSAT excludes non-idempotent operators."
         ),

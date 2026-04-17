@@ -6,7 +6,7 @@ CLAIM: ζ(s) ≠ 0 in the region σ > 1 - c/log(|t|+2) for some c>0.
 TOOL: cvc5 (load_bearing) proves UNSAT when a zero is claimed in σ > 1 region.
 TOOL: sympy (supportive) computes trivial zeros ζ(-2n)=0 and verifies no zeros for Re(s)>1.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

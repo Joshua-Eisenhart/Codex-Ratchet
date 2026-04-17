@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Axis 3 x Axis 5 coupling: phase (fiber vs lifted-base loop) x operator family (dephasing vs rotation).
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 5).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 5).
 Exclusion: coupling excludes phase invariance under operator-family swap.
 """
 import json, os
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_3_5_phase_x_torus",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 5)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 5)",
                "exclusion_claim": "coupling excludes Axis 3 phase invariance under Axis 5 operator-family swap",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

@@ -6,12 +6,12 @@ type: summary
 framing: current
 tags: [reference, research, geometry, spine, status, planning]
 sources:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/16_lego_build_catalog.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/17_actual_lego_registry.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/07_model_math_geometry_sim_plan.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/08_aligned_sim_backlog_and_build_order.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_backlog_matrix.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_truth_audit.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/16_lego_build_catalog.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/17_actual_lego_registry.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/07_model_math_geometry_sim_plan.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/08_aligned_sim_backlog_and_build_order.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_backlog_matrix.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_truth_audit.md
 ---
 
 # Current Geometry Spine Status

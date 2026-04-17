@@ -82,7 +82,7 @@ would not affect these files or their correctness.
 | `core_docs/legacy_docs/SKILL_SOURCE_CORPUS.md` | 1 file | Legacy corpus listing `.venv_spec_graph` as toolchain env |
 | `core_docs/legacy_docs/LOCAL_SOURCE_REPO_INVENTORY.md` | 1 file | Legacy inventory entry |
 | `core_docs/legacy_docs/REPO_SKILL_INTEGRATION_TRACKER.md` | 1 file | Historical integration note |
-| `system_v5/READ ONLY Reference Docs/` (Older Legacy) | 2 files | Frozen reference copies of SKILL_SOURCE_CORPUS.md and system tools doc |
+| `system_v5/docs/archive/` (Older Legacy) | 2 files | Frozen reference copies of SKILL_SOURCE_CORPUS.md and system tools doc |
 
 Do not patch any of these.
 

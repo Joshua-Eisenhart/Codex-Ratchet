@@ -51,6 +51,6 @@ The **G-tower reduction chain** (GL→O→SO→U→SU→Sp) is the leading candi
 ## Cross-References
 
 - Memory: `user_geometry_stack_ratchet_doctrine.md`
-- Session: `system_v5/new docs/plans/session_2026_04_14_plan_and_findings.md`
-- Backlog: `system_v5/new docs/plans/math_ideas_backlog_2026_04_14.md`
+- Session: `system_v5/docs/plans/session_2026_04_14_plan_and_findings.md`
+- Backlog: `system_v5/docs/plans/math_ideas_backlog_2026_04_14.md`
 - Sims: `system_v4/probes/sim_geom_noncomm_*.py`, `sim_gtower_order_*.py`, `sim_cl3_deep_*.py`, `sim_gtower_deep_*.py`

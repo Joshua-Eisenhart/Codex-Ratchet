@@ -11,7 +11,7 @@ Intended use:
 - normalize terminology
 - strip duplicates
 - extract only the established math terms and source facts
-- move stable synthesis into `new docs/`
+- move stable synthesis into `docs/`
 
 Suggested subfolders:
 - `preprocessed/` — normalized source notes
@@ -28,7 +28,7 @@ Use these states consistently:
 2. `preprocessed/`
    - cleaned enough to mine facts, terminology, and candidate structure
    - still not promoted doctrine
-3. top-level `new docs/*.md`
+3. top-level `docs/*.md`
    - promoted synthesis or explicit audit/plan/working surface
 4. `canonical` top-level doc
    - best current owner surface for that topic
@@ -61,6 +61,6 @@ A doc or note is still not fully processed when any of these are true:
 - it is still listed as a gap in `../V5_CONTENT_GAP_ANALYSIS.md`
 
 Rule:
-- nothing here is canonical until it has been promoted into `new docs/`
+- nothing here is canonical until it has been promoted into `docs/`
 
 Do not use this folder alone for final summaries, implementation guidance, or doctrine claims.

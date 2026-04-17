@@ -1,6 +1,6 @@
 """Common scaffolding for ladder pairwise coupling sims.
 
-scope_note: see system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
+scope_note: see system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md
 Exclusion language only: 'admissible under coupling' / 'excluded under coupling'
 / 'survived joint probe' / 'indistinguishable under coupling'. Never causal.
 """

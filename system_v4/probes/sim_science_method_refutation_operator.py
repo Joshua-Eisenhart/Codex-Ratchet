@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Science Method Refutation Operator
-scope_note: system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+scope_note: system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 The Popperian refutation operator R: (H, O) -> {REFUTED, SURVIVED} is
 fundamental to the science-method lego. H is a hypothesis (z3 formula),
@@ -371,7 +371,7 @@ if __name__ == "__main__":
         "name": "sim_science_method_refutation_operator",
         "classification": "classical_baseline",
         "scope_note": (
-            "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
+            "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
             "Popperian refutation operator R: (H, O) -> {REFUTED, SURVIVED}. "
             "z3 drives UNSAT proofs for permanence of refutation and impossibility "
             "of finite-set verification. sympy formalizes Modus Tollens and corroboration."

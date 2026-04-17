@@ -3,7 +3,7 @@
 scope_note: z3 proves that an unfalsifiable claim (always-SAT regardless of
 evidence) is structurally inadmissible in the scientific shell: there is no
 evidence assignment that entails its negation -> it carries no information.
-Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 from _doc_illum_common import build_manifest, write_results

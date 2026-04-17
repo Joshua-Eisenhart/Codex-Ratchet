@@ -4,7 +4,7 @@ sim_L13_entangling_operator.py
 Layer 13: Entangling operator layer -- admissible coupling / 4x4 action.
 
 scope_note:
-  Per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, Layer 13 is
+  Per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md, Layer 13 is
   "Entangling operator layer -- admissible coupling / 4x4 action (live, not
   final doctrine)." This sim probes which candidate 4x4 operators on H_A (x)
   H_B are admissible as entangling couplings under unitarity + locality

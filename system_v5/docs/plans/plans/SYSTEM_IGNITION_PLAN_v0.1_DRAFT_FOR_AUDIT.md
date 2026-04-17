@@ -21,7 +21,7 @@ The system is a nested simultaneous constraint manifold on shared carriers. Root
 - Probes: ~30 rich numpy classical_baseline legos in system_v4/probes/ (density, channels, gates, stabilizer, geometry, topology, discord, etc.). Many have negatives and rich math.
 - Migration: All 28 families = NOT_STARTED for torch-native (per MIGRATION_REGISTRY.md).
 - Tool depth: Strong numpy/scipy baselines. Severe underuse of PyG (graph writeback), z3 UNSAT, clifford in execution path, TopoNetX/GUDHI, e3nn. Most manifests are honest "not needed" but many probes pre-date SIM_TEMPLATE.
-- Plans: The 6 draft documents created in previous turn (.hermes/plans/ and new docs/plans/) are good starters but need deepening with explicit micro-lego list, JSON gap matrix, validator, and full controller orchestration spec.
+- Plans: The 6 draft documents created in previous turn (.hermes/plans/ and docs/plans/) are good starters but need deepening with explicit micro-lego list, JSON gap matrix, validator, and full controller orchestration spec.
 - Legacy docs: Many in system_v4/docs/ contain premature Axis/bridge language. Treat as historical; do not edit unless the code gate is met.
 - Controller surfaces: Fragmented. Hermes must unify under hermes-sim-controller-orchestration pattern.
 - Validator: llm_research_enforcement_validator.py exists but needs extension for micro-lego ladder and manifest honesty checks.
@@ -93,7 +93,7 @@ QIT Engine Baselines (Phase 5 — classical side lane, deep):
 Later: bounded couplings (e.g. pauli_on_weyl, engine_on_hopf_torus), small coexistence, topology variants, emergence tests. Only then bridge/Phi0/Axis candidates.
 
 ## Gap Matrix
-See new docs/plans/LLM_RESEARCH_GAP_MATRIX.json (created as draft, all cells start as GAP). Columns = A B C D E. Rows = above micro-legos + QIT engine DoF candidates.
+See docs/plans/LLM_RESEARCH_GAP_MATRIX.json (created as draft, all cells start as GAP). Columns = A B C D E. Rows = above micro-legos + QIT engine DoF candidates.
 
 ## Controller Architecture (Hermes as persistent controller)
 - Hermes owns: queue order, truth labels, scope discipline, maintenance closure, wiki ingest.

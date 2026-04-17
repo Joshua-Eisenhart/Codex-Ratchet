@@ -6,8 +6,8 @@ type: concept
 framing: current
 tags: [simulation, planning, geometry, maintenance, wiki]
 sources:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/2026-04-11-sim-build-plan.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/2026-04-11-sim-build-plan.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md
   - raw/articles/new-docs/16_lego_build_catalog.md
   - raw/articles/new-docs/17_actual_lego_registry.md
   - raw/articles/system-v5-reference-docs/Weyl Flux.md
@@ -23,10 +23,10 @@ sources:
 ## Recommended reading order
 1. `current/read-first.md` and the rest of the `current/` spine
 2. `projects/codex-ratchet/read-first.md`
-3. `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-4. `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`
-5. `system_v5/new docs/plans/2026-04-11-sim-build-plan.md`
-6. `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
+3. `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+4. `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`
+5. `system_v5/docs/plans/2026-04-11-sim-build-plan.md`
+6. `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`
 7. this page when the task is specifically about geometry-before-axis build order or about which ledger/wiki surfaces must close after a bounded run
 8. the live repo surfaces named below when the question is the actual current queue/truth/tool/maintenance state
 
@@ -93,10 +93,10 @@ That matters here because this page often sits next to queue/maintenance prose. 
 - geometry/chirality/flux pages touched by the active batch
 
 The current maintenance docs also name recurring repo-side closure surfaces that often force wiki sync:
-- `system_v5/new docs/plans/sim_truth_audit.md`
-- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/new docs/plans/controller_maintenance_checklist.md`
-- `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/plans/controller_maintenance_checklist.md`
+- `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`
 
 ## Flux note
 `flux` should remain an open derived candidate family sourced from the dependency chain in [[weyl-flux]] until the lower carrier/geometry/transport/chirality objects are complete and negatively tested.

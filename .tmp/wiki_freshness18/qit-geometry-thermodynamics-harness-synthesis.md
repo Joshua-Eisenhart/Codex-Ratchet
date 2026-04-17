@@ -9,7 +9,7 @@ sources:
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_viability_vs_attractor.py
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_carnot_gradient_bound.py
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_qit_szilard_landauer_cycle.py
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/LLM_CONTROLLER_CONTRACT.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/LLM_CONTROLLER_CONTRACT.md
 framing: current
 ---
 

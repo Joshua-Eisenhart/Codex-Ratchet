@@ -293,7 +293,7 @@ triple coexistence → bridge claim (same 5-step ladder as axes 0-6).
 ## Source
 
 Extracted verbatim from:
-- system_v5/READ ONLY Reference Docs/AXES_0_6_AND_CONSTRAINT_MANIFOLD_EXPLICIT_ATLAS copy.md
-- system_v5/READ ONLY Reference Docs/Axis 0 rough and drifty. NOT CANON.md
-- system_v5/READ ONLY Reference Docs/Contraint on Admisibility, ENTROPY tables, Entropic Monism.md
-- system_v5/READ ONLY Reference Docs/ENGINE_64_SCHEDULE_ATLAS.md
+- system_v5/docs/archive/AXES_0_6_AND_CONSTRAINT_MANIFOLD_EXPLICIT_ATLAS copy.md
+- system_v5/docs/archive/Axis 0 rough and drifty. NOT CANON.md
+- system_v5/docs/archive/Contraint on Admisibility, ENTROPY tables, Entropic Monism.md
+- system_v5/docs/archive/ENGINE_64_SCHEDULE_ATLAS.md

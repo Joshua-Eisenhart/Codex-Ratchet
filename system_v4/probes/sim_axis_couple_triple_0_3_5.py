@@ -2,7 +2,7 @@
 """Three-axis coupling: Axis 0 x Axis 3 x Axis 5.
 Entropy-gradient seat x phase (fiber/base) x operator family (rotation/dephasing)
 realized via Cl(3) rotors and trivector residues.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 3, 5).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 3, 5).
 Exclusion: coupling excludes pairwise independence — the three-axis joint residue
 cannot be factored as a product of two-axis residues.
 """
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["triple_coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_triple_0_3_5",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 3, 5)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 3, 5)",
                "exclusion_claim": "coupling excludes factoring triple (0,3,5) residue as any pairwise product",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

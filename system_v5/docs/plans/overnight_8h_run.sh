@@ -31,7 +31,7 @@ REPORT_STATE="$LOG_DIR/overnight_8h_run_${STAMP}.report_state.json"
 REPORT_QUEUE="$LOG_DIR/overnight_8h_run_${STAMP}.report_queue.tsv"
 REPORTER_PID_FILE="$LOG_DIR/overnight_8h_run_${STAMP}.reporter.pid"
 RESULTS_DIR="$ROOT/system_v4/probes/a2_state/sim_results"
-TRUTH_AUDIT_DOC="$ROOT/system_v5/new docs/plans/sim_truth_audit.md"
+TRUTH_AUDIT_DOC="$ROOT/system_v5/docs/plans/sim_truth_audit.md"
 START_EPOCH=$(date +%s)
 REPORTER_PID=""
 

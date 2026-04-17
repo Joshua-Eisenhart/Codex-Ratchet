@@ -10,7 +10,7 @@ A¹-invariance is a fundamental property in motivic homotopy theory:
 sheaves are invariant under multiplication by the affine line A¹.
 This property must hold dimensionally and is necessary for motivic cohomology.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 """
 
 

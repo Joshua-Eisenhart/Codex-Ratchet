@@ -2,7 +2,7 @@
 """classical_engine_4operators_kraus -- classical numpy CPTP Kraus decomposition
 with 4 operators satisfying sum K_i^\dagger K_i = I.
 
-scope_note: system_v5/new docs/ENGINE_MATH_REFERENCE.md, section "4-operator
+scope_note: system_v5/docs/ENGINE_MATH_REFERENCE.md, section "4-operator
 engine / Kraus form"; CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md CPTP maps.
 Classical baseline.
 """

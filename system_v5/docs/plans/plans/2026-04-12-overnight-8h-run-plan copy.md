@@ -1,27 +1,27 @@
 # 2026-04-12 Overnight 8h Run Plan
 
-Status: HISTORICAL DUPLICATE / WORKING COPY — prefer `system_v5/new docs/plans/2026-04-12-overnight-8h-run-plan.md` as the primary repo-tracked plan surface.
+Status: HISTORICAL DUPLICATE / WORKING COPY — prefer `system_v5/docs/plans/2026-04-12-overnight-8h-run-plan.md` as the primary repo-tracked plan surface.
 
 Purpose: define a real 8-hour overnight work program that keeps advancing the full geometry/pre-Axis machinery stack step by step, with many parallel lanes, visible progress, anti-stuck behavior, and only bounded fallback use of the classical/QIT engine lane.
 
 Authority surfaces used:
-- `new docs/LLM_CONTROLLER_CONTRACT.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- `new docs/EXPLICIT_CONTROLLER_MODEL.md`
-- `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/LLM_RESEARCH_GAP_MATRIX.json`
-- `system_v5/new docs/plans/sim_backlog_matrix.md`
-- `system_v5/new docs/plans/sim_truth_audit.md`
-- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/new docs/plans/controller_maintenance_checklist.md`
-- `system_v5/new docs/plans/on-demand-telegram-runner.md`
-- `system_v5/READ ONLY Reference Docs/Pre axies math and geometry work out.md`
-- `system_v5/READ ONLY Reference Docs/Formal constraints and geometry .md`
-- `system_v5/READ ONLY Reference Docs/AXIS_0_1_2_QIT_MATH.md`
-- `system_v5/READ ONLY Reference Docs/operator math explicit.md`
-- `system_v5/READ ONLY Reference Docs/Weyl Flux.md`
+- `docs/LLM_CONTROLLER_CONTRACT.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/EXPLICIT_CONTROLLER_MODEL.md`
+- `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/LLM_RESEARCH_GAP_MATRIX.json`
+- `system_v5/docs/plans/sim_backlog_matrix.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/plans/controller_maintenance_checklist.md`
+- `system_v5/docs/plans/on-demand-telegram-runner.md`
+- `system_v5/docs/archive/Pre axies math and geometry work out.md`
+- `system_v5/docs/archive/Formal constraints and geometry .md`
+- `system_v5/docs/archive/AXIS_0_1_2_QIT_MATH.md`
+- `system_v5/docs/archive/operator math explicit.md`
+- `system_v5/docs/archive/Weyl Flux.md`
 
 ## 1. Correct model of an 8-hour run
 
@@ -204,10 +204,10 @@ Goal:
 - keep controller surfaces honest after each geometry packet
 
 Touched surfaces when justified:
-- `system_v5/new docs/plans/sim_truth_audit.md`
-- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/new docs/16_lego_build_catalog.md`
-- `system_v5/new docs/17_actual_lego_registry.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/16_lego_build_catalog.md`
+- `system_v5/docs/17_actual_lego_registry.md`
 - touched wiki pages only if concept framing materially changed
 
 ### Classical lane C1 — fallback or side-lane maintenance

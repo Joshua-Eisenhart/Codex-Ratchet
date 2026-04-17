@@ -40,7 +40,7 @@ Tests:
       Weyl-L projection all simultaneously non-trivial.
 
 Classification: classical_baseline
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md; LADDERS_FENCES_ADMISSION_REFERENCE.md.
 """
 
 import json

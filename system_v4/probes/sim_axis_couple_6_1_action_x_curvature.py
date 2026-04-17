@@ -3,7 +3,7 @@
 z3 encodes admissibility: is there any assignment of curvature sign and precedence
 that makes a joint constraint SAT? If UNSAT at certain configurations but SAT at others,
 the two axes are coupled (not independent).
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1).
 Exclusion: coupling excludes joint admissibility of action-orientation and curvature-branch
 as independently chosen factors.
 """
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_6_1_action_x_curvature",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 6, 1)",
                "exclusion_claim": "coupling excludes independent joint admissibility of Axis 6 and Axis 1",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Axis 1 x Axis 5 coupling: curvature branch vs operator family (dephasing vs rotation).
 Torus seat realized via Cl(3) rotors acting on a 2-torus bivector plane.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 5).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 5).
 Exclusion: coupling excludes commutation of curvature-branch reversal with
 operator-family swap on the torus seat.
 """
@@ -57,7 +57,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_1_5_curvature_x_torus",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 5)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 5)",
                "exclusion_claim": "coupling excludes commutation of Axis 1 curvature reversal with Axis 5 operator swap on the torus seat",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

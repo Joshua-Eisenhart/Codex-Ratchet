@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_holodeck_projection_vs_reality -- doc illumination (classical).
 scope_note: Projection P onto observer subspace loses info iff ker(P) nontrivial.
-Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

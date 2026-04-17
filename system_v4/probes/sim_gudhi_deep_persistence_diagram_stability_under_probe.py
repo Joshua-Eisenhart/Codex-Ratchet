@@ -5,7 +5,7 @@ sim_gudhi_deep_persistence_diagram_stability_under_probe
 Scope note: admissibility claim -- the persistence diagram of a circle point
 cloud is stable under a bounded probe perturbation in the bottleneck metric:
 d_B(Dgm(X), Dgm(X + eps)) <= eps (stability theorem). This is the
-probe-stability fence from system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY
+probe-stability fence from system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY
 _FULL_MATH.md. Without gudhi.bottleneck_distance on persistence diagrams
 computed by gudhi's filtrations, the admissibility claim ("class stable under
 probe") has no operator -- gudhi is load_bearing.

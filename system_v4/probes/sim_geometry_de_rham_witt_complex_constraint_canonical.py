@@ -9,7 +9,7 @@ is surjective; cvc5 proves the rank constraint rank(W_nΩ^i) ≤ rank(W_{n+1}Ω^
 Also proves the Cartier isomorphism C^{-1}: Ω^i_{X/k} → H^i(W_1Ω^•) for
 smooth X over perfect field.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

@@ -9,8 +9,8 @@ sources:
   - raw/articles/new-docs/08_aligned_sim_backlog_and_build_order.md
   - raw/articles/new-docs/07_model_math_geometry_sim_plan.md
   - raw/articles/new-docs/05_research_index.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/2026-04-11-sim-build-plan.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_backlog_matrix.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/2026-04-11-sim-build-plan.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_backlog_matrix.md
 ---
 
 # Aligned Sim Backlog and Build Order
@@ -23,10 +23,10 @@ sources:
 ## Recommended reading order
 1. `current/read-first.md` and the rest of the `current/` spine
 2. `projects/codex-ratchet/read-first.md`
-3. `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-4. `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md`
-5. `system_v5/new docs/plans/2026-04-11-sim-build-plan.md`
-6. `system_v5/new docs/plans/sim_backlog_matrix.md`
+3. `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+4. `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`
+5. `system_v5/docs/plans/2026-04-11-sim-build-plan.md`
+6. `system_v5/docs/plans/sim_backlog_matrix.md`
 7. this page when the task is specifically about the mirrored build order, lane split, or backlog-shaping logic
 8. the live repo truth/tool/checklist surfaces when the question is the actual current queue closure state
 

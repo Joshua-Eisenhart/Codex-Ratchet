@@ -6,8 +6,8 @@ type: concept
 tags: [system, audit, simulation, reference, status, validation]
 sources:
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/actual_lego_normalization_queue.py
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/17_actual_lego_registry.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/SIM_SESSION_INDEX.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/17_actual_lego_registry.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/SIM_SESSION_INDEX.md
 framing: current
 ---
 

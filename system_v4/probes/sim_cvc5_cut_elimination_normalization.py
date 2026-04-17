@@ -9,7 +9,7 @@ Encodes cut-elimination properties:
 3. Each elimination step reduces cut count by >= 1
 4. sympy verification of Church-Rosser confluence property
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 Usage:
   python3 sim_cvc5_cut_elimination_normalization.py

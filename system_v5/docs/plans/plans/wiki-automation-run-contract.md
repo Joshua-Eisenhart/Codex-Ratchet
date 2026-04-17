@@ -36,9 +36,9 @@ Every wiki automation run should begin by reading:
 2. `/Users/joshuaeisenhart/wiki/concepts/topic-map.md`
 3. `/Users/joshuaeisenhart/wiki/concepts/current-research-overlays.md`
 4. `/Users/joshuaeisenhart/wiki/log.md`
-5. `system_v5/new docs/plans/wiki_ingest_and_lego_maintenance.md`
-6. `system_v5/new docs/plans/sim_backlog_matrix.md`
-7. `system_v5/new docs/plans/sim_truth_audit.md`
+5. `system_v5/docs/plans/wiki_ingest_and_lego_maintenance.md`
+6. `system_v5/docs/plans/sim_backlog_matrix.md`
+7. `system_v5/docs/plans/sim_truth_audit.md`
 8. `/Users/joshuaeisenhart/wiki/concepts/wiki-automation-contract.md`
 9. `/Users/joshuaeisenhart/wiki/concepts/wiki-automation-tick-template.md`
 10. `/Users/joshuaeisenhart/wiki/config/wiki_automation_surface_map.json`

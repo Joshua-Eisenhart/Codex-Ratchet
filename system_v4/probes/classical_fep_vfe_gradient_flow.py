@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_fep_vfe_gradient_flow -- doc illumination (classical).
 scope_note: Variational free energy F(mu) = 0.5*(mu - obs)^2 decreases along
--gradF. Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+-gradF. Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

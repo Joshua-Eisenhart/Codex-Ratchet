@@ -15,19 +15,19 @@ System root:
 - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5
 
 Read first:
-1. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/LLM_CONTROLLER_CONTRACT.md
-2. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
-3. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/EXPLICIT_CONTROLLER_MODEL.md
-4. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md
-5. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/16_lego_build_catalog.md
-6. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/17_actual_lego_registry.md
-7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_backlog_matrix.md
-8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/sim_truth_audit.md
-9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/tool_integration_maintenance_matrix.md
-10. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/controller_maintenance_checklist.md
-11. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/corrected-bounded-automation-plan.md
-12. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/launch-ready-claude-worker-orchestration-spec.md
-13. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/launch-ready-automated-run-manifest.md
+1. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/LLM_CONTROLLER_CONTRACT.md
+2. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
+3. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/EXPLICIT_CONTROLLER_MODEL.md
+4. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md
+5. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/16_lego_build_catalog.md
+6. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/17_actual_lego_registry.md
+7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_backlog_matrix.md
+8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/sim_truth_audit.md
+9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/tool_integration_maintenance_matrix.md
+10. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/controller_maintenance_checklist.md
+11. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/corrected-bounded-automation-plan.md
+12. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-claude-worker-orchestration-spec.md
+13. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-automated-run-manifest.md
 14. /Users/joshuaeisenhart/Desktop/Codex Ratchet/Makefile
 
 Transport:

@@ -10,7 +10,7 @@ Claims tested: (1) Weyl structure on Hopf fiber creates different constraint
 geometry than Hopf then Weyl; (2) z3 UNSAT proves one ordering is excluded;
 (3) pytorch autograd detects gradient discontinuity at commutation boundary.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 
 classification: canonical
 Required tools: pytorch (load_bearing: numerical), z3 (load_bearing: UNSAT),

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Axis 3 x Axis 0 coupling: phase (fiber vs lifted-base loop) x entropy gradient.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 0).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 0).
 Exclusion: coupling excludes entropy-gradient invariance under fiber vs lifted-base loop choice.
 """
 import json, os, torch
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_3_0_phase_x_entropy_gradient",
                "classification": "canonical",
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 0)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 3, 0)",
                "exclusion_claim": "coupling excludes Axis 0 gradient invariance under Axis 3 fiber/base loop choice",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

@@ -2,7 +2,7 @@
 """sim_classical_maxwell_demon_information_accounting
 
 scope_note: Illuminates Landauer section of
-  system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md:
+  system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md:
   a Maxwell demon's extracted work is bookended by memory-erasure cost
   so net dissipation >= 0.
 """

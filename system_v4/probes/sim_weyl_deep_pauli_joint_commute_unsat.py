@@ -4,7 +4,7 @@ sim_weyl_deep_pauli_joint_commute_unsat
 Scope: z3 UNSAT — distinct Pauli operators cannot jointly commute with a
 single 2x2 Hermitian operator of nontrivial rank. Excludes candidate
 simultaneous-eigenvector claims across non-commuting axes.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os
 from z3 import Solver, Reals, And, Or, Not, sat, unsat

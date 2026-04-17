@@ -5,7 +5,7 @@ This file links the research terms that now belong in the systems-math layer.
 ## Scope and Boundary
 
 This is a term router for the compression/spectral cluster only.
-It is not a general index for all research topics in `new docs/`.
+It is not a general index for all research topics in `docs/`.
 
 Use it with:
 - `01_pca_qpca_alignment.md`

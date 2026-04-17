@@ -4,7 +4,7 @@ sim_hopf_deep_linking_number_topology
 Scope: Two distinct Hopf fibers link with integer linking number 1. Gudhi
 simplicial persistence confirms non-trivial H_1 coupling. Zero-linking
 candidates excluded.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np
 

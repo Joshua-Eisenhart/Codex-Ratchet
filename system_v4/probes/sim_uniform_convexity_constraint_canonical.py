@@ -10,7 +10,7 @@ Claims:
   - UNSAT when δ≤0 is claimed to work for ε>0
   - sympy verifies the modulus of convexity δ(ε) = 1 - √(1 - ε²/4) for Hilbert space
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

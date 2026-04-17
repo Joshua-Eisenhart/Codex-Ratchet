@@ -2,7 +2,7 @@
 """Axis 0 x Axis 6 pairwise coupling sim.
 Axis 0 = entropy-gradient cut-state functional (I_c sign).
 Axis 6 = operator-first vs terrain-first precedence (action orientation).
-scope_note: see system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 6).
+scope_note: see system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 6).
 Coupling question: does the sign of the entropy-gradient candidate depend on
 action-orientation (operator-first vs terrain-first)? If orientation flips
 the sign reliably, the two axes are coupled (not independent).
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     results = {
         "name": "axis_couple_0_6_entropy_gradient_x_action_orientation",
         "classification": classification,
-        "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0 and 6)",
+        "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0 and 6)",
         "exclusion_claim": "coupling excludes Axis 0 I_c-sign invariance under Axis 6 precedence reordering",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

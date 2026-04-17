@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_holodeck_observer_indistinguishability -- doc illumination (classical).
 scope_note: Holodeck observer cannot distinguish two probes when all probe outputs
-agree. Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+agree. Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

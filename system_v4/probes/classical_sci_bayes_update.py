@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_sci_bayes_update -- doc illumination (classical).
 scope_note: Posterior ∝ prior * likelihood; normalize. Docs:
-system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

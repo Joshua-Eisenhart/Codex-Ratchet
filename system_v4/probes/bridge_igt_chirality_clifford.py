@@ -4,7 +4,7 @@ scope_note: Chirality (CW vs CCW) of the IGT win/lose ring is encoded by sign of
 the pseudoscalar in Cl(3). Clifford algebra is load-bearing: reversing the ring
 direction flips e123 sign, establishing that the classical 'cycle' has two
 admissibility classes the numpy sum test cannot separate. Docs:
-system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 from _doc_illum_common import build_manifest, write_results

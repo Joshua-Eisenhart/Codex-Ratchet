@@ -8,8 +8,8 @@ Read in order:
 5. /Users/joshuaeisenhart/wiki/current/current-vs-legacy.md
 6. /Users/joshuaeisenhart/wiki/current/skills-and-agent-rules.md
 7. /Users/joshuaeisenhart/wiki/projects/codex-ratchet/read-first.md
-8. system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
-9. system_v5/new docs/LLM_CONTROLLER_CONTRACT.md
+8. system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
+9. system_v5/docs/LLM_CONTROLLER_CONTRACT.md
 10. system_v5/ops/HERMES_RULES.md
 11. system_v5/ops/SIM_RUNNER.md
 12. system_v5/ops/TIER_D.md

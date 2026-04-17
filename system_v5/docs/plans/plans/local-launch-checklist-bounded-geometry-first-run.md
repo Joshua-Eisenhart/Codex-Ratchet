@@ -7,20 +7,20 @@ Use this checklist immediately before starting a real automated run.
 - transport =
 
 ## Confirm files to load
-- [ ] `new docs/LLM_CONTROLLER_CONTRACT.md`
-- [ ] `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- [ ] `new docs/EXPLICIT_CONTROLLER_MODEL.md`
-- [ ] `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
-- [ ] `new docs/16_lego_build_catalog.md`
-- [ ] `new docs/17_actual_lego_registry.md`
-- [ ] `new docs/plans/sim_backlog_matrix.md`
-- [ ] `new docs/plans/sim_truth_audit.md`
-- [ ] `new docs/plans/tool_integration_maintenance_matrix.md`
-- [ ] `new docs/plans/controller_maintenance_checklist.md`
-- [ ] `new docs/plans/corrected-bounded-automation-plan.md`
-- [ ] `new docs/plans/launch-ready-claude-worker-orchestration-spec.md`
-- [ ] `new docs/plans/launch-ready-automated-run-manifest.md`
-- [ ] `new docs/plans/launch-prompt-bounded-geometry-first-automated-run.md`
+- [ ] `docs/LLM_CONTROLLER_CONTRACT.md`
+- [ ] `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- [ ] `docs/EXPLICIT_CONTROLLER_MODEL.md`
+- [ ] `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- [ ] `docs/16_lego_build_catalog.md`
+- [ ] `docs/17_actual_lego_registry.md`
+- [ ] `docs/plans/sim_backlog_matrix.md`
+- [ ] `docs/plans/sim_truth_audit.md`
+- [ ] `docs/plans/tool_integration_maintenance_matrix.md`
+- [ ] `docs/plans/controller_maintenance_checklist.md`
+- [ ] `docs/plans/corrected-bounded-automation-plan.md`
+- [ ] `docs/plans/launch-ready-claude-worker-orchestration-spec.md`
+- [ ] `docs/plans/launch-ready-automated-run-manifest.md`
+- [ ] `docs/plans/launch-prompt-bounded-geometry-first-automated-run.md`
 - [ ] `Makefile`
 
 ## Confirm active layer

@@ -6,7 +6,7 @@ type: summary
 framing: current
 tags: [simulation, results, formal-methods, geometry, tooling, audit]
 sources:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/00_manifest.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/00_manifest.md
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axiom_f01_finite_measurement_set.py
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/sim_axiom_f01_finite_measurement_set_results.json
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_axiom_n01_pauli_algebra_closure.py
@@ -145,8 +145,8 @@ That is aligned with the repo's lower-first discipline:
 ## 5. What is still open
 
 1. Repo ledgers have not yet been reconciled to this tranche in the same pass.
-   - `system_v5/new docs/16_lego_build_catalog.md`
-   - `system_v5/new docs/17_actual_lego_registry.md`
+   - `system_v5/docs/16_lego_build_catalog.md`
+   - `system_v5/docs/17_actual_lego_registry.md`
 
 2. The public wiki still lacks dedicated current pages for these new families:
    - gerbes

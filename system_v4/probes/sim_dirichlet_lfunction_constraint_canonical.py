@@ -6,7 +6,7 @@ CLAIM: L(s,χ) ≠ 0 for Re(s)=1 when χ is a non-principal character.
 TOOL: cvc5 (load_bearing) proves UNSAT when L(1,χ)=0 is claimed for non-principal χ.
 TOOL: sympy (supportive) verifies convergence of L(1,χ) = Σ χ(n)/n for non-principal χ.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

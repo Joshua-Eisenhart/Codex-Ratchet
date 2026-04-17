@@ -2,7 +2,7 @@
 """classical_igt_win_lose_win_lose_ring -- doc illumination (classical).
 scope_note: A cyclic dominance ring (rock-paper-scissors-lizard) alternates
 win/lose around a directed cycle; sum of payoffs around cycle = 0. Docs:
-system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

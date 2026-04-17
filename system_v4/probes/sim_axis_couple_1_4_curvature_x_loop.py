@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Axis 1 x Axis 4 coupling: curvature branch x loop-order family.
 sympy symbolic commutator of curvature-signed generator and loop permutation.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4).
 Exclusion: coupling excludes commutation of curvature reversal with loop-order permutation.
 """
 import json, os
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_1_4_curvature_x_loop",
                "classification": classification,
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 4)",
                "exclusion_claim": "coupling excludes commutation of Axis 1 curvature reversal with Axis 4 loop-order",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

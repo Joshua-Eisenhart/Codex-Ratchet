@@ -6,7 +6,7 @@ E8 root system: constructs all 240 roots, verifies lattice structure,
 and connects to the G-tower entropy chain.
 Each root = one admissible direction in the constraint manifold.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

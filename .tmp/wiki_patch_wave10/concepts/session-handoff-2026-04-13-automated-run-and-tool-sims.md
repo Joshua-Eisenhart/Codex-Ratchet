@@ -6,9 +6,9 @@ type: concept
 tags: [session, handoff, automation, simulation, tooling, wiki]
 sources:
   - chat/session work
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/corrected-bounded-automation-plan.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/launch-ready-claude-worker-orchestration-spec.md
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/launch-ready-automated-run-manifest.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/corrected-bounded-automation-plan.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-claude-worker-orchestration-spec.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/launch-ready-automated-run-manifest.md
 framing: mixed
 ---
 

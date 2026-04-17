@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_leviathan_hobbes_stability -- doc illumination (classical baseline).
 scope_note: Hobbesian stability: a single dominant actor's power > sum of rivals =>
-covenant stable. Docs: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+covenant stable. Docs: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

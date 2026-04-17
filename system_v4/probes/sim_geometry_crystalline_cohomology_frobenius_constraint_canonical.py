@@ -7,7 +7,7 @@ Frobenius φ and Verschiebung V satisfying φV=p=Vφ.
 cvc5 proves the pV=Vp=p constraint as integer arithmetic (UNSAT when φV≠p).
 Also proves rank(H^i_cris) = b_i (Betti number, same as étale rank).
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

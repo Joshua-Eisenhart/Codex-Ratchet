@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L6_L7_engine_to_operator
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L6_engine and L7_operator via clifford.
 classification: canonical
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L6_L7_engine_to_operator",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L6_engine", "layer_b": "L7_operator"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

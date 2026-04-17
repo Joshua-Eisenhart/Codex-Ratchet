@@ -189,6 +189,6 @@ overlay only.
 ## Source
 
 Extracted verbatim from:
-- system_v5/READ ONLY Reference Docs/CS version of system first draft. .md
-- system_v5/READ ONLY Reference Docs/System tools and plan.md
-- system_v5/READ ONLY Reference Docs/INTENT_SUMMARY copy.md
+- system_v5/docs/archive/CS version of system first draft. .md
+- system_v5/docs/archive/System tools and plan.md
+- system_v5/docs/archive/INTENT_SUMMARY copy.md

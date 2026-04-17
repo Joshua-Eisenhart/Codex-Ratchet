@@ -5,7 +5,7 @@ updated: 2026-04-15
 type: concept
 tags: [geometry, g-tower, hopf, weyl, spinors, simulation, ratchet, rosetta]
 sources:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/plans/G_TOWER_HOPF_WEYL_INTEGRATION_SPEC.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/plans/G_TOWER_HOPF_WEYL_INTEGRATION_SPEC.md
 framing: current
 ---
 

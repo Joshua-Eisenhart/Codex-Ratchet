@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Axis 0 x Axis 4 coupling: entropy gradient x loop-order family (UEUE vs EUEU).
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 4).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 4).
 Exclusion: coupling excludes entropy-gradient invariance under loop-order permutation.
 """
 import json, os, torch
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     all_pass = bool(pos["coupling_detected"]) and all(neg.values()) and all(bnd.values())
     results = {"name": "axis_couple_0_4_entropy_x_loop_ordering",
                "classification": "canonical",
-               "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 4)",
+               "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 0, 4)",
                "exclusion_claim": "coupling excludes Axis 0 gradient invariance under Axis 4 loop-order permutation",
                "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
                "positive": pos, "negative": neg, "boundary": bnd, "pass": all_pass}

@@ -2,7 +2,7 @@
 """sim_bridge_carnot_admissibility_fence
 
 scope_note: Reframes classical Carnot as a constraint-admissibility fence.
-  Illuminates system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
+  Illuminates system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
   (Landauer section). z3 load-bearing: UNSAT proves no admissible engine
   survives with eta > 1 - Tc/Th under positivity + second-law constraints.
 """

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L17_L18_signed_entropy_to_axis0_kernel
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L17_signed_entropy and L18_axis0_kernel via pytorch.
 classification: canonical
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L17_L18_signed_entropy_to_axis0_kernel",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L17_signed_entropy", "layer_b": "L18_axis0_kernel"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

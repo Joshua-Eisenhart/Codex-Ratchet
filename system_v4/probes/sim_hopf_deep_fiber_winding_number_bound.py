@@ -3,7 +3,7 @@
 sim_hopf_deep_fiber_winding_number_bound
 Scope: Hopf fiber S^1 winding per base loop is bounded to integer values under
 Cl(3) rotor holonomy. Non-integer candidates excluded.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np
 from clifford import Cl

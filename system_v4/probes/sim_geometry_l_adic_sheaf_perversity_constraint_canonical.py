@@ -11,7 +11,7 @@ UNSAT when dim(supp H^j) > -j
 Also proves Verdier duality constraint D(F)[2d] ≅ F for d-dimensional
 smooth variety.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

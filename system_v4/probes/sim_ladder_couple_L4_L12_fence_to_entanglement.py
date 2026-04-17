@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L4_L12_fence_to_entanglement
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L4_fence and L12_entanglement via z3.
 classification: canonical
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L4_L12_fence_to_entanglement",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L4_fence", "layer_b": "L12_entanglement"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

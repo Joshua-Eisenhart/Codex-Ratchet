@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Axis 1 x Axis 2 coupling: curvature x scale.
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2).
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2).
 
 Claim: when scale changes (Axis 2 active via conformal rescaling g -> Omega^2 * g),
 the curvature of the constraint surface also changes (Axis 1 co-activates) iff
@@ -383,7 +383,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_axis_couple_1_2_curvature_scale",
         "classification": classification,
-        "scope_note": "system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2); conformal geometry coupling",
+        "scope_note": "system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md (Axes 1, 2); conformal geometry coupling",
         "exclusion_claim": "coupling excludes Axis 1 curvature independence from Axis 2 scale when scale field is position-dependent; uniform scaling leaves curvature invariant; coupling strength = |d^2 Omega / dx^2|",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

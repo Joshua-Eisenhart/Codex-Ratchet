@@ -10,7 +10,7 @@ Exclusion-language discipline:
 - A pair is "additive" when joint admissibility == intersection (no
   coupling-induced exclusion beyond the two shell-local filters).
 
-scope_note cites: system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
+scope_note cites: system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md
 
 Shell-local admissibility axioms (toy but structural):
 - holodeck: observer-indistinguishable projection; admissible iff
@@ -77,7 +77,7 @@ except Exception:
 
 SCOPE_NOTE = (
     "Pairwise coupling test under exclusion-language discipline. "
-    "See system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
+    "See system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md. "
     "Candidates are not 'created' or 'derived'; they are 'admissible under joint "
     "coupling', 'survived', or 'excluded'."
 )

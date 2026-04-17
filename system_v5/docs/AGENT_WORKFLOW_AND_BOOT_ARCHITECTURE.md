@@ -156,7 +156,7 @@ Handoffs should remain repo-local and explicit, but this checkout does
 not contain a live `.agent/handoffs/active/` queue.
 
 Use bounded task briefs under `system_v5/docs/plans/`,
-`system_v5/new docs/plans/`, or the active controller prompt itself.
+`system_v5/docs/plans/`, or the active controller prompt itself.
 Each handoff/task brief should specify:
 - Which boot the executing terminal should run under
 - The exact files/surfaces in scope

@@ -3,7 +3,7 @@
 sim_hopf_deep_u1_holonomy_equivariance
 Scope: U(1) fiber holonomy equivariance under SO(3) base rotation, tested with
 e3nn irrep transforms. Non-equivariant candidates excluded.
-See system_v5/new docs/ENGINE_MATH_REFERENCE.md.
+See system_v5/docs/ENGINE_MATH_REFERENCE.md.
 """
 import json, os, numpy as np, torch
 

@@ -9,7 +9,7 @@ P_i(t) = det(1-Frob·t | H^i_et) have absolute value q^{i/2}
 cvc5 proves the purity constraint: all eigenvalues of Frob on H^i
 have absolute value exactly q^{i/2} (UNSAT for eigenvalue outside this range)
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

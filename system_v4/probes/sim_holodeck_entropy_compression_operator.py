@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Holodeck Entropy Compression Operator
-scope_note: system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md
+scope_note: system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md
 
 The holodeck stores a compressed representation of reality and reconstructs
 plausible worlds from that compression. The compression operator C maps
@@ -326,7 +326,7 @@ if __name__ == "__main__":
         "name": "sim_holodeck_entropy_compression_operator",
         "classification": "classical_baseline",
         "scope_note": (
-            "system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
+            "system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md; "
             "Holodeck compression-decompression operator family: SVD truncation, "
             "entropy reduction, lossiness, cycle idempotency, monotone trade-off."
         ),

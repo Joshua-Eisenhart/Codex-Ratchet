@@ -7,7 +7,7 @@ tags: [geometry, mathematics, topology, quantum]
 sources:
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_contact_structure_s3.py
   - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_pure_lego_contact_structure_s3.py
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/new docs/SIM_SESSION_INDEX.md
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/SIM_SESSION_INDEX.md
 framing: current
 ---
 

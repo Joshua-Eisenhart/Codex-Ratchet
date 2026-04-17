@@ -2,7 +2,7 @@
 """classical_weyl_lr_extraction_projector -- classical numpy projectors
 P_L = (I - gamma5)/2, P_R = (I + gamma5)/2 on a Dirac 4-spinor basis.
 
-scope_note: system_v5/new docs/ENGINE_MATH_REFERENCE.md, section "Weyl
+scope_note: system_v5/docs/ENGINE_MATH_REFERENCE.md, section "Weyl
 projection / chirality"; LADDERS_FENCES_ADMISSION_REFERENCE.md chirality fences.
 Classical baseline; Cl(3) rotor bridge is the canonical one.
 """

@@ -54,7 +54,7 @@ Tool stack:
   z3     — F01+N01 schedule constraint; UNSAT witness on swapped order (load_bearing)
   numpy  — baseline entropy cross-check only
 
-Reference: system_v5/READ ONLY Reference Docs/JUNGIAN_FUNCTIONS_AND_IGT_EXPLICIT_MATH_GEOMETRY_MAP copy.md §3.1, §4.1, §6.4
+Reference: system_v5/docs/archive/JUNGIAN_FUNCTIONS_AND_IGT_EXPLICIT_MATH_GEOMETRY_MAP copy.md §3.1, §4.1, §6.4
 """
 
 import json

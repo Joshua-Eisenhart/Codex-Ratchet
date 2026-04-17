@@ -53,6 +53,8 @@ def main():
         except Exception:
             continue
 
+        if isinstance(d, list):
+            continue
         cls = d.get("classification", "")
         if cls != "canonical":
             continue

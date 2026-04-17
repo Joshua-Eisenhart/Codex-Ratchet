@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """classical_igt_nash_2x2 -- doc illumination (classical).
 scope_note: Pure-strategy Nash equilibrium in 2x2 coordination game. Docs:
-system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 import numpy as np

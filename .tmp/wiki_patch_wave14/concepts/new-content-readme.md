@@ -12,7 +12,7 @@ framing: current
 # New Content Drop Zone
 
 ## Overview
-Folder for preprocessed incoming material before promotion into the new docs stack. Intended use: paste raw source-derived notes, normalize terminology, strip duplicates, extract established math terms and source facts, move stable synthesis into new docs/.
+Folder for preprocessed incoming material before promotion into the new docs stack. Intended use: paste raw source-derived notes, normalize terminology, strip duplicates, extract established math terms and source facts, move stable synthesis into docs/.
 
 ## Structure
 - preprocessed/ -- normalized source notes

@@ -3,7 +3,7 @@
 scope_note: z3 encodes probe-indistinguishability: two carriers are admissible
 as distinct iff there EXISTS a probe separating them. UNSAT = indistinguishable
 (same shell under this probe family). Docs:
-system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
+system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md;
 wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md.
 """
 from _doc_illum_common import build_manifest, write_results

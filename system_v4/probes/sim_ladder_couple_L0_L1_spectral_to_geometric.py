@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L0_L1_spectral_to_geometric
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L0_spectral and L1_geometric via sympy.
 classification: canonical
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L0_L1_spectral_to_geometric",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L0_spectral", "layer_b": "L1_geometric"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

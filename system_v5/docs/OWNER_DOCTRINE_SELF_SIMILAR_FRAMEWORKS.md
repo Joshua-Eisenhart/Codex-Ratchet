@@ -54,7 +54,7 @@ Current age is trapped in ego/mind/rationalism where only math-fluent actors def
 
 ## 6. Cross-References
 
-- `system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md` — sim gate derived from this doctrine
-- `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md` — agent harness derived from it
+- `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md` — sim gate derived from this doctrine
+- `system_v5/docs/LLM_CONTROLLER_CONTRACT.md` — agent harness derived from it
 - `~/wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md` — wiki mirror
 - Memory: `user_self_similar_legacy_doctrine.md`

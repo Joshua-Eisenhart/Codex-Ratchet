@@ -2,7 +2,7 @@
 """sim_classical_carnot_efficiency_vs_reservoir
 
 scope_note: Illuminates Landauer section of
-  system_v5/new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
+  system_v5/docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md
   by computing Carnot efficiency eta = 1 - Tc/Th across reservoir pairs.
   Classical baseline only; no admissibility claim.
 """

@@ -5,18 +5,18 @@ Status: OPEN-ENDED OVERNIGHT RUN PLAN — geometry-first, bottom-up lego work, h
 Purpose: define a real 8-hour overnight work program that can keep advancing legos across multiple waves, with many parallel lanes, while staying inside the actual controller/process rules.
 
 Authority surfaces used:
-- `new docs/LLM_CONTROLLER_CONTRACT.md`
-- `new docs/ENFORCEMENT_AND_PROCESS_RULES.md`
-- `new docs/EXPLICIT_CONTROLLER_MODEL.md`
-- `new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
-- `new docs/16_lego_build_catalog.md`
-- `new docs/17_actual_lego_registry.md`
-- `new docs/LLM_RESEARCH_GAP_MATRIX.json`
-- `system_v5/new docs/plans/sim_backlog_matrix.md`
-- `system_v5/new docs/plans/sim_truth_audit.md`
-- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/new docs/plans/controller_maintenance_checklist.md`
-- `system_v5/new docs/plans/on-demand-telegram-runner.md`
+- `docs/LLM_CONTROLLER_CONTRACT.md`
+- `docs/ENFORCEMENT_AND_PROCESS_RULES.md`
+- `docs/EXPLICIT_CONTROLLER_MODEL.md`
+- `docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md`
+- `docs/16_lego_build_catalog.md`
+- `docs/17_actual_lego_registry.md`
+- `docs/LLM_RESEARCH_GAP_MATRIX.json`
+- `system_v5/docs/plans/sim_backlog_matrix.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/plans/controller_maintenance_checklist.md`
+- `system_v5/docs/plans/on-demand-telegram-runner.md`
 
 ## 1. Correct model of an 8-hour run
 
@@ -167,10 +167,10 @@ Goal:
 - keep the controller surfaces honest after each geometry packet
 
 Touched surfaces when justified:
-- `system_v5/new docs/plans/sim_truth_audit.md`
-- `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-- `system_v5/new docs/16_lego_build_catalog.md`
-- `system_v5/new docs/17_actual_lego_registry.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+- `system_v5/docs/16_lego_build_catalog.md`
+- `system_v5/docs/17_actual_lego_registry.md`
 - touched wiki pages only if concept framing materially changed
 
 ### Classical lane C1 — fallback or side-lane maintenance

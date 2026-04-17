@@ -14,7 +14,7 @@ The graph topology/sparsity (which edges exist) is the load-bearing piece:
 pyg's MessagePassing uses edge_index to restrict aggregation to actual
 neighbors. Replacing that with a dense matmul stub breaks the claim.
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md.
 """
 
 import json

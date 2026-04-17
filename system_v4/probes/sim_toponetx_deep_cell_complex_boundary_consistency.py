@@ -4,7 +4,7 @@ sim_toponetx_deep_cell_complex_boundary_consistency
 
 Scope note: The admissibility claim being tested is B_{k-1} B_k = 0 on a 2-cell
 complex (a square face glued to its 4 edges). This is the chain-complex fence
-from system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md (boundary fence).
+from system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md (boundary fence).
 Without toponetx constructing the CellComplex and emitting incidence matrices
 with the canonical orientation convention, we have no admissibility probe for
 cell-complex distinguishability at all -- a hand-rolled B2 would beg the

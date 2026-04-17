@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """sim_ladder_couple_L13_L14_entangling_op_to_joint_state
 
-scope_note: ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
+scope_note: ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md. Language is exclusion/admissibility, not causal.
 
 Couples ladder layers L13_entangling_op and L14_joint_state via pytorch.
 classification: canonical
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     results = {
         "name": "sim_ladder_couple_L13_L14_entangling_op_to_joint_state",
         "classification": "canonical",
-        "scope_note": "ladders/fences per system_v5/new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
+        "scope_note": "ladders/fences per system_v5/docs/LADDERS_FENCES_ADMISSION_REFERENCE.md",
         "coupling": {"layer_a": "L13_entangling_op", "layer_b": "L14_joint_state"},
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,

@@ -13,7 +13,7 @@ Three load-bearing tools:
         anti-commute with Z (i.e., [A,Z]=0 and {A,Z}=0 with A≠0 is impossible)
   - sympy: symbolic verification of commutators for each generator
 
-See system_v5/new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+See system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
 """
 
 import json

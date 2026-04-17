@@ -2,7 +2,7 @@
 """classical_axis6_action_orientation -- classical baseline: oriented action
 surrogate via signed volume / Levi-Civita triple product for a 3-frame.
 
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md, section "Axis 6 /
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md, section "Axis 6 /
 action-orientation"; LADDERS_FENCES_ADMISSION_REFERENCE.md orientation fences.
 Classical surrogate (det), not the nonclassical action form.
 """

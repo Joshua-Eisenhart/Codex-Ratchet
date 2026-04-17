@@ -2,7 +2,7 @@
 """classical_axis0_entropy_gradient -- classical baseline numpy finite-difference
 gradient of constraint-admissibility entropy S(p) = -sum p log p.
 
-scope_note: system_v5/new docs/AXIS_AND_ENTROPY_REFERENCE.md, section "Axis 0 /
+scope_note: system_v5/docs/AXIS_AND_ENTROPY_REFERENCE.md, section "Axis 0 /
 entropy gradient"; cross-check CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md section
 "Shannon / admissibility entropy". Classical baseline only; not a claim about
 nonclassical I_c -- candidate admissibility probe, not a theorem.

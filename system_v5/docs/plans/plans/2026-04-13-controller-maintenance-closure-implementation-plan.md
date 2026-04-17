@@ -41,10 +41,10 @@ open “missing implementation” queue.
 
 ### In scope
 - Create a closure script that can update these live surfaces when explicitly targeted:
-  - `system_v5/new docs/plans/sim_truth_audit.md`
-  - `system_v5/new docs/plans/sim_backlog_matrix.md`
-  - `system_v5/new docs/plans/tool_integration_maintenance_matrix.md`
-  - `system_v5/new docs/17_actual_lego_registry.md`
+  - `system_v5/docs/plans/sim_truth_audit.md`
+  - `system_v5/docs/plans/sim_backlog_matrix.md`
+  - `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
+  - `system_v5/docs/17_actual_lego_registry.md`
 - Read these machine surfaces as inputs:
   - `system_v4/probes/a2_state/sim_results/probe_truth_audit_results.json`
   - `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
@@ -71,10 +71,10 @@ open “missing implementation” queue.
 ### Modify
 - `system_v4/probes/live_queue_controller.py`
 - `docs/plans/overnight_8h_run.sh`
-- `system_v5/new docs/plans/run_overnight_8h_controller.sh`
+- `system_v5/docs/plans/run_overnight_8h_controller.sh`
 - `telegram_bot.py`
-- `system_v5/new docs/plans/controller_maintenance_checklist.md`
-- optionally `system_v5/new docs/plans/on-demand-telegram-runner.md`
+- `system_v5/docs/plans/controller_maintenance_checklist.md`
+- optionally `system_v5/docs/plans/on-demand-telegram-runner.md`
 
 ---
 
@@ -159,7 +159,7 @@ If the artifact says `classification: classical_baseline`, the highest honest la
 
 ### Truth surface
 Patch exact anchor row text in:
-- `system_v5/new docs/plans/sim_truth_audit.md`
+- `system_v5/docs/plans/sim_truth_audit.md`
 
 Approach:
 - find the row by the exact row label string passed in `--truth-row`
@@ -168,7 +168,7 @@ Approach:
 
 ### Backlog surface
 Patch exact queue row in:
-- `system_v5/new docs/plans/sim_backlog_matrix.md`
+- `system_v5/docs/plans/sim_backlog_matrix.md`
 
 Approach:
 - find the row by batch/priority key passed in `--backlog-row`
@@ -177,7 +177,7 @@ Approach:
 
 ### Registry surface
 Patch exact lego row in:
-- `system_v5/new docs/17_actual_lego_registry.md`
+- `system_v5/docs/17_actual_lego_registry.md`
 
 Approach:
 - find the row by registry lego id passed in `--registry-row`
@@ -410,7 +410,7 @@ git commit -m "feat: wire maintenance closure dry-run into live queue controller
 
 **Files:**
 - Modify: `docs/plans/overnight_8h_run.sh`
-- Modify: `system_v5/new docs/plans/run_overnight_8h_controller.sh`
+- Modify: `system_v5/docs/plans/run_overnight_8h_controller.sh`
 
 **Step 1: Add cleanup guard to the canonical runner**
 `docs/plans/overnight_8h_run.sh` should call `cleanup_first_guard.py` before new sim execution.
@@ -422,13 +422,13 @@ Prefer one helper invocation pattern after audits.
 Run:
 ```bash
 bash -n docs/plans/overnight_8h_run.sh
-bash -n "system_v5/new docs/plans/run_overnight_8h_controller.sh"
+bash -n "system_v5/docs/plans/run_overnight_8h_controller.sh"
 ```
 Expected: no syntax errors.
 
 **Step 4: Commit**
 ```bash
-git add docs/plans/overnight_8h_run.sh "system_v5/new docs/plans/run_overnight_8h_controller.sh"
+git add docs/plans/overnight_8h_run.sh "system_v5/docs/plans/run_overnight_8h_controller.sh"
 git commit -m "chore: align overnight runners on cleanup and closure flow"
 ```
 

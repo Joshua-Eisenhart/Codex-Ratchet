@@ -89,10 +89,10 @@ No claim is being made that JP's god-at-the-terminus exists as a substance. The 
 
 ## 7. Cross-References
 
-- `system_v5/new docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md` — self-similar frameworks doctrine (parent)
-- `system_v5/new docs/NOMINALISM_IN_THIS_SYSTEM.md` — probe-relative identity derivation
-- `system_v5/new docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md` — CS translation layer
-- `system_v5/new docs/LLM_CONTROLLER_CONTRACT.md` — status-label discipline
+- `system_v5/docs/OWNER_DOCTRINE_SELF_SIMILAR_FRAMEWORKS.md` — self-similar frameworks doctrine (parent)
+- `system_v5/docs/NOMINALISM_IN_THIS_SYSTEM.md` — probe-relative identity derivation
+- `system_v5/docs/ANOMALOUS_COMPUTER_SCIENCE_TRANSLATION.md` — CS translation layer
+- `system_v5/docs/LLM_CONTROLLER_CONTRACT.md` — status-label discipline
 - `~/wiki/concepts/anti-reification-and-nominalism-reference.md` — classical nominalism roots
 - `~/wiki/concepts/self-similar-frameworks-and-teleological-doctrine.md` — wiki mirror of parent doctrine
 - `~/wiki/concepts/nominalist-cs-jp-systems-bridge.md` — wiki mirror of this doc

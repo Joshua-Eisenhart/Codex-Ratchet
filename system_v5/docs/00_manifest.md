@@ -9,8 +9,8 @@ Read this with:
 Authority:
 - These docs are research notes and alignment docs, not executable code.
 - Narrower docs in this folder outrank broader overview docs.
-- Preprocessed source notes live in `new docs/new content/` and feed these docs.
-- Reference tradition docs live in `new docs/references/` (14 completed).
+- Preprocessed source notes live in `docs/new content/` and feed these docs.
+- Reference tradition docs live in `docs/references/` (14 completed).
 - Superseded docs live in `archive_old/` (30 files) and `archive_hermes_overlaps/` (7 files).
 
 ---
@@ -108,7 +108,7 @@ Authority:
 - **audit**: rolling assessment meant to be updated as gaps are closed
 
 Processing rule:
-- top-level `new docs/*.md` files are promoted surfaces with explicit status tags
+- top-level `docs/*.md` files are promoted surfaces with explicit status tags
 - `new content/` is intake-only unless promoted
 - `archive_old/` and `archive_hermes_overlaps/` are historical recovery surfaces only
 - session docs can contain important corrections before promotion, but they are not the final owner surface when a canonical doc exists

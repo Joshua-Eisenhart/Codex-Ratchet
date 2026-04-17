@@ -143,7 +143,7 @@ while :; do
 
   # Skip known hang-prone probes
   case "$basename" in
-    *benchmark*|*_stress*|*stress_test*|*infinite*|*long_exact*|*80shell*|*prolongation*)
+    *benchmark*|*_stress*|*stress_test*|*infinite*|*long_exact*|*80shell*|*prolongation*|*sweep_runner*|*_runner|*_runner_*|classical_sweep_*|autonomous_*|overnight_*|*_sweep|*variant_sweep*)
       log "SKIP (hang-prone pattern): $basename"
       mark_line "$queue_file" "$basename" "SKIPPED" "0"
       continue

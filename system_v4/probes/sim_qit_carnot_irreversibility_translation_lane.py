@@ -10,9 +10,9 @@ from __future__ import annotations
 
 import json
 import pathlib
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 CLASSIFICATION = "canonical"
 divergence_log = (
     "Promoted QIT-aligned Carnot irreversibility translation lane built from "

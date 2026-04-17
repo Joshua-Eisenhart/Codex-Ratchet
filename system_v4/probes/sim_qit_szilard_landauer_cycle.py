@@ -20,9 +20,9 @@ import numpy as np
 import pennylane as qml
 import qutip
 
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 LN2 = float(np.log(2.0))
 EPS = 1e-10
 

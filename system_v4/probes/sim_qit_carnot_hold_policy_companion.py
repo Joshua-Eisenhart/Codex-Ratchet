@@ -20,9 +20,9 @@ import numpy as np
 import pennylane as qml
 import qutip
 
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 divergence_log = (
     "QIT Carnot hold-policy companion: the cycle semantics stay intact while "
     "qutip/cirq/pennylane witness the same one-carrier isothermal and hold "

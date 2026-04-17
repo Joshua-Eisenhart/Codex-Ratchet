@@ -18,9 +18,9 @@ import sys
 from typing import Any
 
 import numpy as np
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 PROBE_DIR = pathlib.Path(__file__).resolve().parent
 if str(PROBE_DIR) not in sys.path:
     sys.path.insert(0, str(PROBE_DIR))

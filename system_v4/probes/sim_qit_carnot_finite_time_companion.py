@@ -25,7 +25,7 @@ import cirq
 import numpy as np
 import pennylane as qml
 import qutip
-classification = "canonical"  # auto-backfill
+classification = "classical_baseline"  # auto-backfill  # downgraded: systematic_batch_no_test_sections_2026-04-17
 
 
 PROBE_DIR = pathlib.Path(__file__).resolve().parent

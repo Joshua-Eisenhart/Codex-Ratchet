@@ -18,9 +18,9 @@ import pathlib
 
 import rustworkx as rx
 import z3
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 CLASSIFICATION = "canonical"
 divergence_log = (
     "Bounded open-vs-strict bridge between the stabilized Weyl/Hopf geometry "

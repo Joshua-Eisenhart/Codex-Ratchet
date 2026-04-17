@@ -16,9 +16,9 @@ import json
 import pathlib
 from typing import Any
 
-classification = "canonical"
+classification = "classical_baseline"
 
-
+  # downgraded: systematic_batch_no_test_sections_2026-04-17
 CLASSIFICATION = "canonical"
 divergence_log = (
     "Direct comparison surface between the Weyl/Hopf geometry rows that are "

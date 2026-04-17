@@ -1,0 +1,124 @@
+{
+  "name": "SpectralTriple/Gerbe Pairwise Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no tensor computation needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph dynamics needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for linear integer constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "proves d \u2264 n constraint via SMT; load_bearing"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic boundary check d=0 (trivial gerbe)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint is on dimension, not algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold computation needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance computation needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "constraint is algebraic, not topological"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no simplicial complex needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "n4_d2_sat": {
+      "n": 4,
+      "d": 2,
+      "sat": true,
+      "claim": "d \u2264 n is satisfiable (gerbe admissible)"
+    },
+    "n2_d1_sat": {
+      "n": 2,
+      "d": 1,
+      "sat": true,
+      "claim": "d \u2264 n is satisfiable (trivial gerbe on lower dimension)"
+    }
+  },
+  "negative": {
+    "contradiction_unsat": {
+      "n": 2,
+      "d": 3,
+      "unsat": true,
+      "claim": "d > n AND d \u2264 n is unsatisfiable (gerbe cannot persist)"
+    },
+    "d5_n3_unsat": {
+      "n": 3,
+      "d": 5,
+      "sat": false,
+      "claim": "d \u2264 n must hold; d=5, n=3 fails"
+    }
+  },
+  "boundary": {
+    "trivial_gerbe_d0": {
+      "d": 0,
+      "explanation": "d=0 is always admissible (trivial band group); satisfies d \u2264 n for any n \u2265 0"
+    },
+    "maximal_gerbe_dn": {
+      "d_equals_n": true,
+      "explanation": "d=n is admissible boundary; gerbe degree equals spectral triple dimension"
+    },
+    "boundary_d0_n1_sat": {
+      "n": 1,
+      "d": 0,
+      "sat": true,
+      "claim": "trivial gerbe admissible on any geometry"
+    }
+  },
+  "classification": "canonical"
+}

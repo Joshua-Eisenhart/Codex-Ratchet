@@ -1,0 +1,117 @@
+{
+  "name": "sim_flux_stokes_cell_shell_canonical",
+  "classification": "canonical",
+  "scope_note": "shell-local flux on one cell with boundary-cycle witness",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor autodiff is not needed for the one-cell flux probe"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph message passing is not needed for a single plaquette shell"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 is not needed because topology and symbolic circulation already witness the local claim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "this local flux shell is checked through cell topology and symbolic circulation rather than SMT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy symbolically checks the circulation equals 2*pi*n for integer flux on one plaquette"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "geometric algebra is not required for the single-cell Stokes test"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian manifold tooling is not needed for one plaquette flux"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant networks are not part of this shell-local flux test"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph-only tooling is secondary to the cell-complex probe here"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraphs are not needed for the one-cell flux shell"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "toponetx provides the load-bearing cell complex and incidence matrices for the local flux shell"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "gudhi provides the boundary-cycle homology witness betti_1=1 for the plaquette boundary"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "boundary_of_boundary_zero": {
+      "pass": true
+    },
+    "boundary_cycle_has_betti_one": {
+      "betti": [
+        1,
+        1
+      ],
+      "pass": true
+    },
+    "sympy_integer_flux_circulation": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "open_chain_has_no_flux_cell": {
+      "pass": true
+    },
+    "open_chain_loses_boundary_cycle": {
+      "betti": [
+        1,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "zero_flux_zero_circulation": {
+      "pass": true
+    },
+    "unit_flux_nontrivial_boundary_weights": {
+      "pass": true
+    }
+  },
+  "passes_local_rerun": true
+}

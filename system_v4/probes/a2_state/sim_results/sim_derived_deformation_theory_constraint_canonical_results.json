@@ -1,0 +1,124 @@
+{
+  "name": "Derived Deformation Theory (Lurie/Pridham)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; derived geometry handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; homological algebra via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; derived algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_finite_t1_t2": {
+      "passed": true,
+      "note": "Finite T^1 and T^2 enable pro-representability"
+    },
+    "test_schlessinger_h1": {
+      "passed": true,
+      "note": "H1 condition: surjectivity on fiber products holds"
+    },
+    "test_ext_quiver": {
+      "passed": true,
+      "ext1_dimension": 0,
+      "ext2_dimension": 0,
+      "note": "A_1 quiver representation is rigid: Ext^1 = Ext^2 = 0"
+    }
+  },
+  "negative": {
+    "test_infinite_t1": {
+      "unsat": true,
+      "note": "Infinite T^1 violates pro-representability assumption"
+    },
+    "test_h1_failure": {
+      "unsat": false,
+      "note": "H1 violation: fiber product dimension < product dimension"
+    },
+    "test_obstruction_blocking": {
+      "passed": true,
+      "note": "dim(T^2) = 5 > 0: obstructions may block deformations"
+    }
+  },
+  "boundary": {
+    "test_rigid_deformations": {
+      "passed": true,
+      "note": "Fully rigid: no infinitesimal or obstruction deformations"
+    },
+    "test_unobstructed_deformations": {
+      "passed": true,
+      "note": "Unobstructed: infinitesimal deformations exist, no obstructions"
+    },
+    "test_one_dim_tangent": {
+      "passed": true,
+      "note": "1-dimensional tangent space: 1-parameter family of deformations"
+    }
+  },
+  "classification": "canonical"
+}

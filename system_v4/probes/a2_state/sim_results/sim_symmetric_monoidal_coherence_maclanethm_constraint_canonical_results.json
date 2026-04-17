@@ -1,0 +1,107 @@
+{
+  "name": "sim_symmetric_monoidal_coherence_maclanethm_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence proof"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for Mac Lane coherence constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "proves all canonical morphisms between same objects have unique rank (UNSAT for distinct canonical isomorphisms claiming different ranks)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic composition of associators, unitors, and symmetry isomorphisms"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for coherence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_pentagonal_coherence": {
+      "name": "Pentagonal diagram coherence",
+      "constraint": "rank(path1) = rank(path2) = 1",
+      "satisfiable": "True",
+      "theorem": "Mac Lane pentagonal axiom holds"
+    },
+    "positive_tests_error": "Given sort is not associated with this term manager"
+  },
+  "negative": {
+    "negative_test_1_distinct_canonical_ranks_unsat": {
+      "name": "Two canonical morphisms with different ranks (UNSAT)",
+      "formula": "rank(f canonical) = 1 AND rank(g canonical) = 2 AND rank(f) = rank(g)",
+      "satisfiable": "False",
+      "proof": "Mac Lane: all canonical morphisms X\u2192Y have same rank"
+    },
+    "negative_tests_error": "Given sort is not associated with this term manager"
+  },
+  "boundary": {
+    "boundary_test_1_unit_isomorphisms": {
+      "name": "Unit isomorphisms at boundaries",
+      "constraint": "rank(lambda) = rank(rho) = 1",
+      "satisfiable": "True",
+      "note": "Triangle axiom ensures coherence at I boundary"
+    },
+    "boundary_tests_error": "Given sort is not associated with this term manager"
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "sim_torch_ga_capability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive tensor carrier for torch_ga capability"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- geometric tensor roundtrip"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "torch_ga": "load_bearing"
+  },
+  "positive": {
+    "roundtrip_preserved": {
+      "pass": true,
+      "roundtrip": [
+        [
+          1.0,
+          -2.0,
+          0.5
+        ]
+      ]
+    },
+    "blade_width_matches_algebra": {
+      "pass": true,
+      "blade_width": 8,
+      "num_blades": 8
+    }
+  },
+  "negative": {
+    "shape_mismatch_raises": {
+      "pass": true,
+      "error_type": "RuntimeError"
+    }
+  },
+  "boundary": {
+    "tiny_tensor_finite": {
+      "pass": true,
+      "norm": 2.4494897776783375e-10
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

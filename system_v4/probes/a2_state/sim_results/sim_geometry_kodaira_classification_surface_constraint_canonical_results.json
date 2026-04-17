@@ -1,0 +1,167 @@
+{
+  "name": "Kodaira_Classification_Surface_Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure classification via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; surface classification handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Kodaira classification constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for surface classification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; algebraic classification via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; surface classification handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_kappa_2": {
+      "name": "Kodaira_dim_2_general_type",
+      "passed": true,
+      "kodaira_dimension": 2,
+      "surface_type": "general type"
+    },
+    "test_2_kappa_1": {
+      "name": "Kodaira_dim_1_elliptic",
+      "passed": true,
+      "kodaira_dimension": 1,
+      "surface_type": "elliptic"
+    },
+    "test_3_kappa_0": {
+      "name": "Kodaira_dim_0_k3_enriques",
+      "passed": true,
+      "kodaira_dimension": 0,
+      "surface_types": [
+        "K3",
+        "Enriques",
+        "abelian",
+        "Kummer"
+      ]
+    },
+    "test_4_enriques_2K": {
+      "name": "Kodaira_enriques_2K_equals_0",
+      "passed": true,
+      "K_order": 2,
+      "2K_is_trivial": true,
+      "note": "Enriques: canonical bundle K has order exactly 2"
+    }
+  },
+  "negative": {
+    "test_1_unsat_kappa_3": {
+      "name": "UNSAT_kappa_not_in_admissible_set",
+      "passed": true,
+      "should_be_unsat": true,
+      "result": "unsat"
+    },
+    "test_2_unsat_enriques_K_2K": {
+      "name": "UNSAT_enriques_K_2K_both_nontrivial",
+      "passed": true,
+      "should_be_unsat": true,
+      "result": "unsat"
+    },
+    "test_3_unsat_kappa_neg2": {
+      "name": "UNSAT_kappa_negative_2",
+      "passed": true,
+      "should_be_unsat": true,
+      "result": "unsat"
+    }
+  },
+  "boundary": {
+    "test_1_kappa_2_max": {
+      "name": "Boundary_kappa_2_general_type_lower",
+      "passed": true,
+      "kodaira_dimension": 2,
+      "note": "\u03ba = 2 is the maximal Kodaira dimension for surfaces"
+    },
+    "test_2_kappa_neginf": {
+      "name": "Boundary_kappa_neg_infinity",
+      "passed": true,
+      "kodaira_dimension_repr": -1,
+      "surface_types": [
+        "rational",
+        "ruled"
+      ]
+    },
+    "test_3_all_kappas": {
+      "name": "Boundary_all_kappa_admissible",
+      "passed": true,
+      "all_kappas": [
+        -1,
+        0,
+        1,
+        2
+      ],
+      "complete": true
+    },
+    "test_4_K3_canonical": {
+      "name": "Boundary_K3_trivial_canonical",
+      "passed": true,
+      "kodaira_dimension": 0,
+      "K_is_trivial": true,
+      "note": "K3: \u03ba = 0 with canonical bundle K \u2245 O"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,128 @@
+{
+  "name": "sim_circuit_unitary_canonicalization_z3",
+  "purpose": "Verify that 2-qubit circuit unitarity constraints are admissible via z3; numerical evolution confirms Bell-state generation.",
+  "timestamp": "2026-04-16T12:54:24.084972+00:00",
+  "classification": "canonical",
+  "tool_manifest": {
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof that two-qubit unitarity constraints and Pauli commutation ordering are satisfiable; UNSAT rules out non-admissible circuit orderings."
+    },
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical statevector/density-matrix evolution for Bell-state preparation; fidelity computation against z3-admissible circuits."
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "Matrix exponential for Pauli-rotation gates; eigensolver for entanglement measure computation (concurrence)."
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "Could verify Pauli algebra relations symbolically; not required when z3+numpy suffice."
+    },
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Autograd differentiation for gate parameterization; not required for canonical unitary proof."
+    },
+    "TopoNetX": {
+      "tried": true,
+      "used": false,
+      "reason": "Circuit dependency graph as hypergraph; not required for two-qubit bridge."
+    },
+    "PyGeometric": {
+      "tried": true,
+      "used": false,
+      "reason": "Message passing for entanglement structure; not required for explicit two-qubit computation."
+    },
+    "Clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra for spinor representation; not required; Pauli matrices sufficient."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "Alternative SMT solver; z3 sufficient for this constraint set."
+    },
+    "qiskit": {
+      "tried": true,
+      "used": false,
+      "reason": "Alternative circuit backend; not required; explicit matrix gates sufficient."
+    },
+    "numba": {
+      "tried": true,
+      "used": false,
+      "reason": "JIT compilation for tight loops; not required for small two-qubit system."
+    },
+    "jax": {
+      "tried": true,
+      "used": false,
+      "reason": "Functional JAX transformations; not required; scipy sufficient."
+    }
+  },
+  "tool_integration_depth": {
+    "z3": "load_bearing",
+    "numpy": "load_bearing",
+    "scipy": "supportive",
+    "sympy": null,
+    "pytorch": null,
+    "TopoNetX": null,
+    "PyGeometric": null,
+    "Clifford": null,
+    "cvc5": null,
+    "qiskit": null,
+    "numba": null,
+    "jax": null
+  },
+  "z3_proofs": {
+    "unitarity_structure": {
+      "z3_unitarity_admissible": true,
+      "solver_status": "sat"
+    },
+    "cnot_order_distinction": {
+      "z3_cnot_order_distinct": true,
+      "solver_status": "sat"
+    }
+  },
+  "positive": {
+    "bell_entanglement_01": {
+      "theta": 0.7853981633974483,
+      "phi": 0.5235987755982988,
+      "cnot_order": "0\u21921",
+      "concurrence": 0.9999999896398867,
+      "is_entangled": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "cnot_order_contrast": {
+      "concurrence_01": 0.9999999896398867,
+      "concurrence_10": 0.0,
+      "differ_by": 0.9999999896398867,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_bell": {
+      "theta": 0.0,
+      "phi": 0.0,
+      "concurrence": 0.9999999999999994,
+      "is_maximally_entangled": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "z3_unitarity_admissible": true,
+    "z3_cnot_order_distinct": true,
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true
+}

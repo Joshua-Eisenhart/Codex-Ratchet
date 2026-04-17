@@ -1,0 +1,109 @@
+{
+  "name": "sim_u1_gauge_admissibility_constraint_shell_canonical",
+  "classification": "canonical",
+  "scope_note": "shell-local U(1) admissibility: periodic gauge shifts are integer windings",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor numerics are not needed for the winding admissibility proof"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph tools are not needed for endpoint winding constraints"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 is used as the load-bearing arithmetic prover for integer winding"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves admissible normalized gauge shifts equal integer winding numbers and excludes fractional winding"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy checks exp(2*pi*i*n)=1 for admissible windings"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "geometric algebra is not required for the scalar winding constraint"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "manifold geometry is not needed for the arithmetic admissibility check"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant networks are outside this shell-local constraint lane"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graphs are not needed for endpoint winding admissibility"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraphs are not needed for integer winding constraints"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complexes are not needed for this endpoint admissibility proof"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology is not needed for gauge endpoint arithmetic"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "integer_winding_sat": {
+      "pass": true
+    },
+    "zero_winding_sat": {
+      "pass": true
+    },
+    "sympy_periodic_gauge_closure": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "fractional_half_winding_excluded": {
+      "pass": true
+    },
+    "fractional_third_winding_excluded": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "minus_one_winding_sat": {
+      "pass": true
+    },
+    "unit_winding_sat": {
+      "pass": true
+    }
+  },
+  "passes_local_rerun": true
+}

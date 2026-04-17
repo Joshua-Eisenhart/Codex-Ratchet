@@ -1,0 +1,165 @@
+{
+  "name": "Discrete Series Representation Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; representation theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; Lie theory constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "harish_chandra_rank_condition": {
+      "test": "Discrete series exist iff rank(G) = rank(K)",
+      "harisch_chandra": "rank equality necessary",
+      "example_sl2r_so2": "both rank 1",
+      "satisfiable": true
+    },
+    "formal_degree_formula": {
+      "test": "Formal degree d(\u03c0) = |\u03bb+\u03c1|\u00b2 / \u03a0_{\u03b1>0} |\u27e8\u03bb,\u03b1\u27e9|",
+      "lambda": 1.5,
+      "rho": 1,
+      "lambda_plus_rho": 2.5,
+      "norm_squared": 6.25,
+      "formal_degree": 4.166666666666667,
+      "group": "SL(2,R) example"
+    },
+    "orthogonality_relations": {
+      "test": "\u222b_G |\u03c7_\u03c0(g)|\u00b2 dg = 1/d(\u03c0)",
+      "formal_degree": 2.5,
+      "character_integral": 0.4,
+      "orthogonality_holds": true
+    },
+    "l2_unitarity": {
+      "test": "Discrete series: unitary and square-integrable (L\u00b2 rep)",
+      "unitary": true,
+      "square_integrable": true,
+      "is_l2_rep": true
+    },
+    "plancherel_measure": {
+      "test": "Plancherel measure on discrete series: \u03bc(\u03c0) = d(\u03c0)",
+      "discrete_series_measures": [
+        2.0,
+        3.5
+      ],
+      "plancherel_formula": "\u222b_G f(g) dg = \u222b\u2295_DS d(\u03c0) Tr(\u03c0(f))\u00b2"
+    }
+  },
+  "negative": {
+    "rank_inequality_violation_unsat": {
+      "test": "Claiming discrete series with rank(G) \u2260 rank(K) \u2192 UNSAT",
+      "unsat": true,
+      "harisch_chandra": "rank equality is necessary condition"
+    },
+    "negative_degree_unsat": {
+      "test": "Claiming formal degree \u2264 0 \u2192 UNSAT",
+      "unsat": true,
+      "constraint": "d(\u03c0) > 0 for all discrete series"
+    },
+    "non_unitary_discrete_unsat": {
+      "test": "Claiming non-unitary discrete series \u2192 UNSAT",
+      "unitary_required": true,
+      "contradicts": true
+    },
+    "wrong_degree_formula_unsat": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkDiv'"
+    },
+    "orthogonality_violation_unsat": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkDiv'"
+    }
+  },
+  "boundary": {
+    "boundary_trivial_group": {
+      "test": "Trivial group G = {e}: rank(G) = rank(K) = 0",
+      "rank": 0,
+      "has_discrete_series": true,
+      "satisfiable": true
+    },
+    "boundary_high_rank_discrete": {
+      "test": "Discrete series exist for high rank groups (rank(G) = rank(K))",
+      "rank": 10,
+      "example": "SU(10,10)",
+      "discrete_series_exist": true
+    },
+    "boundary_small_degree": {
+      "test": "Formal degree d(\u03c0) can be arbitrarily small (but > 0)",
+      "d_pi": 0.0001,
+      "is_positive": true,
+      "still_valid_discrete_series": true
+    },
+    "boundary_singular_wall": {
+      "test": "\u03bb near singular hyperplane: formal degree d(\u03c0) \u2192 \u221e",
+      "lambda_position": "near wall",
+      "formal_degree_magnitude": 10000
+    }
+  },
+  "classification": "canonical"
+}

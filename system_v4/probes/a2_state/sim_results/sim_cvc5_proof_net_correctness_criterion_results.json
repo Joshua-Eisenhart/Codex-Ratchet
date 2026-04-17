@@ -1,0 +1,128 @@
+{
+  "name": "sim_cvc5_proof_net_correctness_criterion",
+  "description": "Proof net correctness via Danos-Regnier criterion: correct iff all switchings acyclic and connected. Tests UNSAT when criterion violated.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; proof net structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SMT solver for DR criterion UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive verification of Sequentialization theorem"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; proof theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; proof net graph encoded directly in constraints"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_identity_proof_correct": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_tensor_proof_correct": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_axiom_perfect_matching": {
+      "satisfiable": true,
+      "expected": true,
+      "pass": true,
+      "description": "Axiom links form perfect matching on literals (each literal A+ paired with A-)"
+    }
+  },
+  "negative": {
+    "test_switching_with_cycle_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "pass": true,
+      "description": "A switching with a cycle (3 nodes, 3 edges) violates DR criterion; UNSAT"
+    },
+    "test_switching_disconnected_unsat": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_axiom_incomplete_matching_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "pass": true,
+      "description": "Axiom links incomplete (covers 2 of 4 literals) violates DR criterion; UNSAT"
+    }
+  },
+  "boundary": {
+    "test_minimal_correct_proof_net": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_larger_proof_net": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "test_sympy_sequentialization": {
+      "nodes": 4,
+      "edges": 3,
+      "tree_condition_satisfied": true,
+      "expected": true,
+      "pass": true,
+      "description": "Sympy verification: tree property (e=n-1) ensures sequent proof exists"
+    }
+  },
+  "classification": "canonical"
+}

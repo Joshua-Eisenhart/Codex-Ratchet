@@ -1,0 +1,140 @@
+{
+  "name": "UniquenessTypeAliasConstraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "PyTorch not needed; uniqueness types are symbolic"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; pure constraint verification"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all constraint solving"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Constraint solving for uniqueness type verification"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; uniqueness is algebraic"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; scope is linear, not graph-based"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard constraint verification sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_single_unique_reference": {
+      "status": "pass",
+      "formula": "alias_count(u) = 1",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_2_function_call_removes_from_scope": {
+      "status": "pass",
+      "formula": "u in caller before, u in func after (not in caller), alias=1 in func",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_3_multiple_unique_values": {
+      "status": "pass",
+      "formula": "u, v, w all have alias_count=1",
+      "expected": "SAT",
+      "actual": "SAT"
+    }
+  },
+  "negative": {
+    "test_1_multiple_aliases": {
+      "status": "pass",
+      "formula": "alias_count=1 AND alias_count>=2",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    },
+    "test_2_sharing_without_copy": {
+      "status": "pass",
+      "formula": "unique(u) then share(u) without copy -> alias=1 AND alias>=2",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    },
+    "test_3_use_after_function_pass": {
+      "status": "pass",
+      "formula": "u in func scope AND NOT in_caller AND in_caller (contradiction)",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    }
+  },
+  "boundary": {
+    "test_1_alias_count_zero": {
+      "status": "pass",
+      "formula": "unique: alias_count=1; query: can it be 0?",
+      "expected": "UNSAT (no, zero = dangling pointer)",
+      "actual": "UNSAT"
+    },
+    "test_2_copy_preserves_uniqueness": {
+      "status": "pass",
+      "formula": "copy(u) -> original alias=1, copied alias=2, total=3",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_3_nested_function_calls": {
+      "status": "pass",
+      "formula": "f -> g(u), u unique in f and g, alias_count=1 both",
+      "expected": "SAT",
+      "actual": "SAT"
+    }
+  },
+  "classification": "canonical"
+}

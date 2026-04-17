@@ -1,0 +1,196 @@
+{
+  "name": "FormalModuliProblemSchlessinger",
+  "domain": "formal deformation theory",
+  "claim": "Schlessinger H4: tangent space T\u00b9 (fiber over trivial deformation) is finite-dimensional",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for dimension constraints"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for moduli theory"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead for QF_LIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "core solver: QF_LIA for dimension constraints in H4 condition"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of dimension formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Schlessinger"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for formal moduli"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for dimension constraints"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for moduli theory"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for dimension constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_dim_T1_0_point": {
+      "moduli_type": "point",
+      "dim_T1": 0,
+      "schlessinger_H4_satisfied": true,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_dim_T1_1_smooth_curve": {
+      "moduli_type": "smooth curve",
+      "dim_T1": 1,
+      "schlessinger_H4_satisfied": true,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_dim_T1_2squared_GLn": {
+      "moduli_type": "GL_2",
+      "dim_T1": 4,
+      "formula": "dim(T\u00b9) = n\u00b2 = 2\u00b2",
+      "schlessinger_H4_satisfied": true,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_dim_T1_3squared_GLn": {
+      "moduli_type": "GL_3",
+      "dim_T1": 9,
+      "formula": "dim(T\u00b9) = n\u00b2 = 3\u00b2",
+      "schlessinger_H4_satisfied": true,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_dim_T1_50_large_finite": {
+      "dim_T1": 50,
+      "finite": true,
+      "schlessinger_H4_satisfied": true,
+      "is_sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_negative_dim_T1_minus1": {
+      "dim_T1": -1,
+      "constraint": "dim(T\u00b9) >= 0",
+      "satisfies_H4": false,
+      "is_sat": false,
+      "expected": false
+    },
+    "test_negative_dim_T1_minus5": {
+      "dim_T1": -5,
+      "constraint": "dim(T\u00b9) >= 0",
+      "satisfies_H4": false,
+      "is_sat": false,
+      "expected": false
+    },
+    "test_negative_dim_T1_contradiction": {
+      "constraint": "dim(T\u00b9) = 0 AND dim(T\u00b9) = 1",
+      "satisfies_H4": false,
+      "is_sat": false,
+      "expected": false
+    },
+    "test_negative_dim_T1_exceeds_finiteness_bound": {
+      "dim_T1": 1001,
+      "finiteness_bound": 1000,
+      "constraint": "dim(T\u00b9) <= 1000",
+      "satisfies_H4_finiteness": false,
+      "is_sat": false,
+      "expected": false
+    }
+  },
+  "boundary": {
+    "test_boundary_point_dim": {
+      "moduli_object": "point (Spec k)",
+      "dim_T1": 0,
+      "formula": "dim(T\u00b9) = 0",
+      "expected": true
+    },
+    "test_boundary_GLn_dim": {
+      "moduli_object": "GL_4",
+      "dim_T1": 16,
+      "formula": "dim(T\u00b9) = 4\u00b2 = 16",
+      "expected": true
+    },
+    "test_boundary_smooth_variety_d1": {
+      "moduli_object": "smooth variety of dimension 1",
+      "dim_T1": 1,
+      "formula": "dim(T\u00b9) = d = 1",
+      "expected": true
+    },
+    "test_boundary_smooth_variety_d2": {
+      "moduli_object": "smooth variety of dimension 2",
+      "dim_T1": 2,
+      "formula": "dim(T\u00b9) = d = 2",
+      "expected": true
+    },
+    "test_boundary_smooth_variety_d3": {
+      "moduli_object": "smooth variety of dimension 3",
+      "dim_T1": 3,
+      "formula": "dim(T\u00b9) = d = 3",
+      "expected": true
+    },
+    "test_boundary_versal_deformation_musingularity": {
+      "theory": "Schlessinger deformation",
+      "tangent_space": "T\u00b9",
+      "dimension": "\u03bc (Milnor number for singularities)",
+      "property": "dimension equals singularity invariant",
+      "expected": true
+    },
+    "test_boundary_schlessinger_H4_symbolic": {
+      "condition": "Schlessinger H4",
+      "constraint": "dim(T\u00b9) >= 0",
+      "property": "tangent space is finite-dimensional vector space",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

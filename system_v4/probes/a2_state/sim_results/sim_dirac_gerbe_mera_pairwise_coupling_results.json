@@ -1,0 +1,157 @@
+{
+  "name": "sim_dirac_gerbe_mera_pairwise_coupling",
+  "classification": "classical_baseline",
+  "classification_note": "Pairwise coupling for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac=seed0 symmetric 4x4 spectral gap. H_gerbe=log(4). H_mera=log(2). Q_pair=H_i\u00d7H_j>0 for all three DGM pairs. z3 UNSAT: zero factor makes product zero \u2014 no positive Q from zero entropy. sympy: two-factor product collapse. pytorch: scalar entropy tensor positivity check.",
+  "divergence_log": "Pairwise coupling for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac=seed0 symmetric 4x4 spectral gap. H_gerbe=log(4). H_mera=log(2). Q_pair=H_i\u00d7H_j>0 for all three DGM pairs. z3 UNSAT: zero factor makes product zero \u2014 no positive Q from zero entropy. sympy: two-factor product collapse. pytorch: scalar entropy tensor positivity check.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Construct shell-entropy tensors as float64 torch scalars; validate positivity of Q_pair products for all three DGM pairs via torch arithmetic (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph learning not required for scalar pairwise coupling entropy products in DGM program; no graph structure invoked"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: for any DGM pair, if either shell entropy is zero then Q_pair=0 \u2014 impossibility of positive product with zero factor (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT is sufficient for zero-factor impossibility in DGM pairwise coupling; cvc5 adds no new information here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic two-factor product: a*b=0 if a=0 or b=0 \u2014 encodes pairwise Q_pair zero-gate for Dirac\u00d7Gerbe\u00d7MERA algebraically (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Dirac spectral gap encoded as scalar H_dirac in pairwise step; Cl(3,0) rotors not needed at pairwise level"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not needed for scalar entropy product pairwise coupling tests in DGM program"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar DGM shell-entropy pairwise product tests"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required for pairwise scalar entropy product computation in DGM program"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for pairwise DGM shell-entropy product tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex topology variants deferred to topology-variants step; not needed in pairwise coupling"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for scalar pairwise DGM shell-entropy product tests"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "H_values": {
+    "H_dirac": 0.33678336703714473,
+    "H_gerbe": 1.3862943611198906,
+    "H_mera": 0.6931471805599453
+  },
+  "positive": {
+    "P_pair_D_x_G_Q_positive": {
+      "H_i": 0.33678336703714473,
+      "H_j": 1.3862943611198906,
+      "Q_pair": 0.46688088264256417,
+      "passed": true
+    },
+    "P_pair_D_x_M_Q_positive": {
+      "H_i": 0.33678336703714473,
+      "H_j": 0.6931471805599453,
+      "Q_pair": 0.23344044132128208,
+      "passed": true
+    },
+    "P_pair_G_x_M_Q_positive": {
+      "H_i": 1.3862943611198906,
+      "H_j": 0.6931471805599453,
+      "Q_pair": 0.9609060278364028,
+      "passed": true
+    },
+    "P_pytorch_all_pairs_positive": {
+      "products": [
+        0.46688088264256417,
+        0.23344044132128208,
+        0.9609060278364028
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Hi_zero_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N1_z3_unsat_Hj_zero_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_pair_zero_factor": {
+      "a=0": "0",
+      "b=0": "0",
+      "passed": true
+    },
+    "N3_negative_gap_gives_negative_Q": {
+      "neg_gap": -1.4190833820471291,
+      "Q_pair": -1.9672672904908786,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_H_dirac_positive": {
+      "H_dirac": 0.33678336703714473,
+      "passed": true
+    },
+    "B2_H_gerbe_log4": {
+      "H_gerbe": 1.3862943611198906,
+      "expected": 1.3862943611198906,
+      "err": 0.0,
+      "passed": true
+    },
+    "B3_H_mera_log2": {
+      "H_mera": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "err": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

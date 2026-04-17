@@ -1,0 +1,146 @@
+{
+  "name": "QuantumWeakestPrecondition",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; quantum logic handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; quantum logic via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_wp_eigenvalue_preservation": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_wp_compositionality": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_wp_hadamard": {
+      "Q": "Matrix([[1, 0], [0, 0]])",
+      "wp_H_Q": "Matrix([[1/2, 1/2], [1/2, 1/2]])",
+      "expected": "Matrix([[1/2, 0], [0, 1/2]])",
+      "pass": "False"
+    },
+    "test_wp_identity": {
+      "expected": "Matrix([[0.300000000000000, 0.100000000000000], [0.100000000000000, 0.700000000000000]])",
+      "actual": "Matrix([[0.300000000000000, 0.100000000000000], [0.100000000000000, 0.700000000000000]])",
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "test_wp_eigenvalue_violation": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_wp_compositionality_violation": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_wp_x_gate_transformation": {
+      "Q": "Matrix([[1, 0], [0, 0]])",
+      "wp_X_Q": "Matrix([[0, 0], [0, 1]])",
+      "expected": "Matrix([[0, 0], [0, 1]])",
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "test_measurement_projector": {
+      "Q": "Matrix([[0.600000000000000, 0], [0, 0.400000000000000]])",
+      "\u03a0_0_Q_\u03a0_0": "Matrix([[0.600000000000000, 0], [0, 0]])",
+      "expected": "Matrix([[0.600000000000000, 0], [0, 0]])",
+      "pass": "True"
+    },
+    "test_measurement_probability": {
+      "Q": "Matrix([[0.600000000000000, 0], [0, 0.400000000000000]])",
+      "Tr(\u03a0_0 Q)": 0.6,
+      "expected": 0.6,
+      "pass": "True"
+    },
+    "test_wp_eigenvalue_boundary": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_bell_state_partial_trace": {
+      "state": "|\u03a6+\u27e9",
+      "partial_trace_computed": "Matrix([[1/2, 0], [0, 1/2]])",
+      "expected": "Matrix([[1/2, 0], [0, 1/2]])",
+      "pass": "True"
+    }
+  },
+  "classification": "canonical"
+}

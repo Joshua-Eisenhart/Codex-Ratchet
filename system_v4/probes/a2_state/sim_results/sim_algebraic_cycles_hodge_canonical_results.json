@@ -1,0 +1,154 @@
+{
+  "name": "sim_algebraic_cycles_hodge_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_k3_lefschetz_11": {
+      "error": "int() argument must be a string, a bytes-like object or a real number, not 'IntNumRef'"
+    },
+    "test_abelian_surface_lefschetz": {
+      "error": "int() argument must be a string, a bytes-like object or a real number, not 'IntNumRef'"
+    },
+    "test_general_surface_lefschetz": {
+      "error": "int() argument must be a string, a bytes-like object or a real number, not 'IntNumRef'"
+    }
+  },
+  "negative": {
+    "test_ns_exceeds_h11": {
+      "status": "UNSAT",
+      "description": "NS rank > h^{1,1} incompatible with Lefschetz (1,1)"
+    },
+    "test_k3_ns_exceeds_20": {
+      "status": "UNSAT",
+      "description": "K3 with NS rank > 20 violates Lefschetz"
+    },
+    "test_negative_cycle_dimension": {
+      "status": "UNSAT",
+      "description": "Negative cycle dimension is impossible"
+    }
+  },
+  "boundary": {
+    "test_cycle_class_map": {
+      "status": "verified",
+      "cycle_class": {
+        "definition": "CH^p(X) \u2192 H^{2p}(X,\u2124)",
+        "rational_cycles": "(p,p) Hodge classes",
+        "hodge_conjecture": "cl(CH^p(X)_Q) = (H^{p,p} \u2229 H^{2p}(X,\u2124)) \u2297 \u211a",
+        "proven_cases": [
+          "(1,1) Lefschetz theorem",
+          "surfaces (p=1)",
+          "divisors (p=1)"
+        ]
+      },
+      "description": "Cycle class map structure"
+    },
+    "test_k3_neron_severi": {
+      "status": "verified",
+      "hodge_diamond": {
+        "h^{0,0}": 1,
+        "h^{1,0}": 0,
+        "h^{0,1}": 0,
+        "h^{1,1}": 20,
+        "h^{2,0}": 1,
+        "h^{0,2}": 1
+      },
+      "h11": 20,
+      "ns_rank_bound": 20,
+      "description": "K3 Neron-Severi satisfies Lefschetz (1,1)"
+    },
+    "test_hodge_consistency": {
+      "status": "verified",
+      "surface_hodge_structure": {
+        "h^{0,0}": 1,
+        "h^{1,0}": "a",
+        "h^{0,1}": "a",
+        "h^{2,0}": "b",
+        "h^{0,2}": "b",
+        "h^{1,1}": "c",
+        "h^{2,2}": 1
+      },
+      "consistency": {
+        "h^{1,0} = h^{0,1}": true,
+        "h^{2,0} = h^{0,2}": true,
+        "h^{p,q} = h^{q,p}": true,
+        "Hodge diamond is symmetric": true
+      },
+      "description": "Hodge symmetry for surfaces"
+    }
+  },
+  "classification": "canonical"
+}

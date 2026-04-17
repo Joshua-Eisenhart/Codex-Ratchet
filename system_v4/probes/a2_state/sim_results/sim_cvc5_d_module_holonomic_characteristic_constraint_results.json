@@ -1,0 +1,135 @@
+{
+  "name": "Holonomic D-module Characteristic Variety Constraint",
+  "description": "dim(Ch(M)) = n for holonomic D-modules on n-dimensional manifolds",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of holonomic D-module characteristic constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for dimension constraints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_n1_dim1": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "1-dimensional manifold with dim(Ch)=1 is holonomic"
+    },
+    "test_2_n2_dim2": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "2-dimensional manifold with dim(Ch)=2 is holonomic"
+    },
+    "test_3_n3_dim3": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "3-dimensional manifold with dim(Ch)=3 is holonomic"
+    }
+  },
+  "negative": {
+    "test_neg_1_n1_dim0": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "1-dimensional manifold cannot have 0-dimensional Ch(M)"
+    },
+    "test_neg_2_n2_dim3": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "2-dimensional manifold cannot have 3-dimensional Ch(M) for holonomic module"
+    },
+    "test_neg_3_n3_dim2": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "3-dimensional manifold cannot have 2-dimensional Ch(M) for holonomic module"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_high_dim": {
+      "status": "PASS",
+      "reason": "10-dimensional manifold with dim(Ch)=10 is holonomic"
+    },
+    "test_boundary_2_point": {
+      "status": "PASS",
+      "reason": "Point (0-dimensional) with dim(Ch)=0"
+    },
+    "test_boundary_3_off_by_one": {
+      "status": "PASS",
+      "reason": "5-dimensional manifold cannot have 4-dimensional Ch(M)"
+    }
+  },
+  "classification": "canonical"
+}

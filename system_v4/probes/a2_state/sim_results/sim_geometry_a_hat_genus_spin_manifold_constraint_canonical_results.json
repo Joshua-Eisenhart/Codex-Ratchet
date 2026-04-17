@@ -1,0 +1,219 @@
+{
+  "name": "sim_geometry_a_hat_genus_spin_manifold_constraint",
+  "family": "AHatGenusSpinManifold",
+  "classification": "canonical",
+  "theorem": "\u00c2(M) = ind(D) \u2208 Z; R > 0 \u27f9 \u00c2 = 0 on spin manifolds",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of \u00c2-genus spin manifold constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for \u00c2-genus formula and Pontrjagin class algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "S4_zero_a_hat_positive_R": {
+      "manifold": "S4",
+      "dimension": 4,
+      "is_spin": true,
+      "scalar_curvature": 1,
+      "a_hat_genus": 0,
+      "dirac_index": 0,
+      "compatible": true,
+      "reason": "S\u2074 is spin, has R > 0, and \u00c2(S\u2074) = 0 by topological computation"
+    },
+    "positive_curvature_a_hat_zero": {
+      "manifold": "positively curved spin 4-manifold",
+      "dimension": 4,
+      "is_spin": true,
+      "scalar_curvature_positive": true,
+      "a_hat_genus": 0,
+      "compatible": true,
+      "reason": "Positive curvature forces \u00c2-genus to vanish by Lichnerowicz + index theory"
+    },
+    "hyperbolic_nonzero_a_hat": {
+      "manifold": "hyperbolic spin 4-manifold",
+      "dimension": 4,
+      "is_spin": true,
+      "scalar_curvature": -1,
+      "a_hat_genus": -1,
+      "compatible": true,
+      "reason": "Negative curvature permits nonzero \u00c2-genus (e.g., Hyperbolic orbifolds)"
+    }
+  },
+  "negative": {
+    "positive_R_a_hat_nonzero": {
+      "manifold": "hypothetical spin 4-manifold",
+      "dimension": 4,
+      "is_spin": true,
+      "scalar_curvature": 2,
+      "a_hat_genus": 1,
+      "constraint": "R > 0 \u2227 \u00c2 \u2260 0 on spin manifold",
+      "smt_result": "UNSAT",
+      "reason": "Positive curvature + topology forces \u00c2 = 0"
+    },
+    "positive_R_negative_a_hat": {
+      "manifold": "hypothetical",
+      "is_spin": true,
+      "scalar_curvature": 0.5,
+      "a_hat_genus": -2,
+      "smt_result": "UNSAT",
+      "reason": "Any nonzero \u00c2-genus with positive curvature contradicts index theory"
+    },
+    "a_hat_index_contradiction": {
+      "manifold": "witness",
+      "constraint": "spin \u2227 R > 0 \u2227 ind(D) \u2260 0",
+      "violated_law": "\u00c2(M) = ind(D) \u2208 Z vanishes for R > 0",
+      "smt_status": "UNSAT"
+    }
+  },
+  "boundary": {
+    "dimension_4_minimal_a_hat": {
+      "manifold": "4-dimensional spin manifold",
+      "dimension": 4,
+      "signature": "4 = 4k with k=1",
+      "a_hat_genus_formula": "\u00c2 = (1/24) * p_1[M]",
+      "p1_class": "first Pontrjagin class (from Riemann curvature)",
+      "a_hat_integer": true,
+      "reason": "\u00c2(M) is integer (index of Dirac operator)"
+    },
+    "dimension_8_a_hat": {
+      "manifold": "8-dimensional spin manifold",
+      "dimension": 8,
+      "a_hat_formula": "\u00c2 = (1/(24^2)) * (p_1\u00b2 - p_2)[M] / 48",
+      "a_hat_parity": "integer",
+      "constraint_positive_R": "\u00c2 = 0 when R > 0"
+    },
+    "dimension_16_example": {
+      "manifold": "K3 surface (spin, 2-dimensional complex)",
+      "dimension": 4,
+      "a_hat_genus": 2,
+      "scalar_curvature": "cannot be positive everywhere (K\u00e4hler-Einstein)",
+      "reason": "K3 admits no positive scalar curvature (no spin metric R > 0)"
+    },
+    "R_equals_zero_a_hat_unconstrained": {
+      "manifold": "flat spin manifold (e.g., torus T\u2074)",
+      "dimension": 4,
+      "scalar_curvature": 0,
+      "a_hat_genus": 0,
+      "note": "R = 0 does not constrain \u00c2 (\u00c2 can be nonzero on flat manifolds)",
+      "example": "Enriques surface: R = 0 (Calabi-Yau) but \u00c2 = 0"
+    }
+  },
+  "cvc5_proofs": {
+    "spin_nonpositive_R_a_hat_nonzero": {
+      "formula": "(0 \u2264 0) \u2227 (1 \u2260 0)",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "expected": "SAT"
+    },
+    "spin_positive_R_a_hat_nonzero_unsat": {
+      "formula": "(1 > 0) \u2227 (1 = 0) \u2014 models R > 0 \u2227 \u00c2 = 0 \u2227 \u00c2 \u2260 0",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    },
+    "positive_R_forces_a_hat_zero": {
+      "formula": "(1 > 0) \u2227 (0 = 0) \u2014 R > 0 \u2227 \u00c2 = 0",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "consequence": "\u00c2 = 0 is forced by R > 0"
+    }
+  },
+  "sympy_verification": {
+    "a_hat_genus_dimension_4": {
+      "dimension": 4,
+      "formula": "\u00c2(M) = p\u2081(M) / 24",
+      "p1_definition": "first Pontrjagin class (degree 4)",
+      "a_hat_expression": "p_1/24",
+      "a_hat_integer": true,
+      "reason": "Index of Dirac operator is always an integer"
+    },
+    "atiyah_singer_index_theorem": {
+      "theorem": "\u00c2(M) = ind(D) (Atiyah-Singer)",
+      "definition": "ind(D) = dim(ker D) - dim(coker D)",
+      "topological": "\u00c2 depends only on topology (Pontrjagin classes)",
+      "analytic": "ind(D) depends on spectrum of Dirac operator"
+    },
+    "positive_R_kills_index": {
+      "statement": "R > 0 on spin manifold \u27f9 ker(D) = {0}",
+      "consequence": "ind(D) = dim(coker D) - 0 = dim(coker D)",
+      "further": "By conjugation symmetry, coker D \u2245 ker(D*), so coker D = {0}",
+      "conclusion": "R > 0 \u27f9 ind(D) = 0 \u27f9 \u00c2 = 0"
+    },
+    "a_hat_factorization": {
+      "dim4_formula": "\u00c2 = p\u2081 / 24",
+      "dim8_formula": "\u00c2 = (7p\u2081\u00b2 - 4p\u2082) / (24\u00b2 \u00b7 48)",
+      "general": "\u00c2 is a polynomial in Pontrjagin classes p_i",
+      "divisibility": "All \u00c2-genus values are divisible by 1 (i.e., integers)"
+    }
+  }
+}

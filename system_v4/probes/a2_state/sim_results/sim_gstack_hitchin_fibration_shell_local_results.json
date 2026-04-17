@@ -1,0 +1,106 @@
+{
+  "name": "sim_gstack_hitchin_fibration_shell_local",
+  "classification": "canonical",
+  "overall_pass": true,
+  "shell": "hitchin_fibration",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 excludes a discriminant that is simultaneously regular and singular at the same local base point."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy computes the local discriminant of the spectral polynomial exactly."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx records the local map from base coefficient chart to spectral-curve branch data."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Hitchin-base chart and does not invoke cross-shell coupling."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "regular_base_point": {
+      "pass": true,
+      "discriminant": "4",
+      "detail": "The chosen local Hitchin-base point is regular."
+    },
+    "two_branch_local_cover": {
+      "pass": true,
+      "detail": "The local spectral cover has two branches over the regular point."
+    }
+  },
+  "negative": {
+    "regular_singular_conflict": {
+      "pass": true,
+      "detail": "A local discriminant cannot vanish and fail to vanish simultaneously."
+    }
+  },
+  "boundary": {
+    "nodal_boundary_point": {
+      "pass": true,
+      "detail": "The discriminant-zero point is the singular boundary of the local Hitchin chart."
+    }
+  },
+  "degree": 2
+}

@@ -1,0 +1,141 @@
+{
+  "name": "Galois Correspondence Subgroup Constraint via cvc5",
+  "description": "cvc5 proves Galois correspondence: subgroups H \u2264 Gal(L/K) \u2194 intermediate fields [L:F]|H|",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; pure algebraic constraint proofs"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead; same SMT solver capability"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Galois correspondence subgroup constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for subgroup-field correspondence"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; pure group theory and lattice constraints"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats differential geometry not needed; algebraic group lattice only"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks not applicable; correspondence is combinatorial"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx graph library not needed; subgroup lattice is algebraic"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; pairwise subgroup relations only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx topological networks not needed; pure divisibility constraints"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi simplicial complexes not needed; no topological dimension in lattice"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_correspondence_valid": {
+      "description": "cvc5 SAT: |H|=2=[L:F] for fixed field F=L^H",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 2]"
+    },
+    "test_positive_intermediate_field_degree": {
+      "description": "cvc5 SAT: [F:K]=3 = |G|/|H|=6/2 for intermediate field",
+      "sat": true,
+      "expected": true,
+      "model": "[6, 2, 3]"
+    },
+    "test_positive_subgroup_lattice": {
+      "description": "cvc5 SAT: |H|=3=[L:F], [F:K]=4, [L:K]=|G|=12",
+      "sat": true,
+      "expected": true,
+      "model": "[12, 3, 3, 4]"
+    }
+  },
+  "negative": {
+    "test_negative_correspondence_mismatch": {
+      "description": "cvc5 UNSAT: [L:F]=3 \u2260 |H|=2 violates Galois correspondence",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_tower_law_violation": {
+      "description": "cvc5 UNSAT: [L:F]\u00b7[F:K]=3\u00b75=15 \u2260 [L:K]=12",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_H_does_not_divide_G": {
+      "description": "cvc5 UNSAT: |H|=3 does not divide |G|=10",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_trivial_subgroup": {
+      "description": "cvc5 SAT: trivial subgroup H={e} with |H|=1=[L:L]",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_full_group": {
+      "description": "cvc5 SAT: full group H=G with |H|=|G|=5=[L:K]",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_symbolic_correspondence": {
+      "description": "sympy: verify Galois correspondence symbolically",
+      "tower_law_expression": "-degree_FK*degree_LF + degree_LK",
+      "correspondence_expression": "-H + degree_LF",
+      "divisibility_expression": "-G/H + degree_FK",
+      "tower_law_satisfied": true,
+      "correspondence_satisfied": true,
+      "divisibility_satisfied": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

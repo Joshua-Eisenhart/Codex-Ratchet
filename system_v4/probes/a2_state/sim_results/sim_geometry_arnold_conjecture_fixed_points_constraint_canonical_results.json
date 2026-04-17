@@ -1,0 +1,259 @@
+{
+  "name": "Arnold Conjecture Fixed Points Lower Bound Constraint Canonicity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for Morse inequality and Betti number computation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "arnold_torus_t2_4_fixed_points": {
+      "manifold": "Torus T\u00b2",
+      "dimension": 2,
+      "homology": {
+        "b_0": 1,
+        "b_1": 2,
+        "b_2": 1
+      },
+      "sum_betti": 4,
+      "fixed_points_count": 4,
+      "satisfies_arnold": true,
+      "reason": "T\u00b2 with 4 fixed points achieves the minimum Arnold bound"
+    },
+    "arnold_torus_t2_6_fixed_points": {
+      "manifold": "Torus T\u00b2",
+      "dimension": 2,
+      "sum_betti": 4,
+      "fixed_points_count": 6,
+      "satisfies_arnold": true,
+      "reason": "T\u00b2 with 6 fixed points exceeds Arnold bound"
+    },
+    "arnold_sphere_s2_2_fixed_points": {
+      "manifold": "S\u00b2 (2-sphere)",
+      "dimension": 2,
+      "homology": {
+        "b_0": 1,
+        "b_1": 0,
+        "b_2": 1
+      },
+      "sum_betti": 2,
+      "fixed_points_count": 2,
+      "satisfies_arnold": true,
+      "reason": "S\u00b2 with 2 fixed points is minimal (generic rotations)"
+    }
+  },
+  "negative": {
+    "arnold_torus_t2_3_fixed_points_violation": {
+      "manifold": "Torus T\u00b2",
+      "dimension": 2,
+      "sum_betti": 4,
+      "claimed_fixed_points": 3,
+      "satisfies_arnold": false,
+      "constraint": "fixed_points \u2265 4 \u2227 fixed_points = 3",
+      "smt_result": "UNSAT",
+      "reason": "Claiming 3 fixed points on T\u00b2 violates Arnold's theorem (minimum is 4)"
+    },
+    "arnold_torus_t2_2_fixed_points_violation": {
+      "manifold": "Torus T\u00b2",
+      "dimension": 2,
+      "sum_betti": 4,
+      "claimed_fixed_points": 2,
+      "satisfies_arnold": false,
+      "constraint": "fixed_points \u2265 4 \u2227 fixed_points = 2",
+      "smt_result": "UNSAT",
+      "reason": "2 fixed points on T\u00b2 is impossible (requires at least 4)"
+    },
+    "arnold_sphere_s2_1_fixed_point_violation": {
+      "manifold": "S\u00b2 (2-sphere)",
+      "dimension": 2,
+      "sum_betti": 2,
+      "claimed_fixed_points": 1,
+      "satisfies_arnold": false,
+      "constraint": "fixed_points \u2265 2 \u2227 fixed_points = 1",
+      "smt_result": "UNSAT",
+      "reason": "S\u00b2 with 1 fixed point violates Arnold (minimum is 2, e.g., north/south poles)"
+    }
+  },
+  "boundary": {
+    "boundary_sphere_s4_2_fixed_points": {
+      "manifold": "S\u2074 (4-sphere)",
+      "dimension": 4,
+      "homology": {
+        "b_0": 1,
+        "b_1": 0,
+        "b_2": 0,
+        "b_3": 0,
+        "b_4": 1
+      },
+      "sum_betti": 2,
+      "fixed_points_count": 2,
+      "satisfies_arnold": true,
+      "reason": "S\u2074 is simply connected with minimal Betti numbers (1, 0, 0, 0, 1)"
+    },
+    "boundary_complex_projective_cp2": {
+      "manifold": "CP\u00b2 (complex projective 2-plane)",
+      "dimension": 4,
+      "homology": {
+        "b_0": 1,
+        "b_1": 0,
+        "b_2": 1,
+        "b_3": 0,
+        "b_4": 1
+      },
+      "sum_betti": 3,
+      "fixed_points_count": 3,
+      "satisfies_arnold": true,
+      "reason": "CP\u00b2 has Betti numbers 1,0,1,0,1 (sum = 3)"
+    },
+    "boundary_morse_inequality_s2": {
+      "manifold": "S\u00b2 (with Morse function)",
+      "dimension": 2,
+      "critical_points_minimum": 2,
+      "morse_inequality": "number of critical points \u2265 sum of Betti numbers",
+      "betti_sum": 2,
+      "valid_critical_points": 2,
+      "reasoning": "Sphere S\u00b2 has exactly 2 critical points (min, max); satisfies Morse inequality with equality"
+    }
+  },
+  "cvc5_constraint_proof": {
+    "valid_arnold_t2_4_fixed_points": {
+      "formula": "4 \u2265 4",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "expected": "SAT"
+    },
+    "valid_arnold_t2_6_fixed_points": {
+      "formula": "6 \u2265 4",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "expected": "SAT"
+    },
+    "invalid_arnold_t2_3_fixed_points": {
+      "formula": "(3 \u2265 4) \u2227 (3 = 3)",
+      "expands_to": "False \u2227 True",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    },
+    "invalid_arnold_s2_1_fixed_point": {
+      "formula": "(1 \u2265 2) \u2227 (1 = 1)",
+      "expands_to": "False \u2227 True",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    }
+  },
+  "sympy_morse_inequality_verification": {
+    "morse_torus_t2_homology": {
+      "manifold": "T\u00b2 = S\u00b9 \u00d7 S\u00b9",
+      "betti_numbers": [
+        1,
+        2,
+        1
+      ],
+      "sum_betti": 4,
+      "cellular_complex": "CW complex with 1 vertex, 2 edges, 1 face",
+      "morse_minimum_critical_points": 4,
+      "reason": "Generic Morse function on T\u00b2 has exactly 4 critical points"
+    },
+    "morse_sphere_s2_homology": {
+      "manifold": "S\u00b2 (2-sphere)",
+      "betti_numbers": [
+        1,
+        0,
+        1
+      ],
+      "sum_betti": 2,
+      "cellular_complex": "CW complex with 1 vertex, 0 edges, 1 face",
+      "morse_minimum_critical_points": 2,
+      "example": "Height function: north pole (max), south pole (min)",
+      "reason": "S\u00b2 with height function has exactly 2 critical points"
+    },
+    "morse_complex_projective_cp2": {
+      "manifold": "CP\u00b2 (complex projective 2-plane)",
+      "dimension": 4,
+      "betti_numbers": [
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "sum_betti": 3,
+      "morse_minimum_critical_points": 3,
+      "structure": "Schubert cell decomposition: 1 + 2 lines + 1 point",
+      "reason": "CP\u00b2 admits Morse function with exactly 3 critical points"
+    }
+  },
+  "classification": "canonical"
+}

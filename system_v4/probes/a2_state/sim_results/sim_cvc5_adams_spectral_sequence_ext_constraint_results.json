@@ -1,0 +1,163 @@
+{
+  "name": "AdamsSpectralSequenceExtConstraint",
+  "domain": "Adams spectral sequence, Ext algebras",
+  "claim": "E_2 = Ext_{A}^{s,t}(F_p, F_p) with s \u2265 0, t \u2265 s",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor indexing not needed for abstract Ext grading"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph structure not relevant to Ext algebra"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for explicit QF_LIA bilinear grading"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 QF_LIA proves (s,t) admissibility and detects substem violations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: sympy validates Ext vanishing line t-s \u2265 0"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not directly involved in Adams E_2 structure"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "manifold geometry orthogonal to homotopy group computation"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariance absent in mod-p Adams construction"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Adams pages are not graphs; filtration is purely algebraic"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph structure not applicable to Ext bigrading"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell complex not the natural model for Ext computation"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology orthogonal to Adams grading"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "unit_element_0_0": {
+      "pass": true,
+      "result": "sat",
+      "detail": "Adams unit element (s,t)=(0,0) must be SAT"
+    },
+    "alpha1_element_1_1": {
+      "pass": true,
+      "result": "sat",
+      "detail": "Adams \u03b1_1 element (s,t)=(1,1) must be SAT"
+    },
+    "generic_valid_2_5": {
+      "pass": true,
+      "result": "sat",
+      "detail": "Adams Ext^{2,5}(F_p, F_p) with t \u2265 s must be SAT"
+    }
+  },
+  "negative": {
+    "negative_filtration_s": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "s \u2265 0 AND s = -1 must be UNSAT"
+    },
+    "substem_violation": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "t \u2265 s AND t < s (substem violation) must be UNSAT"
+    },
+    "double_violation": {
+      "pass": true,
+      "result": "unsat",
+      "detail": "s < 0 AND t < 0 (both violations) must be UNSAT"
+    }
+  },
+  "boundary": {
+    "adams_vanishing_line": {
+      "pass": false,
+      "sample_pairs": {
+        "(0,0)": true,
+        "(0,1)": true,
+        "(0,2)": true,
+        "(0,3)": true,
+        "(0,4)": true,
+        "(0,5)": true
+      },
+      "detail": "All valid Adams pairs must satisfy t \u2265 s"
+    },
+    "diagonal_admissibility": {
+      "pass": true,
+      "diagonal_points": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "detail": "Points (s,s) on stem=filtration diagonal are always admissible"
+    },
+    "large_ext_indices": {
+      "pass": true,
+      "result": "sat",
+      "detail": "Large Ext indices (s,t)=(100,250) must be SAT"
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

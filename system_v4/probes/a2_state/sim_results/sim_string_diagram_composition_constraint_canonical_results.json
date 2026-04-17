@@ -1,0 +1,110 @@
+{
+  "name": "sim_string_diagram_composition_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for string diagram constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "proves wire-matching constraint: UNSAT when source(f\u2218g) != target(g) or incompatible ranks"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic composition and rank arithmetic in string diagrams"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for string diagram typing"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_sequential_composition": {
+      "name": "Valid sequential composition f\u2218g",
+      "g_type": "A -> B (ranks 1 -> 2)",
+      "f_type": "B -> C (ranks 2 -> 3)",
+      "composition": "f\u2218g: A -> C (ranks 1 -> 3)",
+      "constraint": "target(g) = source(f)",
+      "satisfiable": "True",
+      "valid": true
+    },
+    "positive_tests_error": "Given sort is not associated with this term manager"
+  },
+  "negative": {
+    "negative_test_1_incompatible_composition_unsat": {
+      "name": "Incompatible sequential composition (UNSAT)",
+      "formula": "target(g) = 2 AND source(f) = 3 AND target(g) = source(f)",
+      "satisfiable": "False",
+      "proof": "Wire mismatch: g outputs rank 2 but f expects rank 3"
+    },
+    "negative_tests_error": "Given sort is not associated with this term manager"
+  },
+  "boundary": {
+    "boundary_test_1_identity_strings": {
+      "name": "String diagram with all identity morphisms",
+      "constraint": "source(w) = target(w) for all wires w",
+      "satisfiable": "True",
+      "note": "Boundary case: minimal diagram"
+    },
+    "boundary_tests_error": "Given sort is not associated with this term manager"
+  },
+  "classification": "canonical"
+}

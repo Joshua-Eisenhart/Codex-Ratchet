@@ -1,0 +1,150 @@
+{
+  "name": "HomotopyLimitColimit -- Canonical Sim",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_cvc5_fibrant_replacement": {
+      "test": "cvc5 validates fibrant replacement property",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "non-fibrant objects admit fibrant replacements",
+      "method": "cvc5 QF_LIA constraint proof"
+    },
+    "test_2_cvc5_universal_property_cone": {
+      "test": "cvc5 validates homotopy limit universal property",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "holim satisfies cone factorization up to homotopy",
+      "method": "cvc5 QF_LIA constraint proof"
+    },
+    "test_3_cvc5_hocolim_existence": {
+      "test": "cvc5 validates homotopy colimit property",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "hocolim satisfies universal property for cocones",
+      "method": "cvc5 QF_LIA constraint proof"
+    }
+  },
+  "negative": {
+    "test_1_cvc5_unsat_no_factorization": {
+      "test": "cvc5 proves UNSAT: holim exists but cone factorization fails",
+      "status": "UNSAT",
+      "passed": true,
+      "interpretation": "holim must admit cone factorization (universal property)",
+      "method": "cvc5 QF_LIA proof of unsatisfiability"
+    },
+    "test_2_cvc5_unsat_no_fibrant_repl": {
+      "test": "cvc5 proves UNSAT: fibrant replacement required",
+      "status": "UNSAT",
+      "passed": true,
+      "interpretation": "non-fibrant object must have fibrant replacement",
+      "method": "cvc5 QF_LIA proof of unsatisfiability"
+    },
+    "test_3_cvc5_unsat_no_cofactorization": {
+      "test": "cvc5 proves UNSAT: hocolim fails cofactorization",
+      "status": "UNSAT",
+      "passed": true,
+      "interpretation": "hocolim must admit cocone cofactorization",
+      "method": "cvc5 QF_LIA proof of unsatisfiability"
+    }
+  },
+  "boundary": {
+    "test_1_boundary_empty_diagram": {
+      "test": "Boundary: empty diagram limit is terminal",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "trivial diagram has well-defined holim",
+      "method": "cvc5 QF_LIA"
+    },
+    "test_2_boundary_singleton_diagram": {
+      "test": "Boundary: single-object diagram limit is itself",
+      "status": "SAT",
+      "passed": true,
+      "interpretation": "holim of identity is identity (trivially)",
+      "method": "cvc5 QF_LIA"
+    },
+    "test_3_boundary_sympy_holim": {
+      "test": "Boundary: sympy validates holim existence",
+      "cone_property": 1.0,
+      "holim_property": 1.0,
+      "passed": true,
+      "interpretation": "homotopy limit is well-defined for valid cones",
+      "method": "sympy symbolic implication"
+    }
+  },
+  "classification": "canonical"
+}

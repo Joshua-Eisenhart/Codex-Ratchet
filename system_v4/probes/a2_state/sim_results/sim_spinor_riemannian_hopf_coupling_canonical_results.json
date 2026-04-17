@@ -1,0 +1,191 @@
+{
+  "name": "sim_spinor_riemannian_hopf_coupling_canonical",
+  "description": "Coupling Program #47: Spinor\u00d7Riemannian\u00d7Hopf \u2014 classical baseline 3-shell coupling with torch-native MI integration",
+  "classification": "classical_baseline",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices as float64 tensors; dephasing + MI + entropy via eigh+matrix_log; autograd Axis 0 dQ/d(eps)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph structure not needed for this 3-shell coupling"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Q_SRH < 0 impossible; Q=0 while MI>0 and all H_i>0 is structurally impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for structural impossibility"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_SRH = MI \u00d7 H_spinor \u00d7 H_riemannian \u00d7 H_hopf; zero-product theorem; entropy bounds"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for this coupling"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry handled by torch native ops"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariant NN not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological NN not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mi_primitive_nonzero": {
+      "passed": true,
+      "MI": 0.9394864118290985,
+      "description": "MI primitive: entangled base state has MI > 0 at eps=0"
+    },
+    "P2_h_spinor_log2": {
+      "passed": true,
+      "H_spinor": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_spinor = log(2) from spin-\u00bd 2-component structure"
+    },
+    "P3_h_riemannian_log3": {
+      "passed": true,
+      "H_riemannian": 1.0986122886681098,
+      "expected": 1.0986122886681098,
+      "description": "H_riemannian = log(3) from 3 independent 2D metric components"
+    },
+    "P4_h_hopf_log2": {
+      "passed": true,
+      "H_hopf": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_hopf = log(2) from U(1) fiber phase structure"
+    },
+    "P5_q_full_positive": {
+      "passed": true,
+      "Q_SRH": 0.49589060204668023,
+      "MI": 0.9394864118290985,
+      "H_spinor": 0.6931471805599453,
+      "H_riemannian": 1.0986122886681098,
+      "H_hopf": 0.6931471805599453,
+      "description": "Q_SRH = MI \u00d7 H_spinor \u00d7 H_riemannian \u00d7 H_hopf > 0 in full triple"
+    },
+    "P6_topology_q_positive_all_eps": {
+      "passed": true,
+      "Q_values": [
+        0.495891,
+        0.464582,
+        0.437278,
+        0.413043,
+        0.391325,
+        "..."
+      ],
+      "description": "Q_SRH > 0 across 20 epsilon values (topology stable)"
+    },
+    "P7_emergence_zero_in_sub_combinations": {
+      "passed": true,
+      "Q_full": 0.49589060204668023,
+      "zero_combos": {
+        "no_spinor": 0.0,
+        "no_riemannian": 0.0,
+        "no_hopf": 0.0,
+        "no_mi": 0.0
+      },
+      "description": "Q_SRH = 0 whenever any H_i = 0; nonzero only in full 4-factor product"
+    },
+    "P8_axis0_autograd_dQ_deps": {
+      "passed": true,
+      "dQ_deps": -0.6362470328415627,
+      "description": "Axis 0: dQ/d(eps) < 0 via pytorch autograd \u2014 gate confirmed"
+    }
+  },
+  "negative": {
+    "N1_z3_q_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat",
+      "description": "z3 UNSAT: Q_SRH < 0 impossible (MI>=0, H_i>0 \u2192 Q>=0)"
+    },
+    "N2_sympy_zero_product_theorem": {
+      "passed": true,
+      "Q_no_spinor": "0",
+      "Q_no_riemannian": "0",
+      "Q_no_hopf": "0",
+      "description": "sympy: Q=0 whenever any H_i=0 (zero-product theorem)"
+    },
+    "N3_fully_dephased_mi_positive": {
+      "passed": true,
+      "MI_dephased": 0.46688042943420094,
+      "description": "Fully dephased state retains positive MI (classical correlations persist)"
+    }
+  },
+  "boundary": {
+    "B1_all_h_values_positive": {
+      "passed": true,
+      "H_spinor": 0.6931471805599453,
+      "H_riemannian": 1.0986122886681098,
+      "H_hopf": 0.6931471805599453,
+      "description": "All entropy values positive and finite"
+    },
+    "B2_gradient_finite_nonzero": {
+      "passed": true,
+      "gradient": -0.415202611532456,
+      "description": "Autograd gradient finite and nonzero at eps=0.5"
+    },
+    "B3_mi_q_pearson_r": {
+      "passed": true,
+      "pearson_r": 1.0,
+      "description": "MI co-varies with Q_SRH across 20 epsilon points (Pearson r > 0.99)"
+    }
+  },
+  "all_pass": true,
+  "pass_count": 14,
+  "fail_count": 0,
+  "coupling_program_number": 47,
+  "shells": [
+    "Spinor",
+    "Riemannian",
+    "Hopf"
+  ],
+  "Q_formula": "MI \u00d7 H_spinor \u00d7 H_riemannian \u00d7 H_hopf"
+}

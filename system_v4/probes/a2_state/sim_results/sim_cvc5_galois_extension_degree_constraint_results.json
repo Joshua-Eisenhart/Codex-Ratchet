@@ -1,0 +1,137 @@
+{
+  "name": "Galois Extension Degree Constraint via cvc5",
+  "description": "cvc5 proves Galois extension degree constraints: [L:K]=|Gal(L/K)|, tower law, divisibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; pure algebraic constraint proofs"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead; same SMT solver capability"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Galois extension degree constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for degree tower verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; integer degree lattice only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats differential geometry not needed; algebraic constraints only"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks not applicable; no symmetry group action needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx graph library not needed; no graph structure in lattice proof"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; pairwise divisibility only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx topological networks not needed; pure integer constraints"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi simplicial complexes not needed; no topology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_galois_degree_2": {
+      "description": "cvc5 SAT: [L:K] = 2 = |Gal(L/K)| is valid",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 2]"
+    },
+    "test_positive_tower_law_valid": {
+      "description": "cvc5 SAT: tower law [M:K]=6=[M:L]\u00b7[L:K]=2\u00b73 is valid",
+      "sat": true,
+      "expected": true,
+      "model": "[6, 2, 3]"
+    },
+    "test_positive_divisibility_valid": {
+      "description": "cvc5 SAT: [L:K]=2 divides |G|=6 is valid (2\u00b73=6)",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 6, 3]"
+    }
+  },
+  "negative": {
+    "test_negative_tower_law_violation": {
+      "description": "cvc5 UNSAT: [M:K]=6 \u2260 [M:L]\u00b7[L:K]=2\u00b72=4 violates tower law",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_galois_degree_mismatch": {
+      "description": "cvc5 UNSAT: [L:K]=3 \u2260 |Gal(L/K)|=2 violates Galois extension",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_divisibility_violation": {
+      "description": "cvc5 UNSAT: [L:K]=3 does not divide |G|=5 violates fundamental theorem",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_trivial_extension": {
+      "description": "cvc5 SAT: trivial extension [L:K]=1 with |Gal(L/K)|=1",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_prime_degree": {
+      "description": "cvc5 SAT: prime degree extension [L:K]=5 with |Gal(L/K)|=5",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_symbolic_tower_law": {
+      "description": "sympy: verify tower law [M:K]=[M:L]\u00b7[L:K] symbolically",
+      "tower_law_expression": "-l_k*m_l + m_k",
+      "test_case_6_equals_2_times_3": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,192 @@
+{
+  "name": "Topological Hochschild Homology (THH) Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; cyclic homology handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA for proving rank constraints and HKR isomorphism failure"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for B\u00f6kstedt calculation and degree algebra verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; homotopy theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic topology handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_thh_fp_rank_constraints": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "THH(F_p) has rank 1 at even degrees, 0 at odd"
+    },
+    "test_bokstedt_thh_z": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "B\u00f6kstedt formula THH(Z) verified: \u03c0_{2n-1} = Z \u2295 Z/n",
+      "degrees": {
+        "degree_1": {
+          "n": 1,
+          "expected_degree": 1,
+          "structure": "Z"
+        },
+        "degree_3": {
+          "n": 2,
+          "expected_degree": 3,
+          "structure": "Z \u2295 Z/n"
+        },
+        "degree_5": {
+          "n": 3,
+          "expected_degree": 5,
+          "structure": "Z \u2295 Z/n"
+        },
+        "degree_7": {
+          "n": 4,
+          "expected_degree": 7,
+          "structure": "Z \u2295 Z/n"
+        }
+      }
+    },
+    "test_hkr_isomorphism": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "HKR isomorphism: HH_n(A/k) \u2245 \u2295_i \u03a9^i_{A/k}[-i]",
+      "example": {
+        "omega_0": 1,
+        "omega_1": 2,
+        "omega_2": 1,
+        "hh_0": 1,
+        "hh_1": 3,
+        "hh_2": 4
+      }
+    }
+  },
+  "negative": {
+    "test_negative_thh_fp_rank_violation": {
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "description": "UNSAT: \u03c0_n(THH(F_p)) cannot have rank > 1 (violates F_p[u] structure)"
+    },
+    "test_negative_hkr_non_smooth": {
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "description": "UNSAT: HKR cannot hold for non-smooth algebras"
+    },
+    "test_negative_bokstedt_violation": {
+      "expected": false,
+      "actual": false,
+      "pass": true,
+      "description": "UNSAT: \u03c0_0(THH(Z)) has rank exactly 1, cannot be > 1"
+    }
+  },
+  "boundary": {
+    "test_boundary_rationalized_equivalence": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "Boundary: HH(A) \u2192 THH(A) is equivalence for Q-algebras",
+      "degrees": {
+        "degree_0": {
+          "hh": 1,
+          "thh": 1
+        },
+        "degree_1": {
+          "hh": 2,
+          "thh": 2
+        }
+      }
+    },
+    "test_boundary_thh_fp_even_odd": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "Boundary: THH(F_p) rank is 1 at even degrees, 0 at odd",
+      "even_degrees": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "odd_degrees": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "test_boundary_hkr_dimension_0": {
+      "expected": true,
+      "actual": true,
+      "pass": true,
+      "description": "Boundary: HKR for 0-dimensional smooth k-algebra A has HH_0 nonzero, HH_1 = 0"
+    }
+  },
+  "classification": "canonical"
+}

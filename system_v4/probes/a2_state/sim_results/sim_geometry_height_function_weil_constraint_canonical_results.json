@@ -1,0 +1,122 @@
+{
+  "name": "sim_geometry_height_function_weil_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for height constraints"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for height constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 sufficient for QF_LFLIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: proves additivity and Northcott via UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: rational approximations for O(1) bounds"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; heights are scalar functions"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold curvature"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no simplicial structure"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_tensor_additivity": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_direct_sum_additivity": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_northcott_boundedness": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    }
+  },
+  "negative": {
+    "test_multiplicative_unsat": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_negative_height_unsat": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_unbounded_error_unsat": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    }
+  },
+  "boundary": {
+    "test_torsion_zero_height": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_tight_error_bound": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    },
+    "test_large_heights": {
+      "status": "error",
+      "message": "LogicInfo::setLogicString(): junk (\"LFLIA\") at end of logic string: QF_LFLIA"
+    }
+  },
+  "classification": "canonical"
+}

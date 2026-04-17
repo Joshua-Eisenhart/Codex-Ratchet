@@ -1,0 +1,116 @@
+{
+  "name": "prism_delta_ring_constraint_canonical",
+  "description": "\u03b4-rings with product rule axioms and Frobenius lift constraints",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; \u03b4-ring axioms handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 used for UNSAT proofs on product rule and constant constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used to verify Frobenius lift and product rule identities"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; p-adic structure via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_rule_sat": "sat",
+    "constant_map_zero_sat": "sat",
+    "frobenius_endomorphism": {
+      "\u03c6(xy)": "delta_x*delta_y*p**2 + delta_x*p*y**p + delta_y*p*x**p + x**p*y**p",
+      "\u03c6(x)\u03c6(y)": "delta_x*delta_y*p**2 + delta_x*p*y**p + delta_y*p*x**p + x**p*y**p",
+      "note": "equality holds when \u03b4 satisfies product rule"
+    },
+    "A_inf_canonical": {
+      "description": "W(O_C) carries canonical \u03b4-ring structure",
+      "teichm\u00fcller": "\u03b4([x]) = 0 for representatives [x]",
+      "witt_vectors": "\u03b4 extends via product rule to Witt vectors",
+      "status": "admissible"
+    }
+  },
+  "negative": {
+    "product_rule_violation_unsat": "unsat",
+    "constant_nonzero_unsat": "unsat",
+    "frobenius_not_endomorphism": {
+      "note": "if \u03b4 violates product rule, \u03c6(xy) \u2260 \u03c6(x)\u03c6(y)",
+      "implication": "\u03b4 must satisfy product rule for \u03c6 to be ring homomorphism",
+      "status": "ruled out"
+    }
+  },
+  "boundary": {
+    "trivial_delta_ring_sat": "sat",
+    "p_to_zero_limit": "0",
+    "large_characteristic": {
+      "p": 1000,
+      "x": 2,
+      "y": 3,
+      "status": "product rule computable",
+      "note": "\u03b4(xy) grows as x^p and y^p dominate"
+    }
+  },
+  "classification": "canonical"
+}

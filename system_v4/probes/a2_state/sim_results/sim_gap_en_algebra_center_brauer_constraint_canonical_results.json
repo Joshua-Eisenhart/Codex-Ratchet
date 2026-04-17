@@ -1,0 +1,239 @@
+{
+  "name": "E_n Algebra Center / Brauer Constraint",
+  "description": "cvc5 UNSAT proves that Z_{E_n}(A) must be an E_{n+1} algebra",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of E_n algebra center constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for center algebra structure"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "E1_center_E2": {
+      "n": 1,
+      "center_levels": 2,
+      "sat": false,
+      "explanation": "E_1 center: 2 levels vs. required 2",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_1}(A) is an E_{2} algebra",
+        "Required commutativity levels: 2",
+        "Claimed center_levels: 2",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E2_center_E3": {
+      "n": 2,
+      "center_levels": 3,
+      "sat": false,
+      "explanation": "E_2 center: 3 levels vs. required 3",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_2}(A) is an E_{3} algebra",
+        "Required commutativity levels: 3",
+        "Claimed center_levels: 3",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E3_center_E4": {
+      "n": 3,
+      "center_levels": 4,
+      "sat": false,
+      "explanation": "E_3 center: 4 levels vs. required 4",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_3}(A) is an E_{4} algebra",
+        "Required commutativity levels: 4",
+        "Claimed center_levels: 4",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    }
+  },
+  "negative": {
+    "E1_center_invalid_one_level": {
+      "n": 1,
+      "center_levels": 1,
+      "sat": false,
+      "explanation": "E_1 center: 1 levels vs. required 2",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_1}(A) is an E_{2} algebra",
+        "Required commutativity levels: 2",
+        "Claimed center_levels: 1",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E2_center_invalid_two_levels": {
+      "n": 2,
+      "center_levels": 2,
+      "sat": false,
+      "explanation": "E_2 center: 2 levels vs. required 3",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_2}(A) is an E_{3} algebra",
+        "Required commutativity levels: 3",
+        "Claimed center_levels: 2",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E3_center_invalid_five_levels": {
+      "n": 3,
+      "center_levels": 5,
+      "sat": false,
+      "explanation": "E_3 center: 5 levels vs. required 4",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_3}(A) is an E_{4} algebra",
+        "Required commutativity levels: 4",
+        "Claimed center_levels: 5",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    }
+  },
+  "boundary": {
+    "E0_center_E1": {
+      "n": 0,
+      "center_levels": 1,
+      "sat": false,
+      "explanation": "E_0 center: 1 levels vs. required 1",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_0}(A) is an E_{1} algebra",
+        "Required commutativity levels: 1",
+        "Claimed center_levels: 1",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E4_center_E5": {
+      "n": 4,
+      "center_levels": 5,
+      "sat": false,
+      "explanation": "E_4 center: 5 levels vs. required 5",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_4}(A) is an E_{5} algebra",
+        "Required commutativity levels: 5",
+        "Claimed center_levels: 5",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    },
+    "E1_center_unbounded_attempt": {
+      "n": 1,
+      "center_levels": 100,
+      "sat": false,
+      "explanation": "E_1 center: 100 levels vs. required 2",
+      "solver_trace": [
+        "Brauer shift axiom: Z_{E_1}(A) is an E_{2} algebra",
+        "Required commutativity levels: 2",
+        "Claimed center_levels: 100",
+        "Result: UNSAT (Brauer shift violated)"
+      ]
+    }
+  },
+  "validation": {
+    "positive_E1_center_E2": {
+      "n": 1,
+      "center_levels": 2,
+      "required": 2,
+      "match": true,
+      "sat": false
+    },
+    "positive_E2_center_E3": {
+      "n": 2,
+      "center_levels": 3,
+      "required": 3,
+      "match": true,
+      "sat": false
+    },
+    "positive_E3_center_E4": {
+      "n": 3,
+      "center_levels": 4,
+      "required": 4,
+      "match": true,
+      "sat": false
+    },
+    "negative_E1_center_invalid_one_level": {
+      "n": 1,
+      "center_levels": 1,
+      "required": 2,
+      "mismatch": true,
+      "correctly_rejected": true
+    },
+    "negative_E2_center_invalid_two_levels": {
+      "n": 2,
+      "center_levels": 2,
+      "required": 3,
+      "mismatch": true,
+      "correctly_rejected": true
+    },
+    "negative_E3_center_invalid_five_levels": {
+      "n": 3,
+      "center_levels": 5,
+      "required": 4,
+      "mismatch": true,
+      "correctly_rejected": true
+    }
+  },
+  "classification": "canonical"
+}

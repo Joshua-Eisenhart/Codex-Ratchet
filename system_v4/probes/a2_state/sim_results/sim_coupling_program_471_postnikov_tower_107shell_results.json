@@ -1,0 +1,142 @@
+{
+  "name": "Coupling Program #471 \u2014 PostnikovTower (107-shell)",
+  "description": "Classical baseline coupling program for PostnikovTower with 107 shells",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: autograd computes dQ/d\u03b5 (Axis 0 gradient) across 107 shells"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; no graph message passing in this coupling sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; pytorch autograd handles gradient computation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 not needed; pytorch handles constraint satisfaction"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy not needed; torch float64 arithmetic is sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; scalar coupling program"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no manifold geometry in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no equivariance in this coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard torch ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_q_nonzero": {
+      "description": "Q > 0 for MI=0.5 across 107 shells",
+      "Q_value": 4.648301997552513e-18,
+      "passed": true,
+      "expected": true
+    },
+    "test_positive_axis0_gradient": {
+      "description": "dQ/d\u03b5 \u2260 0",
+      "gradient": 9.296603995105026e-18,
+      "passed": true,
+      "expected": true
+    },
+    "test_positive_shell_count": {
+      "description": "SHELL_COUNT == 107",
+      "shell_count": 107,
+      "passed": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_negative_zero_mi": {
+      "description": "MI=0 \u2192 Q=0",
+      "Q_value": 0.0,
+      "passed": true,
+      "expected": true
+    },
+    "test_negative_shell_distinguishable": {
+      "description": "Q_107 \u2260 Q_106",
+      "passed": true,
+      "expected": true
+    },
+    "test_negative_negative_mi": {
+      "description": "MI<0 \u2192 Q<0",
+      "Q_value": -4.648301997552513e-18,
+      "passed": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_formula_exact": {
+      "description": "Q = MI * log(2)^107",
+      "Q_expected": 4.648301997552516e-18,
+      "Q_actual": 4.648301997552513e-18,
+      "passed": true,
+      "expected": true
+    },
+    "test_boundary_scaling_ratio": {
+      "description": "Q_n/Q_{n-1} \u2248 log(2)",
+      "ratio": 0.6931471805599453,
+      "passed": true,
+      "expected": true
+    },
+    "test_boundary_dtype": {
+      "description": "torch dtype float64",
+      "passed": true,
+      "expected": true
+    }
+  },
+  "classification": "classical_baseline",
+  "shells": 107,
+  "Q_formula": "MI * log(2)^107"
+}

@@ -1,0 +1,115 @@
+{
+  "name": "sim_gstack_higgs_bundle_shell_local",
+  "classification": "canonical",
+  "overall_pass": true,
+  "shell": "higgs_bundle",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: z3 excludes a Higgs field whose trace is both zero and nonzero on the same local chart."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: sympy computes the characteristic polynomial and nilpotent square of an explicit local Higgs field."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: TopoNetX records the local base cell supporting the Higgs field one-form."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe stays shell-local inside one Higgs-bundle chart and does not invoke cross-shell coupling."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "nilpotent_higgs_field": {
+      "pass": true,
+      "detail": "The explicit local Higgs field is nilpotent."
+    },
+    "characteristic_polynomial_is_lam_squared": {
+      "pass": true,
+      "characteristic_polynomial": "lam**2",
+      "detail": "The characteristic polynomial matches the nilpotent local model."
+    },
+    "base_support_cell_present": {
+      "pass": true,
+      "shape": [
+        2,
+        1,
+        0
+      ],
+      "detail": "The local Higgs one-form is supported on a single base edge."
+    }
+  },
+  "negative": {
+    "trace_condition_conflict": {
+      "pass": true,
+      "detail": "The same local Higgs field cannot be simultaneously traceless and non-traceless."
+    }
+  },
+  "boundary": {
+    "zero_higgs_field_boundary": {
+      "pass": true,
+      "detail": "The zero Higgs field is the admissible boundary case."
+    }
+  },
+  "rank": 2
+}

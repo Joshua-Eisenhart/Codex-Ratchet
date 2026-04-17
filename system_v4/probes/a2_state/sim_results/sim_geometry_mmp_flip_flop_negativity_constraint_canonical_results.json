@@ -1,0 +1,137 @@
+{
+  "name": "sim_geometry_mmp_flip_flop_negativity_constraint_canonical",
+  "description": "Extremal rays in MMP require K_X \u00b7 C < 0 (negativity lemma)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "tensor storage not needed for intersection form"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph not primary to negativity lemma"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for intersection arithmetic in QF_LIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing solver for K_X \u00b7 C < 0 constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of nef boundary K_X \u00b7 C = 0"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to divisor intersection theory"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to algebraic curves"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not applicable to extremal rays"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph structure not primary"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not used"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "topology via cvc5 constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "homology not needed for intersection form"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_minimal_negative_intersection": {
+      "description": "K_X \u00b7 C = -1 is extremal",
+      "sat": true,
+      "intersection_value": -1,
+      "model": "sat"
+    },
+    "positive_test_2_moderate_negative_intersection": {
+      "description": "K_X \u00b7 C = -2 is extremal",
+      "sat": true,
+      "intersection_value": -2,
+      "model": "sat"
+    },
+    "positive_test_3_highly_negative_intersection": {
+      "description": "K_X \u00b7 C = -10 is extremal",
+      "sat": true,
+      "intersection_value": -10,
+      "model": "sat"
+    }
+  },
+  "negative": {
+    "negative_test_1_zero_intersection_not_extremal": {
+      "description": "K_X \u00b7 C = 0 contradicts K_X \u00b7 C < 0",
+      "unsat": true,
+      "model": "unsat"
+    },
+    "negative_test_2_positive_intersection_not_extremal": {
+      "description": "K_X \u00b7 C = 1 contradicts extremal ray",
+      "unsat": true,
+      "model": "unsat"
+    },
+    "negative_test_3_nef_divisor_not_extremal": {
+      "description": "K_X \u00b7 C = 5 (nef) contradicts extremal ray",
+      "unsat": true,
+      "model": "unsat"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_nef_boundary_zero": {
+      "description": "K_X \u00b7 C = 0 is nef boundary (extremal is strictly < 0)",
+      "sat": true,
+      "model": "sat"
+    },
+    "boundary_test_2_flip_flop_wall": {
+      "description": "K_X \u00b7 C = 0 is the flip-flop wall separating extremal (<0) from nef (>=0)",
+      "extremal_partition": "intersection < 0",
+      "non_extremal_partition": "intersection >= 0",
+      "partition_complete_at_neg1": true,
+      "partition_complete_at_pos1": true
+    },
+    "boundary_test_3_extremal_enforcement": {
+      "description": "Extremal ray enforcement: is_extremal \u2227 K_X\u00b7C = -3",
+      "sat": true,
+      "model": "sat"
+    }
+  },
+  "classification": "canonical"
+}

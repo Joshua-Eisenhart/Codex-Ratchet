@@ -1,0 +1,133 @@
+{
+  "name": "System F Rank/Level Constraint via cvc5",
+  "description": "cvc5 proves System F polymorphic type rank constraint (Girard-Reynolds)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_base_type_rank": {
+      "description": "cvc5 SAT: base type Nat has rank = 0",
+      "sat": true,
+      "expected": true,
+      "model": "[0]"
+    },
+    "test_positive_function_type_rank": {
+      "description": "cvc5 SAT: function type (Nat->Nat) has rank = 1",
+      "sat": true,
+      "expected": true,
+      "model": "[0, 0, 1]"
+    },
+    "test_positive_polymorphic_type_rank": {
+      "description": "cvc5 SAT: polymorphic type \u2200\u03b1.Nat has rank = 1",
+      "sat": true,
+      "expected": true,
+      "model": "[0, 1]"
+    }
+  },
+  "negative": {
+    "test_negative_negative_rank": {
+      "description": "cvc5 UNSAT: rank >= 0 AND rank = -1 is impossible",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_impredicative_quantification": {
+      "description": "cvc5 UNSAT: impredicative \u2200\u03b1:Prop.\u03b1 violates rank ordering",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_rank_decrease": {
+      "description": "cvc5 UNSAT: \u2200\u03b1.T rank = rank(T)+1 AND rank < rank(T) is impossible",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_higher_order_rank": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "test_boundary_nested_polymorphic_rank": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "test_boundary_symbolic_rank_formula": {
+      "description": "sympy: rank formulas for function and polymorphic types",
+      "rank_function_tower": "Piecewise((0, Eq(n, 0)), (1, n >= 1))",
+      "rank_polymorphic_tower": "k",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Bridgeland Stability Condition Canonical Sim",
+  "description": "HN filtration constraint: phases strictly decreasing, Z-values satisfy stability geometry",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of stability constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for stability condition formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; stability geometry constraints only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_decreasing_phases": {
+      "name": "Two factors with decreasing phases",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_three_factors_monotonic": {
+      "name": "Three factors with monotonic decreasing phases",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_sympy_central_charge": {
+      "name": "Central charge formula Z(E) = -ch_1 + i\u00b7ch_0",
+      "computed": "-5 + 2*I",
+      "expected": "(-5+2j)",
+      "pass": false
+    }
+  },
+  "negative": {
+    "test_1_nondecreasing_unsat": {
+      "name": "Non-decreasing phases (should be UNSAT)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_2_same_phase_unsat": {
+      "name": "Same phase (should be UNSAT for strict HN)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_3_negative_rank": {
+      "name": "Negative rank (invalid)",
+      "computed": "-I",
+      "expected": "exception",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "test_1_small_imaginary": {
+      "name": "Small imaginary part (phase near 0)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_large_negative_re": {
+      "name": "Large negative real part",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_rank_one_bundle": {
+      "name": "Rank-1 bundle (line bundle)",
+      "computed": "I",
+      "expected": "1j",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

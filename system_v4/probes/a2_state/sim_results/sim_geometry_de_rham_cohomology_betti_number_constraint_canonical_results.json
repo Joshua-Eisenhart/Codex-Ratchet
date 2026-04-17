@@ -1,0 +1,154 @@
+{
+  "name": "DeRhamCohomologyBettiNumber",
+  "domain": "de Rham cohomology and Betti number constraints",
+  "claim": "Betti numbers are non-negative and satisfy Poincar\u00e9 duality on compact oriented manifolds",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_test_1_S2_betti": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "S\u00b2 Betti numbers (b_0=1, b_1=0, b_2=1) with Poincar\u00e9 duality"
+    },
+    "pos_test_2_T2_betti": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "T\u00b2 Betti numbers (b_0=1, b_1=2, b_2=1) with \u03c7=0"
+    },
+    "pos_test_3_CP2_betti": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "CP\u00b2 Betti numbers with Poincar\u00e9 duality b_0=b_4"
+    }
+  },
+  "negative": {
+    "neg_test_1_negative_betti": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "b_k >= 0 AND b_k < 0 is unsatisfiable"
+    },
+    "neg_test_2_poincare_violation": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "Poincar\u00e9 duality b_0=b_2 cannot coexist with b_0\u2260b_2"
+    },
+    "neg_test_3_euler_contradiction": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "\u03c7=2 and \u03c7=0 cannot both be true for the same manifold"
+    }
+  },
+  "boundary": {
+    "bound_test_1_euler_formula": {
+      "manifold": "S2",
+      "betti_numbers": [
+        1,
+        0,
+        1
+      ],
+      "euler_characteristic": 2,
+      "expected_chi": 2,
+      "pass": true,
+      "description": "\u03c7 = \u03a3(-1)^k b_k for S\u00b2 equals 2"
+    },
+    "bound_test_2_torus_euler": {
+      "manifold": "T2",
+      "betti_numbers": [
+        1,
+        2,
+        1
+      ],
+      "euler_characteristic": 0,
+      "expected_chi": 0,
+      "pass": true,
+      "description": "\u03c7 = \u03a3(-1)^k b_k for T\u00b2 equals 0"
+    },
+    "bound_test_3_S4_poincare": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "S\u2074 Poincar\u00e9 duality: b_0 = b_4, middle dimension b_2=0"
+    }
+  },
+  "classification": "canonical"
+}

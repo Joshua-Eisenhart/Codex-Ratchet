@@ -1,0 +1,235 @@
+{
+  "name": "SatakeCorrespondenceWeight_Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for Satake weight verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "dominant_zero": {
+      "name": "zero_weight_dominant",
+      "weight": "[0 0]",
+      "coroots_positive": [
+        "[1 0]",
+        "[0 1]"
+      ],
+      "pairings": [
+        0,
+        0
+      ],
+      "all_nonnegative": true,
+      "description": "Zero weight is dominant in all root systems"
+    },
+    "weight_A2": {
+      "name": "fundamental_weight_A2",
+      "weight": "[1 0]",
+      "coroots_positive": [
+        "[ 1 -1]",
+        "[-1  0]",
+        "[0 1]"
+      ],
+      "pairings": [
+        1,
+        -1,
+        0
+      ],
+      "all_nonnegative": false,
+      "description": "Not actually dominant; used for contrast"
+    },
+    "dominant_sum": {
+      "name": "sum_fundamental_weights",
+      "weight": "[2 2]",
+      "coroots_positive": [
+        "[1 0]",
+        "[0 1]"
+      ],
+      "pairings": [
+        2,
+        2
+      ],
+      "all_nonnegative": true,
+      "description": "Sum of positive fundamental weights is dominant"
+    }
+  },
+  "negative": {
+    "neg_dominance_1": {
+      "name": "lambda_negative_pairing_unsat",
+      "lambda": [
+        1,
+        -2
+      ],
+      "coroot": [
+        0,
+        1
+      ],
+      "pairing": -2,
+      "constraint": "\u27e8\u03bb, \u03b1\u2228\u27e9 \u2265 0 (dominance) but pairing = -2",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    },
+    "neg_dominance_2": {
+      "name": "multiple_coroots_one_negative_unsat",
+      "lambda": [
+        2,
+        -3
+      ],
+      "coroots": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "pairings": [
+        2,
+        -3
+      ],
+      "constraint": "\u2200\u03b1\u2228: \u27e8\u03bb, \u03b1\u2228\u27e9 \u2265 0 but \u27e8\u03bb, \u03b1\u2228_2\u27e9 = -3",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    },
+    "neg_dominance_3": {
+      "name": "all_negative_pairings_unsat",
+      "lambda": [
+        -1,
+        -1
+      ],
+      "coroot": [
+        1,
+        1
+      ],
+      "pairing": -2,
+      "constraint": "\u27e8\u03bb, \u03b1\u2228\u27e9 \u2265 0 but pairing = -2",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "boundary_zero_pairing": {
+      "name": "boundary_pairing_zero",
+      "lambda": [
+        1,
+        0
+      ],
+      "coroot": [
+        0,
+        1
+      ],
+      "pairing": 0,
+      "constraint": "\u27e8\u03bb, \u03b1\u2228\u27e9 = 0; still satisfies \u2265 0",
+      "expected": "SAT",
+      "actual": "sat",
+      "pass": false
+    },
+    "boundary_rank_1": {
+      "name": "rank_1_single_coroot",
+      "lambda": 1,
+      "coroot": 1,
+      "pairing": 1,
+      "constraint": "Rank 1 system; \u03bb = \u03b1\u2228 = 1 \u2192 \u27e8\u03bb, \u03b1\u2228\u27e9 = 1 (dominant)",
+      "expected": "SAT",
+      "actual": "sat",
+      "pass": false
+    },
+    "boundary_high_dim": {
+      "name": "high_dimension_weight",
+      "lambda": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "coroot": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "pairing": 4,
+      "constraint": "4D weight, all entries = 1; pairing = 4 \u2265 0 (dominant)",
+      "expected": "SAT",
+      "actual": "sat",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

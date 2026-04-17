@@ -1,0 +1,141 @@
+{
+  "name": "Donaldson-Uhlenbeck-Yau Theorem Canonical Sim",
+  "description": "\u03bc-stability constraint: no destabilizing subsheaves. DUY: \u03bc-stable iff admits HYM connection.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of stability and HYM constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Bogomolov inequality and Chern class formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; slope stability constraints only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_line_bundle_stable": {
+      "name": "Line bundle is \u03bc-stable",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_no_destabilizing_subsheaf": {
+      "name": "Bundle with no destabilizing subsheaves",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_bogomolov_inequality": {
+      "name": "Bogomolov inequality \u0394 \u2265 0",
+      "computed": 4.0,
+      "expected": 4,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "test_1_destabilizing_subsheaf": {
+      "name": "Destabilizing subsheaf exists (UNSAT)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_2_negative_rank": {
+      "name": "Negative rank (UNSAT)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_3_bogomolov_violation": {
+      "name": "Bogomolov inequality violated",
+      "computed": -3.0,
+      "expected_violation": "\u0394 < 0",
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "test_1_semistable_equal_slopes": {
+      "name": "Semi-stable: equal slopes",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_large_rank": {
+      "name": "Large rank ratio",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_bogomolov_zero": {
+      "name": "Bogomolov equality at boundary (\u0394 = 0)",
+      "computed": 0.0,
+      "expected": 0,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

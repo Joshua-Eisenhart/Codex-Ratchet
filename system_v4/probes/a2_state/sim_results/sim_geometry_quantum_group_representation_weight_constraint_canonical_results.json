@@ -1,0 +1,127 @@
+{
+  "name": "sim_geometry_quantum_group_representation_weight_constraint_canonical",
+  "domain": "Quantum Group Representation Theory",
+  "constraint": "Highest-weight representations must have weights differing by integers",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "spin_1_integer_weights": {
+      "sat": true,
+      "message": "Spin-1 representation has integer weight differences"
+    },
+    "spin_3_2_halfinteger_weights": {
+      "sat": true,
+      "message": "Spin-3/2 representation has integer weight differences"
+    },
+    "general_weight_lattice_integer": {
+      "sat": true,
+      "message": "General weight lattice has integer weight spacing"
+    }
+  },
+  "negative": {
+    "mixed_spin_fractional_unsat": {
+      "sat": true,
+      "message": "Mixed integer/half-integer in integer rep (fractional weight diff) is UNSAT",
+      "expected_unsat": true
+    },
+    "irrational_weight_unsat": {
+      "sat": false,
+      "message": "Irrational weight difference is UNSAT",
+      "expected_unsat": true
+    },
+    "incompatible_root_lattice_unsat": {
+      "sat": false,
+      "message": "Incompatible root lattice (contradictory weight) is UNSAT",
+      "expected_unsat": true
+    }
+  },
+  "boundary": {
+    "trivial_zero_weight": {
+      "sat": true,
+      "message": "Trivial representation (zero weight) is valid"
+    },
+    "minimal_weight_shift": {
+      "sat": true,
+      "message": "Minimal weight shift (difference of 1) is valid"
+    },
+    "spin_half_boundary": {
+      "sat": true,
+      "message": "Spin-1/2 boundary (half-integer weights) is valid"
+    }
+  },
+  "classification": "canonical"
+}

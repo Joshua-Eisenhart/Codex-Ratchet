@@ -1,0 +1,124 @@
+{
+  "name": "Quillen Model Category Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "morphism properties are combinatorial, not numeric"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph neural network needed for categorical axiom"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary SMT solver for this axiom"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: QF_LIA constraint on morphism weak-equivalence statuses; proves 2-of-3"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: verify 2-of-3 property symbolically for topological spaces"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "model categories do not require Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "categorical properties are not Riemannian"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance structure in model category axioms"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "morphism composition is sequential, not graph-traversal"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure in categorical axiom"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "topological space model structure is classical, not higher-dimensional"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology is not relevant to 2-of-3 axiom"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_f_g_weak_implies_gf_weak": {
+      "description": "If f and g are weak equivalences, g\u2218f is weak equivalence",
+      "status": "pass",
+      "configuration": "f_weak=True, g_weak=True, gf_weak=True",
+      "cvc5_satisfiable": true
+    },
+    "error_positive": {
+      "status": "error",
+      "message": "type object 'Kind' has no attribute 'EQ'"
+    }
+  },
+  "negative": {
+    "test_violation_f_g_weak_gf_not_weak": {
+      "description": "If f and g are weak, g\u2218f must be weak. Claiming otherwise is UNSAT.",
+      "status": "pass",
+      "configuration": "f_weak=True, g_weak=True, gf_weak=False",
+      "should_be_unsat": true
+    },
+    "error_negative": {
+      "status": "error",
+      "message": "type object 'Kind' has no attribute 'EQ'"
+    }
+  },
+  "boundary": {
+    "test_identity_is_weak": {
+      "description": "Identity morphism id_A: A\u2192A is always a weak equivalence",
+      "status": "pass",
+      "id_weak": true,
+      "reason": "identity is a homotopy equivalence to itself"
+    },
+    "error_boundary": {
+      "status": "error",
+      "message": "type object 'Kind' has no attribute 'EQ'"
+    },
+    "test_sympy_topological_space_structure": {
+      "description": "Verify 2-of-3 property for topological space model structure",
+      "status": "pass",
+      "weak_equivalences": "weak homotopy equivalences",
+      "fibrations": "Serre fibrations",
+      "cofibrations": "retracts of relative CW-complexes",
+      "property_verified": "for any f: X\u2192Y, g: Y\u2192Z, if two of {f, g, g\u2218f} are weak homotopy equivalences, so is the third"
+    }
+  },
+  "classification": "canonical"
+}

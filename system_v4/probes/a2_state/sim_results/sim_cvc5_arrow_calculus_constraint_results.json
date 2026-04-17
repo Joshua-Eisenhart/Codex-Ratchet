@@ -1,0 +1,154 @@
+{
+  "name": "sim_cvc5_arrow_calculus_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; arrow structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver proves arrow calculus laws via quantifier-free linear integer arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of arrow laws with concrete functions"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; arrow laws are structural"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; arrow flow is compositional, not graph-based"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_arr_identity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "arr id = id arrow law holds"
+    },
+    "test_2_arr_composition": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "arr (f >>> g) = arr f >>> arr g law holds"
+    },
+    "test_3_first_lifting": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "first (arr f) = arr (first f) law holds"
+    },
+    "test_4_composition_associativity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "(f >>> g) >>> h = f >>> (g >>> h) associativity holds"
+    },
+    "test_5_sympy_arrow": {
+      "status": "PASS",
+      "arr_identity": "True",
+      "arr_composition": "True",
+      "first_lifting": "True",
+      "composition_associativity": "True",
+      "reason": "Arrow laws verified with concrete functions f(x)=2x, g(x)=x+1, h(x)=3x"
+    }
+  },
+  "negative": {
+    "neg_test_1_arr_identity_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "arr id law cannot be violated (UNSAT confirms necessity)"
+    },
+    "neg_test_2_arr_composition_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "arr composition law cannot be violated (UNSAT confirms necessity)"
+    },
+    "neg_test_3_composition_associativity_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Arrow associativity cannot be violated (UNSAT confirms necessity)"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_zero_flow": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Arrow laws hold with identity function (zero transformation)"
+    },
+    "boundary_test_2_identity_arrow": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Arrow laws hold with identity arrow composition (id >>> id = id)"
+    },
+    "boundary_test_3_deep_nesting": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Arrow laws hold with deeply nested compositions (5 arrows, 1->2->4->8->16->32)"
+    }
+  },
+  "classification": "canonical"
+}

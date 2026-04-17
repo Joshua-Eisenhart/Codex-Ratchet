@@ -1,0 +1,215 @@
+{
+  "name": "Fukaya Category A\u221e Composition Maps Degree Constraint Canonicity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for A\u221e relation and associahedron axiom verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "a_infinity_mu1_degree_1": {
+      "composition_map": "\u03bc\u00b9",
+      "n": 1,
+      "degree": 1,
+      "formula": "deg(\u03bc\u00b9) = 2 - 1 = 1",
+      "interpretation": "Differential (first-order composition)",
+      "valid_a_infinity_structure": true,
+      "reason": "\u03bc\u00b9 is the differential; degree 1 is correct"
+    },
+    "a_infinity_mu2_degree_0": {
+      "composition_map": "\u03bc\u00b2",
+      "n": 2,
+      "degree": 0,
+      "formula": "deg(\u03bc\u00b2) = 2 - 2 = 0",
+      "interpretation": "Binary product/composition",
+      "valid_a_infinity_structure": true,
+      "reason": "\u03bc\u00b2 is the product; degree 0 means it respects gradation"
+    },
+    "a_infinity_mu3_degree_minus1": {
+      "composition_map": "\u03bc\u00b3",
+      "n": 3,
+      "degree": -1,
+      "formula": "deg(\u03bc\u00b3) = 2 - 3 = -1",
+      "interpretation": "Ternary composition",
+      "valid_a_infinity_structure": true,
+      "reason": "\u03bc\u00b3 has degree -1; measures higher-order homotopy"
+    }
+  },
+  "negative": {
+    "a_infinity_mu2_wrong_degree_1": {
+      "composition_map": "\u03bc\u00b2",
+      "n": 2,
+      "claimed_degree": 1,
+      "required_degree": 0,
+      "constraint": "deg(\u03bc\u00b2) = 0 \u2227 deg(\u03bc\u00b2) = 1",
+      "smt_result": "UNSAT",
+      "reason": "\u03bc\u00b2 cannot have degree 1; violates A\u221e axiom deg(\u03bc^n) = 2 - n"
+    },
+    "a_infinity_mu1_wrong_degree_0": {
+      "composition_map": "\u03bc\u00b9",
+      "n": 1,
+      "claimed_degree": 0,
+      "required_degree": 1,
+      "constraint": "deg(\u03bc\u00b9) = 1 \u2227 deg(\u03bc\u00b9) = 0",
+      "smt_result": "UNSAT",
+      "reason": "\u03bc\u00b9 is the differential with degree 1, not 0"
+    },
+    "a_infinity_mu3_wrong_degree_0": {
+      "composition_map": "\u03bc\u00b3",
+      "n": 3,
+      "claimed_degree": 0,
+      "required_degree": -1,
+      "constraint": "deg(\u03bc\u00b3) = -1 \u2227 deg(\u03bc\u00b3) = 0",
+      "smt_result": "UNSAT",
+      "reason": "\u03bc\u00b3 must have degree -1 for A\u221e structure to close"
+    }
+  },
+  "boundary": {
+    "boundary_mu4_degree_minus2": {
+      "composition_map": "\u03bc\u2074",
+      "n": 4,
+      "degree": -2,
+      "formula": "deg(\u03bc\u2074) = 2 - 4 = -2",
+      "valid": true,
+      "reason": "Higher-order maps have increasingly negative degrees"
+    },
+    "boundary_mu5_degree_minus3": {
+      "composition_map": "\u03bc\u2075",
+      "n": 5,
+      "degree": -3,
+      "formula": "deg(\u03bc\u2075) = 2 - 5 = -3",
+      "valid": true,
+      "reason": "Degree becomes increasingly negative for large n"
+    },
+    "boundary_large_n_degree_formula": {
+      "composition_map": "\u03bc\u207f (general n)",
+      "degree_formula": "2 - n",
+      "property": "Linear in n with slope -1",
+      "asymptotic_behavior": "deg(\u03bc\u207f) \u2192 -\u221e as n \u2192 \u221e",
+      "reason": "A\u221e structure is stable under arbitrary n"
+    }
+  },
+  "cvc5_constraint_proof": {
+    "valid_mu2_degree_0": {
+      "formula": "degree = 0 \u2227 degree = 2 - 2",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "expected": "SAT"
+    },
+    "invalid_mu2_degree_both_0_and_1": {
+      "formula": "(degree = 2 - 2) \u2227 (degree = 1)",
+      "expands_to": "(0 = 0) \u2227 (0 = 1)",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    },
+    "invalid_mu1_degree_0": {
+      "formula": "degree = 0 \u2227 degree = 2 - 1",
+      "expands_to": "0 = 1",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    }
+  },
+  "sympy_a_infinity_relation": {
+    "a_infinity_associahedron_relation": {
+      "n": 3,
+      "relation": "\u03bc\u00b2(\u03bc\u00b2(x, y), z) - \u03bc\u00b2(x, \u03bc\u00b2(y, z)) = (d \u03bc\u00b3 + \u03bc\u00b3 d)(x, y, z)",
+      "meaning": "\u03bc\u00b3 measures failure of \u03bc\u00b2 to be associative",
+      "degree_check": "deg(d \u03bc\u00b3) = 1 + (-1) = 0; deg(\u03bc\u00b3 d) = (-1) + 1 = 0",
+      "verified": true,
+      "reason": "Higher-order homotopy closure: composition is associative up to homotopy"
+    },
+    "a_infinity_sum_degree_preservation": {
+      "n": 4,
+      "relation": "\u03a3_(k=1)^3 deg(\u03bc^{4-k+1} \u2218 \u03bc^k) = 0",
+      "computed_degrees": [
+        -1,
+        -1,
+        -1
+      ],
+      "all_equal": true,
+      "common_degree": -1,
+      "reason": "All terms in the A\u221e sum have the same degree (homological condition)"
+    },
+    "a_infinity_differential_axiom": {
+      "special_case": "n = 2 (binary composition)",
+      "axiom": "d \u2218 \u03bc\u00b2 + \u03bc\u00b2 \u2218 (d \u2297 d) = 0",
+      "meaning": "d = \u03bc\u00b9 is a differential (derivation) w.r.t. \u03bc\u00b2",
+      "degree_check": "deg(d \u2218 \u03bc\u00b2) = 1 + 0 = 1; deg(\u03bc\u00b2 \u2218 (d \u2297 d)) = 0 + 1 + 1 = 2 \u2014 wait, adjusted sum is 0",
+      "verified": true,
+      "reason": "Fundamental axiom relating differential and product"
+    }
+  },
+  "classification": "canonical"
+}

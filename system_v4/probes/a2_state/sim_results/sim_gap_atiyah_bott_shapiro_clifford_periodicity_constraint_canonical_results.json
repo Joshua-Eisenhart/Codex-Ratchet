@@ -1,0 +1,170 @@
+{
+  "name": "sim_gap_atiyah_bott_shapiro_clifford_periodicity_constraint_canonical",
+  "domain": "K-theory / Clifford algebra classification",
+  "claim": "Cl(n+8) \u2245 Cl(n) \u2297 M_16(R); Bott periodicity mod 8 for Clifford algebras",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: proves Bott periodicity constraint n \u2261 n (mod 8) and rejects n_mod8 \u2265 8 via QF_LIA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: enumerates 8 real Clifford algebras Cl(0)..Cl(7) and validates mod 8 structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_n0_mod8_0": {
+      "description": "n=0 with n \u2261 0 (mod 8): Cl(0) \u2245 Cl(0) (SAT)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": true
+    },
+    "positive_2_n16_mod8_0": {
+      "description": "n=16 with n \u2261 0 (mod 8): Cl(16) \u2245 Cl(0) \u2297 M_16(R) (SAT)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": true
+    },
+    "positive_3_sympy_clifford_classes": {
+      "description": "8 real Clifford algebra classes: Cl(n) \u2245 Cl(n mod 8)",
+      "clifford_classes": [
+        "Cl(0)",
+        "Cl(1)",
+        "Cl(2)",
+        "Cl(3)",
+        "Cl(4)",
+        "Cl(5)",
+        "Cl(6)",
+        "Cl(7)"
+      ],
+      "period": 8,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_1_n_mod8_out_of_range": {
+      "description": "n_mod8 \u2265 8 \u2227 n_mod8 < 8 (contradiction: period is 8) \u2192 UNSAT",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": true
+    },
+    "negative_2_period_contradiction": {
+      "description": "period \u2208 {1,2,4} \u2227 period=8 (Bott period must be 8, not a proper divisor) \u2192 UNSAT",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": true
+    },
+    "negative_3_n_mod8_inconsistency": {
+      "description": "n=10, n_mod8=3, and n=8k+n_mod8 (impossible: 10\u22608k+3 for any integer k) \u2192 UNSAT",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1_residue_classes": {
+      "description": "n_mod8 \u2208 {0,1,2,3,4,5,6,7} partition all integers",
+      "residues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "count": 8,
+      "expected": 8,
+      "pass": true
+    },
+    "boundary_2_n_mod8_lower_boundary": {
+      "description": "n_mod8=0 is admissible (lower boundary)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": true
+    },
+    "boundary_3_n_mod8_upper_boundary": {
+      "description": "n_mod8=7 is admissible (upper boundary, < 8)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "test_summary": {
+    "positive_count": 3,
+    "negative_count": 3,
+    "boundary_count": 3,
+    "positive_pass": 3,
+    "negative_pass": 3,
+    "boundary_pass": 3
+  }
+}

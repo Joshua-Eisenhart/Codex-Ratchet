@@ -1,0 +1,138 @@
+{
+  "name": "geometry_deligne_cohomology_regulator_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Hodge filtration inclusion via SMT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Degree constraints and dimension checks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_regulator_maps_to_fp": {
+      "cycle_codim": "2",
+      "hodge_filtration_p": "2",
+      "regulator_in_fp": "True",
+      "result": "PASS"
+    },
+    "test_hodge_filtration_inclusion": {
+      "dim_f0": "10",
+      "dim_f1": "8",
+      "dim_f2": "4",
+      "inclusion_satisfied": "True",
+      "result": "PASS"
+    },
+    "test_regulator_preserves_type": {
+      "cycle_type": "(2,2)",
+      "regulator_type": "(2,2)",
+      "type_preserved": "True",
+      "result": "PASS"
+    }
+  },
+  "negative": {
+    "test_unsat_wrong_filtration": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    },
+    "test_unsat_filtration_violation": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    },
+    "test_unsat_type_change": {
+      "unsat_expected": true,
+      "sat_result": "False",
+      "result": "PASS"
+    }
+  },
+  "boundary": {
+    "test_boundary_points": {
+      "object": "points",
+      "codimension": "4",
+      "hodge_type": "(4, 4)",
+      "result": "PASS"
+    },
+    "test_boundary_divisors": {
+      "object": "divisors",
+      "codimension": "1",
+      "hodge_type": "(1,1)",
+      "result": "PASS"
+    },
+    "test_boundary_filtration_chain": {
+      "variety_dimension": "4",
+      "filtration_length": "5",
+      "dimensions_decreasing": "True",
+      "result": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

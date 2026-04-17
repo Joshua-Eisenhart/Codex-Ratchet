@@ -1,0 +1,158 @@
+{
+  "name": "sim_geometry_morse_index_critical_point_constraint_canonical",
+  "description": "Morse theory: critical point index constraints and Morse inequalities",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Morse critical point constraint admissibility"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_circle": {
+      "name": "S^1 circle Morse",
+      "dimension": 1,
+      "critical_counts": [
+        1,
+        1
+      ],
+      "euler_char": 0,
+      "morse_inequality": 0,
+      "passes": true
+    },
+    "positive_2_sphere": {
+      "name": "S^2 sphere Morse",
+      "dimension": 2,
+      "critical_counts": [
+        1,
+        0,
+        1
+      ],
+      "euler_char": 2,
+      "morse_inequality": 2,
+      "passes": true
+    },
+    "positive_3_torus": {
+      "name": "T^2 torus Morse",
+      "dimension": 2,
+      "critical_counts": [
+        1,
+        2,
+        1
+      ],
+      "euler_char": 0,
+      "morse_inequality": 0,
+      "passes": true
+    }
+  },
+  "negative": {
+    "negative_1_negative_count": {
+      "name": "Morse negative test: c_0 < 0",
+      "claim": "\u2203 Morse with c_0 = -1 (violates c_0 \u2265 0)",
+      "cvc5_result": "unsat",
+      "passes": true
+    },
+    "negative_2_zero_minima": {
+      "name": "Morse negative test: c_0 = 0 on connected manifold",
+      "claim": "\u2203 Morse on connected space with c_0 = 0 (violates connectivity constraint)",
+      "cvc5_result": "unsat",
+      "passes": true
+    },
+    "negative_3_morse_inequality_violated": {
+      "name": "Morse negative test: inequality violation (S^2)",
+      "claim": "Morse inequality violated: c=[1,0,0], \u03a3=1 < \u03c7=2",
+      "cvc5_result": "unsat",
+      "passes": true
+    }
+  },
+  "boundary": {
+    "boundary_1_all_minima": {
+      "name": "Boundary: all critical points at index 0",
+      "claim": "c_0 = 5, c_k = 0 for k > 0 is admissible",
+      "cvc5_result": "sat",
+      "passes": true
+    },
+    "boundary_2_minimal_critical": {
+      "name": "Boundary: minimal Morse on 5D manifold",
+      "claim": "R^5 with c_0=1, c_5=1 is admissible",
+      "cvc5_result": "sat",
+      "passes": true
+    },
+    "boundary_3_tight_inequality": {
+      "name": "Boundary: Morse inequality equality (tight)",
+      "claim": "Torus with c = [1,2,1] satisfies \u03c7 = \u03a3 (-1)^k c_k",
+      "cvc5_result": "sat",
+      "passes": true
+    }
+  },
+  "classification": "canonical"
+}

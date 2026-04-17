@@ -1,0 +1,139 @@
+{
+  "name": "LawvereTierneyTopologyConstraint",
+  "description": "Lawvere-Tierney topology j: \u03a9 \u2192 \u03a9 with idempotence, unit, meet-preservation axioms",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; categorical logic handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Lawvere-Tierney topology axioms"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for sheafification formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; categorical logic constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_topology": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "dense_topology": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "generic_idempotent_topology": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "sympy_sheafification": {
+      "j_closure_0": 0,
+      "j_closure_1": 1,
+      "idempotent": true,
+      "preserves_true": true,
+      "passed": true
+    }
+  },
+  "negative": {
+    "non_idempotent_topology": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "does_not_preserve_true": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "does_not_preserve_meets": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "single_element_omega": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "three_element_lattice_topology": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "triple_composition_idempotent": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

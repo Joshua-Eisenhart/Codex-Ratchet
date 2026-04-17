@@ -1,0 +1,141 @@
+{
+  "name": "sim_gtower_gl_o_ordering_deep",
+  "classification": "canonical",
+  "scope_note": "Deep probe on GL -> O reduction (partially flexible pair). 4 candidates: 3 show strict ordering (GL admits, O excludes via metric fence); 1 is flexible (rotation admitted at both levels). z3 UNSAT closes the reversed O -> GL claim (O-admitted + GL-excluded is structurally impossible). Clifford Cl(3,0) rotor encoding confirms shear/scale are not unit rotors (O-excluded) while genuine rotations are unit rotors (O-admitted).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "GL->O ordering is a pure algebraic constraint probe; torch autograd not needed for symbolic matrix admissibility"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph message-passing not applicable to 2x2 matrix group-reduction fence tests"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proves that no 2x2 real matrix can simultaneously satisfy the O-admissibility fence (A^T A = I) and the GL-exclusion condition (det(A)=0); this closes the structural impossibility of the reversed O -> GL tower ordering, confirming O \u2282 GL as a necessary inclusion."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 covers all required UNSAT proofs; cvc5 alternative SMT solver not invoked in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not exercised; numeric numpy + clifford rotor sufficient for GL->O admissibility tests"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3,0) rotor encoding of each candidate matrix; R*R~=1 condition identifies whether the candidate is a genuine rotation (O-admitted) or a shear/scale (O-excluded); this is the geometric proof that shear candidates fail the O-level fence while rotation candidates survive."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry library not needed; admissibility is algebraic metric-preservation, not geodesic computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant neural network layers not applicable to symbolic group-reduction ordering proofs"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "graph data structure not applicable; GL->O reduction is a matrix algebra constraint, not a graph problem"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph library not applicable; this sim tests pairwise matrix admissibility fences"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "topological cell complex not applicable; GL->O is a Lie-group subgroup inclusion fence"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not applicable; GL->O ordering does not involve topological filtrations"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "candidate_details": {
+      "shear_1_1": {
+        "gl_admitted": true,
+        "o_admitted": false,
+        "strict_ordering_witness": true,
+        "flexible": false
+      },
+      "scale_2_1": {
+        "gl_admitted": true,
+        "o_admitted": false,
+        "strict_ordering_witness": true,
+        "flexible": false
+      },
+      "rotation_30": {
+        "gl_admitted": true,
+        "o_admitted": true,
+        "strict_ordering_witness": false,
+        "flexible": true
+      },
+      "shear_0_5": {
+        "gl_admitted": true,
+        "o_admitted": false,
+        "strict_ordering_witness": true,
+        "flexible": false
+      }
+    },
+    "strict_ordering_count": 3,
+    "flexible_count": 1,
+    "at_least_3_strict": true,
+    "at_most_1_flexible": true,
+    "clifford_shear_is_not_rotor": true,
+    "clifford_rotation_is_rotor": true,
+    "clifford_shear_note": "norm_sq=1.250000, unit_check=1.250000",
+    "clifford_rotation_note": "norm_sq=1.000000, unit_check=1.000000",
+    "clifford_ordering_confirmed": true,
+    "pass": true
+  },
+  "negative": {
+    "degenerate_gl_excluded": true,
+    "degenerate_o_excluded": true,
+    "degenerate_not_counterexample": true,
+    "rotation_is_o_admitted": true,
+    "rotation_is_gl_admitted": true,
+    "clifford_scale_not_unit_rotor": true,
+    "clifford_scale_note": "norm_sq=2.250000, unit_check=2.250000",
+    "pass": true
+  },
+  "boundary": {
+    "z3_o_admitted_AND_gl_excluded_unsat": "unsat",
+    "z3_pass": true,
+    "z3_gl_admitted_and_o_excluded_is_sat": "sat",
+    "z3_sat_pass": true,
+    "epsilon_shear_gl_admitted": true,
+    "epsilon_shear_o_excluded_strict": true,
+    "epsilon_shear_o_admitted_loose": true,
+    "pass": true
+  },
+  "overall_pass": true,
+  "status": "PASS"
+}

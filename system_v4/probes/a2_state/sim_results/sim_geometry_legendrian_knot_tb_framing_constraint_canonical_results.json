@@ -1,0 +1,132 @@
+{
+  "name": "sim_geometry_legendrian_knot_tb_framing_constraint_canonical",
+  "description": "Legendrian knot Bennequin inequality: tb(K) + |r(K)| \u2264 2g(K) - 1. cvc5 UNSAT proves violation is inadmissible.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Bennequin inequality constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for Legendrian knot invariants"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_unknot": {
+      "sat": true,
+      "valid": true,
+      "description": "Unknot satisfies Bennequin inequality"
+    },
+    "test_2_trefoil": {
+      "sat": true,
+      "valid": true,
+      "description": "Trefoil knot satisfies Bennequin inequality (tight bound)"
+    },
+    "test_3_high_genus_slack": {
+      "sat": true,
+      "valid": true,
+      "description": "Higher genus knot satisfies Bennequin with slack"
+    }
+  },
+  "negative": {
+    "test_1_bennequin_violation": {
+      "unsat": true,
+      "valid": true,
+      "description": "Bennequin inequality violation is UNSAT"
+    },
+    "test_2_high_rotation_low_genus": {
+      "unsat": true,
+      "valid": true,
+      "description": "High rotation number with low genus violates Bennequin"
+    },
+    "test_3_high_tb_high_r": {
+      "unsat": true,
+      "valid": true,
+      "description": "High tb and r values violate Bennequin for low genus"
+    }
+  },
+  "boundary": {
+    "test_1_tight_bennequin": {
+      "sat": true,
+      "valid": true,
+      "description": "Tight Bennequin (equality) is admissible"
+    },
+    "test_2_genus_zero_unknot": {
+      "sat": true,
+      "valid": true,
+      "description": "Genus-0 unknot at boundary of Bennequin"
+    },
+    "test_3_zero_rotation": {
+      "sat": true,
+      "valid": true,
+      "description": "Zero rotation number simplifies Bennequin inequality"
+    }
+  },
+  "classification": "canonical"
+}

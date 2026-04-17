@@ -1,0 +1,132 @@
+{
+  "name": "ExteriorDifferentialSystemProlongationConstraint",
+  "description": "EDS prolongation: non-involutive systems have strictly growing integral element space. cvc5 proves stasis contradicts non-involutivity.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 SMT solver: load_bearing proof of EDS prolongation constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "sympy: supportive computation of integral element dimensions"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "supportive",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_involutive_no_prolongation_growth": {
+      "description": "Involutive system: integral element dimension unchanged by prolongation",
+      "sat": true,
+      "expected": true
+    },
+    "test_non_involutive_with_prolongation_growth": {
+      "description": "Non-involutive system: prolongation increases integral element dimension",
+      "sat": false,
+      "expected": true
+    },
+    "test_nested_prolongation_growth": {
+      "description": "Multi-level prolongation: dim(I^(0)) < dim(I^(1)) < dim(I^(2))",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_non_involutive_no_growth": {
+      "description": "Violation: non-involutive system with no prolongation growth contradicts theorem",
+      "sat": false,
+      "expected": false
+    },
+    "test_zero_dim_non_involutive": {
+      "description": "Zero-dimensional non-involutive: dim(I)=0 cannot grow under prolongation",
+      "sat": false,
+      "expected": false
+    },
+    "test_prolongation_shrinks_integral_elements": {
+      "description": "Impossibility: prolongation reduces integral element space",
+      "sat": true,
+      "expected": false
+    }
+  },
+  "boundary": {
+    "test_maximal_integral_element": {
+      "description": "Maximal dimension: dim(I)=n (entire manifold), no growth possible, involutive",
+      "sat": true,
+      "expected": true
+    },
+    "test_single_integral_element": {
+      "description": "Single integral element: dim(I)=1, preserved or grown by prolongation",
+      "sat": true,
+      "expected": true
+    },
+    "test_involutive_closure": {
+      "description": "Involutive closure: after prolongations, dim(I^(k))=dim(I^(k+1)), system involutive",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

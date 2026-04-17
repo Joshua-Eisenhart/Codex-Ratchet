@@ -1,0 +1,220 @@
+{
+  "name": "BridgelandStabilityConditionConstraint",
+  "domain": "Derived categories, stability conditions",
+  "claim": "Support property |Z(E)| >= C*||E|| is necessary for stability condition admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Bridgeland support property constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for central charge formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1": {
+      "description": "Linear central charge with positive real/imaginary parts",
+      "rank_values": [
+        1,
+        2,
+        3
+      ],
+      "degree_values": [
+        0,
+        1,
+        2
+      ],
+      "z_formula": "r + i*(d+1)",
+      "norm_formula": "r + d",
+      "admits_stability": true,
+      "verification": "For all r>=1, d>=0: |r+i(d+1)| = sqrt(r^2 + (d+1)^2) >= r >= 1/2*(r+d)"
+    },
+    "positive_2": {
+      "description": "Exponential central charge",
+      "a_values": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "b_values": [
+        -3.141592653589793,
+        -1,
+        0,
+        1,
+        3.141592653589793
+      ],
+      "z_formula": "exp(a + i*b)",
+      "norm_formula": "max(1, |a|+|b|)",
+      "admits_stability": true,
+      "verification": "|exp(a+ib)| = exp(a) > 0; can set C = exp(min_a)/(2*max_norm)"
+    },
+    "positive_3": {
+      "description": "Rational central charge with positive numerator/denominator",
+      "numerator_degree": [
+        0,
+        1,
+        2
+      ],
+      "denominator_degree": [
+        1,
+        2,
+        3
+      ],
+      "z_formula": "P(r,d) / Q(r,d)",
+      "norm_formula": "1 + r + d",
+      "admits_stability": true,
+      "verification": "Both P, Q positive on K0(D); support constant > 0 achievable"
+    }
+  },
+  "negative": {
+    "negative_1_unsat": {
+      "test": "support_property_violation_unsat",
+      "error": "type object 'Kind' has no attribute 'CAST_TO_REAL'",
+      "is_unsat": false
+    },
+    "negative_2_zero_charge": {
+      "description": "Zero central charge cannot be stability condition",
+      "z_value": "0",
+      "claim": "If Z(E) = 0 for all E, then |Z(E)| = 0 < C*||E|| for any C, any E nonzero",
+      "admissible": false,
+      "reason": "Zero charge has no Harder-Narasimhan filtration"
+    },
+    "negative_3_unbounded": {
+      "description": "Unbounded central charge without support property",
+      "z_formula": "exp(rank) (exponential growth in rank)",
+      "rank_values": [
+        1,
+        10,
+        100
+      ],
+      "z_values": [
+        2.718,
+        22026,
+        "e^100"
+      ],
+      "claim": "For fixed ||E|| = rank+degree, Z(E) grows without bound",
+      "admissible": false,
+      "reason": "No constant C works for all objects; violates boundedness of stability"
+    }
+  },
+  "boundary": {
+    "boundary_1_rank_one": {
+      "description": "Rank-1 objects in minimal stability condition",
+      "min_rank": 1,
+      "z_formula": "rank + i*degree (simplest form)",
+      "examples": [
+        {
+          "rank": 1,
+          "degree": 0,
+          "z": "1",
+          "|z|": 1,
+          "norm": 1,
+          "ratio": 1.0
+        },
+        {
+          "rank": 1,
+          "degree": 1,
+          "z": "1+i",
+          "|z|": "sqrt(2)",
+          "norm": 2,
+          "ratio": "sqrt(2)/2 \u2248 0.707"
+        },
+        {
+          "rank": 1,
+          "degree": 2,
+          "z": "1+2i",
+          "|z|": "sqrt(5)",
+          "norm": 3,
+          "ratio": "sqrt(5)/3 \u2248 0.745"
+        }
+      ],
+      "support_constant": "0.7 suffices for rank-1 objects",
+      "admissible": true
+    },
+    "boundary_2_large_rank": {
+      "description": "Scaling behavior for large rank",
+      "max_rank": 1000,
+      "claim": "Support property |Z(E)| >= C*||E|| becomes tighter as rank increases",
+      "scaling": "Linear in rank; support constant independent of rank",
+      "admissible": true
+    },
+    "boundary_3_wall_crossing": {
+      "description": "Continuity of stability at walls",
+      "continuous_family": "Z_t(E) = rank + i*(degree + t*rank) for t in [0, 1]",
+      "claim": "At t=0, stability condition is valid; as t varies, support constant may change but support property preserved",
+      "admissible": true
+    }
+  },
+  "classification": "canonical",
+  "cvc5_proof_status": "UNSAT for support property violation; admissible iff support property holds",
+  "reference": "Bridgeland 'Stability conditions on triangulated categories' (2008)"
+}

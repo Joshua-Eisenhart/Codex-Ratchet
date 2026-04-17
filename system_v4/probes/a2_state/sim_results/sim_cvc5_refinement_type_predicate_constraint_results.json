@@ -1,0 +1,140 @@
+{
+  "name": "sim_cvc5_refinement_type_predicate_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; refinement predicates encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver proves refinement type subtyping constraints via implication checking"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of predicate logic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; refinement types are purely logical"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; refinement types are logical constraints, not graphs"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_bounded_positive_to_positive": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Implication holds: {x | x>0 \u2227 x<10} \u2264 {x | x>0}"
+    },
+    "test_2_singleton_satisfies_constraint": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Singleton type {x | x=5} satisfies {x | x>0}"
+    },
+    "test_3_reflexivity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Universal type \u2264 universal type (reflexivity)"
+    }
+  },
+  "negative": {
+    "test_1_positive_not_subtype_negative": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Positive integers are not subtype of negative integers (contradiction)"
+    },
+    "test_2_counterexample_exists": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Counterexample x=7: satisfies x>5 but not x>10 (subtyping fails)"
+    },
+    "test_3_singleton_fails_constraint": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Zero does not satisfy x>0 constraint (subtyping fails)"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_universal_type": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Empty type is subtype of any type (vacuous implication)"
+    },
+    "boundary_test_2_singleton_chain": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Singleton type forms valid subtyping chain"
+    },
+    "boundary_test_3_transitivity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Subtyping transitivity holds across chain"
+    }
+  },
+  "classification": "canonical"
+}

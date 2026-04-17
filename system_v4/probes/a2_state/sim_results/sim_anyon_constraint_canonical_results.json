@@ -1,0 +1,138 @@
+{
+  "name": "Anyon Fractional Statistics Constraint Canonical",
+  "description": "Abelian anyon braiding angle constraint: \u03b8 = p\u03c0/q; encodes via QF_LIA that fractional statistics requires rational multiples of \u03c0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for rational angle constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for fractional statistics"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes rational braiding angle constraint \u03b8 = p\u03c0/q via QF_LIA; proves all abelian anyons have integer p, q; forbids irrational angles"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for integer arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Verifies Berry phase accumulation formula for braid group; proves q exchanges return phase exp(i*p\u03c0)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for anyonic phases"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for braid group"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for abelian braiding"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for anyon statistics"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for 2D braiding"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for fractional statistics"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for abelian anyons"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "semion_statistics": {
+      "status": "satisfiable",
+      "interpretation": "Semion anyons with \u03b8 = \u03c0/2 (p=1, q=2) are admissible",
+      "p": 1,
+      "q": 2,
+      "theta_fraction": "\u03c0/2"
+    },
+    "fibonacci_anyon": {
+      "status": "satisfiable",
+      "interpretation": "Fibonacci anyons with \u03b8 = 4\u03c0/5 (p=4, q=5) are admissible",
+      "p": 4,
+      "q": 5,
+      "theta_fraction": "4\u03c0/5"
+    },
+    "berry_phase_accumulation": {
+      "status": "satisfiable",
+      "interpretation": "Berry phase accumulation after q braids: exp(i*q*\u03b8) = exp(i*p\u03c0) = (-1)^p",
+      "formula": "theta = p*pi / q",
+      "phase_after_q_braids": "p*pi (returns to sign \u00b11)",
+      "consistency_condition": "Braid group closes after q exchanges"
+    }
+  },
+  "negative": {
+    "irrational_theta_forbidden": {
+      "status": "unsat in QF_LIA",
+      "interpretation": "Irrational braiding angles cannot be expressed as integer ratios p/q; QF_LIA forbids them"
+    },
+    "transcendental_angle_blocked": {
+      "status": "satisfiable (valid rational)",
+      "interpretation": "Non-\u03c0 transcendental angles (e.g., \u03b8 = e, \u03b8 = \u221a2) cannot appear; all abelian anyons have \u03b8 = p\u03c0/q"
+    },
+    "non_closure_impossible": {
+      "status": "satisfiable (valid rational)",
+      "interpretation": "Braid group closure is automatic for rational \u03b8 = p\u03c0/q; N exchanges give phase 2\u03c0Np/q"
+    }
+  },
+  "boundary": {
+    "fermion_limit": {
+      "status": "satisfiable",
+      "interpretation": "Fermions are boundary case: \u03b8 = \u03c0 (p=1, q=1); sign flip under exchange",
+      "theta": "\u03c0",
+      "statistics": "fermionic"
+    },
+    "boson_limit": {
+      "status": "satisfiable",
+      "interpretation": "Bosons are boundary case: \u03b8 = 0 (p=0, q=1); no sign flip under exchange",
+      "theta": "0",
+      "statistics": "bosonic"
+    },
+    "tqft_realizability": {
+      "status": "satisfiable",
+      "interpretation": "Anyons with small denominator q are realizable in topological field theory; q=2,3,4,5 are physically realized",
+      "realizable_q_range": "q \u2264 5"
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

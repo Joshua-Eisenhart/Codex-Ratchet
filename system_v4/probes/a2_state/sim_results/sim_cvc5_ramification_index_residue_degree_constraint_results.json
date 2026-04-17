@@ -1,0 +1,137 @@
+{
+  "name": "Ramification Index and Residue Degree Constraint via cvc5",
+  "description": "cvc5 proves ramification constraints: e\u00b7f=[L:K], totally ramified f=1, unramified e=1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; pure algebraic constraint proofs"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead; same SMT solver capability"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of ramification index and residue degree constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for ramification law verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; integer constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats differential geometry not needed; algebraic prime decomposition"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks not applicable; no symmetry action needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx graph library not needed; no ideal factorization graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; pairwise prime-ideal relationships only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx topological networks not needed; pure integer arithmetic"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi simplicial complexes not needed; no topological dimension"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_valid_ramification": {
+      "description": "cvc5 SAT: e=2, f=3, [L:K]=6 satisfies e\u00b7f=[L:K]",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 3, 6]"
+    },
+    "test_positive_totally_ramified": {
+      "description": "cvc5 SAT: totally ramified extension f=1, e=5, [L:K]=5",
+      "sat": true,
+      "expected": true,
+      "model": "[5, 1, 5]"
+    },
+    "test_positive_unramified": {
+      "description": "cvc5 SAT: unramified extension e=1, f=4, [L:K]=4",
+      "sat": true,
+      "expected": true,
+      "model": "[1, 4, 4]"
+    }
+  },
+  "negative": {
+    "test_negative_ef_exceeds_degree": {
+      "description": "cvc5 UNSAT: e\u00b7f=9 > [L:K]=8 violates ramification law",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_f_not_one_totally_ramified": {
+      "description": "cvc5 UNSAT: f=2 contradicts totally ramified condition f=1",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_ef_less_than_degree": {
+      "description": "cvc5 UNSAT: e\u00b7f=4 < [L:K]=5 violates ramification law",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_single_prime_above": {
+      "description": "cvc5 SAT: single prime P|p with e=2, f=3, [L:K]=6",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_completely_unramified": {
+      "description": "cvc5 SAT: completely unramified e=1, f=[L:K]=3",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_symbolic_ramification": {
+      "description": "sympy: verify ramification law e\u00b7f=[L:K] symbolically",
+      "ramification_expression": "-degree + e*f",
+      "test_case_3_times_2_equals_6": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

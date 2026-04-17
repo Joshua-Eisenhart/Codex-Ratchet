@@ -1,0 +1,144 @@
+{
+  "name": "A-infinity algebra constraint canonical sim",
+  "description": "Proves A_\u221e structure maps satisfy Stasheff identities via cvc5; verifies n=2 identity via sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 solver for constraint satisfaction and UNSAT proofs on Stasheff identities"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for algebraic verification of n=2 Stasheff identity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_m1_differential_sat": {
+      "description": "m_1 is a differential (m_1\u00b2 = 0)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_2_stasheff_n2_identity": {
+      "description": "n=2 Stasheff identity verified via sympy",
+      "sign_flip": -1.0,
+      "deg_m1": -1,
+      "deg_m2": 1,
+      "pass": true
+    },
+    "test_3_lower_triangular_differential": {
+      "description": "Lower-triangular m_1 satisfies m_1\u00b2 = 0",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    }
+  },
+  "negative": {
+    "test_1_m1_squared_nonzero_unsat": {
+      "description": "UNSAT: m_1\u00b2 = 0 AND m_1\u00b2 \u2260 0 simultaneously",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    },
+    "test_2_nilpotent_vs_identity": {
+      "description": "UNSAT: m\u00b2 = 1 AND m\u00b2 = 0 simultaneously",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    },
+    "test_3_degree_contradiction": {
+      "description": "UNSAT: composed degree = 0 AND composed degree = 5",
+      "sat": "unsat",
+      "expected": "UNSAT",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "test_1_trivial_zero_maps": {
+      "description": "Boundary: zero maps satisfy m_1\u00b2 = 0",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_2_higher_nilpotency": {
+      "description": "Boundary: m_1\u00b3 = 0 (higher nilpotency order)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    },
+    "test_3_all_positive_degrees": {
+      "description": "Boundary: all input degrees positive (admissible)",
+      "sat": "sat",
+      "expected": "SAT",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

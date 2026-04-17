@@ -1,0 +1,140 @@
+{
+  "name": "Hopf Fibration S\u00b3 \u2192 S\u00b2 Constraint via cvc5",
+  "description": "cvc5 proves Hopf fibration constraint: unit quaternions map to S\u00b2",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via z3 and sympy"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; geometry handled via tensor operations"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "z3 SMT solver not needed; pytorch autograd handles constraint satisfaction"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver not needed; z3 handles all constraint proofs in this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy symbolic math not needed; numerical torch computation is sufficient"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; geometry computed via direct matrix operations"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats differential geometry library not needed for this sim's approach"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn equivariant networks not needed; no SO(3) equivariance required here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx graph library not needed; no graph structure in this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi hypergraph library not needed; pairwise interactions only in this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx topological networks not needed; standard tensor ops sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_unit_quaternion_identity": {
+      "description": "cvc5 SAT: q = (1, 0, 0, 0) is a unit quaternion",
+      "sat": true,
+      "expected": true,
+      "model": "[1.0, 0.0, 0.0, 0.0]"
+    },
+    "test_positive_hopf_image_sphere": {
+      "description": "cvc5 SAT: Hopf image n = (1, 0, 0) lies on S\u00b2",
+      "sat": true,
+      "expected": true,
+      "model": "[1.0, 0.0, 0.0]"
+    },
+    "test_positive_u1_fiber_rotation": {
+      "description": "cvc5 SAT: U(1) rotation preserves |q|\u00b2=1",
+      "sat": true,
+      "expected": true,
+      "model": "[(- 1.0), 0.0, 0.0, 0.0, (- 1.0), 0.0]"
+    }
+  },
+  "negative": {
+    "test_negative_hopf_outside_sphere": {
+      "description": "cvc5 UNSAT: Hopf image with norm\u00b2 = 2 violates S\u00b2 constraint",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_non_unit_quaternion": {
+      "description": "cvc5 UNSAT: |q|\u00b2=1 AND |q|\u00b2=2 is impossible",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_hopf_excessive_neg": {
+      "description": "cvc5 UNSAT: S\u00b2 norm = 1 AND n_x < -2 is impossible",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_quaternion_near_identity": {
+      "description": "cvc5 SAT: quaternion near identity satisfies |q|\u00b2=1",
+      "sat": true,
+      "expected": true,
+      "model": "[(/ 127 128), (/ (- 1) 32), (_ real_algebraic_number <16384*x^2 + (-239), (-1/8, -1/16)>), 0.0]"
+    },
+    "test_boundary_hopf_south_pole": {
+      "description": "cvc5 SAT: Hopf image at south pole (0, 0, -1)",
+      "sat": true,
+      "expected": true
+    },
+    "test_boundary_symbolic_hopf_map": {
+      "description": "sympy: Hopf map preserves S\u00b2 constraint",
+      "hopf_n_x": "2*w*x + 2*y*z",
+      "hopf_n_y": "2*w*y - 2*x*z",
+      "hopf_n_z": "w**2 - x**2 - y**2 + z**2",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "overall_pass": true,
+  "classification": "canonical"
+}

@@ -1,0 +1,299 @@
+{
+  "name": "sim_integration_quantum_open_entangle_correlator_mega_stack",
+  "timestamp": "2026-04-16T22:08:44.784658+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical bridge baseline: one entangling 2-qubit state, one amplitude-damping open-system flow, and one reduced correlator geometry must all agree across numpy/scipy, qutip, Cirq, PennyLane, torch, Clifford, torch_ga, rustworkx, xgi, TopoNetX, GUDHI, sympy, and z3. The lane also exposes an Axis 0 dynamic-shell readout over a lambda-indexed expansion schedule so i-scalar/jk-fuzz, shell ordering, higher-order shell couplings, topology parity, and admissible shell constraints are measured from the live shell surface instead of frozen weights.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "classical density, correlator, Axis 0 shell bookkeeping, and serialization arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential reference for the entangling prep, Liouvillian flow, and lambda-indexed shell schedule"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing open-system mesolve witness on the damped entangled state"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing entangling circuit witness for the 2-qubit prep surface"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing QNode entanglement witness for the same prep surface"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing fit and gradient witness on the reduced correlator geometry"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing geometric carrier for the reduced correlator vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing geometric algebra roundtrip for the reduced correlator vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing shell DAG witness for lambda-ordered dynamic-shell propagation"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing higher-order shell-coupling witness for triadic shell windows"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing cell-complex witness for shell boundary composition"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing persistent-topology witness for the shell complex"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing symbolic interpolation and derivative witness for the lambda-shell drive"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing constraint witness enforcing ordered lambda shells and normalized dynamic weights"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "qutip": "load_bearing",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "pass": true,
+    "prep_surface": {
+      "pass": true,
+      "numpy_vs_cirq": 1.2731075198650083e-07,
+      "numpy_vs_pennylane": 0.0
+    },
+    "open_system_surface": {
+      "pass": true,
+      "numpy_vs_qutip": 1.2141417303728348e-07,
+      "reference_trace_gap": 1.1102230246251565e-16
+    },
+    "correlator_surface": {
+      "pass": true,
+      "target_correlator": [
+        0.6627941440547604,
+        -0.5013394557375912,
+        0.6055073188094607
+      ],
+      "torch_correlator": [
+        0.6627941440547604,
+        -0.5013394557375912,
+        0.6055073188094607
+      ],
+      "torch_ga_correlator": [
+        0.6627941727638245,
+        -0.5013394355773926,
+        0.6055073142051697
+      ],
+      "clifford_correlator": [
+        0.6627941440547604,
+        -0.5013394557375912,
+        0.6055073188094607
+      ]
+    },
+    "fit_recovery": {
+      "pass": true,
+      "decay_fit": 0.4614096418560411,
+      "vector_fit": [
+        0.662794143900443,
+        -0.501339455620865,
+        0.6055073187274416
+      ],
+      "loss": 4.4166020884469775e-20,
+      "vector_gap": 1.5431744770921796e-10,
+      "loss_history_tail": [
+        0.0008868620876158176,
+        6.93050705355098e-06,
+        2.09597950216998e-08,
+        5.466495528809308e-13,
+        4.4166020884469775e-20
+      ]
+    },
+    "axis0_dynamic_shell": {
+      "pass": true,
+      "jk_fuzz_dynamic": 2.3148103908384483,
+      "i_scalar_dynamic": 0.31759102483383944,
+      "i_scalar_frozen": 0.3024903355290139,
+      "dynamic_vs_frozen_gap": 0.015100689304825554,
+      "coherent_information_span": 0.43751352572365915,
+      "gravity_proxy_mean": 0.45153803985979424,
+      "expansion_entropy_drive_mean": 1.3322676295501878e-16,
+      "lambda_shells": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "dynamic_weights": [
+        0.22948670269946908,
+        0.21329178305085564,
+        0.1986193183816516,
+        0.18532391134128376,
+        0.17327828452674005
+      ],
+      "graph_surface": {
+        "edge_count": 7,
+        "longest_path_length": 4,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "hypergraph_surface": {
+        "num_edges": 10,
+        "max_hyperedge_size": 3,
+        "connected_components": 1
+      },
+      "cell_complex_surface": {
+        "shape": [
+          5,
+          7,
+          3
+        ],
+        "boundary_composes_to_zero": true,
+        "euler_characteristic": 1
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true
+      },
+      "symbolic_surface": {
+        "coherent_poly_degree": 4,
+        "symbolic_ic_derivative_mid": -0.3440167648160941,
+        "symbolic_entropy_derivative_mid": 7.105427357601002e-15
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      }
+    }
+  },
+  "negative": {
+    "pass": true,
+    "wrong_sign_damping_rejected": {
+      "pass": true,
+      "error": 0.7568761303898256
+    },
+    "reversed_entangler_rejected": {
+      "pass": true,
+      "cirq_error": 1.2688220272244237,
+      "pennylane_error": 1.2688219669858536
+    },
+    "correlator_mismatch_rejected": {
+      "pass": true,
+      "loss": 0.027426522198137925,
+      "vector_gap": 0.13654330571908507
+    },
+    "axis0_constraint_order_rejected": {
+      "pass": true,
+      "result": "unsat"
+    },
+    "axis0_shell_face_ablation_rejected": {
+      "pass": true,
+      "full_max_hyperedge_size": 3,
+      "ablated_max_hyperedge_size": 2,
+      "full_beta1": 0,
+      "ablated_beta1": 3
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "prep_boundary": {
+      "pass": true,
+      "numpy_vs_cirq": 0.0,
+      "numpy_vs_pennylane": 0.0
+    },
+    "open_system_boundary": {
+      "pass": true,
+      "numpy_vs_qutip": 0.0,
+      "reference_trace_gap": 0.0
+    },
+    "correlator_boundary": {
+      "pass": true,
+      "target_correlator": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "axis0_dynamic_shell_boundary": {
+      "pass": true,
+      "jk_fuzz_dynamic": 2.321928094887362,
+      "i_scalar_dynamic": -9.965784284662087e-14,
+      "i_scalar_frozen": -9.965784284662087e-14,
+      "gravity_proxy_mean": 0.0,
+      "graph_edge_count": 0,
+      "hypergraph_edge_count": 0,
+      "topology_betti_numbers": [
+        5,
+        0
+      ],
+      "symbolic_ic_derivative_mid": -6.058451752097371e-28,
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      }
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

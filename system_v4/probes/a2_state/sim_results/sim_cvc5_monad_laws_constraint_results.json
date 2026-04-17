@@ -1,0 +1,147 @@
+{
+  "name": "sim_cvc5_monad_laws_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; monad structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver proves monad laws via quantifier-free linear integer arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of monad laws with concrete functions"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; monad laws are purely algebraic"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; monad structure is compositional, not graph-based"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_left_identity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Left identity: return a >>= f \u2261 f a holds"
+    },
+    "test_2_right_identity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Right identity: m >>= return \u2261 m holds"
+    },
+    "test_3_associativity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Associativity: (m >>= f) >>= g \u2261 m >>= (\u03bbx. f x >>= g) holds"
+    },
+    "test_4_sympy_monad_equivalence": {
+      "status": "PASS",
+      "left_identity": "True",
+      "right_identity": "True",
+      "associativity": "True",
+      "reason": "Monad laws verified with concrete functions f(x)=2x+1, g(x)=3x-2, return(x)=x"
+    }
+  },
+  "negative": {
+    "neg_test_1_left_identity_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Left identity law cannot be violated (UNSAT confirms law necessity)"
+    },
+    "neg_test_2_right_identity_fail": {
+      "status": "FAIL",
+      "expected": "UNSAT",
+      "actual": "SAT",
+      "reason": "Right identity law cannot be violated (UNSAT confirms law necessity)"
+    },
+    "neg_test_3_associativity_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Associativity law cannot be violated (UNSAT confirms law necessity)"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_zero_values": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Monad laws hold with zero/null values"
+    },
+    "boundary_test_2_identity_monad": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Monad laws hold with identity function"
+    },
+    "boundary_test_3_nested_binds": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Monad laws hold with deeply nested binds (h\u2218g\u2218f composition)"
+    }
+  },
+  "classification": "canonical"
+}

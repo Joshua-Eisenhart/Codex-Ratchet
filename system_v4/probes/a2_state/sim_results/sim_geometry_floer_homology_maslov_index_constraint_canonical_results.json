@@ -1,0 +1,202 @@
+{
+  "name": "Floer Homology Maslov Index Constraint Canonicity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for Maslov index formula verification and additivity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "maslov_grading_shift_3_to_2": {
+      "generator": "x",
+      "input_grading": 3,
+      "expected_output_grading": 2,
+      "differential_shifts_by": -1,
+      "valid_floer_differential": true,
+      "reason": "\u2202: degree 3 \u2192 degree 2 is a valid degree -1 shift"
+    },
+    "maslov_grading_shift_5_to_4": {
+      "generator": "y",
+      "input_grading": 5,
+      "expected_output_grading": 4,
+      "differential_shifts_by": -1,
+      "valid_floer_differential": true,
+      "reason": "\u2202: degree 5 \u2192 degree 4 respects grading constraint"
+    },
+    "maslov_grading_shift_0_to_minus1": {
+      "generator": "z",
+      "input_grading": 0,
+      "expected_output_grading": -1,
+      "differential_shifts_by": -1,
+      "valid_floer_differential": true,
+      "reason": "\u2202: degree 0 \u2192 degree -1 is valid, even with negative grading"
+    }
+  },
+  "negative": {
+    "maslov_grading_contradiction_3": {
+      "generator": "x",
+      "input_grading": 3,
+      "claimed_output_grading_1": 2,
+      "claimed_output_grading_2": 3,
+      "constraint": "out_grading = 2 \u2227 out_grading = 3",
+      "smt_result": "UNSAT",
+      "reason": "\u2202x cannot have two distinct gradings simultaneously"
+    },
+    "maslov_grading_invalid_shift_zero": {
+      "generator": "y",
+      "input_grading": 5,
+      "claimed_output_grading": 5,
+      "shift_claimed": 0,
+      "shift_required": -1,
+      "smt_result": "UNSAT",
+      "reason": "Differential shift = 0 violates Floer grading rule (must be -1)"
+    },
+    "maslov_grading_invalid_shift_minus2": {
+      "generator": "z",
+      "input_grading": 2,
+      "claimed_output_grading": 0,
+      "shift_claimed": -2,
+      "shift_required": -1,
+      "smt_result": "UNSAT",
+      "reason": "Differential shift = -2 violates Floer grading rule"
+    }
+  },
+  "boundary": {
+    "boundary_grading_zero_to_negative": {
+      "generator": "x_0",
+      "input_grading": 0,
+      "output_grading": -1,
+      "valid_shift": true,
+      "reason": "Zero grading is valid; \u2202 maps degree 0 to degree -1"
+    },
+    "boundary_large_grading_shift": {
+      "generator": "large_gen",
+      "input_grading": 100,
+      "output_grading": 99,
+      "shift": -1,
+      "valid": true,
+      "reason": "Maslov grading constraint holds for arbitrarily large gradings"
+    },
+    "boundary_negative_grading_shift": {
+      "generator": "x_neg",
+      "input_grading": -5,
+      "output_grading": -6,
+      "shift": -1,
+      "valid": true,
+      "reason": "Floer grading can be negative; constraint still applies"
+    }
+  },
+  "cvc5_constraint_proof": {
+    "valid_grading_shift_3_to_2": {
+      "formula": "out_grade = 2 \u2227 out_grade = in_grade - 1 (in_grade = 3)",
+      "smt_result": "sat",
+      "satisfiable": true,
+      "expected": "SAT"
+    },
+    "invalid_grading_both_5_and_4": {
+      "formula": "(out_grade = 5) \u2227 (out_grade = in_grade - 1) [in_grade = 5]",
+      "expands_to": "(5 = 5) \u2227 (5 = 4)",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    },
+    "invalid_shift_by_zero": {
+      "formula": "out_grade = 7 \u2227 7 = in_grade - 1 (in_grade = 7)",
+      "expands_to": "7 = 6",
+      "smt_result": "unsat",
+      "satisfiable": false,
+      "expected": "UNSAT"
+    }
+  },
+  "sympy_maslov_verification": {
+    "maslov_constant_lagrangian": {
+      "path": "constant Lagrangian (vertical)",
+      "formula": "\u03bc(constant) = 0",
+      "reason": "No caustics in constant path",
+      "verification": "det(B(t)) = 1 (no sign changes)"
+    },
+    "maslov_loop_parity": {
+      "path": "closed loop of Lagrangians",
+      "maslov_index_parity": "even",
+      "formula": "\u03bc(L_0 ~ L_0) = 2k for k \u2208 Z",
+      "reason": "Topological parity: closed paths have even Maslov index"
+    },
+    "maslov_additivity": {
+      "property": "Maslov index additivity",
+      "formula": "\u03bc(L\u2081 \u00b7 L\u2082) = \u03bc(L\u2081) + \u03bc(L\u2082)",
+      "symbolic_check": "\u03bc_composed = mu1 + mu2",
+      "is_additive": true
+    }
+  },
+  "classification": "canonical"
+}

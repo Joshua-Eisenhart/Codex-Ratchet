@@ -1,0 +1,246 @@
+{
+  "name": "sim_integration_quantum_ga_correlator_stack",
+  "timestamp": "2026-04-16T22:08:39.105129+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical-to-nonclassical bridge baseline: the same small 2-qubit surface must agree across exact matrix algebra, qutip density/correlator witnesses, Cirq/PennyLane state witnesses, and torch + Clifford + torch_ga on the reduced correlator geometry. The bridge stays bounded: one entangled lane, one reversed-entangler negative check, one numeric boundary check.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing classical density, correlator, and serialization arithmetic"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive matrix-exponential witness for the exact 2-qubit unitary"
+    },
+    "qutip": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive density-matrix and correlator witness on the same 2-qubit state"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing 2-qubit circuit and simulator witness for the bridge state"
+    },
+    "pennylane": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing QNode state and correlator witness for the same surface"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing correlator fit and gradient witness on the reduced geometry"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing geometric carrier for the reduced correlator vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing geometric algebra roundtrip for the correlator vector"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "supportive",
+    "qutip": "supportive",
+    "cirq": "load_bearing",
+    "pennylane": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing"
+  },
+  "positive": {
+    "pass": true,
+    "reference_surface": {
+      "theta": 1.127,
+      "phi": -0.713,
+      "reversed_entangler": false,
+      "density_errors": {
+        "numpy_vs_cirq": 1.2731075198650083e-07,
+        "numpy_vs_pennylane": 0.0,
+        "numpy_vs_qutip": 0.0
+      },
+      "correlator_errors": {
+        "numpy_vs_cirq": 1.7871160928727078e-07,
+        "numpy_vs_pennylane": 4.965068306494546e-16,
+        "numpy_vs_qutip": 1.1102230246251565e-16
+      },
+      "bloch_errors": {
+        "numpy_vs_cirq": 9.146338637443614e-08,
+        "numpy_vs_pennylane": 0.0,
+        "numpy_vs_qutip": 0.0
+      },
+      "reference_bloch": [
+        -0.5907414642043386,
+        0.0,
+        0.42937112046074505
+      ],
+      "reference_correlator": [
+        0.903128142023204,
+        -0.6831288043875756,
+        0.7564029649848117
+      ],
+      "qutip_bloch": [
+        -0.5907414642043386,
+        0.0,
+        0.42937112046074505
+      ],
+      "qutip_correlator": [
+        0.903128142023204,
+        -0.6831288043875756,
+        0.7564029649848116
+      ],
+      "cirq_bloch": [
+        -0.5907414947082259,
+        0.0,
+        0.4293712066875617
+      ],
+      "cirq_correlator": [
+        0.9031282330279291,
+        -0.6831288983215691,
+        0.7564030867730878
+      ],
+      "pennylane_bloch": [
+        -0.5907414642043386,
+        0.0,
+        0.42937112046074505
+      ],
+      "pennylane_correlator": [
+        0.9031281420232036,
+        -0.6831288043875754,
+        0.7564029649848117
+      ],
+      "clifford_correlator": [
+        0.903128142023204,
+        -0.6831288043875756,
+        0.7564029649848117
+      ],
+      "torch_correlator": [
+        0.903128142023204,
+        -0.6831288043875756,
+        0.7564029649848117
+      ],
+      "torch_grad": 0.42937112046074505,
+      "torch_fit": {
+        "theta0": 0.2,
+        "phi0": 0.2,
+        "theta_fit": 1.1269999864442566,
+        "phi_fit": 0.7129999997749229,
+        "loss": 5.2129076836030816e-17,
+        "vector_gap": 5.820445014848019e-09,
+        "loss_history_tail": [
+          1.9479282311304173e-06,
+          1.365639054156891e-07,
+          4.4274471206628575e-10,
+          1.5306202102207463e-12,
+          5.2129076836030816e-17
+        ]
+      },
+      "torch_ga_correlator": [
+        0.9031281471252441,
+        -0.683128833770752,
+        0.7564029693603516
+      ]
+    },
+    "fit_recovery": {
+      "pass": true,
+      "theta_fit": 1.1269999864442566,
+      "phi_fit": 0.7129999997749229,
+      "theta_gap": -1.3555743194615388e-08,
+      "phi_gap": 1.4259999997749233,
+      "phi_cos_gap": 1.4722423280488783e-10,
+      "loss": 5.2129076836030816e-17,
+      "vector_gap": 5.820445014848019e-09,
+      "loss_history_tail": [
+        1.9479282311304173e-06,
+        1.365639054156891e-07,
+        4.4274471206628575e-10,
+        1.5306202102207463e-12,
+        5.2129076836030816e-17
+      ]
+    },
+    "torch_grad_check": {
+      "pass": true,
+      "grad": 0.42937112046074505,
+      "expected": 0.42937112046074505,
+      "gap": 0.0
+    }
+  },
+  "negative": {
+    "pass": true,
+    "reversed_entangler": {
+      "pass": true,
+      "density_errors": {
+        "numpy_vs_cirq": 1.2688220272244237,
+        "numpy_vs_pennylane": 1.2688219669858536,
+        "numpy_vs_qutip": 1.2688219669858536
+      },
+      "correlator_errors": {
+        "numpy_vs_cirq": 1.8604276666817856,
+        "numpy_vs_pennylane": 1.8604276304358123,
+        "numpy_vs_qutip": 1.8604276304358125
+      },
+      "reference_correlator": [
+        0.903128142023204,
+        -0.6831288043875756,
+        0.7564029649848117
+      ],
+      "reversed_correlator": [
+        -0.6541059614042872,
+        0.2808542240638694,
+        0.4293712066875617
+      ]
+    },
+    "wrong_fit_rejected": {
+      "pass": true,
+      "loss": 0.027782014520990626,
+      "vector_gap": 0.11440777852260853,
+      "theta_fit": 0.9744977479149004,
+      "phi_fit": 0.8476595712990896
+    }
+  },
+  "boundary": {
+    "pass": true,
+    "identity_boundary": {
+      "pass": true,
+      "reference_correlator": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "reference_bloch": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "tiny_rotation_boundary": {
+      "pass": true,
+      "reference_correlator": [
+        1e-08,
+        -1e-08,
+        1.0
+      ],
+      "reference_bloch": [
+        -1.0000000000000001e-16,
+        0.0,
+        1.0
+      ],
+      "fit_loss": 1.656966639204988e-13
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

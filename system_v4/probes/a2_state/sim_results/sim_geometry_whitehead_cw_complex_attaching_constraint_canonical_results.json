@@ -1,0 +1,166 @@
+{
+  "name": "sim_geometry_whitehead_cw_complex_attaching_constraint_canonical",
+  "description": "CW complex structure: cell attaching and Euler characteristic invariant",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of CW complex Euler characteristic constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_point": {
+      "name": "Point CW complex",
+      "cells_by_dim": [
+        1,
+        0,
+        0
+      ],
+      "euler_char": 1,
+      "computed_chi": 1,
+      "passes": true
+    },
+    "positive_2_circle": {
+      "name": "S^1 circle CW complex",
+      "cells_by_dim": [
+        1,
+        1
+      ],
+      "euler_char": 0,
+      "computed_chi": 0,
+      "passes": true
+    },
+    "positive_3_sphere": {
+      "name": "S^2 sphere CW complex",
+      "cells_by_dim": [
+        1,
+        0,
+        1
+      ],
+      "euler_char": 2,
+      "computed_chi": 2,
+      "passes": true
+    },
+    "positive_4_torus": {
+      "name": "T^2 torus CW complex",
+      "cells_by_dim": [
+        1,
+        2,
+        1
+      ],
+      "euler_char": 0,
+      "computed_chi": 0,
+      "passes": true
+    }
+  },
+  "negative": {
+    "negative_1_negative_cells": {
+      "name": "CW negative test: c_0 < 0",
+      "claim": "\u2203 CW complex with c_0 = -1 (violates c_0 \u2265 0)",
+      "cvc5_result": "unsat",
+      "passes": true
+    },
+    "negative_2_chi_mismatch": {
+      "name": "CW negative test: \u03c7 \u2260 \u03a3 (-1)^k c_k",
+      "claim": "\u2203 CW complex with c=[1,1], \u03c7=5 (violates \u03c7 = \u03a3(-1)^k c_k)",
+      "cvc5_result": "unsat",
+      "passes": true
+    },
+    "negative_3_invalid_skeleton": {
+      "name": "CW negative test: invalid skeleton",
+      "claim": "CW complex with 2-cell but no 0 or 1-skeleton (violates skeleton constraint)",
+      "cvc5_result": "unsat",
+      "passes": true
+    }
+  },
+  "boundary": {
+    "boundary_1_large_cells": {
+      "name": "Boundary: large symmetric cell count",
+      "claim": "CW with c_0=100, c_1=100, \u03c7=0 is valid",
+      "cvc5_result": "sat",
+      "passes": true
+    },
+    "boundary_2_single_cells": {
+      "name": "Boundary: single cell per dimension",
+      "claim": "CW with c=[1,1,1], \u03c7=1 is valid",
+      "cvc5_result": "sat",
+      "passes": true
+    },
+    "boundary_3_alternating": {
+      "name": "Boundary: alternating cell pattern",
+      "claim": "CW with c=[3,2,1], \u03c7=2 is valid",
+      "cvc5_result": "sat",
+      "passes": true
+    }
+  },
+  "classification": "canonical"
+}

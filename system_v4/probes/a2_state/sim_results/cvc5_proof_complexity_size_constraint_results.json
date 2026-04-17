@@ -1,0 +1,138 @@
+{
+  "name": "cvc5_proof_complexity_size_constraint",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- proof complexity is combinatorial"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no learned graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "alternative solver; cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: UNSAT verdict + solver statistics for hardness lower bounds via QF_LIA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic clause enumeration and lower bound verification for PHP_n^{n+1}"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no algebraic geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph algorithms"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "formula": "PHP_2^3",
+    "pigeons": 3,
+    "holes": 2,
+    "result": "unsat",
+    "is_unsat": true,
+    "pass": true,
+    "reason": "PHP_2^3 has 9 clauses > lower bound 2.83",
+    "pigeonhole_clauses": 3,
+    "exclusivity_clauses": 6,
+    "total_clauses": 9,
+    "lower_bound_2^(n/2)": 2.8284271247461903,
+    "count_correct": true,
+    "bound_applies": true
+  },
+  "negative": {
+    "claim": "PHP_2^3 admits polynomial-size (\u22645 clause) proof",
+    "formula_unsat": true,
+    "hardness_lower_bound_applies": true,
+    "claim_refuted": true,
+    "pass": true,
+    "reason": "UNSAT + exponential lower bound refutes polynomial-proof claim"
+  },
+  "boundary": {
+    "formula": "PHP_1^2 (2 pigeons, 1 hole)",
+    "result": "unsat",
+    "is_unsat": true,
+    "pass": true,
+    "reason": "Clause counts grow: [3, 9, 22]",
+    "php_clause_counts": {
+      "PHP_1^2": {
+        "holes": 1,
+        "pigeons": 2,
+        "clauses": 3,
+        "lower_bound_2^(n/2)": 2.0
+      },
+      "PHP_2^3": {
+        "holes": 2,
+        "pigeons": 3,
+        "clauses": 9,
+        "lower_bound_2^(n/2)": 2.8284271247461903
+      },
+      "PHP_3^4": {
+        "holes": 3,
+        "pigeons": 4,
+        "clauses": 22,
+        "lower_bound_2^(n/2)": 4.0
+      }
+    },
+    "monotonic_growth": true
+  },
+  "summary": {
+    "all_pass": false,
+    "cvc5_load_bearing": "UNSAT verdicts on PHP_n^{n+1} hardness lower bounds",
+    "sympy_supportive": "clause enumeration and lower bound verification"
+  },
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

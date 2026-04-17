@@ -1,0 +1,172 @@
+{
+  "name": "sim_networkx_capability",
+  "tool_manifest": {
+    "networkx": {
+      "tried": true,
+      "used": true,
+      "reason": "networkx provides shortest_path, normalized_laplacian_matrix, is_isomorphic, and maximum_flow -- each test's pass/fail is determined by networkx output; no substitute implementation is used."
+    },
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "tensor/autograd layer not needed for this pure networkx capability probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "message-passing graph learning is not needed for classical shortest-path and flow checks"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "SMT solving is not needed for this direct algorithm capability check"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "SMT cross-checking is unnecessary for this direct networkx probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "symbolic algebra is not needed for graph shortest-path, spectrum, and max-flow checks"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "geometric algebra is out of scope for this graph capability probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian geometry is not needed for networkx graph algorithms"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant neural layers are not needed for this classical graph-library capability check"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "this standalone probe isolates networkx rather than cross-validating against rustworkx"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure is not needed for the pairwise graph tasks in this capability probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell-complex topology is not needed for this networkx capability probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology is not needed for this graph algorithm capability check"
+    }
+  },
+  "tool_integration_depth": {
+    "networkx": "load_bearing",
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "shortest_path_path5": {
+      "path": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "len": 4,
+      "pass": true
+    },
+    "spectral_K4": {
+      "eig": [
+        -4.868636341866076e-17,
+        1.3333333333333328,
+        1.3333333333333337,
+        1.3333333333333337
+      ],
+      "expected": [
+        0.0,
+        1.3333333333333333,
+        1.3333333333333333,
+        1.3333333333333333
+      ],
+      "pass": true
+    },
+    "iso_C5_relabel": {
+      "iso": true,
+      "pass": true
+    },
+    "max_flow_small": {
+      "flow": 5,
+      "expected": 5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "shortest_path_disconnected_raises": {
+      "raised": true,
+      "pass": true
+    },
+    "spectral_P4_vs_K4_differ": {
+      "differ": true,
+      "pass": true
+    },
+    "iso_C5_vs_P5_false": {
+      "iso": false,
+      "pass": true
+    },
+    "max_flow_zero_cut": {
+      "flow": 0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "shortest_path_single_node": {
+      "path": [
+        0
+      ],
+      "pass": true
+    },
+    "spectral_isolated_nodes_all_zero": {
+      "eig": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "iso_empty_equal_order": {
+      "iso": true,
+      "pass": true
+    },
+    "max_flow_source_equals_sink": {
+      "flow": "raised",
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

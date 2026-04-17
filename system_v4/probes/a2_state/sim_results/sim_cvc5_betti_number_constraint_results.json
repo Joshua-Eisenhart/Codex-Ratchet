@@ -1,0 +1,144 @@
+{
+  "name": "CVC5 Betti Number Constraint (Canonical)",
+  "description": "cvc5 proves Betti number constraint b_0 \u2265 1 and b_k \u2265 0 via QF_LIA. Encodes non-negativity of homology ranks as axiom, forbids empty spaces (b_0=0) or negative ranks \u2192 UNSAT. Betti numbers b_k = rank(H_k) are dimensions of homology groups: topological invariants. cvc5 validates: (1) b_0 \u2265 1 (at least one component). (2) b_k \u2265 0 for all k. (3) Violation leads to UNSAT. sympy derives: homology group definition via chain complexes, ranks from quotient Z_k/B_k, Euler characteristic \u03c7 = \u03a3(-1)^k b_k, Poincar\u00e9 duality b_k = b_{n-k} for closed orientable n-manifolds, K\u00fcnneth formula for product spaces, Betti numbers of standard spaces.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers are homological algebraic invariants, not neural network training"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers apply to complexes but constraint is universal homology"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for QF_LIA encoding of Betti number constraint"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves b_0 \u2265 1, b_k \u2265 0 via QF_LIA: asserts Betti non-negativity axiom, forbids violation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives homology definition, ranks from chain complexes, \u03c7 formula, Poincar\u00e9 duality, K\u00fcnneth formula"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers are homological invariant, not Clifford algebra structure"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers relate to topology, not manifold curvature"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers not equivariant neural network property"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers apply to complexes, not graph-specific"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti number constraint applies to simplicial/cell complexes, not hypergraph-specific"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers are homological invariants computed from cellular complexes"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Betti numbers computed from simplicial homology, constraint is universal on ranks"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_single_component": {
+      "description": "cvc5 SAT: Betti numbers b_0=1, b_1=1, b_2=0 (circle S\u00b9)",
+      "sat": true,
+      "expected": true,
+      "model": "[1, 1, 0]"
+    },
+    "test_positive_multiple_components": {
+      "description": "cvc5 SAT: Betti numbers b_0=2, b_1=2 (two disjoint circles)",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 2]"
+    },
+    "test_positive_point": {
+      "description": "cvc5 SAT: Betti numbers b_0=1, b_1=0, b_2=0 (single point)",
+      "sat": true,
+      "expected": true,
+      "model": "[1, 0, 0]"
+    }
+  },
+  "negative": {
+    "test_negative_empty_space": {
+      "description": "cvc5 UNSAT: b_0 \u2265 1 (axiom) + b_0 = 0 (claim) \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_negative_betti": {
+      "description": "cvc5 UNSAT: b_1 \u2265 0 (axiom) + b_1 = -1 (claim) \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_inconsistent_chi": {
+      "description": "cvc5 UNSAT: \u03c7 = b_0 - b_1 (axiom) + inconsistent \u03c7 claims \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_homology_definition": {
+      "description": "sympy: Homology groups and Betti numbers",
+      "statement": "Homology groups H_k(X; \u211a) from chain complex: (1) Chain complex 0 \u2190 C_0 \u2190 C_1 \u2190 C_2 \u2190 ... with boundary maps \u2202_k: C_k \u2192 C_{k-1}, \u2202_k \u2218 \u2202_{k+1} = 0. (2) Cycles Z_k = ker(\u2202_k) = {c \u2208 C_k : \u2202_k(c) = 0}. (3) Boundaries B_k = im(\u2202_{k+1}) = {\u2202_{k+1}(d) : d \u2208 C_{k+1}}. (4) Homology H_k = Z_k / B_k (quotient vector space). (5) Betti number b_k = rank(H_k) = dim(H_k) as \u211a-vector space. (6) For finite complexes: H_k \u2245 \u211a^{b_k} \u2295 (torsion). Over \u211a: no torsion, so H_k \u2245 \u211a^{b_k}.",
+      "consequence": "Betti numbers are topological invariants: homeomorphic spaces have same Betti numbers. Rank is well-defined despite quotient structure. First Betti number b_1 relates to fundamental group via abelianization: b_1 = rank(\u03c0\u2081^ab).",
+      "application": "Topology: computing homology via simplicial/cellular complexes. Data science: topological data analysis (persistent homology). Physics: topological defects and cohomology.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_euler_betti": {
+      "description": "sympy: Euler characteristic \u03c7 = \u03a3(-1)^k b_k",
+      "statement": "Euler characteristic from Betti numbers: \u03c7(X) = \u03a3_{k=0}^n (-1)^k b_k. Proof: (1) In chain complex, Euler characteristic can be defined as \u03a3_{k=0}^n (-1)^k rank(C_k). (2) Using rank-nullity theorem: rank(C_k) = rank(\u2202_k) + rank(ker(\u2202_k)) = rank(im(\u2202_k)) + dim(Z_k) = dim(B_{k-1}) + dim(Z_k) (after index shift). (3) Homology H_k = Z_k/B_k, so rank(H_k) = dim(Z_k) - dim(B_k). (4) Alternating sum: \u03a3(-1)^k rank(C_k) telescopes to \u03a3(-1)^k dim(Z_k) - \u03a3(-1)^k dim(B_k) = \u03a3(-1)^k b_k. Examples: (a) Point: b_0=1, others 0, so \u03c7=1. (b) Circle S\u00b9: b_0=1, b_1=1, others 0, so \u03c7=1-1=0. (c) Sphere S\u00b2: b_0=1, b_2=1, others 0, so \u03c7=1+1=2.",
+      "consequence": "Betti numbers encode total curvature via Euler characteristic. Gauss-Bonnet theorem: \u222bK dA = 2\u03c0\u03c7 = 2\u03c0 \u03a3(-1)^k b_k. Invariant under continuous deformations. Defines topological type.",
+      "application": "Mesh analysis: computing \u03c7 from vertices, edges, faces via Betti. Algebraic geometry: \u03c7 of curves and surfaces. Cosmology: total curvature and topology of universe.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_poincare_duality": {
+      "description": "sympy: Poincar\u00e9 duality b_k = b_{n-k} for closed orientable n-manifolds",
+      "statement": "Poincar\u00e9 duality: For closed orientable n-dimensional manifold M: b_k(M) = b_{n-k}(M). Proof: (1) Use cap product \u2229: H^k(M) \u2297 H_n(M) \u2192 H_{n-k}(M). (2) For M closed orientable: \u2203 fundamental class [M] \u2208 H_n(M). (3) Cap product with [M] induces isomorphism PD: H^k(M) \u2245 H_{n-k}(M). (4) Since H_k \u2245 H^k over \u211a (universal coefficient theorem, no torsion), get b_k = b_{n-k}. Examples: (a) S\u00b2 (n=2): b_0 = b_2 (both 1). (b) T\u00b2 = S\u00b9 \u00d7 S\u00b9 (n=2): b_0 = b_2 = 1, b_1 = 2 (self-dual). (c) S\u00b3 (n=3): b_0 = b_3 = 1, b_1 = b_2 = 0 (sphere has no middle homology).",
+      "consequence": "Fundamental symmetry of manifold topology. First homology b_1 determined by itself (k=1, n-k=n-1). Limits ranks of homology groups. Connected to intersection form and signature.",
+      "application": "Manifold classification: constraints on possible Betti numbers. Surgery theory: understanding how to modify manifolds. Symplectic topology: Poincar\u00e9 duality for symplectic manifolds.",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

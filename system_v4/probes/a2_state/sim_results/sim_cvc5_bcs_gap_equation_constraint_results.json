@@ -1,0 +1,128 @@
+{
+  "name": "sim_cvc5_bcs_gap_equation_constraint",
+  "description": "BCS superconductivity gap equation; cvc5 proves \u0394 > 0; UNSAT for \u0394 < 0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for gap equation constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for gap equation constraint"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used for QF_NRA proof instead"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "core tool: proves gap \u0394 > 0 from BCS constraint; UNSAT for \u0394 < 0"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "derives BCS gap equation symbolically; validates cvc5 models"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for condensed matter gap equation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for order parameter constraint"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for gap equation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for scalar constraint proof"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for gap equation"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for scalar constraint"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for order parameter"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_bcs_standard_params": {
+      "sat": "sat",
+      "status": "ERROR",
+      "error": "'cvc5.cvc5_python_base.Term' object has no attribute 'toString'"
+    },
+    "test_2_weak_coupling_gap": {
+      "sat": "sat",
+      "status": "PASS"
+    },
+    "test_3_temperature_dependence": {
+      "sat": "sat",
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "test_1_unsat_negative_gap": {
+      "sat": "sat",
+      "status": "FAIL"
+    },
+    "test_2_unsat_gap_exceeds_cutoff": {
+      "sat": "sat",
+      "status": "FAIL"
+    },
+    "test_3_unsat_gap_phase_transition": {
+      "error": "type object 'Kind' has no attribute 'EQ'",
+      "status": "ERROR"
+    }
+  },
+  "boundary": {
+    "test_1_sympy_bcs_gap": {
+      "bcs_gap_equation": "Eq(Delta, 2*omega_D*exp(-1/(N_0*g)))",
+      "rhs_positive": "-Delta + 2*omega_D*exp(-1/(N_0*g))",
+      "gap_form": "\u0394 = 2\u03c9_D exp(-1/(gN_0))",
+      "status": "PASS"
+    },
+    "test_2_zero_temperature_limit": {
+      "delta_at_t_zero": "1",
+      "expected": "1",
+      "status": "PASS"
+    },
+    "test_3_critical_temperature_approx": {
+      "delta_at_tc_approx": "pi*T_c*k_B",
+      "ratio": "pi*k_B",
+      "status": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,132 @@
+{
+  "name": "A\u00b9-Homotopy Invariance Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; motivic structure handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; A\u00b9-homotopy via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic A\u00b9-homotopy handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "a1_contractibility": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkEq'"
+    },
+    "morel_theorem_p1": {
+      "test": "\u03c0^A\u00b9_1(P^1) = Z",
+      "rank": 1,
+      "passes": true,
+      "theorem": "Morel's computation of A\u00b9-fundamental group"
+    },
+    "nisnevich_gm": {
+      "test": "\u03c0^A\u00b9_0(A\u00b9 \\\\ {0}) = Z/2",
+      "homotopy_group": "Z/2",
+      "cardinality": 2,
+      "sheaf_topology": "Nisnevich"
+    },
+    "motivic_sphere_valid": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkAnd'"
+    }
+  },
+  "negative": {
+    "a1_invariance_violation_unsat": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkEq'"
+    },
+    "negative_bidegree_unsat": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkAnd'"
+    },
+    "nisnevich_cardinality_violation": {
+      "test": "Cannot claim |\u03c0^A\u00b9_0(G_m)| \u2260 2",
+      "actual": 2,
+      "claimed": 3,
+      "violated": true,
+      "theorem": "Nisnevich sheaf structure forces Z/2"
+    }
+  },
+  "boundary": {
+    "boundary_h0_invariance": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkEq'"
+    },
+    "boundary_high_dim_sphere": {
+      "test": "S^{10,0} homotopy triviality",
+      "dimension": 10,
+      "trivial_below_dim": 9,
+      "property": "Geometric spheres stay nontrivial at top dimension"
+    },
+    "boundary_char_sheaf_topology": {
+      "test": "Nisnevich vs Zariski in characteristic 0",
+      "nisnevich_pi0_gm": 2,
+      "topology_for_a1_homotopy": "Nisnevich is canonical",
+      "note": "A\u00b9-homotopy always uses Nisnevich sheafification"
+    }
+  },
+  "classification": "canonical"
+}

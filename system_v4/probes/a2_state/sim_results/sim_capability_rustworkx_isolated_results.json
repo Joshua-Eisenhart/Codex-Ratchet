@@ -1,0 +1,176 @@
+{
+  "name": "sim_capability_rustworkx_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "construct directed (PyDiGraph) and undirected (PyGraph) graphs efficiently",
+      "compute Dijkstra shortest paths and path lengths",
+      "find connected components in undirected graphs",
+      "compute topological sort on DAGs",
+      "compute betweenness centrality",
+      "handle large graphs with Rust-backed performance"
+    ],
+    "CANNOT": [
+      "perform learnable message passing (use PyG for GNNs)",
+      "handle hyperedges (use xgi for hypergraphs)",
+      "represent topological complexes with boundary operators (use toponetx)",
+      "prove graph properties formally (use z3 for logical proofs)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG provides GNN message passing; rustworkx provides algorithmic graph operations; separate capabilities, no overlap needed here."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: rustworkx graph construction, shortest paths, betweenness centrality, connected components, and topological sort are the sole subjects of this capability probe."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi handles hypergraphs; rustworkx handles standard graphs; separate capabilities."
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates rustworkx graph algorithm capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "rustworkx_available": {
+      "pass": true,
+      "version": "0.17.1"
+    },
+    "digraph_construction": {
+      "pass": true,
+      "nodes": 4,
+      "edges": 4,
+      "detail": "PyDiGraph: 4 nodes, 4 directed edges"
+    },
+    "dijkstra_shortest_path": {
+      "pass": true,
+      "path": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "detail": "Shortest path n0\u2192n3: [0, 1, 2, 3] (cost 3 < direct edge 5)"
+    },
+    "shortest_path_lengths": {
+      "pass": true,
+      "dist_to_n3": 3.0,
+      "detail": "Shortest path length n0\u2192n3 = 3.0 (via n1,n2)"
+    },
+    "connected_components": {
+      "pass": true,
+      "count": 2,
+      "detail": "4 nodes: {a,b,c} + {d}: 2 connected components"
+    },
+    "topological_sort": {
+      "pass": true,
+      "topo_order": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "detail": "Topological sort: v0 before v3"
+    },
+    "betweenness_centrality": {
+      "pass": true,
+      "center_centrality": 1.0,
+      "detail": "Star center has higher betweenness than leaves"
+    }
+  },
+  "negative": {
+    "no_path_in_disconnected": {
+      "pass": true,
+      "has_path": false,
+      "detail": "Disconnected graph: no path from n0 to n1"
+    },
+    "directed_no_reverse_path": {
+      "pass": true,
+      "has_forward": true,
+      "has_reverse": false,
+      "detail": "Directed edge a\u2192b: forward path exists, reverse does not"
+    }
+  },
+  "boundary": {
+    "single_node_component": {
+      "pass": true,
+      "components": 1,
+      "detail": "Single node graph: 1 connected component"
+    },
+    "path_to_self": {
+      "pass": true,
+      "path": [
+        0
+      ],
+      "detail": "Shortest path from node to itself is trivial"
+    },
+    "k10_complete_graph": {
+      "pass": true,
+      "edges": 45,
+      "detail": "K_10: 10 nodes, 45 undirected edges"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "HigherCategoryGlobularSetConstraint",
+  "description": "Globular set source/target dimension constraint \u2014 cvc5 proves structural admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor computation not needed for globular dimension constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph message passing not needed for globular source/target laws"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen as the primary SMT solver for this arithmetic constraint"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary SMT solver for globular source/target dimension constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of globular identities"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "geometric algebra not needed for globular source/target arithmetic"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required for this local dimension law"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant tensor models not needed for this categorical constraint"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph routing not needed for the local globular dimension law"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph structure not needed for this globular constraint"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell-complex topology not required for this local admissibility check"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required for globular source/target verification"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_2cell_dimensions_SAT": {
+      "result": "sat",
+      "pass": true
+    },
+    "positive_1cell_SAT": {
+      "result": "sat",
+      "pass": true
+    },
+    "positive_3cell_SAT": {
+      "result": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_same_dimension_contradiction_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    },
+    "negative_source_exceeds_cell_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    },
+    "negative_unequal_source_target_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_dimension_zero_cell": {
+      "result": "sat",
+      "pass": true
+    },
+    "boundary_identity_s_o_s_equals_s_o_t": {
+      "identity": "s\u2218s = s\u2218t",
+      "pass": true
+    },
+    "boundary_identity_t_o_s_equals_t_o_t": {
+      "identity": "t\u2218s = t\u2218t",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

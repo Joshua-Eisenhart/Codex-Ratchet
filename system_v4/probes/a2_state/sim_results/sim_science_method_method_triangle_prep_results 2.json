@@ -1,0 +1,132 @@
+{
+  "name": "science_method_method_triangle_prep",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "no automatic differentiation or tensor computation required in this probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph learning required; probe operates on density matrices not graph structures"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "no symbolic computation or algebraic proof required in this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no Clifford rotor or geometric algebra computation required in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian manifold computation required; geometry handled analytically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no SO(3)-equivariant neural network computation required in this probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph traversal or path computation required in this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure required; probe uses standard matrix operations"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no chain complex or cell complex computation required in this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology or Rips complex computation required in this probe"
+    },
+    "networkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "numpy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null,
+    "networkx": null,
+    "numpy": null
+  },
+  "positive": {
+    "heterogeneous_three_distinct": {
+      "pass": true,
+      "distinct": 3,
+      "triangle": {
+        "holodeck": [
+          3,
+          4
+        ],
+        "fep": [
+          2
+        ],
+        "method": [
+          2,
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  "negative": {
+    "homogeneous_collapses": {
+      "pass": true,
+      "triangle": {
+        "holodeck": [],
+        "fep": [
+          5
+        ],
+        "method": []
+      }
+    }
+  },
+  "boundary": {
+    "empty_all_empty": {
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "status": "pass",
+  "note": "coupling_prep_only; step_3_coexistence_out_of_scope"
+}

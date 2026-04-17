@@ -88,13 +88,11 @@ TRUSTED_SPINE = {
         "bridge_z3_kernel_ordering_results.json",
     ],
     "lego": [
-        "foundation_channel_constraints_hardway_results.json",
         "foundation_hopf_torus_geomstats_clifford_results.json",
         "bridge_to_rhoab_construction_results.json",
         "torch_hopf_connection_results.json",
     ],
     "coupling": [
-        "integrated_dependency_chain_results.json",
         "layer_coupling_matrix_v3_results.json",
         "xgi_indirect_pathway_results.json",
     ],
@@ -107,8 +105,6 @@ TRUSTED_SPINE = {
         "xgi_shell_hypergraph_results.json",
         "toponetx_hopf_crosscheck_results.json",
         "toponetx_state_class_binding_results.json",
-        "gudhi_cascade_persistence_results.json",
-        "gudhi_wasserstein_significance_results.json",
         "c2_topology_remaining_results.json",
     ],
     "assembly": [

@@ -1,0 +1,1002 @@
+{
+  "name": "Axis 0 Through Constraint Shells -- Differentiable Dykstra",
+  "classification": "classical_baseline",
+  "classification_backfill": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this probes differentiable Dykstra shell mechanics numerically. The gradient-through-shells verdicts are preserved, and a deep contract now binds the shell-mechanics surfaces to the same shell bridge, graph/topology, symbolic expansion, solver closure, geometric algebra, and manifold witnesses used elsewhere in Axis 0.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "shell-mechanics aggregates and candidate-surface scoring"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "expansion propagator witness for shell-mechanics ordering"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd backward through Dykstra shell projections"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: PyG message passing over the ranked shell-mechanics frontier; edge weights carry composite support and aggregated node norms must stay nontrivial"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "legacy shell verification plus deep shell-ordering constraint witness"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 cross-check that the measured shell frontier ordering cannot be inverted once the composite scores are fixed as QF_LRA constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic shell-mechanics witness over the Dykstra frontier"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "deep shell-mechanics winner-vector carrier check"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "deep shell-mechanics winner-vector roundtrip witness in geometric algebra space"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "deep manifold witness over shell-mechanics surfaces"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: e3nn spherical-harmonic parity witness over the shell-mechanics winner vector under shell-axis reflection"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "topological sort drives shell projection order"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "deep hypergraph witness over shell-mechanics surfaces"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "deep cell-complex witness over shell-mechanics surfaces"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "deep topology witness over shell-mechanics surfaces"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "clifford": "load_bearing",
+    "cvc5": "load_bearing",
+    "e3nn": "load_bearing",
+    "geomstats": "load_bearing",
+    "gudhi": "load_bearing",
+    "pyg": "load_bearing",
+    "pytorch": "load_bearing",
+    "rustworkx": "load_bearing",
+    "sympy": "load_bearing",
+    "toponetx": "load_bearing",
+    "torch_ga": "load_bearing",
+    "xgi": "load_bearing",
+    "z3": "load_bearing"
+  },
+  "elapsed_seconds": 0.6040120124816895,
+  "shell_bridge": {
+    "dynamic_vs_frozen_gap": 0.02947145190205047,
+    "jk_fuzz_dynamic": 2.261127732148754,
+    "lambda_density_mean": 1.1487705626936435,
+    "dark_energy_pressure_mean": 1.2302859252067226,
+    "gravity_response_mean": 1.231754320473392,
+    "final_scale_factor": 3.5280652941727944,
+    "mean_hubble_proxy": 1.254510768736992,
+    "mean_acceleration_proxy": -1.1283938575615544,
+    "graph_surface": {
+      "edge_count": 13,
+      "longest_path_length": 7,
+      "triad_windows": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          2,
+          3,
+          4
+        ],
+        [
+          3,
+          4,
+          5
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          5,
+          6,
+          7
+        ]
+      ]
+    },
+    "hypergraph_surface": {
+      "num_edges": 19,
+      "max_hyperedge_size": 3,
+      "connected_components": 1
+    },
+    "topology_surface": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "euler_characteristic": 1,
+      "parity_ok": true
+    },
+    "symbolic_surface": {
+      "symbolic_hubble_mid": 1.2484526912751694,
+      "symbolic_acceleration_mid": 2.9585926544132235,
+      "symbolic_dark_energy_mid": 1.3877848664811268
+    },
+    "constraint_surface": {
+      "result": "sat",
+      "sat": true
+    },
+    "manifold_surface": {
+      "mean_geodesic_distance": 0.390792850991338,
+      "max_geodesic_distance": 1.4101744445799922,
+      "mean_norm": 1.0
+    },
+    "torch_fit": {
+      "weights": [
+        1.0806688293525586,
+        -0.6099682808696066
+      ],
+      "bias": 0.6763101876256176,
+      "loss": 0.16199624694697431,
+      "max_gap": 0.6835416107574266
+    },
+    "clifford_vector_gap": 0.0,
+    "torch_ga_vector_gap": 4.22568935398715e-08,
+    "propagator_traces": [
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      2.0
+    ],
+    "lane_d_keep": true
+  },
+  "aggregate": {
+    "deep_contract": {
+      "pass": true,
+      "winner": "extreme_stability_surface",
+      "candidate_universe_size": 8,
+      "frontier_size": 8,
+      "shell_bridge_pass_fraction": 1.0,
+      "distinguishability_surface": {
+        "type": "distinguishability_constraint",
+        "pass": true,
+        "gate_fraction": 1.0,
+        "pass_threshold": 0.8,
+        "gates": {
+          "observational": true,
+          "admissible": true,
+          "stable": true,
+          "entropy_conditioned": true,
+          "topology_conditioned": true
+        },
+        "signals": {
+          "observational_signal": 1.0,
+          "admissibility_signal": 1.0,
+          "stability_signal": 1.0060358738703938,
+          "entropy_signal": 1.3717928188714463,
+          "topology_signal": 1.0,
+          "mean_gradient_norm": 1.2717928188714471,
+          "mean_bare_match_diff": 7.771561172376096e-16,
+          "symbolic_hubble_mid": 1.0060358738703938
+        },
+        "constraint_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.0060358738703938,
+          "entropy_conditioned": 1.3717928188714463,
+          "topology_conditioned": 1.0
+        },
+        "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
+      },
+      "semantic_row_surface": {
+        "lane": "through_shells",
+        "symbolic_hubble_mid": 1.0060358738703938,
+        "constraint_pass": true,
+        "cvc5_pass": true,
+        "bridge_owner_pass": true,
+        "bridge_owner_gate_fraction": 1.0,
+        "distinguishability_pass": true,
+        "distinguishability_gate_fraction": 1.0,
+        "constraint_family_profile": {
+          "observational": 1.0,
+          "admissible": 1.0,
+          "stable": 1.0060358738703938,
+          "entropy_conditioned": 1.3717928188714463,
+          "topology_conditioned": 1.0
+        },
+        "graph_longest_path_length": 7,
+        "manifold_distance": 0.5538809589025677,
+        "pyg_mean_aggregate_norm": 1.3589480460718129,
+        "distinguishability_surface": {
+          "type": "distinguishability_constraint",
+          "pass": true,
+          "gate_fraction": 1.0,
+          "pass_threshold": 0.8,
+          "gates": {
+            "observational": true,
+            "admissible": true,
+            "stable": true,
+            "entropy_conditioned": true,
+            "topology_conditioned": true
+          },
+          "signals": {
+            "observational_signal": 1.0,
+            "admissibility_signal": 1.0,
+            "stability_signal": 1.0060358738703938,
+            "entropy_signal": 1.3717928188714463,
+            "topology_signal": 1.0,
+            "mean_gradient_norm": 1.2717928188714471,
+            "mean_bare_match_diff": 7.771561172376096e-16,
+            "symbolic_hubble_mid": 1.0060358738703938
+          },
+          "constraint_profile": {
+            "observational": 1.0,
+            "admissible": 1.0,
+            "stable": 1.0060358738703938,
+            "entropy_conditioned": 1.3717928188714463,
+            "topology_conditioned": 1.0
+          },
+          "note": "Through-shells distinguishability is load-bearing only when shell transport remains admissible and topology-supported."
+        }
+      },
+      "candidate_rows": [
+        {
+          "option": "extreme_stability_surface",
+          "mean_abs_a0": 2.5103922550616686,
+          "mean_signed_a0": 2.5103922550616686,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 1.0,
+          "composite_score": 0.8,
+          "mean_signal": 2.5103922550616686,
+          "scale_factor": 1.0,
+          "hubble_proxy": 1.9674662834194936
+        },
+        {
+          "option": "gradient_survival_surface",
+          "mean_abs_a0": 1.2717928188714471,
+          "mean_signed_a0": -0.1621351512386512,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.506611194448656,
+          "composite_score": 0.6273139180570296,
+          "mean_signal": 1.2717928188714471,
+          "scale_factor": 1.3245418312673496,
+          "hubble_proxy": 1.6673763582533774
+        },
+        {
+          "option": "z3_projection_surface",
+          "mean_abs_a0": 1.0,
+          "mean_signed_a0": 1.0,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.39834412251062123,
+          "composite_score": 0.5894204428787174,
+          "mean_signal": 1.0,
+          "scale_factor": 1.6102561169816352,
+          "hubble_proxy": 1.2553246349051423
+        },
+        {
+          "option": "shell_identity_surface",
+          "mean_abs_a0": 0.9999999999999992,
+          "mean_signed_a0": -7.771561172376096e-16,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.3983441225106209,
+          "composite_score": 0.5894204428787173,
+          "mean_signal": 0.9999999999999992,
+          "scale_factor": 1.8959704026959208,
+          "hubble_proxy": 1.062963517544109
+        },
+        {
+          "option": "mixed_state_null_surface",
+          "mean_abs_a0": 0.9999959708684357,
+          "mean_signed_a0": -4.029178192020052e-06,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.39834251752974376,
+          "composite_score": 0.5894198811354103,
+          "mean_signal": 0.9999959708684357,
+          "scale_factor": 2.181684112819983,
+          "hubble_proxy": 0.7132717090328895
+        },
+        {
+          "option": "shell_difference_surface",
+          "mean_abs_a0": 1.9984014443252818e-15,
+          "mean_signed_a0": 7.401486830834377e-17,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 7.960514697637124e-16,
+          "composite_score": 0.4500000000000003,
+          "mean_signal": 1.9984014443252818e-15,
+          "scale_factor": 2.324541255677126,
+          "hubble_proxy": 0.4307352288204105
+        },
+        {
+          "option": "dykstra_refinement_surface",
+          "mean_abs_a0": 0.0,
+          "mean_signed_a0": 0.0,
+          "doctrine_fit": 1.0,
+          "sign_consistency": 1.0,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.0,
+          "composite_score": 0.45,
+          "mean_signal": 0.0,
+          "scale_factor": 2.467398398534269,
+          "hubble_proxy": 0.35752029223528936
+        },
+        {
+          "option": "constraint_awareness_surface",
+          "mean_abs_a0": 0.0,
+          "mean_signed_a0": -0.0001514779719444177,
+          "doctrine_fit": 0.75,
+          "sign_consistency": 0.75,
+          "shell_alignment": 0.0,
+          "shell_alignment_abs": 0.0,
+          "signal_score": 0.0,
+          "composite_score": 0.3375,
+          "mean_signal": 0.0,
+          "scale_factor": 2.574541255677126,
+          "hubble_proxy": 0.2975493465303428
+        }
+      ],
+      "graph_surface": {
+        "edge_count": 13,
+        "longest_path_length": 7,
+        "triad_windows": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6
+          ],
+          [
+            5,
+            6,
+            7
+          ]
+        ],
+        "path_budget": 6
+      },
+      "hypergraph_surface": {
+        "num_edges": 1,
+        "max_hyperedge_size": 3,
+        "connected_components": 6,
+        "hyperedges": [
+          [
+            0,
+            1,
+            2
+          ]
+        ]
+      },
+      "topology_surface": {
+        "betti_numbers": [
+          1,
+          0
+        ],
+        "euler_characteristic": 1,
+        "parity_ok": true,
+        "loop_budget": 4
+      },
+      "symbolic_surface": {
+        "scale_factor_polynomial": "-232.919963529088*lam**7 + 785.786697416544*lam**6 - 1032.91291678899*lam**5 + 667.008774529088*lam**4 - 219.48899890599*lam**3 + 33.727158505661*lam**2 + 0.373790028447672*lam + 1.0",
+        "expansion_drive_polynomial": "-2427.76906134503*lam**7 + 8080.63650067652*lam**6 - 10540.4308994665*lam**5 + 6858.20144104186*lam**4 - 2356.34687486387*lam**3 + 419.527359555663*lam**2 - 36.5788578536934*lam + 3.51039225506167",
+        "scale_poly_degree": 7,
+        "drive_poly_degree": 7,
+        "mid_lambda": 0.5,
+        "symbolic_hubble_mid": 1.0060358738703938,
+        "symbolic_acceleration_mid": -4.626042567771606,
+        "symbolic_drive_mid": 2.101567847247921
+      },
+      "constraint_surface": {
+        "result": "sat",
+        "sat": true
+      },
+      "cvc5_surface": {
+        "pass": true,
+        "solver_result": "UNSAT",
+        "winner_gap": 0.17268608194297042
+      },
+      "pyg_surface": {
+        "pass": true,
+        "num_nodes": 8,
+        "num_edges": 14,
+        "mean_aggregate_norm": 1.3589480460718129,
+        "winner_aggregate_norm": 1.154593958742127,
+        "edge_weight_mean": 0.5520463835642678
+      },
+      "e3nn_surface": {
+        "pass": true,
+        "l0_gap": 0.0,
+        "l1_norm_gap": 0.0,
+        "x_parity_gap": 0.0,
+        "yz_invariance_gap": 0.0
+      },
+      "manifold_surface": {
+        "frechet_mean": [
+          0.18245864558359956,
+          0.009393208722853066,
+          0.9831686581058651
+        ],
+        "mean_norm": 1.0,
+        "mean_geodesic_distance": 0.5538809589025677,
+        "max_geodesic_distance": 1.3871630654482454
+      },
+      "torch_fit": {
+        "weights": [
+          0.6596792545211588,
+          0.5129991222311573,
+          0.5
+        ],
+        "bias": -0.08719999533487512,
+        "loss": 0.043468678127062,
+        "max_gap": 0.4026018926986159
+      },
+      "winner_vector": [
+        2.5103922550616686,
+        1.0,
+        0.0
+      ],
+      "clifford_vector_gap": 0.0,
+      "torch_ga_vector_gap": 6.6035789725305e-08,
+      "scale_factors": [
+        1.0,
+        1.3245418312673496,
+        1.6102561169816352,
+        1.8959704026959208,
+        2.181684112819983,
+        2.324541255677126,
+        2.467398398534269,
+        2.574541255677126
+      ],
+      "hubble_proxy": [
+        1.9674662834194936,
+        1.6673763582533774,
+        1.2553246349051423,
+        1.062963517544109,
+        0.7132717090328895,
+        0.4307352288204105,
+        0.35752029223528936,
+        0.2975493465303428
+      ],
+      "propagator_traces": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ]
+    }
+  },
+  "legacy_all_pass": true,
+  "overall_pass": true,
+  "all_pass": true,
+  "positive": {
+    "P1_gradient_exists_after_shells": {
+      "description": "Gradient is nonzero after Dykstra shell projection",
+      "tests": {
+        "entangled_noisy": {
+          "I_c": -0.3287911924864979,
+          "gradient": {
+            "theta": -0.14586789606459413,
+            "phi": 8.239439226952636e-18,
+            "r_A": 0.1192927863028873,
+            "r_B": 0.832596646137685,
+            "p_noise": 0.042317375068680156
+          },
+          "gradient_norm": 0.8547023735538836,
+          "nonzero_components": 4,
+          "pass": true,
+          "violation_initial": 0.0,
+          "violation_final": 9.992007221626409e-16
+        },
+        "high_purity": {
+          "I_c": -0.09660632912788569,
+          "gradient": {
+            "theta": -0.012232805509833874,
+            "phi": 7.095527856319583e-17,
+            "r_A": 0.23140840738894064,
+            "r_B": 1.3619450961145838,
+            "p_noise": -0.15898653328011833
+          },
+          "gradient_norm": 1.3906367804484103,
+          "nonzero_components": 4,
+          "pass": true,
+          "violation_initial": 0.0,
+          "violation_final": 1.1102230246251565e-15
+        },
+        "moderate_mixed": {
+          "I_c": -0.45116715778445415,
+          "gradient": {
+            "theta": -0.12601313488885227,
+            "phi": -3.4132237050135075e-18,
+            "r_A": 0.28838464038099365,
+            "r_B": 0.49999648341525155,
+            "p_noise": 0.018654578388336677
+          },
+          "gradient_norm": 0.5910917760336847,
+          "nonzero_components": 4,
+          "pass": true,
+          "violation_initial": 0.0,
+          "violation_final": 1.2212453270876722e-15
+        },
+        "near_pure": {
+          "I_c": 0.22802407444423306,
+          "gradient": {
+            "theta": -0.16382930147544703,
+            "phi": -1.256805772494925e-16,
+            "r_A": 0.7126815319062908,
+            "r_B": 2.121182377555451,
+            "p_noise": -0.1779393656319512
+          },
+          "gradient_norm": 2.250740345449809,
+          "nonzero_components": 4,
+          "pass": true,
+          "violation_initial": 0.0,
+          "violation_final": 9.992007221626409e-16
+        }
+      },
+      "pass": true
+    },
+    "P2_shells_change_gradient": {
+      "description": "Shell projection changes gradient for states that violate shells",
+      "tests": {
+        "clean_state": {
+          "I_c_bare": -0.32879119248649835,
+          "I_c_shelled": -0.3287911924864979,
+          "grad_bare": {
+            "theta": -0.14586789606459438,
+            "phi": -1.594376473456841e-17,
+            "r_A": 0.11929278630288748,
+            "r_B": 0.8325966461376854,
+            "p_noise": 0.04231737506868021
+          },
+          "grad_shelled": {
+            "theta": -0.14586789606459413,
+            "phi": 8.239439226952636e-18,
+            "r_A": 0.1192927863028873,
+            "r_B": 0.832596646137685,
+            "p_noise": 0.042317375068680156
+          },
+          "max_component_diff": 3.3306690738754696e-16,
+          "differs": false,
+          "violation_initial": 0.0,
+          "pass": true
+        },
+        "high_noise": {
+          "I_c_bare": -0.4595792492542401,
+          "I_c_shelled": -0.45957924925423954,
+          "grad_bare": {
+            "theta": 0.007001302580742365,
+            "phi": 1.6641478610085784e-17,
+            "r_A": 0.43177202629353606,
+            "r_B": 0.48614261636109,
+            "p_noise": 0.011124480857595246
+          },
+          "grad_shelled": {
+            "theta": 0.007001302580742448,
+            "phi": 1.44445269928e-17,
+            "r_A": 0.4317720262935357,
+            "r_B": 0.4861426163610897,
+            "p_noise": 0.01112448085759525
+          },
+          "max_component_diff": 3.3306690738754696e-16,
+          "differs": false,
+          "violation_initial": 0.0,
+          "pass": true
+        },
+        "extreme_pure": {
+          "I_c_bare": 0.6926478029736352,
+          "I_c_shelled": 0.6926478029736344,
+          "grad_bare": {
+            "theta": -5.551115123125783e-16,
+            "phi": 0.0,
+            "r_A": 4.999546021313154,
+            "r_B": 0.49975031120687985,
+            "p_noise": -0.000453958077359533
+          },
+          "grad_shelled": {
+            "theta": 0.0,
+            "phi": 0.0,
+            "r_A": 4.999546021313149,
+            "r_B": 0.49975031120687846,
+            "p_noise": -0.00045395807735953243
+          },
+          "max_component_diff": 5.329070518200751e-15,
+          "differs": false,
+          "violation_initial": 0.0,
+          "pass": true
+        }
+      },
+      "any_state_differs": false,
+      "all_states_already_clean": true,
+      "pass": true
+    },
+    "P3_gradient_constraint_aware": {
+      "description": "Gradient step does not increase shell violations (constraint-aware direction)",
+      "tests": {
+        "entangled_noisy": {
+          "violation_original": 0.0,
+          "violation_stepped": 0.0,
+          "violation_decreased_or_stable": true,
+          "pass": true
+        },
+        "high_purity": {
+          "violation_original": 0.0,
+          "violation_stepped": 0.0,
+          "violation_decreased_or_stable": true,
+          "pass": true
+        },
+        "moderate_mixed": {
+          "violation_original": 0.0,
+          "violation_stepped": 1.1102230246251565e-16,
+          "violation_decreased_or_stable": true,
+          "pass": true
+        },
+        "near_pure": {
+          "violation_original": 0.0,
+          "violation_stepped": 0.0006059118877775598,
+          "violation_decreased_or_stable": false,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "P4_z3_verifies_projected_state": {
+      "description": "z3 confirms projected state satisfies all shell constraints",
+      "tests": {
+        "entangled_noisy": {
+          "z3_result": {
+            "status": "sat",
+            "trace": 0.999999999999999,
+            "eigenvalues": [
+              0.035365590599185086,
+              0.08963440940081482,
+              0.24755913419429557,
+              0.6274408658057036
+            ],
+            "bloch_norm_A_sq": 0.18062499999999976,
+            "bloch_norm_B_sq": 0.10160156249999984,
+            "trace_ok": true,
+            "psd_ok": true,
+            "bloch_ok": true,
+            "all_shells_satisfied": true
+          },
+          "pass": true
+        },
+        "high_purity": {
+          "z3_result": {
+            "status": "sat",
+            "trace": 0.9999999999999989,
+            "eigenvalues": [
+              0.013826115903011124,
+              0.03617388409698883,
+              0.26269620215721134,
+              0.6873037978427876
+            ],
+            "bloch_norm_A_sq": 0.11850108586201266,
+            "bloch_norm_B_sq": 0.09598587954823029,
+            "trace_ok": true,
+            "psd_ok": true,
+            "bloch_ok": true,
+            "all_shells_satisfied": true
+          },
+          "pass": true
+        },
+        "moderate_mixed": {
+          "z3_result": {
+            "status": "sat",
+            "trace": 0.9999999999999988,
+            "eigenvalues": [
+              0.06086765589133914,
+              0.16413234410866057,
+              0.20965525918127928,
+              0.5653447408187198
+            ],
+            "bloch_norm_A_sq": 0.2105940857220428,
+            "bloch_norm_B_sq": 0.06370471093091797,
+            "trace_ok": true,
+            "psd_ok": true,
+            "bloch_ok": true,
+            "all_shells_satisfied": true
+          },
+          "pass": true
+        },
+        "near_pure": {
+          "z3_result": {
+            "status": "sat",
+            "trace": 0.9999999999999991,
+            "eigenvalues": [
+              0.00222985812636274,
+              0.007770141873637229,
+              0.22075595450991342,
+              0.7692440454900855
+            ],
+            "bloch_norm_A_sq": 0.16973194359578667,
+            "bloch_norm_B_sq": 0.16301055862939348,
+            "trace_ok": true,
+            "psd_ok": true,
+            "bloch_ok": true,
+            "all_shells_satisfied": true
+          },
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "shell_ordering_method": "rustworkx"
+  },
+  "negative": {
+    "N1_mixed_state_zero_gradient": {
+      "description": "Maximally mixed state has zero gradient in angular parameters",
+      "tests": {
+        "trial_0": {
+          "eta": [
+            0.1,
+            0.1,
+            0.01,
+            0.01,
+            5.0
+          ],
+          "I_c": -0.6930471970956713,
+          "gradient": {
+            "theta": -2.63168450611728e-07,
+            "phi": 7.470797617486954e-21,
+            "r_A": 0.009996692772955488,
+            "r_B": 0.00999934332004248,
+            "p_noise": 1.3074902401591118e-08
+          },
+          "gradient_norm": 0.014139332844882294,
+          "theta_phi_grad_norm": 2.63168450611728e-07,
+          "pass": true,
+          "reason": "near-mixed state has negligible angular gradient"
+        },
+        "trial_1": {
+          "eta": [
+            0.0,
+            0.0,
+            0.05,
+            0.05,
+            3.0
+          ],
+          "I_c": -0.690649262853469,
+          "gradient": {
+            "theta": 0.0,
+            "phi": 0.0,
+            "r_A": 0.04991672901807356,
+            "r_B": 0.04991672901807356,
+            "p_noise": 0.0
+          },
+          "gradient_norm": 0.07059291516666226,
+          "theta_phi_grad_norm": 0.0,
+          "pass": true,
+          "reason": "near-mixed state has negligible angular gradient"
+        },
+        "trial_2": {
+          "eta": [
+            0.5,
+            0.5,
+            0.02,
+            0.02,
+            4.0
+          ],
+          "I_c": -0.6927504637328576,
+          "gradient": {
+            "theta": -1.1824366125448427e-05,
+            "phi": -5.0490043435270515e-20,
+            "r_A": 0.019671639949108997,
+            "r_B": 0.01999650609737311,
+            "p_noise": 3.13138160598061e-06
+          },
+          "gradient_norm": 0.028050558354707416,
+          "theta_phi_grad_norm": 1.1824366125448427e-05,
+          "pass": true,
+          "reason": "near-mixed state has negligible angular gradient"
+        }
+      },
+      "pass": true
+    },
+    "N2_dykstra_vs_naive_gradient": {
+      "description": "Dykstra iterated gradient differs from single-pass naive projection",
+      "tests": {
+        "dykstra_vs_naive": {
+          "grad_dykstra": {
+            "theta": -0.14586789606459413,
+            "phi": 8.239439226952636e-18,
+            "r_A": 0.1192927863028873,
+            "r_B": 0.832596646137685,
+            "p_noise": 0.042317375068680156
+          },
+          "grad_naive": {
+            "theta": -0.14586789606459413,
+            "phi": 8.239439226952636e-18,
+            "r_A": 0.1192927863028873,
+            "r_B": 0.832596646137685,
+            "p_noise": 0.042317375068680156
+          },
+          "max_diff": 0.0,
+          "pass": true,
+          "note": "Dykstra iterations refine the projection; difference shows iteration matters"
+        }
+      },
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_already_satisfying_shells": {
+      "description": "State already satisfying shells: shelled gradient approximates bare gradient",
+      "tests": {
+        "mild_entangled": {
+          "initial_violation": 0.0,
+          "I_c_bare": -0.32692185349646985,
+          "I_c_shelled": -0.3269218534964694,
+          "grad_bare": {
+            "theta": -0.0908946021425371,
+            "phi": 0.0,
+            "r_A": 0.2975274248608107,
+            "r_B": 0.688396557935572,
+            "p_noise": -0.04993808545075647
+          },
+          "grad_shelled": {
+            "theta": -0.09089460214253703,
+            "phi": 0.0,
+            "r_A": 0.2975274248608104,
+            "r_B": 0.6883965579355709,
+            "p_noise": -0.04993808545075645
+          },
+          "max_grad_diff": 1.1102230246251565e-15,
+          "pass": true,
+          "note": "Low-violation state: shelled gradient should approximate bare gradient"
+        },
+        "product_mixed": {
+          "initial_violation": 0.0,
+          "I_c_bare": -0.46310705107963446,
+          "I_c_shelled": -0.4631070510796341,
+          "grad_bare": {
+            "theta": 0.0,
+            "phi": 0.0,
+            "r_A": 0.42159973839255716,
+            "r_B": 0.42159973839255716,
+            "p_noise": 0.0
+          },
+          "grad_shelled": {
+            "theta": 0.0,
+            "phi": 0.0,
+            "r_A": 0.4215997383925567,
+            "r_B": 0.4215997383925567,
+            "p_noise": 0.0
+          },
+          "max_grad_diff": 4.440892098500626e-16,
+          "pass": true,
+          "note": "Low-violation state: shelled gradient should approximate bare gradient"
+        }
+      },
+      "pass": true
+    },
+    "B2_numerical_stability_extremes": {
+      "description": "Gradient is finite at extreme parameter values",
+      "tests": {
+        "near_pure_A": {
+          "I_c": 0.0881837686979412,
+          "gradient": {
+            "theta": 2.168404344971009e-19,
+            "phi": 0.0,
+            "r_A": 2.431208289047979,
+            "r_B": 0.5493061443340542,
+            "p_noise": -0.032731428490048876
+          },
+          "gradient_norm": 2.4927058252729593,
+          "gradient_all_finite": true,
+          "I_c_finite": "True",
+          "pass": "True"
+        },
+        "near_mixed_AB": {
+          "I_c": -0.6930481218463747,
+          "gradient": {
+            "theta": -1.20450522159838e-06,
+            "phi": 5.834331738330103e-20,
+            "r_A": 0.00981173650252121,
+            "r_B": 0.010000041426752686,
+            "p_noise": 9.288906876049563e-07
+          },
+          "gradient_norm": 0.014009675372589752,
+          "gradient_all_finite": true,
+          "I_c_finite": "True",
+          "pass": "True"
+        },
+        "max_entangle": {
+          "I_c": 0.6926478029736344,
+          "gradient": {
+            "theta": 0.0,
+            "phi": 0.0,
+            "r_A": 4.999546021313149,
+            "r_B": 0.49975031120687846,
+            "p_noise": -0.00045395807735953243
+          },
+          "gradient_norm": 5.0244612645394575,
+          "gradient_all_finite": true,
+          "I_c_finite": "True",
+          "pass": "True"
+        }
+      },
+      "pass": true
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "name": "ComplicialSetThinFillerConstraint",
+  "description": "Complicial set thin filler dimension constraint \u2014 cvc5 proves thin simplex admissibility",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "tensor computation not needed for thin-simplex admissibility constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "graph message passing not needed for thin filler arithmetic laws"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen as the primary SMT solver for thin filler constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary SMT solver for thin simplex admissibility and contradiction checks"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of degenerate-simplex boundary identities"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "geometric algebra not needed for simplicial thinness constraints"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold computation required for thin filler checks"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "equivariant tensor models not needed for complicial-set admissibility"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "graph routing not needed for this local simplicial constraint"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "hypergraph structure not needed for thin simplex boundary tests"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cell-complex topology not required for these local thin filler checks"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not required for thin simplex admissibility"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_thin_1simplex_SAT": {
+      "result": "sat",
+      "pass": true
+    },
+    "positive_thin_2simplex_SAT": {
+      "result": "sat",
+      "pass": true
+    },
+    "positive_thin_5simplex_SAT": {
+      "result": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_thin_0simplex_contradiction_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    },
+    "negative_negative_dimension_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    },
+    "negative_impossible_bounds_UNSAT": {
+      "result": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_degenerate_simplices_thin": {
+      "property": "All degenerate k-simplices with k >= 1 are thin",
+      "k_values": {
+        "k=0": false,
+        "k=1": true,
+        "k=2": true,
+        "k=3": true,
+        "k=5": true
+      },
+      "pass": true
+    },
+    "boundary_thin_boundary_thin": {
+      "result": "sat",
+      "pass": true
+    },
+    "boundary_multiple_thin_fillers": {
+      "result": "sat",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

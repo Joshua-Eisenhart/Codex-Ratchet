@@ -1,0 +1,112 @@
+{
+  "name": "sim_igt_IGT_as_engine_ansatz_on_manifold",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy suffices for this ansatz"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous ansatz"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "continuous ansatz"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic self-product identity for nesting product"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "2-phase already captured by complex"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no Riemannian metric yet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no group action"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bivalent": {
+      "pos": true,
+      "neg": true,
+      "ok": true
+    },
+    "balanced_mean": {
+      "mean": -0.003003003003003003,
+      "ok": true
+    },
+    "sympy_self_product": {
+      "val": 1.0,
+      "ok": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "flip_count_diff": {
+      "long": 1,
+      "two": 14,
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "seam_at_zero": {
+      "val": 0.0,
+      "ok": "True"
+    },
+    "ok": "True"
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

@@ -1,0 +1,122 @@
+{
+  "name": "Enriched Category Hom-Object Constraint (Canonical)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary load-bearing proof: rank constraints encode associativity and unitality"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive symbolic rank derivation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_3object_enriched": {
+      "satisfiable": true,
+      "model": "sat"
+    },
+    "P2_4object_paths": {
+      "satisfiable": true,
+      "model": "sat"
+    },
+    "P3_unitality": {
+      "satisfiable": true,
+      "model": "sat"
+    }
+  },
+  "negative": {
+    "N1_non_associative": {
+      "unsat": true,
+      "proof": "unsat"
+    },
+    "N2_rank_expansion": {
+      "unsat": true,
+      "proof": "unsat"
+    },
+    "N3_unitality_violation": {
+      "unsat": true,
+      "proof": "unsat"
+    }
+  },
+  "boundary": {
+    "B1_single_object": {
+      "satisfiable": true,
+      "note": "Single object: Hom(A,A) is an algebra with self-composition"
+    },
+    "B2_free_2object": {
+      "satisfiable": true,
+      "note": "Free category: minimal model with 2 objects, one non-identity morphism pair"
+    },
+    "B3_abelian_enrichment": {
+      "satisfiable": true,
+      "note": "Ab-enriched category: composition rank is additive"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Berkovich Spaces: Analytic Domain Constraint Canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of non-archimedean ultrametric constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Gauss point seminorm formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; p-adic geometry constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "ultrametric_cvc5_positive_1": {
+      "status": "pass",
+      "solver_result": "sat",
+      "constraint": "ultrametric |f+g| <= max(|f|,|g|) is satisfiable"
+    },
+    "gauss_point_seminorm_positive_2": {
+      "status": "pass",
+      "coefficients": [
+        2,
+        3,
+        1
+      ],
+      "radius": 0.5,
+      "gauss_seminorm": 2.0,
+      "formula": "|\u2211 a_i x^i| = max |a_i| r^i"
+    },
+    "ultrametric_concrete_positive_3": {
+      "status": "pass",
+      "solver_result": "sat",
+      "values": {
+        "f_abs": 2,
+        "g_abs": 3,
+        "sum_abs": 3
+      },
+      "constraint": "|f+g|=3 <= max(2,3)=3 is satisfiable"
+    }
+  },
+  "negative": {
+    "ultrametric_violation_negative_1": {
+      "status": "pass",
+      "solver_result": "unsat",
+      "claim": "|f+g|=5 with |f|=2, |g|=2 violates ultrametric"
+    },
+    "non_multiplicative_negative_2": {
+      "status": "pass",
+      "solver_result": "unsat",
+      "claim": "|fg|=5 but |f||g|=6, contradicts multiplicativity"
+    },
+    "negative_abs_value_negative_3": {
+      "status": "pass",
+      "solver_result": "unsat",
+      "claim": "|f| = -1 contradicts |f| >= 0"
+    }
+  },
+  "boundary": {
+    "zero_seminorm_boundary_1": {
+      "status": "pass",
+      "solver_result": "sat",
+      "constraint": "|0+f| = |f| satisfied"
+    },
+    "unit_seminorm_boundary_2": {
+      "status": "pass",
+      "solver_result": "sat",
+      "constraint": "|1||f| = |f| holds"
+    },
+    "gauss_point_radius_zero_boundary_3": {
+      "status": "pass",
+      "radius": 0.0,
+      "gauss_seminorm": 2.0,
+      "note": "Only a_0 contributes when r=0"
+    }
+  }
+}

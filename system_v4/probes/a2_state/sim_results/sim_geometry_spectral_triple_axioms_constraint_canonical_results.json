@@ -1,0 +1,166 @@
+{
+  "name": "sim_geometry_spectral_triple_axioms_constraint_canonical",
+  "domain": "Spectral triple axioms and dimension constraints",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing for spectral triple dimension constraint proofs via SAT/UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive for Weyl law and spectral dimension formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_1": {
+      "test": "spectral_dim_n4",
+      "dimension": 4,
+      "growth_exponent": 0.25,
+      "result": "SAT",
+      "status": "PASS"
+    },
+    "pos_2": {
+      "test": "spectral_dim_n2",
+      "dimension": 2,
+      "growth_exponent": 0.5,
+      "result": "SAT",
+      "status": "PASS"
+    },
+    "pos_3": {
+      "test": "spectral_dim_n1",
+      "dimension": 1,
+      "growth_exponent": 1.0,
+      "result": "SAT",
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "neg_1": {
+      "test": "dim_zero_contradiction",
+      "constraint": "n=0 AND N_Lambda>0",
+      "result": "SAT",
+      "status": "FAIL"
+    },
+    "neg_2": {
+      "test": "negative_dimension",
+      "constraint": "n >= 0 AND n < 0",
+      "result": "UNSAT",
+      "status": "PASS"
+    },
+    "neg_3": {
+      "test": "eigenvalue_bound_violation",
+      "constraint": "N(\u039b) > \u039b^n AND N(\u039b) <= \u039b^n",
+      "result": "UNSAT",
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "bnd_1": {
+      "test": "weyl_law_n4",
+      "formula": "Lambda**4",
+      "N(2)": 16.0,
+      "expected": 16,
+      "status": "PASS"
+    },
+    "bnd_2": {
+      "test": "spectral_dimension_formula",
+      "dimensions": {
+        "n=1": {
+          "formula": "Lambda",
+          "N(3)": 3.0
+        },
+        "n=2": {
+          "formula": "Lambda**2",
+          "N(3)": 9.0
+        },
+        "n=3": {
+          "formula": "Lambda**3",
+          "N(3)": 27.0
+        },
+        "n=4": {
+          "formula": "Lambda**4",
+          "N(3)": 81.0
+        }
+      },
+      "status": "PASS"
+    },
+    "bnd_3": {
+      "test": "continuous_limit",
+      "discrete_formula": "Lambda**4",
+      "integral_approx": "Lambda**4",
+      "ratios_at_L": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "status": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

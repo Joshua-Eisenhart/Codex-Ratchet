@@ -1,0 +1,438 @@
+{
+  "name": "MoravaStabilizerGroupActionConstraintCanonical",
+  "description": "Morava stabilizer S_n action on Lubin-Tate space: size, cohomology, faithfulness",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure group-theoretic and cohomological computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; no graph-based message passing for group action"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all group-theoretic constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT (QF_LIA): load_bearing proof of stabilizer size, automorphism constraints, parameter space dimension"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for group cohomology spectral sequence E_2 term and stabilizer formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; group actions on commutative rings only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no Lie group differential geometry in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no rotation group equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_stabilizer_size": {
+      "description": "|S_n| = p^{n(n-1)/2}(p^n - 1)",
+      "data": [
+        {
+          "p": 2,
+          "height": 1,
+          "stabilizer_size": 1,
+          "unipotent_part": 1,
+          "unit_part": 1,
+          "cvc5_sat": true
+        },
+        {
+          "p": 2,
+          "height": 2,
+          "stabilizer_size": 6,
+          "unipotent_part": 2,
+          "unit_part": 3,
+          "cvc5_sat": true
+        },
+        {
+          "p": 2,
+          "height": 3,
+          "stabilizer_size": 56,
+          "unipotent_part": 8,
+          "unit_part": 7,
+          "cvc5_sat": true
+        },
+        {
+          "p": 2,
+          "height": 4,
+          "stabilizer_size": 960,
+          "unipotent_part": 64,
+          "unit_part": 15,
+          "cvc5_sat": true
+        },
+        {
+          "p": 3,
+          "height": 1,
+          "stabilizer_size": 2,
+          "unipotent_part": 1,
+          "unit_part": 2,
+          "cvc5_sat": true
+        },
+        {
+          "p": 3,
+          "height": 2,
+          "stabilizer_size": 24,
+          "unipotent_part": 3,
+          "unit_part": 8,
+          "cvc5_sat": true
+        },
+        {
+          "p": 3,
+          "height": 3,
+          "stabilizer_size": 702,
+          "unipotent_part": 27,
+          "unit_part": 26,
+          "cvc5_sat": true
+        },
+        {
+          "p": 3,
+          "height": 4,
+          "stabilizer_size": 58320,
+          "unipotent_part": 729,
+          "unit_part": 80,
+          "cvc5_sat": true
+        },
+        {
+          "p": 5,
+          "height": 1,
+          "stabilizer_size": 4,
+          "unipotent_part": 1,
+          "unit_part": 4,
+          "cvc5_sat": true
+        },
+        {
+          "p": 5,
+          "height": 2,
+          "stabilizer_size": 120,
+          "unipotent_part": 5,
+          "unit_part": 24,
+          "cvc5_sat": true
+        },
+        {
+          "p": 5,
+          "height": 3,
+          "stabilizer_size": 15500,
+          "unipotent_part": 125,
+          "unit_part": 124,
+          "cvc5_sat": true
+        },
+        {
+          "p": 5,
+          "height": 4,
+          "stabilizer_size": 9750000,
+          "unipotent_part": 15625,
+          "unit_part": 624,
+          "cvc5_sat": true
+        }
+      ],
+      "all_pass": true
+    },
+    "test_2_cohomology_e2_term": {
+      "description": "E_2^{s,t} dimensions match height-dependent bounds",
+      "data": [
+        {
+          "p": 2,
+          "height": 1,
+          "h1_dim": 0,
+          "h1_expected": 0,
+          "h1_match": true,
+          "h2_dim": 0,
+          "h2_expected": 0,
+          "h2_match": true
+        },
+        {
+          "p": 2,
+          "height": 2,
+          "h1_dim": 1,
+          "h1_expected": 1,
+          "h1_match": true,
+          "h2_dim": 1,
+          "h2_expected": 1,
+          "h2_match": true
+        },
+        {
+          "p": 2,
+          "height": 3,
+          "h1_dim": 3,
+          "h1_expected": 3,
+          "h1_match": true,
+          "h2_dim": 2,
+          "h2_expected": 2,
+          "h2_match": true
+        },
+        {
+          "p": 3,
+          "height": 1,
+          "h1_dim": 0,
+          "h1_expected": 0,
+          "h1_match": true,
+          "h2_dim": 0,
+          "h2_expected": 0,
+          "h2_match": true
+        },
+        {
+          "p": 3,
+          "height": 2,
+          "h1_dim": 1,
+          "h1_expected": 1,
+          "h1_match": true,
+          "h2_dim": 1,
+          "h2_expected": 1,
+          "h2_match": true
+        },
+        {
+          "p": 3,
+          "height": 3,
+          "h1_dim": 3,
+          "h1_expected": 3,
+          "h1_match": true,
+          "h2_dim": 2,
+          "h2_expected": 2,
+          "h2_match": true
+        }
+      ],
+      "all_pass": true
+    },
+    "test_3_action_faithfulness": {
+      "description": "S_n action on M_n is faithful (kernel = {1})",
+      "data": [
+        {
+          "p": 2,
+          "height": 2,
+          "stabilizer_size": 6,
+          "kernel_trivial": true,
+          "action_faithful": true
+        },
+        {
+          "p": 2,
+          "height": 3,
+          "stabilizer_size": 56,
+          "kernel_trivial": true,
+          "action_faithful": true
+        },
+        {
+          "p": 2,
+          "height": 4,
+          "stabilizer_size": 960,
+          "kernel_trivial": true,
+          "action_faithful": true
+        },
+        {
+          "p": 3,
+          "height": 2,
+          "stabilizer_size": 24,
+          "kernel_trivial": true,
+          "action_faithful": true
+        },
+        {
+          "p": 3,
+          "height": 3,
+          "stabilizer_size": 702,
+          "kernel_trivial": true,
+          "action_faithful": true
+        },
+        {
+          "p": 3,
+          "height": 4,
+          "stabilizer_size": 58320,
+          "kernel_trivial": true,
+          "action_faithful": true
+        }
+      ],
+      "all_pass": true
+    }
+  },
+  "negative": {
+    "test_1_stabilizer_size_unsat": {
+      "description": "UNSAT: stabilizer size violates factorization",
+      "data": [
+        {
+          "height": 2,
+          "actual_size": 6,
+          "attempted_size": 7,
+          "cvc5_unsat": true
+        },
+        {
+          "height": 3,
+          "actual_size": 56,
+          "attempted_size": 57,
+          "cvc5_unsat": true
+        }
+      ],
+      "all_unsat": true
+    },
+    "test_2_kernel_non_trivial_unsat": {
+      "description": "UNSAT: non-trivial kernel violates faithful action",
+      "data": [
+        {
+          "height": 2,
+          "kernel_size": 2,
+          "cvc5_unsat": true,
+          "violation": "non-trivial kernel contradicts faithfulness"
+        },
+        {
+          "height": 3,
+          "kernel_size": 2,
+          "cvc5_unsat": true,
+          "violation": "non-trivial kernel contradicts faithfulness"
+        }
+      ],
+      "all_unsat": true
+    },
+    "test_3_cohomology_dimension_unsat": {
+      "description": "UNSAT: H^1 dimension violates height constraint",
+      "data": [
+        {
+          "height": 2,
+          "h1_attempted": 2,
+          "h1_correct": 1,
+          "cvc5_unsat": true
+        },
+        {
+          "height": 3,
+          "h1_attempted": 4,
+          "h1_correct": 3,
+          "cvc5_unsat": true
+        }
+      ],
+      "all_unsat": true
+    }
+  },
+  "boundary": {
+    "test_1_height_one": {
+      "description": "Height 1: |S_1| = p - 1 (non-trivial for p > 2)",
+      "data": [
+        {
+          "p": 2,
+          "height": 1,
+          "actual_stabilizer_size": 1,
+          "formula": "p^0 * (p - 1) = 1",
+          "attempted_size_one": false
+        },
+        {
+          "p": 3,
+          "height": 1,
+          "actual_stabilizer_size": 2,
+          "formula": "p^0 * (p - 1) = 2",
+          "attempted_size_one": false
+        },
+        {
+          "p": 5,
+          "height": 1,
+          "actual_stabilizer_size": 4,
+          "formula": "p^0 * (p - 1) = 4",
+          "attempted_size_one": false
+        }
+      ],
+      "all_computed": true
+    },
+    "test_2_large_prime_n2": {
+      "description": "Large primes with height 2: |S_2| = p(p^2 - 1)",
+      "data": [
+        {
+          "p": 11,
+          "height": 2,
+          "stabilizer_size": 1320,
+          "cvc5_sat": true
+        },
+        {
+          "p": 13,
+          "height": 2,
+          "stabilizer_size": 2184,
+          "cvc5_sat": true
+        },
+        {
+          "p": 17,
+          "height": 2,
+          "stabilizer_size": 4896,
+          "cvc5_sat": true
+        },
+        {
+          "p": 19,
+          "height": 2,
+          "stabilizer_size": 6840,
+          "cvc5_sat": true
+        },
+        {
+          "p": 23,
+          "height": 2,
+          "stabilizer_size": 12144,
+          "cvc5_sat": true
+        }
+      ],
+      "all_pass": true
+    },
+    "test_3_cohomology_high_degree": {
+      "description": "Cohomology vanishes at high degree (stable range)",
+      "data": [
+        {
+          "height": 2,
+          "h4_dim": 0,
+          "h5_dim": 0,
+          "stable_vanishing": true
+        },
+        {
+          "height": 3,
+          "h4_dim": 0,
+          "h5_dim": 0,
+          "stable_vanishing": true
+        }
+      ],
+      "all_stable": true
+    }
+  },
+  "classification": "canonical"
+}

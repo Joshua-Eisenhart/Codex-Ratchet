@@ -1,0 +1,142 @@
+{
+  "name": "sim_contact_spectraltriple_hopf_triple_coexistence",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence: joint_count = H_c_n * H_s_n * H_h_n <= pairwise_min. Normalization h/(1+h) maps H values to (0,1). z3 UNSAT: joint > pairwise_min impossible for normalized values in (0,1). sympy: a*b*(1-c) >= 0 for c in (0,1) proves triple <= pairwise.",
+  "divergence_log": "Triple coexistence: joint_count = H_c_n * H_s_n * H_h_n <= pairwise_min. Normalization h/(1+h) maps H values to (0,1). z3 UNSAT: joint > pairwise_min impossible for normalized values in (0,1). sympy: a*b*(1-c) >= 0 for c in (0,1) proves triple <= pairwise.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute normalized H values and triple joint as torch tensors (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in coexistence step"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: joint > pairwise_min impossible given normalization constraints (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for coexistence UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof: a*b*c <= a*b when c in (0,1) (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford algebra in coexistence"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold in coexistence"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance in coexistence"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal in coexistence"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph in coexistence"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex not invoked in coexistence"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistence not in coexistence scope"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "P1_joint_le_each_pairwise": {
+      "H_c_n": 0.7391222689051209,
+      "H_s_n": 0.3818300769373931,
+      "H_h_n": 0.25737441516873566,
+      "joint": 0.07263597910690126,
+      "pair_cs": 0.28221911280218287,
+      "pair_ch": 0.19023116169764445,
+      "pair_sh": 0.0982732927455949,
+      "pairwise_min": 0.0982732927455949,
+      "passed": true
+    },
+    "P2_pairwise_le_alone": {
+      "pair_cs_le_alone_c": true,
+      "pair_cs_le_alone_s": true,
+      "pair_ch_le_alone_c": true,
+      "pair_ch_le_alone_h": true,
+      "pair_sh_le_alone_s": true,
+      "pair_sh_le_alone_h": true,
+      "passed": true
+    },
+    "P3_pytorch_triple_constraint": {
+      "joint": 0.07263597910690126,
+      "pairwise_min": 0.0982732927455949,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_joint_gt_pairwise": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_triple_le_pairwise": {
+      "diff_expr": "a*b*(1 - c)",
+      "factored": "-a*b*(c - 1)",
+      "passed": true
+    },
+    "N3_joint_strictly_less": {
+      "joint": 0.07263597910690126,
+      "pairwise_min": 0.0982732927455949,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_normalized_in_unit_interval": {
+      "H_c_n": 0.7391222689051209,
+      "H_s_n": 0.3818300769373931,
+      "H_h_n": 0.25737441516873566,
+      "passed": true
+    },
+    "B2_normalization_monotone": {
+      "single": 0.7391222689051209,
+      "double": 0.42499730014407877,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

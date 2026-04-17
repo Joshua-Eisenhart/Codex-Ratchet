@@ -1,0 +1,165 @@
+{
+  "name": "Harish-Chandra Module Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; representation theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; Lie group representation constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "k_isotypic_finiteness": {
+      "test": "Each K-isotypic component V_\u03c4 is finite-dimensional",
+      "rank_K": 1,
+      "rank_G": 2,
+      "max_dimension": 20,
+      "satisfiable": true
+    },
+    "harish_chandra_iso": {
+      "test": "Z(g) \u2245 W-invariants of h*, dim = rank(G)",
+      "rank": 2,
+      "dim_center": 2,
+      "theorem": "Harish-Chandra isomorphism identifies central chars",
+      "isomorphic": true
+    },
+    "infinitesimal_character": {
+      "test": "Infinitesimal character \u03c7_\u03bb(z) = P(\u03bb) via HC isomorphism",
+      "lambda": 2,
+      "P_of_lambda": 4,
+      "is_w_invariant": true
+    },
+    "admissibility_finiteness": {
+      "test": "Admissibility: all K-multiplicities are finite",
+      "is_admissible": true,
+      "constraint": "dim(V_\u03c4) < \u221e for all \u03c4 \u2208 K^"
+    },
+    "g_k_compatibility": {
+      "test": "(g,K)-module: K-action preserves g-invariant subspaces",
+      "g_invariant_subspace_dim": 3,
+      "k_orbits_preserved": true,
+      "compatible": true
+    }
+  },
+  "negative": {
+    "infinite_component_unsat": {
+      "test": "Claiming infinite-dimensional K-isotypic component leads to UNSAT",
+      "unsat": true,
+      "interpretation": "Admissibility requires all V_\u03c4 finite-dimensional"
+    },
+    "iso_violation_unsat": {
+      "test": "Violating Harish-Chandra iso (wrong Z(g) dimension) \u2192 UNSAT",
+      "rank": 2,
+      "expected_dim_center": 2,
+      "unsat": true
+    },
+    "multiplicity_bound_unsat": {
+      "test": "Claiming multiplicity > rank(K) violates principal series structure",
+      "rank_K": 1,
+      "unsat": true
+    },
+    "non_commuting_unsat": {
+      "test": "Non-commuting g,K actions violate (g,K)-module structure",
+      "valid_gk_module": true,
+      "violates_if_noncommute": false
+    },
+    "undefined_infinitesimal_char_unsat": {
+      "test": "Undefined or non-unique infinitesimal character \u2192 UNSAT",
+      "unsat": true,
+      "constraint": "\u03c7_\u03bb uniquely defined by \u03bb \u2208 h*"
+    }
+  },
+  "boundary": {
+    "boundary_discrete_series_rank": {
+      "test": "rank(K) = rank(G) is condition for discrete series",
+      "rank_K": 1,
+      "rank_G": 1,
+      "discrete_series_exist": true
+    },
+    "boundary_principal_series_generic": {
+      "test": "Generic \u03bb (non-singular infinitesimal character) irreducible",
+      "lambda": 2.5,
+      "is_singular": false,
+      "irreducible": true
+    },
+    "boundary_minimal_dimension": {
+      "test": "Minimal (g,K)-module dimension \u2265 rank(K)",
+      "min_dimension": 1,
+      "satisfiable": true
+    },
+    "boundary_high_rank": {
+      "test": "Z(g) dimension = rank(G) for high rank",
+      "rank": 10,
+      "dim_center": 10
+    }
+  },
+  "classification": "canonical"
+}

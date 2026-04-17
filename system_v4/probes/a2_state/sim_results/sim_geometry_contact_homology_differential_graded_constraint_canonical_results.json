@@ -1,0 +1,162 @@
+{
+  "name": "sim_geometry_contact_homology_differential_graded_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of contact homology DGA constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "simplicial_boundary": {
+      "test_name": "Simplicial boundary map",
+      "deg_partial": -1,
+      "nilpotent": true,
+      "sat": true,
+      "expected": true
+    },
+    "floer_differential": {
+      "test_name": "Floer chain complex differential",
+      "deg_partial": -1,
+      "nilpotent": true,
+      "sat": true,
+      "expected": true
+    },
+    "cohomology_preservation": {
+      "test_name": "Cohomology class preservation",
+      "property": "im(\u2202) \u2286 ker(\u2202)",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "non_nilpotent": {
+      "test_name": "Non-nilpotent differential",
+      "bad_constraint": "\u2202\u00b2 \u2260 0",
+      "dga_requirement": "\u2202\u00b2 = 0",
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "A non-nilpotent operator cannot be a DGA differential"
+    },
+    "wrong_degree_zero": {
+      "test_name": "Wrong degree (0 instead of -1)",
+      "bad_constraint": "deg(\u2202) = 0",
+      "dga_requirement": "deg(\u2202) = -1",
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "A degree-0 operator cannot lower chain degree"
+    },
+    "wrong_degree_positive": {
+      "test_name": "Wrong degree (+1 instead of -1)",
+      "bad_constraint": "deg(\u2202) = +1",
+      "dga_requirement": "deg(\u2202) = -1",
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "A degree-+1 operator raises chain degree (wrong direction)"
+    },
+    "both_conditions_violated": {
+      "test_name": "Both DGA conditions violated",
+      "bad_constraints": [
+        "deg(\u2202) = 2",
+        "\u2202\u00b2 \u2260 0"
+      ],
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "No operator can satisfy contradictory DGA requirements"
+    }
+  },
+  "boundary": {
+    "zero_differential": {
+      "test_name": "Zero differential",
+      "operator": "\u2202 = 0",
+      "sat": true,
+      "expected": true,
+      "boundary_insight": "Zero differential is admissible but trivial"
+    },
+    "higher_compositions": {
+      "test_name": "Higher order compositions",
+      "constraint": "\u2202\u00b2 = 0 implies \u2202^n = 0 for n \u2265 2",
+      "sat": true,
+      "expected": true
+    },
+    "degree_sequence": {
+      "test_name": "Degree sequence under \u2202",
+      "initial_degree": 3,
+      "after_partial": 2,
+      "sat": true,
+      "expected": true
+    }
+  },
+  "classification": "canonical",
+  "constraint_domain": "contact_homology",
+  "proof_system": "cvc5_smt"
+}

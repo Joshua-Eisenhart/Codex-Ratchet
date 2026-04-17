@@ -1,0 +1,171 @@
+{
+  "name": "DensityMatrixTraceConstraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; quantum logic handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; quantum logic via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_trace_equals_one": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_eigenvalue_positive": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_purity_range": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_pure_state_purity": {
+      "state": "|0\u27e9\u27e80|",
+      "Tr(\u03c1)": 1.0,
+      "Tr(\u03c1\u00b2)": 1.0,
+      "expected_trace": 1,
+      "expected_purity": 1,
+      "pass": true
+    },
+    "test_mixed_state_purity": {
+      "state": "0.6|0\u27e9\u27e80| + 0.4|1\u27e9\u27e81|",
+      "Tr(\u03c1)": 1.0,
+      "Tr(\u03c1\u00b2)": 0.52,
+      "expected_trace": 1,
+      "expected_purity": 0.52,
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_invalid_trace": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_negative_eigenvalue": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_purity_exceeds_one": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_invalid_density_matrix": {
+      "matrix": "Matrix([[1, 0.500000000000000], [0.500000000000000, 0]])",
+      "trace": 1.0,
+      "eigenvalues": "[1.20710678118655, -0.207106781186548]",
+      "has_negative_eigenvalue": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_boundary_trace_one": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_boundary_eigenvalue_zero": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_boundary_purity_one": {
+      "expected": "sat",
+      "actual": "sat",
+      "pass": true
+    },
+    "test_boundary_purity_zero": {
+      "expected": "unsat",
+      "actual": "unsat",
+      "pass": true
+    },
+    "test_partial_trace_separable": {
+      "state": "|00\u27e9\u27e800|",
+      "Tr_B": "Matrix([[1, 0], [0, 0]])",
+      "expected": "Matrix([[1, 0], [0, 0]])",
+      "pass": "True"
+    },
+    "test_partial_trace_bell_state": {
+      "state": "|\u03a6+\u27e9\u27e8\u03a6+|",
+      "Tr_B": "Matrix([[1/2, 0], [0, 1/2]])",
+      "expected": "Matrix([[1/2, 0], [0, 1/2]])",
+      "pass": "True"
+    }
+  },
+  "classification": "canonical"
+}

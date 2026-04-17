@@ -1,0 +1,152 @@
+{
+  "name": "sim_spectral_triple_weyl_mera_emergence_quantities",
+  "classification": "classical_baseline",
+  "classification_note": "Q_STW=I_c\u00d7H_chirality\u00d7spectral_gap. Zero for all single/pairwise. Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. sympy: any factor=0 analytically collapses product.",
+  "divergence_log": "Q_STW=I_c\u00d7H_chirality\u00d7spectral_gap. Zero for all single/pairwise. Nonzero only in full triple. z3 UNSAT: gap=0 with Q!=0 impossible. sympy: any factor=0 analytically collapses product.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Partial trace via einsum for I_c computation (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning in emergence observable"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: gap=0 AND Q_STW!=0 is impossible \u2014 product-zero structural proof (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for product-zero UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic: a*b*c with any factor=0 \u2192 product=0 (analytical proof, load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "no Clifford rotor in Q_STW definition"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "no Riemannian manifold sampling here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SO(3) equivariance in emergence quantity"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal needed"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph in Q_STW"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex boundary not invoked"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not relevant to Q_STW"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "positive": {
+    "E1_ST_alone_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E2_Weyl_alone_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E3_MERA_alone_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E4a_ST_Weyl_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E4b_ST_MERA_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E4c_Weyl_MERA_Q_zero": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "E5_triple_Q_nonzero": {
+      "Q_seeds": [
+        0.03609662785005273,
+        0.06654499175010863,
+        0.06495912689386694
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_gap0_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_factor_zero_collapses": {
+      "a=0": "0",
+      "b=0": "0",
+      "c=0": "0",
+      "passed": true
+    },
+    "N3_gap_zero_kills_Q": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_all_inactive": {
+      "Q": 0.0,
+      "passed": true
+    },
+    "B2_triple_stable_5seeds": {
+      "Qs": [
+        0.06492624163743257,
+        0.19032429563364733,
+        0.186020338649717,
+        0.02984295866806854,
+        0.006798548002514758
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,133 @@
+{
+  "name": "sim_geometry_weil_conjectures_purity_constraint_canonical",
+  "description": "Weil conjectures and Deligne purity: Frobenius eigenvalues satisfy |\u03b1| = q^{i/2}; functional equation; Hasse bound for elliptic curves",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; Weil conjectures handled algebraically"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; l-adic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_purity_h1": {
+      "constraint": "Purity: |Frob eigenvalue on H^1| = q^{1/2}",
+      "variety": "elliptic curve over F_5",
+      "satisfiable": "True",
+      "target_norm_sq": 5
+    },
+    "test_hasse_elliptic": {
+      "variety": "elliptic curve over F_5",
+      "alpha_times_alpha_conj": "5",
+      "equals_p": true,
+      "expected": 5
+    },
+    "test_functional_eq_p1": {
+      "variety": "P^1",
+      "functional_form": "Z(1/(q*T)) = q*T^2*Z(T)",
+      "difference": "T**2*(-q + q**1.0)/((T - 1)*(T*q - 1))",
+      "holds": true
+    }
+  },
+  "negative": {
+    "test_purity_violation_unsat": {
+      "constraint": "UNSAT when |Frob eigenvalue|^2 \u2260 q^i",
+      "reason": "claimed |\u03b1|^2 = 7 but purity requires |\u03b1|^2 = 5",
+      "unsatisfiable": true
+    },
+    "test_functional_eq_violation": {
+      "constraint": "UNSAT when Z(1/(qT)) \u2260 q*T^2*Z(T)",
+      "note": "functional equation constraint verified symbolically"
+    }
+  },
+  "boundary": {
+    "test_deligne_elliptic_f5": {
+      "variety": "E: y^2 = x^3 + x over F_5",
+      "num_rational_points": 5,
+      "expected_by_hasse": "|#E(F_5) - 6| \u2264 4.47",
+      "actual_deviation": 1,
+      "hasse_satisfied": "True"
+    },
+    "test_functional_pn": {
+      "variety": "P^2",
+      "functional_form": "Z(1/(q^2*T)) = q^3 * T^3 * Z(T)",
+      "polynomial_degree": 3,
+      "difference": "-2*T**3*q**3/((T - 1)*(T*q - 1)*(T*q**2 - 1))"
+    },
+    "test_rh_genus_g": {
+      "variety": "smooth projective curve, genus 1",
+      "cohomology_dimension": 2,
+      "eigenvalue_magnitude": "\u221a7 = 2.646",
+      "riemann_hypothesis": "|\u03b1| = \u221a7 for all Frob eigenvalues on H^1"
+    }
+  },
+  "classification": "canonical"
+}

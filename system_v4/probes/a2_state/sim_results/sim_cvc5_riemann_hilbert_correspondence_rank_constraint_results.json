@@ -1,0 +1,135 @@
+{
+  "name": "Riemann-Hilbert Correspondence Rank Constraint",
+  "description": "rank(L) = rank(M) for local systems and regular holonomic D-modules",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Riemann-Hilbert rank constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for rank constraints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_rank1_pair": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "rank(L)=1, rank(M)=1 satisfies Riemann-Hilbert correspondence"
+    },
+    "test_2_rank2_pair": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "rank(L)=2, rank(M)=2 satisfies Riemann-Hilbert correspondence"
+    },
+    "test_3_rank5_pair": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "rank(L)=5, rank(M)=5 satisfies Riemann-Hilbert correspondence"
+    }
+  },
+  "negative": {
+    "test_neg_1_rank1_vs_rank2": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "rank(L)=1, rank(M)=2 violates Riemann-Hilbert correspondence"
+    },
+    "test_neg_2_rank3_vs_rank4": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "rank(L)=3, rank(M)=4 violates Riemann-Hilbert correspondence"
+    },
+    "test_neg_3_rank5_vs_rank3": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "rank(L)=5, rank(M)=3 violates Riemann-Hilbert correspondence"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_zero_rank": {
+      "status": "PASS",
+      "reason": "Rank 0 pair (empty local system and trivial D-module)"
+    },
+    "test_boundary_2_high_rank": {
+      "status": "PASS",
+      "reason": "High-rank pair (rank 100)"
+    },
+    "test_boundary_3_multiple_pairs": {
+      "status": "PASS",
+      "reason": "Multiple Riemann-Hilbert pairs with different ranks"
+    }
+  },
+  "classification": "canonical"
+}

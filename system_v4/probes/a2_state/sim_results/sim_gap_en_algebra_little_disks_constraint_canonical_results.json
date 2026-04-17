@@ -1,0 +1,215 @@
+{
+  "name": "E_n Algebra / Little n-Disks Operad Constraint",
+  "description": "cvc5 UNSAT proves that E_n algebras cannot exceed n commutativity levels",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of E_n algebra commutativity constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for operad axiom enumeration"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "E1_valid_single_level": {
+      "n": 1,
+      "attempted_levels": 1,
+      "sat": false,
+      "explanation": "E_1 algebra with 1 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 1",
+        "Goal: Sum > 1",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E3_valid_triple_level": {
+      "n": 3,
+      "attempted_levels": 3,
+      "sat": false,
+      "explanation": "E_3 algebra with 3 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 3",
+        "Goal: Sum > 3",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E2_valid_dual_level": {
+      "n": 2,
+      "attempted_levels": 2,
+      "sat": false,
+      "explanation": "E_2 algebra with 2 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 2",
+        "Goal: Sum > 2",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    }
+  },
+  "negative": {
+    "E1_invalid_two_levels": {
+      "n": 1,
+      "attempted_levels": 2,
+      "sat": false,
+      "explanation": "E_1 algebra with 2 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 1",
+        "Goal: Sum > 1",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E2_invalid_three_levels": {
+      "n": 2,
+      "attempted_levels": 3,
+      "sat": false,
+      "explanation": "E_2 algebra with 3 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 2",
+        "Goal: Sum > 2",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E3_invalid_five_levels": {
+      "n": 3,
+      "attempted_levels": 5,
+      "sat": false,
+      "explanation": "E_3 algebra with 5 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 3",
+        "Goal: Sum > 3",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    }
+  },
+  "boundary": {
+    "E0_zero_commutativity": {
+      "n": 0,
+      "attempted_levels": 0,
+      "sat": false,
+      "explanation": "E_0 algebra with 0 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 0",
+        "Goal: Sum > 0",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E4_saturation_boundary": {
+      "n": 4,
+      "attempted_levels": 4,
+      "sat": false,
+      "explanation": "E_4 algebra with 4 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 4",
+        "Goal: Sum > 4",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    },
+    "E2_one_over_threshold": {
+      "n": 2,
+      "attempted_levels": 3,
+      "sat": false,
+      "explanation": "E_2 algebra with 3 attempted commutativity levels",
+      "solver_trace": [
+        "Axiom 1: Sum of commutativity levels <= 2",
+        "Goal: Sum > 2",
+        "Result: UNSAT (constraint necessary)"
+      ]
+    }
+  },
+  "validation": {
+    "positive_E1_valid_single_level": {
+      "valid_configuration": true,
+      "sat": false
+    },
+    "positive_E3_valid_triple_level": {
+      "valid_configuration": true,
+      "sat": false
+    },
+    "positive_E2_valid_dual_level": {
+      "valid_configuration": true,
+      "sat": false
+    },
+    "negative_E1_invalid_two_levels": {
+      "impossible_configuration": true,
+      "sat": false,
+      "correctly_rejected": true
+    },
+    "negative_E2_invalid_three_levels": {
+      "impossible_configuration": true,
+      "sat": false,
+      "correctly_rejected": true
+    },
+    "negative_E3_invalid_five_levels": {
+      "impossible_configuration": true,
+      "sat": false,
+      "correctly_rejected": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,132 @@
+{
+  "name": "sim_igt_win_lose_atomic",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for atomic round"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure at atomic scale"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "exclusivity guard W ^ L is UNSAT structurally"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 suffices for boolean guard"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic contradiction check for win ^ ~win"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no rotor geometry at this layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no manifold yet"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance yet"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph at this layer"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cases": [
+      {
+        "a": 2,
+        "b": 1,
+        "got": "win",
+        "want": "win",
+        "ok": true
+      },
+      {
+        "a": 0,
+        "b": 3,
+        "got": "lose",
+        "want": "lose",
+        "ok": true
+      },
+      {
+        "a": 5,
+        "b": -1,
+        "got": "win",
+        "want": "win",
+        "ok": true
+      }
+    ],
+    "z3_exclusive": {
+      "unsat_when_both": true
+    },
+    "ok": true
+  },
+  "negative": {
+    "equal_not_winlose": {
+      "got": "indistinguishable",
+      "ok": true
+    },
+    "sympy_contradiction": {
+      "simplify": "False",
+      "ok": true
+    },
+    "ok": true
+  },
+  "boundary": {
+    "near_tie_still_resolves": {
+      "got": "win",
+      "ok": true
+    },
+    "exact_tie_indistinguishable": {
+      "got": "indistinguishable",
+      "ok": true
+    },
+    "ok": true
+  },
+  "classification": "classical_baseline",
+  "all_ok": true
+}

@@ -1,0 +1,141 @@
+{
+  "name": "Riemann-Roch Theorem Constraint Canonical",
+  "description": "Riemann-Roch proves divisor dimension formula: l(D) - l(K-D) = deg(D) - g + 1 on smooth curve of genus g; z3 enforces exact equality in QF_LIA; proves formula violation is UNSAT; validates Serre duality H^0(D)\u2245H^1(K-D)*; enforces canonical divisor degree = 2g-2; boundary tests include P^1 (g=0), elliptic (g=1), high-degree divisors",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for divisor dimension constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for Riemann-Roch formula"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes Riemann-Roch in QF_LIA: proves l(D) - l(K-D) = deg(D) - g + 1 exact equality; proves violating formula is UNSAT; enforces Serre duality dimension matching; validates canonical divisor degree = 2g-2"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for integer linear arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes divisor geometry on curves: divisor arithmetic, l(D) dimension from linear systems, canonical divisor degree formula 2g-2, Serre duality pairing H^0(D)\u2245H^1(K-D)*, genus from curve equation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for curve divisor theory"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for algebraic curves"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for Serre duality"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for divisor geometry"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for Riemann-Roch"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for linear systems"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for genus-degree relations"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "riemann_roch_formula_exact": {
+      "status": "satisfiable",
+      "interpretation": "Riemann-Roch gate: dimension l(D) = dim H^0(D) minus correction term l(K-D) equals deg(D) - g + 1; divisor dimension is constrained by topology and arithmetic",
+      "l_D": 1,
+      "l_K_minus_D": 0,
+      "deg_D": 0,
+      "genus": 0,
+      "formula_holds": true
+    },
+    "serre_duality_pairing": {
+      "status": "satisfiable",
+      "interpretation": "Serre duality: H^0(D) is isomorphic to H^1(K-D)*; cohomology pairing dual to canonical divisor; fundamental for Riemann-Roch derivation",
+      "h0_D": 0,
+      "h1_K_minus_D": 0,
+      "duality_isomorphism": true
+    },
+    "genus_degree_constraint": {
+      "status": "satisfiable",
+      "interpretation": "Canonical degree: canonical divisor K has degree 2g-2; fundamental invariant tying genus to divisor arithmetic",
+      "genus": 0,
+      "deg_K": -2
+    }
+  },
+  "negative": {
+    "riemann_roch_violation_unsat": {
+      "status": "unsat",
+      "interpretation": "Riemann-Roch forbids: l(D) - l(K-D) must equal deg(D) - g + 1 exactly; any other value contradicts fundamental theorem"
+    },
+    "serre_duality_mismatch_unsat": {
+      "status": "unsat",
+      "interpretation": "Serre duality constraint: H^0(D) and H^1(K-D)* must have same dimension; dimension mismatch violates pairing"
+    },
+    "canonical_degree_wrong_unsat": null
+  },
+  "boundary": {
+    "projective_line_case": {
+      "status": "satisfiable",
+      "interpretation": "P^1 case: genus 0 line bundle; canonical divisor deg K = -2; Riemann-Roch gives l(D) = deg(D) + 1 universally",
+      "genus": 0,
+      "deg_canonical": -2,
+      "l_D_formula": "deg_D + 1"
+    },
+    "elliptic_curve_canonical": {
+      "status": "satisfiable",
+      "interpretation": "Elliptic curve: genus 1 with canonical divisor degree 0; Riemann-Roch simplifies to l(D) = deg(D) for deg(D) > 0",
+      "genus": 1,
+      "deg_canonical": 0,
+      "l_D_simplification": "deg_D"
+    },
+    "high_degree_divisor": {
+      "status": "satisfiable",
+      "interpretation": "Large divisor: for deg(D) >> 2g-2, l(D) \u2248 deg(D) - g + 1 (non-special divisor); Serre duality term l(K-D) becomes negligible",
+      "genus": 2,
+      "deg_canonical": 2,
+      "high_deg_D": 10,
+      "l_D": 9
+    }
+  },
+  "classification": "canonical",
+  "all_pass": false
+}

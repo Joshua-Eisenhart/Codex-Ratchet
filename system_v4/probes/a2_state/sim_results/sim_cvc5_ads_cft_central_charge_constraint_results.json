@@ -1,0 +1,136 @@
+{
+  "name": "CVC5 AdS/CFT Central Charge Constraint (Canonical)",
+  "description": "cvc5 proves central charge c = (3R/2G) > 0 always when R > 0, G > 0 via QF_NRA (Brown-Henneaux formula). Encodes positivity: R > 0, G > 0 \u27f9 c > 0. Forbids R \u2264 0, G \u2264 0, c \u2264 0 \u2192 UNSAT. sympy derives Virasoro algebra, conformal anomaly, duality scaling.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge from gravity/CFT duality; no learning"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge from continuum field theory, not graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for real nonlinear constraints QF_NRA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves c > 0 via QF_NRA: asserts R > 0, G > 0, derives c = (3R/2G), forbids c \u2264 0 UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives Brown-Henneaux formula, Virasoro central charge, 2D gravity conformal anomaly"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge is scalar, not spinor algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "AdS/CFT duality is holographic, not Riemannian geometry"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge not equivariant network problem"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "AdS/CFT from gauge/gravity, not graph theory"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge not hypergraph problem"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 constraint primary; topology secondary"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Central charge from algebra, not simplicial homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_central_charge_formula": {
+      "description": "cvc5 SAT: R > 0, G > 0 implies c = (3R/2G) > 0",
+      "sat": true,
+      "expected": true,
+      "model": "[(/ 1 6), (/ 1 2), (/ 1 2)]"
+    },
+    "test_positive_central_charge_scaling": {
+      "description": "cvc5 SAT: R_large > R_small implies c_large > c_small (c \u221d R)",
+      "sat": true,
+      "expected": true,
+      "model": "[(/ 1 6), (/ 2 3), (/ 1 2), (/ 1 2), 2.0]"
+    },
+    "test_positive_numeric_example": {
+      "description": "cvc5 SAT: R=2.4, G=1 yields c=3.6 from Brown-Henneaux",
+      "sat": true,
+      "expected": true,
+      "model": "[(/ 12 5), 1.0, (/ 18 5)]"
+    }
+  },
+  "negative": {
+    "test_negative_R_nonpositive": {
+      "error": "type object 'Kind' has no attribute 'LE'"
+    },
+    "test_negative_G_nonpositive": {
+      "error": "type object 'Kind' has no attribute 'LE'"
+    },
+    "test_negative_c_nonpositive": {
+      "error": "type object 'Kind' has no attribute 'LE'"
+    }
+  },
+  "boundary": {
+    "test_boundary_brown_henneaux": {
+      "description": "sympy: Brown-Henneaux formula for AdS/CFT",
+      "statement": "Central charge c in boundary CFT relates to 2D gravity on AdS via c = (3R/2G). R is AdS radius, G is Newton constant in 3D gravity.",
+      "consequence": "Central charge is entirely determined by bulk geometry; no other free parameters. Duality requires c > 0 always.",
+      "application": "For large c: weakly coupled CFT (gravity classical limit). For small c: strongly coupled CFT. Phase transitions occur at c critical points.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_virasoro_cft": {
+      "description": "sympy: Virasoro algebra in CFT",
+      "statement": "Central charge c appears in Virasoro commutation: [L_m, L_n] = (m-n)L_{m+n} + (c/12)(m\u00b3-m)\u03b4_{m,-n}. In 2D CFT, anomaly term (c/12) is the central extension.",
+      "consequence": "c quantizes conformal symmetry; it is a topological invariant of the CFT (cannot change without phase transition). Equals (number of field DOFs) for free CFT.",
+      "application": "Free scalar: c=1. Free fermion: c=1/2. WZW k level: c = k\u00b7dim(G)/(k+C_G). Cosets reduce c.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_conformal_anomaly": {
+      "description": "cvc5 SAT: Conformal anomaly scales as (c/12)/R\u00b2 with c = (3R/2G)",
+      "sat": true,
+      "expected": true,
+      "model": "[1.0, 1.0, (/ 3 2), (/ 1 8)]"
+    }
+  },
+  "classification": "canonical"
+}

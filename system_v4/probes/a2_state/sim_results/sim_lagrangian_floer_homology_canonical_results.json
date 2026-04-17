@@ -1,0 +1,124 @@
+{
+  "name": "Lagrangian Floer Homology Canonical",
+  "description": "Studies Floer cohomology as constraint-admissibility: chain complex, boundary nilpotence, cohomology quotient",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes chain complex grading, boundary nilpotence, and cohomology quotient structure constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Verifies algebraic relations and chain complex constructions"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "boundary_operator_nilpotent": {
+      "status": "satisfiable",
+      "interpretation": "Chain complex degree sequence is consistent"
+    },
+    "grading_consistency": {
+      "status": "satisfiable",
+      "interpretation": "Maslov grading is preserved through boundary operations"
+    },
+    "cohomology_group_structure": {
+      "status": "satisfiable",
+      "interpretation": "Cohomology quotient structure is admissible"
+    }
+  },
+  "negative": {
+    "boundary_not_self_inverse": {
+      "status": "unsat",
+      "interpretation": "d^2 \u2260 0 contradicts boundary operator requirement"
+    },
+    "grading_violation_blocked": {
+      "status": "unsat",
+      "interpretation": "Increasing Maslov grading under d is forbidden"
+    },
+    "cycles_larger_than_generators": {
+      "status": "unsat",
+      "interpretation": "Cycle count cannot exceed generator count"
+    }
+  },
+  "boundary": {
+    "empty_intersection": {
+      "status": "satisfiable",
+      "interpretation": "Non-intersecting Lagrangians have trivial Floer cohomology"
+    },
+    "single_intersection_point": {
+      "status": "satisfiable",
+      "interpretation": "Single intersection point generates at least rank-1 cohomology"
+    },
+    "zero_cohomology": {
+      "status": "satisfiable",
+      "interpretation": "Zero cohomology in certain degrees is admissible"
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

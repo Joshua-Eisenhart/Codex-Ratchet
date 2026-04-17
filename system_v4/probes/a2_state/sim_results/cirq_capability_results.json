@@ -1,0 +1,54 @@
+{
+  "name": "sim_cirq_capability",
+  "classification": "canonical",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive numeric checks for cirq capability"
+    },
+    "cirq": {
+      "tried": true,
+      "used": true,
+      "reason": "capability under test -- gates, simulator, statevector"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "cirq": "load_bearing"
+  },
+  "positive": {
+    "x_gate_reaches_one": {
+      "pass": true,
+      "probabilities": [
+        0.0,
+        1.0
+      ]
+    },
+    "hadamard_balanced": {
+      "pass": true,
+      "probabilities": [
+        0.4999999701976776,
+        0.4999999701976776
+      ]
+    }
+  },
+  "negative": {
+    "x_gate_not_zero_state": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "tiny_rotation_finite": {
+      "pass": true,
+      "norm": 1.0
+    }
+  },
+  "summary": {
+    "positive_all_pass": true,
+    "negative_all_pass": true,
+    "boundary_all_pass": true,
+    "all_pass": true
+  },
+  "all_pass": true
+}

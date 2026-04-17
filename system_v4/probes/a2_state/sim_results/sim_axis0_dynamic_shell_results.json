@@ -1,0 +1,1068 @@
+{
+  "timestamp": "2026-04-16T21:38:46.379112+00:00",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical foundation baseline: this probes dynamic shell discrimination numerically on the engine trajectory. The legacy shell lanes are preserved, and a deep Lane D now binds the same shell ladder to ordered lambda-shell expansion, topology parity, solver closure, geometric algebra, and manifold aggregation instead of treating those as decorative afterthoughts.",
+  "tool_manifest": {
+    "numpy": {
+      "tried": true,
+      "used": true,
+      "reason": "shell-ladder partitioning, MI/Ic arrays, and shell numerics"
+    },
+    "scipy": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix exponential propagator for shell expansion updates"
+    },
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "fit and gradient witness coupling shell dark-energy and gravity proxies to the shell Hubble proxy"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric carrier witness for the shell summary vector"
+    },
+    "torch_ga": {
+      "tried": true,
+      "used": true,
+      "reason": "geometric algebra roundtrip witness for the shell summary vector"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "ordered shell DAG witness for the history-driven shell ladder"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "higher-order shell-coupling witness for triadic shell windows"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "cell-complex boundary witness for shell-surface closure"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistent topology witness for shell-complex parity"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic interpolation and derivative witness for shell expansion trends"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "constraint witness enforcing ordered shell levels and monotone scale growth"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet-mean manifold witness for shell-carrier aggregation on S^2"
+    }
+  },
+  "tool_integration_depth": {
+    "numpy": "supportive",
+    "scipy": "load_bearing",
+    "pytorch": "load_bearing",
+    "clifford": "load_bearing",
+    "torch_ga": "load_bearing",
+    "rustworkx": "load_bearing",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "load_bearing",
+    "sympy": "load_bearing",
+    "z3": "load_bearing",
+    "geomstats": "load_bearing"
+  },
+  "n_shell_levels": 8,
+  "shell_eta_levels": [
+    0.05,
+    0.17857142857142855,
+    0.3071428571428571,
+    0.43571428571428567,
+    0.5642857142857143,
+    0.6928571428571428,
+    0.8214285714285714,
+    0.95
+  ],
+  "results": [
+    {
+      "engine_type": 1,
+      "torus": "inner",
+      "lane_a": {
+        "static_mi": 1.017599590907636,
+        "static_ic": 0.08920067980278612,
+        "dynamic_peak_mi": 1.017599590907636,
+        "dynamic_final_mi": 1.017599590907636,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.017599590907636,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.08920067980278612,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          1.017599590907636,
+          -1.017599590907636,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.2907427402593246,
+        "max_abs_diff": 1.017599590907636,
+        "sign_changes": 1,
+        "nonlinearity": 0.1271999488634545,
+        "lane_b_keep": true
+      },
+      "lane_c": {
+        "single_cut_mi": 1.017599590907636,
+        "single_cut_ic": 0.08920067980278612,
+        "multi_max_mi": 1.017599590907636,
+        "multi_peak_level": 4,
+        "multi_sum_mi": 1.017599590907636,
+        "multi_std_mi": 0.33653943147283366,
+        "top2_fraction": 0.9999999999990172,
+        "positive_ic_layers": 1,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.06584523240642737,
+        "jk_fuzz_dynamic": 1.2806899705580403,
+        "lambda_density_mean": 1.8814495059322884,
+        "dark_energy_pressure_mean": 2.3266493269543793,
+        "gravity_response_mean": 2.32664932695438,
+        "final_scale_factor": 6.032341318752867,
+        "mean_hubble_proxy": 1.7036718080709,
+        "mean_acceleration_proxy": -1.3234408619847282,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.09332963082997472,
+          "symbolic_acceleration_mid": 2.879550909754471,
+          "symbolic_dark_energy_mid": 4.791803471156982
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7508667101431425,
+          "max_geodesic_distance": 1.6574064179008405,
+          "mean_norm": 0.9999999999999998
+        },
+        "torch_fit": {
+          "weights": [
+            0.24399717381012648,
+            -0.1035374702245272
+          ],
+          "bias": 1.3768712823888383,
+          "loss": 0.77685672421338,
+          "max_gap": 1.8320695109529126
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0045956111426335e-07,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 1,
+      "deep_keep_count": 2,
+      "verdict": "KILL",
+      "deep_verdict": "KEEP"
+    },
+    {
+      "engine_type": 1,
+      "torus": "clifford",
+      "lane_a": {
+        "static_mi": 0.0,
+        "static_ic": -1.0,
+        "dynamic_peak_mi": 0.0,
+        "dynamic_final_mi": 0.0,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.0,
+        "max_abs_diff": 0.0,
+        "sign_changes": 0,
+        "nonlinearity": 0.0,
+        "lane_b_keep": false
+      },
+      "lane_c": {
+        "single_cut_mi": 0.0,
+        "single_cut_ic": -1.0,
+        "multi_max_mi": 0.0,
+        "multi_peak_level": 0,
+        "multi_sum_mi": 0.0,
+        "multi_std_mi": 0.0,
+        "top2_fraction": 0.0,
+        "positive_ic_layers": 0,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 0,
+      "deep_keep_count": 1,
+      "verdict": "KILL",
+      "deep_verdict": "KILL"
+    },
+    {
+      "engine_type": 1,
+      "torus": "outer",
+      "lane_a": {
+        "static_mi": 1.047466353649626,
+        "static_ic": 0.11611063665919208,
+        "dynamic_peak_mi": 1.047466353649626,
+        "dynamic_final_mi": 1.047466353649626,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.047466353649626,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.11611063665919208,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          1.047466353649626,
+          -1.047466353649626,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.2992761010427503,
+        "max_abs_diff": 1.047466353649626,
+        "sign_changes": 1,
+        "nonlinearity": 0.13093329420620325,
+        "lane_b_keep": true
+      },
+      "lane_c": {
+        "single_cut_mi": 1.047466353649626,
+        "single_cut_ic": 0.11611063665919208,
+        "multi_max_mi": 1.047466353649626,
+        "multi_peak_level": 4,
+        "multi_sum_mi": 1.047466353649626,
+        "multi_std_mi": 0.346416934808068,
+        "top2_fraction": 0.9999999999990452,
+        "positive_ic_layers": 1,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.06731448067275725,
+        "jk_fuzz_dynamic": 1.2810930191169831,
+        "lambda_density_mean": 1.9079525240672277,
+        "dark_energy_pressure_mean": 2.366219053788939,
+        "gravity_response_mean": 2.36621905378894,
+        "final_scale_factor": 6.122786408660432,
+        "mean_hubble_proxy": 1.7163724249406735,
+        "mean_acceleration_proxy": -1.3278209636374916,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.0813459926249822,
+          "symbolic_acceleration_mid": 2.7606382897793083,
+          "symbolic_dark_energy_mid": 4.906119305471748
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531727997365836,
+          "max_geodesic_distance": 1.6625367838305087,
+          "mean_norm": 0.9999999999999999
+        },
+        "torch_fit": {
+          "weights": [
+            0.24401101149261128,
+            -0.10397519660782226
+          ],
+          "bias": 1.3850170073699244,
+          "loss": 0.8026861512808962,
+          "max_gap": 1.8723996409726633
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 5.422076387873176e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 1,
+      "deep_keep_count": 2,
+      "verdict": "KILL",
+      "deep_verdict": "KEEP"
+    },
+    {
+      "engine_type": 2,
+      "torus": "inner",
+      "lane_a": {
+        "static_mi": 1.0472406223465986,
+        "static_ic": 0.11950961674264504,
+        "dynamic_peak_mi": 1.0472406223465986,
+        "dynamic_final_mi": 1.0472406223465986,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0472406223465986,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.11950961674264504,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          1.0472406223465986,
+          -1.0472406223465986,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.2992116063847425,
+        "max_abs_diff": 1.0472406223465986,
+        "sign_changes": 1,
+        "nonlinearity": 0.13090507779332483,
+        "lane_b_keep": true
+      },
+      "lane_c": {
+        "single_cut_mi": 1.0472406223465986,
+        "single_cut_ic": 0.11950961674264504,
+        "multi_max_mi": 1.0472406223465986,
+        "multi_peak_level": 4,
+        "multi_sum_mi": 1.0472406223465986,
+        "multi_std_mi": 0.3463422811967014,
+        "top2_fraction": 0.999999999999045,
+        "positive_ic_layers": 1,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.06763326530450664,
+        "jk_fuzz_dynamic": 1.2808028297269445,
+        "lambda_density_mean": 1.9073019202537687,
+        "dark_energy_pressure_mean": 2.3654696925304055,
+        "gravity_response_mean": 2.3654696925304064,
+        "final_scale_factor": 6.121073582926641,
+        "mean_hubble_proxy": 1.7161336052799605,
+        "mean_acceleration_proxy": -1.3277392287556,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.07919192018811852,
+          "symbolic_acceleration_mid": 2.906411784613738,
+          "symbolic_dark_energy_mid": 4.903100578531848
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7534037745133855,
+          "max_geodesic_distance": 1.6628845284748983,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.2430247394896452,
+            -0.10305986989596638
+          ],
+          "bias": 1.385050945109927,
+          "loss": 0.8016749634826282,
+          "max_gap": 1.8702178282864368
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 1.0767021052515702e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 1,
+      "deep_keep_count": 2,
+      "verdict": "KILL",
+      "deep_verdict": "KEEP"
+    },
+    {
+      "engine_type": 2,
+      "torus": "clifford",
+      "lane_a": {
+        "static_mi": 0.0,
+        "static_ic": -1.0,
+        "dynamic_peak_mi": 0.0,
+        "dynamic_final_mi": 0.0,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.0,
+        "max_abs_diff": 0.0,
+        "sign_changes": 0,
+        "nonlinearity": 0.0,
+        "lane_b_keep": false
+      },
+      "lane_c": {
+        "single_cut_mi": 0.0,
+        "single_cut_ic": -1.0,
+        "multi_max_mi": 0.0,
+        "multi_peak_level": 0,
+        "multi_sum_mi": 0.0,
+        "multi_std_mi": 0.0,
+        "top2_fraction": 0.0,
+        "positive_ic_layers": 0,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.0,
+        "jk_fuzz_dynamic": 2.999999937788565,
+        "lambda_density_mean": 1.0,
+        "dark_energy_pressure_mean": 1.0,
+        "gravity_response_mean": 1.0,
+        "final_scale_factor": 2.999999999999999,
+        "mean_hubble_proxy": 1.115022328076172,
+        "mean_acceleration_proxy": -1.0208993632849026,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 1.0000000000008598,
+          "symbolic_acceleration_mid": 8.043343768804334e-12,
+          "symbolic_dark_energy_mid": 1.0000000000006184
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.0,
+          "max_geodesic_distance": 0.0,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.5383407760253907,
+            0.5383407760253907
+          ],
+          "bias": 0.038340776025390697,
+          "loss": 0.13623975858108436,
+          "max_gap": 0.6441786698901701
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 2.640228280448298e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 0,
+      "deep_keep_count": 1,
+      "verdict": "KILL",
+      "deep_verdict": "KILL"
+    },
+    {
+      "engine_type": 2,
+      "torus": "outer",
+      "lane_a": {
+        "static_mi": 1.0436042669575345,
+        "static_ic": 0.11639113942565404,
+        "dynamic_peak_mi": 1.0436042669575345,
+        "dynamic_final_mi": 1.0436042669575345,
+        "dynamic_variance": 0.0,
+        "static_variance": 0.0,
+        "separation": 0.0,
+        "lane_a_keep": false,
+        "dynamic_trajectory_length": 16
+      },
+      "lane_b": {
+        "discrete_mi": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0436042669575345,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "discrete_ic": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          0.11639113942565404,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "first_diffs": [
+          0.0,
+          0.0,
+          0.0,
+          1.0436042669575345,
+          -1.0436042669575345,
+          0.0,
+          0.0
+        ],
+        "mean_abs_diff": 0.29817264770215274,
+        "max_abs_diff": 1.0436042669575345,
+        "sign_changes": 1,
+        "nonlinearity": 0.1304505333696918,
+        "lane_b_keep": true
+      },
+      "lane_c": {
+        "single_cut_mi": 1.0436042669575345,
+        "single_cut_ic": 0.11639113942565404,
+        "multi_max_mi": 1.0436042669575345,
+        "multi_peak_level": 4,
+        "multi_sum_mi": 1.0436042669575345,
+        "multi_std_mi": 0.34513966969193727,
+        "top2_fraction": 0.9999999999990417,
+        "positive_ic_layers": 1,
+        "lane_c_keep": false
+      },
+      "lane_d": {
+        "dynamic_vs_frozen_gap": 0.06746887517386846,
+        "jk_fuzz_dynamic": 1.2807414011977087,
+        "lambda_density_mean": 1.9040553745293285,
+        "dark_energy_pressure_mean": 2.36063224132325,
+        "gravity_response_mean": 2.3606322413232506,
+        "final_scale_factor": 6.110016551596,
+        "mean_hubble_proxy": 1.7145903534510465,
+        "mean_acceleration_proxy": -1.3272104810270569,
+        "graph_surface": {
+          "edge_count": 13,
+          "longest_path_length": 7,
+          "triad_windows": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              3,
+              4,
+              5
+            ],
+            [
+              4,
+              5,
+              6
+            ],
+            [
+              5,
+              6,
+              7
+            ]
+          ]
+        },
+        "hypergraph_surface": {
+          "num_edges": 19,
+          "max_hyperedge_size": 3,
+          "connected_components": 1
+        },
+        "topology_surface": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "euler_characteristic": 1,
+          "parity_ok": true
+        },
+        "symbolic_surface": {
+          "symbolic_hubble_mid": 0.08053304608873205,
+          "symbolic_acceleration_mid": 2.9272390695405193,
+          "symbolic_dark_energy_mid": 4.8890878962329225
+        },
+        "constraint_surface": {
+          "result": "sat",
+          "sat": true
+        },
+        "manifold_surface": {
+          "mean_geodesic_distance": 0.7531410953714981,
+          "max_geodesic_distance": 1.6622917353554945,
+          "mean_norm": 1.0
+        },
+        "torch_fit": {
+          "weights": [
+            0.24297965304754882,
+            -0.10296501279095542
+          ],
+          "bias": 1.3840672753112442,
+          "loss": 0.7984898093550097,
+          "max_gap": 1.86525114227644
+        },
+        "clifford_vector_gap": 0.0,
+        "torch_ga_vector_gap": 6.015564801842288e-08,
+        "propagator_traces": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "lane_d_keep": true
+      },
+      "keep_count": 1,
+      "deep_keep_count": 2,
+      "verdict": "KILL",
+      "deep_verdict": "KEEP"
+    }
+  ],
+  "summary": {
+    "keep_lane_a": 0,
+    "keep_lane_b": 4,
+    "keep_lane_c": 0,
+    "keep_lane_d": 6,
+    "full_keeps": 0,
+    "full_deep_keeps": 4,
+    "total": 6,
+    "overall": "SHELL PROPOSAL NOT SUPPORTED",
+    "deep_overall": "DEEP SHELL CONTRACT SUPPORTED",
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "all_pass": true
+}

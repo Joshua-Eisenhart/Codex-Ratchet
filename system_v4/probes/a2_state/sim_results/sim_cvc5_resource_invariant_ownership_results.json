@@ -1,0 +1,129 @@
+{
+  "name": "ResourceInvariant_Ownership_CSL",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; heap structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA UNSAT proofs for CSL ownership and invariants"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verification of CSL parallel composition with disjoint footprints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; program logic via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; program CFG encoded directly in constraints"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_exclusive_ownership": {
+      "description": "Thread 1 owns resource, Thread 2 does not",
+      "cvc5_sat": "sat",
+      "pass": true
+    },
+    "test_2_lock_invariant": {
+      "description": "Lock invariant I preserved from acquire to release",
+      "cvc5_sat": "sat",
+      "pass": true
+    },
+    "test_3_disjoint_heaps": {
+      "description": "Thread heaps disjoint: h1=3, h2=2, total=5",
+      "cvc5_sat": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_1_exclusive_violation": {
+      "description": "Both threads own resource \u2192 exclusive ownership UNSAT",
+      "cvc5_sat": "unsat",
+      "pass": true
+    },
+    "negative_2_invariant_broken": {
+      "description": "Lock invariant not preserved: I_before \u2260 I_after \u2192 UNSAT",
+      "cvc5_sat": "unsat",
+      "pass": true
+    },
+    "negative_3_heap_overlap": {
+      "description": "Thread heaps overlap (h1=3, h2=2, total=4) \u2192 disjointness UNSAT",
+      "cvc5_sat": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1_no_shared": {
+      "description": "No shared resources: h1=3, h2=2, shared=0",
+      "cvc5_sat": "sat",
+      "pass": true
+    },
+    "boundary_2_single_lock": {
+      "error": "type object 'Kind' has no attribute 'Or'"
+    },
+    "boundary_3_csl_parallel": {
+      "description": "sympy CSL parallel rule: {P1}C1{Q1} \u2227 {P2}C2{Q2} \u2227 disjoint \u22a2 {P1*P2}C1||C2{Q1*Q2}",
+      "sympy_rule": "(Q1 & Q2) | (Q1 & ~P2) | (Q2 & ~P1) | (~P1 & ~P2)",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

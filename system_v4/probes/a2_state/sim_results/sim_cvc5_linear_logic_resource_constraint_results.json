@@ -1,0 +1,134 @@
+{
+  "name": "sim_cvc5_linear_logic_resource_constraint",
+  "description": "Linear logic resource constraints: Girard's linear logic enforces each formula used exactly once unless marked with ! (of-course modality). Tests UNSAT when resource invariants violated.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; proof structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SMT solver for linear logic resource constraint UNSAT proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive verification of sequent calculus resource conservation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; proof theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; proof structure encoded directly in constraints"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_single_use_no_bang": {
+      "satisfiable": true,
+      "expected": true,
+      "pass": true,
+      "description": "A used once without ! should be satisfiable"
+    },
+    "test_tensor_conserves_both": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_bang_allows_multiple": {
+      "satisfiable": true,
+      "expected": true,
+      "pass": true,
+      "description": "!A used multiple times should be satisfiable"
+    }
+  },
+  "negative": {
+    "test_reuse_without_bang_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "pass": true,
+      "description": "Formula used twice without ! should be UNSAT (linear logic violation)"
+    },
+    "test_tensor_not_equal_additive_unsat": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_bang_inconsistent_branch_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "pass": true,
+      "description": "!A with 0 uses (weakening) and 2 uses (contraction) in same branch is UNSAT"
+    }
+  },
+  "boundary": {
+    "test_zero_uses_with_bang": {
+      "satisfiable": true,
+      "expected": true,
+      "pass": true,
+      "description": "!A with zero uses (weakening) should be satisfiable"
+    },
+    "test_cut_rule_conservation": {
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_sympy_sequent_calculus": {
+      "gamma": 2,
+      "delta": 1,
+      "conclusion_context_size": 3,
+      "expected": 3,
+      "pass": true,
+      "description": "Sympy verification: \u0393={A,B}, \u0394={C} => \u0393,\u0394 \u22a2 A\u2297B uses 3 formulas"
+    }
+  },
+  "classification": "canonical"
+}

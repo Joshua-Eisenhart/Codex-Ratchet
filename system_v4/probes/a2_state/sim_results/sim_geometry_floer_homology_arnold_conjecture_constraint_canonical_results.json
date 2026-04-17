@@ -1,0 +1,169 @@
+{
+  "name": "Floer Homology and Arnold Conjecture Canonical Sim",
+  "description": "Arnold conjecture: #Fix(\u03c6_H) \u2265 rank(HF*(M)); Floer homology constraint via cvc5/sympy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Arnold fixed point lower bound"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Floer homology rank formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; symplectic topology constraints only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_cp1_arnold": {
+      "name": "Arnold conjecture on CP^1",
+      "manifold": "CP^1",
+      "rank_hf": 2,
+      "num_fixed_points": 2,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_s2_arnold": {
+      "name": "Arnold conjecture on S^2 with 3 fixed points",
+      "manifold": "S^2",
+      "rank_hf": 2,
+      "num_fixed_points": 3,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_floer_torus_rank": {
+      "name": "Floer homology rank formula for T^2",
+      "manifold": "T^2",
+      "betti_numbers": [
+        1,
+        2,
+        1
+      ],
+      "rank_hf": 4,
+      "expected": 4,
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_arnold_violation_cp1": {
+      "name": "Arnold violation: too few fixed points on CP^1",
+      "manifold": "CP^1",
+      "rank_hf": 2,
+      "num_fixed_points": 1,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_2_arnold_violation_surface": {
+      "name": "Arnold violation: too few fixed points on surface",
+      "manifold": "Genus 2 surface",
+      "rank_hf": 6,
+      "num_fixed_points": 5,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_3_negative_fixed_points": {
+      "name": "Negative fixed point count (impossible)",
+      "rank_hf": 2,
+      "num_fixed_points": -1,
+      "sat": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_arnold_equality_case": {
+      "name": "Arnold equality case: #Fix = rank(HF*)",
+      "rank_hf": 2,
+      "num_fixed_points": 2,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_arnold_cp_n": {
+      "name": "Arnold on CP^5",
+      "manifold": "CP^5",
+      "rank_hf": 6,
+      "num_fixed_points": 8,
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_floer_product_manifold": {
+      "name": "Floer homology rank for S^2 \u00d7 S^2",
+      "manifold": "S^2 \u00d7 S^2",
+      "rank_m1": 2,
+      "rank_m2": 2,
+      "rank_product": 4,
+      "expected": 4,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

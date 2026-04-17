@@ -1,0 +1,160 @@
+{
+  "name": "Wrapped Fukaya Category Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; Fukaya category structure handled algebraically"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA and QF_NRA solvers for wrapping index and generation constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for computing Floer cohomology ranks and vanishing cycle formulas"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; symplectic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_wrapping_index_non_negative": {
+      "wrapping_index": 2,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_hamiltonian_wrapping_composable": {
+      "morphism_1": 1,
+      "morphism_2": 1,
+      "composition": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_wrapped_floer_cohomology_rank": {
+      "rank_HF": 4,
+      "loop_dim_approx": 4,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_4_vanishing_cycles_generate": {
+      "num_vanishing_cycles": 3,
+      "is_generating": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "neg_test_1_negative_wrapping_index": {
+      "wrapping_index": -1,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "neg_test_2_non_composable_morphisms": {
+      "morphism_1": 1,
+      "composition": 0,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "neg_test_3_non_generating_vanishing_cycles": {
+      "num_vanishing": 0,
+      "is_generating": 1,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_test_1_zero_wrapping_index": {
+      "wrapping_index": 0,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_2_single_vanishing_cycle": {
+      "num_vanishing": 1,
+      "is_generating": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_3_exact_lagrangian_floer": {
+      "rank_HF_exact": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_4_vanishing_cycle_multiplicity_A1": {
+      "singularity_type": "A_1",
+      "num_vanishing_cycles": 1,
+      "multiplicity": 1,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

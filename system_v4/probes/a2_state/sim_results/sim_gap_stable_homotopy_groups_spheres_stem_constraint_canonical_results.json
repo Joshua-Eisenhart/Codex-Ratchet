@@ -1,0 +1,158 @@
+{
+  "name": "StableHomotopyGroupsSphereStemConstraint",
+  "domain": "Stable homotopy groups \u03c0_n^s of spheres",
+  "claim": "Serre finiteness: \u03c0_n^s is finite (order \u2265 1) for n > 0; \u03c0_0^s = Z",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_LIA solver for stem order \u2265 1 constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_stem_1_order_2": {
+      "stem": 1,
+      "order": 2,
+      "sat": "True",
+      "expected": "sat",
+      "pass": true
+    },
+    "test_2_stem_2_order_2": {
+      "stem": 2,
+      "order": 2,
+      "sat": "True",
+      "expected": "sat",
+      "pass": true
+    },
+    "test_3_stem_3_order_24": {
+      "stem": 3,
+      "order": 24,
+      "sat": "True",
+      "expected": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_stem_1_order_0_unsat": {
+      "stem": 1,
+      "order": 0,
+      "constraint": "order \u2265 1 AND order = 0",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    },
+    "test_2_stem_negative_order_unsat": {
+      "stem": "all",
+      "order": -5,
+      "constraint": "order \u2265 1",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    },
+    "test_3_stem_3_order_minus_1_unsat": {
+      "stem": 3,
+      "order": -1,
+      "constraint": "order \u2265 1",
+      "sat": "False",
+      "expected": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_stem_0_is_Z": {
+      "stem": 0,
+      "structure": "Z",
+      "order": "infinite",
+      "expected": "Z",
+      "pass": true
+    },
+    "test_2_stem_1_is_z2": {
+      "stem": 1,
+      "structure": "Z/2",
+      "order": 2,
+      "expected": 2,
+      "pass": true
+    },
+    "test_3_stems_2_3_orders": {
+      "stem_2": {
+        "structure": "Z/2",
+        "order": 2
+      },
+      "stem_3": {
+        "structure": "Z/24",
+        "order": 24
+      },
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

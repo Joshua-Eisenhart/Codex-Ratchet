@@ -1,0 +1,141 @@
+{
+  "name": "CVC5 Character Orthogonality Constraint (Canonical)",
+  "description": "cvc5 proves character orthogonality: irreducible characters \u03c7\u1d62 satisfy \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = \u03b4\u1d62\u2c7c (inner product is 1 for same irrep, 0 for distinct) via QF_NRA. Encodes constraint that character inner product (1/|G|)\u03a3 \u03c7\u1d62(g)\u03c7\u2c7c(g)\u0304 follows orthogonality. cvc5 validates: (1) \u27e8\u03c7\u1d62, \u03c7\u1d62\u27e9 = 1 for irreducible \u03c7\u1d62. (2) \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = 0 for i\u2260j. (3) Number of irreps = number of conjugacy classes. (4) Violation of norm = 1 is UNSAT. sympy derives: character definition \u03c7(g) = Tr(\u03c1(g)), conjugacy class invariance, inner product formula with group average, regular representation decomposition, character table structure, orthogonality proof via regular rep.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality is pure representation theory, not neural network"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality is group structure, not graph learning"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for QF_NRA encoding of character inner products"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves character orthogonality \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = \u03b4\u1d62\u2c7c via QF_NRA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives character formula, inner products, conjugacy class structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality is representation algebra, not Clifford"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality not manifold sampling"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality is group theory, not equivariant networks"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality applies to groups, not graphs"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality not hypergraph property"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality is representation theory, not complexes"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Character orthogonality not simplicial complex"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_same_irrep": {
+      "description": "cvc5 SAT: Character orthogonality \u27e8\u03c7\u1d62, \u03c7\u1d62\u27e9 = 1 for irreducible \u03c7\u1d62",
+      "sat": true,
+      "expected": true
+    },
+    "test_positive_distinct_irreps": {
+      "description": "cvc5 SAT: Character orthogonality \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = 0 for distinct irreps i \u2260 j",
+      "sat": true,
+      "expected": true
+    },
+    "test_positive_num_irreps_equals_conjugacy": {
+      "description": "cvc5 SAT: Number of irreps equals number of conjugacy classes",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_negative_irrep_norm_violation": {
+      "description": "cvc5 UNSAT: Irreducible character orthogonality \u27e8\u03c7\u1d62, \u03c7\u1d62\u27e9 = 1 + \u27e8\u03c7\u1d62, \u03c7\u1d62\u27e9 \u2260 1 \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_distinct_chars_orthogonal": {
+      "description": "cvc5 UNSAT: Orthogonality \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = 0 (i\u2260j) + \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 \u2260 0 \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_num_mismatch": {
+      "description": "cvc5 UNSAT: Orthogonality implies #irreps = #conjugacy + #irreps \u2260 #conjugacy \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_character_definition": {
+      "description": "sympy: Character of representation and conjugacy class invariance",
+      "statement": "The character of a representation \u03c1: G \u2192 GL(V) is the function \u03c7_\u03c1: G \u2192 \u2102 defined by \u03c7_\u03c1(g) = Tr(\u03c1(g)) (trace of the matrix \u03c1(g)). (1) Characters are class functions: \u03c7(hgh\u207b\u00b9) = \u03c7(g) for all h \u2208 G (trace is invariant under conjugation). (2) For finite group, characters take only finitely many values, one per conjugacy class. (3) Character is additive: \u03c7_{\u03c1\u2295\u03c3} = \u03c7_\u03c1 + \u03c7_\u03c3 (block diagonal = trace sum). (4) Character of trivial rep (identity on 1D space): \u03c7(g) = 1 for all g. (5) Character of 2D rep of C\u2083 (cyclic group): \u03c7(e) = 2, \u03c7(g) = \u03c7(g\u00b2) = \u03c9 where \u03c9 = e^(2\u03c0i/3) (rotation eigenvalues). (6) Two representations are isomorphic iff their characters are equal as functions G \u2192 \u2102.",
+      "consequence": "Characters completely determine representation up to isomorphism. Irreducible representations are in bijection with irreducible characters. Character arithmetic allows decomposing representations into irreducibles.",
+      "application": "Group theory: studying representations without explicit matrices. Physics: analyzing symmetries in particle physics and quantum mechanics. Algebra: representation classification.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_inner_product_formula": {
+      "description": "sympy: Inner product of characters and orthogonality",
+      "statement": "The inner product of two class functions \u03c7, \u03c8: G \u2192 \u2102 is \u27e8\u03c7, \u03c8\u27e9 = (1/|G|) \u03a3_{g\u2208G} \u03c7(g) \u03c8(g\u0304). For finite group over \u2102, the complex conjugate of a value equals: \u03c8(g\u0304) = \u03c8(g\u207b\u00b9) = \u03c7_\u03c8\u0304(g) where \u03c8\u0304 is complex conjugation. Orthogonality theorem for irreducible characters \u03c7\u2081, ..., \u03c7\u2096 (k = number of conjugacy classes): \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = \u03b4\u1d62\u2c7c (Kronecker delta). Proof outline: (1) Regular representation \u03c1_reg: G \u2192 GL(\u2102|G|) acts by left multiplication; every element g gives permutation matrix with \u03c7_reg(e) = |G|, \u03c7_reg(g) = 0 for g \u2260 e. (2) Regular rep decomposes: \u03c1_reg \u2245 \u2295_i m\u1d62 \u03c1\u1d62 where m\u1d62 = dim(\u03c1\u1d62) (multiplicity of irrep \u03c1\u1d62). (3) Character: \u03c7_reg = \u03a3\u1d62 m\u1d62 \u03c7\u1d62. (4) Inner product: \u27e8\u03c7_reg, \u03c7\u2c7c\u27e9 = \u03a3\u1d62 m\u1d62 \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9. (5) Direct computation: \u27e8\u03c7_reg, \u03c7\u2c7c\u27e9 = (1/|G|)\u00b7|G|\u00b7dim(\u03c1\u2c7c) = m\u2c7c. (6) Conclusion: m\u2c7c = \u03a3\u1d62 m\u1d62 \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9, and by linear independence of irreps, \u27e8\u03c7\u1d62, \u03c7\u2c7c\u27e9 = \u03b4\u1d62\u2c7c.",
+      "consequence": "Irreducible characters are orthonormal with respect to group average. They form orthonormal basis in space of class functions. Knowing inner products determines representation structure.",
+      "application": "Computational group theory: decomposing representations. Physics: using character tables to analyze symmetries. Algebra: understanding group structure through reps.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_class_sum_and_irreps": {
+      "description": "sympy: Relation between conjugacy classes, class functions, and irreps",
+      "statement": "The number of irreducible representations of a finite group G (over \u2102) equals the number of conjugacy classes: #irreps = #conj classes. Proof: (1) Class functions form \u2102-vector space with dimension = #conjugacy classes (one value per class, constant within class). (2) Irreducible characters are linearly independent (consequence of orthogonality). (3) If there are k conjugacy classes, dimension is k. (4) Each irreducible character is a class function, so k irreducible characters cannot exist if k < #conjugacy classes. (5) Conversely, every class function decomposes as \u03c8 = \u03a3\u1d62 a\u1d62 \u03c7\u1d62 (linear combination of irreducible characters). (6) For k = #conjugacy classes, basis of class function space has k elements; irreducible characters span this space, so exactly k are irreducible (counting with multiplicity 1). (7) Example: Symmetric group S\u2083 has 3 conjugacy classes (identity, 3-cycles, transpositions), so 3 irreducible reps (trivial, sign, standard 2D).",
+      "consequence": "Conjugacy class structure determines number of irreducible representations. Character table has dimensions #irreps \u00d7 #conjugacy classes. Both dimensions equal number of conjugacy classes.",
+      "application": "Group classification: determining all irreps from conjugacy classes. Group theory: understanding group structure via characters. Physics: symmetry analysis for molecular/atomic systems.",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

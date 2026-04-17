@@ -1,0 +1,146 @@
+{
+  "name": "Tomita-Takesaki Modular Constraint Canonical",
+  "description": "Modular operator, KMS condition, modular automorphism preservation via cvc5",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for constraint proof"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 chosen for modular constraint encoding"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "proves KMS condition and modular automorphism preservation via UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic modular operator eigenvalue decomposition"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Tomita-Takesaki analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_modular_spectrum": {
+      "name": "Modular operator positive spectrum",
+      "constraint": "eigenvalue \u03bb > 0",
+      "satisfiable": "True",
+      "eigenvalue": 5,
+      "note": "Modular operator \u0394 is self-adjoint with spectrum (0, \u221e)"
+    },
+    "positive_test_2_kms_rank": {
+      "name": "KMS condition rank preservation",
+      "constraint": "rank(\u27e8A\u03a9, B\u03a9\u27e9) = rank(\u27e8\u0394^{1/2}B*\u03a9, \u0394^{1/2}A\u03a9\u27e9)",
+      "satisfiable": "True",
+      "rank_value": 3
+    },
+    "positive_test_3_modular_automorphism": {
+      "name": "Modular automorphism preservation",
+      "constraint": "\u0394^{it}M\u0394^{-it} = M for all t",
+      "satisfiable": "True",
+      "invariant_rank": 10,
+      "note": "Algebra is closed under modular flow"
+    }
+  },
+  "negative": {
+    "negative_test_1_kms_contradiction": {
+      "name": "KMS condition contradiction",
+      "constraint_1": "rank(\u27e8A\u03a9, B\u03a9\u27e9) = rank(\u0394^{1/2}B*\u03a9)",
+      "constraint_2": "rank(\u27e8A\u03a9, B\u03a9\u27e9) \u2260 rank(\u0394^{1/2}B*\u03a9)",
+      "satisfiable": "False",
+      "expected": "UNSAT"
+    },
+    "negative_test_2_spectrum_contradiction": {
+      "name": "Modular spectrum contradiction",
+      "constraint_1": "eigenvalue \u03bb > 0 (positive spectrum)",
+      "constraint_2": "eigenvalue \u03bb <= 0 (non-positive)",
+      "satisfiable": "False",
+      "expected": "UNSAT"
+    },
+    "negative_test_3_preservation_contradiction": {
+      "name": "Modular automorphism preservation contradiction",
+      "constraint_1": "rank_before = rank_after (preserved)",
+      "constraint_2": "rank_before > 2*rank_after (not preserved)",
+      "satisfiable": "True",
+      "expected": "UNSAT"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_eigenvalue_min": {
+      "name": "Modular eigenvalue near zero boundary",
+      "constraint": "0 < \u03bb <= 1",
+      "satisfiable": "True",
+      "note": "Tests eigenvalue near spectrum boundary"
+    },
+    "boundary_test_2_eigenvalue_large": {
+      "name": "Modular eigenvalue large",
+      "constraint": "\u03bb = 1000",
+      "satisfiable": "True",
+      "note": "Tests eigenvalue at large scale"
+    },
+    "boundary_test_3_kms_rank_one": {
+      "name": "KMS rank at boundary (rank-one inner product)",
+      "constraint": "rank(\u27e8A\u03a9, B\u03a9\u27e9) = 1",
+      "satisfiable": "True",
+      "note": "Tests rank-one inner product preservation"
+    }
+  },
+  "classification": "canonical"
+}

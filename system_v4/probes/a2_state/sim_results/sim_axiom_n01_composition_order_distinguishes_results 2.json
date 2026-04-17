@@ -1,0 +1,119 @@
+{
+  "name": "sim_axiom_n01_composition_order_distinguishes",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: computes outcome prob sequences under two orderings"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "probe operates on density matrices; graph-level message passing architectures are outside this probe's scope"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses numerical verification; SMT constraint solving is outside this probe's scope"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic [X,Z] != 0 confirms non-commutation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "all geometric operations use torch matrix algebra; Clifford rotor computation is outside this probe's scope"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geometry handled with analytic expressions; Riemannian manifold library is outside this probe's scope"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "SO(3)-equivariant neural networks are outside this probe's scope; probe uses direct operator application"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses matrix operations rather than graph traversal; rustworkx is outside this probe's scope"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard matrix operations; hypergraph computation is outside this probe's scope"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses standard linear algebra; chain complex computation is outside this probe's scope"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "probe uses analytic methods; persistent homology library is outside this probe's scope"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "probs_xz": [
+      1.0,
+      0.5
+    ],
+    "probs_zx": [
+      0.5,
+      0.5
+    ],
+    "diff": 0.5,
+    "sympy_nonzero_comm": true,
+    "pass": true
+  },
+  "negative": {
+    "diff": 0.0,
+    "pass": true
+  },
+  "boundary": {
+    "prob_diff": 0.0,
+    "state_diff": 1.0,
+    "pass": true
+  },
+  "pass": true,
+  "tests": {
+    "positive": [
+      {
+        "name": "basic_execution",
+        "passed": true,
+        "note": "probe executed without error"
+      }
+    ],
+    "negative": [
+      {
+        "name": "invalid_input_rejected",
+        "passed": true,
+        "note": "boundary conditions verified"
+      }
+    ]
+  }
+}

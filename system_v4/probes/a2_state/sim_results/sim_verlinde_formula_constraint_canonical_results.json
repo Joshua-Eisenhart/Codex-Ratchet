@@ -1,0 +1,137 @@
+{
+  "name": "Verlinde Formula Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "verlinde_su2_genus0_k1": {
+      "test": "Verlinde formula SU(2), genus 0, level k=1",
+      "genus": 0,
+      "level": 1,
+      "dimension": 1.5,
+      "expected": 0.75,
+      "tolerance": 1e-06,
+      "passed": false
+    },
+    "verlinde_su2_genus0_k2": {
+      "test": "Verlinde formula SU(2), genus 0, level k=2",
+      "genus": 0,
+      "level": 2,
+      "dimension": 2.0,
+      "expected": 1.5,
+      "tolerance": 1e-06,
+      "passed": false
+    },
+    "verlinde_genus0_level2": {
+      "test": "Verlinde constraint: genus=0, level=2, dimension=1",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "negative": {
+    "verlinde_dimension_unique": {
+      "test": "Genus=0, level=1, dim=1 (Verlinde) AND dim=2 \u2192 UNSAT",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "verlinde_genus0_stable": {
+      "test": "Verlinde dimension for genus 0 is stable across levels",
+      "genus": 0,
+      "note": "Genus 0 conformal blocks always reduce to 1 dimension",
+      "dim_value": 1.0,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "verlinde_su2_genus1": {
+      "test": "Verlinde formula SU(2), genus 1 (torus), level k=1",
+      "genus": 1,
+      "level": 1,
+      "dimension": 2,
+      "expected": 2,
+      "passed": true
+    },
+    "genus_nonnegative_constraint": {
+      "test": "Riemann surface genus \u2265 0; genus = -1 \u2192 UNSAT",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

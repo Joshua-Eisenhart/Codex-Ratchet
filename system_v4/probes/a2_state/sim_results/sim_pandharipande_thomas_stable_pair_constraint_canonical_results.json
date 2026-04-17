@@ -1,0 +1,144 @@
+{
+  "name": "Pandharipande-Thomas Stable Pair Constraint Canonical",
+  "description": "PT invariants: stable pairs (F,s) with F pure 1-dim, coker(s) 0-dim; SMT constraint on coker dimension",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of PT stable pair stability constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for PT invariant formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; enumerative geometry constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_coker_zero_dim": {
+      "status": "SAT",
+      "constraint": "dim(F)=1, dim(coker(s))=0",
+      "expected": "SAT (stable pair)",
+      "pass": true
+    },
+    "positive_2_pure_one_dim": {
+      "status": "SAT",
+      "case": "F pure 1-dimensional, coker 0-dimensional",
+      "expected": "SAT",
+      "pass": true
+    },
+    "positive_3_partition_function": {
+      "status": "PASS",
+      "formula": "5*q**3 + 3*q**2 + q",
+      "degree": 3,
+      "expected_form": "polynomial in q",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_1_coker_too_large": {
+      "status": "UNSAT",
+      "constraint": "dim(coker)=1 AND dim(coker)=0",
+      "expected": "UNSAT (unstable pair)",
+      "pass": true
+    },
+    "negative_2_wrong_dimension_f": {
+      "status": "UNSAT",
+      "constraint": "dim(F)=2 AND dim(F)=1",
+      "expected": "UNSAT (F not 1-dimensional)",
+      "pass": true
+    },
+    "negative_3_negative_invariant": {
+      "status": "PASS",
+      "claim": "P_n >= 0 (axiom)",
+      "test_value": -5,
+      "expected": "UNSAT (impossible)",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1_minimal_pair": {
+      "status": "SAT",
+      "case": "minimal pair: length 1",
+      "expected": "SAT",
+      "pass": true
+    },
+    "boundary_2_higher_length": {
+      "status": "SAT",
+      "case": "pair with length 10",
+      "expected": "SAT",
+      "pass": true
+    },
+    "boundary_3_partition_at_one": {
+      "status": "PASS",
+      "formula": "5*q**3 + 3*q**2 + q",
+      "evaluation_at_q_1": 9.0,
+      "expected": "sum of P_n = 9",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

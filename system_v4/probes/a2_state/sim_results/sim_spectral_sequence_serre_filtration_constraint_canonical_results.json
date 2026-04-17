@@ -1,0 +1,245 @@
+{
+  "name": "sim_spectral_sequence_serre_filtration_constraint_canonical",
+  "description": "Serre spectral sequence: E_2^{p,q}=H^p(B;H^q(F)) converges to H^{p+q}(E); cvc5 proves filtration F^p \u2287 F^{p+1} (UNSAT for reversal); d_r has bidegree (r,-r+1)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_serre_filtration": {
+      "test": "Serre filtration F^p H^n is strictly decreasing",
+      "total_degree_n": 5,
+      "filtration_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "filtration_dimensions": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "is_decreasing": true,
+      "passed": true,
+      "interpretation": "filtration respects nesting order",
+      "method": "sympy dimension sequence validation"
+    },
+    "cvc5_positive_serre_filtration_constraint": {
+      "test": "cvc5 proves satisfiable: F^0 \u2265 F^1 \u2265 F^2",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "Serre filtration ordering is consistent",
+      "method": "cvc5 QF_LIA constraint solver"
+    },
+    "numpy_positive_serre_convergence": {
+      "test": "E_2^{p,q} converges to H^{p+q}(E)",
+      "base_space": "S^1",
+      "fiber": "S^1",
+      "e2_entries": {
+        "(0, 0)": 1,
+        "(1, 0)": 1,
+        "(0, 1)": 1,
+        "(1, 1)": 1
+      },
+      "h0_E": 1,
+      "h1_E": 2,
+      "h2_E": 1,
+      "expected_h_E": [
+        1,
+        2,
+        1
+      ],
+      "passed": true,
+      "interpretation": "E_2 term stabilizes and determines total cohomology",
+      "method": "numpy summation"
+    }
+  },
+  "negative": {
+    "cvc5_negative_reversed_filtration_unsat": {
+      "test": "cvc5 proves UNSAT: F^0 < F^1 (reversed filtration)",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "Reversed filtration violates Serre structure",
+      "method": "cvc5 QF_LIA UNSAT proof"
+    },
+    "sympy_negative_reversed_contradiction": {
+      "test": "Reversed filtration F^0 < F^1 contradicts Serre",
+      "example": "F^0 = 2, F^1 = 4",
+      "reversed": true,
+      "violates_serre": true,
+      "passed": true,
+      "interpretation": "reversed filtration is structurally impossible",
+      "method": "sympy symbolic validation"
+    },
+    "numpy_negative_reversed_filtration_impossible": {
+      "test": "Reversed filtration cases are excluded by Serre constraint",
+      "test_cases": [
+        {
+          "F_0": 5,
+          "F_1": 3,
+          "reversed": false
+        },
+        {
+          "F_0": 4,
+          "F_1": 6,
+          "reversed": true
+        },
+        {
+          "F_0": 2,
+          "F_1": 7,
+          "reversed": true
+        }
+      ],
+      "all_reversed": false,
+      "serre_excludes_reversed": false,
+      "passed": false,
+      "interpretation": "Serre constraint eliminates reversed orderings",
+      "method": "numpy numerical exclusion"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_differential_bidegree": {
+      "test": "Differential d_r has bidegree (r, -r+1)",
+      "r_values": [
+        2,
+        3,
+        4
+      ],
+      "bidegrees": [
+        [
+          2,
+          -1
+        ],
+        [
+          3,
+          -2
+        ],
+        [
+          4,
+          -3
+        ]
+      ],
+      "total_degree_shift": [
+        1,
+        1,
+        1
+      ],
+      "all_positive_p_part": true,
+      "all_nonpositive_q_part": true,
+      "passed": true,
+      "interpretation": "differentials shift both coordinates consistently",
+      "method": "sympy symbolic bidegree"
+    },
+    "cvc5_boundary_differential_nilpotency": {
+      "test": "cvc5: d_r\u00b2 = 0 (nilpotency of d_r)",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "differential is nilpotent, defines exact couple",
+      "method": "cvc5 QF_LIA constraint"
+    },
+    "numpy_boundary_filtration_differential_interplay": {
+      "test": "Filtration and d_r cooperate to determine E_\u221e",
+      "h5_E": 10,
+      "filtration_chain": [
+        10,
+        8,
+        6,
+        4,
+        2,
+        1
+      ],
+      "is_nonincreasing": true,
+      "differential_reductions": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "total_reduction": 9,
+      "final_sum": 1,
+      "passed": true,
+      "interpretation": "filtration and differential are compatible",
+      "method": "numpy dimension flow"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,169 @@
+{
+  "name": "CliffordBottPeriodicityCoupling",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Tensor operations optional; cvc5 + sympy sufficient for period enum"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Graph semantics not required for algebraic periodicity"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "Bott period proof symbolic; cvc5 more direct for integer constraint"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Period-8 constraint (n mod 8) \u2208 {0..7} via QF_LIA solver"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Enumerate Clifford types by dimension; verify period boundary"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Generate Cl(n) algebras for n=1..16; test structure coupling"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Manifold structure optional; algebraic periodicity is primary"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Equivariance not primary constraint for Bott coupling"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "No graph structure in this coupling"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Hypergraph not applicable to algebraic structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Topological complex not needed for algebraic period"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Persistent homology not required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_bott_period_n9": {
+      "error": "type object 'Kind' has no attribute 'INTS_MOD'"
+    },
+    "positive_2_clifford_period_enum": {
+      "description": "Enumerate Cl(n) for n=1,9,17: all have period index 1",
+      "period_indices": {
+        "Cl(1)": 1,
+        "Cl(9)": 1,
+        "Cl(17)": 1
+      },
+      "all_equivalent": true
+    },
+    "positive_3_clifford_instantiate_mod8": {
+      "description": "Create Cl(5) and Cl(13): both dimension mod 8 = 5",
+      "cl5_dim": 5,
+      "cl13_dim": 13,
+      "mod8_indices": [
+        5,
+        5
+      ],
+      "period_equivalent": true
+    }
+  },
+  "negative": {
+    "negative_1_impossible_mod8": {
+      "description": "n_mod8=8 AND n_mod8<8 \u2192 contradiction",
+      "satisfiable": false,
+      "expected": false
+    },
+    "negative_2_negative_mod8": {
+      "error": "type object 'Kind' has no attribute 'GE'"
+    },
+    "negative_3_period_boundary_enum": {
+      "description": "Period-8: valid indices are {0..7}, invalid are {8,9,...}",
+      "valid_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "invalid_sample": [
+        8,
+        9,
+        10,
+        15,
+        16
+      ],
+      "no_overlap": true
+    }
+  },
+  "boundary": {
+    "boundary_1_all_period_indices": {
+      "description": "Each of {0,1,...,7} satisfies period-8 constraint",
+      "indices_satisfiable": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true
+      },
+      "all_sat": true
+    },
+    "boundary_2_clifford_small_dims": {
+      "description": "Enumerate Cl(1) through Cl(8): verify period structure",
+      "clifford_period_indices": {
+        "Cl(1)": 1,
+        "Cl(2)": 2,
+        "Cl(3)": 3,
+        "Cl(4)": 4,
+        "Cl(5)": 5,
+        "Cl(6)": 6,
+        "Cl(7)": 7,
+        "Cl(8)": 0
+      }
+    },
+    "boundary_3_period_cycle": {
+      "description": "Period-8 cycle: (dim mod 8) = ((dim+8) mod 8) = ((dim+16) mod 8)",
+      "verified": true,
+      "period_length": 8
+    }
+  },
+  "classification": "canonical"
+}

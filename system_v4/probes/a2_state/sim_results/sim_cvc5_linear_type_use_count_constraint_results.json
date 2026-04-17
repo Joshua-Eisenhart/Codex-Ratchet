@@ -1,0 +1,140 @@
+{
+  "name": "LinearTypeUseCountConstraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "PyTorch not needed; linear type logic is symbolic constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; pure constraint verification"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all constraint solving"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Constraint solving for linear type use-count verification"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; linear type constraints are algebraic"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; scope is linear ordering, not graph-based"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard constraint verification sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_single_use": {
+      "status": "pass",
+      "formula": "use_count_a = 1",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_2_tensor_product_both_used_once": {
+      "status": "pass",
+      "formula": "use_a=1, use_b=1, use_tensor=use_a+use_b",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_3_nested_tensor_depth_3": {
+      "status": "pass",
+      "formula": "All use=1, use_ab=use_a+use_b, use_abc=use_ab+use_c",
+      "expected": "SAT",
+      "actual": "SAT"
+    }
+  },
+  "negative": {
+    "test_1_unused_resource": {
+      "status": "pass",
+      "formula": "use_count=1 AND use_count=0",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    },
+    "test_2_reused_resource": {
+      "status": "pass",
+      "formula": "use_count=1 AND use_count>=2",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    },
+    "test_3_tensor_missing_component": {
+      "status": "pass",
+      "formula": "use_b=1 AND use_b=0 (tensor requires both)",
+      "expected": "UNSAT",
+      "actual": "UNSAT"
+    }
+  },
+  "boundary": {
+    "test_1_large_tensor_chain": {
+      "status": "pass",
+      "formula": "A\u2297B\u2297C\u2297D\u2297E, all use_count=1",
+      "expected": "SAT",
+      "actual": "SAT"
+    },
+    "test_2_zero_is_not_valid": {
+      "status": "pass",
+      "formula": "Linear constraint: use_count=1; query: can it be 0?",
+      "expected": "UNSAT (no, zero violates linear type)",
+      "actual": "UNSAT"
+    },
+    "test_3_negative_use_count": {
+      "status": "pass",
+      "formula": "use_count=1; query: can it be negative?",
+      "expected": "UNSAT (no, negative violates type invariant)",
+      "actual": "UNSAT"
+    }
+  },
+  "classification": "canonical"
+}

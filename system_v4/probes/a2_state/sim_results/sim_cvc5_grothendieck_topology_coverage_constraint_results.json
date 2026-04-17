@@ -1,0 +1,134 @@
+{
+  "name": "Grothendieck Topology Coverage Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "categorical structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary solver for Grothendieck topology coverage axioms (M), (L), (S)"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-check: sieve composition as symbolic relation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_maximality": {
+      "status": "PASS",
+      "expected": "maximal sieve ==> in J(U)",
+      "actual": "in_coverage=true",
+      "reason": "Axiom (M): maximal sieve admitted"
+    },
+    "test_2_local_character": {
+      "status": "PASS",
+      "expected": "local condition ==> S \u2208 J(U)",
+      "actual": "S_in_J_U=true",
+      "reason": "Axiom (L): local character holds"
+    },
+    "test_3_stability_pullback": {
+      "status": "PASS",
+      "expected": "pullback preserved in coverage",
+      "actual": "pullback_in_J_V=true",
+      "reason": "Axiom (S): stability under pullback"
+    }
+  },
+  "negative": {
+    "test_neg_1_max_sieve_missing": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Topology missing maximal sieve violates axiom (M)"
+    },
+    "test_neg_2_local_char_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Topology failing local character axiom (L) impossible"
+    },
+    "test_neg_3_pullback_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Pullback not stable violates axiom (S)"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_trivial_topology": {
+      "status": "PASS",
+      "reason": "Trivial topology: only maximal sieves are covering"
+    },
+    "test_boundary_2_discrete_topology": {
+      "status": "PASS",
+      "reason": "Discrete topology: all sieves are covering"
+    },
+    "test_boundary_3_subcanonical": {
+      "status": "PASS",
+      "reason": "Subcanonical topology: representable presheaves are sheaves"
+    }
+  },
+  "classification": "canonical"
+}

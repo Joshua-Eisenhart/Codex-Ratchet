@@ -1,0 +1,164 @@
+{
+  "name": "K3_Surface_Hodge_Numbers_Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; surface topology handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of K3 surface Hodge number constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for Hodge algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; algebraic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; K3 topology handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_hodge_diamond": {
+      "name": "K3_hodge_diamond_valid",
+      "passed": true,
+      "hodge_diamond": {
+        "h^{0,0}": 1,
+        "h^{1,0}": 0,
+        "h^{2,0}": 1,
+        "h^{1,1}": 20
+      },
+      "euler": 24
+    },
+    "test_2_betti2": {
+      "name": "K3_betti2_valid",
+      "passed": true,
+      "h^{1,1}": 20,
+      "b_2": 22
+    },
+    "test_3_h10_zero": {
+      "name": "K3_h10_zero",
+      "passed": true,
+      "h^{1,0}": 0,
+      "note": "K3 surface has no holomorphic 1-forms"
+    },
+    "test_4_hodge_symmetry": {
+      "name": "K3_hodge_symmetry",
+      "passed": true,
+      "h^{1,0}": 0,
+      "h^{0,1}": 0,
+      "symmetric": true
+    }
+  },
+  "negative": {
+    "test_1_unsat_h11": {
+      "name": "UNSAT_h11_not_20",
+      "passed": true,
+      "should_be_unsat": true,
+      "result": "unsat"
+    },
+    "test_2_unsat_b2": {
+      "name": "UNSAT_b2_not_22",
+      "passed": false,
+      "should_be_unsat": true,
+      "error": "type object 'Kind' has no attribute 'PLUS'"
+    },
+    "test_3_unsat_h10": {
+      "name": "UNSAT_h10_nonzero",
+      "passed": true,
+      "should_be_unsat": true,
+      "result": "unsat"
+    }
+  },
+  "boundary": {
+    "test_1_euler_24": {
+      "name": "Boundary_euler_24",
+      "passed": true,
+      "euler": 24
+    },
+    "test_2_h20_symmetry": {
+      "name": "Boundary_h20_symmetry",
+      "passed": true,
+      "h^{2,0}": 1,
+      "h^{0,2}": 1,
+      "note": "K3 has one holomorphic 2-form (top canonical form)"
+    },
+    "test_3_h11_dominance": {
+      "name": "Boundary_h11_dominance",
+      "passed": true,
+      "h^{1,1}": 20,
+      "total_hodge_sum": 24
+    },
+    "test_4_b2_euler_relation": {
+      "name": "Boundary_b2_euler_relation",
+      "passed": true,
+      "betti_numbers": {
+        "b_0": 1,
+        "b_1": 0,
+        "b_2": 22,
+        "b_3": 0,
+        "b_4": 1
+      },
+      "euler": 24
+    }
+  },
+  "classification": "canonical"
+}

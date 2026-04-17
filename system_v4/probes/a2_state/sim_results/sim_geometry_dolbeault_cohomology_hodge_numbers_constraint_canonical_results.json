@@ -1,0 +1,143 @@
+{
+  "name": "DolbeaultCohomologyHodgeNumbers",
+  "domain": "Dolbeault cohomology and Hodge numbers",
+  "claim": "Hodge numbers are non-negative, symmetric h^{p,q}=h^{q,p}, sum to Betti numbers",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_test_1_CP2_hodge": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "CP\u00b2 Hodge numbers: h^{0,0}=1, h^{1,1}=1, h^{2,2}=1"
+    },
+    "pos_test_2_hodge_symmetry": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "Hodge symmetry h^{p,q} = h^{q,p} is satisfiable"
+    },
+    "pos_test_3_hodge_sum": {
+      "error": "invalid kind 'ADD', expected Terms with kind ADD must have at least 2 children and at most 67108863 children (the one under construction has 1)",
+      "pass": false
+    }
+  },
+  "negative": {
+    "neg_test_1_negative_hodge": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "h^{p,q} >= 0 AND h^{p,q} < 0 is unsatisfiable"
+    },
+    "neg_test_2_symmetry_violation": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "Hodge symmetry h^{p,q}=h^{q,p} cannot coexist with h^{p,q}\u2260h^{q,p}"
+    },
+    "neg_test_3_k3_contradiction": {
+      "status": "UNSAT",
+      "expected": "UNSAT",
+      "pass": true,
+      "description": "K3 surface h^{1,1}=20 cannot equal 10 simultaneously"
+    }
+  },
+  "boundary": {
+    "bound_test_1_CP2_symmetry": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "CP\u00b2 Hodge diamond is symmetric and satisfiable"
+    },
+    "bound_test_2_K3_hodge": {
+      "manifold": "K3",
+      "b_2": 22,
+      "expected_b_2": 22,
+      "pass": true,
+      "description": "K3 surface: \u03a3 h^{p,q} for p+q=2 equals b_2=22"
+    },
+    "bound_test_3_calabi_yau": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "description": "Calabi-Yau Hodge symmetry h^{1,1}=h^{1,2} satisfiable"
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

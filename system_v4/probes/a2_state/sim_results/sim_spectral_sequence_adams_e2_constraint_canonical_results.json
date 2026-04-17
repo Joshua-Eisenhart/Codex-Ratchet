@@ -1,0 +1,225 @@
+{
+  "name": "sim_spectral_sequence_adams_e2_constraint_canonical",
+  "description": "Adams spectral sequence: E2^{s,t}=Ext^{s,t}_A(H^*(X),F_p) converges to \u03c0_{t-s}^s(X); cvc5 proves s\u22650 AND t\u2265s constraints (UNSAT for s<0 or t<s); filtration degree bounded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_adams_bigrading": {
+      "test": "Adams bigrading (s,t) with s\u22650 and t\u2265s",
+      "valid_region_size": 20,
+      "example_entries": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "s_non_negative": true,
+      "t_greater_equal_s": true,
+      "passed": true,
+      "interpretation": "Adams bigrading respects stem/bidegree constraints",
+      "method": "sympy enumeration"
+    },
+    "cvc5_positive_adams_constraint": {
+      "test": "cvc5 proves satisfiable: s\u22650 AND t\u2265s",
+      "satisfiable": true,
+      "passed": true,
+      "interpretation": "Adams E2 page exists for valid bigradings",
+      "method": "cvc5 QF_LIA constraint"
+    },
+    "numpy_positive_adams_e2_structure": {
+      "test": "E2^{s,t} converges to stable homotopy (stem t-s)",
+      "e2_entries": {
+        "(0, 0)": 1,
+        "(0, 1)": 1,
+        "(0, 2)": 1,
+        "(0, 3)": 1,
+        "(0, 4)": 1,
+        "(1, 2)": 1
+      },
+      "all_s_nonnegative": true,
+      "all_t_geq_s": true,
+      "stem_invariant": true,
+      "passed": true,
+      "interpretation": "E2 page respects Adams bigrading and converges",
+      "method": "numpy E2 structure"
+    }
+  },
+  "negative": {
+    "cvc5_negative_negative_s_unsat": {
+      "test": "cvc5 proves UNSAT: s < 0 (violates Adams)",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "negative Ext-degree is not admissible in Adams",
+      "method": "cvc5 QF_LIA UNSAT proof"
+    },
+    "cvc5_negative_t_less_s_unsat": {
+      "test": "cvc5 proves UNSAT: t < s (inverted stem)",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "cohomological degree must be \u2265 Ext degree",
+      "method": "cvc5 QF_LIA UNSAT proof"
+    },
+    "sympy_negative_invalid_bigradings": {
+      "test": "Invalid bigradings (s<0 or t<s) are excluded",
+      "negative_s_example": -1,
+      "excluded_by_s_constraint": true,
+      "inverted_t_example": [
+        3,
+        1
+      ],
+      "excluded_by_t_constraint": true,
+      "passed": true,
+      "interpretation": "Adams constraint filters impossible bigradings",
+      "method": "sympy validation"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_s_equals_zero": {
+      "test": "Boundary: s = 0 recovers H^t(X)",
+      "space": "S^2",
+      "s0_entries": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "nonzero_count": 2,
+      "passed": true,
+      "interpretation": "s=0 page contains integral cohomology",
+      "method": "sympy H^* computation"
+    },
+    "cvc5_boundary_filtration_degree_bound": {
+      "error": "type object 'Kind' has no attribute 'MINUS'"
+    },
+    "numpy_boundary_e_infinity_finiteness": {
+      "error": "object of type 'int' has no len()"
+    }
+  },
+  "classification": "canonical"
+}

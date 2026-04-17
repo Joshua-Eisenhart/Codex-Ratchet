@@ -1,0 +1,165 @@
+{
+  "name": "Microlocal Sheaves and Singular Support Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; microlocal sheaf structure handled algebraically"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA and QF_NRA solvers for coisotropic rank and singular support constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for computing characteristic cycles and Thom-Sebagai formula"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; symplectic geometry via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_ss_coisotropic": {
+      "dim_x": 3,
+      "rank_ss": 2,
+      "satisfiable": false,
+      "expected": false,
+      "pass": true
+    },
+    "test_2_coisotropic_rank_boundary": {
+      "dim_x": 2,
+      "rank_ss": 2,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_characteristic_cycle_multiplicities": {
+      "num_components": 2,
+      "mult_1": 1,
+      "mult_2": 1,
+      "total_mult": 2,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_4_ss_preserved_symplectic_reduction": {
+      "coisotropic_before": 1,
+      "coisotropic_after": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "neg_test_1_ss_not_coisotropic": {
+      "dim_x": 3,
+      "rank_ss": 1,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "neg_test_2_negative_multiplicity": {
+      "mult": -1,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "neg_test_3_ss_loses_coisotropicity": {
+      "before": 1,
+      "after": 0,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_test_1_trivial_singular_support": {
+      "dim_x": 2,
+      "rank_ss": 0,
+      "is_trivial": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_2_maximal_singular_support": {
+      "dim_x": 3,
+      "rank_ss": 6,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_3_single_component_characteristic_cycle": {
+      "num_components": 1,
+      "mult": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_4_structure_sheaf_char_cycle": {
+      "sheaf": "O_X (structure sheaf)",
+      "ss_components": 0,
+      "characteristic_cycle_degree": 0,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,146 @@
+{
+  "name": "sim_capability_igraph_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; tensor operations are handled in dedicated integration sims per four-sim-kinds doctrine"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; PyG graph-neural message passing is a separate concern deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; logical constraint verification over graph properties deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; formal SMT proof checking deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; symbolic analysis of graph invariants deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; geometric algebra coupling over graph structures deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; Riemannian manifold graph embedding deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; equivariant network coupling deferred to integration sims per four-sim-kinds doctrine"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; rustworkx cross-validation is handled in the dedicated networkx-rustworkx crosscheck sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; igraph handles pairwise edges while xgi handles hyperedges, deferred to integration sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; topological complex operations are out of scope for this isolation probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates igraph graph algorithm capability; persistent homology over graph filtrations deferred to integration sims per four-sim-kinds doctrine"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "igraph",
+    "import": "import igraph as ig; ig.Graph",
+    "role": "load_bearing",
+    "can": [
+      "fast C-backed graph algorithms for shortest paths, community detection, centrality",
+      "directed and undirected graphs with weighted edges and vertex/edge attributes",
+      "community detection via Leiden, Louvain, and multilevel algorithms",
+      "large graph processing significantly faster than networkx for algorithmic tasks"
+    ],
+    "cannot": [
+      "perform tensor operations (use pytorch for that)",
+      "represent hyperedges natively (use xgi for that)",
+      "represent topological complexes such as simplicial or cell complexes (use toponetx)",
+      "guarantee globally optimal community structure (NP-hard in general)"
+    ]
+  },
+  "positive": {
+    "positive_weighted_shortest_path": {
+      "path_found": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "expected_path": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "total_weight": 3.0,
+      "expected_weight": 3.0,
+      "pass_path": true,
+      "pass_weight": true,
+      "pass": true
+    },
+    "positive_community_detection": {
+      "graph": "Petersen (10 nodes, 15 edges)",
+      "n_communities_found": 2,
+      "community_sizes": [
+        5,
+        5
+      ],
+      "pass_at_least_2": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_disconnected_path": {
+      "path_found": [],
+      "expected": "empty list (no path between disconnected nodes)",
+      "is_empty": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_self_loop": {
+      "n_edges": 3,
+      "has_self_loop": true,
+      "completed_without_error": true,
+      "error": null,
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

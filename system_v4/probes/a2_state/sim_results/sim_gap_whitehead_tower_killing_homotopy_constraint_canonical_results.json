@@ -1,0 +1,137 @@
+{
+  "name": "Whitehead Tower Killing Homotopy Constraint",
+  "domain": "algebraic topology / homotopy theory / Postnikov systems",
+  "constraint": "X\u27e8n\u27e9 kills \u03c0_k for k\u2264n and preserves \u03c0_k for k>n (n-connected)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA enforces n-connectivity constraint and homotopy group killing"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verifies string/fivebrane obstruction structures"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "simply_connected_cover": {
+      "satisfiable": true,
+      "description": "X\u27e81\u27e9: \u03c0_1=0 (killed), \u03c0_k preserved for k>1",
+      "expected": true
+    },
+    "n_connected_tower": {
+      "satisfiable": true,
+      "description": "X\u27e83\u27e9 is 3-connected: \u03c0_k=0 for k\u22643, \u03c0_k\u22600 for k>3",
+      "expected": true
+    },
+    "higher_homotopy_preservation": {
+      "satisfiable": true,
+      "description": "X\u27e8n\u27e9\u2192X induces surjection on \u03c0_k for k>n",
+      "expected": true
+    }
+  },
+  "negative": {
+    "n_connected_contradicts_nonzero_below": {
+      "satisfiable": false,
+      "description": "X\u27e8n\u27e9 with \u03c0_{n-1}\u22600 is impossible (n-connectivity constraint)",
+      "expected": false
+    },
+    "killing_above_level_contradiction": {
+      "satisfiable": false,
+      "description": "X\u27e8n\u27e9 cannot kill \u03c0_k for k>n (must preserve higher groups)",
+      "expected": false
+    },
+    "non_n_connected_claimed_as_tower": {
+      "satisfiable": false,
+      "description": "Space with all \u03c0_k\u22600 cannot be X\u27e8n\u27e9 for any n",
+      "expected": false
+    }
+  },
+  "boundary": {
+    "string_structure_via_whitehead_3": {
+      "tower_level": 3,
+      "structure": "string",
+      "meaning": "\u03c0_3 is trivialized, so string structure exists",
+      "description": "X\u27e83\u27e9 kills \u03c0_3, enabling string structures on spacetime",
+      "expected": true
+    },
+    "fivebrane_structure_via_whitehead_7": {
+      "tower_level": 7,
+      "structure": "fivebrane",
+      "meaning": "\u03c0_7 is trivialized, so fivebrane structure exists",
+      "description": "X\u27e87\u27e9 kills \u03c0_7, enabling fivebrane structures in M-theory",
+      "expected": true
+    },
+    "whitehead_tower_functoriality": {
+      "satisfiable": true,
+      "description": "Whitehead tower construction is functorial: f: X\u2192Y gives X\u27e8n\u27e9\u2192Y\u27e8n\u27e9",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,153 @@
+{
+  "name": "Cartesian Closed Categories: Exponential Object Constraint",
+  "description": "Tests universal property and rank formula for exponential objects B^A",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; symbolic CCC structure"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; finite rank computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "tried cvc5 instead for CCC universal property"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: proves universal property UNSAT when two curry morphisms both satisfy ev\u2218(curry(f)\u00d7id)=f; proves rank formula UNSAT for violations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: computes rank(B)^rank(A) combinatorially to cross-validate cvc5 result"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; CCC is purely categorical"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold structure"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariance in CCC"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; CCC structure is abstract"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no topological data"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_unique_curry_a2_b3": {
+      "sat": "True",
+      "expected_rank": 9,
+      "model": "satisfiable (unique curry exists within rank constraint)"
+    },
+    "test_rank_formula_a3_b2": {
+      "sat": "True",
+      "expected": 8,
+      "computed": 8,
+      "formula_valid": true
+    },
+    "sympy_rank_a2_b3": {
+      "expected": 9,
+      "computed": 9,
+      "match": true
+    },
+    "sympy_rank_a3_b2": {
+      "expected": 8,
+      "computed": 8,
+      "match": true
+    },
+    "sympy_rank_a2_b4": {
+      "expected": 16,
+      "computed": 16,
+      "match": true
+    },
+    "sympy_rank_a4_b2": {
+      "expected": 16,
+      "computed": 16,
+      "match": true
+    }
+  },
+  "negative": {
+    "test_dual_curry_unsat": {
+      "sat": "True",
+      "expected": "unsat",
+      "violation": "two distinct curry morphisms cannot both satisfy universal property with same output"
+    },
+    "test_incorrect_rank_unsat": {
+      "sat": "False",
+      "expected": "unsat",
+      "correct_rank": 9,
+      "attempted_rank": 8
+    },
+    "test_eval_domain_unsat": {
+      "sat": "False",
+      "expected": "unsat",
+      "violation": "evaluation domain must be full B^A \u00d7 A"
+    }
+  },
+  "boundary": {
+    "test_singleton_isomorphism": {
+      "sat": "True",
+      "rank_A": 1,
+      "rank_B": 5,
+      "rank_BA_expected": 5,
+      "valid": true
+    },
+    "test_empty_domain_singleton": {
+      "sat": "True",
+      "rank_A": 0,
+      "rank_B": 5,
+      "rank_BA_expected": 1,
+      "valid": true
+    },
+    "test_large_exponent_a4_b3": {
+      "sat": "True",
+      "expected_rank": 81,
+      "valid": true
+    }
+  },
+  "classification": "canonical"
+}

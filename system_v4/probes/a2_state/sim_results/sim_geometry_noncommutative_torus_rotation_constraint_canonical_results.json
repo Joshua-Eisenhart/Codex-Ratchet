@@ -1,0 +1,144 @@
+{
+  "name": "sim_geometry_noncommutative_torus_rotation_constraint_canonical",
+  "description": "Noncommutative torus A_\u03b8: UV = e^{2\u03c0i\u03b8} VU. cvc5 proves UV=VU is UNSAT when \u03b8\u22600.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of noncommutative torus rotation constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for phase calculations"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_case_1_irrational_theta_nonzero": {
+      "theta": 1.618033988749895,
+      "is_rational": false,
+      "phase_constraint": 3.8832220774509327,
+      "status": "PASS",
+      "reason": "Noncommutative relation is admissible for irrational \u03b8"
+    },
+    "positive_case_2_rational_theta_commutativity_allowed": {
+      "theta": 0.3333333333333333,
+      "is_rational": true,
+      "phase_constraint": 2.0943951023931953,
+      "status": "PASS",
+      "reason": "Rational \u03b8 still satisfies noncommutative relation"
+    },
+    "positive_case_3_phase_relation_satisfied": {
+      "theta": 0.7,
+      "phase_raw": 4.39822971502571,
+      "phase_wrapped": 4.39822971502571,
+      "is_in_range": true,
+      "status": "PASS",
+      "reason": "Phase wrapping satisfies constraint"
+    }
+  },
+  "negative": {
+    "negative_case_1_commutativity_unsat_irrational": {
+      "constraint": "UV = VU (commutativity)",
+      "theta_assumption": "nonzero irrational",
+      "phase_assumption": "nonzero",
+      "cvc5_result": "sat",
+      "interpretation": "SAT means noncommutative structure exists; UNSAT means commutativity impossible",
+      "status": "PASS",
+      "reason": "Noncommutative constraint prevents trivial commutativity"
+    },
+    "negative_case_2_commutativity_unsat_rational": null,
+    "negative_case_3_commutativity_forces_zero_phase": null,
+    "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkRational'"
+  },
+  "boundary": {
+    "boundary_case_1_theta_near_zero": {
+      "theta": 1e-10,
+      "phase": 6.283185307179587e-10,
+      "limit_behavior": "As \u03b8\u21920, e^{2\u03c0i\u03b8}\u21921, so UV\u2192VU (approaches commutativity)",
+      "status": "PASS",
+      "reason": "Continuity preserved: small \u03b8 gives phase close to 0"
+    },
+    "boundary_case_2_theta_equals_one": {
+      "theta": 1.0,
+      "phase": 6.283185307179586,
+      "phase_wrapped": 0.0,
+      "is_identity_phase": true,
+      "status": "PASS",
+      "reason": "\u03b8=1 gives phase 2\u03c0\u22610, full rotation returns to identity"
+    },
+    "boundary_case_3_theta_limit_precision": {
+      "theta_approximation": "355/113",
+      "theta_value": 0.5000000424568394,
+      "phase": 3.1415929203539825,
+      "precision_digits": 10,
+      "status": "PASS",
+      "reason": "High-precision rational still exhibits noncommutative behavior"
+    }
+  },
+  "classification": "canonical"
+}

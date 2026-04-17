@@ -1,0 +1,154 @@
+{
+  "name": "TStructureTruncationFunctorConstraint",
+  "description": "Constraint-admissibility proof: \u03c4\u2264n truncation kills cohomology above degree n",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "cvc5_positive_truncation_at_2": {
+      "test": "\u03c4\u22642: H^2(\u03c4\u22642 A) nonzero (degree 2 \u2264 truncation level 2, valid)",
+      "truncation_level": 2,
+      "cohomology_degree": 2,
+      "is_nonzero": 1,
+      "passed": true,
+      "method": "cvc5 QF_LIA truncation constraint"
+    },
+    "cvc5_positive_truncation_lower_degree": {
+      "test": "\u03c4\u22643: H^1(\u03c4\u22643 A) nonzero (degree 1 \u2264 truncation level 3, valid)",
+      "truncation_level": 3,
+      "cohomology_degree": 1,
+      "is_nonzero": 1,
+      "passed": true,
+      "method": "cvc5 QF_LIA"
+    },
+    "sympy_positive_truncation_axiom": {
+      "test": "t-structure truncation: \u03c4\u2264n kills H^k for k > n",
+      "symbolic_constraint": "k <= n",
+      "test_case": "n=2, k=2",
+      "satisfies_constraint": true,
+      "passed": true,
+      "method": "sympy symbolic inequality"
+    }
+  },
+  "negative": {
+    "cvc5_negative_truncation_violation": {
+      "test": "UNSAT: \u03c4\u22642 but claim H^4 nonzero (violates truncation axiom)",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "passed": true,
+      "method": "cvc5 QF_LIA constraint violation"
+    },
+    "cvc5_negative_high_degree": {
+      "test": "UNSAT: \u03c4\u22640 but H^5 nonzero (far exceeds truncation level)",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "passed": true,
+      "method": "cvc5 QF_LIA"
+    },
+    "sympy_negative_truncation_contradiction": {
+      "test": "Truncation violation: claim \u03c4\u2264n with n < k but H^k nonzero",
+      "contradiction": "n < k AND k \u2264 n is always False",
+      "passed": true,
+      "method": "sympy logical contradiction"
+    }
+  },
+  "boundary": {
+    "boundary_heart_of_tstructure": {
+      "test": "Heart \u03c4\u22650 \u03c4\u22640 = H^0: nonzero only at degree 0",
+      "upper_truncation": 0,
+      "lower_truncation": 0,
+      "degree": 0,
+      "passed": true,
+      "method": "cvc5 QF_LIA heart constraint"
+    },
+    "boundary_negative_truncation_level": {
+      "test": "\u03c4\u2264-1: H^-1 nonzero (negative degree within bounds)",
+      "truncation_level": -1,
+      "degree": -1,
+      "passed": true,
+      "method": "cvc5 QF_LIA negative integers"
+    },
+    "boundary_truncation_composition": {
+      "test": "Composition: \u03c4\u2264n1 \u2218 \u03c4\u2264n2 = \u03c4\u2264min(n1, n2)",
+      "formula": "min(n1, n2)",
+      "test_case": "n1=3, n2=1",
+      "result": 1,
+      "passed": true,
+      "method": "sympy symbolic minimum"
+    }
+  },
+  "classification": "canonical"
+}

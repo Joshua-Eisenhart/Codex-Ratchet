@@ -1,0 +1,153 @@
+{
+  "name": "AlexanderPolynomial_Constraint_Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial coefficients are discrete integers"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in polynomial invariant"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 better for polynomial constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "SAT/UNSAT for \u0394_K(1) \u2208 {-1, +1}"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic polynomial computation and evaluation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "no clifford algebra in polynomial"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial is algebraic, not geometric"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance in polynomial invariants"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial invariant is not graph-based"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure in Alexander polynomial"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "polynomial is algebraic invariant, not topological"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistent homology in polynomial invariant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_unknot_alexander": {
+      "knot": "unknot",
+      "delta_at_1": 1,
+      "cvc5_status": "sat",
+      "pass": true
+    },
+    "positive_trefoil_alexander": {
+      "knot": "trefoil",
+      "delta_polynomial": "t - 1 + t^{-1}",
+      "delta_at_1": 1,
+      "cvc5_status": "sat",
+      "pass": true
+    },
+    "positive_figure8_alexander": {
+      "knot": "figure-eight",
+      "delta_polynomial": "-t + 3 - t^{-1}",
+      "delta_at_1": 1,
+      "cvc5_status": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_alexander_at_1_is_zero": {
+      "claim": "\u0394_K(1) = 0",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_alexander_at_1_is_two": {
+      "claim": "\u0394_K(1) = 2",
+      "cvc5_status": "unsat",
+      "pass": true
+    },
+    "negative_trefoil_alexander_at_1_is_3": {
+      "knot": "trefoil",
+      "claim": "\u0394_{trefoil}(1) = 3",
+      "cvc5_status": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_unknot_polynomial": {
+      "knot": "unknot",
+      "delta_t": "1",
+      "delta_at_1": 1,
+      "expected": 1,
+      "pass": true
+    },
+    "boundary_trefoil_polynomial": {
+      "knot": "trefoil",
+      "delta_t": "t - 1 + t^{-1}",
+      "coefficients": [
+        1,
+        -1,
+        1
+      ],
+      "delta_at_1": 1,
+      "expected": 1,
+      "pass": true
+    },
+    "boundary_sympy_trefoil_polynomial": {
+      "polynomial": "t - 1 + 1/t",
+      "delta_at_1": 1,
+      "expected": 1,
+      "pass": true
+    },
+    "boundary_alexander_symmetry": {
+      "polynomial": "t - 1 + 1/t",
+      "delta_inv_t": "t - 1 + 1/t",
+      "symmetry_holds": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

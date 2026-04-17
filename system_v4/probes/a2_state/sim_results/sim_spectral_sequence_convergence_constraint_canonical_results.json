@@ -1,0 +1,185 @@
+{
+  "name": "sim_spectral_sequence_convergence_constraint_canonical",
+  "description": "Spectral sequence convergence: E_r \u2192 E_{r+1} via d_r with d_r\u00b2=0; E_\u221e=colim E_r; cvc5 proves nilpotency constraint (UNSAT for d_r\u00b2 \u2260 0); E_\u221e is associated graded",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_differential_nilpotency": {
+      "test": "d_r\u00b2 = 0 in chain complex",
+      "d_1_shape": "(2, 3)",
+      "d_2_shape": "(3, 1)",
+      "d_1_composed_d_2": "[[2, 2]]",
+      "composition_is_zero": false,
+      "passed": false,
+      "interpretation": "differentials compose to zero (exact sequence property)",
+      "method": "sympy matrix composition"
+    },
+    "cvc5_positive_nilpotency_constraint": {
+      "error": "type object 'Kind' has no attribute 'EQ'"
+    },
+    "numpy_positive_spectral_convergence": {
+      "test": "E_r converges: total rank stabilizes",
+      "page_ranks": {
+        "E_2": 20,
+        "E_3": 18,
+        "E_4": 17,
+        "E_5": 17,
+        "E_6": 17
+      },
+      "stabilized_from_page": "E_4",
+      "is_stable": true,
+      "passed": true,
+      "interpretation": "spectral sequence reaches E_\u221e in finite steps",
+      "method": "numpy rank stabilization"
+    }
+  },
+  "negative": {
+    "cvc5_negative_nonzero_differential_unsat": {
+      "test": "cvc5 proves UNSAT: d_r\u00b2 \u2260 0 violates exactness",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "nonzero d_r\u00b2 is incompatible with spectral sequence",
+      "method": "cvc5 QF_LIA UNSAT proof"
+    },
+    "sympy_negative_inexact_differential": {
+      "test": "Non-exact differential d\u00b2 \u2260 0 breaks convergence",
+      "example": "d_1 composed with d_0 gives nonzero",
+      "is_nonzero": true,
+      "violates_exactness": true,
+      "passed": true,
+      "interpretation": "spectral sequence requires exactness",
+      "method": "sympy matrix analysis"
+    },
+    "numpy_negative_nonconvergent_spectral": {
+      "test": "Non-convergent rank sequences are excluded",
+      "rank_sequence": [
+        20,
+        18,
+        19,
+        17,
+        18,
+        16
+      ],
+      "differences": [
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "is_oscillating": true,
+      "passed": true,
+      "interpretation": "non-convergence violates spectral sequence property",
+      "method": "numpy rank oscillation detection"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_e_infinity_colimit": {
+      "test": "E_\u221e = colim E_r (stable page)",
+      "e_pages": {
+        "E_2": 2,
+        "E_3": 1,
+        "E_4": 1,
+        "E_5": 1
+      },
+      "colimit_rank": 1,
+      "stabilizes": true,
+      "passed": true,
+      "interpretation": "E_\u221e is the eventual stable page",
+      "method": "sympy colimit computation"
+    },
+    "cvc5_boundary_associated_graded": {
+      "error": "type object 'Kind' has no attribute 'EQ'"
+    },
+    "numpy_boundary_colimit_reconstruction": {
+      "test": "E_\u221e reconstructs total H^n from filtration graded pieces",
+      "h_n_total": 8,
+      "graded_pieces": [
+        3,
+        2,
+        2,
+        1
+      ],
+      "sum_of_graded": 8,
+      "is_consistent": true,
+      "passed": true,
+      "interpretation": "E_\u221e determined by associated graded of filtration",
+      "method": "numpy filtration summation"
+    }
+  },
+  "classification": "canonical"
+}

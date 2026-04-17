@@ -1,0 +1,131 @@
+{
+  "name": "sim_cvc5_euler_class_self_intersection_constraint",
+  "description": "Euler class self-intersection: e(E)\u222ae(E)=e(E\u2297E); pairing with manifold equals Euler characteristic",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Euler class self-intersection constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test1_euler_s2": {
+      "name": "euler_s2",
+      "sat": "sat",
+      "pass": true
+    },
+    "test2_euler_s4": {
+      "name": "euler_s4",
+      "sat": "sat",
+      "pass": true
+    },
+    "test3_euler_torus": {
+      "name": "euler_torus",
+      "sat": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test1_euler_s2_wrong": {
+      "name": "euler_s2_wrong_pairing",
+      "sat": "unsat",
+      "unsat": true
+    },
+    "test2_self_intersection": {
+      "name": "self_intersection_failure",
+      "error": "name 'e_cup_e' is not defined"
+    },
+    "test3_odd_dimension": {
+      "name": "odd_dimension_euler",
+      "sat": "unsat",
+      "unsat": true
+    }
+  },
+  "boundary": {
+    "test1_zero_euler": {
+      "name": "zero_euler_char",
+      "sat": "sat",
+      "pass": true
+    },
+    "test2_rank1": {
+      "name": "rank1_bundle",
+      "sat": "sat",
+      "pass": true
+    },
+    "test3_high_dim": {
+      "name": "high_dim_euler",
+      "sat": "sat",
+      "pass": true
+    }
+  },
+  "classification": "canonical"
+}

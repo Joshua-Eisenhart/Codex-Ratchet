@@ -1,0 +1,174 @@
+{
+  "name": "sim_capability_toponetx_isolated",
+  "classification": "classical_baseline",
+  "overall_pass": true,
+  "capability_summary": {
+    "CAN": [
+      "construct simplicial and cell complexes from simplex lists",
+      "compute boundary operators B_k as signed incidence matrices",
+      "verify boundary-of-boundary = 0 (fundamental homology theorem)",
+      "compute Hodge Laplacians L_k = B_k^T B_k + B_{k+1} B_{k+1}^T",
+      "represent topological signal processing domains on complexes",
+      "handle complexes from 0-simplices (vertices) to arbitrary dimension"
+    ],
+    "CANNOT": [
+      "compute persistent homology barcode diagrams (use gudhi for that)",
+      "handle hyperedges that are not simplices (use xgi for general hypergraphs)",
+      "run graph neural network message passing (use PyG for that)",
+      "prove homological properties formally (use z3 for logical proofs)"
+    ]
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx runs on numpy by default; pytorch integration deferred to a separate integration sim."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates toponetx topological complex capabilities alone; cross-tool coupling is deferred to a separate integration sim per the four-sim-kinds doctrine (capability vs integration separation)."
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: toponetx CellComplex and SimplicialComplex with boundary operators and incidence matrices are the sole subject of this capability probe."
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi computes persistent homology; toponetx is for topological signal processing on complexes; separate capabilities."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "toponetx_available": {
+      "pass": true,
+      "version": "unknown"
+    },
+    "simplicial_complex_construction": {
+      "pass": true,
+      "dim": 2,
+      "detail": "SimplicialComplex([[0,1,2]]) has dimension 2 (one 2-simplex)"
+    },
+    "simplex_counts": {
+      "pass": true,
+      "nodes": 3,
+      "edges": 3,
+      "shape": [
+        3,
+        3,
+        1
+      ],
+      "detail": "Triangle has 3 nodes and 3 edges"
+    },
+    "boundary_operator_B1_shape": {
+      "pass": true,
+      "shape": [
+        3,
+        3
+      ],
+      "detail": "B1 (boundary of edges to nodes) shape = (3 nodes, 3 edges)"
+    },
+    "boundary_operator_B2_shape": {
+      "pass": true,
+      "shape": [
+        3,
+        1
+      ],
+      "detail": "B2 (boundary of faces to edges): shape (3 edges, 1 face)"
+    },
+    "boundary_of_boundary_zero": {
+      "pass": true,
+      "max_val": 0.0,
+      "detail": "B1 @ B2 = 0: fundamental theorem of homology"
+    },
+    "hodge_laplacian_L1": {
+      "pass": true,
+      "shape": [
+        3,
+        3
+      ],
+      "detail": "L1 = B1^T B1 + B2 B2^T: shape (3,3) for triangle"
+    }
+  },
+  "negative": {
+    "no_face_no_rank2": {
+      "pass": true,
+      "dim": 1,
+      "detail": "Path graph (only edges): dim=1, no 2-simplex exists"
+    },
+    "subcomplex_fewer_nodes": {
+      "pass": true,
+      "full_nodes": 4,
+      "small_nodes": 2,
+      "detail": "Larger complex has more nodes"
+    }
+  },
+  "boundary": {
+    "single_node_complex": {
+      "pass": true,
+      "nodes": 1,
+      "detail": "Single-node simplicial complex is valid"
+    },
+    "tetrahedron": {
+      "pass": true,
+      "dim": 3,
+      "nodes": 4,
+      "detail": "Tetrahedron: dim=3, 4 nodes"
+    }
+  }
+}

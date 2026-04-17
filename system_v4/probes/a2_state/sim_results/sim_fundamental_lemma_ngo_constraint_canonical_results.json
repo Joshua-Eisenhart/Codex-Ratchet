@@ -1,0 +1,141 @@
+{
+  "name": "Fundamental Lemma (Ng\u00f4) \u2014 Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of orbital integral identity constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Springer fiber cohomology and weight lattice"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; orbital integral constraints only"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pos_test_1_unit_transfer_matching": {
+      "description": "SO(\u03b3, f) = 5 matches SO(\u03b3_H, f^H) = 5 with \u0394 = 1",
+      "expected": "SAT",
+      "actual": "True",
+      "pass": true
+    },
+    "pos_test_2_singular_elements": {
+      "description": "SO(\u03b3, f) = 0 matches SO(\u03b3_H, f^H) = 0 (singular elements)",
+      "expected": "SAT",
+      "actual": "True",
+      "pass": true
+    },
+    "pos_test_3_signed_transfer": {
+      "description": "SO(\u03b3, f) = -3 matches SO(\u03b3_H, f^H) \u00b7 (-1) = 3 \u00b7 (-1)",
+      "expected": "SAT",
+      "actual": "True",
+      "pass": true
+    }
+  },
+  "negative": {
+    "neg_test_1_integral_mismatch": {
+      "description": "SO(\u03b3, f) = 5 does not match SO(\u03b3_H, f^H) \u00b7 \u0394 = 3 \u00b7 1",
+      "expected": "UNSAT",
+      "actual": "False",
+      "pass": true
+    },
+    "neg_test_2_invalid_transfer_factor": {
+      "description": "SO(\u03b3, f) = 5 \u2260 5 \u00b7 2 = 10 with invalid \u0394 = 2",
+      "expected": "UNSAT",
+      "actual": "False",
+      "pass": true
+    },
+    "neg_test_3_sign_mismatch": {
+      "description": "SO(\u03b3, f) = 7 \u2260 3 \u00b7 (-1) = -3 (sign error)",
+      "expected": "UNSAT",
+      "actual": "False",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_test_1_springer_fiber_dimension": {
+      "error": "module 'sympy' has no attribute 'innerproduct'",
+      "pass": false
+    },
+    "boundary_test_2_weight_lattice": {
+      "description": "Weight lattice: integer coordinates with root constraints",
+      "weight_space": "Z^3 for GL_3",
+      "trace_formula": "a1 + a2 + a3",
+      "pass": true
+    },
+    "boundary_test_3_orbital_integral_scaling": {
+      "description": "Orbital integral scales with rank defect + Springer fiber dim",
+      "rank_defect": 2,
+      "springer_dim": 4,
+      "total_scale": 6,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

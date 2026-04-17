@@ -1,0 +1,30 @@
+{
+  "name": "sim_cvc5_deep_topology_T3_t4_parity",
+  "scope_note": "T3@t4 edge-parity fence; cvc5 UNSAT excludes parity-violating survivors.",
+  "classification": "canonical",
+  "tool_manifest": {
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing QF_BV UNSAT on T3 edge-parity invariant"
+    }
+  },
+  "tool_integration_depth": {
+    "cvc5": "load_bearing"
+  },
+  "positive": {
+    "T3_t4_parity_conflict_unsat": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "T3_t4_expected_parity_sat": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "T3_t4_parity_zero_sat": {
+      "pass": true
+    }
+  }
+}

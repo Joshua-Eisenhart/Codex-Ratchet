@@ -1,0 +1,164 @@
+{
+  "name": "Mirkovic-Vilonen Cycles -- Weight Basis -- Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of MV cycle multiplicity constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Weyl character formula verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; representation-theoretic constraints only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "classification": "canonical",
+  "positive_tests": {
+    "sl2_weight1_highest": {
+      "rep": "V_1 (sl(2))",
+      "weight": "\u03bc=1",
+      "multiplicity": 1,
+      "mv_cycles": 1,
+      "constraint_satisfied": true,
+      "test": "PASS"
+    },
+    "sl2_weight1_lowest": {
+      "rep": "V_1 (sl(2))",
+      "weight": "\u03bc=-1",
+      "multiplicity": 1,
+      "mv_cycles": 1,
+      "constraint_satisfied": true,
+      "test": "PASS"
+    },
+    "sl2_weight2_middle": {
+      "rep": "V_2 (sl(2))",
+      "weight": "\u03bc=0",
+      "multiplicity": 1,
+      "mv_cycles": 1,
+      "constraint_satisfied": true,
+      "test": "PASS"
+    }
+  },
+  "negative_tests": {
+    "mult_mismatch_2_vs_1": {
+      "rep": "V_1 (sl(2))",
+      "weight": "\u03bc=1",
+      "claimed_mult": 2,
+      "actual_mv_cycles": 1,
+      "expected_unsat": true,
+      "actual_unsat": true,
+      "test": "PASS"
+    },
+    "mult_mismatch_0_vs_1": {
+      "rep": "V_2 (sl(2))",
+      "weight": "\u03bc=0",
+      "claimed_mult": 0,
+      "actual_mv_cycles": 1,
+      "expected_unsat": true,
+      "actual_unsat": true,
+      "test": "PASS"
+    },
+    "negative_multiplicity": {
+      "multiplicity": -1,
+      "expected_unsat": true,
+      "actual_unsat": true,
+      "test": "PASS"
+    }
+  },
+  "boundary_tests": {
+    "weyl_char_sl2_lambda1": {
+      "rep": "V_1 (sl(2))",
+      "character": "e^1 + e^(-1)",
+      "total_multiplicity": 2,
+      "expected_dimension": 2,
+      "test": "PASS"
+    },
+    "weyl_char_sl2_lambda2": {
+      "rep": "V_2 (sl(2))",
+      "character": "e^2 + e^0 + e^(-2)",
+      "total_multiplicity": 3,
+      "expected_dimension": 3,
+      "test": "PASS"
+    },
+    "trivial_rep_dimension": {
+      "rep": "V_0 (trivial)",
+      "weight": "\u03bc=0",
+      "multiplicity": 1,
+      "total_dimension": 1,
+      "consistent": true,
+      "test": "PASS"
+    }
+  },
+  "summary": {
+    "positive_pass": 3,
+    "positive_total": 3,
+    "negative_pass": 3,
+    "negative_total": 3,
+    "boundary_pass": 3,
+    "boundary_total": 3
+  }
+}

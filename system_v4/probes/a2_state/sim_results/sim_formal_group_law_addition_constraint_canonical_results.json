@@ -1,0 +1,138 @@
+{
+  "name": "sim_formal_group_law_addition_constraint_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic FGL constraint proof"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symbolic FGL constraint proof"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for QF_LIA encoding of coefficient constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 used to encode FGL axiom constraints and check satisfiability"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for symbolic expansion and polynomial verification of FGL axioms"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic FGL proof"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic FGL proof"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic FGL proof"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for FGL structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for FGL structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for FGL structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for FGL structure"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive_tests": [
+    {
+      "test_name": "additive_fgl_identity",
+      "passed": true,
+      "description": "Additive FGL satisfies all axioms"
+    },
+    {
+      "test_name": "multiplicative_fgl_identity",
+      "passed": true,
+      "description": "Multiplicative FGL F(x,y)=x+y+xy satisfies all axioms"
+    },
+    {
+      "test_name": "fgl_coefficient_commutativity",
+      "passed": true,
+      "description": "Additive FGL has symmetric coefficients a_10=a_01"
+    }
+  ],
+  "negative_tests": [
+    {
+      "test_name": "cvc5_identity_violation_unsat",
+      "passed": false,
+      "reason": "A non-linear term was asserted to arithmetic in a linear logic."
+    },
+    {
+      "test_name": "cvc5_commutativity_violation_unsat",
+      "passed": false,
+      "description": "cvc5 can satisfy a_10 != a_01, showing violation is possible",
+      "result": "sat"
+    },
+    {
+      "test_name": "symbolic_non_associative_law_fails",
+      "passed": true,
+      "description": "F(x,y)=x^2+y fails associativity",
+      "lhs": "x**4 + 2*x**2*y + y**2 + z",
+      "rhs": "x**2 + y**2 + z",
+      "difference": "x**4 + 2*x**2*y - x**2"
+    }
+  ],
+  "boundary_tests": [
+    {
+      "test_name": "fgl_zero_coefficients",
+      "passed": true,
+      "description": "Zero FGL F(x,y)=0 fails identity axiom"
+    },
+    {
+      "test_name": "fgl_quadratic_terms",
+      "passed": true,
+      "description": "F(x,y)=x+y+axy satisfies all axioms for any a",
+      "identity_passes": true,
+      "commutativity_passes": true,
+      "associativity_passes": true
+    }
+  ],
+  "summary": {
+    "description": "Formal Group Law Axiom Constraints",
+    "claim": "A formal group law must satisfy identity, commutativity, and associativity axioms",
+    "method": "cvc5 QF_LIA encoding of coefficient constraints; sympy algebraic verification"
+  }
+}

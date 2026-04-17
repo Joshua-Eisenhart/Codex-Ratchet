@@ -1,0 +1,224 @@
+{
+  "name": "E_n Algebra Little Disks Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure algebraic E_n computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; little disks operad handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; E_n constraints via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; little disks combinatorial structure"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance in disk operations"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; operadic structure is algebraic"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; disk operations via sympy"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "e_1_algebra_associative": {
+      "test": "E_1 algebra has associativity but only commutative up to level 1 (noncommutative)",
+      "operad": "E_1",
+      "has_associativity": true,
+      "commutativity_level": 1,
+      "satisfiable": true,
+      "note": "E_1 = A_\u221e = associative only"
+    },
+    "e_infinity_algebra_commutative": {
+      "test": "E_\u221e algebra is fully commutative and associative (commutative ring up to homotopy)",
+      "operad": "E_\u221e",
+      "has_associativity": true,
+      "has_commutativity": true,
+      "satisfiable": true,
+      "note": "E_\u221e = C_\u221e = commutative operad"
+    },
+    "e_n_commutativity_level": {
+      "test": "E_n algebra: commutativity level = n (braiding possible in n dimensions)",
+      "n": 2,
+      "commutativity_level": 2,
+      "satisfiable": true,
+      "interpretation": "E_2 allows braiding in 2D; E_3 in 3D, etc."
+    },
+    "dunn_additivity": {
+      "test": "Dunn additivity: E_m \u2297 E_n \u2243 E_{m+n}",
+      "examples": [
+        {
+          "m": 1,
+          "n": 1,
+          "result": 2,
+          "formula": "E_1 \u2297 E_1 \u2243 E_2"
+        },
+        {
+          "m": 1,
+          "n": 2,
+          "result": 3,
+          "formula": "E_1 \u2297 E_2 \u2243 E_3"
+        },
+        {
+          "m": 2,
+          "n": 1,
+          "result": 3,
+          "formula": "E_2 \u2297 E_1 \u2243 E_3"
+        },
+        {
+          "m": 2,
+          "n": 2,
+          "result": 4,
+          "formula": "E_2 \u2297 E_2 \u2243 E_4"
+        }
+      ],
+      "functorial": true,
+      "interpretation": "Tensor product preserves E-structure additively"
+    },
+    "e_2_disk_configuration": {
+      "test": "E_2(n) = little 2-disks operad; E_2(2) configuration space is contractible",
+      "n": 2,
+      "space": "config space of 2 disks in R^2",
+      "contractible": true,
+      "satisfiable": true,
+      "note": "E_2 is Boardman-Vogt model of 2D braided structure"
+    }
+  },
+  "negative": {
+    "e_1_noncommutative_violation": {
+      "test": "Claiming E_1 has commutativity > 1 \u2192 UNSAT",
+      "unsat": true,
+      "e_1_commutativity_level": 1,
+      "claimed_level": 2,
+      "interpretation": "E_1 = A_\u221e is associative only, not commutative"
+    },
+    "dunn_additivity_violation": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkEq'"
+    },
+    "e_n_commutativity_overflow": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkEq'"
+    },
+    "e_infinity_commutativity_violation": {
+      "test": "Claiming E_\u221e is not commutative \u2192 UNSAT",
+      "unsat": true,
+      "e_infinity_is_commutative": true
+    }
+  },
+  "boundary": {
+    "boundary_e_min": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkGEq'"
+    },
+    "boundary_e_limit_to_infinity": {
+      "test": "lim_{n\u2192\u221e} E_n = E_\u221e (commutative operad)",
+      "sequence": {
+        "n_sequence": [
+          1,
+          2,
+          3,
+          5,
+          10,
+          100
+        ],
+        "commutativity_levels": [
+          1,
+          2,
+          3,
+          5,
+          10,
+          100
+        ],
+        "limit": "E_\u221e (full commutativity)"
+      },
+      "convergence": "commutativity level increases unboundedly",
+      "limiting_structure": "fully commutative"
+    },
+    "boundary_e1_e2_gap": {
+      "test": "E_1 is strictly less commutative than E_2",
+      "e1_commutativity": 1,
+      "e2_commutativity": 2,
+      "qualitative_jump": true,
+      "satisfiable": true
+    },
+    "boundary_dunn_with_e1": {
+      "test": "Dunn additivity with E_1: E_1 \u2297 E_n = E_{n+1}",
+      "cases": [
+        {
+          "m": 1,
+          "n": 1,
+          "result": 2,
+          "formula": "E_1 \u2297 E_1 \u2243 E_2"
+        },
+        {
+          "m": 1,
+          "n": 5,
+          "result": 6,
+          "formula": "E_1 \u2297 E_5 \u2243 E_6"
+        },
+        {
+          "m": 1,
+          "n": 100,
+          "result": 101,
+          "formula": "E_1 \u2297 E_100 \u2243 E_101"
+        }
+      ],
+      "property": "E_1 acts additively in Dunn sense"
+    }
+  },
+  "classification": "canonical"
+}

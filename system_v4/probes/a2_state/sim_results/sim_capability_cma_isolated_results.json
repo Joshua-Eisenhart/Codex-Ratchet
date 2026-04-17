@@ -1,0 +1,142 @@
+{
+  "name": "sim_capability_cma_isolated",
+  "classification": "classical_baseline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; coupling with tensor computation tools deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; graph-neural integration deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; constraint satisfaction is a separate concern addressed by a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; formal verification is a separate concern addressed by a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; symbolic gradient analysis deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; geometric algebra coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; Riemannian geometry coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; equivariant network coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; graph algorithm coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; hypergraph coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; topological complex coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not used: this probe isolates CMA-ES evolutionary strategy capability; persistent homology coupling deferred to a dedicated integration sim per four-sim-kinds doctrine"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "target_tool": {
+    "name": "cma",
+    "import": "import cma; cma.fmin2",
+    "role": "load_bearing",
+    "can": [
+      "black-box optimization without gradients using covariance matrix adaptation",
+      "adapts its search distribution covariance to the landscape curvature automatically",
+      "handles moderate-dimensional continuous optimization effectively up to ~100D",
+      "restarts and sigma adaptation make it robust to ill-conditioned landscapes"
+    ],
+    "cannot": [
+      "handle discrete or combinatorial variables natively without encoding tricks",
+      "guarantee finding the global optimum on multimodal landscapes",
+      "replace z3 or cvc5 for symbolic constraint satisfaction or formal proof",
+      "exploit gradient information even when available (purely black-box)"
+    ]
+  },
+  "positive": {
+    "positive_3d_quadratic": {
+      "target": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "x_best": [
+        1.000000002001258,
+        2.000000000893162,
+        2.9999999962339867
+      ],
+      "fbest": 1.89856281312595e-17,
+      "dist_to_target": 4.357250065265878e-09,
+      "pass_close_to_target": true,
+      "pass_low_value": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_rastrigin_local_trap": {
+      "x_best": [
+        2.9848557014657238,
+        2.9848556970533417,
+        2.9848557023267523
+      ],
+      "fbest": 26.86380372446103,
+      "global_optimum": 0.0,
+      "found_global_optimum": false,
+      "ran_without_error": true,
+      "note": "CMA-ES may be trapped in local minimum on Rastrigin; fbest > 0 is expected and acceptable",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1d_scalar": {
+      "x_best": 5.000000004729435,
+      "fbest": 2.2367551841016024e-17,
+      "target": 5.0,
+      "dist_to_target": 4.729434621708606e-09,
+      "pass_close": "True",
+      "pass": "True"
+    }
+  },
+  "overall_pass": "True"
+}

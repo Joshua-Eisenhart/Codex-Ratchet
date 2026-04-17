@@ -1,0 +1,169 @@
+{
+  "name": "sim_dirac_gerbe_mera_topology_variants",
+  "classification": "classical_baseline",
+  "classification_note": "Dirac\u00d7Gerbe\u00d7MERA topology-variant probe. This remains a classical-baseline comparison surface, not a nonclassical witness.",
+  "divergence_log": "Topology variants for Dirac\u00d7Gerbe\u00d7MERA (25th program). H_dirac=0.336783 (stable). H_gerbe=1.386294 (stable). T1 H_mera=0.693147 (log(2)). T2 H_mera=1.098612 (log(3)). T3 H_mera=0.346574 (log(2)/2). DPI ordering: Q_T2 > Q_T1 > Q_T3 (monotone in H_mera). z3 UNSAT: H_mera=0 makes Q=0. sympy: Q is monotone in H_mera. pytorch: topology ordering validated as float64 tensor comparison.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Compute Q_DGM for each MERA topology variant as float64 torch tensors; verify monotone ordering T2>T1>T3 under varying H_mera bond dimension (load-bearing)."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph message-passing needed for scalar Q_DGM topology-variant comparison in DGM program"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: topology variant with H_mera=0 makes Q_DGM=0 \u2014 zero bond-dimension entropy destroys coupling; structural impossibility proof (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 UNSAT covers the H_mera=0 impossibility for DGM topology variants; cvc5 adds no new proof here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_DGM = MI*H_dirac*H_gerbe*H_mera: encode topology sensitivity as H_mera factor; verify ordering under symbolic substitution (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Dirac spectral gap encoded as scalar H_dirac for all topology classes; Cl(3,0) rotor not needed in this step"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked for scalar topology-variant Q_DGM ordering tests"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar MERA bond-dimension topology-class comparison"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal needed for topology-variant scalar entropy product tests in DGM program"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure needed for topology-variant scalar Q_DGM comparison"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "CellComplex topology class encoded as H_mera scalar here; full CellComplex exercised in bridge step"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed for topology-variant scalar Q_DGM ordering tests"
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": null,
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": "load_bearing",
+    "rustworkx": null,
+    "sympy": "load_bearing",
+    "toponetx": null,
+    "xgi": null,
+    "z3": "load_bearing"
+  },
+  "H_values": {
+    "H_dirac": 0.33678336703714473,
+    "H_gerbe": 1.3862943611198906,
+    "topology_variants": {
+      "T1_flat": 0.6931471805599453,
+      "T2_enriched": 1.0986122886681098,
+      "T3_minimal": 0.34657359027997264
+    }
+  },
+  "positive": {
+    "P_Q_T1_flat_positive": {
+      "H_mera": 0.6931471805599453,
+      "Q_DGM": 0.03499897159283307,
+      "passed": true
+    },
+    "P_Q_T2_enriched_positive": {
+      "H_mera": 1.0986122886681098,
+      "Q_DGM": 0.055472057538445425,
+      "passed": true
+    },
+    "P_Q_T3_minimal_positive": {
+      "H_mera": 0.34657359027997264,
+      "Q_DGM": 0.017499485796416536,
+      "passed": true
+    },
+    "P_DPI_T2_gt_T1_gt_T3": {
+      "Q_T2": 0.055472057538445425,
+      "Q_T1": 0.03499897159283307,
+      "Q_T3": 0.017499485796416536,
+      "passed": true
+    },
+    "P_H_dirac_stable": {
+      "H_dirac": 0.33678336703714473,
+      "passed": true
+    },
+    "P_H_gerbe_stable": {
+      "H_gerbe": 1.3862943611198906,
+      "passed": true
+    },
+    "P_pytorch_topology_ordering": {
+      "Q_values": [
+        0.03499897159283307,
+        0.055472057538445425,
+        0.017499485796416536
+      ],
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_Hmera_zero_Q_nonzero": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_Q_monotone_in_Hmera": {
+      "Q_diff_h2_minus_h1": "-h1 + h2",
+      "numeric_h1_1_h2_2": 1.0,
+      "passed": true
+    },
+    "N3_reversed_ordering_is_false": {
+      "Q_T3_gt_T2": false,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_topology_variants_distinct": {
+      "variants": {
+        "T1_flat": 0.6931471805599453,
+        "T2_enriched": 1.0986122886681098,
+        "T3_minimal": 0.34657359027997264
+      },
+      "passed": true
+    },
+    "B2_H_dirac_unchanged": {
+      "H_dirac_original": 0.33678336703714473,
+      "H_dirac_recheck": 0.33678336703714473,
+      "passed": true
+    },
+    "B3_T3_minimal_value": {
+      "H_mera_T3": 0.34657359027997264,
+      "expected": 0.34657359027997264,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

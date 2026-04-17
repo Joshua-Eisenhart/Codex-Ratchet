@@ -1,0 +1,164 @@
+{
+  "name": "sim_cvc5_quantum_cohomology_grading_constraint",
+  "domain": "Quantum Cohomology / Degree Grading",
+  "claim": "Quantum product degree: |a*b| = |a| + |b| - 2c_1(\u03b2)",
+  "special_case_cy": "Calabi-Yau (c_1=0): |a*b| = |a| + |b|",
+  "classical_limit": "\u03b2=0: quantum product recovers cup product",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Quantum cohomology grading formula validated via QF_LIA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Quantum cohomology classical limit verified"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_classical_cup": {
+      "name": "classical_cup_product",
+      "description": "Classical limit: |a|=2, |b|=2 \u2192 |a*b|=4",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    },
+    "test_2_even_degrees": {
+      "name": "even_degree_classes",
+      "description": "Even degrees: |a|=4, |b|=6, c_1=0 \u2192 |a*b|=10",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    },
+    "test_3_quantum_c1_positive": {
+      "name": "quantum_deformation_c1_positive",
+      "description": "Quantum deformation: |a|=1, |b|=1, c_1=1 \u2192 |a*b|=0",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_negative_degree": {
+      "name": "negative_degree_impossible",
+      "description": "Cohomology degree < 0 contradicts deg >= 0; must be UNSAT",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    },
+    "test_2_contradictory_degrees": {
+      "name": "contradictory_product_degrees",
+      "description": "deg_ab = 5 AND deg_ab = 2+2-0=4 (contradiction)",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    },
+    "test_3_large_c1": {
+      "name": "large_c1_negative_result",
+      "description": "c_1=5, deg_a=1, deg_b=1 \u2192 deg=1+1-10=-8 < 0; UNSAT with deg>=0",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_classical_limit": {
+      "name": "classical_limit_cup_product",
+      "description": "Classical limit \u03b2=0: quantum product = cup product",
+      "expected": "valid",
+      "deg_a": 2,
+      "deg_b": 3,
+      "c1_beta": 0,
+      "deg_product": 5,
+      "pass": true,
+      "reason": "|a\u222ab| = 2 + 3 - 0 = 5"
+    },
+    "test_2_cy_quantum_classical": {
+      "name": "calabi_yau_quantum_equals_classical",
+      "description": "CY case (c_1=0): quantum = classical product",
+      "expected": "valid",
+      "deg_a": 1,
+      "deg_b": 2,
+      "classical": 3,
+      "quantum": 3,
+      "pass": true,
+      "reason": "CY: classical = quantum = 3"
+    },
+    "test_3_unit_element": {
+      "name": "unit_element_product",
+      "description": "Unit element (degree 0) in quantum product",
+      "expected": "valid",
+      "deg_a": 0,
+      "deg_b": 5,
+      "deg_product": 5,
+      "pass": true,
+      "reason": "|1*x| = 0 + 5 - 0 = 5"
+    }
+  },
+  "classification": "canonical"
+}

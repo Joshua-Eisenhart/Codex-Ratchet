@@ -1,0 +1,288 @@
+{
+  "name": "sim_coupling_144_25shell_characterorthog_classical",
+  "description": "Coupling Program #144: 25-shell extension with CharacterOrthog. Q_25 = MI \u00d7 log(2)^21 \u00d7 log(3)^3 \u00d7 log(4)^2; torch+z3 load-bearing; autograd Axis 0.",
+  "classification": "classical_baseline",
+  "TOOL_MANIFEST": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices as float64 tensors; dephasing + MI computation via eigh+matrix_log; autograd gradient dQ/d(eps); 25-factor product with load-bearing MI component"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Graph topology not required for direct entropy algebra of gerbe and clifford structure"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: Q_25 < 0 impossible; Q=0 while MI>0 and all H_i>0 is structurally impossible via zero-product theorem over 25 factors"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for real-valued constraint satisfaction on entropy product"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Q_25 = MI \u00d7 H_gerbe \u00d7 ... \u00d7 H_characterorthog; zero-product over 25 factors; entropy bounds and product structure"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Clifford algebra grade decomposition Cl(2,0) yields 4-element grading; spinor chirality adds categorical layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "S^1 and T^2 fiber structure handled via phase argument; Riemannian manifold ops handled via direct entropy computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Equivariance not required for shell-local entropy computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "MERA tensor network skeleton used for entropy layer count; full graph not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Hypergraph structure not needed for moment map algebra"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Topological network not required for direct entropy computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Persistent homology not needed for shell-local entropy verification"
+    }
+  },
+  "TOOL_INTEGRATION_DEPTH": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_mi_primitive_nonzero": {
+      "passed": true,
+      "MI": 0.9394864118290985,
+      "description": "MI primitive nonzero"
+    },
+    "P2_h_gerbestack": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P3_h_weyl": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P4_h_hopf": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P5_h_dirac": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P6_h_mera": {
+      "passed": true,
+      "value": 1.0986122886681098
+    },
+    "P7_h_toric": {
+      "passed": true,
+      "value": 1.3862943611198906
+    },
+    "P8_h_clifford": {
+      "passed": true,
+      "value": 1.3862943611198906
+    },
+    "P9_h_spinor": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P10_h_riemannian": {
+      "passed": true,
+      "value": 1.0986122886681098
+    },
+    "P11_h_connection": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P12_h_holonomy": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P13_h_fiber": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P14_h_assoc": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P15_h_moment": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P16_h_derivedcategory": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P17_h_etalecoho": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P18_h_tqftpartition": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P19_h_mirrorsym": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P20_h_riemannzeta": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P21_h_kahlermoduli": {
+      "passed": true,
+      "value": 1.0986122886681098
+    },
+    "P22_h_homotopywinding": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P23_h_godelssentence": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P24_h_schuriarrep": {
+      "passed": true,
+      "value": 0.6931471805599453
+    },
+    "P25_h_characterorthog_log2": {
+      "passed": true,
+      "H_characterorthog": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "description": "H_characterorthog = log(2) from character orthogonality grading"
+    },
+    "P26_q_25shell_full_positive": {
+      "passed": true,
+      "Q_25": 0.00226369824468893,
+      "MI": 0.9394864118290985,
+      "description": "Q_25 > 0"
+    },
+    "P27_q_25shell_monotone_in_mi": {
+      "passed": true,
+      "Q_per_alpha": [
+        0.002124,
+        0.002175,
+        0.002221,
+        0.002264,
+        0.002303
+      ]
+    },
+    "P28_emergence_zero_product": {
+      "passed": true,
+      "Q_full": 0.00226369824468893
+    },
+    "P29_rho_base_valid_dm": {
+      "passed": true,
+      "trace": 1.0
+    },
+    "P30_axis0_dq_deps_negative": {
+      "passed": true,
+      "dQ_deps": -0.001533041109799451
+    }
+  },
+  "negative": {
+    "N1_z3_q_nonneg_unsat": {
+      "passed": true,
+      "z3_result": "unsat"
+    },
+    "N2_z3_q_zero_product_unsat": {
+      "passed": true,
+      "z3_result": "unsat"
+    },
+    "N3_sympy_zero_product_theorem": {
+      "passed": true,
+      "Q_no_mi": "0"
+    },
+    "N4_fully_dephased_mi_nonzero": {
+      "passed": true,
+      "MI_dephased": 0.46688042943420094,
+      "MI_original": 0.9394864118290985
+    }
+  },
+  "boundary": {
+    "B1_shell_entropies_physical": {
+      "passed": true,
+      "min_H": 0.6931471805599453
+    },
+    "B2_gradient_finite_nonzero_mid_eps": {
+      "passed": true,
+      "gradient": -0.0010004332272208062
+    },
+    "B3_q_scales_with_mi": {
+      "passed": true,
+      "Q_high": 0.0023388289500619517,
+      "Q_low": 0.0013398020176805384
+    },
+    "B4_boundary_eps_zero": {
+      "passed": true,
+      "gradient_at_eps_0": -0.0030865166001538655
+    },
+    "B5_characterorthog_log2_validation": {
+      "passed": true,
+      "H_characterorthog": 0.6931471805599453,
+      "expected": 0.6931471805599453
+    }
+  },
+  "all_pass": true,
+  "pass_count": 39,
+  "fail_count": 0,
+  "coupling_program_number": 144,
+  "shells": [
+    "GerbeStack",
+    "Weyl",
+    "Hopf",
+    "Dirac",
+    "MERA",
+    "Toric",
+    "Clifford",
+    "Spinor",
+    "Riemannian",
+    "Connection",
+    "Holonomy",
+    "Fiber",
+    "AssocBundle",
+    "MomentIndex",
+    "DerivedCategory",
+    "EtaleCoho",
+    "TQFTPartition",
+    "MirrorSym",
+    "RiemannZeta",
+    "KahlerModuli",
+    "HomotopyWinding",
+    "GodelSentence",
+    "SchurIrrep",
+    "CharacterOrthog"
+  ],
+  "Q_formula": "MI \u00d7 H_gerbestack \u00d7 H_weyl \u00d7 ... \u00d7 H_characterorthog"
+}

@@ -1,0 +1,132 @@
+{
+  "name": "Natural Transformation Naturality Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "categorical structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary solver for naturality proofs"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_single_square": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Naturality square commutes"
+    },
+    "test_2_two_squares": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Two squares commute"
+    },
+    "test_3_associativity": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Vertical composition associative"
+    }
+  },
+  "negative": {
+    "test_neg_1_non_commuting": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Non-commuting square impossible"
+    },
+    "test_neg_2_inconsistent": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Inconsistent naturality impossible"
+    },
+    "test_neg_3_broken_assoc": {
+      "status": "PASS",
+      "reason": "Broken associativity UNSAT"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_identity": {
+      "status": "PASS",
+      "reason": "Identity natural transformation holds"
+    },
+    "test_boundary_2_endomorphism": {
+      "status": "PASS",
+      "reason": "Endomorphism naturality holds"
+    },
+    "test_boundary_3_constant": {
+      "status": "PASS",
+      "reason": "Constant functors hold"
+    }
+  },
+  "classification": "canonical"
+}

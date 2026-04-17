@@ -1,0 +1,132 @@
+{
+  "name": "Moduli of Stable Bundles (Donaldson-Uhlenbeck-Yau) Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "hermitian_einstein_constant": {
+      "test": "\u03bb = (deg(E) / rank(E)) \u00b7 (vol(X) / dim(X))",
+      "deg_E": 4,
+      "rank_E": 2,
+      "vol_X": 1,
+      "dim_X": 2,
+      "lambda": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    "stable_admits_he_metric": {
+      "test": "deg=4, rank=2; stable bundle \u2192 Hermitian-Einstein metric exists",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    }
+  },
+  "negative": {
+    "he_metric_necessary": {
+      "test": "Stable bundle \u2227 \u039b_\u03c9 F_A \u2260 \u03bb\u00b7id \u2192 UNSAT (DUY)",
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "negative_degree_instability": {
+      "test": "deg(E) < 0 \u2192 \u03bc(E) < 0; Hermitian-Einstein metric unlikely",
+      "deg_E": -2.0,
+      "rank_E": 2,
+      "mu_E": -1.0,
+      "slope_negative": "True",
+      "reason": "Negative degree bundles often lack Hermitian-Einstein metrics",
+      "passed": "True"
+    }
+  },
+  "boundary": {
+    "trivial_bundle_flat_metric": {
+      "test": "Trivial bundle (deg=0, rank=1) admits flat Hermitian-Einstein metric",
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "dimension_consistency": {
+      "test": "2-dimensional K\u00e4hler manifold, rank-2 bundle, deg=6; \u03bc=3",
+      "dim_X": 2,
+      "rank_E": 2,
+      "deg_E": 6.0,
+      "mu_E": 3.0,
+      "he_constant_proportional_to_mu": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

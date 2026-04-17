@@ -1,0 +1,125 @@
+{
+  "name": "sim_geometry_arakelov_intersection_pairing_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for arithmetic pairing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for arithmetic pairing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 sufficient for QF_LIA formulation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: proves symmetry and bilinearity via UNSAT for violations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: rational arithmetic for pairing values"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; pairing is bilinear form, not geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no manifold structure in pairing axioms"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariance here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no cell complex structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no simplicial structure"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_symmetry": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    },
+    "test_bilinearity": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    },
+    "test_concrete_height": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    }
+  },
+  "negative": {
+    "test_antisymmetry_unsat": {
+      "status": "unsat",
+      "claim": "antisymmetry violates symmetry axiom",
+      "unsat_correct": true
+    },
+    "test_bilinearity_violation_unsat": {
+      "status": "unsat",
+      "claim": "bilinearity violation is unsatisfiable",
+      "unsat_correct": true
+    },
+    "test_multiplicative_pairing_unsat": {
+      "status": "unsat",
+      "claim": "multiplicative pairing violates additivity",
+      "unsat_correct": true
+    }
+  },
+  "boundary": {
+    "test_zero_divisor": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    },
+    "test_negative_divisors": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    },
+    "test_large_divisors": {
+      "status": "error",
+      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+    }
+  },
+  "classification": "canonical"
+}

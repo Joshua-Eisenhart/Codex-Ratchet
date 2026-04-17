@@ -1,0 +1,144 @@
+{
+  "name": "Hopf Algebroid Source/Target Constraint",
+  "description": "cvc5 UNSAT proof that s \u2260 t at counit is inadmissible",
+  "domain": "Hopf algebroids",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Hopf algebroid source/target constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for counit consistency"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_identity_counit": {
+      "test": "s(\u03b5) = t(\u03b5) = id_A",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "positive_2_algebra_map": {
+      "test": "s(xy) = s(x)s(y) (algebra preservation)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "positive_3_counit_sympy": {
+      "test": "\u03b5 consistency in universal enveloping algebra",
+      "consistent": false,
+      "expected": true,
+      "pass": false
+    }
+  },
+  "negative": {
+    "negative_1_unequal_counit": {
+      "test": "s(\u03b5) \u2260 t(\u03b5) violates counit axiom",
+      "sat": true,
+      "expected": false,
+      "pass": false
+    },
+    "negative_2_algebra_failure": {
+      "test": "s(xy) \u2260 s(x)s(y) contradicts algebra map axiom",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    },
+    "negative_3_structure_mismatch": {
+      "test": "s and t with different multiplicative structures (UNSAT)",
+      "sat": false,
+      "expected": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_1_trivial_algebra": {
+      "test": "Trivial algebra (A = ground field)",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_2_zero_counit": {
+      "test": "Zero element: s(0) = t(0) = 0",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_3_identity_preservation": {
+      "test": "Both s and t preserve identity element",
+      "sat": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

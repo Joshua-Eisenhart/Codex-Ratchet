@@ -1,0 +1,151 @@
+{
+  "name": "sim_hopf_symplectic_gerbe_triple_coexistence",
+  "classification": "classical_baseline",
+  "classification_note": "Triple coexistence step of Hopf\u00d7Symplectic\u00d7Gerbe (27th program). H_hopf, H_symp, and H_gerbe are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "divergence_log": "Triple coexistence step of Hopf\u00d7Symplectic\u00d7Gerbe (27th program). H_hopf, H_symp, and H_gerbe are normalized via h/(1+h) and compared through joint-vs-pairwise products without changing program scope.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for coexistence normalization test; H values are scalar floats"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph learning required in HSG triple coexistence normalization step"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT: joint normalized product > pairwise product impossible for values in (0,1) \u2014 coexistence inequality gating (load-bearing)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for UNSAT joint > pair inequality proof at this step"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic coexistence inequality a*b*c \u2264 a*b when 0 < c < 1 \u2014 encodes joint \u2264 pairwise for normalized HSG entropies (load-bearing)."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra rotor not invoked in Hopf holonomy normalization; H_hopf is analytic"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Riemannian geometry not invoked in scalar normalization coexistence test"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant networks not needed for scalar normalized product coexistence"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph traversal required in HSG coexistence normalization step"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hyperedge structure required in triple coexistence normalized product test"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "chain-complex topology not invoked in coexistence normalization inequality step"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "persistent homology not needed in triple coexistence scalar normalization test"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "H_values": {
+    "H_hopf": 0.34657359027997264,
+    "H_symp": 1.6094379124341003,
+    "H_gerbe": 1.3862943611198906
+  },
+  "positive": {
+    "P1_normalized_values": {
+      "Hh_n": 0.25737441516873566,
+      "Hs_n": 0.616775706662745,
+      "Hg_n": 0.5809402158035948,
+      "passed": true
+    },
+    "P2_joint_le_pair_HS": {
+      "joint": 0.0922197783464536,
+      "pair_HS": 0.15874228679260763,
+      "passed": true
+    },
+    "P3_joint_le_pair_HG": {
+      "joint": 0.0922197783464536,
+      "pair_HG": 0.1495191482904493,
+      "passed": true
+    },
+    "P4_joint_le_pair_SG": {
+      "joint": 0.0922197783464536,
+      "pair_SG": 0.3583098121310697,
+      "passed": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "N1_z3_unsat_joint_gt_pair": {
+      "z3": "unsat",
+      "passed": true
+    },
+    "N2_sympy_joint_le_pair": {
+      "diff_expr": "a*b*(1 - c)",
+      "numeric_check": 0.08954400000000001,
+      "passed": true
+    },
+    "N3_joint_zero_if_any_factor_zero": {
+      "joint": 0.0,
+      "passed": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "B1_normalized_H_hopf_in_unit": {
+      "raw": 0.34657359027997264,
+      "normalized": 0.25737441516873566,
+      "passed": true
+    },
+    "B1_normalized_H_symp_in_unit": {
+      "raw": 1.6094379124341003,
+      "normalized": 0.616775706662745,
+      "passed": true
+    },
+    "B1_normalized_H_gerbe_in_unit": {
+      "raw": 1.3862943611198906,
+      "normalized": 0.5809402158035948,
+      "passed": true
+    },
+    "B2_joint_strictly_lt_max_pair": {
+      "joint": 0.0922197783464536,
+      "max_pair": 0.3583098121310697,
+      "passed": true
+    },
+    "pass": true
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,223 @@
+{
+  "name": "sim_mu_zero_conjecture_kato_constraint_canonical",
+  "description": "Constraint: \u03bc(E/Q_\u221e) = 0 for elliptic curves (Kato conjecture); cvc5 load-bearing proof",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_mu_zero_conjecture": {
+      "test": "Kato \u03bc=0 conjecture: \u03bc(E/Q_\u221e) = 0 for elliptic curves",
+      "mu_conjectured": 0,
+      "mu_equals_zero": true,
+      "passed": true,
+      "interpretation": "p-adic L-function growth order is zero for elliptic curves",
+      "method": "sympy symbolic computation"
+    },
+    "cvc5_positive_mu_zero_and_lambda": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "numpy_positive_mu_zero_examples": {
+      "test": "Elliptic curves conjectured to have \u03bc = 0",
+      "num_curves": 3,
+      "curves": [
+        {
+          "name": "y^2=x^3-x",
+          "conductor": 32,
+          "p": 5,
+          "mu": 0
+        },
+        {
+          "name": "y^2=x^3+1",
+          "conductor": 432,
+          "p": 5,
+          "mu": 0
+        },
+        {
+          "name": "y^2=x^3+x",
+          "conductor": 32,
+          "p": 3,
+          "mu": 0
+        }
+      ],
+      "all_mu_zero": true,
+      "passed": true,
+      "interpretation": "Kato conjecture holds for known elliptic curves",
+      "method": "numpy enumeration"
+    }
+  },
+  "negative": {
+    "cvc5_negative_mu_positive_control_unsat": {
+      "test": "cvc5 proves UNSAT: \u03bc>0 contradicts control theorem for ordinary EC",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "ordinary elliptic curves over Q cannot have \u03bc > 0 (Kato conjecture)",
+      "method": "cvc5 QF_LIA proof"
+    },
+    "sympy_negative_mu_positive_contradiction": {
+      "test": "\u03bc > 0 contradicts Kato conjecture",
+      "example": "\u03bc = 1 contradicts Kato conjecture for ordinary EC",
+      "mu_value": 1,
+      "contradicts_kato": true,
+      "passed": true,
+      "method": "sympy symbolic substitution"
+    },
+    "numpy_negative_mu_positive_impossible": {
+      "test": "Positive \u03bc cases are excluded for ordinary elliptic curves",
+      "test_cases": [
+        {
+          "curve": "y^2=x^3-x",
+          "p": 5,
+          "mu": 1
+        },
+        {
+          "curve": "y^2=x^3+1",
+          "p": 5,
+          "mu": 2
+        },
+        {
+          "curve": "y^2=x^3+x",
+          "p": 3,
+          "mu": 1
+        }
+      ],
+      "all_mu_positive": true,
+      "kato_excludes_positive": true,
+      "passed": true,
+      "interpretation": "Kato conjecture filters out \u03bc > 0 for ordinary curves",
+      "method": "numpy enumeration"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_mu_zero_lambda_one": {
+      "test": "Boundary: \u03bc = 0, \u03bb = 1 (minimal ordinary case)",
+      "mu_value": 0,
+      "lambda_value": 1,
+      "passed": true,
+      "interpretation": "minimal ordinary elliptic curve invariants",
+      "method": "sympy symbolic"
+    },
+    "cvc5_boundary_mu_zero_varying_lambda": {
+      "test": "Boundary: cvc5 satisfies \u03bc = 0 with \u03bb \u2265 1",
+      "constraint": "mu = 0 AND lambda \u2265 1",
+      "satisfiable": true,
+      "passed": true,
+      "example": "\u03bc = 0, \u03bb \u2208 {1, 2, 3, ...}",
+      "method": "cvc5 QF_LIA"
+    },
+    "numpy_boundary_mu_zero_lambda_sweep": {
+      "test": "Boundary: \u03bc = 0 valid for range of \u03bb values",
+      "mu": 0,
+      "lambda_range": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "test_cases": [
+        {
+          "mu": 0,
+          "lambda": 1,
+          "mu_zero_and_lambda_positive": true
+        },
+        {
+          "mu": 0,
+          "lambda": 2,
+          "mu_zero_and_lambda_positive": true
+        },
+        {
+          "mu": 0,
+          "lambda": 3,
+          "mu_zero_and_lambda_positive": true
+        },
+        {
+          "mu": 0,
+          "lambda": 4,
+          "mu_zero_and_lambda_positive": true
+        },
+        {
+          "mu": 0,
+          "lambda": 5,
+          "mu_zero_and_lambda_positive": true
+        }
+      ],
+      "all_valid": true,
+      "passed": true,
+      "method": "numpy enumeration"
+    }
+  },
+  "classification": "canonical"
+}

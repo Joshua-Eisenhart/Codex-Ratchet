@@ -1,0 +1,135 @@
+{
+  "name": "Postnikov Tower k-Invariant Constraint",
+  "domain": "algebraic topology / homotopy theory",
+  "constraint": "P_n(X) has \u03c0_k=0 for k>n and \u03c0_k(X) for k\u2264n",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA solves truncation level constraints and homotopy group cardinality bounds"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy verifies base case K(\u03c0_1,1) classifying space formula"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "p_2_s2_truncation": {
+      "satisfiable": true,
+      "description": "P_2(S^2): \u03c0_1=0, \u03c0_2\u22600, \u03c0_3=0",
+      "expected": true
+    },
+    "n_truncation_bounded": {
+      "satisfiable": true,
+      "description": "n-truncation: bounded nonzero group count and degrees",
+      "expected": true
+    },
+    "p_1_classifying_space": {
+      "satisfiable": true,
+      "description": "P_1(X)=K(\u03c0_1,1): fundamental class in H^1 is nonzero",
+      "fundamental_class": 1,
+      "expected": true
+    }
+  },
+  "negative": {
+    "n_truncation_contradicts_nonzero_above": {
+      "satisfiable": false,
+      "description": "n=2 truncation AND \u03c0_3\u22600 is impossible",
+      "expected": false
+    },
+    "all_nonzero_contradicts_truncation": {
+      "satisfiable": false,
+      "description": "All homotopy groups nonzero AND n-truncation is impossible",
+      "expected": false
+    },
+    "nonzero_group_above_truncation_level": {
+      "satisfiable": true,
+      "description": "nonzero \u03c0_5 with truncation_level=3 is impossible",
+      "expected": false
+    }
+  },
+  "boundary": {
+    "p_1_classifying_space_formula": {
+      "n": 1,
+      "cohomology_dimension": "Hom(G, G)",
+      "description": "K(\u03c0_1,1) has \u03c0_1=G and \u03c0_k=0 for k>1",
+      "verified": true
+    },
+    "truncation_idempotent": {
+      "satisfiable": true,
+      "description": "P_n(P_n(X)) = P_n(X) idempotency",
+      "expected": true
+    },
+    "postnikov_tower_limit_structure": {
+      "satisfiable": true,
+      "description": "P_n(X) has n-connected map from X",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

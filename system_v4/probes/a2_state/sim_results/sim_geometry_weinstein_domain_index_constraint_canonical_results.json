@@ -1,0 +1,174 @@
+{
+  "name": "sim_geometry_weinstein_domain_index_constraint_canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Weinstein domain index constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "standard_quadratic": {
+      "test_name": "Standard quadratic Morse function",
+      "dimension": 3,
+      "critical_point": "0 (minimum)",
+      "index": 0,
+      "constraint_index_le_n": "0 \u2264 3",
+      "sat": true,
+      "expected": true
+    },
+    "boundary_index_equals_n": {
+      "test_name": "Handle attachment at index k = n",
+      "dimension": 4,
+      "critical_point": "boundary case",
+      "index": "n",
+      "constraint_index_le_n": "4 \u2264 4",
+      "sat": true,
+      "expected": true
+    },
+    "multiple_critical_points": {
+      "test_name": "Multiple critical points",
+      "dimension": 2,
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "all_satisfy_constraint": true,
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "index_exceeds_dimension": {
+      "test_name": "Critical point index exceeds n",
+      "dimension": 2,
+      "critical_point_index": 3,
+      "constraint_index_le_n": "3 \u2264 2",
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "Critical point with index > n is not Weinstein"
+    },
+    "index_far_exceeds": {
+      "test_name": "Critical point index = n + 2",
+      "dimension": 3,
+      "critical_point_index": "n+2 = 5",
+      "constraint_index_le_n": "5 \u2264 3",
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "Strongly incompatible index violates Weinstein structure"
+    },
+    "mixed_violation": {
+      "test_name": "Multiple critical points, one violates",
+      "dimension": 2,
+      "good_index": 0,
+      "bad_index": 4,
+      "sat": false,
+      "expected": false,
+      "unsat_proves": "Single out-of-bound critical point invalidates domain"
+    }
+  },
+  "boundary": {
+    "minimal_dimension": {
+      "test_name": "Minimal dimension n = 1",
+      "dimension": 1,
+      "max_allowed_index": 1,
+      "sat": true,
+      "expected": true,
+      "boundary_insight": "Dimension 1 allows indices 0, 1 only"
+    },
+    "minimal_dimension_violation": {
+      "test_name": "Minimal dimension with index violation",
+      "dimension": 1,
+      "attempted_index": 2,
+      "sat": false,
+      "expected": false
+    },
+    "large_dimension": {
+      "test_name": "Large dimension n = 10",
+      "dimension": 10,
+      "indices": [
+        0,
+        2,
+        5,
+        7,
+        10
+      ],
+      "max_allowed": 10,
+      "sat": true,
+      "expected": true
+    }
+  },
+  "classification": "canonical",
+  "constraint_domain": "symplectic_geometry",
+  "proof_system": "cvc5_smt"
+}

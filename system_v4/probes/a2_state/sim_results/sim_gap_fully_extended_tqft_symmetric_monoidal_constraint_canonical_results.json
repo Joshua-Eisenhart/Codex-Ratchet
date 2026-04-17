@@ -1,0 +1,190 @@
+{
+  "name": "sim_gap_fully_extended_tqft_symmetric_monoidal_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of fully extended TQFT symmetric monoidal constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_monoidal_structure": {
+      "name": "monoidal_structure",
+      "description": "Z(M\u222aN) \u2245 Z(M)\u2297Z(N) for disjoint union",
+      "setup": {
+        "manifold_M": "sphere",
+        "manifold_N": "disk",
+        "is_monoidal": true,
+        "has_tensor_product": true
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    },
+    "test_2_symmetric_monoidal": {
+      "name": "symmetric_monoidal",
+      "description": "Z(M)\u2297Z(N) \u2245 Z(N)\u2297Z(M) (symmetric monoidal)",
+      "setup": {
+        "is_symmetric": true,
+        "braiding_exists": true,
+        "hexagon_identity": true
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    },
+    "test_3_functorial_monoidal": {
+      "name": "functorial_monoidal",
+      "description": "Z(f\u2218g) = Z(f)\u2218Z(g) preserved under \u2297",
+      "setup": {
+        "is_monoidal": true,
+        "respects_composition": true,
+        "respects_tensor": true
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    }
+  },
+  "negative": {
+    "test_1_no_tensor_unsat": {
+      "name": "no_tensor_product_unsat",
+      "description": "Functor without tensor product cannot be monoidal",
+      "setup": {
+        "is_monoidal": true,
+        "has_tensor": false
+      },
+      "expects_unsat": true,
+      "solver_result": "UNSAT (as expected): unsat",
+      "satisfiable": false,
+      "correctly_unsatisfiable": true
+    },
+    "test_2_broken_braiding_unsat": {
+      "name": "broken_braiding_unsat",
+      "description": "Braiding that fails hexagon identity is inadmissible",
+      "setup": {
+        "is_symmetric": true,
+        "has_braiding": true,
+        "satisfies_hexagon": false
+      },
+      "expects_unsat": true,
+      "solver_result": "UNSAT (as expected): unsat",
+      "satisfiable": false,
+      "correctly_unsatisfiable": true
+    },
+    "test_3_non_functorial_monoidal_unsat": {
+      "name": "non_functorial_monoidal_unsat",
+      "description": "Monoidal functor must preserve composition",
+      "setup": {
+        "is_monoidal": true,
+        "respects_composition": false
+      },
+      "expects_unsat": true,
+      "solver_result": "UNSAT (as expected): unsat",
+      "satisfiable": false,
+      "correctly_unsatisfiable": true
+    }
+  },
+  "boundary": {
+    "test_1_trivial_monoidal": {
+      "name": "trivial_monoidal_functor",
+      "description": "Trivial functor to unit category is monoidal",
+      "setup": {
+        "is_trivial": true,
+        "is_monoidal": true,
+        "target": "unit_category"
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    },
+    "test_2_identity_monoidal": {
+      "name": "identity_monoidal_functor",
+      "description": "Identity functor is symmetric monoidal",
+      "setup": {
+        "is_identity": true,
+        "preserves_tensor": true,
+        "is_symmetric": true
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    },
+    "test_3_tensor_power_monoidal": {
+      "name": "tensor_power_monoidal",
+      "description": "Tensor powers preserve monoidal structure",
+      "setup": {
+        "is_monoidal": true,
+        "tensor_power": 3,
+        "preserves_under_power": true
+      },
+      "solver_result": "SAT: sat",
+      "satisfiable": true
+    }
+  },
+  "classification": "canonical"
+}

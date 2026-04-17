@@ -1,0 +1,133 @@
+{
+  "name": "Coupling Program #413 \u2014 OperadicAlgebra Shell (93-shell)",
+  "description": "Classical baseline Q = MI * log(2)^93; pytorch autograd Axis 0 gradient",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: autograd computes dQ/d\u03b5 (Axis 0 gradient)"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; scalar Q coupling in this program"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 SMT not needed; pytorch autograd handles gradient computation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 SMT not needed; pytorch handles all constraint computation"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "sympy not needed; analytic Q formula computed via torch"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; scalar coupling program"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no Riemannian geometry in this program"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this program"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; no topological structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_gradient_nonzero": {
+      "description": "Axis 0 gradient dQ/d\u03b5 \u2260 0 for 93-shell",
+      "gradient": 1.5731418229446914e-15,
+      "passed": true
+    },
+    "test_positive_shell_count": {
+      "description": "Shell count equals 93",
+      "shell_count": 93,
+      "passed": true
+    },
+    "test_positive_Q_positive": {
+      "description": "Q > 0 for positive MI",
+      "Q": 7.86570911472346e-16,
+      "passed": true
+    }
+  },
+  "negative": {
+    "test_negative_MI_zero": {
+      "description": "MI=0 \u2192 Q=0",
+      "Q": 0.0,
+      "passed": true
+    },
+    "test_negative_shell_distinguishable": {
+      "description": "Q_93 \u2260 Q_92",
+      "passed": true
+    },
+    "test_negative_MI_negative": {
+      "description": "MI<0 \u2192 Q<0",
+      "Q": -7.86570911472346e-16,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "test_boundary_formula_match": {
+      "description": "Q = MI * log(2)^93 formula holds",
+      "passed": true
+    },
+    "test_boundary_scaling_ratio": {
+      "description": "Q_93/Q_92 \u2248 log(2)",
+      "ratio": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "passed": true
+    },
+    "test_boundary_dtype_float64": {
+      "description": "Q dtype is float64",
+      "dtype": "torch.float64",
+      "passed": true
+    }
+  },
+  "classification": "classical_baseline",
+  "shells": 93,
+  "Q_formula": "MI * log(2)^93"
+}

@@ -1,0 +1,133 @@
+{
+  "name": "sim_gap_taylor_tower_convergence_constraint_canonical",
+  "domain": "Goodwillie calculus \u2014 Taylor tower",
+  "constraint": "Analytic functor must have convergent Taylor tower P_n F \u2192 F",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Taylor tower convergence constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for connectivity defect and convergence rate"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_polynomial_bounded_convergence": {
+      "description": "Polynomial functor with bounded degree has convergent Taylor tower",
+      "satisfiable": true,
+      "interpretation": "Finite-degree functors have convergent towers"
+    },
+    "test_2_rational_finite_poles_convergence": {
+      "description": "Rational functor with finite pole set has convergent tower",
+      "satisfiable": true,
+      "interpretation": "Functors with finite singularities admit convergent towers"
+    },
+    "test_3_summable_error_tail_convergence": {
+      "description": "Functor with summable error tail has convergent Taylor tower",
+      "satisfiable": true,
+      "interpretation": "Exponentially-decaying errors guarantee tower convergence"
+    }
+  },
+  "negative": {
+    "test_neg_1_infinite_defect_diverges": {
+      "description": "Functor with infinite connectivity defect has divergent tower",
+      "satisfiable": false,
+      "interpretation": "Infinite defect prevents tower convergence"
+    },
+    "test_neg_2_non_summable_error_tail_diverges": {
+      "description": "Functor with non-summable error tail has divergent tower",
+      "satisfiable": false,
+      "interpretation": "Constant or slowly-decaying errors prevent convergence"
+    },
+    "test_neg_3_oscillating_no_limit_diverges": {
+      "description": "Oscillating approximations without single limit diverge",
+      "satisfiable": false,
+      "interpretation": "Oscillation without convergence is incompatible with analyticity"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_zero_defect_trivial_convergence": {
+      "description": "Constant functor has zero defect and trivial tower convergence",
+      "satisfiable": true,
+      "interpretation": "Defect = 0 is the minimal convergent case"
+    },
+    "test_boundary_2_linear_decay_insufficient_summability": {
+      "description": "Linear decay 1/n is insufficient for summability",
+      "satisfiable": true,
+      "interpretation": "Boundary between summable and non-summable decay rates"
+    },
+    "test_boundary_3_critical_degree_convergence_threshold": {
+      "description": "Tower convergence threshold at degree n+1",
+      "satisfiable": true,
+      "interpretation": "The (n+1)-excisive stage is the critical convergence point"
+    }
+  },
+  "classification": "canonical"
+}

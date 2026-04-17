@@ -1,0 +1,156 @@
+{
+  "name": "ColoredOperadArityColor",
+  "domain": "Colored operads / color-arity assignment",
+  "claim": "Colored operad operation o \u2208 O(c_1,...,c_n; c) with colors in {0,...,k} and colors non-negative",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for color constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for color constraint"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 selected for QF_LIA integer arithmetic"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: encodes colored operad color-arity constraint via SAT/UNSAT"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: validates single-color reduction to ordinary operad"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for colored operads"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_1_2color_operad_valid_assignment": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "num_colors": 2,
+      "input_colors": [
+        0,
+        1,
+        0
+      ],
+      "output_color": 1
+    },
+    "positive_2_3color_operad_valid_assignment": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "num_colors": 3,
+      "input_colors": [
+        2,
+        0,
+        1,
+        2
+      ],
+      "output_color": 0
+    },
+    "positive_3_1color_operad_all_zero": {
+      "status": "SAT",
+      "expected": "SAT",
+      "pass": true,
+      "num_colors": 1,
+      "note": "single-color is ordinary operad"
+    }
+  },
+  "negative": {
+    "negative_1_color_negative_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    },
+    "negative_2_color_out_of_bounds_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    },
+    "negative_3_mixed_valid_invalid_unsat": {
+      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkVariable'",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "boundary_1_single_color_reduction": {
+      "num_colors": 1,
+      "valid_colors": [
+        0
+      ],
+      "all_operations_color_zero": true,
+      "reduces_to_ordinary_operad": true,
+      "pass": true
+    },
+    "boundary_2_k_colored_operad_space": {
+      "num_colors_k": "k",
+      "color_set": "{0, 1, ..., k-1}",
+      "cardinality": "k",
+      "symbolic": true,
+      "pass": true
+    },
+    "boundary_3_color_non_negativity": {
+      "constraint": "color >= 0",
+      "is_fundamental": true,
+      "applies_to_all_colors": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

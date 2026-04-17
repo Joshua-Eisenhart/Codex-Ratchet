@@ -1,0 +1,147 @@
+{
+  "name": "sim_complex_orientation_chern_class_constraint_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class constraint"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class constraint"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 chosen for arithmetic encoding of Thom constraint"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 used to encode Thom isomorphism and FGL constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy used for symbolic verification of Chern class and Thom isomorphism constraints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cohomology constraints"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cohomology constraints"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cohomology constraints"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class structure"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Chern class structure"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive_tests": [
+    {
+      "test_name": "additive_chern_thom_isomorphism",
+      "passed": true,
+      "description": "Additive FGL satisfies Thom isomorphism for ordinary cohomology"
+    },
+    {
+      "test_name": "multiplicative_chern_thom_isomorphism",
+      "passed": true,
+      "description": "Multiplicative FGL satisfies Thom isomorphism for K-theory"
+    },
+    {
+      "test_name": "complex_orientation_functorial",
+      "passed": true,
+      "description": "Complex orientations are functorial under pullback"
+    }
+  ],
+  "negative_tests": [
+    {
+      "test_name": "cvc5_non_additive_ordinary_cohomology_unsat",
+      "passed": false,
+      "description": "cvc5 finds model violating additivity (showing constraint is checkable)",
+      "result": "sat"
+    },
+    {
+      "test_name": "symbolic_thom_violation_fails",
+      "passed": true,
+      "description": "Non-symmetric Chern assignment violates tensor commutativity"
+    },
+    {
+      "test_name": "chern_class_zero_violation",
+      "passed": true,
+      "description": "Non-zero Chern class for trivial bundle is a violation",
+      "is_violation": true
+    }
+  ],
+  "boundary_tests": [
+    {
+      "test_name": "formal_group_law_parameter_space",
+      "passed": true,
+      "description": "Additive and multiplicative FGLs occupy different parameter regions",
+      "additive_params": {
+        "a_10": 1,
+        "a_01": 1,
+        "a_20": 0,
+        "a_11": 0,
+        "a_02": 0
+      },
+      "multiplicative_params": {
+        "a_10": 1,
+        "a_01": 1,
+        "a_20": 0,
+        "a_11": 1,
+        "a_02": 0
+      }
+    },
+    {
+      "test_name": "chern_class_naturality",
+      "passed": true,
+      "description": "Chern class assignment respects naturality under tensor product"
+    }
+  ],
+  "summary": {
+    "description": "Complex Orientation Chern Class Constraints",
+    "claim": "Complex orientations must respect Thom isomorphisms via the formal group law",
+    "method": "cvc5 encoding of FGL parameter constraints; sympy verification of naturality and functoriality"
+  }
+}

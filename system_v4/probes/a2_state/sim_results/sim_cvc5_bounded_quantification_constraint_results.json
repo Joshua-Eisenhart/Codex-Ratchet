@@ -1,0 +1,134 @@
+{
+  "name": "Bounded Quantification F-Bounded Polymorphism via cvc5",
+  "description": "cvc5 proves F-bounded polymorphism admissibility: \u2200\u03b1\u2264T.\u03c3 enforces U\u2264T, self-reference fixed-points, and covariance",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic type constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic type constraint via cvc5"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 is primary proof engine for F-bounded polymorphism"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 is the proof engine"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic cross-check of constraint algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "type constraints are algebraic, not geometric"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "no differential geometry here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "no equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure in type system"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no topological networks here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no simplicial complex needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_valid_instantiation": {
+      "description": "cvc5 SAT: \u2200\u03b1\u2264T.\u03c3 with U\u2264T is valid",
+      "sat": true,
+      "expected": true,
+      "model": "[5, 3, 3]"
+    },
+    "test_positive_self_reference": {
+      "description": "cvc5 SAT: F<:F[self\u21a6F] self-reference constraint holds",
+      "sat": true,
+      "expected": true,
+      "model": "[2, 2]"
+    },
+    "test_positive_variance": {
+      "description": "cvc5 SAT: covariance preserved - U\u2081\u2264U\u2082 implies \u03c3[U\u2081]\u2264\u03c3[U\u2082]",
+      "sat": true,
+      "expected": true,
+      "model": "[4, 1, 2, 1, 2]"
+    }
+  },
+  "negative": {
+    "test_negative_bound_violation": {
+      "description": "cvc5 UNSAT: U > T contradicts \u2200\u03b1\u2264T constraint",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_fixpoint_violation": {
+      "description": "cvc5 UNSAT: F > F[self\u21a6F] contradicts fixed-point",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_covariance_violation": {
+      "description": "cvc5 UNSAT: res1 > res2 contradicts covariance of res1\u2264res2",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_identity_instantiation": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "test_boundary_z3_cross_check": {
+      "description": "z3 cross-check: U\u2264T constraint is enforced",
+      "unsat": true,
+      "expected": true
+    },
+    "test_boundary_symbolic_fbound": {
+      "description": "sympy: F-bounded constraint algebra",
+      "fbound_constraint": "\u2200\u03b1\u2264T.\u03c3 requires U\u2264T",
+      "self_reference": "F\u2264F[self:=F] is reflexive fixed-point",
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

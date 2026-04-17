@@ -1,0 +1,131 @@
+{
+  "name": "Perfect Obstruction Theory (Behrend-Fantechi)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; derived geometry handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; homological algebra via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; derived algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_perfect_ot_amplitude": {
+      "passed": true,
+      "note": "Perfect OT amplitude correctly bounded in [-1, 0]"
+    },
+    "test_virtual_dimension": {
+      "passed": true,
+      "rk_e0": 5,
+      "rk_e_minus_1": 2,
+      "virtual_dimension": 3,
+      "note": "vd = rk(E^0) - rk(E^{-1}) = 5 - 2 = 3"
+    },
+    "test_virtual_class_moduli": {
+      "passed": true,
+      "genus": 0,
+      "marked_points": 4,
+      "degree": 2,
+      "virtual_dimension": 6,
+      "note": "M\u0304_{0,4}(P^1, 2): vd = 2\u00b72 + 4 - 2 = 6"
+    }
+  },
+  "negative": {
+    "test_amplitude_violation": {
+      "unsat": true,
+      "note": "Perfect OT amplitude outside [-1, 0] is UNSAT"
+    },
+    "test_negative_vd": {
+      "unsat": true,
+      "note": "Negative vd with virtual class claim is UNSAT"
+    },
+    "test_two_term_complex": {
+      "passed": false,
+      "note": "Perfect OT must be two-term; non-zero in degree -2 violates definition"
+    }
+  },
+  "boundary": {
+    "test_trivial_obstruction_bundle": {
+      "passed": true,
+      "note": "rk(E^{-1}) = 0: no obstruction bundle, perfect OT is deformation bundle only"
+    },
+    "test_zero_vd": {
+      "passed": true,
+      "note": "vd = 0: virtual fundamental class is a divisor class [M]^{vir} \u2208 A_0(M)"
+    },
+    "test_smooth_reduction": {
+      "passed": true,
+      "smooth_dimension": 5,
+      "virtual_dimension": 5,
+      "note": "For smooth M: [M]^{vir} = [M] \u2208 A_{dim M}(M)"
+    }
+  },
+  "classification": "canonical"
+}

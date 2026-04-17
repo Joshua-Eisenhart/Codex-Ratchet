@@ -1,0 +1,154 @@
+{
+  "name": "sim_cvc5_cohft_axioms_splitting_constraint",
+  "domain": "Cohomological Field Theory (CohFT) / Splitting Axiom",
+  "claim": "CohFT correlator dimension: \u03a9_{g,n} with degree (1-g)dim(H)/2 subject to stability 2g-2+n > 0",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "CohFT splitting axiom validated via genus/marked-point QF_LIA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Stability constraint 2g-2+n > 0 verified"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_genus_0_n3": {
+      "name": "genus_0_3_insertions_valid",
+      "description": "g=0, n=3: genus 0 sphere with 3 marked points is stable",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    },
+    "test_2_genus_1_n1": {
+      "name": "genus_1_1_insertion_valid",
+      "description": "g=1, n=1: genus 1 with 1 marked point is stable",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    },
+    "test_3_genus_0_n4": {
+      "name": "genus_0_4_insertions_valid",
+      "description": "g=0, n=4: genus 0 with 4 marked points is stable",
+      "expected": "SAT",
+      "result": "sat",
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_negative_n": {
+      "name": "negative_marked_points_impossible",
+      "description": "n < 0 contradicts n >= 0; must be UNSAT",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    },
+    "test_2_negative_g": {
+      "name": "negative_genus_impossible",
+      "description": "g < 0 contradicts g >= 0; must be UNSAT",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    },
+    "test_3_unstable_config": {
+      "name": "unstable_genus_marked_points",
+      "description": "g=0, n=0: stability 2g-2+n = -2 not > 0; should be UNSAT",
+      "expected": "UNSAT",
+      "result": "unsat",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "test_1_stability_boundary": {
+      "name": "stability_boundary_genus_0",
+      "description": "sympy verifies stability constraint at boundary for g=0",
+      "expected": "valid",
+      "stability_value": 1,
+      "pass": true,
+      "reason": "2*0 - 2 + 3 = 1 > 0"
+    },
+    "test_2_minimal_genus_1": {
+      "name": "minimal_genus_1",
+      "description": "Minimal genus-1 configuration with 1 marked point",
+      "expected": "valid",
+      "stability_value": 1,
+      "pass": true,
+      "reason": "2*1 - 2 + 1 = 1 > 0"
+    },
+    "test_3_high_genus": {
+      "name": "high_genus_no_insertions",
+      "description": "g=5, n=0: high genus compensates for no marked points",
+      "expected": "valid",
+      "stability_value": 8,
+      "pass": true,
+      "reason": "2*5 - 2 + 0 = 8 > 0"
+    }
+  },
+  "classification": "canonical"
+}

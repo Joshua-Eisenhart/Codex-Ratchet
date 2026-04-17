@@ -1,0 +1,195 @@
+{
+  "name": "sim_triangulated_category_octahedron_axiom_constraint_canonical",
+  "description": "Octahedron axiom (TR4): rank(cone(g\u2218f)) \u2264 rank(cone(f)) + rank(cone(g)); cvc5 load-bearing proof",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_positive_octahedron_rank": {
+      "test": "Octahedron axiom: rank(cone(g\u2218f)) \u2264 rank(cone(f)) + rank(cone(g))",
+      "rank_f": 2,
+      "rank_g": 3,
+      "rank_cone_f": 4,
+      "rank_cone_g": 5,
+      "rank_cone_gf": 8,
+      "inequality": "8 \u2264 9",
+      "inequality_holds": true,
+      "passed": true,
+      "interpretation": "octahedral diagram preserves rank constraint",
+      "method": "sympy symbolic arithmetic"
+    },
+    "cvc5_positive_octahedron_constraint": {
+      "error": "cannot get value unless model generation is enabled (try --produce-models)"
+    },
+    "numpy_positive_octahedron_numerical": {
+      "test": "Octahedron rank constraint for concrete morphisms",
+      "rank_cone_f": 5,
+      "rank_cone_g": 7,
+      "rank_cone_gf": 11,
+      "sum_constraint": 12,
+      "constraint_satisfied": true,
+      "passed": true,
+      "interpretation": "composition preserves triangulated structure",
+      "method": "numpy direct arithmetic"
+    }
+  },
+  "negative": {
+    "cvc5_negative_octahedron_violated_unsat": {
+      "test": "cvc5 proves UNSAT: rank(cone(g\u2218f)) > rank(cone(f)) + rank(cone(g))",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "octahedron axiom constraint forbids this configuration",
+      "method": "cvc5 QF_LIA proof",
+      "claim": "triangulated structure excludes this rank distribution"
+    },
+    "sympy_negative_octahedron_violation": {
+      "test": "Violation: rank_cone_gf > rank_cone_f + rank_cone_g",
+      "rank_cone_f": 2,
+      "rank_cone_g": 3,
+      "rank_cone_gf": 6,
+      "sum": 5,
+      "violates_axiom": true,
+      "passed": true,
+      "interpretation": "this configuration contradicts triangulated structure",
+      "method": "sympy algebraic verification"
+    },
+    "numpy_negative_octahedron_impossible": {
+      "test": "Negative cases that violate octahedron axiom",
+      "test_cases": [
+        {
+          "rank_cone_f": 2,
+          "rank_cone_g": 2,
+          "rank_cone_gf": 5,
+          "violates": true
+        },
+        {
+          "rank_cone_f": 3,
+          "rank_cone_g": 3,
+          "rank_cone_gf": 7,
+          "violates": true
+        },
+        {
+          "rank_cone_f": 1,
+          "rank_cone_g": 1,
+          "rank_cone_gf": 3,
+          "violates": true
+        }
+      ],
+      "all_violated": true,
+      "axiom_excludes": true,
+      "passed": true,
+      "interpretation": "triangulated category structure forbids these rank distributions",
+      "method": "numpy dimension calculation"
+    }
+  },
+  "boundary": {
+    "sympy_boundary_octahedron_equality": {
+      "test": "Boundary: rank(cone(g\u2218f)) = rank(cone(f)) + rank(cone(g))",
+      "equality_formula": "rank_cone_gf = rank_cone_f + rank_cone_g",
+      "interpretation": "maximal coupling in octahedral diagram",
+      "passed": true,
+      "method": "sympy symbolic"
+    },
+    "cvc5_boundary_octahedron_equality": {
+      "test": "Boundary: cvc5 satisfies rank equality",
+      "constraint": "rank_cone_gf = rank_cone_f + rank_cone_g",
+      "satisfiable": true,
+      "passed": true,
+      "example": "rank_cone_f=2, rank_cone_g=3, rank_cone_gf=5",
+      "method": "cvc5 QF_LIA"
+    },
+    "numpy_boundary_rank_sweep": {
+      "test": "Boundary: near-boundary rank values",
+      "rank_cone_f": 3,
+      "rank_cone_g": 4,
+      "sum": 7,
+      "test_gf_values": [
+        6,
+        7,
+        8
+      ],
+      "satisfy_constraint": [
+        true,
+        true,
+        false
+      ],
+      "boundary_satisfied": true,
+      "passed": true,
+      "method": "numpy rank sweep"
+    }
+  },
+  "classification": "canonical"
+}

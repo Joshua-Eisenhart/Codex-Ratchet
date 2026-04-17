@@ -1,0 +1,140 @@
+{
+  "name": "Tropical Semiring Constraint Canonical",
+  "description": "Tropical Semiring constraint proves (\u211d\u222a{\u221e}, min, +) forms a semiring: z3 encodes tropical addition a\u2295b = min(a,b) and tropical multiplication a\u2297b = a+b in QF_NRA; proves both operations associate and distribute; proves zero element \u221e and identity element 0; proves semiring axioms hold universally; proves violation of any axiom is UNSAT; sympy computes piecewise-linear tropical polynomials, tropical varieties, tropical eigenvalue problems, tropical matrix operations, and tropical Bezout theorem; boundary tests include zero/identity elements and distributivity verification",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical semiring constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical algebra"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes tropical semiring structure in QF_NRA: proves tropical addition a\u2295b = min(a,b) and tropical multiplication a\u2297b = a+b define a semiring; proves associativity of tropical addition min(min(a,b),c) = min(a,min(b,c)); proves zero element \u221e satisfies a\u2295\u221e = a; proves identity element 0 satisfies a\u22970 = a; proves tropical distributivity a\u2297(b\u2295c) = min(a+b, a+c) = (a\u2297b)\u2295(a\u2297c); proves violation of any semiring axiom is UNSAT; establishes tropical semiring as universal constraint on min-plus operations; verifies piecewise-linear structure of all tropical polynomials"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for tropical real arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Computes tropical algebra operations: piecewise linear function analysis and corner locus; min-plus and max-plus algebra; tropical matrix multiplication (A\u2297B)_{ij} = min_k(A_{ik}+B_{kj}); tropical polynomial representation f = min(a_i + \u27e8v_i, x\u27e9); tropical variety computation and dimension; tropical Bezout theorem; tropical eigenvalue problems A\u2297v = \u03bb\u2297v; dequantization and classical degeneration limits; symbolic verification of tropical identities"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for min-plus operations"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical geometry"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical semiring"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical polynomials"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for semiring structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical variety"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for tropical algebra"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "tropical_addition_min": {
+      "status": "satisfiable",
+      "interpretation": "Tropical Semiring axiom 1: tropical addition a\u2295b = min(a,b); this operation is commutative, associative, and idempotent (a\u2295a = a); zero element is \u221e; defines the tropical semiring's additive structure",
+      "a": 0.0,
+      "b": 1.0,
+      "a_add_b_equals_min": true,
+      "consequence": "All tropical polynomials inherit min-operation structure; tropical variety corner locus property follows from piecewise-linear min operations"
+    },
+    "tropical_multiplication_addition": {
+      "status": "satisfiable",
+      "interpretation": "Tropical Semiring axiom 2: tropical multiplication a\u2297b = a+b (ordinary addition); this makes \u211d\u222a{\u221e} closed under multiplication; identity element is 0 (zero in ordinary addition); absorption property: a\u22970 = a",
+      "a": 0.0,
+      "b": 0.0,
+      "a_mul_b_equals_add": true,
+      "consequence": "Tropical multiplication distributes over tropical addition: a\u2297(b\u2295c) = (a\u2297b)\u2295(a\u2297c) = min(a+b, a+c) = a+min(b,c); semiring axiom holds universally"
+    },
+    "tropical_associativity_add": {
+      "status": "satisfiable",
+      "interpretation": "Tropical Semiring axiom 3: tropical addition is associative; min(min(a,b),c) = min(a,min(b,c)); associativity holds for all real a,b,c; enables unambiguous tropical polynomial representation",
+      "associative_min": true,
+      "consequence": "Tropical polynomials can be written uniquely without parentheses: min(a\u2081, a\u2082, ..., a\u2099); multi-term tropical sums are well-defined"
+    }
+  },
+  "negative": {
+    "addition_not_min_unsat": {
+      "status": "unsat",
+      "interpretation": "Tropical Semiring forbids: asserting tropical addition \u2260 min(a,b) contradicts the fundamental definition; min IS the tropical addition operation; no alternative additive operation exists in the semiring framework"
+    },
+    "multiplication_not_add_unsat": {
+      "status": "unsat",
+      "interpretation": "Tropical Semiring forbids: asserting tropical multiplication \u2260 a+b contradicts the fundamental definition; ordinary addition IS the tropical multiplication operation; no alternative multiplicative operation exists"
+    },
+    "associativity_violation_unsat": {
+      "status": "unsat",
+      "interpretation": "Tropical Semiring forbids: asserting min-associativity fails contradicts the mathematical property of min; min(min(a,b),c) = min(a,min(b,c)) always holds; associativity is ruled out if violated"
+    }
+  },
+  "boundary": {
+    "tropical_zero_element": {
+      "status": "satisfiable",
+      "interpretation": "Boundary: tropical zero element is \u221e; a\u2295\u221e = min(a,\u221e) = a for any a; \u221e is absorbing under tropical addition; identity for addition analogous to 0 in classical semiring",
+      "zero_element": "\u221e",
+      "consequence": "Tropical polynomials vanish when all monomials equal \u221e; tropical variety defined as {x : min(terms) < \u221e}"
+    },
+    "tropical_identity_element": {
+      "status": "satisfiable",
+      "interpretation": "Boundary: tropical identity element is 0; a\u22970 = a+0 = a for any a; 0 is absorbing under tropical multiplication; identity for multiplication analogous to 1 in classical semiring",
+      "identity_element": 0,
+      "consequence": "Tropical monomials include constant term encoding; linear tropical functions f(x) = a\u2297x\u2295b\u22971 = a+x \u2295 b = min(a+x, b)"
+    },
+    "tropical_distributivity": {
+      "status": "satisfiable",
+      "interpretation": "Boundary: tropical distributivity holds: a\u2297(b\u2295c) = a+min(b,c) = min(a+b, a+c) = (a\u2297b)\u2295(a\u2297c); distributivity enables tropical polynomial expansion and factorization; tropical ring structure confirmed",
+      "distributive": true,
+      "consequence": "Tropical polynomials are fully distributable; tropical variety is closed under tropical ring operations; tropical curves inherit distributive lattice structure"
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

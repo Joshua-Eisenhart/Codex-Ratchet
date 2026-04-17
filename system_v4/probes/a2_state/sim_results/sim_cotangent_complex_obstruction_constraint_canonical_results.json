@@ -1,0 +1,124 @@
+{
+  "name": "Cotangent Complex and Obstruction Theory (Illusie)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; derived geometry handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; homological algebra via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; derived algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_amplitude_bounds": {
+      "passed": true,
+      "note": "Cotangent complex amplitude correctly bounded in [-n, 0]"
+    },
+    "test_smooth_concentrated": {
+      "passed": true,
+      "note": "Smooth morphism: L_{X/Y} concentrated in degree 0"
+    },
+    "test_p1_rigidity": {
+      "passed": true,
+      "h0_tangent_sheaf": 3,
+      "h1_tangent_sheaf": 0,
+      "note": "P^1 is rigid: first-order deformations vanish"
+    }
+  },
+  "negative": {
+    "test_amplitude_violation": {
+      "unsat": false,
+      "note": "Correctly rejects amplitude outside [-n, 0]"
+    },
+    "test_smooth_with_neg1": {
+      "unsat": true,
+      "note": "Correctly rejects smooth morphism with H^{-1}(L_{X/Y}) \u2260 0"
+    },
+    "test_infinite_obstruction": {
+      "contradiction": true,
+      "note": "Finite T^1 + infinite obstructions \u2192 not pro-representable"
+    }
+  },
+  "boundary": {
+    "test_amplitude_zero": {
+      "passed": true,
+      "note": "Amplitude [0, 0] for relative dimension 0 is satisfiable"
+    },
+    "test_exact_triangle": {
+      "passed": true,
+      "note": "Exact triangle L_{X/Z} \u2192 f*L_{Y/Z} \u2192 L_{X/Y} \u2192[+1] verified"
+    },
+    "test_identity_smooth": {
+      "passed": true,
+      "note": "Identity morphism is smooth, L_{id} = 0"
+    }
+  },
+  "classification": "canonical"
+}

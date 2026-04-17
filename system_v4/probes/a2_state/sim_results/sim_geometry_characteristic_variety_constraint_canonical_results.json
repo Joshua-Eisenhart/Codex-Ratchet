@@ -1,0 +1,166 @@
+{
+  "name": "Characteristic Variety and Microlocal Analysis Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "PyG not needed; D-module structure handled algebraically"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 QF_LIA and QF_NRA solvers for characteristic variety and Lagrangian constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for computing characteristic varieties of D/D\u00b7(\u2202_x - f(x)) and verifying involutivity"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Clifford algebra not needed; algebraic analysis via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_conormal_support_containment": {
+      "dim_z": 2,
+      "supp_in_z": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_2_char_variety_conic": {
+      "is_conic": 1,
+      "scalar_closed": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_3_char_variety_lagrangian": {
+      "is_isotropic": 1,
+      "is_lagrangian": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "test_4_char_variety_dimension": {
+      "dim_x": 1,
+      "dim_ch": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "neg_test_1_conormal_support_violation": {
+      "ch_conormal": 1,
+      "supp_in_z": 0,
+      "unsatisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "neg_test_2_non_conic_dmodule": {
+      "is_conic": 0,
+      "is_valid_dmodule": 1,
+      "unsatisfiable": false,
+      "expected": true,
+      "pass": false
+    },
+    "neg_test_3_non_lagrangian_ch": {
+      "is_lagrangian": 0,
+      "is_valid_ch": 1,
+      "unsatisfiable": false,
+      "expected": true,
+      "pass": false
+    }
+  },
+  "boundary": {
+    "boundary_test_1_zero_dim_char_variety": {
+      "dim_x": 1,
+      "dim_ch": 0,
+      "is_valid": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_2_full_cotangent_space": {
+      "dim_x": 3,
+      "dim_ch": 6,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_3_cusp_singularity_char_variety": {
+      "f": "x",
+      "ch_components": "xi=0 union x=0",
+      "dim_ch": 1,
+      "expected": true,
+      "pass": true
+    },
+    "boundary_test_4_involutivity_lagrangian": {
+      "is_involutive": 1,
+      "is_lagrangian": 1,
+      "satisfiable": true,
+      "expected": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

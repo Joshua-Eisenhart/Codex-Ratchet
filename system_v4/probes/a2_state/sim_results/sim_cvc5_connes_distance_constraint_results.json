@@ -1,0 +1,141 @@
+{
+  "name": "CVC5 Connes Distance Constraint (Canonical)",
+  "description": "cvc5 proves metric axioms of Connes distance: d(p,q)\u22650 and d(p,p)=0 must hold on state space of spectral triple. Connes distance is the fundamental metric on C*-algebra state space derived from the Dirac operator. cvc5 validates: (1) Non-negativity d(p,q)\u22650 (SAT). (2) Coincidence axiom d(p,p)=0 (SAT). (3) Symmetry d(p,q)=d(q,p) (SAT). (4) Assuming negative distance is UNSAT. (5) Assuming p=p but d(p,p)\u22600 is UNSAT. sympy derives: metric axioms, Lipschitz seminorms, state space topology, triangle inequality, Hausdorff separation, geodesic distance recovery on manifolds, Monge-Kantorovich optimal transport duality, Wasserstein distance, concentration of measure, heat flow on state space.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is operator-theoretic metric, not neural network training"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is state space metric, not graph learning"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "cvc5 preferred for QF_NRA encoding of metric axioms d(p,q)\u22650 and coincidence"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves metric axioms: d(p,q)\u22650 AND (p=q\u27f9d=0) via QF_NRA supremum constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy derives metric axioms, Lipschitz seminorms, state space topology, triangle inequality, Hausdorff separation, optimal transport"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance uses Dirac operator which involves Clifford algebra spin structure, tangential context"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is abstract state space metric, not Riemannian manifold sampling"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is operator algebra metric, not equivariant neural networks"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is continuous metric space, not graph algorithms"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance not hypergraph; state space metric"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance is functional analytic metric, beyond simplicial topology"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Connes distance not simplicial homology; continuous operator state spaces"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_distance_non_negative": {
+      "description": "cvc5 SAT: Connes distance d(p,q) \u2265 0 for all states p,q",
+      "sat": true,
+      "expected": true
+    },
+    "test_positive_coincidence_axiom": {
+      "description": "cvc5 SAT: Coincidence axiom d(p,p) = 0",
+      "sat": true,
+      "expected": true
+    },
+    "test_positive_symmetry": {
+      "description": "cvc5 SAT: Symmetry d(p,q) = d(q,p)",
+      "sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_negative_negative_distance": {
+      "description": "cvc5 UNSAT: Spectral triple \u2227 d(p,q)\u22650 \u2227 d(p,q)<0 \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_coincidence_violated": {
+      "description": "cvc5 UNSAT: Spectral triple \u2227 p=p \u2227 d(p,p)=0 \u2227 d(p,p)\u22600 \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    },
+    "test_negative_asymmetric_distance": {
+      "description": "cvc5 UNSAT: Connes metric \u2227 d(p,q)=d(q,p) \u2227 d(p,q)\u2260d(q,p) \u2192 contradiction",
+      "unsat": true,
+      "expected": true
+    }
+  },
+  "boundary": {
+    "test_boundary_metric_axioms": {
+      "description": "sympy: Metric axioms and Connes distance definition",
+      "statement": "A metric d on set X satisfies: (1) Non-negativity: d(x,y)\u22650. (2) Identity: d(x,y)=0 \u27fa x=y. (3) Symmetry: d(x,y)=d(y,x). (4) Triangle inequality: d(x,z)\u2264d(x,y)+d(y,z). Connes distance on state space \u03a3(A) of C*-algebra A (derived from spectral triple (A,H,D)) is defined as d(p,q)=sup{|f(p)-f(q)|: f\u2208A_sa, ||[D,f]||\u22641}, where A_sa is self-adjoint part. (1) Non-negativity: supremum of non-negative values. (2) Coincidence: d(p,p)=sup{0}=0; conversely d(p,q)=0 \u27f9 |f(p)-f(q)|=0 for all Lipschitz f \u27f9 p=q (faithfulness). (3) Symmetry: |f(p)-f(q)|=|f(q)-f(p)|. (4) Triangle inequality: d(p,r)=sup ||[D,f]||\u22641 |f(p)-f(r)| \u2264 sup(|f(p)-f(q)|+|f(q)-f(r)|) \u2264 d(p,q)+d(q,r) by splitting supremum over two terms.",
+      "consequence": "Connes distance makes state space \u03a3(A) into a metric space (if A faithful). The weak* topology on \u03a3(A) is metrizable: open balls in metric topology coincide with weak* neighborhoods. Distance is functorial: *-homomorphisms \u03c6:A\u2192B induce distance-preserving maps on state spaces (if compatible with Dirac operators).",
+      "application": "Non-commutative geometry (Connes), quantum field theory renormalization, topological field theory, string theory black holes, optimal transport, machine learning distance metrics.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_lipschitz_seminorm": {
+      "description": "sympy: Lipschitz seminorms and duality",
+      "statement": "For metric space (X,d), Lipschitz seminorm of f:X\u2192\u211d is ||f||_Lip = sup{|f(x)-f(y)|/d(x,y): x\u2260y}. Dual definition: d(x,y)=sup{|f(x)-f(y)|: ||f||_Lip\u22641}. For Connes distance, Lipschitz condition is ||[D,f]||_op\u22641 (bounded commutator with Dirac operator). Equivalence: ||[D,f]||_op\u22641 \u27fa ||f||_Lip\u2264C for some C. This is KMS condition (Kubo-Martin-Schwinger) in quantum statistical mechanics: analyticity of correlation functions. Lipschitz functions form the 'smooth' functions on non-commutative space; dual seminorm captures intrinsic geometry.",
+      "consequence": "Connes distance encodes intrinsic geometry without reference to ambient manifold; purely algebraic definition via C*-algebra and Dirac operator. Lipschitz seminorm defines differentiable structure: vector space of Lipschitz functions is the 'algebra of smooth functions on quantum space'. Metric induces order structure (balls are neighborhoods).",
+      "application": "Non-commutative differential geometry, quantum mechanics (observables), KMS states in statistical mechanics, fractals and self-similar spaces, quantum entanglement geometry.",
+      "expected": true,
+      "passed": true
+    },
+    "test_boundary_monge_kantorovich_optimal_transport": {
+      "description": "sympy: Monge-Kantorovich duality and optimal transport interpretation",
+      "statement": "Monge-Kantorovich (MK) problem: Given probability measures \u03bc,\u03bd on metric space (X,d), find optimal coupling \u03b3 (joint measure on X\u00d7X with marginals \u03bc,\u03bd) minimizing \u222b\u222b d(x,y) d\u03b3(x,y). Dual form (Kantorovich-Rubinstein): W_d(\u03bc,\u03bd) = sup{|\u222bf d\u03bc - \u222bf d\u03bd|: ||f||_Lip\u22641}. This is the Kantorovich distance (Wasserstein distance W_1 for cost d). For Connes distance, states are probability measures on state space; Connes distance d(p,q) is the Kantorovich distance between Dirac measures \u03b4_p, \u03b4_q (point masses). Optimal coupling \u03b3 is supported on pairs (f,f') where f achieves supremum. Mass transport interpretation: minimum cost to move mass from p to q under constraint ||[D,f]||\u22641.",
+      "consequence": "Optimal transport perspective unifies Connes distance with machine learning (Wasserstein GANs, optimal transport cost functions). Heat flow on state space generated by D governs evolution of probability measures. Concentration of measure: states cluster in balls of Connes radius, quantifying 'curvature' of state space.",
+      "application": "Optimal transport theory, machine learning (Wasserstein distances, optimal transport cost), fluid dynamics (gradient flows), quantum mechanics (state evolution), information geometry.",
+      "expected": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,138 @@
+{
+  "name": "Breuil-M\u00e9zard Conjecture: Multiplicity Formula",
+  "description": "Hilbert-Samuel multiplicity of deformation rings via Serre weights; formula e(R_v^\u03c8/\u03d6) = \u03a3 n_\u03c3\u00b7m_\u03c3 enforced by cvc5",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG message passing not needed; constraint geometry handled via SMT solver"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Breuil-M\u00e9zard multiplicity constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic algebra for Serre weight multiplicities"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; Serre weight arithmetic only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; constraints handled via SMT solver"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no group action on weights"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure in this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; pairwise interactions only"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic ops sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology in this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_01_multiplicity_formula_satisfiable": {
+      "satisfiable": true,
+      "expected": true,
+      "passed": true
+    },
+    "test_02_serre_weight_multiplicity": {
+      "formula": "m_\u03c3(\u03c1\u0304) for weight (a,b) with 0 \u2264 a,b \u2264 p-1",
+      "weight_labels": "(a, b)",
+      "weight_range": "[0, p-1] \u00d7 [0, p-1]",
+      "passed": true
+    },
+    "test_03_single_weight_formula": {
+      "n_sigma": 1,
+      "m_sigma": 1,
+      "e_R": 1,
+      "satisfiable": true,
+      "passed": true
+    }
+  },
+  "negative": {
+    "test_01_multiplicity_mismatch_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "test_02_weight_sum_exceeds_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    },
+    "test_03_negative_multiplicity_unsat": {
+      "satisfiable": false,
+      "expected": false,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "test_01_boundary_zero_multiplicity": {
+      "e_R": 0,
+      "satisfiable": true,
+      "passed": true
+    },
+    "test_02_boundary_multiple_weights": {
+      "weights": 2,
+      "sum_formula": "1*2 + 1*3 = 5",
+      "satisfiable": true,
+      "passed": true
+    },
+    "test_03_boundary_large_multiplicity": {
+      "n_sigma": 4,
+      "m_sigma": 5,
+      "e_R": 20,
+      "satisfiable": true,
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

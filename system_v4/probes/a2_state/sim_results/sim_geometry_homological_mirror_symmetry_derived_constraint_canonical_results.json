@@ -1,0 +1,152 @@
+{
+  "name": "Homological Mirror Symmetry Derived Category Constraint Canonical",
+  "description": "Proves that valid HMS mirror pairs must have matching Ext-dimensions in D^b(Coh(X)) and D^b(Fuk(X\u030c)); mismatches are UNSAT",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of homological mirror symmetry derived category constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_test_1_k3_surface_matching_ext": {
+      "space": "K3 surface (dimension 2)",
+      "ext_dim_coh": 2,
+      "ext_dim_fuk": 2,
+      "sat": true,
+      "interpretation": "K3 surface and mirror have matching Ext-dimension (both 2): valid HMS pair"
+    },
+    "positive_test_2_cy3_matching_ext": {
+      "space": "Calabi-Yau 3-fold",
+      "ext_dim_coh": 3,
+      "ext_dim_fuk": 3,
+      "sat": true,
+      "interpretation": "CY 3-fold and mirror have matching Ext-dimension (both 3): valid HMS pair"
+    },
+    "positive_test_3_toric_matching_ext": {
+      "space": "Toric variety (dimension 4)",
+      "ext_dim_coh": 4,
+      "ext_dim_fuk": 4,
+      "sat": true,
+      "interpretation": "Toric variety and mirror have matching Ext-dimension (both 4): valid HMS pair"
+    }
+  },
+  "negative": {
+    "negative_test_1_k3_ext_mismatch_2vs3": {
+      "space": "K3 surface",
+      "ext_dim_coh": 2,
+      "ext_dim_fuk": 3,
+      "sat": false,
+      "unsat": true,
+      "interpretation": "Ext-dimension mismatch (2 vs 3): NOT a valid HMS mirror pair (UNSAT)"
+    },
+    "negative_test_2_cy3_ext_mismatch_3vs5": {
+      "space": "Calabi-Yau 3-fold",
+      "ext_dim_coh": 3,
+      "ext_dim_fuk": 5,
+      "sat": false,
+      "unsat": true,
+      "interpretation": "Ext-dimension mismatch (3 vs 5): NOT a valid HMS mirror pair (UNSAT)"
+    },
+    "negative_test_3_toric_ext_mismatch_4vs2": {
+      "space": "Toric variety",
+      "ext_dim_coh": 4,
+      "ext_dim_fuk": 2,
+      "sat": false,
+      "unsat": true,
+      "interpretation": "Ext-dimension mismatch (4 vs 2): NOT a valid HMS mirror pair (UNSAT)"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_zero_ext_dim": {
+      "ext_dim_coh": 0,
+      "ext_dim_fuk": 0,
+      "sat": true,
+      "interpretation": "Trivial case: zero Ext-dimension in both categories is admissible (degenerate point)"
+    },
+    "boundary_test_2_large_ext_dim_10": {
+      "ext_dim_coh": 10,
+      "ext_dim_fuk": 10,
+      "sat": true,
+      "interpretation": "High-dimensional variety: matching Ext-dimension (both 10) is admissible"
+    },
+    "boundary_test_3_contradictory_constraints": {
+      "ext_dim_coh": 2,
+      "ext_dim_fuk": 2,
+      "constraint": "equal AND strictly_greater",
+      "sat": false,
+      "unsat": true,
+      "interpretation": "Contradictory constraints (equal and strictly greater) are UNSAT"
+    }
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,135 @@
+{
+  "name": "Perverse Sheaf Support Constraint",
+  "description": "dim(supp H^k(F)) \u2264 -k for perverse sheaves on stratified spaces",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure symbolic constraint via cvc5"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "algebraic structure encoded as constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is primary"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of perverse sheaf support constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for dimension constraints"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_support_dimension_k_neg2": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "k=-2, dim(supp H^k)=2 satisfies 2 \u2264 2"
+    },
+    "test_2_support_dimension_k_neg1": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "k=-1, dim(supp H^k)=1 satisfies 1 \u2264 1"
+    },
+    "test_3_support_dimension_k_0": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "k=0, dim(supp H^0)=0 satisfies 0 \u2264 0"
+    }
+  },
+  "negative": {
+    "test_neg_1_violate_k_neg2": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "k=-2, dim=3: violates 3 \u2264 2 constraint"
+    },
+    "test_neg_2_violate_k_neg1": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "k=-1, dim=2: violates 2 \u2264 1 constraint"
+    },
+    "test_neg_3_violate_k_0": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "k=0, dim=1: violates 1 \u2264 0 constraint"
+    }
+  },
+  "boundary": {
+    "test_boundary_1_large_neg_k": {
+      "status": "PASS",
+      "reason": "k=-10, dim=10 satisfies 10 \u2264 10"
+    },
+    "test_boundary_2_skyscraper": {
+      "status": "PASS",
+      "reason": "Skyscraper sheaf with dim=0 always satisfies constraint"
+    },
+    "test_boundary_3_multiple_degrees": {
+      "status": "PASS",
+      "reason": "Multiple cohomology degrees all satisfy constraint"
+    }
+  },
+  "classification": "canonical"
+}

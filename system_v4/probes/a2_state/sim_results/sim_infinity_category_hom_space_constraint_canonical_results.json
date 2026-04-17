@@ -1,0 +1,127 @@
+{
+  "name": "sim_infinity_category_hom_space_constraint_canonical",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "primary proof: Kan complex horn filling constraints on hom spaces"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic derivation of Kan complex axioms for hom spaces P3"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "clifford": null,
+    "cvc5": "load_bearing",
+    "e3nn": null,
+    "geomstats": null,
+    "gudhi": null,
+    "pyg": null,
+    "pytorch": null,
+    "rustworkx": null,
+    "sympy": "supportive",
+    "toponetx": null,
+    "xgi": null,
+    "z3": null
+  },
+  "positive": {
+    "P1_cvc5_hom_fills_inner_horns": {
+      "pass": true,
+      "cvc5_status": "sat",
+      "note": "SAT: hom spaces in \u221e-categories fill inner horns (quasi-categorical)"
+    },
+    "P2_cvc5_hom_is_kan_complex": {
+      "pass": true,
+      "cvc5_status": "sat",
+      "note": "SAT: hom spaces in \u221e-categories are Kan complexes (all horns fill)"
+    },
+    "P3_sympy_kan_complex_horn_axiom": {
+      "pass": true,
+      "note": "Kan complexes: all horns (inner+outer) must fill; n=2 has 3, n=3 has 4, n=4 has 5",
+      "horn_counts": {
+        "2": 3,
+        "3": 4,
+        "4": 5
+      }
+    }
+  },
+  "negative": {
+    "N1_cvc5_inner_only_not_kan": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "UNSAT: hom space is Kan iff it fills both inner and outer horns"
+    },
+    "N2_cvc5_infinity_cat_requires_kan_homs": {
+      "pass": true,
+      "cvc5_status": "unsat",
+      "note": "UNSAT: hom spaces of \u221e-categories must be Kan complexes"
+    }
+  },
+  "boundary": {
+    "B1_ordinary_hom_sets_vacuously_kan": {
+      "pass": true,
+      "note": "Hom sets (0-dim) are vacuously Kan (no horns to fill)",
+      "dimension": "0"
+    },
+    "B2_groupoid_nerve_hom_is_kan": {
+      "pass": true,
+      "note": "Nerve of groupoid: hom spaces are Kan complexes (boundary case)",
+      "is_groupoid": "true",
+      "hom_is_kan": "true"
+    }
+  },
+  "all_pass": true
+}

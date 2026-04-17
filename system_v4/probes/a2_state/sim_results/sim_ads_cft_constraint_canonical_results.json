@@ -1,0 +1,131 @@
+{
+  "name": "AdS/CFT Constraint Canonical",
+  "description": "Holographic duality constraint: d_bulk = d_boundary + 1; encodes via QF_LIA that dimensional parity is mandatory for AdS/CFT",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for dimensional constraints"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for holographic duality"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Encodes holographic constraint d_bulk = d_boundary + 1 via QF_LIA; falsifies dimensional mismatches and duality violations"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "z3 sufficient for integer arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Verifies Brown-Henneaux central charge formula c = (3R)/(2G_N) from AdS/CFT"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for bulk-boundary coupling"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for dimensional parity"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for AdS/CFT symmetry"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for holographic duality"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for boundary constraints"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for dimensional matching"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for CFT-AdS duality"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "holographic_dimensional_parity": {
+      "status": "satisfiable",
+      "interpretation": "AdS/CFT constraint d_bulk = d_boundary + 1 admits physical configurations",
+      "d_boundary": 3,
+      "d_bulk": 4
+    },
+    "brown_henneaux_central_charge": {
+      "status": "satisfiable",
+      "interpretation": "Brown-Henneaux formula c = (3R)/(2G_N) is admissible",
+      "R": 1.0,
+      "G_N": 1.0,
+      "central_charge": 1.5
+    },
+    "bulk_boundary_coupling_admissible": {
+      "status": "satisfiable",
+      "interpretation": "Bulk-boundary coupling with d_bulk = d_boundary + 1 is admissible",
+      "d_boundary": 2,
+      "d_bulk": 3
+    }
+  },
+  "negative": {
+    "dimensional_mismatch_forbidden": {
+      "status": "unsat",
+      "interpretation": "Holographic duality requires d_bulk = d_boundary + 1; mismatch is forbidden"
+    },
+    "duality_collapse_unsat": {
+      "status": "unsat",
+      "interpretation": "AdS/CFT cannot hold when d_bulk = d_boundary; the +1 is mandatory"
+    },
+    "inverted_hierarchy_blocked": {
+      "status": "unsat",
+      "interpretation": "AdS/CFT hierarchy is strict: bulk must be higher dimensional than boundary"
+    }
+  },
+  "boundary": {
+    "minimal_ads_cft": {
+      "status": "satisfiable",
+      "interpretation": "Minimal holographic duality: d_boundary = 1, d_bulk = 2"
+    },
+    "high_dimensional_scaling": {
+      "status": "satisfiable",
+      "interpretation": "Holographic duality scales to arbitrarily high dimensions"
+    },
+    "parity_invariance": {
+      "status": "satisfiable",
+      "interpretation": "Dimensional parity d_bulk - d_boundary = 1 is invariant"
+    }
+  },
+  "classification": "canonical",
+  "all_pass": true
+}

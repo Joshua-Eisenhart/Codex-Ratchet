@@ -1,0 +1,127 @@
+{
+  "name": "sim_geometry_quantum_group_hopf_algebra_constraint_canonical",
+  "domain": "Hopf Algebra Axioms",
+  "constraint": "Coproduct coassociativity: (\u0394\u2297id)\u2218\u0394 = (id\u2297\u0394)\u2218\u0394",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "trivial_identity_coproduct": {
+      "sat": true,
+      "message": "Trivial identity coproduct is coassociative"
+    },
+    "group_algebra_coproduct": {
+      "sat": true,
+      "message": "Group algebra coproduct is coassociative"
+    },
+    "primitive_symmetric_coproduct": {
+      "sat": true,
+      "message": "Primitive symmetric coproduct is coassociative"
+    }
+  },
+  "negative": {
+    "asymmetric_violation_unsat": {
+      "sat": false,
+      "message": "Non-coassociative coproduct (forced contradiction) is UNSAT",
+      "expected_unsat": true
+    },
+    "triple_ordered_reversal_unsat": {
+      "sat": false,
+      "message": "Triple reversal (non-coassociative) is UNSAT",
+      "expected_unsat": true
+    },
+    "inconsistent_nesting_unsat": {
+      "sat": false,
+      "message": "Inconsistent nesting (non-coassociative) is UNSAT",
+      "expected_unsat": true
+    }
+  },
+  "boundary": {
+    "minimal_unit_element": {
+      "sat": true,
+      "message": "Unit element coproduct (minimal case) is coassociative"
+    },
+    "zero_difference_boundary": {
+      "sat": true,
+      "message": "Zero-difference (at boundary) satisfies coassociativity"
+    },
+    "iterated_nesting_depth": {
+      "sat": true,
+      "message": "Iterated nesting maintains coassociativity"
+    }
+  },
+  "classification": "canonical"
+}

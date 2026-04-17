@@ -1,0 +1,214 @@
+{
+  "name": "ExceptionalJordanAlgebraDimensionConstraint",
+  "description": "cvc5/sympy verification: Albert algebra (3\u00d73 Hermitian over octonions) has dimension 27",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Albert algebra dimension constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for dimension formula verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_albert_dimension": {
+      "dimension": 27,
+      "expected": 27,
+      "status": "PASS",
+      "structure": {
+        "matrix_size": 3,
+        "octonion_dim": 8,
+        "diagonal_elements": 3,
+        "off_diagonal_pairs": 3,
+        "off_diagonal_contribution": 24,
+        "total_dimension": 27,
+        "expected": 27,
+        "matches": true
+      }
+    },
+    "positive_sympy_dimension_formula": {
+      "formula_result": 27,
+      "expected": 27,
+      "matches": true,
+      "status": "PASS"
+    },
+    "positive_component_dimension": {
+      "diagonal": 3,
+      "off_diagonal_pairs": 3,
+      "dimension_per_pair": 8,
+      "total": 27,
+      "status": "PASS"
+    },
+    "positive_hermitian_matrix_dimension": {
+      "matrix_size": 3,
+      "basis_dimension": 27,
+      "status": "PASS"
+    },
+    "positive_cvc5_albert_dimension_sat": {
+      "claimed_dimension": 27,
+      "is_satisfiable": true,
+      "status": "PASS"
+    }
+  },
+  "negative": {
+    "negative_wrong_dimension_adjacent_26_26": {
+      "claimed_dimension": 26,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_adjacent_28_28": {
+      "claimed_dimension": 28,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_off_by_3_24": {
+      "claimed_dimension": 24,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_off_by_3_high_30": {
+      "claimed_dimension": 30,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_wrong_cube_8": {
+      "claimed_dimension": 8,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_full_matrix_9": {
+      "claimed_dimension": 9,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_wrong_dimension_full_octonion_matrix_72": {
+      "claimed_dimension": 72,
+      "expected_dimension": 27,
+      "is_unsat": true,
+      "status": "PASS"
+    },
+    "negative_subspace_constraint": {
+      "subspace_sat": true,
+      "total_dimension": 27,
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "boundary_27_is_perfect_cube": {
+      "value": 27,
+      "cube_root": 3,
+      "is_cube_of_3": true,
+      "status": "PASS"
+    },
+    "boundary_diagonal_dimension": {
+      "diagonal_entries": 3,
+      "each_real": 1,
+      "total_diagonal": 3,
+      "status": "PASS"
+    },
+    "boundary_off_diagonal_dimension": {
+      "off_diagonal_pairs": 3,
+      "dimension_per_pair": 8,
+      "total_off_diagonal": 24,
+      "status": "PASS"
+    },
+    "boundary_total_dimension": {
+      "diagonal": 3,
+      "off_diagonal": 24,
+      "total": 27,
+      "expected": 27,
+      "status": "PASS"
+    },
+    "boundary_exceptional_uniqueness": {
+      "property": "Albert algebra is the unique exceptional Jordan algebra",
+      "dimension": 27,
+      "is_unique": true,
+      "status": "PASS"
+    },
+    "boundary_octonion_field_dimension": {
+      "octonion_dimension": 8,
+      "reason": "O = 1 real + 7 imaginary basis elements",
+      "status": "PASS"
+    },
+    "boundary_matrix_size_3x3": {
+      "matrix_size": 3,
+      "reason": "Albert algebra uses 3x3 matrices; 2x2 gives non-exceptional Jordan algebra",
+      "is_minimal_exceptional": true,
+      "status": "PASS"
+    }
+  },
+  "classification": "canonical"
+}

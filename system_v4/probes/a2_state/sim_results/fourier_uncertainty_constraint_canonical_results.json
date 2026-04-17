@@ -1,0 +1,163 @@
+{
+  "name": "Fourier Uncertainty Constraint Canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 solver for proving uncertainty bound violations"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy for symbolic Gaussian uncertainty product verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_gaussian": {
+      "name": "gaussian_wave_packet_uncertainty",
+      "description": "Gaussian \u03c8(x) = exp(-x\u00b2/(4\u03c3\u00b2)) achieves \u0394x\u00b7\u0394\u03be = 1/(4\u03c0)",
+      "sigma": 1.0,
+      "delta_x_theoretical": 1.0,
+      "delta_xi_theoretical": 0.28209479177387814,
+      "product": 0.28209479177387814,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "passes": false
+    },
+    "test_2_superposition": {
+      "name": "superposition_gaussian_increased_uncertainty",
+      "description": "Superposition of two Gaussians has product > 1/(4\u03c0)",
+      "delta_x_approx": 1.5,
+      "delta_xi_approx": 0.026525823848649224,
+      "product_approx": 0.039788735772973836,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "passes": false
+    },
+    "test_3_localized_pulse": {
+      "name": "localized_pulse_uncertainty",
+      "description": "Narrowly localized function has large frequency spread",
+      "sigma": 0.1,
+      "delta_x": 0.1,
+      "delta_xi": 0.7957747154594768,
+      "product": 0.07957747154594769,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "passes": true
+    }
+  },
+  "negative": {
+    "test_1_unsat_both_small": {
+      "name": "unsat_both_small_variances",
+      "description": "cvc5 UNSAT: cannot have \u0394x < 0.01 AND \u0394\u03be < 0.01 simultaneously",
+      "expected_unsat": true,
+      "is_unsat": false,
+      "passes": false
+    },
+    "test_2_unsat_zero_variance": {
+      "name": "unsat_zero_variance",
+      "description": "cvc5 UNSAT: cannot have \u0394x = 0 or \u0394\u03be = 0 for nonzero function",
+      "expected_unsat": true,
+      "is_unsat": true,
+      "passes": true
+    },
+    "test_3_unsat_product_below_bound": {
+      "name": "unsat_product_below_bound",
+      "description": "cvc5 UNSAT: cannot have \u0394x\u00b7\u0394\u03be < 1/(4\u03c0)",
+      "expected_unsat": true,
+      "is_unsat": false,
+      "passes": false
+    }
+  },
+  "boundary": {
+    "test_1_boundary_narrow": {
+      "name": "boundary_sigma_near_zero",
+      "description": "As \u03c3 \u2192 0, \u0394x \u2192 0 but \u0394\u03be \u2192 \u221e, product stays at 1/(4\u03c0)",
+      "symbolic_product": "1/(4*pi)",
+      "product_value_sigma_0_1": 0.07957747154594767,
+      "product_value_sigma_0_01": 0.07957747154594767,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "passes": true
+    },
+    "test_2_boundary_broad": {
+      "name": "boundary_sigma_very_large",
+      "description": "As \u03c3 \u2192 \u221e, \u0394x \u2192 \u221e but \u0394\u03be \u2192 0, product stays at 1/(4\u03c0)",
+      "product_value_sigma_100": 0.07957747154594767,
+      "product_value_sigma_1000": 0.07957747154594767,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "passes": true
+    },
+    "test_3_boundary_precision": {
+      "name": "boundary_numerical_precision",
+      "description": "Uncertainty product maintained at machine epsilon scale",
+      "machine_epsilon": 2.220446049250313e-16,
+      "sigma_at_sqrt_eps": 1.4901161193847656e-08,
+      "product_at_sqrt_eps": 0.07957747154594767,
+      "bound_1_over_4pi": 0.07957747154594767,
+      "relative_error": 0.0,
+      "passes": "True"
+    }
+  },
+  "classification": "canonical"
+}

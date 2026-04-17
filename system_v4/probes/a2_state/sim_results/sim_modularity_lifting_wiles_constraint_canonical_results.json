@@ -1,0 +1,146 @@
+{
+  "name": "ModularityLifting_Wiles_Constraint_Canonical",
+  "description": "Wiles/Taylor-Wiles: p-adic rep as deformation, Taylor-Wiles patching free rank-1, Wiles criterion, base change",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; Galois deformation theory handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; number theory via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_modular_form_deformation": {
+      "passes": true,
+      "weight": 2,
+      "level": 11,
+      "prime": 7,
+      "message": "\u03c1_f is always a deformation of \u03c1\u0304_f (Eichler-Shimura)"
+    },
+    "test_2_taylor_wiles_free_rank1": {
+      "passes": true,
+      "rank_m_infinity": 1,
+      "satisfiable": true,
+      "message": "Taylor-Wiles patching: M_\u221e is rank-1 free (cvc5 SAT)"
+    },
+    "test_3_wiles_criterion": {
+      "passes": true,
+      "fitting_r": 7,
+      "fitting_t": 7,
+      "divides": true,
+      "message": "Wiles criterion: \u03b7(T) | \u03b7(R) is True"
+    }
+  },
+  "negative": {
+    "test_1_non_modular_contradiction": {
+      "passes": true,
+      "is_unsat_equivalent": true,
+      "message": "Claiming \u03c1_f is NOT a deformation contradicts Eichler-Shimura"
+    },
+    "test_2_rank_violation_unsat": {
+      "passes": true,
+      "rank_claimed": 2,
+      "rank_required": 1,
+      "is_unsat": true,
+      "message": "Wrong rank in patching is UNSAT (expect UNSAT)"
+    },
+    "test_3_wiles_criterion_fail": {
+      "passes": true,
+      "fitting_r": 14,
+      "fitting_t": 9,
+      "divides": false,
+      "contradiction_with_iso": true,
+      "message": "Wiles criterion fail: 9 does not divide 14, so NOT iso"
+    }
+  },
+  "boundary": {
+    "test_1_base_change_lemma": {
+      "passes": true,
+      "base_field": "Q",
+      "extension_field": "K (totally real quadratic)",
+      "degree": 2,
+      "message": "Modularity lifts to K iff ramification controlled (passes=True)"
+    },
+    "test_2_absolute_irreducibility": {
+      "passes": true,
+      "property": "\u03c1\u0304 is absolutely irreducible",
+      "necessary_for_lifting": true,
+      "message": "Absolute irreducibility is necessary for Taylor-Wiles lifting"
+    },
+    "test_3_auxiliary_primes": {
+      "passes": true,
+      "num_auxiliary_primes": 5,
+      "satisfiable": true,
+      "message": "Auxiliary prime selection is feasible"
+    }
+  },
+  "classification": "canonical"
+}

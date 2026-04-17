@@ -1,0 +1,144 @@
+{
+  "name": "Presentable \u221e-Category Constraint Canonical",
+  "description": "Encodes presentability via \u03ba-compact generators, AFT, and Yoneda full fidelity",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/algebraic computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; \u221e-category structure handled algebraically"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; categorical logic via cvc5/sympy"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; \u221e-categorical geometry handled symbolically"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; categorical structure encoded in constraints"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard algebraic computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_kappa_compact_generators": {
+      "status": "PASS",
+      "description": "\u03ba-compact generating set within cardinality bound",
+      "kappa": 5,
+      "gen_cardinality": 3,
+      "within_bound": true,
+      "solver_result": "sat"
+    },
+    "test_aft_right_adjoint_exists": {
+      "status": "PASS",
+      "description": "Adjoint Functor Theorem: colimit-preserving F between presentable categories has right adjoint",
+      "solver_result": "sat",
+      "is_satisfiable": true
+    },
+    "test_yoneda_fin_fully_faithful": {
+      "status": "PASS",
+      "description": "Yoneda embedding Y: Fin \u2192 Fun(Fin^op, Sets) is fully faithful",
+      "fin_objects": 5,
+      "yoneda_injection": 5,
+      "fully_faithful": true
+    }
+  },
+  "negative": {
+    "test_generators_exceed_kappa": {
+      "status": "PASS",
+      "description": "Generator set exceeding \u03ba bound violates presentability (UNSAT)",
+      "kappa": 3,
+      "gen_cardinality": 7,
+      "violates": true,
+      "is_unsat": true
+    },
+    "test_aft_violation": {
+      "status": "PASS",
+      "description": "Colimit-preserving functor without right adjoint violates AFT (UNSAT)",
+      "solver_result": "unsat",
+      "is_unsat": true
+    },
+    "test_yoneda_non_injective": {
+      "status": "PASS",
+      "description": "Non-injective Yoneda violates full faithfulness",
+      "hom_sets_distinct": true,
+      "yoneda_injective": false,
+      "violates_full_faithfulness": true
+    }
+  },
+  "boundary": {
+    "test_topos_presentable": {
+      "status": "PASS",
+      "description": "Every \u221e-topos is presentable (generating set = site shape)",
+      "is_satisfiable": true
+    },
+    "test_compact_generate_presentable": {
+      "status": "ERROR",
+      "error": "type object 'Kind' has no attribute 'IFF'"
+    },
+    "test_yoneda_image_presentable": {
+      "status": "PASS",
+      "description": "Image of Yoneda embedding for small category is presentable",
+      "source_category_small": true,
+      "image_presentable": true
+    }
+  },
+  "classification": "canonical"
+}

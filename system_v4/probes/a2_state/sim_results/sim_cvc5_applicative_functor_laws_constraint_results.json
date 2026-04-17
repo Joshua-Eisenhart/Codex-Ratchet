@@ -1,0 +1,154 @@
+{
+  "name": "sim_cvc5_applicative_functor_laws_constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pytorch not needed; pure symbolic/logical computation via cvc5 and sympy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "PyG not needed; applicative structure encoded as constraint variables"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing: cvc5 SMT solver proves applicative functor laws via quantifier-free linear integer arithmetic"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic verification of applicative laws with concrete functions"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra not needed; applicative laws are algebraic"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "geomstats not needed; no differential geometry required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn not needed; no SO(3) equivariance required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx not needed; applicative structure is compositional"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx not needed; standard logical computations sufficient"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi not needed; no persistent homology required"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_identity_law": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Identity law: pure id <*> v = v holds"
+    },
+    "test_2_composition_law": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Composition law: pure (.) <*> u <*> v <*> w = u <*> (v <*> w) holds"
+    },
+    "test_3_homomorphism_law": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Homomorphism law: pure f <*> pure x = pure (f x) holds"
+    },
+    "test_4_interchange_law": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Interchange law: u <*> pure y = pure (\u03bbf. f y) <*> u holds"
+    },
+    "test_5_sympy_applicative": {
+      "status": "PASS",
+      "identity_law": "True",
+      "composition_law": "True",
+      "homomorphism_law": "True",
+      "interchange_law": "True",
+      "reason": "Applicative laws verified with concrete functions f(x)=2x, g(x)=3x"
+    }
+  },
+  "negative": {
+    "neg_test_1_identity_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Identity law cannot be violated (UNSAT confirms necessity)"
+    },
+    "neg_test_2_composition_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Composition law cannot be violated (UNSAT confirms necessity)"
+    },
+    "neg_test_3_homomorphism_fail": {
+      "status": "PASS",
+      "expected": "UNSAT",
+      "actual": "UNSAT",
+      "reason": "Homomorphism law cannot be violated (UNSAT confirms necessity)"
+    }
+  },
+  "boundary": {
+    "boundary_test_1_constant_function": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Applicative laws hold with constant functions"
+    },
+    "boundary_test_2_self_composition": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Applicative laws hold with self-composition (f . f)"
+    },
+    "boundary_test_3_chain_four_functions": {
+      "status": "PASS",
+      "expected": "SAT",
+      "actual": "SAT",
+      "reason": "Applicative laws hold with chains of 4 composed functions"
+    }
+  },
+  "classification": "canonical"
+}

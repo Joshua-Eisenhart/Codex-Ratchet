@@ -1,0 +1,135 @@
+{
+  "name": "sim_automorphic_l_function_constraint_canonical",
+  "description": "Functional equation: \u039b(s,\u03c0) = \u03b5(\u03c0)\u00b7\u039b(1-s,\u03c0\u0303) with |\u03b5(\u03c0)| = 1",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this proof"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing constraint solver for epsilon factor |\u03b5| = 1"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive verification of functional equation for \u03b6(s)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable to analytic number theory"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not applicable"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_1_riemann_zeta_functional_equation": {
+      "function": "\u03b6(s)",
+      "epsilon_factor": 1,
+      "abs_epsilon": 1,
+      "within_bound": true,
+      "zeta_2": 1.6449340668482264,
+      "zeta_minus1": -0.08333333333333333,
+      "pass": true
+    },
+    "test_2_dirichlet_l_function": {
+      "function": "L(s,\u03c7)",
+      "character": "\u03c7 (primitive Dirichlet character)",
+      "epsilon_factor_magnitude": 1,
+      "pass": true
+    },
+    "test_3_sympy_epsilon_magnitude": {
+      "character": "principal character mod 4",
+      "epsilon_value": 1,
+      "epsilon_magnitude": 1,
+      "magnitude_equals_1": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "test_1_cvc5_epsilon_unsat": {
+      "error": "Subexpressions must have the same type:\nEquation: (= (* epsilon epsilon) 1)\nType 1: Real\nType 2: Int\n",
+      "pass": false
+    },
+    "test_2_cvc5_false_functional_equation": {
+      "error": "Subexpressions must have the same type:\nEquation: (= (* epsilon epsilon) 1)\nType 1: Real\nType 2: Int\n",
+      "pass": false
+    },
+    "test_3_cvc5_epsilon_magnitude_gt_1": {
+      "error": "Subexpressions must have the same type:\nEquation: (= (* epsilon epsilon) 1)\nType 1: Real\nType 2: Int\n",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "test_1_boundary_epsilon_equals_1": {
+      "error": "Subexpressions must have the same type:\nEquation: (= epsilon 1)\nType 1: Real\nType 2: Int\n",
+      "pass": false
+    },
+    "test_2_boundary_epsilon_equals_minus1": {
+      "error": "Subexpressions must have the same type:\nEquation: (= epsilon (- 1))\nType 1: Real\nType 2: Int\n",
+      "pass": false
+    },
+    "test_3_boundary_epsilon_magnitude_just_outside": {
+      "error": "'cvc5.cvc5_python_base.TermManager' object has no attribute 'mkRationalValue'",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

@@ -1,0 +1,169 @@
+{
+  "name": "DerivedStackCotangentComplex",
+  "domain": "derived algebraic geometry",
+  "claim": "Tor amplitude constraint: cotangent complex L_X has amplitude in [-n, 0] for n-truncated derived scheme",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for amplitude constraints"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for algebraic constraints"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 used instead for QF_LIA"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "core solver: QF_LIA for amplitude interval constraints"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of smooth scheme boundary (amplitude=0)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cotangent complex"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for derived algebraic constraints"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for amplitude constraints"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this constraint domain"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cotangent complex"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for amplitude constraints"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "test_positive_n1_amplitude_minus1_0": {
+      "n": 1,
+      "amplitude_lower": -1,
+      "amplitude_upper": 0,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_n2_amplitude_minus2_0": {
+      "n": 2,
+      "amplitude_lower": -2,
+      "amplitude_upper": 0,
+      "is_sat": true,
+      "expected": true
+    },
+    "test_positive_smooth_amplitude_0_0": {
+      "amplitude_lower": 0,
+      "amplitude_upper": 0,
+      "is_sat": true,
+      "expected": true
+    }
+  },
+  "negative": {
+    "test_negative_amplitude_1_0_malformed": {
+      "amplitude_lower": 1,
+      "amplitude_upper": 0,
+      "is_sat": false,
+      "expected": false
+    },
+    "test_negative_amplitude_below_neg_n": {
+      "n": 1,
+      "amplitude_lower": -2,
+      "amplitude_upper": 0,
+      "is_sat": false,
+      "expected": false
+    },
+    "test_negative_amplitude_upper_positive": {
+      "amplitude_lower": -1,
+      "amplitude_upper": 1,
+      "is_sat": false,
+      "expected": false
+    }
+  },
+  "boundary": {
+    "test_boundary_smooth_amplitude_unique": {
+      "equation": "amplitude = 0",
+      "solutions": [
+        0
+      ],
+      "expected": [
+        0
+      ]
+    },
+    "test_boundary_smooth_in_range_n1": {
+      "n": 1,
+      "amplitude_range": [
+        -1,
+        0
+      ],
+      "smooth_amplitude_0_in_range": true,
+      "expected": true
+    },
+    "test_boundary_smooth_in_range_n2": {
+      "n": 2,
+      "amplitude_range": [
+        -2,
+        0
+      ],
+      "smooth_amplitude_0_in_range": true,
+      "expected": true
+    },
+    "test_boundary_smooth_in_range_n3": {
+      "n": 3,
+      "amplitude_range": [
+        -3,
+        0
+      ],
+      "smooth_amplitude_0_in_range": true,
+      "expected": true
+    },
+    "test_boundary_smooth_dimension_formula": {
+      "scheme_type": "smooth k-dimensional",
+      "dimension_cotangent_complex": "k",
+      "amplitude": 0,
+      "expected": true
+    }
+  },
+  "classification": "canonical"
+}

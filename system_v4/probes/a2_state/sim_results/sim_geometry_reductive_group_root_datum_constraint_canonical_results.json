@@ -1,0 +1,166 @@
+{
+  "name": "ReductiveGroupRootDatum_Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "sympy: supportive symbolic computation for root datum verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "A1_valid": {
+      "name": "A1_root_datum",
+      "rank": 1,
+      "roots": "[[ 2]\n [-2]]",
+      "coroots": "[[ 1]\n [-1]]",
+      "pairings": [
+        2,
+        2
+      ],
+      "pairing_valid": true
+    },
+    "A2_valid": {
+      "name": "A2_root_datum",
+      "rank": 2,
+      "roots": "[[ 2  0]\n [-1  1]\n [-1 -1]]",
+      "coroots": "[[ 1 -1]\n [-1  0]\n [ 0  1]]",
+      "pairings": [
+        2,
+        2,
+        2
+      ],
+      "pairing_valid": true
+    },
+    "B2_valid": {
+      "name": "B2_root_datum",
+      "rank": 2,
+      "roots": "[[ 2  0]\n [ 0  2]\n [ 1  1]\n [ 1 -1]]",
+      "coroots": "[[ 1 -1]\n [ 0  1]\n [ 1  1]\n [ 1 -1]]",
+      "pairings": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "pairing_valid": true
+    }
+  },
+  "negative": {
+    "neg_pairing_1": {
+      "name": "pairing_equals_1_unsat",
+      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 1",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    },
+    "neg_pairing_3": {
+      "name": "pairing_equals_3_unsat",
+      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 3",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    },
+    "neg_pairing_0": {
+      "name": "pairing_equals_0_unsat",
+      "constraint": "\u27e8\u03b1, \u03b1\u2228\u27e9 = 0",
+      "expected": "UNSAT",
+      "actual": "unsat",
+      "pass": false
+    }
+  },
+  "boundary": {
+    "boundary_rank_0": {
+      "name": "rank_0_trivial",
+      "rank": 0,
+      "roots": "[]",
+      "coroots": "[]",
+      "description": "Empty root system is valid"
+    },
+    "boundary_large_alpha": {
+      "name": "large_alpha_small_coroot",
+      "constraint": "\u03b1=1000, \u27e8\u03b1,\u03b1\u2228\u27e9=2 \u2192 \u03b1\u2228=1/500 (integer model has no solution)",
+      "expected": "UNSAT (for integer rooted lattice)",
+      "actual": "unsat",
+      "note": "Boundary: integer lattice cannot represent this pairing"
+    },
+    "boundary_minimal": {
+      "name": "minimal_valid_configuration",
+      "constraint": "\u03b1=1, \u03b1\u2228=2 \u2192 \u27e8\u03b1,\u03b1\u2228\u27e9=2",
+      "expected": "SAT",
+      "actual": "sat",
+      "pass": false
+    }
+  },
+  "classification": "classical_baseline",
+  "classification_reason": "truth_audit_demoted_2026-04-17",
+  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+}

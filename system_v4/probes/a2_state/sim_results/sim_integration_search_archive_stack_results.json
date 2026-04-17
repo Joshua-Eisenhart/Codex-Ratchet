@@ -1,0 +1,70 @@
+{
+  "name": "sim_integration_search_archive_stack",
+  "classification": "classical_baseline",
+  "divergence_log": "Classical integration baseline: this is a full search/archive tool-stack reference lane, not a canonical nonclassical witness.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing objective and behavior surface for all search methods"
+    },
+    "optuna": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing TPE search on the shared 4D objective"
+    },
+    "pymoo": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing NSGA-II Pareto front on shared error vs norm objectives"
+    },
+    "ribs": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing shared archive of candidates emitted by all search lanes"
+    },
+    "deap": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing genetic search on the shared 4D objective"
+    },
+    "evotorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing SNES search on the shared 4D objective"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "optuna": "load_bearing",
+    "pymoo": "load_bearing",
+    "ribs": "load_bearing",
+    "deap": "load_bearing",
+    "evotorch": "load_bearing"
+  },
+  "tool_bundle": "search_archive_stack",
+  "positive": {
+    "optuna_best_error": 0.7931686043739319,
+    "deap_best_error": 0.020725416019558907,
+    "evotorch_best_error": 0.011122314259409904,
+    "pymoo_front_size": 28,
+    "pymoo_min_error": 0.05769708752632141,
+    "archive_coverage": 0.3611111111111111,
+    "archive_num_elites": 13,
+    "archive_objective_max": -0.011122314259409904,
+    "pass": true
+  },
+  "negative": {
+    "zero_candidate_error": 6.230000019073486,
+    "degenerate_archive_coverage": 0.027777777777777776,
+    "degenerate_archive_num_elites": 1,
+    "pass": true
+  },
+  "boundary": {
+    "best_single_method_error": 0.08098410815000534,
+    "pymoo_front_size": 13,
+    "archive_coverage": 0.2777777777777778,
+    "pass": true
+  },
+  "overall_pass": true
+}

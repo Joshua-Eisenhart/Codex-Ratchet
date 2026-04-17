@@ -1,0 +1,125 @@
+{
+  "name": "Hochschild Cohomology Gerstenhaber Bracket Constraint",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 SMT solver: load_bearing proof of Gerstenhaber bracket graded Jacobi constraint"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "positive_trivial_zero_brackets": {
+      "sat": "sat",
+      "passed": true
+    },
+    "positive_unital_degree_preserving": {
+      "sat": "sat",
+      "passed": true
+    },
+    "positive_small_degree_example": {
+      "sat": "sat",
+      "passed": true
+    }
+  },
+  "negative": {
+    "negative_jacobi_violation": {
+      "sat": "unsat",
+      "unsat": true,
+      "passed": true
+    },
+    "negative_asymmetry_violation": {
+      "sat": "sat",
+      "unsat": false,
+      "passed": true
+    },
+    "negative_inconsistent_composition": {
+      "sat": "unsat",
+      "unsat": true,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "boundary_zero_gradation": {
+      "sat": "sat",
+      "passed": true
+    },
+    "boundary_large_degree_difference": {
+      "sat": "sat",
+      "passed": true
+    },
+    "boundary_multiple_compositions": {
+      "sat": "sat",
+      "passed": true
+    }
+  },
+  "classification": "canonical"
+}

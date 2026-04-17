@@ -1,6 +1,6 @@
 {
   "name": "lego_coupling_candidates",
-  "generated_at": "2026-04-16T01:18:28.253753+00:00",
+  "generated_at": "2026-04-17T10:39:09.481298+00:00",
   "rows": [
     {
       "lego_family_id": "carrier_admission_density_matrix",
@@ -29,8 +29,8 @@
       ],
       "coupling_probe": "sim_integrated_dependency_chain.py",
       "existing_anchor": "integrated_dependency_chain_results.json",
-      "existing_anchor_stage": "coupling",
-      "existing_anchor_promotion_ready": true,
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
       "status": "existing_anchor",
       "topology_rerun_needed": false,
       "coexistence_rerun_needed": true,
@@ -137,7 +137,7 @@
       "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
       "existing_anchor": "pyg_dynamic_edge_werner_results.json",
       "existing_anchor_stage": "assembly",
-      "existing_anchor_promotion_ready": true,
+      "existing_anchor_promotion_ready": false,
       "status": "existing_anchor",
       "topology_rerun_needed": true,
       "coexistence_rerun_needed": true,
@@ -157,7 +157,7 @@
       "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
       "existing_anchor": "pyg_dynamic_edge_werner_results.json",
       "existing_anchor_stage": "assembly",
-      "existing_anchor_promotion_ready": true,
+      "existing_anchor_promotion_ready": false,
       "status": "existing_anchor",
       "topology_rerun_needed": false,
       "coexistence_rerun_needed": true,
@@ -284,68 +284,5 @@
     "missing_pairwise_count": 0,
     "blocked_from_assembly_count": 3,
     "supporting_only_count": 2
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

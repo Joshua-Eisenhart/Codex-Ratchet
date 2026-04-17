@@ -1,11 +1,11 @@
 {
   "name": "torch_axis0_3qubit",
   "family": "AXIS_0",
-  "description": "Axis 0 = nabla_eta I_c on the 3-qubit shell parameter space. 7-dimensional gradient field over eta = (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C). Two cuts: I_c(A>BC) and I_c(AB>C). Key result: the XX_23 relay (CNOT_BC) is load-bearing -- theta_BC gradient is nonzero for I_c(A>BC) only when the relay is active.",
+  "description": "Axis 0 = nabla_eta I_c on the 3-qubit shell parameter space. 7-dimensional gradient field over eta = (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C). Two cuts: I_c(A>BC) and I_c(AB>C). Key result: the relay_23 coupling (CNOT_BC) is load-bearing on the flat 3-qubit baseline -- theta_BC gradient is nonzero for I_c(A>BC) only when the relay is active.",
   "formal_definition": {
     "system": "3 qubits A, B, C -- dimension 8x8",
     "eta": "7 shell parameters: (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C)",
-    "gates": "CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the XX_23 relay",
+    "gates": "CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the relay_23 coupling",
     "noise": "Z-dephasing on qubit A with strength p",
     "I_c_A_BC": "S(BC) - S(ABC)  (coherent info: A given BC)",
     "I_c_AB_C": "S(C) - S(ABC)  (coherent info: AB given C)",
@@ -466,7 +466,7 @@
   },
   "classification": "classical_baseline",
   "substrate": "flat_3q_hilbert",
-  "elapsed_seconds": 0.27,
+  "elapsed_seconds": 0.22,
   "summary": {
     "total_tests": 28,
     "total_pass": 28,

@@ -18,7 +18,7 @@
       "reason": "z3 UNSAT: H_holo=0 AND Q_HCS>0 structurally impossible; degenerate holographic boundary cannot support emergence"
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
       "reason": "z3 sufficient for holographic degeneracy UNSAT at pairwise level; excluded"
     },
@@ -33,24 +33,24 @@
       "reason": "Clifford grade structure not primary pairwise coupling target; excluded"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
       "reason": "Riemannian structure not needed for pairwise baseline; excluded"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
       "reason": "SO(3) equivariance not relevant to holographic/contact/symplectic pairwise; excluded"
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "MERA layer DAG as rustworkx directed graph; verifies acyclic entanglement tree [NOT INSTALLED]"
+      "reason": "MERA layer DAG as rustworkx directed graph; verifies acyclic entanglement tree"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "Triadic hyperedge {H_holo, H_contact, H_symp} encodes irreducible three-way coupling [NOT INSTALLED]"
+      "reason": "Triadic hyperedge {H_holo, H_contact, H_symp} encodes irreducible three-way coupling"
     },
     "toponetx": {
       "tried": true,
@@ -98,19 +98,21 @@
       "interpretation": "|r(Q_HCS, MI)| > 0.99; Q_HCS co-varies linearly with MI when shells fixed"
     },
     "P4_rustworkx_MERA_DAG_acyclic": {
-      "passed": false,
-      "error": "rustworkx not installed"
+      "passed": true,
+      "n_nodes": 5,
+      "interpretation": "MERA layer DAG is acyclic; entanglement renormalization has no feedback loops"
     },
     "P5_xgi_triadic_hyperedge_coupling": {
-      "passed": false,
-      "error": "xgi not installed"
+      "passed": true,
+      "n_hyperedges": 1,
+      "interpretation": "Triadic hyperedge {H_holo, H_contact, H_symp} encodes three-way irreducible coupling"
     },
     "P6_toponetx_holographic_boundary_cell": {
       "passed": true,
       "n_cells": 1,
       "interpretation": "CellComplex admits holographic boundary 2-cell; topology of boundary well-defined"
     },
-    "pass": false
+    "pass": true
   },
   "negative": {
     "N1_z3_unsat_H_holo_zero_Q_nonzero": {
@@ -146,11 +148,11 @@
     },
     "pass": true
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "n_tests": 11,
-    "n_pass": 9
+    "n_pass": 11
   },
   "Q_form": "Q_HCS = MI \u00d7 H_holo \u00d7 H_contact \u00d7 H_symp",
   "shell_entropies": {

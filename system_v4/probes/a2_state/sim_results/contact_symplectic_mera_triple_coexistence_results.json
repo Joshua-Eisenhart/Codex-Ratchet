@@ -43,14 +43,14 @@
       "reason": "E(3) equivariance not relevant to triple coexistence; excluded"
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "triple-layer coexistence DAG: three shell nodes + joint constraint edge [NOT INSTALLED]"
+      "reason": "triple-layer coexistence DAG: three shell nodes + joint constraint edge"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "triadic hyperedge {Contact, Symplectic, MERA} \u2014 triple coexistence as irreducible 3-edge [NOT INSTALLED]"
+      "reason": "triadic hyperedge {Contact, Symplectic, MERA} \u2014 triple coexistence as irreducible 3-edge"
     },
     "toponetx": {
       "tried": true,
@@ -101,12 +101,14 @@
       "interpretation": "I_c survived as monotone decreasing across all MERA layers under triple coexistence; I_c increase under triple coupling excluded"
     },
     "P3_rustworkx_triple_coexistence_graph": {
-      "passed": false,
-      "error": "rustworkx not installed"
+      "passed": true,
+      "n_nodes": 3,
+      "n_edges": 3,
+      "interpretation": "Triple coexistence graph survived as fully connected triangle"
     },
     "P4_xgi_triple_coexistence_hyperedge": {
-      "passed": false,
-      "error": "xgi not installed"
+      "passed": true,
+      "interpretation": "Triple coexistence as irreducible 3-hyperedge survived"
     },
     "P5_pytorch_Ic_input_gt_final_5_seeds": {
       "passed": true,
@@ -141,7 +143,7 @@
       ],
       "interpretation": "I_c input > final (overall) across 5 seeds confirmed via pytorch; net I_c increase under triple coexistence excluded"
     },
-    "pass": false
+    "pass": true
   },
   "negative": {
     "N1_z3_unsat_Ic_increase_under_triple_impossible": {
@@ -176,11 +178,11 @@
     },
     "pass": true
   },
-  "overall_pass": false,
+  "overall_pass": true,
   "summary": {
-    "all_pass": false,
+    "all_pass": true,
     "n_tests": 9,
-    "n_pass": 7
+    "n_pass": 9
   },
   "divergence_log": [
     "Triple joint-admissible count survived as strictly fewer than all pairwise counts",

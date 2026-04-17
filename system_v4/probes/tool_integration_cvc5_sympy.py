@@ -72,6 +72,13 @@ def _to_serializable(value: Any) -> Any:
     return value
 
 
+def _cvc5_int(term) -> int:
+    text = str(term).strip()
+    if text.startswith("(- ") and text.endswith(")"):
+        return -int(text[3:-1].strip())
+    return int(text)
+
+
 def _gate_results(section: str) -> Dict[str, Any]:
     missing = []
     if not TOOL_MANIFEST["cvc5"]["tried"]:
@@ -83,7 +90,7 @@ def _gate_results(section: str) -> Dict[str, Any]:
 
 def _solver() -> "cvc5.Solver":
     solver = cvc5.Solver()
-    solver.setLogic("QF_LIA")
+    solver.setLogic("QF_NIA")
     solver.setOption("produce-models", "true")
     return solver
 
@@ -198,7 +205,7 @@ def _ordered_integer_roots_from_coeffs(coeff_data: Dict[str, Any]) -> Dict[str, 
         "expected_roots": coeff_data["roots"],
     }
     if status.isSat():
-        result["solver_roots"] = [int(str(solver.getValue(root))) for root in [r0, r1, r2]]
+        result["solver_roots"] = [_cvc5_int(solver.getValue(root)) for root in [r0, r1, r2]]
     return result
 
 
@@ -215,7 +222,7 @@ def _repeated_root_from_sympy_data(coeff_data: Dict[str, Any]) -> Dict[str, Any]
         "derivative_from_sympy": str(coeff_data["derivative"]),
     }
     if status.isSat():
-        result["repeated_root"] = int(str(solver.getValue(r)))
+        result["repeated_root"] = _cvc5_int(solver.getValue(r))
     return result
 
 
@@ -308,7 +315,7 @@ def run_boundary_tests() -> Dict[str, Any]:
         "interval": [0, 0],
     }
     if interval_status.isSat():
-        root_value = int(str(solver.getValue(root)))
+        root_value = _cvc5_int(solver.getValue(root))
         boundary_result["root"] = root_value
         boundary_result["sympy_factorization_at_boundary"] = str(sp.factor(interval_data["polynomial"]))
         boundary_result["boundary_exact"] = root_value == 0

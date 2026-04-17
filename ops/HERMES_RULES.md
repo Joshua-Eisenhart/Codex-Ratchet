@@ -2,11 +2,34 @@
 
 Every Hermes brief invokes this file. Every worker spawned by Hermes also reads this.
 
+## 0. MANDATORY Salience Preamble (inject at every worker spawn)
+
+**Prepend this 140-word block to EVERY worker's system prompt, before any task description.** Probe-tested 2026-04-17 on fresh Haiku; primed faster than file-read and held under pressure. Source: `~/wiki/harness/SALIENCE_PREAMBLE.md` Block B.
+
+```
+Harness preamble. You are working under a nominalist constraint-admissibility harness.
+
+Root axiom: a = a iff a ~ b. Identity is probe-relative, not primitive. The only primitive is ~, probe-relative indistinguishability under an active probe family M.
+
+Every substantive claim needs three supports: probe family M, admissibility (survivor status under active constraints C), and a quotient (the equivalence class S/~_M). If you cannot cite all three, demote the claim to provisional.
+
+Banned verbs: causes, creates, drives, produces, generates, makes, forces, determines. Preferred verbs: survived, admitted, excluded, indistinguishable, coupled with, co-varies under, UNSAT under, consistent with.
+
+Status ladder: exists < runs < passes local rerun < canonical by process. Never imply a higher label from a lower one.
+
+Preserve divergence. Do not collapse surviving candidates. Pushback on harness conflicts rather than smoothing. Read SALIENCE_LOADER.md before other harness files.
+```
+
+For token-constrained contexts, use Block A (60 words). For claim-producing tasks, also append Block C from `SALIENCE_PREAMBLE.md`.
+
+Injection-time priming is load-bearing — it catches agents that skip the file read. Never omit.
+
 ## 1. Harness location (authoritative)
 
 - Harness: `~/wiki/harness/`
-- Entry point: `~/wiki/harness/00_READ_FIRST.md`
-- Every Claude worker reads the entry point before any task.
+- Entry point: `~/wiki/harness/SALIENCE_LOADER.md` (1-page compressed loader — read-time fallback)
+- Full order: SALIENCE_LOADER → 00_READ_FIRST → 15_root_axiom_card → 01 → 02 → 03 → 16_dictionary → 19_grammar → 20_phrasebook → rest per `00_READ_FIRST.md`
+- Every Claude worker reads the loader before any task — AND receives Block B preamble at spawn time.
 
 ## 2. Preflight protocol (run before any main work)
 

@@ -29,9 +29,9 @@ Execute Tier D only if the gate is honestly open. Keep overnight polling/launch 
 
 Hard gate before any Tier D launch work:
 - /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md must honestly declare Tier B green/pass state; accept explicit green/pass language such as `Status: GREEN`, `Gate: GREEN`, or `Tier B gate PASSES`
-- all 5 /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b_<layer>.md files must exist
+- tier_b layer evidence must be sufficient for the four Tier D boundaries; if `tier_b.md` is green/pass by authority override, do not block solely on a missing fifth `tier_b_<layer>.md` filename
 - runner must be live, not just a stale log path
-- no existing Tier D execution is already in progress or passed
+- no active conflicting Tier D controller session is already in progress; partial prior Tier D artifacts or DONE queue entries for some boundaries are not blockers and should be treated as resumable progress
 
 If the hard gate is not open:
 - stop immediately without changing files
@@ -53,7 +53,7 @@ If the hard gate is open:
 
 Execution rules:
 - Hermes is controller and truth authority.
-- Spawn exactly four disjoint boundary workers, one per boundary.
+- Spawn exactly the missing boundary workers needed to complete D1-D4; if one or more boundaries already exist and have queue/result evidence, treat them as completed or in-progress artifacts rather than blockers.
 - Use Claude Code print mode in isolated worktrees if Claude spawning is needed; tmux is unavailable on this machine.
 - Each worker must be bounded to its one probe path and must never execute sims directly.
 - Workers only write probes, commit, and append basenames to `ops/queue_tier_d.txt`.
@@ -91,12 +91,12 @@ Audit-log discipline:
 - `exited status=<gate_pass|blocker|failed|killed>` is only for actual process end
 
 Blocker discipline once gate is open:
-- if launch is blocked by preflight, missing references, runner not live, or a true active scope collision, write the exact blocker to `tier_d.md`
+- if launch is blocked by preflight, missing boundary references actually needed for D1-D4, runner not live, or a true active scope collision, write the exact blocker to `tier_d.md`
 - append any judgment-needed question to `_steward_questions.md`
 - if the controller remains alive for another cycle, append `cycle_end status=polling` or `cycle_end status=idle` as appropriate
 - use `exited status=blocker` only if the Tier D controller is actually ending
 - stop rather than guessing
 
 Completion condition:
-- either Tier D is launched cleanly and status files reflect that, or a concrete blocker is written with exact evidence paths.
+- either the remaining Tier D boundaries are launched cleanly and status files reflect that, or a concrete blocker is written with exact evidence paths.
 - if a bounded work batch finishes and the controller stays alive, append `cycle_end status=working` rather than `exited`.

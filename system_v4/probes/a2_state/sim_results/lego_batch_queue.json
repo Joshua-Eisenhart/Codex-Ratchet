@@ -1,6 +1,6 @@
 {
   "name": "lego_batch_queue",
-  "generated_at": "2026-04-15T23:59:25.427428+00:00",
+  "generated_at": "2026-04-17T09:05:31.202922+00:00",
   "rows": [
     {
       "task_id": "lego-batch-004",
@@ -25,12 +25,12 @@
       "lego_or_pair": "operator_family_admission",
       "target_stage": "coupling",
       "depends_on": [
+        "sim_sim_clifford_chirality_admissible_generators.py",
         "sim_sim_compound_z3_clifford_e3nn_so3_chirality.py"
       ],
       "priority": 6,
-      "ready": false,
+      "ready": true,
       "blocked_by": [
-        "deeper_lego_work_needed",
         "successor_only_supporting"
       ],
       "recommended_sim": "sim_operator_geometry_compatibility.py",
@@ -241,72 +241,9 @@
   ],
   "summary": {
     "task_count": 14,
-    "ready_count": 10,
-    "blocked_count": 4,
+    "ready_count": 11,
+    "blocked_count": 3,
     "supporting_only_count": 2,
     "tool_pressure_task_count": 0
-  },
-  "classification": "classical_baseline",
-  "tool_manifest": {
-    "pytorch": {
-      "tried": false,
-      "used": false,
-      "reason": "no tensor computation required in this classical baseline probe"
-    },
-    "pyg": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph learning required; probe operates on density matrices not graph structures"
-    },
-    "z3": {
-      "tried": false,
-      "used": false,
-      "reason": "no SMT constraint solving or UNSAT proof required in this probe"
-    },
-    "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "z3 sufficient for all separability and product-form UNSAT proofs in this sim"
-    },
-    "sympy": {
-      "tried": false,
-      "used": false,
-      "reason": "no symbolic computation required in this classical baseline probe"
-    },
-    "clifford": {
-      "tried": false,
-      "used": false,
-      "reason": "no Clifford rotor or geometric algebra required in this probe"
-    },
-    "geomstats": {
-      "tried": false,
-      "used": false,
-      "reason": "no Riemannian manifold computation required in this probe"
-    },
-    "e3nn": {
-      "tried": false,
-      "used": false,
-      "reason": "no SO(3)-equivariant neural network computation required here"
-    },
-    "rustworkx": {
-      "tried": false,
-      "used": false,
-      "reason": "no graph traversal or path computation required in this probe"
-    },
-    "xgi": {
-      "tried": false,
-      "used": false,
-      "reason": "no hypergraph structure required; probe uses matrix operations"
-    },
-    "toponetx": {
-      "tried": false,
-      "used": false,
-      "reason": "no chain complex or cell complex computation required in this probe"
-    },
-    "gudhi": {
-      "tried": false,
-      "used": false,
-      "reason": "no persistent homology or Rips complex required in this probe"
-    }
   }
 }

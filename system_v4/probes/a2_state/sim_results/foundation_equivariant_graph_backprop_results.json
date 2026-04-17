@@ -3,7 +3,7 @@
   "probe": "pure_math_foundation_equivariant_graph_backprop",
   "purpose": "Train a tiny graph-structured model on a two-qubit density matrix with autograd central and swap symmetry load-bearing.",
   "schema": "foundation_equivariant_graph_backprop/v1",
-  "classification": "canonical",
+  "classification": "classical_baseline",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -378,5 +378,7 @@
     "ablation_mse": 0.7729555403394333,
     "ablation_swap_error": 7.459705546877719e-10
   },
-  "caveat": "This is a foundation lego only. The graph is intentionally tiny; the point is to make message passing and autograd materially necessary on a basic quantum object."
+  "caveat": "This is a foundation lego only. The graph is intentionally tiny; the point is to make message passing and autograd materially necessary on a basic quantum object.",
+  "downgrade_reason": "orphan_no_source_2026-04-17",
+  "original_classification": "canonical"
 }

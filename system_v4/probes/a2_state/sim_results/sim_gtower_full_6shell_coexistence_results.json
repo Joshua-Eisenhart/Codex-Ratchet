@@ -34,24 +34,24 @@
       "reason": "load_bearing: Cl(3,0) even subalgebra is Spin(3); a Spin(3) rotor is verified to produce an SO(3) rotation matrix satisfying all 6 group constraints simultaneously via sandwich product; the rotor norm=1 is the Sp(1) condition."
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": true,
-      "reason": "not installed"
+      "reason": "load_bearing: SpecialOrthogonal(n=3).random_point() draws genuine SO(3) samples; each sample verified to pass all 6 group membership tests simultaneously -- confirming the geometric embedding chain is numerically stable for randomly sampled SO(3) elements."
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": true,
-      "reason": "not installed"
+      "reason": "load_bearing: e3nn D^1 (l=1) Wigner-D matrix for a random rotation is verified unitary (U(3) member), det=1 (SU(3) member), real (O(3)/SO(3) member), and passes Sp(6) embedding check -- confirms the defining SO(3) irrep simultaneously satisfies all 6 tower constraints."
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": true,
-      "reason": "not installed"
+      "reason": "load_bearing: rustworkx PyDiGraph encodes the full G-tower DAG with 6 nodes and 5 directed edges; topological sort order confirmed; path from GL(3,R) to Sp(6) has length exactly 5 (the full 6-level chain); node metadata carries group membership labels."
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": true,
-      "reason": "not installed"
+      "reason": "load_bearing: xgi Hypergraph with a 6-node hyperedge; all C(6,2)=15 pairwise sub-faces, C(6,3)=20 triple sub-faces, C(6,4)=15 quad sub-faces, and C(6,5)=6 pent sub-faces are explicitly verified to be sub-sets of the 6-node edge, confirming the full 6-shell coexistence hyperedge structure."
     },
     "toponetx": {
       "tried": false,
@@ -160,6 +160,48 @@
       "pass": true,
       "e12_squared": -1.0
     },
+    "T11_e3nn_D1_irrep_all_six": {
+      "pass": true,
+      "is_real": true,
+      "six_checks": {
+        "GL": true,
+        "O": true,
+        "SO": true,
+        "U": true,
+        "SU": true,
+        "Sp": true
+      },
+      "tolerance_used": 1e-05
+    },
+    "T12_geomstats_SO3_samples_all_six": {
+      "pass": true,
+      "num_samples": 5
+    },
+    "T13_rustworkx_gtower_dag": {
+      "pass": true,
+      "topological_sort": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "path_GL_to_Sp_length": 5,
+      "num_nodes": 6,
+      "num_edges": 5
+    },
+    "T14_xgi_6node_hyperedge_subfaces": {
+      "pass": true,
+      "num_pairs": 15,
+      "num_triples": 20,
+      "num_quads": 15,
+      "num_pents": 6,
+      "all_pairs_subsets": true,
+      "all_triples_subsets": true,
+      "all_quads_subsets": true,
+      "all_pents_subsets": true
+    },
     "T15_gudhi_rips_filtration_H0_1_H1_0": {
       "pass": true,
       "H0": 1,
@@ -251,11 +293,18 @@
       "failures": 0,
       "total_samples": 100
     },
+    "B06_gtower_dag_acyclic": {
+      "pass": true
+    },
     "B07_gudhi_two_node_H0_1_H1_0": {
       "pass": true,
       "H0": 1,
       "H1": 0,
       "description": "2-node boundary case: H0=1 (connected), H1=0 (no loops)"
+    },
+    "B08_xgi_maximal_face_is_6node": {
+      "pass": true,
+      "max_face_size": 6
     },
     "B09_sympy_sp6_dimension_21": {
       "pass": true,
@@ -289,6 +338,15 @@
         "Sp": true
       }
     },
+    "B11_xgi_sub_triple_plus_full_edge": {
+      "pass": true,
+      "num_edges": 2,
+      "num_nodes": 6
+    },
+    "B12_rustworkx_SO3_to_Sp6_path_length_3": {
+      "pass": true,
+      "path_length": 3
+    },
     "B13_sympy_so3_generators_traceless_antisymmetric": {
       "pass": true,
       "traceless": true,
@@ -296,11 +354,11 @@
     }
   },
   "summary": {
-    "total_tests": 28,
-    "passed": 28,
+    "total_tests": 36,
+    "passed": 36,
     "failed": 0,
     "failed_keys": [],
-    "overall_pass": false
+    "overall_pass": true
   },
-  "overall_pass": false
+  "overall_pass": true
 }

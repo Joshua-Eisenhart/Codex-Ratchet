@@ -19,9 +19,9 @@
       "reason": "UNSAT: MI=0 with Q_HSG>0 impossible \u2014 entanglement required for nonzero four-factor HSG product; gating constraint for bridge claim N1 (load-bearing)."
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "z3 is sufficient for the UNSAT impossibility proof in HSG bridge step; cvc5 provides no additional constraint resolution here"
     },
     "sympy": {
       "tried": true,
@@ -34,24 +34,24 @@
       "reason": "Clifford algebra Cl(3,0) rotor not invoked; H_hopf is fixed analytic log(2)/2 in bridge claims step"
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "Riemannian geometry not invoked in rho construction or MI correlation bridge computation for Q_HSG scalar product"
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "SO(3) equivariant networks not needed for scalar HSG bridge claim tests on four-factor Q_HSG product"
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "no graph traversal required in HSG bridge claims density matrix or Pearson-r computation for Q_HSG"
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": "no hyperedge structure required in 8x8 rho construction or MI scalar HSG bridge tests"
     },
     "toponetx": {
       "tried": true,

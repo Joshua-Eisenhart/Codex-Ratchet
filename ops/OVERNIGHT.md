@@ -26,6 +26,19 @@ These are answered in advance so no terminal freezes overnight waiting for owner
 
 8. **If a worker can't decide**: append question to `_steward_questions.md`, continue with default-action OR skip that sub-task and log deferred. Never block the whole tier.
 
+9. **Stale scope entries from completed work are NOT collisions.** `/tmp/hermes_active_scopes.txt` entries older than 2 hours from terminals that have registered `cycle_end status=gate_pass` or written their tier's completion report should be treated as historical, not active. A new Hermes terminal seeing 5 stale Tier B entries when Tier B probes are all runner-DONE and `tier_b.md` shows gate GREEN should proceed, not block.
+
+10. **Gate declarations are based on probe-execution state, not preflight cleanliness.** If all tier's probes show `# DONE` in their queue file, the gate can be declared GREEN even if preflight would block NEW worker spawns. Preflight protects new launches; gate reports describe completed work.
+
+11. **144 non-conformant "canonical" probes exist** (per `~/wiki/projects/codex-ratchet/canonical_conformance_audit.md`). Top offending families:
+   - `sim_gerbestack_weyl_*` (37)
+   - `sim_qit_szilard_*` (15)
+   - `sim_qit_weyl_*` (10)
+   - `sim_qit_carnot_*` (9)
+   Default overnight action: do NOT auto-downgrade. Flag for owner triage; these may carry content value even without full SIM_TEMPLATE test sections. Tier A Hermes may add missing test sections where feasible (lowest-hanging fruit: sims missing ONLY boundary_tests).
+
+12. **VIZ WIP files are NOT Tier scope collisions.** If Tier B/D preflight sees untracked files under `system_v4/visualization/`, `system_v4/tests/test_viz_*`, or `scripts/render_manim_*`, these belong to Tier VIZ and should be ignored (Tier VIZ cron commits them on its own schedule).
+
 ## Work queue priorities through the night
 
 Per active reality (2026-04-17 00:45 PDT):

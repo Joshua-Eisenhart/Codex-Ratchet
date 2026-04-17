@@ -25,7 +25,14 @@ import z3
 import sympy as sp
 
 
-classification = "canonical"
+classification = "classical_baseline"
+# DOWNGRADED 2026-04-17 by Opus: integer encoding of root systems
+# (rank==6, coxeter==12 standing in for E6) is a toy formulation.
+# No actual G-structure, Cartan matrix, Hopf fibration math, or spinor carrier.
+# Fails detect_capstone_fabrication.py rules. Keep as classical baseline terrain-map
+# only; do NOT treat as canonical boundary UNSAT. Real D1 requires full-rich
+# encoding per ENFORCEMENT_AND_PROCESS_RULES Rule 2 (load-bearing tool on
+# actual claim, not trivial integer bounds).
 
 
 TOOL_MANIFEST = {

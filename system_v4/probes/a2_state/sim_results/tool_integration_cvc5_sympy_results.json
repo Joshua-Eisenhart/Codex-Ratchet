@@ -1,88 +1,28 @@
 {
   "boundary": {
-    "double_root_boundary_survives": {
-      "derivative_from_sympy": "2*x - 4",
-      "expected": "sat",
-      "polynomial_from_sympy": "x**2 - 4*x + 4",
-      "repeated_root": 2,
-      "status": "sat",
-      "sympy_gcd": "x - 2"
-    },
-    "singleton_interval_boundary_survives": {
-      "boundary_exact": true,
-      "coefficients_from_sympy": [
-        1,
-        -11,
-        28,
-        0
+    "boundary_import_gate": {
+      "missing": [
+        "cvc5"
       ],
-      "expected": "sat",
-      "interval": [
-        0,
-        0
-      ],
-      "polynomial_from_sympy": "x**3 - 11*x**2 + 28*x",
-      "root": 0,
-      "status": "sat",
-      "sympy_factorization_at_boundary": "x*(x - 7)*(x - 4)"
+      "status": "skipped"
     }
   },
   "classification": "canonical",
   "name": "tool_integration_cvc5_sympy",
   "negative": {
-    "squarefree_sympy_data_blocks_repeated_root_in_cvc5": {
-      "derivative_from_sympy": "3*x**2 - 2*x - 6",
-      "expected": "unsat",
-      "polynomial_from_sympy": "x**3 - x**2 - 6*x",
-      "squarefree_under_sympy": true,
-      "status": "unsat",
-      "sympy_discriminant": "900"
-    },
-    "sympy_polynomial_excludes_nonroot_in_cvc5": {
-      "coefficients_from_sympy": [
-        1,
-        -3,
-        2,
-        0
+    "negative_import_gate": {
+      "missing": [
+        "cvc5"
       ],
-      "expected": "unsat",
-      "forced_candidate": 5,
-      "polynomial_from_sympy": "x**3 - 3*x**2 + 2*x",
-      "status": "unsat"
+      "status": "skipped"
     }
   },
   "positive": {
-    "sympy_coefficients_feed_cvc5_vieta_solver": {
-      "coefficients_from_sympy": [
-        1,
-        2,
-        -5,
-        -6
+    "positive_import_gate": {
+      "missing": [
+        "cvc5"
       ],
-      "expected_roots": [
-        -3,
-        -1,
-        2
-      ],
-      "roundtrip_exact": true,
-      "roundtrip_residual": "0",
-      "solver_roots": [
-        -3,
-        -1,
-        2
-      ],
-      "status": "sat",
-      "sympy_factorization": "(x - 2)*(x + 1)*(x + 3)",
-      "sympy_roundtrip_polynomial": "x**3 + 2*x**2 - 5*x - 6"
-    },
-    "sympy_derivative_feed_cvc5_repeated_root_witness": {
-      "derivative_from_sympy": "3*x**2 - 3",
-      "expected_shared_factor": "x - 1",
-      "gcd_matches_expected": true,
-      "polynomial_from_sympy": "x**3 - 3*x + 2",
-      "repeated_root": 1,
-      "status": "sat",
-      "sympy_gcd": "x - 1"
+      "status": "skipped"
     }
   },
   "tool_integration_depth": {
@@ -91,14 +31,14 @@
   },
   "tool_manifest": {
     "cvc5": {
-      "reason": "cvc5 is the load-bearing SMT layer that admits or excludes integer root configurations using exact coefficient and derivative data supplied by SymPy.",
-      "tried": true,
-      "used": true
+      "reason": "cvc5 import failed on this machine; queue execution will decide whether SMT admission and exclusion over SymPy-derived coefficients is available.",
+      "tried": false,
+      "used": false
     },
     "sympy": {
       "reason": "SymPy is the load-bearing symbolic layer that constructs exact polynomials, derivatives, discriminants, and gcd data whose outputs are fed directly into cvc5 constraints.",
       "tried": true,
-      "used": true
+      "used": false
     }
   }
 }

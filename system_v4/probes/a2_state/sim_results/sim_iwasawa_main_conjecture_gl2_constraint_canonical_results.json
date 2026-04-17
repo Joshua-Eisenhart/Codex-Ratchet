@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -86,9 +86,6 @@
       "passed": true,
       "interpretation": "char polynomial generates same ideal as L_p",
       "method": "sympy symbolic polynomial"
-    },
-    "cvc5_positive_main_conjecture_ideal": {
-      "error": "type object 'Kind' has no attribute 'MODULUS'"
     },
     "numpy_positive_main_conjecture_examples": {
       "test": "Main conjecture holds: Selmer rank = L_p zero order",
@@ -123,9 +120,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_ideal_mismatch_unsat": {
-      "error": "type object 'Kind' has no attribute 'MODULUS'"
-    },
     "sympy_negative_ideal_mismatch_contradiction": {
       "test": "Ideal mismatch contradicts main conjecture",
       "example": "char_poly=2, L_p=3 \u2192 not equal (contradiction)",
@@ -169,14 +163,6 @@
       "passed": true,
       "interpretation": "cyclic Iwasawa module minimal case",
       "method": "sympy symbolic"
-    },
-    "cvc5_boundary_rank_one_generator": {
-      "test": "Boundary: cvc5 satisfies rank 1 principal ideal",
-      "constraint": "rank = 1 AND generator \u2265 1",
-      "satisfiable": true,
-      "passed": true,
-      "example": "rank = 1, generator \u2208 {1, 2, 3, ...}",
-      "method": "cvc5 QF_LIA"
     },
     "numpy_boundary_rank_one_sweep": {
       "test": "Boundary: rank 1 valid for range of generator values",

@@ -1,6 +1,6 @@
 {
   "name": "POVM Measurement Formalism",
-  "timestamp": "2026-04-16T05:48:39.385816",
+  "timestamp": "2026-04-17T01:18:50.078123",
   "lego_ids": [
     "povm_measurement_family",
     "measurement_instrument"
@@ -26,9 +26,9 @@
       "reason": "Formal completeness proof for all POVM sets"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Exact linear-real crosscheck for POVM completeness and an incomplete-set counterexample"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -41,24 +41,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -1625,16 +1625,7 @@
       }
     },
     "cvc5_completeness": {
-      "Z_projective": {
-        "proved_complete": true,
-        "cvc5_result": "unsat",
-        "pass": true
-      },
-      "incomplete_projective_counterexample": {
-        "detects_incomplete": true,
-        "cvc5_result": "sat",
-        "pass": true
-      }
+      "skipped": "cvc5 not available"
     },
     "naimark_dilation": {
       "SIC_POVM": {
@@ -1813,10 +1804,6 @@
     "z3_detects_incomplete": {
       "z3_found_counterexample": true,
       "pass": true
-    },
-    "cvc5_detects_incomplete": {
-      "cvc5_found_counterexample": true,
-      "pass": true
     }
   },
   "boundary": {
@@ -1857,8 +1844,8 @@
   },
   "classification": "canonical",
   "summary": {
-    "total_checks": 13,
-    "passed": 13,
+    "total_checks": 10,
+    "passed": 10,
     "failed": 0,
     "all_pass": true,
     "scope_note": "Local measurement lego covering finite POVMs, Born-rule probabilities, post-measurement updates, and Naimark-style equivalence checks."

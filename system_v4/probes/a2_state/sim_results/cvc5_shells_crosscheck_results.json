@@ -24,8 +24,8 @@
     },
     "cvc5": {
       "tried": true,
-      "used": true,
-      "reason": "independent cross-check solver + SyGuS synthesis"
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": false,
@@ -87,37 +87,37 @@
       "description": "Bloch vector norm > 1 is impossible for any valid density matrix",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.003308,
-      "cvc5_result": "unsat",
-      "cvc5_time_s": 0.001123,
-      "solvers_agree": true,
-      "both_unsat": true,
-      "cross_check_verdict": "CONFIRMED",
-      "pass": true
+      "z3_time_s": 0.002845,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "both_unsat": false,
+      "cross_check_verdict": "AMBIGUOUS",
+      "pass": false
     },
     "claim2_channel_contraction_gt1_unsat": {
       "description": "CPTP channel contraction factor > 1 is impossible (p in [0,1] => lam=1-p in [0,1])",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.00111,
-      "cvc5_result": "unsat",
-      "cvc5_time_s": 0.00104,
-      "solvers_agree": true,
-      "both_unsat": true,
-      "cross_check_verdict": "CONFIRMED",
-      "pass": true
+      "z3_time_s": 0.001017,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "both_unsat": false,
+      "cross_check_verdict": "AMBIGUOUS",
+      "pass": false
     },
     "claim3_entropy_gt_log2_unsat": {
       "description": "Qubit entropy exceeding log(2) is impossible (bounded maximum entropy)",
       "expected": "unsat",
       "z3_result": "unsat",
-      "z3_time_s": 0.000921,
-      "cvc5_result": "unsat",
-      "cvc5_time_s": 0.00072,
-      "solvers_agree": true,
-      "both_unsat": true,
-      "cross_check_verdict": "CONFIRMED",
-      "pass": true
+      "z3_time_s": 0.000736,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "both_unsat": false,
+      "cross_check_verdict": "AMBIGUOUS",
+      "pass": false
     }
   },
   "negative": {
@@ -125,31 +125,31 @@
       "description": "r in [0,2] with r > 1 is SAT (constraint dropped)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000562,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.000661,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.000465,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 0.0,
+      "solvers_agree": false,
+      "pass": false
     },
     "claim2_contraction_gt1_sat_if_p_negative": {
       "description": "p in [-1,1] allows lam > 1 (non-physical p)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000644,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.000822,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.000564,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "pass": false
     },
     "claim3_entropy_gt_log2_sat_if_unbounded": {
       "description": "s in [0,2] with s > log(2) is SAT (physical upper bound removed)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000652,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.000854,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.000733,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "pass": false
     }
   },
   "boundary": {
@@ -157,52 +157,49 @@
       "description": "Bloch norm = 1 is SAT (pure state at sphere boundary)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000611,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.000732,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.000468,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "pass": false
     },
     "claim2_contraction_exactly_1_sat": {
       "description": "Contraction = 1 is SAT (identity channel, p=0)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000807,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.001204,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.000725,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "pass": false
     },
     "claim3_entropy_at_log2_sat": {
       "description": "Entropy in [log2_lower, log2_upper] is SAT (maximally mixed state)",
       "expected": "sat",
       "z3_result": "sat",
-      "z3_time_s": 0.000659,
-      "cvc5_result": "sat",
-      "cvc5_time_s": 0.000801,
-      "solvers_agree": true,
-      "pass": true
+      "z3_time_s": 0.00049,
+      "cvc5_result": "cvc5_unavailable",
+      "cvc5_time_s": 1e-06,
+      "solvers_agree": false,
+      "pass": false
     }
   },
   "sygus_synthesis": {
-    "attempted": true,
-    "success": true,
-    "synthesis_result": "solution_found",
-    "solution": "(lambda ((r Real)) (+ r (- 1.0)))",
-    "elapsed_s": 0.002585,
-    "note": "SyGuS found minimal generator for Bloch ball boundary"
+    "attempted": false,
+    "reason": "cvc5 not available",
+    "result": null
   },
   "summary": {
-    "confirmed_claims": [
+    "confirmed_claims": [],
+    "ambiguous_claims": [
       "claim1_bloch_norm_gt1_unsat",
       "claim2_channel_contraction_gt1_unsat",
       "claim3_entropy_gt_log2_unsat"
     ],
-    "ambiguous_claims": [],
-    "all_positive_pass": true,
-    "all_negative_pass": true,
-    "all_boundary_pass": true
+    "all_positive_pass": false,
+    "all_negative_pass": false,
+    "all_boundary_pass": false
   },
-  "all_pass": true,
+  "all_pass": false,
   "classification": "canonical"
 }

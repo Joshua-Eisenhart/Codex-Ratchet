@@ -4,77 +4,55 @@
   "description": "cvc5 proves Kan extension universal property: unique factorization and rank bounds",
   "positive_tests": {
     "test_1_unique_factorization": {
-      "status": "PASS",
-      "expected": "SAT with u = u'",
-      "actual": "SAT",
-      "unique_factorization": true,
-      "reason": "Kan extension guarantees unique mediating morphism",
-      "method": "cvc5 QF_LIA constraint solver"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_2_rank_colimit_bound": {
-      "status": "PASS",
-      "expected": "rank(Lan_K F(d)) \u2264 7",
-      "actual": "rank_value = 1",
-      "satisfies_rank_bound": true,
-      "sum_source_ranks": 7,
-      "reason": "Colimit of F over comma category bounds the Kan extension rank",
-      "method": "cvc5 QF_LIA constraint solver"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_3_comma_category_colimit": {
-      "status": "PASS",
-      "expected": "3 \u2264 rank(Lan_K F(d)) \u2264 6",
-      "actual": "rank = 3",
-      "in_colimit_range": true,
-      "source_max": 3,
-      "source_sum": 6,
-      "reason": "Lan_K F(d) is characterized as colimit over comma category K/d",
-      "method": "cvc5 QF_LIA constraint solver"
+      "status": "skipped",
+      "reason": "cvc5 not available"
+    },
+    "test_sympy_kan_symbolic": {
+      "test": "Sympy: Kan extension rank bound",
+      "rank_formula": "rank(Lan_K F(d)) \u2264 \u03a3 rank(F(c_i))",
+      "source_ranks": [
+        2,
+        3
+      ],
+      "bound": 5,
+      "symbolic_verified": true,
+      "method": "sympy symbolic computation"
     }
   },
   "negative_tests": {
     "test_neg_1_two_distinct_factorizations": {
-      "test": "cvc5 proves UNSAT: two distinct mediating morphisms both satisfying \u03b3\u2218u = \u03b3\u2218u'",
-      "satisfiable": false,
-      "passed": true,
-      "interpretation": "Kan extension universal property excludes non-unique factorization",
-      "method": "cvc5 QF_LIA proof"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_neg_2_rank_exceeds_colimit": {
-      "test": "cvc5 proves UNSAT: rank(Lan_K F(d)) > \u03a3 rank(F(c))",
-      "satisfiable": true,
-      "passed": false,
-      "interpretation": "Colimit structure enforces rank bound",
-      "method": "cvc5 QF_LIA proof"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_neg_3_no_mediating_morphism": {
-      "test": "cvc5 proves UNSAT: dimension mismatch prevents mediating morphism",
-      "satisfiable": false,
-      "passed": true,
-      "interpretation": "Universal property requires compatible codomain",
-      "method": "cvc5 QF_LIA proof"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "boundary_tests": {
     "test_boundary_1_empty_source": {
-      "status": "PASS",
-      "expected": "SAT with Lan_F = 0",
-      "actual": "SAT",
-      "interpretation": "Empty source yields initial object (zero rank)",
-      "method": "cvc5 QF_LIA"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_boundary_2_single_object_kan": {
-      "status": "PASS",
-      "expected": "Lan_F(d) = F(c) = 4",
-      "actual": "Lan_F = 4",
-      "single_object_degeneracy": true,
-      "method": "cvc5 QF_LIA"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     },
     "test_boundary_3_identity_restriction": {
-      "status": "PASS",
-      "expected": "Lan_id F(c) = F(c) = 5",
-      "actual": "Lan_F = 5",
-      "identity_preserved": true,
-      "method": "cvc5 QF_LIA"
+      "status": "skipped",
+      "reason": "cvc5 not available"
     }
   },
   "tool_manifest": {
@@ -94,13 +72,13 @@
       "reason": "cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
-      "used": false,
+      "used": true,
       "reason": ""
     },
     "clifford": {

@@ -18,8 +18,8 @@
       "reason": "cvc5 handles QF_LRA directly"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
+      "tried": false,
+      "used": false,
       "reason": "load-bearing: proves tropical triangle inequality via QF_LRA"
     },
     "sympy": {
@@ -79,7 +79,7 @@
   },
   "positive": {
     "test_1_tropical_triangle_cvc5": {
-      "error": "'cvc5.cvc5_python_base.Solver' object has no attribute 'mkOr'",
+      "error": "name 'cvc5' is not defined",
       "cvc5_available": false
     },
     "test_2_tropical_polynomial_factorization": {
@@ -98,9 +98,7 @@
   },
   "negative": {
     "test_1_violate_triangle_inequality": {
-      "attempted_violation": "d_xy > min(d_xz, d_zy)",
-      "cvc5_result": "sat",
-      "violation_possible": true
+      "error": "name 'cvc5' is not defined"
     },
     "test_2_invalid_factorization": {
       "description": "Check that wrong factorization is detected",

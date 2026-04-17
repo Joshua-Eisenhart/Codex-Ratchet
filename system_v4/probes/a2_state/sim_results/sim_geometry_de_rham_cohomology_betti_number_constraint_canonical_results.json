@@ -19,9 +19,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -34,24 +34,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -68,7 +68,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -80,42 +80,30 @@
   },
   "positive": {
     "pos_test_1_S2_betti": {
-      "status": "SAT",
-      "expected": "SAT",
-      "pass": true,
-      "description": "S\u00b2 Betti numbers (b_0=1, b_1=0, b_2=1) with Poincar\u00e9 duality"
+      "error": "No module named 'cvc5'",
+      "pass": false
     },
     "pos_test_2_T2_betti": {
-      "status": "SAT",
-      "expected": "SAT",
-      "pass": true,
-      "description": "T\u00b2 Betti numbers (b_0=1, b_1=2, b_2=1) with \u03c7=0"
+      "error": "No module named 'cvc5'",
+      "pass": false
     },
     "pos_test_3_CP2_betti": {
-      "status": "SAT",
-      "expected": "SAT",
-      "pass": true,
-      "description": "CP\u00b2 Betti numbers with Poincar\u00e9 duality b_0=b_4"
+      "error": "No module named 'cvc5'",
+      "pass": false
     }
   },
   "negative": {
     "neg_test_1_negative_betti": {
-      "status": "UNSAT",
-      "expected": "UNSAT",
-      "pass": true,
-      "description": "b_k >= 0 AND b_k < 0 is unsatisfiable"
+      "error": "No module named 'cvc5'",
+      "pass": false
     },
     "neg_test_2_poincare_violation": {
-      "status": "UNSAT",
-      "expected": "UNSAT",
-      "pass": true,
-      "description": "Poincar\u00e9 duality b_0=b_2 cannot coexist with b_0\u2260b_2"
+      "error": "No module named 'cvc5'",
+      "pass": false
     },
     "neg_test_3_euler_contradiction": {
-      "status": "UNSAT",
-      "expected": "UNSAT",
-      "pass": true,
-      "description": "\u03c7=2 and \u03c7=0 cannot both be true for the same manifold"
+      "error": "No module named 'cvc5'",
+      "pass": false
     }
   },
   "boundary": {
@@ -144,10 +132,8 @@
       "description": "\u03c7 = \u03a3(-1)^k b_k for T\u00b2 equals 0"
     },
     "bound_test_3_S4_poincare": {
-      "status": "SAT",
-      "expected": "SAT",
-      "pass": true,
-      "description": "S\u2074 Poincar\u00e9 duality: b_0 = b_4, middle dimension b_2=0"
+      "error": "No module named 'cvc5'",
+      "pass": false
     }
   },
   "classification": "canonical"

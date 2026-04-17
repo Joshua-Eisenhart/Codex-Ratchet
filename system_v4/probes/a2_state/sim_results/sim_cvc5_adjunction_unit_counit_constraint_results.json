@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 is the primary solver"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "Primary solver for adjunction proofs"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": false,
@@ -76,61 +76,8 @@
     "toponetx": null,
     "gudhi": null
   },
-  "positive": {
-    "test_1_left_triangle": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Left triangle holds"
-    },
-    "test_2_right_triangle": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Right triangle holds"
-    },
-    "test_3_both_triangles": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Both triangles hold"
-    }
-  },
-  "negative": {
-    "test_neg_1_left_fails": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Triangle violation impossible"
-    },
-    "test_neg_2_right_fails": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Triangle violation impossible"
-    },
-    "test_neg_3_both_fail": {
-      "status": "PASS",
-      "expected": "UNSAT",
-      "actual": "UNSAT",
-      "reason": "Both fail impossible"
-    }
-  },
-  "boundary": {
-    "test_boundary_1_identity": {
-      "status": "PASS",
-      "expected": "SAT",
-      "actual": "SAT",
-      "reason": "Identity adjoint holds"
-    },
-    "test_boundary_2_single": {
-      "status": "PASS",
-      "reason": "Single object trivial"
-    },
-    "test_boundary_3_self_adj": {
-      "status": "PASS",
-      "reason": "Self-adjoint holds"
-    }
-  },
+  "positive": {},
+  "negative": {},
+  "boundary": {},
   "classification": "canonical"
 }

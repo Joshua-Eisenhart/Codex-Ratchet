@@ -17,9 +17,9 @@
       "reason": "load_bearing: UNSAT proof that Werner state with p > p_sep=1/3 (separable) cannot have I_c > 0; encodes analytic separability boundary"
     },
     "cvc5": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed \u2014 z3 UNSAT proof is sufficient"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -32,24 +32,24 @@
       "reason": "not needed \u2014 no Clifford algebra structure here"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed \u2014 graph structure not Riemannian"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not needed \u2014 no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing: directed DAG of quantum channels (edge iff I_c > 0); topological sort identifies ordering; betweenness centrality finds quantum bottleneck"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing: 3-regime hyperedge over Werner nodes: regime_positive (I_c>0), regime_entangled (I_c<=0 but p<1/3), regime_separable (p>=1/3); intersection check identifies boundary nodes"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -178,85 +178,8 @@
     "neg_node_isolated_confirmed": true
   },
   "boundary": {
-    "rustworkx_dag_nodes": 20,
-    "rustworkx_dag_edges": 10,
-    "rustworkx_topo_sort": [
-      19,
-      18,
-      17,
-      16,
-      15,
-      14,
-      13,
-      12,
-      11,
-      10,
-      9,
-      8,
-      7,
-      6,
-      5,
-      0,
-      1,
-      2,
-      3,
-      4
-    ],
-    "rustworkx_is_dag": true,
-    "quantum_bottleneck_node_idx": 4,
-    "quantum_bottleneck_p": 0.2105,
-    "quantum_bottleneck_ic": 0.08352,
-    "quantum_bottleneck_centrality": 0.0,
-    "quantum_bottleneck_method": "highest_p_in_ic_positive_subgraph (complete graph, all betweenness=0)",
-    "rustworkx_betweenness_all": {
-      "0": 0.0,
-      "1": 0.0,
-      "2": 0.0,
-      "3": 0.0,
-      "4": 0.0
-    },
-    "rustworkx_status": "ok",
-    "xgi_regime_ic_positive": [
-      0,
-      1,
-      2,
-      3,
-      4
-    ],
-    "xgi_regime_entangled": [
-      5,
-      6
-    ],
-    "xgi_regime_separable": [
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19
-    ],
-    "xgi_intersection_pos_ent": [],
-    "xgi_intersection_pos_sep": [],
-    "xgi_intersection_ent_sep": [],
-    "xgi_intersection_all_three": [],
-    "xgi_boundary_node_regimes": {
-      "idx": 5,
-      "p": 0.2632,
-      "ic": -0.020417,
-      "in_regime_ic_positive": false,
-      "in_regime_entangled": true,
-      "in_regime_separable": false
-    },
-    "xgi_num_nodes": 20,
-    "xgi_num_edges": 3,
-    "xgi_status": "ok",
+    "rustworkx_status": "not available",
+    "xgi_status": "not available",
     "z3_separable_ic_positive_result": "unsat",
     "z3_separable_ic_positive_is_unsat": true,
     "z3_ic_at_sep_boundary": -0.14384104,
@@ -272,23 +195,16 @@
       0.0,
       0.2105
     ],
-    "quantum_bottleneck_node_idx": 4,
-    "quantum_bottleneck_p": 0.2105,
-    "quantum_bottleneck_ic": 0.08352,
-    "quantum_bottleneck_centrality": 0.0,
-    "quantum_bottleneck_method": "highest_p_in_ic_positive_subgraph (complete graph, all betweenness=0)",
-    "xgi_regime_ic_positive_count": 5,
-    "xgi_regime_entangled_count": 2,
-    "xgi_regime_separable_count": 13,
+    "quantum_bottleneck_node_idx": "N/A",
+    "quantum_bottleneck_p": "N/A",
+    "quantum_bottleneck_ic": "N/A",
+    "quantum_bottleneck_centrality": "N/A",
+    "quantum_bottleneck_method": "N/A",
+    "xgi_regime_ic_positive_count": 0,
+    "xgi_regime_entangled_count": 0,
+    "xgi_regime_separable_count": 0,
     "xgi_intersection_pos_sep": [],
-    "xgi_boundary_node": {
-      "idx": 5,
-      "p": 0.2632,
-      "ic": -0.020417,
-      "in_regime_ic_positive": false,
-      "in_regime_entangled": true,
-      "in_regime_separable": false
-    },
+    "xgi_boundary_node": {},
     "bifurcation_p252_isolated": true,
     "bifurcation_visible": true,
     "agg_norm_deep_pos": 1.12565,

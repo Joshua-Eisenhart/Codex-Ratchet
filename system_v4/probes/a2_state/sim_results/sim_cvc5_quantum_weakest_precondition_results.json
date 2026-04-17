@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -77,16 +77,6 @@
     "gudhi": null
   },
   "positive": {
-    "test_wp_eigenvalue_preservation": {
-      "expected": "sat",
-      "actual": "sat",
-      "pass": true
-    },
-    "test_wp_compositionality": {
-      "expected": "sat",
-      "actual": "sat",
-      "pass": true
-    },
     "test_wp_hadamard": {
       "Q": "Matrix([[1, 0], [0, 0]])",
       "wp_H_Q": "Matrix([[1/2, 1/2], [1/2, 1/2]])",
@@ -100,16 +90,6 @@
     }
   },
   "negative": {
-    "test_wp_eigenvalue_violation": {
-      "expected": "unsat",
-      "actual": "unsat",
-      "pass": true
-    },
-    "test_wp_compositionality_violation": {
-      "expected": "unsat",
-      "actual": "unsat",
-      "pass": true
-    },
     "test_wp_x_gate_transformation": {
       "Q": "Matrix([[1, 0], [0, 0]])",
       "wp_X_Q": "Matrix([[0, 0], [0, 1]])",
@@ -129,11 +109,6 @@
       "Tr(\u03a0_0 Q)": 0.6,
       "expected": 0.6,
       "pass": "True"
-    },
-    "test_wp_eigenvalue_boundary": {
-      "expected": "sat",
-      "actual": "sat",
-      "pass": true
     },
     "test_bell_state_partial_trace": {
       "state": "|\u03a6+\u27e9",

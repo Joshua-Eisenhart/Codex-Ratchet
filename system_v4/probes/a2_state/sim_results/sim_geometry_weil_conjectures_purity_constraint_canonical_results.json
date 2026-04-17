@@ -18,9 +18,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": "Clifford algebra not needed; l-adic geometry via cvc5/sympy"
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "geomstats not needed; algebraic geometry handled symbolically"
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "e3nn not needed; no SO(3) equivariance required"
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "rustworkx not needed; no graph structure"
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "xgi not needed; no hypergraph structure"
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -78,12 +78,6 @@
     "gudhi": null
   },
   "positive": {
-    "test_purity_h1": {
-      "constraint": "Purity: |Frob eigenvalue on H^1| = q^{1/2}",
-      "variety": "elliptic curve over F_5",
-      "satisfiable": "True",
-      "target_norm_sq": 5
-    },
     "test_hasse_elliptic": {
       "variety": "elliptic curve over F_5",
       "alpha_times_alpha_conj": "5",
@@ -97,17 +91,7 @@
       "holds": true
     }
   },
-  "negative": {
-    "test_purity_violation_unsat": {
-      "constraint": "UNSAT when |Frob eigenvalue|^2 \u2260 q^i",
-      "reason": "claimed |\u03b1|^2 = 7 but purity requires |\u03b1|^2 = 5",
-      "unsatisfiable": true
-    },
-    "test_functional_eq_violation": {
-      "constraint": "UNSAT when Z(1/(qT)) \u2260 q*T^2*Z(T)",
-      "note": "functional equation constraint verified symbolically"
-    }
-  },
+  "negative": {},
   "boundary": {
     "test_deligne_elliptic_f5": {
       "variety": "E: y^2 = x^3 + x over F_5",

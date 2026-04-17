@@ -17,9 +17,9 @@
       "reason": "z3 not needed; cvc5 handles all SMT constraint proofs in this sim"
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Schubert cell dimension constraints"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -79,22 +79,12 @@
   "classification": "canonical",
   "positive_tests": {
     "a1_lambda1": {
-      "root_system": "A1",
-      "lambda": 1,
-      "rho": 1,
-      "inner_product": 1,
-      "dim_gr": 2,
-      "dimension_consistent": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "a1_lambda2": {
-      "root_system": "A1",
-      "lambda": 2,
-      "rho": 1,
-      "inner_product": 2,
-      "dim_gr": 4,
-      "dimension_consistent": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "poincare_a1_lambda1": {
       "polynomial": "t**2 + 1",
@@ -105,42 +95,26 @@
   },
   "negative_tests": {
     "dim_mismatch_2_vs_3": {
-      "lambda": 1,
-      "expected_dim": 2,
-      "claimed_dim": 3,
-      "expected_unsat": true,
-      "actual_unsat": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "dim_mismatch_4_vs_5": {
-      "lambda": 2,
-      "expected_dim": 4,
-      "claimed_dim": 5,
-      "expected_unsat": true,
-      "actual_unsat": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "negative_dimension": {
-      "dimension": -2,
-      "expected_unsat": true,
-      "actual_unsat": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     }
   },
   "boundary_tests": {
     "trivial_coweight": {
-      "lambda": 0,
-      "inner_product": 0,
-      "dim_gr": 0,
-      "consistent": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "large_weight_10": {
-      "lambda": 10,
-      "inner_product": 10,
-      "dim_gr": 20,
-      "consistent": true,
-      "test": "PASS"
+      "error": "No module named 'cvc5'",
+      "test": "FAIL"
     },
     "poincare_degree_a1_lambda2": {
       "polynomial": "t**4 + t**2 + 1",
@@ -150,11 +124,11 @@
     }
   },
   "summary": {
-    "positive_pass": 3,
+    "positive_pass": 1,
     "positive_total": 3,
-    "negative_pass": 3,
+    "negative_pass": 0,
     "negative_total": 3,
-    "boundary_pass": 3,
+    "boundary_pass": 1,
     "boundary_total": 3
   }
 }

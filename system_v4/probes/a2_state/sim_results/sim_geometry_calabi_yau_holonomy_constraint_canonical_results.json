@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 SMT solver: load_bearing proof of Calabi-Yau holonomy rank constraint"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": null,
     "clifford": null,
     "geomstats": null,
@@ -78,76 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "positive_test_1_cy3_rank8": {
-      "n": 3,
-      "holonomy_rank": 8,
-      "expected_rank": 8,
-      "sat": true,
-      "interpretation": "CY 3-fold with SU(3) holonomy (rank=8) is admissible"
-    },
-    "positive_test_2_cy4_rank15": {
-      "n": 4,
-      "holonomy_rank": 15,
-      "expected_rank": 15,
-      "sat": true,
-      "interpretation": "CY 4-fold with SU(4) holonomy (rank=15) is admissible"
-    },
-    "positive_test_3_cy2_rank3": {
-      "n": 2,
-      "holonomy_rank": 3,
-      "expected_rank": 3,
-      "sat": true,
-      "interpretation": "CY 2-fold (K3) with SU(2) holonomy (rank=3) is admissible"
-    }
+    "error": "cvc5 not available"
   },
   "negative": {
-    "negative_test_1_cy3_rank7_invalid": {
-      "n": 3,
-      "holonomy_rank": 7,
-      "expected_rank": 8,
-      "sat": false,
-      "unsat": true,
-      "interpretation": "CY 3-fold with rank=7 holonomy is inadmissible (NOT a proper SU(3) holonomy)"
-    },
-    "negative_test_2_cy4_rank14_invalid": {
-      "n": 4,
-      "holonomy_rank": 14,
-      "expected_rank": 15,
-      "sat": false,
-      "unsat": true,
-      "interpretation": "CY 4-fold with rank=14 holonomy is inadmissible (violates SU(4) dimension)"
-    },
-    "negative_test_3_cy3_rank9_invalid": {
-      "n": 3,
-      "holonomy_rank": 9,
-      "expected_rank": 8,
-      "sat": false,
-      "unsat": true,
-      "interpretation": "CY 3-fold with rank=9 holonomy is inadmissible (exceeds SU(3) dimension, would be supergroup)"
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "boundary_test_1_cy1_rank0_trivial": {
-      "n": 1,
-      "holonomy_rank": 0,
-      "expected_rank": 0,
-      "sat": true,
-      "interpretation": "CY 1-fold (complex curve) with trivial holonomy (rank=0) is admissible"
-    },
-    "boundary_test_2_cy5_rank24": {
-      "n": 5,
-      "holonomy_rank": 24,
-      "expected_rank": 24,
-      "sat": true,
-      "interpretation": "CY 5-fold with SU(5) holonomy (rank=24) is admissible"
-    },
-    "boundary_test_3_cy3_rank7_9_unequal": {
-      "holonomy_rank": 7.9,
-      "expected_rank": 8.0,
-      "sat": false,
-      "unsat": true,
-      "interpretation": "Real arithmetic: rank=7.9 != 8.0 is inadmissible"
-    }
+    "error": "cvc5 not available"
   },
   "classification": "canonical"
 }

@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": "cvc5 solver for Artin map kernel and surjectivity constraint satisfaction"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -78,66 +78,13 @@
     "gudhi": null
   },
   "positive": {
-    "test_1_kernel_element_identity": {
-      "description": "Valid: \u03c3 \u2208 ker(Art) \u27f9 Art(\u03c3) = identity",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    },
-    "test_2_nontrivial_element_nontrivial_image": {
-      "description": "Valid: \u03c3 \u2209 ker(Art) \u27f9 Art(\u03c3) \u2260 identity",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    },
-    "test_3_surjectivity_preimage_exists": {
-      "description": "Valid: Art is surjective, every Gal element has preimage",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    }
+    "error": "cvc5 or sympy not available"
   },
   "negative": {
-    "test_1_kernel_nontrivial_unsat": {
-      "description": "UNSAT: \u03c3 \u2208 ker(Art), but Art(\u03c3) = 0 AND Art(\u03c3) \u2260 0",
-      "sat": "unsat",
-      "expected": "UNSAT",
-      "pass": false
-    },
-    "test_2_surjectivity_failure_unsat": {
-      "description": "UNSAT: Art(7) = 5 AND Art(7) = 3 (surjectivity contradiction)",
-      "sat": "unsat",
-      "expected": "UNSAT",
-      "pass": false
-    },
-    "test_3_norm_group_contradiction": {
-      "description": "UNSAT: element \u2208 N_{L/K}(A_L^\u00d7) AND element \u2209 N_{L/K}(A_L^\u00d7)",
-      "sat": "unsat",
-      "expected": "UNSAT",
-      "pass": false
-    }
+    "error": "cvc5 not available"
   },
   "boundary": {
-    "test_1_trivial_extension_full_kernel": {
-      "description": "Boundary: trivial extension K=K^ab, ker(Art)=A_K^\u00d7",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    },
-    "test_2_cyclic_order_2_extension": {
-      "description": "Boundary: cyclic extension of order 2, index divides order",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    },
-    "test_3_norm_index_equals_gal_order": {
-      "description": "Boundary: [A_K^\u00d7 : N_{L/K}(A_L^\u00d7)] = |Gal(L/K)|",
-      "sat": "sat",
-      "expected": "SAT",
-      "pass": false
-    }
+    "error": "cvc5 not available"
   },
-  "classification": "classical_baseline",
-  "classification_reason": "truth_audit_demoted_2026-04-17",
-  "truth_audit_demoted_reason": "truth_audit_demoted_2026-04-17"
+  "classification": "canonical"
 }

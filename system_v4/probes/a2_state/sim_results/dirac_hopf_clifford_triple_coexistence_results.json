@@ -43,14 +43,14 @@
       "reason": "SO(3) equivariance not relevant here; excluded"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "MERA DAG cross-check for triple shell coexistence structure"
+      "reason": "MERA DAG cross-check for triple shell coexistence structure [NOT INSTALLED]"
     },
     "xgi": {
-      "tried": true,
-      "used": true,
-      "reason": "triadic hyperedge {H_dirac, H_hopf, H_clifford} confirms irreducible triple coupling"
+      "tried": false,
+      "used": false,
+      "reason": "triadic hyperedge {H_dirac, H_hopf, H_clifford} confirms irreducible triple coupling [NOT INSTALLED]"
     },
     "toponetx": {
       "tried": true,
@@ -123,15 +123,15 @@
       "interpretation": "Clifford e12 is grade-2 bivector; XX-gate rotor structure survives"
     },
     "T7_xgi_triadic": {
-      "passed": true,
-      "interpretation": "Triadic hyperedge confirms irreducible triple coupling"
+      "passed": false,
+      "error": "xgi not installed"
     },
     "T8_toponetx_triple_cell": {
       "passed": true,
       "n_nodes": 3,
       "interpretation": "Triple shell topology survived as valid 2-cell complex"
     },
-    "pass": true
+    "pass": false
   },
   "negative": {
     "N1_z3_unsat_inactive_hopf_Q_nonzero": {
@@ -163,11 +163,11 @@
     },
     "pass": true
   },
-  "overall_pass": true,
+  "overall_pass": false,
   "summary": {
-    "all_pass": true,
+    "all_pass": false,
     "n_tests": 12,
-    "n_pass": 12
+    "n_pass": 11
   },
   "divergence_log": [
     "All three shells co-active; Q_DHC > 0 survived",

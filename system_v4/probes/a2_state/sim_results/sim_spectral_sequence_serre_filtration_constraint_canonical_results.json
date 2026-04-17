@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": true,
-      "used": true,
-      "reason": ""
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "e3nn": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "rustworkx": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "xgi": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": "load_bearing",
+    "cvc5": null,
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -102,13 +102,6 @@
       "interpretation": "filtration respects nesting order",
       "method": "sympy dimension sequence validation"
     },
-    "cvc5_positive_serre_filtration_constraint": {
-      "test": "cvc5 proves satisfiable: F^0 \u2265 F^1 \u2265 F^2",
-      "satisfiable": true,
-      "passed": true,
-      "interpretation": "Serre filtration ordering is consistent",
-      "method": "cvc5 QF_LIA constraint solver"
-    },
     "numpy_positive_serre_convergence": {
       "test": "E_2^{p,q} converges to H^{p+q}(E)",
       "base_space": "S^1",
@@ -133,13 +126,6 @@
     }
   },
   "negative": {
-    "cvc5_negative_reversed_filtration_unsat": {
-      "test": "cvc5 proves UNSAT: F^0 < F^1 (reversed filtration)",
-      "satisfiable": true,
-      "passed": false,
-      "interpretation": "Reversed filtration violates Serre structure",
-      "method": "cvc5 QF_LIA UNSAT proof"
-    },
     "sympy_negative_reversed_contradiction": {
       "test": "Reversed filtration F^0 < F^1 contradicts Serre",
       "example": "F^0 = 2, F^1 = 4",
@@ -207,13 +193,6 @@
       "passed": true,
       "interpretation": "differentials shift both coordinates consistently",
       "method": "sympy symbolic bidegree"
-    },
-    "cvc5_boundary_differential_nilpotency": {
-      "test": "cvc5: d_r\u00b2 = 0 (nilpotency of d_r)",
-      "satisfiable": true,
-      "passed": true,
-      "interpretation": "differential is nilpotent, defines exact couple",
-      "method": "cvc5 QF_LIA constraint"
     },
     "numpy_boundary_filtration_differential_interplay": {
       "test": "Filtration and d_r cooperate to determine E_\u221e",

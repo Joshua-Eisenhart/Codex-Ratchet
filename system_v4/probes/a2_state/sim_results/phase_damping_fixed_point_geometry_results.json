@@ -41,9 +41,9 @@
       "reason": "load_bearing: model the fixed-point manifold as the e3 direction in Cl(3); verify e3 generates the Z-axis (grade-1 vector); Bloch sphere embedded in even subalgebra; fixed-point line = e3 axis"
     },
     "geomstats": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing: SPD geodesic from I/2 to diag(p,1-p) for p in [0,1]; compute geodesic distances and sectional curvature probe along the fixed-point manifold"
+      "tried": false,
+      "used": false,
+      "reason": "not installed or import error"
     },
     "e3nn": {
       "tried": false,
@@ -56,9 +56,9 @@
       "reason": "not attempted; no graph-routing or DAG structure is needed here"
     },
     "xgi": {
-      "tried": true,
-      "used": true,
-      "reason": "load_bearing: simplicial complex of fixed-point structure across channel families; 0-simplices = individual fixed points; 1-simplex = phase-damping Z-axis line; compute Betti numbers beta0, beta1"
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
     },
     "toponetx": {
       "tried": false,
@@ -248,107 +248,10 @@
       "conclusion": "The phase-damping fixed-point manifold = span{e3} in Cl(3). Phase damping is a projection onto the e3 axis. The fixed-point manifold is a 1-dimensional subspace of the grade-1 subspace of Cl(3), corresponding to the Z-axis of the Bloch sphere."
     },
     "P4_xgi_simplicial_complex": {
-      "nodes": 3,
-      "edges": 5,
-      "triangles": 0,
-      "node_labels": {
-        "0": "|0\u27e9 (north pole)",
-        "1": "|1\u27e9 (south pole)",
-        "2": "I/2 (mixed)"
-      },
-      "edge_labels": {
-        "0-1": "phase_damping_1-simplex (Z-axis fixed-point line)",
-        "0-2": "AD_depolarizing_shared_fixed_point"
-      },
-      "euler_characteristic": -2,
-      "betti_numbers": {
-        "beta0_connected_components": 1,
-        "beta1_1cycles_holes": 0,
-        "beta2_voids": 0
-      },
-      "chi_consistent_with_betti": false,
-      "interpretation": {
-        "beta0=1": "All fixed points are in one connected component (|0\u27e9 is the hub)",
-        "beta1=0": "No topological holes \u2014 the fixed-point graph is a tree (path), no loop",
-        "beta2=0": "No enclosed voids \u2014 no 2-simplex present",
-        "no_2simplex": "|1\u27e9 is NOT a fixed point of amplitude damping or depolarizing; therefore {|0\u27e9, |1\u27e9, I/2} do not form a 2-simplex. Phase damping is topologically distinct: it has an edge {0,1} that no other channel possesses."
-      },
-      "conclusion": "The fixed-point simplicial complex has beta0=1, beta1=0, beta2=0. The phase-damping 1-simplex {|0\u27e9,|1\u27e9} is the unique edge not shared by other channel families. Topologically, the complex is contractible (homotopy equivalent to a point), with no holes or voids."
+      "error": "xgi not available"
     },
     "P5_geomstats_curvature": {
-      "manifold": "SPD(2) with affine-invariant metric",
-      "probe": "1-d submanifold {diag(p,1-p)} for p in [0.05, 0.95]",
-      "geodesic_distances": [
-        {
-          "p1": 0.05,
-          "p2": 0.15,
-          "spd_geodesic_dist": 1.10422828,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 11.042283
-        },
-        {
-          "p1": 0.15,
-          "p2": 0.25,
-          "spd_geodesic_dist": 0.52593596,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 5.25936
-        },
-        {
-          "p1": 0.25,
-          "p2": 0.35,
-          "spd_geodesic_dist": 0.36563837,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 3.656384
-        },
-        {
-          "p1": 0.35,
-          "p2": 0.45,
-          "spd_geodesic_dist": 0.30177145,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 3.017715
-        },
-        {
-          "p1": 0.45,
-          "p2": 0.55,
-          "spd_geodesic_dist": 0.28379122,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 2.837912
-        },
-        {
-          "p1": 0.55,
-          "p2": 0.65,
-          "spd_geodesic_dist": 0.30177145,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 3.017715
-        },
-        {
-          "p1": 0.65,
-          "p2": 0.75,
-          "spd_geodesic_dist": 0.36563837,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 3.656384
-        },
-        {
-          "p1": 0.75,
-          "p2": 0.85,
-          "spd_geodesic_dist": 0.52593596,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 5.25936
-        },
-        {
-          "p1": 0.85,
-          "p2": 0.95,
-          "spd_geodesic_dist": 1.10422828,
-          "euclidean_dp": 0.1,
-          "ratio_spd_to_euclidean": 11.042283
-        }
-      ],
-      "distance_center_to_pole0": 3.97121458,
-      "distance_center_to_pole1": 3.97121458,
-      "distance_pole0_to_pole1": 6.4984808,
-      "spd_ratio_variance": 9.74461562,
-      "is_flat_along_manifold": false,
-      "conclusion": "The SPD metric along the diagonal fixed-point manifold has VARYING ratio (non-trivial curvature along the Z-axis in SPD metric). The affine-invariant SPD metric is NOT flat on the full manifold (SPD(2) has negative curvature), but the diagonal submanifold may have non-trivial induced curvature."
+      "error": "geomstats or pytorch not available"
     },
     "P6_z3_sat_poles_hopf_and_pd": {
       "z3_result": "sat",
@@ -625,5 +528,5 @@
     },
     "sympy_analytic_proof": true
   },
-  "timestamp": "2026-04-16T12:53:35.366581+00:00"
+  "timestamp": "2026-04-17T08:17:56.865148+00:00"
 }

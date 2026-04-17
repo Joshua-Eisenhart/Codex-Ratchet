@@ -19,7 +19,7 @@
     "cvc5": {
       "tried": true,
       "used": true,
-      "reason": "load_bearing: proves symmetry and bilinearity via UNSAT for violations"
+      "reason": "not installed"
     },
     "sympy": {
       "tried": true,
@@ -79,46 +79,43 @@
   "positive": {
     "test_symmetry": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     },
     "test_bilinearity": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     },
     "test_concrete_height": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     }
   },
   "negative": {
     "test_antisymmetry_unsat": {
-      "status": "unsat",
-      "claim": "antisymmetry violates symmetry axiom",
-      "unsat_correct": true
+      "status": "error",
+      "message": "No module named 'cvc5'"
     },
     "test_bilinearity_violation_unsat": {
-      "status": "unsat",
-      "claim": "bilinearity violation is unsatisfiable",
-      "unsat_correct": true
+      "status": "error",
+      "message": "No module named 'cvc5'"
     },
     "test_multiplicative_pairing_unsat": {
-      "status": "unsat",
-      "claim": "multiplicative pairing violates additivity",
-      "unsat_correct": true
+      "status": "error",
+      "message": "No module named 'cvc5'"
     }
   },
   "boundary": {
     "test_zero_divisor": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     },
     "test_negative_divisors": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     },
     "test_large_divisors": {
       "status": "error",
-      "message": "getModel() takes exactly 2 positional arguments (0 given)"
+      "message": "No module named 'cvc5'"
     }
   },
   "classification": "canonical"

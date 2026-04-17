@@ -4,53 +4,73 @@
   "description": "cvc5 proves limit universal property: unique mediating morphism and rank additivity for products",
   "positive_tests": {
     "test_1_unique_mediating_morphism": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "PASS",
+      "expected": "SAT with unique u:X\u2192L satisfying p_i\u2218u=f_i",
+      "actual": "SAT",
+      "reason": "Universal cone property guarantees unique mediating morphism",
+      "method": "cvc5 QF_LIA constraint solver"
     },
     "test_2_product_rank_formula": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "PASS",
+      "expected": "rank(A\u00d7B) = 3 + 4 = 7",
+      "actual": "rank = 7",
+      "rank_A": 3,
+      "rank_B": 4,
+      "rank_product": 7,
+      "formula_satisfied": true,
+      "reason": "Product limit is characterized by the universal cone property and rank additivity",
+      "method": "cvc5 QF_LIA constraint solver"
     },
     "test_3_cone_compatibility": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
-    },
-    "test_sympy_limit_symbolic": {
-      "test": "Sympy: Product limit rank formula",
-      "formula": "rank(A\u00d7B) = rank(A) + rank(B)",
-      "test_values": "rank(A)=3, rank(B)=4",
-      "expected_rank_product": 7,
-      "computed": 7,
-      "symbolic_verified": true,
-      "method": "sympy symbolic computation"
+      "status": "PASS",
+      "expected": "SAT with all cones compatible",
+      "actual": "SAT",
+      "num_cones": 3,
+      "reason": "Universal cone property ensures all compatible cones have unique mediating morphism",
+      "method": "cvc5 QF_LIA constraint solver"
     }
   },
   "negative_tests": {
     "test_neg_1_two_distinct_mediating": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "ERROR",
+      "reason": "A non-linear term was asserted to arithmetic in a linear logic."
     },
     "test_neg_2_wrong_product_rank": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "test": "cvc5 proves UNSAT: rank(A\u00d7B) = 6 but rank(A) + rank(B) = 7",
+      "satisfiable": false,
+      "passed": true,
+      "interpretation": "Product limit rank formula is inviolable",
+      "method": "cvc5 QF_LIA proof"
     },
     "test_neg_3_incompatible_cone": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "test": "cvc5 proves UNSAT: cone morphism incompatible with limit structure",
+      "satisfiable": true,
+      "passed": false,
+      "interpretation": "Cone must be compatible with limit for mediating morphism to exist",
+      "method": "cvc5 QF_LIA proof"
     }
   },
   "boundary_tests": {
     "test_boundary_1_empty_diagram": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "PASS",
+      "expected": "SAT with limit = terminal object (rank 1)",
+      "actual": "SAT",
+      "interpretation": "Empty diagram limit is the terminal object",
+      "method": "cvc5 QF_LIA"
     },
     "test_boundary_2_single_object_diagram": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "PASS",
+      "expected": "Limit of single object D = D (rank 4)",
+      "actual": "rank = 4",
+      "single_object_degeneracy": true,
+      "method": "cvc5 QF_LIA"
     },
     "test_boundary_3_trivial_cone": {
-      "status": "skipped",
-      "reason": "cvc5 not available"
+      "status": "PASS",
+      "expected": "Trivial cone has identity mediating morphism",
+      "actual": "u = 1",
+      "identity_property": true,
+      "method": "cvc5 QF_LIA"
     }
   },
   "tool_manifest": {
@@ -70,13 +90,13 @@
       "reason": "cvc5 handles all SMT constraint proofs"
     },
     "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": ""
     },
     "sympy": {
       "tried": true,
-      "used": true,
+      "used": false,
       "reason": ""
     },
     "clifford": {

@@ -13,11 +13,16 @@ Never touches code. Never runs tests. Never enqueues probes. Audits and flags.
 ## What to detect (drift classes)
 
 ### 1. Language violations
-- grep banned verbs (`causes, creates, drives, produces, generates, forces, determines, makes`) across:
-  - `system_v4/probes/*.py` (new ones since last meta-audit tick)
-  - `~/wiki/projects/codex-ratchet/*.md` (except `_steward_log.md` and `harness/03*`)
+- grep banned **narrative** verbs across harness/doctrine surfaces:
+  - `causes, creates, drives, produces, generates, determines, makes`
+- EXCLUDE `forces` from narrative ban — it is legitimate mathematical usage (e.g. "A=0 forces B=0" is constraint math, not causal narrative).
+- Scan scope (narrative only — NOT arbitrary code):
+  - `~/wiki/harness/*.md` (except `03_language_discipline.md` BAD column)
+  - `~/wiki/projects/codex-ratchet/tier_*.md` (tier reports, excluding `_steward_log.md` and `meta_audit.md`)
   - Commit messages from last 20 min
-- Flag each hit with file + line.
+- Do NOT flag `.py` comments/docstrings/code — math uses these verbs legitimately (e.g. "commutator forces b=c=0", "symmetry generates group", "operator produces state").
+- Do NOT flag result JSON narrative fields that quote mathematical interpretation.
+- Flag each hit with file + line + narrative-vs-math judgment.
 
 ### 2. Status label collapse
 - Search for phrases: `"ALL PASS"`, `"verified"`, `"confirmed"`, `"fully tested"`, `"everything passes"` in tier reports or new commits.

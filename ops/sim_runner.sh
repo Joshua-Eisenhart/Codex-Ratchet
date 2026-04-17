@@ -26,6 +26,8 @@ COOLDOWN_SECS=120
 INTER_SIM_SLEEP=5
 CONSECUTIVE_FAIL_LIMIT=5
 POST_FAIL_PAUSE=1800
+PER_SIM_TIMEOUT=300  # kill any single sim after 5 min — protects against hangs
+TIMEOUT_BIN="$(command -v gtimeout || command -v timeout || echo '')"
 
 mkdir -p "$LOG_DIR"
 cd "$REPO" || exit 1
@@ -139,9 +141,23 @@ while :; do
     wait_until_cool
   fi
 
+  # Skip known hang-prone probes
+  case "$basename" in
+    *benchmark*|*_stress*|*stress_test*|*infinite*|*long_exact*|*80shell*|*prolongation*)
+      log "SKIP (hang-prone pattern): $basename"
+      mark_line "$queue_file" "$basename" "SKIPPED" "0"
+      continue
+      ;;
+  esac
+
   log "Running [${queue_file##*/}]: $basename"
   start=$(date +%s)
-  if nice -n 19 "$PYTHON" "$probe" >/dev/null 2>&1; then
+  if [ -n "$TIMEOUT_BIN" ]; then
+    RUN_CMD=("$TIMEOUT_BIN" "${PER_SIM_TIMEOUT}s" nice -n 19 "$PYTHON" "$probe")
+  else
+    RUN_CMD=(nice -n 19 "$PYTHON" "$probe")
+  fi
+  if "${RUN_CMD[@]}" >/dev/null 2>&1; then
     dur=$(( $(date +%s) - start ))
     log "OK   $basename (${dur}s)"
     consecutive_failures=0

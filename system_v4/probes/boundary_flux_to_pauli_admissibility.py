@@ -30,7 +30,7 @@ import z3
 import sympy as sp
 
 
-classification = "canonical"
+classification = "classical_baseline"  # DOWNGRADED 2026-04-17: toy integer-encoding pattern copied from D1 (now also downgraded); no actual Cartan/Clifford/Hopf/Weyl/flux math; fails ENFORCEMENT_AND_PROCESS_RULES Rule 2
 
 TOOL_MANIFEST = {
     "z3": {

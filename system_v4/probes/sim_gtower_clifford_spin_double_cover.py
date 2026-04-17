@@ -103,7 +103,7 @@ if __name__ == "__main__":
                 and all(_t(bnd.get(k)) for k in keys_bnd))
     results = {
         "name": "sim_gtower_clifford_spin_double_cover",
-        "classification": "canonical",
+        "classification": classification,
         "scope_note": "LADDERS_FENCES_ADMISSION_REFERENCE.md: SO->Spin double cover via Cl(3)",
         "tool_manifest": TOOL_MANIFEST, "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": pos, "negative": neg, "boundary": bnd,

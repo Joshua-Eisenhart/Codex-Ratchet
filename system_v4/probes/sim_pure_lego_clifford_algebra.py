@@ -595,7 +595,7 @@ RESULTS["all_pass"] = all_sections_pass
 RESULTS["classification"] = classification
 
 for k in sorted(RESULTS.keys()):
-    if k == "all_pass":
+    if k in {"all_pass", "classification"}:
         continue
     status = "PASS" if RESULTS[k].get("all_pass") else "FAIL"
     print(f"  {k}: {status}")

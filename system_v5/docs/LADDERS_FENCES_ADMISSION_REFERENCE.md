@@ -145,6 +145,6 @@ constrained, QIT-grounded, simulated, and negatively tested machinery.
 ## Source
 
 Extracted verbatim from:
-- system_v5/docs/archive/Pre Entropy tables.md
-- system_v5/docs/archive/Pre axies math and geometry work out.md
-- system_v5/docs/archive/Formal constraints and geometry.md
+- system_v5/READ ONLY Reference Docs/Pre Entropy tables.md
+- system_v5/READ ONLY Reference Docs/Pre axies math and geometry work out.md
+- system_v5/READ ONLY Reference Docs/Formal constraints and geometry.md

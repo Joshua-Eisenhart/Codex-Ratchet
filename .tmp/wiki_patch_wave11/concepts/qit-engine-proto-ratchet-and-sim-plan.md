@@ -5,7 +5,7 @@ updated: 2026-04-13
 type: summary
 tags: [reference, research, system]
 sources:
-  - raw/articles/new-docs/archive_old/QIT_ENGINE_PROTO_RATCHET_AND_SIM_PLAN.md
+  - raw/articles/new-READ ONLY Reference Docs_old/QIT_ENGINE_PROTO_RATCHET_AND_SIM_PLAN.md
 framing: mixed
 ---
 

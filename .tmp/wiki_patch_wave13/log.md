@@ -242,7 +242,7 @@
 - Updated: current/wiki-ingest-queue-and-priorities.md
 - Updated: current/wiki-harness-progress-and-audit.md
 - Updated: log.md
-- Verification result: reread the active current/wiki planning surfaces directly and patched them so the current model is explicit: Hermes + wiki is an entropy-refinery stack, `current/` is the lowest-entropy front door, and `docs/archive` is handled as higher-entropy reflection material on the same idea-space rather than as a separate canon/non-canon universe; subsequent direct structural recheck was repaired back to clean in the next log entry.
+- Verification result: reread the active current/wiki planning surfaces directly and patched them so the current model is explicit: Hermes + wiki is an entropy-refinery stack, `current/` is the lowest-entropy front door, and `READ ONLY Reference Docs` is handled as higher-entropy reflection material on the same idea-space rather than as a separate canon/non-canon universe; subsequent direct structural recheck was repaired back to clean in the next log entry.
 - Notes: this brings the saved wiki/planning language into line with the later conceptual correction from the Hermes thread, without widening scope into new doctrine pages or ingest work.
 
 ## [2026-04-15] update | g-tower Hopf Weyl integration spec bounded ingest
@@ -1173,7 +1173,7 @@
   - concepts/viability-vs-attractor.md
   - concepts/weyl-flux.md
 - Updated: index.md, log.md
-- Sources used: system_v5 reference docs and older legacy docs under docs/archive
+- Sources used: system_v5 reference docs and older legacy docs under READ ONLY Reference Docs
 
 ## [2026-04-07] update | legacy-context-and-genealogy backbone
 - Updated: concepts/legacy-context-and-genealogy.md
@@ -1797,7 +1797,7 @@
 |- Sources: domain knowledge on quantum geometry, distinguishability, and information geometry
 
 ## [2026-04-10] sync | system-v5-reference-docs parity check
-|- Source folder: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/archive
+|- Source folder: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/READ ONLY Reference Docs
 |- Wiki intake: /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
 |- Actions: removed extra wiki-only file `Older Legacy/The Dark Empress-A Practical Guide to Universal Dominion V6.1 copy.md`
 |- Verification: source files 45, wiki intake files 45, missing_in_wiki 0, extra_in_wiki 0, parity True
@@ -1854,7 +1854,7 @@
 ## [2026-04-10] sync | system-v5 reference intake parity
 |- Removed extra wiki intake file: raw/articles/system-v5-reference-docs/Older Legacy/The Grandmaster of the Universe.txt
 |- Verification: source count 76, wiki intake count 76, missing_in_wiki 0, extra_in_wiki 0, parity True
-|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/docs/archive vs /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
+|- Sources: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v5/READ ONLY Reference Docs vs /Users/joshuaeisenhart/wiki/raw/articles/system-v5-reference-docs
 
 ## [2026-04-11] maintenance | stale phrasing cleanup
 |- Updated: concepts/enforcement-and-process-rules.md, concepts/current-research-overlays.md
@@ -2219,14 +2219,14 @@
 |- Created: concepts/leviathan-science-method-qit-engine-crosswalk.md
 |- Updated: concepts/leviathan-framework.md, concepts/emotional-evolution-personality-system.md, concepts/leviathan-world-engine-memo.md, concepts/qit-ai-foundations-bridge.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: the wiki now preserves the deeper integration claim that Leviathan's science method, holodeck perception/memory model, FEP-style update loop, and candidate personality engine grammar are different surfaces of one recursive engine architecture; personality material is more explicitly legacy/non-canon and MBTI-heavy framing is now flagged as drift-prone
-|- Sources used: system_v5/docs/archive/Older Legacy/Leviathan v3.2 word.txt, system_v5/docs/archive/Older Legacy/holodeck docs.md, system_v5/docs/archive/Older Legacy/MODEL_CONTEXT copy.md, system_v5/docs/archive/Older Legacy/INTENT_SUMMARY copy.md, READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1 copy.tsv, READ ONLY Legacy core_docs/ultra high entropy docs/Personality_theory_EXTRACTED.md
+|- Sources used: system_v5/READ ONLY Reference Docs/Older Legacy/Leviathan v3.2 word.txt, system_v5/READ ONLY Reference Docs/Older Legacy/holodeck docs.md, system_v5/READ ONLY Reference Docs/Older Legacy/MODEL_CONTEXT copy.md, system_v5/READ ONLY Reference Docs/Older Legacy/INTENT_SUMMARY copy.md, READ ONLY Legacy core_docs/ultra high entropy docs/Personality theory._.xlsx - Sheet1 copy.tsv, READ ONLY Legacy core_docs/ultra high entropy docs/Personality_theory_EXTRACTED.md
 
 ## [2026-04-13] update | deepen research support for holodeck and recursive engine doctrine
 |- Created: concepts/holodeck-as-recall-space.md, concepts/recursive-science-methodology-reference.md
 |- Restored: concepts/holodeck-qit-fep-leviathan-integration.md
 |- Updated: concepts/research-support-bibliography.md, concepts/fep-and-active-inference-reference.md, concepts/projective-holodeck-memory-model.md, concepts/leviathan-science-method-qit-engine-crosswalk.md, index.md, concepts/topic-map.md, concepts/current-research-overlays.md, log.md
 |- Verification: the missing holodeck integration page is back; the research-support layer now explicitly covers prediction-first memory, recall-space, recursive science method, and the crosswalk cluster; routing surfaces now include the new support pages
-|- Sources used: system_v5/docs/archive/Older Legacy/holodeck docs.md, READ ONLY Legacy core_docs/ultra high entropy docs/txt/holodeck docs.md.txt, system_v5/docs/archive/Older Legacy/Leviathan v3.2 word.txt, concepts/projective-holodeck-memory-model.md, concepts/prediction-first-memory-vs-llm-memory.md, concepts/leviathan-science-method-qit-engine-crosswalk.md
+|- Sources used: system_v5/READ ONLY Reference Docs/Older Legacy/holodeck docs.md, READ ONLY Legacy core_docs/ultra high entropy docs/txt/holodeck docs.md.txt, system_v5/READ ONLY Reference Docs/Older Legacy/Leviathan v3.2 word.txt, concepts/projective-holodeck-memory-model.md, concepts/prediction-first-memory-vs-llm-memory.md, concepts/leviathan-science-method-qit-engine-crosswalk.md
 
 ## [AUTO-WIKI 2026-04-13] structural integrity: index count and duplicate-entry cleanup
 - Updated/Created files: index.md, log.md

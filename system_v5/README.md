@@ -9,7 +9,7 @@ All human-readable docs for Codex Ratchet live here. Sim code stays in `system_v
 | `docs/` | Numbered research docs (00–17+), enforcement rules, contracts, agent workflow |
 | `docs/plans/` | Ignition / draft / audit plans |
 | `docs/plans/` | Handoffs, coverage matrices, lane specs, runner scripts |
-| `docs/archive/` | Axes, entropic monism, engine schedules — do not edit |
+| `READ ONLY Reference Docs/` | Axes, entropic monism, engine schedules — do not edit |
 | `tests/` | System-level test harness |
 
 ## Read first
@@ -22,5 +22,5 @@ All human-readable docs for Codex Ratchet live here. Sim code stays in `system_v
 ## Rules
 
 - Do not create `docs/` or `docs/` at repo root — they belong here.
-- `docs/archive/` is canonical reference; edits require explicit approval.
+- `READ ONLY Reference Docs/` is canonical reference; edits require explicit approval.
 - New plans go under the appropriate `plans/` subdir, not at the top of v5.

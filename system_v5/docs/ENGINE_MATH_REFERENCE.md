@@ -173,5 +173,5 @@ Each placement is a paired (spinor law, density law):
 ## Source
 
 Extracted verbatim from:
-- system_v5/docs/archive/operator math explicit.md
-- system_v5/docs/archive/terrain math.md
+- system_v5/READ ONLY Reference Docs/operator math explicit.md
+- system_v5/READ ONLY Reference Docs/terrain math.md

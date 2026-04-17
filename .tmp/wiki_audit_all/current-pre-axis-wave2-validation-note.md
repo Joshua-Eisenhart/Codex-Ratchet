@@ -5,7 +5,7 @@ updated: 2026-04-08
 type: summary
 tags: [reference, research, simulation, validation]
 sources:
-  - raw/articles/new-docs/archive_old/CURRENT_PRE_AXIS_WAVE2_VALIDATION_NOTE.md
+  - raw/articles/new-READ ONLY Reference Docs_old/CURRENT_PRE_AXIS_WAVE2_VALIDATION_NOTE.md
 framing: current
 ---
 

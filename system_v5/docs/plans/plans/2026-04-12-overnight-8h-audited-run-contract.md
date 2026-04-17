@@ -23,7 +23,7 @@ Status: RUN CONTRACT FOR THIS OVERNIGHT CONTROLLER SESSION
 15. `docs/plans/controller_maintenance_checklist.md` as the primary live run-operations surface
 16. `docs/plans/on-demand-telegram-runner.md` as the default operating-mode note
 17. `docs/plans/wiki_ingest_and_lego_maintenance.md` for repo/wiki synchronization rules
-18. `docs/archive/*` only as supporting geometry/pre-Axis reference corpus, not as queue authority
+18. `READ ONLY Reference Docs/*` only as supporting geometry/pre-Axis reference corpus, not as queue authority
 19. repo-root `/docs` is not an authority root for this run
 
 ## Highest-priority missing or partial geometry/pre-Axis legos

@@ -17,11 +17,11 @@ Authority surfaces used:
 - `system_v5/docs/plans/tool_integration_maintenance_matrix.md`
 - `system_v5/docs/plans/controller_maintenance_checklist.md`
 - `system_v5/docs/plans/on-demand-telegram-runner.md`
-- `system_v5/docs/archive/Pre axies math and geometry work out.md`
-- `system_v5/docs/archive/Formal constraints and geometry .md`
-- `system_v5/docs/archive/AXIS_0_1_2_QIT_MATH.md`
-- `system_v5/docs/archive/operator math explicit.md`
-- `system_v5/docs/archive/Weyl Flux.md`
+- `system_v5/READ ONLY Reference Docs/Pre axies math and geometry work out.md`
+- `system_v5/READ ONLY Reference Docs/Formal constraints and geometry .md`
+- `system_v5/READ ONLY Reference Docs/AXIS_0_1_2_QIT_MATH.md`
+- `system_v5/READ ONLY Reference Docs/operator math explicit.md`
+- `system_v5/READ ONLY Reference Docs/Weyl Flux.md`
 
 ## 1. Correct model of an 8-hour run
 

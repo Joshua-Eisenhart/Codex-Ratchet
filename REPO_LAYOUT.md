@@ -36,7 +36,7 @@ system_v5/
 │   ├── LEGO_SIM_CONTRACT.md               ← read first
 │   ├── AGENT_WORKFLOW_AND_BOOT_ARCHITECTURE.md
 │   └── plans/
-├── docs/archive/   # Axes, entropic monism, engine schedules
+├── READ ONLY Reference Docs/   # Axes, entropic monism, engine schedules
 └── tests/                      # System-level test harness
 ```
 

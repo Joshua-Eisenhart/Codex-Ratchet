@@ -9,7 +9,7 @@ Nonclassical constraint-admissibility research system. Runs sim legos under the 
 | Session instructions | `CLAUDE.md` |
 | Repo layout map | `REPO_LAYOUT.md` |
 | **System docs** (plans, handoffs, research) | `system_v5/docs/` and `system_v5/docs/` |
-| Read-only reference docs | `system_v5/docs/archive/` |
+| Read-only reference docs | `system_v5/READ ONLY Reference Docs/` |
 | Sim code + probes | `system_v4/probes/` |
 | Sim results (canonical) | `system_v4/probes/a2_state/sim_results/` |
 | Overnight runner + gates | `scripts/` |

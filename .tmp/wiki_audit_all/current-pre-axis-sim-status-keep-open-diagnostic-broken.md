@@ -5,7 +5,7 @@ updated: 2026-04-08
 type: summary
 tags: [reference, research, simulation, status]
 sources:
-  - raw/articles/new-docs/archive_old/CURRENT_PRE_AXIS_SIM_STATUS__KEEP_OPEN_DIAGNOSTIC_BROKEN.md
+  - raw/articles/new-READ ONLY Reference Docs_old/CURRENT_PRE_AXIS_SIM_STATUS__KEEP_OPEN_DIAGNOSTIC_BROKEN.md
 framing: current
 ---
 

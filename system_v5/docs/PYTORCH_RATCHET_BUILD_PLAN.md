@@ -327,5 +327,5 @@ All irreducible families from the minimal surviving set (currently 28 per L0-L7 
 /system_v4/probes/                      ← sim code
 /system_v4/probes/a2_state/sim_results/  ← JSON results
 /READ ONLY Legacy core_docs/            ← archived old core_docs
-/system_v5/docs/archive/     ← selected legacy reference
+/system_v5/READ ONLY Reference Docs/     ← selected legacy reference
 ```

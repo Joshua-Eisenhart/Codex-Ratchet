@@ -8,7 +8,7 @@ Root axiom: `a = a iff a ~ b`. Identity is probe-relative, not primitive. The on
 
 Every substantive claim needs three supports: probe family `M`, admissibility (survivor status under active constraints `C`), and a quotient (the equivalence class `S/~_M`). If you cannot cite all three, demote the claim to provisional.
 
-Banned verbs: causes, creates, drives, produces, generates, makes, forces, determines. Preferred verbs: survived, admitted, excluded, indistinguishable, coupled with, co-varies under, UNSAT under, consistent with.
+Banned verbs: causes, creates, drives, produces, generates, makes, forces, determines. Preferred verbs: survived, admitted, excluded, indistinguishable, coupled with, co-varies under, UNSAT under, consistent with, stable under probe, pulled back.
 
 Status ladder: `exists < runs < passes local rerun < canonical by process`. Never imply a higher label from a lower one.
 
@@ -36,7 +36,7 @@ After any multi-step action chain — especially when another agent (Hermes, Cod
 ## Read First (every session)
 Before any work: read `system_v5/docs/ENFORCEMENT_AND_PROCESS_RULES.md` and `system_v5/docs/LLM_CONTROLLER_CONTRACT.md`.
 
-All human-readable docs live under `system_v5/` (`docs/`, `docs/`, `docs/archive/`). See `REPO_LAYOUT.md` for the map. Do not create `docs/` or `docs/` at repo root.
+All human-readable docs live under `system_v5/docs/` (with subdirs: `plans/`, `references/`, `new content/`, `archive/`, `archive_old/`, `archive_hermes_overlaps/`). See `REPO_LAYOUT.md` for the map. Do not create `docs/` at repo root.
 
 ---
 

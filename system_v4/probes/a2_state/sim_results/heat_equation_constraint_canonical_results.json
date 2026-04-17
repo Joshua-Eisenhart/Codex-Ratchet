@@ -18,9 +18,9 @@
       "reason": ""
     },
     "cvc5": {
-      "tried": false,
-      "used": false,
-      "reason": "not installed"
+      "tried": true,
+      "used": true,
+      "reason": "cvc5 proves \u03b1 > 0 necessary for parabolic well-posedness"
     },
     "sympy": {
       "tried": true,
@@ -33,24 +33,24 @@
       "reason": ""
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": ""
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": ""
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": ""
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not installed"
+      "reason": ""
     },
     "toponetx": {
       "tried": true,
@@ -67,7 +67,7 @@
     "pytorch": null,
     "pyg": null,
     "z3": null,
-    "cvc5": null,
+    "cvc5": "load_bearing",
     "sympy": "supportive",
     "clifford": null,
     "geomstats": null,
@@ -78,6 +78,11 @@
     "gudhi": null
   },
   "positive": {
+    "heat_sat_alpha_positive": {
+      "sat": "True",
+      "constraint": "\u03b1 > 0 for parabolic heat equation",
+      "pass": true
+    },
     "heat_fundamental_solution": {
       "solution_form": "G(x,t) = (4\u03c0\u03b1t)^(-1/2) exp(-x\u00b2/4\u03b1t) in 1D",
       "normalized": true,
@@ -92,6 +97,11 @@
     }
   },
   "negative": {
+    "heat_unsat_alpha_nonpositive": {
+      "unsat": "True",
+      "constraint": "\u03b1 \u2264 0 contradicts \u03b1 > 0 requirement",
+      "pass": true
+    },
     "backward_heat_unbounded": {
       "diffusivity": "-1/10",
       "growth_rate": "k**2/10",

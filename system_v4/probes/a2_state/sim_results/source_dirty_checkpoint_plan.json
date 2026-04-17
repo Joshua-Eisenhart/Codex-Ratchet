@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-04-17T18:41:21.091019+00:00",
+  "generated_at": "2026-04-17T22:30:49.200795+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 0,
-  "plan_group_count": 2,
-  "checkpoint_candidate_count": 0,
+  "plan_group_count": 3,
+  "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
   "manual_only_count": 2,
   "code_only_manual_count": 2,
   "largest_group_id": "other_source__other_source",
-  "next_code_only_manual_group_id": "probe_source__sim_family_gtower",
-  "next_code_only_manual_file_count": 2,
-  "next_code_only_manual_source_path": null,
+  "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+  "next_code_only_manual_file_count": 1,
+  "next_code_only_manual_source_path": "system_v5/ops/queue_default.txt",
   "next_code_only_manual_result_path": null,
   "summary": {
     "dirty_source_count": 0,
-    "plan_group_count": 2,
-    "checkpoint_candidate_count": 0,
+    "plan_group_count": 3,
+    "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
     "manual_only_count": 2,
     "code_only_manual_count": 2,
     "largest_group_id": "other_source__other_source",
-    "next_code_only_manual_group_id": "probe_source__sim_family_gtower",
-    "next_code_only_manual_file_count": 2,
-    "next_code_only_manual_source_path": null,
+    "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+    "next_code_only_manual_file_count": 1,
+    "next_code_only_manual_source_path": "system_v5/ops/queue_default.txt",
     "next_code_only_manual_result_path": null,
     "ok": true
   },
@@ -34,77 +34,97 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [],
+  "recommended_checkpoint_order": [
+    {
+      "group_id": "root_runtime__root_runtime",
+      "file_count": 1,
+      "safe_next_action": "checkpoint"
+    }
+  ],
   "recommended_manual_split_order": [
     {
       "group_id": "other_source__other_source",
-      "file_count": 12,
+      "file_count": 3,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "probe_source__sim_family_gtower",
-      "file_count": 2,
-      "safe_next_action": "manual_split_required"
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 1,
+      "safe_next_action": "archive_review"
     }
   ],
   "recommended_code_only_order": [
     {
-      "group_id": "probe_source__sim_family_gtower",
-      "file_count": 2,
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 1,
       "untracked_count": 0,
-      "tracked_dirty_count": 2,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "archive_review",
+      "source_path": "system_v5/ops/queue_default.txt",
       "result_path": null
     },
     {
       "group_id": "other_source__other_source",
-      "file_count": 12,
+      "file_count": 3,
       "untracked_count": 0,
-      "tracked_dirty_count": 12,
+      "tracked_dirty_count": 3,
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__sim_family_gtower",
-    "file_count": 2,
+    "group_id": "legacy_runtime__legacy_runtime",
+    "file_count": 1,
     "untracked_count": 0,
-    "tracked_dirty_count": 2,
-    "safe_next_action": "manual_split_required",
-    "source_path": null,
+    "tracked_dirty_count": 1,
+    "safe_next_action": "archive_review",
+    "source_path": "system_v5/ops/queue_default.txt",
     "result_path": null
   },
   "checkpoint_groups": [
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "bucket": "legacy_runtime",
+      "label": "legacy_runtime",
+      "display_name": "Legacy/reference runtime surfaces",
+      "path_prefixes": [
+        "system_v5/ops/queue_default.txt"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v5/ops/queue_default.txt"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "archive_review",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Legacy/reference surfaces should be reviewed separately from active work."
+    },
     {
       "group_id": "other_source__other_source",
       "bucket": "other_source",
       "label": "other_source",
       "display_name": "Other source surfaces",
       "path_prefixes": [
-        "ops/queue_default.txt",
-        "ops/queue_tier_b.txt",
-        "ops/queue_tier_d.txt",
-        "overnight_logs/retag_candidates.json",
-        "system_v4/a2_state/audit_logs",
-        "system_v4/a2_state/graphs"
+        "lev_imessage_daemon.py",
+        "system_v4/a2_state/audit_logs"
       ],
-      "file_count": 12,
-      "tracked_dirty_count": 12,
+      "file_count": 3,
+      "tracked_dirty_count": 3,
       "untracked_count": 0,
       "sample_paths": [
-        "ops/queue_default.txt",
-        "ops/queue_tier_b.txt",
-        "ops/queue_tier_d.txt",
-        "overnight_logs/retag_candidates.json",
-        "system_v4/a2_state/audit_logs/AXIS_INTERACTION_MATRIX__CURRENT__v1.json",
-        "system_v4/a2_state/audit_logs/ENGINE_CONVERGENCE_DIAGNOSTIC__CURRENT__v1.json",
-        "system_v4/a2_state/audit_logs/ENGINE_PHASE_SPACE__CURRENT__v1.json",
-        "system_v4/a2_state/audit_logs/GRAPH_HEALTH_DASHBOARD__v1.md"
+        "lev_imessage_daemon.py",
+        "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/TORUS_CHIRALITY_EVIDENCE__CURRENT__v1.md"
       ],
       "dominant_kinds": [
-        "modified"
+        "modified",
+        "deleted"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,
@@ -112,28 +132,26 @@
       "notes": "Unclassified source/config residue needs manual grouping before checkpointing."
     },
     {
-      "group_id": "probe_source__sim_family_gtower",
-      "bucket": "probe_source",
-      "label": "sim_family_gtower",
-      "display_name": "Probe sim family: gtower",
+      "group_id": "root_runtime__root_runtime",
+      "bucket": "root_runtime",
+      "label": "root_runtime",
+      "display_name": "Root runtime entrypoints",
       "path_prefixes": [
-        "system_v4/probes/sim_gtower_e6_root_weight_structure_shell_local.py",
-        "system_v4/probes/sim_gtower_e8_root_system_dynamics_shell_local.py"
+        "imessage_bot.py"
       ],
-      "file_count": 2,
-      "tracked_dirty_count": 2,
+      "file_count": 1,
+      "tracked_dirty_count": 1,
       "untracked_count": 0,
       "sample_paths": [
-        "system_v4/probes/sim_gtower_e6_root_weight_structure_shell_local.py",
-        "system_v4/probes/sim_gtower_e8_root_system_dynamics_shell_local.py"
+        "imessage_bot.py"
       ],
       "dominant_kinds": [
         "modified"
       ],
-      "safe_next_action": "manual_split_required",
+      "safe_next_action": "checkpoint",
       "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'gtower' should be checkpointed in a bounded family batch."
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Root runtime entrypoints changed; checkpoint with build contract if related."
     }
   ]
 }

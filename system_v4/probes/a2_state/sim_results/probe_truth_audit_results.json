@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-04-17T05:36:05.131310+00:00",
+  "generated_at": "2026-04-17T05:56:15.438476+00:00",
   "strict_stale": false,
   "files_scanned": 2520,
   "summary": {
-    "hard_finding_count": 82,
+    "hard_finding_count": 83,
     "warning_finding_count": 18,
     "ok": false
   },
@@ -524,6 +524,11 @@
       "tool": "proto_ratchet_sim_runner"
     },
     {
+      "kind": "stale_source_newer_than_result",
+      "source": "sim_tetra_holodeck_fep_science_method_axis0.py",
+      "result_json": "tetra_holodeck_fep_science_method_axis0_results.json"
+    },
+    {
       "kind": "used_without_tried",
       "result_json": "unified_engine_tuning_results.json",
       "tool": "engine_pure_clifford"
@@ -580,6 +585,11 @@
     }
   ],
   "warning_findings": [
+    {
+      "kind": "stale_source_newer_than_result",
+      "source": "axis0_full_constraint_manifold_audit.py",
+      "result_json": "axis0_full_constraint_manifold_audit_results.json"
+    },
     {
       "kind": "stale_source_newer_than_result",
       "source": "classical_baseline_aes_sbox_verify.py",
@@ -664,18 +674,6 @@
       "kind": "stale_source_newer_than_result",
       "source": "sim_pure_lego_z_measurement.py",
       "result_json": "z_measurement_results.json"
-    },
-    {
-      "kind": "controller_truth_snapshot_mismatch",
-      "result_json": "controller_alignment_audit_results.json",
-      "expected": {
-        "ok": false,
-        "hard_finding_count": 82
-      },
-      "actual": {
-        "ok": false,
-        "hard_finding_count": 83
-      }
     }
   ]
 }

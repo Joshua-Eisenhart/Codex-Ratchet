@@ -34,8 +34,8 @@ I2 = np.eye(2, dtype=complex)
 sm = np.array([[0, 0], [1, 0]], dtype=complex)
 sp = np.array([[0, 1], [0, 0]], dtype=complex)
 
-DED_ORDER = ["Se", "Ne", "channel_decay", "Si"]
-IND_ORDER = ["Se", "Si", "channel_decay", "Ne"]
+DED_ORDER = ["depolarizing", "unitary_transport", "channel_decay", "basis_dephasing"]
+IND_ORDER = ["depolarizing", "basis_dephasing", "channel_decay", "unitary_transport"]
 
 
 def density(psi: np.ndarray) -> np.ndarray:
@@ -136,7 +136,7 @@ def terrain_joint_step(
     H_coupling = J_coupling * np.kron(sz, sz)
     H_joint = H_joint_local + H_coupling
 
-    if terrain == "Se":
+    if terrain == "depolarizing":
         jumps_L = [np.kron(np.sqrt(0.20 / 3.0) * s, I2) for s in (sx, sy, sz)]
         jumps_R = [np.kron(I2, np.sqrt(0.20 / 3.0) * s) for s in (sx, sy, sz)]
         jumps = jumps_L + jumps_R
@@ -144,7 +144,7 @@ def terrain_joint_step(
         for j in jumps:
             drho += dissipator(j, rho_lr)
         return ensure_valid_density(rho_lr + dt * drho)
-    if terrain == "Ne":
+    if terrain == "unitary_transport":
         drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint)
         return ensure_valid_density(rho_lr + dt * drho)
     if terrain == "channel_decay":
@@ -154,7 +154,7 @@ def terrain_joint_step(
         for j in (jump_L, jump_R):
             drho += dissipator(j, rho_lr)
         return ensure_valid_density(rho_lr + dt * drho)
-    if terrain == "Si":
+    if terrain == "basis_dephasing":
         H_si = 0.50 * (np.kron(axis_h, I2) - np.kron(I2, axis_h)) + H_coupling
         jump_L = np.kron(np.sqrt(0.10) * axis_h, I2)
         jump_R = np.kron(I2, np.sqrt(0.10) * axis_h)
@@ -173,12 +173,12 @@ def terrain_single_step(rho_l: np.ndarray, rho_r: np.ndarray, terrain: str, q: n
     H_l, H_r = geometry_hamiltonians(q)
     axis_h = commuting_axis_hamiltonian(q)
 
-    if terrain == "Se":
+    if terrain == "depolarizing":
         jumps = [np.sqrt(0.20 / 3.0) * s for s in (sx, sy, sz)]
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, 0.05 * H_l, jumps))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, 0.05 * H_r, jumps))
         return rho_l, rho_r
-    if terrain == "Ne":
+    if terrain == "unitary_transport":
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, H_l, []))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, H_r, []))
         return rho_l, rho_r
@@ -186,7 +186,7 @@ def terrain_single_step(rho_l: np.ndarray, rho_r: np.ndarray, terrain: str, q: n
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, 0.05 * H_l, [np.sqrt(0.25) * sm]))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, 0.05 * H_r, [np.sqrt(0.25) * sp]))
         return rho_l, rho_r
-    if terrain == "Si":
+    if terrain == "basis_dephasing":
         rho_l = ensure_valid_density(rho_l + dt * liouvillian_single(rho_l, 0.50 * axis_h, [np.sqrt(0.10) * axis_h]))
         rho_r = ensure_valid_density(rho_r + dt * liouvillian_single(rho_r, -0.50 * axis_h, [np.sqrt(0.10) * axis_h]))
         return rho_l, rho_r

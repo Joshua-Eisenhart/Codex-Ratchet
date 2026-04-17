@@ -1,95 +1,70 @@
 {
   "name": "classical_maxwell_demon_information_accounting",
   "scope_note": "Illuminates CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md (Landauer section): W_demon <= kT * I_memory, net dissipation non-negative once memory erasure is included.",
-  "classification": "canonical",
-  "divergence_log": "Maxwell-demon accounting baseline: extracted work stays bounded by one-bit memory erasure, and qutip/cirq/pennylane witness the same diagonal memory carrier rather than changing the inequality.",
+  "classification": "classical_baseline",
   "tool_manifest": {
-    "numpy": {
-      "tried": true,
-      "used": true,
-      "reason": "information accounting, entropy, and work-bound checks for the one-bit memory carrier"
-    },
-    "qutip": {
-      "tried": true,
-      "used": true,
-      "reason": "density-matrix entropy witness for the same one-bit carrier"
-    },
-    "cirq": {
-      "tried": true,
-      "used": true,
-      "reason": "density-matrix simulator witness for the same one-bit carrier"
-    },
-    "pennylane": {
-      "tried": true,
-      "used": true,
-      "reason": "mixed-state QNode witness for the same one-bit carrier"
-    },
     "pytorch": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "pyg": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "z3": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "cvc5": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "sympy": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "clifford": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "geomstats": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "e3nn": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "rustworkx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "xgi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "toponetx": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     },
     "gudhi": {
-      "tried": false,
+      "tried": true,
       "used": false,
-      "reason": "not needed for this accounting baseline"
+      "reason": ""
     }
   },
   "tool_integration_depth": {
-    "numpy": "load_bearing",
-    "qutip": "supportive",
-    "cirq": "supportive",
-    "pennylane": "supportive",
     "pytorch": null,
     "pyg": null,
     "z3": null,
@@ -130,113 +105,5 @@
       "erase_cost": 0.0
     }
   },
-  "bridge_witnesses": {
-    "p_0.0": {
-      "p_one": 0.0,
-      "expected_entropy_nats": -0.0,
-      "expected_erase_cost": -0.0,
-      "qutip": {
-        "entropy_nats": 3.914394658089878e-16,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": 3.914394658089878e-16
-      },
-      "cirq": {
-        "entropy_nats": -0.0,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": -0.0
-      },
-      "pennylane": {
-        "entropy_nats": -0.0,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": -0.0
-      },
-      "ok": true
-    },
-    "p_0.1": {
-      "p_one": 0.1,
-      "expected_entropy_nats": 0.3250829733914482,
-      "expected_erase_cost": 0.3250829733914482,
-      "qutip": {
-        "entropy_nats": 0.3250829733914482,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.3250829733914482
-      },
-      "cirq": {
-        "entropy_nats": 0.32508299666231844,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.32508299666231844
-      },
-      "pennylane": {
-        "entropy_nats": 0.3250829733914482,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.3250829733914482
-      },
-      "ok": true
-    },
-    "p_0.5": {
-      "p_one": 0.5,
-      "expected_entropy_nats": 0.6931471805599453,
-      "expected_erase_cost": 0.6931471805599453,
-      "qutip": {
-        "entropy_nats": 0.6931471805599453,
-        "expected_entropy_nats": 0.6931471805599453,
-        "erase_cost": 0.6931471805599453
-      },
-      "cirq": {
-        "entropy_nats": 0.6931471805599453,
-        "expected_entropy_nats": 0.6931471805599453,
-        "erase_cost": 0.6931471805599453
-      },
-      "pennylane": {
-        "entropy_nats": 0.6931471805599453,
-        "expected_entropy_nats": 0.6931471805599453,
-        "erase_cost": 0.6931471805599453
-      },
-      "ok": true
-    },
-    "p_0.9": {
-      "p_one": 0.9,
-      "expected_entropy_nats": 0.3250829733914482,
-      "expected_erase_cost": 0.3250829733914482,
-      "qutip": {
-        "entropy_nats": 0.3250829733914482,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.3250829733914482
-      },
-      "cirq": {
-        "entropy_nats": 0.32508299666231844,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.32508299666231844
-      },
-      "pennylane": {
-        "entropy_nats": 0.3250829733914482,
-        "expected_entropy_nats": 0.3250829733914482,
-        "erase_cost": 0.3250829733914482
-      },
-      "ok": true
-    },
-    "p_1.0": {
-      "p_one": 1.0,
-      "expected_entropy_nats": -0.0,
-      "expected_erase_cost": -0.0,
-      "qutip": {
-        "entropy_nats": 3.914394658089878e-16,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": 3.914394658089878e-16
-      },
-      "cirq": {
-        "entropy_nats": -0.0,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": -0.0
-      },
-      "pennylane": {
-        "entropy_nats": -0.0,
-        "expected_entropy_nats": -0.0,
-        "erase_cost": -0.0
-      },
-      "ok": true
-    }
-  },
-  "bridge_all_pass": true,
   "pass": true
 }

@@ -8,7 +8,8 @@ REPO="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
 OPS="$REPO/ops"
 STOP="$OPS/.stop_sim_runner"
 LOG_DIR="$REPO/overnight_logs"
-PYTHON="$(which python3)"
+PYTHON="$(awk -F':=' '/^PYTHON[[:space:]]*:=/ {gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2); print $2; exit}' "$REPO/Makefile")"
+[ -n "$PYTHON" ] || PYTHON="$(which python3)"
 
 QUEUES=(
   "$OPS/queue_tier_a.txt"

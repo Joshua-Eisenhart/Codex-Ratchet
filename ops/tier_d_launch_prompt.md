@@ -14,17 +14,18 @@ Read in order:
 11. ops/SIM_RUNNER.md
 12. ops/TIER_D.md
 13. ops/AUDIT_TRAIL.md
-14. /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md
-15. /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_d_spawn_plan.md
-16. /Users/joshuaeisenhart/wiki/harness/00_READ_FIRST.md
-17. /Users/joshuaeisenhart/wiki/harness/02_constraint_admissibility_primer.md
-18. /Users/joshuaeisenhart/wiki/harness/06_coupling_program_order.md
-19. /Users/joshuaeisenhart/wiki/harness/07_z3_unsat_primacy.md
-20. /Users/joshuaeisenhart/wiki/harness/08_anti_patterns.md
-21. system_v4/probes/SIM_TEMPLATE.py
+14. ops/OVERNIGHT.md
+15. /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md
+16. /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_d_spawn_plan.md
+17. /Users/joshuaeisenhart/wiki/harness/00_READ_FIRST.md
+18. /Users/joshuaeisenhart/wiki/harness/02_constraint_admissibility_primer.md
+19. /Users/joshuaeisenhart/wiki/harness/06_coupling_program_order.md
+20. /Users/joshuaeisenhart/wiki/harness/07_z3_unsat_primacy.md
+21. /Users/joshuaeisenhart/wiki/harness/08_anti_patterns.md
+22. system_v4/probes/SIM_TEMPLATE.py
 
 Goal
-Execute Tier D only if the gate is honestly open. Be silent unless Tier D is actually launched or blocked by a concrete prerequisite during this execution.
+Execute Tier D only if the gate is honestly open. Keep overnight polling/launch behavior autonomous. Be silent unless Tier D is actually launched or blocked by a concrete prerequisite during this execution.
 
 Hard gate before any Tier D launch work:
 - /Users/joshuaeisenhart/wiki/projects/codex-ratchet/tier_b.md must contain `Gate: green`
@@ -38,6 +39,7 @@ If the hard gate is not open:
 - do not write status noise
 
 If the hard gate is open:
+- Per ops/OVERNIGHT.md, no owner confirmation is needed to auto-launch Tier D once the Tier B gate passes.
 1. Run preflight from ops/HERMES_RULES.md exactly:
    - `git status --short`
    - auto-handle only safe buckets A-E

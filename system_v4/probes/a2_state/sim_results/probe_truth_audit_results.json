@@ -1,18 +1,13 @@
 {
-  "generated_at": "2026-04-16T21:42:39.999590+00:00",
+  "generated_at": "2026-04-17T05:36:05.131310+00:00",
   "strict_stale": false,
-  "files_scanned": 2261,
+  "files_scanned": 2520,
   "summary": {
-    "hard_finding_count": 83,
-    "warning_finding_count": 17,
+    "hard_finding_count": 82,
+    "warning_finding_count": 18,
     "ok": false
   },
   "hard_findings": [
-    {
-      "kind": "stale_source_newer_than_result",
-      "source": "sim_axis0_pyg_proxy.py",
-      "result_json": "axis0_pyg_proxy_results.json"
-    },
     {
       "kind": "canonical_summary_false",
       "result_json": "cvc5_frege_system_constraint_results.json"
@@ -226,11 +221,6 @@
         "$.boundary.test_2_boundary_epsilon_equals_minus1.pass",
         "$.boundary.test_3_boundary_epsilon_magnitude_just_outside.pass"
       ]
-    },
-    {
-      "kind": "stale_source_newer_than_result",
-      "source": "sim_axis0_pyg_proxy.py",
-      "result_json": "sim_axis0_pyg_proxy_results.json"
     },
     {
       "kind": "canonical_has_failed_checks",
@@ -504,6 +494,11 @@
       "tool": "cvc5"
     },
     {
+      "kind": "used_without_tried",
+      "result_json": "sim_spectral_triple_clifford_z3_coupling_results.json",
+      "tool": "z3"
+    },
+    {
       "kind": "stale_source_newer_than_result",
       "source": "sim_spectral_triple_weyl_mera_bridge_claims_canonical.py",
       "result_json": "spectral_triple_weyl_mera_bridge_claims_canonical_results.json"
@@ -669,6 +664,18 @@
       "kind": "stale_source_newer_than_result",
       "source": "sim_pure_lego_z_measurement.py",
       "result_json": "z_measurement_results.json"
+    },
+    {
+      "kind": "controller_truth_snapshot_mismatch",
+      "result_json": "controller_alignment_audit_results.json",
+      "expected": {
+        "ok": false,
+        "hard_finding_count": 82
+      },
+      "actual": {
+        "ok": false,
+        "hard_finding_count": 83
+      }
     }
   ]
 }

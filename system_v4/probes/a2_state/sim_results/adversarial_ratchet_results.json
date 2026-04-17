@@ -14,59 +14,59 @@
     "z3": {
       "tried": false,
       "used": false,
-      "reason": "minimax game does not require constraint verification; equilibrium verified empirically"
+      "reason": "not needed for this sim"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": "solvers not needed; purely gradient-based equilibrium search via pytorch autograd"
+      "reason": "not needed for this sim"
     },
     "sympy": {
       "tried": false,
       "used": false,
-      "reason": "symbolic verification not applied; Nash equilibrium computed numerically via iterative descent"
+      "reason": "not needed for this sim"
     },
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": "Clifford algebra not needed; density matrices treated as real numerical optimization objects"
+      "reason": "not needed for this sim"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": "manifold structure not exploited; minimax game operates in euclidean parameter space"
+      "reason": "not needed for this sim"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": "rotation equivariance not required; adversary models noise channels, not geometric symmetries"
+      "reason": "not needed for this sim"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": "graph structure not needed; pure tensor computation for density and channel representations"
+      "reason": "not needed for this sim"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": "hypergraph topology not relevant; minimax uses scalar loss function only"
+      "reason": "not needed for this sim"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": "higher-order topology not modeled; game operates on flat optimization landscapes"
+      "reason": "not needed for this sim"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": "persistent homology not computed; convergence criterion is equilibrium value change, not topological"
+      "reason": "not needed for this sim"
     }
   },
   "classification": "canonical",
   "summary": {
     "tests_passed": 7,
     "tests_total": 7,
-    "elapsed_seconds": 5.57,
+    "elapsed_seconds": 4.97,
     "equilibrium_ic": 0.010460776090621949,
     "converged": true,
     "answer": "The minimax game over I_c converges to a stable equilibrium. The ratchet player learns to maximize entangling gate strength while the adversary maximizes noise. The equilibrium I_c > 0 demonstrates that the ratchet can sustain coherent information even under adversarial conditions -- a Nash equilibrium where neither player benefits from unilateral deviation."
